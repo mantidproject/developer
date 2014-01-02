@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 require "date"
+require "net/http"
 
 # print usage information and exit
 def help val
@@ -56,6 +57,13 @@ class GitInfo
     # get the ticket number in two steps to insure it is the right thing
     @ticket = log_line.join(" ")[/(origin\S+\d+)/]
     @ticket = @ticket[/\d+/]
+
+    uri = URI("http://trac.mantidproject.org/mantid/ticket/#{@ticket}")
+    doc = Net::HTTP.get(uri)
+    summary = doc[/<h2 class=\"summary searchable\">.+<\/h2>/]
+    summary = summary.gsub(/<h2.+\">/, "")
+    @descr = summary.gsub(/<\/h2>/, "")
+
   end
 
   def to_s
