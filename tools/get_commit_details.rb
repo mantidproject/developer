@@ -72,10 +72,7 @@ if filename and File.exist?(filename)
   handle = File.new(filename, "r")
   lines = handle.readlines
   for line in lines
-    if line.include? "include trac_detail"
-      line = line[/trac=\"\d+\"/][/\d+/]
-      tickets << line
-    elsif line.include? "http://trac.mantidproject.org/mantid/ticket/"
+    if line.include? "http://trac.mantidproject.org/mantid/ticket/"
       line = line[/\/ticket\/\d+/][/\d+/]
       tickets << line
     end
