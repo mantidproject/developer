@@ -6,7 +6,7 @@ title: Updates - Week 1 of 2014
 ---
 Updates for week 1 of 2014
 --------------------------
-Magic stuff happened
+Another slow week as many of the developers were off for the holidays.
 * generic item 1
 * generic item 2
 
