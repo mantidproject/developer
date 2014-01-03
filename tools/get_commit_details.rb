@@ -72,8 +72,11 @@ if filename and File.exist?(filename)
   handle = File.new(filename, "r")
   lines = handle.readlines
   for line in lines
-    if line.include?("include trac_detail")
+    if line.include? "include trac_detail"
       line = line[/trac=\"\d+\"/][/\d+/]
+      tickets << line
+    elsif line.include? "http://trac.mantidproject.org/mantid/ticket/"
+      line = line[/\/ticket\/\d+/][/\d+/]
       tickets << line
     end
   end
@@ -117,7 +120,9 @@ class GitInfo
       @descr = summary.gsub(/<\/h2>/, "")
     end
 
-    return "* {% include trac_detail trac=\"#{@ticket}\" sha1=\"#{@sha1}\" short=\"#{@shashort}\" descr=\"#{@descr}\" %}"
+    msg =  "* \\[[#{@ticket}](http://trac.mantidproject.org/mantid/ticket/#{@ticket})"
+    msg << "|[#{@shashort}](https://github.com/mantidproject/mantid/commit/#{@sha1})\\] #{@descr}"
+    return msg
   end
 
   def ticket
