@@ -117,7 +117,7 @@ class GitInfo
       @descr = summary.gsub(/<\/h2>/, "")
     end
 
-    msg =  "* \\[[#{@ticket}](http://trac.mantidproject.org/mantid/ticket/#{@ticket})"
+    msg =  "* \\[[\##{@ticket}](http://trac.mantidproject.org/mantid/ticket/#{@ticket})"
     msg << "|[#{@shashort}](https://github.com/mantidproject/mantid/commit/#{@sha1})\\] #{@descr}"
     return msg
   end
