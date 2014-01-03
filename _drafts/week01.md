@@ -6,9 +6,27 @@ title: Updates - Week 1 of 2014
 ---
 Updates for week 1 of 2014
 --------------------------
-Another slow week as many of the developers were off for the holidays.
-* generic item 1
-* generic item 2
+Many of the developers were off for the holidays, but a lot got done anyhow.
+* Fitting function modelling the continuos diffusion of a particle confined to an spherical volume.
+* Add an option pick tab of the instrument view to plot a tube against the out-of-plane angle.
+* The StretchedExFT fitting function calculates the FFT of the stretched exponential using as many
+time points as bins in the histogram data. This turns out to be insufficient. Many more time points
+are neccessary to produce a Fourier Transform that can be fitted to the data.
+* [OptimizeLatticeForCellType]({{ site.projecthome }}/OptimizeLatticeForCellType) now has input 
+options for hexagonal lattices and specifying number of edge pixels.
+* Clearer property types in help pages for more workspace types.
+
+... and a batch of new algorithms
+
+* [IndirectTransmission]({{ site.projecthome }}/IndirectTransmission). Note that this is a different 
+algorithm from the indirect transmission routine in IndirectEnergyConversion.
+* Workflow algorithms related to inelastic scattering: [MaskAngle]({{ site.projecthome }}/MaskAngle), 
+[MaskBTP]({{ site.projecthome }}/MaskBTP), [CorrectLogTimes]({{ site.projecthome }}/CorrectLogTimes) 
+and [GetEiT0atSNS]({{ site.projecthome }}/GetEiT0atSNS).
+* [PerformIndexOperations]({{ site.projecthome }}/PerformIndexOperations) which can pre-process 
+workspace index list operations. This is worked into the reflectometry reduction.
+* [SortDetectors]({{ site.projecthome }}/SortDetectors) returns the detectors sorted by distance. 
+This is intended to be used with monitors, but can work on the whole instrument.
 
 Detailed Merges for Dec 28, 2013 - Jan 3, 2014
 ----------------------------------------------
