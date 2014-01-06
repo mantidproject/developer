@@ -89,12 +89,17 @@ output = `cd #{mantid_src}; git log #{git_args}`
 class GitInfo
   # class for converting the information into a line in the output file
 
-  def initialize log_line
+  def initialize log_line, is_new
     log_line = log_line.split
     @sha1 = log_line[0]
     log_line.delete_at(0)
     @shashort = log_line[0]
     log_line.delete_at(0)
+    if true #is_new
+      @is_new = "<em>new</em> "
+    else
+      @is_new = ""
+    end
     # get the ticket number in two steps to
     # insure it is the right thing
     @ticket = log_line.join(" ")[/(origin\S+\d+)/]
@@ -117,8 +122,10 @@ class GitInfo
       @descr = summary.gsub(/<\/h2>/, "")
     end
 
-    msg =  "* \\[[\##{@ticket}](http://trac.mantidproject.org/mantid/ticket/#{@ticket})"
-    msg << "|[#{@shashort}](https://github.com/mantidproject/mantid/commit/#{@sha1})\\] #{@descr}"
+    msg =  "* #{@is_new}"
+    msg << "\\[[\##{@ticket}](http://trac.mantidproject.org/mantid/ticket/#{@ticket})"
+    msg << "|[#{@shashort}](https://github.com/mantidproject/mantid/commit/#{@sha1})\\] "
+    msg << "#{@descr}"
     return msg
   end
 
@@ -130,7 +137,7 @@ end
 # get the commits according to git
 commits = Array.new
 for line in output.split("\n")
-  info = GitInfo.new line
+  info = GitInfo.new line, (tickets.length > 0)
   if not tickets.include?(info.ticket)
     commits << info
   end
