@@ -6,15 +6,17 @@ layout: default
     <div id="post">
       {{ content }}
     </div>
+  <div id="page-nav-item">
+    {% if page.previous %}
+    <span class="left">
+      <a rel="prev" href="{{ site.baseurl }}{{ page.previous.url }}" title="View {{ page.previous.title }}">&larr; Prev</a>
+    </span>
+    {% endif %}
+    {% if page.next %}
+    <span class="right">
+      <a rel="next" href="{{ site.baseurl }}{{ page.next.url }}" title="View {{ page.next.title }}">Next &rarr;</a>
+    </span>
+  {% endif %}
+  </div>
   </section>
-  {% if page.previous %}
-  <span class="page-nav-item.left">
-    <a rel="prev" href="{{ site.baseurl }}{{ page.previous.url }}" title="View {{ page.previous.title }}">&larr; View previous article</a>
-  </span>
-  {% endif %}
-  {% if page.next %}
-  <span class="page-nav-item.right">
-    <a rel="next" href="{{ site.baseurl }}{{ page.next.url }}" title="View {{ page.next.title }}">View next article &rarr;</a>
-  </span>
-  {% endif %}
 </div>
