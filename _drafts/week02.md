@@ -11,9 +11,12 @@ Detailed Merges for Jan 3 - 10, 2014
 ----------------------------------------------
 * <em>new</em> \[[#8398](http://trac.mantidproject.org/mantid/ticket/8398)|[c0555c2](https://github.com/mantidproject/mantid/commit/c0555c235295721387c67937ce81c6194847d2d4)\] LoadFullprofResolution add optional Workspace Property
 * <em>new</em> \[[#8400](http://trac.mantidproject.org/mantid/ticket/8400)|[9d92775](https://github.com/mantidproject/mantid/commit/9d92775a74986a60750b943ec9013f932df3f13e)\] remove ConvertFullprofToXML
+* <em>new</em> \[[#8623](http://trac.mantidproject.org/mantid/ticket/8623)|[4c5e8d0](https://github.com/mantidproject/mantid/commit/4c5e8d018f0e145f545e51b9b7e561fd029a1ad3)\] Read characterization into table workspace
 * <em>new</em> \[[#8632](http://trac.mantidproject.org/mantid/ticket/8632)|[34a6182](https://github.com/mantidproject/mantid/commit/34a61820100e9d3223f09902022ef25f7a6fd353)\] Fix doxygen errors
 * <em>new</em> \[[#8633](http://trac.mantidproject.org/mantid/ticket/8633)|[db0317c](https://github.com/mantidproject/mantid/commit/db0317c05036071f338946894b11b073a38178c1)\] Refl_gui Improvements - New save window
 * <em>new</em> \[[#8643](http://trac.mantidproject.org/mantid/ticket/8643)|[5a8aa54](https://github.com/mantidproject/mantid/commit/5a8aa54aebd36bee09bddc61bafcd3c0d0232b9e)\] Polarisation Correction in Quick
+* <em>new</em> \[[#8654](http://trac.mantidproject.org/mantid/ticket/8654)|[8687e97](https://github.com/mantidproject/mantid/commit/8687e97b180f1e1a8ac81e3c09c527a0623087ff)\] Duplicate code in ReduceSCD_OneRun.py
 * <em>new</em> \[[#8673](http://trac.mantidproject.org/mantid/ticket/8673)\] Fix problems with SortXAxis
 * <em>new</em> \[[#8674](http://trac.mantidproject.org/mantid/ticket/8674)|[839fd8a](https://github.com/mantidproject/mantid/commit/839fd8af0d1a6940c8dbcc9d94f4fbda49371cfc)\] Expose RectangularDetector methods to python
+* <em>new</em> \[[#8680](http://trac.mantidproject.org/mantid/ticket/8680)|[230f4d4](https://github.com/mantidproject/mantid/commit/230f4d44d34b5a058c270ae2a99e909eb91ad749)\] SNSLiveEventDataListener: Bug in time parsing function on windows
 * <em>new</em> \[[#8683](http://trac.mantidproject.org/mantid/ticket/8683)|[f8441e9](https://github.com/mantidproject/mantid/commit/f8441e997e84b492297258122d75fb07641411a8)\] Fix doxygen warnings for CreateTransmissionWorkspace
