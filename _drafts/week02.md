@@ -6,10 +6,11 @@ title: Updates - Week 2 of 2014
 ---
 Updates for week 2 of 2014
 --------------------------
+* [LoadFullprofResolution]({{ site.projecthome }}/LoadFullprofResolution) has an option to add the irf instrument parameters to the workspace \[PD\]
 
 Detailed Merges for Jan 4 - 10, 2014
 ------------------------------------
-* <em>new</em> \[[#8398](http://trac.mantidproject.org/mantid/ticket/8398)|[c0555c2](https://github.com/mantidproject/mantid/commit/c0555c235295721387c67937ce81c6194847d2d4)\] LoadFullprofResolution add optional Workspace Property
+* \[[#8398](http://trac.mantidproject.org/mantid/ticket/8398)|[c0555c2](https://github.com/mantidproject/mantid/commit/c0555c235295721387c67937ce81c6194847d2d4)\] LoadFullprofResolution add optional Workspace Property
 * <em>new</em> \[[#8400](http://trac.mantidproject.org/mantid/ticket/8400)|[9d92775](https://github.com/mantidproject/mantid/commit/9d92775a74986a60750b943ec9013f932df3f13e)\] remove ConvertFullprofToXML
 * <em>new</em> \[[#8403](http://trac.mantidproject.org/mantid/ticket/8403)|[0872a66](https://github.com/mantidproject/mantid/commit/0872a66738ad828c02c126eb26a6abf18436041c)\] LoadFullprofResolution make OutputTableWorkspace optional
 * <em>new</em> \[[#8612](http://trac.mantidproject.org/mantid/ticket/8612)|[087ebc5](https://github.com/mantidproject/mantid/commit/087ebc542a877acac29eebf430165e31aaa05828)\] Clarification of a section of the Plus algorithm documentation
