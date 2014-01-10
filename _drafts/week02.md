@@ -7,14 +7,17 @@ title: Updates - Week 2 of 2014
 Updates for week 2 of 2014
 --------------------------
 
-Detailed Merges for Jan 3 - 10, 2014
-----------------------------------------------
+Detailed Merges for Jan 4 - 10, 2014
+------------------------------------
 * <em>new</em> \[[#8398](http://trac.mantidproject.org/mantid/ticket/8398)|[c0555c2](https://github.com/mantidproject/mantid/commit/c0555c235295721387c67937ce81c6194847d2d4)\] LoadFullprofResolution add optional Workspace Property
 * <em>new</em> \[[#8400](http://trac.mantidproject.org/mantid/ticket/8400)|[9d92775](https://github.com/mantidproject/mantid/commit/9d92775a74986a60750b943ec9013f932df3f13e)\] remove ConvertFullprofToXML
+* <em>new</em> \[[#8403](http://trac.mantidproject.org/mantid/ticket/8403)|[0872a66](https://github.com/mantidproject/mantid/commit/0872a66738ad828c02c126eb26a6abf18436041c)\] LoadFullprofResolution make OutputTableWorkspace optional
+* <em>new</em> \[[#8612](http://trac.mantidproject.org/mantid/ticket/8612)|[087ebc5](https://github.com/mantidproject/mantid/commit/087ebc542a877acac29eebf430165e31aaa05828)\] Clarification of a section of the Plus algorithm documentation
 * <em>new</em> \[[#8623](http://trac.mantidproject.org/mantid/ticket/8623)|[4c5e8d0](https://github.com/mantidproject/mantid/commit/4c5e8d018f0e145f545e51b9b7e561fd029a1ad3)\] Read characterization into table workspace
 * <em>new</em> \[[#8632](http://trac.mantidproject.org/mantid/ticket/8632)|[34a6182](https://github.com/mantidproject/mantid/commit/34a61820100e9d3223f09902022ef25f7a6fd353)\] Fix doxygen errors
 * <em>new</em> \[[#8633](http://trac.mantidproject.org/mantid/ticket/8633)|[db0317c](https://github.com/mantidproject/mantid/commit/db0317c05036071f338946894b11b073a38178c1)\] Refl_gui Improvements - New save window
 * <em>new</em> \[[#8643](http://trac.mantidproject.org/mantid/ticket/8643)|[5a8aa54](https://github.com/mantidproject/mantid/commit/5a8aa54aebd36bee09bddc61bafcd3c0d0232b9e)\] Polarisation Correction in Quick
+* <em>new</em> \[[#8651](http://trac.mantidproject.org/mantid/ticket/8651)|[901abf3](https://github.com/mantidproject/mantid/commit/901abf30f5d1b154325d9901a36b828f6f2a23f4)\] Check errors for OptimizeLatticeForCellType
 * <em>new</em> \[[#8654](http://trac.mantidproject.org/mantid/ticket/8654)|[8687e97](https://github.com/mantidproject/mantid/commit/8687e97b180f1e1a8ac81e3c09c527a0623087ff)\] Duplicate code in ReduceSCD_OneRun.py
 * <em>new</em> \[[#8669](http://trac.mantidproject.org/mantid/ticket/8669)|[a03746b](https://github.com/mantidproject/mantid/commit/a03746b83f2aef2f0a24f18229141bcca9041c3a)\] AddSampleLog needs to be able to create integer-type time series logs
 * <em>new</em> \[[#8673](http://trac.mantidproject.org/mantid/ticket/8673)\] Fix problems with SortXAxis
