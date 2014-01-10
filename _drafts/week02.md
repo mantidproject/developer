@@ -26,6 +26,7 @@ Detailed Merges for Jan 4 - 10, 2014
 * \[[#8643](http://trac.mantidproject.org/mantid/ticket/8643)|[5a8aa54](https://github.com/mantidproject/mantid/commit/5a8aa54aebd36bee09bddc61bafcd3c0d0232b9e)\] Polarisation Correction in Quick
 * \[[#8651](http://trac.mantidproject.org/mantid/ticket/8651)|[901abf3](https://github.com/mantidproject/mantid/commit/901abf30f5d1b154325d9901a36b828f6f2a23f4)\] Check errors for OptimizeLatticeForCellType
 * \[[#8654](http://trac.mantidproject.org/mantid/ticket/8654)|[8687e97](https://github.com/mantidproject/mantid/commit/8687e97b180f1e1a8ac81e3c09c527a0623087ff)\] Duplicate code in ReduceSCD_OneRun.py
+* *new* \[[#8667](http://trac.mantidproject.org/mantid/ticket/8667)|[9b6688c](https://github.com/mantidproject/mantid/commit/9b6688c550d19f48f07100856281ec152d0f9872)\] Improve user notice in FitParameter
 * \[[#8669](http://trac.mantidproject.org/mantid/ticket/8669)|[a03746b](https://github.com/mantidproject/mantid/commit/a03746b83f2aef2f0a24f18229141bcca9041c3a)\] AddSampleLog needs to be able to create integer-type time series logs
 * \[[#8673](http://trac.mantidproject.org/mantid/ticket/8673)\] Fix problems with SortXAxis
 * \[[#8674](http://trac.mantidproject.org/mantid/ticket/8674)|[839fd8a](https://github.com/mantidproject/mantid/commit/839fd8af0d1a6940c8dbcc9d94f4fbda49371cfc)\] Expose RectangularDetector methods to python
