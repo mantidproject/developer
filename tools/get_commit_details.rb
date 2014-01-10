@@ -5,6 +5,7 @@ require "optparse"
 
 TRAC_URI   = "http://trac.mantidproject.org/mantid/ticket/"
 GITHUB_URI = "https://github.com/mantidproject/mantid/commit/"
+NEW_TAG = "*new* "
 
 class GitInfo
   # class for converting the information into a line in the output file
@@ -14,8 +15,8 @@ class GitInfo
     if log_line.include? TRAC_URI
       # version from trac
       @is_new = ""
-      if log_line.start_with? "* <em>new</em>"
-        @is_new = "<em>new</em> "
+      if log_line.start_with? "* #{NEW_TAG}"
+        @is_new = NEW_TAG
       end
 
       # trim out the front matter
@@ -44,7 +45,7 @@ class GitInfo
         @shashort = @shashort[1,7] # get rid of the extra characters
       end  
     else
-      @is_new = "<em>new</em> "
+      @is_new = NEW_TAG
 
       log_line = log_line.split
       @sha1 = log_line[0]
