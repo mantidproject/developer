@@ -16,7 +16,10 @@ Detailed Merges for Jan 3 - 10, 2014
 * <em>new</em> \[[#8633](http://trac.mantidproject.org/mantid/ticket/8633)|[db0317c](https://github.com/mantidproject/mantid/commit/db0317c05036071f338946894b11b073a38178c1)\] Refl_gui Improvements - New save window
 * <em>new</em> \[[#8643](http://trac.mantidproject.org/mantid/ticket/8643)|[5a8aa54](https://github.com/mantidproject/mantid/commit/5a8aa54aebd36bee09bddc61bafcd3c0d0232b9e)\] Polarisation Correction in Quick
 * <em>new</em> \[[#8654](http://trac.mantidproject.org/mantid/ticket/8654)|[8687e97](https://github.com/mantidproject/mantid/commit/8687e97b180f1e1a8ac81e3c09c527a0623087ff)\] Duplicate code in ReduceSCD_OneRun.py
+* <em>new</em> \[[#8669](http://trac.mantidproject.org/mantid/ticket/8669)|[a03746b](https://github.com/mantidproject/mantid/commit/a03746b83f2aef2f0a24f18229141bcca9041c3a)\] AddSampleLog needs to be able to create integer-type time series logs
 * <em>new</em> \[[#8673](http://trac.mantidproject.org/mantid/ticket/8673)\] Fix problems with SortXAxis
 * <em>new</em> \[[#8674](http://trac.mantidproject.org/mantid/ticket/8674)|[839fd8a](https://github.com/mantidproject/mantid/commit/839fd8af0d1a6940c8dbcc9d94f4fbda49371cfc)\] Expose RectangularDetector methods to python
+* <em>new</em> \[[#8676](http://trac.mantidproject.org/mantid/ticket/8676)|[15c7c30](https://github.com/mantidproject/mantid/commit/15c7c3040b806cc3a3ef29f5910be3af6d0d28aa)\] LoadEventPreNexus is unable to load files from 4th pre-processor
 * <em>new</em> \[[#8680](http://trac.mantidproject.org/mantid/ticket/8680)|[230f4d4](https://github.com/mantidproject/mantid/commit/230f4d44d34b5a058c270ae2a99e909eb91ad749)\] SNSLiveEventDataListener: Bug in time parsing function on windows
 * <em>new</em> \[[#8683](http://trac.mantidproject.org/mantid/ticket/8683)|[f8441e9](https://github.com/mantidproject/mantid/commit/f8441e997e84b492297258122d75fb07641411a8)\] Fix doxygen warnings for CreateTransmissionWorkspace
+* <em>new</em> \[[#8686](http://trac.mantidproject.org/mantid/ticket/8686)|[41b48c2](https://github.com/mantidproject/mantid/commit/41b48c2cc00b99f8d9f9d30052654955f140f6ef)\] Mantid return codes
