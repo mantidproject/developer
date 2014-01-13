@@ -166,9 +166,6 @@ if filename.empty?
   if not File.exist? filename
     filename = "_drafts/"
     filename << "week#{sprintf '%02d', weeknum}.md"
-    if not File.exist? filename
-      filename = ""
-    end
   end
 end
 
@@ -247,7 +244,6 @@ title: Updates - Week #{weeknum} of #{year}
 end
 
 # write out the 
-puts "**** #{filename}"
 File.open(filename, 'w') do |handle|  
   handle.puts header
   for item in tickets
