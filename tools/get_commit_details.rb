@@ -247,7 +247,7 @@ title: Updates - Week #{weeknum} of #{year}
 end
 
 # write out the 
-puts filename
+puts "**** #{filename}"
 File.open(filename, 'w') do |handle|  
   handle.puts header
   for item in tickets
