@@ -246,7 +246,8 @@ title: Updates - Week #{weeknum} of #{year}
   header << "-"*msg.length << "\n"
 end
 
-# write out the file
+# write out the 
+puts filename
 File.open(filename, 'w') do |handle|  
   handle.puts header
   for item in tickets
