@@ -14,3 +14,4 @@ Detailed Merges for Jan 11 - 17, 2014
 * *new* \[[#8681](http://trac.mantidproject.org/mantid/ticket/8681)|[ac38a3f](https://github.com/mantidproject/mantid/commit/ac38a3f70cfe283e9338778f15fb4ad1e76cf82e)\] Extend MaskBTP to TOPAZ,SNAP, ...
 * *new* \[[#8682](http://trac.mantidproject.org/mantid/ticket/8682)|[a8335a8](https://github.com/mantidproject/mantid/commit/a8335a8115994b6b5d1e84b9a388d9886cdbeec7)\] OptimizeLatticeForCellType should have option for separate lattice for each run in PeaksWorkspace
 * *new* \[[#8695](http://trac.mantidproject.org/mantid/ticket/8695)|[a230a42](https://github.com/mantidproject/mantid/commit/a230a42896641732278e7f23255a92b7d717a4b2)\] Step Scan Interface: Report the instrument that the live stream is connecting to
+* *new* \[[#8706](http://trac.mantidproject.org/mantid/ticket/8706)|[0caf489](https://github.com/mantidproject/mantid/commit/0caf489595021c1c8710cc2bb72ba5060c3e6824)\] SaveISAWUB not working on MDEvent workspaces
