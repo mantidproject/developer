@@ -9,7 +9,9 @@ Updates for week 3 of 2014
 
 Detailed Merges for Jan 11 - 17, 2014
 -------------------------------------
+* *new* \[[#7929](http://trac.mantidproject.org/mantid/ticket/7929)|[c0d9057](https://github.com/mantidproject/mantid/commit/c0d905755312cf165ec1f6644af66506f46ba0ef)\] LoadDialog message reporting issue
 * *new* \[[#8488](http://trac.mantidproject.org/mantid/ticket/8488)|[3508842](https://github.com/mantidproject/mantid/commit/35088428256a40b13969d6386135572341c6192e)\] ConvertToMD does not produces correct image any more
+* *new* \[[#8537](http://trac.mantidproject.org/mantid/ticket/8537)|[4f2821b](https://github.com/mantidproject/mantid/commit/4f2821bf4724f669c82cf08d01a5781960b9f67e)\] [ICAT] Publishing GUI
 * *new* \[[#8584](http://trac.mantidproject.org/mantid/ticket/8584)|[819393e](https://github.com/mantidproject/mantid/commit/819393e861d5c21f29469330fcdc6d006c623a44)\] Refl_gui Improvements - Save different formats
 * *new* \[[#8608](http://trac.mantidproject.org/mantid/ticket/8608)|[11d6558](https://github.com/mantidproject/mantid/commit/11d6558e1aab1cdb09d94ce312b549174c2ac2f7)\] INSTRUMENT_Parameters.xml no longer loaded by default
 * *new* \[[#8677](http://trac.mantidproject.org/mantid/ticket/8677)|[c8b92c6](https://github.com/mantidproject/mantid/commit/c8b92c6dcc6539f1ab1461e9353954543850943f)\] MUON: sequential fit Runs textbox edit -&gt; start button
