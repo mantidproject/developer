@@ -199,13 +199,17 @@ git_args = "--since=#{date_start} --until=#{date_stop} "
 git_args << "--grep=\"Merge remote\" --branches=master --format=\"%H %h %s\""
 
 # run the command to get the relavant logs
+#puts "cd #{mantid_src}; git log #{git_args}"
 output = `cd #{mantid_src}; git log #{git_args}`
 
 # get the commits according to git
 for line in output.split("\n")
-  info = GitInfo.new line
-  if not tickets.include? info
-    tickets << info
+  # don't bother with merging master into a branch
+  if not line.include? "Merge remote-tracking branch 'origin/master'"
+    info = GitInfo.new line
+    if not tickets.include? info
+      tickets << info
+    end
   end
 end
 tickets = tickets.sort
