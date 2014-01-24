@@ -20,4 +20,4 @@ Detailed Merges for Jan 18 - 24, 2014
 * \[[#8730](http://trac.mantidproject.org/mantid/ticket/8730)|[750af37](https://github.com/mantidproject/mantid/commit/750af378b844155a9c15cab08c550aece91b4a13)\] ICAT - Better IDS error handling
 * \[[#8731](http://trac.mantidproject.org/mantid/ticket/8731)|[2003821](https://github.com/mantidproject/mantid/commit/2003821fc9e331a07e9ab6ebf8caa75c0c0a6f90)\] Muon - Mantid freezes when using Muon Analysis interface in maximized mode
 * \[[#8732](http://trac.mantidproject.org/mantid/ticket/8732)|[82c1aea](https://github.com/mantidproject/mantid/commit/82c1aea198fd7cbd20af636af606a9d4a03bc213)\] Fix wikimaker for FilterLogByTime
-* *new* \[[#8748](http://trac.mantidproject.org/mantid/ticket/8748)|[d382511](https://github.com/mantidproject/mantid/commit/d3825114e02f81391e2c52f10a6a871fa14d519d)\] Fix ImportMDEventWorkspace
+* \[[#8748](http://trac.mantidproject.org/mantid/ticket/8748)|[d382511](https://github.com/mantidproject/mantid/commit/d3825114e02f81391e2c52f10a6a871fa14d519d)\] Fix ImportMDEventWorkspace
