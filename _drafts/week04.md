@@ -9,6 +9,7 @@ Updates for week 4 of 2014
 
 Detailed Merges for Jan 18 - 24, 2014
 -------------------------------------
+* *new* \[[#8404](http://trac.mantidproject.org/mantid/ticket/8404)|[4aa0361](https://github.com/mantidproject/mantid/commit/4aa03616d71c2757b6c0ae17cff79c3087b3cb62)\] LoadFullprofResolution property to set correspondence between fullprof bank in workspace in group
 * *new* \[[#8700](http://trac.mantidproject.org/mantid/ticket/8700)|[7ad9126](https://github.com/mantidproject/mantid/commit/7ad91264fb2d1261bbbf29b277de0e1e8c095f9e)\] Muon - Seq. fitting: no need to store loaded workspaces
 * \[[#8720](http://trac.mantidproject.org/mantid/ticket/8720)|[0c49b3c](https://github.com/mantidproject/mantid/commit/0c49b3cdced27d381fe1b7d01321e1250e191ea7)\] GeneratePythonScript wiki update
 * *new* \[[#8729](http://trac.mantidproject.org/mantid/ticket/8729)|[6187488](https://github.com/mantidproject/mantid/commit/6187488fdafc4431c7cf8e1218ae58c32167d40c)\] ICAT - Publish algorithm should not create python file
