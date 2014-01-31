@@ -17,15 +17,15 @@ Detailed Merges for Jan 25 - 31, 2014
 -------------------------------------
 * \[[#7178](http://trac.mantidproject.org/mantid/ticket/7178)|[f88d1d0](https://github.com/mantidproject/mantid/commit/f88d1d0738aefbdb02e9f49afd352c170ecf3526)\] Muon - Temperature and field home display
 * *new* \[[#7179](http://trac.mantidproject.org/mantid/ticket/7179)|[9d5d2c5](https://github.com/mantidproject/mantid/commit/9d5d2c5ffc50a6b2ea6faa50492642139c075825)\] In result tab look for run, temperaure and magnetic_field
-* *new* \[[#7859](http://trac.mantidproject.org/mantid/ticket/7859)|[a1036d9](https://github.com/mantidproject/mantid/commit/a1036d9824424db2cccd4e5a5fd030306851dece)\] [IDA] FuryFit - add option for FuryFitMultiple
-* *new* \[[#8347](http://trac.mantidproject.org/mantid/ticket/8347)|[1a63178](https://github.com/mantidproject/mantid/commit/1a63178b1440346f47a74a29d2092bcef756b7b0)\] [IBayes] Upgrade JumpFit
-* *new* \[[#8391](http://trac.mantidproject.org/mantid/ticket/8391)|[11ec9b4](https://github.com/mantidproject/mantid/commit/11ec9b43a89b14e5921bd485096a2c1f33393aa9)\] [IBayes] Replace erange Fortran code with Python
-* *new* \[[#8392](http://trac.mantidproject.org/mantid/ticket/8392)|[c896b8f](https://github.com/mantidproject/mantid/commit/c896b8f181e64837443ecfe5dc25ab07a4296f8a)\] [IBayes] Add sample logs
+* *new* \[[#7859](http://trac.mantidproject.org/mantid/ticket/7859)|[a1036d9](https://github.com/mantidproject/mantid/commit/a1036d9824424db2cccd4e5a5fd030306851dece)\] IDA - FuryFit - add option for FuryFitMultiple
+* *new* \[[#8347](http://trac.mantidproject.org/mantid/ticket/8347)|[1a63178](https://github.com/mantidproject/mantid/commit/1a63178b1440346f47a74a29d2092bcef756b7b0)\] IBayes - Upgrade JumpFit
+* *new* \[[#8391](http://trac.mantidproject.org/mantid/ticket/8391)|[11ec9b4](https://github.com/mantidproject/mantid/commit/11ec9b43a89b14e5921bd485096a2c1f33393aa9)\] IBayes - Replace erange Fortran code with Python
+* *new* \[[#8392](http://trac.mantidproject.org/mantid/ticket/8392)|[c896b8f](https://github.com/mantidproject/mantid/commit/c896b8f181e64837443ecfe5dc25ab07a4296f8a)\] IBayes - Add sample logs
 * *new* \[[#8441](http://trac.mantidproject.org/mantid/ticket/8441)|[dfb2e83](https://github.com/mantidproject/mantid/commit/dfb2e83ef95bf0253fabcf1477486ba4e3ab867f)\] PoldiPeakFit.cpp is excluded in the cmake file, should we delete it?
 * *new* \[[#8527](http://trac.mantidproject.org/mantid/ticket/8527)|[ae6eab9](https://github.com/mantidproject/mantid/commit/ae6eab923b1a2777428bcef7929aa11a4f94c1d5)\] POLREF IDF update
 * *new* \[[#8570](http://trac.mantidproject.org/mantid/ticket/8570)|[7d63292](https://github.com/mantidproject/mantid/commit/7d63292acea428ad279605012c4c69c4d7f77309)\] Make VectorColumns save-able to a Nexus file.
 * \[[#8585](http://trac.mantidproject.org/mantid/ticket/8585)|[82be1a1](https://github.com/mantidproject/mantid/commit/82be1a1e0709214863975c1dc024058f89c1428f)\] Indirect - Output of EISF from fitting routines
-* *new* \[[#8587](http://trac.mantidproject.org/mantid/ticket/8587)|[fc67908](https://github.com/mantidproject/mantid/commit/fc679082ee62d3b347f4aaa4cb6abee83a76549d)\] [Indirect] Port DOS script to Mantid
+* *new* \[[#8587](http://trac.mantidproject.org/mantid/ticket/8587)|[fc67908](https://github.com/mantidproject/mantid/commit/fc679082ee62d3b347f4aaa4cb6abee83a76549d)\] Indirect - Port DOS script to Mantid
 * *new* \[[#8590](http://trac.mantidproject.org/mantid/ticket/8590)|[975a4d5](https://github.com/mantidproject/mantid/commit/975a4d59d35ed2f9024b349dfb14c7fa127ecbf6)\] Refl_gui Improvements - Live Data fix
 * *new* \[[#8595](http://trac.mantidproject.org/mantid/ticket/8595)|[3efa256](https://github.com/mantidproject/mantid/commit/3efa2562a9a562325023ee515235201763f619bb)\] Description of new algorithm for step by step LeBailFit refinement is inadequate
 * *new* \[[#8602](http://trac.mantidproject.org/mantid/ticket/8602)|[3764683](https://github.com/mantidproject/mantid/commit/376468373d8076acb24679702111bada382ad1a3)\] Live listener fails to read LET events
