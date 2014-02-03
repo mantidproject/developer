@@ -21,5 +21,6 @@ Detailed Merges for Feb 1 - 7, 2014
 * *new* \[[#8742](http://trac.mantidproject.org/mantid/ticket/8742)|[4b5a7c2](https://github.com/mantidproject/mantid/commit/4b5a7c22381aa05bdb096c7c9cf6de7e48147313)\] icat publishing description box
 * *new* \[[#8757](http://trac.mantidproject.org/mantid/ticket/8757)|[41e38ab](https://github.com/mantidproject/mantid/commit/41e38ab4bfd88c90634f75a8d3a6a78dc5f3c18b)\] Add investigation number field to search form
 * *new* \[[#8788](http://trac.mantidproject.org/mantid/ticket/8788)|[150499f](https://github.com/mantidproject/mantid/commit/150499fa02eecb5e21f9f680027edf3c5b1c3e25)\] CRISP and Reflectometry GUI
+* *new* \[[#8796](http://trac.mantidproject.org/mantid/ticket/8796)|[f6e81b0](https://github.com/mantidproject/mantid/commit/f6e81b0e390a0668112677c6f70cab8c521d7b7e)\] Add both sides of inelastic banks (3 &amp; 4) to BASIS IDF
 * *new* \[[#8810](http://trac.mantidproject.org/mantid/ticket/8810)|[147f886](https://github.com/mantidproject/mantid/commit/147f88609eebaabc501f8201d8bffea404816023)\] Add functions which return transformation limits for ConvertToMD transf factory methods
 * *new* \[[#8818](http://trac.mantidproject.org/mantid/ticket/8818)|[16fe772](https://github.com/mantidproject/mantid/commit/16fe7722895ab656d782aa42a7ed73375eba360f)\] update to LoadFullprofResolution wiki
