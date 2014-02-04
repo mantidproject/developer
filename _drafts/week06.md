@@ -31,3 +31,8 @@ Detailed Merges for Feb 1 - 7, 2014
 * *new* \[[#8810](http://trac.mantidproject.org/mantid/ticket/8810)|[147f886](https://github.com/mantidproject/mantid/commit/147f88609eebaabc501f8201d8bffea404816023)\] Add functions which return transformation limits for ConvertToMD transf factory methods
 * \[[#8811](http://trac.mantidproject.org/mantid/ticket/8811)|[5f4aa84](https://github.com/mantidproject/mantid/commit/5f4aa8457c5e251946a2446a19d458ffffc0de35)\] Login function for ICAT works at SNS
 * *new* \[[#8818](http://trac.mantidproject.org/mantid/ticket/8818)|[16fe772](https://github.com/mantidproject/mantid/commit/16fe7722895ab656d782aa42a7ed73375eba360f)\] update to LoadFullprofResolution wiki
+* *new* \[[#8834](http://trac.mantidproject.org/mantid/ticket/8834)|[99cee71](https://github.com/mantidproject/mantid/commit/99cee71d781f1a770947f95dafb8c9d081194840)\] 1D plot axes disappear after using the panning tool
+* *new* \[[#8853](http://trac.mantidproject.org/mantid/ticket/8853)|[18b3b9a](https://github.com/mantidproject/mantid/commit/18b3b9aece0d9070acfc64bfa850a9a1f94c073e)\] Add scipy to the mantid-developer spec files
+* *new* \[[#8862](http://trac.mantidproject.org/mantid/ticket/8862)|[24d9f2c](https://github.com/mantidproject/mantid/commit/24d9f2c2d99153e854cd0318ba9642313055dab2)\] Bug in grouping when adding invalid range
+* *new* \[[#8867](http://trac.mantidproject.org/mantid/ticket/8867)|[1b9fcca](https://github.com/mantidproject/mantid/commit/1b9fccadafbba5d1d43491994d896e120a452de0)\] Crash when workspace deleted after closing 3D plot
+* *new* \[[#8869](http://trac.mantidproject.org/mantid/ticket/8869)|[eeea941](https://github.com/mantidproject/mantid/commit/eeea941a4a7e9a4e13410131c204e917472edfbb)\] update catalog publish documentation
