@@ -9,6 +9,7 @@ Updates for week 6 of 2014
 * Moment calculations are now available in python
 * Update BASIS geometry includes the second side
 * Lots if ICAT gui improvements
+* ...including login working for ICAT at SNS
 * Live data algorithm added ability to handle multi-period data
 * Step Scan interface to accept series of non-ADARA runs as points in the scan
 
@@ -28,5 +29,5 @@ Detailed Merges for Feb 1 - 7, 2014
 * *new* \[[#8788](http://trac.mantidproject.org/mantid/ticket/8788)|[150499f](https://github.com/mantidproject/mantid/commit/150499fa02eecb5e21f9f680027edf3c5b1c3e25)\] CRISP and Reflectometry GUI
 * \[[#8796](http://trac.mantidproject.org/mantid/ticket/8796)|[f6e81b0](https://github.com/mantidproject/mantid/commit/f6e81b0e390a0668112677c6f70cab8c521d7b7e)\] Add both sides of inelastic banks (3 &amp; 4) to BASIS IDF
 * *new* \[[#8810](http://trac.mantidproject.org/mantid/ticket/8810)|[147f886](https://github.com/mantidproject/mantid/commit/147f88609eebaabc501f8201d8bffea404816023)\] Add functions which return transformation limits for ConvertToMD transf factory methods
-* *new* \[[#8811](http://trac.mantidproject.org/mantid/ticket/8811)|[5f4aa84](https://github.com/mantidproject/mantid/commit/5f4aa8457c5e251946a2446a19d458ffffc0de35)\] Login function for ICAT works at SNS
+* \[[#8811](http://trac.mantidproject.org/mantid/ticket/8811)|[5f4aa84](https://github.com/mantidproject/mantid/commit/5f4aa8457c5e251946a2446a19d458ffffc0de35)\] Login function for ICAT works at SNS
 * *new* \[[#8818](http://trac.mantidproject.org/mantid/ticket/8818)|[16fe772](https://github.com/mantidproject/mantid/commit/16fe7722895ab656d782aa42a7ed73375eba360f)\] update to LoadFullprofResolution wiki
