@@ -15,6 +15,10 @@ Updates for week 6 of 2014
 * Removed memory leak in DGReduction
 * Reflectometry reducion improvements
 
+For those looking for extra reading, the [3.1 release](https://github.com/mantidproject/mantid/releases/tag/v3.1.0) 
+presentation is
+[here](https://github.com/mantidproject/documents/tree/master/Presentations/Release%20Presentations/3.1).
+
 Detailed Merges for Feb 1 - 7, 2014
 -----------------------------------
 * \[[#7891](http://trac.mantidproject.org/mantid/ticket/7891)|[cbb0275](https://github.com/mantidproject/mantid/commit/cbb02751468c4a5d4d71804cc3e33c4bf82a43e3)\] Expose moment calculations to python
@@ -22,7 +26,7 @@ Detailed Merges for Feb 1 - 7, 2014
 * \[[#8467](http://trac.mantidproject.org/mantid/ticket/8467)|[53a9dd4](https://github.com/mantidproject/mantid/commit/53a9dd49fd71b4191677b3c2aa79397b46abeac5)\] Minor icat GUI fixes
 * \[[#8578](http://trac.mantidproject.org/mantid/ticket/8578)|[90fdfc1](https://github.com/mantidproject/mantid/commit/90fdfc1e40e36a69bcfb85e26e079d6a719fc319)\] Python Reduction does not change reduction argiments three times (thread/memory corruption suspected)
 * \[[#8637](http://trac.mantidproject.org/mantid/ticket/8637)|[23c31cf](https://github.com/mantidproject/mantid/commit/23c31cf1e1a374180f6c21cd55787545abd5a3e4)\] Enable Step Scan interface to accept series of non-ADARA runs as points in the scan
-* *new* \[[#8640](http://trac.mantidproject.org/mantid/ticket/8640)|[eb7d72d](https://github.com/mantidproject/mantid/commit/eb7d72da85ee29a5550f68c2d44dbe2ea5fb534f)\] Restore changes which  apply detector corrections at loading
+* \[[#8640](http://trac.mantidproject.org/mantid/ticket/8640)|[eb7d72d](https://github.com/mantidproject/mantid/commit/eb7d72da85ee29a5550f68c2d44dbe2ea5fb534f)\] Restore changes which  apply detector corrections at loading
 * \[[#8703](http://trac.mantidproject.org/mantid/ticket/8703)|[69e3476](https://github.com/mantidproject/mantid/commit/69e3476aaecdd119559cb15119afde2f7cb3d4c6)\] SNSLiveEventDataListener::connect hangs for a while the requested address can't be reached
 * \[[#8727](http://trac.mantidproject.org/mantid/ticket/8727)|[44c3ccc](https://github.com/mantidproject/mantid/commit/44c3ccc11795a4bd7c05e7955087fb56755d4416)\] icat external download file creation
 * \[[#8733](http://trac.mantidproject.org/mantid/ticket/8733)|[0bf9b94](https://github.com/mantidproject/mantid/commit/0bf9b940ba480ba3596a69ecc915c5e14f5e09b2)\] Refl_gui Improvements - Polarisation Corrections
