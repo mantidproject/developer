@@ -13,6 +13,8 @@ For the second week of maintenance there are lots of "regular" work being done.
 * Removed lots of unnecessary include in some of the core headers. Increased build speed!
 * Bugfix for SliceViewer crashing when overlaying peaks.
 * Improve monitor handling in SANS
+* Bugfix for units in lines extracted from MDWorkspaces
+* Bugfix in FindPeaks/FindPeakBackground working together
 
 Detailed Merges for Feb 15 - 21, 2014
 -------------------------------------
@@ -24,10 +26,10 @@ Detailed Merges for Feb 15 - 21, 2014
 * \[[#8906](http://trac.mantidproject.org/mantid/ticket/8906)|[2d7f5a6](https://github.com/mantidproject/mantid/commit/2d7f5a626e29ca692cd4e18191de5c30ad834ea8)\] Improve handling monitors in SANS
 * \[[#8993](http://trac.mantidproject.org/mantid/ticket/8993)|[37618e7](https://github.com/mantidproject/mantid/commit/37618e7c0a141835095241f861c9b33269b2bc71)\] Update CNCS geometry
 * \[[#8999](http://trac.mantidproject.org/mantid/ticket/8999)|[f67fb08](https://github.com/mantidproject/mantid/commit/f67fb0881798ce73877162eccb6f875d6434fe3f)\] SliceViewer crash
-* *new* \[[#9009](http://trac.mantidproject.org/mantid/ticket/9009)|[9ee190c](https://github.com/mantidproject/mantid/commit/9ee190c6fb4aa4b9fa7e5c5ed5371b506bef849a)\] Fix Units on ConvertMDHistoToMatrixWorkspace
-* *new* \[[#9020](http://trac.mantidproject.org/mantid/ticket/9020)|[ec6563c](https://github.com/mantidproject/mantid/commit/ec6563c3f5e6ff5f0f7c38ac133fc066e3c458d0)\] Fix some issues of FindPeakBackground
+* \[[#9009](http://trac.mantidproject.org/mantid/ticket/9009)|[9ee190c](https://github.com/mantidproject/mantid/commit/9ee190c6fb4aa4b9fa7e5c5ed5371b506bef849a)\] Fix Units on ConvertMDHistoToMatrixWorkspace
+* \[[#9020](http://trac.mantidproject.org/mantid/ticket/9020)|[ec6563c](https://github.com/mantidproject/mantid/commit/ec6563c3f5e6ff5f0f7c38ac133fc066e3c458d0)\] Fix some issues of FindPeakBackground
 * \[[#9025](http://trac.mantidproject.org/mantid/ticket/9025)|[0d556e1](https://github.com/mantidproject/mantid/commit/0d556e1aa06e5b928ca3e9050e8bf9ad3ee154c6)\] Fix UI file warnings on Master
 * \[[#9027](http://trac.mantidproject.org/mantid/ticket/9027)|[dc2e4b6](https://github.com/mantidproject/mantid/commit/dc2e4b6c447e39990c09d50ba25f86231db2ff07)\] Add saving TOPAS files to SNSPowderReduction.py
-* *new* \[[#9033](http://trac.mantidproject.org/mantid/ticket/9033)|[df14486](https://github.com/mantidproject/mantid/commit/df144865c588411fe3cb9bbec84c0c17e71cccdd)\] Correct error in FindPeaks related to calling FindPeakBackground
+* \[[#9033](http://trac.mantidproject.org/mantid/ticket/9033)|[df14486](https://github.com/mantidproject/mantid/commit/df144865c588411fe3cb9bbec84c0c17e71cccdd)\] Correct error in FindPeaks related to calling FindPeakBackground
 * \[[#9036](http://trac.mantidproject.org/mantid/ticket/9036)|[4bfa5b3](https://github.com/mantidproject/mantid/commit/4bfa5b3d00e58f76b4831c10793cc113d6960d3c)\] FileValidator write-access determination issue
 * \[[#9050](http://trac.mantidproject.org/mantid/ticket/9050)|[c0ca97e](https://github.com/mantidproject/mantid/commit/c0ca97e73935428212cd0a0bcef38f014b7aa48f)\] Remove debug code writing to cerr that got into master by mistake
