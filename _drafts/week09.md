@@ -16,6 +16,7 @@ Some amount of the work done this week was for things intended to make it into t
 * Refactor LET geometry
 * Refactor catalog download code to allow for use in composite catalogs
 * Bugfix in IkedaCarpenter on workspace in units of DeltaE
+* Complete rework on how objects (specifically workspaces) are converted into python objects.
 
 Detailed Merges for Feb 22 - 28, 2014
 -------------------------------------
@@ -28,7 +29,7 @@ Detailed Merges for Feb 22 - 28, 2014
 * \[[#8832](http://trac.mantidproject.org/mantid/ticket/8832)|[d60d321](https://github.com/mantidproject/mantid/commit/d60d321a93a1a49112fb9039c871799cf5eeac37)\] Indirect Bayes: ResNorm workflow is slightly broken for file based input
 * \[[#8936](http://trac.mantidproject.org/mantid/ticket/8936)|[afb880b](https://github.com/mantidproject/mantid/commit/afb880b5de30cd786842158ff915c95f836e37cd)\] Uncaught exception on Results Table tab of MuonAnalysis
 * \[[#8953](http://trac.mantidproject.org/mantid/ticket/8953)|[4dd2c10](https://github.com/mantidproject/mantid/commit/4dd2c10a82c0116ad276efc0b5871660f361622e)\] Geometry tab not populated correctly in v3.1
-* *new* \[[#8996](http://trac.mantidproject.org/mantid/ticket/8996)|[05fd06f](https://github.com/mantidproject/mantid/commit/05fd06fca4923e9aca9d68fefb91bab29948bd32)\] PythonInterface casting for workspaces can't work with multiple inheritance, e.g IMaskWorkspace
+* \[[#8996](http://trac.mantidproject.org/mantid/ticket/8996)|[05fd06f](https://github.com/mantidproject/mantid/commit/05fd06fca4923e9aca9d68fefb91bab29948bd32)\] PythonInterface casting for workspaces can't work with multiple inheritance, e.g IMaskWorkspace
 * \[[#9021](http://trac.mantidproject.org/mantid/ticket/9021)|[f5f2221](https://github.com/mantidproject/mantid/commit/f5f22215fa743ed347e162e227a1b419939993f8)\] Remove ghost tubes from BASIS IDF
 * \[[#9031](http://trac.mantidproject.org/mantid/ticket/9031)|[c7aefc1](https://github.com/mantidproject/mantid/commit/c7aefc16ca4b1a5b6159f5f1dead3389e2f5ea78)\] ORNL SANS: UI tweaks
 * \[[#9032](http://trac.mantidproject.org/mantid/ticket/9032)|[680af0d](https://github.com/mantidproject/mantid/commit/680af0df21b18b52038f40b6a9b2f4ee936c7059)\] Get rid of warning message from 8970
