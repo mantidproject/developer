@@ -55,7 +55,7 @@ class GitInfo
 
       # get the ticket number in two steps to
       # insure it is the right thing
-      @ticket = log_line.join(" ")[/(origin\S+\d+)/]
+      @ticket = log_line.join(" ")[/(origin\S+\d+_)/]
       @ticket = @ticket[/\d+/]
     end
 
@@ -205,7 +205,7 @@ output = `cd #{mantid_src}; git log #{git_args}`
 # get the commits according to git
 for line in output.split("\n")
   # don't bother with merging master into a branch
-  if not line.include? "Merge remote-tracking branch 'origin/master'"
+  if not (line.include? "Merge remote-tracking branch 'origin/master'" or line.include? "Merge remote branch 'origin/master'")
     if line.include? "'origin/"
       info = GitInfo.new line
       if not tickets.include? info
