@@ -22,7 +22,7 @@ Detailed Merges for Mar 1 - 7, 2014
 * \[[#8281](http://trac.mantidproject.org/mantid/ticket/8281)|[44da0a1](https://github.com/mantidproject/mantid/commit/44da0a17a010a99a4e6c78140d8686ebfef87398)\] C2E - Tidy S(Q,w) interface.
 * *new* \[[#8487](http://trac.mantidproject.org/mantid/ticket/8487)|[7f15bfa](https://github.com/mantidproject/mantid/commit/7f15bfac171b3bee4aafd76fd7af229f633c442e)\] Fix unreleased use of POCO::XML document and nodelists in Geometry code
 * *new* \[[#8557](http://trac.mantidproject.org/mantid/ticket/8557)|[c10fb42](https://github.com/mantidproject/mantid/commit/c10fb42cb46d0f1f812942387946f1106083ef33)\] Comparison between ISIS and SNS redduction
-* *new* \[[#8601](http://trac.mantidproject.org/mantid/ticket/8601)|[b872ec9](https://github.com/mantidproject/mantid/commit/b872ec9f2f7644dc040606457b206e07c5300316)\] Add statistic information on GetDetOffsetsMultiPeaks()'s reuslt
+* *new* \[[#8601](http://trac.mantidproject.org/mantid/ticket/8601)|[b872ec9](https://github.com/mantidproject/mantid/commit/b872ec9f2f7644dc040606457b206e07c5300316)\] Add statistic information on GetDetOffsetsMultiPeaks()'s result
 * *new* \[[#8723](http://trac.mantidproject.org/mantid/ticket/8723)|[23e40d9](https://github.com/mantidproject/mantid/commit/23e40d9dc7689f66d6f8ce0f4c683adb230e66de)\] Algorithm to read Spectrum files
 * *new* \[[#8816](http://trac.mantidproject.org/mantid/ticket/8816)|[a6dae52](https://github.com/mantidproject/mantid/commit/a6dae52d0fb9d4cd0fa612e0f56f851beae52e16)\] Adding PredictPeaks to theSCD interface
 * \[[#8947](http://trac.mantidproject.org/mantid/ticket/8947)|[229ac25](https://github.com/mantidproject/mantid/commit/229ac258b137879b97beb58a024dbe8c052691ab)\] Export EnabledWhenProperty to python
