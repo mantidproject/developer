@@ -6,12 +6,12 @@ title: Updates - Week 11 of 2014
 ---
 Updates for week 11 of 2014
 ---------------------------
-* Bugfix in [LoadPreNexus](http://www.mantidproject.org/LoadPreNexus) to handle bad event index in pulse ID file
+* Bugfix in [LoadPreNexus]({{ site.projecthome }}/LoadPreNexus) to handle bad event index in pulse ID file
 * Don't allow icat download if the data archive is locally mounted
 * Convert2Energy now outputs moment calculations
-* New algorithm [SaveANSTOAscii](http://www.mantidproject.org/SaveANSTOAscii) for reflectometry
-* New algorithm [PDDetermineCharacterizations](http://www.mantidproject.org/PDDetermineCharacterizations) to determine characterization runs for SNSPowderReduction.
-* [OptimizeLatticeForCellType](http://www.mantidproject.org/OptimizeLatticeForCellType) now has same cell types as [SelectCellOfType](http://www.mantidproject.org/SelectCellOfType)
+* New algorithm [SaveANSTOAscii]({{ site.projecthome }}/SaveANSTOAscii) for reflectometry
+* New algorithm [PDDetermineCharacterizations]({{ site.projecthome }}/PDDetermineCharacterizations) to determine characterization runs for SNSPowderReduction.
+* [OptimizeLatticeForCellType]({{ site.projecthome }}/OptimizeLatticeForCellType) now has same cell types as [SelectCellOfType]({{ site.projecthome }}/SelectCellOfType)
 
 Detailed Merges for Mar 8 - 14, 2014
 ------------------------------------
