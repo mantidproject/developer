@@ -19,6 +19,8 @@ Detailed Merges for Mar 22 - 28, 2014
 * *new* \[[#9038](http://trac.mantidproject.org/mantid/ticket/9038)|[07d6b04](https://github.com/mantidproject/mantid/commit/07d6b0492158088d62f16b6fbe1ae0b944af305e)\] Update Frequency in stead of Accumulation method Dialog
 * \[[#9101](http://trac.mantidproject.org/mantid/ticket/9101)|[41ec29d](https://github.com/mantidproject/mantid/commit/41ec29db451eaedc5c42947d84626a712106fe95)\] Implement ExportExperimentLog (Create run summary file for VULCAN)
 * *new* \[[#9115](http://trac.mantidproject.org/mantid/ticket/9115)|[2611b7d](https://github.com/mantidproject/mantid/commit/2611b7dc48eb65904bc36eb4248131fe6723391f)\] Implement Connected Component Analysis in Mantid
+* *new* \[[#9136](http://trac.mantidproject.org/mantid/ticket/9136)|[f42ab3a](https://github.com/mantidproject/mantid/commit/f42ab3adae92633c3503246c49f9724fe871f8f7)\] Extend usefulness of &lt;locations&gt; tag
 * *new* \[[#9137](http://trac.mantidproject.org/mantid/ticket/9137)|[9aab2de](https://github.com/mantidproject/mantid/commit/9aab2dee4bf1e004e46d3f2ea6581b5d10dd1e7d)\] Handle realistic size generate mcstas event files
+* *new* \[[#9200](http://trac.mantidproject.org/mantid/ticket/9200)|[83bc4d5](https://github.com/mantidproject/mantid/commit/83bc4d5c3ee90cde118018712460d0a0383881de)\] Problem with ShowPossibleCells and SelectCellOfType
 * *new* \[[#9218](http://trac.mantidproject.org/mantid/ticket/9218)|[7b5a35a](https://github.com/mantidproject/mantid/commit/7b5a35a33be5de7bc01c5c22b8108e1846d3f25d)\] Remove scripts/Interface/templates
 * \[[#9220](http://trac.mantidproject.org/mantid/ticket/9220)|[6b53e88](https://github.com/mantidproject/mantid/commit/6b53e88086a45bc55da3ac5dc6daf8d739869443)\] SetGoniometer documentation
