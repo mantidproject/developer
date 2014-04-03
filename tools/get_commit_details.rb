@@ -83,7 +83,7 @@ class GitInfo
     msg =  "* #{@is_new}"
     msg << "\\[[\##{@ticket}](#{TRAC_URI}#{@ticket})"
     if (not @shashort.empty?) and (not @sha1.empty?)
-      msg << "|[#{@shashort}](#{GITHUB_URI}#{@sha1})"
+      msg << "\\|[#{@shashort}](#{GITHUB_URI}#{@sha1})"
     end
     msg << "\\] #{@descr}"
     return msg
