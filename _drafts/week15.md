@@ -6,9 +6,31 @@ title: Updates - Week 15 of 2014
 ---
 Updates for week 15 of 2014
 ---------------------------
+* Build scripts called by our Jenkins jobs are in the repository.
+* Bugfix memory leak with Python fit functions
+* BeamSpectrumFile property in [EQSANSNormalise]({ site.projecthome }}/EQSANSNormalise) a proper FileProperty
+* Run [CheckWorkspaceMatch]({ site.projecthome }}/CheckWorkspaceMatch) serially when investigating comparison logs
+* GUI timeout instead of hang when ICAT is down
+* [FindPeaksMD]({ site.projecthome }}/FindPeaksMD) performance improvement
+* New option ExpandSumAllPixels in [SmoothNeighbours]({ site.projecthome }}/SmoothNeighbours)
+* MSVS and coverity issues reduced
+* "make package" updated for Fedora 20
+* Additional packages in mantid-developer for fc20
 
 Detailed Merges for Apr 5 - 11, 2014
 ------------------------------------
-* *new* \[[#9022](http://trac.mantidproject.org/mantid/ticket/9022)\|[b0d8ba3](https://github.com/mantidproject/mantid/commit/b0d8ba3930908612f42ddbb8a4ee7a433c4e7036)\] Run CheckWorkspaceMatch serially when investigating comparison logs
-* *new* \[[#9183](http://trac.mantidproject.org/mantid/ticket/9183)\|[bbeac1c](https://github.com/mantidproject/mantid/commit/bbeac1cb026587eef2283cd94a012a69edba92e3)\] Improve wiki formatting
-* *new* \[[#9208](http://trac.mantidproject.org/mantid/ticket/9208)\|[602d6bc](https://github.com/mantidproject/mantid/commit/602d6bc241792007abba9c34e0490959c5b58bfd)\] Have GUI Timeout Instead of Hang When ICAT is Down
+* \[[#8882](http://trac.mantidproject.org/mantid/ticket/8882)\|[0cebb30](https://github.com/mantidproject/mantid/commit/0cebb30c5c09344d4df02f52b8af41415d28f007)\] Add build scripts to be called by our Jenkins jobs.
+* \[[#9022](http://trac.mantidproject.org/mantid/ticket/9022)\|[b0d8ba3](https://github.com/mantidproject/mantid/commit/b0d8ba3930908612f42ddbb8a4ee7a433c4e7036)\] Run CheckWorkspaceMatch serially when investigating comparison logs
+* \[[#9183](http://trac.mantidproject.org/mantid/ticket/9183)\|[bbeac1c](https://github.com/mantidproject/mantid/commit/bbeac1cb026587eef2283cd94a012a69edba92e3)\] Improve wiki formatting
+* \[[#9197](http://trac.mantidproject.org/mantid/ticket/9197)\|[3097d08](https://github.com/mantidproject/mantid/commit/3097d08099f595404a791b386ceb7edcc653aede)\] Load ILL Add Vanadium workspace for elastic peak finding
+* \[[#9208](http://trac.mantidproject.org/mantid/ticket/9208)\|[602d6bc](https://github.com/mantidproject/mantid/commit/602d6bc241792007abba9c34e0490959c5b58bfd)\] Have GUI Timeout Instead of Hang When ICAT is Down
+* \[[#9239](http://trac.mantidproject.org/mantid/ticket/9239)\|[77beaf0](https://github.com/mantidproject/mantid/commit/77beaf0d3cdd19dd0c320a3fb915eaebfa8d809d)\] Fix coverity warning in AsciiPointBase
+* \[[#9241](http://trac.mantidproject.org/mantid/ticket/9241)\|[9f62bdc](https://github.com/mantidproject/mantid/commit/9f62bdc01ae10c7a3c994bb0aefac5792d7f3b36)\] FindPeaksMD should be done in parallel
+* \[[#9253](http://trac.mantidproject.org/mantid/ticket/9253)\|[2801b02](https://github.com/mantidproject/mantid/commit/2801b02fcbbfe668d2e10375743fcb24bfaea634)\] Update packaging for Fedora 20
+* \[[#9262](http://trac.mantidproject.org/mantid/ticket/9262)\|[2669440](https://github.com/mantidproject/mantid/commit/26694402c588d9b1f3fb03e4356703db0ea1a48e)\] IDA ConvFit: Add tie to temp parameter
+* \[[#9265](http://trac.mantidproject.org/mantid/ticket/9265)\|[f573dd3](https://github.com/mantidproject/mantid/commit/f573dd385a236728cebdf7f7989594685c95bed5)\] Memory leak with Python fit functions
+* \[[#9267](http://trac.mantidproject.org/mantid/ticket/9267)\|[d32265f](https://github.com/mantidproject/mantid/commit/d32265fda0b00b43adb8af0be61b0e06df5caead)\] Fix Visual Studio compiler warnings
+* \[[#9311](http://trac.mantidproject.org/mantid/ticket/9311)\|[a8c6d8a](https://github.com/mantidproject/mantid/commit/a8c6d8aac3990aa549859932293109e202b3059a)\] Make the BeamSpectrumFile property in EQSANSNormalise a proper FileProperty
+* \[[#9312](http://trac.mantidproject.org/mantid/ticket/9312)\|[21d4d2d](https://github.com/mantidproject/mantid/commit/21d4d2d4b1c947f0fdae8885ad1f5672aafaface)\] Calculate Flat background removes backgound from monitors.
+* \[[#9313](http://trac.mantidproject.org/mantid/ticket/9313)\|[2868233](https://github.com/mantidproject/mantid/commit/286823313d612797114e7b491e091ccf08fb1fc1)\] SmoothNeighbours new option
+* \[[#9318](http://trac.mantidproject.org/mantid/ticket/9318)\|[d9bf1ce](https://github.com/mantidproject/mantid/commit/d9bf1ce69e1b7d3802d3444f5d5908bc2a0b4254)\] Add packages to mantid-developer
