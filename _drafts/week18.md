@@ -13,5 +13,6 @@ Detailed Merges for Apr 26 - May 2, 2014
 * *new* \[[#8284](http://trac.mantidproject.org/mantid/ticket/8284)\|[f532e86](https://github.com/mantidproject/mantid/commit/f532e86771edeaee8523ce86bc2b792ad497ae95)\] IDA - Swap Fury and ConvFit to use DataSelector for resolution
 * *new* \[[#8801](http://trac.mantidproject.org/mantid/ticket/8801)\|[6f9370a](https://github.com/mantidproject/mantid/commit/6f9370a646cf8576721307fab01c3e8d7b0def5c)\] Partial Density of States
 * *new* \[[#9162](http://trac.mantidproject.org/mantid/ticket/9162)\|[816f29e](https://github.com/mantidproject/mantid/commit/816f29e9b332694c663987907618ace7f9a6dda1)\] IndirectBayes: Convert JumpFit input to HWHM.
+* *new* \[[#9247](http://trac.mantidproject.org/mantid/ticket/9247)\|[099ed88](https://github.com/mantidproject/mantid/commit/099ed882ca11033af6ee3c97b726c267a9a8b2cc)\] Fix Coverity issues in VATES code.
 * *new* \[[#9319](http://trac.mantidproject.org/mantid/ticket/9319)\|[f7f3dac](https://github.com/mantidproject/mantid/commit/f7f3dacf82fa5940ba1cd81cc8c4f4f694a0b430)\] Avoid creating matrix for color fill plots of workspaces
 * \[[#9386](http://trac.mantidproject.org/mantid/ticket/9386)\|[d79230e](https://github.com/mantidproject/mantid/commit/d79230e3e43ae7e79cc75f7ffe12c032f7234e48)\] cppcheck warning fixes
