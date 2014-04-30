@@ -2,12 +2,12 @@
 if [ -d mantid-code ] ; then
   cd mantid-code && git pull -p && cd -
 else
-  git clone git://github.com/mantidproject/mantid.git mantid-code
+  git clone https://github.com/mantidproject/mantid.git mantid-code
 fi
 if [ -d mantid-systests ] ; then
   cd mantid-systests && git pull -p && cd -
 else
-  git clone git://github.com/mantidproject/systemtests.git mantid-systests
+  git clone https://github.com/mantidproject/systemtests.git mantid-systests
 fi
 
 has_new_draft=true
