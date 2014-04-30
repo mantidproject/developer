@@ -1,14 +1,21 @@
 #!/bin/sh
-cd ${HOME}/code/mantid-coverity/
-git pull -p
-cd -
-cd ${HOME}/code/mantid-news/
-git pull -p
+if [ -d mantid-code ] ; then
+  cd mantid-code && git pull -p && cd -
+else
+  git clone git://github.com/mantidproject/mantid.git mantid-code
+fi
+if [ -d mantid-systests ] ; then
+  cd mantid-systests && git pull -p && cd -
+else
+  git clone git://github.com/mantidproject/systemtests.git mantid-systests
+fi
+
 has_new_draft=true
 if [ -e _drafts/week*.md ] ; then
     has_new_draft=false
 fi
-tools/get_commit_details.rb ${HOME}/code/mantid-coverity/
+tools/get_commit_details.rb ${HOME}/code/mantid-code/
+tools/get_commit_details.rb ${HOME}/code/mantid-systests/
 if [ "$has_new_draft" = true ] ; then
     git add _drafts/week*.md
     git commit -m "Updating ticket list via automated script in cron"
