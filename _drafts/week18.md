@@ -23,6 +23,7 @@ Detailed Merges for Apr 26 - May 2, 2014
 * *new* \[[#9319](http://trac.mantidproject.org/mantid/ticket/9319)\|[f7f3dac](https://github.com/mantidproject/mantid/commit/f7f3dacf82fa5940ba1cd81cc8c4f4f694a0b430)\] Avoid creating matrix for color fill plots of workspaces
 * *new* \[[#9355](http://trac.mantidproject.org/mantid/ticket/9355)\|[ba72e61](https://github.com/mantidproject/mantid/commit/ba72e6152b1cb0c4876ae295ec38cc80869ef0f9)\] CalibrateRectangularDetector can fail if it runs close to midnight!
 * *new* \[[#9376](http://trac.mantidproject.org/mantid/ticket/9376)\|[0455fbf](https://github.com/mantidproject/mantid/commit/0455fbf70e139c22cde2c2b368c1de8fcc280d98)\] Create mantid dataset for published data
+* *new* \[[#9381](http://trac.mantidproject.org/mantid/ticket/9381)\|[d49a5d4](https://github.com/mantidproject/mantid/commit/d49a5d42f152d7f09f55174f3cdd359adc67b970)\] Add tex packages to Fedora 20 developer RPM for qtassistant
 * \[[#9386](http://trac.mantidproject.org/mantid/ticket/9386)\|[d79230e](https://github.com/mantidproject/mantid/commit/d79230e3e43ae7e79cc75f7ffe12c032f7234e48)\] cppcheck warning fixes
 * *new* \[[#9396](http://trac.mantidproject.org/mantid/ticket/9396)\|[ade8b4a](https://github.com/mantidproject/mantid/commit/ade8b4aa89482f4e64f102b8e054224113dedb45)\] Rename ConvertToMDHelper and ConvertToMDHelper2 propertly
 * *new* \[[#9397](http://trac.mantidproject.org/mantid/ticket/9397)\|[cac7727](https://github.com/mantidproject/mantid/commit/cac7727f313d29bf69160f7dc47ad6493161346e)\] SNS Live Listener Regression
