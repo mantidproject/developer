@@ -10,6 +10,7 @@ Updates for week 18 of 2014
 * Change MSDFit to look like FuryFit/ConvFit, various UI improvements ni FuryFit and ConvFit
 * [DensityOfStates]({ site.projecthome }}/DensityOfStates) will calculate a partial DOS from `.phonon` files
 * Optional short description for each algorithm property
+* Changed to more correct fomula for estimating errors in fit parameters
 
 Detailed Merges for Apr 26 - May 2, 2014
 ----------------------------------------
@@ -20,7 +21,7 @@ Detailed Merges for Apr 26 - May 2, 2014
 * \[[#8358](http://trac.mantidproject.org/mantid/ticket/8358)\|[6f0cc73](https://github.com/mantidproject/mantid/commit/6f0cc734d79ed89900575b05b74046664e8802cf)\] Clear memory leaks in the DataObjectsTest package
 * \[[#8801](http://trac.mantidproject.org/mantid/ticket/8801)\|[6f9370a](https://github.com/mantidproject/mantid/commit/6f9370a646cf8576721307fab01c3e8d7b0def5c)\] Partial Density of States
 * \[[#9006](http://trac.mantidproject.org/mantid/ticket/9006)\|[838a0d9](https://github.com/mantidproject/mantid/commit/838a0d94a8958eac7ef55a6047e4e4c999d1bd5a)\] Optional Short Description for each Algorithm Property
-* *new* \[[#9030](http://trac.mantidproject.org/mantid/ticket/9030)\|[74c7ae4](https://github.com/mantidproject/mantid/commit/74c7ae4bcdaf3aae0402e19e604f141b68c7129b)\] Use the covariance matrix for fitting error propagation
+* \[[#9030](http://trac.mantidproject.org/mantid/ticket/9030)\|[74c7ae4](https://github.com/mantidproject/mantid/commit/74c7ae4bcdaf3aae0402e19e604f141b68c7129b)\] Use the covariance matrix for fitting error propagation
 * *new* \[[#9135](http://trac.mantidproject.org/mantid/ticket/9135)\|[28c03aa](https://github.com/mantidproject/mantid/commit/28c03aa327c7f449f15d2ca8182779a0ffd6d8a2)\] ISIS iliad does not work with monitors separated from data
 * *new* \[[#9162](http://trac.mantidproject.org/mantid/ticket/9162)\|[816f29e](https://github.com/mantidproject/mantid/commit/816f29e9b332694c663987907618ace7f9a6dda1)\] IndirectBayes: Convert JumpFit input to HWHM.
 * \[[#9247](http://trac.mantidproject.org/mantid/ticket/9247)\|[099ed88](https://github.com/mantidproject/mantid/commit/099ed882ca11033af6ee3c97b726c267a9a8b2cc)\] Fix Coverity issues in VATES code.
