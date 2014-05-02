@@ -20,8 +20,8 @@ tools/get_commit_details.rb mantid-systests/
 # right here should be something with: git status --porcelain
 if [ "$has_new_draft" = true ] ; then
     git add _drafts/week*.md
-    git commit -m "Updating ticket list via automated script in cron"
+    git commit -m "Updating ticket list via jenkins"
 else
-    git commit -a -m "Updating ticket list via automated script in cron"
+    git commit -a -m "Updating ticket list via jenkins"
 fi
 git push
