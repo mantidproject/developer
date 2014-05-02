@@ -1,4 +1,5 @@
 #!/bin/sh
+set -x
 if [ -d mantid-code ] ; then
   cd mantid-code && git pull -p && cd -
 else
