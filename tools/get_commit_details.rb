@@ -250,7 +250,7 @@ title: Updates - Week #{weeknum} of #{year}
 end
 
 # write out the 
-File.open(filename, 'w') do |handle|  
+File.new(filename, 'w', 0644) do |handle|  
   handle.puts header
   for item in tickets
     handle.puts item
