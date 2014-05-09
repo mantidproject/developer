@@ -14,6 +14,7 @@ Detailed Merges for May 3 - 9, 2014
 * \[[#3255](http://trac.mantidproject.org/mantid/ticket/3255)\|[6b5986c](https://github.com/mantidproject/mantid/commit/6b5986c1dd1a076165096b616050ea3f13d3b893)\] Additional field in sample logs
 * *new* \[[#8060](http://trac.mantidproject.org/mantid/ticket/8060)\|[9d76192](https://github.com/mantidproject/mantid/commit/9d761924d1b45586e7293ea1943f8683fb6c7357)\] Create a Muller Ansatz cross section model
 * *new* \[[#9013](http://trac.mantidproject.org/mantid/ticket/9013)\|[ea39f57](https://github.com/mantidproject/mantid/commit/ea39f577de6bd459211378edc514cbe8f38e4742)\] Load ILL Indirect Geometry IN16B
+* *new* \[[#9204](http://trac.mantidproject.org/mantid/ticket/9204)\|[c961399](https://github.com/mantidproject/mantid/commit/c961399d0a41f9d4cf3f4d269df073de1c4b561e)\] Allow "MaskFile" Commands in SANS ISIS User Files
 * *new* \[[#9353](http://trac.mantidproject.org/mantid/ticket/9353)\|[81ed538](https://github.com/mantidproject/mantid/commit/81ed538a75936ec46725b9fa8429df3dbbdb0ea6)\] SavePlot1D
 * *new* \[[#9359](http://trac.mantidproject.org/mantid/ticket/9359)\|[9c1a438](https://github.com/mantidproject/mantid/commit/9c1a438f70d1bf24378b30d51cdea9567af3716b)\] Problem With Loading Monitors and Data Separately During Reduction
 * *new* \[[#9389](http://trac.mantidproject.org/mantid/ticket/9389)\|[47f57ae](https://github.com/mantidproject/mantid/commit/47f57aec41e954f7b94d3f2ad73cea1c859d9b48)\] SpecularReflectionPositionCorrect algorithm
