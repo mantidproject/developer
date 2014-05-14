@@ -20,4 +20,5 @@ Detailed Merges for May 10 - 16, 2014
 * \[[#9421](http://trac.mantidproject.org/mantid/ticket/9421)\|[39aaa4f](https://github.com/mantidproject/mantid/commit/39aaa4f03d258a203694d958444f8c91d047d968)\] Clear warnings from gcc4.8/numpy1.7 build
 * \[[#9423](http://trac.mantidproject.org/mantid/ticket/9423)\|[2286949](https://github.com/mantidproject/mantid/commit/22869496ea794f5553f9a3ddacc14a895345a748)\] Domain created by FitMW should contain the workspace index.
 * *new* \[[#9426](http://trac.mantidproject.org/mantid/ticket/9426)\|[9158275](https://github.com/mantidproject/mantid/commit/915827555ff353f056dd445c5c0b54c8bce5c72a)\] The height-method of Lorentzian does not return the peak height
+* *new* \[[#9428](http://trac.mantidproject.org/mantid/ticket/9428)\|[33b2e4f](https://github.com/mantidproject/mantid/commit/33b2e4f5b4ba0321166549c1f373854c6bb3b7bb)\] FindClusterFaces Algorithm
 * *new* \[[#9441](http://trac.mantidproject.org/mantid/ticket/9441)\|[26609db](https://github.com/mantidproject/mantid/commit/26609dbae7130f79e816a4a2054377ebf9d4b1ce)\] Improve memory usage in CalibrateRectangularDetector
