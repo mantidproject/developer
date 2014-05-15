@@ -26,3 +26,4 @@ Detailed Merges for May 10 - 16, 2014
 * *new* \[[#9428](http://trac.mantidproject.org/mantid/ticket/9428)\|[33b2e4f](https://github.com/mantidproject/mantid/commit/33b2e4f5b4ba0321166549c1f373854c6bb3b7bb)\] FindClusterFaces Algorithm
 * *new* \[[#9441](http://trac.mantidproject.org/mantid/ticket/9441)\|[26609db](https://github.com/mantidproject/mantid/commit/26609dbae7130f79e816a4a2054377ebf9d4b1ce)\] Improve memory usage in CalibrateRectangularDetector
 * *new* \[[#9457](http://trac.mantidproject.org/mantid/ticket/9457)\|[ce815a3](https://github.com/mantidproject/mantid/commit/ce815a3b31df6d03ab6f5db9485a9e208afaac42)\] Temporary "SANS2DTUBES" Workaround for IDF Problem
+* *new* \[[#9458](http://trac.mantidproject.org/mantid/ticket/9458)\|[0a31edc](https://github.com/mantidproject/mantid/commit/0a31edc4662ef484058b040f36f8cf3b6c966cb9)\] Display Mask for Histogram (Added) Data Throws Error
