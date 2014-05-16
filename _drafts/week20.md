@@ -22,6 +22,7 @@ Detailed Merges for May 10 - 16, 2014
 * *new* \[[#9113](http://trac.mantidproject.org/mantid/ticket/9113)\|[2af8669](https://github.com/mantidproject/mantid/commit/2af86696474a9c5b46ee9a1fd8dea514c512e768)\] Remove Unused File "example_reduction.py"
 * \[[#9221](http://trac.mantidproject.org/mantid/ticket/9221)\|[4e44b2f](https://github.com/mantidproject/mantid/commit/4e44b2f98a46dfa810ab232782f8e93fcdf72e45)\] Use setMatrixWorkspace for setting workspace index to compton profile functions.
 * *new* \[[#9379](http://trac.mantidproject.org/mantid/ticket/9379)\|[488b251](https://github.com/mantidproject/mantid/commit/488b251bf07b7e9d28e6a3b6fb9fbbf0ac4b4c3a)\] Shape of ellipsoid
+* *new* \[[#9395](http://trac.mantidproject.org/mantid/ticket/9395)\|[f839108](https://github.com/mantidproject/mantid/commit/f83910854c50f668ebed3b30b383e8436c33fa12)\] Empty ISIS indirect inelastic system test methods
 * *new* \[[#9399](http://trac.mantidproject.org/mantid/ticket/9399)\|[3d36609](https://github.com/mantidproject/mantid/commit/3d366091d087051f83490227debb753fa52efd50)\] Add optional tableworkspace containing peak range to GetDetOffsetsMultiPeaks
 * \[[#9407](http://trac.mantidproject.org/mantid/ticket/9407)\|[ad8571c](https://github.com/mantidproject/mantid/commit/ad8571c7f318caf57278a10148d275abc9dc65a7)\] Remove the warning from MultiDomainCreator
 * *new* \[[#9418](http://trac.mantidproject.org/mantid/ticket/9418)\|[fb2e914](https://github.com/mantidproject/mantid/commit/fb2e91496521e8658e5a905a442a886a1e2915ea)\] Integrate monitors in SCD Interface
@@ -29,6 +30,7 @@ Detailed Merges for May 10 - 16, 2014
 * \[[#9423](http://trac.mantidproject.org/mantid/ticket/9423)\|[2286949](https://github.com/mantidproject/mantid/commit/22869496ea794f5553f9a3ddacc14a895345a748)\] Domain created by FitMW should contain the workspace index.
 * *new* \[[#9426](http://trac.mantidproject.org/mantid/ticket/9426)\|[9158275](https://github.com/mantidproject/mantid/commit/915827555ff353f056dd445c5c0b54c8bce5c72a)\] The height-method of Lorentzian does not return the peak height
 * *new* \[[#9428](http://trac.mantidproject.org/mantid/ticket/9428)\|[33b2e4f](https://github.com/mantidproject/mantid/commit/33b2e4f5b4ba0321166549c1f373854c6bb3b7bb)\] FindClusterFaces Algorithm
+* *new* \[[#9430](http://trac.mantidproject.org/mantid/ticket/9430)\|[f4171b8](https://github.com/mantidproject/mantid/commit/f4171b8810f608ebbc11dd189c4e3ac2cc9ec9e7)\] Add Help Button to SANS ISIS Interface
 * \[[#9441](http://trac.mantidproject.org/mantid/ticket/9441)\|[26609db](https://github.com/mantidproject/mantid/commit/26609dbae7130f79e816a4a2054377ebf9d4b1ce)\] Improve memory usage in CalibrateRectangularDetector
 * *new* \[[#9454](http://trac.mantidproject.org/mantid/ticket/9454)\|[aee45d9](https://github.com/mantidproject/mantid/commit/aee45d921b6fa1fbcbf77af9eaabf7425df55e69)\] SaveZODS has wrong name for MD H axis
 * *new* \[[#9457](http://trac.mantidproject.org/mantid/ticket/9457)\|[ce815a3](https://github.com/mantidproject/mantid/commit/ce815a3b31df6d03ab6f5db9485a9e208afaac42)\] Temporary "SANS2DTUBES" Workaround for IDF Problem
