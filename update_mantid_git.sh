@@ -20,7 +20,7 @@ tools/get_commit_details.rb mantid-systests/ || exit 1
 # right here should be something with: git status --porcelain
 GIT_STATUS=$(git status --porcelain)
 echo "$GIT_STATUS"
-if [ "x$GIT_STATUS" == "x?? _drafts/" ] ; then
+if [ "x$GIT_STATUS" = "x?? _drafts/" ] ; then
  echo "new file"
 fi
 if [ "$has_new_draft" = true ] ; then
