@@ -18,6 +18,7 @@ fi
 tools/get_commit_details.rb mantid-code/ || exit 1
 tools/get_commit_details.rb mantid-systests/ || exit 1
 # right here should be something with: git status --porcelain
+git status --porcelain
 if [ "$has_new_draft" = true ] ; then
     git add _drafts/week*.md
     git commit -m "Updating ticket list via jenkins"
