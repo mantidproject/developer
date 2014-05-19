@@ -1,4 +1,6 @@
 #!/bin/sh
+
+# update the checked out repositories
 set -x
 if [ -d mantid-code ] ; then
   cd mantid-code && git pull -p && cd -
@@ -11,9 +13,11 @@ else
   git clone https://github.com/mantidproject/systemtests.git mantid-systests
 fi
 
+# update the ticket list
 tools/get_commit_details.rb mantid-code/ || exit 1
 tools/get_commit_details.rb mantid-systests/ || exit 1
-# right here should be something with: git status --porcelain
+
+# commit the news page
 if [ "$(git status --porcelain)" = "?? _drafts/" ] ; then
     git add _drafts/week*.md
     git commit -m "Updating ticket list via jenkins"
