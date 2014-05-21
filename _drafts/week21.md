@@ -17,4 +17,5 @@ Detailed Merges for May 17 - 23, 2014
 * *new* \[[#9442](http://trac.mantidproject.org/mantid/ticket/9442)\|[9cf7aaf](https://github.com/mantidproject/mantid/commit/9cf7aaf0ec938935854592341992faedc85f605e)\] Minor changes required for Valgrind Jenkins jobs
 * \[[#9479](http://trac.mantidproject.org/mantid/ticket/9479)\|[9b9109e](https://github.com/mantidproject/mantid/commit/9b9109e17491032e1775180cdef13b83625a9bf7)\] Update code to ready for latest version of OpenCascade (6.7.1)
 * *new* \[[#9483](http://trac.mantidproject.org/mantid/ticket/9483)\|[2fec5cd](https://github.com/mantidproject/mantid/commit/2fec5cd3b165e6fbd61300e425c94d703f7015d3)\] Remove using directives from headers
+* *new* \[[#9484](http://trac.mantidproject.org/mantid/ticket/9484)\|[0d39935](https://github.com/mantidproject/mantid/commit/0d39935384f0c374a79bb16bd2e32608ae4c7ce8)\] MASKFILE Command Not Working in Batch Mode
 * *new* \[[#9498](http://trac.mantidproject.org/mantid/ticket/9498)\|[57c491b](https://github.com/mantidproject/mantid/commit/57c491bd7e6eb356b1a7c6dea76c36e765340ba9)\] Make SavePlot1D use matplotlib 1.2.0
