@@ -24,3 +24,4 @@ Detailed Merges for May 17 - 23, 2014
 * \[[#9483](http://trac.mantidproject.org/mantid/ticket/9483)\|[2fec5cd](https://github.com/mantidproject/mantid/commit/2fec5cd3b165e6fbd61300e425c94d703f7015d3)\] Remove using directives from headers
 * *new* \[[#9484](http://trac.mantidproject.org/mantid/ticket/9484)\|[0d39935](https://github.com/mantidproject/mantid/commit/0d39935384f0c374a79bb16bd2e32608ae4c7ce8)\] MASKFILE Command Not Working in Batch Mode
 * \[[#9498](http://trac.mantidproject.org/mantid/ticket/9498)\|[57c491b](https://github.com/mantidproject/mantid/commit/57c491bd7e6eb356b1a7c6dea76c36e765340ba9)\] Make SavePlot1D use matplotlib 1.2.0
+* *new* \[[#9512](http://trac.mantidproject.org/mantid/ticket/9512)\|[c8da27d](https://github.com/mantidproject/mantid/commit/c8da27db7f09cf88655d95f3d18b70696b7bf0ce)\] Expose Workspace::setComment to python
