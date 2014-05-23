@@ -27,5 +27,7 @@ Detailed Merges for May 17 - 23, 2014
 * *new* \[[#9480](http://trac.mantidproject.org/mantid/ticket/9480)\|[e19a7aa](https://github.com/mantidproject/mantid/commit/e19a7aa08bec1db327e322483c2b09a5845c9635)\] SaveZODS needs column major order for ZODS
 * \[[#9483](http://trac.mantidproject.org/mantid/ticket/9483)\|[2fec5cd](https://github.com/mantidproject/mantid/commit/2fec5cd3b165e6fbd61300e425c94d703f7015d3)\] Remove using directives from headers
 * *new* \[[#9484](http://trac.mantidproject.org/mantid/ticket/9484)\|[0d39935](https://github.com/mantidproject/mantid/commit/0d39935384f0c374a79bb16bd2e32608ae4c7ce8)\] MASKFILE Command Not Working in Batch Mode
+* *new* \[[#9491](http://trac.mantidproject.org/mantid/ticket/9491)\|[2bb4b46](https://github.com/mantidproject/mantid/commit/2bb4b461d33ceb85f90958609f481932d371f845)\] Y axis label for asymmetry plot
+* *new* \[[#9492](http://trac.mantidproject.org/mantid/ticket/9492)\|[b6c9236](https://github.com/mantidproject/mantid/commit/b6c9236da4d1fc6d5ca81d7044f1842919e2dfbd)\] Complain about units when fitting
 * \[[#9498](http://trac.mantidproject.org/mantid/ticket/9498)\|[57c491b](https://github.com/mantidproject/mantid/commit/57c491bd7e6eb356b1a7c6dea76c36e765340ba9)\] Make SavePlot1D use matplotlib 1.2.0
 * *new* \[[#9512](http://trac.mantidproject.org/mantid/ticket/9512)\|[c8da27d](https://github.com/mantidproject/mantid/commit/c8da27db7f09cf88655d95f3d18b70696b7bf0ce)\] Expose Workspace::setComment to python
