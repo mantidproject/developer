@@ -20,5 +20,6 @@ Detailed Merges for May 24 - 30, 2014
 * *new* \[[#9439](http://trac.mantidproject.org/mantid/ticket/9439)\|[405e9c4](https://github.com/mantidproject/mantid/commit/405e9c465935758b324fcaaec062bf9f82d816cb)\] Allow "$domains" attribute of MultiDomainFunction receive index ranges.
 * *new* \[[#9459](http://trac.mantidproject.org/mantid/ticket/9459)\|[cfe3df8](https://github.com/mantidproject/mantid/commit/cfe3df86eb4bfcf6b6c852ca1c16b3f5310291d8)\] New parameter in CalibrateRectangularDetectors
 * \[[#9516](http://trac.mantidproject.org/mantid/ticket/9516)\|[ffd798e](https://github.com/mantidproject/mantid/commit/ffd798e132caabca6a9792f8dfd0f2efbacd1798)\] Fix newly detected ALC-related Coverity issues
+* *new* \[[#9523](http://trac.mantidproject.org/mantid/ticket/9523)\|[17c8685](https://github.com/mantidproject/mantid/commit/17c86856523772f323bc9922219791daa42ede79)\] Change alg summary strings to a single setSummary
 * \[[#9525](http://trac.mantidproject.org/mantid/ticket/9525)\|[e62cea5](https://github.com/mantidproject/mantid/commit/e62cea5ccd3f2c7668c49d2c2061006b581523f4)\] CreateSampleWorkspace Algorithm
 * \[[#9526](http://trac.mantidproject.org/mantid/ticket/9526)\|[b926447](https://github.com/mantidproject/mantid/commit/b92644735294b9f711b5223980daff56558194e0)\] Saved fit function loading fails
