@@ -11,6 +11,7 @@ Updates for week 22 of 2014
 
 Detailed Merges for May 24 - 30, 2014
 -------------------------------------
+* *new* \[[#8922](http://trac.mantidproject.org/mantid/ticket/8922)\|[0318e40](https://github.com/mantidproject/mantid/commit/0318e400db649586f0497ad9f6e012651dfc33e2)\] Load performance History
 * *new* \[[#9266](http://trac.mantidproject.org/mantid/ticket/9266)\|[4be2c15](https://github.com/mantidproject/mantid/commit/4be2c151d3ede68af1f3b469621f956bb1fd4b2b)\] Python version of PropertyManager implement PyDict interface
 * *new* \[[#9357](http://trac.mantidproject.org/mantid/ticket/9357)\|[2c2a8ca](https://github.com/mantidproject/mantid/commit/2c2a8ca33d8a578eee57768fa315153dfefe4ed6)\] Eliminate managed workspaces
 * *new* \[[#9459](http://trac.mantidproject.org/mantid/ticket/9459)\|[cfe3df8](https://github.com/mantidproject/mantid/commit/cfe3df86eb4bfcf6b6c852ca1c16b3f5310291d8)\] New parameter in CalibrateRectangularDetectors
