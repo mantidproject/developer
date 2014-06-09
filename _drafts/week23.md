@@ -6,11 +6,13 @@ title: Updates - Week 23 of 2014
 ---
 Updates for week 23 of 2014
 ---------------------------
+* Improved error reporting in ISIS SANS interface
+* New algorithm [RemoveWorkspaceHistory]({{ site.projecthome }}/RemoveWorkspaceHistory)
 
 Detailed Merges for May 31 - Jun 6, 2014
 ----------------------------------------
-* *new* \[[#8562](http://trac.mantidproject.org/mantid/ticket/8562)\|[ff7108e](https://github.com/mantidproject/mantid/commit/ff7108e12e015c639e3f95e3bce4cbaac86b190a)\] need to flag missing flood source file as an error
-* *new* \[[#9404](http://trac.mantidproject.org/mantid/ticket/9404)\|[1fe46e1](https://github.com/mantidproject/mantid/commit/1fe46e153f3a17e2427599424836df183aa76845)\] Create RemoveWorkspaceHistory algorithm
+* \[[#8562](http://trac.mantidproject.org/mantid/ticket/8562)\|[ff7108e](https://github.com/mantidproject/mantid/commit/ff7108e12e015c639e3f95e3bce4cbaac86b190a)\] need to flag missing flood source file as an error
+* \[[#9404](http://trac.mantidproject.org/mantid/ticket/9404)\|[1fe46e1](https://github.com/mantidproject/mantid/commit/1fe46e153f3a17e2427599424836df183aa76845)\] Create RemoveWorkspaceHistory algorithm
 * *new* \[[#9429](http://trac.mantidproject.org/mantid/ticket/9429)\|[6d5bea3](https://github.com/mantidproject/mantid/commit/6d5bea345f514cdecc32574fa1547f55acb1af8b)\] Monitor Workspaces Not Being Replaced When New "Added" Event Mode Data is Assigned
 * *new* \[[#9440](http://trac.mantidproject.org/mantid/ticket/9440)\|[d89eba0](https://github.com/mantidproject/mantid/commit/d89eba083f7478f98da29449e4e0cd755e07ba84)\] Stitch1DMany Bug Report
 * *new* \[[#9475](http://trac.mantidproject.org/mantid/ticket/9475)\|[b769a67](https://github.com/mantidproject/mantid/commit/b769a6764ad948a8be1a1b69e5de5b02839a9415)\] Stitch1D as C++ Algorithm
