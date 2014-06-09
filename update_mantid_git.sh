@@ -18,7 +18,7 @@ tools/get_commit_details.rb mantid-code/ || exit 1
 tools/get_commit_details.rb mantid-systests/ || exit 1
 
 # commit the news page
-if [ "$(git status --porcelain)" = "?? _drafts/" ] ; then
+if [ "$(git status --porcelain)" = "?? _drafts/"* ] ; then
     git add _drafts/week*.md
     git commit -m "Updating ticket list via jenkins"
 else
