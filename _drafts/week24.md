@@ -23,6 +23,7 @@ Detailed Merges for Jun 7 - 13, 2014
 * \[[#9576](http://trac.mantidproject.org/mantid/ticket/9576)\|[9a693c0](https://github.com/mantidproject/mantid/commit/9a693c0e8f2f4b4c397c473525f5e0c88d5e60fe)\] Check Documentation and add algorithm usage examples
 * *new* \[[#9577](http://trac.mantidproject.org/mantid/ticket/9577)\|[ba4c6b1](https://github.com/mantidproject/mantid/commit/ba4c6b1ab7c8f5b48be70a1ce799a1ae963048af)\] Check Documentation
 * *new* \[[#9588](http://trac.mantidproject.org/mantid/ticket/9588)\|[a65b545](https://github.com/mantidproject/mantid/commit/a65b545791c8cc81559b75ebc9bbcca65668b038)\] Check Documentation and add algorithm usage examples
+* *new* \[[#9599](http://trac.mantidproject.org/mantid/ticket/9599)\|[c7eac2f](https://github.com/mantidproject/mantid/commit/c7eac2f307145f7603f8d83191ee534ee576b445)\] Depricated Algorithm links in Sphinx
 * *new* \[[#9604](http://trac.mantidproject.org/mantid/ticket/9604)\|[66009a0](https://github.com/mantidproject/mantid/commit/66009a0ea4d3643d049594e9a969e494a8bdccb3)\] class_maker is broken and should write rst files
 * *new* \[[#9611](http://trac.mantidproject.org/mantid/ticket/9611)\|[ee390e1](https://github.com/mantidproject/mantid/commit/ee390e111ff43c1aa6377590496e954f766b7bbd)\] Bundle documentation in package
 * *new* \[[#9613](http://trac.mantidproject.org/mantid/ticket/9613)\|[fc231bd](https://github.com/mantidproject/mantid/commit/fc231bdbbef1e69fa1ca640bc46eac645ced07b3)\] Handle algorithm screenshot resizing within documentation more intelligently
