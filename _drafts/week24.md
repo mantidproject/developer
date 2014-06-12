@@ -15,6 +15,8 @@ Detailed Merges for Jun 7 - 13, 2014
 * *new* \[[#9184](http://trac.mantidproject.org/mantid/ticket/9184)\|[59a5abb](https://github.com/mantidproject/mantid/commit/59a5abba7f9326fde8702242fc61387ad7b52b86)\] ReflectometryReductionOne should correct positions
 * \[[#9403](http://trac.mantidproject.org/mantid/ticket/9403)\|[eed0681](https://github.com/mantidproject/mantid/commit/eed068199536192a384b4211be9f3a7feb8cbbf6)\] Save Workspace Issue in ReflGui
 * *new* \[[#9447](http://trac.mantidproject.org/mantid/ticket/9447)\|[91c54a7](https://github.com/mantidproject/mantid/commit/91c54a7f448fdf8aa5c92195e51641f32fef7e5c)\] Remove unused property in FindPeaks
+* *new* \[[#9463](http://trac.mantidproject.org/mantid/ticket/9463)\|[5987d5d](https://github.com/mantidproject/mantid/commit/5987d5d949efc489f156fad7b227c55fc152fb29)\] Add option to save Topas files to PD reduction gui
+* *new* \[[#9531](http://trac.mantidproject.org/mantid/ticket/9531)\|[5fc85d9](https://github.com/mantidproject/mantid/commit/5fc85d94192b306b9c38fe4025ecebfa4d5a5757)\] Add a DomainCreator that creates a SeqDomain corresponding to a Workspace2D
 * *new* \[[#9542](http://trac.mantidproject.org/mantid/ticket/9542)\|[64270d8](https://github.com/mantidproject/mantid/commit/64270d8ba38575f2b48bfe082b45358ea54d421d)\] Add reading and return to client of event monitor data in SNSLiveEventDataListener
 * *new* \[[#9549](http://trac.mantidproject.org/mantid/ticket/9549)\|[0b43f39](https://github.com/mantidproject/mantid/commit/0b43f3970e59d7253502392c99e07a9e38e78405)\] Stitch1D investigation
 * \[[#9550](http://trac.mantidproject.org/mantid/ticket/9550)\|[62e91d0](https://github.com/mantidproject/mantid/commit/62e91d0d51a6b1e456b42e01252ac40d71899573)\] Make Sure We Correctly Deduce Instrument Name in FileFinder For SANS2D Data Files
@@ -25,5 +27,7 @@ Detailed Merges for Jun 7 - 13, 2014
 * *new* \[[#9588](http://trac.mantidproject.org/mantid/ticket/9588)\|[a65b545](https://github.com/mantidproject/mantid/commit/a65b545791c8cc81559b75ebc9bbcca65668b038)\] Check Documentation and add algorithm usage examples
 * *new* \[[#9599](http://trac.mantidproject.org/mantid/ticket/9599)\|[c7eac2f](https://github.com/mantidproject/mantid/commit/c7eac2f307145f7603f8d83191ee534ee576b445)\] Depricated Algorithm links in Sphinx
 * *new* \[[#9604](http://trac.mantidproject.org/mantid/ticket/9604)\|[66009a0](https://github.com/mantidproject/mantid/commit/66009a0ea4d3643d049594e9a969e494a8bdccb3)\] class_maker is broken and should write rst files
+* *new* \[[#9606](http://trac.mantidproject.org/mantid/ticket/9606)\|[2506429](https://github.com/mantidproject/mantid/commit/25064293115aa07c82d4b74ae672e6cd3a798ab3)\] More banks for MANDI geometry
 * *new* \[[#9611](http://trac.mantidproject.org/mantid/ticket/9611)\|[ee390e1](https://github.com/mantidproject/mantid/commit/ee390e111ff43c1aa6377590496e954f766b7bbd)\] Bundle documentation in package
 * *new* \[[#9613](http://trac.mantidproject.org/mantid/ticket/9613)\|[fc231bd](https://github.com/mantidproject/mantid/commit/fc231bdbbef1e69fa1ca640bc46eac645ced07b3)\] Handle algorithm screenshot resizing within documentation more intelligently
+* *new* \[[#9614](http://trac.mantidproject.org/mantid/ticket/9614)\|[d390b3e](https://github.com/mantidproject/mantid/commit/d390b3ec347a8bb45306e22b94b17ea8160360c6)\] Check Documentation
