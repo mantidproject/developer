@@ -31,3 +31,5 @@ Detailed Merges for Jun 7 - 13, 2014
 * *new* \[[#9611](http://trac.mantidproject.org/mantid/ticket/9611)\|[ee390e1](https://github.com/mantidproject/mantid/commit/ee390e111ff43c1aa6377590496e954f766b7bbd)\] Bundle documentation in package
 * *new* \[[#9613](http://trac.mantidproject.org/mantid/ticket/9613)\|[fc231bd](https://github.com/mantidproject/mantid/commit/fc231bdbbef1e69fa1ca640bc46eac645ced07b3)\] Handle algorithm screenshot resizing within documentation more intelligently
 * *new* \[[#9614](http://trac.mantidproject.org/mantid/ticket/9614)\|[d390b3e](https://github.com/mantidproject/mantid/commit/d390b3ec347a8bb45306e22b94b17ea8160360c6)\] Check Documentation
+* *new* \[[#9624](http://trac.mantidproject.org/mantid/ticket/9624)\|[94bdef9](https://github.com/mantidproject/mantid/commit/94bdef9c833be794a42d9a229b2e15f280af32d9)\] Incorporate python sphinx docs into new documentation structure
+* *new* \[[#9635](http://trac.mantidproject.org/mantid/ticket/9635)\|[c1b32db](https://github.com/mantidproject/mantid/commit/c1b32dbefb84e2d97370b0120c4f5d556de83775)\] Remove unused algorithm LoadLOQDistancesFromRaw
