@@ -24,7 +24,10 @@ Detailed Merges for Jun 7 - 13, 2014
 * *new* \[[#9574](http://trac.mantidproject.org/mantid/ticket/9574)\|[11cde05](https://github.com/mantidproject/mantid/commit/11cde05fd5f7314bb76e126765db06a906ece3ce)\] Check Documentation and add algorithm usage examples
 * \[[#9576](http://trac.mantidproject.org/mantid/ticket/9576)\|[9a693c0](https://github.com/mantidproject/mantid/commit/9a693c0e8f2f4b4c397c473525f5e0c88d5e60fe)\] Check Documentation and add algorithm usage examples
 * *new* \[[#9577](http://trac.mantidproject.org/mantid/ticket/9577)\|[ba4c6b1](https://github.com/mantidproject/mantid/commit/ba4c6b1ab7c8f5b48be70a1ce799a1ae963048af)\] Check Documentation
+* *new* \[[#9580](http://trac.mantidproject.org/mantid/ticket/9580)\|[b2df159](https://github.com/mantidproject/mantid/commit/b2df159c1d5ca785d3618e94186cf12629d10ce5)\] Check Documentation and add algorithm usage examples
+* *new* \[[#9585](http://trac.mantidproject.org/mantid/ticket/9585)\|[08a73d8](https://github.com/mantidproject/mantid/commit/08a73d8c0cf41f5f0f993ef99f738513a71d7b8c)\] Check Documentation and add algorithm usage examples
 * *new* \[[#9588](http://trac.mantidproject.org/mantid/ticket/9588)\|[a65b545](https://github.com/mantidproject/mantid/commit/a65b545791c8cc81559b75ebc9bbcca65668b038)\] Check Documentation and add algorithm usage examples
+* *new* \[[#9589](http://trac.mantidproject.org/mantid/ticket/9589)\|[7c878a5](https://github.com/mantidproject/mantid/commit/7c878a584f72876add1c09a22fcc60b8fa86f521)\] Check Documentation and add algorithm usage examples
 * *new* \[[#9599](http://trac.mantidproject.org/mantid/ticket/9599)\|[c7eac2f](https://github.com/mantidproject/mantid/commit/c7eac2f307145f7603f8d83191ee534ee576b445)\] Depricated Algorithm links in Sphinx
 * *new* \[[#9604](http://trac.mantidproject.org/mantid/ticket/9604)\|[66009a0](https://github.com/mantidproject/mantid/commit/66009a0ea4d3643d049594e9a969e494a8bdccb3)\] class_maker is broken and should write rst files
 * *new* \[[#9606](http://trac.mantidproject.org/mantid/ticket/9606)\|[2506429](https://github.com/mantidproject/mantid/commit/25064293115aa07c82d4b74ae672e6cd3a798ab3)\] More banks for MANDI geometry
@@ -33,3 +36,4 @@ Detailed Merges for Jun 7 - 13, 2014
 * *new* \[[#9614](http://trac.mantidproject.org/mantid/ticket/9614)\|[d390b3e](https://github.com/mantidproject/mantid/commit/d390b3ec347a8bb45306e22b94b17ea8160360c6)\] Check Documentation
 * *new* \[[#9624](http://trac.mantidproject.org/mantid/ticket/9624)\|[94bdef9](https://github.com/mantidproject/mantid/commit/94bdef9c833be794a42d9a229b2e15f280af32d9)\] Incorporate python sphinx docs into new documentation structure
 * *new* \[[#9635](http://trac.mantidproject.org/mantid/ticket/9635)\|[c1b32db](https://github.com/mantidproject/mantid/commit/c1b32dbefb84e2d97370b0120c4f5d556de83775)\] Remove unused algorithm LoadLOQDistancesFromRaw
+* *new* \[[#9641](http://trac.mantidproject.org/mantid/ticket/9641)\|[a514bc6](https://github.com/mantidproject/mantid/commit/a514bc6992ca4cee553e42e7a667780b43abe4f3)\] Clear PropertyMangerDataService When FrameworkManager is Cleared
