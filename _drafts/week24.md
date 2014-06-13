@@ -14,12 +14,14 @@ Detailed Merges for Jun 7 - 13, 2014
 ------------------------------------
 * *new* \[[#9184](http://trac.mantidproject.org/mantid/ticket/9184)\|[59a5abb](https://github.com/mantidproject/mantid/commit/59a5abba7f9326fde8702242fc61387ad7b52b86)\] ReflectometryReductionOne should correct positions
 * \[[#9403](http://trac.mantidproject.org/mantid/ticket/9403)\|[eed0681](https://github.com/mantidproject/mantid/commit/eed068199536192a384b4211be9f3a7feb8cbbf6)\] Save Workspace Issue in ReflGui
+* *new* \[[#9437](http://trac.mantidproject.org/mantid/ticket/9437)\|[22b319f](https://github.com/mantidproject/mantid/commit/22b319f46e41aab263c5480d32a6b1f076e8b618)\] Improve Icons Shown in Algorithm Dialogs
 * *new* \[[#9447](http://trac.mantidproject.org/mantid/ticket/9447)\|[91c54a7](https://github.com/mantidproject/mantid/commit/91c54a7f448fdf8aa5c92195e51641f32fef7e5c)\] Remove unused property in FindPeaks
 * *new* \[[#9463](http://trac.mantidproject.org/mantid/ticket/9463)\|[5987d5d](https://github.com/mantidproject/mantid/commit/5987d5d949efc489f156fad7b227c55fc152fb29)\] Add option to save Topas files to PD reduction gui
 * *new* \[[#9531](http://trac.mantidproject.org/mantid/ticket/9531)\|[5fc85d9](https://github.com/mantidproject/mantid/commit/5fc85d94192b306b9c38fe4025ecebfa4d5a5757)\] Add a DomainCreator that creates a SeqDomain corresponding to a Workspace2D
 * *new* \[[#9542](http://trac.mantidproject.org/mantid/ticket/9542)\|[64270d8](https://github.com/mantidproject/mantid/commit/64270d8ba38575f2b48bfe082b45358ea54d421d)\] Add reading and return to client of event monitor data in SNSLiveEventDataListener
 * *new* \[[#9549](http://trac.mantidproject.org/mantid/ticket/9549)\|[0b43f39](https://github.com/mantidproject/mantid/commit/0b43f3970e59d7253502392c99e07a9e38e78405)\] Stitch1D investigation
 * \[[#9550](http://trac.mantidproject.org/mantid/ticket/9550)\|[62e91d0](https://github.com/mantidproject/mantid/commit/62e91d0d51a6b1e456b42e01252ac40d71899573)\] Make Sure We Correctly Deduce Instrument Name in FileFinder For SANS2D Data Files
+* *new* \[[#9564](http://trac.mantidproject.org/mantid/ticket/9564)\|[4aa765d](https://github.com/mantidproject/mantid/commit/4aa765d7cbf07c6219063986d43057c05f310373)\] Reverse the 2theta-order of POLDI spectra on loading
 * *new* \[[#9568](http://trac.mantidproject.org/mantid/ticket/9568)\|[942aefd](https://github.com/mantidproject/mantid/commit/942aefd8b0a30157a4b0c4de02d11566f8d577d2)\] Check Documentation and add algorithm usage examples
 * *new* \[[#9574](http://trac.mantidproject.org/mantid/ticket/9574)\|[11cde05](https://github.com/mantidproject/mantid/commit/11cde05fd5f7314bb76e126765db06a906ece3ce)\] Check Documentation and add algorithm usage examples
 * \[[#9576](http://trac.mantidproject.org/mantid/ticket/9576)\|[9a693c0](https://github.com/mantidproject/mantid/commit/9a693c0e8f2f4b4c397c473525f5e0c88d5e60fe)\] Check Documentation and add algorithm usage examples
