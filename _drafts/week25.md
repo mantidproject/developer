@@ -21,3 +21,4 @@ Detailed Merges for Jun 14 - 20, 2014
 * *new* \[[#9637](http://trac.mantidproject.org/mantid/ticket/9637)\|[fbe9386](https://github.com/mantidproject/mantid/commit/fbe93866be813b42ac87d1f632321dd05e91a5d9)\] Add ability to create array properties in Python
 * *new* \[[#9654](http://trac.mantidproject.org/mantid/ticket/9654)\|[cd4c7e6](https://github.com/mantidproject/mantid/commit/cd4c7e632ce3e7ffbf9f215372c4c79dd40b9d27)\] Doc building fails if VATES algorithms present and VATES is not built
 * *new* \[[#9657](http://trac.mantidproject.org/mantid/ticket/9657)\|[cfbb6e7](https://github.com/mantidproject/mantid/commit/cfbb6e76ed0751334ba6319abb4a24fad57ddb2c)\] Race condition in SNSLIveEventDataListener
+* *new* \[[#9664](http://trac.mantidproject.org/mantid/ticket/9664)\|[6886ab2](https://github.com/mantidproject/mantid/commit/6886ab223b86282f9e7a2de26bfd3ee8cefb0bc8)\] Order category page entries alphabetically.
