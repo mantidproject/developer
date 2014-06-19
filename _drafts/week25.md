@@ -17,6 +17,7 @@ Detailed Merges for Jun 14 - 20, 2014
 * *new* \[[#9369](http://trac.mantidproject.org/mantid/ticket/9369)\|[08c2449](https://github.com/mantidproject/mantid/commit/08c2449d2a3c06987dd55c3ae851198a2876c2d4)\] Update algorithm history GUI for nested algorithm history
 * *new* \[[#9509](http://trac.mantidproject.org/mantid/ticket/9509)\|[be6b599](https://github.com/mantidproject/mantid/commit/be6b59999ecbc29707ef006c8a77b9d7c8bb87cd)\] IntegratePeaksHybrid aka IntegratePeaksUsingClusters (Hybrid mode)
 * *new* \[[#9536](http://trac.mantidproject.org/mantid/ticket/9536)\|[546eac1](https://github.com/mantidproject/mantid/commit/546eac18d996a72a523ff178dd0ef94128e99c01)\] Convert To Energy: Mask detectors bug
+* *new* \[[#9544](http://trac.mantidproject.org/mantid/ticket/9544)\|[5ff636a](https://github.com/mantidproject/mantid/commit/5ff636a6ca45b4a5fb75b5367a44f76904d37762)\] Use the new live data monitor capabilities in the Step Scan interface
 * \[[#9570](http://trac.mantidproject.org/mantid/ticket/9570)\|[3eb4fdd](https://github.com/mantidproject/mantid/commit/3eb4fdd5df5c1633f5d1607e2d140668a4606400)\] Check Documentation and add algorithm usage examples
 * \[[#9578](http://trac.mantidproject.org/mantid/ticket/9578)\|[844dd04](https://github.com/mantidproject/mantid/commit/844dd04dff6e880f9489f8c8a0a53c6edb27f4c8)\] Check Documentation and add algorithm usage examples
 * \[[#9584](http://trac.mantidproject.org/mantid/ticket/9584)\|[97d58e3](https://github.com/mantidproject/mantid/commit/97d58e3f830332f395b3ee4bf5dfa520b568121d)\] Check Documentation and add algorithm usage examples
@@ -29,4 +30,5 @@ Detailed Merges for Jun 14 - 20, 2014
 * *new* \[[#9654](http://trac.mantidproject.org/mantid/ticket/9654)\|[cd4c7e6](https://github.com/mantidproject/mantid/commit/cd4c7e632ce3e7ffbf9f215372c4c79dd40b9d27)\] Doc building fails if VATES algorithms present and VATES is not built
 * \[[#9657](http://trac.mantidproject.org/mantid/ticket/9657)\|[cfbb6e7](https://github.com/mantidproject/mantid/commit/cfbb6e76ed0751334ba6319abb4a24fad57ddb2c)\] Race condition in SNSLIveEventDataListener
 * \[[#9664](http://trac.mantidproject.org/mantid/ticket/9664)\|[6886ab2](https://github.com/mantidproject/mantid/commit/6886ab223b86282f9e7a2de26bfd3ee8cefb0bc8)\] Order category page entries alphabetically.
+* *new* \[[#9669](http://trac.mantidproject.org/mantid/ticket/9669)\|[c463808](https://github.com/mantidproject/mantid/commit/c463808780ff72ea9dd6aaf80856b3b110055d52)\] Add Corelli to MaskBTP
 * *new* \[[#9681](http://trac.mantidproject.org/mantid/ticket/9681)\|[db7a6fd](https://github.com/mantidproject/mantid/commit/db7a6fdf43c8a28600172c80ad6be36fd01e6120)\] Bundle PyEpics on Mac
