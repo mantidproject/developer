@@ -9,6 +9,7 @@ Updates for week 25 of 2014
 * Lots more documentation work
 * [LoadEventNexus]({{ site.projecthome }}/LoadEventNexus) handles Pause markers
 * [LoadILL]({{ site.projecthome }}/LoadILL) has monitor information
+* Algorithm history gui updated for nested algorithm history
 
 Detailed Merges for Jun 14 - 20, 2014
 -------------------------------------
@@ -19,7 +20,7 @@ Detailed Merges for Jun 14 - 20, 2014
 * *new* \[[#9029](http://trac.mantidproject.org/mantid/ticket/9029)\|[3882eb5](https://github.com/mantidproject/mantid/commit/3882eb537c73e5e39f659fbd198173092df7e0b1)\] Script Repo menu link
 * *new* \[[#9249](http://trac.mantidproject.org/mantid/ticket/9249)\|[0bee5be](https://github.com/mantidproject/mantid/commit/0bee5be62bcfc30f71cb6108a688d0d137721e3a)\] Load ILL Reflectometry
 * \[[#9336](http://trac.mantidproject.org/mantid/ticket/9336)\|[097b03d](https://github.com/mantidproject/mantid/commit/097b03dbc16f27d383415ffbff2753e1131bb145)\] Add Monitor info to LoadILL
-* *new* \[[#9369](http://trac.mantidproject.org/mantid/ticket/9369)\|[08c2449](https://github.com/mantidproject/mantid/commit/08c2449d2a3c06987dd55c3ae851198a2876c2d4)\] Update algorithm history GUI for nested algorithm history
+* \[[#9369](http://trac.mantidproject.org/mantid/ticket/9369)\|[08c2449](https://github.com/mantidproject/mantid/commit/08c2449d2a3c06987dd55c3ae851198a2876c2d4)\] Update algorithm history GUI for nested algorithm history
 * *new* \[[#9509](http://trac.mantidproject.org/mantid/ticket/9509)\|[be6b599](https://github.com/mantidproject/mantid/commit/be6b59999ecbc29707ef006c8a77b9d7c8bb87cd)\] IntegratePeaksHybrid aka IntegratePeaksUsingClusters (Hybrid mode)
 * *new* \[[#9536](http://trac.mantidproject.org/mantid/ticket/9536)\|[546eac1](https://github.com/mantidproject/mantid/commit/546eac18d996a72a523ff178dd0ef94128e99c01)\] Convert To Energy: Mask detectors bug
 * *new* \[[#9544](http://trac.mantidproject.org/mantid/ticket/9544)\|[5ff636a](https://github.com/mantidproject/mantid/commit/5ff636a6ca45b4a5fb75b5367a44f76904d37762)\] Use the new live data monitor capabilities in the Step Scan interface
