@@ -11,10 +11,12 @@ Detailed Merges for Jun 21 - 27, 2014
 -------------------------------------
 * *new* \[[#6807](http://trac.mantidproject.org/mantid/ticket/6807)\|[d2e193c](https://github.com/mantidproject/mantid/commit/d2e193cbe0d52afd29b2f7a692355d2749f583e4)\] Incorporate checking of the ILiveListener::supportsHistory() method into StartLiveData
 * *new* \[[#6830](http://trac.mantidproject.org/mantid/ticket/6830)\|[8d96d18](https://github.com/mantidproject/mantid/commit/8d96d184b22f0c6c7778543da3772084ff7be8ad)\] Incoming logs are not combined when using 'Append' option of StartLiveData
+* *new* \[[#8131](http://trac.mantidproject.org/mantid/ticket/8131)\|[002d2ca](https://github.com/mantidproject/mantid/commit/002d2caa22f0b65b46f1414ea6483533370eea60)\] [IDA] Update and tidy CalcCorr
 * *new* \[[#8342](http://trac.mantidproject.org/mantid/ticket/8342)\|[2982871](https://github.com/mantidproject/mantid/commit/29828711ddd04bc98f1dfb06e492cf2f28e74253)\] Consider adding a method to the ILiveListener interface get the run number
 * *new* \[[#8728](http://trac.mantidproject.org/mantid/ticket/8728)\|[a7b0192](https://github.com/mantidproject/mantid/commit/a7b0192001d16f87f32e8283134bb1b30cadc8e5)\] Make a use of EXPORT_OPT_MANTID_ICAT macro
 * *new* \[[#8931](http://trac.mantidproject.org/mantid/ticket/8931)\|[d513e91](https://github.com/mantidproject/mantid/commit/d513e916fa0c9319f869ca84f9a218eca59af00d)\] SANS add option to provide rebinning parameters to event mode data
 * *new* \[[#8948](http://trac.mantidproject.org/mantid/ticket/8948)\|[34d1f94](https://github.com/mantidproject/mantid/commit/34d1f94cee21bdb48449d9754940f007aa9d319e)\] Polarisation Corrections
+* *new* \[[#9358](http://trac.mantidproject.org/mantid/ticket/9358)\|[8893776](https://github.com/mantidproject/mantid/commit/8893776713f71b6552bebee280e74504d9f8be2f)\] Make GeneratePeaks more user friendly
 * *new* \[[#9370](http://trac.mantidproject.org/mantid/ticket/9370)\|[e1e1880](https://github.com/mantidproject/mantid/commit/e1e1880c48751ccabcdef6a7fbe42e8bc295f32c)\] Update GeneratePythonScript to support nested algorithm history
 * *new* \[[#9377](http://trac.mantidproject.org/mantid/ticket/9377)\|[f79d377](https://github.com/mantidproject/mantid/commit/f79d377e85f11423640447d3b8cd4a4e667074a7)\] Correct T0 in SaveIsawPeaks
 * *new* \[[#9517](http://trac.mantidproject.org/mantid/ticket/9517)\|[595bf7a](https://github.com/mantidproject/mantid/commit/595bf7ac4e0dc6272703659f03522b48202bc844)\] Algorithm history is not captured in binary operations
