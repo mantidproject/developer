@@ -26,3 +26,4 @@ Detailed Merges for Jun 21 - 27, 2014
 * *new* \[[#9621](http://trac.mantidproject.org/mantid/ticket/9621)\|[22043d4](https://github.com/mantidproject/mantid/commit/22043d45386c1f03a40b28fc01f398ebf913d153)\] C2E: Swap fixed grouping to use a file.
 * *new* \[[#9717](http://trac.mantidproject.org/mantid/ticket/9717)\|[2829366](https://github.com/mantidproject/mantid/commit/28293665425b5b37e08d1be752044861845e5b60)\] Fix non-algorithm Sphinx warnings
 * *new* \[[#9721](http://trac.mantidproject.org/mantid/ticket/9721)\|[9e81650](https://github.com/mantidproject/mantid/commit/9e816503f527dccf5f214ac29c877779e7ea88ca)\] Account for Groups When Setting YUnitLabel
+* *new* \[[#9734](http://trac.mantidproject.org/mantid/ticket/9734)\|[ed36385](https://github.com/mantidproject/mantid/commit/ed36385e17135e09c353a0086b20462ee85bd172)\] Fix bad links in algorithm doc
