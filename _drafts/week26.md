@@ -19,7 +19,9 @@ Detailed Merges for Jun 21 - 27, 2014
 * *new* \[[#9377](http://trac.mantidproject.org/mantid/ticket/9377)\|[f79d377](https://github.com/mantidproject/mantid/commit/f79d377e85f11423640447d3b8cd4a4e667074a7)\] Correct T0 in SaveIsawPeaks
 * *new* \[[#9517](http://trac.mantidproject.org/mantid/ticket/9517)\|[595bf7a](https://github.com/mantidproject/mantid/commit/595bf7ac4e0dc6272703659f03522b48202bc844)\] Algorithm history is not captured in binary operations
 * *new* \[[#9532](http://trac.mantidproject.org/mantid/ticket/9532)\|[a7f33ef](https://github.com/mantidproject/mantid/commit/a7f33ef7520e701b45e677c17288526c86abdc13)\] Quasi Plotting
+* *new* \[[#9567](http://trac.mantidproject.org/mantid/ticket/9567)\|[040e360](https://github.com/mantidproject/mantid/commit/040e36099e0b9c97121800e6cca9b1139b441acc)\] Check Documentation and add algorithm usage examples
 * *new* \[[#9573](http://trac.mantidproject.org/mantid/ticket/9573)\|[6eb7071](https://github.com/mantidproject/mantid/commit/6eb70713e4cb697f40b7311e86501b7c1fab4ecc)\] Check Documentation and add algorithm usage examples
+* *new* \[[#9612](http://trac.mantidproject.org/mantid/ticket/9612)\|[16917ab](https://github.com/mantidproject/mantid/commit/16917ab7b8f21602d5e380fdd4c0b644853e24e0)\] Add algorithm usage examples lot 1
 * *new* \[[#9616](http://trac.mantidproject.org/mantid/ticket/9616)\|[c418865](https://github.com/mantidproject/mantid/commit/c418865dfbc96ada28abd534f1221035ed1041a8)\] Stop Reduction Completely If Calibration/Efficiency Files are Missing
 * *new* \[[#9621](http://trac.mantidproject.org/mantid/ticket/9621)\|[22043d4](https://github.com/mantidproject/mantid/commit/22043d45386c1f03a40b28fc01f398ebf913d153)\] C2E: Swap fixed grouping to use a file.
 * *new* \[[#9717](http://trac.mantidproject.org/mantid/ticket/9717)\|[2829366](https://github.com/mantidproject/mantid/commit/28293665425b5b37e08d1be752044861845e5b60)\] Fix non-algorithm Sphinx warnings
