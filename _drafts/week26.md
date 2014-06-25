@@ -17,6 +17,7 @@ Detailed Merges for Jun 21 - 27, 2014
 * *new* \[[#8728](http://trac.mantidproject.org/mantid/ticket/8728)\|[a7b0192](https://github.com/mantidproject/mantid/commit/a7b0192001d16f87f32e8283134bb1b30cadc8e5)\] Make a use of EXPORT_OPT_MANTID_ICAT macro
 * *new* \[[#8931](http://trac.mantidproject.org/mantid/ticket/8931)\|[d513e91](https://github.com/mantidproject/mantid/commit/d513e916fa0c9319f869ca84f9a218eca59af00d)\] SANS add option to provide rebinning parameters to event mode data
 * *new* \[[#8948](http://trac.mantidproject.org/mantid/ticket/8948)\|[34d1f94](https://github.com/mantidproject/mantid/commit/34d1f94cee21bdb48449d9754940f007aa9d319e)\] Polarisation Corrections
+* *new* \[[#9128](http://trac.mantidproject.org/mantid/ticket/9128)\|[1af6c0d](https://github.com/mantidproject/mantid/commit/1af6c0d0fd043c36d456eab7789da8dcb79e1ce1)\] Create Flowchart for top level HFIRSANS workflow algorithm
 * *new* \[[#9358](http://trac.mantidproject.org/mantid/ticket/9358)\|[8893776](https://github.com/mantidproject/mantid/commit/8893776713f71b6552bebee280e74504d9f8be2f)\] Make GeneratePeaks more user friendly
 * *new* \[[#9370](http://trac.mantidproject.org/mantid/ticket/9370)\|[e1e1880](https://github.com/mantidproject/mantid/commit/e1e1880c48751ccabcdef6a7fbe42e8bc295f32c)\] Update GeneratePythonScript to support nested algorithm history
 * *new* \[[#9377](http://trac.mantidproject.org/mantid/ticket/9377)\|[f79d377](https://github.com/mantidproject/mantid/commit/f79d377e85f11423640447d3b8cd4a4e667074a7)\] Correct T0 in SaveIsawPeaks
