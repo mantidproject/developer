@@ -11,6 +11,7 @@ Detailed Merges for Jun 21 - 27, 2014
 -------------------------------------
 * *new* \[[#6807](http://trac.mantidproject.org/mantid/ticket/6807)\|[d2e193c](https://github.com/mantidproject/mantid/commit/d2e193cbe0d52afd29b2f7a692355d2749f583e4)\] Incorporate checking of the ILiveListener::supportsHistory() method into StartLiveData
 * *new* \[[#6830](http://trac.mantidproject.org/mantid/ticket/6830)\|[8d96d18](https://github.com/mantidproject/mantid/commit/8d96d184b22f0c6c7778543da3772084ff7be8ad)\] Incoming logs are not combined when using 'Append' option of StartLiveData
+* *new* \[[#8026](http://trac.mantidproject.org/mantid/ticket/8026)\|[266e056](https://github.com/mantidproject/mantid/commit/266e0563595adc4266390d520d0a688d3742ac09)\] ConvertToMD fails when it should not
 * *new* \[[#8131](http://trac.mantidproject.org/mantid/ticket/8131)\|[002d2ca](https://github.com/mantidproject/mantid/commit/002d2caa22f0b65b46f1414ea6483533370eea60)\] [IDA] Update and tidy CalcCorr
 * *new* \[[#8342](http://trac.mantidproject.org/mantid/ticket/8342)\|[2982871](https://github.com/mantidproject/mantid/commit/29828711ddd04bc98f1dfb06e492cf2f28e74253)\] Consider adding a method to the ILiveListener interface get the run number
 * *new* \[[#8728](http://trac.mantidproject.org/mantid/ticket/8728)\|[a7b0192](https://github.com/mantidproject/mantid/commit/a7b0192001d16f87f32e8283134bb1b30cadc8e5)\] Make a use of EXPORT_OPT_MANTID_ICAT macro
@@ -26,6 +27,10 @@ Detailed Merges for Jun 21 - 27, 2014
 * *new* \[[#9612](http://trac.mantidproject.org/mantid/ticket/9612)\|[16917ab](https://github.com/mantidproject/mantid/commit/16917ab7b8f21602d5e380fdd4c0b644853e24e0)\] Add algorithm usage examples lot 1
 * *new* \[[#9616](http://trac.mantidproject.org/mantid/ticket/9616)\|[c418865](https://github.com/mantidproject/mantid/commit/c418865dfbc96ada28abd534f1221035ed1041a8)\] Stop Reduction Completely If Calibration/Efficiency Files are Missing
 * *new* \[[#9621](http://trac.mantidproject.org/mantid/ticket/9621)\|[22043d4](https://github.com/mantidproject/mantid/commit/22043d45386c1f03a40b28fc01f398ebf913d153)\] C2E: Swap fixed grouping to use a file.
+* *new* \[[#9632](http://trac.mantidproject.org/mantid/ticket/9632)\|[4bca72b](https://github.com/mantidproject/mantid/commit/4bca72bba12f59d27253e1fd396725def9919c43)\] tube.calibrate() python function no longer works
 * *new* \[[#9717](http://trac.mantidproject.org/mantid/ticket/9717)\|[2829366](https://github.com/mantidproject/mantid/commit/28293665425b5b37e08d1be752044861845e5b60)\] Fix non-algorithm Sphinx warnings
 * *new* \[[#9721](http://trac.mantidproject.org/mantid/ticket/9721)\|[9e81650](https://github.com/mantidproject/mantid/commit/9e816503f527dccf5f214ac29c877779e7ea88ca)\] Account for Groups When Setting YUnitLabel
+* *new* \[[#9724](http://trac.mantidproject.org/mantid/ticket/9724)\|[5f97e6b](https://github.com/mantidproject/mantid/commit/5f97e6b31a3eae8a72f2602a533026798ef887c4)\] Ubuntu 14.04 package dependencies
 * *new* \[[#9734](http://trac.mantidproject.org/mantid/ticket/9734)\|[ed36385](https://github.com/mantidproject/mantid/commit/ed36385e17135e09c353a0086b20462ee85bd172)\] Fix bad links in algorithm doc
+* *new* \[[#9735](http://trac.mantidproject.org/mantid/ticket/9735)\|[6327b67](https://github.com/mantidproject/mantid/commit/6327b675dabc374f63eed29bbf81269a4113f460)\] Indirect Bayes: Error not showing on non-Windows OSs
+* *new* \[[#9743](http://trac.mantidproject.org/mantid/ticket/9743)\|[556d111](https://github.com/mantidproject/mantid/commit/556d1114df4728451fa291ab55ea0a3d7c269e8b)\] Fix "events.binning" crash
