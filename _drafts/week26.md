@@ -20,6 +20,9 @@ Detailed Merges for Jun 21 - 27, 2014
 * *new* \[[#9358](http://trac.mantidproject.org/mantid/ticket/9358)\|[8893776](https://github.com/mantidproject/mantid/commit/8893776713f71b6552bebee280e74504d9f8be2f)\] Make GeneratePeaks more user friendly
 * *new* \[[#9370](http://trac.mantidproject.org/mantid/ticket/9370)\|[e1e1880](https://github.com/mantidproject/mantid/commit/e1e1880c48751ccabcdef6a7fbe42e8bc295f32c)\] Update GeneratePythonScript to support nested algorithm history
 * *new* \[[#9377](http://trac.mantidproject.org/mantid/ticket/9377)\|[f79d377](https://github.com/mantidproject/mantid/commit/f79d377e85f11423640447d3b8cd4a4e667074a7)\] Correct T0 in SaveIsawPeaks
+* *new* \[[#9500](http://trac.mantidproject.org/mantid/ticket/9500)\|[9e502c7](https://github.com/mantidproject/mantid/commit/9e502c7b6c49537a41f74b6730d0fbad8b4e6c28)\] CreateTransmissionWorkspaceAuto convert to C++
+* *new* \[[#9501](http://trac.mantidproject.org/mantid/ticket/9501)\|[73a405b](https://github.com/mantidproject/mantid/commit/73a405bfdfc74d337d961309edbd06b37758e359)\] ReflectometryReductionOneAuto to C++
+* *new* \[[#9502](http://trac.mantidproject.org/mantid/ticket/9502)\|[94d2e65](https://github.com/mantidproject/mantid/commit/94d2e658c2e2509fbf365f03f91303901d148561)\] Issues with ConvertToMD
 * *new* \[[#9517](http://trac.mantidproject.org/mantid/ticket/9517)\|[595bf7a](https://github.com/mantidproject/mantid/commit/595bf7ac4e0dc6272703659f03522b48202bc844)\] Algorithm history is not captured in binary operations
 * *new* \[[#9532](http://trac.mantidproject.org/mantid/ticket/9532)\|[a7f33ef](https://github.com/mantidproject/mantid/commit/a7f33ef7520e701b45e677c17288526c86abdc13)\] Quasi Plotting
 * *new* \[[#9567](http://trac.mantidproject.org/mantid/ticket/9567)\|[040e360](https://github.com/mantidproject/mantid/commit/040e36099e0b9c97121800e6cca9b1139b441acc)\] Check Documentation and add algorithm usage examples
