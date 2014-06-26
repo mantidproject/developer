@@ -11,6 +11,7 @@ Detailed Merges for Jun 21 - 27, 2014
 -------------------------------------
 * *new* \[[#6807](http://trac.mantidproject.org/mantid/ticket/6807)\|[d2e193c](https://github.com/mantidproject/mantid/commit/d2e193cbe0d52afd29b2f7a692355d2749f583e4)\] Incorporate checking of the ILiveListener::supportsHistory() method into StartLiveData
 * *new* \[[#6830](http://trac.mantidproject.org/mantid/ticket/6830)\|[8d96d18](https://github.com/mantidproject/mantid/commit/8d96d184b22f0c6c7778543da3772084ff7be8ad)\] Incoming logs are not combined when using 'Append' option of StartLiveData
+* *new* \[[#6972](http://trac.mantidproject.org/mantid/ticket/6972)\|[555cb08](https://github.com/mantidproject/mantid/commit/555cb08581dad4b03d43985f11ea69ce1a36ccde)\] Host offline help within Mantidplot rather than QT assistant
 * *new* \[[#8026](http://trac.mantidproject.org/mantid/ticket/8026)\|[266e056](https://github.com/mantidproject/mantid/commit/266e0563595adc4266390d520d0a688d3742ac09)\] ConvertToMD fails when it should not
 * *new* \[[#8131](http://trac.mantidproject.org/mantid/ticket/8131)\|[002d2ca](https://github.com/mantidproject/mantid/commit/002d2caa22f0b65b46f1414ea6483533370eea60)\] [IDA] Update and tidy CalcCorr
 * *new* \[[#8342](http://trac.mantidproject.org/mantid/ticket/8342)\|[2982871](https://github.com/mantidproject/mantid/commit/29828711ddd04bc98f1dfb06e492cf2f28e74253)\] Consider adding a method to the ILiveListener interface get the run number
@@ -21,6 +22,7 @@ Detailed Merges for Jun 21 - 27, 2014
 * *new* \[[#9358](http://trac.mantidproject.org/mantid/ticket/9358)\|[8893776](https://github.com/mantidproject/mantid/commit/8893776713f71b6552bebee280e74504d9f8be2f)\] Make GeneratePeaks more user friendly
 * *new* \[[#9370](http://trac.mantidproject.org/mantid/ticket/9370)\|[e1e1880](https://github.com/mantidproject/mantid/commit/e1e1880c48751ccabcdef6a7fbe42e8bc295f32c)\] Update GeneratePythonScript to support nested algorithm history
 * *new* \[[#9377](http://trac.mantidproject.org/mantid/ticket/9377)\|[f79d377](https://github.com/mantidproject/mantid/commit/f79d377e85f11423640447d3b8cd4a4e667074a7)\] Correct T0 in SaveIsawPeaks
+* *new* \[[#9394](http://trac.mantidproject.org/mantid/ticket/9394)\|[cbf47f0](https://github.com/mantidproject/mantid/commit/cbf47f05dd3398b9a69a88551cf399e4e4bc4e41)\] Loader for BILBY beamline at ANSTO
 * *new* \[[#9500](http://trac.mantidproject.org/mantid/ticket/9500)\|[9e502c7](https://github.com/mantidproject/mantid/commit/9e502c7b6c49537a41f74b6730d0fbad8b4e6c28)\] CreateTransmissionWorkspaceAuto convert to C++
 * *new* \[[#9501](http://trac.mantidproject.org/mantid/ticket/9501)\|[73a405b](https://github.com/mantidproject/mantid/commit/73a405bfdfc74d337d961309edbd06b37758e359)\] ReflectometryReductionOneAuto to C++
 * *new* \[[#9502](http://trac.mantidproject.org/mantid/ticket/9502)\|[94d2e65](https://github.com/mantidproject/mantid/commit/94d2e658c2e2509fbf365f03f91303901d148561)\] Issues with ConvertToMD
@@ -32,9 +34,14 @@ Detailed Merges for Jun 21 - 27, 2014
 * *new* \[[#9616](http://trac.mantidproject.org/mantid/ticket/9616)\|[c418865](https://github.com/mantidproject/mantid/commit/c418865dfbc96ada28abd534f1221035ed1041a8)\] Stop Reduction Completely If Calibration/Efficiency Files are Missing
 * *new* \[[#9621](http://trac.mantidproject.org/mantid/ticket/9621)\|[22043d4](https://github.com/mantidproject/mantid/commit/22043d45386c1f03a40b28fc01f398ebf913d153)\] C2E: Swap fixed grouping to use a file.
 * *new* \[[#9632](http://trac.mantidproject.org/mantid/ticket/9632)\|[4bca72b](https://github.com/mantidproject/mantid/commit/4bca72bba12f59d27253e1fd396725def9919c43)\] tube.calibrate() python function no longer works
+* *new* \[[#9686](http://trac.mantidproject.org/mantid/ticket/9686)\|[2ebad7d](https://github.com/mantidproject/mantid/commit/2ebad7dfb3f3af55a1becc87996a993cef7a977e)\] update documentation for LoadMcStas
+* *new* \[[#9688](http://trac.mantidproject.org/mantid/ticket/9688)\|[fd74eed](https://github.com/mantidproject/mantid/commit/fd74eede941ac8c6ced70294a2b5b4dc16bd455e)\] IndirectMoments should use AlgorithmRunner
 * *new* \[[#9717](http://trac.mantidproject.org/mantid/ticket/9717)\|[2829366](https://github.com/mantidproject/mantid/commit/28293665425b5b37e08d1be752044861845e5b60)\] Fix non-algorithm Sphinx warnings
 * *new* \[[#9721](http://trac.mantidproject.org/mantid/ticket/9721)\|[9e81650](https://github.com/mantidproject/mantid/commit/9e816503f527dccf5f214ac29c877779e7ea88ca)\] Account for Groups When Setting YUnitLabel
 * *new* \[[#9724](http://trac.mantidproject.org/mantid/ticket/9724)\|[5f97e6b](https://github.com/mantidproject/mantid/commit/5f97e6b31a3eae8a72f2602a533026798ef887c4)\] Ubuntu 14.04 package dependencies
 * *new* \[[#9734](http://trac.mantidproject.org/mantid/ticket/9734)\|[ed36385](https://github.com/mantidproject/mantid/commit/ed36385e17135e09c353a0086b20462ee85bd172)\] Fix bad links in algorithm doc
 * *new* \[[#9735](http://trac.mantidproject.org/mantid/ticket/9735)\|[6327b67](https://github.com/mantidproject/mantid/commit/6327b675dabc374f63eed29bbf81269a4113f460)\] Indirect Bayes: Error not showing on non-Windows OSs
+* *new* \[[#9739](http://trac.mantidproject.org/mantid/ticket/9739)\|[e0f84c1](https://github.com/mantidproject/mantid/commit/e0f84c16abc7df9f6a037603de7b1f524105faa9)\] Python fit function documentation was missed.
 * *new* \[[#9743](http://trac.mantidproject.org/mantid/ticket/9743)\|[556d111](https://github.com/mantidproject/mantid/commit/556d1114df4728451fa291ab55ea0a3d7c269e8b)\] Fix "events.binning" crash
+* *new* \[[#9749](http://trac.mantidproject.org/mantid/ticket/9749)\|[a9c3be6](https://github.com/mantidproject/mantid/commit/a9c3be6517671bf49787b425b18035dca01c1938)\] Fix Sphinx errors/warnings not on other branches
+* *new* \[[#9750](http://trac.mantidproject.org/mantid/ticket/9750)\|[4515dc8](https://github.com/mantidproject/mantid/commit/4515dc868c6ed1117212662c021234f28fdf482e)\] Algorithm PropertyWidets Are Not Being Hidden/Shown On Value Change
