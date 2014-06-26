@@ -19,6 +19,7 @@ Detailed Merges for Jun 21 - 27, 2014
 * *new* \[[#8931](http://trac.mantidproject.org/mantid/ticket/8931)\|[d513e91](https://github.com/mantidproject/mantid/commit/d513e916fa0c9319f869ca84f9a218eca59af00d)\] SANS add option to provide rebinning parameters to event mode data
 * *new* \[[#8948](http://trac.mantidproject.org/mantid/ticket/8948)\|[34d1f94](https://github.com/mantidproject/mantid/commit/34d1f94cee21bdb48449d9754940f007aa9d319e)\] Polarisation Corrections
 * *new* \[[#9128](http://trac.mantidproject.org/mantid/ticket/9128)\|[1af6c0d](https://github.com/mantidproject/mantid/commit/1af6c0d0fd043c36d456eab7789da8dcb79e1ce1)\] Create Flowchart for top level HFIRSANS workflow algorithm
+* *new* \[[#9337](http://trac.mantidproject.org/mantid/ticket/9337)\|[43071b8](https://github.com/mantidproject/mantid/commit/43071b8f4b39c4707309be2fb8c39565ed98f979)\] ILL IN16B Reduction
 * *new* \[[#9358](http://trac.mantidproject.org/mantid/ticket/9358)\|[8893776](https://github.com/mantidproject/mantid/commit/8893776713f71b6552bebee280e74504d9f8be2f)\] Make GeneratePeaks more user friendly
 * *new* \[[#9370](http://trac.mantidproject.org/mantid/ticket/9370)\|[e1e1880](https://github.com/mantidproject/mantid/commit/e1e1880c48751ccabcdef6a7fbe42e8bc295f32c)\] Update GeneratePythonScript to support nested algorithm history
 * *new* \[[#9377](http://trac.mantidproject.org/mantid/ticket/9377)\|[f79d377](https://github.com/mantidproject/mantid/commit/f79d377e85f11423640447d3b8cd4a4e667074a7)\] Correct T0 in SaveIsawPeaks
@@ -34,11 +35,13 @@ Detailed Merges for Jun 21 - 27, 2014
 * *new* \[[#9616](http://trac.mantidproject.org/mantid/ticket/9616)\|[c418865](https://github.com/mantidproject/mantid/commit/c418865dfbc96ada28abd534f1221035ed1041a8)\] Stop Reduction Completely If Calibration/Efficiency Files are Missing
 * *new* \[[#9621](http://trac.mantidproject.org/mantid/ticket/9621)\|[22043d4](https://github.com/mantidproject/mantid/commit/22043d45386c1f03a40b28fc01f398ebf913d153)\] C2E: Swap fixed grouping to use a file.
 * *new* \[[#9632](http://trac.mantidproject.org/mantid/ticket/9632)\|[4bca72b](https://github.com/mantidproject/mantid/commit/4bca72bba12f59d27253e1fd396725def9919c43)\] tube.calibrate() python function no longer works
+* *new* \[[#9675](http://trac.mantidproject.org/mantid/ticket/9675)\|[5d8aea5](https://github.com/mantidproject/mantid/commit/5d8aea53e465647578633df90a1430934e63cdb2)\] Crash when clicking show detectors on loaded raw file
 * *new* \[[#9686](http://trac.mantidproject.org/mantid/ticket/9686)\|[2ebad7d](https://github.com/mantidproject/mantid/commit/2ebad7dfb3f3af55a1becc87996a993cef7a977e)\] update documentation for LoadMcStas
 * *new* \[[#9688](http://trac.mantidproject.org/mantid/ticket/9688)\|[fd74eed](https://github.com/mantidproject/mantid/commit/fd74eede941ac8c6ced70294a2b5b4dc16bd455e)\] IndirectMoments should use AlgorithmRunner
 * *new* \[[#9717](http://trac.mantidproject.org/mantid/ticket/9717)\|[2829366](https://github.com/mantidproject/mantid/commit/28293665425b5b37e08d1be752044861845e5b60)\] Fix non-algorithm Sphinx warnings
 * *new* \[[#9721](http://trac.mantidproject.org/mantid/ticket/9721)\|[9e81650](https://github.com/mantidproject/mantid/commit/9e816503f527dccf5f214ac29c877779e7ea88ca)\] Account for Groups When Setting YUnitLabel
 * *new* \[[#9724](http://trac.mantidproject.org/mantid/ticket/9724)\|[5f97e6b](https://github.com/mantidproject/mantid/commit/5f97e6b31a3eae8a72f2602a533026798ef887c4)\] Ubuntu 14.04 package dependencies
+* *new* \[[#9729](http://trac.mantidproject.org/mantid/ticket/9729)\|[1b6c893](https://github.com/mantidproject/mantid/commit/1b6c8939c74ce5ce55f84c106b646da88fe3396d)\] LARMOR tube calibration fails
 * *new* \[[#9734](http://trac.mantidproject.org/mantid/ticket/9734)\|[ed36385](https://github.com/mantidproject/mantid/commit/ed36385e17135e09c353a0086b20462ee85bd172)\] Fix bad links in algorithm doc
 * *new* \[[#9735](http://trac.mantidproject.org/mantid/ticket/9735)\|[6327b67](https://github.com/mantidproject/mantid/commit/6327b675dabc374f63eed29bbf81269a4113f460)\] Indirect Bayes: Error not showing on non-Windows OSs
 * *new* \[[#9739](http://trac.mantidproject.org/mantid/ticket/9739)\|[e0f84c1](https://github.com/mantidproject/mantid/commit/e0f84c16abc7df9f6a037603de7b1f524105faa9)\] Python fit function documentation was missed.
