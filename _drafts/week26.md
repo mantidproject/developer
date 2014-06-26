@@ -30,6 +30,7 @@ Detailed Merges for Jun 21 - 27, 2014
 * *new* \[[#9517](http://trac.mantidproject.org/mantid/ticket/9517)\|[595bf7a](https://github.com/mantidproject/mantid/commit/595bf7ac4e0dc6272703659f03522b48202bc844)\] Algorithm history is not captured in binary operations
 * *new* \[[#9532](http://trac.mantidproject.org/mantid/ticket/9532)\|[a7f33ef](https://github.com/mantidproject/mantid/commit/a7f33ef7520e701b45e677c17288526c86abdc13)\] Quasi Plotting
 * *new* \[[#9567](http://trac.mantidproject.org/mantid/ticket/9567)\|[040e360](https://github.com/mantidproject/mantid/commit/040e36099e0b9c97121800e6cca9b1139b441acc)\] Check Documentation and add algorithm usage examples
+* *new* \[[#9572](http://trac.mantidproject.org/mantid/ticket/9572)\|[35a7f5c](https://github.com/mantidproject/mantid/commit/35a7f5c1e87e946c7da469b026a11f08914e68dc)\] Check Documentation
 * *new* \[[#9573](http://trac.mantidproject.org/mantid/ticket/9573)\|[6eb7071](https://github.com/mantidproject/mantid/commit/6eb70713e4cb697f40b7311e86501b7c1fab4ecc)\] Check Documentation and add algorithm usage examples
 * *new* \[[#9612](http://trac.mantidproject.org/mantid/ticket/9612)\|[16917ab](https://github.com/mantidproject/mantid/commit/16917ab7b8f21602d5e380fdd4c0b644853e24e0)\] Add algorithm usage examples lot 1
 * *new* \[[#9616](http://trac.mantidproject.org/mantid/ticket/9616)\|[c418865](https://github.com/mantidproject/mantid/commit/c418865dfbc96ada28abd534f1221035ed1041a8)\] Stop Reduction Completely If Calibration/Efficiency Files are Missing
@@ -48,3 +49,4 @@ Detailed Merges for Jun 21 - 27, 2014
 * *new* \[[#9743](http://trac.mantidproject.org/mantid/ticket/9743)\|[556d111](https://github.com/mantidproject/mantid/commit/556d1114df4728451fa291ab55ea0a3d7c269e8b)\] Fix "events.binning" crash
 * *new* \[[#9749](http://trac.mantidproject.org/mantid/ticket/9749)\|[a9c3be6](https://github.com/mantidproject/mantid/commit/a9c3be6517671bf49787b425b18035dca01c1938)\] Fix Sphinx errors/warnings not on other branches
 * *new* \[[#9750](http://trac.mantidproject.org/mantid/ticket/9750)\|[4515dc8](https://github.com/mantidproject/mantid/commit/4515dc868c6ed1117212662c021234f28fdf482e)\] Algorithm PropertyWidets Are Not Being Hidden/Shown On Value Change
+* *new* \[[#9757](http://trac.mantidproject.org/mantid/ticket/9757)\|[ebeab29](https://github.com/mantidproject/mantid/commit/ebeab29e60ebd9f156b418febee1711212384b4c)\] Category links on windows help aren't formatted correctly
