@@ -28,6 +28,7 @@ Detailed Merges for Jun 21 - 27, 2014
 * *new* \[[#9501](http://trac.mantidproject.org/mantid/ticket/9501)\|[73a405b](https://github.com/mantidproject/mantid/commit/73a405bfdfc74d337d961309edbd06b37758e359)\] ReflectometryReductionOneAuto to C++
 * *new* \[[#9502](http://trac.mantidproject.org/mantid/ticket/9502)\|[94d2e65](https://github.com/mantidproject/mantid/commit/94d2e658c2e2509fbf365f03f91303901d148561)\] Issues with ConvertToMD
 * *new* \[[#9517](http://trac.mantidproject.org/mantid/ticket/9517)\|[595bf7a](https://github.com/mantidproject/mantid/commit/595bf7ac4e0dc6272703659f03522b48202bc844)\] Algorithm history is not captured in binary operations
+* *new* \[[#9529](http://trac.mantidproject.org/mantid/ticket/9529)\|[7fe7371](https://github.com/mantidproject/mantid/commit/7fe7371cc3e55535e41bf65b722fb9a4c582bb25)\] Add PropertyManager to AlignAndFocusPowder
 * *new* \[[#9532](http://trac.mantidproject.org/mantid/ticket/9532)\|[a7f33ef](https://github.com/mantidproject/mantid/commit/a7f33ef7520e701b45e677c17288526c86abdc13)\] Quasi Plotting
 * *new* \[[#9567](http://trac.mantidproject.org/mantid/ticket/9567)\|[040e360](https://github.com/mantidproject/mantid/commit/040e36099e0b9c97121800e6cca9b1139b441acc)\] Check Documentation and add algorithm usage examples
 * *new* \[[#9572](http://trac.mantidproject.org/mantid/ticket/9572)\|[35a7f5c](https://github.com/mantidproject/mantid/commit/35a7f5c1e87e946c7da469b026a11f08914e68dc)\] Check Documentation
@@ -45,8 +46,14 @@ Detailed Merges for Jun 21 - 27, 2014
 * *new* \[[#9729](http://trac.mantidproject.org/mantid/ticket/9729)\|[1b6c893](https://github.com/mantidproject/mantid/commit/1b6c8939c74ce5ce55f84c106b646da88fe3396d)\] LARMOR tube calibration fails
 * *new* \[[#9734](http://trac.mantidproject.org/mantid/ticket/9734)\|[ed36385](https://github.com/mantidproject/mantid/commit/ed36385e17135e09c353a0086b20462ee85bd172)\] Fix bad links in algorithm doc
 * *new* \[[#9735](http://trac.mantidproject.org/mantid/ticket/9735)\|[6327b67](https://github.com/mantidproject/mantid/commit/6327b675dabc374f63eed29bbf81269a4113f460)\] Indirect Bayes: Error not showing on non-Windows OSs
+* *new* \[[#9736](http://trac.mantidproject.org/mantid/ticket/9736)\|[a897b6f](https://github.com/mantidproject/mantid/commit/a897b6fb6a51e1a73354cd5b303a18cc562ab431)\] Calibration file creation includes averaging of zero spectra
 * *new* \[[#9739](http://trac.mantidproject.org/mantid/ticket/9739)\|[e0f84c1](https://github.com/mantidproject/mantid/commit/e0f84c16abc7df9f6a037603de7b1f524105faa9)\] Python fit function documentation was missed.
 * *new* \[[#9743](http://trac.mantidproject.org/mantid/ticket/9743)\|[556d111](https://github.com/mantidproject/mantid/commit/556d1114df4728451fa291ab55ea0a3d7c269e8b)\] Fix "events.binning" crash
+* *new* \[[#9748](http://trac.mantidproject.org/mantid/ticket/9748)\|[26ab2ba](https://github.com/mantidproject/mantid/commit/26ab2ba39b33f56a69f1f6262e9a961bbb615d93)\] Another race condition in the SNS live listener
 * *new* \[[#9749](http://trac.mantidproject.org/mantid/ticket/9749)\|[a9c3be6](https://github.com/mantidproject/mantid/commit/a9c3be6517671bf49787b425b18035dca01c1938)\] Fix Sphinx errors/warnings not on other branches
 * *new* \[[#9750](http://trac.mantidproject.org/mantid/ticket/9750)\|[4515dc8](https://github.com/mantidproject/mantid/commit/4515dc868c6ed1117212662c021234f28fdf482e)\] Algorithm PropertyWidets Are Not Being Hidden/Shown On Value Change
 * *new* \[[#9757](http://trac.mantidproject.org/mantid/ticket/9757)\|[ebeab29](https://github.com/mantidproject/mantid/commit/ebeab29e60ebd9f156b418febee1711212384b4c)\] Category links on windows help aren't formatted correctly
+* *new* \[[#9758](http://trac.mantidproject.org/mantid/ticket/9758)\|[3556ff3](https://github.com/mantidproject/mantid/commit/3556ff35712944f2f07de85a490aa2ba37429004)\] Some navbar links are broken in new documentation
+* *new* \[[#9760](http://trac.mantidproject.org/mantid/ticket/9760)\|[05553ad](https://github.com/mantidproject/mantid/commit/05553ad37bfc6827c525b0f0e39ad16fdd416e97)\] New warning should be notices instead
+* *new* \[[#9764](http://trac.mantidproject.org/mantid/ticket/9764)\|[8893dfa](https://github.com/mantidproject/mantid/commit/8893dfa3b1c15e1a49fb990c4face656f57d042d)\] Fix binary operations in SNSPowderReduction
+* *new* \[[#9765](http://trac.mantidproject.org/mantid/ticket/9765)\|[4d82c2d](https://github.com/mantidproject/mantid/commit/4d82c2d535e2f92323e03290bd64e69ba34c4fe2)\] Stitch1D C++ replace
