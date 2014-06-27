@@ -57,6 +57,7 @@ Detailed Merges for Jun 21 - 27, 2014
 * *new* \[[#9757](http://trac.mantidproject.org/mantid/ticket/9757)\|[ebeab29](https://github.com/mantidproject/mantid/commit/ebeab29e60ebd9f156b418febee1711212384b4c)\] Category links on windows help aren't formatted correctly
 * *new* \[[#9758](http://trac.mantidproject.org/mantid/ticket/9758)\|[3556ff3](https://github.com/mantidproject/mantid/commit/3556ff35712944f2f07de85a490aa2ba37429004)\] Some navbar links are broken in new documentation
 * *new* \[[#9760](http://trac.mantidproject.org/mantid/ticket/9760)\|[05553ad](https://github.com/mantidproject/mantid/commit/05553ad37bfc6827c525b0f0e39ad16fdd416e97)\] New warning should be notices instead
+* *new* \[[#9762](http://trac.mantidproject.org/mantid/ticket/9762)\|[21b3106](https://github.com/mantidproject/mantid/commit/21b31062cd0b888749f24ad4c5b0ef1b4d0adbec)\] Add a preference option to draw all error bars on new graphs.
 * *new* \[[#9764](http://trac.mantidproject.org/mantid/ticket/9764)\|[8893dfa](https://github.com/mantidproject/mantid/commit/8893dfa3b1c15e1a49fb990c4face656f57d042d)\] Fix binary operations in SNSPowderReduction
 * *new* \[[#9765](http://trac.mantidproject.org/mantid/ticket/9765)\|[4d82c2d](https://github.com/mantidproject/mantid/commit/4d82c2d535e2f92323e03290bd64e69ba34c4fe2)\] Stitch1D C++ replace
 * *new* \[[#9767](http://trac.mantidproject.org/mantid/ticket/9767)\|[9f2a32d](https://github.com/mantidproject/mantid/commit/9f2a32d2590413dc66d2759238ddd46b98a6ccda)\] Warnings in documentation in closed ticket
