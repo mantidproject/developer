@@ -43,10 +43,12 @@ Detailed Merges for Jun 21 - 27, 2014
 * *new* \[[#9717](http://trac.mantidproject.org/mantid/ticket/9717)\|[2829366](https://github.com/mantidproject/mantid/commit/28293665425b5b37e08d1be752044861845e5b60)\] Fix non-algorithm Sphinx warnings
 * *new* \[[#9721](http://trac.mantidproject.org/mantid/ticket/9721)\|[9e81650](https://github.com/mantidproject/mantid/commit/9e816503f527dccf5f214ac29c877779e7ea88ca)\] Account for Groups When Setting YUnitLabel
 * *new* \[[#9724](http://trac.mantidproject.org/mantid/ticket/9724)\|[5f97e6b](https://github.com/mantidproject/mantid/commit/5f97e6b31a3eae8a72f2602a533026798ef887c4)\] Ubuntu 14.04 package dependencies
+* *new* \[[#9725](http://trac.mantidproject.org/mantid/ticket/9725)\|[7a09835](https://github.com/mantidproject/mantid/commit/7a09835b81962c483bba5cc788a68150c9585e43)\] Should MuonLoad inherit from DataProcessor?
 * *new* \[[#9729](http://trac.mantidproject.org/mantid/ticket/9729)\|[1b6c893](https://github.com/mantidproject/mantid/commit/1b6c8939c74ce5ce55f84c106b646da88fe3396d)\] LARMOR tube calibration fails
 * *new* \[[#9734](http://trac.mantidproject.org/mantid/ticket/9734)\|[ed36385](https://github.com/mantidproject/mantid/commit/ed36385e17135e09c353a0086b20462ee85bd172)\] Fix bad links in algorithm doc
 * *new* \[[#9735](http://trac.mantidproject.org/mantid/ticket/9735)\|[6327b67](https://github.com/mantidproject/mantid/commit/6327b675dabc374f63eed29bbf81269a4113f460)\] Indirect Bayes: Error not showing on non-Windows OSs
 * *new* \[[#9736](http://trac.mantidproject.org/mantid/ticket/9736)\|[a897b6f](https://github.com/mantidproject/mantid/commit/a897b6fb6a51e1a73354cd5b303a18cc562ab431)\] Calibration file creation includes averaging of zero spectra
+* *new* \[[#9737](http://trac.mantidproject.org/mantid/ticket/9737)\|[9eb6c3f](https://github.com/mantidproject/mantid/commit/9eb6c3fd6d2cc675916150c000859d184c844ca6)\] Correct algorithm &amp; fit function links in alg pages
 * *new* \[[#9739](http://trac.mantidproject.org/mantid/ticket/9739)\|[e0f84c1](https://github.com/mantidproject/mantid/commit/e0f84c16abc7df9f6a037603de7b1f524105faa9)\] Python fit function documentation was missed.
 * *new* \[[#9743](http://trac.mantidproject.org/mantid/ticket/9743)\|[556d111](https://github.com/mantidproject/mantid/commit/556d1114df4728451fa291ab55ea0a3d7c269e8b)\] Fix "events.binning" crash
 * *new* \[[#9748](http://trac.mantidproject.org/mantid/ticket/9748)\|[26ab2ba](https://github.com/mantidproject/mantid/commit/26ab2ba39b33f56a69f1f6262e9a961bbb615d93)\] Another race condition in the SNS live listener
@@ -57,3 +59,4 @@ Detailed Merges for Jun 21 - 27, 2014
 * *new* \[[#9760](http://trac.mantidproject.org/mantid/ticket/9760)\|[05553ad](https://github.com/mantidproject/mantid/commit/05553ad37bfc6827c525b0f0e39ad16fdd416e97)\] New warning should be notices instead
 * *new* \[[#9764](http://trac.mantidproject.org/mantid/ticket/9764)\|[8893dfa](https://github.com/mantidproject/mantid/commit/8893dfa3b1c15e1a49fb990c4face656f57d042d)\] Fix binary operations in SNSPowderReduction
 * *new* \[[#9765](http://trac.mantidproject.org/mantid/ticket/9765)\|[4d82c2d](https://github.com/mantidproject/mantid/commit/4d82c2d535e2f92323e03290bd64e69ba34c4fe2)\] Stitch1D C++ replace
+* *new* \[[#9767](http://trac.mantidproject.org/mantid/ticket/9767)\|[9f2a32d](https://github.com/mantidproject/mantid/commit/9f2a32d2590413dc66d2759238ddd46b98a6ccda)\] Warnings in documentation in closed ticket
