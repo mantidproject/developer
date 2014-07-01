@@ -9,6 +9,7 @@ Updates for week 27 of 2014
 
 Detailed Merges for Jun 28 - Jul 4, 2014
 ----------------------------------------
+* *new* \[[#9571](http://trac.mantidproject.org/mantid/ticket/9571)\|[707a9dc](https://github.com/mantidproject/mantid/commit/707a9dc716d7ae7458158c6b6cb68d1a08a5001a)\] Check Documentation and add algorithm usage examples
 * *new* \[[#9673](http://trac.mantidproject.org/mantid/ticket/9673)\|[3edbb55](https://github.com/mantidproject/mantid/commit/3edbb55e689205b96c62ff30ca4c59cf88b82474)\] Stitch1D and CreateTransmissionWorkspaceAuto in new docs
 * *new* \[[#9680](http://trac.mantidproject.org/mantid/ticket/9680)\|[9288ee5](https://github.com/mantidproject/mantid/commit/9288ee539a51367404ccee64ceb5d2031f594c6d)\] Remove qt-assistant from packaging
 * *new* \[[#9769](http://trac.mantidproject.org/mantid/ticket/9769)\|[8228dce](https://github.com/mantidproject/mantid/commit/8228dce9053cd0c435cc2b60c2d939c97ecc84a8)\] Implement Normalize to monitor 2
