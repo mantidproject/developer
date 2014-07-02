@@ -22,3 +22,5 @@ Detailed Merges for Jun 28 - Jul 4, 2014
 * *new* \[[#9779](http://trac.mantidproject.org/mantid/ticket/9779)\|[2288c18](https://github.com/mantidproject/mantid/commit/2288c1865ecb5a083d3da9ce131ebd0b104dc20b)\] Stitch1D special values
 * *new* \[[#9781](http://trac.mantidproject.org/mantid/ticket/9781)\|[da00765](https://github.com/mantidproject/mantid/commit/da00765a814b9d23df78b2313dcaf28dc671c2df)\] Argument order in Python algorithm functions not stable across OSs
 * *new* \[[#9783](http://trac.mantidproject.org/mantid/ticket/9783)\|[58f7681](https://github.com/mantidproject/mantid/commit/58f7681f782e5a96e50078c93aa86f54a04d40e7)\] EnginXFocus Parameter names
+* *new* \[[#9785](http://trac.mantidproject.org/mantid/ticket/9785)\|[9ff8c06](https://github.com/mantidproject/mantid/commit/9ff8c060fefc1566f30de0d3b7fe18120433baff)\] Recycle Transmission Runs
+* *new* \[[#9797](http://trac.mantidproject.org/mantid/ticket/9797)\|[bdcf4f8](https://github.com/mantidproject/mantid/commit/bdcf4f843b0229806e9e661766c081c18158f254)\] DataDifference in Reflectometry
