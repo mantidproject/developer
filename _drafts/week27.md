@@ -12,6 +12,7 @@ Detailed Merges for Jun 28 - Jul 4, 2014
 * *new* \[[#8365](http://trac.mantidproject.org/mantid/ticket/8365)\|[dd3ce04](https://github.com/mantidproject/mantid/commit/dd3ce0435abf4e0a311dfb35c94636d41800e3c6)\] Import ILL D2B diffractometer ascii data into Mantid.
 * *new* \[[#8708](http://trac.mantidproject.org/mantid/ticket/8708)\|[880bf72](https://github.com/mantidproject/mantid/commit/880bf72b54f444e50364bd88f10351df7a11e607)\] Fitting and Graphing Bug
 * *new* \[[#9571](http://trac.mantidproject.org/mantid/ticket/9571)\|[707a9dc](https://github.com/mantidproject/mantid/commit/707a9dc716d7ae7458158c6b6cb68d1a08a5001a)\] Check Documentation and add algorithm usage examples
+* *new* \[[#9581](http://trac.mantidproject.org/mantid/ticket/9581)\|[a2ea73c](https://github.com/mantidproject/mantid/commit/a2ea73c8c63a74a1a2fc882267da1517f082faf0)\] Check Documentation and add algorithm usage examples
 * *new* \[[#9673](http://trac.mantidproject.org/mantid/ticket/9673)\|[3edbb55](https://github.com/mantidproject/mantid/commit/3edbb55e689205b96c62ff30ca4c59cf88b82474)\] Stitch1D and CreateTransmissionWorkspaceAuto in new docs
 * *new* \[[#9680](http://trac.mantidproject.org/mantid/ticket/9680)\|[9288ee5](https://github.com/mantidproject/mantid/commit/9288ee539a51367404ccee64ceb5d2031f594c6d)\] Remove qt-assistant from packaging
 * *new* \[[#9756](http://trac.mantidproject.org/mantid/ticket/9756)\|[5c5eb46](https://github.com/mantidproject/mantid/commit/5c5eb46522895a6bd9dfbcb05c9a9ceec617647c)\] Launching help from algorithm dialogs is blocked
