@@ -13,6 +13,7 @@ Detailed Merges for Jun 28 - Jul 4, 2014
 * *new* \[[#8708](http://trac.mantidproject.org/mantid/ticket/8708)\|[880bf72](https://github.com/mantidproject/mantid/commit/880bf72b54f444e50364bd88f10351df7a11e607)\] Fitting and Graphing Bug
 * *new* \[[#9571](http://trac.mantidproject.org/mantid/ticket/9571)\|[707a9dc](https://github.com/mantidproject/mantid/commit/707a9dc716d7ae7458158c6b6cb68d1a08a5001a)\] Check Documentation and add algorithm usage examples
 * *new* \[[#9581](http://trac.mantidproject.org/mantid/ticket/9581)\|[a2ea73c](https://github.com/mantidproject/mantid/commit/a2ea73c8c63a74a1a2fc882267da1517f082faf0)\] Check Documentation and add algorithm usage examples
+* *new* \[[#9587](http://trac.mantidproject.org/mantid/ticket/9587)\|[355ee4a](https://github.com/mantidproject/mantid/commit/355ee4ac3388c57b99e6f2e37e4bd641485579f2)\] Check Documentation and Add Algorithm Usage Examples - Part 1
 * *new* \[[#9673](http://trac.mantidproject.org/mantid/ticket/9673)\|[3edbb55](https://github.com/mantidproject/mantid/commit/3edbb55e689205b96c62ff30ca4c59cf88b82474)\] Stitch1D and CreateTransmissionWorkspaceAuto in new docs
 * *new* \[[#9680](http://trac.mantidproject.org/mantid/ticket/9680)\|[9288ee5](https://github.com/mantidproject/mantid/commit/9288ee539a51367404ccee64ceb5d2031f594c6d)\] Remove qt-assistant from packaging
 * *new* \[[#9754](http://trac.mantidproject.org/mantid/ticket/9754)\|[bc4de37](https://github.com/mantidproject/mantid/commit/bc4de376f6b442bd29b0808e09d4565b9d7f4155)\] Navigation buttons in offline help
@@ -30,3 +31,4 @@ Detailed Merges for Jun 28 - Jul 4, 2014
 * *new* \[[#9786](http://trac.mantidproject.org/mantid/ticket/9786)\|[974e156](https://github.com/mantidproject/mantid/commit/974e15634571d94460bcae44bd70e4dacf2c26f9)\] Better Error Message When Using ISIS SANS Add Runs Without Default Save Directory Set
 * *new* \[[#9792](http://trac.mantidproject.org/mantid/ticket/9792)\|[e8acd6f](https://github.com/mantidproject/mantid/commit/e8acd6f388eee852fee42428d34629121e24cf74)\] Python Script Directory Issue in MantidPlot
 * *new* \[[#9797](http://trac.mantidproject.org/mantid/ticket/9797)\|[bdcf4f8](https://github.com/mantidproject/mantid/commit/bdcf4f843b0229806e9e661766c081c18158f254)\] DataDifference in Reflectometry
+* *new* \[[#9800](http://trac.mantidproject.org/mantid/ticket/9800)\|[9e7ef61](https://github.com/mantidproject/mantid/commit/9e7ef616f6fd50550cf8f523449cca23aab9e29a)\] Reduce sphinx warnings
