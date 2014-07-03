@@ -32,3 +32,4 @@ Detailed Merges for Jun 28 - Jul 4, 2014
 * *new* \[[#9792](http://trac.mantidproject.org/mantid/ticket/9792)\|[e8acd6f](https://github.com/mantidproject/mantid/commit/e8acd6f388eee852fee42428d34629121e24cf74)\] Python Script Directory Issue in MantidPlot
 * *new* \[[#9797](http://trac.mantidproject.org/mantid/ticket/9797)\|[bdcf4f8](https://github.com/mantidproject/mantid/commit/bdcf4f843b0229806e9e661766c081c18158f254)\] DataDifference in Reflectometry
 * *new* \[[#9800](http://trac.mantidproject.org/mantid/ticket/9800)\|[9e7ef61](https://github.com/mantidproject/mantid/commit/9e7ef616f6fd50550cf8f523449cca23aab9e29a)\] Reduce sphinx warnings
+* *new* \[[#9802](http://trac.mantidproject.org/mantid/ticket/9802)\|[04cec61](https://github.com/mantidproject/mantid/commit/04cec61f45ca8ed841a007977555032c94c49a78)\] Updating value of ParameterMap copy updates the original too
