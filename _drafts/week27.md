@@ -15,6 +15,7 @@ Detailed Merges for Jun 28 - Jul 4, 2014
 * *new* \[[#9581](http://trac.mantidproject.org/mantid/ticket/9581)\|[a2ea73c](https://github.com/mantidproject/mantid/commit/a2ea73c8c63a74a1a2fc882267da1517f082faf0)\] Check Documentation and add algorithm usage examples
 * *new* \[[#9673](http://trac.mantidproject.org/mantid/ticket/9673)\|[3edbb55](https://github.com/mantidproject/mantid/commit/3edbb55e689205b96c62ff30ca4c59cf88b82474)\] Stitch1D and CreateTransmissionWorkspaceAuto in new docs
 * *new* \[[#9680](http://trac.mantidproject.org/mantid/ticket/9680)\|[9288ee5](https://github.com/mantidproject/mantid/commit/9288ee539a51367404ccee64ceb5d2031f594c6d)\] Remove qt-assistant from packaging
+* *new* \[[#9754](http://trac.mantidproject.org/mantid/ticket/9754)\|[bc4de37](https://github.com/mantidproject/mantid/commit/bc4de376f6b442bd29b0808e09d4565b9d7f4155)\] Navigation buttons in offline help
 * *new* \[[#9756](http://trac.mantidproject.org/mantid/ticket/9756)\|[5c5eb46](https://github.com/mantidproject/mantid/commit/5c5eb46522895a6bd9dfbcb05c9a9ceec617647c)\] Launching help from algorithm dialogs is blocked
 * *new* \[[#9769](http://trac.mantidproject.org/mantid/ticket/9769)\|[8228dce](https://github.com/mantidproject/mantid/commit/8228dce9053cd0c435cc2b60c2d939c97ecc84a8)\] Implement Normalize to monitor 2
 * *new* \[[#9771](http://trac.mantidproject.org/mantid/ticket/9771)\|[09c31bb](https://github.com/mantidproject/mantid/commit/09c31bbc914a8a46eae3f08f644310a680f41edb)\] Wrong initial fitting range in MuonAnalysis
@@ -26,4 +27,5 @@ Detailed Merges for Jun 28 - Jul 4, 2014
 * *new* \[[#9781](http://trac.mantidproject.org/mantid/ticket/9781)\|[da00765](https://github.com/mantidproject/mantid/commit/da00765a814b9d23df78b2313dcaf28dc671c2df)\] Argument order in Python algorithm functions not stable across OSs
 * *new* \[[#9783](http://trac.mantidproject.org/mantid/ticket/9783)\|[58f7681](https://github.com/mantidproject/mantid/commit/58f7681f782e5a96e50078c93aa86f54a04d40e7)\] EnginXFocus Parameter names
 * *new* \[[#9785](http://trac.mantidproject.org/mantid/ticket/9785)\|[9ff8c06](https://github.com/mantidproject/mantid/commit/9ff8c060fefc1566f30de0d3b7fe18120433baff)\] Recycle Transmission Runs
+* *new* \[[#9786](http://trac.mantidproject.org/mantid/ticket/9786)\|[974e156](https://github.com/mantidproject/mantid/commit/974e15634571d94460bcae44bd70e4dacf2c26f9)\] Better Error Message When Using ISIS SANS Add Runs Without Default Save Directory Set
 * *new* \[[#9797](http://trac.mantidproject.org/mantid/ticket/9797)\|[bdcf4f8](https://github.com/mantidproject/mantid/commit/bdcf4f843b0229806e9e661766c081c18158f254)\] DataDifference in Reflectometry
