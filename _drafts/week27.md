@@ -11,6 +11,7 @@ Detailed Merges for Jun 28 - Jul 4, 2014
 ----------------------------------------
 * *new* \[[#8365](http://trac.mantidproject.org/mantid/ticket/8365)\|[dd3ce04](https://github.com/mantidproject/mantid/commit/dd3ce0435abf4e0a311dfb35c94636d41800e3c6)\] Import ILL D2B diffractometer ascii data into Mantid.
 * *new* \[[#8708](http://trac.mantidproject.org/mantid/ticket/8708)\|[880bf72](https://github.com/mantidproject/mantid/commit/880bf72b54f444e50364bd88f10351df7a11e607)\] Fitting and Graphing Bug
+* *new* \[[#9255](http://trac.mantidproject.org/mantid/ticket/9255)\|[7250abf](https://github.com/mantidproject/mantid/commit/7250abf32f6b19bc27a1d4607f53400be8d7b18c)\] Customise the finder window in the Mac DragNDrop installer
 * *new* \[[#9571](http://trac.mantidproject.org/mantid/ticket/9571)\|[707a9dc](https://github.com/mantidproject/mantid/commit/707a9dc716d7ae7458158c6b6cb68d1a08a5001a)\] Check Documentation and add algorithm usage examples
 * *new* \[[#9581](http://trac.mantidproject.org/mantid/ticket/9581)\|[a2ea73c](https://github.com/mantidproject/mantid/commit/a2ea73c8c63a74a1a2fc882267da1517f082faf0)\] Check Documentation and add algorithm usage examples
 * *new* \[[#9587](http://trac.mantidproject.org/mantid/ticket/9587)\|[355ee4a](https://github.com/mantidproject/mantid/commit/355ee4ac3388c57b99e6f2e37e4bd641485579f2)\] Check Documentation and Add Algorithm Usage Examples - Part 1
@@ -32,4 +33,5 @@ Detailed Merges for Jun 28 - Jul 4, 2014
 * *new* \[[#9792](http://trac.mantidproject.org/mantid/ticket/9792)\|[e8acd6f](https://github.com/mantidproject/mantid/commit/e8acd6f388eee852fee42428d34629121e24cf74)\] Python Script Directory Issue in MantidPlot
 * *new* \[[#9797](http://trac.mantidproject.org/mantid/ticket/9797)\|[bdcf4f8](https://github.com/mantidproject/mantid/commit/bdcf4f843b0229806e9e661766c081c18158f254)\] DataDifference in Reflectometry
 * *new* \[[#9800](http://trac.mantidproject.org/mantid/ticket/9800)\|[9e7ef61](https://github.com/mantidproject/mantid/commit/9e7ef616f6fd50550cf8f523449cca23aab9e29a)\] Reduce sphinx warnings
+* *new* \[[#9801](http://trac.mantidproject.org/mantid/ticket/9801)\|[dd03f0f](https://github.com/mantidproject/mantid/commit/dd03f0fb2dab215a73b2d48488add61b3d78ae88)\] Add rst file for algorithm DSFinterp
 * *new* \[[#9802](http://trac.mantidproject.org/mantid/ticket/9802)\|[04cec61](https://github.com/mantidproject/mantid/commit/04cec61f45ca8ed841a007977555032c94c49a78)\] Updating value of ParameterMap copy updates the original too
