@@ -13,6 +13,7 @@ Detailed Merges for Jun 28 - Jul 4, 2014
 * *new* \[[#8708](http://trac.mantidproject.org/mantid/ticket/8708)\|[880bf72](https://github.com/mantidproject/mantid/commit/880bf72b54f444e50364bd88f10351df7a11e607)\] Fitting and Graphing Bug
 * *new* \[[#8909](http://trac.mantidproject.org/mantid/ticket/8909)\|[b877533](https://github.com/mantidproject/mantid/commit/b877533934cf506222cc651b33be8aa57b01efff)\] Tiled Graph Displays
 * *new* \[[#9255](http://trac.mantidproject.org/mantid/ticket/9255)\|[7250abf](https://github.com/mantidproject/mantid/commit/7250abf32f6b19bc27a1d4607f53400be8d7b18c)\] Customise the finder window in the Mac DragNDrop installer
+* *new* \[[#9569](http://trac.mantidproject.org/mantid/ticket/9569)\|[904d115](https://github.com/mantidproject/mantid/commit/904d1153037116c6f7547f7abdaa66af56f0da84)\] ICAT for data
 * *new* \[[#9571](http://trac.mantidproject.org/mantid/ticket/9571)\|[707a9dc](https://github.com/mantidproject/mantid/commit/707a9dc716d7ae7458158c6b6cb68d1a08a5001a)\] Check Documentation and add algorithm usage examples
 * *new* \[[#9581](http://trac.mantidproject.org/mantid/ticket/9581)\|[a2ea73c](https://github.com/mantidproject/mantid/commit/a2ea73c8c63a74a1a2fc882267da1517f082faf0)\] Check Documentation and add algorithm usage examples
 * *new* \[[#9587](http://trac.mantidproject.org/mantid/ticket/9587)\|[355ee4a](https://github.com/mantidproject/mantid/commit/355ee4ac3388c57b99e6f2e37e4bd641485579f2)\] Check Documentation and Add Algorithm Usage Examples - Part 1
