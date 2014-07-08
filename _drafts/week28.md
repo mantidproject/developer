@@ -10,6 +10,12 @@ Updates for week 28 of 2014
 Detailed Merges for Jul 5 - 11, 2014
 ------------------------------------
 * *new* \[[#9464](http://trac.mantidproject.org/mantid/ticket/9464)\|[7ad7f12](https://github.com/mantidproject/mantid/commit/7ad7f124a53dc2441cce769fa86999c10ae2d1be)\] Add options to PD reduction gui
+* *new* \[[#9684](http://trac.mantidproject.org/mantid/ticket/9684)\|[1f0434a](https://github.com/mantidproject/mantid/commit/1f0434a5a13af16f8b23564d407bd75dfcc38aa3)\] EQSANS: output raw transmission
+* *new* \[[#9720](http://trac.mantidproject.org/mantid/ticket/9720)\|[28aa2f0](https://github.com/mantidproject/mantid/commit/28aa2f03e027e4351b93cacdfda37e2347f487cc)\] Apply Corrections fails with old OSIRIS files
+* *new* \[[#9784](http://trac.mantidproject.org/mantid/ticket/9784)\|[48d3322](https://github.com/mantidproject/mantid/commit/48d3322db568f6b3ff50136d0eb50bc0e275e1fd)\] EnginXCalibrateFull and EnginXCalibrate parameter names
 * *new* \[[#9799](http://trac.mantidproject.org/mantid/ticket/9799)\|[dfaec70](https://github.com/mantidproject/mantid/commit/dfaec7050157c227a25bcb0ec1774d6c4e85a010)\] Continuation of the documentation ticket #9581
+* *new* \[[#9805](http://trac.mantidproject.org/mantid/ticket/9805)\|[3d7e88d](https://github.com/mantidproject/mantid/commit/3d7e88d792dedec19974dd94c6033f088ddfc35d)\] Bilby eventdata not connected to bilby instrument
 * *new* \[[#9808](http://trac.mantidproject.org/mantid/ticket/9808)\|[a9a1a8b](https://github.com/mantidproject/mantid/commit/a9a1a8b84830129e9bb88c3f7ff7eddbbd0a872f)\] GetDetOffsetsMultiPeaks failing on Fedora 20 &amp; Ubuntu 14.04
+* *new* \[[#9810](http://trac.mantidproject.org/mantid/ticket/9810)\|[b40b467](https://github.com/mantidproject/mantid/commit/b40b467bbb27c0c1ee8c5346e32140df9788781c)\] SaveASCII: Add option to not write spectrum ID on single-spectrum workspaces
 * *new* \[[#9824](http://trac.mantidproject.org/mantid/ticket/9824)\|[43413b8](https://github.com/mantidproject/mantid/commit/43413b83fa5c3a6056ec9ffd3d31cee6bdf84568)\] Single Point Detector issue with CreateTransmissionWorkspaceAuto
+* *new* \[[#9830](http://trac.mantidproject.org/mantid/ticket/9830)\|[8c4bff6](https://github.com/mantidproject/mantid/commit/8c4bff6605cf9fa032c1c02224332244377bb1c6)\] C2E: Bug in run diagnostics
