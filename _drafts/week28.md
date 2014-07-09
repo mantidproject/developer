@@ -24,3 +24,4 @@ Detailed Merges for Jul 5 - 11, 2014
 * *new* \[[#9826](http://trac.mantidproject.org/mantid/ticket/9826)\|[e3c5f11](https://github.com/mantidproject/mantid/commit/e3c5f11db307f3e4f9b2a358d3d5ee6a65dbe323)\] Refl_gui Fixes (Beta test feedback)
 * *new* \[[#9830](http://trac.mantidproject.org/mantid/ticket/9830)\|[8c4bff6](https://github.com/mantidproject/mantid/commit/8c4bff6605cf9fa032c1c02224332244377bb1c6)\] C2E: Bug in run diagnostics
 * *new* \[[#9838](http://trac.mantidproject.org/mantid/ticket/9838)\|[594d995](https://github.com/mantidproject/mantid/commit/594d995be0008201ee144e7ceb7cfc4a6176efd5)\] Fix some categories
+* *new* \[[#9845](http://trac.mantidproject.org/mantid/ticket/9845)\|[000f81b](https://github.com/mantidproject/mantid/commit/000f81bf0bfb76ab1aae4d654294a4a88436d3b6)\] Instrument view: ignore monitors when deciding colour map autoscaling
