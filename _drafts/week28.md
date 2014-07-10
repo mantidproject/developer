@@ -28,3 +28,4 @@ Detailed Merges for Jul 5 - 11, 2014
 * *new* \[[#9845](http://trac.mantidproject.org/mantid/ticket/9845)\|[000f81b](https://github.com/mantidproject/mantid/commit/000f81bf0bfb76ab1aae4d654294a4a88436d3b6)\] Instrument view: ignore monitors when deciding colour map autoscaling
 * *new* \[[#9851](http://trac.mantidproject.org/mantid/ticket/9851)\|[b1e6df1](https://github.com/mantidproject/mantid/commit/b1e6df141590387a26a9860d1b0a7bdd4dc52400)\] Recycle Transmission Runs (Part II)
 * *new* \[[#9852](http://trac.mantidproject.org/mantid/ticket/9852)\|[9cfd386](https://github.com/mantidproject/mantid/commit/9cfd386cd8131629ea4fe7e96d50921d20271e19)\] Transfer Sorting in Refl GUI
+* *new* \[[#9854](http://trac.mantidproject.org/mantid/ticket/9854)\|[ae98a62](https://github.com/mantidproject/mantid/commit/ae98a62cc4844c5b36e92c7cb94d06028d52b25c)\] History GUI unrolling defect.
