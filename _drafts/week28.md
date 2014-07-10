@@ -10,6 +10,7 @@ Updates for week 28 of 2014
 Detailed Merges for Jul 5 - 11, 2014
 ------------------------------------
 * *new* \[[#9464](http://trac.mantidproject.org/mantid/ticket/9464)\|[7ad7f12](https://github.com/mantidproject/mantid/commit/7ad7f124a53dc2441cce769fa86999c10ae2d1be)\] Add options to PD reduction gui
+* *new* \[[#9622](http://trac.mantidproject.org/mantid/ticket/9622)\|[56d5e14](https://github.com/mantidproject/mantid/commit/56d5e14efdeae00749b1f87e136abee1da79be45)\] Check documentation for some SINQ algorithms
 * *new* \[[#9684](http://trac.mantidproject.org/mantid/ticket/9684)\|[1f0434a](https://github.com/mantidproject/mantid/commit/1f0434a5a13af16f8b23564d407bd75dfcc38aa3)\] EQSANS: output raw transmission
 * *new* \[[#9720](http://trac.mantidproject.org/mantid/ticket/9720)\|[28aa2f0](https://github.com/mantidproject/mantid/commit/28aa2f03e027e4351b93cacdfda37e2347f487cc)\] Apply Corrections fails with old OSIRIS files
 * *new* \[[#9766](http://trac.mantidproject.org/mantid/ticket/9766)\|[abaddcd](https://github.com/mantidproject/mantid/commit/abaddcd2bf1a73fd00ce1d09bd59d23d0a323ea9)\] New Documentation for GeneratePeaks
