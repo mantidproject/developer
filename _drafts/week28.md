@@ -24,6 +24,7 @@ Detailed Merges for Jul 5 - 11, 2014
 * *new* \[[#9824](http://trac.mantidproject.org/mantid/ticket/9824)\|[43413b8](https://github.com/mantidproject/mantid/commit/43413b83fa5c3a6056ec9ffd3d31cee6bdf84568)\] Single Point Detector issue with CreateTransmissionWorkspaceAuto
 * *new* \[[#9826](http://trac.mantidproject.org/mantid/ticket/9826)\|[e3c5f11](https://github.com/mantidproject/mantid/commit/e3c5f11db307f3e4f9b2a358d3d5ee6a65dbe323)\] Refl_gui Fixes (Beta test feedback)
 * *new* \[[#9830](http://trac.mantidproject.org/mantid/ticket/9830)\|[8c4bff6](https://github.com/mantidproject/mantid/commit/8c4bff6605cf9fa032c1c02224332244377bb1c6)\] C2E: Bug in run diagnostics
+* *new* \[[#9836](http://trac.mantidproject.org/mantid/ticket/9836)\|[c4a65ed](https://github.com/mantidproject/mantid/commit/c4a65ed1f3cb6b108db88da10cb4a9df0ed6f333)\] Correct YUnitLabels for All Reduction Results
 * *new* \[[#9838](http://trac.mantidproject.org/mantid/ticket/9838)\|[594d995](https://github.com/mantidproject/mantid/commit/594d995be0008201ee144e7ceb7cfc4a6176efd5)\] Fix some categories
 * *new* \[[#9839](http://trac.mantidproject.org/mantid/ticket/9839)\|[d395af5](https://github.com/mantidproject/mantid/commit/d395af54269a048f449e98b747511fb569c8ca83)\] History needs to clear properties before filling
 * *new* \[[#9845](http://trac.mantidproject.org/mantid/ticket/9845)\|[000f81b](https://github.com/mantidproject/mantid/commit/000f81bf0bfb76ab1aae4d654294a4a88436d3b6)\] Instrument view: ignore monitors when deciding colour map autoscaling
