@@ -9,6 +9,7 @@ Updates for week 28 of 2014
 
 Detailed Merges for Jul 5 - 11, 2014
 ------------------------------------
+* *new* \[[#9209](http://trac.mantidproject.org/mantid/ticket/9209)\|[9c09868](https://github.com/mantidproject/mantid/commit/9c098689b5464439bb399c1246d26919d29e4741)\] Indirect Diffraction: Add can file to reduction
 * *new* \[[#9464](http://trac.mantidproject.org/mantid/ticket/9464)\|[7ad7f12](https://github.com/mantidproject/mantid/commit/7ad7f124a53dc2441cce769fa86999c10ae2d1be)\] Add options to PD reduction gui
 * *new* \[[#9622](http://trac.mantidproject.org/mantid/ticket/9622)\|[56d5e14](https://github.com/mantidproject/mantid/commit/56d5e14efdeae00749b1f87e136abee1da79be45)\] Check documentation for some SINQ algorithms
 * *new* \[[#9684](http://trac.mantidproject.org/mantid/ticket/9684)\|[1f0434a](https://github.com/mantidproject/mantid/commit/1f0434a5a13af16f8b23564d407bd75dfcc38aa3)\] EQSANS: output raw transmission
