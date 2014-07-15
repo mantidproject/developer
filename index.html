@@ -22,12 +22,14 @@ title: Mantid News Index
          merged into master and will be released in the next nightly build.</p>
 
       <!-- last two updates -->
-      {% for post in site.posts limit:3 %}
+      <ul>
+      {% for post in site.posts limit:5 %}
       <div class="excerpt">
-        <p>{{ post.excerpt }}</p>
-        <p><a href="{{ site.baseurl }}{{ post.url }}">details</a></p>
+        <!-- <p>{{ post.excerpt }}</p> -->
+        <li>{{ post.date | date_to_string}}: <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
       </div>
       {% endfor %}
+      </ul>
 
       <p><a href="{{ site.baseurl }}/posts.html">All news</a></p>
     </div>
@@ -145,7 +147,5 @@ title: Mantid News Index
     </div>
   </div>
 </div>
-
-<hr/>
 
 {% include footer.html %}
