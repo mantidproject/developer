@@ -33,13 +33,20 @@ title: Mantid News Index
     <hr/>
 
     <div id="listing">
-      {% for post in site.posts %}
-      <p>{{ post.excerpt }}</p>
-      <a href="{{ site.baseurl }}{{ post.url }}">details</a>
-      <hr/>
+      <h2>News</h2>
+
+      <!-- last two updates -->
+      {% for post in site.posts limit:2 %}
+      <div class="excerpt">
+        <p>{{ post.excerpt }}</p>
+        <p><a href="{{ site.baseurl }}{{ post.url }}">details</a></p>
+      </div>
       {% endfor %}
+
+      <p><a href="{{ site.baseurl }}/posts.html">All news</a></p>
     </div>
 
+  <hr/>
   </section>
 
     </div>
