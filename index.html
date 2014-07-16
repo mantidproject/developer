@@ -1,71 +1,151 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>News by mantidproject</title>
+---
+title: Mantid News Index
+---
+{% include header.html %}
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-  </head>
-  <body>
-    <div class="wrapper">
-      <header>
-        <h1>News</h1>
-        <p>Github pages for keeping people updated on what has been recently merged into master and will be released in the next nightly build.</p>
+{% include navbar.html %}
 
-        <p class="view"><a href="https://github.com/mantidproject/developer">View the Project on GitHub <small>mantidproject/developer</small></a></p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
 
+  <section>
+    <div id="title">
+      <h1>Development</h1>
 
-        <ul>
-          <li><a href="https://github.com/mantidproject/developer/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/mantidproject/developer/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/mantidproject/developer">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
-
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
-
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
-
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
-
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
-
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
-
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/mantidproject">mantidproject</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
     </div>
-    <script src="javascripts/scale.fix.js"></script>
-    
-  </body>
-</html>
+
+    <div id="listing">
+      <h2>News</h2>
+
+      <p>Pages for keeping people updated on what has been recently 
+         merged into master and will be released in the next nightly build.</p>
+
+      <!-- last two updates -->
+      <ul>
+      {% for post in site.posts limit:5 %}
+      <div class="excerpt">
+        <!-- <p>{{ post.excerpt }}</p> -->
+        <li><time datetime="{{ post.date | date: '%Y-%m-%d'}}">{{ post.date | date_to_string }}</time>: <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
+      </div>
+      {% endfor %}
+      </ul>
+
+      <p><a href="{{ site.baseurl }}/posts.html">All news</a></p>
+    </div>
+
+    <hr/>
+
+<div class="row">
+    <div class="span4 pad-left pad-right-small">
+
+<h2><span class="mw-headline">Links of interest</span></h2>
+<ul>
+ <li>Source code (<a href="https://github.com/mantidproject/">github</a>)</li>
+ <li>Issue tracking (<a href="http://trac.mantidproject.org">trac</a>)</li>
+ <li>C++ documentation (<a href="http://doxygen.mantidproject.org">doxygen</a>)</li>
+ <li>User/python documentation (<a href="http://docs.mantidproject.org/">sphinx</a>)</li>
+ <li><a href="http://www.mantidproject.org/Category:Development">Wiki developer category</a></li>
+ <li>Build servers (<a href="http://builds.mantidproject.org">jenkins</a>)</li>
+ <li><a href="https://scan.coverity.com/">Coverity scan</a></li>
+ <li><a href="https://www.ohloh.net/p/Mantid">Black Duck Open Hub</a> (formerly Ohloh)</li>
+ <li><a href="http://sourceforge.net/projects/mantid/?source=directory">SourceForge</a></li>
+</ul>
+
+<h2><span class="mw-headline" id="How_to_contribute">How to contribute</span></h2>
+<ul>
+  <li> If you have a python algorithm or script you want to contribute then upload it to the script library.</li>
+  <li> You can contribute to the source by following <a rel="nofollow" class="external text" href="http://github.com/mantidproject/mantid/blob/master/CONTRIBUTING.md">these instructions</a>.</li>
+  <li> For anything else please <a rel="nofollow" class="external text" href="{{ site.projecthome }}/Contact">contact us</a>.</li>
+  <li> If you have developer status, then <a href="{{ site.projecthome }}/Creating_a_Mantid_developer_account" title="Creating a Mantid developer account">create an account</a> for wiki, trac, and git.</li>
+</ul>
+
+<h2><span class="mw-headline" id="Building_and_understanding_Mantid">Building and understanding Mantid</span></h2>
+<ul>
+  <li> <a href="{{ site.projecthome }}/Mantid_Prerequisites" title="Mantid Prerequisites">Prerequistes</a></li>
+  <li> <a href="{{ site.projecthome }}/Checking_out_the_Mantid_Code" title="Checking out the Mantid Code">Checking out the Mantid Code</a> from <a rel="nofollow" class="external text" href="https://github.com/mantidproject/mantid">github</a></li>
+  <li> <a href="{{ site.projecthome }}/Framework_Code_Directory_Structure" title="Framework Code Directory Structure">Framework Code Directory Structure</a></li>
+  <li> <a href="{{ site.projecthome }}/Building_with_CMake" title="Building with CMake"> Building Mantid</a>
+    <ul>
+      <li> Linux: <a href="{{ site.projecthome }}/Setting_up_Eclipse_projects_with_CMake" title="Setting up Eclipse projects with CMake">Setting up Eclipse projects with CMake</a></li>
+      <li> Windows: <a href="{{ site.projecthome }}/Building_with_Visual_Studio_Express" title="Building with Visual Studio Express">Building with Visual Studio Express</a></li>
+      <li> Mac: <a href="{{ site.projecthome }}/Mac_OS_X_64_bit_build" title="Mac OS X 64 bit build">Mac OS X 64 bit build</a></li>
+      <li> <a href="{{ site.projecthome }}/Building_VATES" title="Building VATES">Building VATES</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h2><span class="mw-headline" id="Modifying_Mantid">Modifying Mantid</span></h2>
+<ul>
+  <li> <a href="{{ site.projecthome }}/New_Starter_C%2B%2B_introduction" title="New Starter C++ introduction">New Starter C++ introduction</a></li>
+  <li> <a href="{{ site.projecthome }}/Unit_Test_Good_Practice" title="Unit Test Good Practice">Unit Test Good Practice</a>
+    <ul>
+      <li> <a href="{{ site.projecthome }}/Running_the_unit_tests" title="Running the unit tests">Running the unit tests</a></li>
+      <li> <a href="{{ site.projecthome }}/Debugging_Unit_Tests" title="Debugging Unit Tests">Debugging Unit Tests</a></li>
+      <li> <a href="{{ site.projecthome }}/Data_and_Helpers_for_unit_tests" title="Data and Helpers for unit tests">Data and Helpers for unit tests</a></li>
+      <li> <a href="{{ site.projecthome }}/System_Tests" title="System Tests">System Tests</a></li>
+      <li> <a href="{{ site.projecthome }}/Writing_Performance_Tests" title="Writing Performance Tests">Writing Performance Tests</a></li>
+    </ul>
+  </li>
+  <li> The <a href="{{ site.projecthome }}/Jenkins_Build_Servers" title="Jenkins Build Servers">Build Servers</a> and <a href="{{ site.projecthome }}/The_automated_build_process" title="The automated build process"> <b>your responsibility not to break the build!</b></a></li>
+  <li> <a href="{{ site.projecthome }}/Useful_Tools_for_Developers" title="Useful Tools for Developers">Useful Tools for Developers</a></li>
+  <li> <a href="{{ site.projecthome }}/Working_with_git" title="Working with git">Working with git</a></li>
+  <li> The Mantid <a href="{{ site.projecthome }}/Git_Workflow" title="Git Workflow">Git Workflow</a></li>
+  <li> <a href="{{ site.projecthome }}/Working_on_Core_Functionality" title="Working on Core Functionality">Working on Core Functionality</a></li>
+</ul>
+
+<h2><span class="mw-headline" id="Code_Documentation">Code Documentation</span></h2>
+<ul>
+  <li> <a href="{{ site.projecthome }}/Wiki_maker" title="Wiki maker">Instructions on using wiki_maker for generating algorithm wiki pages</a></li>
+  <li> <a rel="nofollow" class="external text" href="http://doxygen.mantidproject.org/">Doxygen code documentation</a></li>
+  <li> <a rel="nofollow" class="external text" href="http://docs.mantidproject.org">Python documentation</a></li>
+  <li> <a href="{{ site.projecthome }}/Mocking" title="Mocking">Mocking</a> and <a rel="nofollow" class="external text" href="http://doxygen.mantidproject.org/d1/db6/namespaceWorkspaceCreationHelper.html">fake workspace creation</a></li>
+  <li> Writing custom <a href="{{ site.projecthome }}/Writing_custom_ConvertTo_MD_transformation" title="Writing custom ConvertTo MD transformation">Convert To MD transformation.</a></li>
+  <li> <a href="{{ site.projecthome }}/Documenting_Workflow_Algorithms" title="Documenting Workflow Algorithms">Documenting Workflow Algorithms</a></li>
+</ul>
+
+<h2><span class="mw-headline" id="Useful_How_To.27s">Useful How To's</span></h2>
+<ul>
+  <li> <a href="{{ site.projecthome }}/How_to_fix_CppCheck_Errors" title="How to fix CppCheck Errors">How to fix CppCheck Errors</a></li>
+  <li> <a href="{{ site.projecthome }}/How_to_fix_Compiler_Warnings" title="How to fix Compiler Warnings">How to fix Compiler Warnings</a></li>
+  <li> <a href="{{ site.projecthome }}/How_to_fix_Doxygen_Errors" title="How to fix Doxygen Errors">How to fix Doxygen Errors</a></li>
+</ul>
+
+<h2><span class="mw-headline" id="Releasing_Mantid_Versions">Releasing Mantid Versions</span></h2>
+<ul>
+  <li> <a href="{{ site.projecthome }}/Release_Checklist" title="Release Checklist">Release Checklist</a></li>
+  <li> <a href="{{ site.projecthome }}/Building_alternate_package_names" title="Building alternate package names">Building alternate package names</a></li>
+</ul>
+
+<h2><span class="mw-headline" id="Release_Notes">Release Notes</span><span class="mw-editsection"></h2>
+<ul>
+  <li> <a href="{{ site.projecthome }}/Category:Release_Notes" title="Category:Release Notes">Release Notes</a></li>
+</ul>
+
+<h2><span class="mw-headline" id="Protected_Pages_-_You_must_be_logged_in_to_access_these">Protected Pages - You must be logged in to access these</span></h2>
+<ul>
+  <li> <a href="{{ site.projecthome }}/DevelopmentTeam" title="DevelopmentTeam">Development Team</a> - You need to be logged into the wiki to see this page</li>
+  <li> <a href="{{ site.projecthome }}/Jenkins_Build_Servers" title="Jenkins Build Servers">Build Servers</a> - Details of the Mantid build servers</li>
+</ul>
+
+<h2><span class="mw-headline" id="Developer_Workshops">Developer Workshops</span></h2>
+<ul>
+  <li> <a href="{{ site.projecthome }}/Category:Workshop2010" title="Category:Workshop2010">Mantid Workshop October 2010</a></li>
+  <li> <a href="{{ site.projecthome }}/Category:Workshop2011" title="Category:Workshop2011">Mantid Workshop October 2011</a></li>
+  <li> <a href="{{ site.projecthome }}/Category:SANS_%26_Reflectometry_Workshop2012" title="Category:SANS &amp; Reflectometry Workshop2012">SANS &amp; Reflectometry Workshop February 2012</a></li>
+  <li> <a href="{{ site.projecthome }}/Category:Workshop2012" title="Category:Workshop2012">Mantid Workshop November 2012</a></li>
+  <li> <a href="{{ site.projecthome }}/Category:Workshop2014" title="Category:Workshop2014">Mantid Workshop January 2014</a></li>
+</ul>
+
+
+
+    </div>
+</div>
+
+  </section>
+
+    </div>
+  </div>
+</div>
+
+{% include footer.html %}
