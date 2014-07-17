@@ -14,3 +14,4 @@ Detailed Merges for Jul 12 - 18, 2014
 * *new* \[[#9857](http://trac.mantidproject.org/mantid/ticket/9857)\|[7ff65dd](https://github.com/mantidproject/mantid/commit/7ff65dd1c4a0d564e08836711a6e10e8e9d594e2)\] MaskBTP fails when choppers are added to IDF.
 * *new* \[[#9887](http://trac.mantidproject.org/mantid/ticket/9887)\|[18ae544](https://github.com/mantidproject/mantid/commit/18ae544b408dcce1986e8223a7f52af5717ea5cf)\] SlicingDialogs
 * *new* \[[#9894](http://trac.mantidproject.org/mantid/ticket/9894)\|[ec6f2ed](https://github.com/mantidproject/mantid/commit/ec6f2edf5ec3bd1b683ad9bf735cf138ce610e4f)\] Slow Unit Tests for Vickie Lynch
+* *new* \[[#9904](http://trac.mantidproject.org/mantid/ticket/9904)\|[ba6fdd7](https://github.com/mantidproject/mantid/commit/ba6fdd75f6d5a9862b0bd6d2da5b5609cb28a329)\] Slow Unit Tests for Sam Jackson
