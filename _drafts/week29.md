@@ -18,6 +18,7 @@ Detailed Merges for Jul 12 - 18, 2014
 -------------------------------------
 * \[[#8454](http://trac.mantidproject.org/mantid/ticket/8454)\|[206267d](https://github.com/mantidproject/mantid/commit/206267d6a195860c0e8ca555b77dd38a96b655d9)\] Make it more clear that plotting has actually finished
 * \[[#8513](http://trac.mantidproject.org/mantid/ticket/8513)\|[2ba2eea](https://github.com/mantidproject/mantid/commit/2ba2eeaf683527aa4b0382798e9a07095ccc44c7)\] Top level exception thrown in Python script window
+* *new* \[[#8828](http://trac.mantidproject.org/mantid/ticket/8828)\|[f8b9004](https://github.com/mantidproject/mantid/commit/f8b9004b21c0ad049842648088dd569a5790dc40)\] Mantid crash when adding workspace spectra to Qti plot
 * \[[#9730](http://trac.mantidproject.org/mantid/ticket/9730)\|[e3b74a6](https://github.com/mantidproject/mantid/commit/e3b74a6cf92a159eb462c696edd17e43162e7a85)\] LoadEventNexus TOF filtering issue
 * \[[#9857](http://trac.mantidproject.org/mantid/ticket/9857)\|[7ff65dd](https://github.com/mantidproject/mantid/commit/7ff65dd1c4a0d564e08836711a6e10e8e9d594e2)\] MaskBTP fails when choppers are added to IDF.
 * \[[#9877](http://trac.mantidproject.org/mantid/ticket/9877)\|[e59142c](https://github.com/mantidproject/mantid/commit/e59142c355e6a453626b3e50a8f24675874ee4b6)\] Jenkins build scripts should be able to select a build configuration based on the job name
