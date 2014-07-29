@@ -4,7 +4,7 @@ To View
 -------
 1. Install/configure ruby
 2. ```gem install bundle```
-3. Go into the directory of the developer (otehrwise an error will occur about not finding a gem file)
+3. Go into the directory of the developer (otherwise an error will occur about not finding a gem file)
 4. ```bundle update```
 5. Go into the root directory and type ```bundle exec jekyll serve --watch --drafts```
 
