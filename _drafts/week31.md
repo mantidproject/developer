@@ -6,7 +6,7 @@ title: Updates - Week 31 of 2014
 ---
 Updates for week 31 of 2014
 ---------------------------
-* **Changes to instrument geometry:** component link now accepts ID attribute [#9959](http://trac.mantidproject.org/mantid/ticket/9959)
+* **Changes to instrument geometry:** component link now accepts ID attribute \[[#9959](http://trac.mantidproject.org/mantid/ticket/9959)\]
 * New LET instrument geometry and parameters
 * Fixed high impact coverity errors in ICAT
 * Improvements and documantation in indirect analysis reduction, SaveAscii, SaveGSS, LoadSassena
