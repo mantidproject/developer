@@ -10,10 +10,13 @@ Updates for week 32 of 2014
 Detailed Merges for Aug 2 - 8, 2014
 -----------------------------------
 * *new* \[[#10008](http://trac.mantidproject.org/mantid/ticket/10008)\|[629b47c](https://github.com/mantidproject/mantid/commit/629b47cc445249d6db4350cb67433de11e430e87)\] Changes to fitting that help integrate FABADA into Mantid
+* *new* \[[#10013](http://trac.mantidproject.org/mantid/ticket/10013)\|[e1edf3e](https://github.com/mantidproject/mantid/commit/e1edf3e93ad00fdbc4f574da11b76d011b31995c)\] Fix the coverity issue about LoadGSS
+* *new* \[[#10029](http://trac.mantidproject.org/mantid/ticket/10029)\|[49d891e](https://github.com/mantidproject/mantid/commit/49d891e4db00840920636af87c07394d093f7a90)\] Polarization Correction Test Too Slow
 * *new* \[[#10039](http://trac.mantidproject.org/mantid/ticket/10039)\|[16ce383](https://github.com/mantidproject/mantid/commit/16ce3830008fbce85bec2c5203cfb90cf055efb1)\] Replace code in Goniometer::getEulerAngles with calls to Quat::getEulerAngles
 * *new* \[[#5977](http://trac.mantidproject.org/mantid/ticket/5977)\|[28ce742](https://github.com/mantidproject/mantid/commit/28ce74287b0479020134953fbf9ae6865ed08b10)\] Equals for Units
 * *new* \[[#9682](http://trac.mantidproject.org/mantid/ticket/9682)\|[3dd1903](https://github.com/mantidproject/mantid/commit/3dd1903072fe8eb634c70a1cc5a63a8a016541fb)\] Refactor Kernel::Interpolation to correctly handle multiple loading from string
 * *new* \[[#9898](http://trac.mantidproject.org/mantid/ticket/9898)\|[09997dc](https://github.com/mantidproject/mantid/commit/09997dce8f240c89b4e75fef53a790d61e9fe705)\] Slow Unit Tests for Nick Draper
+* *new* \[[#9931](http://trac.mantidproject.org/mantid/ticket/9931)\|[ea14c54](https://github.com/mantidproject/mantid/commit/ea14c54656759c78e6e67692ee5601f1d7d74507)\] CreateTransmissionWorkspaceAuto too slow
 * *new* \[[#9951](http://trac.mantidproject.org/mantid/ticket/9951)\|[3e6379a](https://github.com/mantidproject/mantid/commit/3e6379adf05f833f649acfe94215bad820cc07a0)\] Add pylint as part of static analysis checks
 * *new* \[[#9968](http://trac.mantidproject.org/mantid/ticket/9968)\|[43fcb05](https://github.com/mantidproject/mantid/commit/43fcb05e29eae952a0e46ca3b4756cb6637e7503)\] Refactor indirect convert to energy tabs
 * *new* \[[#9996](http://trac.mantidproject.org/mantid/ticket/9996)\|[18d4ac7](https://github.com/mantidproject/mantid/commit/18d4ac71e62c188b06d2e4c3255a681b72b76e76)\] Remove usage of LoadInstrumentFromNexus from LoadMuonNexus
