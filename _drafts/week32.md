@@ -14,6 +14,7 @@ Detailed Merges for Aug 2 - 8, 2014
 * *new* \[[#10013](http://trac.mantidproject.org/mantid/ticket/10013)\|[e1edf3e](https://github.com/mantidproject/mantid/commit/e1edf3e93ad00fdbc4f574da11b76d011b31995c)\] Fix the coverity issue about LoadGSS
 * *new* \[[#10028](http://trac.mantidproject.org/mantid/ticket/10028)\|[0dd0c35](https://github.com/mantidproject/mantid/commit/0dd0c355153fd5c5ad71219206f8f658ec97c692)\] Solve issue about changing value direction in GenerateEventsFilter
 * *new* \[[#10029](http://trac.mantidproject.org/mantid/ticket/10029)\|[49d891e](https://github.com/mantidproject/mantid/commit/49d891e4db00840920636af87c07394d093f7a90)\] Polarization Correction Test Too Slow
+* *new* \[[#10032](http://trac.mantidproject.org/mantid/ticket/10032)\|[e9cc7a9](https://github.com/mantidproject/mantid/commit/e9cc7a9f48945ca4628e5388befe8c21cce05ca0)\] Refactor Vesuvio resolution to separate fit function.
 * *new* \[[#10039](http://trac.mantidproject.org/mantid/ticket/10039)\|[16ce383](https://github.com/mantidproject/mantid/commit/16ce3830008fbce85bec2c5203cfb90cf055efb1)\] Replace code in Goniometer::getEulerAngles with calls to Quat::getEulerAngles
 * *new* \[[#5977](http://trac.mantidproject.org/mantid/ticket/5977)\|[28ce742](https://github.com/mantidproject/mantid/commit/28ce74287b0479020134953fbf9ae6865ed08b10)\] Equals for Units
 * *new* \[[#7832](http://trac.mantidproject.org/mantid/ticket/7832)\|[db68798](https://github.com/mantidproject/mantid/commit/db6879899f90bc15f73881dc8ddb892c402fe498)\] Output new file format for SCD peaks
