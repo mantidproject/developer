@@ -9,6 +9,7 @@ Updates for week 32 of 2014
 
 Detailed Merges for Aug 2 - 8, 2014
 -----------------------------------
+* *new* \[[#10002](http://trac.mantidproject.org/mantid/ticket/10002)\|[ceb5716](https://github.com/mantidproject/mantid/commit/ceb5716e13878e4f6bfc1a1c2762ecde8e8f9835)\] Fix Windows tests in debug mode
 * *new* \[[#10004](http://trac.mantidproject.org/mantid/ticket/10004)\|[41499fd](https://github.com/mantidproject/mantid/commit/41499fd74eb0c37f3a0b332d82ff3a334a82e047)\] ReflectometryReductionOneAuto ProcessingInstructions
 * *new* \[[#10008](http://trac.mantidproject.org/mantid/ticket/10008)\|[629b47c](https://github.com/mantidproject/mantid/commit/629b47cc445249d6db4350cb67433de11e430e87)\] Changes to fitting that help integrate FABADA into Mantid
 * *new* \[[#10013](http://trac.mantidproject.org/mantid/ticket/10013)\|[e1edf3e](https://github.com/mantidproject/mantid/commit/e1edf3e93ad00fdbc4f574da11b76d011b31995c)\] Fix the coverity issue about LoadGSS
