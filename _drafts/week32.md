@@ -13,6 +13,7 @@ Detailed Merges for Aug 2 - 8, 2014
 * *new* \[[#10004](http://trac.mantidproject.org/mantid/ticket/10004)\|[41499fd](https://github.com/mantidproject/mantid/commit/41499fd74eb0c37f3a0b332d82ff3a334a82e047)\] ReflectometryReductionOneAuto ProcessingInstructions
 * *new* \[[#10008](http://trac.mantidproject.org/mantid/ticket/10008)\|[629b47c](https://github.com/mantidproject/mantid/commit/629b47cc445249d6db4350cb67433de11e430e87)\] Changes to fitting that help integrate FABADA into Mantid
 * *new* \[[#10013](http://trac.mantidproject.org/mantid/ticket/10013)\|[e1edf3e](https://github.com/mantidproject/mantid/commit/e1edf3e93ad00fdbc4f574da11b76d011b31995c)\] Fix the coverity issue about LoadGSS
+* *new* \[[#10020](http://trac.mantidproject.org/mantid/ticket/10020)\|[de39303](https://github.com/mantidproject/mantid/commit/de393034681741709dbfcfe118981a5d73ae8add)\] Add ClearInstrumentParameters algorithm
 * *new* \[[#10028](http://trac.mantidproject.org/mantid/ticket/10028)\|[0dd0c35](https://github.com/mantidproject/mantid/commit/0dd0c355153fd5c5ad71219206f8f658ec97c692)\] Solve issue about changing value direction in GenerateEventsFilter
 * *new* \[[#10029](http://trac.mantidproject.org/mantid/ticket/10029)\|[49d891e](https://github.com/mantidproject/mantid/commit/49d891e4db00840920636af87c07394d093f7a90)\] Polarization Correction Test Too Slow
 * *new* \[[#10032](http://trac.mantidproject.org/mantid/ticket/10032)\|[e9cc7a9](https://github.com/mantidproject/mantid/commit/e9cc7a9f48945ca4628e5388befe8c21cce05ca0)\] Refactor Vesuvio resolution to separate fit function.
@@ -28,6 +29,7 @@ Detailed Merges for Aug 2 - 8, 2014
 * *new* \[[#9898](http://trac.mantidproject.org/mantid/ticket/9898)\|[09997dc](https://github.com/mantidproject/mantid/commit/09997dce8f240c89b4e75fef53a790d61e9fe705)\] Slow Unit Tests for Nick Draper
 * *new* \[[#9931](http://trac.mantidproject.org/mantid/ticket/9931)\|[ea14c54](https://github.com/mantidproject/mantid/commit/ea14c54656759c78e6e67692ee5601f1d7d74507)\] CreateTransmissionWorkspaceAuto too slow
 * *new* \[[#9951](http://trac.mantidproject.org/mantid/ticket/9951)\|[3e6379a](https://github.com/mantidproject/mantid/commit/3e6379adf05f833f649acfe94215bad820cc07a0)\] Add pylint as part of static analysis checks
+* *new* \[[#9955](http://trac.mantidproject.org/mantid/ticket/9955)\|[41410b1](https://github.com/mantidproject/mantid/commit/41410b10f418e639101ebabda460fb916867ff44)\] Strange NaN issues with Stitch1D
 * *new* \[[#9968](http://trac.mantidproject.org/mantid/ticket/9968)\|[43fcb05](https://github.com/mantidproject/mantid/commit/43fcb05e29eae952a0e46ca3b4756cb6637e7503)\] Refactor indirect convert to energy tabs
 * *new* \[[#9980](http://trac.mantidproject.org/mantid/ticket/9980)\|[b17d97b](https://github.com/mantidproject/mantid/commit/b17d97ba521331a4f6db6bb491e6795a26722c38)\] Add 10 panel WISH instrument definition file.
 * *new* \[[#9996](http://trac.mantidproject.org/mantid/ticket/9996)\|[18d4ac7](https://github.com/mantidproject/mantid/commit/18d4ac71e62c188b06d2e4c3255a681b72b76e76)\] Remove usage of LoadInstrumentFromNexus from LoadMuonNexus
