@@ -15,3 +15,4 @@ Detailed Merges for Aug 9 - 15, 2014
 * *new* \[[#9672](http://trac.mantidproject.org/mantid/ticket/9672)\|[146202b](https://github.com/mantidproject/mantid/commit/146202b53578864c58ab36f52cbba88c8207be43)\] AlgorithmHistoryTest checks versions of actual algorithms
 * *new* \[[#9874](http://trac.mantidproject.org/mantid/ticket/9874)\|[4b13f01](https://github.com/mantidproject/mantid/commit/4b13f01765d884c8e36529d2ec5751e7acffdf18)\] Have doctest output JUnit style output that Jenkins can parse
 * *new* \[[#9923](http://trac.mantidproject.org/mantid/ticket/9923)\|[4be23b6](https://github.com/mantidproject/mantid/commit/4be23b6fbc87ec033345a57dd33e57a7d3de85b2)\] Translate concepts pages to rst
+* *new* \[[#9937](http://trac.mantidproject.org/mantid/ticket/9937)\|[a2f2873](https://github.com/mantidproject/mantid/commit/a2f287384ea7a6bdf98d5116147d86845ca51f4c)\] Minor changes to algorihtm documentation
