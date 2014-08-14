@@ -11,6 +11,7 @@ Detailed Merges for Aug 9 - 15, 2014
 ------------------------------------
 * *new* \[[#10023](http://trac.mantidproject.org/mantid/ticket/10023)\|[2eb59b2](https://github.com/mantidproject/mantid/commit/2eb59b2e6ccf5c2bb8551c76d7e9e159e0bb3a3d)\] Tweak SaveParameterFile
 * *new* \[[#10053](http://trac.mantidproject.org/mantid/ticket/10053)\|[5ae0361](https://github.com/mantidproject/mantid/commit/5ae0361f0c6c9af3360e0560e6eb7f058129d2e8)\] Replace use of Python algorithms in Indirect with use of the Algorithm Manager
+* *new* \[[#10088](http://trac.mantidproject.org/mantid/ticket/10088)\|[6d060d1](https://github.com/mantidproject/mantid/commit/6d060d104414ccfac23795ad37dc27d0fdfdea1d)\] LoadISISNexus with partial spectra loading does not assign correct monitors to loaded spectra
 * *new* \[[#10095](http://trac.mantidproject.org/mantid/ticket/10095)\|[04e2e72](https://github.com/mantidproject/mantid/commit/04e2e72c61920e9d4e37f76ca77aa909e2f2bf7f)\] Speed up isis live data listener throughput
 * *new* \[[#10104](http://trac.mantidproject.org/mantid/ticket/10104)\|[59ed9c5](https://github.com/mantidproject/mantid/commit/59ed9c517fb40d713a2029dcde7c8ebeb355a572)\] ConjoinWorkspaces does not fix spectrum number
 * *new* \[[#9672](http://trac.mantidproject.org/mantid/ticket/9672)\|[146202b](https://github.com/mantidproject/mantid/commit/146202b53578864c58ab36f52cbba88c8207be43)\] AlgorithmHistoryTest checks versions of actual algorithms
