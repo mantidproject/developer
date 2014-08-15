@@ -23,3 +23,4 @@ Detailed Merges for Aug 9 - 15, 2014
 * *new* \[[#9936](http://trac.mantidproject.org/mantid/ticket/9936)\|[20764c6](https://github.com/mantidproject/mantid/commit/20764c6b9ad4e78b16543df770968d66d55ae925)\] Split out doctests to separate jobs
 * *new* \[[#9937](http://trac.mantidproject.org/mantid/ticket/9937)\|[a2f2873](https://github.com/mantidproject/mantid/commit/a2f287384ea7a6bdf98d5116147d86845ca51f4c)\] Minor changes to algorihtm documentation
 * *new* \[[#9949](http://trac.mantidproject.org/mantid/ticket/9949)\|[6fff5cb](https://github.com/mantidproject/mantid/commit/6fff5cbccfe7ece77b2efe9036717120e406c194)\] Use shared pointer in LoadEventNexus::runLoadNexusLogs
+* *new* \[[#9971](http://trac.mantidproject.org/mantid/ticket/9971)\|[38ea8a9](https://github.com/mantidproject/mantid/commit/38ea8a99619a2e843124bfcdf9216e27080260e1)\] SofQW3 crashes Mantid when logs are set to Debug level (at least on large files)
