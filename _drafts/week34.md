@@ -18,6 +18,7 @@ Detailed Merges for Aug 16 - 22, 2014
 * *new* \[[#10102](http://trac.mantidproject.org/mantid/ticket/10102)\|[9013d2f](https://github.com/mantidproject/mantid/commit/9013d2f543857185ec179cdff42320f56ad3f8ea)\] RebinByTimeAtSample first implementation
 * *new* \[[#10113](http://trac.mantidproject.org/mantid/ticket/10113)\|[b2cb770](https://github.com/mantidproject/mantid/commit/b2cb7700203339c2d51436a6d418eea918df5725)\] ReflectometryReductionAuto via ReflGUI cannot accept no ThetaIn
 * *new* \[[#8214](http://trac.mantidproject.org/mantid/ticket/8214)\|[b401b35](https://github.com/mantidproject/mantid/commit/b401b35315338b32a03aa01e10f48ca3b03eb7e2)\] Systemtest for loading ISIS histogram Nexus with IDF
+* *new* \[[#8316](http://trac.mantidproject.org/mantid/ticket/8316)\|[484292b](https://github.com/mantidproject/mantid/commit/484292b23181730388c1f50dcc0926ff167e6433)\] Errors when deleting workspaces
 * \[[#9467](http://trac.mantidproject.org/mantid/ticket/9467)\|[781eca6](https://github.com/mantidproject/mantid/commit/781eca6cc7b69625d9d40dc0b409d4a2e0ad0a47)\] When Nexus contains the correct param map don't try load external param file
 * *new* \[[#9539](http://trac.mantidproject.org/mantid/ticket/9539)\|[1604cca](https://github.com/mantidproject/mantid/commit/1604ccaee22135726c174e80a42fa17d20c94856)\] CCL clustering defect
 * \[[#9639](http://trac.mantidproject.org/mantid/ticket/9639)\|[1ef3adb](https://github.com/mantidproject/mantid/commit/1ef3adbd841142b9f0b30877e4a928709ec1465b)\] Add ability to run documentation tests individually
