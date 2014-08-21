@@ -24,6 +24,7 @@ Detailed Merges for Aug 16 - 22, 2014
 * *new* \[[#10122](http://trac.mantidproject.org/mantid/ticket/10122)\|[8a2f980](https://github.com/mantidproject/mantid/commit/8a2f980b35db7b01094e0f22955b13aea733c93e)\] Crash in Reflectometry UI
 * *new* \[[#10124](http://trac.mantidproject.org/mantid/ticket/10124)\|[dd76c41](https://github.com/mantidproject/mantid/commit/dd76c413de29d5a356725ee2919fa1a823023603)\] Expose EventList methods to python
 * *new* \[[#10128](http://trac.mantidproject.org/mantid/ticket/10128)\|[e2368ba](https://github.com/mantidproject/mantid/commit/e2368bad3581082fcb2b9d64b1d42565f47ace59)\] Remove old modules and module usage from REFL gui
+* *new* \[[#10132](http://trac.mantidproject.org/mantid/ticket/10132)\|[df8124e](https://github.com/mantidproject/mantid/commit/df8124ef30a0605ce34d95df591789e343dafd76)\] Make new CNCS geometry for run cycle
 * *new* \[[#10142](http://trac.mantidproject.org/mantid/ticket/10142)\|[cb4f47f](https://github.com/mantidproject/mantid/commit/cb4f47ff8f18d1a0ec02e058f824b4e1ed4238f9)\] Fix typo in PolarizationCorrection documentation
 * *new* \[[#8214](http://trac.mantidproject.org/mantid/ticket/8214)\|[b401b35](https://github.com/mantidproject/mantid/commit/b401b35315338b32a03aa01e10f48ca3b03eb7e2)\] Systemtest for loading ISIS histogram Nexus with IDF
 * *new* \[[#8316](http://trac.mantidproject.org/mantid/ticket/8316)\|[484292b](https://github.com/mantidproject/mantid/commit/484292b23181730388c1f50dcc0926ff167e6433)\] Errors when deleting workspaces
