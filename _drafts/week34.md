@@ -13,10 +13,16 @@ Updates for week 34 of 2014
 Detailed Merges for Aug 16 - 22, 2014
 -------------------------------------
 * \[[#10059](http://trac.mantidproject.org/mantid/ticket/10059)\|[d154648](https://github.com/mantidproject/mantid/commit/d154648ff0cddd40f7a0b84db8a602ee56f72962)\] Windows build does not work without precompiled headers enabled
+* *new* \[[#10066](http://trac.mantidproject.org/mantid/ticket/10066)\|[8971576](https://github.com/mantidproject/mantid/commit/897157605340e939a837716b07b8474c8be8d905)\] ConvertAxesToRealSpace: Algorithm to convert workspace Axes to detector units
 * \[[#10089](http://trac.mantidproject.org/mantid/ticket/10089)\|[883e549](https://github.com/mantidproject/mantid/commit/883e5491690164116c5b7f091cd214988139a066)\] Add usage example for ClearInstrumentParameters algorithm
 * *new* \[[#10097](http://trac.mantidproject.org/mantid/ticket/10097)\|[3153905](https://github.com/mantidproject/mantid/commit/3153905c5371741c246dbf1e91e7ea87e784cfc7)\] Calc Resolution Bug
 * *new* \[[#10102](http://trac.mantidproject.org/mantid/ticket/10102)\|[9013d2f](https://github.com/mantidproject/mantid/commit/9013d2f543857185ec179cdff42320f56ad3f8ea)\] RebinByTimeAtSample first implementation
+* *new* \[[#10103](http://trac.mantidproject.org/mantid/ticket/10103)\|[8e0f7da](https://github.com/mantidproject/mantid/commit/8e0f7da3e762f4057b8747acbc5e0e3c1f085479)\] Scale column not applied
+* *new* \[[#10112](http://trac.mantidproject.org/mantid/ticket/10112)\|[2fd66ba](https://github.com/mantidproject/mantid/commit/2fd66ba5e164a828c5b61ad34b0c224e0534042c)\] Scrap Workspace Population
 * *new* \[[#10113](http://trac.mantidproject.org/mantid/ticket/10113)\|[b2cb770](https://github.com/mantidproject/mantid/commit/b2cb7700203339c2d51436a6d418eea918df5725)\] ReflectometryReductionAuto via ReflGUI cannot accept no ThetaIn
+* *new* \[[#10115](http://trac.mantidproject.org/mantid/ticket/10115)\|[f8352f1](https://github.com/mantidproject/mantid/commit/f8352f115526ab86b4ee5826a40a24b46f6e55b0)\] ReflectometryReductionOneAuto should accept a workspace in lambda
+* *new* \[[#10122](http://trac.mantidproject.org/mantid/ticket/10122)\|[8a2f980](https://github.com/mantidproject/mantid/commit/8a2f980b35db7b01094e0f22955b13aea733c93e)\] Crash in Reflectometry UI
+* *new* \[[#10128](http://trac.mantidproject.org/mantid/ticket/10128)\|[e2368ba](https://github.com/mantidproject/mantid/commit/e2368bad3581082fcb2b9d64b1d42565f47ace59)\] Remove old modules and module usage from REFL gui
 * *new* \[[#8214](http://trac.mantidproject.org/mantid/ticket/8214)\|[b401b35](https://github.com/mantidproject/mantid/commit/b401b35315338b32a03aa01e10f48ca3b03eb7e2)\] Systemtest for loading ISIS histogram Nexus with IDF
 * *new* \[[#8316](http://trac.mantidproject.org/mantid/ticket/8316)\|[484292b](https://github.com/mantidproject/mantid/commit/484292b23181730388c1f50dcc0926ff167e6433)\] Errors when deleting workspaces
 * \[[#9467](http://trac.mantidproject.org/mantid/ticket/9467)\|[781eca6](https://github.com/mantidproject/mantid/commit/781eca6cc7b69625d9d40dc0b409d4a2e0ad0a47)\] When Nexus contains the correct param map don't try load external param file
