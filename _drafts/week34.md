@@ -12,6 +12,7 @@ Updates for week 34 of 2014
 
 Detailed Merges for Aug 16 - 22, 2014
 -------------------------------------
+* *new* \[[#10007](http://trac.mantidproject.org/mantid/ticket/10007)\|[cd16a0d](https://github.com/mantidproject/mantid/commit/cd16a0dc651afa655a6ef156d184fc22f7be0b00)\] Make Resolution Calculation More robust.
 * *new* \[[#10040](http://trac.mantidproject.org/mantid/ticket/10040)\|[601fbdf](https://github.com/mantidproject/mantid/commit/601fbdf6b31ff9cefa1adc8990f5d7cb3036b073)\] ConvertToMD as part of workflow should not assume ws is in ads
 * \[[#10059](http://trac.mantidproject.org/mantid/ticket/10059)\|[d154648](https://github.com/mantidproject/mantid/commit/d154648ff0cddd40f7a0b84db8a602ee56f72962)\] Windows build does not work without precompiled headers enabled
 * *new* \[[#10066](http://trac.mantidproject.org/mantid/ticket/10066)\|[8971576](https://github.com/mantidproject/mantid/commit/897157605340e939a837716b07b8474c8be8d905)\] ConvertAxesToRealSpace: Algorithm to convert workspace Axes to detector units
@@ -29,8 +30,11 @@ Detailed Merges for Aug 16 - 22, 2014
 * *new* \[[#10133](http://trac.mantidproject.org/mantid/ticket/10133)\|[c542f99](https://github.com/mantidproject/mantid/commit/c542f999f449fe4c0b88870cbe5facd1b976d2ec)\] Check for sphinx 1.2
 * *new* \[[#10137](http://trac.mantidproject.org/mantid/ticket/10137)\|[2a71ad5](https://github.com/mantidproject/mantid/commit/2a71ad58767720e65e0bb67093b7d3e6c3d72db4)\] Fix pylint whitespace warnings
 * *new* \[[#10138](http://trac.mantidproject.org/mantid/ticket/10138)\|[af79080](https://github.com/mantidproject/mantid/commit/af790801af32b354328d39495590133d955dea44)\] New TOPAZ IDFs
+* *new* \[[#10141](http://trac.mantidproject.org/mantid/ticket/10141)\|[806406b](https://github.com/mantidproject/mantid/commit/806406bfc83b69a30c42e0c0fe0cad8bf4f8a014)\] Rename Inelastic interfaces
 * *new* \[[#10142](http://trac.mantidproject.org/mantid/ticket/10142)\|[cb4f47f](https://github.com/mantidproject/mantid/commit/cb4f47ff8f18d1a0ec02e058f824b4e1ed4238f9)\] Fix typo in PolarizationCorrection documentation
 * *new* \[[#10154](http://trac.mantidproject.org/mantid/ticket/10154)\|[3fa9249](https://github.com/mantidproject/mantid/commit/3fa92493be4d7818cff28674c61aac67259dea54)\] CNCS geometry update
+* *new* \[[#10155](http://trac.mantidproject.org/mantid/ticket/10155)\|[7f79926](https://github.com/mantidproject/mantid/commit/7f79926ce7181b429752e77150ab669ff30fc2b0)\] Crash on startup if default facility is not found in facilities.xml
+* *new* \[[#7570](http://trac.mantidproject.org/mantid/ticket/7570)\|[34de655](https://github.com/mantidproject/mantid/commit/34de655e1584f0ab1cf0b1f0e7a78b4fce316c36)\] SplineSmoothing infinite loops when error is zero
 * *new* \[[#8214](http://trac.mantidproject.org/mantid/ticket/8214)\|[b401b35](https://github.com/mantidproject/mantid/commit/b401b35315338b32a03aa01e10f48ca3b03eb7e2)\] Systemtest for loading ISIS histogram Nexus with IDF
 * *new* \[[#8316](http://trac.mantidproject.org/mantid/ticket/8316)\|[484292b](https://github.com/mantidproject/mantid/commit/484292b23181730388c1f50dcc0926ff167e6433)\] Errors when deleting workspaces
 * \[[#9467](http://trac.mantidproject.org/mantid/ticket/9467)\|[781eca6](https://github.com/mantidproject/mantid/commit/781eca6cc7b69625d9d40dc0b409d4a2e0ad0a47)\] When Nexus contains the correct param map don't try load external param file
