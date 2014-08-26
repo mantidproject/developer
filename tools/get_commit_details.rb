@@ -55,7 +55,7 @@ class GitInfo
 
       # get the ticket number in two steps to
       # insure it is the right thing
-      @ticket = log_line.join(" ")[/(origin\S+\d+_)/]
+      @ticket = log_line.join(" ")[/(origin\S+\d+_?)/]
       @ticket = @ticket[/\d+/]
     end
 
