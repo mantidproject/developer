@@ -20,4 +20,10 @@ tools/get_commit_details.rb mantid-systests/ || exit 1
 # commit the news page
 git add _drafts/week*.md
 git commit -m "Updating ticket list via jenkins"
+
+# update the skipped system test summary
+mantid-code/Code/Tools/skipped_systemtests.py > systemtests/index.md 
+git commit -m "Updating skipped system tests via jenkins"
+
+# push the changes to master
 git push
