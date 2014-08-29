@@ -24,5 +24,6 @@ Detailed Merges for Aug 23 - 29, 2014
 * \[[#10173](http://trac.mantidproject.org/mantid/ticket/10173)\|[aa5c3e8](https://github.com/mantidproject/mantid/commit/aa5c3e846acbf77b5adba3917c024c3b8226ab8c)\] Crash in CalculateResolution
 * *new* \[[#10174](http://trac.mantidproject.org/mantid/ticket/10174)\|[dd75cbe](https://github.com/mantidproject/mantid/commit/dd75cbe32a78db58a3ae46b4aad1c95d367eb0e9)\] New script for generating report of skipped tests
 * \[[#10178](http://trac.mantidproject.org/mantid/ticket/10178)\|[0e765f8](https://github.com/mantidproject/mantid/commit/0e765f8eb69a9a17dfdd93826c0cfead651aa7e6)\] Geometry::Object copy constructor and assignment operator don't copy handlers correctly
+* *new* \[[#5983](http://trac.mantidproject.org/mantid/ticket/5983)\|[455ea7e](https://github.com/mantidproject/mantid/commit/455ea7e97ecfe149a5fb2b18fb3b173feefc39a7)\] Mantid crashes on attempt to show a simple instrument
 * *new* \[[#9342](http://trac.mantidproject.org/mantid/ticket/9342)\|[ab23408](https://github.com/mantidproject/mantid/commit/ab23408d3e940237612f0738a09e6ec4ad2d7a6c)\] Indirect Python Algorithm Testing
 * \[[#9774](http://trac.mantidproject.org/mantid/ticket/9774)\|[b487b25](https://github.com/mantidproject/mantid/commit/b487b2581f9ff90735053231d09e84f2ce24af1e)\] CreateTransmissionWorkspace lacks documentation
