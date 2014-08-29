@@ -27,3 +27,4 @@ Detailed Merges for Aug 23 - 29, 2014
 * *new* \[[#5983](http://trac.mantidproject.org/mantid/ticket/5983)\|[455ea7e](https://github.com/mantidproject/mantid/commit/455ea7e97ecfe149a5fb2b18fb3b173feefc39a7)\] Mantid crashes on attempt to show a simple instrument
 * *new* \[[#9342](http://trac.mantidproject.org/mantid/ticket/9342)\|[ab23408](https://github.com/mantidproject/mantid/commit/ab23408d3e940237612f0738a09e6ec4ad2d7a6c)\] Indirect Python Algorithm Testing
 * \[[#9774](http://trac.mantidproject.org/mantid/ticket/9774)\|[b487b25](https://github.com/mantidproject/mantid/commit/b487b2581f9ff90735053231d09e84f2ce24af1e)\] CreateTransmissionWorkspace lacks documentation
+* *new* \[[#9960](http://trac.mantidproject.org/mantid/ticket/9960)\|[b5d5816](https://github.com/mantidproject/mantid/commit/b5d581627f6b3a1d06490760c01e75f80cc0eda9)\] C2E: Use correct IDFs during reduction
