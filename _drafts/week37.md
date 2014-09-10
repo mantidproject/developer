@@ -18,4 +18,5 @@ Detailed Merges for Sep 6 - 12, 2014
 * *new* \[[#10211](http://trac.mantidproject.org/mantid/ticket/10211)\|[7b821df](https://github.com/mantidproject/mantid/commit/7b821df30979dda044d424c8188253b9c79fdb39)\] Values from the mantid matrix are copied at the display precision, not the full precision
 * *new* \[[#10212](http://trac.mantidproject.org/mantid/ticket/10212)\|[f99c1c9](https://github.com/mantidproject/mantid/commit/f99c1c96c9406b0e93fab30f0b5ab9dd71b92fc0)\] Improve the value display options for mantid matrix values
 * \[[#9371](http://trac.mantidproject.org/mantid/ticket/9371)\|[2af01ab](https://github.com/mantidproject/mantid/commit/2af01ab02ce817b3db414efb67d33a4d30fc7838)\] New MVP Reflectometry GUI - Base setup
+* *new* \[[#9619](http://trac.mantidproject.org/mantid/ticket/9619)\|[6ef9ef9](https://github.com/mantidproject/mantid/commit/6ef9ef9ad4a6a58f086986ff0b85ad39706e91a5)\] FindQwt can sometimes report an incorrect version
 * \[[#9640](http://trac.mantidproject.org/mantid/ticket/9640)\|[d497d53](https://github.com/mantidproject/mantid/commit/d497d539ad9856881e98423d261858838363639a)\] Indirect Load Ascii Interface
