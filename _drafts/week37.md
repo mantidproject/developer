@@ -11,6 +11,7 @@ Updates for week 37 of 2014
 Detailed Merges for Sep 6 - 12, 2014
 ------------------------------------
 * \[[#10099](http://trac.mantidproject.org/mantid/ticket/10099)\|[716580b](https://github.com/mantidproject/mantid/commit/716580b1e013d64061b6cfe77e78869ac02bc264)\] Plot to same graph
+* *new* \[[#10107](http://trac.mantidproject.org/mantid/ticket/10107)\|[70d305b](https://github.com/mantidproject/mantid/commit/70d305b41908b7c295971e59e2cad8bc93226579)\] Extend existing usage example for LoadFullprofResolution
 * \[[#10131](http://trac.mantidproject.org/mantid/ticket/10131)\|[02e5027](https://github.com/mantidproject/mantid/commit/02e50277773a9e43f50545876a467dab6301a403)\] Cannot have a workspace that is both of type MultiperiodGroup and  DataProcessing
 * \[[#10156](http://trac.mantidproject.org/mantid/ticket/10156)\|[f17a794](https://github.com/mantidproject/mantid/commit/f17a7940f7325301d973e53a854a77e0cc2808c4)\] LoadILL to support new IN4 File format
 * *new* \[[#10158](http://trac.mantidproject.org/mantid/ticket/10158)\|[fd3f6aa](https://github.com/mantidproject/mantid/commit/fd3f6aacde9a1e98b5219583405ea176da7cddc2)\] Make the algorithms drop down box expand to fill width of UI
