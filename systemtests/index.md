@@ -1,20 +1,27 @@
 ---
 layout: default
-date: 2014-09-13
+date: 2014-09-14
 author: Peter Peterson
 title: Currently Skipped System Tests
 ---
 Summary
 =======
 
-* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2014-09-13 [#173](http://builds.mantidproject.org/job/master_systemtests/173/)
+* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2014-09-14 [#174](http://builds.mantidproject.org/job/master_systemtests/174/)
 * Labels : osx-10.8, rhel6, ubuntu-14.04, win7
-* Failed : 0
+* Failed : 1
 * Skipped: 91 (31 unique)
 * Total  : 976 (= 244 * 4)
 
 Details
 =======
+
+Failed
+------
+
+| Test                             | osx-10.8 | rhel6 | ubuntu-14.04 | win7 |
+|----------------------------------|----------|-------|--------------|------|
+| EQSANSTransmissionCompatibility  |          |       |       x      |      |
 
 Skipped
 -------
