@@ -7,10 +7,10 @@ title: Currently Skipped System Tests
 Summary
 =======
 
-* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2014-09-23 [#179](http://builds.mantidproject.org/job/master_systemtests/179/)
+* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2014-09-23 [#180](http://builds.mantidproject.org/job/master_systemtests/180/)
 * Labels : osx-10.8, rhel6, ubuntu-14.04, win7
 * Failed : 0
-* Skipped: 91 (31 unique)
+* Skipped: 94 (31 unique)
 * Total  : 976 (= 244 * 4)
 
 Details
@@ -45,10 +45,10 @@ Skipped
 | QuestTest                          |     x    |   x   |       x      |      |
 | ResNormTest                        |     x    |   x   |       x      |      |
 | UserAlgorithmsBuild                |     x    |   x   |       x      |      |
+| LETReductionEvent2014Multirep      |     x    |   x   |              |      |
+| MERLINReduction                    |     x    |   x   |              |      |
+| TobyFitResolutionSimulationTest    |     x    |   x   |              |      |
 | ValidateFacilitiesFile             |     x    |       |       x      |      |
 | ValidateGroupingFiles              |     x    |       |       x      |      |
 | ValidateInstrumentDefinitionFiles  |     x    |       |       x      |      |
 | ValidateParameterFiles             |     x    |       |       x      |      |
-| LETReductionEvent2014Multirep      |     x    |       |              |      |
-| MERLINReduction                    |     x    |       |              |      |
-| TobyFitResolutionSimulationTest    |     x    |       |              |      |
