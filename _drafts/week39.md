@@ -10,7 +10,11 @@ Updates for week 39 of 2014
 Detailed Merges for Sep 20 - 26, 2014
 -------------------------------------
 * *new* \[[#10035](http://trac.mantidproject.org/mantid/ticket/10035)\|[709aedd](https://github.com/mantidproject/mantid/commit/709aedd82e94dbe1e6be4fb10a9cad031f0d6d57)\] Endefrc needs documentation
+* *new* \[[#10061](http://trac.mantidproject.org/mantid/ticket/10061)\|[995f327](https://github.com/mantidproject/mantid/commit/995f32768cd94c786f5af7a89f8d5c92304c2679)\] FITS file loader
 * *new* \[[#10135](http://trac.mantidproject.org/mantid/ticket/10135)\|[037bb29](https://github.com/mantidproject/mantid/commit/037bb292865b6b2ce6e31b6eeef919baec205ed5)\] Documentation and python bindings for some Crystal objects
+* *new* \[[#10179](http://trac.mantidproject.org/mantid/ticket/10179)\|[387ba5e](https://github.com/mantidproject/mantid/commit/387ba5e7117bb49128a948d9bf239dba2cc6954e)\] Split up of LoadBBY
 * *new* \[[#10223](http://trac.mantidproject.org/mantid/ticket/10223)\|[0e7ad92](https://github.com/mantidproject/mantid/commit/0e7ad927d4b27b3a7590cf8814defc016628d18d)\] New Refl UI improvements
+* *new* \[[#10225](http://trac.mantidproject.org/mantid/ticket/10225)\|[4a9faf6](https://github.com/mantidproject/mantid/commit/4a9faf6b86246c7846dba3d33c5839741d064f6d)\] SNSPowderReduction is broken when PreserveEvents=False
 * *new* \[[#10230](http://trac.mantidproject.org/mantid/ticket/10230)\|[5418eca](https://github.com/mantidproject/mantid/commit/5418eca4ead93b8ad437d427b634683a2d900aa0)\] Add more information to Mantid Matrix Headers
+* *new* \[[#10273](http://trac.mantidproject.org/mantid/ticket/10273)\|[3e29dd6](https://github.com/mantidproject/mantid/commit/3e29dd65d729e0085a01122095cc921cd734c90b)\] Restructure schema directory
 * *new* \[[#10276](http://trac.mantidproject.org/mantid/ticket/10276)\|[93f4f76](https://github.com/mantidproject/mantid/commit/93f4f76f4531915cfa09bf35b636830b34a108bc)\] Crash when opening algorithm dialog for Stitch1DMany
