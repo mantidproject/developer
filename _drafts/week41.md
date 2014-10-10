@@ -15,3 +15,4 @@ Detailed Merges for Oct 4 - 10, 2014
 * *new* \[[#10280](http://trac.mantidproject.org/mantid/ticket/10280)\|[1c9879f](https://github.com/mantidproject/mantid/commit/1c9879fc626b2847c1a067de30336df17a3ecc02)\] Extend SymmetryOperation to handle translational components
 * *new* \[[#10310](http://trac.mantidproject.org/mantid/ticket/10310)\|[9fa7e38](https://github.com/mantidproject/mantid/commit/9fa7e384d1227b6d39f24b39921ba8e22912990a)\] ExportExperimentLog overwrites dictionary key for logname
 * *new* \[[#9964](http://trac.mantidproject.org/mantid/ticket/9964)\|[2764c21](https://github.com/mantidproject/mantid/commit/2764c21ddcdf5761eb8e6404d97741ca18935474)\] Apply Corrections bugs.
+* *new* \[[#9998](http://trac.mantidproject.org/mantid/ticket/9998)\|[dd98da1](https://github.com/mantidproject/mantid/commit/dd98da15d1a6b1aaf212d82534f0e1bc48343983)\] Modify SaveSPE to write canonical ASCII files compartible with old data readers
