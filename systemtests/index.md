@@ -1,20 +1,29 @@
 ---
 layout: default
-date: 2014-10-14
+date: 2014-10-15
 author: Peter Peterson
 title: Currently Skipped System Tests
 ---
 Summary
 =======
 
-* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2014-10-14 [#204](http://builds.mantidproject.org/job/master_systemtests/204/)
+* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2014-10-15 [#205](http://builds.mantidproject.org/job/master_systemtests/205/)
 * Labels : osx-10.8, rhel6, ubuntu-14.04, win7
-* Failed : 0
-* Skipped: 91 (31 unique)
-* Total  : 992 (= 248 * 4)
+* Failed : 4 (3 unique)
+* Skipped: 99 (33 unique)
+* Total  : 1000 (= 250 * 4)
 
 Details
 =======
+
+Failed
+------
+
+| Test                             | osx-10.8 | rhel6 | ubuntu-14.04 | win7 |
+|----------------------------------|----------|-------|--------------|------|
+| DirectInelaticSNSTest            |     x    |       |       x      |      |
+| ARCSReductionTest                |          |       |       x      |      |
+| EQSANSTransmissionCompatibility  |          |       |       x      |      |
 
 Skipped
 -------
@@ -23,6 +32,8 @@ Skipped
 |------------------------------------|----------|-------|--------------|------|
 | BuildSQWTest                       |     x    |   x   |       x      |   x  |
 | EQSANSFlatTest                     |     x    |   x   |       x      |   x  |
+| LoadSQW_FileBasedTest              |     x    |   x   |       x      |   x  |
+| LoadSQW_MemBasedTest               |     x    |   x   |       x      |   x  |
 | OffspecSESANS                      |     x    |   x   |       x      |   x  |
 | OffspecSESANSP0                    |     x    |   x   |       x      |   x  |
 | PG3Analysis                        |     x    |   x   |       x      |   x  |
