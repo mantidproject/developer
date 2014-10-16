@@ -19,6 +19,7 @@ Detailed Merges for Oct 11 - 17, 2014
 * \[[#10279](http://trac.mantidproject.org/mantid/ticket/10279)\|[4dfd2a8](https://github.com/mantidproject/mantid/commit/4dfd2a81581370841ecdfdf9e1be13845aceb468)\] declare 'Shift' parameter for TabulatedFunction
 * *new* \[[#10302](http://trac.mantidproject.org/mantid/ticket/10302)\|[4506b41](https://github.com/mantidproject/mantid/commit/4506b413172bfd96ad2db3af18f7f64cf9dc623e)\] Improve row management in New Refl UI
 * \[[#10331](http://trac.mantidproject.org/mantid/ticket/10331)\|[7da4161](https://github.com/mantidproject/mantid/commit/7da41612161e534f45e28ea83ec6f70410afffe7)\] install_git_macros.bat should be able to find Git
+* *new* \[[#10334](http://trac.mantidproject.org/mantid/ticket/10334)\|[854e8dd](https://github.com/mantidproject/mantid/commit/854e8ddbd4aa3ede089ee26a79b563139ac408f1)\] Indirect data reduction UI causes calibration to run multiple times
 * *new* \[[#10339](http://trac.mantidproject.org/mantid/ticket/10339)\|[fd9489c](https://github.com/mantidproject/mantid/commit/fd9489c78e090474f826cbc1a77eea07f05417fd)\] Tube Gap Calculation Modifications
 * \[[#10343](http://trac.mantidproject.org/mantid/ticket/10343)\|[4ff4f2f](https://github.com/mantidproject/mantid/commit/4ff4f2ff4f6dd9898d84cb5beefc0294ae11dbbc)\] delete macro HAS_UNORDERED_MAP_H
 * \[[#10353](http://trac.mantidproject.org/mantid/ticket/10353)\|[440baf7](https://github.com/mantidproject/mantid/commit/440baf71f9029b5c881cda911240a24c1b3de55c)\] CMake gcc version check is incorrect for SUSE linux
@@ -30,3 +31,4 @@ Detailed Merges for Oct 11 - 17, 2014
 * *new* \[[#9345](http://trac.mantidproject.org/mantid/ticket/9345)\|[2102133](https://github.com/mantidproject/mantid/commit/2102133fc88801ac54ca86a8619f0b1e9d93dbaf)\] Convert IndirectJumpFit to python workflow algoritm
 * *new* \[[#9620](http://trac.mantidproject.org/mantid/ticket/9620)\|[58f5ae1](https://github.com/mantidproject/mantid/commit/58f5ae1d885b24d1fe5e6a26ef26a323fb3292ec)\] ElasticWindow algorithm doesn't have a unit test
 * *new* \[[#9862](http://trac.mantidproject.org/mantid/ticket/9862)\|[4ca7371](https://github.com/mantidproject/mantid/commit/4ca7371ae396d18dbc010b85902046d50382272d)\] LoadSQW does not work with file based workspaces any more
+* *new* \[[#9909](http://trac.mantidproject.org/mantid/ticket/9909)\|[9895a3a](https://github.com/mantidproject/mantid/commit/9895a3a5e5f60a6b47aac1da727403a34a63ac72)\] Add missing Algorithm Usage examples
