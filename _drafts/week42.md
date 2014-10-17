@@ -30,6 +30,7 @@ Detailed Merges for Oct 11 - 17, 2014
 * \[[#10363](http://trac.mantidproject.org/mantid/ticket/10363)\|[e189c59](https://github.com/mantidproject/mantid/commit/e189c59abfc43576dc7e3832854bb5f5dc7562f2)\] Eliminate deprecation warnings from build on OSX 10.9
 * *new* \[[#10370](http://trac.mantidproject.org/mantid/ticket/10370)\|[25e7f04](https://github.com/mantidproject/mantid/commit/25e7f04c5468c25ee6f522c06e669a06e8e1d553)\] In MergeMDFiles reserve memory for events in one go
 * *new* \[[#10378](http://trac.mantidproject.org/mantid/ticket/10378)\|[d4551e7](https://github.com/mantidproject/mantid/commit/d4551e7f90b34681fe33411f6b01fba275905460)\] Minor Refl UI improvements
+* *new* \[[#10381](http://trac.mantidproject.org/mantid/ticket/10381)\|[6e6cf6e](https://github.com/mantidproject/mantid/commit/6e6cf6eb91250db06613d21bb0cbf238e37fc970)\] ConvFit should log if result was convolved
 * *new* \[[#5675](http://trac.mantidproject.org/mantid/ticket/5675)\|[29660a2](https://github.com/mantidproject/mantid/commit/29660a278d285a7a234f3c7fdb48088e27f8c7ba)\] Make Show Detectors multi-threaded
 * *new* \[[#8419](http://trac.mantidproject.org/mantid/ticket/8419)\|[0e1ec6d](https://github.com/mantidproject/mantid/commit/0e1ec6d40a1211d552e96dcb3ff6ac0e403b4c0d)\] Argument value checking for plotSpectrum, plotBin and plotMD
 * *new* \[[#8802](http://trac.mantidproject.org/mantid/ticket/8802)\|[8dd7a40](https://github.com/mantidproject/mantid/commit/8dd7a404c72276adf389ce6d9fa091aa2ed19959)\] ConvFit option to choose component
