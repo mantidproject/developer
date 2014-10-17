@@ -19,6 +19,7 @@ Detailed Merges for Oct 11 - 17, 2014
 * \[[#10279](http://trac.mantidproject.org/mantid/ticket/10279)\|[4dfd2a8](https://github.com/mantidproject/mantid/commit/4dfd2a81581370841ecdfdf9e1be13845aceb468)\] declare 'Shift' parameter for TabulatedFunction
 * *new* \[[#10281](http://trac.mantidproject.org/mantid/ticket/10281)\|[90bd465](https://github.com/mantidproject/mantid/commit/90bd465221ea71245d95c2a731768dbfcc3caa29)\] Create SpaceGroup class and factory
 * *new* \[[#10299](http://trac.mantidproject.org/mantid/ticket/10299)\|[b961159](https://github.com/mantidproject/mantid/commit/b96115965f50471989355eb5564a2a4f125bfd5e)\] Indirect diagnostics preview plot
+* *new* \[[#10301](http://trac.mantidproject.org/mantid/ticket/10301)\|[c7a671d](https://github.com/mantidproject/mantid/commit/c7a671d8ea7636fb2604789169aaf4f7c5bdd90b)\] Change Refl UI scale column type to double
 * *new* \[[#10302](http://trac.mantidproject.org/mantid/ticket/10302)\|[4506b41](https://github.com/mantidproject/mantid/commit/4506b413172bfd96ad2db3af18f7f64cf9dc623e)\] Improve row management in New Refl UI
 * \[[#10331](http://trac.mantidproject.org/mantid/ticket/10331)\|[7da4161](https://github.com/mantidproject/mantid/commit/7da41612161e534f45e28ea83ec6f70410afffe7)\] install_git_macros.bat should be able to find Git
 * *new* \[[#10334](http://trac.mantidproject.org/mantid/ticket/10334)\|[854e8dd](https://github.com/mantidproject/mantid/commit/854e8ddbd4aa3ede089ee26a79b563139ac408f1)\] Indirect data reduction UI causes calibration to run multiple times
@@ -27,6 +28,8 @@ Detailed Merges for Oct 11 - 17, 2014
 * *new* \[[#10352](http://trac.mantidproject.org/mantid/ticket/10352)\|[978df7f](https://github.com/mantidproject/mantid/commit/978df7f78800e6eb491935d9225472cb6c6b6615)\] Coverity issues in SXDMDNorm
 * \[[#10353](http://trac.mantidproject.org/mantid/ticket/10353)\|[440baf7](https://github.com/mantidproject/mantid/commit/440baf71f9029b5c881cda911240a24c1b3de55c)\] CMake gcc version check is incorrect for SUSE linux
 * \[[#10363](http://trac.mantidproject.org/mantid/ticket/10363)\|[e189c59](https://github.com/mantidproject/mantid/commit/e189c59abfc43576dc7e3832854bb5f5dc7562f2)\] Eliminate deprecation warnings from build on OSX 10.9
+* *new* \[[#10370](http://trac.mantidproject.org/mantid/ticket/10370)\|[25e7f04](https://github.com/mantidproject/mantid/commit/25e7f04c5468c25ee6f522c06e669a06e8e1d553)\] In MergeMDFiles reserve memory for events in one go
+* *new* \[[#10378](http://trac.mantidproject.org/mantid/ticket/10378)\|[d4551e7](https://github.com/mantidproject/mantid/commit/d4551e7f90b34681fe33411f6b01fba275905460)\] Minor Refl UI improvements
 * *new* \[[#5675](http://trac.mantidproject.org/mantid/ticket/5675)\|[29660a2](https://github.com/mantidproject/mantid/commit/29660a278d285a7a234f3c7fdb48088e27f8c7ba)\] Make Show Detectors multi-threaded
 * *new* \[[#8419](http://trac.mantidproject.org/mantid/ticket/8419)\|[0e1ec6d](https://github.com/mantidproject/mantid/commit/0e1ec6d40a1211d552e96dcb3ff6ac0e403b4c0d)\] Argument value checking for plotSpectrum, plotBin and plotMD
 * *new* \[[#8802](http://trac.mantidproject.org/mantid/ticket/8802)\|[8dd7a40](https://github.com/mantidproject/mantid/commit/8dd7a404c72276adf389ce6d9fa091aa2ed19959)\] ConvFit option to choose component
