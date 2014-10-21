@@ -9,6 +9,7 @@ Updates for week 43 of 2014
 
 Detailed Merges for Oct 18 - 24, 2014
 -------------------------------------
+* *new* \[[#10064](http://trac.mantidproject.org/mantid/ticket/10064)\|[75b73af](https://github.com/mantidproject/mantid/commit/75b73afa493d388ac40fae77a9e00533d31bc08e)\] Indirect algorithm: resolution
 * *new* \[[#10215](http://trac.mantidproject.org/mantid/ticket/10215)\|[6e0145f](https://github.com/mantidproject/mantid/commit/6e0145f02173f0c8f62e063d63ae53ca7c930525)\] Refactor Indirect Diffraction
 * *new* \[[#10364](http://trac.mantidproject.org/mantid/ticket/10364)\|[6123bd4](https://github.com/mantidproject/mantid/commit/6123bd47daefc28ddf88d7e9a8851f620cf5b8cc)\] Merge ReflBlankMainViewPresenter and ReflLoadedMainViewPresenter
 * *new* \[[#10365](http://trac.mantidproject.org/mantid/ticket/10365)\|[a841023](https://github.com/mantidproject/mantid/commit/a841023b0767f1283dc34fa577dd0153b84bfcf8)\] SliceViewer crash
