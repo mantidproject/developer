@@ -16,3 +16,4 @@ Detailed Merges for Oct 18 - 24, 2014
 * *new* \[[#10376](http://trac.mantidproject.org/mantid/ticket/10376)\|[f2a383e](https://github.com/mantidproject/mantid/commit/f2a383e23964f2b2cd30a35ebae45a41b8505bf1)\] Use menubar in Refl UI
 * *new* \[[#10380](http://trac.mantidproject.org/mantid/ticket/10380)\|[5917d70](https://github.com/mantidproject/mantid/commit/5917d700d77a5b16ef636d1605862270cc9e4051)\] Refl UI options column doesn't handle lists properly
 * *new* \[[#10389](http://trac.mantidproject.org/mantid/ticket/10389)\|[d865271](https://github.com/mantidproject/mantid/commit/d865271f9c6baafb4b111ce445c1ddbdcc5bc4c3)\] Use scale column in Refl UI
+* *new* \[[#3878](http://trac.mantidproject.org/mantid/ticket/3878)\|[8f3686d](https://github.com/mantidproject/mantid/commit/8f3686d8aa3eb8c9cdab27d3819d252af2a55276)\] Partial loading of spectra for LoadEventNexus
