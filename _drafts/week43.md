@@ -13,6 +13,7 @@ Detailed Merges for Oct 18 - 24, 2014
 * *new* \[[#10194](http://trac.mantidproject.org/mantid/ticket/10194)\|[779a543](https://github.com/mantidproject/mantid/commit/779a5433998427f9c2eea89cf3147733eb63596e)\] Create Save algorithm to create NXTomo file.
 * *new* \[[#10215](http://trac.mantidproject.org/mantid/ticket/10215)\|[6e0145f](https://github.com/mantidproject/mantid/commit/6e0145f02173f0c8f62e063d63ae53ca7c930525)\] Refactor Indirect Diffraction
 * *new* \[[#10335](http://trac.mantidproject.org/mantid/ticket/10335)\|[5d6c99b](https://github.com/mantidproject/mantid/commit/5d6c99b85b824b4ae42a120fb6882790487e5dc9)\] Should there be a "Recent files" entry in main app menu -&gt; File
+* *new* \[[#10351](http://trac.mantidproject.org/mantid/ticket/10351)\|[f892eab](https://github.com/mantidproject/mantid/commit/f892eab565a4340e4fbbff7858c4303490e8f4d2)\] Enable Second white beam in ISIS reduction
 * *new* \[[#10364](http://trac.mantidproject.org/mantid/ticket/10364)\|[6123bd4](https://github.com/mantidproject/mantid/commit/6123bd47daefc28ddf88d7e9a8851f620cf5b8cc)\] Merge ReflBlankMainViewPresenter and ReflLoadedMainViewPresenter
 * *new* \[[#10365](http://trac.mantidproject.org/mantid/ticket/10365)\|[a841023](https://github.com/mantidproject/mantid/commit/a841023b0767f1283dc34fa577dd0153b84bfcf8)\] SliceViewer crash
 * *new* \[[#10376](http://trac.mantidproject.org/mantid/ticket/10376)\|[f2a383e](https://github.com/mantidproject/mantid/commit/f2a383e23964f2b2cd30a35ebae45a41b8505bf1)\] Use menubar in Refl UI
