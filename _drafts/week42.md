@@ -9,18 +9,20 @@ Updates for week 42 of 2014
 * New algorithm [CreateCalibrationWorkspace]({{ site.docpage }}/algorithms/CreateCalibrationWorkspace.html) for indirect geometry
 * New GUI for filtering events (Interfaces->Utillity->FilterEvents)
 * Reduced warnings on OSX 10.9 with clang compiler
+* New grouping file for SNS:REF_L with the detector rotated
+* New SpaceGroup class and factory
 
 Detailed Merges for Oct 11 - 17, 2014
 -------------------------------------
 * \[[#10065](http://trac.mantidproject.org/mantid/ticket/10065)\|[1ed36d9](https://github.com/mantidproject/mantid/commit/1ed36d9de0d561a40e5e1c9fada171be2e1f1e6d)\] Indirect algorithm: CreateCalibrationWorkspace
 * \[[#10227](http://trac.mantidproject.org/mantid/ticket/10227)\|[c8aaae4](https://github.com/mantidproject/mantid/commit/c8aaae41c1c819522622cd6faead1b5f192c28fc)\] Create a GUI for filtering events
-* *new* \[[#10259](http://trac.mantidproject.org/mantid/ticket/10259)\|[9955525](https://github.com/mantidproject/mantid/commit/9955525706c23fde2a1052ab941173054b360fb9)\] Calibration range calculation
-* *new* \[[#10265](http://trac.mantidproject.org/mantid/ticket/10265)\|[a5739a1](https://github.com/mantidproject/mantid/commit/a5739a15a9076211994a804b369977e9b75c23f1)\] SNS REFL instrument will rotate their detector during October 2014…. REFreduction and SFcalculator needs to be modify to take this change into account.
+* \[[#10259](http://trac.mantidproject.org/mantid/ticket/10259)\|[9955525](https://github.com/mantidproject/mantid/commit/9955525706c23fde2a1052ab941173054b360fb9)\] Calibration range calculation
+* \[[#10265](http://trac.mantidproject.org/mantid/ticket/10265)\|[a5739a1](https://github.com/mantidproject/mantid/commit/a5739a15a9076211994a804b369977e9b75c23f1)\] SNS REFL instrument will rotate their detector during October 2014…. REFreduction and SFcalculator needs to be modify to take this change into account.
 * \[[#10279](http://trac.mantidproject.org/mantid/ticket/10279)\|[4dfd2a8](https://github.com/mantidproject/mantid/commit/4dfd2a81581370841ecdfdf9e1be13845aceb468)\] declare 'Shift' parameter for TabulatedFunction
-* *new* \[[#10281](http://trac.mantidproject.org/mantid/ticket/10281)\|[90bd465](https://github.com/mantidproject/mantid/commit/90bd465221ea71245d95c2a731768dbfcc3caa29)\] Create SpaceGroup class and factory
-* *new* \[[#10299](http://trac.mantidproject.org/mantid/ticket/10299)\|[b961159](https://github.com/mantidproject/mantid/commit/b96115965f50471989355eb5564a2a4f125bfd5e)\] Indirect diagnostics preview plot
-* *new* \[[#10301](http://trac.mantidproject.org/mantid/ticket/10301)\|[c7a671d](https://github.com/mantidproject/mantid/commit/c7a671d8ea7636fb2604789169aaf4f7c5bdd90b)\] Change Refl UI scale column type to double
-* *new* \[[#10302](http://trac.mantidproject.org/mantid/ticket/10302)\|[4506b41](https://github.com/mantidproject/mantid/commit/4506b413172bfd96ad2db3af18f7f64cf9dc623e)\] Improve row management in New Refl UI
+* \[[#10281](http://trac.mantidproject.org/mantid/ticket/10281)\|[90bd465](https://github.com/mantidproject/mantid/commit/90bd465221ea71245d95c2a731768dbfcc3caa29)\] Create SpaceGroup class and factory
+* \[[#10299](http://trac.mantidproject.org/mantid/ticket/10299)\|[b961159](https://github.com/mantidproject/mantid/commit/b96115965f50471989355eb5564a2a4f125bfd5e)\] Indirect diagnostics preview plot
+* \[[#10301](http://trac.mantidproject.org/mantid/ticket/10301)\|[c7a671d](https://github.com/mantidproject/mantid/commit/c7a671d8ea7636fb2604789169aaf4f7c5bdd90b)\] Change Refl UI scale column type to double
+* \[[#10302](http://trac.mantidproject.org/mantid/ticket/10302)\|[4506b41](https://github.com/mantidproject/mantid/commit/4506b413172bfd96ad2db3af18f7f64cf9dc623e)\] Improve row management in New Refl UI
 * \[[#10331](http://trac.mantidproject.org/mantid/ticket/10331)\|[7da4161](https://github.com/mantidproject/mantid/commit/7da41612161e534f45e28ea83ec6f70410afffe7)\] install_git_macros.bat should be able to find Git
 * *new* \[[#10334](http://trac.mantidproject.org/mantid/ticket/10334)\|[854e8dd](https://github.com/mantidproject/mantid/commit/854e8ddbd4aa3ede089ee26a79b563139ac408f1)\] Indirect data reduction UI causes calibration to run multiple times
 * *new* \[[#10339](http://trac.mantidproject.org/mantid/ticket/10339)\|[fd9489c](https://github.com/mantidproject/mantid/commit/fd9489c78e090474f826cbc1a77eea07f05417fd)\] Tube Gap Calculation Modifications
