@@ -23,6 +23,7 @@ Detailed Merges for Oct 18 - 24, 2014
 * *new* \[[#10376](http://trac.mantidproject.org/mantid/ticket/10376)\|[f2a383e](https://github.com/mantidproject/mantid/commit/f2a383e23964f2b2cd30a35ebae45a41b8505bf1)\] Use menubar in Refl UI
 * *new* \[[#10380](http://trac.mantidproject.org/mantid/ticket/10380)\|[5917d70](https://github.com/mantidproject/mantid/commit/5917d700d77a5b16ef636d1605862270cc9e4051)\] Refl UI options column doesn't handle lists properly
 * *new* \[[#10389](http://trac.mantidproject.org/mantid/ticket/10389)\|[d865271](https://github.com/mantidproject/mantid/commit/d865271f9c6baafb4b111ce445c1ddbdcc5bc4c3)\] Use scale column in Refl UI
+* *new* \[[#10390](http://trac.mantidproject.org/mantid/ticket/10390)\|[958e92f](https://github.com/mantidproject/mantid/commit/958e92fd6edf0e0b19078669f9353e734d8cf052)\] Implement the Image methods for MatrixWorkspace
 * *new* \[[#10397](http://trac.mantidproject.org/mantid/ticket/10397)\|[abfffad](https://github.com/mantidproject/mantid/commit/abfffadccdc3c881b855becf7d0e415686dde6dc)\] Modify FITS and NXTomo load/save algorithms for new files
 * *new* \[[#10398](http://trac.mantidproject.org/mantid/ticket/10398)\|[71de4a9](https://github.com/mantidproject/mantid/commit/71de4a94152b38249dd7ae8d9db69249a909f4b9)\] Missing destructive test scenarios
 * *new* \[[#10399](http://trac.mantidproject.org/mantid/ticket/10399)\|[4e953c2](https://github.com/mantidproject/mantid/commit/4e953c24389a0447380be50466ab09c00b412e55)\] Replace use of reduction script in IndirectResolution algorithm
