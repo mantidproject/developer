@@ -6,13 +6,14 @@ title: Updates - Week 43 of 2014
 ---
 Updates for week 43 of 2014
 ---------------------------
+* New algorithm [SaveNXTomo]({{ site.docpage }}/algorithms/SaveNXTomo.html)
 
 Detailed Merges for Oct 18 - 24, 2014
 -------------------------------------
-* *new* \[[#10064](http://trac.mantidproject.org/mantid/ticket/10064)\|[75b73af](https://github.com/mantidproject/mantid/commit/75b73afa493d388ac40fae77a9e00533d31bc08e)\] Indirect algorithm: resolution
-* *new* \[[#10194](http://trac.mantidproject.org/mantid/ticket/10194)\|[779a543](https://github.com/mantidproject/mantid/commit/779a5433998427f9c2eea89cf3147733eb63596e)\] Create Save algorithm to create NXTomo file.
-* *new* \[[#10215](http://trac.mantidproject.org/mantid/ticket/10215)\|[6e0145f](https://github.com/mantidproject/mantid/commit/6e0145f02173f0c8f62e063d63ae53ca7c930525)\] Refactor Indirect Diffraction
-* *new* \[[#10323](http://trac.mantidproject.org/mantid/ticket/10323)\|[e6e3deb](https://github.com/mantidproject/mantid/commit/e6e3deb71ed06b88d9c175ccb12b2264a19d47f5)\] VESUVIO diffraction
+* \[[#10064](http://trac.mantidproject.org/mantid/ticket/10064)\|[75b73af](https://github.com/mantidproject/mantid/commit/75b73afa493d388ac40fae77a9e00533d31bc08e)\] Indirect algorithm: resolution
+* \[[#10194](http://trac.mantidproject.org/mantid/ticket/10194)\|[779a543](https://github.com/mantidproject/mantid/commit/779a5433998427f9c2eea89cf3147733eb63596e)\] Create Save algorithm to create NXTomo file.
+* \[[#10215](http://trac.mantidproject.org/mantid/ticket/10215)\|[6e0145f](https://github.com/mantidproject/mantid/commit/6e0145f02173f0c8f62e063d63ae53ca7c930525)\] Refactor Indirect Diffraction
+* \[[#10323](http://trac.mantidproject.org/mantid/ticket/10323)\|[e6e3deb](https://github.com/mantidproject/mantid/commit/e6e3deb71ed06b88d9c175ccb12b2264a19d47f5)\] VESUVIO diffraction
 * *new* \[[#10335](http://trac.mantidproject.org/mantid/ticket/10335)\|[5d6c99b](https://github.com/mantidproject/mantid/commit/5d6c99b85b824b4ae42a120fb6882790487e5dc9)\] Should there be a "Recent files" entry in main app menu -&gt; File
 * *new* \[[#10342](http://trac.mantidproject.org/mantid/ticket/10342)\|[ecdb0c4](https://github.com/mantidproject/mantid/commit/ecdb0c4d0e267ffa5d6d517f7803d9f5f80a0d86)\] HFIR SANS: add option to mask front/back detector plane
 * *new* \[[#10348](http://trac.mantidproject.org/mantid/ticket/10348)\|[681a586](https://github.com/mantidproject/mantid/commit/681a586f18a79c5aefe53dc6c88017da41e5b848)\] Options auto complete.
