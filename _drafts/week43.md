@@ -14,6 +14,7 @@ Detailed Merges for Oct 18 - 24, 2014
 * *new* \[[#10215](http://trac.mantidproject.org/mantid/ticket/10215)\|[6e0145f](https://github.com/mantidproject/mantid/commit/6e0145f02173f0c8f62e063d63ae53ca7c930525)\] Refactor Indirect Diffraction
 * *new* \[[#10323](http://trac.mantidproject.org/mantid/ticket/10323)\|[e6e3deb](https://github.com/mantidproject/mantid/commit/e6e3deb71ed06b88d9c175ccb12b2264a19d47f5)\] VESUVIO diffraction
 * *new* \[[#10335](http://trac.mantidproject.org/mantid/ticket/10335)\|[5d6c99b](https://github.com/mantidproject/mantid/commit/5d6c99b85b824b4ae42a120fb6882790487e5dc9)\] Should there be a "Recent files" entry in main app menu -&gt; File
+* *new* \[[#10342](http://trac.mantidproject.org/mantid/ticket/10342)\|[ecdb0c4](https://github.com/mantidproject/mantid/commit/ecdb0c4d0e267ffa5d6d517f7803d9f5f80a0d86)\] HFIR SANS: add option to mask front/back detector plane
 * *new* \[[#10348](http://trac.mantidproject.org/mantid/ticket/10348)\|[681a586](https://github.com/mantidproject/mantid/commit/681a586f18a79c5aefe53dc6c88017da41e5b848)\] Options auto complete.
 * *new* \[[#10351](http://trac.mantidproject.org/mantid/ticket/10351)\|[f892eab](https://github.com/mantidproject/mantid/commit/f892eab565a4340e4fbbff7858c4303490e8f4d2)\] Enable Second white beam in ISIS reduction
 * *new* \[[#10364](http://trac.mantidproject.org/mantid/ticket/10364)\|[6123bd4](https://github.com/mantidproject/mantid/commit/6123bd47daefc28ddf88d7e9a8851f620cf5b8cc)\] Merge ReflBlankMainViewPresenter and ReflLoadedMainViewPresenter
