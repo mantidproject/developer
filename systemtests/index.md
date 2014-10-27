@@ -1,13 +1,13 @@
 ---
 layout: default
-date: 2014-10-26
+date: 2014-10-27
 author: Peter Peterson
 title: Currently Skipped System Tests
 ---
 Summary
 =======
 
-* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2014-10-26 [#216](http://builds.mantidproject.org/job/master_systemtests/216/)
+* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2014-10-27 [#217](http://builds.mantidproject.org/job/master_systemtests/217/)
 * Labels : osx-10.8, rhel6, ubuntu-14.04, win7
 * Failed : 0
 * Skipped: 99 (33 unique)
