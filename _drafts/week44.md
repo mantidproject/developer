@@ -19,4 +19,5 @@ Detailed Merges for Oct 25 - 31, 2014
 * *new* \[[#10408](http://trac.mantidproject.org/mantid/ticket/10408)\|[66b1c84](https://github.com/mantidproject/mantid/commit/66b1c84c41c28fb6259e9cc25706a0a6823908e4)\] AutoComplete tweaks
 * \[[#10410](http://trac.mantidproject.org/mantid/ticket/10410)\|[801b525](https://github.com/mantidproject/mantid/commit/801b525f3ca643bd1e17825a69581ddc0df41fed)\] ElasticWindow should support Sqw
 * *new* \[[#10430](http://trac.mantidproject.org/mantid/ticket/10430)\|[5b6c039](https://github.com/mantidproject/mantid/commit/5b6c0390e8aee79639ad1050ed44d4aaae3216cf)\] Analyse and improve performance of SXDMDNorm
+* *new* \[[#10431](http://trac.mantidproject.org/mantid/ticket/10431)\|[d48fb15](https://github.com/mantidproject/mantid/commit/d48fb15186e08856c0a60b4ac6a543c06da1e211)\] ReflMainViewPresenter goes behind the model's back
 * \[[#9891](http://trac.mantidproject.org/mantid/ticket/9891)\|[d3a798f](https://github.com/mantidproject/mantid/commit/d3a798f289dee8b6f6dcf81791b1404e87590f13)\] A FitMD and/or fit for 1D or 2D matrix workspaces shoule be able to produce a workspace with fitting function values
