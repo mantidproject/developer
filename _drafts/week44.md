@@ -15,6 +15,7 @@ Detailed Merges for Oct 25 - 31, 2014
 * \[[#10249](http://trac.mantidproject.org/mantid/ticket/10249)\|[23e3abb](https://github.com/mantidproject/mantid/commit/23e3abb26373dd6713311b82291f043efcf82daa)\] Fit function help broken in fit function toolbox
 * \[[#10288](http://trac.mantidproject.org/mantid/ticket/10288)\|[11f84df](https://github.com/mantidproject/mantid/commit/11f84df22ba334036554eefa00da2fb2883e99f9)\] reduce tolerance of LOQReductionGUI systemtest
 * *new* \[[#10324](http://trac.mantidproject.org/mantid/ticket/10324)\|[bc2aee8](https://github.com/mantidproject/mantid/commit/bc2aee8b4d3abc941de1f558795741c00da85f7f)\] Up/Down arrows on Spectrum View should move cursor by one spectrum
+* *new* \[[#10347](http://trac.mantidproject.org/mantid/ticket/10347)\|[923f693](https://github.com/mantidproject/mantid/commit/923f69300554dfb498411c0aeae71201673ed18f)\] Interpreting existing gui actions
 * \[[#10373](http://trac.mantidproject.org/mantid/ticket/10373)\|[cfc7623](https://github.com/mantidproject/mantid/commit/cfc762345e2c97b5b44bcc6520b825ff489257e3)\] Refl UI - Provide actions in a context menu
 * *new* \[[#10408](http://trac.mantidproject.org/mantid/ticket/10408)\|[66b1c84](https://github.com/mantidproject/mantid/commit/66b1c84c41c28fb6259e9cc25706a0a6823908e4)\] AutoComplete tweaks
 * \[[#10410](http://trac.mantidproject.org/mantid/ticket/10410)\|[801b525](https://github.com/mantidproject/mantid/commit/801b525f3ca643bd1e17825a69581ddc0df41fed)\] ElasticWindow should support Sqw
