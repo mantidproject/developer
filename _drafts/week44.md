@@ -9,6 +9,7 @@ Updates for week 44 of 2014
 * Bugfix in showing results of [CreateSingleValuedWorkspace]({{ site.docpage }}/algorithms/CreateSingleValuedWorkspace.html)
 * Improvements to Spectrum View
 * Bugfix for Ei in [PreprocessedDetectorsWorkspace]({{ site.docpage }}/algorithms/PreprocessedDetectorsWorkspace.html)
+* Performance improvements in [SXDMDNorm]({{ site.docpage }}/algorithms/SXDMDNorm.html)
 
 Detailed Merges for Oct 25 - 31, 2014
 -------------------------------------
@@ -18,11 +19,11 @@ Detailed Merges for Oct 25 - 31, 2014
 * \[[#10288](http://trac.mantidproject.org/mantid/ticket/10288)\|[11f84df](https://github.com/mantidproject/mantid/commit/11f84df22ba334036554eefa00da2fb2883e99f9)\] reduce tolerance of LOQReductionGUI systemtest
 * \[[#10324](http://trac.mantidproject.org/mantid/ticket/10324)\|[bc2aee8](https://github.com/mantidproject/mantid/commit/bc2aee8b4d3abc941de1f558795741c00da85f7f)\] Up/Down arrows on Spectrum View should move cursor by one spectrum
 * \[[#10332](http://trac.mantidproject.org/mantid/ticket/10332)\|[cb55e79](https://github.com/mantidproject/mantid/commit/cb55e79c1ab4e0ff4365c76a5590eab843aa7386)\] ConvertTo MD does not update EI attached to PreprocessedDetectorsWorkspace
-* *new* \[[#10347](http://trac.mantidproject.org/mantid/ticket/10347)\|[923f693](https://github.com/mantidproject/mantid/commit/923f69300554dfb498411c0aeae71201673ed18f)\] Interpreting existing gui actions
+* \[[#10347](http://trac.mantidproject.org/mantid/ticket/10347)\|[923f693](https://github.com/mantidproject/mantid/commit/923f69300554dfb498411c0aeae71201673ed18f)\] Interpreting existing gui actions
 * \[[#10373](http://trac.mantidproject.org/mantid/ticket/10373)\|[cfc7623](https://github.com/mantidproject/mantid/commit/cfc762345e2c97b5b44bcc6520b825ff489257e3)\] Refl UI - Provide actions in a context menu
-* *new* \[[#10408](http://trac.mantidproject.org/mantid/ticket/10408)\|[66b1c84](https://github.com/mantidproject/mantid/commit/66b1c84c41c28fb6259e9cc25706a0a6823908e4)\] AutoComplete tweaks
+* \[[#10408](http://trac.mantidproject.org/mantid/ticket/10408)\|[66b1c84](https://github.com/mantidproject/mantid/commit/66b1c84c41c28fb6259e9cc25706a0a6823908e4)\] AutoComplete tweaks
 * \[[#10410](http://trac.mantidproject.org/mantid/ticket/10410)\|[801b525](https://github.com/mantidproject/mantid/commit/801b525f3ca643bd1e17825a69581ddc0df41fed)\] ElasticWindow should support Sqw
-* *new* \[[#10430](http://trac.mantidproject.org/mantid/ticket/10430)\|[5b6c039](https://github.com/mantidproject/mantid/commit/5b6c0390e8aee79639ad1050ed44d4aaae3216cf)\] Analyse and improve performance of SXDMDNorm
-* *new* \[[#10431](http://trac.mantidproject.org/mantid/ticket/10431)\|[d48fb15](https://github.com/mantidproject/mantid/commit/d48fb15186e08856c0a60b4ac6a543c06da1e211)\] ReflMainViewPresenter goes behind the model's back
-* *new* \[[#10451](http://trac.mantidproject.org/mantid/ticket/10451)\|[56759bd](https://github.com/mantidproject/mantid/commit/56759bd6be2cd9a3c4edbfa6c976f0cf864a5d75)\] IDR: S(Q,w) should not be using Python
+* \[[#10430](http://trac.mantidproject.org/mantid/ticket/10430)\|[5b6c039](https://github.com/mantidproject/mantid/commit/5b6c0390e8aee79639ad1050ed44d4aaae3216cf)\] Analyse and improve performance of SXDMDNorm
+* \[[#10431](http://trac.mantidproject.org/mantid/ticket/10431)\|[d48fb15](https://github.com/mantidproject/mantid/commit/d48fb15186e08856c0a60b4ac6a543c06da1e211)\] ReflMainViewPresenter goes behind the model's back
+* \[[#10451](http://trac.mantidproject.org/mantid/ticket/10451)\|[56759bd](https://github.com/mantidproject/mantid/commit/56759bd6be2cd9a3c4edbfa6c976f0cf864a5d75)\] IDR: S(Q,w) should not be using Python
 * \[[#9891](http://trac.mantidproject.org/mantid/ticket/9891)\|[d3a798f](https://github.com/mantidproject/mantid/commit/d3a798f289dee8b6f6dcf81791b1404e87590f13)\] A FitMD and/or fit for 1D or 2D matrix workspaces shoule be able to produce a workspace with fitting function values
