@@ -14,7 +14,9 @@ Detailed Merges for Nov 8 - 14, 2014
 * *new* \[[#10369](http://trac.mantidproject.org/mantid/ticket/10369)\|[d308bf5](https://github.com/mantidproject/mantid/commit/d308bf515e1376177daf221627363f3211636b83)\] Bundle matplotlib with Mantid
 * *new* \[[#10392](http://trac.mantidproject.org/mantid/ticket/10392)\|[7d1967b](https://github.com/mantidproject/mantid/commit/7d1967b4fe104860e4ae046b8550ff06ec27ab3f)\] New Reflectometry GUI needs search pane.
 * *new* \[[#10442](http://trac.mantidproject.org/mantid/ticket/10442)\|[582b306](https://github.com/mantidproject/mantid/commit/582b3068d87f6f9fcfbf59f3a86a0d2f95cc635a)\] save GSS overlapping output numbers
+* *new* \[[#10443](http://trac.mantidproject.org/mantid/ticket/10443)\|[6bb6db0](https://github.com/mantidproject/mantid/commit/6bb6db07e9c99bcf0329d744fdb004dbcd88fd75)\] Add LoadSassena to Indirect Simulation interface
 * *new* \[[#10495](http://trac.mantidproject.org/mantid/ticket/10495)\|[7ba1980](https://github.com/mantidproject/mantid/commit/7ba198026e4d55ba5c2626865fa9c51d9dbc132b)\] Refl UI: Document discarded magic numbers
 * *new* \[[#10525](http://trac.mantidproject.org/mantid/ticket/10525)\|[584b943](https://github.com/mantidproject/mantid/commit/584b943aba6a3912d8acd28ab9b53ac5bcca2411)\] New Refl UI: Minor improvements
 * *new* \[[#10529](http://trac.mantidproject.org/mantid/ticket/10529)\|[2b7c702](https://github.com/mantidproject/mantid/commit/2b7c702da7689af907b817fce4c57b704575adf1)\] Something wrong with CompositeBraggScatterer.h
+* *new* \[[#10538](http://trac.mantidproject.org/mantid/ticket/10538)\|[774f208](https://github.com/mantidproject/mantid/commit/774f208db9809f91b0f04aec4d474f394a206ffd)\] Rename Indirect Load ASCII "Neutron" tab
 * *new* \[[#3493](http://trac.mantidproject.org/mantid/ticket/3493)\|[84e8220](https://github.com/mantidproject/mantid/commit/84e8220da0f1fab2841bf185b228f373ba1d9f76)\] Make SAVEASCII work with Ragged Workspace
