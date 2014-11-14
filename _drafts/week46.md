@@ -9,6 +9,7 @@ Updates for week 46 of 2014
 
 Detailed Merges for Nov 8 - 14, 2014
 ------------------------------------
+* *new* \[[#10015](http://trac.mantidproject.org/mantid/ticket/10015)\|[fe2a80f](https://github.com/mantidproject/mantid/commit/fe2a80f503e310fc991b3e715e94c9300de14e95)\] Implement a reset to factory defaults mechanism
 * *new* \[[#10261](http://trac.mantidproject.org/mantid/ticket/10261)\|[500ec37](https://github.com/mantidproject/mantid/commit/500ec37de097de68c8647877b2d10a9422d75ad0)\] Auto workspace name in Load
 * *new* \[[#10330](http://trac.mantidproject.org/mantid/ticket/10330)\|[4f04309](https://github.com/mantidproject/mantid/commit/4f04309cc299d11d73fdf789b39946b60c0a8550)\] Get ThreadPool working under OS X + clang
 * *new* \[[#10354](http://trac.mantidproject.org/mantid/ticket/10354)\|[3b17eb9](https://github.com/mantidproject/mantid/commit/3b17eb9f446a3845498e80681db36b0b76425e7a)\] Optimise SaveParameterFile
