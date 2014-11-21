@@ -24,6 +24,7 @@ Detailed Merges for Nov 15 - 21, 2014
 * *new* \[[#10563](http://trac.mantidproject.org/mantid/ticket/10563)\|[727d50d](https://github.com/mantidproject/mantid/commit/727d50d301d7b00966a85494ee3e946db34739f9)\] Write offline documentation for new Reflectometry UI
 * *new* \[[#10568](http://trac.mantidproject.org/mantid/ticket/10568)\|[3d5bf93](https://github.com/mantidproject/mantid/commit/3d5bf932a6d8bcb60f7dc2e93d54289e0fbd8186)\] SortXAxis produces an additional workspace
 * *new* \[[#10570](http://trac.mantidproject.org/mantid/ticket/10570)\|[6863a15](https://github.com/mantidproject/mantid/commit/6863a1550bf7af3ebe07385d2da78f4d5af8711b)\] Crash Running ReflectometryReductionOneAuto on OFFSPEC data
+* *new* \[[#8482](http://trac.mantidproject.org/mantid/ticket/8482)\|[ad4e442](https://github.com/mantidproject/mantid/commit/ad4e442d34010824fdb0e0d690d6bf0729a91c42)\] Sliceviewer does not save to image any more
 * *new* \[[#8911](http://trac.mantidproject.org/mantid/ticket/8911)\|[089d930](https://github.com/mantidproject/mantid/commit/089d930b72a6f4470aeb07b842e10ef567ebc9c6)\] MultiDataFitting
 * *new* \[[#8961](http://trac.mantidproject.org/mantid/ticket/8961)\|[cd424db](https://github.com/mantidproject/mantid/commit/cd424db7da66a0341e87662fe70a4545c7e06fae)\] SaveReflThreeCol save Algorithm
 * *new* \[[#9380](http://trac.mantidproject.org/mantid/ticket/9380)\|[601635f](https://github.com/mantidproject/mantid/commit/601635fe89a3d56822b7a2833db9cdd361b9434b)\] Public Static LoadfullprofResolution code to put parameters into workspace instrument
