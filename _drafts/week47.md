@@ -11,6 +11,8 @@ Updates for week 47 of 2014
 * Performance improvements for [LoadNexusProcessed]({{ site.docpage }}/algorithms/LoadNexusProcessed.html)
 * Various URLs fixed in documentation
 * Offline documentation for ISIS Reflectometry UI
+* New algorithm [SaveReflThreeColumnAscii]({{ site.docpage }}/algorithms/SaveReflThreeColumnAscii.html)
+* Refactor [LoadFullprofResolution]({{ site.docpage }}/algorithms/LoadFullprofResolution.html) so parts can be called from [LoadGSASInstrumentFile]({{ site.docpage }}/algorithms/LoadGSASInstrumentFile.html)
 
 Detailed Merges for Nov 15 - 21, 2014
 -------------------------------------
@@ -30,13 +32,13 @@ Detailed Merges for Nov 15 - 21, 2014
 * \[[#10557](http://trac.mantidproject.org/mantid/ticket/10557)\|[27404ad](https://github.com/mantidproject/mantid/commit/27404adda2fb371006377c28f44fae7181f62460)\] LoadInstrumentTestPerformance is broken
 * \[[#10562](http://trac.mantidproject.org/mantid/ticket/10562)\|[a27f52d](https://github.com/mantidproject/mantid/commit/a27f52dbc46fd8a087f5ac6b57e57ed41bd84dc4)\] [IDR] ET ignores calibration files
 * \[[#10563](http://trac.mantidproject.org/mantid/ticket/10563)\|[727d50d](https://github.com/mantidproject/mantid/commit/727d50d301d7b00966a85494ee3e946db34739f9)\] Write offline documentation for new Reflectometry UI
-* *new* \[[#10565](http://trac.mantidproject.org/mantid/ticket/10565)\|[d80efba](https://github.com/mantidproject/mantid/commit/d80efba0412244ec5ef746371035a41d284d40db)\] Keep instrument selection widgets synchronised
-* *new* \[[#10568](http://trac.mantidproject.org/mantid/ticket/10568)\|[3d5bf93](https://github.com/mantidproject/mantid/commit/3d5bf932a6d8bcb60f7dc2e93d54289e0fbd8186)\] SortXAxis produces an additional workspace
-* *new* \[[#10570](http://trac.mantidproject.org/mantid/ticket/10570)\|[6863a15](https://github.com/mantidproject/mantid/commit/6863a1550bf7af3ebe07385d2da78f4d5af8711b)\] Crash Running ReflectometryReductionOneAuto on OFFSPEC data
-* *new* \[[#10571](http://trac.mantidproject.org/mantid/ticket/10571)\|[98f8d7f](https://github.com/mantidproject/mantid/commit/98f8d7f8f5af2935a0362704a346679c5963da49)\] Proper use of output properties in Indirect algorithms
-* *new* \[[#10596](http://trac.mantidproject.org/mantid/ticket/10596)\|[39178a8](https://github.com/mantidproject/mantid/commit/39178a88a82533aceaf532e9e1ea7cd35b102a0f)\] Remove SofQW 1 and 3 from Indirect S(Q, w) tab
-* *new* \[[#1109](http://trac.mantidproject.org/mantid/ticket/1109)\|[358c184](https://github.com/mantidproject/mantid/commit/358c18401b8099b952e99c53429c95936218fbaa)\] File/Save Nexus option isn't clear when multiple workspaces exist
-* *new* \[[#8482](http://trac.mantidproject.org/mantid/ticket/8482)\|[ad4e442](https://github.com/mantidproject/mantid/commit/ad4e442d34010824fdb0e0d690d6bf0729a91c42)\] Sliceviewer does not save to image any more
-* *new* \[[#8911](http://trac.mantidproject.org/mantid/ticket/8911)\|[089d930](https://github.com/mantidproject/mantid/commit/089d930b72a6f4470aeb07b842e10ef567ebc9c6)\] MultiDataFitting
-* *new* \[[#8961](http://trac.mantidproject.org/mantid/ticket/8961)\|[cd424db](https://github.com/mantidproject/mantid/commit/cd424db7da66a0341e87662fe70a4545c7e06fae)\] SaveReflThreeCol save Algorithm
-* *new* \[[#9380](http://trac.mantidproject.org/mantid/ticket/9380)\|[601635f](https://github.com/mantidproject/mantid/commit/601635fe89a3d56822b7a2833db9cdd361b9434b)\] Public Static LoadfullprofResolution code to put parameters into workspace instrument
+* \[[#10565](http://trac.mantidproject.org/mantid/ticket/10565)\|[d80efba](https://github.com/mantidproject/mantid/commit/d80efba0412244ec5ef746371035a41d284d40db)\] Keep instrument selection widgets synchronised
+* \[[#10568](http://trac.mantidproject.org/mantid/ticket/10568)\|[3d5bf93](https://github.com/mantidproject/mantid/commit/3d5bf932a6d8bcb60f7dc2e93d54289e0fbd8186)\] SortXAxis produces an additional workspace
+* \[[#10570](http://trac.mantidproject.org/mantid/ticket/10570)\|[6863a15](https://github.com/mantidproject/mantid/commit/6863a1550bf7af3ebe07385d2da78f4d5af8711b)\] Crash Running ReflectometryReductionOneAuto on OFFSPEC data
+* \[[#10571](http://trac.mantidproject.org/mantid/ticket/10571)\|[98f8d7f](https://github.com/mantidproject/mantid/commit/98f8d7f8f5af2935a0362704a346679c5963da49)\] Proper use of output properties in Indirect algorithms
+* \[[#10596](http://trac.mantidproject.org/mantid/ticket/10596)\|[39178a8](https://github.com/mantidproject/mantid/commit/39178a88a82533aceaf532e9e1ea7cd35b102a0f)\] Remove SofQW 1 and 3 from Indirect S(Q, w) tab
+* \[[#1109](http://trac.mantidproject.org/mantid/ticket/1109)\|[358c184](https://github.com/mantidproject/mantid/commit/358c18401b8099b952e99c53429c95936218fbaa)\] File/Save Nexus option isn't clear when multiple workspaces exist
+* \[[#8482](http://trac.mantidproject.org/mantid/ticket/8482)\|[ad4e442](https://github.com/mantidproject/mantid/commit/ad4e442d34010824fdb0e0d690d6bf0729a91c42)\] Sliceviewer does not save to image any more
+* \[[#8911](http://trac.mantidproject.org/mantid/ticket/8911)\|[089d930](https://github.com/mantidproject/mantid/commit/089d930b72a6f4470aeb07b842e10ef567ebc9c6)\] MultiDataFitting
+* \[[#8961](http://trac.mantidproject.org/mantid/ticket/8961)\|[cd424db](https://github.com/mantidproject/mantid/commit/cd424db7da66a0341e87662fe70a4545c7e06fae)\] SaveReflThreeCol save Algorithm
+* \[[#9380](http://trac.mantidproject.org/mantid/ticket/9380)\|[601635f](https://github.com/mantidproject/mantid/commit/601635fe89a3d56822b7a2833db9cdd361b9434b)\] Public Static LoadfullprofResolution code to put parameters into workspace instrument
