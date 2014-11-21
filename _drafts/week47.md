@@ -13,6 +13,7 @@ Detailed Merges for Nov 15 - 21, 2014
 * *new* \[[#10244](http://trac.mantidproject.org/mantid/ticket/10244)\|[f3c39fb](https://github.com/mantidproject/mantid/commit/f3c39fbb96b6a1f00228638193525f71e3558bf1)\] Improve user experience - edit plot details
 * *new* \[[#10340](http://trac.mantidproject.org/mantid/ticket/10340)\|[30e0778](https://github.com/mantidproject/mantid/commit/30e07785c5378d08adaa074787017dc323d7124a)\] Some indirect algorithms do not save their history
 * *new* \[[#10345](http://trac.mantidproject.org/mantid/ticket/10345)\|[7988c26](https://github.com/mantidproject/mantid/commit/7988c268ac6e7e07c682729e52f5a04b6452607e)\] Address remaining Coverity issues in MantidQt
+* *new* \[[#10356](http://trac.mantidproject.org/mantid/ticket/10356)\|[7c04974](https://github.com/mantidproject/mantid/commit/7c049742e1fac0154d06a304ff61016b987cce62)\] Enable patch sensitivity for HFIR SANS
 * \[[#10368](http://trac.mantidproject.org/mantid/ticket/10368)\|[2a98c5c](https://github.com/mantidproject/mantid/commit/2a98c5c29b455f21c48b782998749848445b43d1)\] Apply corrections preview plot
 * *new* \[[#10385](http://trac.mantidproject.org/mantid/ticket/10385)\|[a8fe5a3](https://github.com/mantidproject/mantid/commit/a8fe5a33c2cfb8321d62a8c15b09e2170cae1d52)\] Profile LoadNexus Slow for group workspaces
 * *new* \[[#10409](http://trac.mantidproject.org/mantid/ticket/10409)\|[7479c6d](https://github.com/mantidproject/mantid/commit/7479c6d85f6176b91624547f8949f22632be1e98)\] Replace ElWin code with ElasticWindow algorithm
