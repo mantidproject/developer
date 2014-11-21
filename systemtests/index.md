@@ -1,16 +1,16 @@
 ---
 layout: default
-date: 2014-11-20
+date: 2014-11-21
 author: Peter Peterson
 title: Currently Skipped System Tests
 ---
 Summary
 =======
 
-* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2014-11-20 [#239](http://builds.mantidproject.org/job/master_systemtests/239/)
+* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2014-11-21 [#240](http://builds.mantidproject.org/job/master_systemtests/240/)
 * Labels : osx-10.8, rhel6, ubuntu-14.04, win7
 * Failed : 14 (14 unique)
-* Skipped: 99 (33 unique)
+* Skipped: 102 (33 unique)
 * Total  : 1004 (= 251 * 4)
 
 Details
@@ -25,15 +25,15 @@ Failed
 | EQSANSBeamCenterEvent            |          |       |       x      |      |
 | EQSANSBeamMonitor                |          |       |       x      |      |
 | EQSANSDQOutput                   |          |       |       x      |      |
+| EQSANSDQOutput_FS                |          |       |       x      |      |
 | EQSANSDQPositiveOutput           |          |       |       x      |      |
 | EQSANSDarkCurrent                |          |       |       x      |      |
+| EQSANSDirectTransFS              |          |       |       x      |      |
 | EQSANSEff                        |          |       |       x      |      |
-| EQSANSNormalisationDefault       |          |       |       x      |      |
-| EQSANSNormalisationNoFlux        |          |       |       x      |      |
-| EQSANSProcessedEff               |          |       |       x      |      |
 | EQSANSSolid                      |          |       |       x      |      |
 | EQSANSTransmission               |          |       |       x      |      |
 | EQSANSTransmissionCompatibility  |          |       |       x      |      |
+| EQSANSTransmissionDC             |          |       |       x      |      |
 | EQSANSTransmissionEvent          |          |       |       x      |      |
 
 Skipped
@@ -67,10 +67,10 @@ Skipped
 | QuestTest                          |     x    |   x   |       x      |      |
 | ResNormTest                        |     x    |   x   |       x      |      |
 | UserAlgorithmsBuild                |     x    |   x   |       x      |      |
+| LETReductionEvent2014Multirep      |     x    |   x   |              |      |
+| MERLINReduction                    |     x    |   x   |              |      |
+| TobyFitResolutionSimulationTest    |     x    |   x   |              |      |
 | ValidateFacilitiesFile             |     x    |       |       x      |      |
 | ValidateGroupingFiles              |     x    |       |       x      |      |
 | ValidateInstrumentDefinitionFiles  |     x    |       |       x      |      |
 | ValidateParameterFiles             |     x    |       |       x      |      |
-| LETReductionEvent2014Multirep      |     x    |       |              |      |
-| MERLINReduction                    |     x    |       |              |      |
-| TobyFitResolutionSimulationTest    |     x    |       |              |      |
