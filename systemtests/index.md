@@ -1,40 +1,20 @@
 ---
 layout: default
-date: 2014-11-21
+date: 2014-11-22
 author: Peter Peterson
 title: Currently Skipped System Tests
 ---
 Summary
 =======
 
-* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2014-11-21 [#240](http://builds.mantidproject.org/job/master_systemtests/240/)
+* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2014-11-22 [#241](http://builds.mantidproject.org/job/master_systemtests/241/)
 * Labels : osx-10.8, rhel6, ubuntu-14.04, win7
-* Failed : 14 (14 unique)
+* Failed : 0
 * Skipped: 102 (33 unique)
-* Total  : 1004 (= 251 * 4)
+* Total  : 1008 (= 252 * 4)
 
 Details
 =======
-
-Failed
-------
-
-| Test                             | osx-10.8 | rhel6 | ubuntu-14.04 | win7 |
-|----------------------------------|----------|-------|--------------|------|
-| EQSANSBeamCenter                 |          |       |       x      |      |
-| EQSANSBeamCenterEvent            |          |       |       x      |      |
-| EQSANSBeamMonitor                |          |       |       x      |      |
-| EQSANSDQOutput                   |          |       |       x      |      |
-| EQSANSDQOutput_FS                |          |       |       x      |      |
-| EQSANSDQPositiveOutput           |          |       |       x      |      |
-| EQSANSDarkCurrent                |          |       |       x      |      |
-| EQSANSDirectTransFS              |          |       |       x      |      |
-| EQSANSEff                        |          |       |       x      |      |
-| EQSANSSolid                      |          |       |       x      |      |
-| EQSANSTransmission               |          |       |       x      |      |
-| EQSANSTransmissionCompatibility  |          |       |       x      |      |
-| EQSANSTransmissionDC             |          |       |       x      |      |
-| EQSANSTransmissionEvent          |          |       |       x      |      |
 
 Skipped
 -------
