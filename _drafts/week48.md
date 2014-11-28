@@ -11,6 +11,7 @@ Detailed Merges for Nov 22 - 28, 2014
 -------------------------------------
 * *new* \[[#10238](http://trac.mantidproject.org/mantid/ticket/10238)\|[e2584d4](https://github.com/mantidproject/mantid/commit/e2584d4690d125e16d15dee447428a046a5f0643)\] Add plot buttons to new ReflGui
 * *new* \[[#10283](http://trac.mantidproject.org/mantid/ticket/10283)\|[3562e89](https://github.com/mantidproject/mantid/commit/3562e896522d6d25022f031292261d1a02bd781e)\] Modify CrystalStructure to use space group and scatterers
+* *new* \[[#10509](http://trac.mantidproject.org/mantid/ticket/10509)\|[1d93b66](https://github.com/mantidproject/mantid/commit/1d93b6693e20e9165b6e80e702803c99dcbf5574)\] Display more information about the origin of a loaded instrument
 * *new* \[[#10528](http://trac.mantidproject.org/mantid/ticket/10528)\|[f19c348](https://github.com/mantidproject/mantid/commit/f19c348014223d06951406b97d88e47924772491)\] When plotting a WorkspaceGroup use the group name as the title
 * *new* \[[#10533](http://trac.mantidproject.org/mantid/ticket/10533)\|[c8462bd](https://github.com/mantidproject/mantid/commit/c8462bd0bc6f3761314e755be268aba5dd0745d0)\] Bugfix ThreeSlice View issue in Vates
 * *new* \[[#10549](http://trac.mantidproject.org/mantid/ticket/10549)\|[9fbe932](https://github.com/mantidproject/mantid/commit/9fbe93276b4e9fbcc8912a13f26d27eeade10aef)\] Create InternetService + DownloadFile Algorithm
