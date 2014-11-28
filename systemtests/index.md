@@ -7,7 +7,7 @@ title: Currently Skipped System Tests
 Summary
 =======
 
-* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2014-11-28 [#245](http://builds.mantidproject.org/job/master_systemtests/245/)
+* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2014-11-28 [#246](http://builds.mantidproject.org/job/master_systemtests/246/)
 * Labels : osx-10.8, rhel6, ubuntu-14.04, win7
 * Failed : 0
 * Skipped: 102 (33 unique)
