@@ -6,13 +6,15 @@ title: Updates - Week 48 of 2014
 ---
 Updates for week 48 of 2014
 ---------------------------
+* Continued work on CrystalStructure and associated python classes
+* First implementation of instrument repository. This includes additional information about where an instrument is loaded from.
 
 Detailed Merges for Nov 22 - 28, 2014
 -------------------------------------
-* *new* \[[#10238](http://trac.mantidproject.org/mantid/ticket/10238)\|[e2584d4](https://github.com/mantidproject/mantid/commit/e2584d4690d125e16d15dee447428a046a5f0643)\] Add plot buttons to new ReflGui
-* *new* \[[#10283](http://trac.mantidproject.org/mantid/ticket/10283)\|[3562e89](https://github.com/mantidproject/mantid/commit/3562e896522d6d25022f031292261d1a02bd781e)\] Modify CrystalStructure to use space group and scatterers
-* *new* \[[#10492](http://trac.mantidproject.org/mantid/ticket/10492)\|[20348b3](https://github.com/mantidproject/mantid/commit/20348b3a547fed65f62396f10e894748100643b3)\] Add Python export button to indirect interfaces
-* *new* \[[#10509](http://trac.mantidproject.org/mantid/ticket/10509)\|[1d93b66](https://github.com/mantidproject/mantid/commit/1d93b6693e20e9165b6e80e702803c99dcbf5574)\] Display more information about the origin of a loaded instrument
+* \[[#10238](http://trac.mantidproject.org/mantid/ticket/10238)\|[e2584d4](https://github.com/mantidproject/mantid/commit/e2584d4690d125e16d15dee447428a046a5f0643)\] Add plot buttons to new ReflGui
+* \[[#10283](http://trac.mantidproject.org/mantid/ticket/10283)\|[3562e89](https://github.com/mantidproject/mantid/commit/3562e896522d6d25022f031292261d1a02bd781e)\] Modify CrystalStructure to use space group and scatterers
+* \[[#10492](http://trac.mantidproject.org/mantid/ticket/10492)\|[20348b3](https://github.com/mantidproject/mantid/commit/20348b3a547fed65f62396f10e894748100643b3)\] Add Python export button to indirect interfaces
+* \[[#10509](http://trac.mantidproject.org/mantid/ticket/10509)\|[1d93b66](https://github.com/mantidproject/mantid/commit/1d93b6693e20e9165b6e80e702803c99dcbf5574)\] Display more information about the origin of a loaded instrument
 * *new* \[[#10524](http://trac.mantidproject.org/mantid/ticket/10524)\|[6363ee9](https://github.com/mantidproject/mantid/commit/6363ee9866d929e687c59311856ddd87932bb640)\] Location parameters mutate
 * *new* \[[#10528](http://trac.mantidproject.org/mantid/ticket/10528)\|[f19c348](https://github.com/mantidproject/mantid/commit/f19c348014223d06951406b97d88e47924772491)\] When plotting a WorkspaceGroup use the group name as the title
 * *new* \[[#10533](http://trac.mantidproject.org/mantid/ticket/10533)\|[c8462bd](https://github.com/mantidproject/mantid/commit/c8462bd0bc6f3761314e755be268aba5dd0745d0)\] Bugfix ThreeSlice View issue in Vates
@@ -38,5 +40,5 @@ Detailed Merges for Nov 22 - 28, 2014
 * *new* \[[#8456](http://trac.mantidproject.org/mantid/ticket/8456)\|[0a42593](https://github.com/mantidproject/mantid/commit/0a42593060d580ba07b4e08e533444bd6d17335a)\] Change overwrite behaviour of LoadDialog when user has specified a default output WS name
 * *new* \[[#8484](http://trac.mantidproject.org/mantid/ticket/8484)\|[4427370](https://github.com/mantidproject/mantid/commit/4427370d51ef86a00b8ef90bf00acf4ffd4e9db7)\] Fix unreleased use of POCO::XML document and nodelists in Algorithms code
 * *new* \[[#8511](http://trac.mantidproject.org/mantid/ticket/8511)\|[a95fadf](https://github.com/mantidproject/mantid/commit/a95fadf4d71dfdbba4c0f143577ee9ca1682b7df)\] Fix unreleased use of POCO::XML document and nodelists in VATES
-* *new* \[[#8924](http://trac.mantidproject.org/mantid/ticket/8924)\|[837047f](https://github.com/mantidproject/mantid/commit/837047fad4164e48daef6aba57930767a757ecf8)\] Repo. for instrument files
-* *new* \[[#9248](http://trac.mantidproject.org/mantid/ticket/9248)\|[95a6267](https://github.com/mantidproject/mantid/commit/95a62676ff04598d039a3b6789ed950ecd3e6b8f)\] Improve error message returned by LoadNexusMonitors
+* \[[#8924](http://trac.mantidproject.org/mantid/ticket/8924)\|[837047f](https://github.com/mantidproject/mantid/commit/837047fad4164e48daef6aba57930767a757ecf8)\] Repo. for instrument files
+* \[[#9248](http://trac.mantidproject.org/mantid/ticket/9248)\|[95a6267](https://github.com/mantidproject/mantid/commit/95a62676ff04598d039a3b6789ed950ecd3e6b8f)\] Improve error message returned by LoadNexusMonitors
