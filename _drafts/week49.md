@@ -12,6 +12,7 @@ Detailed Merges for Nov 29 - Dec 5, 2014
 * *new* \[[#10041](http://trac.mantidproject.org/mantid/ticket/10041)\|[8d47cd1](https://github.com/mantidproject/mantid/commit/8d47cd1a6c7774416454ea8436d573b8fd8f3770)\] Change the algorithm plugin to create links to the workspace types
 * *new* \[[#10094](http://trac.mantidproject.org/mantid/ticket/10094)\|[49d012f](https://github.com/mantidproject/mantid/commit/49d012fed6ccf0df9e4020a8317e8d5f584ccaee)\] Support diffraction corrections
 * *new* \[[#10123](http://trac.mantidproject.org/mantid/ticket/10123)\|[119349a](https://github.com/mantidproject/mantid/commit/119349a149e71de3a6d21e6240f7e80cf872ec6f)\] Cannot save a table workspace that has a float column
+* *new* \[[#10205](http://trac.mantidproject.org/mantid/ticket/10205)\|[a7fe500](https://github.com/mantidproject/mantid/commit/a7fe500702aa1a959af2361a6da7c65445fa4eb8)\] Flow diagram for algorithm processing
 * *new* \[[#10382](http://trac.mantidproject.org/mantid/ticket/10382)\|[b0e226b](https://github.com/mantidproject/mantid/commit/b0e226bdd39d4651867dab62dbe102bda74b00ee)\] Testing for Symmetrise
 * *new* \[[#10572](http://trac.mantidproject.org/mantid/ticket/10572)\|[e6d8932](https://github.com/mantidproject/mantid/commit/e6d8932ae782c5d2687fee4bf4dcc1ce5a6ccc64)\] Improvements to style of Bilby loader
 * *new* \[[#10606](http://trac.mantidproject.org/mantid/ticket/10606)\|[e7bcea2](https://github.com/mantidproject/mantid/commit/e7bcea2ad0c0217e26f17a932172dd09bf41c4cb)\] Modify IndirectTransmission algorithm to support BASIS
@@ -32,3 +33,4 @@ Detailed Merges for Nov 29 - Dec 5, 2014
 * *new* \[[#9840](http://trac.mantidproject.org/mantid/ticket/9840)\|[19fb276](https://github.com/mantidproject/mantid/commit/19fb27610c6f6924d5f29f4e12ca09dc4eb0e95e)\] ReflectometryReductionOne should utilise PolarizationCorrection
 * *new* \[[#9856](http://trac.mantidproject.org/mantid/ticket/9856)\|[29241d4](https://github.com/mantidproject/mantid/commit/29241d4e13bbd16c09b6084401dec4c693c95b44)\] Some minor improvements on GetDetOffsetsMultiPeaks
 * *new* \[[#9917](http://trac.mantidproject.org/mantid/ticket/9917)\|[1609504](https://github.com/mantidproject/mantid/commit/16095046e4f7b035ce3b11bf90b90577bc5900fe)\] Add missing Algorithm Usage examples
+* *new* \[[#9970](http://trac.mantidproject.org/mantid/ticket/9970)\|[65ff2f3](https://github.com/mantidproject/mantid/commit/65ff2f3d28fe2d4fe889cf5f2d2f2bd61eb12485)\] Refactor and improve project load/saving code
