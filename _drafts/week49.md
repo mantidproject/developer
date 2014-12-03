@@ -14,6 +14,8 @@ Detailed Merges for Nov 29 - Dec 5, 2014
 * *new* \[[#10382](http://trac.mantidproject.org/mantid/ticket/10382)\|[b0e226b](https://github.com/mantidproject/mantid/commit/b0e226bdd39d4651867dab62dbe102bda74b00ee)\] Testing for Symmetrise
 * *new* \[[#10572](http://trac.mantidproject.org/mantid/ticket/10572)\|[e6d8932](https://github.com/mantidproject/mantid/commit/e6d8932ae782c5d2687fee4bf4dcc1ce5a6ccc64)\] Improvements to style of Bilby loader
 * *new* \[[#10606](http://trac.mantidproject.org/mantid/ticket/10606)\|[e7bcea2](https://github.com/mantidproject/mantid/commit/e7bcea2ad0c0217e26f17a932172dd09bf41c4cb)\] Modify IndirectTransmission algorithm to support BASIS
+* *new* \[[#10620](http://trac.mantidproject.org/mantid/ticket/10620)\|[717b268](https://github.com/mantidproject/mantid/commit/717b268e9fe365a28632154114b0b388ffa3d86b)\] Indirect Tools interface
+* *new* \[[#10646](http://trac.mantidproject.org/mantid/ticket/10646)\|[3cefef2](https://github.com/mantidproject/mantid/commit/3cefef20a7296fd20525d6873e06de5234de65fe)\] PolarizationCorrection doesn't preserve history
 * *new* \[[#10657](http://trac.mantidproject.org/mantid/ticket/10657)\|[b13dbbf](https://github.com/mantidproject/mantid/commit/b13dbbf988756d89d7b372c59f5ca524489ef884)\] CreateSampleWorkspace with incorrect bin width crashes Mantid
 * *new* \[[#10661](http://trac.mantidproject.org/mantid/ticket/10661)\|[118281b](https://github.com/mantidproject/mantid/commit/118281bc22b0010f59aca5cc9cc114675e87b66a)\] Extend Instrument repository to remove files
 * *new* \[[#10664](http://trac.mantidproject.org/mantid/ticket/10664)\|[abfc02d](https://github.com/mantidproject/mantid/commit/abfc02dc6e38805a2c12e8fed067a83b4ea8a93c)\] Remove old Elwin code from IndirectDataAnalysis.py
