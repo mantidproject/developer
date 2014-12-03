@@ -25,6 +25,7 @@ Detailed Merges for Nov 29 - Dec 5, 2014
 * *new* \[[#10665](http://trac.mantidproject.org/mantid/ticket/10665)\|[ade071e](https://github.com/mantidproject/mantid/commit/ade071e80ac2c2f18a69e02f8570116a459fa46f)\] Add ESS to Mantid splash screen and help about menu
 * *new* \[[#5272](http://trac.mantidproject.org/mantid/ticket/5272)\|[f597473](https://github.com/mantidproject/mantid/commit/f597473a00a08373cc42385b136c4ff43e10a6f3)\] Small Python console glitch.
 * *new* \[[#8452](http://trac.mantidproject.org/mantid/ticket/8452)\|[4a1e1c4](https://github.com/mantidproject/mantid/commit/4a1e1c4a04075912ceb4daf48911b7108b89fa8c)\] Fix keyboard shortcuts in the graph menu for plots
+* *new* \[[#9789](http://trac.mantidproject.org/mantid/ticket/9789)\|[4688d7d](https://github.com/mantidproject/mantid/commit/4688d7d9f78defd6319604ec572fa6c8854839d0)\] Update doc for EnginXCalibrateFull
 * *new* \[[#9790](http://trac.mantidproject.org/mantid/ticket/9790)\|[928b177](https://github.com/mantidproject/mantid/commit/928b177de4a7b60986965a8c7aa84b471776847d)\] Update doc for EnginXFitPeaks
 * *new* \[[#9791](http://trac.mantidproject.org/mantid/ticket/9791)\|[3613c8a](https://github.com/mantidproject/mantid/commit/3613c8ae8ff2af5541a99bafd4dbdf6e6b8378ee)\] Update doc for EnginXCalibrate
 * *new* \[[#9795](http://trac.mantidproject.org/mantid/ticket/9795)\|[a1be2f0](https://github.com/mantidproject/mantid/commit/a1be2f04d31d04a53b5bd58026f4e18a737316cf)\] Script repository should warn user if installed in non-empty directory
