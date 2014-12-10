@@ -10,10 +10,14 @@ Updates for week 50 of 2014
 Detailed Merges for Dec 6 - 12, 2014
 ------------------------------------
 * *new* \[[#10218](http://trac.mantidproject.org/mantid/ticket/10218)\|[abeacc2](https://github.com/mantidproject/mantid/commit/abeacc2c2c4093d46cad485e8e27d4e8db89d50a)\] Format issue of GSAS file for V-DRIVE
+* *new* \[[#10247](http://trac.mantidproject.org/mantid/ticket/10247)\|[8d02710](https://github.com/mantidproject/mantid/commit/8d027109de5e24f4c0a70d31f70abba3a7525fbb)\] Index a PoldiPeakCollection using a known unit cell
 * *new* \[[#10374](http://trac.mantidproject.org/mantid/ticket/10374)\|[5b37064](https://github.com/mantidproject/mantid/commit/5b370642be06b41072cd72bc6181980019c5507a)\] NXTomo Save Algorithm Improvements
+* *new* \[[#10384](http://trac.mantidproject.org/mantid/ticket/10384)\|[9364d82](https://github.com/mantidproject/mantid/commit/9364d821a2207048361eb1151c4b1f283ad9faf2)\] Modify Calculate Flat background to work with non-TOF units or make equivalent changes to allow Flat background reduction in multirep mode
 * *new* \[[#10454](http://trac.mantidproject.org/mantid/ticket/10454)\|[bbe0313](https://github.com/mantidproject/mantid/commit/bbe0313102f03f236ec28d2fbdd822b086a9f419)\] Indirect Bayes and Data Analysis should work at any facility
+* *new* \[[#10504](http://trac.mantidproject.org/mantid/ticket/10504)\|[60cbda2](https://github.com/mantidproject/mantid/commit/60cbda2ba65c65b6233563b8816984369b45bb3f)\] Change registration of SpaceGroups into Factory
 * *new* \[[#10532](http://trac.mantidproject.org/mantid/ticket/10532)\|[c4ada99](https://github.com/mantidproject/mantid/commit/c4ada99cdce54ceba0e571bd37d14a6b48e88519)\] Separate Property manager from Direct inelastic reduction script
 * *new* \[[#10554](http://trac.mantidproject.org/mantid/ticket/10554)\|[db7b4bc](https://github.com/mantidproject/mantid/commit/db7b4bc131197edcaef0b6a78355a4376fb84bb0)\] Load SPICE data
+* *new* \[[#10610](http://trac.mantidproject.org/mantid/ticket/10610)\|[0b002bc](https://github.com/mantidproject/mantid/commit/0b002bc25ea2cb6ed9cedb0dbc184c50a0460c53)\] IntegratePeaksMD bug
 * *new* \[[#10611](http://trac.mantidproject.org/mantid/ticket/10611)\|[3a75e34](https://github.com/mantidproject/mantid/commit/3a75e3422e22635898788d9d2bce1f72e35c2a52)\] Calculate coverage for direct geometry
 * *new* \[[#10662](http://trac.mantidproject.org/mantid/ticket/10662)\|[46c12f0](https://github.com/mantidproject/mantid/commit/46c12f0a58f4d2c574ff2979b3198cebb71015ae)\] Instrument view collapsing
 * *new* \[[#10667](http://trac.mantidproject.org/mantid/ticket/10667)\|[969e13a](https://github.com/mantidproject/mantid/commit/969e13a1f50aba5777a7edfc6ee05bed09a8d5d4)\] Replace SNS logo with ORNL logo
