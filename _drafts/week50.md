@@ -28,4 +28,5 @@ Detailed Merges for Dec 6 - 12, 2014
 * *new* \[[#10714](http://trac.mantidproject.org/mantid/ticket/10714)\|[396ae7e](https://github.com/mantidproject/mantid/commit/396ae7e07b2f399356a065191943f93a04a317bb)\] mantid_reset_settings.sh doesn't find python script
 * *new* \[[#10715](http://trac.mantidproject.org/mantid/ticket/10715)\|[e1c660b](https://github.com/mantidproject/mantid/commit/e1c660b3c6dbe1312114fa9078a0478034e2d18f)\] First time setup does not remember settings
 * *new* \[[#10716](http://trac.mantidproject.org/mantid/ticket/10716)\|[cc5222a](https://github.com/mantidproject/mantid/commit/cc5222ac9bbed1bd0e6772cf11f1ca9a91363e57)\] Quasi X axis issue when using Sqw
+* *new* \[[#10734](http://trac.mantidproject.org/mantid/ticket/10734)\|[03a70e1](https://github.com/mantidproject/mantid/commit/03a70e11116c32f4c08bbb9131b3e734b855ca5f)\] Suppress numpy.oldnumeric warnings on Mantid startup
 * *new* \[[#6959](http://trac.mantidproject.org/mantid/ticket/6959)\|[b0b66a9](https://github.com/mantidproject/mantid/commit/b0b66a9d8f28dfe9951e8860aee28c791f502bf1)\] Multiple splitters do not work correctly in powder diffraction reduction interface
