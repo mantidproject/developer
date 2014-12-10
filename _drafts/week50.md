@@ -11,6 +11,7 @@ Detailed Merges for Dec 6 - 12, 2014
 ------------------------------------
 * *new* \[[#10218](http://trac.mantidproject.org/mantid/ticket/10218)\|[abeacc2](https://github.com/mantidproject/mantid/commit/abeacc2c2c4093d46cad485e8e27d4e8db89d50a)\] Format issue of GSAS file for V-DRIVE
 * *new* \[[#10247](http://trac.mantidproject.org/mantid/ticket/10247)\|[8d02710](https://github.com/mantidproject/mantid/commit/8d027109de5e24f4c0a70d31f70abba3a7525fbb)\] Index a PoldiPeakCollection using a known unit cell
+* *new* \[[#10344](http://trac.mantidproject.org/mantid/ticket/10344)\|[72e8ac2](https://github.com/mantidproject/mantid/commit/72e8ac2c82c577de73a806f95bdc2bbdbce2e527)\] Add all 230 space group types into the factory
 * *new* \[[#10374](http://trac.mantidproject.org/mantid/ticket/10374)\|[5b37064](https://github.com/mantidproject/mantid/commit/5b370642be06b41072cd72bc6181980019c5507a)\] NXTomo Save Algorithm Improvements
 * *new* \[[#10384](http://trac.mantidproject.org/mantid/ticket/10384)\|[9364d82](https://github.com/mantidproject/mantid/commit/9364d821a2207048361eb1151c4b1f283ad9faf2)\] Modify Calculate Flat background to work with non-TOF units or make equivalent changes to allow Flat background reduction in multirep mode
 * *new* \[[#10454](http://trac.mantidproject.org/mantid/ticket/10454)\|[bbe0313](https://github.com/mantidproject/mantid/commit/bbe0313102f03f236ec28d2fbdd822b086a9f419)\] Indirect Bayes and Data Analysis should work at any facility
