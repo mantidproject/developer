@@ -7,10 +7,10 @@ title: Currently Skipped System Tests
 Summary
 =======
 
-* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2014-12-11 [#257](http://builds.mantidproject.org/job/master_systemtests/257/)
+* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2014-12-11 [#258](http://builds.mantidproject.org/job/master_systemtests/258/)
 * Labels : osx-10.8, rhel6, ubuntu-14.04, win7
-* Failed : 4
-* Skipped: 102 (34 unique)
+* Failed : 1
+* Skipped: 107 (35 unique)
 * Total  : 1028 (= 257 * 4)
 
 Details
@@ -19,9 +19,9 @@ Details
 Failed
 ------
 
-| Test        | osx-10.8 | rhel6 | ubuntu-14.04 | win7 |
-|-------------|----------|-------|--------------|------|
-| Algorithms  |     x    |   x   |       x      |   x  |
+| Test           | osx-10.8 | rhel6 | ubuntu-14.04 | win7 |
+|----------------|----------|-------|--------------|------|
+| REFMReduction  |          |       |              |   x  |
 
 Skipped
 -------
@@ -55,10 +55,11 @@ Skipped
 | QuestTest                          |     x    |   x   |       x      |      |
 | ResNormTest                        |     x    |   x   |       x      |      |
 | UserAlgorithmsBuild                |     x    |   x   |       x      |      |
+| LETReductionEvent2014Multirep      |     x    |       |       x      |      |
+| MAPSDgreduceReduction              |     x    |       |       x      |      |
+| MERLINReduction                    |     x    |       |       x      |      |
+| TobyFitResolutionSimulationTest    |     x    |       |       x      |      |
 | ValidateFacilitiesFile             |     x    |       |       x      |      |
 | ValidateGroupingFiles              |     x    |       |       x      |      |
 | ValidateInstrumentDefinitionFiles  |     x    |       |       x      |      |
 | ValidateParameterFiles             |     x    |       |       x      |      |
-| LETReductionEvent2014Multirep      |     x    |       |              |      |
-| MERLINReduction                    |     x    |       |              |      |
-| TobyFitResolutionSimulationTest    |     x    |       |              |      |
