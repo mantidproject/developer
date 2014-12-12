@@ -1,27 +1,20 @@
 ---
 layout: default
-date: 2014-12-11
+date: 2014-12-12
 author: Peter Peterson
 title: Currently Skipped System Tests
 ---
 Summary
 =======
 
-* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2014-12-11 [#258](http://builds.mantidproject.org/job/master_systemtests/258/)
+* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2014-12-12 [#260](http://builds.mantidproject.org/job/master_systemtests/260/)
 * Labels : osx-10.8, rhel6, ubuntu-14.04, win7
-* Failed : 1
-* Skipped: 107 (35 unique)
+* Failed : 0
+* Skipped: 102 (34 unique)
 * Total  : 1028 (= 257 * 4)
 
 Details
 =======
-
-Failed
-------
-
-| Test           | osx-10.8 | rhel6 | ubuntu-14.04 | win7 |
-|----------------|----------|-------|--------------|------|
-| REFMReduction  |          |       |              |   x  |
 
 Skipped
 -------
@@ -55,11 +48,10 @@ Skipped
 | QuestTest                          |     x    |   x   |       x      |      |
 | ResNormTest                        |     x    |   x   |       x      |      |
 | UserAlgorithmsBuild                |     x    |   x   |       x      |      |
-| LETReductionEvent2014Multirep      |     x    |       |       x      |      |
-| MAPSDgreduceReduction              |     x    |       |       x      |      |
-| MERLINReduction                    |     x    |       |       x      |      |
-| TobyFitResolutionSimulationTest    |     x    |       |       x      |      |
 | ValidateFacilitiesFile             |     x    |       |       x      |      |
 | ValidateGroupingFiles              |     x    |       |       x      |      |
 | ValidateInstrumentDefinitionFiles  |     x    |       |       x      |      |
 | ValidateParameterFiles             |     x    |       |       x      |      |
+| LETReductionEvent2014Multirep      |     x    |       |              |      |
+| MERLINReduction                    |     x    |       |              |      |
+| TobyFitResolutionSimulationTest    |     x    |       |              |      |
