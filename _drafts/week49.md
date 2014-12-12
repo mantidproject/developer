@@ -6,18 +6,21 @@ title: Updates - Week 49 of 2014
 ---
 Updates for week 49 of 2014
 ---------------------------
+* New diffraction corrections for indirect scattering
+* Added ESS to copyright and images
+
 
 Detailed Merges for Nov 29 - Dec 5, 2014
 ----------------------------------------
-* *new* \[[#10041](http://trac.mantidproject.org/mantid/ticket/10041)\|[8d47cd1](https://github.com/mantidproject/mantid/commit/8d47cd1a6c7774416454ea8436d573b8fd8f3770)\] Change the algorithm plugin to create links to the workspace types
-* *new* \[[#10094](http://trac.mantidproject.org/mantid/ticket/10094)\|[49d012f](https://github.com/mantidproject/mantid/commit/49d012fed6ccf0df9e4020a8317e8d5f584ccaee)\] Support diffraction corrections
-* *new* \[[#10123](http://trac.mantidproject.org/mantid/ticket/10123)\|[119349a](https://github.com/mantidproject/mantid/commit/119349a149e71de3a6d21e6240f7e80cf872ec6f)\] Cannot save a table workspace that has a float column
-* *new* \[[#10170](http://trac.mantidproject.org/mantid/ticket/10170)\|[8843ebb](https://github.com/mantidproject/mantid/commit/8843ebb7f272ffbcf6f978ac83ec2aa1ed93426b)\] LoadVesuvio needs to support summing separate ranges into spectra in same workspace
-* *new* \[[#10205](http://trac.mantidproject.org/mantid/ticket/10205)\|[a7fe500](https://github.com/mantidproject/mantid/commit/a7fe500702aa1a959af2361a6da7c65445fa4eb8)\] Flow diagram for algorithm processing
-* *new* \[[#10382](http://trac.mantidproject.org/mantid/ticket/10382)\|[b0e226b](https://github.com/mantidproject/mantid/commit/b0e226bdd39d4651867dab62dbe102bda74b00ee)\] Testing for Symmetrise
-* *new* \[[#10447](http://trac.mantidproject.org/mantid/ticket/10447)\|[5d12214](https://github.com/mantidproject/mantid/commit/5d1221493a6af3a276b8ecfb5252fd196a172f58)\] SpectrumView should have a refresh/update method to change the workspace data
-* *new* \[[#10511](http://trac.mantidproject.org/mantid/ticket/10511)\|[2ba1f85](https://github.com/mantidproject/mantid/commit/2ba1f852c508e8d2af65e5e4cd19bbc1b1cd8f01)\] Update copyright to include the ESS
-* *new* \[[#10512](http://trac.mantidproject.org/mantid/ticket/10512)\|[04e8b5f](https://github.com/mantidproject/mantid/commit/04e8b5f9fdee389fce4dd13e7c89823039770609)\] Link TOSCA related ET options to TOSCA
+* \[[#10041](http://trac.mantidproject.org/mantid/ticket/10041)\|[8d47cd1](https://github.com/mantidproject/mantid/commit/8d47cd1a6c7774416454ea8436d573b8fd8f3770)\] Change the algorithm plugin to create links to the workspace types
+* \[[#10094](http://trac.mantidproject.org/mantid/ticket/10094)\|[49d012f](https://github.com/mantidproject/mantid/commit/49d012fed6ccf0df9e4020a8317e8d5f584ccaee)\] Support diffraction corrections
+* \[[#10123](http://trac.mantidproject.org/mantid/ticket/10123)\|[119349a](https://github.com/mantidproject/mantid/commit/119349a149e71de3a6d21e6240f7e80cf872ec6f)\] Cannot save a table workspace that has a float column
+* \[[#10170](http://trac.mantidproject.org/mantid/ticket/10170)\|[8843ebb](https://github.com/mantidproject/mantid/commit/8843ebb7f272ffbcf6f978ac83ec2aa1ed93426b)\] LoadVesuvio needs to support summing separate ranges into spectra in same workspace
+* \[[#10205](http://trac.mantidproject.org/mantid/ticket/10205)\|[a7fe500](https://github.com/mantidproject/mantid/commit/a7fe500702aa1a959af2361a6da7c65445fa4eb8)\] Flow diagram for algorithm processing
+* \[[#10382](http://trac.mantidproject.org/mantid/ticket/10382)\|[b0e226b](https://github.com/mantidproject/mantid/commit/b0e226bdd39d4651867dab62dbe102bda74b00ee)\] Testing for Symmetrise
+* \[[#10447](http://trac.mantidproject.org/mantid/ticket/10447)\|[5d12214](https://github.com/mantidproject/mantid/commit/5d1221493a6af3a276b8ecfb5252fd196a172f58)\] SpectrumView should have a refresh/update method to change the workspace data
+* \[[#10511](http://trac.mantidproject.org/mantid/ticket/10511)\|[2ba1f85](https://github.com/mantidproject/mantid/commit/2ba1f852c508e8d2af65e5e4cd19bbc1b1cd8f01)\] Update copyright to include the ESS
+* \[[#10512](http://trac.mantidproject.org/mantid/ticket/10512)\|[04e8b5f](https://github.com/mantidproject/mantid/commit/04e8b5f9fdee389fce4dd13e7c89823039770609)\] Link TOSCA related ET options to TOSCA
 * *new* \[[#10567](http://trac.mantidproject.org/mantid/ticket/10567)\|[18caa30](https://github.com/mantidproject/mantid/commit/18caa30a6cb5dabaabb12c0972a9f4b3511d5358)\] GPSANS: Add wedge I(Q)
 * *new* \[[#10572](http://trac.mantidproject.org/mantid/ticket/10572)\|[e6d8932](https://github.com/mantidproject/mantid/commit/e6d8932ae782c5d2687fee4bf4dcc1ce5a6ccc64)\] Improvements to style of Bilby loader
 * *new* \[[#10606](http://trac.mantidproject.org/mantid/ticket/10606)\|[e7bcea2](https://github.com/mantidproject/mantid/commit/e7bcea2ad0c0217e26f17a932172dd09bf41c4cb)\] Modify IndirectTransmission algorithm to support BASIS
@@ -40,7 +43,7 @@ Detailed Merges for Nov 29 - Dec 5, 2014
 * *new* \[[#2535](http://trac.mantidproject.org/mantid/ticket/2535)\|[f8c0270](https://github.com/mantidproject/mantid/commit/f8c0270578e6f412f160a52f673aaf92dde76071)\] Improve project saving/loading  to the .mantid file - Python
 * *new* \[[#5272](http://trac.mantidproject.org/mantid/ticket/5272)\|[f597473](https://github.com/mantidproject/mantid/commit/f597473a00a08373cc42385b136c4ff43e10a6f3)\] Small Python console glitch.
 * *new* \[[#7938](http://trac.mantidproject.org/mantid/ticket/7938)\|[e0ba17e](https://github.com/mantidproject/mantid/commit/e0ba17e80302b19e37437508b026369ed6fe872e)\] Improve script window editing capabilities
-* *new* \[[#8452](http://trac.mantidproject.org/mantid/ticket/8452)\|[4a1e1c4](https://github.com/mantidproject/mantid/commit/4a1e1c4a04075912ceb4daf48911b7108b89fa8c)\] Fix keyboard shortcuts in the graph menu for plots
+* \[[#8452](http://trac.mantidproject.org/mantid/ticket/8452)\|[4a1e1c4](https://github.com/mantidproject/mantid/commit/4a1e1c4a04075912ceb4daf48911b7108b89fa8c)\] Fix keyboard shortcuts in the graph menu for plots
 * *new* \[[#9340](http://trac.mantidproject.org/mantid/ticket/9340)\|[fbcff02](https://github.com/mantidproject/mantid/commit/fbcff021d112754842da760fbcd69a51870e542e)\] Apply scattering cross sections in DensityOfStates
 * *new* \[[#9468](http://trac.mantidproject.org/mantid/ticket/9468)\|[6ac83f5](https://github.com/mantidproject/mantid/commit/6ac83f5cb11a374ddb88572fa158a69479308305)\] MantidPlot missing TableWorkspace Sorting functionality
 * *new* \[[#9699](http://trac.mantidproject.org/mantid/ticket/9699)\|[a837850](https://github.com/mantidproject/mantid/commit/a8378509eea453088402f495614d33f27a6d5e89)\] Add support for TFXA and TOSCA-1
