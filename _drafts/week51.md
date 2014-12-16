@@ -15,3 +15,4 @@ Detailed Merges for Dec 13 - 19, 2014
 * *new* \[[#10786](http://trac.mantidproject.org/mantid/ticket/10786)\|[86a14b8](https://github.com/mantidproject/mantid/commit/86a14b8ce3bf9b8182c42bf82879128f0599ba5f)\] New dependencies in developer rpm
 * *new* \[[#10796](http://trac.mantidproject.org/mantid/ticket/10796)\|[7256952](https://github.com/mantidproject/mantid/commit/7256952ee0b77a872e44a19694c5a36a218fda03)\] POLREF: Use stheta to calculate point detector vertical offset
 * *new* \[[#10798](http://trac.mantidproject.org/mantid/ticket/10798)\|[3989148](https://github.com/mantidproject/mantid/commit/39891485d89c077c1c484eb34c27712376db09e1)\] Setup 3D Visualization Dialog appears underneath Splashscreen on Windows
+* *new* \[[#10804](http://trac.mantidproject.org/mantid/ticket/10804)\|[0f70f27](https://github.com/mantidproject/mantid/commit/0f70f2756c3534c12de035dcb452e7d1a6eee0d0)\] EvaluateMDFunction doesn't have a wiki doc page
