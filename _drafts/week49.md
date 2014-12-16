@@ -8,6 +8,10 @@ Updates for week 49 of 2014
 ---------------------------
 * New diffraction corrections for indirect scattering
 * Added ESS to copyright and images
+* New options on [Q1DWeighted]({{ site.docpage }}/algorithms/Q1DWeighted.html) to save wedge I(Q) for GPSANS
+* [IndirectTransmission]({{ site.docpage }}/algorithms/IndirectTransmission.html) now supports BASIS
+* Plotting pectrum now (optionally) supports plotting counts/width
+
 
 
 Detailed Merges for Nov 29 - Dec 5, 2014
@@ -21,16 +25,16 @@ Detailed Merges for Nov 29 - Dec 5, 2014
 * \[[#10447](http://trac.mantidproject.org/mantid/ticket/10447)\|[5d12214](https://github.com/mantidproject/mantid/commit/5d1221493a6af3a276b8ecfb5252fd196a172f58)\] SpectrumView should have a refresh/update method to change the workspace data
 * \[[#10511](http://trac.mantidproject.org/mantid/ticket/10511)\|[2ba1f85](https://github.com/mantidproject/mantid/commit/2ba1f852c508e8d2af65e5e4cd19bbc1b1cd8f01)\] Update copyright to include the ESS
 * \[[#10512](http://trac.mantidproject.org/mantid/ticket/10512)\|[04e8b5f](https://github.com/mantidproject/mantid/commit/04e8b5f9fdee389fce4dd13e7c89823039770609)\] Link TOSCA related ET options to TOSCA
-* *new* \[[#10567](http://trac.mantidproject.org/mantid/ticket/10567)\|[18caa30](https://github.com/mantidproject/mantid/commit/18caa30a6cb5dabaabb12c0972a9f4b3511d5358)\] GPSANS: Add wedge I(Q)
-* *new* \[[#10572](http://trac.mantidproject.org/mantid/ticket/10572)\|[e6d8932](https://github.com/mantidproject/mantid/commit/e6d8932ae782c5d2687fee4bf4dcc1ce5a6ccc64)\] Improvements to style of Bilby loader
-* *new* \[[#10606](http://trac.mantidproject.org/mantid/ticket/10606)\|[e7bcea2](https://github.com/mantidproject/mantid/commit/e7bcea2ad0c0217e26f17a932172dd09bf41c4cb)\] Modify IndirectTransmission algorithm to support BASIS
-* *new* \[[#10620](http://trac.mantidproject.org/mantid/ticket/10620)\|[717b268](https://github.com/mantidproject/mantid/commit/717b268e9fe365a28632154114b0b388ffa3d86b)\] Indirect Tools interface
-* *new* \[[#10623](http://trac.mantidproject.org/mantid/ticket/10623)\|[bdc6f11](https://github.com/mantidproject/mantid/commit/bdc6f11339318b52a375c8f36bcd28212541a4e3)\] Enable fitting of POLDI 2D data
-* *new* \[[#10626](http://trac.mantidproject.org/mantid/ticket/10626)\|[b64ae90](https://github.com/mantidproject/mantid/commit/b64ae9020d8d5012376cacca8cbd26850b231a66)\] Use spectrum selection from Apply Corrections in other Indirect preview plots
-* *new* \[[#10639](http://trac.mantidproject.org/mantid/ticket/10639)\|[fde065c](https://github.com/mantidproject/mantid/commit/fde065c21c453efadb9abe9713c5c8001097a268)\] Plotting: Optionally plot counts/width
-* *new* \[[#10646](http://trac.mantidproject.org/mantid/ticket/10646)\|[3cefef2](https://github.com/mantidproject/mantid/commit/3cefef20a7296fd20525d6873e06de5234de65fe)\] PolarizationCorrection doesn't preserve history
-* *new* \[[#10648](http://trac.mantidproject.org/mantid/ticket/10648)\|[777e1e9](https://github.com/mantidproject/mantid/commit/777e1e935a3565b78d5b3c09adaba806412b5e90)\] PolarizationCorrection should fetch sensible defaults from a parameter file
-* *new* \[[#10657](http://trac.mantidproject.org/mantid/ticket/10657)\|[b13dbbf](https://github.com/mantidproject/mantid/commit/b13dbbf988756d89d7b372c59f5ca524489ef884)\] CreateSampleWorkspace with incorrect bin width crashes Mantid
+* \[[#10567](http://trac.mantidproject.org/mantid/ticket/10567)\|[18caa30](https://github.com/mantidproject/mantid/commit/18caa30a6cb5dabaabb12c0972a9f4b3511d5358)\] GPSANS: Add wedge I(Q)
+* \[[#10572](http://trac.mantidproject.org/mantid/ticket/10572)\|[e6d8932](https://github.com/mantidproject/mantid/commit/e6d8932ae782c5d2687fee4bf4dcc1ce5a6ccc64)\] Improvements to style of Bilby loader
+* \[[#10606](http://trac.mantidproject.org/mantid/ticket/10606)\|[e7bcea2](https://github.com/mantidproject/mantid/commit/e7bcea2ad0c0217e26f17a932172dd09bf41c4cb)\] Modify IndirectTransmission algorithm to support BASIS
+* \[[#10620](http://trac.mantidproject.org/mantid/ticket/10620)\|[717b268](https://github.com/mantidproject/mantid/commit/717b268e9fe365a28632154114b0b388ffa3d86b)\] Indirect Tools interface
+* \[[#10623](http://trac.mantidproject.org/mantid/ticket/10623)\|[bdc6f11](https://github.com/mantidproject/mantid/commit/bdc6f11339318b52a375c8f36bcd28212541a4e3)\] Enable fitting of POLDI 2D data
+* \[[#10626](http://trac.mantidproject.org/mantid/ticket/10626)\|[b64ae90](https://github.com/mantidproject/mantid/commit/b64ae9020d8d5012376cacca8cbd26850b231a66)\] Use spectrum selection from Apply Corrections in other Indirect preview plots
+* \[[#10639](http://trac.mantidproject.org/mantid/ticket/10639)\|[fde065c](https://github.com/mantidproject/mantid/commit/fde065c21c453efadb9abe9713c5c8001097a268)\] Plotting: Optionally plot counts/width
+* \[[#10646](http://trac.mantidproject.org/mantid/ticket/10646)\|[3cefef2](https://github.com/mantidproject/mantid/commit/3cefef20a7296fd20525d6873e06de5234de65fe)\] PolarizationCorrection doesn't preserve history
+* \[[#10648](http://trac.mantidproject.org/mantid/ticket/10648)\|[777e1e9](https://github.com/mantidproject/mantid/commit/777e1e935a3565b78d5b3c09adaba806412b5e90)\] PolarizationCorrection should fetch sensible defaults from a parameter file
+* \[[#10657](http://trac.mantidproject.org/mantid/ticket/10657)\|[b13dbbf](https://github.com/mantidproject/mantid/commit/b13dbbf988756d89d7b372c59f5ca524489ef884)\] CreateSampleWorkspace with incorrect bin width crashes Mantid
 * *new* \[[#10661](http://trac.mantidproject.org/mantid/ticket/10661)\|[118281b](https://github.com/mantidproject/mantid/commit/118281bc22b0010f59aca5cc9cc114675e87b66a)\] Extend Instrument repository to remove files
 * *new* \[[#10664](http://trac.mantidproject.org/mantid/ticket/10664)\|[abfc02d](https://github.com/mantidproject/mantid/commit/abfc02dc6e38805a2c12e8fed067a83b4ea8a93c)\] Remove old Elwin code from IndirectDataAnalysis.py
 * *new* \[[#10665](http://trac.mantidproject.org/mantid/ticket/10665)\|[ade071e](https://github.com/mantidproject/mantid/commit/ade071e80ac2c2f18a69e02f8570116a459fa46f)\] Add ESS to Mantid splash screen and help about menu
