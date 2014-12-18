@@ -24,3 +24,5 @@ Detailed Merges for Dec 13 - 19, 2014
 * \[[#10798](http://trac.mantidproject.org/mantid/ticket/10798)\|[3989148](https://github.com/mantidproject/mantid/commit/39891485d89c077c1c484eb34c27712376db09e1)\] Setup 3D Visualization Dialog appears underneath Splashscreen on Windows
 * \[[#10804](http://trac.mantidproject.org/mantid/ticket/10804)\|[0f70f27](https://github.com/mantidproject/mantid/commit/0f70f2756c3534c12de035dcb452e7d1a6eee0d0)\] EvaluateMDFunction doesn't have a wiki doc page
 * \[[#10814](http://trac.mantidproject.org/mantid/ticket/10814)\|[4377672](https://github.com/mantidproject/mantid/commit/43776726e25e169be6eade2e2b3ed515ae7a68e6)\] Fix intermittent fails on develop
+* *new* \[[#10817](http://trac.mantidproject.org/mantid/ticket/10817)\|[f515990](https://github.com/mantidproject/mantid/commit/f51599043dfa5a7f910735d86c07d81443684c07)\] Subtle bug in harmaskPlus/hardmaskOnly legacy options
+* *new* \[[#8980](http://trac.mantidproject.org/mantid/ticket/8980)\|[8079ee6](https://github.com/mantidproject/mantid/commit/8079ee6a077c91700abea2bbbccb586454f03d83)\] Create Wikipage to explain Creation of BackToBackExponential from GSAS file
