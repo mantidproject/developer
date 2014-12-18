@@ -25,4 +25,5 @@ Detailed Merges for Dec 13 - 19, 2014
 * \[[#10804](http://trac.mantidproject.org/mantid/ticket/10804)\|[0f70f27](https://github.com/mantidproject/mantid/commit/0f70f2756c3534c12de035dcb452e7d1a6eee0d0)\] EvaluateMDFunction doesn't have a wiki doc page
 * \[[#10814](http://trac.mantidproject.org/mantid/ticket/10814)\|[4377672](https://github.com/mantidproject/mantid/commit/43776726e25e169be6eade2e2b3ed515ae7a68e6)\] Fix intermittent fails on develop
 * *new* \[[#10817](http://trac.mantidproject.org/mantid/ticket/10817)\|[f515990](https://github.com/mantidproject/mantid/commit/f51599043dfa5a7f910735d86c07d81443684c07)\] Subtle bug in harmaskPlus/hardmaskOnly legacy options
+* *new* \[[#10823](http://trac.mantidproject.org/mantid/ticket/10823)\|[6344f65](https://github.com/mantidproject/mantid/commit/6344f650dd02793a2e20edd4b8541aab02fe0367)\] Add BASISReduction_311.py to mantid
 * *new* \[[#8980](http://trac.mantidproject.org/mantid/ticket/8980)\|[8079ee6](https://github.com/mantidproject/mantid/commit/8079ee6a077c91700abea2bbbccb586454f03d83)\] Create Wikipage to explain Creation of BackToBackExponential from GSAS file
