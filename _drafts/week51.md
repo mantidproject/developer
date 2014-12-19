@@ -8,6 +8,8 @@ Updates for week 51 of 2014
 ---------------------------
 * Lots of attempts and eventually a fix to starting up mantid on analysis machines
 * New version of the developer RPM
+* New mantid splash screen
+* `BASISReduction311.py` was added to mantid
 
 Detailed Merges for Dec 13 - 19, 2014
 -------------------------------------
@@ -26,8 +28,8 @@ Detailed Merges for Dec 13 - 19, 2014
 * \[[#10798](http://trac.mantidproject.org/mantid/ticket/10798)\|[3989148](https://github.com/mantidproject/mantid/commit/39891485d89c077c1c484eb34c27712376db09e1)\] Setup 3D Visualization Dialog appears underneath Splashscreen on Windows
 * \[[#10804](http://trac.mantidproject.org/mantid/ticket/10804)\|[0f70f27](https://github.com/mantidproject/mantid/commit/0f70f2756c3534c12de035dcb452e7d1a6eee0d0)\] EvaluateMDFunction doesn't have a wiki doc page
 * \[[#10814](http://trac.mantidproject.org/mantid/ticket/10814)\|[4377672](https://github.com/mantidproject/mantid/commit/43776726e25e169be6eade2e2b3ed515ae7a68e6)\] Fix intermittent fails on develop
-* *new* \[[#10817](http://trac.mantidproject.org/mantid/ticket/10817)\|[f515990](https://github.com/mantidproject/mantid/commit/f51599043dfa5a7f910735d86c07d81443684c07)\] Subtle bug in harmaskPlus/hardmaskOnly legacy options
-* *new* \[[#10823](http://trac.mantidproject.org/mantid/ticket/10823)\|[6344f65](https://github.com/mantidproject/mantid/commit/6344f650dd02793a2e20edd4b8541aab02fe0367)\] Add BASISReduction_311.py to mantid
-* *new* \[[#10827](http://trac.mantidproject.org/mantid/ticket/10827)\|[591dfa3](https://github.com/mantidproject/mantid/commit/591dfa3499cd432b3b9bc54c2a370e32b8ea8e38)\] BASISReduction_311 breaks naming conventions system test
-* *new* \[[#10834](http://trac.mantidproject.org/mantid/ticket/10834)\|[d9190ae](https://github.com/mantidproject/mantid/commit/d9190ae1df20c447d5ea45f1342294baadd3505f)\] Update Mantid splash screen
-* *new* \[[#8980](http://trac.mantidproject.org/mantid/ticket/8980)\|[8079ee6](https://github.com/mantidproject/mantid/commit/8079ee6a077c91700abea2bbbccb586454f03d83)\] Create Wikipage to explain Creation of BackToBackExponential from GSAS file
+* \[[#10817](http://trac.mantidproject.org/mantid/ticket/10817)\|[f515990](https://github.com/mantidproject/mantid/commit/f51599043dfa5a7f910735d86c07d81443684c07)\] Subtle bug in harmaskPlus/hardmaskOnly legacy options
+* \[[#10823](http://trac.mantidproject.org/mantid/ticket/10823)\|[6344f65](https://github.com/mantidproject/mantid/commit/6344f650dd02793a2e20edd4b8541aab02fe0367)\] Add BASISReduction_311.py to mantid
+* \[[#10827](http://trac.mantidproject.org/mantid/ticket/10827)\|[591dfa3](https://github.com/mantidproject/mantid/commit/591dfa3499cd432b3b9bc54c2a370e32b8ea8e38)\] BASISReduction_311 breaks naming conventions system test
+* \[[#10834](http://trac.mantidproject.org/mantid/ticket/10834)\|[d9190ae](https://github.com/mantidproject/mantid/commit/d9190ae1df20c447d5ea45f1342294baadd3505f)\] Update Mantid splash screen
+* \[[#8980](http://trac.mantidproject.org/mantid/ticket/8980)\|[8079ee6](https://github.com/mantidproject/mantid/commit/8079ee6a077c91700abea2bbbccb586454f03d83)\] Create Wikipage to explain Creation of BackToBackExponential from GSAS file
