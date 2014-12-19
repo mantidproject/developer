@@ -6,6 +6,7 @@ title: Updates - Week 51 of 2014
 ---
 Updates for week 51 of 2014
 ---------------------------
+* Initial version of MD normalization for direct geometry
 * Lots of attempts and eventually a fix to starting up mantid on analysis machines
 * New version of the developer RPM
 * New mantid splash screen
@@ -14,9 +15,9 @@ Updates for week 51 of 2014
 Detailed Merges for Dec 13 - 19, 2014
 -------------------------------------
 * \[[#10256](http://trac.mantidproject.org/mantid/ticket/10256)\|[0d5fe6c](https://github.com/mantidproject/mantid/commit/0d5fe6c2c8f5fec09784956b34369a23effc8666)\] WienerSmooth algorithm should smooth whole workspace by default
-* *new* \[[#10537](http://trac.mantidproject.org/mantid/ticket/10537)\|[5369bb4](https://github.com/mantidproject/mantid/commit/5369bb41a85f04fdf68eb4fc59ad11aa1b5aa135)\] Feature: Change inital view of Vates to be dependent on user and measurement specifications
+* \[[#10537](http://trac.mantidproject.org/mantid/ticket/10537)\|[5369bb4](https://github.com/mantidproject/mantid/commit/5369bb41a85f04fdf68eb4fc59ad11aa1b5aa135)\] Feature: Change inital view of Vates to be dependent on user and measurement specifications
 * \[[#10674](http://trac.mantidproject.org/mantid/ticket/10674)\|[9952ee5](https://github.com/mantidproject/mantid/commit/9952ee5b20e2e8bda18a13dbe67f7005b7d929b2)\] Crash when loading project with blank matrix
-* *new* \[[#10698](http://trac.mantidproject.org/mantid/ticket/10698)\|[38219aa](https://github.com/mantidproject/mantid/commit/38219aae3f49acda8a74fbc5b0b9be16387a9aa8)\] MD normalization for direct geometry
+* \[[#10698](http://trac.mantidproject.org/mantid/ticket/10698)\|[38219aa](https://github.com/mantidproject/mantid/commit/38219aae3f49acda8a74fbc5b0b9be16387a9aa8)\] MD normalization for direct geometry
 * \[[#10705](http://trac.mantidproject.org/mantid/ticket/10705)\|[e1290e2](https://github.com/mantidproject/mantid/commit/e1290e2b90e4a650ae8c8db22303d4090acb8376)\] Changes to direct Inelastic reduction have inelastic interface broken
 * \[[#10707](http://trac.mantidproject.org/mantid/ticket/10707)\|[0f8ea42](https://github.com/mantidproject/mantid/commit/0f8ea426e92d61133fd054916fa4da3b5eec0099)\] New start up screen doesn't appear on top of application on OS X
 * \[[#10718](http://trac.mantidproject.org/mantid/ticket/10718)\|[8d37fbf](https://github.com/mantidproject/mantid/commit/8d37fbff5232f73252d06db19cfe9375b9192061)\] Add background smoothing parameter to powder reduction GUI
