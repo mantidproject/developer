@@ -16,3 +16,4 @@ Detailed Merges for Jan 3 - 9, 2015
 * \[[#10842](http://trac.mantidproject.org/mantid/ticket/10842)\|[92069e7](https://github.com/mantidproject/mantid/commit/92069e7dcc2a388e4eb3fb1a7e333d9285354d42)\] Moun interface - curves are not displayed after fit
 * \[[#10843](http://trac.mantidproject.org/mantid/ticket/10843)\|[b605388](https://github.com/mantidproject/mantid/commit/b605388b596bf45d6abb0e502a8cd5f7abd08c9b)\] Calculate Asymetry should output point data, not histograms
 * *new* \[[#10844](http://trac.mantidproject.org/mantid/ticket/10844)\|[4de8be7](https://github.com/mantidproject/mantid/commit/4de8be77c3b75861646ffc17ef51b4ddca0ec41a)\] Indirect: Calibration tab does not run on OS X/Linux from a package
+* *new* \[[#10857](http://trac.mantidproject.org/mantid/ticket/10857)\|[dd97181](https://github.com/mantidproject/mantid/commit/dd971817dcaf94de876644303d0d448d3c8b2cd4)\] Change SigmaModerator type to Workspace2D for TOFSANSResolutionByPixel
