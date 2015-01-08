@@ -9,6 +9,7 @@ Updates for week 2 of 2015
 
 Detailed Merges for Jan 3 - 9, 2015
 -----------------------------------
+* *new* \[[#10658](http://trac.mantidproject.org/mantid/ticket/10658)\|[a89fe76](https://github.com/mantidproject/mantid/commit/a89fe76e84b761ab541a8793b6bdf855ad5cf62e)\] Add offspec as usable instrument in new Refl UI
 * *new* \[[#10809](http://trac.mantidproject.org/mantid/ticket/10809)\|[1324972](https://github.com/mantidproject/mantid/commit/1324972ebb1b35ea94447b73cf9106ef03791ad8)\] BugFix: VSI freezes for MDEvent workspace in Multislice view
 * \[[#10811](http://trac.mantidproject.org/mantid/ticket/10811)\|[0c2862e](https://github.com/mantidproject/mantid/commit/0c2862e6c21470cb84ab0a767927dc72c12aaead)\] Race condition in DownloadInstrumentTest on windows
 * *new* \[[#10833](http://trac.mantidproject.org/mantid/ticket/10833)\|[ff57c95](https://github.com/mantidproject/mantid/commit/ff57c95b281144df61d1fdf25e08b75cb07e3c26)\] CalculateResolution's failure is unhandled by the ISIS Refl Polref UI
