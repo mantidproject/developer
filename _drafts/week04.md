@@ -9,6 +9,7 @@ Updates for week 4 of 2015
 
 Detailed Merges for Jan 17 - 23, 2015
 -------------------------------------
+* *new* \[[#10143](http://trac.mantidproject.org/mantid/ticket/10143)\|[ad482db](https://github.com/mantidproject/mantid/commit/ad482db0b2981b2cbcd68906a3af6edc132ff7bc)\] Inst View: Extend parameter display to non detector objects
 * *new* \[[#10782](http://trac.mantidproject.org/mantid/ticket/10782)\|[839837b](https://github.com/mantidproject/mantid/commit/839837bd8c39acfd1467b8ceb27ac9c5010d38df)\] Allow DensityOfStates to output a table workspace of all ions in file
 * *new* \[[#10808](http://trac.mantidproject.org/mantid/ticket/10808)\|[0410065](https://github.com/mantidproject/mantid/commit/0410065d7512f8c897746182689d175188418437)\] UserInputValidator should return result of each validation as a boolean
 * *new* \[[#10852](http://trac.mantidproject.org/mantid/ticket/10852)\|[59ce9ef](https://github.com/mantidproject/mantid/commit/59ce9efc154f01d7eb6b4012fbee901bead993dd)\] Elwin: rename ranges
