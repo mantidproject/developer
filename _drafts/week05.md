@@ -13,8 +13,11 @@ Updates for week 5 of 2015
 
 Detailed Merges for Jan 24 - 30, 2015
 -------------------------------------
+* *new* \[[#10605](http://trac.mantidproject.org/mantid/ticket/10605)\|[25fdc4c](https://github.com/mantidproject/mantid/commit/25fdc4c6b46694d3a3d803d2528b0e66ce5c3a92)\] For EnginX FitPeaks improve ExpectedPeak entry
+* *new* \[[#10711](http://trac.mantidproject.org/mantid/ticket/10711)\|[27867f7](https://github.com/mantidproject/mantid/commit/27867f707054de3d73764a199eb1bceacb10437c)\] Replace Indirect Wiki pages with RST files using the interface directive
 * \[[#10778](http://trac.mantidproject.org/mantid/ticket/10778)\|[4d51393](https://github.com/mantidproject/mantid/commit/4d513939ae9ddb46d2abef91edaa8f8dffcdbfb7)\] Indirect Simulation incomplete error report
 * \[[#10779](http://trac.mantidproject.org/mantid/ticket/10779)\|[8b895d1](https://github.com/mantidproject/mantid/commit/8b895d184f6f271f4f90d5ffb1cf6b69c82d4728)\] Indirect Tools no error message for  nonsense chemical formula
+* *new* \[[#10802](http://trac.mantidproject.org/mantid/ticket/10802)\|[c72ea52](https://github.com/mantidproject/mantid/commit/c72ea52a17dd972b3d0617145bf08c3805ffd5bd)\] Data comparison UI
 * \[[#10803](http://trac.mantidproject.org/mantid/ticket/10803)\|[63e7d67](https://github.com/mantidproject/mantid/commit/63e7d676a757657f0de7878099744a9e9d250480)\] Move direct inelastic scripts into separate package
 * \[[#10836](http://trac.mantidproject.org/mantid/ticket/10836)\|[c7e45c9](https://github.com/mantidproject/mantid/commit/c7e45c99fd0d199d65968346ba22dbd67372335e)\] Modify autoproperties to use standard system dictionary
 * \[[#10845](http://trac.mantidproject.org/mantid/ticket/10845)\|[bfe3dd5](https://github.com/mantidproject/mantid/commit/bfe3dd5bc0951b08db0aa924f5a24e7aaf4905af)\] Enable ExportSampleLogsToCSVFile and ExportExperimentLog to export UTC time
