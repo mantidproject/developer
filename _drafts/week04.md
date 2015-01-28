@@ -6,16 +6,20 @@ title: Updates - Week 4 of 2015
 ---
 Updates for week 4 of 2015
 --------------------------
+* Improved option for displaying non-detector objects in instrument.
+* New algorithm [RRFMuon]({{ site.projecthome }}/RRFMuon)
+* Bugfix in manipulating empty 3D plots
+* Support for more files in [LoadGSASInstrumentFile]({{ site.projecthome }}/LoadGSASInstrumentFile)
 
 Detailed Merges for Jan 17 - 23, 2015
 -------------------------------------
-* *new* \[[#10143](http://trac.mantidproject.org/mantid/ticket/10143)\|[ad482db](https://github.com/mantidproject/mantid/commit/ad482db0b2981b2cbcd68906a3af6edc132ff7bc)\] Inst View: Extend parameter display to non detector objects
-* *new* \[[#10360](http://trac.mantidproject.org/mantid/ticket/10360)\|[153c21a](https://github.com/mantidproject/mantid/commit/153c21aae51e780a22ac9211a55d91688886e8d6)\] Event filter gui - error messages
-* *new* \[[#10499](http://trac.mantidproject.org/mantid/ticket/10499)\|[eed964f](https://github.com/mantidproject/mantid/commit/eed964f6aeb550155de165ed5a095d0201f19f40)\] Add RRFMuon algorithm
-* *new* \[[#10540](http://trac.mantidproject.org/mantid/ticket/10540)\|[f2232ff](https://github.com/mantidproject/mantid/commit/f2232ff2a1987d8020fbc593c36b95b637cd128b)\] Empty column on transfer
-* *new* \[[#10713](http://trac.mantidproject.org/mantid/ticket/10713)\|[91b4fb1](https://github.com/mantidproject/mantid/commit/91b4fb1da92c4a171f1fb4a337c0da4b7d9e1bde)\] Crash when manipulating empty 3D plots
-* *new* \[[#10723](http://trac.mantidproject.org/mantid/ticket/10723)\|[ebcadcf](https://github.com/mantidproject/mantid/commit/ebcadcf700c69c3200d7a6669fe680b21fe57fcf)\] Add fit output to ResNorm
-* *new* \[[#10739](http://trac.mantidproject.org/mantid/ticket/10739)\|[9fc49bb](https://github.com/mantidproject/mantid/commit/9fc49bbf8961e37307f6bbb8d27cdd5497536870)\] LoadGSASInstrumentFile fails to load some instrument parameter files
+* \[[#10143](http://trac.mantidproject.org/mantid/ticket/10143)\|[ad482db](https://github.com/mantidproject/mantid/commit/ad482db0b2981b2cbcd68906a3af6edc132ff7bc)\] Inst View: Extend parameter display to non detector objects
+* \[[#10360](http://trac.mantidproject.org/mantid/ticket/10360)\|[153c21a](https://github.com/mantidproject/mantid/commit/153c21aae51e780a22ac9211a55d91688886e8d6)\] Event filter gui - error messages
+* \[[#10499](http://trac.mantidproject.org/mantid/ticket/10499)\|[eed964f](https://github.com/mantidproject/mantid/commit/eed964f6aeb550155de165ed5a095d0201f19f40)\] Add RRFMuon algorithm
+* \[[#10540](http://trac.mantidproject.org/mantid/ticket/10540)\|[f2232ff](https://github.com/mantidproject/mantid/commit/f2232ff2a1987d8020fbc593c36b95b637cd128b)\] Empty column on transfer
+* \[[#10713](http://trac.mantidproject.org/mantid/ticket/10713)\|[91b4fb1](https://github.com/mantidproject/mantid/commit/91b4fb1da92c4a171f1fb4a337c0da4b7d9e1bde)\] Crash when manipulating empty 3D plots
+* \[[#10723](http://trac.mantidproject.org/mantid/ticket/10723)\|[ebcadcf](https://github.com/mantidproject/mantid/commit/ebcadcf700c69c3200d7a6669fe680b21fe57fcf)\] Add fit output to ResNorm
+* \[[#10739](http://trac.mantidproject.org/mantid/ticket/10739)\|[9fc49bb](https://github.com/mantidproject/mantid/commit/9fc49bbf8961e37307f6bbb8d27cdd5497536870)\] LoadGSASInstrumentFile fails to load some instrument parameter files
 * *new* \[[#10777](http://trac.mantidproject.org/mantid/ticket/10777)\|[03f0e28](https://github.com/mantidproject/mantid/commit/03f0e288c6a640e396bf9fa337704a05f8270be5)\] Indirect SofQW does not work properly for some values of Q/E
 * *new* \[[#10782](http://trac.mantidproject.org/mantid/ticket/10782)\|[839837b](https://github.com/mantidproject/mantid/commit/839837bd8c39acfd1467b8ceb27ac9c5010d38df)\] Allow DensityOfStates to output a table workspace of all ions in file
 * *new* \[[#10808](http://trac.mantidproject.org/mantid/ticket/10808)\|[0410065](https://github.com/mantidproject/mantid/commit/0410065d7512f8c897746182689d175188418437)\] UserInputValidator should return result of each validation as a boolean
