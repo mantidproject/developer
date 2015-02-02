@@ -14,6 +14,7 @@ Updates for week 5 of 2015
 * Instrument definition file for HB2A
 * Nexus file-loading clean-up
 * MDWorkspaceTests, in SystemTests, fails to clean up files it creates
+* Enable [LoadFullprofResolution]({{ site.projecthome }}/LoadFullprofResolution) to add Ikeda Carpenter PV parameters to workspace
 
 Detailed Merges for Jan 24 - 30, 2015
 -------------------------------------
@@ -40,5 +41,5 @@ Detailed Merges for Jan 24 - 30, 2015
 * \[[#8172](http://trac.mantidproject.org/mantid/ticket/8172)\|[2b99298](https://github.com/mantidproject/mantid/commit/2b9929870432c6cf51a54ea63213e98f2e16aeca)\] Nexus file-loading clean-up
 * \[[#8492](http://trac.mantidproject.org/mantid/ticket/8492)\|[abc3ded](https://github.com/mantidproject/mantid/commit/abc3ded48db6cb6b4d44d3fd684a2353009bf39d)\] Fix unreleased use of POCO::XML document or nodelists in SINQHMListener
 * \[[#8959](http://trac.mantidproject.org/mantid/ticket/8959)\|[0645e37](https://github.com/mantidproject/mantid/commit/0645e3788817bc0f1d5631f24706ee654e56e363)\] SaveReflCustom save Algorithm
-* *new* \[[#9261](http://trac.mantidproject.org/mantid/ticket/9261)\|[b5aaad4](https://github.com/mantidproject/mantid/commit/b5aaad4753ad7bc5b05bc1617ddfe701fbe98932)\] Enable the GSAS instrumenent file loading algorithm to add Ikeda Carpenter PV parameters to workspace
+* \[[#9261](http://trac.mantidproject.org/mantid/ticket/9261)\|[b5aaad4](https://github.com/mantidproject/mantid/commit/b5aaad4753ad7bc5b05bc1617ddfe701fbe98932)\] Enable the GSAS instrumenent file loading algorithm to add Ikeda Carpenter PV parameters to workspace
 * \[[#9846](http://trac.mantidproject.org/mantid/ticket/9846)\|[b483142](https://github.com/mantidproject/mantid/commit/b483142ae02dfc3afb3fd4be3fef26aa2d912a5e)\] Re-insert CalMuonDeadTimeTest
