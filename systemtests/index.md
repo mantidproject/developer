@@ -1,20 +1,33 @@
 ---
 layout: default
-date: 2015-02-04
+date: 2015-02-06
 author: Peter Peterson
 title: Currently Skipped System Tests
 ---
 Summary
 =======
 
-* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2015-02-04 [#298](http://builds.mantidproject.org/job/master_systemtests/298/)
+* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2015-02-06 [#300](http://builds.mantidproject.org/job/master_systemtests/300/)
 * Labels : osx-10.8, rhel6, ubuntu-14.04, win7
-* Failed : 0
-* Skipped: 102 (34 unique)
-* Total  : 1044 (= 261 * 4)
+* Failed : 7 (7 unique)
+* Skipped: 103 (35 unique)
+* Total  : 1052 (= 263 * 4)
 
 Details
 =======
+
+Failed
+------
+
+| Test                       | osx-10.8 | rhel6 | ubuntu-14.04 | win7 |
+|----------------------------|----------|-------|--------------|------|
+| POLDIAnalyseResidualsTest  |     x    |       |              |      |
+| POLDIAutoCorrelationTest   |     x    |       |              |      |
+| POLDIFitPeaks1DTest        |     x    |       |              |      |
+| POLDIFitPeaks2DTest        |     x    |       |              |      |
+| POLDIMergeTest             |     x    |       |              |      |
+| POLDIPeakSearchTest        |     x    |       |              |      |
+| POLDITruncateDataTest      |     x    |       |              |      |
 
 Skipped
 -------
@@ -53,5 +66,6 @@ Skipped
 | ValidateInstrumentDefinitionFiles  |     x    |       |       x      |      |
 | ValidateParameterFiles             |     x    |       |       x      |      |
 | LETReductionEvent2014Multirep      |     x    |       |              |      |
+| MAPSDgreduceReduction              |     x    |       |              |      |
 | MERLINReduction                    |     x    |       |              |      |
 | TobyFitResolutionSimulationTest    |     x    |       |              |      |
