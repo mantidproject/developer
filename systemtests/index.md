@@ -1,17 +1,17 @@
 ---
 layout: default
-date: 2015-02-06
+date: 2015-02-07
 author: Peter Peterson
 title: Currently Skipped System Tests
 ---
 Summary
 =======
 
-* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2015-02-06 [#300](http://builds.mantidproject.org/job/master_systemtests/300/)
+* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2015-02-07 [#301](http://builds.mantidproject.org/job/master_systemtests/301/)
 * Labels : osx-10.8, rhel6, ubuntu-14.04, win7
 * Failed : 7 (7 unique)
-* Skipped: 103 (35 unique)
-* Total  : 1052 (= 263 * 4)
+* Skipped: 106 (35 unique)
+* Total  : 1056 (= 264 * 4)
 
 Details
 =======
@@ -61,11 +61,11 @@ Skipped
 | QuestTest                          |     x    |   x   |       x      |      |
 | ResNormTest                        |     x    |   x   |       x      |      |
 | UserAlgorithmsBuild                |     x    |   x   |       x      |      |
+| LETReductionEvent2014Multirep      |     x    |   x   |              |      |
+| MERLINReduction                    |     x    |   x   |              |      |
+| TobyFitResolutionSimulationTest    |     x    |   x   |              |      |
 | ValidateFacilitiesFile             |     x    |       |       x      |      |
 | ValidateGroupingFiles              |     x    |       |       x      |      |
 | ValidateInstrumentDefinitionFiles  |     x    |       |       x      |      |
 | ValidateParameterFiles             |     x    |       |       x      |      |
-| LETReductionEvent2014Multirep      |     x    |       |              |      |
 | MAPSDgreduceReduction              |     x    |       |              |      |
-| MERLINReduction                    |     x    |       |              |      |
-| TobyFitResolutionSimulationTest    |     x    |       |              |      |
