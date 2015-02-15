@@ -1,30 +1,20 @@
 ---
 layout: default
-date: 2015-02-14
+date: 2015-02-15
 author: Peter Peterson
 title: Currently Skipped System Tests
 ---
 Summary
 =======
 
-* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2015-02-14 [#307](http://builds.mantidproject.org/job/master_systemtests/307/)
+* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2015-02-15 [#308](http://builds.mantidproject.org/job/master_systemtests/308/)
 * Labels : rhel6, ubuntu-14.04, win7
-* Failed : 11 (4 unique)
-* Skipped: 68 (31 unique)
-* Total  : 792 (= 264 * 3)
+* Failed : 0
+* Skipped: 72 (35 unique)
+* Total  : 795 (= 265 * 3)
 
 Details
 =======
-
-Failed
-------
-
-| Test                               | rhel6 | ubuntu-14.04 | win7 |
-|------------------------------------|-------|--------------|------|
-| Algorithms                         |   x   |       x      |   x  |
-| IRISFuryAndFuryFitMulti            |   x   |       x      |   x  |
-| OSIRISFuryAndFuryFitMulti          |   x   |       x      |   x  |
-| ValidateInstrumentDefinitionFiles  |   x   |              |   x  |
 
 Skipped
 -------
@@ -58,6 +48,10 @@ Skipped
 | QuestTest                          |   x   |       x      |      |
 | ResNormTest                        |   x   |       x      |      |
 | UserAlgorithmsBuild                |   x   |       x      |      |
+| LETReductionEvent2014Multirep      |   x   |              |      |
+| LETReductionEvent2015Multirep      |   x   |              |      |
+| MERLINReduction                    |   x   |              |      |
+| TobyFitResolutionSimulationTest    |   x   |              |      |
 | ValidateFacilitiesFile             |       |       x      |      |
 | ValidateGroupingFiles              |       |       x      |      |
 | ValidateInstrumentDefinitionFiles  |       |       x      |      |
