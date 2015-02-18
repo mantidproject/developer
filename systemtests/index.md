@@ -1,16 +1,16 @@
 ---
 layout: default
-date: 2015-02-17
+date: 2015-02-18
 author: Peter Peterson
 title: Currently Skipped System Tests
 ---
 Summary
 =======
 
-* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2015-02-17 [#310](http://builds.mantidproject.org/job/master_systemtests/310/)
+* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2015-02-18 [#311](http://builds.mantidproject.org/job/master_systemtests/311/)
 * Labels : osx-10.8, rhel6, ubuntu-14.04, win7
 * Failed : 1
-* Skipped: 110 (38 unique)
+* Skipped: 107 (35 unique)
 * Total  : 1060 (= 265 * 4)
 
 Details
@@ -63,6 +63,3 @@ Skipped
 | ValidateGroupingFiles              |     x    |       |       x      |      |
 | ValidateInstrumentDefinitionFiles  |     x    |       |       x      |      |
 | ValidateParameterFiles             |     x    |       |       x      |      |
-| HYSPECReductionTest                |     x    |       |              |      |
-| MAPSDgreduceReduction              |     x    |       |              |      |
-| ReduceOneSCD_Run                   |     x    |       |              |      |
