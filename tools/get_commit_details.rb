@@ -4,13 +4,18 @@ require "net/http"
 require "optparse"
 
 TRAC_URI   = "http://trac.mantidproject.org/mantid/ticket/"
-GITHUB_URI = "https://github.com/mantidproject/mantid/commit/"
+GITHUB_COMMIT_URI = "https://github.com/mantidproject/mantid/commit/"
+GITHUB_PR_URL = "https://github.com/mantidproject/mantid/pull/"
+GITHUB_API_URL = "https://api.github.com/repos/mantidproject/mantid/pulls/"
 NEW_TAG = "*new* "
 
 class GitInfo
   # class for converting the information into a line in the output file
 
   def initialize log_line
+    @sha1 = ""
+    @issue_url = ""
+    @merge_url = ""
     # split between trac (first) and git logs (second)
     if log_line.include? TRAC_URI
       # version from trac
@@ -23,9 +28,9 @@ class GitInfo
       log_line[/.+\\\[\[\#\d+\]/] = ""
 
       # ticket is first
-      @ticket = log_line[/#{TRAC_URI}\d+/]
-      @ticket = @ticket[/\d+/]
-      log_line[/\(#{TRAC_URI}\d+\)/] = ""
+      @issue_url = log_line[/#{TRAC_URI}\d+/]
+      @ticket = @issue_url[/\d+/]
+      log_line[/.+#{@issue_url}\)/] = ""
 
       # rest is the git and descr
       log_line = log_line.split('\]')
@@ -34,31 +39,46 @@ class GitInfo
       # get out the sha1 stuff
       log_line = log_line[0].strip
       if log_line.empty?
+        @merge_url=""
         @sha1 = ""
         @shashort = ""
       else
-        @sha1 = log_line[/#{GITHUB_URI}.+\)/]
-        @sha1[/#{GITHUB_URI}/] = ""
-        @sha1[-1] = ""
+        @merge_url=log_line[/#{GITHUB_COMMIT_URI}.+\)/]
+        @merge_url[-1] = ""
+        @sha1 = "#{@merge_url}"
+        @sha1[/#{GITHUB_COMMIT_URI}/] = ""
 
         @shashort = log_line[/\[.+\]/]
         @shashort = @shashort[1,7] # get rid of the extra characters
-      end  
+      end
     else
       @is_new = NEW_TAG
 
       log_line = log_line.split
       @sha1 = log_line[0]
+      @merge_url = "#{GITHUB_COMMIT_URI}#{@sha1}"
       log_line.delete_at(0)
       @shashort = log_line[0]
       log_line.delete_at(0)
 
       # get the ticket number in two steps to
       # insure it is the right thing
-      @ticket = log_line.join(" ")[/(origin\S+\d+_?)/]
-      @ticket = @ticket[/\d+/]
-    end
+      if log_line.include? " 'origin"
+        @ticket = log_line.join(" ")[/(origin\S*\d+_?)/]
+      elsif log_line[-1][/\/\d+/]
+        @ticket = log_line[-1]
+      end
 
+      if @ticket
+        @ticket = @ticket[/\d+/]
+        @issue_url = "#{TRAC_URI}#{@ticket}"
+      else
+        @ticket = log_line[3]
+        @ticket[0] = ""
+        @issue_url = "#{GITHUB_PR_URL}#{@ticket}"
+      end
+    end
+    @ticket = @ticket.to_i
   end
 
   def <=> other
@@ -66,27 +86,44 @@ class GitInfo
   end
 
   def == other
-    return @ticket == other.ticket
+    return @sha1 == other.sha1
   end
 
   def to_s
     # override default to string method
 
     if not @descr
-      uri = URI("#{TRAC_URI}#{@ticket}")
-      doc = Net::HTTP.get(uri)
-      summary = doc[/<h2 class=\"summary searchable\">.+<\/h2>/]
-      summary = summary.gsub(/<h2.+\">/, "")
-      @descr = summary.gsub(/<\/h2>/, "")
+      if @issue_url.include? TRAC_URI
+        uri = URI("#{TRAC_URI}#{@ticket}")
+        doc = Net::HTTP.get(uri)
+        summary = doc[/<h2 class=\"summary searchable\">.+<\/h2>/]
+        summary = summary.gsub(/<h2.+\">/, "")
+        @descr = summary.gsub(/<\/h2>/, "")
+      elsif @issue_url.include? GITHUB_PR_URL
+        uri = URI("#{GITHUB_API_URL}#{@ticket}")
+        doc = Net::HTTP.get(uri)
+        summary = doc.split("\"title\":")[1]
+        summary[/,\"user\".+/] = ""
+        summary[0] = ""
+        summary[-1] = ""
+        @descr = "#{summary}"
+      else
+        puts "Something weird in issue_url #{@issue_url}"
+        exit 1
+      end
     end
 
     msg =  "* #{@is_new}"
-    msg << "\\[[\##{@ticket}](#{TRAC_URI}#{@ticket})"
-    if (not @shashort.empty?) and (not @sha1.empty?)
-      msg << "\\|[#{@shashort}](#{GITHUB_URI}#{@sha1})"
+    msg << "\\[[\##{@ticket}](#{@issue_url})"
+    if (not @shashort.empty?) and (not @merge_url.empty?)
+      msg << "\\|[#{@shashort}](#{@merge_url})"
     end
     msg << "\\] #{@descr}"
     return msg
+  end
+
+  def sha1
+    return @sha1
   end
 
   def ticket
@@ -196,7 +233,7 @@ end
 
 # git arguments
 git_args = "--since=#{date_start} --until=#{date_stop} "
-git_args << "--grep=\"Merge remote\" --branches=master --format=\"%H %h %s\""
+git_args << "--grep=\"Merge remote\" --grep=\"Merge pull request \" --branches=master --format=\"%H %h %s\""
 
 # run the command to get the relavant logs
 #puts "cd #{mantid_src}; git log #{git_args}"
@@ -206,8 +243,10 @@ output = `cd #{mantid_src}; git log #{git_args}`
 for line in output.split("\n")
   # don't bother with merging master into a branch
   if not (line.include? "Merge remote-tracking branch 'origin/master'" or line.include? "Merge remote branch 'origin/master'")
-    if line.include? "'origin/"
+    if line.include? "'origin/" or line.include? "Merge pull request"
+      puts line # REMOVE
       info = GitInfo.new line
+      puts info # REMOVE
       if not tickets.include? info
         tickets << info
       end
