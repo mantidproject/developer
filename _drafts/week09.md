@@ -13,6 +13,8 @@ Detailed Merges for Feb 21 - 27, 2015
 -------------------------------------
 * \[[#273](https://github.com/mantidproject/mantid/pull/273)\|[bea5ad6](https://github.com/mantidproject/mantid/commit/bea5ad61b5adb0cd863307fe2c9f80501989fe36)\] Update CppCheck_Suppressions.txt
 * *new* \[[#273](https://github.com/mantidproject/mantid/pull/273)\|[bea5ad6](https://github.com/mantidproject/mantid/commit/bea5ad61b5adb0cd863307fe2c9f80501989fe36)\] Update CppCheck_Suppressions.txt
+* *new* \[[#273](https://github.com/mantidproject/mantid/pull/273)\|[bea5ad6](https://github.com/mantidproject/mantid/commit/bea5ad61b5adb0cd863307fe2c9f80501989fe36)\] Update CppCheck_Suppressions.txt
+* *new* \[[#290](https://github.com/mantidproject/mantid/pull/290)\|[e8ff5a3](https://github.com/mantidproject/mantid/commit/e8ff5a35df7625679b71f023625bc32663db4180)\] Replace help link in README.md
 * \[[#11057](http://trac.mantidproject.org/mantid/ticket/11057)\|[5863621](https://github.com/mantidproject/mantid/commit/58636211a6a2b11d8020bc9db8d931a6fa373400)\] Bring all the metadata to final workspace created by REFLreduction (to use in quickNXS some of the metadata)
 * *new* \[[#11061](http://trac.mantidproject.org/mantid/ticket/11061)\|[9d14331](https://github.com/mantidproject/mantid/commit/9d1433157e2798fcd67c097b421ffb37935e42f8)\] Coverity issues: a bunch of memory, initialization and other issues
 * *new* \[[#11117](http://trac.mantidproject.org/mantid/ticket/11117)\|[cab91d0](https://github.com/mantidproject/mantid/commit/cab91d0146cfce665b568a9dbbac83a5077f5118)\] Parse Poco version and make available in header file
