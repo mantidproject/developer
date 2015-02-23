@@ -13,6 +13,11 @@ Updates for week 8 of 2015
 * Reduce pylint warnings (by ~13k)
 * Bugfix in `FindOpenCascade.cmake`
 * RPM now installs on RHEL7
+* Bugfix where InstrumentSelector changed the default facility/instrument
+* Reduced coverity issues
+* Rework of `InternetHelper` and more classes use it
+* Splash screen no longer grabs focus
+* Updated buildscript.sh for AppleClang
 
 Detailed Merges for Feb 14 - 20, 2015
 -------------------------------------
@@ -37,31 +42,31 @@ Detailed Merges for Feb 14 - 20, 2015
 * \[[#10911](http://trac.mantidproject.org/mantid/ticket/10911)\|[c534b72](https://github.com/mantidproject/mantid/commit/c534b72702aea70b68d5b72b42ef47eff796c4b4)\] RPM does not install on RHEL 7
 * \[[#10945](http://trac.mantidproject.org/mantid/ticket/10945)\|[0e799c6](https://github.com/mantidproject/mantid/commit/0e799c6e72bcfa6dabe36dc700fa82e6c3ba8ae1)\] Reduce pylint warnings
 * \[[#11001](http://trac.mantidproject.org/mantid/ticket/11001)\|[db2b5dc](https://github.com/mantidproject/mantid/commit/db2b5dc1ae565feda25acda60257fd499e42301e)\] NewCNCS geometry for the 2015A cycle
-* *new* \[[#11010](http://trac.mantidproject.org/mantid/ticket/11010)\|[ed976bb](https://github.com/mantidproject/mantid/commit/ed976bbebc0376f847b0d8e7e4667c533991b72e)\] IDF outline="yes" breaks geometry cylinder direction
-* *new* \[[#11036](http://trac.mantidproject.org/mantid/ticket/11036)\|[4f3e6d3](https://github.com/mantidproject/mantid/commit/4f3e6d36e77247e9b88f0a6b849e38ac2b3dcf9e)\] Create a better plot widget for custom interfaces
-* *new* \[[#11047](http://trac.mantidproject.org/mantid/ticket/11047)\|[d7d5c7c](https://github.com/mantidproject/mantid/commit/d7d5c7cc87075573a1e171a3bc353bcb02e0f3af)\] IndirectInstrumentConfig sometimes does not display analyser when loaded
-* *new* \[[#11049](http://trac.mantidproject.org/mantid/ticket/11049)\|[0dbbd4e](https://github.com/mantidproject/mantid/commit/0dbbd4e27eb081b9c14dc0851a59fe6cc264fc64)\] InstrumentSelector should not change the default facility/instrument
-* *new* \[[#11056](http://trac.mantidproject.org/mantid/ticket/11056)\|[a851158](https://github.com/mantidproject/mantid/commit/a851158ba0b2f6e4f94d3074d5ce86833de3c46b)\] Corrupted state DataObject::Peak
-* *new* \[[#11059](http://trac.mantidproject.org/mantid/ticket/11059)\|[ee87e15](https://github.com/mantidproject/mantid/commit/ee87e1550d9ddff27878f77320001686ba323ba1)\] StartLiveData ILiveListener Properties
-* *new* \[[#11060](http://trac.mantidproject.org/mantid/ticket/11060)\|[077007e](https://github.com/mantidproject/mantid/commit/077007e8d334eca07de4d91e903fcce675d25b5d)\] Coverity High Impact issues: resource leaks in MDEvents
-* *new* \[[#11062](http://trac.mantidproject.org/mantid/ticket/11062)\|[b4e4a6f](https://github.com/mantidproject/mantid/commit/b4e4a6f034f31c4330436c7d0b33301b38b2689a)\] Coverity: potential null pointer issues
-* *new* \[[#11065](http://trac.mantidproject.org/mantid/ticket/11065)\|[07967d0](https://github.com/mantidproject/mantid/commit/07967d08a5b7a1607a164aa6710b8bf3bca67496)\] Failure in PoldiPeakSearchTest under Windows debug
-* *new* \[[#11069](http://trac.mantidproject.org/mantid/ticket/11069)\|[2e32c70](https://github.com/mantidproject/mantid/commit/2e32c70da403be00814c0355d7140e38143d3944)\] Refactor ScriptRepository to use InternetHelper
-* *new* \[[#11091](http://trac.mantidproject.org/mantid/ticket/11091)\|[1b8b39e](https://github.com/mantidproject/mantid/commit/1b8b39e69900de81b10ac208dc05d4156a24bf40)\] Refactor InternetHelper class
-* *new* \[[#11093](http://trac.mantidproject.org/mantid/ticket/11093)\|[f765b7f](https://github.com/mantidproject/mantid/commit/f765b7f1c5726ed897305b77542e2ba91ae63a4f)\] Update Reflectometry Reduction UI documentation
-* *new* \[[#11094](http://trac.mantidproject.org/mantid/ticket/11094)\|[f5517ac](https://github.com/mantidproject/mantid/commit/f5517ac9ed92f6bf2b231b402b64a01119ca41fd)\] Eradicate Coverity issues in ApplicationWindow.cpp
-* *new* \[[#11104](http://trac.mantidproject.org/mantid/ticket/11104)\|[8a98ddd](https://github.com/mantidproject/mantid/commit/8a98ddd08f4650ab89131936267ba3f4dd578318)\] IPeakFunction should have intensity/setIntensity methods
-* *new* \[[#11109](http://trac.mantidproject.org/mantid/ticket/11109)\|[4742c06](https://github.com/mantidproject/mantid/commit/4742c0682dc1ff5941afedcafdd8e99a9c0b3029)\] PoldiSpectrumConstantBackground causes a compilation error with gcc 4.9.1
-* *new* \[[#11110](http://trac.mantidproject.org/mantid/ticket/11110)\|[f988bd4](https://github.com/mantidproject/mantid/commit/f988bd4cac731a239969cebe8248e9052f1969b9)\] fix clang warnings and errors
-* *new* \[[#11114](http://trac.mantidproject.org/mantid/ticket/11114)\|[fbfed50](https://github.com/mantidproject/mantid/commit/fbfed507be75ddd46cc644477af6898d14a92e26)\] Allow the splash screen to drop focus
-* *new* \[[#11115](http://trac.mantidproject.org/mantid/ticket/11115)\|[3272eac](https://github.com/mantidproject/mantid/commit/3272eacd19a016e3815b04f3141e72ba905651a4)\] Re-enable unit tests in GaussianTest.h
-* *new* \[[#11118](http://trac.mantidproject.org/mantid/ticket/11118)\|[2557634](https://github.com/mantidproject/mantid/commit/2557634962bf3a3a9fc53dd71e83e5dcd8b2319b)\] ISIS specific indirect tests should work with any facility set
-* *new* \[[#11120](http://trac.mantidproject.org/mantid/ticket/11120)\|[a7bc302](https://github.com/mantidproject/mantid/commit/a7bc302e7f90e0b0e0d315b93351cdbcf2d02fdb)\] fix osx+clang build and LoadGSASInstrumentFileTest.h
-* *new* \[[#11128](http://trac.mantidproject.org/mantid/ticket/11128)\|[b4c62ec](https://github.com/mantidproject/mantid/commit/b4c62ec14f73195ef15b71984db2f1d5e8485fbf)\] Algorithm history script generation gives output parameters a value
-* *new* \[[#11130](http://trac.mantidproject.org/mantid/ticket/11130)\|[a07d348](https://github.com/mantidproject/mantid/commit/a07d348ae98041f02c868488197cab350e0c9b9a)\] missing header in InternetHelper.h
-* *new* \[[#11132](http://trac.mantidproject.org/mantid/ticket/11132)\|[14fce0d](https://github.com/mantidproject/mantid/commit/14fce0d4bdbbdef9eb060bd6d71054be19e30194)\] linking error with boost 1.56+
-* *new* \[[#11133](http://trac.mantidproject.org/mantid/ticket/11133)\|[5c266ce](https://github.com/mantidproject/mantid/commit/5c266ce84915c003ce1bbefcabf65f4ba1449bf8)\] Fix warning on FuryFit
-* *new* \[[#11136](http://trac.mantidproject.org/mantid/ticket/11136)\|[b607697](https://github.com/mantidproject/mantid/commit/b6076970554a85db1d7191b46123d087812b04dd)\] update buildscript.sh for AppleClang
-* *new* \[[#11140](http://trac.mantidproject.org/mantid/ticket/11140)\|[a744806](https://github.com/mantidproject/mantid/commit/a74480639470b7b3cf0d1ac12fc4a9262ca7b866)\] CreateGroupingWorkspace fails if number of groups exceeds number of spectra in component
-* *new* \[[#11147](http://trac.mantidproject.org/mantid/ticket/11147)\|[3158e98](https://github.com/mantidproject/mantid/commit/3158e986dfc7f39c2eaefc0c50e2f7a067b6d790)\] Declare Python member variables in the class - functions
-* *new* \[[#11149](http://trac.mantidproject.org/mantid/ticket/11149)\|[cc42070](https://github.com/mantidproject/mantid/commit/cc42070fff115f3357c641546e656d20cc22c76f)\] Modify failing OSIRIS fury fit test
+* \[[#11010](http://trac.mantidproject.org/mantid/ticket/11010)\|[ed976bb](https://github.com/mantidproject/mantid/commit/ed976bbebc0376f847b0d8e7e4667c533991b72e)\] IDF outline="yes" breaks geometry cylinder direction
+* \[[#11036](http://trac.mantidproject.org/mantid/ticket/11036)\|[4f3e6d3](https://github.com/mantidproject/mantid/commit/4f3e6d36e77247e9b88f0a6b849e38ac2b3dcf9e)\] Create a better plot widget for custom interfaces
+* \[[#11047](http://trac.mantidproject.org/mantid/ticket/11047)\|[d7d5c7c](https://github.com/mantidproject/mantid/commit/d7d5c7cc87075573a1e171a3bc353bcb02e0f3af)\] IndirectInstrumentConfig sometimes does not display analyser when loaded
+* \[[#11049](http://trac.mantidproject.org/mantid/ticket/11049)\|[0dbbd4e](https://github.com/mantidproject/mantid/commit/0dbbd4e27eb081b9c14dc0851a59fe6cc264fc64)\] InstrumentSelector should not change the default facility/instrument
+* \[[#11056](http://trac.mantidproject.org/mantid/ticket/11056)\|[a851158](https://github.com/mantidproject/mantid/commit/a851158ba0b2f6e4f94d3074d5ce86833de3c46b)\] Corrupted state DataObject::Peak
+* \[[#11059](http://trac.mantidproject.org/mantid/ticket/11059)\|[ee87e15](https://github.com/mantidproject/mantid/commit/ee87e1550d9ddff27878f77320001686ba323ba1)\] StartLiveData ILiveListener Properties
+* \[[#11060](http://trac.mantidproject.org/mantid/ticket/11060)\|[077007e](https://github.com/mantidproject/mantid/commit/077007e8d334eca07de4d91e903fcce675d25b5d)\] Coverity High Impact issues: resource leaks in MDEvents
+* \[[#11062](http://trac.mantidproject.org/mantid/ticket/11062)\|[b4e4a6f](https://github.com/mantidproject/mantid/commit/b4e4a6f034f31c4330436c7d0b33301b38b2689a)\] Coverity: potential null pointer issues
+* \[[#11065](http://trac.mantidproject.org/mantid/ticket/11065)\|[07967d0](https://github.com/mantidproject/mantid/commit/07967d08a5b7a1607a164aa6710b8bf3bca67496)\] Failure in PoldiPeakSearchTest under Windows debug
+* \[[#11069](http://trac.mantidproject.org/mantid/ticket/11069)\|[2e32c70](https://github.com/mantidproject/mantid/commit/2e32c70da403be00814c0355d7140e38143d3944)\] Refactor ScriptRepository to use InternetHelper
+* \[[#11091](http://trac.mantidproject.org/mantid/ticket/11091)\|[1b8b39e](https://github.com/mantidproject/mantid/commit/1b8b39e69900de81b10ac208dc05d4156a24bf40)\] Refactor InternetHelper class
+* \[[#11093](http://trac.mantidproject.org/mantid/ticket/11093)\|[f765b7f](https://github.com/mantidproject/mantid/commit/f765b7f1c5726ed897305b77542e2ba91ae63a4f)\] Update Reflectometry Reduction UI documentation
+* \[[#11094](http://trac.mantidproject.org/mantid/ticket/11094)\|[f5517ac](https://github.com/mantidproject/mantid/commit/f5517ac9ed92f6bf2b231b402b64a01119ca41fd)\] Eradicate Coverity issues in ApplicationWindow.cpp
+* \[[#11104](http://trac.mantidproject.org/mantid/ticket/11104)\|[8a98ddd](https://github.com/mantidproject/mantid/commit/8a98ddd08f4650ab89131936267ba3f4dd578318)\] IPeakFunction should have intensity/setIntensity methods
+* \[[#11109](http://trac.mantidproject.org/mantid/ticket/11109)\|[4742c06](https://github.com/mantidproject/mantid/commit/4742c0682dc1ff5941afedcafdd8e99a9c0b3029)\] PoldiSpectrumConstantBackground causes a compilation error with gcc 4.9.1
+* \[[#11110](http://trac.mantidproject.org/mantid/ticket/11110)\|[f988bd4](https://github.com/mantidproject/mantid/commit/f988bd4cac731a239969cebe8248e9052f1969b9)\] fix clang warnings and errors
+* \[[#11114](http://trac.mantidproject.org/mantid/ticket/11114)\|[fbfed50](https://github.com/mantidproject/mantid/commit/fbfed507be75ddd46cc644477af6898d14a92e26)\] Allow the splash screen to drop focus
+* \[[#11115](http://trac.mantidproject.org/mantid/ticket/11115)\|[3272eac](https://github.com/mantidproject/mantid/commit/3272eacd19a016e3815b04f3141e72ba905651a4)\] Re-enable unit tests in GaussianTest.h
+* \[[#11118](http://trac.mantidproject.org/mantid/ticket/11118)\|[2557634](https://github.com/mantidproject/mantid/commit/2557634962bf3a3a9fc53dd71e83e5dcd8b2319b)\] ISIS specific indirect tests should work with any facility set
+* \[[#11120](http://trac.mantidproject.org/mantid/ticket/11120)\|[a7bc302](https://github.com/mantidproject/mantid/commit/a7bc302e7f90e0b0e0d315b93351cdbcf2d02fdb)\] fix osx+clang build and LoadGSASInstrumentFileTest.h
+* \[[#11128](http://trac.mantidproject.org/mantid/ticket/11128)\|[b4c62ec](https://github.com/mantidproject/mantid/commit/b4c62ec14f73195ef15b71984db2f1d5e8485fbf)\] Algorithm history script generation gives output parameters a value
+* \[[#11130](http://trac.mantidproject.org/mantid/ticket/11130)\|[a07d348](https://github.com/mantidproject/mantid/commit/a07d348ae98041f02c868488197cab350e0c9b9a)\] missing header in InternetHelper.h
+* \[[#11132](http://trac.mantidproject.org/mantid/ticket/11132)\|[14fce0d](https://github.com/mantidproject/mantid/commit/14fce0d4bdbbdef9eb060bd6d71054be19e30194)\] linking error with boost 1.56+
+* \[[#11133](http://trac.mantidproject.org/mantid/ticket/11133)\|[5c266ce](https://github.com/mantidproject/mantid/commit/5c266ce84915c003ce1bbefcabf65f4ba1449bf8)\] Fix warning on FuryFit
+* \[[#11136](http://trac.mantidproject.org/mantid/ticket/11136)\|[b607697](https://github.com/mantidproject/mantid/commit/b6076970554a85db1d7191b46123d087812b04dd)\] update buildscript.sh for AppleClang
+* \[[#11140](http://trac.mantidproject.org/mantid/ticket/11140)\|[a744806](https://github.com/mantidproject/mantid/commit/a74480639470b7b3cf0d1ac12fc4a9262ca7b866)\] CreateGroupingWorkspace fails if number of groups exceeds number of spectra in component
+* \[[#11147](http://trac.mantidproject.org/mantid/ticket/11147)\|[3158e98](https://github.com/mantidproject/mantid/commit/3158e986dfc7f39c2eaefc0c50e2f7a067b6d790)\] Declare Python member variables in the class - functions
+* \[[#11149](http://trac.mantidproject.org/mantid/ticket/11149)\|[cc42070](https://github.com/mantidproject/mantid/commit/cc42070fff115f3357c641546e656d20cc22c76f)\] Modify failing OSIRIS fury fit test
