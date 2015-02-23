@@ -100,12 +100,10 @@ class GitInfo
         summary = summary.gsub(/<h2.+\">/, "")
         @descr = summary.gsub(/<\/h2>/, "")
       elsif @issue_url.include? GITHUB_PR_URL
-        uri = URI("#{GITHUB_API_URL}#{@ticket}")
+        uri = URI("#{GITHUB_PR_URL}#{@ticket}")
         doc = Net::HTTP.get(uri)
-        summary = doc.split("\"title\":")[1]
-        summary[/,\"user\".+/] = ""
-        summary[0] = ""
-        summary[-1] = ""
+        summary = doc.split("\"js-issue-title\">")[1]
+        summary = summary.split("<\/span")[0]
         @descr = "#{summary}"
       else
         puts "Something weird in issue_url #{@issue_url}"
