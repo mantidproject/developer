@@ -7,36 +7,36 @@ title: Updates - Week 8 of 2015
 Updates for week 8 of 2015
 --------------------------
 * CPU widget available in mantid
+* `python-sphinx-bootstrap-theme` added to debian developer metapackage
+* New algorithm [CalculateSlits]({{ site.docpage }}/algorithms/CalculateSlits)
+* New CNCS geometry for the 2015A cycle
+* Reduce pylint warnings (by ~13k)
+* Bugfix in `FindOpenCascade.cmake`
+* RPM now installs on RHEL7
 
 Detailed Merges for Feb 14 - 20, 2015
 -------------------------------------
-* *new* \[[#156](https://github.com/mantidproject/mantid/pull/156)\|[7c8f1e3](https://github.com/mantidproject/mantid/commit/7c8f1e3d1cc3b0b593ea4207ae7de0cfd07ad915)\] add python-sphinx-bootstrap-theme to debian dev requirements metapackage
-* *new* \[[#222](https://github.com/mantidproject/mantid/pull/222)\|[21a2d10](https://github.com/mantidproject/mantid/commit/21a2d10620aad31834b79e2d4972043d40873cfe)\] Fix documentation warning
-* *new* \[[#230](https://github.com/mantidproject/mantid/pull/230)\|[4a3df67](https://github.com/mantidproject/mantid/commit/4a3df677f8d10c75b1a8342d15d15e2df7703437)\] Revert pull request #103
-* *new* \[[#241](https://github.com/mantidproject/mantid/pull/241)\|[59a2fc2](https://github.com/mantidproject/mantid/commit/59a2fc211dee9fe537a7a09b2c1d3d3f510e232b)\] Update control
-* *new* \[[#250](https://github.com/mantidproject/mantid/pull/250)\|[6872c51](https://github.com/mantidproject/mantid/commit/6872c51eaaef3f0cbb6b9f102ba684e8b2ed3302)\] Update the SaveIsawPeak docs
-* *new* \[[#14](https://github.com/mantidproject/mantid/pull/14)\|[169e940](https://github.com/mantidproject/mantid/commit/169e940e10736f0557265c7095a621bc6ac43f14)\] PoldiAutoCorrelation - fix in tests
-* *new* \[[#156](https://github.com/mantidproject/mantid/pull/156)\|[7c8f1e3](https://github.com/mantidproject/mantid/commit/7c8f1e3d1cc3b0b593ea4207ae7de0cfd07ad915)\] add python-sphinx-bootstrap-theme to debian dev requirements metapackage
-* *new* \[[#222](https://github.com/mantidproject/mantid/pull/222)\|[21a2d10](https://github.com/mantidproject/mantid/commit/21a2d10620aad31834b79e2d4972043d40873cfe)\] Fix documentation warning
-* *new* \[[#230](https://github.com/mantidproject/mantid/pull/230)\|[4a3df67](https://github.com/mantidproject/mantid/commit/4a3df677f8d10c75b1a8342d15d15e2df7703437)\] Revert pull request #103
-* *new* \[[#241](https://github.com/mantidproject/mantid/pull/241)\|[59a2fc2](https://github.com/mantidproject/mantid/commit/59a2fc211dee9fe537a7a09b2c1d3d3f510e232b)\] Update control
-* *new* \[[#250](https://github.com/mantidproject/mantid/pull/250)\|[6872c51](https://github.com/mantidproject/mantid/commit/6872c51eaaef3f0cbb6b9f102ba684e8b2ed3302)\] Update the SaveIsawPeak docs
-* *new* \[[#251](https://github.com/mantidproject/mantid/pull/251)\|[be06b45](https://github.com/mantidproject/mantid/commit/be06b45b8946aaf347d66100fcfc043c683ae5f5)\] Add informative comment block to ObjCompAssemblyActor
-* *new* \[[#14](https://github.com/mantidproject/mantid/pull/14)\|[169e940](https://github.com/mantidproject/mantid/commit/169e940e10736f0557265c7095a621bc6ac43f14)\] PoldiAutoCorrelation - fix in tests
-* *new* \[[#9556](http://trac.mantidproject.org/mantid/ticket/9556)\|[a2f3876](https://github.com/mantidproject/mantid/commit/a2f3876b2fe4119fd210e04fc3a604993a1dc3a0)\] Add MUON DKT function
+* \[[#14](https://github.com/mantidproject/mantid/pull/14)\|[169e940](https://github.com/mantidproject/mantid/commit/169e940e10736f0557265c7095a621bc6ac43f14)\] PoldiAutoCorrelation - fix in tests
+* \[[#156](https://github.com/mantidproject/mantid/pull/156)\|[7c8f1e3](https://github.com/mantidproject/mantid/commit/7c8f1e3d1cc3b0b593ea4207ae7de0cfd07ad915)\] add python-sphinx-bootstrap-theme to debian dev requirements metapackage
+* \[[#222](https://github.com/mantidproject/mantid/pull/222)\|[21a2d10](https://github.com/mantidproject/mantid/commit/21a2d10620aad31834b79e2d4972043d40873cfe)\] Fix documentation warning
+* \[[#230](https://github.com/mantidproject/mantid/pull/230)\|[4a3df67](https://github.com/mantidproject/mantid/commit/4a3df677f8d10c75b1a8342d15d15e2df7703437)\] Revert pull request #103
+* \[[#241](https://github.com/mantidproject/mantid/pull/241)\|[59a2fc2](https://github.com/mantidproject/mantid/commit/59a2fc211dee9fe537a7a09b2c1d3d3f510e232b)\] Update control
+* \[[#250](https://github.com/mantidproject/mantid/pull/250)\|[6872c51](https://github.com/mantidproject/mantid/commit/6872c51eaaef3f0cbb6b9f102ba684e8b2ed3302)\] Update the SaveIsawPeak docs
+* \[[#251](https://github.com/mantidproject/mantid/pull/251)\|[be06b45](https://github.com/mantidproject/mantid/commit/be06b45b8946aaf347d66100fcfc043c683ae5f5)\] Add informative comment block to ObjCompAssemblyActor
+* \[[#9556](http://trac.mantidproject.org/mantid/ticket/9556)\|[a2f3876](https://github.com/mantidproject/mantid/commit/a2f3876b2fe4119fd210e04fc3a604993a1dc3a0)\] Add MUON DKT function
 * \[[#9843](http://trac.mantidproject.org/mantid/ticket/9843)\|[8efc448](https://github.com/mantidproject/mantid/commit/8efc44804a5bc9a95ac8952cb55c573569c4472b)\] Add CPU widget to mantid
-* *new* \[[#10513](http://trac.mantidproject.org/mantid/ticket/10513)\|[fbe8a6f](https://github.com/mantidproject/mantid/commit/fbe8a6f8dd16bd42ed10ce466f03bc1116fac3ed)\] Calibration preview plot show pre and post smooth
+* \[[#10513](http://trac.mantidproject.org/mantid/ticket/10513)\|[fbe8a6f](https://github.com/mantidproject/mantid/commit/fbe8a6f8dd16bd42ed10ce466f03bc1116fac3ed)\] Calibration preview plot show pre and post smooth
 * \[[#10627](http://trac.mantidproject.org/mantid/ticket/10627)\|[e4390c4](https://github.com/mantidproject/mantid/commit/e4390c4db7bb818d29ffa40fc826560644304a11)\] Feature: VSI autoscale feature for custom color scaling and multiple workspaces.
-* *new* \[[#10706](http://trac.mantidproject.org/mantid/ticket/10706)\|[c416586](https://github.com/mantidproject/mantid/commit/c4165869c0ee098724bd0e999f5fe6e33b673476)\] PyLint refactoring (indirect + algorithms)
-* *new* \[[#10828](http://trac.mantidproject.org/mantid/ticket/10828)\|[5d9e8cd](https://github.com/mantidproject/mantid/commit/5d9e8cdbb89398d794f361295efb7c8d2ed9a64e)\] Slits Calculator
-* *new* \[[#10862](http://trac.mantidproject.org/mantid/ticket/10862)\|[c6e684b](https://github.com/mantidproject/mantid/commit/c6e684b79ef3563c1a0028b140b575909bd1b384)\] Update unit test for LoadGSASInstrumentFile
-* *new* \[[#10875](http://trac.mantidproject.org/mantid/ticket/10875)\|[3628554](https://github.com/mantidproject/mantid/commit/362855459b521741987362214cef3c4b2d79b53e)\] IntegrateEllipsoids Better Docs
-* *new* \[[#10886](http://trac.mantidproject.org/mantid/ticket/10886)\|[2b76940](https://github.com/mantidproject/mantid/commit/2b7694068eb9ad39c89b68185be2938439ffc325)\] PlotAsymmetryByLogValue fails to load deadtimes from specified file
-* *new* \[[#10894](http://trac.mantidproject.org/mantid/ticket/10894)\|[831acdb](https://github.com/mantidproject/mantid/commit/831acdb87c3cb184df3e3a1e08dfb45923fe3a07)\] Maintenance ticket for PlotAsymmetryByLogValue
-* *new* \[[#10899](http://trac.mantidproject.org/mantid/ticket/10899)\|[aa6729c](https://github.com/mantidproject/mantid/commit/aa6729c290f37379e34d84d5242bef0ab3e759a0)\] Bug report: wrong character case in FindOpenCascade.cmake
-* *new* \[[#10911](http://trac.mantidproject.org/mantid/ticket/10911)\|[c534b72](https://github.com/mantidproject/mantid/commit/c534b72702aea70b68d5b72b42ef47eff796c4b4)\] RPM does not install on RHEL 7
-* *new* \[[#10945](http://trac.mantidproject.org/mantid/ticket/10945)\|[0e799c6](https://github.com/mantidproject/mantid/commit/0e799c6e72bcfa6dabe36dc700fa82e6c3ba8ae1)\] Reduce pylint warnings
-* *new* \[[#11001](http://trac.mantidproject.org/mantid/ticket/11001)\|[db2b5dc](https://github.com/mantidproject/mantid/commit/db2b5dc1ae565feda25acda60257fd499e42301e)\] NewCNCS geometry for the 2015A cycle
+* \[[#10706](http://trac.mantidproject.org/mantid/ticket/10706)\|[c416586](https://github.com/mantidproject/mantid/commit/c4165869c0ee098724bd0e999f5fe6e33b673476)\] PyLint refactoring (indirect + algorithms)
+* \[[#10828](http://trac.mantidproject.org/mantid/ticket/10828)\|[5d9e8cd](https://github.com/mantidproject/mantid/commit/5d9e8cdbb89398d794f361295efb7c8d2ed9a64e)\] Slits Calculator
+* \[[#10862](http://trac.mantidproject.org/mantid/ticket/10862)\|[c6e684b](https://github.com/mantidproject/mantid/commit/c6e684b79ef3563c1a0028b140b575909bd1b384)\] Update unit test for LoadGSASInstrumentFile
+* \[[#10875](http://trac.mantidproject.org/mantid/ticket/10875)\|[3628554](https://github.com/mantidproject/mantid/commit/362855459b521741987362214cef3c4b2d79b53e)\] IntegrateEllipsoids Better Docs
+* \[[#10886](http://trac.mantidproject.org/mantid/ticket/10886)\|[2b76940](https://github.com/mantidproject/mantid/commit/2b7694068eb9ad39c89b68185be2938439ffc325)\] PlotAsymmetryByLogValue fails to load deadtimes from specified file
+* \[[#10894](http://trac.mantidproject.org/mantid/ticket/10894)\|[831acdb](https://github.com/mantidproject/mantid/commit/831acdb87c3cb184df3e3a1e08dfb45923fe3a07)\] Maintenance ticket for PlotAsymmetryByLogValue
+* \[[#10899](http://trac.mantidproject.org/mantid/ticket/10899)\|[aa6729c](https://github.com/mantidproject/mantid/commit/aa6729c290f37379e34d84d5242bef0ab3e759a0)\] Bug report: wrong character case in FindOpenCascade.cmake
+* \[[#10911](http://trac.mantidproject.org/mantid/ticket/10911)\|[c534b72](https://github.com/mantidproject/mantid/commit/c534b72702aea70b68d5b72b42ef47eff796c4b4)\] RPM does not install on RHEL 7
+* \[[#10945](http://trac.mantidproject.org/mantid/ticket/10945)\|[0e799c6](https://github.com/mantidproject/mantid/commit/0e799c6e72bcfa6dabe36dc700fa82e6c3ba8ae1)\] Reduce pylint warnings
+* \[[#11001](http://trac.mantidproject.org/mantid/ticket/11001)\|[db2b5dc](https://github.com/mantidproject/mantid/commit/db2b5dc1ae565feda25acda60257fd499e42301e)\] NewCNCS geometry for the 2015A cycle
 * *new* \[[#11010](http://trac.mantidproject.org/mantid/ticket/11010)\|[ed976bb](https://github.com/mantidproject/mantid/commit/ed976bbebc0376f847b0d8e7e4667c533991b72e)\] IDF outline="yes" breaks geometry cylinder direction
 * *new* \[[#11036](http://trac.mantidproject.org/mantid/ticket/11036)\|[4f3e6d3](https://github.com/mantidproject/mantid/commit/4f3e6d36e77247e9b88f0a6b849e38ac2b3dcf9e)\] Create a better plot widget for custom interfaces
 * *new* \[[#11047](http://trac.mantidproject.org/mantid/ticket/11047)\|[d7d5c7c](https://github.com/mantidproject/mantid/commit/d7d5c7cc87075573a1e171a3bc353bcb02e0f3af)\] IndirectInstrumentConfig sometimes does not display analyser when loaded
