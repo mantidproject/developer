@@ -1,28 +1,20 @@
 ---
 layout: default
-date: 2015-02-20
+date: 2015-02-23
 author: Peter Peterson
 title: Currently Skipped System Tests
 ---
 Summary
 =======
 
-* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2015-02-20 [#312](http://builds.mantidproject.org/job/master_systemtests/312/)
+* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2015-02-23 [#315](http://builds.mantidproject.org/job/master_systemtests/315/)
 * Labels : osx-10.8, rhel6, ubuntu-14.04, win7
-* Failed : 2 (2 unique)
-* Skipped: 107 (35 unique)
+* Failed : 0
+* Skipped: 114 (37 unique)
 * Total  : 1060 (= 265 * 4)
 
 Details
 =======
-
-Failed
-------
-
-| Test                       | osx-10.8 | rhel6 | ubuntu-14.04 | win7 |
-|----------------------------|----------|-------|--------------|------|
-| OSIRISFuryAndFuryFitMulti  |     x    |       |              |      |
-| REFMReduction              |          |   x   |              |      |
 
 Skipped
 -------
@@ -46,6 +38,9 @@ Skipped
 | CylAbsTest                         |     x    |   x   |       x      |      |
 | FltAbsTSecCloseTo90Test            |     x    |   x   |       x      |      |
 | FltAbsTest                         |     x    |   x   |       x      |      |
+| LETReductionEvent2014Multirep      |     x    |   x   |       x      |      |
+| LETReductionEvent2015Multirep      |     x    |   x   |       x      |      |
+| MERLINReduction                    |     x    |   x   |       x      |      |
 | PG3CCCalibration                   |     x    |       |       x      |   x  |
 | PG3Calibration                     |     x    |       |       x      |   x  |
 | QLDataTest                         |     x    |   x   |       x      |      |
@@ -55,12 +50,11 @@ Skipped
 | QSeTest                            |     x    |   x   |       x      |      |
 | QuestTest                          |     x    |   x   |       x      |      |
 | ResNormTest                        |     x    |   x   |       x      |      |
+| TobyFitResolutionSimulationTest    |     x    |   x   |       x      |      |
 | UserAlgorithmsBuild                |     x    |   x   |       x      |      |
-| LETReductionEvent2014Multirep      |     x    |   x   |              |      |
-| LETReductionEvent2015Multirep      |     x    |   x   |              |      |
-| MERLINReduction                    |     x    |   x   |              |      |
-| TobyFitResolutionSimulationTest    |     x    |   x   |              |      |
+| MAPSDgreduceReduction              |     x    |       |       x      |      |
 | ValidateFacilitiesFile             |     x    |       |       x      |      |
 | ValidateGroupingFiles              |     x    |       |       x      |      |
 | ValidateInstrumentDefinitionFiles  |     x    |       |       x      |      |
 | ValidateParameterFiles             |     x    |       |       x      |      |
+| OSIRISFuryAndFuryFitMulti          |     x    |       |              |      |
