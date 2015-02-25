@@ -12,10 +12,6 @@ Updates for week 9 of 2015
 Detailed Merges for Feb 21 - 27, 2015
 -------------------------------------
 * \[[#273](https://github.com/mantidproject/mantid/pull/273)\|[bea5ad6](https://github.com/mantidproject/mantid/commit/bea5ad61b5adb0cd863307fe2c9f80501989fe36)\] Update CppCheck_Suppressions.txt
-* *new* \[[#273](https://github.com/mantidproject/mantid/pull/273)\|[bea5ad6](https://github.com/mantidproject/mantid/commit/bea5ad61b5adb0cd863307fe2c9f80501989fe36)\] Update CppCheck_Suppressions.txt
-* *new* \[[#273](https://github.com/mantidproject/mantid/pull/273)\|[bea5ad6](https://github.com/mantidproject/mantid/commit/bea5ad61b5adb0cd863307fe2c9f80501989fe36)\] Update CppCheck_Suppressions.txt
-* *new* \[[#290](https://github.com/mantidproject/mantid/pull/290)\|[e8ff5a3](https://github.com/mantidproject/mantid/commit/e8ff5a35df7625679b71f023625bc32663db4180)\] Replace help link in README.md
-* *new* \[[#273](https://github.com/mantidproject/mantid/pull/273)\|[bea5ad6](https://github.com/mantidproject/mantid/commit/bea5ad61b5adb0cd863307fe2c9f80501989fe36)\] Update CppCheck_Suppressions.txt
 * *new* \[[#290](https://github.com/mantidproject/mantid/pull/290)\|[e8ff5a3](https://github.com/mantidproject/mantid/commit/e8ff5a35df7625679b71f023625bc32663db4180)\] Replace help link in README.md
 * *new* \[[#7083](http://trac.mantidproject.org/mantid/ticket/7083)\|[a3cd77a](https://github.com/mantidproject/mantid/commit/a3cd77a3abad5fc3dd2012c31b3ce09f6a11088d)\] PlotAymmetryByLogValue as a function of different parts of log values
 * *new* \[[#10068](http://trac.mantidproject.org/mantid/ticket/10068)\|[d1e5ad2](https://github.com/mantidproject/mantid/commit/d1e5ad22140283b5448958e46c09c387e96278a4)\] PlotAsymmetryByLogValue warn/stop if runs not from same directory
