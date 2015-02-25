@@ -13,11 +13,13 @@ class GitInfo
   # class for converting the information into a line in the output file
 
   def initialize log_line
-    @sha1 = ""
+    @descr = ""
     @issue_url = ""
     @merge_url = ""
+    @sha1 = ""
+
     # split between trac (first) and git logs (second)
-    if log_line.include? TRAC_URI
+    if log_line.include? TRAC_URI or log_line.include? GITHUB_PR_URL
       # version from trac
       @is_new = ""
       if log_line.start_with? "* #{NEW_TAG}"
@@ -28,13 +30,17 @@ class GitInfo
       log_line[/.+\\\[\[\#\d+\]/] = ""
 
       # ticket is first
-      @issue_url = log_line[/#{TRAC_URI}\d+/]
+      if log_line.include? TRAC_URI
+        @issue_url = log_line[/#{TRAC_URI}\d+/]
+      elsif log_line.include? GITHUB_PR_URL
+        @issue_url = log_line[/#{GITHUB_PR_URL}\d+/]
+      end
       @ticket = @issue_url[/\d+/]
       log_line[/.+#{@issue_url}\)/] = ""
 
       # rest is the git and descr
       log_line = log_line.split('\]')
-      @descr = log_line[1].strip
+      @descr = "#{log_line[1].strip}"
 
       # get out the sha1 stuff
       log_line = log_line[0].strip
@@ -91,8 +97,8 @@ class GitInfo
 
   def to_s
     # override default to string method
-
-    if not @descr
+    if @descr.empty?
+      puts "getting description for #{@issue_url}"
       if @issue_url.include? TRAC_URI
         uri = URI("#{TRAC_URI}#{@ticket}")
         doc = Net::HTTP.get(uri)
@@ -212,7 +218,7 @@ if filename and File.exist?(filename)
   handle = File.new(filename, "r")
   lines = handle.readlines
   for line in lines
-    if line.include? TRAC_URI
+    if line.include? TRAC_URI or line.include? GITHUB_PR_URL
       info = GitInfo.new line
       tickets << info
     else
@@ -242,9 +248,7 @@ for line in output.split("\n")
   # don't bother with merging master into a branch
   if not (line.include? "Merge remote-tracking branch 'origin/master'" or line.include? "Merge remote branch 'origin/master'")
     if line.include? "'origin/" or line.include? "Merge pull request"
-      puts line # REMOVE
       info = GitInfo.new line
-      puts info # REMOVE
       if not tickets.include? info
         tickets << info
       end
