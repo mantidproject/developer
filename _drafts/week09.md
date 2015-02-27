@@ -22,6 +22,7 @@ Detailed Merges for Feb 21 - 27, 2015
 * \[[#7083](http://trac.mantidproject.org/mantid/ticket/7083)\|[a3cd77a](https://github.com/mantidproject/mantid/commit/a3cd77a3abad5fc3dd2012c31b3ce09f6a11088d)\] PlotAymmetryByLogValue as a function of different parts of log values
 * \[[#10068](http://trac.mantidproject.org/mantid/ticket/10068)\|[d1e5ad2](https://github.com/mantidproject/mantid/commit/d1e5ad22140283b5448958e46c09c387e96278a4)\] PlotAsymmetryByLogValue warn/stop if runs not from same directory
 * \[[#10870](http://trac.mantidproject.org/mantid/ticket/10870)\|[8a297a1](https://github.com/mantidproject/mantid/commit/8a297a169b7913761b21fdbfe135416fb9e55dca)\] Snapshot and move system tests to mantid repository
+* *new* \[[#10889](http://trac.mantidproject.org/mantid/ticket/10889)\|[35b686b](https://github.com/mantidproject/mantid/commit/35b686b709f597b5d6b11dec77744ce903c9a085)\] Create LoadSavuTomoConfig algorithm to load a tomographic reconstruction parameter file
 * \[[#10987](http://trac.mantidproject.org/mantid/ticket/10987)\|[2c83587](https://github.com/mantidproject/mantid/commit/2c8358743510c491f41a40809e7bf5e92c094ced)\] TOFSANSResolutionByPixel change parameter name
 * \[[#11000](http://trac.mantidproject.org/mantid/ticket/11000)\|[f67b764](https://github.com/mantidproject/mantid/commit/f67b7649ce748d170b3cee3100f8fc0214a432f8)\] Move to newer CMAKE
 * \[[#11034](http://trac.mantidproject.org/mantid/ticket/11034)\|[7e5a85f](https://github.com/mantidproject/mantid/commit/7e5a85f834943579d85ebe755e80376191424e9d)\] IntegrateEllipsoids second pass
@@ -57,3 +58,4 @@ Detailed Merges for Feb 21 - 27, 2015
 * \[[#11170](http://trac.mantidproject.org/mantid/ticket/11170)\|[1591aca](https://github.com/mantidproject/mantid/commit/1591acadb70b4b4bcab989421f692d219ef1b961)\] EnginXCalibrateTest fails on osx 10.9
 * *new* \[[#11175](http://trac.mantidproject.org/mantid/ticket/11175)\|[52d0e1a](https://github.com/mantidproject/mantid/commit/52d0e1a220088b90449a9e63f8b45d8641d40f6b)\] Tidy up IndirectILLReduction
 * *new* \[[#11178](http://trac.mantidproject.org/mantid/ticket/11178)\|[83dc367](https://github.com/mantidproject/mantid/commit/83dc367dd215608d2b134a575471604cf9ae9c29)\] Better differentiate between values and optionality in Default column of algorithm docs
+* *new* \[[#11183](http://trac.mantidproject.org/mantid/ticket/11183)\|[c469932](https://github.com/mantidproject/mantid/commit/c469932094142000bc9113450d9bd3ffec6801a4)\] CurveFitting dependency in APITest breaks valgrind build
