@@ -22,3 +22,4 @@ Detailed Merges for Feb 28 - Mar 6, 2015
 * \[[#11165](http://trac.mantidproject.org/mantid/ticket/11165)\|[9315e6c](https://github.com/mantidproject/mantid/commit/9315e6c84e8d51a72dfeb7f327711b655b6e224e)\] LoadMuonNexus fails to load specified spectra
 * *new* \[[#11179](http://trac.mantidproject.org/mantid/ticket/11179)\|[128ea4a](https://github.com/mantidproject/mantid/commit/128ea4abccdb6ea0fc3c722c5924a823737f2c78)\] CheckWorkspacesMatch ignores tolerance when checking numeric axis
 * \[[#11196](http://trac.mantidproject.org/mantid/ticket/11196)\|[26f5aa7](https://github.com/mantidproject/mantid/commit/26f5aa77f7cdc49fba961cfcc10622b1bc5edab3)\] Modify SNSPowderReduction for ADARA beamlines
+* *new* \[[#11206](http://trac.mantidproject.org/mantid/ticket/11206)\|[90e420a](https://github.com/mantidproject/mantid/commit/90e420a5a3bf52578f5999e778619f5b1941f52c)\] Investigating scaling factor behavior in REFL data reduction GUI.
