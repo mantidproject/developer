@@ -11,14 +11,15 @@ Updates for week 10 of 2015
 * Archive implementations have moved to use `InternetHelper`
 * MD files lazy load experiment info
 * [CheckWorkspacesMatch]({{ site.docpage }}/algorithms/CheckWorkspacesMatch) modified to use tolerance when checking numeric axis
-* Usability improvements in [EstimatePDDetectorResolution]({{ site.docpage }}/algorithms/EstimatePDDetectorResolution)
+* Usability improvements in [PDEstimateDetectorResolution]({{ site.docpage }}/algorithms/PDEstimateDetectorResolution)
+* New algorithm [SCARFTomoReconstruction]({{ site.docpage }}/algorithms/SCARFTomoReconstruction)
 
 Detailed Merges for Feb 28 - Mar 6, 2015
 ----------------------------------------
 * \[[#321](https://github.com/mantidproject/mantid/pull/321)\|[8079410](https://github.com/mantidproject/mantid/commit/807941060af99de59168532ca3a9be1fd53722ee)\] Calibrate rect peak pos
-* *new* \[[#338](https://github.com/mantidproject/mantid/pull/338)\|[bfbf02b](https://github.com/mantidproject/mantid/commit/bfbf02b7d1bb0eb3f3a40a386d3e5abfea3db2de)\] SNSDataArchive not working
+* \[[#338](https://github.com/mantidproject/mantid/pull/338)\|[bfbf02b](https://github.com/mantidproject/mantid/commit/bfbf02b7d1bb0eb3f3a40a386d3e5abfea3db2de)\] SNSDataArchive not working
 * \[[#9554](http://trac.mantidproject.org/mantid/ticket/9554)\|[8b7efb3](https://github.com/mantidproject/mantid/commit/8b7efb3e239af0bb04d200db4cc1e6f389e84232)\] Checkbox for dead time correction
-* *new* \[[#10591](http://trac.mantidproject.org/mantid/ticket/10591)\|[ff394aa](https://github.com/mantidproject/mantid/commit/ff394aa38bc11d9b9ebb49432fbd780288389eb0)\] Algorithm to control jobs on the SCARF cluster (and NXtomo reconstruction as a particular case)
+* \[[#10591](http://trac.mantidproject.org/mantid/ticket/10591)\|[ff394aa](https://github.com/mantidproject/mantid/commit/ff394aa38bc11d9b9ebb49432fbd780288389eb0)\] Algorithm to control jobs on the SCARF cluster (and NXtomo reconstruction as a particular case)
 * *new* \[[#10656](http://trac.mantidproject.org/mantid/ticket/10656)\|[c969c24](https://github.com/mantidproject/mantid/commit/c969c245974b41d33b326a492ee1811524fab70d)\] Feature: Unified color map style for slice viewer and VSI
 * \[[#10833](http://trac.mantidproject.org/mantid/ticket/10833)\|[80c7a0e](https://github.com/mantidproject/mantid/commit/80c7a0ecb4e916c2952c433bf8bb3fbef0d3dda7)\] CalculateResolution's failure is unhandled by the ISIS Refl Polref UI
 * *new* \[[#10891](http://trac.mantidproject.org/mantid/ticket/10891)\|[fecb737](https://github.com/mantidproject/mantid/commit/fecb737d9e3e0dff54b77b04dce0f5e57482d3ac)\] ExportSampleLogsToCSVFile confusing properties
