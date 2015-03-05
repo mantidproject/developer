@@ -1,15 +1,15 @@
 ---
 layout: default
-date: 2015-03-04
+date: 2015-03-05
 author: Peter Peterson
 title: Currently Skipped System Tests
 ---
 Summary
 =======
 
-* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2015-03-04 [#324](http://builds.mantidproject.org/job/master_systemtests/324/)
+* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2015-03-05 [#4](http://builds.mantidproject.org/job/master_systemtests/4/)
 * Labels : osx-10.9, rhel6, ubuntu-14.04, win7
-* Failed : 8 (2 unique)
+* Failed : 3 (3 unique)
 * Skipped: 104 (36 unique)
 * Total  : 1068 (= 267 * 4)
 
@@ -19,10 +19,11 @@ Details
 Failed
 ------
 
-| Test          | osx-10.9 | rhel6 | ubuntu-14.04 | win7 |
-|---------------|----------|-------|--------------|------|
-| FitFunctions  |     x    |   x   |       x      |   x  |
-| PlusMDTest    |     x    |   x   |       x      |   x  |
+| Test                          | osx-10.9 | rhel6 | ubuntu-14.04 | win7 |
+|-------------------------------|----------|-------|--------------|------|
+| EQSANSNormalisationDefault    |          |       |       x      |      |
+| EQSANSNormalisationInputFlux  |          |       |       x      |      |
+| EQSANSNormalisationNoFlux     |          |       |       x      |      |
 
 Skipped
 -------
