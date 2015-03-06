@@ -64,3 +64,4 @@ Detailed Merges for Feb 28 - Mar 6, 2015
 * *new* \[[#11263](http://trac.mantidproject.org/mantid/ticket/11263)\|[d96cc82](https://github.com/mantidproject/mantid/commit/d96cc827fd9ce066a1c9005e658ffd1ced39b106)\] Create an algorithm that always  segfaults
 * *new* \[[#11269](http://trac.mantidproject.org/mantid/ticket/11269)\|[033b4de](https://github.com/mantidproject/mantid/commit/033b4deaa0f4c023dab730f32561a70f371157b5)\] Fix master_doctest
 * *new* \[[#11281](http://trac.mantidproject.org/mantid/ticket/11281)\|[c839cfb](https://github.com/mantidproject/mantid/commit/c839cfbc1ed5f786d564b6b0ba980f0c58882bfd)\] Cppcheck warning in CorelliCrossCorrelate
+* *new* \[[#11284](http://trac.mantidproject.org/mantid/ticket/11284)\|[e65ce6c](https://github.com/mantidproject/mantid/commit/e65ce6cf3934ffe2d5b1e62ec2e38d860709f8a1)\] Fix doxygen warnings caused by LoadMuonNexus1
