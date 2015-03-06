@@ -1,29 +1,20 @@
 ---
 layout: default
-date: 2015-03-05
+date: 2015-03-06
 author: Peter Peterson
 title: Currently Skipped System Tests
 ---
 Summary
 =======
 
-* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2015-03-05 [#4](http://builds.mantidproject.org/job/master_systemtests/4/)
+* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2015-03-06 [#5](http://builds.mantidproject.org/job/master_systemtests/5/)
 * Labels : osx-10.9, rhel6, ubuntu-14.04, win7
-* Failed : 3 (3 unique)
-* Skipped: 104 (36 unique)
+* Failed : 0
+* Skipped: 108 (36 unique)
 * Total  : 1068 (= 267 * 4)
 
 Details
 =======
-
-Failed
-------
-
-| Test                          | osx-10.9 | rhel6 | ubuntu-14.04 | win7 |
-|-------------------------------|----------|-------|--------------|------|
-| EQSANSNormalisationDefault    |          |       |       x      |      |
-| EQSANSNormalisationInputFlux  |          |       |       x      |      |
-| EQSANSNormalisationNoFlux     |          |       |       x      |      |
 
 Skipped
 -------
@@ -57,12 +48,12 @@ Skipped
 | QuestTest                          |     x    |   x   |       x      |      |
 | ResNormTest                        |     x    |   x   |       x      |      |
 | UserAlgorithmsBuild                |     x    |   x   |       x      |      |
+| LETReductionEvent2014Multirep      |     x    |   x   |              |      |
+| LETReductionEvent2015Multirep      |     x    |   x   |              |      |
+| MERLINReduction                    |     x    |   x   |              |      |
+| TobyFitResolutionSimulationTest    |     x    |   x   |              |      |
 | ValidateFacilitiesFile             |     x    |       |       x      |      |
 | ValidateGroupingFiles              |     x    |       |       x      |      |
 | ValidateInstrumentDefinitionFiles  |     x    |       |       x      |      |
 | ValidateParameterFiles             |     x    |       |       x      |      |
-| LETReductionEvent2014Multirep      |     x    |       |              |      |
-| LETReductionEvent2015Multirep      |     x    |       |              |      |
-| MERLINReduction                    |     x    |       |              |      |
 | OSIRISFuryAndFuryFitMulti          |     x    |       |              |      |
-| TobyFitResolutionSimulationTest    |     x    |       |              |      |
