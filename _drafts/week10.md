@@ -19,6 +19,9 @@ Updates for week 10 of 2015
 * New algorithm to reduce HB2A data: [ConvertCWPDMDToSpectra]({{ site.docpage }}/algorithms/ConvertCWPDMDToSpectra)
 * More accurate calculation of the width and other peak parameters in CurveFitting
 * Updated live data addresses for SNS DAS 2.0 instruments
+* New Pseudo-Voigt function with mixing parameter
+* Improve speed of [IntegratePeaksMD]({{ site.docpage }}/algorithms/IntegratePeaksMD)
+* New algorithm [Segfault]({{ site.docpage }}/algorithms/Segfault)
 
 Detailed Merges for Feb 28 - Mar 6, 2015
 ----------------------------------------
@@ -58,16 +61,16 @@ Detailed Merges for Feb 28 - Mar 6, 2015
 * \[[#11199](http://trac.mantidproject.org/mantid/ticket/11199)\|[96bc2f1](https://github.com/mantidproject/mantid/commit/96bc2f1944d5816a9181d0a6c0b314d89f872068)\] IDR: Add diagnostic plot preview spinner
 * \[[#11206](http://trac.mantidproject.org/mantid/ticket/11206)\|[90e420a](https://github.com/mantidproject/mantid/commit/90e420a5a3bf52578f5999e778619f5b1941f52c)\] Investigating scaling factor behavior in REFL data reduction GUI.
 * \[[#11208](http://trac.mantidproject.org/mantid/ticket/11208)\|[2fda317](https://github.com/mantidproject/mantid/commit/2fda3171b9992b13d628c8603ef2ae769ffd3940)\] Documentation fails to build when facility is not ISIS
-* *new* \[[#11210](http://trac.mantidproject.org/mantid/ticket/11210)\|[a79431f](https://github.com/mantidproject/mantid/commit/a79431fb73f6c4e0821b36722bb5cc52095bcc72)\] Create Pseudo-Voigt function with mixing parameter
+* \[[#11210](http://trac.mantidproject.org/mantid/ticket/11210)\|[a79431f](https://github.com/mantidproject/mantid/commit/a79431fb73f6c4e0821b36722bb5cc52095bcc72)\] Create Pseudo-Voigt function with mixing parameter
 * \[[#11211](http://trac.mantidproject.org/mantid/ticket/11211)\|[5cdfa35](https://github.com/mantidproject/mantid/commit/5cdfa35798eba4cf7d85068224acf135df853d9a)\] CalibrateRectangularDetectors system test is broken
 * \[[#11215](http://trac.mantidproject.org/mantid/ticket/11215)\|[fc19c38](https://github.com/mantidproject/mantid/commit/fc19c38895a1a46e3e32e34c1dcb251f490c86d2)\] Update live data addresses for SNS DAS 2.0 instruments.
 * \[[#11216](http://trac.mantidproject.org/mantid/ticket/11216)\|[c5a76a0](https://github.com/mantidproject/mantid/commit/c5a76a0d5d89477fdff0d1aa0a09658422b0182c)\] Bugfix: Remove Cppcheck warnings that were introduced by Remove Rebinning
-* *new* \[[#11218](http://trac.mantidproject.org/mantid/ticket/11218)\|[b3b52e9](https://github.com/mantidproject/mantid/commit/b3b52e9ca1da4aaae9bf69363fcdeab602e39edf)\] Fix dead time correction loading when spec min/max or list are supplied
+* \[[#11218](http://trac.mantidproject.org/mantid/ticket/11218)\|[b3b52e9](https://github.com/mantidproject/mantid/commit/b3b52e9ca1da4aaae9bf69363fcdeab602e39edf)\] Fix dead time correction loading when spec min/max or list are supplied
 * \[[#11219](http://trac.mantidproject.org/mantid/ticket/11219)\|[beb67d6](https://github.com/mantidproject/mantid/commit/beb67d62b0b7c48b4359aebed372c431ffc3b605)\] Fix broken systemtest caused by FunctionParameterDecorator
-* *new* \[[#11220](http://trac.mantidproject.org/mantid/ticket/11220)\|[97f8c8b](https://github.com/mantidproject/mantid/commit/97f8c8b9ff37280303b390a8872ad473b63ffb8b)\] PlusMD broken with file backed workspace
-* *new* \[[#11256](http://trac.mantidproject.org/mantid/ticket/11256)\|[5f1f4a1](https://github.com/mantidproject/mantid/commit/5f1f4a1fcd64d6dff35479ccb69649236196137b)\] IntegratePeaksMD slower this release for TOPAZ
+* \[[#11220](http://trac.mantidproject.org/mantid/ticket/11220)\|[97f8c8b](https://github.com/mantidproject/mantid/commit/97f8c8b9ff37280303b390a8872ad473b63ffb8b)\] PlusMD broken with file backed workspace
+* \[[#11256](http://trac.mantidproject.org/mantid/ticket/11256)\|[5f1f4a1](https://github.com/mantidproject/mantid/commit/5f1f4a1fcd64d6dff35479ccb69649236196137b)\] IntegratePeaksMD slower this release for TOPAZ
 * \[[#11262](http://trac.mantidproject.org/mantid/ticket/11262)\|[5f6dcf8](https://github.com/mantidproject/mantid/commit/5f6dcf81a56c768e3df646ce932d709506ea5138)\] Bugfix: Fix a cppcheck error in the MDPlottingCmapsProvider
-* *new* \[[#11263](http://trac.mantidproject.org/mantid/ticket/11263)\|[d96cc82](https://github.com/mantidproject/mantid/commit/d96cc827fd9ce066a1c9005e658ffd1ced39b106)\] Create an algorithm that always  segfaults
+* \[[#11263](http://trac.mantidproject.org/mantid/ticket/11263)\|[d96cc82](https://github.com/mantidproject/mantid/commit/d96cc827fd9ce066a1c9005e658ffd1ced39b106)\] Create an algorithm that always  segfaults
 * \[[#11269](http://trac.mantidproject.org/mantid/ticket/11269)\|[033b4de](https://github.com/mantidproject/mantid/commit/033b4deaa0f4c023dab730f32561a70f371157b5)\] Fix master_doctest
 * \[[#11281](http://trac.mantidproject.org/mantid/ticket/11281)\|[c839cfb](https://github.com/mantidproject/mantid/commit/c839cfbc1ed5f786d564b6b0ba980f0c58882bfd)\] Cppcheck warning in CorelliCrossCorrelate
 * \[[#11284](http://trac.mantidproject.org/mantid/ticket/11284)\|[e65ce6c](https://github.com/mantidproject/mantid/commit/e65ce6cf3934ffe2d5b1e62ec2e38d860709f8a1)\] Fix doxygen warnings caused by LoadMuonNexus1
