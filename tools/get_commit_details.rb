@@ -100,17 +100,27 @@ class GitInfo
     if @descr.empty?
       puts "getting description for #{@issue_url}"
       if @issue_url.include? TRAC_URI
-        uri = URI("#{TRAC_URI}#{@ticket}")
-        doc = Net::HTTP.get(uri)
-        summary = doc[/<h2 class=\"summary searchable\">.+<\/h2>/]
-        summary = summary.gsub(/<h2.+\">/, "")
-        @descr = summary.gsub(/<\/h2>/, "")
+        begin
+          uri = URI("#{TRAC_URI}#{@ticket}")
+          doc = Net::HTTP.get(uri)
+          summary = doc[/<h2 class=\"summary searchable\">.+<\/h2>/]
+          summary = summary.gsub(/<h2.+\">/, "")
+          @descr = summary.gsub(/<\/h2>/, "")
+        rescue
+          puts "failed to get summary for #{TRAC_URI}#{@ticket} / #{@merge_url}"
+          exit 1
+        end
       elsif @issue_url.include? GITHUB_PR_URL
-        uri = URI("#{GITHUB_PR_URL}#{@ticket}")
-        doc = Net::HTTP.get(uri)
-        summary = doc.split("\"js-issue-title\">")[1]
-        summary = summary.split("<\/span")[0]
-        @descr = "#{summary}"
+        begin
+          uri = URI("#{GITHUB_PR_URL}#{@ticket}")
+          doc = Net::HTTP.get(uri)
+          summary = doc.split("\"js-issue-title\">")[1]
+          summary = summary.split("<\/span")[0]
+          @descr = "#{summary}"
+        rescue
+          puts "failed to get summary for #{GITHUB_PR_URL}#{@ticket} / #{@merge_url}"
+          exit 1
+        end
       else
         puts "Something weird in issue_url #{@issue_url}"
         exit 1
