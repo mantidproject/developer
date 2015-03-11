@@ -6,6 +6,7 @@ title: Updates - Week 11 of 2015
 ---
 Updates for week 11 of 2015
 ---------------------------
+* Reduce pylint warnings
 
 Detailed Merges for Mar 7 - 13, 2015
 ------------------------------------
@@ -16,5 +17,5 @@ Detailed Merges for Mar 7 - 13, 2015
 * *new* \[[#11264](http://trac.mantidproject.org/mantid/ticket/11264)\|[40e5686](https://github.com/mantidproject/mantid/commit/40e5686e2dfb955e29bce57dc991eba86297a9f3)\] New algorithm to calculate DIFC for an instrument
 * *new* \[[#11267](http://trac.mantidproject.org/mantid/ticket/11267)\|[66d6258](https://github.com/mantidproject/mantid/commit/66d62581d9dc4b1f1c0da9152135c5884c51e8ad)\] Add metadata to final workspace
 * *new* \[[#11292](http://trac.mantidproject.org/mantid/ticket/11292)\|[1034da6](https://github.com/mantidproject/mantid/commit/1034da6bb4c4e9b46b005b5e640ab113f3db064f)\] Add new LET IDF and Parameters file to Manitd
-* *new* \[[#11293](http://trac.mantidproject.org/mantid/ticket/11293)\|[2c4fa0b](https://github.com/mantidproject/mantid/commit/2c4fa0b27088e4b82fbe0401331f9ed57fdedbcd)\] Reduce pylint warnings in systemtests
-* *new* \[[#11307](http://trac.mantidproject.org/mantid/ticket/11307)\|[07dfd09](https://github.com/mantidproject/mantid/commit/07dfd09acb9c3fd365e10b2035599af4442ed5b4)\] Broken doctest
+* \[[#11293](http://trac.mantidproject.org/mantid/ticket/11293)\|[2c4fa0b](https://github.com/mantidproject/mantid/commit/2c4fa0b27088e4b82fbe0401331f9ed57fdedbcd)\] Reduce pylint warnings in systemtests
+* \[[#11307](http://trac.mantidproject.org/mantid/ticket/11307)\|[07dfd09](https://github.com/mantidproject/mantid/commit/07dfd09acb9c3fd365e10b2035599af4442ed5b4)\] Broken doctest
