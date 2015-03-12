@@ -27,4 +27,5 @@ Detailed Merges for Mar 7 - 13, 2015
 * *new* \[[#11303](http://trac.mantidproject.org/mantid/ticket/11303)\|[13b4a53](https://github.com/mantidproject/mantid/commit/13b4a5309b58af395ad8a0c5a80f1addd091d4b0)\] Remove deprecated POLDI algorithms
 * *new* \[[#11305](http://trac.mantidproject.org/mantid/ticket/11305)\|[ae40a6c](https://github.com/mantidproject/mantid/commit/ae40a6ca4f95612f98d5bfbf2f8c70a3e405240f)\] Fix remaning ApplicationWindow Coverity issues
 * \[[#11307](http://trac.mantidproject.org/mantid/ticket/11307)\|[07dfd09](https://github.com/mantidproject/mantid/commit/07dfd09acb9c3fd365e10b2035599af4442ed5b4)\] Broken doctest
+* *new* \[[#11314](http://trac.mantidproject.org/mantid/ticket/11314)\|[03dbf26](https://github.com/mantidproject/mantid/commit/03dbf266d660c1d7a0548eacdfd3599c13651f79)\] Clean up line breaks in SNSLiveEventDataListener
 * *new* \[[#11323](http://trac.mantidproject.org/mantid/ticket/11323)\|[d7381b2](https://github.com/mantidproject/mantid/commit/d7381b26d799d3606f123a1f2e120724723996c8)\] Fix remaining coverity issues in MantidPlot / Graph.cpp + Cppcheck issues (1.68)
