@@ -29,3 +29,4 @@ Detailed Merges for Mar 7 - 13, 2015
 * \[[#11307](http://trac.mantidproject.org/mantid/ticket/11307)\|[07dfd09](https://github.com/mantidproject/mantid/commit/07dfd09acb9c3fd365e10b2035599af4442ed5b4)\] Broken doctest
 * *new* \[[#11314](http://trac.mantidproject.org/mantid/ticket/11314)\|[03dbf26](https://github.com/mantidproject/mantid/commit/03dbf266d660c1d7a0548eacdfd3599c13651f79)\] Clean up line breaks in SNSLiveEventDataListener
 * *new* \[[#11323](http://trac.mantidproject.org/mantid/ticket/11323)\|[d7381b2](https://github.com/mantidproject/mantid/commit/d7381b26d799d3606f123a1f2e120724723996c8)\] Fix remaining coverity issues in MantidPlot / Graph.cpp + Cppcheck issues (1.68)
+* *new* \[[#11327](http://trac.mantidproject.org/mantid/ticket/11327)\|[2d7acd5](https://github.com/mantidproject/mantid/commit/2d7acd57c07429c36e9c55ec4c02d7c8f244fb6e)\] Paraview 4D player is broken
