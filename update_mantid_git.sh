@@ -7,15 +7,9 @@ if [ -d mantid-code ] ; then
 else
   git clone https://github.com/mantidproject/mantid.git mantid-code
 fi
-if [ -d mantid-systests ] ; then
-  cd mantid-systests && git pull -p && cd -
-else
-  git clone https://github.com/mantidproject/systemtests.git mantid-systests
-fi
 
 # update the ticket list
 tools/get_commit_details.rb mantid-code/ || exit 1
-tools/get_commit_details.rb mantid-systests/ || exit 1
 
 # commit the news page
 git add _drafts/week*.md
