@@ -14,6 +14,7 @@ Updates for week 12 of 2015
 
 Detailed Merges for Mar 14 - 20, 2015
 -------------------------------------
+* *new* \[[#11374](http://trac.mantidproject.org/mantid/ticket/11374)\|[9211b3c](https://github.com/mantidproject/mantid/commit/3e4f03af05997e961ba9c9982f7ec20bd2780282)\] Multi-dataset fitting interface: add graphical tool to set fitting intervals for each spectrum
 * \[[#10474](http://trac.mantidproject.org/mantid/ticket/10474)\|[9211b3c](https://github.com/mantidproject/mantid/commit/9211b3cdf5577fd1281c6012fcb755c3deb1bb17)\] Multi-dataset fitting interface: add graphical tool to set fitting intervals for each spectrum
 * \[[#11053](http://trac.mantidproject.org/mantid/ticket/11053)\|[60beb5c](https://github.com/mantidproject/mantid/commit/60beb5c101e2eeb102938b783967c2c7b9ad821a)\] Feature: Display Peak information  in Splatterplot  in the VSI
 * \[[#11098](http://trac.mantidproject.org/mantid/ticket/11098)\|[5e03002](https://github.com/mantidproject/mantid/commit/5e03002a084af2d8e4db469c0757ff3b6ff76983)\] Load SPICE data file for 2D detector
