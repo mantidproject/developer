@@ -26,3 +26,5 @@ Detailed Merges for Mar 14 - 20, 2015
 * \[[#11335](http://trac.mantidproject.org/mantid/ticket/11335)\|[db2c46f](https://github.com/mantidproject/mantid/commit/db2c46f8d8e93feae967e6d85c062de4957cf3c4)\] Color fill plot
 * \[[#11349](http://trac.mantidproject.org/mantid/ticket/11349)\|[e80ec75](https://github.com/mantidproject/mantid/commit/e80ec75853cf33fbc012061eaaab80ffcbeefc1a)\] Propagate file extension property thorugh runDescriptors
 * \[[#11353](http://trac.mantidproject.org/mantid/ticket/11353)\|[27073d7](https://github.com/mantidproject/mantid/commit/27073d7dbd91e11bf940961eb311c0cbbbe42f1e)\] Tuple syntax for bins in CutMD
+* *new* \[[#11369](http://trac.mantidproject.org/mantid/ticket/11369)\|[de25462](https://github.com/mantidproject/mantid/commit/de25462ec1885bfc230c1689e6c162cdb0eb1460)\] Interpolate results from FlatPaalmanPingsAbsorption
+* *new* \[[#11377](http://trac.mantidproject.org/mantid/ticket/11377)\|[1222c48](https://github.com/mantidproject/mantid/commit/1222c4838d0f60b424ce2bd937050c4aa1fca930)\] DataSelector: dataReady fired when data has not changed
