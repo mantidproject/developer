@@ -9,6 +9,8 @@ Updates for week 13 of 2015
 * Number of pixels in x/y for REF_L are in the parameter files
 * `FileFinder` now has option to ignore directories
 * New algorithm [AddSampleLogMultiple]({{ site.docpage }}/algorithms/AddSampleLogMultiple)
+* New algorithm [PawleyFit]({{ site.docpage }}/algorithms/PawleyFit) to refine lattice parameters from powder diffraction patterns.
+
 
 Detailed Merges for Mar 21 - 27, 2015
 -------------------------------------
