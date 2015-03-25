@@ -1,17 +1,17 @@
 ---
 layout: default
-date: 2015-03-24
+date: 2015-03-25
 author: Peter Peterson
 title: Currently Skipped System Tests
 ---
 Summary
 =======
 
-* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2015-03-24 [#23](http://builds.mantidproject.org/job/master_systemtests/23/)
-* Labels : osx-10.9, rhel6, rhel7, ubuntu-14.04, win7
+* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2015-03-25 [#24](http://builds.mantidproject.org/job/master_systemtests/24/)
+* Labels : rhel6, rhel7, ubuntu-14.04, win7
 * Failed : 0
-* Skipped: 134 (35 unique)
-* Total  : 1340 (= 268 * 5)
+* Skipped: 99 (31 unique)
+* Total  : 1072 (= 268 * 4)
 
 Details
 =======
@@ -19,40 +19,36 @@ Details
 Skipped
 -------
 
-| Test                               | osx-10.9 | rhel6 | rhel7 | ubuntu-14.04 | win7 |
-|------------------------------------|----------|-------|-------|--------------|------|
-| BuildSQWTest                       |     x    |   x   |   x   |       x      |   x  |
-| EQSANSFlatTest                     |     x    |   x   |   x   |       x      |   x  |
-| LoadSQW_FileBasedTest              |     x    |   x   |   x   |       x      |   x  |
-| LoadSQW_MemBasedTest               |     x    |   x   |   x   |       x      |   x  |
-| OffspecSESANS                      |     x    |   x   |   x   |       x      |   x  |
-| OffspecSESANSP0                    |     x    |   x   |   x   |       x      |   x  |
-| PG3Analysis                        |     x    |   x   |   x   |       x      |   x  |
-| PG3StripPeaks                      |     x    |   x   |   x   |       x      |   x  |
-| SNSConvertToMDHistNoProjTest       |     x    |   x   |   x   |       x      |   x  |
-| SNSConvertToMDHistProjTest         |     x    |   x   |   x   |       x      |   x  |
-| AbsRunFeederChemicalFormulaTest    |     x    |   x   |   x   |       x      |      |
-| AbsRunFeederDefaultBeamWidthTest   |     x    |   x   |   x   |       x      |      |
-| AbsRunFeederDiffractionTest        |     x    |   x   |   x   |       x      |      |
-| AbsRunFeederTest                   |     x    |   x   |   x   |       x      |      |
-| CylAbsTest                         |     x    |   x   |   x   |       x      |      |
-| FltAbsTSecCloseTo90Test            |     x    |   x   |   x   |       x      |      |
-| FltAbsTest                         |     x    |   x   |   x   |       x      |      |
-| PG3CCCalibration                   |     x    |       |   x   |       x      |   x  |
-| PG3Calibration                     |     x    |       |   x   |       x      |   x  |
-| QLDataTest                         |     x    |   x   |   x   |       x      |      |
-| QLResNormTest                      |     x    |   x   |   x   |       x      |      |
-| QLWidthTest                        |     x    |   x   |   x   |       x      |      |
-| QLresTest                          |     x    |   x   |   x   |       x      |      |
-| QSeTest                            |     x    |   x   |   x   |       x      |      |
-| QuestTest                          |     x    |   x   |   x   |       x      |      |
-| ResNormTest                        |     x    |   x   |   x   |       x      |      |
-| UserAlgorithmsBuild                |     x    |   x   |   x   |       x      |      |
-| ValidateFacilitiesFile             |     x    |       |   x   |       x      |      |
-| ValidateGroupingFiles              |     x    |       |   x   |       x      |      |
-| ValidateInstrumentDefinitionFiles  |     x    |       |   x   |       x      |      |
-| ValidateParameterFiles             |     x    |       |   x   |       x      |      |
-| LETReductionEvent2015Multirep      |     x    |       |       |              |      |
-| MERLINReduction                    |     x    |       |       |              |      |
-| OSIRISFuryAndFuryFitMulti          |     x    |       |       |              |      |
-| TobyFitResolutionSimulationTest    |     x    |       |       |              |      |
+| Test                               | rhel6 | rhel7 | ubuntu-14.04 | win7 |
+|------------------------------------|-------|-------|--------------|------|
+| BuildSQWTest                       |   x   |   x   |       x      |   x  |
+| EQSANSFlatTest                     |   x   |   x   |       x      |   x  |
+| LoadSQW_FileBasedTest              |   x   |   x   |       x      |   x  |
+| LoadSQW_MemBasedTest               |   x   |   x   |       x      |   x  |
+| OffspecSESANS                      |   x   |   x   |       x      |   x  |
+| OffspecSESANSP0                    |   x   |   x   |       x      |   x  |
+| PG3Analysis                        |   x   |   x   |       x      |   x  |
+| PG3StripPeaks                      |   x   |   x   |       x      |   x  |
+| SNSConvertToMDHistNoProjTest       |   x   |   x   |       x      |   x  |
+| SNSConvertToMDHistProjTest         |   x   |   x   |       x      |   x  |
+| AbsRunFeederChemicalFormulaTest    |   x   |   x   |       x      |      |
+| AbsRunFeederDefaultBeamWidthTest   |   x   |   x   |       x      |      |
+| AbsRunFeederDiffractionTest        |   x   |   x   |       x      |      |
+| AbsRunFeederTest                   |   x   |   x   |       x      |      |
+| CylAbsTest                         |   x   |   x   |       x      |      |
+| FltAbsTSecCloseTo90Test            |   x   |   x   |       x      |      |
+| FltAbsTest                         |   x   |   x   |       x      |      |
+| PG3CCCalibration                   |       |   x   |       x      |   x  |
+| PG3Calibration                     |       |   x   |       x      |   x  |
+| QLDataTest                         |   x   |   x   |       x      |      |
+| QLResNormTest                      |   x   |   x   |       x      |      |
+| QLWidthTest                        |   x   |   x   |       x      |      |
+| QLresTest                          |   x   |   x   |       x      |      |
+| QSeTest                            |   x   |   x   |       x      |      |
+| QuestTest                          |   x   |   x   |       x      |      |
+| ResNormTest                        |   x   |   x   |       x      |      |
+| UserAlgorithmsBuild                |   x   |   x   |       x      |      |
+| ValidateFacilitiesFile             |       |   x   |       x      |      |
+| ValidateGroupingFiles              |       |   x   |       x      |      |
+| ValidateInstrumentDefinitionFiles  |       |   x   |       x      |      |
+| ValidateParameterFiles             |       |   x   |       x      |      |
