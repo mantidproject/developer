@@ -16,13 +16,24 @@ Updates for week 13 of 2015
 Detailed Merges for Mar 21 - 27, 2015
 -------------------------------------
 * \[[#413](https://github.com/mantidproject/mantid/pull/413)\|[02cb0eb](https://github.com/mantidproject/mantid/commit/02cb0eb0d5a3d1e3a1324601419c760b1db1cb4f)\] Re #11387 Update REFL_Parameter files
+* *new* \[[#462](https://github.com/mantidproject/mantid/pull/462)\|[57a2e7e](https://github.com/mantidproject/mantid/commit/57a2e7e5d41bd0bdbb3f70745be6d0525b8d7454)\] Fix cppcheck
 * \[[#9495](http://trac.mantidproject.org/mantid/ticket/9495)\|[0189aba](https://github.com/mantidproject/mantid/commit/0189aba456d08382c27b27cb7fbade074d89e108)\] Help pages for the new Muon ALC interface
 * \[[#10189](http://trac.mantidproject.org/mantid/ticket/10189)\|[ca7daa3](https://github.com/mantidproject/mantid/commit/ca7daa3602737132efedd5a47112edf3209f989e)\] Add centerpeak parameter in DiffSphere
+* *new* \[[#10753](http://trac.mantidproject.org/mantid/ticket/10753)\|[8ccb343](https://github.com/mantidproject/mantid/commit/8ccb3430a011d582185ed51829c1f41858d2e14a)\] Apply absorption corrections algorithm
+* *new* \[[#11005](http://trac.mantidproject.org/mantid/ticket/11005)\|[bbf1de2](https://github.com/mantidproject/mantid/commit/bbf1de2beb6b99159836b83f3a379e1e5d90dd00)\] New adaptive radius binning
 * \[[#11043](http://trac.mantidproject.org/mantid/ticket/11043)\|[3a62204](https://github.com/mantidproject/mantid/commit/3a622047da3cc95a538cc5bbe869a845ab293c0f)\] Introduce Pawley function
+* *new* \[[#11123](http://trac.mantidproject.org/mantid/ticket/11123)\|[581d861](https://github.com/mantidproject/mantid/commit/581d861d25e8765ebb6bc6a3fc84ed8461c93eab)\] Add IRemoteJobManager interface
+* *new* \[[#11389](http://trac.mantidproject.org/mantid/ticket/11389)\|[fdfa34d](https://github.com/mantidproject/mantid/commit/fdfa34d59d8e61eecbbd95b8e32397a6cc985980)\] Bayes: hide diff curves when plot is log(y)
 * \[[#11395](http://trac.mantidproject.org/mantid/ticket/11395)\|[2c90038](https://github.com/mantidproject/mantid/commit/2c900384de7d91d34d11241468bf8765bfb6e343)\] File finder should have option to only find files
 * \[[#11397](http://trac.mantidproject.org/mantid/ticket/11397)\|[585985f](https://github.com/mantidproject/mantid/commit/585985fa991a05abc26625c9a82a6dd4c519c030)\] Ensure LoadMask in direct inelastic use IDF name rather then instrumet name
+* *new* \[[#11400](http://trac.mantidproject.org/mantid/ticket/11400)\|[49eb386](https://github.com/mantidproject/mantid/commit/49eb386e2254691cc07165dd3363ff87ceb72396)\] add -pedantic to gcc and clang warnings
 * \[[#11405](http://trac.mantidproject.org/mantid/ticket/11405)\|[0b387b6](https://github.com/mantidproject/mantid/commit/0b387b69e72c58709879714eaea1abbef5803c62)\] LoadRaw (or loadlog) is not finding the icp_event log
 * *new* \[[#11406](http://trac.mantidproject.org/mantid/ticket/11406)\|[c826503](https://github.com/mantidproject/mantid/commit/c8265038e3dc404c2f39b9b8f4d3ed9638b2e208)\] Filtered log graphs are incorrectly formatted
+* *new* \[[#11411](http://trac.mantidproject.org/mantid/ticket/11411)\|[ebbdc25](https://github.com/mantidproject/mantid/commit/ebbdc25a32771413d8544f1533cd233e73a775fa)\] Remove hack from FindJson when appropriate
+* *new* \[[#11413](http://trac.mantidproject.org/mantid/ticket/11413)\|[db48022](https://github.com/mantidproject/mantid/commit/db48022aa62bdf9842e6d9a086933f446364fd40)\] Extend cross platform indirect abs. corrections to do can corrections
 * \[[#11414](http://trac.mantidproject.org/mantid/ticket/11414)\|[f11d304](https://github.com/mantidproject/mantid/commit/f11d30470d21e290e4a55c90e550c253eee8109c)\] Create an algorithm to add multiple sample logs to a workspace
 * \[[#11417](http://trac.mantidproject.org/mantid/ticket/11417)\|[1c77c02](https://github.com/mantidproject/mantid/commit/1c77c024c8c40ddcab69bbbdd9600d2c1b7737c2)\] Fix small problem in Matrix * V3D operator
 * \[[#11419](http://trac.mantidproject.org/mantid/ticket/11419)\|[4af55ce](https://github.com/mantidproject/mantid/commit/4af55ce0d060db0bd9bed079be51fc5e492bce17)\] Fix failing doc test
+* *new* \[[#11424](http://trac.mantidproject.org/mantid/ticket/11424)\|[b58c8b7](https://github.com/mantidproject/mantid/commit/b58c8b79bbc3a8ef5e972104fdcb6de3d4986564)\] Pan tool zoom remains enabled after right click
+* *new* \[[#11427](http://trac.mantidproject.org/mantid/ticket/11427)\|[70a1a3e](https://github.com/mantidproject/mantid/commit/70a1a3e66b21cc4c14c744d55193dd786dd8f3ab)\] Default sort on sample log UI is unintuitive
+* *new* \[[#11428](http://trac.mantidproject.org/mantid/ticket/11428)\|[fde0941](https://github.com/mantidproject/mantid/commit/fde094159a1092e917ac36856348dd5f978afedd)\] Use the main mantid help system in ALC
