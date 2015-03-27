@@ -25,6 +25,7 @@ Detailed Merges for Mar 21 - 27, 2015
 * *new* \[[#11086](http://trac.mantidproject.org/mantid/ticket/11086)\|[80bf914](https://github.com/mantidproject/mantid/commit/80bf9143ad02eb1fc54e134d48cea5585bec03b0)\] Add Muon DKT for non-zero magnetic field
 * *new* \[[#11123](http://trac.mantidproject.org/mantid/ticket/11123)\|[581d861](https://github.com/mantidproject/mantid/commit/581d861d25e8765ebb6bc6a3fc84ed8461c93eab)\] Add IRemoteJobManager interface
 * *new* \[[#11174](http://trac.mantidproject.org/mantid/ticket/11174)\|[c030001](https://github.com/mantidproject/mantid/commit/c030001ba5d3338c251fcc4374a630a8441cc35c)\] Create1DWorkspaceConstant does not create the correct values
+* *new* \[[#11229](http://trac.mantidproject.org/mantid/ticket/11229)\|[b6bb9db](https://github.com/mantidproject/mantid/commit/b6bb9db845ad7cc9592f77f1dd749e17046a6ede)\] SCD Event Data Reduction needs to be able to output to a nexus file
 * *new* \[[#11244](http://trac.mantidproject.org/mantid/ticket/11244)\|[3964efd](https://github.com/mantidproject/mantid/commit/3964efd3f34f912ca067caff8791bbd6992cdb32)\] Output from SCDCalibratePanels is hard to work with
 * *new* \[[#11389](http://trac.mantidproject.org/mantid/ticket/11389)\|[fdfa34d](https://github.com/mantidproject/mantid/commit/fdfa34d59d8e61eecbbd95b8e32397a6cc985980)\] Bayes: hide diff curves when plot is log(y)
 * \[[#11395](http://trac.mantidproject.org/mantid/ticket/11395)\|[2c90038](https://github.com/mantidproject/mantid/commit/2c900384de7d91d34d11241468bf8765bfb6e343)\] File finder should have option to only find files
@@ -42,3 +43,4 @@ Detailed Merges for Mar 21 - 27, 2015
 * *new* \[[#11426](http://trac.mantidproject.org/mantid/ticket/11426)\|[cbbfc4a](https://github.com/mantidproject/mantid/commit/cbbfc4abef2b6f429ac5a86c6986e50f58bbf531)\] Tidy ConvFit sample log code
 * \[[#11427](http://trac.mantidproject.org/mantid/ticket/11427)\|[70a1a3e](https://github.com/mantidproject/mantid/commit/70a1a3e66b21cc4c14c744d55193dd786dd8f3ab)\] Default sort on sample log UI is unintuitive
 * \[[#11428](http://trac.mantidproject.org/mantid/ticket/11428)\|[fde0941](https://github.com/mantidproject/mantid/commit/fde094159a1092e917ac36856348dd5f978afedd)\] Use the main mantid help system in ALC
+* *new* \[[#11442](http://trac.mantidproject.org/mantid/ticket/11442)\|[acdf3a2](https://github.com/mantidproject/mantid/commit/acdf3a285b9b2ce0f20847b1cf0da4f6bac29f1f)\] New Alf definition
