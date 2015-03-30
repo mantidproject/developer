@@ -112,7 +112,8 @@ class GitInfo
         end
       elsif @issue_url.include? GITHUB_PR_URL
         begin
-          uri = URI("#{GITHUB_PR_URL}#{@ticket}")
+          token = getGithubToken()
+          uri = URI("#{GITHUB_PR_URL}#{@ticket}#{token}")
           doc = Net::HTTP.get(uri)
           summary = doc.split("\"js-issue-title\">")[1]
           summary = summary.split("<\/span")[0]
@@ -154,6 +155,24 @@ def prevSaturday date
       date -= 1
     end
     return date
+  end
+end
+
+def getGithubToken
+  filename = File.expand_path("~/.ssh/github_oauth")
+  if File.exist? filename
+    print "#{filename} exists\n"
+    begin
+      handle = File.new(filename, "r")
+      token = handle.readlines[0].strip
+      return "?access_token=#{token}"
+    rescue
+      puts "Failed to get github oauth token from #{filename}"
+      return ""
+    end
+  else
+    print "#{filename} does not exist - using unauthenticated fetch from github\n"
+    return ""
   end
 end
 
