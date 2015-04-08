@@ -13,7 +13,8 @@ Updates for week 15 of 2015
 Detailed Merges for Apr 4 - 10, 2015
 ------------------------------------
 * \[[#530](https://github.com/mantidproject/mantid/pull/530)\|[bd6dad7](https://github.com/mantidproject/mantid/commit/bd6dad79ef92b5dbf68c5045a15d48e35694100a)\] Update VISION_Definition_20131021-.xml
- \[[#9504](http://trac.mantidproject.org/mantid/ticket/9504)\|[6aad6b1](https://github.com/mantidproject/mantid/commit/6aad6b1817c128269461562875c7ee7f8324402f)\] Make the section selectors more distinguishable
+* *new* \[[#9215](http://trac.mantidproject.org/mantid/ticket/9215)\|[381e037](https://github.com/mantidproject/mantid/commit/381e0374db3920e5ce13d700c0206f82f523f9ec)\] Speed up data loading
+* \[[#9504](http://trac.mantidproject.org/mantid/ticket/9504)\|[6aad6b1](https://github.com/mantidproject/mantid/commit/6aad6b1817c128269461562875c7ee7f8324402f)\] Make the section selectors more distinguishable
 * *new* \[[#9505](http://trac.mantidproject.org/mantid/ticket/9505)\|[aeeb9d0](https://github.com/mantidproject/mantid/commit/aeeb9d0532013a007dbfe7936c9b5c00c5b55629)\] Fitting with no peaks
 * *new* \[[#9555](http://trac.mantidproject.org/mantid/ticket/9555)\|[b7ab1fd](https://github.com/mantidproject/mantid/commit/b7ab1fd8d610b86cdc597193285f932024b7e417)\] Show parameter errors in ALC FunctionBrowser
 * *new* \[[#10637](http://trac.mantidproject.org/mantid/ticket/10637)\|[051c23a](https://github.com/mantidproject/mantid/commit/051c23a6a51d68659f13126e34141fbdc17ea10b)\] Close and review all leak issues with Poco::XML document, nodelist, etc. objects
@@ -24,6 +25,7 @@ Detailed Merges for Apr 4 - 10, 2015
 * *new* \[[#11446](http://trac.mantidproject.org/mantid/ticket/11446)\|[84f14c0](https://github.com/mantidproject/mantid/commit/84f14c0c664816aeb02b9b662afd141714d67d76)\] Replace plotting in indirect interfaces with functions in IndirectTab
 * *new* \[[#11447](http://trac.mantidproject.org/mantid/ticket/11447)\|[58d6f7f](https://github.com/mantidproject/mantid/commit/58d6f7f1f227e0a36a3d3d300f5d2f70556694de)\] Add a WorkspaceIndex attribute to DiffSphere
 * *new* \[[#11454](http://trac.mantidproject.org/mantid/ticket/11454)\|[a23404a](https://github.com/mantidproject/mantid/commit/a23404a6f6742f158aef7660af12ffba1115bf58)\] IntegrateEllipsoids in HKL space
+* *new* \[[#11455](http://trac.mantidproject.org/mantid/ticket/11455)\|[5e65b4a](https://github.com/mantidproject/mantid/commit/5e65b4a11ce20fa392d0e29117228c16b6b71511)\] Instantiate Projection from ITableWorkspace
 * *new* \[[#11465](http://trac.mantidproject.org/mantid/ticket/11465)\|[4b377b1](https://github.com/mantidproject/mantid/commit/4b377b1ed7e87b9a9b172a432a67deaf9c58b219)\] Problem with atom positions in trigonal/hexagonal structures
 * *new* \[[#11469](http://trac.mantidproject.org/mantid/ticket/11469)\|[9b1c5dc](https://github.com/mantidproject/mantid/commit/9b1c5dcdb0fd8aaf5556e2b2cc62a5467719054a)\] Bugfix: LoadMD does not load MDEventData correctly if initial splitting was applied
 * \[[#11470](http://trac.mantidproject.org/mantid/ticket/11470)\|[9cfc845](https://github.com/mantidproject/mantid/commit/9cfc845d0fa1b017d18519261de6c71a674920f0)\] SumSpectra option on LoadVesuvio is broken
