@@ -1,20 +1,28 @@
 ---
 layout: default
-date: 2015-04-09
+date: 2015-04-11
 author: Peter Peterson
 title: Currently Skipped System Tests
 ---
 Summary
 =======
 
-* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2015-04-09 [#36](http://builds.mantidproject.org/job/master_systemtests/36/)
+* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2015-04-11 [#38](http://builds.mantidproject.org/job/master_systemtests/38/)
 * Labels : osx-10.9, rhel6, rhel7, ubuntu-14.04, win7
-* Failed : 0
-* Skipped: 131 (36 unique)
+* Failed : 4 (2 unique)
+* Skipped: 116 (33 unique)
 * Total  : 1420 (= 284 * 5)
 
 Details
 =======
+
+Failed
+------
+
+| Test           | osx-10.9 | rhel6 | rhel7 | ubuntu-14.04 | win7 |
+|----------------|----------|-------|-------|--------------|------|
+| PG3Analysis    |     x    |       |       |       x      |   x  |
+| PG3StripPeaks  |     x    |       |       |              |      |
 
 Skipped
 -------
@@ -27,8 +35,6 @@ Skipped
 | LoadSQW_MemBasedTest               |     x    |   x   |   x   |       x      |   x  |
 | OffspecSESANS                      |     x    |   x   |   x   |       x      |   x  |
 | OffspecSESANSP0                    |     x    |   x   |   x   |       x      |   x  |
-| PG3Analysis                        |     x    |   x   |   x   |       x      |   x  |
-| PG3StripPeaks                      |     x    |   x   |   x   |       x      |   x  |
 | SNSConvertToMDHistNoProjTest       |     x    |   x   |   x   |       x      |   x  |
 | SNSConvertToMDHistProjTest         |     x    |   x   |   x   |       x      |   x  |
 | AbsRunFeederChemicalFormulaTest    |     x    |   x   |   x   |       x      |      |
@@ -38,8 +44,6 @@ Skipped
 | CylAbsTest                         |     x    |   x   |   x   |       x      |      |
 | FltAbsTSecCloseTo90Test            |     x    |   x   |   x   |       x      |      |
 | FltAbsTest                         |     x    |   x   |   x   |       x      |      |
-| PG3CCCalibration                   |     x    |       |   x   |       x      |   x  |
-| PG3Calibration                     |     x    |       |   x   |       x      |   x  |
 | QLDataTest                         |     x    |   x   |   x   |       x      |      |
 | QLResNormTest                      |     x    |   x   |   x   |       x      |      |
 | QLWidthTest                        |     x    |   x   |   x   |       x      |      |
@@ -48,12 +52,13 @@ Skipped
 | QuestTest                          |     x    |   x   |   x   |       x      |      |
 | ResNormTest                        |     x    |   x   |   x   |       x      |      |
 | UserAlgorithmsBuild                |     x    |   x   |   x   |       x      |      |
+| PG3CCCalibration                   |     x    |       |       |              |   x  |
+| PG3Calibration                     |     x    |       |       |              |   x  |
 | ValidateFacilitiesFile             |     x    |       |       |       x      |      |
 | ValidateGroupingFiles              |     x    |       |       |       x      |      |
 | ValidateInstrumentDefinitionFiles  |     x    |       |       |       x      |      |
 | ValidateParameterFiles             |     x    |       |       |       x      |      |
 | LETReductionEvent2015Multirep      |     x    |       |       |              |      |
-| MAPSDgreduceReduction              |     x    |       |       |              |      |
 | MERLINReduction                    |     x    |       |       |              |      |
 | OSIRISFuryAndFuryFitMulti          |     x    |       |       |              |      |
 | TobyFitResolutionSimulationTest    |     x    |       |       |              |      |
