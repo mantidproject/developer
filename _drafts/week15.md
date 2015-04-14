@@ -9,15 +9,17 @@ Updates for week 15 of 2015
 * Unpdated VISION instrument definition file
 * New button icons in SliceViewer
 * Content of remote algorithms and `RemoteJobManager` moved into `Framework/RemoteJobManagers/MantidWebServiceAPIJobManager`
+* IDA ConvFit added support for DiffSphere and DiffRotDiscreteCircle
+* New algorithm [StatisticsOfPeaksWorkspace]({{ site.docpage }}/algorithms/StatisticsOfPeaksWorkspace)
 
 Detailed Merges for Apr 4 - 10, 2015
 ------------------------------------
 * \[[#530](https://github.com/mantidproject/mantid/pull/530)\|[bd6dad7](https://github.com/mantidproject/mantid/commit/bd6dad79ef92b5dbf68c5045a15d48e35694100a)\] Update VISION_Definition_20131021-.xml
 * \[[#543](https://github.com/mantidproject/mantid/pull/543)\|[26c4bf4](https://github.com/mantidproject/mantid/commit/26c4bf42537b7ebf01b18dd62f77cc17271e722b)\] Revert &quot;Speed up data loading&quot;
-* *new* \[[#548](https://github.com/mantidproject/mantid/pull/548)\|[6882c22](https://github.com/mantidproject/mantid/commit/6882c223b1c8bf24eea26e843806f8c9598261c4)\] Minor modifications to LoadDNSLegacy algorithm
-* *new* \[[#6338](http://trac.mantidproject.org/mantid/ticket/6338)\|[263d8cb](https://github.com/mantidproject/mantid/commit/263d8cb509681b27f8033ed9339a0dc56d7743ac)\] Statistics of a peaks workspace
-* *new* \[[#9198](http://trac.mantidproject.org/mantid/ticket/9198)\|[bd44113](https://github.com/mantidproject/mantid/commit/bd441134281c299091e0dcae265987748d6a3bb1)\] IDA ConvFit: Add support for DiffSphere and DiffRotDiscreteCircle
-* *new* \[[#9215](http://trac.mantidproject.org/mantid/ticket/9215)\|[381e037](https://github.com/mantidproject/mantid/commit/381e0374db3920e5ce13d700c0206f82f523f9ec)\] Speed up data loading
+* \[[#548](https://github.com/mantidproject/mantid/pull/548)\|[6882c22](https://github.com/mantidproject/mantid/commit/6882c223b1c8bf24eea26e843806f8c9598261c4)\] Minor modifications to LoadDNSLegacy algorithm
+* \[[#6338](http://trac.mantidproject.org/mantid/ticket/6338)\|[263d8cb](https://github.com/mantidproject/mantid/commit/263d8cb509681b27f8033ed9339a0dc56d7743ac)\] Statistics of a peaks workspace
+* \[[#9198](http://trac.mantidproject.org/mantid/ticket/9198)\|[bd44113](https://github.com/mantidproject/mantid/commit/bd441134281c299091e0dcae265987748d6a3bb1)\] IDA ConvFit: Add support for DiffSphere and DiffRotDiscreteCircle
+* \[[#9215](http://trac.mantidproject.org/mantid/ticket/9215)\|[381e037](https://github.com/mantidproject/mantid/commit/381e0374db3920e5ce13d700c0206f82f523f9ec)\] Speed up data loading
 * \[[#9504](http://trac.mantidproject.org/mantid/ticket/9504)\|[6aad6b1](https://github.com/mantidproject/mantid/commit/6aad6b1817c128269461562875c7ee7f8324402f)\] Make the section selectors more distinguishable
 * *new* \[[#9505](http://trac.mantidproject.org/mantid/ticket/9505)\|[aeeb9d0](https://github.com/mantidproject/mantid/commit/aeeb9d0532013a007dbfe7936c9b5c00c5b55629)\] Fitting with no peaks
 * *new* \[[#9555](http://trac.mantidproject.org/mantid/ticket/9555)\|[b7ab1fd](https://github.com/mantidproject/mantid/commit/b7ab1fd8d610b86cdc597193285f932024b7e417)\] Show parameter errors in ALC FunctionBrowser
