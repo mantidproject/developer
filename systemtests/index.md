@@ -1,17 +1,17 @@
 ---
 layout: default
-date: 2015-04-13
+date: 2015-04-14
 author: Peter Peterson
 title: Currently Skipped System Tests
 ---
 Summary
 =======
 
-* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2015-04-13 [#40](http://builds.mantidproject.org/job/master_systemtests/40/)
+* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2015-04-14 [#41](http://builds.mantidproject.org/job/master_systemtests/41/)
 * Labels : osx-10.9, rhel6, rhel7, ubuntu-14.04, win7
-* Failed : 4 (2 unique)
+* Failed : 2 (2 unique)
 * Skipped: 116 (33 unique)
-* Total  : 1420 (= 284 * 5)
+* Total  : 1450 (= 290 * 5)
 
 Details
 =======
@@ -21,7 +21,7 @@ Failed
 
 | Test           | osx-10.9 | rhel6 | rhel7 | ubuntu-14.04 | win7 |
 |----------------|----------|-------|-------|--------------|------|
-| PG3Analysis    |     x    |       |       |       x      |   x  |
+| PG3Analysis    |          |       |       |              |   x  |
 | PG3StripPeaks  |     x    |       |       |              |      |
 
 Skipped
