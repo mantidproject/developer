@@ -10,8 +10,9 @@ Updates for week 15 of 2015
 * New button icons in SliceViewer
 * Content of remote algorithms and `RemoteJobManager` moved into `Framework/RemoteJobManagers/MantidWebServiceAPIJobManager`
 * IDA ConvFit added support for DiffSphere and DiffRotDiscreteCircle
-* New system tests for processing OFFSPEC data with [ReflectometryReductionOneAuto]({{ site.docpage }}/algorithms/ReflectometryReductionOneAuto)
+* New system liquids reflectometer (including for processing OFFSPEC data)
 * [IntegrateEllipsoids]({{ site.docpage }}/algorithms/IntegrateEllipsoids) now supports HKL space as well
+* Bugfix in event filter interface consuming all available memory
 * Bugfix in [LoadNXSPE]({{ site.docpage }}/algorithms/LoadNXSPE) failing to load some Mantid nxspe files
 * New algorithm [StatisticsOfPeaksWorkspace]({{ site.docpage }}/algorithms/StatisticsOfPeaksWorkspace)
 * New algorithm [LRPrimaryFraction]({{ site.docpage }}/algorithms/LRPrimaryFraction) for Liquids Reflectometer clocking correction
@@ -43,11 +44,11 @@ Detailed Merges for Apr 4 - 10, 2015
 * \[[#11470](http://trac.mantidproject.org/mantid/ticket/11470)\|[9cfc845](https://github.com/mantidproject/mantid/commit/9cfc845d0fa1b017d18519261de6c71a674920f0)\] SumSpectra option on LoadVesuvio is broken
 * \[[#11472](http://trac.mantidproject.org/mantid/ticket/11472)\|[c44909c](https://github.com/mantidproject/mantid/commit/c44909c25bcec9e73af60db9c943b685c99d3681)\] LoadNXSPE fails to load some Mantid nxspe files
 * \[[#11478](http://trac.mantidproject.org/mantid/ticket/11478)\|[12516c7](https://github.com/mantidproject/mantid/commit/12516c759fe62c4d77986050ff20db72ec39e6de)\] Write clocking correction for Liquids Reflectometer
-* *new* \[[#11479](http://trac.mantidproject.org/mantid/ticket/11479)\|[9a874a0](https://github.com/mantidproject/mantid/commit/9a874a075c0af21ca8b6af2a40706cfb3885ed48)\] TOPAZ 11439 in event filter interface
-* *new* \[[#11480](http://trac.mantidproject.org/mantid/ticket/11480)\|[0d4ab5b](https://github.com/mantidproject/mantid/commit/0d4ab5b74754157d332265085ca8d6ccfd8f404e)\] New Indirect absorption correction fixes
-* *new* \[[#11481](http://trac.mantidproject.org/mantid/ticket/11481)\|[522fa34](https://github.com/mantidproject/mantid/commit/522fa34829489ec89998967f945560f3758c4530)\] Fix inconsistent naming in IDA
-* *new* \[[#11486](http://trac.mantidproject.org/mantid/ticket/11486)\|[8bbed0b](https://github.com/mantidproject/mantid/commit/8bbed0bfbd9cd578e45cb406c049f70876929672)\] LoadISISNexus does not load multi-period monitors when specifying LoadMonitors='Separate'
-* *new* \[[#11488](http://trac.mantidproject.org/mantid/ticket/11488)\|[252cbe5](https://github.com/mantidproject/mantid/commit/252cbe50aa3ee5b4780dbd76a7598a82cee5932b)\] Add more system tests for REFL
+* \[[#11479](http://trac.mantidproject.org/mantid/ticket/11479)\|[9a874a0](https://github.com/mantidproject/mantid/commit/9a874a075c0af21ca8b6af2a40706cfb3885ed48)\] TOPAZ 11439 in event filter interface
+* \[[#11480](http://trac.mantidproject.org/mantid/ticket/11480)\|[0d4ab5b](https://github.com/mantidproject/mantid/commit/0d4ab5b74754157d332265085ca8d6ccfd8f404e)\] New Indirect absorption correction fixes
+* \[[#11481](http://trac.mantidproject.org/mantid/ticket/11481)\|[522fa34](https://github.com/mantidproject/mantid/commit/522fa34829489ec89998967f945560f3758c4530)\] Fix inconsistent naming in IDA
+* \[[#11486](http://trac.mantidproject.org/mantid/ticket/11486)\|[8bbed0b](https://github.com/mantidproject/mantid/commit/8bbed0bfbd9cd578e45cb406c049f70876929672)\] LoadISISNexus does not load multi-period monitors when specifying `LoadMonitors='Separate'`
+* \[[#11488](http://trac.mantidproject.org/mantid/ticket/11488)\|[252cbe5](https://github.com/mantidproject/mantid/commit/252cbe50aa3ee5b4780dbd76a7598a82cee5932b)\] Add more system tests for REFL
 * \[[#11490](http://trac.mantidproject.org/mantid/ticket/11490)\|[7330325](https://github.com/mantidproject/mantid/commit/7330325acaf880194af2157937f3f1953d9327f8)\] validateInputs on TimeSlice is never called
 * \[[#11493](http://trac.mantidproject.org/mantid/ticket/11493)\|[f9b16c5](https://github.com/mantidproject/mantid/commit/f9b16c5cb893e4d701f9fe0680c552b7d08376e0)\] LoadRaw with separate monitors produces incorrect period log numbers
 * \[[#11497](http://trac.mantidproject.org/mantid/ticket/11497)\|[7763cca](https://github.com/mantidproject/mantid/commit/7763ccac0bc1b393b47f0a0391485bc6d4e26793)\] Valgrind: Remove algorithm dependencies from DataObjectsTest
