@@ -7,22 +7,14 @@ title: Currently Skipped System Tests
 Summary
 =======
 
-* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2015-04-14 [#41](http://builds.mantidproject.org/job/master_systemtests/41/)
+* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2015-04-14 [#42](http://builds.mantidproject.org/job/master_systemtests/42/)
 * Labels : osx-10.9, rhel6, rhel7, ubuntu-14.04, win7
-* Failed : 2 (2 unique)
-* Skipped: 116 (33 unique)
+* Failed : 0
+* Skipped: 124 (35 unique)
 * Total  : 1450 (= 290 * 5)
 
 Details
 =======
-
-Failed
-------
-
-| Test           | osx-10.9 | rhel6 | rhel7 | ubuntu-14.04 | win7 |
-|----------------|----------|-------|-------|--------------|------|
-| PG3Analysis    |          |       |       |              |   x  |
-| PG3StripPeaks  |     x    |       |       |              |      |
 
 Skipped
 -------
@@ -52,12 +44,14 @@ Skipped
 | QuestTest                          |     x    |   x   |   x   |       x      |      |
 | ResNormTest                        |     x    |   x   |   x   |       x      |      |
 | UserAlgorithmsBuild                |     x    |   x   |   x   |       x      |      |
+| ValidateFacilitiesFile             |     x    |   x   |       |       x      |      |
+| ValidateGroupingFiles              |     x    |   x   |       |       x      |      |
+| ValidateInstrumentDefinitionFiles  |     x    |   x   |       |       x      |      |
+| ValidateParameterFiles             |     x    |   x   |       |       x      |      |
+| PG3Analysis                        |     x    |       |       |              |   x  |
 | PG3CCCalibration                   |     x    |       |       |              |   x  |
 | PG3Calibration                     |     x    |       |       |              |   x  |
-| ValidateFacilitiesFile             |     x    |       |       |       x      |      |
-| ValidateGroupingFiles              |     x    |       |       |       x      |      |
-| ValidateInstrumentDefinitionFiles  |     x    |       |       |       x      |      |
-| ValidateParameterFiles             |     x    |       |       |       x      |      |
+| PG3StripPeaks                      |     x    |       |       |              |   x  |
 | LETReductionEvent2015Multirep      |     x    |       |       |              |      |
 | MERLINReduction                    |     x    |       |       |              |      |
 | OSIRISFuryAndFuryFitMulti          |     x    |       |       |              |      |
