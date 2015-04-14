@@ -13,7 +13,7 @@ Updates for week 15 of 2015
 Detailed Merges for Apr 4 - 10, 2015
 ------------------------------------
 * \[[#530](https://github.com/mantidproject/mantid/pull/530)\|[bd6dad7](https://github.com/mantidproject/mantid/commit/bd6dad79ef92b5dbf68c5045a15d48e35694100a)\] Update VISION_Definition_20131021-.xml
-* *new* \[[#543](https://github.com/mantidproject/mantid/pull/543)\|[26c4bf4](https://github.com/mantidproject/mantid/commit/26c4bf42537b7ebf01b18dd62f77cc17271e722b)\] Revert &quot;Speed up data loading&quot;
+* \[[#543](https://github.com/mantidproject/mantid/pull/543)\|[26c4bf4](https://github.com/mantidproject/mantid/commit/26c4bf42537b7ebf01b18dd62f77cc17271e722b)\] Revert &quot;Speed up data loading&quot;
 * *new* \[[#548](https://github.com/mantidproject/mantid/pull/548)\|[6882c22](https://github.com/mantidproject/mantid/commit/6882c223b1c8bf24eea26e843806f8c9598261c4)\] Minor modifications to LoadDNSLegacy algorithm
 * *new* \[[#6338](http://trac.mantidproject.org/mantid/ticket/6338)\|[263d8cb](https://github.com/mantidproject/mantid/commit/263d8cb509681b27f8033ed9339a0dc56d7743ac)\] Statistics of a peaks workspace
 * *new* \[[#9198](http://trac.mantidproject.org/mantid/ticket/9198)\|[bd44113](https://github.com/mantidproject/mantid/commit/bd441134281c299091e0dcae265987748d6a3bb1)\] IDA ConvFit: Add support for DiffSphere and DiffRotDiscreteCircle
@@ -43,6 +43,6 @@ Detailed Merges for Apr 4 - 10, 2015
 * *new* \[[#11486](http://trac.mantidproject.org/mantid/ticket/11486)\|[8bbed0b](https://github.com/mantidproject/mantid/commit/8bbed0bfbd9cd578e45cb406c049f70876929672)\] LoadISISNexus does not load multi-period monitors when specifying LoadMonitors='Separate'
 * *new* \[[#11488](http://trac.mantidproject.org/mantid/ticket/11488)\|[252cbe5](https://github.com/mantidproject/mantid/commit/252cbe50aa3ee5b4780dbd76a7598a82cee5932b)\] Add more system tests for REFL
 * \[[#11490](http://trac.mantidproject.org/mantid/ticket/11490)\|[7330325](https://github.com/mantidproject/mantid/commit/7330325acaf880194af2157937f3f1953d9327f8)\] validateInputs on TimeSlice is never called
-* *new* \[[#11493](http://trac.mantidproject.org/mantid/ticket/11493)\|[f9b16c5](https://github.com/mantidproject/mantid/commit/f9b16c5cb893e4d701f9fe0680c552b7d08376e0)\] LoadRaw with separate monitors produces incorrect period log numbers
-* *new* \[[#11497](http://trac.mantidproject.org/mantid/ticket/11497)\|[7763cca](https://github.com/mantidproject/mantid/commit/7763ccac0bc1b393b47f0a0391485bc6d4e26793)\] Valgrind: Remove algorithm dependencies from DataObjectsTest
-* *new* \[[#11503](http://trac.mantidproject.org/mantid/ticket/11503)\|[f78e04f](https://github.com/mantidproject/mantid/commit/f78e04f6114cf9732d5323ac4cccc308f96713cc)\] Provide feedback while loading project workspaces
+* \[[#11493](http://trac.mantidproject.org/mantid/ticket/11493)\|[f9b16c5](https://github.com/mantidproject/mantid/commit/f9b16c5cb893e4d701f9fe0680c552b7d08376e0)\] LoadRaw with separate monitors produces incorrect period log numbers
+* \[[#11497](http://trac.mantidproject.org/mantid/ticket/11497)\|[7763cca](https://github.com/mantidproject/mantid/commit/7763ccac0bc1b393b47f0a0391485bc6d4e26793)\] Valgrind: Remove algorithm dependencies from DataObjectsTest
+* \[[#11503](http://trac.mantidproject.org/mantid/ticket/11503)\|[f78e04f](https://github.com/mantidproject/mantid/commit/f78e04f6114cf9732d5323ac4cccc308f96713cc)\] Provide feedback while loading project workspaces
