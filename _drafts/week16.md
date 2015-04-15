@@ -29,3 +29,4 @@ Detailed Merges for Apr 11 - 17, 2015
 * *new* \[[#11519](http://trac.mantidproject.org/mantid/ticket/11519)\|[8f7063c](https://github.com/mantidproject/mantid/commit/8f7063ccbb164a28ab030698e0f010f22462bf1e)\] Enable SNS powder reduction GUI to save and load reduction setup automatically
 * *new* \[[#11541](http://trac.mantidproject.org/mantid/ticket/11541)\|[c5616ca](https://github.com/mantidproject/mantid/commit/c5616caf6a77d8775bf8aa751042fdf03999e0e0)\] Add a documentation page for FABADA
 * *new* \[[#11544](http://trac.mantidproject.org/mantid/ticket/11544)\|[cc00c65](https://github.com/mantidproject/mantid/commit/cc00c65d0d2174d8ed213dbdfb0b4d88aebfc9a4)\] Improve handling of vertical axis in Matrix window
+* *new* \[[#11552](http://trac.mantidproject.org/mantid/ticket/11552)\|[b3ab886](https://github.com/mantidproject/mantid/commit/b3ab8866c1d51754a560fb0c1ea0f4519326c57f)\] ConvFit fixes
