@@ -1,16 +1,16 @@
 ---
 layout: default
-date: 2015-04-14
+date: 2015-04-15
 author: Peter Peterson
 title: Currently Skipped System Tests
 ---
 Summary
 =======
 
-* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2015-04-14 [#42](http://builds.mantidproject.org/job/master_systemtests/42/)
+* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2015-04-15 [#43](http://builds.mantidproject.org/job/master_systemtests/43/)
 * Labels : osx-10.9, rhel6, rhel7, ubuntu-14.04, win7
 * Failed : 0
-* Skipped: 124 (35 unique)
+* Skipped: 120 (35 unique)
 * Total  : 1450 (= 290 * 5)
 
 Details
@@ -44,14 +44,14 @@ Skipped
 | QuestTest                          |     x    |   x   |   x   |       x      |      |
 | ResNormTest                        |     x    |   x   |   x   |       x      |      |
 | UserAlgorithmsBuild                |     x    |   x   |   x   |       x      |      |
-| ValidateFacilitiesFile             |     x    |   x   |       |       x      |      |
-| ValidateGroupingFiles              |     x    |   x   |       |       x      |      |
-| ValidateInstrumentDefinitionFiles  |     x    |   x   |       |       x      |      |
-| ValidateParameterFiles             |     x    |   x   |       |       x      |      |
 | PG3Analysis                        |     x    |       |       |              |   x  |
 | PG3CCCalibration                   |     x    |       |       |              |   x  |
 | PG3Calibration                     |     x    |       |       |              |   x  |
 | PG3StripPeaks                      |     x    |       |       |              |   x  |
+| ValidateFacilitiesFile             |     x    |       |       |       x      |      |
+| ValidateGroupingFiles              |     x    |       |       |       x      |      |
+| ValidateInstrumentDefinitionFiles  |     x    |       |       |       x      |      |
+| ValidateParameterFiles             |     x    |       |       |       x      |      |
 | LETReductionEvent2015Multirep      |     x    |       |       |              |      |
 | MERLINReduction                    |     x    |       |       |              |      |
 | OSIRISFuryAndFuryFitMulti          |     x    |       |       |              |      |
