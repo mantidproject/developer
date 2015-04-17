@@ -20,7 +20,7 @@ Detailed Merges for Apr 11 - 17, 2015
 * \[[#572](https://github.com/mantidproject/mantid/pull/572)\|[147e7ee](https://github.com/mantidproject/mantid/commit/147e7ee31c2bba185cb46a045446bf42a7152060)\] Enable test that was accidentally disabled
 * \[[#574](https://github.com/mantidproject/mantid/pull/574)\|[c96aaa6](https://github.com/mantidproject/mantid/commit/c96aaa63c688b52ce67dd83dc89325381ef45a1b)\] Skpping tests where fit gives different results
 * *new* \[[#596](https://github.com/mantidproject/mantid/pull/596)\|[f7d44d3](https://github.com/mantidproject/mantid/commit/f7d44d341532236723fc6f64596e6c3699c72569)\] Fix null dereference check
-* *new* \[[#601](https://github.com/mantidproject/mantid/pull/601)\|[236c0950](https://github.com/mantidproject/mantid/commit/236c0950a616aa2d01b0f259f7425abdbc42b136)\]  Fixing doxygen warnings in Mantid_template.doxyfile
+* *new* \[[#601](https://github.com/mantidproject/mantid/pull/601)\|[236c095](https://github.com/mantidproject/mantid/commit/236c0950a616aa2d01b0f259f7425abdbc42b136)\] Fixing doxygen warnings in Mantid_template.doxyfile
 * \[[#2089](http://trac.mantidproject.org/mantid/ticket/2089)\|[5217533](https://github.com/mantidproject/mantid/commit/5217533fd22d4979f39bc3f21e0c04936bf32596)\] Workspace History Window does not expand well
 * \[[#6835](http://trac.mantidproject.org/mantid/ticket/6835)\|[406cfc1](https://github.com/mantidproject/mantid/commit/406cfc18a26b0ed2c77825eb9c3bdf546e349416)\] History is lost after ConjoinWorkspaces
 * \[[#9067](http://trac.mantidproject.org/mantid/ticket/9067)\|[19ff857](https://github.com/mantidproject/mantid/commit/19ff857cbb0944afd11d12ee83e0475f1380ccb3)\] Config keys
@@ -43,8 +43,8 @@ Detailed Merges for Apr 11 - 17, 2015
 * \[[#11544](http://trac.mantidproject.org/mantid/ticket/11544)\|[cc00c65](https://github.com/mantidproject/mantid/commit/cc00c65d0d2174d8ed213dbdfb0b4d88aebfc9a4)\] Improve handling of vertical axis in Matrix window
 * *new* \[[#11548](http://trac.mantidproject.org/mantid/ticket/11548)\|[fda4df6](https://github.com/mantidproject/mantid/commit/fda4df6d2069a4bbdad7c86bc10d88473bdad207)\] Project saving should save multiperiod workspace groups as a single Nexus file
 * \[[#11549](http://trac.mantidproject.org/mantid/ticket/11549)\|[c1d8332](https://github.com/mantidproject/mantid/commit/c1d8332b36a065bb4b69cfd33d5037577a92adfb)\] Keep the last log value selected and use it as default
-* \[[#11552](http://trac.mantidproject.org/mantid/ticket/11552)\|[b3ab886](https://github.com/mantidproject/mantid/commit/b3ab8866c1d51754a560fb0c1ea0f4519326c57f)\] ConvFit fixes
 * *new* \[[#11552](http://trac.mantidproject.org/mantid/ticket/11552)\|[e654409](https://github.com/mantidproject/mantid/commit/e6544095456dc6836d6b7fcf446b50fe32e6e38d)\] REFL tweaks
+* \[[#11552](http://trac.mantidproject.org/mantid/ticket/11552)\|[b3ab886](https://github.com/mantidproject/mantid/commit/b3ab8866c1d51754a560fb0c1ea0f4519326c57f)\] ConvFit fixes
 * *new* \[[#11555](http://trac.mantidproject.org/mantid/ticket/11555)\|[2812426](https://github.com/mantidproject/mantid/commit/2812426067a498d1a2b240f7ae2a596458c64bce)\] REFL tweaks
 * *new* \[[#11559](http://trac.mantidproject.org/mantid/ticket/11559)\|[2706e82](https://github.com/mantidproject/mantid/commit/2706e82e5672d12f74aeef2d309868634fc00e32)\] Add a convert to waterfall option for 1D plots
 * *new* \[[#11562](http://trac.mantidproject.org/mantid/ticket/11562)\|[7b15810](https://github.com/mantidproject/mantid/commit/7b158106f648c3a3804bba1ae197f0251329c2a1)\] Load Instrument segfaults if called from GUI
