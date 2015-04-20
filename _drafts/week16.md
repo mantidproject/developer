@@ -48,8 +48,8 @@ Detailed Merges for Apr 11 - 17, 2015
 * \[[#11544](http://trac.mantidproject.org/mantid/ticket/11544)\|[cc00c65](https://github.com/mantidproject/mantid/commit/cc00c65d0d2174d8ed213dbdfb0b4d88aebfc9a4)\] Improve handling of vertical axis in Matrix window
 * \[[#11548](http://trac.mantidproject.org/mantid/ticket/11548)\|[fda4df6](https://github.com/mantidproject/mantid/commit/fda4df6d2069a4bbdad7c86bc10d88473bdad207)\] Project saving should save multiperiod workspace groups as a single Nexus file
 * \[[#11549](http://trac.mantidproject.org/mantid/ticket/11549)\|[c1d8332](https://github.com/mantidproject/mantid/commit/c1d8332b36a065bb4b69cfd33d5037577a92adfb)\] Keep the last log value selected and use it as default
-* \[[#11552](http://trac.mantidproject.org/mantid/ticket/11552)\|[e654409](https://github.com/mantidproject/mantid/commit/e6544095456dc6836d6b7fcf446b50fe32e6e38d)\] REFL tweaks
 * \[[#11552](http://trac.mantidproject.org/mantid/ticket/11552)\|[b3ab886](https://github.com/mantidproject/mantid/commit/b3ab8866c1d51754a560fb0c1ea0f4519326c57f)\] ConvFit fixes
+* \[[#11552](http://trac.mantidproject.org/mantid/ticket/11552)\|[e654409](https://github.com/mantidproject/mantid/commit/e6544095456dc6836d6b7fcf446b50fe32e6e38d)\] REFL tweaks
 * \[[#11555](http://trac.mantidproject.org/mantid/ticket/11555)\|[2812426](https://github.com/mantidproject/mantid/commit/2812426067a498d1a2b240f7ae2a596458c64bce)\] REFL tweaks
 * \[[#11559](http://trac.mantidproject.org/mantid/ticket/11559)\|[2706e82](https://github.com/mantidproject/mantid/commit/2706e82e5672d12f74aeef2d309868634fc00e32)\] Add a convert to waterfall option for 1D plots
 * \[[#11562](http://trac.mantidproject.org/mantid/ticket/11562)\|[7b15810](https://github.com/mantidproject/mantid/commit/7b158106f648c3a3804bba1ae197f0251329c2a1)\] Load Instrument segfaults if called from GUI
