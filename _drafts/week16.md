@@ -15,6 +15,7 @@ Updates for week 16 of 2015
 * Fixed segfault on exit and "Clear All Memory" issues
 * Fixed MPI build (for use on fermi)
 * Fixed issues in OSX 10.9 packaging
+* 1D plots now have a convert to waterfall option 
 
 Detailed Merges for Apr 11 - 17, 2015
 -------------------------------------
@@ -50,7 +51,7 @@ Detailed Merges for Apr 11 - 17, 2015
 * \[[#11552](http://trac.mantidproject.org/mantid/ticket/11552)\|[e654409](https://github.com/mantidproject/mantid/commit/e6544095456dc6836d6b7fcf446b50fe32e6e38d)\] REFL tweaks
 * \[[#11552](http://trac.mantidproject.org/mantid/ticket/11552)\|[b3ab886](https://github.com/mantidproject/mantid/commit/b3ab8866c1d51754a560fb0c1ea0f4519326c57f)\] ConvFit fixes
 * \[[#11555](http://trac.mantidproject.org/mantid/ticket/11555)\|[2812426](https://github.com/mantidproject/mantid/commit/2812426067a498d1a2b240f7ae2a596458c64bce)\] REFL tweaks
-* *new* \[[#11559](http://trac.mantidproject.org/mantid/ticket/11559)\|[2706e82](https://github.com/mantidproject/mantid/commit/2706e82e5672d12f74aeef2d309868634fc00e32)\] Add a convert to waterfall option for 1D plots
+* \[[#11559](http://trac.mantidproject.org/mantid/ticket/11559)\|[2706e82](https://github.com/mantidproject/mantid/commit/2706e82e5672d12f74aeef2d309868634fc00e32)\] Add a convert to waterfall option for 1D plots
 * \[[#11562](http://trac.mantidproject.org/mantid/ticket/11562)\|[7b15810](https://github.com/mantidproject/mantid/commit/7b158106f648c3a3804bba1ae197f0251329c2a1)\] Load Instrument segfaults if called from GUI
 * \[[#11563](http://trac.mantidproject.org/mantid/ticket/11563)\|[de2271e](https://github.com/mantidproject/mantid/commit/de2271ec3d479ccbe5965bad52a095fda58f6cda)\] More corrections fixes
 * \[[#11564](http://trac.mantidproject.org/mantid/ticket/11564)\|[e15303c](https://github.com/mantidproject/mantid/commit/e15303ced3042f18fb9e9f00cdb880086b647e6b)\] IDR ET: (OS)IRIS should save as Nexus by default
