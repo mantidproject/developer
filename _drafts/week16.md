@@ -24,7 +24,7 @@ Detailed Merges for Apr 11 - 17, 2015
 * \[[#574](https://github.com/mantidproject/mantid/pull/574)\|[c96aaa6](https://github.com/mantidproject/mantid/commit/c96aaa63c688b52ce67dd83dc89325381ef45a1b)\] Skpping tests where fit gives different results
 * \[[#596](https://github.com/mantidproject/mantid/pull/596)\|[f7d44d3](https://github.com/mantidproject/mantid/commit/f7d44d341532236723fc6f64596e6c3699c72569)\] Fix null dereference check
 * \[[#601](https://github.com/mantidproject/mantid/pull/601)\|[236c095](https://github.com/mantidproject/mantid/commit/236c0950a616aa2d01b0f259f7425abdbc42b136)\] Fixing doxygen warnings in Mantid_template.doxyfile
-* *new* \[[#611](https://github.com/mantidproject/mantid/pull/611)\|[f8eeca2](https://github.com/mantidproject/mantid/commit/f8eeca29d16d7988c462c7ae44512cf3126c0c9d)\] Fixing more doxygen warnings
+* \[[#611](https://github.com/mantidproject/mantid/pull/611)\|[f8eeca2](https://github.com/mantidproject/mantid/commit/f8eeca29d16d7988c462c7ae44512cf3126c0c9d)\] Fixing more doxygen warnings
 * \[[#2089](http://trac.mantidproject.org/mantid/ticket/2089)\|[5217533](https://github.com/mantidproject/mantid/commit/5217533fd22d4979f39bc3f21e0c04936bf32596)\] Workspace History Window does not expand well
 * \[[#6835](http://trac.mantidproject.org/mantid/ticket/6835)\|[406cfc1](https://github.com/mantidproject/mantid/commit/406cfc18a26b0ed2c77825eb9c3bdf546e349416)\] History is lost after ConjoinWorkspaces
 * \[[#9067](http://trac.mantidproject.org/mantid/ticket/9067)\|[19ff857](https://github.com/mantidproject/mantid/commit/19ff857cbb0944afd11d12ee83e0475f1380ccb3)\] Config keys
