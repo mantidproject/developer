@@ -6,6 +6,7 @@ title: Updates - Week 16 of 2015
 ---
 Updates for week 16 of 2015
 ---------------------------
+* VATES moved to use ParaView 4.3.1
 * Improvements in peak table view in splatterplot
 * Update live data URL for USANS
 * Bugfix in [ConjoinWorkspaces]({{ site.docpage }}/algorithms/ConjoinWorkspaces) not preserving history
@@ -28,6 +29,7 @@ Detailed Merges for Apr 11 - 17, 2015
 * \[[#611](https://github.com/mantidproject/mantid/pull/611)\|[f8eeca2](https://github.com/mantidproject/mantid/commit/f8eeca29d16d7988c462c7ae44512cf3126c0c9d)\] Fixing more doxygen warnings
 * \[[#2089](http://trac.mantidproject.org/mantid/ticket/2089)\|[5217533](https://github.com/mantidproject/mantid/commit/5217533fd22d4979f39bc3f21e0c04936bf32596)\] Workspace History Window does not expand well
 * \[[#6835](http://trac.mantidproject.org/mantid/ticket/6835)\|[406cfc1](https://github.com/mantidproject/mantid/commit/406cfc18a26b0ed2c77825eb9c3bdf546e349416)\] History is lost after ConjoinWorkspaces
+* \[[#7363](http://trac.mantidproject.org/mantid/ticket/7363)\|[9188066](https://github.com/mantidproject/mantid/commit/91880669613f4af2b2d8c71927d45f2a119312e3)\] Keep VATES code running with latest ParaView
 * \[[#9067](http://trac.mantidproject.org/mantid/ticket/9067)\|[19ff857](https://github.com/mantidproject/mantid/commit/19ff857cbb0944afd11d12ee83e0475f1380ccb3)\] Config keys
 * \[[#9490](http://trac.mantidproject.org/mantid/ticket/9490)\|[84cec0d](https://github.com/mantidproject/mantid/commit/84cec0d61d54c3d48374affc8fbb3bc12b648ef1)\] Add ability to export any plot in the interface to a workspace
 * \[[#9506](http://trac.mantidproject.org/mantid/ticket/9506)\|[85059ab](https://github.com/mantidproject/mantid/commit/85059abaf7cb01259aa2ae4dde2d8090cc15550c)\] Don't clear baseline model/peaks when changing data
