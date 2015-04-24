@@ -6,11 +6,12 @@ title: Updates - Week 17 of 2015
 ---
 Updates for week 17 of 2015
 ---------------------------
+* Fixing things found by static analysis tools
 
 Detailed Merges for Apr 18 - 24, 2015
 -------------------------------------
-* *new* \[[#603](https://github.com/mantidproject/mantid/pull/603)\|[863dd4e](https://github.com/mantidproject/mantid/commit/863dd4edaa36e37ce159fb3f94cc11822fcccfeb)\] Removing (hopefully) unused #include statements
-* *new* \[[#627](https://github.com/mantidproject/mantid/pull/627)\|[00f8e43](https://github.com/mantidproject/mantid/commit/00f8e43ce8357b310cb49b27a00d4dfdaf1aba08)\] Ignore duplicate lines in pylint
+* \[[#603](https://github.com/mantidproject/mantid/pull/603)\|[863dd4e](https://github.com/mantidproject/mantid/commit/863dd4edaa36e37ce159fb3f94cc11822fcccfeb)\] Removing (hopefully) unused #include statements
+* \[[#627](https://github.com/mantidproject/mantid/pull/627)\|[00f8e43](https://github.com/mantidproject/mantid/commit/00f8e43ce8357b310cb49b27a00d4dfdaf1aba08)\] Ignore duplicate lines in pylint
 * *new* \[[#631](https://github.com/mantidproject/mantid/pull/631)\|[ace2ab3](https://github.com/mantidproject/mantid/commit/ace2ab3ac4dd513cd02096797d9c8fd9762c2eec)\] Fix minor typo in GroupDetectors-v1.rst
 * *new* \[[#638](https://github.com/mantidproject/mantid/pull/638)\|[e5ed7e0](https://github.com/mantidproject/mantid/commit/e5ed7e0c79b02393bd0623f5ec48371870850854)\] SaveNXSPETest: fix LLVM warnings that silently slid into master
 * *new* \[[#6931](http://trac.mantidproject.org/mantid/ticket/6931)\|[e07584d](https://github.com/mantidproject/mantid/commit/e07584d05e93ccea710cdc749f197903c0294c80)\] Allow appending in PlotAsymmetryByLogValue
@@ -31,9 +32,9 @@ Detailed Merges for Apr 18 - 24, 2015
 * *new* \[[#11573](http://trac.mantidproject.org/mantid/ticket/11573)\|[bf13dd6](https://github.com/mantidproject/mantid/commit/bf13dd638090989706d901e4de3e0157a5ec2332)\] IntegrateMDHistoWorkspace
 * *new* \[[#11574](http://trac.mantidproject.org/mantid/ticket/11574)\|[aafc792](https://github.com/mantidproject/mantid/commit/aafc79279062988a669b78dd483a1db72505bdf8)\] FindNeighbours performance
 * *new* \[[#11576](http://trac.mantidproject.org/mantid/ticket/11576)\|[8af6612](https://github.com/mantidproject/mantid/commit/8af66128c882fa17ed50b079cc43f1fe26b93f24)\] Fix ISIS reduction for instruments with wrong IDF stored with nexus files
-* *new* \[[#11583](http://trac.mantidproject.org/mantid/ticket/11583)\|[4f5c692](https://github.com/mantidproject/mantid/commit/4f5c692781514105ec28c37066a116c91c2fa760)\] Fix coverity issues for Vates
+* \[[#11583](http://trac.mantidproject.org/mantid/ticket/11583)\|[4f5c692](https://github.com/mantidproject/mantid/commit/4f5c692781514105ec28c37066a116c91c2fa760)\] Fix coverity issues for Vates
 * *new* \[[#11584](http://trac.mantidproject.org/mantid/ticket/11584)\|[08e5002](https://github.com/mantidproject/mantid/commit/08e5002bec6b60420896177a06bddbe4e1dec430)\] Log Filtering for initial setup periods
-* *new* \[[#11585](http://trac.mantidproject.org/mantid/ticket/11585)\|[4b2121b](https://github.com/mantidproject/mantid/commit/4b2121bbeb77c9a89e4c3a1caf50426ff850aac7)\] Reduce pylint warnings
+* \[[#11585](http://trac.mantidproject.org/mantid/ticket/11585)\|[4b2121b](https://github.com/mantidproject/mantid/commit/4b2121bbeb77c9a89e4c3a1caf50426ff850aac7)\] Reduce pylint warnings
 * *new* \[[#11589](http://trac.mantidproject.org/mantid/ticket/11589)\|[4434327](https://github.com/mantidproject/mantid/commit/4434327bc022acf95e2228affcb6d7be7507f8da)\] Memory not released after getting last algorithm from history in Python
 * *new* \[[#11602](http://trac.mantidproject.org/mantid/ticket/11602)\|[644358c](https://github.com/mantidproject/mantid/commit/644358cad8fb888fb8d9129fcb0352aef80c8a62)\] Filters are not removed when switching to Splatterplot
 * *new* \[[#11607](http://trac.mantidproject.org/mantid/ticket/11607)\|[79c33a0](https://github.com/mantidproject/mantid/commit/79c33a07c3264ca46ab4b77222bfc3f426d97fa2)\] Mask POLDI detectors automatically using MedianDetectorTest
