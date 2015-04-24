@@ -45,3 +45,4 @@ Detailed Merges for Apr 18 - 24, 2015
 * *new* \[[#11614](http://trac.mantidproject.org/mantid/ticket/11614)\|[d31c0d8](https://github.com/mantidproject/mantid/commit/d31c0d839c8821ef8ac2b6061c4013fb0b6dc566)\] SaveNXSPE: Write speeds very slow on ceph file system
 * *new* \[[#11621](http://trac.mantidproject.org/mantid/ticket/11621)\|[fddd888](https://github.com/mantidproject/mantid/commit/fddd8882566c4b51156b13465dee6addc508afd1)\] ISIS direct reduction does not remove backgound properly if workspace is not normalized
 * *new* \[[#11623](http://trac.mantidproject.org/mantid/ticket/11623)\|[a573d0b](https://github.com/mantidproject/mantid/commit/a573d0be51c57b6e42389ea800a2c1d6a503a92b)\] Add check for run numbers
+* *new* \[[#11624](http://trac.mantidproject.org/mantid/ticket/11624)\|[c6bb1e2](https://github.com/mantidproject/mantid/commit/c6bb1e24061b29cda6eaacd9a668dc96ae34e747)\] Skip missing run numbers
