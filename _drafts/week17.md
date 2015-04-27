@@ -14,6 +14,8 @@ Updates for week 17 of 2015
 * `future.pyplot` has been moved out of `future` and imported by default
 * Performance improvement in FindNeighbours
 * Bugfix opening slice viewer from VSI:Multislice
+* Significant performance improvements in [SaveNXSPE]({{ site.docpage }}/algorithms/SaveNXSPE)
+* New algorithm [LRScalingFactors]({{ site.docpage }}/algorithms/LRScalingFactors)
 
 Detailed Merges for Apr 18 - 24, 2015
 -------------------------------------
@@ -48,9 +50,9 @@ Detailed Merges for Apr 18 - 24, 2015
 * \[[#11609](http://trac.mantidproject.org/mantid/ticket/11609)\|[34e3644](https://github.com/mantidproject/mantid/commit/34e36442b95c50cabde1ae46f7e2b55d1057f41c)\] SaveHKL bug
 * \[[#11610](http://trac.mantidproject.org/mantid/ticket/11610)\|[5d8ef05](https://github.com/mantidproject/mantid/commit/5d8ef05d3c11a63ce5bc4dd34d0f151853f2b20f)\] Add documentation (RST) for algorithm SaveNXTomo
 * \[[#11611](http://trac.mantidproject.org/mantid/ticket/11611)\|[06e2f13](https://github.com/mantidproject/mantid/commit/06e2f138dd914efa1438b378eabf99bd0f132b06)\] Bugfix: Fix for opening slice viewer from Multislice in VSI
-* *new* \[[#11612](http://trac.mantidproject.org/mantid/ticket/11612)\|[b09daf7](https://github.com/mantidproject/mantid/commit/b09daf7c47b9af6909464c7997534603926f8ffb)\] REFL scaling factor for 30Hz operation
-* *new* \[[#11613](http://trac.mantidproject.org/mantid/ticket/11613)\|[e044e2c](https://github.com/mantidproject/mantid/commit/e044e2ced64c5b1427f5758b3ed853a0911b1cbf)\] Recent changes to headers broke no-precompiled headers windows build
-* *new* \[[#11614](http://trac.mantidproject.org/mantid/ticket/11614)\|[d31c0d8](https://github.com/mantidproject/mantid/commit/d31c0d839c8821ef8ac2b6061c4013fb0b6dc566)\] SaveNXSPE: Write speeds very slow on ceph file system
-* *new* \[[#11621](http://trac.mantidproject.org/mantid/ticket/11621)\|[fddd888](https://github.com/mantidproject/mantid/commit/fddd8882566c4b51156b13465dee6addc508afd1)\] ISIS direct reduction does not remove backgound properly if workspace is not normalized
-* *new* \[[#11623](http://trac.mantidproject.org/mantid/ticket/11623)\|[a573d0b](https://github.com/mantidproject/mantid/commit/a573d0be51c57b6e42389ea800a2c1d6a503a92b)\] Add check for run numbers
-* *new* \[[#11624](http://trac.mantidproject.org/mantid/ticket/11624)\|[c6bb1e2](https://github.com/mantidproject/mantid/commit/c6bb1e24061b29cda6eaacd9a668dc96ae34e747)\] Skip missing run numbers
+* \[[#11612](http://trac.mantidproject.org/mantid/ticket/11612)\|[b09daf7](https://github.com/mantidproject/mantid/commit/b09daf7c47b9af6909464c7997534603926f8ffb)\] REFL scaling factor for 30Hz operation
+* \[[#11613](http://trac.mantidproject.org/mantid/ticket/11613)\|[e044e2c](https://github.com/mantidproject/mantid/commit/e044e2ced64c5b1427f5758b3ed853a0911b1cbf)\] Recent changes to headers broke no-precompiled headers windows build
+* \[[#11614](http://trac.mantidproject.org/mantid/ticket/11614)\|[d31c0d8](https://github.com/mantidproject/mantid/commit/d31c0d839c8821ef8ac2b6061c4013fb0b6dc566)\] SaveNXSPE: Write speeds very slow on ceph file system
+* \[[#11621](http://trac.mantidproject.org/mantid/ticket/11621)\|[fddd888](https://github.com/mantidproject/mantid/commit/fddd8882566c4b51156b13465dee6addc508afd1)\] ISIS direct reduction does not remove backgound properly if workspace is not normalized
+* \[[#11623](http://trac.mantidproject.org/mantid/ticket/11623)\|[a573d0b](https://github.com/mantidproject/mantid/commit/a573d0be51c57b6e42389ea800a2c1d6a503a92b)\] Add check for run numbers
+* \[[#11624](http://trac.mantidproject.org/mantid/ticket/11624)\|[c6bb1e2](https://github.com/mantidproject/mantid/commit/c6bb1e24061b29cda6eaacd9a668dc96ae34e747)\] Skip missing run numbers
