@@ -1,27 +1,20 @@
 ---
 layout: default
-date: 2015-04-27
+date: 2015-04-28
 author: Peter Peterson
 title: Currently Skipped System Tests
 ---
 Summary
 =======
 
-* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2015-04-27 [#58](http://builds.mantidproject.org/job/master_systemtests/58/)
+* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2015-04-28 [#60](http://builds.mantidproject.org/job/master_systemtests/60/)
 * Labels : osx-10.9, rhel6, rhel7, ubuntu-14.04, win7
-* Failed : 1
-* Skipped: 125 (36 unique)
-* Total  : 1465 (= 293 * 5)
+* Failed : 0
+* Skipped: 121 (36 unique)
+* Total  : 1480 (= 296 * 5)
 
 Details
 =======
-
-Failed
-------
-
-| Test                   | osx-10.9 | rhel6 | rhel7 | ubuntu-14.04 | win7 |
-|------------------------|----------|-------|-------|--------------|------|
-| LRPrimaryFractionTest  |          |       |       |              |   x  |
 
 Skipped
 -------
@@ -51,16 +44,16 @@ Skipped
 | QuestTest                          |     x    |   x   |   x   |       x      |      |
 | ResNormTest                        |     x    |   x   |   x   |       x      |      |
 | UserAlgorithmsBuild                |     x    |   x   |   x   |       x      |      |
-| LETReductionEvent2015Multirep      |     x    |       |       |       x      |      |
-| MAPSDgreduceReduction              |     x    |       |       |       x      |      |
-| MERLINReduction                    |     x    |       |       |       x      |      |
 | PG3Analysis                        |     x    |       |       |              |   x  |
 | PG3CCCalibration                   |     x    |       |       |              |   x  |
 | PG3Calibration                     |     x    |       |       |              |   x  |
 | PG3StripPeaks                      |     x    |       |       |              |   x  |
-| TobyFitResolutionSimulationTest    |     x    |       |       |       x      |      |
 | ValidateFacilitiesFile             |     x    |       |       |       x      |      |
 | ValidateGroupingFiles              |     x    |       |       |       x      |      |
 | ValidateInstrumentDefinitionFiles  |     x    |       |       |       x      |      |
 | ValidateParameterFiles             |     x    |       |       |       x      |      |
+| LETReductionEvent2015Multirep      |     x    |       |       |              |      |
+| MAPSDgreduceReduction              |     x    |       |       |              |      |
+| MERLINReduction                    |     x    |       |       |              |      |
 | OSIRISFuryAndFuryFitMulti          |     x    |       |       |              |      |
+| TobyFitResolutionSimulationTest    |     x    |       |       |              |      |
