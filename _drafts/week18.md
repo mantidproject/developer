@@ -11,15 +11,22 @@ Updates for week 18 of 2015
 
 Detailed Merges for Apr 25 - May 1, 2015
 ----------------------------------------
+* *new* \[[#635](https://github.com/mantidproject/mantid/pull/635)\|[e10af48](https://github.com/mantidproject/mantid/commit/e10af484938f9f04506a0dc542114c804b222745)\] Fix runsphinx.py for vanilla Python
 * *new* \[[#656](https://github.com/mantidproject/mantid/pull/656)\|[82a49a9](https://github.com/mantidproject/mantid/commit/82a49a97dc0e033afd16542a88d97df1da52244c)\] Fix coverity errors in ConvertUnitsUsingDetectorTable
+* *new* \[[#663](https://github.com/mantidproject/mantid/pull/663)\|[454e6e6](https://github.com/mantidproject/mantid/commit/454e6e6c510501fdaae70c8f99ad28b96c2f4ed0)\] Fix names of ranges in Elwin docs
 * *new* \[[#664](https://github.com/mantidproject/mantid/pull/664)\|[797b965](https://github.com/mantidproject/mantid/commit/797b9659202988c1dc8a5432ccf4ad554b3f8525)\] Include mantidlibs34 Qt webkit as an rpm dependency
+* *new* \[[#669](https://github.com/mantidproject/mantid/pull/669)\|[3875cf6](https://github.com/mantidproject/mantid/commit/3875cf6ffc58834dad0939c0e1b34df86c88a1ed)\] Add a NXdata level to the saved MDHisto.
 * *new* \[[#10564](http://trac.mantidproject.org/mantid/ticket/10564)\|[0d0a788](https://github.com/mantidproject/mantid/commit/0d0a78839f81f68f06f362b6980bf93f349efc9c)\] Design and create GUI for IMAT reconstruction
 * *new* \[[#10702](http://trac.mantidproject.org/mantid/ticket/10702)\|[435d4da](https://github.com/mantidproject/mantid/commit/435d4dab38a9a325ca472a1265f8953cd72ac362)\] Create Workflow-algorithm for POLDI
 * *new* \[[#11511](http://trac.mantidproject.org/mantid/ticket/11511)\|[18adf6b](https://github.com/mantidproject/mantid/commit/18adf6b47c88afcf1fc46ae317a5f2fd9ad1e921)\] CreateMD filebacked
 * \[[#11572](http://trac.mantidproject.org/mantid/ticket/11572)\|[7cce96b](https://github.com/mantidproject/mantid/commit/7cce96b07c0a9b57cfee4a3b2e20b26767e99c75)\] Lower dimensionality cuts for CutMD
 * \[[#11575](http://trac.mantidproject.org/mantid/ticket/11575)\|[7e8b849](https://github.com/mantidproject/mantid/commit/7e8b849d3e6ebffb73ab840ad74c6e5152eefa64)\] Support FITS files produced by Starlight cameras in LoadFITS
 * *new* \[[#11582](http://trac.mantidproject.org/mantid/ticket/11582)\|[d47d9dc](https://github.com/mantidproject/mantid/commit/d47d9dcf5585020fd70e8a66e4f67c70edc94804)\] FABADA outputs are non optional
+* *new* \[[#11622](http://trac.mantidproject.org/mantid/ticket/11622)\|[0bd4d18](https://github.com/mantidproject/mantid/commit/0bd4d185aa9d753add06d4fc6742fbdd60627031)\] CalcCorr issues
 * \[[#11629](http://trac.mantidproject.org/mantid/ticket/11629)\|[55df02a](https://github.com/mantidproject/mantid/commit/55df02afd0a68616d97d266877469ebb9d5d9b03)\] resetting default colour map for colour fill plots does not work
 * *new* \[[#11632](http://trac.mantidproject.org/mantid/ticket/11632)\|[0fa26c7](https://github.com/mantidproject/mantid/commit/0fa26c71c7123b64af38b2995c56e6eacfa9b24b)\] Update poldi.dic for 2015 data
 * \[[#11633](http://trac.mantidproject.org/mantid/ticket/11633)\|[3c63790](https://github.com/mantidproject/mantid/commit/3c637900cf128f6f119f67f8584eadb8ad39f06d)\] IntegrateMDHistoWorkspace should have keep binning + axis limits option
 * *new* \[[#11636](http://trac.mantidproject.org/mantid/ticket/11636)\|[06b0c67](https://github.com/mantidproject/mantid/commit/06b0c67fd7f69d5786a25415bba7d2b0292b40df)\] Add cmake stuff for latest Ubuntu
+* *new* \[[#11637](http://trac.mantidproject.org/mantid/ticket/11637)\|[854107a](https://github.com/mantidproject/mantid/commit/854107aa1063eee2fdc10bdae253fdf2087bcc0b)\] IntegrateMDHistoWorkspace, account for number of events
+* *new* \[[#11640](http://trac.mantidproject.org/mantid/ticket/11640)\|[694558e](https://github.com/mantidproject/mantid/commit/694558e05ccde461f5d8cdf3e60582ec01cfbd03)\] IDR SQw is broken by the change of algorithm names
+* *new* \[[#11641](http://trac.mantidproject.org/mantid/ticket/11641)\|[9486c4d](https://github.com/mantidproject/mantid/commit/9486c4d3b8d01e01da968790ffb15017121e6613)\] Rounding error in IntegrateMDHistoWorkspace
