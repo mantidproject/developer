@@ -19,6 +19,7 @@ Detailed Merges for Apr 25 - May 1, 2015
 * \[[#663](https://github.com/mantidproject/mantid/pull/663)\|[454e6e6](https://github.com/mantidproject/mantid/commit/454e6e6c510501fdaae70c8f99ad28b96c2f4ed0)\] Fix names of ranges in Elwin docs
 * \[[#664](https://github.com/mantidproject/mantid/pull/664)\|[797b965](https://github.com/mantidproject/mantid/commit/797b9659202988c1dc8a5432ccf4ad554b3f8525)\] Include mantidlibs34 Qt webkit as an rpm dependency
 * \[[#669](https://github.com/mantidproject/mantid/pull/669)\|[3875cf6](https://github.com/mantidproject/mantid/commit/3875cf6ffc58834dad0939c0e1b34df86c88a1ed)\] Add a NXdata level to the saved MDHisto.
+* *new* \[[#670](https://github.com/mantidproject/mantid/pull/670)\|[2b203e0](https://github.com/mantidproject/mantid/commit/2b203e0eb6fbb24677af48b6a3ab26ba35dd2806)\] Fixes compilation error with boost 1.58
 * *new* \[[#10564](http://trac.mantidproject.org/mantid/ticket/10564)\|[0d0a788](https://github.com/mantidproject/mantid/commit/0d0a78839f81f68f06f362b6980bf93f349efc9c)\] Design and create GUI for IMAT reconstruction
 * *new* \[[#10702](http://trac.mantidproject.org/mantid/ticket/10702)\|[435d4da](https://github.com/mantidproject/mantid/commit/435d4dab38a9a325ca472a1265f8953cd72ac362)\] Create Workflow-algorithm for POLDI
 * *new* \[[#11511](http://trac.mantidproject.org/mantid/ticket/11511)\|[18adf6b](https://github.com/mantidproject/mantid/commit/18adf6b47c88afcf1fc46ae317a5f2fd9ad1e921)\] CreateMD filebacked
