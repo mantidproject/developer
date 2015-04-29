@@ -8,14 +8,17 @@ Updates for week 18 of 2015
 ---------------------------
 * [LoadFITS]({{ site.docpage }}/algorithms/LoadFITS) supports FITS files produced by Starlight cameras
 * [CutMD]({{ site.docpage }}/algorithms/CutMD) supports lower dimensionality cuts
+* [SaveMD2]({{ site.docpage }}/algorithms/SaveMD2) writes files compatible with [nexpy](https://github.com/nexpy/nexpy)
+* Bugfix `runsphinx.py` for use in vanilla python
+* Static analysis fixes
 
 Detailed Merges for Apr 25 - May 1, 2015
 ----------------------------------------
-* *new* \[[#635](https://github.com/mantidproject/mantid/pull/635)\|[e10af48](https://github.com/mantidproject/mantid/commit/e10af484938f9f04506a0dc542114c804b222745)\] Fix runsphinx.py for vanilla Python
-* *new* \[[#656](https://github.com/mantidproject/mantid/pull/656)\|[82a49a9](https://github.com/mantidproject/mantid/commit/82a49a97dc0e033afd16542a88d97df1da52244c)\] Fix coverity errors in ConvertUnitsUsingDetectorTable
-* *new* \[[#663](https://github.com/mantidproject/mantid/pull/663)\|[454e6e6](https://github.com/mantidproject/mantid/commit/454e6e6c510501fdaae70c8f99ad28b96c2f4ed0)\] Fix names of ranges in Elwin docs
-* *new* \[[#664](https://github.com/mantidproject/mantid/pull/664)\|[797b965](https://github.com/mantidproject/mantid/commit/797b9659202988c1dc8a5432ccf4ad554b3f8525)\] Include mantidlibs34 Qt webkit as an rpm dependency
-* *new* \[[#669](https://github.com/mantidproject/mantid/pull/669)\|[3875cf6](https://github.com/mantidproject/mantid/commit/3875cf6ffc58834dad0939c0e1b34df86c88a1ed)\] Add a NXdata level to the saved MDHisto.
+* \[[#635](https://github.com/mantidproject/mantid/pull/635)\|[e10af48](https://github.com/mantidproject/mantid/commit/e10af484938f9f04506a0dc542114c804b222745)\] Fix runsphinx.py for vanilla Python
+* \[[#656](https://github.com/mantidproject/mantid/pull/656)\|[82a49a9](https://github.com/mantidproject/mantid/commit/82a49a97dc0e033afd16542a88d97df1da52244c)\] Fix coverity errors in ConvertUnitsUsingDetectorTable
+* \[[#663](https://github.com/mantidproject/mantid/pull/663)\|[454e6e6](https://github.com/mantidproject/mantid/commit/454e6e6c510501fdaae70c8f99ad28b96c2f4ed0)\] Fix names of ranges in Elwin docs
+* \[[#664](https://github.com/mantidproject/mantid/pull/664)\|[797b965](https://github.com/mantidproject/mantid/commit/797b9659202988c1dc8a5432ccf4ad554b3f8525)\] Include mantidlibs34 Qt webkit as an rpm dependency
+* \[[#669](https://github.com/mantidproject/mantid/pull/669)\|[3875cf6](https://github.com/mantidproject/mantid/commit/3875cf6ffc58834dad0939c0e1b34df86c88a1ed)\] Add a NXdata level to the saved MDHisto.
 * *new* \[[#10564](http://trac.mantidproject.org/mantid/ticket/10564)\|[0d0a788](https://github.com/mantidproject/mantid/commit/0d0a78839f81f68f06f362b6980bf93f349efc9c)\] Design and create GUI for IMAT reconstruction
 * *new* \[[#10702](http://trac.mantidproject.org/mantid/ticket/10702)\|[435d4da](https://github.com/mantidproject/mantid/commit/435d4dab38a9a325ca472a1265f8953cd72ac362)\] Create Workflow-algorithm for POLDI
 * *new* \[[#11511](http://trac.mantidproject.org/mantid/ticket/11511)\|[18adf6b](https://github.com/mantidproject/mantid/commit/18adf6b47c88afcf1fc46ae317a5f2fd9ad1e921)\] CreateMD filebacked
