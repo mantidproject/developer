@@ -115,9 +115,6 @@ class GitInfo
           token = getGithubToken()
           uri = URI("#{GITHUB_PR_URL}#{@ticket}#{token}")
           doc = Net::HTTP.get(uri)
-          puts "--------"
-          puts "#{doc}"
-          puts "--------"
           summary = doc.split("\"js-issue-title\">")[1]
           summary = summary.split("<\/span")[0]
           @descr = "#{summary}"
