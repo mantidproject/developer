@@ -115,12 +115,15 @@ class GitInfo
           token = getGithubToken()
           uri = URI("#{GITHUB_PR_URL}#{@ticket}#{token}")
           doc = Net::HTTP.get(uri)
+          puts "--------"
+          puts "#{doc}"
+          puts "--------"
           summary = doc.split("\"js-issue-title\">")[1]
           summary = summary.split("<\/span")[0]
           @descr = "#{summary}"
         rescue => ex
-          puts "failed to get summary for #{GITHUB_PR_URL}#{@ticket} / #{@merge_url}"
-          puts "ERROR(#{ex.class}): #{ex.message}"
+          puts "ERROR: failed to get summary for #{GITHUB_PR_URL}#{@ticket} / #{@merge_url}"
+          puts "#{ex.class}: #{ex.message}"
           puts "#{ex.backtrace}"
           exit 1
         end
