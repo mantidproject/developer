@@ -118,8 +118,10 @@ class GitInfo
           summary = doc.split("\"js-issue-title\">")[1]
           summary = summary.split("<\/span")[0]
           @descr = "#{summary}"
-        rescue
+        rescue => ex
           puts "failed to get summary for #{GITHUB_PR_URL}#{@ticket} / #{@merge_url}"
+          puts "ERROR(#{ex.class}): #{ex.message}"
+          puts "#{ex.backtrace}"
           exit 1
         end
       else
@@ -319,8 +321,8 @@ title: Updates - Week #{weeknum} of #{year}
   header << "-"*msg.length << "\n"
 end
 
-# write out the 
-File.open(filename, 'w', 0644) do |handle|  
+# write out the
+File.open(filename, 'w', 0644) do |handle|
   handle.puts header
   for item in tickets
     handle.puts item
