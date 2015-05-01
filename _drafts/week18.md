@@ -45,4 +45,5 @@ Detailed Merges for Apr 25 - May 1, 2015
 * *new* \[[#11655](http://trac.mantidproject.org/mantid/ticket/11655)\|[5caf97e](https://github.com/mantidproject/mantid/commit/5caf97ee32b34ca5320404dfdbfa4a5668299c62)\] CropWorkspace's ragged binning behavior is not obvious
 * *new* \[[#11657](http://trac.mantidproject.org/mantid/ticket/11657)\|[98d789e](https://github.com/mantidproject/mantid/commit/98d789ec511d4f3664a9b03d5a4d2bd2e26119ab)\] SaveAscii issue
 * *new* \[[#11662](http://trac.mantidproject.org/mantid/ticket/11662)\|[5ddd9db](https://github.com/mantidproject/mantid/commit/5ddd9db1504473bd5f73b823cb4c2de5a844791d)\] Indirect Diffraction UI does not select correct run files
+* *new* \[[#11664](http://trac.mantidproject.org/mantid/ticket/11664)\|[7dfccb2](https://github.com/mantidproject/mantid/commit/7dfccb204ca134aad3d6ae3defd7f968ec917844)\] OSIRIS diffonly bug in Indirect Diffraction
 * *new* \[[#11671](http://trac.mantidproject.org/mantid/ticket/11671)\|[c32506a](https://github.com/mantidproject/mantid/commit/c32506a21297b3001f651822c13c98723554656d)\] Fix Warning: Z-order assignment
