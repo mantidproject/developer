@@ -25,6 +25,7 @@ Detailed Merges for Apr 25 - May 1, 2015
 * *new* \[[#676](https://github.com/mantidproject/mantid/pull/676)\|[4ba793a](https://github.com/mantidproject/mantid/commit/4ba793ab9c0615a9276201fb084421d3ec58e5de)\] Fix jsoncpp include in TomoReconstruction
 * *new* \[[#10564](http://trac.mantidproject.org/mantid/ticket/10564)\|[0d0a788](https://github.com/mantidproject/mantid/commit/0d0a78839f81f68f06f362b6980bf93f349efc9c)\] Design and create GUI for IMAT reconstruction
 * *new* \[[#10702](http://trac.mantidproject.org/mantid/ticket/10702)\|[435d4da](https://github.com/mantidproject/mantid/commit/435d4dab38a9a325ca472a1265f8953cd72ac362)\] Create Workflow-algorithm for POLDI
+* *new* \[[#11348](http://trac.mantidproject.org/mantid/ticket/11348)\|[b036f5c](https://github.com/mantidproject/mantid/commit/b036f5cdc459b5ed995f1736d0a895be1c511a67)\] Potential problems with error bars during BinMD/SliceMD
 * *new* \[[#11351](http://trac.mantidproject.org/mantid/ticket/11351)\|[2427b9e](https://github.com/mantidproject/mantid/commit/2427b9e7e37cfd4e233420b111e33aa30f7afa59)\] Allow plus created event file in ISIS SANS GUI
 * *new* \[[#11511](http://trac.mantidproject.org/mantid/ticket/11511)\|[18adf6b](https://github.com/mantidproject/mantid/commit/18adf6b47c88afcf1fc46ae317a5f2fd9ad1e921)\] CreateMD filebacked
 * \[[#11572](http://trac.mantidproject.org/mantid/ticket/11572)\|[7cce96b](https://github.com/mantidproject/mantid/commit/7cce96b07c0a9b57cfee4a3b2e20b26767e99c75)\] Lower dimensionality cuts for CutMD
