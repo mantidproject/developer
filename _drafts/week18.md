@@ -12,6 +12,7 @@ Updates for week 18 of 2015
 * Bugfix `runsphinx.py` for use in vanilla python
 * Static analysis fixes
 * [SavePDFGui]({{ site.docpage }}/algorithms/SavePDFGui) has some extra information in header
+* Adjusted cmake for latest Ubuntu
 
 Detailed Merges for Apr 25 - May 1, 2015
 ----------------------------------------
@@ -22,8 +23,8 @@ Detailed Merges for Apr 25 - May 1, 2015
 * \[[#669](https://github.com/mantidproject/mantid/pull/669)\|[3875cf6](https://github.com/mantidproject/mantid/commit/3875cf6ffc58834dad0939c0e1b34df86c88a1ed)\] Add a NXdata level to the saved MDHisto.
 * \[[#670](https://github.com/mantidproject/mantid/pull/670)\|[2b203e0](https://github.com/mantidproject/mantid/commit/2b203e0eb6fbb24677af48b6a3ab26ba35dd2806)\] Fixes compilation error with boost 1.58
 * \[[#674](https://github.com/mantidproject/mantid/pull/674)\|[b5b2dc4](https://github.com/mantidproject/mantid/commit/b5b2dc4b05e52fc7d2e7e5bea22eaf9bbbca0559)\] Adding extra header for PDFgui
-* *new* \[[#675](https://github.com/mantidproject/mantid/pull/675)\|[520686b](https://github.com/mantidproject/mantid/commit/520686bd616e15ce16bf672965be9fa4658a9567)\] clang-format disable comments.
-* *new* \[[#676](https://github.com/mantidproject/mantid/pull/676)\|[4ba793a](https://github.com/mantidproject/mantid/commit/4ba793ab9c0615a9276201fb084421d3ec58e5de)\] Fix jsoncpp include in TomoReconstruction
+* \[[#675](https://github.com/mantidproject/mantid/pull/675)\|[520686b](https://github.com/mantidproject/mantid/commit/520686bd616e15ce16bf672965be9fa4658a9567)\] clang-format disable comments.
+* \[[#676](https://github.com/mantidproject/mantid/pull/676)\|[4ba793a](https://github.com/mantidproject/mantid/commit/4ba793ab9c0615a9276201fb084421d3ec58e5de)\] Fix jsoncpp include in TomoReconstruction
 * *new* \[[#10564](http://trac.mantidproject.org/mantid/ticket/10564)\|[0d0a788](https://github.com/mantidproject/mantid/commit/0d0a78839f81f68f06f362b6980bf93f349efc9c)\] Design and create GUI for IMAT reconstruction
 * *new* \[[#10702](http://trac.mantidproject.org/mantid/ticket/10702)\|[435d4da](https://github.com/mantidproject/mantid/commit/435d4dab38a9a325ca472a1265f8953cd72ac362)\] Create Workflow-algorithm for POLDI
 * *new* \[[#11348](http://trac.mantidproject.org/mantid/ticket/11348)\|[b036f5c](https://github.com/mantidproject/mantid/commit/b036f5cdc459b5ed995f1736d0a895be1c511a67)\] Potential problems with error bars during BinMD/SliceMD
@@ -36,16 +37,16 @@ Detailed Merges for Apr 25 - May 1, 2015
 * \[[#11629](http://trac.mantidproject.org/mantid/ticket/11629)\|[55df02a](https://github.com/mantidproject/mantid/commit/55df02afd0a68616d97d266877469ebb9d5d9b03)\] resetting default colour map for colour fill plots does not work
 * *new* \[[#11632](http://trac.mantidproject.org/mantid/ticket/11632)\|[0fa26c7](https://github.com/mantidproject/mantid/commit/0fa26c71c7123b64af38b2995c56e6eacfa9b24b)\] Update poldi.dic for 2015 data
 * \[[#11633](http://trac.mantidproject.org/mantid/ticket/11633)\|[3c63790](https://github.com/mantidproject/mantid/commit/3c637900cf128f6f119f67f8584eadb8ad39f06d)\] IntegrateMDHistoWorkspace should have keep binning + axis limits option
-* *new* \[[#11636](http://trac.mantidproject.org/mantid/ticket/11636)\|[06b0c67](https://github.com/mantidproject/mantid/commit/06b0c67fd7f69d5786a25415bba7d2b0292b40df)\] Add cmake stuff for latest Ubuntu
+* \[[#11636](http://trac.mantidproject.org/mantid/ticket/11636)\|[06b0c67](https://github.com/mantidproject/mantid/commit/06b0c67fd7f69d5786a25415bba7d2b0292b40df)\] Add cmake stuff for latest Ubuntu
 * *new* \[[#11637](http://trac.mantidproject.org/mantid/ticket/11637)\|[854107a](https://github.com/mantidproject/mantid/commit/854107aa1063eee2fdc10bdae253fdf2087bcc0b)\] IntegrateMDHistoWorkspace, account for number of events
 * *new* \[[#11638](http://trac.mantidproject.org/mantid/ticket/11638)\|[5e3ce44](https://github.com/mantidproject/mantid/commit/5e3ce448daa55201a8b7d3aafd3612872c64248f)\] Clean (OS)IRIS and IN16B parameter files
 * *new* \[[#11640](http://trac.mantidproject.org/mantid/ticket/11640)\|[694558e](https://github.com/mantidproject/mantid/commit/694558e05ccde461f5d8cdf3e60582ec01cfbd03)\] IDR SQw is broken by the change of algorithm names
-* *new* \[[#11641](http://trac.mantidproject.org/mantid/ticket/11641)\|[9486c4d](https://github.com/mantidproject/mantid/commit/9486c4d3b8d01e01da968790ffb15017121e6613)\] Rounding error in IntegrateMDHistoWorkspace
+* \[[#11641](http://trac.mantidproject.org/mantid/ticket/11641)\|[9486c4d](https://github.com/mantidproject/mantid/commit/9486c4d3b8d01e01da968790ffb15017121e6613)\] Rounding error in IntegrateMDHistoWorkspace
 * *new* \[[#11643](http://trac.mantidproject.org/mantid/ticket/11643)\|[476b8e5](https://github.com/mantidproject/mantid/commit/476b8e5de822288c2213eb31eda9aac1a2525170)\] Crash when selecting Conjugate Gradient minimizers
 * *new* \[[#11650](http://trac.mantidproject.org/mantid/ticket/11650)\|[d697741](https://github.com/mantidproject/mantid/commit/d697741b934992ae03b20247634cfdf7072bc52f)\] Put bin width as an attribute in DKT fitting function
 * *new* \[[#11653](http://trac.mantidproject.org/mantid/ticket/11653)\|[c91a3da](https://github.com/mantidproject/mantid/commit/c91a3da4b158c85564c806b729c48c68ab7a4fb4)\] Update and extend documentation for point and space groups
 * *new* \[[#11655](http://trac.mantidproject.org/mantid/ticket/11655)\|[5caf97e](https://github.com/mantidproject/mantid/commit/5caf97ee32b34ca5320404dfdbfa4a5668299c62)\] CropWorkspace's ragged binning behavior is not obvious
 * *new* \[[#11657](http://trac.mantidproject.org/mantid/ticket/11657)\|[98d789e](https://github.com/mantidproject/mantid/commit/98d789ec511d4f3664a9b03d5a4d2bd2e26119ab)\] SaveAscii issue
-* *new* \[[#11662](http://trac.mantidproject.org/mantid/ticket/11662)\|[5ddd9db](https://github.com/mantidproject/mantid/commit/5ddd9db1504473bd5f73b823cb4c2de5a844791d)\] Indirect Diffraction UI does not select correct run files
+* \[[#11662](http://trac.mantidproject.org/mantid/ticket/11662)\|[5ddd9db](https://github.com/mantidproject/mantid/commit/5ddd9db1504473bd5f73b823cb4c2de5a844791d)\] Indirect Diffraction UI does not select correct run files
 * *new* \[[#11664](http://trac.mantidproject.org/mantid/ticket/11664)\|[7dfccb2](https://github.com/mantidproject/mantid/commit/7dfccb204ca134aad3d6ae3defd7f968ec917844)\] OSIRIS diffonly bug in Indirect Diffraction
-* *new* \[[#11671](http://trac.mantidproject.org/mantid/ticket/11671)\|[c32506a](https://github.com/mantidproject/mantid/commit/c32506a21297b3001f651822c13c98723554656d)\] Fix Warning: Z-order assignment
+* \[[#11671](http://trac.mantidproject.org/mantid/ticket/11671)\|[c32506a](https://github.com/mantidproject/mantid/commit/c32506a21297b3001f651822c13c98723554656d)\] Fix Warning: Z-order assignment
