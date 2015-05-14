@@ -18,6 +18,7 @@ Detailed Merges for May 9 - 15, 2015
 * *new* \[[#11628](http://trac.mantidproject.org/mantid/ticket/11628)\|[98dcf72](https://github.com/mantidproject/mantid/commit/98dcf72dd94895f51e638e0c9eeb25a4ae3fcdcc)\] Mask calculation for bleed correction, option for whole tube
 * \[[#11677](http://trac.mantidproject.org/mantid/ticket/11677)\|[2b4d99f](https://github.com/mantidproject/mantid/commit/2b4d99fc4d00f5919677397c44789a57a2fb2c19)\] Fix: When removing the peaks filter the underlying splatterplot filter is not set to visible
 * *new* \[[#11689](http://trac.mantidproject.org/mantid/ticket/11689)\|[e27fd9c](https://github.com/mantidproject/mantid/commit/e27fd9cf7404186b0ef4139c862a131ac8154081)\] CanSAS loader doesn't load y-units
+* *new* \[[#11708](http://trac.mantidproject.org/mantid/ticket/11708)\|[42624e5](https://github.com/mantidproject/mantid/commit/42624e5f0382f50d9b816bc1be4d07d4bc9f2991)\] VSI workspace + settings on each view
 * *new* \[[#11710](http://trac.mantidproject.org/mantid/ticket/11710)\|[1501dd9](https://github.com/mantidproject/mantid/commit/1501dd9ac291cc6684a17bfcb73211c18add1e66)\] Possible workspace observer + plot issue
 * *new* \[[#11712](http://trac.mantidproject.org/mantid/ticket/11712)\|[5b15be5](https://github.com/mantidproject/mantid/commit/5b15be5f8c989914f47911e878805576f2302ae1)\] Slice viewer cut line orientation should be decided using screen units
 * *new* \[[#11714](http://trac.mantidproject.org/mantid/ticket/11714)\|[d8f34c9](https://github.com/mantidproject/mantid/commit/d8f34c91b08b9480b5df5f7285442d8e49092ff3)\] CutMD r.l.u scaling
@@ -29,3 +30,4 @@ Detailed Merges for May 9 - 15, 2015
 * *new* \[[#11740](http://trac.mantidproject.org/mantid/ticket/11740)\|[0a2c5de](https://github.com/mantidproject/mantid/commit/0a2c5de72fae9647bc8052f1f2eb3c1487f57e84)\] Fixes for files with no instrument in IDA and Bayes
 * *new* \[[#11741](http://trac.mantidproject.org/mantid/ticket/11741)\|[4a8c4e1](https://github.com/mantidproject/mantid/commit/4a8c4e1b78e18bbb0245ed25694ea8dda3ccecf7)\] SliceViewer normalization display
 * *new* \[[#11743](http://trac.mantidproject.org/mantid/ticket/11743)\|[fe69d4f](https://github.com/mantidproject/mantid/commit/fe69d4f69219261709dd43cf389294cf24f55df2)\] LineViewer Crash
+* *new* \[[#11751](http://trac.mantidproject.org/mantid/ticket/11751)\|[9a0eb2c](https://github.com/mantidproject/mantid/commit/9a0eb2ceebd0baaab384793f442fb1114a504c41)\] Update RRFMuon and PhaseQuad documentation
