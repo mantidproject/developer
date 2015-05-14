@@ -23,6 +23,7 @@ Detailed Merges for May 9 - 15, 2015
 * *new* \[[#11710](http://trac.mantidproject.org/mantid/ticket/11710)\|[1501dd9](https://github.com/mantidproject/mantid/commit/1501dd9ac291cc6684a17bfcb73211c18add1e66)\] Possible workspace observer + plot issue
 * *new* \[[#11712](http://trac.mantidproject.org/mantid/ticket/11712)\|[5b15be5](https://github.com/mantidproject/mantid/commit/5b15be5f8c989914f47911e878805576f2302ae1)\] Slice viewer cut line orientation should be decided using screen units
 * *new* \[[#11714](http://trac.mantidproject.org/mantid/ticket/11714)\|[d8f34c9](https://github.com/mantidproject/mantid/commit/d8f34c91b08b9480b5df5f7285442d8e49092ff3)\] CutMD r.l.u scaling
+* *new* \[[#11717](http://trac.mantidproject.org/mantid/ticket/11717)\|[3e5ef11](https://github.com/mantidproject/mantid/commit/3e5ef113311f72ef3c9122ac3826b923fba686aa)\] Revert back to old color editor panel in the VSI
 * \[[#11718](http://trac.mantidproject.org/mantid/ticket/11718)\|[ffda6ac](https://github.com/mantidproject/mantid/commit/ffda6ac4fd9082f27bfd8e4293ffc704421a28e5)\] Infs in histo MD workspace cause SliceViewer to crash.
 * *new* \[[#11730](http://trac.mantidproject.org/mantid/ticket/11730)\|[b1babb5](https://github.com/mantidproject/mantid/commit/b1babb52c7a07335b82b254edfa7c3389c60d133)\] VSI rebinning labels
 * \[[#11731](http://trac.mantidproject.org/mantid/ticket/11731)\|[f162c47](https://github.com/mantidproject/mantid/commit/f162c4762f377ddbd07b4bd15606bb0e8cbd2e27)\] SaveMask does not work on MatrixWorkspace
