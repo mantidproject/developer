@@ -39,3 +39,4 @@ Detailed Merges for May 9 - 15, 2015
 * *new* \[[#11751](http://trac.mantidproject.org/mantid/ticket/11751)\|[9a0eb2c](https://github.com/mantidproject/mantid/commit/9a0eb2ceebd0baaab384793f442fb1114a504c41)\] Update RRFMuon and PhaseQuad documentation
 * *new* \[[#11765](http://trac.mantidproject.org/mantid/ticket/11765)\|[a7db0aa](https://github.com/mantidproject/mantid/commit/a7db0aa8a5e58eda9b6d6a0ac3e1f2b4ce17ecf7)\] Segfault when closing ISIS SANS
 * *new* \[[#11766](http://trac.mantidproject.org/mantid/ticket/11766)\|[ee30ec0](https://github.com/mantidproject/mantid/commit/ee30ec02a2809219280ed6b190d769bcecfbc16f)\] Segfault when showing SliceViewer
+* *new* \[[#11768](http://trac.mantidproject.org/mantid/ticket/11768)\|[ef2dd6c](https://github.com/mantidproject/mantid/commit/ef2dd6c390587efc520e5a86e828702ab3582d44)\] LIneViewr crash if there is no line data
