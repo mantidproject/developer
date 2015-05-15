@@ -1,27 +1,20 @@
 ---
 layout: default
-date: 2015-05-14
+date: 2015-05-15
 author: Peter Peterson
 title: Currently Skipped System Tests
 ---
 Summary
 =======
 
-* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2015-05-14 [#76](http://builds.mantidproject.org/job/master_systemtests/76/)
+* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2015-05-15 [#78](http://builds.mantidproject.org/job/master_systemtests/78/)
 * Labels : osx-10.9, rhel6, rhel7, ubuntu-14.04, win7
-* Failed : 1
-* Skipped: 121 (36 unique)
+* Failed : 0
+* Skipped: 125 (36 unique)
 * Total  : 1485 (= 297 * 5)
 
 Details
 =======
-
-Failed
-------
-
-| Test                           | osx-10.9 | rhel6 | rhel7 | ubuntu-14.04 | win7 |
-|--------------------------------|----------|-------|-------|--------------|------|
-| LETReductionEvent2015Multirep  |          |       |       |              |   x  |
 
 Skipped
 -------
@@ -30,6 +23,7 @@ Skipped
 |------------------------------------|----------|-------|-------|--------------|------|
 | BuildSQWTest                       |     x    |   x   |   x   |       x      |   x  |
 | EQSANSFlatTest                     |     x    |   x   |   x   |       x      |   x  |
+| LETReductionEvent2015Multirep      |     x    |   x   |   x   |       x      |   x  |
 | LoadSQW_FileBasedTest              |     x    |   x   |   x   |       x      |   x  |
 | LoadSQW_MemBasedTest               |     x    |   x   |   x   |       x      |   x  |
 | OffspecSESANS                      |     x    |   x   |   x   |       x      |   x  |
@@ -59,7 +53,6 @@ Skipped
 | ValidateGroupingFiles              |     x    |       |       |       x      |      |
 | ValidateInstrumentDefinitionFiles  |     x    |       |       |       x      |      |
 | ValidateParameterFiles             |     x    |       |       |       x      |      |
-| LETReductionEvent2015Multirep      |     x    |       |       |              |      |
 | MAPSDgreduceReduction              |     x    |       |       |              |      |
 | MERLINReduction                    |     x    |       |       |              |      |
 | OSIRISFuryAndFuryFitMulti          |     x    |       |       |              |      |
