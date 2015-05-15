@@ -25,6 +25,7 @@ Detailed Merges for May 9 - 15, 2015
 * *new* \[[#11714](http://trac.mantidproject.org/mantid/ticket/11714)\|[d8f34c9](https://github.com/mantidproject/mantid/commit/d8f34c91b08b9480b5df5f7285442d8e49092ff3)\] CutMD r.l.u scaling
 * *new* \[[#11717](http://trac.mantidproject.org/mantid/ticket/11717)\|[3e5ef11](https://github.com/mantidproject/mantid/commit/3e5ef113311f72ef3c9122ac3826b923fba686aa)\] Revert back to old color editor panel in the VSI
 * \[[#11718](http://trac.mantidproject.org/mantid/ticket/11718)\|[ffda6ac](https://github.com/mantidproject/mantid/commit/ffda6ac4fd9082f27bfd8e4293ffc704421a28e5)\] Infs in histo MD workspace cause SliceViewer to crash.
+* *new* \[[#11727](http://trac.mantidproject.org/mantid/ticket/11727)\|[cc4e2e8](https://github.com/mantidproject/mantid/commit/cc4e2e8e20b7be45987623c5f51acd54a276274c)\] Add widget for log value function
 * *new* \[[#11730](http://trac.mantidproject.org/mantid/ticket/11730)\|[b1babb5](https://github.com/mantidproject/mantid/commit/b1babb52c7a07335b82b254edfa7c3389c60d133)\] VSI rebinning labels
 * \[[#11731](http://trac.mantidproject.org/mantid/ticket/11731)\|[f162c47](https://github.com/mantidproject/mantid/commit/f162c4762f377ddbd07b4bd15606bb0e8cbd2e27)\] SaveMask does not work on MatrixWorkspace
 * *new* \[[#11734](http://trac.mantidproject.org/mantid/ticket/11734)\|[25d58d8](https://github.com/mantidproject/mantid/commit/25d58d8c2eb9eca98fa2c87fe4c6b2bb06f44ef2)\] ConvFit fails if there is no instrument on the workspace
@@ -34,3 +35,5 @@ Detailed Merges for May 9 - 15, 2015
 * *new* \[[#11743](http://trac.mantidproject.org/mantid/ticket/11743)\|[fe69d4f](https://github.com/mantidproject/mantid/commit/fe69d4f69219261709dd43cf389294cf24f55df2)\] LineViewer Crash
 * *new* \[[#11748](http://trac.mantidproject.org/mantid/ticket/11748)\|[938e64e](https://github.com/mantidproject/mantid/commit/938e64e1bbdd2f4791debf9cd9478ff7d8af51a3)\] Warn when saving nexus files with no instrument XML
 * *new* \[[#11751](http://trac.mantidproject.org/mantid/ticket/11751)\|[9a0eb2c](https://github.com/mantidproject/mantid/commit/9a0eb2ceebd0baaab384793f442fb1114a504c41)\] Update RRFMuon and PhaseQuad documentation
+* *new* \[[#11765](http://trac.mantidproject.org/mantid/ticket/11765)\|[a7db0aa](https://github.com/mantidproject/mantid/commit/a7db0aa8a5e58eda9b6d6a0ac3e1f2b4ce17ecf7)\] Segfault when closing ISIS SANS
+* *new* \[[#11766](http://trac.mantidproject.org/mantid/ticket/11766)\|[ee30ec0](https://github.com/mantidproject/mantid/commit/ee30ec02a2809219280ed6b190d769bcecfbc16f)\] Segfault when showing SliceViewer
