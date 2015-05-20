@@ -1,16 +1,16 @@
 ---
 layout: default
-date: 2015-05-19
+date: 2015-05-20
 author: Peter Peterson
 title: Currently Skipped System Tests
 ---
 Summary
 =======
 
-* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2015-05-19 [#79](http://builds.mantidproject.org/job/master_systemtests/79/)
+* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2015-05-20 [#80](http://builds.mantidproject.org/job/master_systemtests/80/)
 * Labels : osx-10.9, rhel6, rhel7, ubuntu-14.04, win7
 * Failed : 0
-* Skipped: 124 (35 unique)
+* Skipped: 120 (35 unique)
 * Total  : 1485 (= 297 * 5)
 
 Details
@@ -23,7 +23,6 @@ Skipped
 |------------------------------------|----------|-------|-------|--------------|------|
 | BuildSQWTest                       |     x    |   x   |   x   |       x      |   x  |
 | EQSANSFlatTest                     |     x    |   x   |   x   |       x      |   x  |
-| LETReductionEvent2015Multirep      |     x    |   x   |   x   |       x      |   x  |
 | LoadSQW_FileBasedTest              |     x    |   x   |   x   |       x      |   x  |
 | LoadSQW_MemBasedTest               |     x    |   x   |   x   |       x      |   x  |
 | OffspecSESANS                      |     x    |   x   |   x   |       x      |   x  |
@@ -53,6 +52,7 @@ Skipped
 | ValidateGroupingFiles              |     x    |       |       |       x      |      |
 | ValidateInstrumentDefinitionFiles  |     x    |       |       |       x      |      |
 | ValidateParameterFiles             |     x    |       |       |       x      |      |
+| LETReductionEvent2015Multirep      |     x    |       |       |              |      |
 | MERLINReduction                    |     x    |       |       |              |      |
 | OSIRISFuryAndFuryFitMulti          |     x    |       |       |              |      |
 | TobyFitResolutionSimulationTest    |     x    |       |       |              |      |
