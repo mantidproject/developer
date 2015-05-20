@@ -19,4 +19,5 @@ Detailed Merges for May 16 - 22, 2015
 * *new* \[[#11728](http://trac.mantidproject.org/mantid/ticket/11728)\|[8b00f93](https://github.com/mantidproject/mantid/commit/8b00f93637f119699bdb030d41a11f2b6d2017ad)\] Create Mantid Direct inelastic configuration builder
 * *new* \[[#11754](http://trac.mantidproject.org/mantid/ticket/11754)\|[6e7c980](https://github.com/mantidproject/mantid/commit/6e7c980670ef01a428f1e02d43fd9aeb195efc1f)\] Update class_maker.py to generate code following current standards
 * *new* \[[#11761](http://trac.mantidproject.org/mantid/ticket/11761)\|[7fce5d9](https://github.com/mantidproject/mantid/commit/7fce5d90bae5275f95d38b7feeadbf4a899a5eca)\] Reenable failing LET_Multirep system test
+* *new* \[[#11782](http://trac.mantidproject.org/mantid/ticket/11782)\|[3d28511](https://github.com/mantidproject/mantid/commit/3d28511dc92424cfd4fd1f1f86ef472311afc7cd)\] Export individual peaks
 * *new* \[[#11785](http://trac.mantidproject.org/mantid/ticket/11785)\|[6bdc7fe](https://github.com/mantidproject/mantid/commit/6bdc7feeaec3bffc29bb02d8013f9232fa345349)\] Fix pylint issues in EnginX algorithms
