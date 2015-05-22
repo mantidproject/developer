@@ -1,20 +1,37 @@
 ---
 layout: default
-date: 2015-05-21
+date: 2015-05-22
 author: Peter Peterson
 title: Currently Skipped System Tests
 ---
 Summary
 =======
 
-* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2015-05-21 [#81](http://builds.mantidproject.org/job/master_systemtests/81/)
+* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2015-05-22 [#82](http://builds.mantidproject.org/job/master_systemtests/82/)
 * Labels : osx-10.9, rhel6, rhel7, ubuntu-14.04, win7
-* Failed : 0
-* Skipped: 120 (35 unique)
+* Failed : 11 (11 unique)
+* Skipped: 112 (35 unique)
 * Total  : 1485 (= 297 * 5)
 
 Details
 =======
+
+Failed
+------
+
+| Test                                       | osx-10.9 | rhel6 | rhel7 | ubuntu-14.04 | win7 |
+|--------------------------------------------|----------|-------|-------|--------------|------|
+| Diffraction_Workflow_Test                  |          |       |       |              |   x  |
+| SpaceGroupFactoryTest                      |          |       |       |              |   x  |
+| StepScanWorkflowAlgorithm                  |          |       |       |              |   x  |
+| SurfLoadingTest                            |          |       |       |              |   x  |
+| TOFRangeOFFTest                            |          |       |       |              |   x  |
+| TOSCADiffractionTest                       |          |       |       |              |   x  |
+| TobyFitResolutionSimulationTest            |          |       |       |              |   x  |
+| VesuvioFittingTest                         |          |       |       |              |   x  |
+| VesuvioFittingWithKFreeTest                |          |       |       |              |   x  |
+| VesuvioFittingWithQuadraticBackgroundTest  |          |       |       |              |   x  |
+| WishAnalysis                               |          |       |       |              |   x  |
 
 Skipped
 -------
@@ -27,8 +44,6 @@ Skipped
 | LoadSQW_MemBasedTest               |     x    |   x   |   x   |       x      |   x  |
 | OffspecSESANS                      |     x    |   x   |   x   |       x      |   x  |
 | OffspecSESANSP0                    |     x    |   x   |   x   |       x      |   x  |
-| SNSConvertToMDHistNoProjTest       |     x    |   x   |   x   |       x      |   x  |
-| SNSConvertToMDHistProjTest         |     x    |   x   |   x   |       x      |   x  |
 | AbsRunFeederChemicalFormulaTest    |     x    |   x   |   x   |       x      |      |
 | AbsRunFeederDefaultBeamWidthTest   |     x    |   x   |   x   |       x      |      |
 | AbsRunFeederDiffractionTest        |     x    |   x   |   x   |       x      |      |
@@ -55,4 +70,6 @@ Skipped
 | LETReductionEvent2015Multirep      |     x    |       |       |              |      |
 | MERLINReduction                    |     x    |       |       |              |      |
 | OSIRISFuryAndFuryFitMulti          |     x    |       |       |              |      |
+| SNSConvertToMDHistNoProjTest       |          |       |       |              |   x  |
+| SNSConvertToMDHistProjTest         |          |       |       |              |   x  |
 | TobyFitResolutionSimulationTest    |     x    |       |       |              |      |
