@@ -34,3 +34,4 @@ Detailed Merges for May 16 - 22, 2015
 * *new* \[[#11785](http://trac.mantidproject.org/mantid/ticket/11785)\|[6bdc7fe](https://github.com/mantidproject/mantid/commit/6bdc7feeaec3bffc29bb02d8013f9232fa345349)\] Fix pylint issues in EnginX algorithms
 * *new* \[[#11820](http://trac.mantidproject.org/mantid/ticket/11820)\|[4793b51](https://github.com/mantidproject/mantid/commit/4793b51894739f425521b95db2fc40f3e6c7e5f1)\] Debug messages incorrect
 * *new* \[[#11821](http://trac.mantidproject.org/mantid/ticket/11821)\|[1fab4b1](https://github.com/mantidproject/mantid/commit/1fab4b1ce187f87daac307bf9385143a630ce88b)\] Update DOI authors list 3.4 release
+* *new* \[[#11822](http://trac.mantidproject.org/mantid/ticket/11822)\|[8157393](https://github.com/mantidproject/mantid/commit/81573937be8dbb50b94d70d5cafa85c3ead2417d)\] ISIS direct inelastic reduction script fails if used without diagnostics but mon-2 normalized.
