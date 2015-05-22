@@ -13,6 +13,7 @@ Detailed Merges for May 16 - 22, 2015
 * *new* \[[#773](https://github.com/mantidproject/mantid/pull/773)\|[ca46143](https://github.com/mantidproject/mantid/commit/ca4614352545ca0a0831267a01d7e07ec77ae474)\] Expose to python getRot, getRelRot and getRelPos for instrument components
 * *new* \[[#780](https://github.com/mantidproject/mantid/pull/780)\|[2767a4e](https://github.com/mantidproject/mantid/commit/2767a4e4d22ad8687c6c7b2c02e895e6bf365308)\] Fix pedantic warnings from class_maker.py
 * *new* \[[#786](https://github.com/mantidproject/mantid/pull/786)\|[f977fb7](https://github.com/mantidproject/mantid/commit/f977fb745e83eb13413e0984d7c103e6e2788554)\] Added reference files to a systemtest that is not being run
+* *new* \[[#9693](http://trac.mantidproject.org/mantid/ticket/9693)\|[9293011](https://github.com/mantidproject/mantid/commit/9293011023adf952769f0c387be455e98d0e7720)\] GeneralisedSecondDifference has no unit test
 * *new* \[[#11163](http://trac.mantidproject.org/mantid/ticket/11163)\|[2a8b494](https://github.com/mantidproject/mantid/commit/2a8b4942d513959c4a3e826229e96d75115f0523)\] IDR: Add ILL calibration tab
 * *new* \[[#11626](http://trac.mantidproject.org/mantid/ticket/11626)\|[6330a3e](https://github.com/mantidproject/mantid/commit/6330a3ef2bb1aaedb2e8264e26f7973237ed2eb0)\] Use IntegrateMDHistoWorkspace as a mode in the LineViewer
 * *new* \[[#11647](http://trac.mantidproject.org/mantid/ticket/11647)\|[d9e6731](https://github.com/mantidproject/mantid/commit/d9e6731fe8df929cd5113ff0869f41b1ba7325f2)\] Fix tab stops on IDR S(Q, w)
