@@ -21,6 +21,7 @@ Detailed Merges for May 16 - 22, 2015
 * *new* \[[#11659](http://trac.mantidproject.org/mantid/ticket/11659)\|[3936193](https://github.com/mantidproject/mantid/commit/39361938cc3fe0fe58b3abdeff55923f4eecbd4e)\] Replace custom search method in Kernel::Interpolation
 * *new* \[[#11668](http://trac.mantidproject.org/mantid/ticket/11668)\|[044847f](https://github.com/mantidproject/mantid/commit/044847fd9ad3f9c1a6fb7c4f7fa081b9e18875d7)\] ConvertToDistribution bug
 * *new* \[[#11672](http://trac.mantidproject.org/mantid/ticket/11672)\|[b9bbd37](https://github.com/mantidproject/mantid/commit/b9bbd37fc7039fef0055866c471562629ed84a44)\] Fix ties for FunctionParameterDecorator in CompositeFunction
+* *new* \[[#11681](http://trac.mantidproject.org/mantid/ticket/11681)\|[70c3507](https://github.com/mantidproject/mantid/commit/70c350779a223279f49d409a3199af6f06b5da63)\] Suppress algorithm logging on IndirectInstrumentWidget (or IDR)
 * *new* \[[#11688](http://trac.mantidproject.org/mantid/ticket/11688)\|[7e61d87](https://github.com/mantidproject/mantid/commit/7e61d8708c95187ff8fcb050fb93f25671c01ce8)\] Q Limits issue found in Max's Gui
 * *new* \[[#11728](http://trac.mantidproject.org/mantid/ticket/11728)\|[8b00f93](https://github.com/mantidproject/mantid/commit/8b00f93637f119699bdb030d41a11f2b6d2017ad)\] Create Mantid Direct inelastic configuration builder
 * *new* \[[#11754](http://trac.mantidproject.org/mantid/ticket/11754)\|[6e7c980](https://github.com/mantidproject/mantid/commit/6e7c980670ef01a428f1e02d43fd9aeb195efc1f)\] Update class_maker.py to generate code following current standards
@@ -30,4 +31,5 @@ Detailed Merges for May 16 - 22, 2015
 * *new* \[[#11779](http://trac.mantidproject.org/mantid/ticket/11779)\|[02190bf](https://github.com/mantidproject/mantid/commit/02190bfc04470498d85e8d5342204b6b1203033b)\] Remove unused tool: mwclient
 * *new* \[[#11782](http://trac.mantidproject.org/mantid/ticket/11782)\|[3d28511](https://github.com/mantidproject/mantid/commit/3d28511dc92424cfd4fd1f1f86ef472311afc7cd)\] Export individual peaks
 * *new* \[[#11785](http://trac.mantidproject.org/mantid/ticket/11785)\|[6bdc7fe](https://github.com/mantidproject/mantid/commit/6bdc7feeaec3bffc29bb02d8013f9232fa345349)\] Fix pylint issues in EnginX algorithms
+* *new* \[[#11820](http://trac.mantidproject.org/mantid/ticket/11820)\|[4793b51](https://github.com/mantidproject/mantid/commit/4793b51894739f425521b95db2fc40f3e6c7e5f1)\] Debug messages incorrect
 * *new* \[[#11821](http://trac.mantidproject.org/mantid/ticket/11821)\|[1fab4b1](https://github.com/mantidproject/mantid/commit/1fab4b1ce187f87daac307bf9385143a630ce88b)\] Update DOI authors list 3.4 release
