@@ -7,11 +7,11 @@ title: Currently Skipped System Tests
 Summary
 =======
 
-* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2015-05-27 [#85](http://builds.mantidproject.org/job/master_systemtests/85/)
+* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2015-05-27 [#86](http://builds.mantidproject.org/job/master_systemtests/86/)
 * Labels : osx-10.9, rhel6, rhel7, ubuntu-14.04, win7
 * Failed : 11 (11 unique)
-* Skipped: 112 (35 unique)
-* Total  : 1485 (= 297 * 5)
+* Skipped: 102 (33 unique)
+* Total  : 1475 (= 295 * 5)
 
 Details
 =======
@@ -42,8 +42,6 @@ Skipped
 | EQSANSFlatTest                     |     x    |   x   |   x   |       x      |   x  |
 | LoadSQW_FileBasedTest              |     x    |   x   |   x   |       x      |   x  |
 | LoadSQW_MemBasedTest               |     x    |   x   |   x   |       x      |   x  |
-| OffspecSESANS                      |     x    |   x   |   x   |       x      |   x  |
-| OffspecSESANSP0                    |     x    |   x   |   x   |       x      |   x  |
 | AbsRunFeederChemicalFormulaTest    |     x    |   x   |   x   |       x      |      |
 | AbsRunFeederDefaultBeamWidthTest   |     x    |   x   |   x   |       x      |      |
 | AbsRunFeederDiffractionTest        |     x    |   x   |   x   |       x      |      |
