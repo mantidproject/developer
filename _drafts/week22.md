@@ -15,6 +15,7 @@ Detailed Merges for May 23 - 29, 2015
 -------------------------------------
 * \[[#788](https://github.com/mantidproject/mantid/pull/788)\|[99523ed](https://github.com/mantidproject/mantid/commit/99523ed60e2cf3d7e8a85b5284b767374d8d31ed)\] Estimate peak background fixes
 * \[[#11561](http://trac.mantidproject.org/mantid/ticket/11561)\|[da36d79](https://github.com/mantidproject/mantid/commit/da36d79dc63ef37a010303b988e779c49ce314e4)\] Add FABADA option to ConvFit and IqtFit
+* *new* \[[#11569](http://trac.mantidproject.org/mantid/ticket/11569)\|[612f3b5](https://github.com/mantidproject/mantid/commit/612f3b571ca2bb06d87b758e1b3451cf8ed6e383)\] Replace LastModifiedDate in IDF with a checksum
 * \[[#11701](http://trac.mantidproject.org/mantid/ticket/11701)\|[c9c6367](https://github.com/mantidproject/mantid/commit/c9c63670bb5670907cff646eca2d30e317935db6)\] Make it obvious when IndirectCalibration uses multiple files
 * \[[#11796](http://trac.mantidproject.org/mantid/ticket/11796)\|[db25b8d](https://github.com/mantidproject/mantid/commit/db25b8d825dc3fe6fd7d0c85cf221f07f61bef53)\] Plotting fails on IDR Calibration when smoothing data
 * \[[#11801](http://trac.mantidproject.org/mantid/ticket/11801)\|[ec60612](https://github.com/mantidproject/mantid/commit/ec60612cbaf5c4843b77782ce93e55bc15d2de7e)\] Make system test OffspecSESANSP0 run on at least one platform
