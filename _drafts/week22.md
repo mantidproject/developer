@@ -20,3 +20,4 @@ Detailed Merges for May 23 - 29, 2015
 * *new* \[[#11826](http://trac.mantidproject.org/mantid/ticket/11826)\|[dd79497](https://github.com/mantidproject/mantid/commit/dd794978863df47da68320e002822d10df901c00)\] Fix remaining initialization coverity issues in the MantidPlot component
 * *new* \[[#11828](http://trac.mantidproject.org/mantid/ticket/11828)\|[0d479b3](https://github.com/mantidproject/mantid/commit/0d479b34f2de63de15bfb236714832576b96c634)\] Fix coverity "null pointer dereferences" issues in MantidPlot component
 * *new* \[[#11830](http://trac.mantidproject.org/mantid/ticket/11830)\|[ac0262a](https://github.com/mantidproject/mantid/commit/ac0262a566a4648220d7d9d988cbec12d1ef8d46)\] Make Group usable directly in Python
+* *new* \[[#11832](http://trac.mantidproject.org/mantid/ticket/11832)\|[d10a7b3](https://github.com/mantidproject/mantid/commit/d10a7b3f2941d06b4a6d69eac9d16fb5ae1edd80)\] measure code coverage
