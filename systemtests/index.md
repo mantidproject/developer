@@ -1,16 +1,16 @@
 ---
 layout: default
-date: 2015-05-27
+date: 2015-05-28
 author: Peter Peterson
 title: Currently Skipped System Tests
 ---
 Summary
 =======
 
-* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2015-05-27 [#86](http://builds.mantidproject.org/job/master_systemtests/86/)
+* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2015-05-28 [#87](http://builds.mantidproject.org/job/master_systemtests/87/)
 * Labels : osx-10.9, rhel6, rhel7, ubuntu-14.04, win7
-* Failed : 11 (11 unique)
-* Skipped: 102 (33 unique)
+* Failed : 2 (2 unique)
+* Skipped: 100 (31 unique)
 * Total  : 1475 (= 295 * 5)
 
 Details
@@ -19,19 +19,10 @@ Details
 Failed
 ------
 
-| Test                                       | osx-10.9 | rhel6 | rhel7 | ubuntu-14.04 | win7 |
-|--------------------------------------------|----------|-------|-------|--------------|------|
-| Diffraction_Workflow_Test                  |          |       |       |              |   x  |
-| SpaceGroupFactoryTest                      |          |       |       |              |   x  |
-| StepScanWorkflowAlgorithm                  |          |       |       |              |   x  |
-| SurfLoadingTest                            |          |       |       |              |   x  |
-| TOFRangeOFFTest                            |          |       |       |              |   x  |
-| TOSCADiffractionTest                       |          |       |       |              |   x  |
-| TobyFitResolutionSimulationTest            |          |       |       |              |   x  |
-| VesuvioFittingTest                         |          |       |       |              |   x  |
-| VesuvioFittingWithKFreeTest                |          |       |       |              |   x  |
-| VesuvioFittingWithQuadraticBackgroundTest  |          |       |       |              |   x  |
-| WishAnalysis                               |          |       |       |              |   x  |
+| Test                 | osx-10.9 | rhel6 | rhel7 | ubuntu-14.04 | win7 |
+|----------------------|----------|-------|-------|--------------|------|
+| EnginXCalibrateTest  |     x    |       |       |              |      |
+| PG3Calibration       |          |   x   |       |              |      |
 
 Skipped
 -------
@@ -68,6 +59,4 @@ Skipped
 | LETReductionEvent2015Multirep      |     x    |       |       |              |      |
 | MERLINReduction                    |     x    |       |       |              |      |
 | OSIRISFuryAndFuryFitMulti          |     x    |       |       |              |      |
-| SNSConvertToMDHistNoProjTest       |          |       |       |              |   x  |
-| SNSConvertToMDHistProjTest         |          |       |       |              |   x  |
 | TobyFitResolutionSimulationTest    |     x    |       |       |              |      |
