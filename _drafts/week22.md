@@ -31,3 +31,4 @@ Detailed Merges for May 23 - 29, 2015
 * \[[#11828](http://trac.mantidproject.org/mantid/ticket/11828)\|[0d479b3](https://github.com/mantidproject/mantid/commit/0d479b34f2de63de15bfb236714832576b96c634)\] Fix coverity "null pointer dereferences" issues in MantidPlot component
 * *new* \[[#11830](http://trac.mantidproject.org/mantid/ticket/11830)\|[ac0262a](https://github.com/mantidproject/mantid/commit/ac0262a566a4648220d7d9d988cbec12d1ef8d46)\] Make Group usable directly in Python
 * \[[#11832](http://trac.mantidproject.org/mantid/ticket/11832)\|[d10a7b3](https://github.com/mantidproject/mantid/commit/d10a7b3f2941d06b4a6d69eac9d16fb5ae1edd80)\] measure code coverage
+* *new* \[[#11857](http://trac.mantidproject.org/mantid/ticket/11857)\|[5c744fa](https://github.com/mantidproject/mantid/commit/5c744fa628ddf9ef9a8c134029e04f4b21dc9c0e)\] Whitelist DLLs for Windows package
