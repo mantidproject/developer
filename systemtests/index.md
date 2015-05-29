@@ -1,28 +1,20 @@
 ---
 layout: default
-date: 2015-05-28
+date: 2015-05-29
 author: Peter Peterson
 title: Currently Skipped System Tests
 ---
 Summary
 =======
 
-* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2015-05-28 [#87](http://builds.mantidproject.org/job/master_systemtests/87/)
+* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2015-05-29 [#88](http://builds.mantidproject.org/job/master_systemtests/88/)
 * Labels : osx-10.9, rhel6, rhel7, ubuntu-14.04, win7
-* Failed : 2 (2 unique)
-* Skipped: 100 (31 unique)
+* Failed : 0
+* Skipped: 103 (32 unique)
 * Total  : 1475 (= 295 * 5)
 
 Details
 =======
-
-Failed
-------
-
-| Test                 | osx-10.9 | rhel6 | rhel7 | ubuntu-14.04 | win7 |
-|----------------------|----------|-------|-------|--------------|------|
-| EnginXCalibrateTest  |     x    |       |       |              |      |
-| PG3Calibration       |          |   x   |       |              |      |
 
 Skipped
 -------
@@ -48,15 +40,16 @@ Skipped
 | QuestTest                          |     x    |   x   |   x   |       x      |      |
 | ResNormTest                        |     x    |   x   |   x   |       x      |      |
 | UserAlgorithmsBuild                |     x    |   x   |   x   |       x      |      |
+| PG3CCCalibration                   |     x    |   x   |       |              |   x  |
+| PG3Calibration                     |     x    |   x   |       |              |   x  |
 | PG3Analysis                        |     x    |       |       |              |   x  |
-| PG3CCCalibration                   |     x    |       |       |              |   x  |
-| PG3Calibration                     |     x    |       |       |              |   x  |
 | PG3StripPeaks                      |     x    |       |       |              |   x  |
 | ValidateFacilitiesFile             |     x    |       |       |       x      |      |
 | ValidateGroupingFiles              |     x    |       |       |       x      |      |
 | ValidateInstrumentDefinitionFiles  |     x    |       |       |       x      |      |
 | ValidateParameterFiles             |     x    |       |       |       x      |      |
 | LETReductionEvent2015Multirep      |     x    |       |       |              |      |
+| MAPSDgreduceReduction              |     x    |       |       |              |      |
 | MERLINReduction                    |     x    |       |       |              |      |
 | OSIRISFuryAndFuryFitMulti          |     x    |       |       |              |      |
 | TobyFitResolutionSimulationTest    |     x    |       |       |              |      |
