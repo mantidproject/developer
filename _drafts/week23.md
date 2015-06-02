@@ -6,12 +6,13 @@ title: Updates - Week 23 of 2015
 ---
 Updates for week 23 of 2015
 ---------------------------
+* Fix issues found by static analysis
 
 Detailed Merges for May 30 - Jun 5, 2015
 ----------------------------------------
 * *new* \[[#760](https://github.com/mantidproject/mantid/pull/760)\|[6153747](https://github.com/mantidproject/mantid/commit/615374773253da1cb686a06cd93bb406c62e4a73)\] Create HB3A IDF file and enable LoadSpiceXML2DDet to load instrument
-* *new* \[[#823](https://github.com/mantidproject/mantid/pull/823)\|[f450261](https://github.com/mantidproject/mantid/commit/f450261f9b8dfe58600f53fdf71f9485bbe13ab0)\] Fix a couple of doxygen warnings in master
-* *new* \[[#829](https://github.com/mantidproject/mantid/pull/829)\|[59a7491](https://github.com/mantidproject/mantid/commit/59a7491a0c033d9c713aef17b0f398a52bea8d25)\] Clang format python interface
+* \[[#823](https://github.com/mantidproject/mantid/pull/823)\|[f450261](https://github.com/mantidproject/mantid/commit/f450261f9b8dfe58600f53fdf71f9485bbe13ab0)\] Fix a couple of doxygen warnings in master
+* \[[#829](https://github.com/mantidproject/mantid/pull/829)\|[59a7491](https://github.com/mantidproject/mantid/commit/59a7491a0c033d9c713aef17b0f398a52bea8d25)\] Clang format python interface
 * *new* \[[#831](https://github.com/mantidproject/mantid/pull/831)\|[69fec5e](https://github.com/mantidproject/mantid/commit/69fec5ea32ba312e636d30f18f5161d68e93c735)\] Initial version of reporting facility git metrics
 * *new* \[[#841](https://github.com/mantidproject/mantid/pull/841)\|[957fb4e](https://github.com/mantidproject/mantid/commit/957fb4ee42bda74535a021b986fb38ca91deda52)\] Revert &quot;Fix squish tests&quot;
 * *new* \[[#9079](http://trac.mantidproject.org/mantid/ticket/9079)\|[95d63fd](https://github.com/mantidproject/mantid/commit/95d63fd9898ceeb13fbb1546eadfaec56823e9bb)\] PerformIndexOperations
@@ -23,7 +24,7 @@ Detailed Merges for May 30 - Jun 5, 2015
 * *new* \[[#11749](http://trac.mantidproject.org/mantid/ticket/11749)\|[54d45ad](https://github.com/mantidproject/mantid/commit/54d45ad608deb0611cb025f7db4b65236c27f06f)\] Segfault in ParameterMap::asString
 * *new* \[[#11759](http://trac.mantidproject.org/mantid/ticket/11759)\|[67987d9](https://github.com/mantidproject/mantid/commit/67987d92a0714668e6089fd712422c57a3a98a6a)\] Add workflow diagrams for indirect algorithms
 * *new* \[[#11769](http://trac.mantidproject.org/mantid/ticket/11769)\|[415f654](https://github.com/mantidproject/mantid/commit/415f654147f92a0e652a53f5cfc60aac30abf676)\] Add script for generating slice viewer gifs
-* *new* \[[#11808](http://trac.mantidproject.org/mantid/ticket/11808)\|[0c6032a](https://github.com/mantidproject/mantid/commit/0c6032a0d88ab6a6e903e8c9b9f305efc1e0ddb1)\] Undefined Behavior Sanitizer
+* \[[#11808](http://trac.mantidproject.org/mantid/ticket/11808)\|[0c6032a](https://github.com/mantidproject/mantid/commit/0c6032a0d88ab6a6e903e8c9b9f305efc1e0ddb1)\] Undefined Behavior Sanitizer
 * *new* \[[#11810](http://trac.mantidproject.org/mantid/ticket/11810)\|[0a6e4bd](https://github.com/mantidproject/mantid/commit/0a6e4bd4deff0dfd7523fd6123bd3f5df1e67fe7)\] error quantification in MSD Fit not correct
 * *new* \[[#11814](http://trac.mantidproject.org/mantid/ticket/11814)\|[1216797](https://github.com/mantidproject/mantid/commit/1216797cfa144380958d11173224bb65b44cd7cd)\] Set the Recursion Depth for MDEvent workspaces to 1 when top level splitting is applied.
 * *new* \[[#11846](http://trac.mantidproject.org/mantid/ticket/11846)\|[8fdb8f1](https://github.com/mantidproject/mantid/commit/8fdb8f17bc1f5d803b1b203c44011bd0875b6ea2)\] DownloadFile usage example
@@ -31,4 +32,4 @@ Detailed Merges for May 30 - Jun 5, 2015
 * *new* \[[#11869](http://trac.mantidproject.org/mantid/ticket/11869)\|[a13ea1d](https://github.com/mantidproject/mantid/commit/a13ea1d816baf7627e181d5b23534ee95c54cb71)\] DetCal bug
 * *new* \[[#11871](http://trac.mantidproject.org/mantid/ticket/11871)\|[fe0e046](https://github.com/mantidproject/mantid/commit/fe0e046e1d79786c95578f653587a2a16b38a140)\] Delete ConfigService hacks around removing properties
 * *new* \[[#11874](http://trac.mantidproject.org/mantid/ticket/11874)\|[39ae55d](https://github.com/mantidproject/mantid/commit/39ae55d36cf9c89fca24359a47148c5d2615b953)\] Provide POLDI instrument parameters for 2015
-* *new* \[[#11880](http://trac.mantidproject.org/mantid/ticket/11880)\|[d155251](https://github.com/mantidproject/mantid/commit/d15525159a8a84886c730614d6f1859e4e4a4997)\] Fix squish
+* \[[#11880](http://trac.mantidproject.org/mantid/ticket/11880)\|[d155251](https://github.com/mantidproject/mantid/commit/d15525159a8a84886c730614d6f1859e4e4a4997)\] Fix squish
