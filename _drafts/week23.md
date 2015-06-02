@@ -15,6 +15,7 @@ Detailed Merges for May 30 - Jun 5, 2015
 * \[[#829](https://github.com/mantidproject/mantid/pull/829)\|[59a7491](https://github.com/mantidproject/mantid/commit/59a7491a0c033d9c713aef17b0f398a52bea8d25)\] Clang format python interface
 * *new* \[[#831](https://github.com/mantidproject/mantid/pull/831)\|[69fec5e](https://github.com/mantidproject/mantid/commit/69fec5ea32ba312e636d30f18f5161d68e93c735)\] Initial version of reporting facility git metrics
 * *new* \[[#841](https://github.com/mantidproject/mantid/pull/841)\|[957fb4e](https://github.com/mantidproject/mantid/commit/957fb4ee42bda74535a021b986fb38ca91deda52)\] Revert &quot;Fix squish tests&quot;
+* *new* \[[#843](https://github.com/mantidproject/mantid/pull/843)\|[8f0d85a](https://github.com/mantidproject/mantid/commit/8f0d85aea32718ae6225ba947fa649e7ddf769b5)\] Added g++
 * *new* \[[#9079](http://trac.mantidproject.org/mantid/ticket/9079)\|[95d63fd](https://github.com/mantidproject/mantid/commit/95d63fd9898ceeb13fbb1546eadfaec56823e9bb)\] PerformIndexOperations
 * *new* \[[#11071](http://trac.mantidproject.org/mantid/ticket/11071)\|[fa68d6f](https://github.com/mantidproject/mantid/commit/fa68d6f02a3863279e1ba10f8b1b97298ddc7c4c)\] IntegrateFlux should check for sorted events
 * *new* \[[#11667](http://trac.mantidproject.org/mantid/ticket/11667)\|[9c50ef2](https://github.com/mantidproject/mantid/commit/9c50ef2dcfa5f32c86767da4b3c5f8a333de7093)\] ConvertToYSpace should optionally also output q-space
