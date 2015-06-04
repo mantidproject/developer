@@ -15,6 +15,7 @@ Updates for week 23 of 2015
 
 Detailed Merges for May 30 - Jun 5, 2015
 ----------------------------------------
+* *new* \[[12733](https://github.com/mantidproject/mantid/pull/12733)\|[b3eb92e](https://github.com/mantidproject/mantid/commit/b3eb92e3cb9d7e5084c8dcb68cad2e5620d41575)\] Fix Indirect Diffraction plotting
 * \[[#760](https://github.com/mantidproject/mantid/pull/760)\|[6153747](https://github.com/mantidproject/mantid/commit/615374773253da1cb686a06cd93bb406c62e4a73)\] Create HB3A IDF file and enable LoadSpiceXML2DDet to load instrument
 * \[[#823](https://github.com/mantidproject/mantid/pull/823)\|[f450261](https://github.com/mantidproject/mantid/commit/f450261f9b8dfe58600f53fdf71f9485bbe13ab0)\] Fix a couple of doxygen warnings in master
 * \[[#829](https://github.com/mantidproject/mantid/pull/829)\|[59a7491](https://github.com/mantidproject/mantid/commit/59a7491a0c033d9c713aef17b0f398a52bea8d25)\] Clang format python interface
