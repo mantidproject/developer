@@ -15,7 +15,6 @@ Updates for week 23 of 2015
 
 Detailed Merges for May 30 - Jun 5, 2015
 ----------------------------------------
-* *new* \[[12733](https://github.com/mantidproject/mantid/pull/12733)\|[b3eb92e](https://github.com/mantidproject/mantid/commit/b3eb92e3cb9d7e5084c8dcb68cad2e5620d41575)\] Fix Indirect Diffraction plotting
 * \[[#760](https://github.com/mantidproject/mantid/pull/760)\|[6153747](https://github.com/mantidproject/mantid/commit/615374773253da1cb686a06cd93bb406c62e4a73)\] Create HB3A IDF file and enable LoadSpiceXML2DDet to load instrument
 * \[[#823](https://github.com/mantidproject/mantid/pull/823)\|[f450261](https://github.com/mantidproject/mantid/commit/f450261f9b8dfe58600f53fdf71f9485bbe13ab0)\] Fix a couple of doxygen warnings in master
 * \[[#829](https://github.com/mantidproject/mantid/pull/829)\|[59a7491](https://github.com/mantidproject/mantid/commit/59a7491a0c033d9c713aef17b0f398a52bea8d25)\] Clang format python interface
@@ -24,10 +23,11 @@ Detailed Merges for May 30 - Jun 5, 2015
 * \[[#840](https://github.com/mantidproject/mantid/pull/840)\|[b55835f](https://github.com/mantidproject/mantid/commit/b55835f45bdc577a12ab52639c4130277fd9f5f4)\] Fix Pylint issues in StatisticsOfTableWorkspace
 * \[[#841](https://github.com/mantidproject/mantid/pull/841)\|[957fb4e](https://github.com/mantidproject/mantid/commit/957fb4ee42bda74535a021b986fb38ca91deda52)\] Revert &quot;Fix squish tests&quot;
 * \[[#843](https://github.com/mantidproject/mantid/pull/843)\|[8f0d85a](https://github.com/mantidproject/mantid/commit/8f0d85aea32718ae6225ba947fa649e7ddf769b5)\] Added g++
-* \[[#844](https://github.com/mantidproject/mantid/pull/844)\|[da50809](https://github.com/mantidproject/mantid/commit/da50809ea2ab192a2c5ec156aeb35d30dc15432b)\] LoadCalFile creates new calibration workspace
 * \[[#844](https://github.com/mantidproject/mantid/pull/844)\|[e67010e](https://github.com/mantidproject/mantid/commit/e67010e0bfb878acc26d0a4c2c560e1bce73a719)\] LoadCalFile creates new calibration workspace
+* \[[#844](https://github.com/mantidproject/mantid/pull/844)\|[da50809](https://github.com/mantidproject/mantid/commit/da50809ea2ab192a2c5ec156aeb35d30dc15432b)\] LoadCalFile creates new calibration workspace
 * \[[#845](https://github.com/mantidproject/mantid/pull/845)\|[d86a829](https://github.com/mantidproject/mantid/commit/d86a8299cf8096c3009abe94471818595c0701e1)\] Point issue tracking to github
 * *new* \[[#846](https://github.com/mantidproject/mantid/pull/846)\|[fe4be80](https://github.com/mantidproject/mantid/commit/fe4be80edcad6fca9178f8f0f3bf41fc912389e5)\] Fixes for crashes when running doc tests on Windows
+* *new* \[[#6252](http://trac.mantidproject.org/mantid/ticket/6252)\|[7fce272](https://github.com/mantidproject/mantid/commit/7fce2723c643de634dc43411cf10eb693b8292a5)\] LoadNexusProcessedTest does not test current version of file
 * *new* \[[#9079](http://trac.mantidproject.org/mantid/ticket/9079)\|[95d63fd](https://github.com/mantidproject/mantid/commit/95d63fd9898ceeb13fbb1546eadfaec56823e9bb)\] PerformIndexOperations
 * *new* \[[#10578](http://trac.mantidproject.org/mantid/ticket/10578)\|[a45cadb](https://github.com/mantidproject/mantid/commit/a45cadb421c595b1377286f1a83a3e3ed8a74696)\] Multi-dataset fitting interface: try to make columns in the function browser resizeable.
 * *new* \[[#10855](http://trac.mantidproject.org/mantid/ticket/10855)\|[eb7b303](https://github.com/mantidproject/mantid/commit/eb7b303011d72d9aac711a2bfaa00c7cbbe89c32)\] Rewrite indirect diffraction reduction algorithm
@@ -60,3 +60,4 @@ Detailed Merges for May 30 - Jun 5, 2015
 * \[[#11880](http://trac.mantidproject.org/mantid/ticket/11880)\|[d155251](https://github.com/mantidproject/mantid/commit/d15525159a8a84886c730614d6f1859e4e4a4997)\] Fix squish
 * *new* \[[#11886](http://trac.mantidproject.org/mantid/ticket/11886)\|[65a45cd](https://github.com/mantidproject/mantid/commit/65a45cd1b6e7ee6d63d027f6df4858d769c04f0f)\] Replace reduction script if sample script is outdated
 * \[[#12731](https://github.com/mantidproject/mantid/pull/12731)\|[f10875f](https://github.com/mantidproject/mantid/commit/f10875f361dc4a5e309888eecfd1e24318ece682)\] Revert &quot;Revert &quot;Fix squish tests&quot;&quot;
+* *new* \[[#12733](https://github.com/mantidproject/mantid/pull/12733)\|[b3eb92e](https://github.com/mantidproject/mantid/commit/b3eb92e3cb9d7e5084c8dcb68cad2e5620d41575)\] Fix Indirect Diffraction plotting
