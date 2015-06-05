@@ -62,3 +62,4 @@ Detailed Merges for May 30 - Jun 5, 2015
 * \[[#12731](https://github.com/mantidproject/mantid/pull/12731)\|[f10875f](https://github.com/mantidproject/mantid/commit/f10875f361dc4a5e309888eecfd1e24318ece682)\] Revert &quot;Revert &quot;Fix squish tests&quot;&quot;
 * *new* \[[#12733](https://github.com/mantidproject/mantid/pull/12733)\|[b3eb92e](https://github.com/mantidproject/mantid/commit/b3eb92e3cb9d7e5084c8dcb68cad2e5620d41575)\] Fix Indirect Diffraction plotting
 * \[[#12733](https://github.com/mantidproject/mantid/pull/12733)\|[7ac1ccb](https://github.com/mantidproject/mantid/commit/7ac1ccb3a37182786bfdc92e64c294ad42264788)\] Fix Indirect Diffraction plotting
+* *new* \[[#12736](https://github.com/mantidproject/mantid/pull/12736)\|[4937edb](https://github.com/mantidproject/mantid/commit/4937edbac697d6ffa299a94f02b5c628d351419e)\] Add ConvergenceCriteria and JumpAcceptanceRate options to IqtFit and ConvFit
