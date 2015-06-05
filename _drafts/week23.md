@@ -61,3 +61,4 @@ Detailed Merges for May 30 - Jun 5, 2015
 * *new* \[[#11886](http://trac.mantidproject.org/mantid/ticket/11886)\|[65a45cd](https://github.com/mantidproject/mantid/commit/65a45cd1b6e7ee6d63d027f6df4858d769c04f0f)\] Replace reduction script if sample script is outdated
 * \[[#12731](https://github.com/mantidproject/mantid/pull/12731)\|[f10875f](https://github.com/mantidproject/mantid/commit/f10875f361dc4a5e309888eecfd1e24318ece682)\] Revert &quot;Revert &quot;Fix squish tests&quot;&quot;
 * *new* \[[#12733](https://github.com/mantidproject/mantid/pull/12733)\|[b3eb92e](https://github.com/mantidproject/mantid/commit/b3eb92e3cb9d7e5084c8dcb68cad2e5620d41575)\] Fix Indirect Diffraction plotting
+* \[[#12733](https://github.com/mantidproject/mantid/pull/12733)\|[7ac1ccb](https://github.com/mantidproject/mantid/commit/7ac1ccb3a37182786bfdc92e64c294ad42264788)\] Fix Indirect Diffraction plotting
