@@ -31,7 +31,7 @@ class PullRequest:
 
             self.number=int(re.findall("\d+", stuff)[0])
 
-            url_regexp="https://github.com/mantidproject/mantid/pull/\d+"
+            url_regexp="https://github.com/\w+/\w+/pull/\d+"
             self.url=re.findall(url_regexp, stuff)[0]
 
             stuff=stuff.split(self.url)[-1][1:].strip()
