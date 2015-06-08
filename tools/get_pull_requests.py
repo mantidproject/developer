@@ -50,6 +50,16 @@ class PullRequest:
         # this is used by 'in'
         return hash(self.number)
 
+def getOauth(oauth):
+    oauthfile=os.path.expanduser("~/.ssh/github_oauth")
+    if oauth is None and os.path.exists(oauthfile):
+        print("Found oauth token '%s'" % oauthfile)
+        handle=open(oauthfile, 'r')
+        oauth='\n'.join(handle.readlines())
+        handle.close()
+        oauth=oauth.strip()
+    return oauth
+
 def getStatusAndJson(req):
     status_code = req.status_code
 
@@ -214,7 +224,8 @@ if __name__ == "__main__":
     (header,pullsFromFile) = parseFile(filename)
 
 
-    pullsFromGithub = getPulls(endpoint, oauth=args.oauth,
+    oauth=getOauth(args.oauth)
+    pullsFromGithub = getPulls(endpoint, oauth=oauth,
                                since=since,
                                until=until)
     # TODO merge the lists
