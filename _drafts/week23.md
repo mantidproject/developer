@@ -15,10 +15,10 @@ Updates for week 23 of 2015
 
 Detailed Merges for Jun 1 to 7, 2015
 ------------------------------------
-* [PR760](https://github.com/mantidproject/mantid/pull/760) -  Create HB3A IDF file and enable LoadSpiceXML2DDet to load instrument
-* *new* [PR774](https://github.com/mantidproject/mantid/pull/774) -  Undefined Behavior Sanitizer
-* *new* [PR798](https://github.com/mantidproject/mantid/pull/798) -  Add Python version of the indirect cylinder absorption correction routine
-* *new* [PR802](https://github.com/mantidproject/mantid/pull/802) -  Add new Elwin parameter to ISIS instruments
+* [PR760](https://github.com/mantidproject/mantid/pull/760) - Create HB3A IDF file and enable LoadSpiceXML2DDet to load instrument
+* *new* [PR774](https://github.com/mantidproject/mantid/pull/774) - Undefined Behavior Sanitizer
+* *new* [PR798](https://github.com/mantidproject/mantid/pull/798) - Add Python version of the indirect cylinder absorption correction routine
+* *new* [PR802](https://github.com/mantidproject/mantid/pull/802) - Add new Elwin parameter to ISIS instruments
 * *new* [PR811](https://github.com/mantidproject/mantid/pull/811) - VESUVIO l1 and theta resolution routine
 * *new* [PR812](https://github.com/mantidproject/mantid/pull/812) - Allow an arbitrary trailing string on the qwt version
 * *new* [PR816](https://github.com/mantidproject/mantid/pull/816) - Calculate chi squared over dof
@@ -28,7 +28,7 @@ Detailed Merges for Jun 1 to 7, 2015
 * *new* [PR821](https://github.com/mantidproject/mantid/pull/821) - Remove hacks in ConfigService for older Poco versions
 * *new* [PR822](https://github.com/mantidproject/mantid/pull/822) - Rename ElasticWindow(Multiple) ranges
 * [PR823](https://github.com/mantidproject/mantid/pull/823) - Fix a couple of doxygen warnings in master
-* *new* [PR824](https://github.com/mantidproject/mantid/pull/824) - Move Peak Classes to Geometry Crystal Subpackage 
+* *new* [PR824](https://github.com/mantidproject/mantid/pull/824) - Move Peak Classes to Geometry Crystal Subpackage
 * *new* [PR826](https://github.com/mantidproject/mantid/pull/826) - Add POLDI Parameters for 2015
 * [PR829](https://github.com/mantidproject/mantid/pull/829) - Clang format python interface
 * [PR830](https://github.com/mantidproject/mantid/pull/830) - Create new diffraction config object
@@ -55,7 +55,7 @@ Detailed Merges for Jun 1 to 7, 2015
 * *new* [PR12740](https://github.com/mantidproject/mantid/pull/12740) - Add progress report for LoadDetectorsGroupingFile algorithm
 * *new* [PR12743](https://github.com/mantidproject/mantid/pull/12743) - Added forward only headers for common workspaces.
 * *new* [PR12747](https://github.com/mantidproject/mantid/pull/12747) - Fix remaining coverity 'uninitialized members' issues
-* *new* [PR12750](https://github.com/mantidproject/mantid/pull/12750) - Fix remaining 'incorrect expression' coverity issues 
+* *new* [PR12750](https://github.com/mantidproject/mantid/pull/12750) - Fix remaining 'incorrect expression' coverity issues
 * *new* [PR12752](https://github.com/mantidproject/mantid/pull/12752) - Fix IDR rebin default option
 * *new* [PR12755](https://github.com/mantidproject/mantid/pull/12755) - Add txt extension for mask file browser
 * *new* [PR12756](https://github.com/mantidproject/mantid/pull/12756) - Display error bars in multi-data set fitting interface.
