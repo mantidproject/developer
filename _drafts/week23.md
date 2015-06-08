@@ -15,53 +15,47 @@ Updates for week 23 of 2015
 
 Detailed Merges for May 30 - Jun 5, 2015
 ----------------------------------------
-* \[[#760](https://github.com/mantidproject/mantid/pull/760)\|[6153747](https://github.com/mantidproject/mantid/commit/615374773253da1cb686a06cd93bb406c62e4a73)\] Create HB3A IDF file and enable LoadSpiceXML2DDet to load instrument
-* \[[#823](https://github.com/mantidproject/mantid/pull/823)\|[f450261](https://github.com/mantidproject/mantid/commit/f450261f9b8dfe58600f53fdf71f9485bbe13ab0)\] Fix a couple of doxygen warnings in master
-* \[[#829](https://github.com/mantidproject/mantid/pull/829)\|[59a7491](https://github.com/mantidproject/mantid/commit/59a7491a0c033d9c713aef17b0f398a52bea8d25)\] Clang format python interface
-* \[[#830](https://github.com/mantidproject/mantid/pull/830)\|[1c30deb](https://github.com/mantidproject/mantid/commit/1c30deb9e8644cff36d21d4e453a97c2a7501fb2)\] Create new diffraction config object
-* \[[#831](https://github.com/mantidproject/mantid/pull/831)\|[69fec5e](https://github.com/mantidproject/mantid/commit/69fec5ea32ba312e636d30f18f5161d68e93c735)\] Initial version of reporting facility git metrics
-* \[[#840](https://github.com/mantidproject/mantid/pull/840)\|[b55835f](https://github.com/mantidproject/mantid/commit/b55835f45bdc577a12ab52639c4130277fd9f5f4)\] Fix Pylint issues in StatisticsOfTableWorkspace
-* \[[#841](https://github.com/mantidproject/mantid/pull/841)\|[957fb4e](https://github.com/mantidproject/mantid/commit/957fb4ee42bda74535a021b986fb38ca91deda52)\] Revert &quot;Fix squish tests&quot;
-* \[[#843](https://github.com/mantidproject/mantid/pull/843)\|[8f0d85a](https://github.com/mantidproject/mantid/commit/8f0d85aea32718ae6225ba947fa649e7ddf769b5)\] Added g++
-* \[[#844](https://github.com/mantidproject/mantid/pull/844)\|[e67010e](https://github.com/mantidproject/mantid/commit/e67010e0bfb878acc26d0a4c2c560e1bce73a719)\] LoadCalFile creates new calibration workspace
-* \[[#844](https://github.com/mantidproject/mantid/pull/844)\|[da50809](https://github.com/mantidproject/mantid/commit/da50809ea2ab192a2c5ec156aeb35d30dc15432b)\] LoadCalFile creates new calibration workspace
-* \[[#845](https://github.com/mantidproject/mantid/pull/845)\|[d86a829](https://github.com/mantidproject/mantid/commit/d86a8299cf8096c3009abe94471818595c0701e1)\] Point issue tracking to github
-* *new* \[[#846](https://github.com/mantidproject/mantid/pull/846)\|[fe4be80](https://github.com/mantidproject/mantid/commit/fe4be80edcad6fca9178f8f0f3bf41fc912389e5)\] Fixes for crashes when running doc tests on Windows
-* *new* \[[#6252](http://trac.mantidproject.org/mantid/ticket/6252)\|[7fce272](https://github.com/mantidproject/mantid/commit/7fce2723c643de634dc43411cf10eb693b8292a5)\] LoadNexusProcessedTest does not test current version of file
-* *new* \[[#9079](http://trac.mantidproject.org/mantid/ticket/9079)\|[95d63fd](https://github.com/mantidproject/mantid/commit/95d63fd9898ceeb13fbb1546eadfaec56823e9bb)\] PerformIndexOperations
-* *new* \[[#10578](http://trac.mantidproject.org/mantid/ticket/10578)\|[a45cadb](https://github.com/mantidproject/mantid/commit/a45cadb421c595b1377286f1a83a3e3ed8a74696)\] Multi-dataset fitting interface: try to make columns in the function browser resizeable.
-* *new* \[[#10855](http://trac.mantidproject.org/mantid/ticket/10855)\|[eb7b303](https://github.com/mantidproject/mantid/commit/eb7b303011d72d9aac711a2bfaa00c7cbbe89c32)\] Rewrite indirect diffraction reduction algorithm
-* *new* \[[#10901](http://trac.mantidproject.org/mantid/ticket/10901)\|[e1aca85](https://github.com/mantidproject/mantid/commit/e1aca857446d75fd0293c0b1ef9bc983efd9c766)\] FindQwt: Unrecognised version in Debian/jessie
-* *new* \[[#11051](http://trac.mantidproject.org/mantid/ticket/11051)\|[551a18c](https://github.com/mantidproject/mantid/commit/551a18c0c2c834be7ecc9a8970bea4dcfc50c880)\] InstrumentView: eraser cursor disappears on Chadwick
-* *new* \[[#11071](http://trac.mantidproject.org/mantid/ticket/11071)\|[fa68d6f](https://github.com/mantidproject/mantid/commit/fa68d6f02a3863279e1ba10f8b1b97298ddc7c4c)\] IntegrateFlux should check for sorted events
-* *new* \[[#11508](http://trac.mantidproject.org/mantid/ticket/11508)\|[a6afa85](https://github.com/mantidproject/mantid/commit/a6afa85b50312aacc41afe0c8cbe359b1918e8ee)\] Add a help string to Instrument parameters class
-* *new* \[[#11617](http://trac.mantidproject.org/mantid/ticket/11617)\|[0e121af](https://github.com/mantidproject/mantid/commit/0e121af7cc8efab724110b11975261f1b1490eeb)\] Create an algorithm to calculate chi squared over DOF
-* *new* \[[#11667](http://trac.mantidproject.org/mantid/ticket/11667)\|[9c50ef2](https://github.com/mantidproject/mantid/commit/9c50ef2dcfa5f32c86767da4b3c5f8a333de7093)\] ConvertToYSpace should optionally also output q-space
-* *new* \[[#11700](http://trac.mantidproject.org/mantid/ticket/11700)\|[5660470](https://github.com/mantidproject/mantid/commit/566047084a3f25a497696bc7d3532d76f777460d)\] Add monitor 2 to VESUVIO IPF
-* *new* \[[#11732](http://trac.mantidproject.org/mantid/ticket/11732)\|[c811895](https://github.com/mantidproject/mantid/commit/c811895a3bea12b95aac757cf5d41fa45eb9db3e)\] SCARF remote login through web service: fix issues with special characters in passwords
-* *new* \[[#11733](http://trac.mantidproject.org/mantid/ticket/11733)\|[a919001](https://github.com/mantidproject/mantid/commit/a919001a125fa8a088ebb178116e165fb8140a46)\] Implement ChangeTimeZero algorithm for SANS
-* *new* \[[#11736](http://trac.mantidproject.org/mantid/ticket/11736)\|[5240467](https://github.com/mantidproject/mantid/commit/5240467b4ebe996037c56b66fbc478ac6ac3facf)\] Modification of the gravitationalDrop method of MatrixWorkspace
-* *new* \[[#11749](http://trac.mantidproject.org/mantid/ticket/11749)\|[54d45ad](https://github.com/mantidproject/mantid/commit/54d45ad608deb0611cb025f7db4b65236c27f06f)\] Segfault in ParameterMap::asString
-* *new* \[[#11752](http://trac.mantidproject.org/mantid/ticket/11752)\|[3d2f7bb](https://github.com/mantidproject/mantid/commit/3d2f7bbb6406f825061aaa342d69877bf595aad5)\] Allow TabulatedFunction to also fit a scale in X value
-* *new* \[[#11759](http://trac.mantidproject.org/mantid/ticket/11759)\|[67987d9](https://github.com/mantidproject/mantid/commit/67987d92a0714668e6089fd712422c57a3a98a6a)\] Add workflow diagrams for indirect algorithms
-* *new* \[[#11769](http://trac.mantidproject.org/mantid/ticket/11769)\|[415f654](https://github.com/mantidproject/mantid/commit/415f654147f92a0e652a53f5cfc60aac30abf676)\] Add script for generating slice viewer gifs
-* \[[#11808](http://trac.mantidproject.org/mantid/ticket/11808)\|[0c6032a](https://github.com/mantidproject/mantid/commit/0c6032a0d88ab6a6e903e8c9b9f305efc1e0ddb1)\] Undefined Behavior Sanitizer
-* *new* \[[#11810](http://trac.mantidproject.org/mantid/ticket/11810)\|[0a6e4bd](https://github.com/mantidproject/mantid/commit/0a6e4bd4deff0dfd7523fd6123bd3f5df1e67fe7)\] error quantification in MSD Fit not correct
-* *new* \[[#11814](http://trac.mantidproject.org/mantid/ticket/11814)\|[1216797](https://github.com/mantidproject/mantid/commit/1216797cfa144380958d11173224bb65b44cd7cd)\] Set the Recursion Depth for MDEvent workspaces to 1 when top level splitting is applied.
-* *new* \[[#11833](http://trac.mantidproject.org/mantid/ticket/11833)\|[cb71452](https://github.com/mantidproject/mantid/commit/cb714526a069d2f376ce2d866bfa807a9604719f)\] Port Monte Carlo resolution routine for VESUVIO
-* *new* \[[#11846](http://trac.mantidproject.org/mantid/ticket/11846)\|[8fdb8f1](https://github.com/mantidproject/mantid/commit/8fdb8f17bc1f5d803b1b203c44011bd0875b6ea2)\] DownloadFile usage example
-* *new* \[[#11859](http://trac.mantidproject.org/mantid/ticket/11859)\|[6d43ca2](https://github.com/mantidproject/mantid/commit/6d43ca223a37efe4f843136077b6563903c9a590)\] Add Python version of cylinder abs. code
-* *new* \[[#11868](http://trac.mantidproject.org/mantid/ticket/11868)\|[708c0cf](https://github.com/mantidproject/mantid/commit/708c0cf4d0471fd3ad38f2fac49b8510f39116dc)\] Move PeakTransform* and IPeak to Geometry from API
-* *new* \[[#11869](http://trac.mantidproject.org/mantid/ticket/11869)\|[a13ea1d](https://github.com/mantidproject/mantid/commit/a13ea1d816baf7627e181d5b23534ee95c54cb71)\] DetCal bug
-* *new* \[[#11870](http://trac.mantidproject.org/mantid/ticket/11870)\|[c395773](https://github.com/mantidproject/mantid/commit/c395773fed629d14c73d86ea66f76aac9d7cc374)\] Rename ranges in elastic window algorithms
-* *new* \[[#11871](http://trac.mantidproject.org/mantid/ticket/11871)\|[fe0e046](https://github.com/mantidproject/mantid/commit/fe0e046e1d79786c95578f653587a2a16b38a140)\] Delete ConfigService hacks around removing properties
-* *new* \[[#11874](http://trac.mantidproject.org/mantid/ticket/11874)\|[39ae55d](https://github.com/mantidproject/mantid/commit/39ae55d36cf9c89fca24359a47148c5d2615b953)\] Provide POLDI instrument parameters for 2015
-* *new* \[[#11877](http://trac.mantidproject.org/mantid/ticket/11877)\|[6d19154](https://github.com/mantidproject/mantid/commit/6d19154e9f85cd1a22ec3869e01bf792a8cc828f)\] SaveNexusProcessed/LoadNexusProcessed round trip bug
-* \[[#11880](http://trac.mantidproject.org/mantid/ticket/11880)\|[d155251](https://github.com/mantidproject/mantid/commit/d15525159a8a84886c730614d6f1859e4e4a4997)\] Fix squish
-* *new* \[[#11886](http://trac.mantidproject.org/mantid/ticket/11886)\|[65a45cd](https://github.com/mantidproject/mantid/commit/65a45cd1b6e7ee6d63d027f6df4858d769c04f0f)\] Replace reduction script if sample script is outdated
-* \[[#12731](https://github.com/mantidproject/mantid/pull/12731)\|[f10875f](https://github.com/mantidproject/mantid/commit/f10875f361dc4a5e309888eecfd1e24318ece682)\] Revert &quot;Revert &quot;Fix squish tests&quot;&quot;
-* *new* \[[#12733](https://github.com/mantidproject/mantid/pull/12733)\|[b3eb92e](https://github.com/mantidproject/mantid/commit/b3eb92e3cb9d7e5084c8dcb68cad2e5620d41575)\] Fix Indirect Diffraction plotting
-* \[[#12733](https://github.com/mantidproject/mantid/pull/12733)\|[7ac1ccb](https://github.com/mantidproject/mantid/commit/7ac1ccb3a37182786bfdc92e64c294ad42264788)\] Fix Indirect Diffraction plotting
-* *new* \[[#12736](https://github.com/mantidproject/mantid/pull/12736)\|[4937edb](https://github.com/mantidproject/mantid/commit/4937edbac697d6ffa299a94f02b5c628d351419e)\] Add ConvergenceCriteria and JumpAcceptanceRate options to IqtFit and ConvFit
-
-* *new* \[[#12745](https://github.com/mantidproject/mantid/pull/12745)\|[b39c756](https://github.com/mantidproject/mantid/commit/b39c756c6674b9dda61931455a6734eb692dfcbf)\] Remaining 'incorrect expression' Coverity issues
+* [PR760](https://github.com/mantidproject/mantid/pull/760) - Create HB3A IDF file and enable LoadSpiceXML2DDet to load instrument
+* *new* [PR774](https://github.com/mantidproject/mantid/pull/774) - Undefined Behavior Sanitizer
+* *new* [PR798](https://github.com/mantidproject/mantid/pull/798) - Add Python version of the indirect cylinder absorption correction routine
+* *new* [PR802](https://github.com/mantidproject/mantid/pull/802) - Add new Elwin parameter to ISIS instruments
+* *new* [PR811](https://github.com/mantidproject/mantid/pull/811) - VESUVIO l1 and theta resolution routine
+* *new* [PR812](https://github.com/mantidproject/mantid/pull/812) - Allow an arbitrary trailing string on the qwt version
+* *new* [PR816](https://github.com/mantidproject/mantid/pull/816) - Calculate chi squared over dof
+* *new* [PR817](https://github.com/mantidproject/mantid/pull/817) - error quantification in MSD Fit not correct
+* *new* [PR819](https://github.com/mantidproject/mantid/pull/819) - LoadIsawDetCal bug fixed
+* *new* [PR820](https://github.com/mantidproject/mantid/pull/820) - Sort events before integration in IntegrateFlux
+* *new* [PR821](https://github.com/mantidproject/mantid/pull/821) - Remove hacks in ConfigService for older Poco versions
+* *new* [PR822](https://github.com/mantidproject/mantid/pull/822) - Rename ElasticWindow(Multiple) ranges
+* [PR823](https://github.com/mantidproject/mantid/pull/823) - Fix a couple of doxygen warnings in master
+* *new* [PR824](https://github.com/mantidproject/mantid/pull/824) - Move Peak Classes to Geometry Crystal Subpackage
+* *new* [PR826](https://github.com/mantidproject/mantid/pull/826) - Add POLDI Parameters for 2015
+* [PR829](https://github.com/mantidproject/mantid/pull/829) - Clang format python interface
+* [PR830](https://github.com/mantidproject/mantid/pull/830) - Create new diffraction config object
+* [PR831](https://github.com/mantidproject/mantid/pull/831) - Initial version of reporting facility git metrics
+* *new* [PR832](https://github.com/mantidproject/mantid/pull/832) - Fix LoadNexusProcessed bug
+* *new* [PR833](https://github.com/mantidproject/mantid/pull/833) - Fix SplineInterpolation vertical axis
+* *new* [PR835](https://github.com/mantidproject/mantid/pull/835) Deprecate PerformIndexOperations
+* [PR836](https://github.com/mantidproject/mantid/pull/836) Fix squish tests
+* *new* [PR837](https://github.com/mantidproject/mantid/pull/837) Turn off DownloadFile usage example
+* *new* [PR838](https://github.com/mantidproject/mantid/pull/838) Ability to resize columns in FunctionBrowser.
+* [PR840](https://github.com/mantidproject/mantid/pull/840) Fix Pylint issues in StatisticsOfTableWorkspace
+* [PR841](https://github.com/mantidproject/mantid/pull/841) Revert "Fix squish tests"
+* *new* [PR842](https://github.com/mantidproject/mantid/pull/842) Replace sample users script by its updated version if present
+* [PR843](https://github.com/mantidproject/mantid/pull/843) Added g++
+* [PR844](https://github.com/mantidproject/mantid/pull/844) LoadCalFile creates new calibration workspace
+* [PR845](https://github.com/mantidproject/mantid/pull/845) Point issue tracking to github
+* [PR846](https://github.com/mantidproject/mantid/pull/846) Fixes for crashes when running doc tests on Windows
+* *new* [PR12730](https://github.com/mantidproject/mantid/pull/12730) Add doctest for ElasticWindowMultiple
+* [PR12731](https://github.com/mantidproject/mantid/pull/12731) Revert "Revert "Fix squish tests""
+* [PR12733](https://github.com/mantidproject/mantid/pull/12733) Fix Indirect Diffraction plotting
+* *new* [PR12737](https://github.com/mantidproject/mantid/pull/12737) Use CalMuonDeadTime in systemtest
+* *new* [PR12738](https://github.com/mantidproject/mantid/pull/12738) Add extra FABADA attributes to IDA
+* *new* [PR12739](https://github.com/mantidproject/mantid/pull/12739) Switch doc tests to Ubuntu on pull request builds
+* *new* [PR12740](https://github.com/mantidproject/mantid/pull/12740) Add progress report for LoadDetectorsGroupingFile algorithm
+* *new* [PR12743](https://github.com/mantidproject/mantid/pull/12743) Added forward only headers for common workspaces.
+* *new* [PR12747](https://github.com/mantidproject/mantid/pull/12747) Fix remaining coverity 'uninitialized members' issues
+* *new* [PR12750](https://github.com/mantidproject/mantid/pull/12750) Fix remaining 'incorrect expression' coverity issues
+* *new* [PR12752](https://github.com/mantidproject/mantid/pull/12752) Fix IDR rebin default option
+* *new* [PR12755](https://github.com/mantidproject/mantid/pull/12755) Add txt extension for mask file browser
+* *new* [PR12756](https://github.com/mantidproject/mantid/pull/12756) Display error bars in multi-data set fitting interface.
