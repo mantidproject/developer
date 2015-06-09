@@ -9,6 +9,7 @@ Updates for week 23 of 2015
 * Moved from [trac](http://trac.mantidproject.org/mantid/) to [github issues](https://github.com/mantidproject/mantid/issues)
 * New algorithm [CylinderPaalmanPingsCorrection]({{ site.docpage }}/algorithms/CylinderPaalmanPingsCorrection)
 * New algorithm [CalculateChiSquared]({{ site.docpage }}/algorithms/CalculateChiSquared)
+* New algorithm [VesuvioL1ThetaResolution]({{ site.docpage }}/algorithms/VesuvioL1ThetaResolution)
 * Fix issues found by static analysis
 * New HFIR HB3A IDF
 * New diffraction config object
@@ -21,10 +22,10 @@ Detailed Merges for Jun 1 to 7, 2015
 * [PR774](https://github.com/mantidproject/mantid/pull/774) - Undefined Behavior Sanitizer
 * [PR798](https://github.com/mantidproject/mantid/pull/798) - Add Python version of the indirect cylinder absorption correction routine
 * [PR802](https://github.com/mantidproject/mantid/pull/802) - Add new Elwin parameter to ISIS instruments
-* *new* [PR811](https://github.com/mantidproject/mantid/pull/811) - VESUVIO l1 and theta resolution routine
+* [PR811](https://github.com/mantidproject/mantid/pull/811) - VESUVIO l1 and theta resolution routine
 * [PR812](https://github.com/mantidproject/mantid/pull/812) - Allow an arbitrary trailing string on the qwt version
 * [PR816](https://github.com/mantidproject/mantid/pull/816) - Calculate chi squared over dof
-* *new* [PR817](https://github.com/mantidproject/mantid/pull/817) - error quantification in MSD Fit not correct
+* [PR817](https://github.com/mantidproject/mantid/pull/817) - error quantification in MSD Fit not correct
 * [PR819](https://github.com/mantidproject/mantid/pull/819) - LoadIsawDetCal bug fixed
 * [PR820](https://github.com/mantidproject/mantid/pull/820) - Sort events before integration in IntegrateFlux
 * *new* [PR821](https://github.com/mantidproject/mantid/pull/821) - Remove hacks in ConfigService for older Poco versions
