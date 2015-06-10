@@ -10,6 +10,8 @@ Updates for Week 24 of 2015
 
 Detailed Merges for Jun 8 to 14, 2015
 -------------------------------------
+[on github](https://github.com/mantidproject/mantid/pulls?q=is%3Apr+merged%3A2015-06-09..2015-06-14)
+
 * *new* [PR12729](https://github.com/mantidproject/mantid/pull/12729) - Remove old abs. correction code
 * *new* [PR12757](https://github.com/mantidproject/mantid/pull/12757) - Assign dimensions to the dectectors in the BASIS instrument file
 * *new* [PR12758](https://github.com/mantidproject/mantid/pull/12758) - Fix normalization of atoms for compounds
