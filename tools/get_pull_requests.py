@@ -135,6 +135,9 @@ def parseFile(filename):
     pulls=[]
     for line in handle:
         if 'github.com' in line:
+            if '[on github](https://github.com' in line \
+               and '+merged' in line:
+                continue
             pr = PullRequest(line.strip())
             pulls.append(pr)
 
@@ -181,6 +184,13 @@ def writeHeader(handle, header, start):
 
     handle.write(detail+"\n") # TODO write to file
     handle.write("-"*len(detail)+"\n") # TODO write to file
+
+    query_link='https://github.com/mantidproject/mantid/pulls' \
+        +r'?q=is%3Apr+merged%3A'
+    query_link="[on github](%s%s..%s)" % (query_link,
+                                          str(since+datetime.timedelta(days=1)),
+                                          str(stop))
+    handle.write("%s\n\n" % query_link)
 
 def writePulls(handle, pulls):
     pulls = sorted(pulls, key=lambda pr: pr.number)
