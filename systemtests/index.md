@@ -1,17 +1,17 @@
 ---
 layout: default
-date: 2015-06-09
+date: 2015-06-10
 author: Peter Peterson
 title: Currently Skipped System Tests
 ---
 Summary
 =======
 
-* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2015-06-09 [#98](http://builds.mantidproject.org/job/master_systemtests/98/)
+* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2015-06-10 [#99](http://builds.mantidproject.org/job/master_systemtests/99/)
 * Labels : osx-10.9, rhel6, rhel7, ubuntu-14.04, win7
 * Failed : 0
-* Skipped: 103 (32 unique)
-* Total  : 1485 (= 297 * 5)
+* Skipped: 75 (25 unique)
+* Total  : 1435 (= 287 * 5)
 
 Details
 =======
@@ -25,13 +25,6 @@ Skipped
 | EQSANSFlatTest                     |     x    |   x   |   x   |       x      |   x  |
 | LoadSQW_FileBasedTest              |     x    |   x   |   x   |       x      |   x  |
 | LoadSQW_MemBasedTest               |     x    |   x   |   x   |       x      |   x  |
-| AbsRunFeederChemicalFormulaTest    |     x    |   x   |   x   |       x      |      |
-| AbsRunFeederDefaultBeamWidthTest   |     x    |   x   |   x   |       x      |      |
-| AbsRunFeederDiffractionTest        |     x    |   x   |   x   |       x      |      |
-| AbsRunFeederTest                   |     x    |   x   |   x   |       x      |      |
-| CylAbsTest                         |     x    |   x   |   x   |       x      |      |
-| FltAbsTSecCloseTo90Test            |     x    |   x   |   x   |       x      |      |
-| FltAbsTest                         |     x    |   x   |   x   |       x      |      |
 | QLDataTest                         |     x    |   x   |   x   |       x      |      |
 | QLResNormTest                      |     x    |   x   |   x   |       x      |      |
 | QLWidthTest                        |     x    |   x   |   x   |       x      |      |
