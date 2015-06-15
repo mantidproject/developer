@@ -1,15 +1,15 @@
 ---
 layout: default
-date: 2015-06-14
+date: 2015-06-15
 author: Peter Peterson
 title: Currently Skipped System Tests
 ---
 Summary
 =======
 
-* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2015-06-14 [#104](http://builds.mantidproject.org/job/master_systemtests/104/)
+* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2015-06-15 [#105](http://builds.mantidproject.org/job/master_systemtests/105/)
 * Labels : osx-10.9, rhel6, rhel7, ubuntu-14.04, win7
-* Failed : 2 (2 unique)
+* Failed : 3 (3 unique)
 * Skipped: 79 (25 unique)
 * Total  : 1440 (= 288 * 5)
 
@@ -21,6 +21,7 @@ Failed
 
 | Test                                | osx-10.9 | rhel6 | rhel7 | ubuntu-14.04 | win7 |
 |-------------------------------------|----------|-------|-------|--------------|------|
+| PG3Calibration                      |          |       |   x   |              |      |
 | POLDICreatePeaksFromCellTestFeTiO3  |     x    |       |       |              |      |
 | POLDICreatePeaksFromCellTestSiO2    |     x    |       |       |              |      |
 
