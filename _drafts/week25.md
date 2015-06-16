@@ -15,3 +15,4 @@ Detailed Merges for Jun 15 to 21, 2015
 * *new* [PR12801](https://github.com/mantidproject/mantid/pull/12801) - Use fwd headers when possible
 * *new* [PR12801](https://github.com/mantidproject/mantid/pull/12801) - Use fwd headers when possible
 * *new* [PR12814](https://github.com/mantidproject/mantid/pull/12814) - Modify system test for PoldiCreatePeaksFromCell to ignore order of reflections
+* *new* [PR12814](https://github.com/mantidproject/mantid/pull/12814) - Modify system test for PoldiCreatePeaksFromCell to ignore order of reflections
