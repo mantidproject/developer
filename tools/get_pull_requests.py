@@ -240,19 +240,17 @@ if __name__ == "__main__":
                                until=until)
 
     # merge the lists
-    pulls_merging = {}
+    pulls = {}
     # start with everything from the file
     for pull in pullsFromFile:
-        pulls_merging[pull.number] = pull
+        pulls[pull.number] = pull
     for pull in pullsFromGithub:
-        if not pull.number in pulls_merging:
-            pulls_merging[pull.number] = pull
+        if not pull.number in pulls:
+            pulls[pull.number] = pull
         else:
-            pulls_merging[pull.number].title = pull.title
+            pulls[pull.number].title = pull.title
 
-    pulls = []
-    for key in pulls_merging.keys():
-        pulls.append(pulls_merging[key])
+    pulls = list(pulls.values())
     pulls = sorted(pulls, key=lambda pr: pr.number)
 
     print("==============================")
