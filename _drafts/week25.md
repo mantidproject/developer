@@ -40,3 +40,6 @@ Detailed Merges for Jun 15 to 21, 2015
 * *new* [PR12845](https://github.com/mantidproject/mantid/pull/12845) - Remove JumpFit algorithm
 * *new* [PR12846](https://github.com/mantidproject/mantid/pull/12846) - Updated zero padding for ARGUS and CHRONUS
 * *new* [PR12847](https://github.com/mantidproject/mantid/pull/12847) - Change CorelliCrossCorrelate to use MotorSpeed instead of TDC for chopper period
+* *new* [PR12855](https://github.com/mantidproject/mantid/pull/12855) - Fix ALCDataLoadingPresenterTest
+* *new* [PR12859](https://github.com/mantidproject/mantid/pull/12859) - Introduced constant for number of nanoseconds per second
+* *new* [PR12860](https://github.com/mantidproject/mantid/pull/12860) - Removed wrong call name to 'sqrt' function
