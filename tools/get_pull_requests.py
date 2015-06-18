@@ -238,32 +238,22 @@ if __name__ == "__main__":
     pullsFromGithub = getPulls(endpoint, oauth=oauth,
                                since=since,
                                until=until)
-    # TODO merge the lists
-    if len(pullsFromFile) == 0:
-        pulls = pullsFromGithub
-    elif len(pullsFromGithub) == 0:
-        pulls = pullsFromFile
-    else:
-        pulls = []
-        (i,j)=(0,0)
-        while(True):
-            if i >= len(pullsFromFile) or j >= len(pullsFromGithub):
-                break
-            if pullsFromFile[i].number < pullsFromGithub[j].number:
-                pulls.append(pullsFromFile[i])
-                i+=1
-            elif pullsFromFile[i].number == pullsFromGithub[j].number:
-                pr = pullsFromFile[i]
-                pr.title=pullsFromGithub[j].title
-                # todo merge
-                pulls.append(pr)
-                i+=1
-                j+=1
-            elif pullsFromFile[i].number > pullsFromGithub[j].number:
-                pulls.append(pullsFromGithub[i])
-                j+=1
-            else:
-                break
+
+    # merge the lists
+    pulls_merging = {}
+    # start with everything from the file
+    for pull in pullsFromFile:
+        pulls_merging[pull.number] = pull
+    for pull in pullsFromGithub:
+        if not pull.number in pulls_merging:
+            pulls_merging[pull.number] = pull
+        else:
+            pulls_merging[pull.number].title = pull.title
+
+    pulls = []
+    for key in pulls_merging.keys():
+        pulls.append(pulls_merging[key])
+    pulls = sorted(pulls, key=lambda pr: pr.number)
 
     print("==============================")
     print("Week %d of %d -" % (week, since.year), since,"to",until)
