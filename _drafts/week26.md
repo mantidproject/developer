@@ -15,6 +15,7 @@ Detailed Merges for Jun 22 to 28, 2015
 --------------------------------------
 [on github](https://github.com/mantidproject/mantid/pulls?q=is%3Apr+merged%3A2015-06-23..2015-06-28)
 
+* *new* [PR12834](https://github.com/mantidproject/mantid/pull/12834) - New ResNorm algorithm
 * [PR12849](https://github.com/mantidproject/mantid/pull/12849) - Fix bin edge spectrum axis in PlotPeakByLogValue parameter table
 * [PR12870](https://github.com/mantidproject/mantid/pull/12870) - PoldiFitPeaks2D should be able to output integrated intensities
 * [PR12874](https://github.com/mantidproject/mantid/pull/12874) - Fix broken Qt connection in VSI
