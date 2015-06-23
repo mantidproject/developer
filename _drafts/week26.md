@@ -10,6 +10,7 @@ Updates for Week 26 of 2015
 * Added missing dependencies for ipython notebook
 * Bugfix broken Qt connection in VSI
 * Corrected POLDI parameters for 2014
+* New methods `getCurrentRSS()` and `getPeakRSS()` in `Kernel::Memory`
 
 Detailed Merges for Jun 22 to 28, 2015
 --------------------------------------
@@ -26,6 +27,6 @@ Detailed Merges for Jun 22 to 28, 2015
 * [PR12890](https://github.com/mantidproject/mantid/pull/12890) - Fix bug in ALC
 * *new* [PR12892](https://github.com/mantidproject/mantid/pull/12892) - IDR load log file option
 * *new* [PR12899](https://github.com/mantidproject/mantid/pull/12899) - Fixed behavior of VectorHelper::convertToBinBoundary for two special cases
-* *new* [PR12903](https://github.com/mantidproject/mantid/pull/12903) - Kernel::Memory addition
-* *new* [PR12905](https://github.com/mantidproject/mantid/pull/12905) - Warn about division by 0 in NormaliseToMonitor.
-* *new* [PR12906](https://github.com/mantidproject/mantid/pull/12906) - Changed log level of CostFuncFitting.
+* [PR12903](https://github.com/mantidproject/mantid/pull/12903) - Kernel::Memory addition
+* [PR12905](https://github.com/mantidproject/mantid/pull/12905) - Warn about division by 0 in NormaliseToMonitor.
+* [PR12906](https://github.com/mantidproject/mantid/pull/12906) - Changed log level of CostFuncFitting.
