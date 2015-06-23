@@ -24,3 +24,8 @@ Detailed Merges for Jun 22 to 28, 2015
 * [PR12879](https://github.com/mantidproject/mantid/pull/12879) - Add sequential fitting to multi-dataset interface.
 * [PR12886](https://github.com/mantidproject/mantid/pull/12886) - Add missing dependencies for ipython notebook.
 * [PR12890](https://github.com/mantidproject/mantid/pull/12890) - Fix bug in ALC
+* *new* [PR12892](https://github.com/mantidproject/mantid/pull/12892) - IDR load log file option
+* *new* [PR12899](https://github.com/mantidproject/mantid/pull/12899) - Fixed behavior of VectorHelper::convertToBinBoundary for two special cases
+* *new* [PR12903](https://github.com/mantidproject/mantid/pull/12903) - Kernel::Memory addition
+* *new* [PR12905](https://github.com/mantidproject/mantid/pull/12905) - Warn about division by 0 in NormaliseToMonitor.
+* *new* [PR12906](https://github.com/mantidproject/mantid/pull/12906) - Changed log level of CostFuncFitting.
