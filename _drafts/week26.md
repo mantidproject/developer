@@ -30,3 +30,7 @@ Detailed Merges for Jun 22 to 28, 2015
 * [PR12903](https://github.com/mantidproject/mantid/pull/12903) - Kernel::Memory addition
 * [PR12905](https://github.com/mantidproject/mantid/pull/12905) - Warn about division by 0 in NormaliseToMonitor.
 * [PR12906](https://github.com/mantidproject/mantid/pull/12906) - Changed log level of CostFuncFitting.
+* *new* [PR12912](https://github.com/mantidproject/mantid/pull/12912) - Fix bug in FunctionBrowser
+* *new* [PR12913](https://github.com/mantidproject/mantid/pull/12913) - Change test tolerance for gcc >=5 in CalculateMSVesuvioTest.
+* *new* [PR12915](https://github.com/mantidproject/mantid/pull/12915) - Fix DGSPlanner bug
+* *new* [PR12918](https://github.com/mantidproject/mantid/pull/12918) - Fix axes of scaled data sets
