@@ -27,10 +27,13 @@ Detailed Merges for Jun 22 to 28, 2015
 * [PR12890](https://github.com/mantidproject/mantid/pull/12890) - Fix bug in ALC
 * *new* [PR12892](https://github.com/mantidproject/mantid/pull/12892) - IDR load log file option
 * *new* [PR12899](https://github.com/mantidproject/mantid/pull/12899) - Fixed behavior of VectorHelper::convertToBinBoundary for two special cases
+* *new* [PR12902](https://github.com/mantidproject/mantid/pull/12902) - Load and save diffraction calibration file
 * [PR12903](https://github.com/mantidproject/mantid/pull/12903) - Kernel::Memory addition
 * [PR12905](https://github.com/mantidproject/mantid/pull/12905) - Warn about division by 0 in NormaliseToMonitor.
 * [PR12906](https://github.com/mantidproject/mantid/pull/12906) - Changed log level of CostFuncFitting.
+* *new* [PR12911](https://github.com/mantidproject/mantid/pull/12911) - Fix PreviewPlot showing multiple error bar options for same curve
 * *new* [PR12912](https://github.com/mantidproject/mantid/pull/12912) - Fix bug in FunctionBrowser
 * *new* [PR12913](https://github.com/mantidproject/mantid/pull/12913) - Change test tolerance for gcc >=5 in CalculateMSVesuvioTest.
 * *new* [PR12915](https://github.com/mantidproject/mantid/pull/12915) - Fix DGSPlanner bug
 * *new* [PR12918](https://github.com/mantidproject/mantid/pull/12918) - Fix axes of scaled data sets
+* *new* [PR12934](https://github.com/mantidproject/mantid/pull/12934) - EnginX: use InputWorkspace property instead of Filename in all algorithms
