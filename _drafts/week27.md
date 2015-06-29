@@ -11,3 +11,7 @@ Detailed Merges for Jun 29 to Jul 5, 2015
 -----------------------------------------
 [on github](https://github.com/mantidproject/mantid/pulls?q=is%3Apr+merged%3A2015-06-30..2015-07-05)
 
+* *new* [PR12923](https://github.com/mantidproject/mantid/pull/12923) - Fix resolution workspace saving in ISIS Calibration
+* *new* [PR12935](https://github.com/mantidproject/mantid/pull/12935) - Improve performance of rebin2D-type algorithms
+* *new* [PR12944](https://github.com/mantidproject/mantid/pull/12944) - Skip steps and re-use results
+* *new* [PR12960](https://github.com/mantidproject/mantid/pull/12960) - Review ALC help pages
