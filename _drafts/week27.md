@@ -18,8 +18,10 @@ Detailed Merges for Jun 29 to Jul 5, 2015
 * *new* [PR12941](https://github.com/mantidproject/mantid/pull/12941) - DiffCalFile bugfixes
 * *new* [PR12944](https://github.com/mantidproject/mantid/pull/12944) - Skip steps and re-use results
 * *new* [PR12950](https://github.com/mantidproject/mantid/pull/12950) - Fix fipped mask in SANS
+* *new* [PR12951](https://github.com/mantidproject/mantid/pull/12951) - Implementation of clone() for all Workspaces
 * *new* [PR12957](https://github.com/mantidproject/mantid/pull/12957) - EnginXCalibrateFull: extend bank calibration output table, write it to file, apply calibration on workspace
 * *new* [PR12958](https://github.com/mantidproject/mantid/pull/12958) - Reduce the number of algorithm instances created during generic dialog box usage
+* *new* [PR12959](https://github.com/mantidproject/mantid/pull/12959) - DataProcessorAlgorithm improvements
 * *new* [PR12960](https://github.com/mantidproject/mantid/pull/12960) - Review ALC help pages
 * *new* [PR12961](https://github.com/mantidproject/mantid/pull/12961) - Setting the logging to debug changes fit parameters in unit tests.
 * *new* [PR12962](https://github.com/mantidproject/mantid/pull/12962) - ISIS SANS GUI enhancement to Diagnostics Tab
@@ -35,4 +37,11 @@ Detailed Merges for Jun 29 to Jul 5, 2015
 * *new* [PR12981](https://github.com/mantidproject/mantid/pull/12981) - Change format of printing lattice parameters
 * *new* [PR12984](https://github.com/mantidproject/mantid/pull/12984) - Fix bug in PlotAsymmetryByLogValue
 * *new* [PR12987](https://github.com/mantidproject/mantid/pull/12987) - merge runs error bar details in alg docs
+* *new* [PR12988](https://github.com/mantidproject/mantid/pull/12988) - SliceViewer peak eraser tool
 * *new* [PR12991](https://github.com/mantidproject/mantid/pull/12991) - Adding python-matplotlib to dev packages.
+* *new* [PR12995](https://github.com/mantidproject/mantid/pull/12995) - Fix det merge command
+* *new* [PR12996](https://github.com/mantidproject/mantid/pull/12996) - Engin-X: more flexible bank interpretation
+* *new* [PR12998](https://github.com/mantidproject/mantid/pull/12998) - Revert logging changes to FindPeaksMD
+* *new* [PR13005](https://github.com/mantidproject/mantid/pull/13005) - Use WorkspaceFactory in Symmetrise
+* *new* [PR13011](https://github.com/mantidproject/mantid/pull/13011) - Set the y axis label for transmission ratios in SANS
+* *new* [PR13013](https://github.com/mantidproject/mantid/pull/13013) - Add source code links in alg docs
