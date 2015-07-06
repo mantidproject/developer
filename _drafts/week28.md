@@ -15,3 +15,4 @@ Detailed Merges for Jul 6 to 12, 2015
 * [PR12963](https://github.com/mantidproject/mantid/pull/12963) - Extend LoadEventNexus For MultiPeriod Events
 * [PR12993](https://github.com/mantidproject/mantid/pull/12993) - Move corrections from IDA to new UI
 * [PR13018](https://github.com/mantidproject/mantid/pull/13018) - Can't overlay sample log plots
+* *new* [PR13019](https://github.com/mantidproject/mantid/pull/13019) - Fix the source links for some indirect algorithms
