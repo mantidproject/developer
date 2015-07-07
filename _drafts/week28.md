@@ -14,5 +14,9 @@ Detailed Merges for Jul 6 to 12, 2015
 
 * [PR12963](https://github.com/mantidproject/mantid/pull/12963) - Extend LoadEventNexus For MultiPeriod Events
 * [PR12993](https://github.com/mantidproject/mantid/pull/12993) - Move corrections from IDA to new UI
+* *new* [PR12997](https://github.com/mantidproject/mantid/pull/12997) - Fix apply corrections for diffraction
 * [PR13018](https://github.com/mantidproject/mantid/pull/13018) - Can't overlay sample log plots
 * *new* [PR13019](https://github.com/mantidproject/mantid/pull/13019) - Fix the source links for some indirect algorithms
+* *new* [PR13023](https://github.com/mantidproject/mantid/pull/13023) - Adding sourcelinks to fit functions
+* *new* [PR13025](https://github.com/mantidproject/mantid/pull/13025) - Copy paste error in LoadDiffCal
+* *new* [PR13026](https://github.com/mantidproject/mantid/pull/13026) - Change Corelli bank names to sequentially numbered banks. i.e. bank1,..
