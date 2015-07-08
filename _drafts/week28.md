@@ -15,8 +15,14 @@ Detailed Merges for Jul 6 to 12, 2015
 * [PR12963](https://github.com/mantidproject/mantid/pull/12963) - Extend LoadEventNexus For MultiPeriod Events
 * [PR12993](https://github.com/mantidproject/mantid/pull/12993) - Move corrections from IDA to new UI
 * *new* [PR12997](https://github.com/mantidproject/mantid/pull/12997) - Fix apply corrections for diffraction
+* *new* [PR13007](https://github.com/mantidproject/mantid/pull/13007) - Move plotting and saving out of indirect algorithms
 * [PR13018](https://github.com/mantidproject/mantid/pull/13018) - Can't overlay sample log plots
 * *new* [PR13019](https://github.com/mantidproject/mantid/pull/13019) - Fix the source links for some indirect algorithms
+* *new* [PR13020](https://github.com/mantidproject/mantid/pull/13020) - Check version on startup
 * *new* [PR13023](https://github.com/mantidproject/mantid/pull/13023) - Adding sourcelinks to fit functions
 * *new* [PR13025](https://github.com/mantidproject/mantid/pull/13025) - Copy paste error in LoadDiffCal
 * *new* [PR13026](https://github.com/mantidproject/mantid/pull/13026) - Change Corelli bank names to sequentially numbered banks. i.e. bank1,..
+* *new* [PR13030](https://github.com/mantidproject/mantid/pull/13030) - added links to references (where a references section was found)
+* *new* [PR13031](https://github.com/mantidproject/mantid/pull/13031) - Fix BinMd normalization in SliceViewer
+* *new* [PR13033](https://github.com/mantidproject/mantid/pull/13033) - Cleared up parameter confusion
+* *new* [PR13037](https://github.com/mantidproject/mantid/pull/13037) - SetScriptOutputDisplay allows copying with ctrl+c
