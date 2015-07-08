@@ -20,6 +20,7 @@ Detailed Merges for Jul 6 to 12, 2015
 * [PR12993](https://github.com/mantidproject/mantid/pull/12993) - Move corrections from IDA to new UI
 * [PR12997](https://github.com/mantidproject/mantid/pull/12997) - Fix apply corrections for diffraction
 * *new* [PR13007](https://github.com/mantidproject/mantid/pull/13007) - Move plotting and saving out of indirect algorithms
+* *new* [PR13014](https://github.com/mantidproject/mantid/pull/13014) - Fix OSIRIS vanadium to loading OSIRIS
 * [PR13018](https://github.com/mantidproject/mantid/pull/13018) - Can't overlay sample log plots
 * [PR13019](https://github.com/mantidproject/mantid/pull/13019) - Fix the source links for some indirect algorithms
 * [PR13020](https://github.com/mantidproject/mantid/pull/13020) - Check version on startup
@@ -30,3 +31,5 @@ Detailed Merges for Jul 6 to 12, 2015
 * *new* [PR13031](https://github.com/mantidproject/mantid/pull/13031) - Fix BinMd normalization in SliceViewer
 * *new* [PR13033](https://github.com/mantidproject/mantid/pull/13033) - Cleared up parameter confusion
 * *new* [PR13037](https://github.com/mantidproject/mantid/pull/13037) - SetScriptOutputDisplay allows copying with ctrl+c
+* *new* [PR13042](https://github.com/mantidproject/mantid/pull/13042) - Bin MD dialog crash
+* *new* [PR13043](https://github.com/mantidproject/mantid/pull/13043) - Corrections for bby loader
