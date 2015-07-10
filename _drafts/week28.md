@@ -24,6 +24,7 @@ Detailed Merges for Jul 6 to 12, 2015
 * [PR12993](https://github.com/mantidproject/mantid/pull/12993) - Move corrections from IDA to new UI
 * [PR12997](https://github.com/mantidproject/mantid/pull/12997) - Fix apply corrections for diffraction
 * [PR13007](https://github.com/mantidproject/mantid/pull/13007) - Move plotting and saving out of indirect algorithms
+* *new* [PR13008](https://github.com/mantidproject/mantid/pull/13008) - Revamp the tomo/IMAT GUI with MVP pattern, and add unit tests
 * [PR13014](https://github.com/mantidproject/mantid/pull/13014) - Fix OSIRIS vanadium to loading OSIRIS
 * [PR13018](https://github.com/mantidproject/mantid/pull/13018) - Can't overlay sample log plots
 * [PR13019](https://github.com/mantidproject/mantid/pull/13019) - Fix the source links for some indirect algorithms
@@ -31,6 +32,7 @@ Detailed Merges for Jul 6 to 12, 2015
 * [PR13023](https://github.com/mantidproject/mantid/pull/13023) - Adding sourcelinks to fit functions
 * [PR13025](https://github.com/mantidproject/mantid/pull/13025) - Copy paste error in LoadDiffCal
 * [PR13026](https://github.com/mantidproject/mantid/pull/13026) - Change Corelli bank names to sequentially numbered banks. i.e. bank1,..
+* *new* [PR13028](https://github.com/mantidproject/mantid/pull/13028) - Make corrections workspaces children of the sample
 * [PR13029](https://github.com/mantidproject/mantid/pull/13029) - Update LoadDNSLegacy
 * [PR13030](https://github.com/mantidproject/mantid/pull/13030) - added links to references (where a references section was found)
 * [PR13031](https://github.com/mantidproject/mantid/pull/13031) - Fix BinMd normalization in SliceViewer
@@ -41,3 +43,6 @@ Detailed Merges for Jul 6 to 12, 2015
 * [PR13047](https://github.com/mantidproject/mantid/pull/13047) - EnginX: rename algorithms EnginX* => Engg*
 * [PR13048](https://github.com/mantidproject/mantid/pull/13048) - Added allowed values to properties tables
 * [PR13049](https://github.com/mantidproject/mantid/pull/13049) - Expand LoadDiffCal usage
+* *new* [PR13067](https://github.com/mantidproject/mantid/pull/13067) - added grouped unit test, and sped up all unit tests by 5 times
+* *new* [PR13068](https://github.com/mantidproject/mantid/pull/13068) - Fix MantidPlot Pyplot savefig
+* *new* [PR13069](https://github.com/mantidproject/mantid/pull/13069) - Fix X label after FFT transformation
