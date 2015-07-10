@@ -13,6 +13,8 @@ Updates for Week 28 of 2015
 * Added DOI links to various algorithm documentation
 * Bugfix [BinMD]({{ site.docpage }}/algorithms/BinMD) dialog crash
 * Bugfix [BinMD]({{ site.docpage }}/algorithms/BinMD) normalization in SliceViewer
+* Renamed algorithms `EnginX*` to `Engg*`
+* Added allowed values to properties tables in user documentation
 
 Detailed Merges for Jul 6 to 12, 2015
 -------------------------------------
@@ -29,13 +31,13 @@ Detailed Merges for Jul 6 to 12, 2015
 * [PR13023](https://github.com/mantidproject/mantid/pull/13023) - Adding sourcelinks to fit functions
 * [PR13025](https://github.com/mantidproject/mantid/pull/13025) - Copy paste error in LoadDiffCal
 * [PR13026](https://github.com/mantidproject/mantid/pull/13026) - Change Corelli bank names to sequentially numbered banks. i.e. bank1,..
-* *new* [PR13029](https://github.com/mantidproject/mantid/pull/13029) - Update LoadDNSLegacy
+* [PR13029](https://github.com/mantidproject/mantid/pull/13029) - Update LoadDNSLegacy
 * [PR13030](https://github.com/mantidproject/mantid/pull/13030) - added links to references (where a references section was found)
 * [PR13031](https://github.com/mantidproject/mantid/pull/13031) - Fix BinMd normalization in SliceViewer
 * *new* [PR13033](https://github.com/mantidproject/mantid/pull/13033) - Cleared up parameter confusion
 * *new* [PR13037](https://github.com/mantidproject/mantid/pull/13037) - SetScriptOutputDisplay allows copying with ctrl+c
 * [PR13042](https://github.com/mantidproject/mantid/pull/13042) - Bin MD dialog crash
 * [PR13043](https://github.com/mantidproject/mantid/pull/13043) - Corrections for bby loader
-* *new* [PR13047](https://github.com/mantidproject/mantid/pull/13047) - EnginX: rename algorithms EnginX* => Engg*
-* *new* [PR13048](https://github.com/mantidproject/mantid/pull/13048) - Added allowed values to properties tables
-* *new* [PR13049](https://github.com/mantidproject/mantid/pull/13049) - Expand LoadDiffCal usage
+* [PR13047](https://github.com/mantidproject/mantid/pull/13047) - EnginX: rename algorithms EnginX* => Engg*
+* [PR13048](https://github.com/mantidproject/mantid/pull/13048) - Added allowed values to properties tables
+* [PR13049](https://github.com/mantidproject/mantid/pull/13049) - Expand LoadDiffCal usage
