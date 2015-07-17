@@ -8,6 +8,8 @@ Updates for Week 29 of 2015
 ---------------------------
 * Changed to use Paraview sha=[b40280a2](https://github.com/Kitware/ParaView/tree/b40280a2f274aa27aac707abf9097317f731dcc1)
 * Bugfix in `mantidpython` on rhel6
+* Extra parameters `CropWavelengthMin` and `VanadiumRadius` in [SNSPowderReduction]({{ site.docpage }}/algorithms/SNSPowderReduction)
+*
 
 Detailed Merges for Jul 13 to 19, 2015
 --------------------------------------
@@ -27,11 +29,11 @@ Detailed Merges for Jul 13 to 19, 2015
 * *new* [PR13092](https://github.com/mantidproject/mantid/pull/13092) - Move JumpFit from Bayes to IDA
 * *new* [PR13094](https://github.com/mantidproject/mantid/pull/13094) - improve unit testing for convert to matrix workspace
 * *new* [PR13097](https://github.com/mantidproject/mantid/pull/13097) - Colour fill plotting a WorkspaceGroup containing tables causes segfault
-* *new* [PR13101](https://github.com/mantidproject/mantid/pull/13101) - Tomographic Reconstruction: do not pop up if faciilty not ISIS - it blocks docs-qthelp
+* [PR13101](https://github.com/mantidproject/mantid/pull/13101) - Tomographic Reconstruction: do not pop up if faciilty not ISIS - it blocks docs-qthelp
 * *new* [PR13112](https://github.com/mantidproject/mantid/pull/13112) - Reorder ISIS Energy Transfer tab
-* *new* [PR13116](https://github.com/mantidproject/mantid/pull/13116) - Nomad fixes
-* *new* [PR13117](https://github.com/mantidproject/mantid/pull/13117) - Fix multi period asymmetry calculation
-* *new* [PR13123](https://github.com/mantidproject/mantid/pull/13123) - Fix crash in ALC
+* [PR13116](https://github.com/mantidproject/mantid/pull/13116) - Nomad fixes
+* [PR13117](https://github.com/mantidproject/mantid/pull/13117) - Fix multi period asymmetry calculation
+* [PR13123](https://github.com/mantidproject/mantid/pull/13123) - Fix crash in ALC
 * *new* [PR13124](https://github.com/mantidproject/mantid/pull/13124) - Documentation of algorithm Fit: explain dynamic output properties
 * *new* [PR13125](https://github.com/mantidproject/mantid/pull/13125) - Exposing empty parameter constants to python
 * *new* [PR13126](https://github.com/mantidproject/mantid/pull/13126) - 13087 moderator tzero extend
