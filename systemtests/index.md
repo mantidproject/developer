@@ -1,17 +1,17 @@
 ---
 layout: default
-date: 2015-07-21
+date: 2015-07-22
 author: Peter Peterson
 title: Currently Skipped System Tests
 ---
 Summary
 =======
 
-* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2015-07-21 [#141](http://builds.mantidproject.org/job/master_systemtests/141/)
-* Labels : osx-10.9, rhel6, rhel7, ubuntu-14.04, win7
-* Failed : 2
-* Skipped: 79 (25 unique)
-* Total  : 1480 (= 296 * 5)
+* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2015-07-22 [#142](http://builds.mantidproject.org/job/master_systemtests/142/)
+* Labels : osx-10.9, rhel6, rhel7, ubuntu-14.04
+* Failed : 1
+* Skipped: 67 (25 unique)
+* Total  : 1184 (= 296 * 4)
 
 Details
 =======
@@ -19,37 +19,37 @@ Details
 Failed
 ------
 
-| Test                                  | osx-10.9 | rhel6 | rhel7 | ubuntu-14.04 | win7 |
-|---------------------------------------|----------|-------|-------|--------------|------|
-| EnginXCalibrateFullThenCalibrateTest  |     x    |       |       |              |   x  |
+| Test                                  | osx-10.9 | rhel6 | rhel7 | ubuntu-14.04 |
+|---------------------------------------|----------|-------|-------|--------------|
+| EnginXCalibrateFullThenCalibrateTest  |     x    |       |       |              |
 
 Skipped
 -------
 
-| Test                               | osx-10.9 | rhel6 | rhel7 | ubuntu-14.04 | win7 |
-|------------------------------------|----------|-------|-------|--------------|------|
-| BuildSQWTest                       |     x    |   x   |   x   |       x      |   x  |
-| EQSANSFlatTest                     |     x    |   x   |   x   |       x      |   x  |
-| LoadSQW_FileBasedTest              |     x    |   x   |   x   |       x      |   x  |
-| LoadSQW_MemBasedTest               |     x    |   x   |   x   |       x      |   x  |
-| QLDataTest                         |     x    |   x   |   x   |       x      |      |
-| QLResNormTest                      |     x    |   x   |   x   |       x      |      |
-| QLWidthTest                        |     x    |   x   |   x   |       x      |      |
-| QLresTest                          |     x    |   x   |   x   |       x      |      |
-| QSeTest                            |     x    |   x   |   x   |       x      |      |
-| QuestTest                          |     x    |   x   |   x   |       x      |      |
-| ResNormTest                        |     x    |   x   |   x   |       x      |      |
-| UserAlgorithmsBuild                |     x    |   x   |   x   |       x      |      |
-| PG3CCCalibration                   |     x    |   x   |       |              |   x  |
-| PG3Calibration                     |     x    |   x   |       |              |   x  |
-| ValidateFacilitiesFile             |     x    |   x   |       |       x      |      |
-| ValidateGroupingFiles              |     x    |   x   |       |       x      |      |
-| ValidateInstrumentDefinitionFiles  |     x    |   x   |       |       x      |      |
-| ValidateParameterFiles             |     x    |   x   |       |       x      |      |
-| PG3Analysis                        |     x    |       |       |              |   x  |
-| PG3StripPeaks                      |     x    |       |       |              |   x  |
-| LETReductionEvent2015Multirep      |     x    |       |       |              |      |
-| MAPSDgreduceReduction              |     x    |       |       |              |      |
-| MERLINReduction                    |     x    |       |       |              |      |
-| OSIRISFuryAndFuryFitMulti          |     x    |       |       |              |      |
-| TobyFitResolutionSimulationTest    |     x    |       |       |              |      |
+| Test                               | osx-10.9 | rhel6 | rhel7 | ubuntu-14.04 |
+|------------------------------------|----------|-------|-------|--------------|
+| BuildSQWTest                       |     x    |   x   |   x   |       x      |
+| EQSANSFlatTest                     |     x    |   x   |   x   |       x      |
+| LoadSQW_FileBasedTest              |     x    |   x   |   x   |       x      |
+| LoadSQW_MemBasedTest               |     x    |   x   |   x   |       x      |
+| QLDataTest                         |     x    |   x   |   x   |       x      |
+| QLResNormTest                      |     x    |   x   |   x   |       x      |
+| QLWidthTest                        |     x    |   x   |   x   |       x      |
+| QLresTest                          |     x    |   x   |   x   |       x      |
+| QSeTest                            |     x    |   x   |   x   |       x      |
+| QuestTest                          |     x    |   x   |   x   |       x      |
+| ResNormTest                        |     x    |   x   |   x   |       x      |
+| UserAlgorithmsBuild                |     x    |   x   |   x   |       x      |
+| PG3CCCalibration                   |     x    |   x   |       |              |
+| PG3Calibration                     |     x    |   x   |       |              |
+| ValidateFacilitiesFile             |     x    |       |       |       x      |
+| ValidateGroupingFiles              |     x    |       |       |       x      |
+| ValidateInstrumentDefinitionFiles  |     x    |       |       |       x      |
+| ValidateParameterFiles             |     x    |       |       |       x      |
+| LETReductionEvent2015Multirep      |     x    |       |       |              |
+| MAPSDgreduceReduction              |     x    |       |       |              |
+| MERLINReduction                    |     x    |       |       |              |
+| OSIRISFuryAndFuryFitMulti          |     x    |       |       |              |
+| PG3Analysis                        |     x    |       |       |              |
+| PG3StripPeaks                      |     x    |       |       |              |
+| TobyFitResolutionSimulationTest    |     x    |       |       |              |
