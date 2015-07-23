@@ -21,6 +21,7 @@ Detailed Merges for Jul 20 to 26, 2015
 * *new* [PR13111](https://github.com/mantidproject/mantid/pull/13111) - Rename tabs on Indirect Corrections
 * [PR13121](https://github.com/mantidproject/mantid/pull/13121) - Engg: add Vanadium consideration/corrections
 * *new* [PR13122](https://github.com/mantidproject/mantid/pull/13122) - Function to get parameter correction file for instrument
+* *new* [PR13127](https://github.com/mantidproject/mantid/pull/13127) - Improve look and feel of ToF Converter GUI
 * *new* [PR13129](https://github.com/mantidproject/mantid/pull/13129) - Analysis of chi squared around its minimum
 * *new* [PR13132](https://github.com/mantidproject/mantid/pull/13132) - Speed up loading FITS images with option to have one spectrum per row
 * *new* [PR13134](https://github.com/mantidproject/mantid/pull/13134) - Output docs a an epub file
@@ -28,5 +29,10 @@ Detailed Merges for Jul 20 to 26, 2015
 * *new* [PR13147](https://github.com/mantidproject/mantid/pull/13147) - Fixed issue #13135 to fix broken GUI
 * *new* [PR13149](https://github.com/mantidproject/mantid/pull/13149) - Fix SystemTests / EnginXCalibrateFullThenCalibrateTest on some platforms
 * *new* [PR13150](https://github.com/mantidproject/mantid/pull/13150) - Two issues with ISISIndirectEnergyTransfer
+* *new* [PR13158](https://github.com/mantidproject/mantid/pull/13158) - Better documentation for sample transmission calculator
+* *new* [PR13161](https://github.com/mantidproject/mantid/pull/13161) - Replace strings with EMPTY_DBL
 * *new* [PR13163](https://github.com/mantidproject/mantid/pull/13163) - Remove training rst pages
 * *new* [PR13167](https://github.com/mantidproject/mantid/pull/13167) - Fix jenkins mpi build
+* *new* [PR13175](https://github.com/mantidproject/mantid/pull/13175) - Adding symbolic links to startup scripts to /usr/bin
+* *new* [PR13178](https://github.com/mantidproject/mantid/pull/13178) - Update instrument definition of IMAT
+* *new* [PR13180](https://github.com/mantidproject/mantid/pull/13180) - Rename DensityOfStates algorithm
