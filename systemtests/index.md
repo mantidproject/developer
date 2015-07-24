@@ -7,49 +7,37 @@ title: Currently Skipped System Tests
 Summary
 =======
 
-* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2015-07-24 [#144](http://builds.mantidproject.org/job/master_systemtests/144/)
-* Labels : osx-10.9, rhel6, rhel7, ubuntu-14.04, win7
-* Failed : 1
-* Skipped: 75 (25 unique)
-* Total  : 1480 (= 296 * 5)
+* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2015-07-24 [#145](http://builds.mantidproject.org/job/master_systemtests/145/)
+* Labels : rhel6, rhel7, ubuntu-14.04, win7
+* Failed : 0
+* Skipped: 50 (20 unique)
+* Total  : 1184 (= 296 * 4)
 
 Details
 =======
 
-Failed
-------
-
-| Test                                  | osx-10.9 | rhel6 | rhel7 | ubuntu-14.04 | win7 |
-|---------------------------------------|----------|-------|-------|--------------|------|
-| EnginXCalibrateFullThenCalibrateTest  |     x    |       |       |              |      |
-
 Skipped
 -------
 
-| Test                               | osx-10.9 | rhel6 | rhel7 | ubuntu-14.04 | win7 |
-|------------------------------------|----------|-------|-------|--------------|------|
-| BuildSQWTest                       |     x    |   x   |   x   |       x      |   x  |
-| EQSANSFlatTest                     |     x    |   x   |   x   |       x      |   x  |
-| LoadSQW_FileBasedTest              |     x    |   x   |   x   |       x      |   x  |
-| LoadSQW_MemBasedTest               |     x    |   x   |   x   |       x      |   x  |
-| QLDataTest                         |     x    |   x   |   x   |       x      |      |
-| QLResNormTest                      |     x    |   x   |   x   |       x      |      |
-| QLWidthTest                        |     x    |   x   |   x   |       x      |      |
-| QLresTest                          |     x    |   x   |   x   |       x      |      |
-| QSeTest                            |     x    |   x   |   x   |       x      |      |
-| QuestTest                          |     x    |   x   |   x   |       x      |      |
-| ResNormTest                        |     x    |   x   |   x   |       x      |      |
-| UserAlgorithmsBuild                |     x    |   x   |   x   |       x      |      |
-| PG3CCCalibration                   |     x    |   x   |       |              |   x  |
-| PG3Calibration                     |     x    |   x   |       |              |   x  |
-| PG3Analysis                        |     x    |       |       |              |   x  |
-| PG3StripPeaks                      |     x    |       |       |              |   x  |
-| ValidateFacilitiesFile             |     x    |       |       |       x      |      |
-| ValidateGroupingFiles              |     x    |       |       |       x      |      |
-| ValidateInstrumentDefinitionFiles  |     x    |       |       |       x      |      |
-| ValidateParameterFiles             |     x    |       |       |       x      |      |
-| LETReductionEvent2015Multirep      |     x    |       |       |              |      |
-| MAPSDgreduceReduction              |     x    |       |       |              |      |
-| MERLINReduction                    |     x    |       |       |              |      |
-| OSIRISFuryAndFuryFitMulti          |     x    |       |       |              |      |
-| TobyFitResolutionSimulationTest    |     x    |       |       |              |      |
+| Test                               | rhel6 | rhel7 | ubuntu-14.04 | win7 |
+|------------------------------------|-------|-------|--------------|------|
+| BuildSQWTest                       |   x   |   x   |       x      |   x  |
+| EQSANSFlatTest                     |   x   |   x   |       x      |   x  |
+| LoadSQW_FileBasedTest              |   x   |   x   |       x      |   x  |
+| LoadSQW_MemBasedTest               |   x   |   x   |       x      |   x  |
+| QLDataTest                         |   x   |   x   |       x      |      |
+| QLResNormTest                      |   x   |   x   |       x      |      |
+| QLWidthTest                        |   x   |   x   |       x      |      |
+| QLresTest                          |   x   |   x   |       x      |      |
+| QSeTest                            |   x   |   x   |       x      |      |
+| QuestTest                          |   x   |   x   |       x      |      |
+| ResNormTest                        |   x   |   x   |       x      |      |
+| UserAlgorithmsBuild                |   x   |   x   |       x      |      |
+| PG3CCCalibration                   |   x   |       |              |   x  |
+| PG3Calibration                     |   x   |       |              |   x  |
+| PG3Analysis                        |       |       |              |   x  |
+| PG3StripPeaks                      |       |       |              |   x  |
+| ValidateFacilitiesFile             |       |       |       x      |      |
+| ValidateGroupingFiles              |       |       |       x      |      |
+| ValidateInstrumentDefinitionFiles  |       |       |       x      |      |
+| ValidateParameterFiles             |       |       |       x      |      |
