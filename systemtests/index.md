@@ -1,30 +1,20 @@
 ---
 layout: default
-date: 2015-08-06
+date: 2015-08-07
 author: Peter Peterson
 title: Currently Skipped System Tests
 ---
 Summary
 =======
 
-* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2015-08-06 [#157](http://builds.mantidproject.org/job/master_systemtests/157/)
+* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2015-08-07 [#158](http://builds.mantidproject.org/job/master_systemtests/158/)
 * Labels : osx-10.9, rhel6, rhel7, ubuntu-14.04, win7
-* Failed : 4 (4 unique)
+* Failed : 0
 * Skipped: 79 (25 unique)
 * Total  : 1490 (= 298 * 5)
 
 Details
 =======
-
-Failed
-------
-
-| Test                                       | osx-10.9 | rhel6 | rhel7 | ubuntu-14.04 | win7 |
-|--------------------------------------------|----------|-------|-------|--------------|------|
-| LoadVesuvioTest                            |          |   x   |       |              |      |
-| VesuvioFittingTest                         |          |   x   |       |              |      |
-| VesuvioFittingWithKFreeTest                |          |   x   |       |              |      |
-| VesuvioFittingWithQuadraticBackgroundTest  |          |   x   |       |              |      |
 
 Skipped
 -------
