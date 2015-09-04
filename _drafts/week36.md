@@ -21,4 +21,5 @@ Detailed Merges for Aug 31 to Sep 6, 2015
 * *new* [PR13528](https://github.com/mantidproject/mantid/pull/13528) - VSI Scale Filter Fix
 * *new* [PR13530](https://github.com/mantidproject/mantid/pull/13530) - Fix several issues loading nMoldyn data
 * *new* [PR13541](https://github.com/mantidproject/mantid/pull/13541) - LoadBBY changs from ANSTO
+* *new* [PR13543](https://github.com/mantidproject/mantid/pull/13543) - more specific error message for missing properties
 * *new* [PR13550](https://github.com/mantidproject/mantid/pull/13550) - Fix coverity issue
