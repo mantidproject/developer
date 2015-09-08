@@ -14,5 +14,6 @@ Detailed Merges for Sep 7 to 13, 2015
 * *new* [PR13501](https://github.com/mantidproject/mantid/pull/13501) - Engg GUI: add focusing tab
 * *new* [PR13539](https://github.com/mantidproject/mantid/pull/13539) - Functions default values
 * *new* [PR13552](https://github.com/mantidproject/mantid/pull/13552) - Fixing crash in CorrectHe3Tube efficiency algorithm.
+* *new* [PR13553](https://github.com/mantidproject/mantid/pull/13553) - Crash in ConvetTo MD
 * *new* [PR13555](https://github.com/mantidproject/mantid/pull/13555) - Hack for FindQwt to search the SCL paths
 * *new* [PR13560](https://github.com/mantidproject/mantid/pull/13560) - Add dx to scale alg
