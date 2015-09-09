@@ -24,3 +24,5 @@ Detailed Merges for Sep 7 to 13, 2015
 * *new* [PR13564](https://github.com/mantidproject/mantid/pull/13564) - Add Input for OutputWorkspace to GetNegMuMuonicXRDDialog
 * *new* [PR13571](https://github.com/mantidproject/mantid/pull/13571) - Silence beam centre warning
 * *new* [PR13573](https://github.com/mantidproject/mantid/pull/13573) - ReplicateMD Algorithm
+* *new* [PR13576](https://github.com/mantidproject/mantid/pull/13576) - Algorithm duration shows minutes and seconds
+* *new* [PR13579](https://github.com/mantidproject/mantid/pull/13579) - Removed PeakCentre from the dropdown list for lorentzians
