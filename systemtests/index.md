@@ -7,9 +7,9 @@ title: Currently Skipped System Tests
 Summary
 =======
 
-* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2015-09-09 [#179](http://builds.mantidproject.org/job/master_systemtests/179/)
+* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2015-09-09 [#180](http://builds.mantidproject.org/job/master_systemtests/180/)
 * Labels : osx-10.9, rhel6, rhel7, ubuntu-14.04, win7
-* Failed : 2 (2 unique)
+* Failed : 1
 * Skipped: 79 (25 unique)
 * Total  : 1495 (= 299 * 5)
 
@@ -19,10 +19,9 @@ Details
 Failed
 ------
 
-| Test                       | osx-10.9 | rhel6 | rhel7 | ubuntu-14.04 | win7 |
-|----------------------------|----------|-------|-------|--------------|------|
-| PG3CCCalibration           |          |       |   x   |              |      |
-| SeriesAndConjoinFilesTest  |          |       |       |              |   x  |
+| Test              | osx-10.9 | rhel6 | rhel7 | ubuntu-14.04 | win7 |
+|-------------------|----------|-------|-------|--------------|------|
+| PG3CCCalibration  |          |       |       |       x      |      |
 
 Skipped
 -------
