@@ -21,6 +21,7 @@ Detailed Merges for Sep 7 to 13, 2015
 * *new* [PR13553](https://github.com/mantidproject/mantid/pull/13553) - Crash in ConvetTo MD
 * *new* [PR13555](https://github.com/mantidproject/mantid/pull/13555) - Hack for FindQwt to search the SCL paths
 * *new* [PR13560](https://github.com/mantidproject/mantid/pull/13560) - Add dx to scale alg
+* *new* [PR13561](https://github.com/mantidproject/mantid/pull/13561) - Add Python NeXus bindings to debian package list
 * *new* [PR13564](https://github.com/mantidproject/mantid/pull/13564) - Add Input for OutputWorkspace to GetNegMuMuonicXRDDialog
 * *new* [PR13571](https://github.com/mantidproject/mantid/pull/13571) - Silence beam centre warning
 * *new* [PR13573](https://github.com/mantidproject/mantid/pull/13573) - ReplicateMD Algorithm
@@ -28,3 +29,4 @@ Detailed Merges for Sep 7 to 13, 2015
 * *new* [PR13576](https://github.com/mantidproject/mantid/pull/13576) - Algorithm duration shows minutes and seconds
 * *new* [PR13577](https://github.com/mantidproject/mantid/pull/13577) - Fix up DetectorBankSetsPkt class
 * *new* [PR13579](https://github.com/mantidproject/mantid/pull/13579) - Removed PeakCentre from the dropdown list for lorentzians
+* *new* [PR13588](https://github.com/mantidproject/mantid/pull/13588) - Changed RUntimeError to RuntimeError
