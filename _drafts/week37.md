@@ -29,4 +29,5 @@ Detailed Merges for Sep 7 to 13, 2015
 * *new* [PR13576](https://github.com/mantidproject/mantid/pull/13576) - Algorithm duration shows minutes and seconds
 * *new* [PR13577](https://github.com/mantidproject/mantid/pull/13577) - Fix up DetectorBankSetsPkt class
 * *new* [PR13579](https://github.com/mantidproject/mantid/pull/13579) - Removed PeakCentre from the dropdown list for lorentzians
+* *new* [PR13581](https://github.com/mantidproject/mantid/pull/13581) - Preserve Fit Parameters of 1L to 2L in Convfit
 * *new* [PR13588](https://github.com/mantidproject/mantid/pull/13588) - Changed RUntimeError to RuntimeError
