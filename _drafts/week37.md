@@ -15,6 +15,7 @@ Detailed Merges for Sep 7 to 13, 2015
 * *new* [PR13504](https://github.com/mantidproject/mantid/pull/13504) - Convolution fit sequential algorithm
 * *new* [PR13515](https://github.com/mantidproject/mantid/pull/13515) - Refactor tofconverter gui
 * *new* [PR13522](https://github.com/mantidproject/mantid/pull/13522) - New Algorithm to save one dimensional plottable(s) from a MatrixWorkspace to a json file
+* *new* [PR13531](https://github.com/mantidproject/mantid/pull/13531) - ISIS Powder Diffraction system test
 * *new* [PR13539](https://github.com/mantidproject/mantid/pull/13539) - Functions default values
 * *new* [PR13544](https://github.com/mantidproject/mantid/pull/13544) - 13534 load vision inelastic
 * *new* [PR13552](https://github.com/mantidproject/mantid/pull/13552) - Fixing crash in CorrectHe3Tube efficiency algorithm.
