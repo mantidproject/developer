@@ -40,5 +40,6 @@ Detailed Merges for Sep 7 to 13, 2015
 * *new* [PR13593](https://github.com/mantidproject/mantid/pull/13593) - Rename ResNorm output
 * *new* [PR13595](https://github.com/mantidproject/mantid/pull/13595) - Fix autoscale checkbox in vsi
 * *new* [PR13598](https://github.com/mantidproject/mantid/pull/13598) - Moved ProcessIndirectFitParameter related Files to Workflow
+* *new* [PR13608](https://github.com/mantidproject/mantid/pull/13608) - Increase chain length of FABADA in ConvFit
 * *new* [PR13611](https://github.com/mantidproject/mantid/pull/13611) - Fixed issue with double call of algorithm.
 * *new* [PR13613](https://github.com/mantidproject/mantid/pull/13613) - Fix the multislice view bug for auto scale
