@@ -35,3 +35,4 @@ Detailed Merges for Sep 7 to 13, 2015
 * *new* [PR13589](https://github.com/mantidproject/mantid/pull/13589) - Fix Slice Viewer Exception for normalized data
 * *new* [PR13593](https://github.com/mantidproject/mantid/pull/13593) - Rename ResNorm output
 * *new* [PR13595](https://github.com/mantidproject/mantid/pull/13595) - Fix autoscale checkbox in vsi
+* *new* [PR13598](https://github.com/mantidproject/mantid/pull/13598) - Moved ProcessIndirectFitParameter related Files to Workflow
