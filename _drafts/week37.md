@@ -22,6 +22,7 @@ Detailed Merges for Sep 7 to 13, 2015
 * *new* [PR13553](https://github.com/mantidproject/mantid/pull/13553) - Crash in ConvetTo MD
 * *new* [PR13555](https://github.com/mantidproject/mantid/pull/13555) - Hack for FindQwt to search the SCL paths
 * *new* [PR13556](https://github.com/mantidproject/mantid/pull/13556) - Add multiple scattering correction for elastic scattering
+* *new* [PR13558](https://github.com/mantidproject/mantid/pull/13558) - Refactored the creation of FractionalRebinning Quad
 * *new* [PR13560](https://github.com/mantidproject/mantid/pull/13560) - Add dx to scale alg
 * *new* [PR13561](https://github.com/mantidproject/mantid/pull/13561) - Add Python NeXus bindings to debian package list
 * *new* [PR13564](https://github.com/mantidproject/mantid/pull/13564) - Add Input for OutputWorkspace to GetNegMuMuonicXRDDialog
@@ -40,3 +41,4 @@ Detailed Merges for Sep 7 to 13, 2015
 * *new* [PR13595](https://github.com/mantidproject/mantid/pull/13595) - Fix autoscale checkbox in vsi
 * *new* [PR13598](https://github.com/mantidproject/mantid/pull/13598) - Moved ProcessIndirectFitParameter related Files to Workflow
 * *new* [PR13611](https://github.com/mantidproject/mantid/pull/13611) - Fixed issue with double call of algorithm.
+* *new* [PR13613](https://github.com/mantidproject/mantid/pull/13613) - Fix the multislice view bug for auto scale
