@@ -24,6 +24,7 @@ Detailed Merges for Sep 7 to 13, 2015
 * *new* [PR13560](https://github.com/mantidproject/mantid/pull/13560) - Add dx to scale alg
 * *new* [PR13561](https://github.com/mantidproject/mantid/pull/13561) - Add Python NeXus bindings to debian package list
 * *new* [PR13564](https://github.com/mantidproject/mantid/pull/13564) - Add Input for OutputWorkspace to GetNegMuMuonicXRDDialog
+* *new* [PR13565](https://github.com/mantidproject/mantid/pull/13565) - Make sure axis labelling is correct in vsi
 * *new* [PR13571](https://github.com/mantidproject/mantid/pull/13571) - Silence beam centre warning
 * *new* [PR13573](https://github.com/mantidproject/mantid/pull/13573) - ReplicateMD Algorithm
 * *new* [PR13574](https://github.com/mantidproject/mantid/pull/13574) - Load NOMAD exp.ini
