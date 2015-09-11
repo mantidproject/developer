@@ -35,6 +35,7 @@ Detailed Merges for Sep 7 to 13, 2015
 * *new* [PR13579](https://github.com/mantidproject/mantid/pull/13579) - Removed PeakCentre from the dropdown list for lorentzians
 * *new* [PR13581](https://github.com/mantidproject/mantid/pull/13581) - Preserve Fit Parameters of 1L to 2L in Convfit
 * *new* [PR13582](https://github.com/mantidproject/mantid/pull/13582) - Add container subtraction tab to indirect
+* *new* [PR13587](https://github.com/mantidproject/mantid/pull/13587) - Different results from SliceMD and BinMD
 * *new* [PR13588](https://github.com/mantidproject/mantid/pull/13588) - Changed RUntimeError to RuntimeError
 * *new* [PR13589](https://github.com/mantidproject/mantid/pull/13589) - Fix Slice Viewer Exception for normalized data
 * *new* [PR13593](https://github.com/mantidproject/mantid/pull/13593) - Rename ResNorm output
