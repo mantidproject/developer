@@ -7,7 +7,7 @@ title: Currently Skipped System Tests
 Summary
 =======
 
-* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2015-09-13 [#183](http://builds.mantidproject.org/job/master_systemtests/183/)
+* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2015-09-13 [#184](http://builds.mantidproject.org/job/master_systemtests/184/)
 * Labels : osx-10.9, rhel6, rhel7, ubuntu-14.04, win7
 * Failed : 2 (2 unique)
 * Skipped: 75 (25 unique)
@@ -22,7 +22,7 @@ Failed
 | Test                       | osx-10.9 | rhel6 | rhel7 | ubuntu-14.04 | win7 |
 |----------------------------|----------|-------|-------|--------------|------|
 | ISISPowderDiffractionTest  |          |   x   |       |              |      |
-| PG3CCCalibration           |          |       |       |       x      |      |
+| PG3CCCalibration           |          |       |   x   |              |      |
 
 Skipped
 -------
