@@ -11,3 +11,4 @@ Detailed Merges for Sep 14 to 20, 2015
 --------------------------------------
 [on github](https://github.com/mantidproject/mantid/pulls?q=is%3Apr+merged%3A2015-09-15..2015-09-20)
 
+* *new* [PR13567](https://github.com/mantidproject/mantid/pull/13567) - EventList assignment fix
