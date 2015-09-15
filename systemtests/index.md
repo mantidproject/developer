@@ -7,22 +7,14 @@ title: Currently Skipped System Tests
 Summary
 =======
 
-* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2015-09-15 [#184](http://builds.mantidproject.org/job/master_systemtests/184/)
+* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2015-09-15 [#185](http://builds.mantidproject.org/job/master_systemtests/185/)
 * Labels : osx-10.9, rhel6, rhel7, ubuntu-14.04, win7
-* Failed : 2 (2 unique)
-* Skipped: 75 (25 unique)
+* Failed : 0
+* Skipped: 79 (25 unique)
 * Total  : 1500 (= 300 * 5)
 
 Details
 =======
-
-Failed
-------
-
-| Test                       | osx-10.9 | rhel6 | rhel7 | ubuntu-14.04 | win7 |
-|----------------------------|----------|-------|-------|--------------|------|
-| ISISPowderDiffractionTest  |          |   x   |       |              |      |
-| PG3CCCalibration           |          |       |   x   |              |      |
 
 Skipped
 -------
@@ -43,12 +35,12 @@ Skipped
 | UserAlgorithmsBuild                |     x    |   x   |   x   |       x      |      |
 | PG3CCCalibration                   |     x    |   x   |       |              |   x  |
 | PG3Calibration                     |     x    |   x   |       |              |   x  |
+| ValidateFacilitiesFile             |     x    |   x   |       |       x      |      |
+| ValidateGroupingFiles              |     x    |   x   |       |       x      |      |
+| ValidateInstrumentDefinitionFiles  |     x    |   x   |       |       x      |      |
+| ValidateParameterFiles             |     x    |   x   |       |       x      |      |
 | PG3Analysis                        |     x    |       |       |              |   x  |
 | PG3StripPeaks                      |     x    |       |       |              |   x  |
-| ValidateFacilitiesFile             |     x    |       |       |       x      |      |
-| ValidateGroupingFiles              |     x    |       |       |       x      |      |
-| ValidateInstrumentDefinitionFiles  |     x    |       |       |       x      |      |
-| ValidateParameterFiles             |     x    |       |       |       x      |      |
 | LETReductionEvent2015Multirep      |     x    |       |       |              |      |
 | MAPSDgreduceReduction              |     x    |       |       |              |      |
 | MERLINReduction                    |     x    |       |       |              |      |
