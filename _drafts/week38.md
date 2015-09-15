@@ -12,6 +12,7 @@ Detailed Merges for Sep 14 to 20, 2015
 [on github](https://github.com/mantidproject/mantid/pulls?q=is%3Apr+merged%3A2015-09-15..2015-09-20)
 
 * *new* [PR13567](https://github.com/mantidproject/mantid/pull/13567) - EventList assignment fix
+* *new* [PR13583](https://github.com/mantidproject/mantid/pull/13583) - Fix logic errors in creating links to launch scripts.
 * *new* [PR13585](https://github.com/mantidproject/mantid/pull/13585) - Set package's suffix from jenkins environment
 * *new* [PR13586](https://github.com/mantidproject/mantid/pull/13586) - TOF converter error messages
 * *new* [PR13603](https://github.com/mantidproject/mantid/pull/13603) - Script window conflicting with console launch
