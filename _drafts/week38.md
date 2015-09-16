@@ -19,6 +19,7 @@ Detailed Merges for Sep 14 to 20, 2015
 * *new* [PR13605](https://github.com/mantidproject/mantid/pull/13605) - ResNorm "plot result: fit" plots only data
 * *new* [PR13615](https://github.com/mantidproject/mantid/pull/13615) - VSI: render views are restored with wrong size
 * *new* [PR13619](https://github.com/mantidproject/mantid/pull/13619) - Changed Add to ADS to AddOrReplace to allow multiple runs in ConvFit
+* *new* [PR13621](https://github.com/mantidproject/mantid/pull/13621) - Performance boost in SNSPowderReduction
 * *new* [PR13622](https://github.com/mantidproject/mantid/pull/13622) - 13540 generate ipython notebook from refl polref gui
 * *new* [PR13625](https://github.com/mantidproject/mantid/pull/13625) - Powder Diffraction system test compatible with py 2.6
 * *new* [PR13628](https://github.com/mantidproject/mantid/pull/13628) - Adding the Analysis category for SNS
