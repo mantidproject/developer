@@ -27,3 +27,4 @@ Detailed Merges for Sep 14 to 20, 2015
 * *new* [PR13639](https://github.com/mantidproject/mantid/pull/13639) - Fix memory leak with GSL vector
 * *new* [PR13640](https://github.com/mantidproject/mantid/pull/13640) - Add clang to the developer rpm
 * *new* [PR13642](https://github.com/mantidproject/mantid/pull/13642) - Create Sample Shape alg interface is not working
+* *new* [PR13673](https://github.com/mantidproject/mantid/pull/13673) - 13647 create launch shortcut for ipython notebooks
