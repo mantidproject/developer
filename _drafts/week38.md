@@ -26,3 +26,4 @@ Detailed Merges for Sep 14 to 20, 2015
 * *new* [PR13630](https://github.com/mantidproject/mantid/pull/13630) - ResNorm error with sqw files
 * *new* [PR13639](https://github.com/mantidproject/mantid/pull/13639) - Fix memory leak with GSL vector
 * *new* [PR13640](https://github.com/mantidproject/mantid/pull/13640) - Add clang to the developer rpm
+* *new* [PR13642](https://github.com/mantidproject/mantid/pull/13642) - Create Sample Shape alg interface is not working
