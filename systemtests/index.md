@@ -7,21 +7,14 @@ title: Currently Skipped System Tests
 Summary
 =======
 
-* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2015-09-18 [#189](http://builds.mantidproject.org/job/master_systemtests/189/)
+* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2015-09-18 [#190](http://builds.mantidproject.org/job/master_systemtests/190/)
 * Labels : win7
-* Failed : 1
+* Failed : 0
 * Skipped: 8 (8 unique)
 * Total  : 300 (= 300 * 1)
 
 Details
 =======
-
-Failed
-------
-
-| Test                       | win7 |
-|----------------------------|------|
-| SeriesAndConjoinFilesTest  |   x  |
 
 Skipped
 -------
