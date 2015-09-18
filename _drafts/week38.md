@@ -29,3 +29,4 @@ Detailed Merges for Sep 14 to 20, 2015
 * *new* [PR13642](https://github.com/mantidproject/mantid/pull/13642) - Create Sample Shape alg interface is not working
 * *new* [PR13673](https://github.com/mantidproject/mantid/pull/13673) - 13647 create launch shortcut for ipython notebooks
 * *new* [PR13687](https://github.com/mantidproject/mantid/pull/13687) - Detailed balance error in ISIS Energy Transfer
+* *new* [PR13688](https://github.com/mantidproject/mantid/pull/13688) - Moved Container Subtraction to first tab in Indirect Corrections
