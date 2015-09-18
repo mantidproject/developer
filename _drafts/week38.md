@@ -26,9 +26,12 @@ Detailed Merges for Sep 14 to 20, 2015
 * *new* [PR13630](https://github.com/mantidproject/mantid/pull/13630) - ResNorm error with sqw files
 * *new* [PR13639](https://github.com/mantidproject/mantid/pull/13639) - Fix memory leak with GSL vector
 * *new* [PR13640](https://github.com/mantidproject/mantid/pull/13640) - Add clang to the developer rpm
+* *new* [PR13641](https://github.com/mantidproject/mantid/pull/13641) - Adding DSFinterp usage example
 * *new* [PR13642](https://github.com/mantidproject/mantid/pull/13642) - Create Sample Shape alg interface is not working
+* *new* [PR13666](https://github.com/mantidproject/mantid/pull/13666) - MANDI IDF from DetCal file
 * *new* [PR13673](https://github.com/mantidproject/mantid/pull/13673) - 13647 create launch shortcut for ipython notebooks
 * *new* [PR13687](https://github.com/mantidproject/mantid/pull/13687) - Detailed balance error in ISIS Energy Transfer
 * *new* [PR13688](https://github.com/mantidproject/mantid/pull/13688) - Moved Container Subtraction to first tab in Indirect Corrections
+* *new* [PR13701](https://github.com/mantidproject/mantid/pull/13701) - Remove container subtraction from apply paalman pings
 * *new* [PR13702](https://github.com/mantidproject/mantid/pull/13702) - Fix unchecking of autocolorscale when color preset button is pressed
 * *new* [PR13703](https://github.com/mantidproject/mantid/pull/13703) - Re #13675 Use "inline" rather than "nbagg" in generated notebooks
