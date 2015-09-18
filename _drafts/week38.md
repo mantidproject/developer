@@ -37,5 +37,6 @@ Detailed Merges for Sep 14 to 20, 2015
 * *new* [PR13701](https://github.com/mantidproject/mantid/pull/13701) - Remove container subtraction from apply paalman pings
 * *new* [PR13702](https://github.com/mantidproject/mantid/pull/13702) - Fix unchecking of autocolorscale when color preset button is pressed
 * *new* [PR13703](https://github.com/mantidproject/mantid/pull/13703) - Re #13675 Use "inline" rather than "nbagg" in generated notebooks
+* *new* [PR13705](https://github.com/mantidproject/mantid/pull/13705) - Clear all warnings when run under CMake >= v3.0
 * *new* [PR13709](https://github.com/mantidproject/mantid/pull/13709) - Removing data that doesn't belong in git
 * *new* [PR13712](https://github.com/mantidproject/mantid/pull/13712) - Removing two links if they exist during uninstall
