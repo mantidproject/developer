@@ -7,11 +7,11 @@ title: Currently Skipped System Tests
 Summary
 =======
 
-* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2015-09-20 [#190](http://builds.mantidproject.org/job/master_systemtests/190/)
-* Labels : win7
+* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2015-09-20 [#191](http://builds.mantidproject.org/job/master_systemtests/191/)
+* Labels : osx-10.9, rhel7, ubuntu-14.04
 * Failed : 0
-* Skipped: 8 (8 unique)
-* Total  : 300 (= 300 * 1)
+* Skipped: 52 (24 unique)
+* Total  : 900 (= 300 * 3)
 
 Details
 =======
@@ -19,13 +19,29 @@ Details
 Skipped
 -------
 
-| Test                   | win7 |
-|------------------------|------|
-| BuildSQWTest           |   x  |
-| EQSANSFlatTest         |   x  |
-| LoadSQW_FileBasedTest  |   x  |
-| LoadSQW_MemBasedTest   |   x  |
-| PG3Analysis            |   x  |
-| PG3CCCalibration       |   x  |
-| PG3Calibration         |   x  |
-| PG3StripPeaks          |   x  |
+| Test                               | osx-10.9 | rhel7 | ubuntu-14.04 |
+|------------------------------------|----------|-------|--------------|
+| BuildSQWTest                       |     x    |   x   |       x      |
+| EQSANSFlatTest                     |     x    |   x   |       x      |
+| LoadSQW_FileBasedTest              |     x    |   x   |       x      |
+| LoadSQW_MemBasedTest               |     x    |   x   |       x      |
+| QLDataTest                         |     x    |   x   |       x      |
+| QLResNormTest                      |     x    |   x   |       x      |
+| QLWidthTest                        |     x    |   x   |       x      |
+| QLresTest                          |     x    |   x   |       x      |
+| QSeTest                            |     x    |   x   |       x      |
+| QuestTest                          |     x    |   x   |       x      |
+| ResNormTest                        |     x    |   x   |       x      |
+| UserAlgorithmsBuild                |     x    |   x   |       x      |
+| ValidateFacilitiesFile             |     x    |       |       x      |
+| ValidateGroupingFiles              |     x    |       |       x      |
+| ValidateInstrumentDefinitionFiles  |     x    |       |       x      |
+| ValidateParameterFiles             |     x    |       |       x      |
+| LETReductionEvent2015Multirep      |     x    |       |              |
+| MERLINReduction                    |     x    |       |              |
+| OSIRISFuryAndFuryFitMulti          |     x    |       |              |
+| PG3Analysis                        |     x    |       |              |
+| PG3CCCalibration                   |     x    |       |              |
+| PG3Calibration                     |     x    |       |              |
+| PG3StripPeaks                      |     x    |       |              |
+| TobyFitResolutionSimulationTest    |     x    |       |              |
