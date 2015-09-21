@@ -16,3 +16,4 @@ Detailed Merges for Sep 21 to 27, 2015
 * *new* [PR13685](https://github.com/mantidproject/mantid/pull/13685) - Powgen bugfixes
 * *new* [PR13704](https://github.com/mantidproject/mantid/pull/13704) - Incorrect Naming Conventions in ConvFit / ConvolutionFitSequential
 * *new* [PR13714](https://github.com/mantidproject/mantid/pull/13714) - ResNorm vanadium and res files should be same run
+* *new* [PR13721](https://github.com/mantidproject/mantid/pull/13721) - Error found by autoreduction running against nightly
