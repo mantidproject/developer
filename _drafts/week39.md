@@ -13,3 +13,4 @@ Detailed Merges for Sep 21 to 27, 2015
 
 * *new* [PR13670](https://github.com/mantidproject/mantid/pull/13670) - Compare 2d datasets
 * *new* [PR13704](https://github.com/mantidproject/mantid/pull/13704) - Incorrect Naming Conventions in ConvFit / ConvolutionFitSequential
+* *new* [PR13714](https://github.com/mantidproject/mantid/pull/13714) - ResNorm vanadium and res files should be same run
