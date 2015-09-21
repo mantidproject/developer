@@ -7,14 +7,22 @@ title: Currently Skipped System Tests
 Summary
 =======
 
-* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2015-09-21 [#191](http://builds.mantidproject.org/job/master_systemtests/191/)
+* Job    : [master_systemtests](http://builds.mantidproject.org/job/master_systemtests/) 2015-09-21 [#192](http://builds.mantidproject.org/job/master_systemtests/192/)
 * Labels : osx-10.9, rhel7, ubuntu-14.04
-* Failed : 0
+* Failed : 2 (2 unique)
 * Skipped: 52 (24 unique)
 * Total  : 900 (= 300 * 3)
 
 Details
 =======
+
+Failed
+------
+
+| Test                 | osx-10.9 | rhel7 | ubuntu-14.04 |
+|----------------------|----------|-------|--------------|
+| EMUAnalysisFromFile  |          |       |       x      |
+| PG3CCCalibration     |          |       |       x      |
 
 Skipped
 -------
