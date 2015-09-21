@@ -11,3 +11,4 @@ Detailed Merges for Sep 21 to 27, 2015
 --------------------------------------
 [on github](https://github.com/mantidproject/mantid/pulls?q=is%3Apr+merged%3A2015-09-22..2015-09-27)
 
+* *new* [PR13670](https://github.com/mantidproject/mantid/pull/13670) - Compare 2d datasets
