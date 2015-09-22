@@ -20,3 +20,4 @@ Detailed Merges for Sep 21 to 27, 2015
 * *new* [PR13719](https://github.com/mantidproject/mantid/pull/13719) - Adding optional exp.ini file to SNSPowderReduction
 * *new* [PR13721](https://github.com/mantidproject/mantid/pull/13721) - Error found by autoreduction running against nightly
 * *new* [PR13723](https://github.com/mantidproject/mantid/pull/13723) - 13711 vision sort banks
+* *new* [PR13727](https://github.com/mantidproject/mantid/pull/13727) - Helpers for loading VISION elastic data
