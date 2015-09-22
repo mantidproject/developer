@@ -13,6 +13,7 @@ Detailed Merges for Sep 21 to 27, 2015
 
 * *new* [PR13670](https://github.com/mantidproject/mantid/pull/13670) - Compare 2d datasets
 * *new* [PR13681](https://github.com/mantidproject/mantid/pull/13681) - Fix font size for script output window on OS X
+* *new* [PR13683](https://github.com/mantidproject/mantid/pull/13683) - Fixed splitting issues of TimeSeriesProperty
 * *new* [PR13685](https://github.com/mantidproject/mantid/pull/13685) - Powgen bugfixes
 * *new* [PR13704](https://github.com/mantidproject/mantid/pull/13704) - Incorrect Naming Conventions in ConvFit / ConvolutionFitSequential
 * *new* [PR13714](https://github.com/mantidproject/mantid/pull/13714) - ResNorm vanadium and res files should be same run
