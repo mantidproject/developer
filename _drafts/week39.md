@@ -16,6 +16,7 @@ Detailed Merges for Sep 21 to 27, 2015
 * *new* [PR13683](https://github.com/mantidproject/mantid/pull/13683) - Fixed splitting issues of TimeSeriesProperty
 * *new* [PR13685](https://github.com/mantidproject/mantid/pull/13685) - Powgen bugfixes
 * *new* [PR13704](https://github.com/mantidproject/mantid/pull/13704) - Incorrect Naming Conventions in ConvFit / ConvolutionFitSequential
+* *new* [PR13706](https://github.com/mantidproject/mantid/pull/13706) - ConvFit 0L with delta produces 2 plots
 * *new* [PR13714](https://github.com/mantidproject/mantid/pull/13714) - ResNorm vanadium and res files should be same run
 * *new* [PR13718](https://github.com/mantidproject/mantid/pull/13718) - Capitalisation in ResNorm causing error
 * *new* [PR13719](https://github.com/mantidproject/mantid/pull/13719) - Adding optional exp.ini file to SNSPowderReduction
@@ -28,3 +29,4 @@ Detailed Merges for Sep 21 to 27, 2015
 * *new* [PR13741](https://github.com/mantidproject/mantid/pull/13741) - Fixing issue upgrading rpm package
 * *new* [PR13742](https://github.com/mantidproject/mantid/pull/13742) - Ensure max is more than min in ISIS Energy Transfer
 * *new* [PR13754](https://github.com/mantidproject/mantid/pull/13754) - Make the use of the c++ 98 ABI optional in gcc 5
+* *new* [PR13756](https://github.com/mantidproject/mantid/pull/13756) - Added Number Density optional property to call of SetSampleMaterial
