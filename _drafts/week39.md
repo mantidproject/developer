@@ -25,3 +25,4 @@ Detailed Merges for Sep 21 to 27, 2015
 * *new* [PR13726](https://github.com/mantidproject/mantid/pull/13726) - Change of log name Filename to raw_filename in LoadRaw3
 * *new* [PR13727](https://github.com/mantidproject/mantid/pull/13727) - Helpers for loading VISION elastic data
 * *new* [PR13741](https://github.com/mantidproject/mantid/pull/13741) - Fixing issue upgrading rpm package
+* *new* [PR13742](https://github.com/mantidproject/mantid/pull/13742) - Ensure max is more than min in ISIS Energy Transfer
