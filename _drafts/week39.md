@@ -24,5 +24,7 @@ Detailed Merges for Sep 21 to 27, 2015
 * *new* [PR13723](https://github.com/mantidproject/mantid/pull/13723) - 13711 vision sort banks
 * *new* [PR13726](https://github.com/mantidproject/mantid/pull/13726) - Change of log name Filename to raw_filename in LoadRaw3
 * *new* [PR13727](https://github.com/mantidproject/mantid/pull/13727) - Helpers for loading VISION elastic data
+* *new* [PR13735](https://github.com/mantidproject/mantid/pull/13735) - Port VISION autoreduction into a mantid algorithm.
 * *new* [PR13741](https://github.com/mantidproject/mantid/pull/13741) - Fixing issue upgrading rpm package
 * *new* [PR13742](https://github.com/mantidproject/mantid/pull/13742) - Ensure max is more than min in ISIS Energy Transfer
+* *new* [PR13754](https://github.com/mantidproject/mantid/pull/13754) - Make the use of the c++ 98 ABI optional in gcc 5
