@@ -30,4 +30,5 @@ Detailed Merges for Sep 21 to 27, 2015
 * *new* [PR13742](https://github.com/mantidproject/mantid/pull/13742) - Ensure max is more than min in ISIS Energy Transfer
 * *new* [PR13754](https://github.com/mantidproject/mantid/pull/13754) - Make the use of the c++ 98 ABI optional in gcc 5
 * *new* [PR13756](https://github.com/mantidproject/mantid/pull/13756) - Added Number Density optional property to call of SetSampleMaterial
+* *new* [PR13759](https://github.com/mantidproject/mantid/pull/13759) - .Dot workflow diagram updated with removal of non used elements
 * *new* [PR13764](https://github.com/mantidproject/mantid/pull/13764) - Update Live Data Address for Corelli, Vision and USANS.
