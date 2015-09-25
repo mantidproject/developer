@@ -32,4 +32,5 @@ Detailed Merges for Sep 21 to 27, 2015
 * *new* [PR13756](https://github.com/mantidproject/mantid/pull/13756) - Added Number Density optional property to call of SetSampleMaterial
 * *new* [PR13759](https://github.com/mantidproject/mantid/pull/13759) - .Dot workflow diagram updated with removal of non used elements
 * *new* [PR13764](https://github.com/mantidproject/mantid/pull/13764) - Update Live Data Address for Corelli, Vision and USANS.
+* *new* [PR13766](https://github.com/mantidproject/mantid/pull/13766) - Improved MANDI calibration
 * *new* [PR13772](https://github.com/mantidproject/mantid/pull/13772) - Initialize member variable in VSIApplyBehavior
