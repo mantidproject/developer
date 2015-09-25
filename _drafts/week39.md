@@ -37,3 +37,4 @@ Detailed Merges for Sep 21 to 27, 2015
 * *new* [PR13764](https://github.com/mantidproject/mantid/pull/13764) - Update Live Data Address for Corelli, Vision and USANS.
 * *new* [PR13766](https://github.com/mantidproject/mantid/pull/13766) - Improved MANDI calibration
 * *new* [PR13772](https://github.com/mantidproject/mantid/pull/13772) - Initialize member variable in VSIApplyBehavior
+* *new* [PR13773](https://github.com/mantidproject/mantid/pull/13773) - ConvFit Plot fitted stretchedExp
