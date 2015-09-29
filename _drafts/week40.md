@@ -18,3 +18,4 @@ Detailed Merges for Sep 28 to Oct 4, 2015
 * *new* [PR13786](https://github.com/mantidproject/mantid/pull/13786) - LoadDiffCal bugfix
 * *new* [PR13790](https://github.com/mantidproject/mantid/pull/13790) - Save gss check for constant binning
 * *new* [PR13792](https://github.com/mantidproject/mantid/pull/13792) - Load instrument after the logs
+* *new* [PR13798](https://github.com/mantidproject/mantid/pull/13798) - Powder diffraction gui bugfix
