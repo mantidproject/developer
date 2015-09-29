@@ -11,6 +11,7 @@ Detailed Merges for Sep 28 to Oct 4, 2015
 -----------------------------------------
 [on github](https://github.com/mantidproject/mantid/pulls?q=is%3Apr+merged%3A2015-09-29..2015-10-04)
 
+* *new* [PR13753](https://github.com/mantidproject/mantid/pull/13753) - Sample container and corrections logs
 * *new* [PR13763](https://github.com/mantidproject/mantid/pull/13763) - Visual normalization enhancement for MD Workspaces
 * *new* [PR13780](https://github.com/mantidproject/mantid/pull/13780) - Fix calcuation of IntegrateMDHistoWorkspace extents
 * *new* [PR13785](https://github.com/mantidproject/mantid/pull/13785) - RemovePromptPulse memory fix
