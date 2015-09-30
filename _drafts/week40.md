@@ -20,4 +20,6 @@ Detailed Merges for Sep 28 to Oct 4, 2015
 * *new* [PR13792](https://github.com/mantidproject/mantid/pull/13792) - Load instrument after the logs
 * *new* [PR13798](https://github.com/mantidproject/mantid/pull/13798) - Powder diffraction gui bugfix
 * *new* [PR13804](https://github.com/mantidproject/mantid/pull/13804) - SCD interface error
+* *new* [PR13807](https://github.com/mantidproject/mantid/pull/13807) - Add Container to the ApplyPaalmanPings tab
 * *new* [PR13812](https://github.com/mantidproject/mantid/pull/13812) - ISIS Energy Transfer Plot Time causes crashing
+* *new* [PR13815](https://github.com/mantidproject/mantid/pull/13815) - Fix the BioSANS parameter files
