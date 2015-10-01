@@ -24,6 +24,7 @@ Detailed Merges for Sep 28 to Oct 4, 2015
 * *new* [PR13798](https://github.com/mantidproject/mantid/pull/13798) - Powder diffraction gui bugfix
 * *new* [PR13804](https://github.com/mantidproject/mantid/pull/13804) - SCD interface error
 * *new* [PR13807](https://github.com/mantidproject/mantid/pull/13807) - Add Container to the ApplyPaalmanPings tab
+* *new* [PR13809](https://github.com/mantidproject/mantid/pull/13809) - Fix tolerance and deviation comparison integrate md histo workspace
 * *new* [PR13812](https://github.com/mantidproject/mantid/pull/13812) - ISIS Energy Transfer Plot Time causes crashing
 * *new* [PR13815](https://github.com/mantidproject/mantid/pull/13815) - Fix the BioSANS parameter files
 * *new* [PR13822](https://github.com/mantidproject/mantid/pull/13822) - Indirect Bayes Quasi save result crash
