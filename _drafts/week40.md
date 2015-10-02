@@ -29,3 +29,4 @@ Detailed Merges for Sep 28 to Oct 4, 2015
 * *new* [PR13815](https://github.com/mantidproject/mantid/pull/13815) - Fix the BioSANS parameter files
 * *new* [PR13822](https://github.com/mantidproject/mantid/pull/13822) - Indirect Bayes Quasi save result crash
 * *new* [PR13823](https://github.com/mantidproject/mantid/pull/13823) - Adding tolerance for sqrt calculation in SetUncertainties
+* *new* [PR13841](https://github.com/mantidproject/mantid/pull/13841) - Fix crash with algorithm dialogs and new keep open functionality
