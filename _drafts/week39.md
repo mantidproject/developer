@@ -11,30 +11,30 @@ Detailed Merges for Sep 21 to 27, 2015
 --------------------------------------
 [on github](https://github.com/mantidproject/mantid/pulls?q=is%3Apr+merged%3A2015-09-22..2015-09-27)
 
-* *new* [PR13670](https://github.com/mantidproject/mantid/pull/13670) - Compare 2d datasets
-* *new* [PR13681](https://github.com/mantidproject/mantid/pull/13681) - Fix font size for script output window on OS X
-* *new* [PR13683](https://github.com/mantidproject/mantid/pull/13683) - Fixed splitting issues of TimeSeriesProperty
-* *new* [PR13685](https://github.com/mantidproject/mantid/pull/13685) - Powgen bugfixes
-* *new* [PR13704](https://github.com/mantidproject/mantid/pull/13704) - Incorrect Naming Conventions in ConvFit / ConvolutionFitSequential
-* *new* [PR13706](https://github.com/mantidproject/mantid/pull/13706) - ConvFit 0L with delta produces 2 plots
-* *new* [PR13714](https://github.com/mantidproject/mantid/pull/13714) - ResNorm vanadium and res files should be same run
-* *new* [PR13718](https://github.com/mantidproject/mantid/pull/13718) - Capitalisation in ResNorm causing error
-* *new* [PR13719](https://github.com/mantidproject/mantid/pull/13719) - Adding optional exp.ini file to SNSPowderReduction
-* *new* [PR13720](https://github.com/mantidproject/mantid/pull/13720) - Using temp in conv fit
-* *new* [PR13721](https://github.com/mantidproject/mantid/pull/13721) - Error found by autoreduction running against nightly
-* *new* [PR13722](https://github.com/mantidproject/mantid/pull/13722) - Adding property for force updating instrument download directory
-* *new* [PR13723](https://github.com/mantidproject/mantid/pull/13723) - 13711 vision sort banks
-* *new* [PR13725](https://github.com/mantidproject/mantid/pull/13725) - Handling spectra change in ConvFit
-* *new* [PR13726](https://github.com/mantidproject/mantid/pull/13726) - Change of log name Filename to raw_filename in LoadRaw3
-* *new* [PR13727](https://github.com/mantidproject/mantid/pull/13727) - Helpers for loading VISION elastic data
-* *new* [PR13735](https://github.com/mantidproject/mantid/pull/13735) - Port VISION autoreduction into a mantid algorithm.
-* *new* [PR13740](https://github.com/mantidproject/mantid/pull/13740) - Save ConvFit Result
-* *new* [PR13741](https://github.com/mantidproject/mantid/pull/13741) - Fixing issue upgrading rpm package
-* *new* [PR13742](https://github.com/mantidproject/mantid/pull/13742) - Ensure max is more than min in ISIS Energy Transfer
-* *new* [PR13754](https://github.com/mantidproject/mantid/pull/13754) - Make the use of the c++ 98 ABI optional in gcc 5
-* *new* [PR13756](https://github.com/mantidproject/mantid/pull/13756) - Added Number Density optional property to call of SetSampleMaterial
-* *new* [PR13759](https://github.com/mantidproject/mantid/pull/13759) - .Dot workflow diagram updated with removal of non used elements
-* *new* [PR13764](https://github.com/mantidproject/mantid/pull/13764) - Update Live Data Address for Corelli, Vision and USANS.
-* *new* [PR13766](https://github.com/mantidproject/mantid/pull/13766) - Improved MANDI calibration
-* *new* [PR13772](https://github.com/mantidproject/mantid/pull/13772) - Initialize member variable in VSIApplyBehavior
-* *new* [PR13773](https://github.com/mantidproject/mantid/pull/13773) - ConvFit Plot fitted stretchedExp
+* [PR13670](https://github.com/mantidproject/mantid/pull/13670) - Compare 2d datasets
+* [PR13681](https://github.com/mantidproject/mantid/pull/13681) - Fix font size for script output window on OS X
+* [PR13683](https://github.com/mantidproject/mantid/pull/13683) - Fixed splitting issues of TimeSeriesProperty
+* [PR13685](https://github.com/mantidproject/mantid/pull/13685) - Powgen bugfixes
+* [PR13704](https://github.com/mantidproject/mantid/pull/13704) - Incorrect Naming Conventions in ConvFit / ConvolutionFitSequential
+* [PR13706](https://github.com/mantidproject/mantid/pull/13706) - ConvFit 0L with delta produces 2 plots
+* [PR13714](https://github.com/mantidproject/mantid/pull/13714) - ResNorm vanadium and res files should be same run
+* [PR13718](https://github.com/mantidproject/mantid/pull/13718) - Capitalisation in ResNorm causing error
+* [PR13719](https://github.com/mantidproject/mantid/pull/13719) - Adding optional exp.ini file to SNSPowderReduction
+* [PR13720](https://github.com/mantidproject/mantid/pull/13720) - Using temp in conv fit
+* [PR13721](https://github.com/mantidproject/mantid/pull/13721) - Error found by autoreduction running against nightly
+* [PR13722](https://github.com/mantidproject/mantid/pull/13722) - Adding property for force updating instrument download directory
+* [PR13723](https://github.com/mantidproject/mantid/pull/13723) - 13711 vision sort banks
+* [PR13725](https://github.com/mantidproject/mantid/pull/13725) - Handling spectra change in ConvFit
+* [PR13726](https://github.com/mantidproject/mantid/pull/13726) - Change of log name Filename to raw_filename in LoadRaw3
+* [PR13727](https://github.com/mantidproject/mantid/pull/13727) - Helpers for loading VISION elastic data
+* [PR13735](https://github.com/mantidproject/mantid/pull/13735) - Port VISION autoreduction into a mantid algorithm.
+* [PR13740](https://github.com/mantidproject/mantid/pull/13740) - Save ConvFit Result
+* [PR13741](https://github.com/mantidproject/mantid/pull/13741) - Fixing issue upgrading rpm package
+* [PR13742](https://github.com/mantidproject/mantid/pull/13742) - Ensure max is more than min in ISIS Energy Transfer
+* [PR13754](https://github.com/mantidproject/mantid/pull/13754) - Make the use of the c++ 98 ABI optional in gcc 5
+* [PR13756](https://github.com/mantidproject/mantid/pull/13756) - Added Number Density optional property to call of SetSampleMaterial
+* [PR13759](https://github.com/mantidproject/mantid/pull/13759) - .Dot workflow diagram updated with removal of non used elements
+* [PR13764](https://github.com/mantidproject/mantid/pull/13764) - Update Live Data Address for Corelli, Vision and USANS.
+* [PR13766](https://github.com/mantidproject/mantid/pull/13766) - Improved MANDI calibration
+* [PR13772](https://github.com/mantidproject/mantid/pull/13772) - Initialize member variable in VSIApplyBehavior
+* [PR13773](https://github.com/mantidproject/mantid/pull/13773) - ConvFit Plot fitted stretchedExp

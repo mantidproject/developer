@@ -11,32 +11,32 @@ Detailed Merges for Sep 14 to 20, 2015
 --------------------------------------
 [on github](https://github.com/mantidproject/mantid/pulls?q=is%3Apr+merged%3A2015-09-15..2015-09-20)
 
-* *new* [PR13567](https://github.com/mantidproject/mantid/pull/13567) - EventList assignment fix
-* *new* [PR13583](https://github.com/mantidproject/mantid/pull/13583) - Fix logic errors in creating links to launch scripts.
-* *new* [PR13585](https://github.com/mantidproject/mantid/pull/13585) - Set package's suffix from jenkins environment
-* *new* [PR13586](https://github.com/mantidproject/mantid/pull/13586) - TOF converter error messages
-* *new* [PR13603](https://github.com/mantidproject/mantid/pull/13603) - Script window conflicting with console launch
-* *new* [PR13605](https://github.com/mantidproject/mantid/pull/13605) - ResNorm "plot result: fit" plots only data
-* *new* [PR13615](https://github.com/mantidproject/mantid/pull/13615) - VSI: render views are restored with wrong size
-* *new* [PR13619](https://github.com/mantidproject/mantid/pull/13619) - Changed Add to ADS to AddOrReplace to allow multiple runs in ConvFit
-* *new* [PR13621](https://github.com/mantidproject/mantid/pull/13621) - Performance boost in SNSPowderReduction
-* *new* [PR13622](https://github.com/mantidproject/mantid/pull/13622) - 13540 generate ipython notebook from refl polref gui
-* *new* [PR13625](https://github.com/mantidproject/mantid/pull/13625) - Powder Diffraction system test compatible with py 2.6
-* *new* [PR13628](https://github.com/mantidproject/mantid/pull/13628) - Adding the Analysis category for SNS
-* *new* [PR13630](https://github.com/mantidproject/mantid/pull/13630) - ResNorm error with sqw files
-* *new* [PR13639](https://github.com/mantidproject/mantid/pull/13639) - Fix memory leak with GSL vector
-* *new* [PR13640](https://github.com/mantidproject/mantid/pull/13640) - Add clang to the developer rpm
-* *new* [PR13641](https://github.com/mantidproject/mantid/pull/13641) - Adding DSFinterp usage example
-* *new* [PR13642](https://github.com/mantidproject/mantid/pull/13642) - Create Sample Shape alg interface is not working
-* *new* [PR13661](https://github.com/mantidproject/mantid/pull/13661) - LoadIsawDetCal works for PeaksWorkspaces
-* *new* [PR13666](https://github.com/mantidproject/mantid/pull/13666) - MANDI IDF from DetCal file
-* *new* [PR13673](https://github.com/mantidproject/mantid/pull/13673) - 13647 create launch shortcut for ipython notebooks
-* *new* [PR13687](https://github.com/mantidproject/mantid/pull/13687) - Detailed balance error in ISIS Energy Transfer
-* *new* [PR13688](https://github.com/mantidproject/mantid/pull/13688) - Moved Container Subtraction to first tab in Indirect Corrections
-* *new* [PR13700](https://github.com/mantidproject/mantid/pull/13700) - ConvFit requires progress tracking
-* *new* [PR13701](https://github.com/mantidproject/mantid/pull/13701) - Remove container subtraction from apply paalman pings
-* *new* [PR13702](https://github.com/mantidproject/mantid/pull/13702) - Fix unchecking of autocolorscale when color preset button is pressed
-* *new* [PR13703](https://github.com/mantidproject/mantid/pull/13703) - Re #13675 Use "inline" rather than "nbagg" in generated notebooks
-* *new* [PR13705](https://github.com/mantidproject/mantid/pull/13705) - Clear all warnings when run under CMake >= v3.0
-* *new* [PR13709](https://github.com/mantidproject/mantid/pull/13709) - Removing data that doesn't belong in git
-* *new* [PR13712](https://github.com/mantidproject/mantid/pull/13712) - Removing two links if they exist during uninstall
+* [PR13567](https://github.com/mantidproject/mantid/pull/13567) - EventList assignment fix
+* [PR13583](https://github.com/mantidproject/mantid/pull/13583) - Fix logic errors in creating links to launch scripts.
+* [PR13585](https://github.com/mantidproject/mantid/pull/13585) - Set package's suffix from jenkins environment
+* [PR13586](https://github.com/mantidproject/mantid/pull/13586) - TOF converter error messages
+* [PR13603](https://github.com/mantidproject/mantid/pull/13603) - Script window conflicting with console launch
+* [PR13605](https://github.com/mantidproject/mantid/pull/13605) - ResNorm "plot result: fit" plots only data
+* [PR13615](https://github.com/mantidproject/mantid/pull/13615) - VSI: render views are restored with wrong size
+* [PR13619](https://github.com/mantidproject/mantid/pull/13619) - Changed Add to ADS to AddOrReplace to allow multiple runs in ConvFit
+* [PR13621](https://github.com/mantidproject/mantid/pull/13621) - Performance boost in SNSPowderReduction
+* [PR13622](https://github.com/mantidproject/mantid/pull/13622) - 13540 generate ipython notebook from refl polref gui
+* [PR13625](https://github.com/mantidproject/mantid/pull/13625) - Powder Diffraction system test compatible with py 2.6
+* [PR13628](https://github.com/mantidproject/mantid/pull/13628) - Adding the Analysis category for SNS
+* [PR13630](https://github.com/mantidproject/mantid/pull/13630) - ResNorm error with sqw files
+* [PR13639](https://github.com/mantidproject/mantid/pull/13639) - Fix memory leak with GSL vector
+* [PR13640](https://github.com/mantidproject/mantid/pull/13640) - Add clang to the developer rpm
+* [PR13641](https://github.com/mantidproject/mantid/pull/13641) - Adding DSFinterp usage example
+* [PR13642](https://github.com/mantidproject/mantid/pull/13642) - Create Sample Shape alg interface is not working
+* [PR13661](https://github.com/mantidproject/mantid/pull/13661) - LoadIsawDetCal works for PeaksWorkspaces
+* [PR13666](https://github.com/mantidproject/mantid/pull/13666) - MANDI IDF from DetCal file
+* [PR13673](https://github.com/mantidproject/mantid/pull/13673) - 13647 create launch shortcut for ipython notebooks
+* [PR13687](https://github.com/mantidproject/mantid/pull/13687) - Detailed balance error in ISIS Energy Transfer
+* [PR13688](https://github.com/mantidproject/mantid/pull/13688) - Moved Container Subtraction to first tab in Indirect Corrections
+* [PR13700](https://github.com/mantidproject/mantid/pull/13700) - ConvFit requires progress tracking
+* [PR13701](https://github.com/mantidproject/mantid/pull/13701) - Remove container subtraction from apply paalman pings
+* [PR13702](https://github.com/mantidproject/mantid/pull/13702) - Fix unchecking of autocolorscale when color preset button is pressed
+* [PR13703](https://github.com/mantidproject/mantid/pull/13703) - Re #13675 Use "inline" rather than "nbagg" in generated notebooks
+* [PR13705](https://github.com/mantidproject/mantid/pull/13705) - Clear all warnings when run under CMake >= v3.0
+* [PR13709](https://github.com/mantidproject/mantid/pull/13709) - Removing data that doesn't belong in git
+* [PR13712](https://github.com/mantidproject/mantid/pull/13712) - Removing two links if they exist during uninstall
