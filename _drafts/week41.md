@@ -21,6 +21,7 @@ Detailed Merges for Oct 5 to 11, 2015
 * *new* [PR13834](https://github.com/mantidproject/mantid/pull/13834) - SaveOpenGenie::Add missing variables & included different formatting style
 * *new* [PR13840](https://github.com/mantidproject/mantid/pull/13840) - Algorithm to calibrate detector phases
 * *new* [PR13842](https://github.com/mantidproject/mantid/pull/13842) - Load multiple files from Recent Files
+* *new* [PR13846](https://github.com/mantidproject/mantid/pull/13846) - 13821 sans interface history
 * *new* [PR13848](https://github.com/mantidproject/mantid/pull/13848) - Fix crash in VSI when rebinning
 * *new* [PR13851](https://github.com/mantidproject/mantid/pull/13851) - Expose add runs isis sans
 * *new* [PR13856](https://github.com/mantidproject/mantid/pull/13856) - clang-format Framework.
