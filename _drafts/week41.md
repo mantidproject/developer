@@ -12,6 +12,7 @@ Detailed Merges for Oct 5 to 11, 2015
 [on github](https://github.com/mantidproject/mantid/pulls?q=is%3Apr+merged%3A2015-10-06..2015-10-11)
 
 * *new* [PR13774](https://github.com/mantidproject/mantid/pull/13774) - Display output from fit of single spectrum.
+* *new* [PR13779](https://github.com/mantidproject/mantid/pull/13779) - Remove output workspace group before calling Fit.
 * *new* [PR13788](https://github.com/mantidproject/mantid/pull/13788) - Remove extra class declarations in PoldiFitPeaks1D Tests
 * *new* [PR13800](https://github.com/mantidproject/mantid/pull/13800) - Allow cxxtest test void on previous line
 * *new* [PR13830](https://github.com/mantidproject/mantid/pull/13830) - Add FirstGoodData to list of log values
