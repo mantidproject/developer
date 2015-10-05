@@ -23,3 +23,4 @@ Detailed Merges for Oct 5 to 11, 2015
 * *new* [PR13842](https://github.com/mantidproject/mantid/pull/13842) - Load multiple files from Recent Files
 * *new* [PR13848](https://github.com/mantidproject/mantid/pull/13848) - Fix crash in VSI when rebinning
 * *new* [PR13851](https://github.com/mantidproject/mantid/pull/13851) - Expose add runs isis sans
+* *new* [PR13856](https://github.com/mantidproject/mantid/pull/13856) - clang-format Framework.
