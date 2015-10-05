@@ -11,4 +11,8 @@ Detailed Merges for Oct 5 to 11, 2015
 -------------------------------------
 [on github](https://github.com/mantidproject/mantid/pulls?q=is%3Apr+merged%3A2015-10-06..2015-10-11)
 
+* *new* [PR13774](https://github.com/mantidproject/mantid/pull/13774) - Display output from fit of single spectrum.
+* *new* [PR13800](https://github.com/mantidproject/mantid/pull/13800) - Allow cxxtest test void on previous line
 * *new* [PR13831](https://github.com/mantidproject/mantid/pull/13831) - Remove too wild using namespace(s) from LoadFITS
+* *new* [PR13842](https://github.com/mantidproject/mantid/pull/13842) - Load multiple files from Recent Files
+* *new* [PR13848](https://github.com/mantidproject/mantid/pull/13848) - Fix crash in VSI when rebinning
