@@ -7,9 +7,9 @@ title: Updates Week 41 of 2015
 Updates for Week 41 of 2015
 ---------------------------
 
-Detailed Merges for Oct 5 to 11, 2015
--------------------------------------
-[on github](https://github.com/mantidproject/mantid/pulls?q=is%3Apr+merged%3A2015-10-06..2015-10-11)
+Detailed Merges for Oct 10 to 16, 2016
+--------------------------------------
+[on github](https://github.com/mantidproject/mantid/pulls?q=is%3Apr+merged%3A2016-10-11..2016-10-16)
 
 * *new* [PR13774](https://github.com/mantidproject/mantid/pull/13774) - Display output from fit of single spectrum.
 * *new* [PR13779](https://github.com/mantidproject/mantid/pull/13779) - Remove output workspace group before calling Fit.
