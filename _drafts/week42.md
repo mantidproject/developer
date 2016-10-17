@@ -7,9 +7,9 @@ title: Updates Week 42 of 2015
 Updates for Week 42 of 2015
 ---------------------------
 
-Detailed Merges for Oct 12 to 18, 2015
+Detailed Merges for Oct 17 to 23, 2016
 --------------------------------------
-[on github](https://github.com/mantidproject/mantid/pulls?q=is%3Apr+merged%3A2015-10-13..2015-10-18)
+[on github](https://github.com/mantidproject/mantid/pulls?q=is%3Apr+merged%3A2016-10-18..2016-10-23)
 
 * *new* [PR13859](https://github.com/mantidproject/mantid/pull/13859) - Export Geometry::CrystalStructure to Python interface
 * *new* [PR13896](https://github.com/mantidproject/mantid/pull/13896) - ISIS Energy Transfer check for background start/end in Plot Time validation
