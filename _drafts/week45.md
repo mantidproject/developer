@@ -7,9 +7,9 @@ title: Updates Week 45 of 2015
 Updates for Week 45 of 2015
 ---------------------------
 
-Detailed Merges for Nov 2 to 8, 2015
-------------------------------------
-[on github](https://github.com/mantidproject/mantid/pulls?q=is%3Apr+merged%3A2015-11-03..2015-11-08)
+Detailed Merges for Nov 7 to 13, 2016
+-------------------------------------
+[on github](https://github.com/mantidproject/mantid/pulls?q=is%3Apr+merged%3A2016-11-08..2016-11-13)
 
 * *new* [PR14163](https://github.com/mantidproject/mantid/pull/14163) - Add 2 more fields on powder diffraction GUI
 * *new* [PR14182](https://github.com/mantidproject/mantid/pull/14182) - Provide ability to add scrollbars to dialogs
