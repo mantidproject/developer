@@ -3,6 +3,11 @@
 # update the checked out repositories
 set -x
 
+# create the _drafts directory if it isn't already present
+if [ ! -d _drafts ]; then
+    mkdir _drafts
+fi
+
 # update the ticket list
 tools/get_pull_requests.py --repo mantidproject/mantid || exit 1
 
