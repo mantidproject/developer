@@ -13,7 +13,9 @@ Updates for Week 3 of 2017
 Mantid 3.9 Dates
 ----------------
 
-[Release 3.9.0](https://github.com/mantidproject/mantid/milestone/59) is currently scheduled for 2017-02-13
+* [Release 3.9.0](https://github.com/mantidproject/mantid/milestone/59) is currently scheduled for 2017-02-13
+* Beta testing 2017-01-25 to 2017-02-08
+* Code freeze is 2017-02-20
 
 Detailed Merges for Jan 16 to 22, 2017
 --------------------------------------
