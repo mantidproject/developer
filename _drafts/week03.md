@@ -10,6 +10,11 @@ Updates for Week 3 of 2017
 * Additional tests for several different things
 * Peak comparison tool updates in the instrument view
 
+Mantid 3.9 Dates
+----------------
+
+[Release 3.9.0](https://github.com/mantidproject/mantid/milestone/59) is currently scheduled for 2017-02-13
+
 Detailed Merges for Jan 16 to 22, 2017
 --------------------------------------
 [on github](https://github.com/mantidproject/mantid/pulls?q=is%3Apr+merged%3A2017-01-17..2017-01-22)
