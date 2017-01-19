@@ -17,11 +17,11 @@ Detailed Merges for Jan 16 to 22, 2017
 * *new* [PR18419](https://github.com/mantidproject/mantid/pull/18419) - Add tests for the MaskDetectorsIf algorithm
 * *new* [PR18420](https://github.com/mantidproject/mantid/pull/18420) - Autoload ws name in data selector widget
 * *new* [PR18425](https://github.com/mantidproject/mantid/pull/18425) - Add tests for the CrossCorrelate algorithm
-* *new* [PR18428](https://github.com/mantidproject/mantid/pull/18428) - Fixing sphinx warnings
+* [PR18428](https://github.com/mantidproject/mantid/pull/18428) - Fixing sphinx warnings
 * *new* [PR18432](https://github.com/mantidproject/mantid/pull/18432) - GroupDetectors processing instructions documentation update
 * *new* [PR18433](https://github.com/mantidproject/mantid/pull/18433) - Added an input property for temperature in ComputeCalibrationCoefVan
 * *new* [PR18434](https://github.com/mantidproject/mantid/pull/18434) - Add summary of recommendation for minimizers
 * *new* [PR18437](https://github.com/mantidproject/mantid/pull/18437) - Use non-virtual interface for (FileBacked)ExperimentInfo.
 * *new* [PR18445](https://github.com/mantidproject/mantid/pull/18445) - Add tests for LoadSampleDetailsFromRaw
-* *new* [PR18454](https://github.com/mantidproject/mantid/pull/18454) - Change python3 to use get_instructions in funcinspect.py
-* *new* [PR18466](https://github.com/mantidproject/mantid/pull/18466) - Add tests for LoadInstrumentFromNexus
+* [PR18454](https://github.com/mantidproject/mantid/pull/18454) - Change python3 to use get_instructions in funcinspect.py
+* [PR18466](https://github.com/mantidproject/mantid/pull/18466) - Add tests for LoadInstrumentFromNexus
