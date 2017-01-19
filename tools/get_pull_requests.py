@@ -221,6 +221,7 @@ if __name__ == "__main__":
                         help='date contained in the week',
                         default=today)
     parser.add_argument('--filename')
+    parser.add_argument('--reset-title', action='store_true')
 
     args=parser.parse_args()
     endpoint='https://api.github.com/repos/%s/' % args.repo
@@ -248,7 +249,8 @@ if __name__ == "__main__":
         if not pull.number in pulls:
             pulls[pull.number] = pull
         else:
-            pulls[pull.number].title = pull.title
+            if args.reset_title:
+                pulls[pull.number].title = pull.title
 
     pulls = list(pulls.values())
     pulls = sorted(pulls, key=lambda pr: pr.number)
