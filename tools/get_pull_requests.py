@@ -54,10 +54,10 @@ def getOauth(oauth):
     oauthfile=os.path.expanduser("~/.ssh/github_oauth")
     if oauth is None and os.path.exists(oauthfile):
         print("Found oauth token '%s'" % oauthfile)
-        handle=open(oauthfile, 'r')
-        oauth='\n'.join(handle.readlines())
-        handle.close()
-        oauth=oauth.strip()
+        with open(oauthfile, 'r') as handle:
+            oauth='\n'.join(handle.readlines())
+            handle.close()
+            oauth=oauth.strip()
     return oauth
 
 def getStatusAndJson(req):
@@ -124,22 +124,22 @@ def parseFile(filename):
     if not os.path.exists(filename):
         return (None, [])
 
-    handle=open(filename,'r')
-    header=""
-    for line in handle:
-        if "Detailed Merges for " in line.strip():
-            break
-        else:
-            header+=line
+    with open(filename,'r') as handle:
+        header=""
+        for line in handle:
+            if "Detailed Merges for " in line.strip():
+                break
+            else:
+                header+=line
 
-    pulls=[]
-    for line in handle:
-        if 'github.com' in line:
-            if '[on github](https://github.com' in line \
-               and '+merged' in line:
-                continue
-            pr = PullRequest(line.strip())
-            pulls.append(pr)
+        pulls=[]
+        for line in handle:
+            if 'github.com' in line:
+                if '[on github](https://github.com' in line \
+                   and '+merged' in line:
+                    continue
+                pr = PullRequest(line.strip())
+                pulls.append(pr)
 
     return (header.strip(), sorted(pulls, key=lambda pr: pr.number))
 
@@ -255,6 +255,6 @@ if __name__ == "__main__":
 
     print("==============================")
     print("Week %d of %d -" % (week, since.year), since,"to",until)
-    handle=open(filename, 'w')
-    writeHeader(handle, header, since)
-    writePulls(handle, pulls)
+    with open(filename, 'w') as handle:
+        writeHeader(handle, header, since)
+        writePulls(handle, pulls)
