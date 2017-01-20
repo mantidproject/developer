@@ -34,6 +34,6 @@ Detailed Merges for Jan 16 to 22, 2017
 * *new* [PR18437](https://github.com/mantidproject/mantid/pull/18437) - Use non-virtual interface for (FileBacked)ExperimentInfo.
 * *new* [PR18445](https://github.com/mantidproject/mantid/pull/18445) - Add tests for [LoadSampleDetailsFromRaw]({{ site.docpage }}/algorithms/LoadSampleDetailsFromRaw)
 * [PR18454](https://github.com/mantidproject/mantid/pull/18454) - Change python3 to use get_instructions in [funcinspect.py](https://github.com/mantidproject/mantid/blob/8ba76048eeba74a92e48d42dc0dc18d818330f22/Framework/PythonInterface/mantid/kernel/funcinspect.py#L95)
-* *new* [PR18459](https://github.com/mantidproject/mantid/pull/18459) - usage example [LoadMcStas]({{ site.docpage }}/algorithms/LoadMcStas)
+* [PR18459](https://github.com/mantidproject/mantid/pull/18459) - usage example [LoadMcStas]({{ site.docpage }}/algorithms/LoadMcStas)
 * [PR18466](https://github.com/mantidproject/mantid/pull/18466) - Add tests for [LoadInstrumentFromNexus]({{ site.docpage }}/algorithms/LoadInstrumentFromNexus)
-* *new* [PR18473](https://github.com/mantidproject/mantid/pull/18473) - Remove unit test data files from unit test folder
+* [PR18473](https://github.com/mantidproject/mantid/pull/18473) - Remove unit test data files from unit test folder
