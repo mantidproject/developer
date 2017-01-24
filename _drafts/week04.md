@@ -34,6 +34,7 @@ Detailed Merges for Jan 23 to 29, 2017
 * *new* [PR18487](https://github.com/mantidproject/mantid/pull/18487) - Add improvement of minimizer documentation to release notes
 * [PR18488](https://github.com/mantidproject/mantid/pull/18488) - Fix recently introduced python3 errors
 * *new* [PR18492](https://github.com/mantidproject/mantid/pull/18492) - Fix building with sip 4.19
+* *new* [PR18502](https://github.com/mantidproject/mantid/pull/18502) - Fix moc build warning on master
 * [PR18505](https://github.com/mantidproject/mantid/pull/18505) - Add release image
 * [PR18506](https://github.com/mantidproject/mantid/pull/18506) - Update `framework.rst`
 * [PR18507](https://github.com/mantidproject/mantid/pull/18507) - Update `ui.rst`
