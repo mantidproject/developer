@@ -1,8 +1,3 @@
-URL: http://builds.mantidproject.org/job/master_systemtests-rhel7/lastCompletedBuild/testReport/api/json
-URL: http://builds.mantidproject.org/job/master_systemtests-rhel6/lastCompletedBuild/testReport/api/json
-URL: http://builds.mantidproject.org/job/master_systemtests-osx/lastCompletedBuild/testReport/api/json
-URL: http://builds.mantidproject.org/job/master_systemtests-win7/lastCompletedBuild/testReport/api/json
-URL: http://builds.mantidproject.org/job/master_systemtests-ubuntu/lastCompletedBuild/testReport/api/json
 ---
 layout: default
 date: 2017-01-24
