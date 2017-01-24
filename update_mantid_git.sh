@@ -8,6 +8,11 @@ if [ ! -d _drafts ]; then
     mkdir _drafts
 fi
 
+# get rid of build warning
+if [ ! `git config --get push.default` ]; then
+    git config push.default simple
+fi
+
 # update the ticket list
 tools/get_pull_requests.py --repo mantidproject/mantid || exit 1
 
