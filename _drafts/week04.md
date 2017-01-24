@@ -37,9 +37,11 @@ Detailed Merges for Jan 23 to 29, 2017
 * [PR18505](https://github.com/mantidproject/mantid/pull/18505) - Add release image
 * [PR18506](https://github.com/mantidproject/mantid/pull/18506) - Update `framework.rst`
 * [PR18507](https://github.com/mantidproject/mantid/pull/18507) - Update `ui.rst`
+* *new* [PR18509](https://github.com/mantidproject/mantid/pull/18509) - Vesuvio - Update Monitor Positions
 * [PR18510](https://github.com/mantidproject/mantid/pull/18510) - Update `direct_inelastic.rst`
 * [PR18511](https://github.com/mantidproject/mantid/pull/18511) - Update sans.rst
 * [PR18512](https://github.com/mantidproject/mantid/pull/18512) - Sort dict before creating message, can't assume order with python3
+* *new* [PR18513](https://github.com/mantidproject/mantid/pull/18513) - LoadILLIndirect-v2 updated documentation
 * *new* [PR18516](https://github.com/mantidproject/mantid/pull/18516) - Disable nonOrthogonal sliceviewer button when orthogonal ws
 * [PR18517](https://github.com/mantidproject/mantid/pull/18517) - Fix sphinx warnings
 * [PR18519](https://github.com/mantidproject/mantid/pull/18519) - Fix PythonScriptsTest_CrystalFieldTest for python 3
