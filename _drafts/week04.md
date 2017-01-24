@@ -28,7 +28,9 @@ Detailed Merges for Jan 23 to 29, 2017
 * *new* [PR18439](https://github.com/mantidproject/mantid/pull/18439) - Log averaging muon analysis
 * *new* [PR18446](https://github.com/mantidproject/mantid/pull/18446) - Indirect I(Q, t)Fit - Use ExpDecay Function
 * *new* [PR18451](https://github.com/mantidproject/mantid/pull/18451) - Allow updates for `facilities.xml`  through automatic downloading
+* *new* [PR18458](https://github.com/mantidproject/mantid/pull/18458) - SNAPReduce detcal file support
 * *new* [PR18464](https://github.com/mantidproject/mantid/pull/18464) - SpectrumInfo rollout 21 to 43
+* *new* [PR18469](https://github.com/mantidproject/mantid/pull/18469) - LoadIsawDetCal parameter change
 * *new* [PR18482](https://github.com/mantidproject/mantid/pull/18482) - Documentation for caching layers
 * *new* [PR18486](https://github.com/mantidproject/mantid/pull/18486) - Fix for SAScollimation in SaveCanSAS1D and LoadCanSAS1D
 * *new* [PR18487](https://github.com/mantidproject/mantid/pull/18487) - Add improvement of minimizer documentation to release notes
