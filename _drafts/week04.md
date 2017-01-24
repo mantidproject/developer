@@ -27,21 +27,21 @@ Detailed Merges for Jan 23 to 29, 2017
 * *new* [PR18417](https://github.com/mantidproject/mantid/pull/18417) - Group workspace masking error in MaskDetectors
 * *new* [PR18439](https://github.com/mantidproject/mantid/pull/18439) - Log averaging muon analysis
 * *new* [PR18446](https://github.com/mantidproject/mantid/pull/18446) - Indirect I(Q, t)Fit - Use ExpDecay Function
-* *new* [PR18451](https://github.com/mantidproject/mantid/pull/18451) - Allow updates for facilities.xml  through automatic downloading
+* *new* [PR18451](https://github.com/mantidproject/mantid/pull/18451) - Allow updates for `facilities.xml`  through automatic downloading
 * *new* [PR18464](https://github.com/mantidproject/mantid/pull/18464) - SpectrumInfo rollout 21 to 43
 * *new* [PR18482](https://github.com/mantidproject/mantid/pull/18482) - Documentation for caching layers
 * *new* [PR18486](https://github.com/mantidproject/mantid/pull/18486) - Fix for SAScollimation in SaveCanSAS1D and LoadCanSAS1D
 * *new* [PR18487](https://github.com/mantidproject/mantid/pull/18487) - Add improvement of minimizer documentation to release notes
-* *new* [PR18488](https://github.com/mantidproject/mantid/pull/18488) - Fix recently introduced python3 errors
+* [PR18488](https://github.com/mantidproject/mantid/pull/18488) - Fix recently introduced python3 errors
 * *new* [PR18492](https://github.com/mantidproject/mantid/pull/18492) - Fix building with sip 4.19
 * [PR18505](https://github.com/mantidproject/mantid/pull/18505) - Add release image
-* [PR18506](https://github.com/mantidproject/mantid/pull/18506) - Update ``framework.rst``
-* [PR18507](https://github.com/mantidproject/mantid/pull/18507) - Update ``ui.rst``
-* [PR18510](https://github.com/mantidproject/mantid/pull/18510) - Update ``direct_inelastic.rst``
-* *new* [PR18511](https://github.com/mantidproject/mantid/pull/18511) - Update sans.rst
+* [PR18506](https://github.com/mantidproject/mantid/pull/18506) - Update `framework.rst`
+* [PR18507](https://github.com/mantidproject/mantid/pull/18507) - Update `ui.rst`
+* [PR18510](https://github.com/mantidproject/mantid/pull/18510) - Update `direct_inelastic.rst`
+* [PR18511](https://github.com/mantidproject/mantid/pull/18511) - Update sans.rst
 * [PR18512](https://github.com/mantidproject/mantid/pull/18512) - Sort dict before creating message, can't assume order with python3
 * *new* [PR18516](https://github.com/mantidproject/mantid/pull/18516) - Disable nonOrthogonal sliceviewer button when orthogonal ws
-* *new* [PR18517](https://github.com/mantidproject/mantid/pull/18517) - Fix sphinx warnings
+* [PR18517](https://github.com/mantidproject/mantid/pull/18517) - Fix sphinx warnings
 * [PR18519](https://github.com/mantidproject/mantid/pull/18519) - Fix PythonScriptsTest_CrystalFieldTest for python 3
 * *new* [PR18521](https://github.com/mantidproject/mantid/pull/18521) - Crystal fields bugfixes
 * *new* [PR18524](https://github.com/mantidproject/mantid/pull/18524) - Fix randomly failing Crystal Field test.
