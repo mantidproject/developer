@@ -14,7 +14,7 @@ Mantid 3.9 Dates
 * Beta testing has started and ends 2017-02-07
 * Code freeze has started
 
-Notes from the Project working group
+Notes from the project working group
 ====================================
 * ICNS 2017 (South Korea -13th July) Abstract Deadline Feb 24th.
   * Discuss ideas with your group lead and share across the project so we know what is being presented
