@@ -34,6 +34,7 @@ Code Changes
 
 * Variety of sphinx fixes
 * Variety of fixes for python3 support
+* Variety of fixes to [Crystal Field]({{ site.docpage }}/concepts/CrystalField)
 * Packing is turned off by default on linux and osx pull requests
 * [Abins]({{ site.docpage }}/algorithms/Abins) algorithm has been added to mantid
 
@@ -67,12 +68,12 @@ Detailed Merges for Jan 23 to 29, 2017
 * *new* [PR18516](https://github.com/mantidproject/mantid/pull/18516) - Disable nonOrthogonal sliceviewer button when orthogonal ws
 * [PR18517](https://github.com/mantidproject/mantid/pull/18517) - Fix sphinx warnings
 * [PR18519](https://github.com/mantidproject/mantid/pull/18519) - Fix PythonScriptsTest_CrystalFieldTest for python 3
-* *new* [PR18521](https://github.com/mantidproject/mantid/pull/18521) - Crystal fields bugfixes
-* *new* [PR18524](https://github.com/mantidproject/mantid/pull/18524) - Fix randomly failing Crystal Field test.
+* [PR18521](https://github.com/mantidproject/mantid/pull/18521) - Crystal fields bugfixes
+* [PR18524](https://github.com/mantidproject/mantid/pull/18524) - Fix randomly failing Crystal Field test.
 * *new* [PR18526](https://github.com/mantidproject/mantid/pull/18526) - Indirect ILL Reduction: system test quick fix
 * *new* [PR18533](https://github.com/mantidproject/mantid/pull/18533) - Fix MantidPlot detector display for monitor spectra
 * [PR18535](https://github.com/mantidproject/mantid/pull/18535) - Fix building qthelp and html docs using python 3
 * [PR18541](https://github.com/mantidproject/mantid/pull/18541) - Respect BUILD_PACKAGE variable if specified by Jenkins
 * [PR18545](https://github.com/mantidproject/mantid/pull/18545) - Abins 0.1: Correct check for a DFT  file extension.
-* *new* [PR18558](https://github.com/mantidproject/mantid/pull/18558) - Coverity fixes for crystal field physical properties code
+* [PR18558](https://github.com/mantidproject/mantid/pull/18558) - Coverity fixes for crystal field physical properties code
 * [PR18559](https://github.com/mantidproject/mantid/pull/18559) - Skip tests where numpy.einsum is unavailable.
