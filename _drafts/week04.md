@@ -11,7 +11,7 @@ Mantid 3.9 Dates
 ================
 
 * [Release 3.9.0](https://github.com/mantidproject/mantid/milestone/59) is currently scheduled for 2017-02-13
-* Beta testing 2017-01-25 to 2017-02-08
+* Beta testing has started and ends 2017-02-07
 * Code freeze has started
 
 Code Changes
