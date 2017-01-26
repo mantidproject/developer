@@ -21,7 +21,7 @@ Notes from the project working group
   * Probably 3-5 people from ISIS Mantid
 * Recent bugs found from large scale maintenance issues
   * Likely to be passing testing too easily due to the volume of mixed classes in a single pull request
-  * Suggested that we split pull requesets for maintenance issues smaler, and group things together with the tester in mind (i.e. functioanlly grouped if possible).
+  * Suggested that we split pull requests for maintenance issues smaller, and group things together with the tester in mind (i.e. functionally grouped if possible).
 * Build seem to be failing significantly for various reasons, that are unrelated to the code changed
   * This delayed the start of beta testing by a day this release, but has been growing slowly for some time.
   * We need to take a look at the failure causes for the build to get a picture of where to improve things and target effort.
