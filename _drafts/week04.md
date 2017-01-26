@@ -7,6 +7,8 @@ title: Updates Week 4 of 2017
 Updates for Week 4 of 2017
 --------------------------
 
+* [TSC meeting minutes](https://github.com/mantidproject/documents/blob/master/Project-Management/TechnicalSteeringCommittee/meetings/2017/TSC-meeting-2017-01-24.md)
+
 Mantid 3.9 Dates
 ================
 
@@ -16,7 +18,7 @@ Mantid 3.9 Dates
 
 Notes from the project working group
 ====================================
-* ICNS 2017 (South Korea -13th July) Abstract Deadline Feb 24th.
+* [ICNS 2017](http://icns2017.org/) (South Korea -13th July) Abstract Deadline Feb 24th.
   * Discuss ideas with your group lead and share across the project so we know what is being presented
 * Recent bugs found from large scale maintenance issues
   * Likely to be passing testing too easily due to the volume of mixed classes in a single pull request
@@ -25,14 +27,15 @@ Notes from the project working group
   * This delayed the start of beta testing by a day this release, but has been growing slowly for some time.
   * We need to take a look at the failure causes for the build to get a picture of where to improve things and target effort.
   * Some failures we are unlikely to be able to fix (e.g. communication failure) but these are not the majority.
-* RHEL6 at ISIS
-  * This is the last full release we will need to support RHEL6 (although we will need to provide nightly builds for a couple of months after)
+* This is the last full release we will need to support RHEL6 (although we will need to provide nightly builds for a couple of months after)
 
 Code Changes
 ============
 
 * Variety of sphinx fixes
 * Variety of fixes for python3 support
+* Packing is turned off by default on linux and osx pull requests
+* [Abins]({{ site.docpage }}/algorithms/Abins) algorithm has been added to mantid
 
 Detailed Merges for Jan 23 to 29, 2017
 --------------------------------------
@@ -50,8 +53,8 @@ Detailed Merges for Jan 23 to 29, 2017
 * *new* [PR18486](https://github.com/mantidproject/mantid/pull/18486) - Fix for SAScollimation in SaveCanSAS1D and LoadCanSAS1D
 * *new* [PR18487](https://github.com/mantidproject/mantid/pull/18487) - Add improvement of minimizer documentation to release notes
 * [PR18488](https://github.com/mantidproject/mantid/pull/18488) - Fix recently introduced python3 errors
-* *new* [PR18492](https://github.com/mantidproject/mantid/pull/18492) - Fix building with sip 4.19
-* *new* [PR18502](https://github.com/mantidproject/mantid/pull/18502) - Fix moc build warning on master
+* [PR18492](https://github.com/mantidproject/mantid/pull/18492) - Fix building with sip 4.19
+* [PR18502](https://github.com/mantidproject/mantid/pull/18502) - Fix moc build warning on master
 * *new* [PR18504](https://github.com/mantidproject/mantid/pull/18504) - Ensure output EventLists have correct sort order after filtering
 * [PR18505](https://github.com/mantidproject/mantid/pull/18505) - Add release image
 * [PR18506](https://github.com/mantidproject/mantid/pull/18506) - Update `framework.rst`
@@ -60,7 +63,7 @@ Detailed Merges for Jan 23 to 29, 2017
 * [PR18510](https://github.com/mantidproject/mantid/pull/18510) - Update `direct_inelastic.rst`
 * [PR18511](https://github.com/mantidproject/mantid/pull/18511) - Update sans.rst
 * [PR18512](https://github.com/mantidproject/mantid/pull/18512) - Sort dict before creating message, can't assume order with python3
-* *new* [PR18513](https://github.com/mantidproject/mantid/pull/18513) - LoadILLIndirect-v2 updated documentation
+* [PR18513](https://github.com/mantidproject/mantid/pull/18513) - LoadILLIndirect-v2 updated documentation
 * *new* [PR18516](https://github.com/mantidproject/mantid/pull/18516) - Disable nonOrthogonal sliceviewer button when orthogonal ws
 * [PR18517](https://github.com/mantidproject/mantid/pull/18517) - Fix sphinx warnings
 * [PR18519](https://github.com/mantidproject/mantid/pull/18519) - Fix PythonScriptsTest_CrystalFieldTest for python 3
@@ -68,8 +71,8 @@ Detailed Merges for Jan 23 to 29, 2017
 * *new* [PR18524](https://github.com/mantidproject/mantid/pull/18524) - Fix randomly failing Crystal Field test.
 * *new* [PR18526](https://github.com/mantidproject/mantid/pull/18526) - Indirect ILL Reduction: system test quick fix
 * *new* [PR18533](https://github.com/mantidproject/mantid/pull/18533) - Fix MantidPlot detector display for monitor spectra
-* *new* [PR18535](https://github.com/mantidproject/mantid/pull/18535) - Fix building qthelp and html docs using python 3
-* *new* [PR18541](https://github.com/mantidproject/mantid/pull/18541) - Respect BUILD_PACKAGE variable if specified by Jenkins
-* *new* [PR18545](https://github.com/mantidproject/mantid/pull/18545) - Abins 0.1: Correct check for a DFT  file extension.
+* [PR18535](https://github.com/mantidproject/mantid/pull/18535) - Fix building qthelp and html docs using python 3
+* [PR18541](https://github.com/mantidproject/mantid/pull/18541) - Respect BUILD_PACKAGE variable if specified by Jenkins
+* [PR18545](https://github.com/mantidproject/mantid/pull/18545) - Abins 0.1: Correct check for a DFT  file extension.
 * *new* [PR18558](https://github.com/mantidproject/mantid/pull/18558) - Coverity fixes for crystal field physical properties code
-* *new* [PR18559](https://github.com/mantidproject/mantid/pull/18559) - Skip tests where numpy.einsum is unavailable.
+* [PR18559](https://github.com/mantidproject/mantid/pull/18559) - Skip tests where numpy.einsum is unavailable.
