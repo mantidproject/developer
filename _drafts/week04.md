@@ -14,6 +14,24 @@ Mantid 3.9 Dates
 * Beta testing has started and ends 2017-02-07
 * Code freeze has started
 
+Notes from the Project working group
+====================================
+* ICNS 2017 (South Korea -13th July) Abstract Deadline Feb 24th.
+  * Discuss ideas with your group lead and share across the project so we know what is being presented
+  * Probably 3-5 people from ISIS Mantid
+* Recent bugs found from large scale maintenance issues
+  * Likely to be passing testing too easily due to the volume of mixed classes in a single pull request
+  * Suggested that we split pull requesets for maintenance issues smaler, and group things together with the tester in mind (i.e. functioanlly grouped if possible).
+* Build seem to be failing significantly for various reasons, that are unrelated to the code changed
+  * This delayed the start of beta testing by a day this release, but has been growing slowly for some time.
+  * We need to take a look at the failure causes for the build to get a picture of where to improve things and target effort.
+  * Some failures we are unlikely to be able to fix (e.g. communication failure) but these are not the majority.
+  * This has been passed to the TSC.
+* RHEL6 at ISIS
+  * Changes are underway to replace RHEL6 at ISIS beam line and analysis computers
+  * This is the last full release we will need to support RHEL6 (although we will need to provide nightly builds for a couple of months after)
+  * It is possible that ISIS cabin and analysis machines will move from RHEL to CENTOS at some point
+
 Code Changes
 ============
 
