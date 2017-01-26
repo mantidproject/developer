@@ -56,3 +56,6 @@ Detailed Merges for Jan 23 to 29, 2017
 * *new* [PR18533](https://github.com/mantidproject/mantid/pull/18533) - Fix MantidPlot detector display for monitor spectra
 * *new* [PR18535](https://github.com/mantidproject/mantid/pull/18535) - Fix building qthelp and html docs using python 3
 * *new* [PR18541](https://github.com/mantidproject/mantid/pull/18541) - Respect BUILD_PACKAGE variable if specified by Jenkins
+* *new* [PR18545](https://github.com/mantidproject/mantid/pull/18545) - Abins 0.1: Correct check for a DFT  file extension.
+* *new* [PR18558](https://github.com/mantidproject/mantid/pull/18558) - Coverity fixes for crystal field physical properties code
+* *new* [PR18559](https://github.com/mantidproject/mantid/pull/18559) - Skip tests where numpy.einsum is unavailable.
