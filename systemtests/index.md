@@ -1,12 +1,12 @@
 ---
 layout: default
-date: 2017-01-25
+date: 2017-01-26
 author: Peter Peterson
 title: Currently Skipped System Tests
 ---
 Summary
 =======
-* Job    : [Master Pipeline](http://builds.mantidproject.org/view/Master%20Pipeline/)2017-01-25
+* Job    : [Master Pipeline](http://builds.mantidproject.org/view/Master%20Pipeline/)2017-01-26
 * Labels : osx, rhel6, rhel7, ubuntu, win7
 * Failed : 0(6 unique)
 * Skipped: 24(30 unique)
@@ -52,14 +52,14 @@ Skipped
 | SNAP_short_detcal                  |  x  |   x   |   x   |        |   x  | 
 | PG3CCCalibration                   |  x  |   x   |       |        |   x  | 
 | PG3Calibration                     |  x  |   x   |       |        |   x  | 
-| ValidateFacilitiesFile             |  x  |   x   |       |    x   |      | 
-| ValidateGroupingFiles              |  x  |   x   |       |    x   |      | 
-| ValidateInstrumentDefinitionFiles  |  x  |   x   |       |    x   |      | 
-| ValidateParameterFiles             |  x  |   x   |       |    x   |      | 
 | LETReductionEvent2015Multirep      |  x  |       |       |    x   |      | 
 | MERLINReduction                    |  x  |       |       |    x   |      | 
 | PG3Analysis                        |  x  |       |       |        |   x  | 
 | PG3StripPeaks                      |  x  |       |       |        |   x  | 
 | TobyFitResolutionSimulationTest    |  x  |       |       |    x   |      | 
+| ValidateFacilitiesFile             |  x  |       |       |    x   |      | 
+| ValidateGroupingFiles              |  x  |       |       |    x   |      | 
+| ValidateInstrumentDefinitionFiles  |  x  |       |       |    x   |      | 
+| ValidateParameterFiles             |  x  |       |       |    x   |      | 
 | MAPSDgreduceReduction              |     |       |       |    x   |      | 
 | PVPythonTest                       |  x  |       |       |        |      | 
