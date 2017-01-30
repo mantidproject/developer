@@ -7,6 +7,22 @@ title: Updates Week 5 of 2017
 Updates for Week 5 of 2017
 --------------------------
 
+* TSC meeting minutes
+
+Mantid 3.9 Dates
+================
+
+* [Release 3.9.0](https://github.com/mantidproject/mantid/milestone/59) is currently scheduled for 2017-02-13
+* Beta testing has started and ends 2017-02-07
+
+Notes from the project working group
+====================================
+
+Code Changes
+============
+
+This is what has been merged to `master` and does include what was merged into `release-v3.9`.
+
 Detailed Merges for Jan 30 to Feb 5, 2017
 -----------------------------------------
 [on github](https://github.com/mantidproject/mantid/pulls?q=is%3Apr+merged%3A2017-01-31..2017-02-05)
