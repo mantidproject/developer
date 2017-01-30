@@ -32,46 +32,57 @@ Notes from the project working group
 Code Changes
 ============
 
-* Variety of sphinx fixes
+This is what has been merged to `master` and does include what was merged into `release-v3.9`.
+
+* Variety of sphinx fixes and documentation improvements
 * Variety of fixes for python3 support
+* `facilities.xml` updated through automatic downloading is now used
 * Variety of fixes to [Crystal Field]({{ site.docpage }}/concepts/CrystalField)
 * Packing is turned off by default on linux and osx pull requests
 * [Abins]({{ site.docpage }}/algorithms/Abins) algorithm has been added to mantid
+* Bugfix in `EventLists` to ensure they have correct sort order after filtering
+* Fix MantidPlot detector display for monitor spectra
+* Disable nonOrthogonal sliceviewer button when workspace is orthogonal
+* Updated Vesuvio monitor positions
+* Fixes in `CANSAS1D` file format
+* [SNAPReduce]({{ site.docpage }}/algorithms/SNAPReduce) has additional parameter for detcal file(s)
+* [SaveOpenGenieAscii]({{ site.docpage }}/algorithms/SaveOpenGenieAscii) now writes valid files
+* Portions of the `SpectrumInfo` rollout
 
 Detailed Merges for Jan 23 to 29, 2017
 --------------------------------------
 [on github](https://github.com/mantidproject/mantid/pulls?q=is%3Apr+merged%3A2017-01-24..2017-01-29)
 
-* *new* [PR18417](https://github.com/mantidproject/mantid/pull/18417) - Group workspace masking error in MaskDetectors
-* *new* [PR18439](https://github.com/mantidproject/mantid/pull/18439) - Log averaging muon analysis
-* *new* [PR18446](https://github.com/mantidproject/mantid/pull/18446) - Indirect I(Q, t)Fit - Use ExpDecay Function
-* *new* [PR18451](https://github.com/mantidproject/mantid/pull/18451) - Allow updates for `facilities.xml`  through automatic downloading
-* *new* [PR18458](https://github.com/mantidproject/mantid/pull/18458) - SNAPReduce detcal file support
-* *new* [PR18464](https://github.com/mantidproject/mantid/pull/18464) - SpectrumInfo rollout 21 to 43
-* *new* [PR18468](https://github.com/mantidproject/mantid/pull/18468) - Rewrite SaveOpenGenieAscii to save valid files
-* *new* [PR18469](https://github.com/mantidproject/mantid/pull/18469) - LoadIsawDetCal parameter change
-* *new* [PR18482](https://github.com/mantidproject/mantid/pull/18482) - Documentation for caching layers
-* *new* [PR18486](https://github.com/mantidproject/mantid/pull/18486) - Fix for SAScollimation in SaveCanSAS1D and LoadCanSAS1D
-* *new* [PR18487](https://github.com/mantidproject/mantid/pull/18487) - Add improvement of minimizer documentation to release notes
+* [PR18417](https://github.com/mantidproject/mantid/pull/18417) - Group workspace masking error in [MaskDetectors]({{ site.docpage }}/algorithms/MaskDetectors)
+* [PR18439](https://github.com/mantidproject/mantid/pull/18439) - Log averaging muon analysis
+* [PR18446](https://github.com/mantidproject/mantid/pull/18446) - Indirect I(Q, t)Fit - Use ExpDecay Function
+* [PR18451](https://github.com/mantidproject/mantid/pull/18451) - Allow updates for `facilities.xml`  through automatic downloading
+* [PR18458](https://github.com/mantidproject/mantid/pull/18458) - [SNAPReduce]({{ site.docpage }}/algorithms/SNAPReduce) detcal file support
+* [PR18464](https://github.com/mantidproject/mantid/pull/18464) - SpectrumInfo rollout 21 to 43
+* [PR18468](https://github.com/mantidproject/mantid/pull/18468) - Rewrite [SaveOpenGenieAscii]({{ site.docpage }}/algorithms/SaveOpenGenieAscii) to save valid files
+* [PR18469](https://github.com/mantidproject/mantid/pull/18469) - [LoadIsawDetCal]({{ site.docpage }}/algorithms/LoadIsawDetCal) parameter change
+* [PR18482](https://github.com/mantidproject/mantid/pull/18482) - Documentation for caching layers
+* [PR18486](https://github.com/mantidproject/mantid/pull/18486) - Fix for SAScollimation in [SaveCanSAS1D]({{ site.docpage }}/algorithms/SaveCanSAS1D) and [LoadCanSAS1D]({{ site.docpage }}/algorithms/LoadCanSAS1D)
+* [PR18487](https://github.com/mantidproject/mantid/pull/18487) - Add improvement of minimizer documentation to release notes
 * [PR18488](https://github.com/mantidproject/mantid/pull/18488) - Fix recently introduced python3 errors
 * [PR18492](https://github.com/mantidproject/mantid/pull/18492) - Fix building with sip 4.19
 * [PR18502](https://github.com/mantidproject/mantid/pull/18502) - Fix moc build warning on master
-* *new* [PR18504](https://github.com/mantidproject/mantid/pull/18504) - Ensure output EventLists have correct sort order after filtering
+* [PR18504](https://github.com/mantidproject/mantid/pull/18504) - Ensure output `EventLists` have correct sort order after filtering
 * [PR18505](https://github.com/mantidproject/mantid/pull/18505) - Add release image
 * [PR18506](https://github.com/mantidproject/mantid/pull/18506) - Update `framework.rst`
 * [PR18507](https://github.com/mantidproject/mantid/pull/18507) - Update `ui.rst`
-* *new* [PR18509](https://github.com/mantidproject/mantid/pull/18509) - Vesuvio - Update Monitor Positions
+* [PR18509](https://github.com/mantidproject/mantid/pull/18509) - Vesuvio - Update Monitor Positions
 * [PR18510](https://github.com/mantidproject/mantid/pull/18510) - Update `direct_inelastic.rst`
-* [PR18511](https://github.com/mantidproject/mantid/pull/18511) - Update sans.rst
+* [PR18511](https://github.com/mantidproject/mantid/pull/18511) - Update `sans.rst`
 * [PR18512](https://github.com/mantidproject/mantid/pull/18512) - Sort dict before creating message, can't assume order with python3
-* [PR18513](https://github.com/mantidproject/mantid/pull/18513) - LoadILLIndirect-v2 updated documentation
-* *new* [PR18516](https://github.com/mantidproject/mantid/pull/18516) - Disable nonOrthogonal sliceviewer button when orthogonal ws
+* [PR18513](https://github.com/mantidproject/mantid/pull/18513) - [LoadILLIndirect]({{ site.docpage }}/algorithms/LoadILLIndirect)-v2 updated documentation
+* [PR18516](https://github.com/mantidproject/mantid/pull/18516) - Disable nonOrthogonal sliceviewer button when orthogonal ws
 * [PR18517](https://github.com/mantidproject/mantid/pull/18517) - Fix sphinx warnings
 * [PR18519](https://github.com/mantidproject/mantid/pull/18519) - Fix PythonScriptsTest_CrystalFieldTest for python 3
 * [PR18521](https://github.com/mantidproject/mantid/pull/18521) - Crystal fields bugfixes
 * [PR18524](https://github.com/mantidproject/mantid/pull/18524) - Fix randomly failing Crystal Field test.
-* *new* [PR18526](https://github.com/mantidproject/mantid/pull/18526) - Indirect ILL Reduction: system test quick fix
-* *new* [PR18533](https://github.com/mantidproject/mantid/pull/18533) - Fix MantidPlot detector display for monitor spectra
+* [PR18526](https://github.com/mantidproject/mantid/pull/18526) - Indirect ILL Reduction: system test quick fix
+* [PR18533](https://github.com/mantidproject/mantid/pull/18533) - Fix MantidPlot detector display for monitor spectra
 * [PR18535](https://github.com/mantidproject/mantid/pull/18535) - Fix building qthelp and html docs using python 3
 * [PR18541](https://github.com/mantidproject/mantid/pull/18541) - Respect BUILD_PACKAGE variable if specified by Jenkins
 * [PR18545](https://github.com/mantidproject/mantid/pull/18545) - Abins 0.1: Correct check for a DFT  file extension.
