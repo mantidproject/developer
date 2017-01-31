@@ -33,6 +33,9 @@ Detailed Merges for Jan 30 to Feb 5, 2017
 * *new* [PR18561](https://github.com/mantidproject/mantid/pull/18561) - Add multiple time regime support for ISIS loading
 * [PR18568](https://github.com/mantidproject/mantid/pull/18568) - `SpectrumInfo` and `DetectorInfo` rollout: `ConvertSpectrumAxis2Test` to `ModeratorTzeroLinearTest`
 * [PR18574](https://github.com/mantidproject/mantid/pull/18574) - `SpectrumInfo` and `DetectorInfo` rollout: algorithms `IFunction.cpp` to `ScaleXTest.h`
+* *new* [PR18582](https://github.com/mantidproject/mantid/pull/18582) - Update buildscript for python3
 * *new* [PR18584](https://github.com/mantidproject/mantid/pull/18584) - Fixed Debye-Waller factor correction in ComputeCalibrationCoefVan
 * [PR18585](https://github.com/mantidproject/mantid/pull/18585) - `SpectrumInfo` and `DetectorInfo` rollout: algorithms 43 to 47
 * *new* [PR18586](https://github.com/mantidproject/mantid/pull/18586) - Update buildscript to avoid running system tests where possible
+* *new* [PR18604](https://github.com/mantidproject/mantid/pull/18604) - Update to SANS release notes
+* *new* [PR18623](https://github.com/mantidproject/mantid/pull/18623) - ShiftLogTime bugfix
