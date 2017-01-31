@@ -31,6 +31,7 @@ Detailed Merges for Jan 30 to Feb 5, 2017
 
 * *new* [PR18520](https://github.com/mantidproject/mantid/pull/18520) - [PyChop]({{ site.docpage }}/interfaces/PyChop) bugfixes
 * *new* [PR18561](https://github.com/mantidproject/mantid/pull/18561) - Add multiple time regime support for ISIS loading
+* *new* [PR18562](https://github.com/mantidproject/mantid/pull/18562) - Add a new download location for external data at ISIS
 * [PR18568](https://github.com/mantidproject/mantid/pull/18568) - `SpectrumInfo` and `DetectorInfo` rollout: `ConvertSpectrumAxis2Test` to `ModeratorTzeroLinearTest`
 * [PR18574](https://github.com/mantidproject/mantid/pull/18574) - `SpectrumInfo` and `DetectorInfo` rollout: algorithms `IFunction.cpp` to `ScaleXTest.h`
 * [PR18582](https://github.com/mantidproject/mantid/pull/18582) - Update buildscript for python3
@@ -38,4 +39,5 @@ Detailed Merges for Jan 30 to Feb 5, 2017
 * [PR18585](https://github.com/mantidproject/mantid/pull/18585) - `SpectrumInfo` and `DetectorInfo` rollout: algorithms 43 to 47
 * [PR18586](https://github.com/mantidproject/mantid/pull/18586) - Update buildscript to avoid running system tests where possible
 * [PR18604](https://github.com/mantidproject/mantid/pull/18604) - Update to SANS release notes
+* *new* [PR18614](https://github.com/mantidproject/mantid/pull/18614) - Fix resolution in reflectometry GUI and algorithm
 * *new* [PR18623](https://github.com/mantidproject/mantid/pull/18623) - [ShiftLogTime]({{ site.docpage }}/algorithms/ShiftLogTime) bugfix
