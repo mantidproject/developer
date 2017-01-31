@@ -7,16 +7,14 @@ title: Updates Week 5 of 2017
 Updates for Week 5 of 2017
 --------------------------
 
-* TSC meeting minutes
+* [TSC meeting minutes](https://github.com/mantidproject/documents/blob/master/Project-Management/TechnicalSteeringCommittee/meetings/2017/TSC-meeting-2017-01-31.md)
+  * Special note about [exception handling and error logging in algorithms](https://github.com/mantidproject/documents/blob/master/Project-Management/TechnicalSteeringCommittee/reports/exceptions_and_error_logging.md)
 
 Mantid 3.9 Dates
 ================
 
 * [Release 3.9.0](https://github.com/mantidproject/mantid/milestone/59) is currently scheduled for 2017-02-13
 * Beta testing has started and ends 2017-02-07
-
-Notes from the project working group
-====================================
 
 Code Changes
 ============
@@ -31,13 +29,13 @@ Detailed Merges for Jan 30 to Feb 5, 2017
 -----------------------------------------
 [on github](https://github.com/mantidproject/mantid/pulls?q=is%3Apr+merged%3A2017-01-31..2017-02-05)
 
-* *new* [PR18520](https://github.com/mantidproject/mantid/pull/18520) - PyChop bugfixes
+* *new* [PR18520](https://github.com/mantidproject/mantid/pull/18520) - [PyChop]({{ site.docpage }}/interfaces/PyChop) bugfixes
 * *new* [PR18561](https://github.com/mantidproject/mantid/pull/18561) - Add multiple time regime support for ISIS loading
 * [PR18568](https://github.com/mantidproject/mantid/pull/18568) - `SpectrumInfo` and `DetectorInfo` rollout: `ConvertSpectrumAxis2Test` to `ModeratorTzeroLinearTest`
 * [PR18574](https://github.com/mantidproject/mantid/pull/18574) - `SpectrumInfo` and `DetectorInfo` rollout: algorithms `IFunction.cpp` to `ScaleXTest.h`
 * [PR18582](https://github.com/mantidproject/mantid/pull/18582) - Update buildscript for python3
-* *new* [PR18584](https://github.com/mantidproject/mantid/pull/18584) - Fixed Debye-Waller factor correction in ComputeCalibrationCoefVan
+* *new* [PR18584](https://github.com/mantidproject/mantid/pull/18584) - Fixed Debye-Waller factor correction in [ComputeCalibrationCoefVan]({{ site.docpage }}/algorithms/ComputeCalibrationCoefVan)
 * [PR18585](https://github.com/mantidproject/mantid/pull/18585) - `SpectrumInfo` and `DetectorInfo` rollout: algorithms 43 to 47
 * [PR18586](https://github.com/mantidproject/mantid/pull/18586) - Update buildscript to avoid running system tests where possible
 * [PR18604](https://github.com/mantidproject/mantid/pull/18604) - Update to SANS release notes
-* *new* [PR18623](https://github.com/mantidproject/mantid/pull/18623) - ShiftLogTime bugfix
+* *new* [PR18623](https://github.com/mantidproject/mantid/pull/18623) - [ShiftLogTime]({{ site.docpage }}/algorithms/ShiftLogTime) bugfix
