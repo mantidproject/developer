@@ -39,11 +39,15 @@ Detailed Merges for Jan 30 to Feb 5, 2017
 * *new* [PR18584](https://github.com/mantidproject/mantid/pull/18584) - Fixed Debye-Waller factor correction in [ComputeCalibrationCoefVan]({{ site.docpage }}/algorithms/ComputeCalibrationCoefVan)
 * [PR18585](https://github.com/mantidproject/mantid/pull/18585) - `SpectrumInfo` and `DetectorInfo` rollout: algorithms 43 to 47
 * [PR18586](https://github.com/mantidproject/mantid/pull/18586) - Update buildscript to avoid running system tests where possible
+* *new* [PR18598](https://github.com/mantidproject/mantid/pull/18598) - Make W3 warning level explicit
 * *new* [PR18599](https://github.com/mantidproject/mantid/pull/18599) - Fixes for custom matplotlib backend for v>=1.5
 * [PR18604](https://github.com/mantidproject/mantid/pull/18604) - Update to SANS release notes
 * *new* [PR18614](https://github.com/mantidproject/mantid/pull/18614) - Fix resolution in reflectometry GUI and algorithm
 * *new* [PR18615](https://github.com/mantidproject/mantid/pull/18615) - SpectrumInfo and DetectorInfo rollout: algorithms <SetScalingPSDTest.h to Workspace2DTest.h>
 * *new* [PR18623](https://github.com/mantidproject/mantid/pull/18623) - [ShiftLogTime]({{ site.docpage }}/algorithms/ShiftLogTime) bugfix
+* *new* [PR18626](https://github.com/mantidproject/mantid/pull/18626) - Error when save to ascii2 with no x errors present and x errors are requested
 * *new* [PR18636](https://github.com/mantidproject/mantid/pull/18636) - Close multiple windows
 * *new* [PR18641](https://github.com/mantidproject/mantid/pull/18641) - Blacklist file and increase memory requirement
 * [PR18644](https://github.com/mantidproject/mantid/pull/18644) - Update indirect_inelastic release notes
+* *new* [PR18649](https://github.com/mantidproject/mantid/pull/18649) - Support for old files that have masking parameters for non-detector components
+* *new* [PR18663](https://github.com/mantidproject/mantid/pull/18663) - Add '-python3' to the install prefix in mantidinstaller
