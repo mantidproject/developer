@@ -24,6 +24,7 @@ This is what has been merged to `master` and does include what was merged into `
 * Portions of the `SpectrumInfo` rollout
 * System tests are no longer run on PRs that only change things in `docs`, `MantidPlot`, and `MantidQt` directories
 * Build scripts on linux have been adjusted to allow for python3 builds
+* Updates to sphinx documentation
 
 Detailed Merges for Jan 30 to Feb 5, 2017
 -----------------------------------------
@@ -45,4 +46,4 @@ Detailed Merges for Jan 30 to Feb 5, 2017
 * *new* [PR18623](https://github.com/mantidproject/mantid/pull/18623) - [ShiftLogTime]({{ site.docpage }}/algorithms/ShiftLogTime) bugfix
 * *new* [PR18636](https://github.com/mantidproject/mantid/pull/18636) - Close multiple windows
 * *new* [PR18641](https://github.com/mantidproject/mantid/pull/18641) - Blacklist file and increase memory requirement
-* *new* [PR18644](https://github.com/mantidproject/mantid/pull/18644) - Update indirect_inelastic release notes
+* [PR18644](https://github.com/mantidproject/mantid/pull/18644) - Update indirect_inelastic release notes
