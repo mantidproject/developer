@@ -1,12 +1,12 @@
 ---
 layout: default
-date: 2017-02-02
+date: 2017-02-03
 author: Peter Peterson
 title: Currently Skipped System Tests
 ---
 Summary
 =======
-* Job    : [Master Pipeline](http://builds.mantidproject.org/view/Master%20Pipeline/)2017-02-02
+* Job    : [Master Pipeline](http://builds.mantidproject.org/view/Master%20Pipeline/)2017-02-03
 * Labels : osx, rhel6, rhel7, ubuntu, win7
 * Failed : 0
 * Skipped: 26(37 unique)
@@ -41,6 +41,7 @@ Skipped
 | PG3CCCalibration                       |  x  |   x   |       |        |   x  | 
 | PG3Calibration                         |  x  |   x   |       |        |   x  | 
 | LETReductionEvent2015Multirep          |  x  |       |       |    x   |      | 
+| MAPSDgreduceReduction                  |  x  |       |       |    x   |      | 
 | MERLINReduction                        |  x  |       |       |    x   |      | 
 | PG3Analysis                            |  x  |       |       |        |   x  | 
 | PG3StripPeaks                          |  x  |       |       |        |   x  | 
@@ -49,12 +50,11 @@ Skipped
 | ValidateGroupingFiles                  |  x  |       |       |    x   |      | 
 | ValidateInstrumentDefinitionFiles      |  x  |       |       |    x   |      | 
 | ValidateParameterFiles                 |  x  |       |       |    x   |      | 
+| WISHDiffractionFocussingReductionTest  |  x  |       |       |    x   |      | 
 | AbinsCASTEPTestLargerOrder             |     |   x   |       |        |      | 
 | AbinsCASTEPTestScale                   |     |   x   |       |        |      | 
 | AbinsCASTEPTestScratch                 |     |   x   |       |        |      | 
 | AbinsCASTEPTestSmallerOrder            |     |   x   |       |        |      | 
 | AbinsCASTEPTestT                       |     |   x   |       |        |      | 
 | AbinsCRYSTALTestScratch                |     |   x   |       |        |      | 
-| MAPSDgreduceReduction                  |     |       |       |    x   |      | 
 | PVPythonTest                           |  x  |       |       |        |      | 
-| WISHDiffractionFocussingReductionTest  |     |       |       |    x   |      | 
