@@ -7,6 +7,17 @@ title: Updates Week 6 of 2017
 Updates for Week 6 of 2017
 --------------------------
 
+Mantid 3.9 Dates
+================
+
+* [Release 3.9.0](https://github.com/mantidproject/mantid/milestone/59) is currently scheduled for 2017-02-13
+* Beta testing has started and ends 2017-02-07
+
+Code Changes
+============
+
+This is what has been merged to `master` and does include what was merged into `release-v3.9`.
+
 Detailed Merges for Feb 6 to 12, 2017
 -------------------------------------
 [on github](https://github.com/mantidproject/mantid/pulls?q=is%3Apr+merged%3A2017-02-07..2017-02-12)
