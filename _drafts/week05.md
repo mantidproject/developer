@@ -26,39 +26,42 @@ This is what has been merged to `master` and does include what was merged into `
 * System tests are no longer run on PRs that only change things in `docs`, `MantidPlot`, and `MantidQt` directories
 * Build scripts on linux have been adjusted to allow for python3 builds
 * Updates to sphinx documentation
+* [PyChop]({{ site.docpage }}/interfaces/PyChop) bugfixes
+* Additional location to download external data from at RAL
+* [Abins]({{ site.docpage }}/algorithms/Abins) bugfixes
 
 Detailed Merges for Jan 30 to Feb 5, 2017
 -----------------------------------------
 [on github](https://github.com/mantidproject/mantid/pulls?q=is%3Apr+merged%3A2017-01-31..2017-02-05)
 
-* *new* [PR18520](https://github.com/mantidproject/mantid/pull/18520) - [PyChop]({{ site.docpage }}/interfaces/PyChop) bugfixes
-* *new* [PR18561](https://github.com/mantidproject/mantid/pull/18561) - Add multiple time regime support for ISIS loading
-* *new* [PR18562](https://github.com/mantidproject/mantid/pull/18562) - Add a new download location for external data at ISIS
+* [PR18520](https://github.com/mantidproject/mantid/pull/18520) - [PyChop]({{ site.docpage }}/interfaces/PyChop) bugfixes
+* [PR18561](https://github.com/mantidproject/mantid/pull/18561) - Add multiple time regime support for ISIS loading
+* [PR18562](https://github.com/mantidproject/mantid/pull/18562) - Add a new download location for external data at ISIS
 * [PR18568](https://github.com/mantidproject/mantid/pull/18568) - `SpectrumInfo` and `DetectorInfo` rollout: `ConvertSpectrumAxis2Test` to `ModeratorTzeroLinearTest`
 * [PR18574](https://github.com/mantidproject/mantid/pull/18574) - `SpectrumInfo` and `DetectorInfo` rollout: algorithms `IFunction.cpp` to `ScaleXTest.h`
 * [PR18582](https://github.com/mantidproject/mantid/pull/18582) - Update buildscript for python3
-* *new* [PR18584](https://github.com/mantidproject/mantid/pull/18584) - Fixed Debye-Waller factor correction in [ComputeCalibrationCoefVan]({{ site.docpage }}/algorithms/ComputeCalibrationCoefVan)
+* [PR18584](https://github.com/mantidproject/mantid/pull/18584) - Fixed Debye-Waller factor correction in [ComputeCalibrationCoefVan]({{ site.docpage }}/algorithms/ComputeCalibrationCoefVan)
 * [PR18585](https://github.com/mantidproject/mantid/pull/18585) - `SpectrumInfo` and `DetectorInfo` rollout: algorithms 43 to 47
 * [PR18586](https://github.com/mantidproject/mantid/pull/18586) - Update buildscript to avoid running system tests where possible
 * [PR18589](https://github.com/mantidproject/mantid/pull/18589) - `SpectrumInfo` and `DetectorInfo` rollout: algorithms `LoadMaskTest.h` to `SaveParameterFileTest.h`
 * [PR18598](https://github.com/mantidproject/mantid/pull/18598) - Make W3 warning level explicit
-* *new* [PR18599](https://github.com/mantidproject/mantid/pull/18599) - Fixes for custom matplotlib backend for v>=1.5
-* *new* [PR18600](https://github.com/mantidproject/mantid/pull/18600) - Abins1.0 minor fixes part2
+* [PR18599](https://github.com/mantidproject/mantid/pull/18599) - Fixes for custom matplotlib backend for v>=1.5
+* [PR18600](https://github.com/mantidproject/mantid/pull/18600) - [Abins]({{ site.docpage }}/algorithms/Abins) minor fixes part2
 * [PR18604](https://github.com/mantidproject/mantid/pull/18604) - Update to SANS release notes
-* *new* [PR18614](https://github.com/mantidproject/mantid/pull/18614) - Fix resolution in reflectometry GUI and algorithm
+* [PR18614](https://github.com/mantidproject/mantid/pull/18614) - Fix resolution in reflectometry GUI and algorithm
 * [PR18615](https://github.com/mantidproject/mantid/pull/18615) - `SpectrumInfo` and `DetectorInfo` rollout: algorithms `SetScalingPSDTest.h` to `Workspace2DTest.h`
 * [PR18619](https://github.com/mantidproject/mantid/pull/18619) - `SpectrumInfo` and `DetectorInfo` rollout: algorithms `InstrumentWidgetMaskTab.cpp` to `QpeaksTableModel.cpp`
 * [PR18622](https://github.com/mantidproject/mantid/pull/18622) - `SpectrumInfo` and `DetectorInfo` rollout - Group 2
-* *new* [PR18623](https://github.com/mantidproject/mantid/pull/18623) - [ShiftLogTime]({{ site.docpage }}/algorithms/ShiftLogTime) bugfix
-* *new* [PR18624](https://github.com/mantidproject/mantid/pull/18624) - Documentation for Fit benchmarking scripts
-* *new* [PR18626](https://github.com/mantidproject/mantid/pull/18626) - Error when save to ascii2 with no x errors present and x errors are requested
-* *new* [PR18633](https://github.com/mantidproject/mantid/pull/18633) - Histogram Rollout - SaveDetectorGroup to SaveMask
-* *new* [PR18635](https://github.com/mantidproject/mantid/pull/18635) - Update POLARIS entry in Facilities.xml
-* *new* [PR18636](https://github.com/mantidproject/mantid/pull/18636) - Close multiple windows
-* *new* [PR18641](https://github.com/mantidproject/mantid/pull/18641) - Blacklist file and increase memory requirement
+* [PR18623](https://github.com/mantidproject/mantid/pull/18623) - [ShiftLogTime]({{ site.docpage }}/algorithms/ShiftLogTime) bugfix
+* [PR18624](https://github.com/mantidproject/mantid/pull/18624) - Documentation for Fit benchmarking scripts
+* [PR18626](https://github.com/mantidproject/mantid/pull/18626) - Error when save to ascii2 with no x errors present and x errors are requested
+* [PR18633](https://github.com/mantidproject/mantid/pull/18633) - Histogram Rollout - SaveDetectorGroup to SaveMask
+* [PR18635](https://github.com/mantidproject/mantid/pull/18635) - Update POLARIS entry in `Facilities.xml`
+* [PR18636](https://github.com/mantidproject/mantid/pull/18636) - Close multiple windows
+* [PR18641](https://github.com/mantidproject/mantid/pull/18641) - Blacklist file and increase memory requirement
 * [PR18644](https://github.com/mantidproject/mantid/pull/18644) - Update indirect_inelastic release notes
-* *new* [PR18649](https://github.com/mantidproject/mantid/pull/18649) - Support for old files that have masking parameters for non-detector components
-* *new* [PR18650](https://github.com/mantidproject/mantid/pull/18650) - Fix an issue with first monitor in Reflectometry algorithms
+* [PR18649](https://github.com/mantidproject/mantid/pull/18649) - Support for old files that have masking parameters for non-detector components
+* [PR18650](https://github.com/mantidproject/mantid/pull/18650) - Fix an issue with first monitor in Reflectometry algorithms
 * [PR18663](https://github.com/mantidproject/mantid/pull/18663) - Add '-python3' to the install prefix in mantidinstaller
-* *new* [PR18671](https://github.com/mantidproject/mantid/pull/18671) - Fix AbinsLoadCRYSTALTest for python 3 and numpy <=1.9
+* [PR18671](https://github.com/mantidproject/mantid/pull/18671) - Fix AbinsLoadCRYSTALTest for python 3 and numpy <=1.9
 * [PR18678](https://github.com/mantidproject/mantid/pull/18678) - Fix check for macOS in buildscript
