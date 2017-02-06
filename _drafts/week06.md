@@ -25,7 +25,9 @@ Detailed Merges for Feb 6 to 12, 2017
 * *new* [PR18601](https://github.com/mantidproject/mantid/pull/18601) - SpectrumInfo rollout: algorithms ComptonProfile to GroupDetectors
 * *new* [PR18654](https://github.com/mantidproject/mantid/pull/18654) - Refs #18630 Refactored the files in the Example directory
 * *new* [PR18664](https://github.com/mantidproject/mantid/pull/18664) - SpectrumInfo rollout: algorithms <ConvertCWSDExpToMomentum.cpp to RefReduction.cpp>
+* *new* [PR18667](https://github.com/mantidproject/mantid/pull/18667) - Add configuration dependent instrument path
 * *new* [PR18668](https://github.com/mantidproject/mantid/pull/18668) - slice viewer thickness
 * *new* [PR18669](https://github.com/mantidproject/mantid/pull/18669) - Add Eigen as an external project
 * *new* [PR18681](https://github.com/mantidproject/mantid/pull/18681) - Update source position and name for IN4 spectrometer
 * *new* [PR18692](https://github.com/mantidproject/mantid/pull/18692) - SpectrumInfo rollout: algorithms DetectorEfficiencyCor to ScaleX
+* *new* [PR18697](https://github.com/mantidproject/mantid/pull/18697) - Fix more Reflectometry issues
