@@ -40,5 +40,5 @@ Detailed Merges for Feb 6 to 12, 2017
 * *new* [PR18704](https://github.com/mantidproject/mantid/pull/18704) - SNSPowderReduction list error
 * *new* [PR18712](https://github.com/mantidproject/mantid/pull/18712) - Update reflectometry release notes
 * *new* [PR18713](https://github.com/mantidproject/mantid/pull/18713) - Fix beam stop arm masking for certain angles in the ISIS SANS Gui
-* *new* [PR18719](https://github.com/mantidproject/mantid/pull/18719) - Fix uninitialized variable in ISpectrum.
-* *new* [PR18720](https://github.com/mantidproject/mantid/pull/18720) - Correct system package name for eigen3
+* [PR18719](https://github.com/mantidproject/mantid/pull/18719) - Fix uninitialized variable in `ISpectrum`.
+* [PR18720](https://github.com/mantidproject/mantid/pull/18720) - Correct system package name for eigen3
