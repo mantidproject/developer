@@ -31,14 +31,26 @@ Detailed Merges for Feb 6 to 12, 2017
 * *new* [PR18667](https://github.com/mantidproject/mantid/pull/18667) - Add configuration dependent instrument path
 * *new* [PR18668](https://github.com/mantidproject/mantid/pull/18668) - slice viewer thickness
 * [PR18669](https://github.com/mantidproject/mantid/pull/18669) - Add Eigen as an external project
+* *new* [PR18680](https://github.com/mantidproject/mantid/pull/18680) - Fix finding Mantid .properties file on OSX
 * *new* [PR18681](https://github.com/mantidproject/mantid/pull/18681) - Update source position and name for IN4 spectrometer
 * [PR18692](https://github.com/mantidproject/mantid/pull/18692) - `SpectrumInfo` rollout: algorithms DetectorEfficiencyCor to ScaleX
 * *new* [PR18693](https://github.com/mantidproject/mantid/pull/18693) - Bug readY and E from detector id...
 * *new* [PR18696](https://github.com/mantidproject/mantid/pull/18696) - Indirect Diffraction Vanadium Run
 * *new* [PR18697](https://github.com/mantidproject/mantid/pull/18697) - Fix more Reflectometry issues
 * *new* [PR18701](https://github.com/mantidproject/mantid/pull/18701) - Fix bug in transmission multiperiod reduction ISIS SANS
+* *new* [PR18702](https://github.com/mantidproject/mantid/pull/18702) - REF_M reduction update
 * *new* [PR18704](https://github.com/mantidproject/mantid/pull/18704) - SNSPowderReduction list error
+* *new* [PR18705](https://github.com/mantidproject/mantid/pull/18705) - Add concepts documentation.
+* *new* [PR18710](https://github.com/mantidproject/mantid/pull/18710) - Update reflectometry parameter files
 * *new* [PR18712](https://github.com/mantidproject/mantid/pull/18712) - Update reflectometry release notes
 * *new* [PR18713](https://github.com/mantidproject/mantid/pull/18713) - Fix beam stop arm masking for certain angles in the ISIS SANS Gui
 * [PR18719](https://github.com/mantidproject/mantid/pull/18719) - Fix uninitialized variable in `ISpectrum`.
 * [PR18720](https://github.com/mantidproject/mantid/pull/18720) - Correct system package name for eigen3
+* *new* [PR18729](https://github.com/mantidproject/mantid/pull/18729) - Fixed fitting range in muon
+* *new* [PR18734](https://github.com/mantidproject/mantid/pull/18734) - HFIR GPSANS Bug readY and E from detector id...
+* *new* [PR18738](https://github.com/mantidproject/mantid/pull/18738) - Changes to Direct reduction code to unwrap range into list and unit test for it
+* *new* [PR18740](https://github.com/mantidproject/mantid/pull/18740) - MantidPlot: Fix Window resizing when second is closed
+* *new* [PR18741](https://github.com/mantidproject/mantid/pull/18741) - Small bug fixes for ISIS SANS
+* *new* [PR18747](https://github.com/mantidproject/mantid/pull/18747) - Fix missing slot warning in Muon Analysis
+* *new* [PR18752](https://github.com/mantidproject/mantid/pull/18752) - Ensure MantidPlot runs with python's builtin range command by default
+* *new* [PR18761](https://github.com/mantidproject/mantid/pull/18761) - Indirect Diffraction - vandadium instrument override
