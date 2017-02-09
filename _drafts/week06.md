@@ -53,4 +53,8 @@ Detailed Merges for Feb 6 to 12, 2017
 * *new* [PR18741](https://github.com/mantidproject/mantid/pull/18741) - Small bug fixes for ISIS SANS
 * *new* [PR18747](https://github.com/mantidproject/mantid/pull/18747) - Fix missing slot warning in Muon Analysis
 * *new* [PR18752](https://github.com/mantidproject/mantid/pull/18752) - Ensure MantidPlot runs with python's builtin range command by default
+* *new* [PR18756](https://github.com/mantidproject/mantid/pull/18756) - Fix for VSI crash when using Pick Mode in the SplatterPlotView
 * *new* [PR18761](https://github.com/mantidproject/mantid/pull/18761) - Indirect Diffraction - vandadium instrument override
+* *new* [PR18764](https://github.com/mantidproject/mantid/pull/18764) - fix the release note link to the new relese notes location
+* *new* [PR18771](https://github.com/mantidproject/mantid/pull/18771) - VSI: Fix crash in splatter plot view
+* *new* [PR18774](https://github.com/mantidproject/mantid/pull/18774) - Add figures to reflectometry release notes
