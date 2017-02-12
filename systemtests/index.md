@@ -1,12 +1,12 @@
 ---
 layout: default
-date: 2017-02-11
+date: 2017-02-12
 author: Peter Peterson
 title: Currently Skipped System Tests
 ---
 Summary
 =======
-* Job    : [Master Pipeline](http://builds.mantidproject.org/view/Master%20Pipeline/)2017-02-11
+* Job    : [Master Pipeline](http://builds.mantidproject.org/view/Master%20Pipeline/)2017-02-12
 * Labels : osx, rhel6, rhel7, ubuntu, win7
 * Failed : 0(183 unique)
 * Skipped: 26(98 unique)
