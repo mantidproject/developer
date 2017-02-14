@@ -7,6 +7,9 @@ title: Updates Week 7 of 2017
 Updates for Week 7 of 2017
 --------------------------
 
+[TSC meeting minutes](https://github.com/mantidproject/documents/blob/master/Project-Management/TechnicalSteeringCommittee/meetings/2017/TSC-meeting-2017-02-14.md)
+
+
 * Portions of the `HistogramData` rollout
 * Portions of python3 compatibility
 
