@@ -1,15 +1,15 @@
 ---
 layout: default
-date: 2017-02-13
+date: 2017-02-14
 author: Peter Peterson
 title: Currently Skipped System Tests
 ---
 Summary
 =======
-* Job    : [Master Pipeline](http://builds.mantidproject.org/view/Master%20Pipeline/)2017-02-13
+* Job    : [Master Pipeline](http://builds.mantidproject.org/view/Master%20Pipeline/)2017-02-14
 * Labels : osx, rhel6, rhel7, ubuntu, win7
-* Failed : 0(183 unique)
-* Skipped: 26(98 unique)
+* Failed : 0(184 unique)
+* Skipped: 25(97 unique)
 * Total  : 1745
 (= 349 * 5)
 
@@ -62,6 +62,7 @@ Failed
 | ILLD2BTest                                              |  x  |       |       |        |      | 
 | ILLD33Test                                              |  x  |       |       |        |      | 
 | ILLIndirectReductionFWSTest                             |  x  |       |       |        |      | 
+| ILLIndirectReductionQENSTest                            |  x  |       |       |        |      | 
 | IN10SiliconTest                                         |  x  |       |       |        |      | 
 | IN13CaFTest                                             |  x  |       |       |        |      | 
 | IN16SiliconTest                                         |  x  |       |       |        |      | 
@@ -211,7 +212,6 @@ Skipped
 | Test                                             | osx | rhel6 | rhel7 | ubuntu | win7 |
 |--------------------------------------------------|-----|-------|-------|--------|------|
 | BuildSQWTest                                     |  x  |   x   |   x   |    x   |   x  | 
-| ILLIndirectReductionQENS                         |  x  |   x   |   x   |    x   |   x  | 
 | LoadSQW_FileBasedTest                            |  x  |   x   |   x   |    x   |   x  | 
 | LoadSQW_MemBasedTest                             |  x  |   x   |   x   |    x   |   x  | 
 | SNAP_short                                       |  x  |   x   |   x   |    x   |   x  | 
