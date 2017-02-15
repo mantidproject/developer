@@ -27,7 +27,7 @@ Detailed Merges for Feb 13 to 19, 2017
 * [PR18801](https://github.com/mantidproject/mantid/pull/18801) - Convert Group2 from Python 2 to Python 3
 * [PR18803](https://github.com/mantidproject/mantid/pull/18803) - Convert Group6 from Python 2 to Python 3
 * [PR18804](https://github.com/mantidproject/mantid/pull/18804) - Release notes link in first time setup using qthelp
-* *new* [PR18808](https://github.com/mantidproject/mantid/pull/18808) - Convert Group1 from Python 2 to Python 3
+* [PR18808](https://github.com/mantidproject/mantid/pull/18808) - Convert Group1 from Python 2 to Python 3
 * [PR18809](https://github.com/mantidproject/mantid/pull/18809) - Algorithms return namedtuple
 * [PR18810](https://github.com/mantidproject/mantid/pull/18810) - dynamicPDF: Remove unused buttons
 * *new* [PR18831](https://github.com/mantidproject/mantid/pull/18831) - Avoid synchronization issues with ParameterMap::setDetectorInfo.
