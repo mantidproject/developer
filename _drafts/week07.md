@@ -23,10 +23,15 @@ Detailed Merges for Feb 13 to 19, 2017
 * [PR18767](https://github.com/mantidproject/mantid/pull/18767) - `HistogramData` rollout: `ConvFit.cpp` to `ResNorm.cpp`
 * [PR18785](https://github.com/mantidproject/mantid/pull/18785) - `HistogramData` rollout: `OpjFile.cpp` to `vtkDataSetToScaledDataSetTest.h`
 * [PR18786](https://github.com/mantidproject/mantid/pull/18786) - `SpectrumInfo` rollout: `SetScalingPSD`
+* *new* [PR18800](https://github.com/mantidproject/mantid/pull/18800) - Use system provided FindEigen3
 * [PR18801](https://github.com/mantidproject/mantid/pull/18801) - Convert Group2 from Python 2 to Python 3
 * [PR18803](https://github.com/mantidproject/mantid/pull/18803) - Convert Group6 from Python 2 to Python 3
 * [PR18804](https://github.com/mantidproject/mantid/pull/18804) - Release notes link in first time setup using qthelp
+* *new* [PR18808](https://github.com/mantidproject/mantid/pull/18808) - Convert Group1 from Python 2 to Python 3
 * [PR18809](https://github.com/mantidproject/mantid/pull/18809) - Algorithms return namedtuple
 * [PR18810](https://github.com/mantidproject/mantid/pull/18810) - dynamicPDF: Remove unused buttons
+* *new* [PR18831](https://github.com/mantidproject/mantid/pull/18831) - Avoid synchronization issues with ParameterMap::setDetectorInfo.
 * [PR18833](https://github.com/mantidproject/mantid/pull/18833) - Added check for if nonorthogonal axes should be displayed
 * [PR18837](https://github.com/mantidproject/mantid/pull/18837) - Remove BOM from all python files.
+* *new* [PR18850](https://github.com/mantidproject/mantid/pull/18850) - scipy 0.18 dropped nanmean and nanmedian in favor of numpy
+* *new* [PR18860](https://github.com/mantidproject/mantid/pull/18860) - Now that we have dropped RHEL6 this doc test can be reenabled.
