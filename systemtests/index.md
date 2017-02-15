@@ -1,17 +1,17 @@
 ---
 layout: default
-date: 2017-02-14
+date: 2017-02-15
 author: Peter Peterson
 title: Currently Skipped System Tests
 ---
 Summary
 =======
-* Job    : [Master Pipeline](http://builds.mantidproject.org/view/Master%20Pipeline/)2017-02-14
+* Job    : [Master Pipeline](http://builds.mantidproject.org/view/Master%20Pipeline/)2017-02-15
 * Labels : osx, rhel6, rhel7, ubuntu, win7
 * Failed : 0(184 unique)
-* Skipped: 25(97 unique)
-* Total  : 1745
-(= 349 * 5)
+* Skipped: 28(98 unique)
+* Total  : 1728
+(= 345 * 5)
 
 Details
 =======
@@ -217,6 +217,7 @@ Skipped
 | SNAP_short                                       |  x  |   x   |   x   |    x   |   x  | 
 | SNAP_short_detcal                                |  x  |   x   |   x   |    x   |   x  | 
 | EQSANSFlatTest                                   |     |   x   |   x   |    x   |   x  | 
+| FocusTest                                        |     |   x   |   x   |    x   |   x  | 
 | ISISPowderDiffractionPol                         |     |   x   |   x   |    x   |   x  | 
 | ISISPowderDiffractionPol2                        |     |   x   |   x   |    x   |   x  | 
 | ISISPowderDiffractionPol3                        |     |   x   |   x   |    x   |   x  | 
@@ -269,8 +270,7 @@ Skipped
 | ISIS_MAPS_DGSReduction                           |  x  |       |       |        |      | 
 | ISIS_MERLINReduction                             |  x  |       |       |        |      | 
 | ISIS_MariReduction                               |  x  |       |       |        |      | 
-| ISIS_PowderOldApiCalTest                         |  x  |       |       |        |      | 
-| ISIS_PowderOldApiTest                            |  x  |       |       |        |      | 
+| ISIS_PowderPearlTest                             |  x  |       |       |        |      | 
 | ISIS_PowderPolarisTest                           |  x  |       |       |        |      | 
 | ISIS_WISHCalibration                             |  x  |       |       |        |      | 
 | L2QScriptTest                                    |  x  |       |       |        |      | 
