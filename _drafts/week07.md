@@ -30,8 +30,19 @@ Detailed Merges for Feb 13 to 19, 2017
 * [PR18808](https://github.com/mantidproject/mantid/pull/18808) - Convert Group1 from Python 2 to Python 3
 * [PR18809](https://github.com/mantidproject/mantid/pull/18809) - Algorithms return namedtuple
 * [PR18810](https://github.com/mantidproject/mantid/pull/18810) - dynamicPDF: Remove unused buttons
+* *new* [PR18818](https://github.com/mantidproject/mantid/pull/18818) - Fix MS Corrections Producing nan/0 error values
+* *new* [PR18819](https://github.com/mantidproject/mantid/pull/18819) - Refactor SplineBackground
 * *new* [PR18831](https://github.com/mantidproject/mantid/pull/18831) - Avoid synchronization issues with ParameterMap::setDetectorInfo.
 * [PR18833](https://github.com/mantidproject/mantid/pull/18833) - Added check for if nonorthogonal axes should be displayed
 * [PR18837](https://github.com/mantidproject/mantid/pull/18837) - Remove BOM from all python files.
+* *new* [PR18839](https://github.com/mantidproject/mantid/pull/18839) - Refs # Fixed the web address
 * *new* [PR18850](https://github.com/mantidproject/mantid/pull/18850) - scipy 0.18 dropped nanmean and nanmedian in favor of numpy
+* *new* [PR18853](https://github.com/mantidproject/mantid/pull/18853) - Change first spectrum for cropping of LARMOR data in ISIS SANS GUI
+* *new* [PR18857](https://github.com/mantidproject/mantid/pull/18857) - Indirect Diffraction - OSIRIS diffonly interface crash
 * *new* [PR18860](https://github.com/mantidproject/mantid/pull/18860) - Now that we have dropped RHEL6 this doc test can be reenabled.
+* *new* [PR18863](https://github.com/mantidproject/mantid/pull/18863) - Change group font in Reflectometry GUI (Polref)
+* *new* [PR18865](https://github.com/mantidproject/mantid/pull/18865) - Fix bug in reflectometry GUI
+* *new* [PR18872](https://github.com/mantidproject/mantid/pull/18872) - Improve Q1D documentation
+* *new* [PR18875](https://github.com/mantidproject/mantid/pull/18875) - U correction not correctly applied to viewport
+* *new* [PR18880](https://github.com/mantidproject/mantid/pull/18880) - Fixing some documentation warnings
+* *new* [PR18882](https://github.com/mantidproject/mantid/pull/18882) - Update ParaView to v5.3.0-RC1
