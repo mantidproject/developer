@@ -46,3 +46,4 @@ Detailed Merges for Feb 13 to 19, 2017
 * *new* [PR18875](https://github.com/mantidproject/mantid/pull/18875) - U correction not correctly applied to viewport
 * *new* [PR18880](https://github.com/mantidproject/mantid/pull/18880) - Fixing some documentation warnings
 * *new* [PR18882](https://github.com/mantidproject/mantid/pull/18882) - Update ParaView to v5.3.0-RC1
+* *new* [PR18883](https://github.com/mantidproject/mantid/pull/18883) - Add erf and erfc to the user function dialog
