@@ -58,3 +58,4 @@ Detailed Merges for Feb 13 to 19, 2017
 * [PR18891](https://github.com/mantidproject/mantid/pull/18891) - Fix bug in `gd_prtn_chrg` for chunked data
 * [PR18894](https://github.com/mantidproject/mantid/pull/18894) - Fix [AlignComponents]({{ site.docpage }}/algorithms/AlignComponents) doctest for RHEL7
 * [PR18899](https://github.com/mantidproject/mantid/pull/18899) - `FileDialogHandlerTest` fails with clang 3.9.1 on MacOS.
+* *new* [PR18910](https://github.com/mantidproject/mantid/pull/18910) - Multifileloading to sphinx
