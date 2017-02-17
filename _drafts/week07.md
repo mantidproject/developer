@@ -37,6 +37,7 @@ Detailed Merges for Feb 13 to 19, 2017
 * [PR18833](https://github.com/mantidproject/mantid/pull/18833) - Added check for if nonorthogonal axes should be displayed
 * [PR18837](https://github.com/mantidproject/mantid/pull/18837) - Remove BOM from all python files.
 * *new* [PR18839](https://github.com/mantidproject/mantid/pull/18839) - Fixed the web address
+* *new* [PR18847](https://github.com/mantidproject/mantid/pull/18847) - LoadILLTOF: add monitor spectra to the end of the workspace
 * *new* [PR18850](https://github.com/mantidproject/mantid/pull/18850) - scipy 0.18 dropped nanmean and nanmedian in favor of numpy
 * *new* [PR18853](https://github.com/mantidproject/mantid/pull/18853) - Change first spectrum for cropping of LARMOR data in ISIS SANS GUI
 * *new* [PR18854](https://github.com/mantidproject/mantid/pull/18854) - Exclude scripts/test directory from packaging
