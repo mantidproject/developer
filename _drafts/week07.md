@@ -38,6 +38,7 @@ Detailed Merges for Feb 13 to 19, 2017
 * *new* [PR18839](https://github.com/mantidproject/mantid/pull/18839) - Refs # Fixed the web address
 * *new* [PR18850](https://github.com/mantidproject/mantid/pull/18850) - scipy 0.18 dropped nanmean and nanmedian in favor of numpy
 * *new* [PR18853](https://github.com/mantidproject/mantid/pull/18853) - Change first spectrum for cropping of LARMOR data in ISIS SANS GUI
+* *new* [PR18854](https://github.com/mantidproject/mantid/pull/18854) - Exclude scripts/test directory from packaging
 * *new* [PR18857](https://github.com/mantidproject/mantid/pull/18857) - Indirect Diffraction - OSIRIS diffonly interface crash
 * *new* [PR18860](https://github.com/mantidproject/mantid/pull/18860) - Now that we have dropped RHEL6 this doc test can be reenabled.
 * *new* [PR18863](https://github.com/mantidproject/mantid/pull/18863) - Change group font in Reflectometry GUI (Polref)
@@ -47,3 +48,6 @@ Detailed Merges for Feb 13 to 19, 2017
 * *new* [PR18880](https://github.com/mantidproject/mantid/pull/18880) - Fixing some documentation warnings
 * *new* [PR18882](https://github.com/mantidproject/mantid/pull/18882) - Update ParaView to v5.3.0-RC1
 * *new* [PR18883](https://github.com/mantidproject/mantid/pull/18883) - Add erf and erfc to the user function dialog
+* *new* [PR18891](https://github.com/mantidproject/mantid/pull/18891) - Fix bug in gd_prtn_chrg for chunked data
+* *new* [PR18894](https://github.com/mantidproject/mantid/pull/18894) - Fix AlignComponents doctest for RHEL7
+* *new* [PR18899](https://github.com/mantidproject/mantid/pull/18899) - FileDialogHandlerTest fails with clang 3.9.1 on MacOS.
