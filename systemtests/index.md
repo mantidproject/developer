@@ -1,12 +1,12 @@
 ---
 layout: default
-date: 2017-02-20
+date: 2017-02-21
 author: Peter Peterson
 title: Currently Skipped System Tests
 ---
 Summary
 =======
-* Job    : [Master Pipeline](http://builds.mantidproject.org/view/Master%20Pipeline/)2017-02-20
+* Job    : [Master Pipeline](http://builds.mantidproject.org/view/Master%20Pipeline/)2017-02-21
 * Labels : osx, rhel6, rhel7, ubuntu, win7
 * Failed : 0(184 unique)
 * Skipped: 28(98 unique)
@@ -27,6 +27,7 @@ Failed
 | ImagingAggregateWavelengths                             |  x  |       |       |        |      | 
 | LRPrimaryFractionTest                                   |  x  |       |       |        |      | 
 | MuSRAnalysisFromFile                                    |  x  |       |       |        |      | 
+| PEARL_Mode_all_CeO2                                     |  x  |       |       |        |   x  | 
 | ARCSReductionTest                                       |  x  |       |       |        |      | 
 | ApplyToReducedDataTest                                  |  x  |       |       |        |      | 
 | BASISAutoReductionTest                                  |  x  |       |       |        |      | 
@@ -126,7 +127,6 @@ Failed
 | OSIRISReduction                                         |  x  |       |       |        |      | 
 | OSIRISResolution                                        |  x  |       |       |        |      | 
 | PEARLPowderDiffraction                                  |  x  |       |       |        |      | 
-| PEARL_Mode_all_CeO2                                     |  x  |       |       |        |      | 
 | PEARL_Mode_all_Si                                       |  x  |       |       |        |      | 
 | PEARL_Mode_trans                                        |  x  |       |       |        |      | 
 | POLDIAnalyseResidualsTest                               |  x  |       |       |        |      | 
