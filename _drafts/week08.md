@@ -22,3 +22,4 @@ Detailed Merges for Feb 20 to 26, 2017
 * *new* [PR18907](https://github.com/mantidproject/mantid/pull/18907) - Fix zeropadding for IMAT in `Facilities.xml`
 * [PR18913](https://github.com/mantidproject/mantid/pull/18913) - Group 13 Python 3 compatible (PyChop)
 * *new* [PR18914](https://github.com/mantidproject/mantid/pull/18914) - Fix mass ws deletion bug
+* *new* [PR18919](https://github.com/mantidproject/mantid/pull/18919) - Update mantid-developer.spec
