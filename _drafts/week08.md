@@ -8,6 +8,7 @@ Updates for Week 8 of 2017
 --------------------------
 
 * Portions of python3 compatibility
+* `mantid-developer` v1.22 spec file
 
 Detailed Merges for Feb 20 to 26, 2017
 --------------------------------------
@@ -22,6 +23,6 @@ Detailed Merges for Feb 20 to 26, 2017
 * *new* [PR18903](https://github.com/mantidproject/mantid/pull/18903) - Spelling correction in the instrument view pick tab
 * *new* [PR18907](https://github.com/mantidproject/mantid/pull/18907) - Fix zeropadding for IMAT in `Facilities.xml`
 * [PR18913](https://github.com/mantidproject/mantid/pull/18913) - Group 13 Python 3 compatible (PyChop)
-* *new* [PR18914](https://github.com/mantidproject/mantid/pull/18914) - Fix mass ws deletion bug
-* *new* [PR18919](https://github.com/mantidproject/mantid/pull/18919) - Update mantid-developer.spec
+* *new* [PR18914](https://github.com/mantidproject/mantid/pull/18914) - Fix mass workspace deletion bug
+* [PR18919](https://github.com/mantidproject/mantid/pull/18919) - Update `mantid-developer.spec`
 * *new* [PR18926](https://github.com/mantidproject/mantid/pull/18926) - Fix wrong detector selection when loading high angle bank user files in ISIS SANS
