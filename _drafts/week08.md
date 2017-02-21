@@ -17,9 +17,11 @@ Detailed Merges for Feb 20 to 26, 2017
 * *new* [PR18855](https://github.com/mantidproject/mantid/pull/18855) - Change the progress bar to better handle multiple running algorithms
 * *new* [PR18867](https://github.com/mantidproject/mantid/pull/18867) - Add `L2` property to [CorrectTOFAxis]({{ site.docpage }}/algorithms/CorrectTOFAxis)
 * *new* [PR18881](https://github.com/mantidproject/mantid/pull/18881) - Fix `CPACK_DEBIAN_PACKAGE_DEPENDS` for python 3
+* *new* [PR18887](https://github.com/mantidproject/mantid/pull/18887) - cleanup files after test_execOrphanedFile
 * [PR18895](https://github.com/mantidproject/mantid/pull/18895) - Python 2 to 3 group 21
 * *new* [PR18903](https://github.com/mantidproject/mantid/pull/18903) - Spelling correction in the instrument view pick tab
 * *new* [PR18907](https://github.com/mantidproject/mantid/pull/18907) - Fix zeropadding for IMAT in `Facilities.xml`
 * [PR18913](https://github.com/mantidproject/mantid/pull/18913) - Group 13 Python 3 compatible (PyChop)
 * *new* [PR18914](https://github.com/mantidproject/mantid/pull/18914) - Fix mass ws deletion bug
 * *new* [PR18919](https://github.com/mantidproject/mantid/pull/18919) - Update mantid-developer.spec
+* *new* [PR18926](https://github.com/mantidproject/mantid/pull/18926) - Fix wrong detector selection when loading high angle bank user files in ISIS SANS
