@@ -9,6 +9,8 @@ Updates for Week 8 of 2017
 
 * Portions of python3 compatibility
 * `mantid-developer` v1.22 spec file
+* The picking of issues for the Patch release 3.9.1 is underway and we hope to release this early next week
+  * Any developer that has urgent new issues that you bewleive need to get into the patch release need to contact Nick and Martyn
 
 Detailed Merges for Feb 20 to 26, 2017
 --------------------------------------
