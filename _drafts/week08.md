@@ -51,4 +51,6 @@ Detailed Merges for Feb 20 to 26, 2017
 * [PR18967](https://github.com/mantidproject/mantid/pull/18967) - Remove sleep function from SANS unit tests
 * *new* [PR18971](https://github.com/mantidproject/mantid/pull/18971) - Fix indexing errors in [numpy 1.12](https://docs.scipy.org/doc/numpy/) for failing systemtests
 * *new* [PR18972](https://github.com/mantidproject/mantid/pull/18972) - Fix reading dead time data in Muon interface
+* *new* [PR18979](https://github.com/mantidproject/mantid/pull/18979) - Fix delete confirmations in workspace dock
 * [PR18988](https://github.com/mantidproject/mantid/pull/18988) - Fix `*IsoRotDiff` documentation tests for [scipy](https://scipy.org/) 1.18
+* *new* [PR18995](https://github.com/mantidproject/mantid/pull/18995) - Add bank43 to TOPAZ IDF this run cycle
