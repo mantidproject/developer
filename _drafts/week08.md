@@ -7,10 +7,10 @@ title: Updates Week 8 of 2017
 Updates for Week 8 of 2017
 --------------------------
 
+The picking of issues for the [patch release 3.9.1](https://github.com/mantidproject/mantid/issues?utf8=%E2%9C%93&q=milestone%3A%22Release%203.9.1%22%20) is underway and we hope to release this early next week (February 27-March 1). *Any developer that has urgent new issues that you bewleive need to get into the patch release need to contact Nick and Martyn.*
+
 * Portions of python3 compatibility
 * `mantid-developer` v1.22 spec file
-* The picking of issues for the Patch release 3.9.1 is underway and we hope to release this early next week
-  * Any developer that has urgent new issues that you bewleive need to get into the patch release need to contact Nick and Martyn
 
 Detailed Merges for Feb 20 to 26, 2017
 --------------------------------------
