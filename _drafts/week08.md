@@ -17,6 +17,11 @@ The picking of issues for the [patch release 3.9.1](https://github.com/mantidpro
 * Crystal Field allows arbitrary J (Ion type)
 * Another fix for the mass workspace deletion bug
 * `LoadILLTOF` version 1 has been removed
+* New IDF for TOPAZ
+* Support HFIR HB3A 512x512 detector
+* Bugfix for unrolled instrument view
+* More of `SpectrumInfo` functionality exposed to python
+* Bugfix reading dead time data in Muon interface
 
 Detailed Merges for Feb 20 to 26, 2017
 --------------------------------------
@@ -34,23 +39,23 @@ Detailed Merges for Feb 20 to 26, 2017
 * [PR18909](https://github.com/mantidproject/mantid/pull/18909) - Remove `LoadILLTOF` version 1
 * [PR18913](https://github.com/mantidproject/mantid/pull/18913) - Group 13 Python 3 compatible (PyChop)
 * [PR18914](https://github.com/mantidproject/mantid/pull/18914) - Fix mass workspace deletion bug
-* *new* [PR18918](https://github.com/mantidproject/mantid/pull/18918) - Enable Mantid to support HFIR HB3A 512 x 512 detector
+* [PR18918](https://github.com/mantidproject/mantid/pull/18918) - Enable Mantid to support HFIR HB3A 512 x 512 detector
 * [PR18919](https://github.com/mantidproject/mantid/pull/18919) - Update `mantid-developer.spec`
 * [PR18926](https://github.com/mantidproject/mantid/pull/18926) - Fix wrong detector selection when loading high angle bank user files in ISIS SANS
-* *new* [PR18927](https://github.com/mantidproject/mantid/pull/18927) - Fix sum file behaviour for vesuvio diffraction
-* *new* [PR18932](https://github.com/mantidproject/mantid/pull/18932) - Extend RawFileInfo to provide sample information
+* [PR18927](https://github.com/mantidproject/mantid/pull/18927) - Fix sum file behaviour for vesuvio diffraction
+* *new* [PR18932](https://github.com/mantidproject/mantid/pull/18932) - Extend `RawFileInfo` to provide sample information
 * [PR18940](https://github.com/mantidproject/mantid/pull/18940) - Remove leftover pearl routines system test
-* *new* [PR18941](https://github.com/mantidproject/mantid/pull/18941) - Fix SpecularReflectionPositionCorrect2 crash when invalid detector or sample name is entered
-* *new* [PR18949](https://github.com/mantidproject/mantid/pull/18949) - Remove [gtest's](https://github.com/google/googletest/) minimum cmake requirement
+* *new* [PR18941](https://github.com/mantidproject/mantid/pull/18941) - Fix [SpecularReflectionPositionCorrect2]({{ site.docpage }}/algorithms/SpecularReflectionPositionCorrect2) crash when invalid detector or sample name is entered
+* [PR18949](https://github.com/mantidproject/mantid/pull/18949) - Remove [gtest's](https://github.com/google/googletest/) minimum cmake requirement
 * [PR18953](https://github.com/mantidproject/mantid/pull/18953) - `HistogramData` rollout: algorithms `EnggDiffFittingPresenter.cpp` to `MuonAnalysisHelperTest.h`
-* *new* [PR18955](https://github.com/mantidproject/mantid/pull/18955) - Fix crash in MonitorDlg
-* *new* [PR18957](https://github.com/mantidproject/mantid/pull/18957) - Fix incorrect usage of `std::move` in WS Creation Helper
-* *new* [PR18959](https://github.com/mantidproject/mantid/pull/18959) - Blank instrument view with U correction
-* *new* [PR18960](https://github.com/mantidproject/mantid/pull/18960) - Fix `misc-suspicious-string-compare` warning
-* *new* [PR18962](https://github.com/mantidproject/mantid/pull/18962) - Expose `SpectrumInfo` functionality to python
+* [PR18955](https://github.com/mantidproject/mantid/pull/18955) - Fix crash in MonitorDlg
+* [PR18957](https://github.com/mantidproject/mantid/pull/18957) - Fix incorrect usage of `std::move` in WS Creation Helper
+* [PR18959](https://github.com/mantidproject/mantid/pull/18959) - Blank instrument view with U correction
+* [PR18960](https://github.com/mantidproject/mantid/pull/18960) - Fix `misc-suspicious-string-compare` warning
+* [PR18962](https://github.com/mantidproject/mantid/pull/18962) - Expose `SpectrumInfo` functionality to python
 * [PR18967](https://github.com/mantidproject/mantid/pull/18967) - Remove sleep function from SANS unit tests
-* *new* [PR18971](https://github.com/mantidproject/mantid/pull/18971) - Fix indexing errors in [numpy 1.12](https://docs.scipy.org/doc/numpy/) for failing systemtests
-* *new* [PR18972](https://github.com/mantidproject/mantid/pull/18972) - Fix reading dead time data in Muon interface
-* *new* [PR18979](https://github.com/mantidproject/mantid/pull/18979) - Fix delete confirmations in workspace dock
+* [PR18971](https://github.com/mantidproject/mantid/pull/18971) - Fix indexing errors in [numpy 1.12](https://docs.scipy.org/doc/numpy/) for failing systemtests
+* [PR18972](https://github.com/mantidproject/mantid/pull/18972) - Fix reading dead time data in Muon interface
+* [PR18979](https://github.com/mantidproject/mantid/pull/18979) - Fix delete confirmations in workspace dock
 * [PR18988](https://github.com/mantidproject/mantid/pull/18988) - Fix `*IsoRotDiff` documentation tests for [scipy](https://scipy.org/) 1.18
-* *new* [PR18995](https://github.com/mantidproject/mantid/pull/18995) - Add bank43 to TOPAZ IDF this run cycle
+* [PR18995](https://github.com/mantidproject/mantid/pull/18995) - Add bank43 to TOPAZ IDF this run cycle
