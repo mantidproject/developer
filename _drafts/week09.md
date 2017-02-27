@@ -15,7 +15,7 @@ Detailed Merges for Feb 27 to Mar 5, 2017
 
 * [PR18660](https://github.com/mantidproject/mantid/pull/18660) - `SpectrumInfo` and `DetectorInfo` rollout: `LoadHelper.cpp` to `RotateInstrumentComponentTest.h`
 * *new* [PR18835](https://github.com/mantidproject/mantid/pull/18835) - Ikeda-Carpenter parameters non-negative
-* *new* [PR18890](https://github.com/mantidproject/mantid/pull/18890) - Add `CorrectionType` property to [SpecularReflectionPositionCorrect]({{ site.docpage }}/algorithms/SpecularReflectionPositionCorrect)
-* *new* [PR18892](https://github.com/mantidproject/mantid/pull/18892) - `DetectorInfo` for [LoadIsawDetCal]({{ site.docpage }}/algorithms/LoadIsawDetCal)
+* *new* [PR18890](https://github.com/mantidproject/mantid/pull/18890) - Add `CorrectionType` property to [SpecularReflectionPositionCorrect]({{ site.docpage }}/algorithms/SpecularReflectionPositionCorrect.html)
+* *new* [PR18892](https://github.com/mantidproject/mantid/pull/18892) - `DetectorInfo` for [LoadIsawDetCal]({{ site.docpage }}/algorithms/LoadIsawDetCal.html)
 * *new* [PR18952](https://github.com/mantidproject/mantid/pull/18952) - Fix an issue in `TimeSeriesProperty`
 * *new* [PR18984](https://github.com/mantidproject/mantid/pull/18984) - Abins: Correct setting numerical zero for b_tensors.
