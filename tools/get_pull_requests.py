@@ -76,17 +76,21 @@ def getStatusAndJson(req):
     return (status_code, json_doc)
 
 def getPulls(endpoint, since, until, oauth=None):
-    req_params={'state':'closed'}
+    req_params={'state':'closed',
+                'sort':'updated',
+                'direction':'desc'}
     if oauth is not None:
         req_params['access_token']=oauth
 
     since=str(since)
     until=str(until)
-
     pulls=[]
 
     # fake that this is a continuation to get first page
     next_url='%spulls' % endpoint
+    print('get information from', next_url)
+    print('    and filtering for those merged from', since, 'to', until)
+
     status_code=200
 
     while status_code == 200:
@@ -110,6 +114,7 @@ def getPulls(endpoint, since, until, oauth=None):
                     print("PR%d is too new: %s >= %s" % \
                           (pr.number, pr.date, until))
                     continue
+                print("PR%d is being used: %s" % (pr.number, pr.date))
                 pulls.append(pr)
 
             next_url=req.links['next']['url']
