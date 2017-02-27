@@ -22,6 +22,7 @@ The picking of issues for the [patch release 3.9.1](https://github.com/mantidpro
 * Bugfix for unrolled instrument view
 * More of `SpectrumInfo` functionality exposed to python
 * Bugfix reading dead time data in Muon interface
+* `RawFileInfo` extended to provide sample information
 
 Detailed Merges for Feb 20 to 26, 2017
 --------------------------------------
@@ -43,9 +44,9 @@ Detailed Merges for Feb 20 to 26, 2017
 * [PR18919](https://github.com/mantidproject/mantid/pull/18919) - Update `mantid-developer.spec`
 * [PR18926](https://github.com/mantidproject/mantid/pull/18926) - Fix wrong detector selection when loading high angle bank user files in ISIS SANS
 * [PR18927](https://github.com/mantidproject/mantid/pull/18927) - Fix sum file behaviour for vesuvio diffraction
-* *new* [PR18932](https://github.com/mantidproject/mantid/pull/18932) - Extend `RawFileInfo` to provide sample information
+* [PR18932](https://github.com/mantidproject/mantid/pull/18932) - Extend `RawFileInfo` to provide sample information
 * [PR18940](https://github.com/mantidproject/mantid/pull/18940) - Remove leftover pearl routines system test
-* *new* [PR18941](https://github.com/mantidproject/mantid/pull/18941) - Fix [SpecularReflectionPositionCorrect2]({{ site.docpage }}/algorithms/SpecularReflectionPositionCorrect2) crash when invalid detector or sample name is entered
+* [PR18941](https://github.com/mantidproject/mantid/pull/18941) - Fix [SpecularReflectionPositionCorrect2]({{ site.docpage }}/algorithms/SpecularReflectionPositionCorrect2) crash when invalid detector or sample name is entered
 * [PR18949](https://github.com/mantidproject/mantid/pull/18949) - Remove [gtest's](https://github.com/google/googletest/) minimum cmake requirement
 * [PR18953](https://github.com/mantidproject/mantid/pull/18953) - `HistogramData` rollout: algorithms `EnggDiffFittingPresenter.cpp` to `MuonAnalysisHelperTest.h`
 * [PR18955](https://github.com/mantidproject/mantid/pull/18955) - Fix crash in MonitorDlg
