@@ -53,7 +53,12 @@ Once the unscripted testing has passed and the Release Notes are complete:
 * Put packages on GitHub & sourceforge
 * Have someone at the SNS follow the instructions [here](http://www.mantidproject.org/Fermi_cluster_at_ORNL) to deploy an MPI version of the patch release.
 * Create new DOI
-* Send an email to mantid-announce, mantid-developer, and nobugs-conference including the text of the release notes to announce the new release to our existing users.
+* Send an email, including the text of the release notes, to the following lists
+  * `mantid-announce@mantidproject.org`
+  * `mantid-developer@mantidproject.org`
+  * `nobugs@nobugsconference.org`
+  * `news@neutronsources.org`
+  * `neutron@neutronsources.org`
+* Add topic to the news page on the [forum](http://forum.mantidproject.org/)
 * Close the release milestone in github
 * Remove the patch candidate tag from pull requests (if not already done)
-* Add topic to the news page on the [forum](http://forum.mantidproject.org/)

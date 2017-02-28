@@ -124,8 +124,12 @@ Once the unscripted testing has passed and the Release Notes are complete:
 
 # Finalise
 
-* Send an email to mantid announce including the text of the release notes to announce the new release to our existing users.
-* Forward a copy of this email to Mantid Developers to let them know the release has occurred.
+* Send an email, including the text of the release notes, to the following lists
+  * `mantid-announce@mantidproject.org`
+  * `mantid-developer@mantidproject.org`
+  * `nobugs@nobugsconference.org`
+  * `news@neutronsources.org`
+  * `neutron@neutronsources.org`
 * Create a new item on the forum news
 * Close the release milestone in the issue tracker
 
