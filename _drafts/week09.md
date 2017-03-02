@@ -9,6 +9,7 @@ Updates for Week 9 of 2017
 
 * Portions of `SpectrumInfo` and `DetectorInfo` rollout
 * Portions of `HistogramData` rollout
+* Bugfix in units of `proton_charge` log from SNS live data
 
 Detailed Merges for Feb 27 to Mar 5, 2017
 -----------------------------------------
@@ -27,6 +28,6 @@ Detailed Merges for Feb 27 to Mar 5, 2017
 * *new* [PR18998](https://github.com/mantidproject/mantid/pull/18998) - Inconsistent enginx accuracy performance using damping minimizer
 * *new* [PR18999](https://github.com/mantidproject/mantid/pull/18999) - Remove incorrect comparison with `INT_MAX`
 * *new* [PR19007](https://github.com/mantidproject/mantid/pull/19007) - Make sure we deal with negative `Qz`
-* *new* [PR19019](https://github.com/mantidproject/mantid/pull/19019) - Revert expose SpectrumInfo to Python / remove added dangerous method from SpectrumInfo
+* [PR19019](https://github.com/mantidproject/mantid/pull/19019) - Revert expose SpectrumInfo to Python / remove added dangerous method from SpectrumInfo
 * *new* [PR19022](https://github.com/mantidproject/mantid/pull/19022) - Add reduction for osiris diffspec
-* *new* [PR19025](https://github.com/mantidproject/mantid/pull/19025) - Set units on the proton_charge TimeSeriesProperty
+* [PR19025](https://github.com/mantidproject/mantid/pull/19025) - Set units on the `proton_charge` `TimeSeriesProperty`
