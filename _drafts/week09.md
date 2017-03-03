@@ -33,6 +33,7 @@ Detailed Merges for Feb 27 to Mar 5, 2017
 * *new* [PR18984](https://github.com/mantidproject/mantid/pull/18984) - Abins: Correct setting numerical zero for `b_tensors`
 * *new* [PR18985](https://github.com/mantidproject/mantid/pull/18985) - Refactor loading of `proton_charge_by_period` log
 * *new* [PR18986](https://github.com/mantidproject/mantid/pull/18986) - Add key delete event for workspace dock
+* *new* [PR18997](https://github.com/mantidproject/mantid/pull/18997) - Indirect Data Reduction - Calibration resolution file range
 * *new* [PR18998](https://github.com/mantidproject/mantid/pull/18998) - Inconsistent enginx accuracy performance using damping minimizer
 * *new* [PR18999](https://github.com/mantidproject/mantid/pull/18999) - Remove incorrect comparison with `INT_MAX`
 * *new* [PR19007](https://github.com/mantidproject/mantid/pull/19007) - Make sure we deal with negative `Qz`
