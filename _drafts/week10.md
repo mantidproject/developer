@@ -25,4 +25,4 @@ Detailed Merges for Mar 6 to 12, 2017
 * [PR19058](https://github.com/mantidproject/mantid/pull/19058) - Fix errors from `Rebin` and `Logger` in [VisionReduction]({{ site.docpage }}/algorithms/VisionReduction.html)
 * *new* [PR19059](https://github.com/mantidproject/mantid/pull/19059) - New unit to represent DeltaE in the frequency domain
 * *new* [PR19060](https://github.com/mantidproject/mantid/pull/19060) - Updated IMAT IDF for 2nd prototype detector
-* *new* [PR19069](https://github.com/mantidproject/mantid/pull/19069) - Bugfix NOMAD generating NaNs in their x-axis
+* [PR19069](https://github.com/mantidproject/mantid/pull/19069) - Bugfix NOMAD generating NaNs in their x-axis
