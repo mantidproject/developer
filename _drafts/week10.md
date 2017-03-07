@@ -13,6 +13,8 @@ Detailed Merges for Mar 6 to 12, 2017
 -------------------------------------
 [on github](https://github.com/mantidproject/mantid/pulls?q=is%3Apr+merged%3A2017-03-07..2017-03-12)
 
+* *new* [PR18813](https://github.com/mantidproject/mantid/pull/18813) - Indirect Absorption - Update Interface
+* *new* [PR18871](https://github.com/mantidproject/mantid/pull/18871) - ISIS Powder - Inital feedback fixes
 * *new* [PR18931](https://github.com/mantidproject/mantid/pull/18931) - Indirect Diffraction - OSIRIS rebin
 * *new* [PR18934](https://github.com/mantidproject/mantid/pull/18934) - Paalman Pings correction option Emode=Efixed
 * *new* [PR18983](https://github.com/mantidproject/mantid/pull/18983) - Add histogram specific integration ranges to Integration
