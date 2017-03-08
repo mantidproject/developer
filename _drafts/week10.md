@@ -15,6 +15,7 @@ Detailed Merges for Mar 6 to 12, 2017
 
 * *new* [PR18813](https://github.com/mantidproject/mantid/pull/18813) - Indirect Absorption - Update Interface
 * *new* [PR18871](https://github.com/mantidproject/mantid/pull/18871) - ISIS Powder - Inital feedback fixes
+* *new* [PR18921](https://github.com/mantidproject/mantid/pull/18921) - Groundwork for visualising predicted peaks
 * *new* [PR18931](https://github.com/mantidproject/mantid/pull/18931) - Indirect Diffraction - OSIRIS rebin
 * *new* [PR18934](https://github.com/mantidproject/mantid/pull/18934) - Paalman Pings correction option Emode=Efixed
 * *new* [PR18983](https://github.com/mantidproject/mantid/pull/18983) - Add histogram specific integration ranges to Integration
@@ -28,3 +29,5 @@ Detailed Merges for Mar 6 to 12, 2017
 * *new* [PR19059](https://github.com/mantidproject/mantid/pull/19059) - New unit to represent DeltaE in the frequency domain
 * *new* [PR19060](https://github.com/mantidproject/mantid/pull/19060) - Updated IMAT IDF for 2nd prototype detector
 * [PR19069](https://github.com/mantidproject/mantid/pull/19069) - Bugfix NOMAD generating NaNs in their x-axis
+* *new* [PR19072](https://github.com/mantidproject/mantid/pull/19072) - Option in BASISReduction to output the dynamic susceptibility
+* *new* [PR19092](https://github.com/mantidproject/mantid/pull/19092) - Update buildscript.bat
