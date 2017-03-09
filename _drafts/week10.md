@@ -13,6 +13,7 @@ Detailed Merges for Mar 6 to 12, 2017
 -------------------------------------
 [on github](https://github.com/mantidproject/mantid/pulls?q=is%3Apr+merged%3A2017-03-07..2017-03-12)
 
+* *new* [PR18670](https://github.com/mantidproject/mantid/pull/18670) - HistogramData rollout: algorithms DivideMD to IntegratePeaksMD
 * *new* [PR18813](https://github.com/mantidproject/mantid/pull/18813) - Indirect Absorption - Update Interface
 * *new* [PR18871](https://github.com/mantidproject/mantid/pull/18871) - ISIS Powder - Inital feedback fixes
 * *new* [PR18921](https://github.com/mantidproject/mantid/pull/18921) - Groundwork for visualising predicted peaks
@@ -28,6 +29,9 @@ Detailed Merges for Mar 6 to 12, 2017
 * [PR19058](https://github.com/mantidproject/mantid/pull/19058) - Fix errors from `Rebin` and `Logger` in [VisionReduction]({{ site.docpage }}/algorithms/VisionReduction.html)
 * *new* [PR19059](https://github.com/mantidproject/mantid/pull/19059) - New unit to represent DeltaE in the frequency domain
 * *new* [PR19060](https://github.com/mantidproject/mantid/pull/19060) - Updated IMAT IDF for 2nd prototype detector
+* *new* [PR19064](https://github.com/mantidproject/mantid/pull/19064) - Sanitise Invalid Nexus Log Characters
 * [PR19069](https://github.com/mantidproject/mantid/pull/19069) - Bugfix NOMAD generating NaNs in their x-axis
 * *new* [PR19072](https://github.com/mantidproject/mantid/pull/19072) - Option in BASISReduction to output the dynamic susceptibility
+* *new* [PR19082](https://github.com/mantidproject/mantid/pull/19082) - Fix unhandled exception in the reflectometry GUI
 * *new* [PR19092](https://github.com/mantidproject/mantid/pull/19092) - Update buildscript.bat
+* *new* [PR19100](https://github.com/mantidproject/mantid/pull/19100) - Clarified SetSampleMaterial chemical composition docs
