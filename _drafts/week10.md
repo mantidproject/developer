@@ -36,3 +36,5 @@ Detailed Merges for Mar 6 to 12, 2017
 * *new* [PR19082](https://github.com/mantidproject/mantid/pull/19082) - Fix unhandled exception in the reflectometry GUI
 * [PR19092](https://github.com/mantidproject/mantid/pull/19092) - Update `buildscript.bat`
 * *new* [PR19100](https://github.com/mantidproject/mantid/pull/19100) - Clarified [SetSampleMaterial]({{ site.docpage }}/algorithms/SetSampleMaterial.html) chemical composition docs
+* *new* [PR19101](https://github.com/mantidproject/mantid/pull/19101) - DPDFReduction: calibrate with white-beam vanadium
+* *new* [PR19108](https://github.com/mantidproject/mantid/pull/19108) - Fix property name
