@@ -18,3 +18,5 @@ Detailed Merges for Mar 13 to 19, 2017
 * *new* [PR19107](https://github.com/mantidproject/mantid/pull/19107) - AlignAndFocus POLARIS
 * *new* [PR19114](https://github.com/mantidproject/mantid/pull/19114) - DPDFReduction: improve interpolation to remove gaps in intensities in S(E, theta)
 * *new* [PR19122](https://github.com/mantidproject/mantid/pull/19122) - fix SNAP calibration bug
+* *new* [PR19129](https://github.com/mantidproject/mantid/pull/19129) - New CNCS geometry 2017A
+* *new* [PR19137](https://github.com/mantidproject/mantid/pull/19137) - Use ccache if it is available
