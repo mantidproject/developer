@@ -77,6 +77,7 @@ Once the testing has passed:
 * Use the manual deploy job at {{ site.mantidreleasebuilds }} to deploy packages and documentation to the public web.
 * The windows binary will **not** be deployed and must be signed by someone at ISIS and uploaded to sourceforge manually
 * Put packages on GitHub
+* RHEL 7 only: Build the suffix-package `mantidXY` by running another clean RHEL 7 build at {{ site.mantidreleasebuilds }} but use the suffix XY, where `X` is the major version and `Y` is the minor version (currently used at SNS)
 * Have someone at the SNS follow the instructions [here](http://www.mantidproject.org/Fermi_cluster_at_ORNL) to deploy an MPI version of the patch release.
 * Create new DOI using the scripts in the codebase and instructions on [release checklist]({{ site.url }}/release_checklist/).
 * Send an email, including the text of the release notes, to the following lists
