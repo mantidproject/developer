@@ -11,6 +11,6 @@ Detailed Merges for Mar 20 to 26, 2017
 --------------------------------------
 [on github](https://github.com/mantidproject/mantid/pulls?q=is%3Apr+merged%3A2017-03-21..2017-03-26)
 
-* *new* [PR19027](https://github.com/mantidproject/mantid/pull/19027) - Multifile limit in facility info
-* *new* [PR19035](https://github.com/mantidproject/mantid/pull/19035) - Avoid sigabrt LoadHelper
-* *new* [PR19179](https://github.com/mantidproject/mantid/pull/19179) - Remove mentions of paraview 3.98.1
+* [PR19027](https://github.com/mantidproject/mantid/pull/19027) - Multifile limit in facility info
+* [PR19035](https://github.com/mantidproject/mantid/pull/19035) - Avoid sigabrt `LoadHelper`
+* [PR19179](https://github.com/mantidproject/mantid/pull/19179) - Remove mentions of paraview 3.98.1
