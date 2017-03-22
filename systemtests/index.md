@@ -1,17 +1,17 @@
 ---
 layout: default
-date: 2017-03-21
+date: 2017-03-22
 author: Peter Peterson
 title: Currently Skipped System Tests
 ---
 Summary
 =======
-* Job    : [Master Pipeline](http://builds.mantidproject.org/view/Master%20Pipeline/)2017-03-21
+* Job    : [Master Pipeline](http://builds.mantidproject.org/view/Master%20Pipeline/)2017-03-22
 * Labels : osx, rhel7, ubuntu, ubuntu-16.04, win7
 * Failed : 0
 * Skipped: 23(32 unique)
-* Total  : 1803
-(= 360 * 5)
+* Total  : 1805
+(= 361 * 5)
 
 Details
 =======
@@ -43,6 +43,7 @@ Skipped
 | ValidateInstrumentDefinitionFiles      |  x  |       |    x   |       x      |      | 
 | ValidateParameterFiles                 |  x  |       |    x   |       x      |      | 
 | LETReductionEvent2015Multirep          |  x  |       |    x   |              |      | 
+| MAPSDgreduceReduction                  |  x  |       |    x   |              |      | 
 | MERLINReduction                        |  x  |       |    x   |              |      | 
 | PG3Analysis                            |  x  |       |        |              |   x  | 
 | PG3CCCalibration                       |  x  |       |        |              |   x  | 
@@ -51,4 +52,3 @@ Skipped
 | PVPythonTest                           |  x  |       |        |              |   x  | 
 | TobyFitResolutionSimulationTest        |  x  |       |    x   |              |      | 
 | WISHDiffractionFocussingReductionTest  |  x  |       |    x   |              |      | 
-| MAPSDgreduceReduction                  |     |       |    x   |              |      | 
