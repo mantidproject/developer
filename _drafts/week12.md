@@ -13,7 +13,7 @@ Detailed Merges for Mar 20 to 26, 2017
 
 * [PR19027](https://github.com/mantidproject/mantid/pull/19027) - Multifile limit in facility info
 * [PR19035](https://github.com/mantidproject/mantid/pull/19035) - Avoid sigabrt `LoadHelper`
-* *new* [PR19067](https://github.com/mantidproject/mantid/pull/19067) - H5Utils::readStringVector new method
+* [PR19067](https://github.com/mantidproject/mantid/pull/19067) - `H5Utils::readStringVector` new method
 * [PR19179](https://github.com/mantidproject/mantid/pull/19179) - Remove mentions of paraview 3.98.1
 * [PR19191](https://github.com/mantidproject/mantid/pull/19191) - Update framework section on performance
 * [PR19195](https://github.com/mantidproject/mantid/pull/19195) - Fix sphinx warnings
