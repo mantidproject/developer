@@ -25,4 +25,6 @@ Detailed Merges for Mar 20 to 26, 2017
 * [PR19185](https://github.com/mantidproject/mantid/pull/19185) - Use UB from workspace for SaveHKL with Cosines
 * [PR19191](https://github.com/mantidproject/mantid/pull/19191) - Update framework section on performance
 * [PR19195](https://github.com/mantidproject/mantid/pull/19195) - Fix sphinx warnings
+* *new* [PR19202](https://github.com/mantidproject/mantid/pull/19202) - Refactor SaveMDWorkspaceToVTK
+* *new* [PR19214](https://github.com/mantidproject/mantid/pull/19214) - Change the way the extension is specified in SaveMDWorkspaceToVTK
 * *new* [PR19217](https://github.com/mantidproject/mantid/pull/19217) - Get statistics for Axes working again in IntegrateEllipsoids
