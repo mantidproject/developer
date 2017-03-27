@@ -9,6 +9,10 @@ Updates for Week 12 of 2017
 
 * Portions of `HistogramData` rollout
 * Various bugfixes for TOPAZ
+* Improvements to [SaveMDWorkspaceToVTK]({{ site.docpage }}/algorithms/SaveMDWorkspaceToVTK.html)
+* Export `SpectraAxis` class to Python
+* Reflectometry GUI fixes and improvements
+* Set MantidPlot DPI awareness to unaware in Windows
 
 Detailed Merges for Mar 20 to 26, 2017
 --------------------------------------
@@ -18,13 +22,19 @@ Detailed Merges for Mar 20 to 26, 2017
 * [PR19027](https://github.com/mantidproject/mantid/pull/19027) - Multifile limit in facility info
 * [PR19035](https://github.com/mantidproject/mantid/pull/19035) - Avoid sigabrt `LoadHelper`
 * [PR19067](https://github.com/mantidproject/mantid/pull/19067) - `H5Utils::readStringVector` new method
-* *new* [PR19081](https://github.com/mantidproject/mantid/pull/19081) - Set MantidPlot DPI awareness to unaware in Windows
-* *new* [PR19120](https://github.com/mantidproject/mantid/pull/19120) - Add translation and partitioning mechanism to IndexInfo.
+* [PR19077](https://github.com/mantidproject/mantid/pull/19077) - Added unit tests for `ReflDataProcessorPresenter`
+* [PR19081](https://github.com/mantidproject/mantid/pull/19081) - Set MantidPlot DPI awareness to unaware in Windows
+* [PR19093](https://github.com/mantidproject/mantid/pull/19093) - Fix number of iterations/bins in `SaveGSSTestPerformance`
+* [PR19120](https://github.com/mantidproject/mantid/pull/19120) - Add translation and partitioning mechanism to `IndexInfo`
+* [PR19147](https://github.com/mantidproject/mantid/pull/19147) - Bad double checked locking in `ExperimentInfo::detectorInfo()`
+* [PR19164](https://github.com/mantidproject/mantid/pull/19164) - Clear the search table when the instrument changes
 * [PR19179](https://github.com/mantidproject/mantid/pull/19179) - Remove mentions of paraview 3.98.1
+* [PR19181](https://github.com/mantidproject/mantid/pull/19181) - Export `SpectraAxis` class to Python
 * [PR19184](https://github.com/mantidproject/mantid/pull/19184) - Fix SCD Interface bug
 * [PR19185](https://github.com/mantidproject/mantid/pull/19185) - Use UB from workspace for SaveHKL with Cosines
+* [PR19188](https://github.com/mantidproject/mantid/pull/19188) - Show column descriptions in Reflectometry GUI
 * [PR19191](https://github.com/mantidproject/mantid/pull/19191) - Update framework section on performance
 * [PR19195](https://github.com/mantidproject/mantid/pull/19195) - Fix sphinx warnings
-* *new* [PR19202](https://github.com/mantidproject/mantid/pull/19202) - Refactor SaveMDWorkspaceToVTK
-* *new* [PR19214](https://github.com/mantidproject/mantid/pull/19214) - Change the way the extension is specified in SaveMDWorkspaceToVTK
-* *new* [PR19217](https://github.com/mantidproject/mantid/pull/19217) - Get statistics for Axes working again in IntegrateEllipsoids
+* [PR19202](https://github.com/mantidproject/mantid/pull/19202) - Refactor [SaveMDWorkspaceToVTK]({{ site.docpage }}/algorithms/SaveMDWorkspaceToVTK.html)
+* [PR19214](https://github.com/mantidproject/mantid/pull/19214) - Change the way the extension is specified in [SaveMDWorkspaceToVTK]({{ site.docpage }}/algorithms/SaveMDWorkspaceToVTK.html)
+* [PR19217](https://github.com/mantidproject/mantid/pull/19217) - Get statistics for Axes working again in [IntegrateEllipsoids]({{ site.docpage }}/algorithms/IntegrateEllipsoids.html)
