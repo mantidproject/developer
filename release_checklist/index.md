@@ -126,7 +126,7 @@ Once the unscripted testing has passed and the Release Notes are complete:
 
 * Send an email, including the text of the release notes, to the following lists
   * `mantid-announce@mantidproject.org`
-  * `mantid-developer@mantidproject.org`
+  * `mantid-developers@mantidproject.org`
   * `nobugs@nobugsconference.org`
   * `news@neutronsources.org`
   * `neutron@neutronsources.org`
