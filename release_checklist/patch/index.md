@@ -82,7 +82,7 @@ Once the testing has passed:
 * Create new DOI using the scripts in the codebase and instructions on [release checklist]({{ site.url }}/release_checklist/).
 * Send an email, including the text of the release notes, to the following lists
   * `mantid-announce@mantidproject.org`
-  * `mantid-developer@mantidproject.org`
+  * `mantid-developers@mantidproject.org`
   * `nobugs@nobugsconference.org`
   * `news@neutronsources.org`
   * `neutron@neutronsources.org`
