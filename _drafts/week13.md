@@ -18,5 +18,7 @@ Detailed Merges for Mar 27 to Apr 2, 2017
 * *new* [PR19127](https://github.com/mantidproject/mantid/pull/19127) - Indirect Sample Changer
 * [PR19166](https://github.com/mantidproject/mantid/pull/19166) - Change padding for LOQ
 * *new* [PR19168](https://github.com/mantidproject/mantid/pull/19168) - Add function to compare workspaces in Python
+* *new* [PR19194](https://github.com/mantidproject/mantid/pull/19194) - Make SNSPowderReduction work with various splitter workspaces
 * *new* [PR19206](https://github.com/mantidproject/mantid/pull/19206) - Option to change the units of the ApplyDetailedBalance from DeltaE to DeltaE_inFrequency
+* *new* [PR19224](https://github.com/mantidproject/mantid/pull/19224) - ISIS Reflectometry interface: Fixed a couple of errors with the 'Open Table' dialog
 * *new* [PR19241](https://github.com/mantidproject/mantid/pull/19241) - ISIS Reflectometry GUI: Added buttons to expand/collapse all groups
