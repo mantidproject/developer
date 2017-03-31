@@ -8,6 +8,8 @@ Updates for Week 13 of 2017
 ---------------------------
 
 * Multiple bugfixes for ISIS Reflectometry GUI
+* Better support for VS2017
+* New NOMAD geometry
 
 Detailed Merges for Mar 27 to Apr 2, 2017
 -----------------------------------------
@@ -29,7 +31,7 @@ Detailed Merges for Mar 27 to Apr 2, 2017
 * *new* [PR19171](https://github.com/mantidproject/mantid/pull/19171) - Indirect QuickRun - DiffScan
 * *new* [PR19186](https://github.com/mantidproject/mantid/pull/19186) - Prepare IndexInfo for MPI support
 * [PR19194](https://github.com/mantidproject/mantid/pull/19194) - Make [SNSPowderReduction]({{ site.docpage }}/algorithms/SNSPowderReduction.html) work with various splitter workspaces
-* *new* [PR19199](https://github.com/mantidproject/mantid/pull/19199) - Fix VS2017 compilation errors
+* [PR19199](https://github.com/mantidproject/mantid/pull/19199) - Fix VS2017 compilation errors
 * *new* [PR19206](https://github.com/mantidproject/mantid/pull/19206) - Option to change the units of the [ApplyDetailedBalance]({{ site.docpage }}/algorithms/ApplyDetailedBalance.html) from `DeltaE` to `DeltaE_inFrequency`
 * *new* [PR19218](https://github.com/mantidproject/mantid/pull/19218) - Use clamp algorithm instead of custom code.
 * [PR19224](https://github.com/mantidproject/mantid/pull/19224) - ISIS Reflectometry interface: Fixed a couple of errors with the 'Open Table' dialog
@@ -38,7 +40,7 @@ Detailed Merges for Mar 27 to Apr 2, 2017
 * [PR19244](https://github.com/mantidproject/mantid/pull/19244) - Fixed `ISIS_Reflectometry.rst` build errors
 * *new* [PR19247](https://github.com/mantidproject/mantid/pull/19247) - Fix `WorkspaceCreation::create(const P &parent)` for parent workspaces with varying bins
 * [PR19262](https://github.com/mantidproject/mantid/pull/19262) - Fix wrong component comparison in `SpecularReflationPos.Cor`
-* *new* [PR19263](https://github.com/mantidproject/mantid/pull/19263) - Use std::make_unique with MSVC
-* *new* [PR19265](https://github.com/mantidproject/mantid/pull/19265) - Update NOMAD geometry
-* *new* [PR19269](https://github.com/mantidproject/mantid/pull/19269) - Fix coverity issue
-* *new* [PR19276](https://github.com/mantidproject/mantid/pull/19276) - SaveGSSTest - Removed duplicate code and Restore Performance Test Difficulty
+* [PR19263](https://github.com/mantidproject/mantid/pull/19263) - Use `std::make_unique` with MSVC
+* [PR19265](https://github.com/mantidproject/mantid/pull/19265) - Update NOMAD geometry
+* [PR19269](https://github.com/mantidproject/mantid/pull/19269) - Fix coverity issue
+* *new* [PR19276](https://github.com/mantidproject/mantid/pull/19276) - [SaveGSSTest]({{ site.docpage }}/algorithms/SaveGSSTest.html) - Removed duplicate code and Restore Performance Test Difficulty
