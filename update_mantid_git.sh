@@ -28,6 +28,7 @@ if [ ! -d systemtests ]; then
     mkdir systemtests
 fi
 python skipped_systemtests.py > systemtests/index.md
+git add systemtests/index.md
 git commit -m "Updating skipped system tests via jenkins" systemtests/index.md
 
 # push the changes to master
