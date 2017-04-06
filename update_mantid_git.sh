@@ -24,6 +24,9 @@ git commit -m "Updating ticket list via jenkins"
 if [ ! -f skipped_systemtests.py ]; then
     wget https://raw.githubusercontent.com/mantidproject/mantid/master/tools/skipped_systemtests.py
 fi
+if [ ! -d systemtests ]; then
+    mkdir systemtests
+fi
 python skipped_systemtests.py > systemtests/index.md
 git commit -m "Updating skipped system tests via jenkins" systemtests/index.md
 
