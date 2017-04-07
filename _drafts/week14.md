@@ -9,19 +9,21 @@ Updates for Week 14 of 2017
 
 * New BASIS instrument definition
 * Various sphinx fixes/improvements
+* ISIS Kafka Listener Implementation
+* Improved performance on event filtering
 
 Detailed Merges for Apr 3 to 9, 2017
 ------------------------------------
 [on github](https://github.com/mantidproject/mantid/pulls?q=is%3Apr+merged%3A2017-04-04..2017-04-09)
 
-* *new* [PR18450](https://github.com/mantidproject/mantid/pull/18450) - ISIS Kafka Listener Implementation
+* [PR18450](https://github.com/mantidproject/mantid/pull/18450) - ISIS Kafka Listener Implementation
 * *new* [PR19083](https://github.com/mantidproject/mantid/pull/19083) - Offset in asymmetry calculations: new algorithms
 * *new* [PR19112](https://github.com/mantidproject/mantid/pull/19112) - ISIS Powder - Migration of GEM
-* *new* [PR19169](https://github.com/mantidproject/mantid/pull/19169) - Added volume() method to Geometry::Object
+* *new* [PR19169](https://github.com/mantidproject/mantid/pull/19169) - Added `volume()` method to `Geometry::Object`
 * *new* [PR19173](https://github.com/mantidproject/mantid/pull/19173) - Indirect Calculate PP - Input Validation
-* *new* [PR19201](https://github.com/mantidproject/mantid/pull/19201) - Improve performance on event filtering
+* [PR19201](https://github.com/mantidproject/mantid/pull/19201) - Improve performance on event filtering
 * *new* [PR19215](https://github.com/mantidproject/mantid/pull/19215) - Use ParaView to calculate colormap min and max values
-* *new* [PR19219](https://github.com/mantidproject/mantid/pull/19219) - `clang-tidy` check `performance-inefficient-string-concatenation`
+* [PR19219](https://github.com/mantidproject/mantid/pull/19219) - `clang-tidy` check `performance-inefficient-string-concatenation`
 * *new* [PR19261](https://github.com/mantidproject/mantid/pull/19261) - better the the system test for global fit of water
 * *new* [PR19270](https://github.com/mantidproject/mantid/pull/19270) - Vesuvio - merge with [ISISIndirectDiffractionReduction]({{ site.docpage }}/algorithms/ISISIndirectDiffractionReduction.html)
 * [PR19273](https://github.com/mantidproject/mantid/pull/19273) - BASIS definition broken/inefficient
@@ -34,6 +36,6 @@ Detailed Merges for Apr 3 to 9, 2017
 * [PR19300](https://github.com/mantidproject/mantid/pull/19300) - Asymmetry algorithms sphinx errors fix
 * *new* [PR19302](https://github.com/mantidproject/mantid/pull/19302) - Fix calibration bug in [LoadIsawPeaks]({{ site.docpage }}/algorithms/LoadIsawPeaks.html) for CORELLI
 * *new* [PR19304](https://github.com/mantidproject/mantid/pull/19304) - Use native `vtkGenericDataArray` API in `vtkMDHistoHexFactory`
-* *new* [PR19310](https://github.com/mantidproject/mantid/pull/19310) - Fix an SNSPowderReduction issue with Table splitters
-* *new* [PR19312](https://github.com/mantidproject/mantid/pull/19312) - Change to c++11 function
-* *new* [PR19316](https://github.com/mantidproject/mantid/pull/19316) - Fix slice viewer bug where rebin mode was toggled when axis is changed
+* [PR19310](https://github.com/mantidproject/mantid/pull/19310) - Fix an [SNSPowderReduction]({{ site.docpage }}/algorithms/SNSPowderReduction.html) issue with Table splitters
+* [PR19312](https://github.com/mantidproject/mantid/pull/19312) - Change to c++11 function
+* [PR19316](https://github.com/mantidproject/mantid/pull/19316) - Fix slice viewer bug where rebin mode was toggled when axis is changed
