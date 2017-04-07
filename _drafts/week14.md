@@ -21,6 +21,7 @@ Detailed Merges for Apr 3 to 9, 2017
 
 * [PR18450](https://github.com/mantidproject/mantid/pull/18450) - ISIS Kafka Listener Implementation
 * [PR19083](https://github.com/mantidproject/mantid/pull/19083) - Offset in asymmetry calculations: new algorithms
+* *new* [PR19111](https://github.com/mantidproject/mantid/pull/19111) - Reflectometry GUI now outputs stitched transmission run in wavelength
 * *new* [PR19112](https://github.com/mantidproject/mantid/pull/19112) - ISIS Powder - Migration of GEM
 * *new* [PR19169](https://github.com/mantidproject/mantid/pull/19169) - Added `volume()` method to `Geometry::Object`
 * [PR19173](https://github.com/mantidproject/mantid/pull/19173) - Indirect Calculate PP - Input Validation
