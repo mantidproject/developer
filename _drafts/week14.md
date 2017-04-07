@@ -39,6 +39,7 @@ Detailed Merges for Apr 3 to 9, 2017
 * [PR19300](https://github.com/mantidproject/mantid/pull/19300) - Asymmetry algorithms sphinx errors fix
 * [PR19302](https://github.com/mantidproject/mantid/pull/19302) - Fix calibration bug in [LoadIsawPeaks]({{ site.docpage }}/algorithms/LoadIsawPeaks.html) for CORELLI
 * [PR19304](https://github.com/mantidproject/mantid/pull/19304) - Use native `vtkGenericDataArray` API in `vtkMDHistoHexFactory`
+* *new* [PR19305](https://github.com/mantidproject/mantid/pull/19305) - Fix gcc 6.3 implicit cast warnings
 * [PR19310](https://github.com/mantidproject/mantid/pull/19310) - Fix an [SNSPowderReduction]({{ site.docpage }}/algorithms/SNSPowderReduction.html) issue with Table splitters
 * [PR19312](https://github.com/mantidproject/mantid/pull/19312) - Change to c++11 function
 * [PR19316](https://github.com/mantidproject/mantid/pull/19316) - Fix slice viewer bug where rebin mode was toggled when axis is changed
