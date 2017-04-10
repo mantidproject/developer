@@ -26,6 +26,7 @@ Detailed Merges for Apr 3 to 9, 2017
 * *new* [PR19169](https://github.com/mantidproject/mantid/pull/19169) - Added `volume()` method to `Geometry::Object`
 * [PR19173](https://github.com/mantidproject/mantid/pull/19173) - Indirect Calculate PP - Input Validation
 * [PR19201](https://github.com/mantidproject/mantid/pull/19201) - Improve performance on event filtering
+* *new* [PR19210](https://github.com/mantidproject/mantid/pull/19210) - Sanitize Histogram1D::setHistogram() input
 * [PR19215](https://github.com/mantidproject/mantid/pull/19215) - Use ParaView to calculate colormap min and max values
 * [PR19219](https://github.com/mantidproject/mantid/pull/19219) - `clang-tidy` check `performance-inefficient-string-concatenation`
 * *new* [PR19261](https://github.com/mantidproject/mantid/pull/19261) - better the system test for global fit of water
