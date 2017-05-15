@@ -49,7 +49,7 @@ will have to be changed
 
 **Task Priorities**: Blocker bug fixes, Testing, Release Notes.
 
-### Unscripted and Final Testing
+### Unscripted and Final Testing (technical tasks)
 
 * Ensure the
   [master build and system test](http://builds.mantidproject.org/view/Master%20Builds/)
@@ -103,7 +103,7 @@ will have to be changed
 ## Friday, Release day
 '''Task Priorities''': Blocker bug fixes, Testing, Release Notes, Next release development.
 
-# Release
+# Release (technical tasks)
 
 Once the unscripted testing has passed and the Release Notes are complete:
 
@@ -133,7 +133,7 @@ Once the unscripted testing has passed and the Release Notes are complete:
 * Create a new item on the forum news
 * Close the release milestone in the issue tracker
 
-## Generate DOI
+## Generate DOI (technical tasks)
 
 This requires that a tag has been created for this release, this is done automatically if a new [release](https://github.com/mantidproject/mantid/releases) has been created on GitHub.
 
