@@ -11,3 +11,30 @@ Detailed Merges for May 15 to 21, 2017
 --------------------------------------
 [on github](https://github.com/mantidproject/mantid/pulls?q=is%3Apr+merged%3A2017-05-16..2017-05-21)
 
+* *new* [PR19031](https://github.com/mantidproject/mantid/pull/19031) - NexusDescriptor, LoadHelper :: Stop recursion on certain group entries
+* *new* [PR19207](https://github.com/mantidproject/mantid/pull/19207) - Speed up PredictPeaks for non-rectangular detectors
+* *new* [PR19227](https://github.com/mantidproject/mantid/pull/19227) - Initial feedback on ILL indirect reductions.
+* *new* [PR19237](https://github.com/mantidproject/mantid/pull/19237) - Harmonise plotting of workspaces from right-button click
+* *new* [PR19347](https://github.com/mantidproject/mantid/pull/19347) - FindEPP rewrite in c++
+* *new* [PR19351](https://github.com/mantidproject/mantid/pull/19351) - Publish adjustment algorithms for ISIS SANS
+* *new* [PR19371](https://github.com/mantidproject/mantid/pull/19371) - Change LoadCIF to parse ICSD spacegroup notation
+* *new* [PR19424](https://github.com/mantidproject/mantid/pull/19424) - Automatically choose a contrasting axes color
+* *new* [PR19486](https://github.com/mantidproject/mantid/pull/19486) - ISIS Powder - Add rebinning to focused data
+* *new* [PR19497](https://github.com/mantidproject/mantid/pull/19497) - ISIS Powder - Add Sample Empty Scaling
+* *new* [PR19523](https://github.com/mantidproject/mantid/pull/19523) - Load DNS TOF. Refactoring LoadDNSLegacy.
+* *new* [PR19526](https://github.com/mantidproject/mantid/pull/19526) - Fixed bin edges as vertical axis in CreateWorkspace
+* *new* [PR19530](https://github.com/mantidproject/mantid/pull/19530) - Improve scaling of MDNormDirectSC
+* *new* [PR19531](https://github.com/mantidproject/mantid/pull/19531) - Simplify function Detector::getPhi()
+* *new* [PR19535](https://github.com/mantidproject/mantid/pull/19535) - Fix windows missing from project save view
+* *new* [PR19536](https://github.com/mantidproject/mantid/pull/19536) - FindSXPeaks - Support grouped detectors
+* *new* [PR19540](https://github.com/mantidproject/mantid/pull/19540) - VESUVIO - reduce number of workspaces
+* *new* [PR19541](https://github.com/mantidproject/mantid/pull/19541) - Do not plot curves on a log scale where all(y)<=0
+* *new* [PR19548](https://github.com/mantidproject/mantid/pull/19548) - Fit Wizard does not display ties
+* *new* [PR19555](https://github.com/mantidproject/mantid/pull/19555) - Enable more SNSPowderReductions system tests
+* *new* [PR19559](https://github.com/mantidproject/mantid/pull/19559) - Indirect Bayes - Sort X axis
+* *new* [PR19561](https://github.com/mantidproject/mantid/pull/19561) - Add documentation to AtomicOp
+* *new* [PR19563](https://github.com/mantidproject/mantid/pull/19563) - Simple update to Monitor ID
+* *new* [PR19564](https://github.com/mantidproject/mantid/pull/19564) - Indirect - Remove Error Bars
+* *new* [PR19568](https://github.com/mantidproject/mantid/pull/19568) - Save project dialog bug
+* *new* [PR19576](https://github.com/mantidproject/mantid/pull/19576) - Fix pass-by-value issue in LoadILLTOF2
+* *new* [PR19584](https://github.com/mantidproject/mantid/pull/19584) - Remove mention of kafka listener from release notes
