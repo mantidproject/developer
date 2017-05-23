@@ -1,20 +1,27 @@
 ---
 layout: default
-date: 2017-05-22
+date: 2017-05-23
 author: Peter Peterson
 title: Currently Skipped System Tests
 ---
 Summary
 =======
-* Job    : [Master Pipeline](http://builds.mantidproject.org/view/Master%20Pipeline/)2017-05-22
+* Job    : [Master Pipeline](http://builds.mantidproject.org/view/Master%20Pipeline/)2017-05-23
 * Labels : osx, rhel6, rhel7, ubuntu, win7
-* Failed : 0
-* Skipped: 28(38 unique)
-* Total  : 1830
-(= 366 * 5)
+* Failed : 1
+* Skipped: 29(39 unique)
+* Total  : 1842
+(= 368 * 5)
 
 Details
 =======
+
+Failed
+------
+
+| Test             | osx | rhel6 | rhel7 | ubuntu | win7 |
+|------------------|-----|-------|-------|--------|------|
+| LoadLotsOfFiles  |     |       |       |    x   |      | 
 
 Skipped
 -------
@@ -52,6 +59,7 @@ Skipped
 | ValidateInstrumentDefinitionFiles      |  x  |       |       |    x   |      | 
 | ValidateParameterFiles                 |  x  |       |       |    x   |      | 
 | WISHDiffractionFocussingReductionTest  |  x  |       |       |    x   |      | 
+| WISHSingleCrystalPeakPredictionTest    |  x  |       |       |    x   |      | 
 | AbinsCASTEPTestLargerOrder             |     |   x   |       |        |      | 
 | AbinsCASTEPTestScale                   |     |   x   |       |        |      | 
 | AbinsCASTEPTestScratch                 |     |   x   |       |        |      | 
