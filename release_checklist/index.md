@@ -61,8 +61,6 @@ will have to be changed
 * Check state of all open pull requests for this milestone and update
   the base branch to the new release branch accordingly.
 * Create a skeleton set of release notes for the next version
-* Create a set of release notes in the "Undergoing Testing" directory.
-  Base them off the previous release as a template.
 * Perform unscripted testing following the instructions described [here](https://www.mantidproject.org/Unscripted_Manual_Testing).
 
 ## Tuesday, Release- 2 weeks & 3 days
