@@ -103,8 +103,9 @@ will have to be changed
 
 # Release (technical tasks)
 
-Once the unscripted testing has passed and the Release Notes are complete:
+Once the unscripted testing has passed:
 
+* Check the release notes and remove the "Under Construction" paragraph on the main index page.
 * Disable release deploy jobs by executing [close-release-testing](http://builds.mantidproject.org/view/All/job/close-release-testing) job.
 * Update major & minor version in `buildconfig/CMake/VersionNumber.cmake` on `release` branch.
 * Update patch number on `release` branch
