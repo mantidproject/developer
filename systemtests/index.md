@@ -1,17 +1,17 @@
 ---
 layout: default
-date: 2017-06-08
+date: 2017-06-09
 author: Peter Peterson
 title: Currently Skipped System Tests
 ---
 Summary
 =======
-* Job    : [Master Pipeline](http://builds.mantidproject.org/view/Master%20Pipeline/)2017-06-08
+* Job    : [Master Pipeline](http://builds.mantidproject.org/view/Master%20Pipeline/)2017-06-09
 * Labels : osx, rhel6, rhel7, ubuntu, win7
 * Failed : 0
-* Skipped: 29(39 unique)
-* Total  : 1934
-(= 386 * 5)
+* Skipped: 29(42 unique)
+* Total  : 1918
+(= 383 * 5)
 
 Details
 =======
@@ -24,13 +24,13 @@ Skipped
 | BuildSQWTest                           |  x  |   x   |   x   |    x   |   x  | 
 | EQSANSFlatTest                         |  x  |   x   |   x   |    x   |   x  | 
 | FocusTest                              |  x  |   x   |   x   |    x   |   x  | 
-| ISISPowderDiffractionPol               |  x  |   x   |   x   |    x   |   x  | 
-| ISISPowderDiffractionPol2              |  x  |   x   |   x   |    x   |   x  | 
-| ISISPowderDiffractionPol3              |  x  |   x   |   x   |    x   |   x  | 
 | LoadSQW_FileBasedTest                  |  x  |   x   |   x   |    x   |   x  | 
 | LoadSQW_MemBasedTest                   |  x  |   x   |   x   |    x   |   x  | 
 | SNAP_short                             |  x  |   x   |   x   |    x   |   x  | 
 | SNAP_short_detcal                      |  x  |   x   |   x   |    x   |   x  | 
+| ISISPowderDiffractionGemTest           |  x  |       |   x   |    x   |   x  | 
+| ISISPowderDiffractionHrpdTest          |  x  |       |   x   |    x   |   x  | 
+| ISISPowderDiffractionPolarisTest       |  x  |       |   x   |    x   |   x  | 
 | QLDataTest                             |  x  |   x   |   x   |    x   |      | 
 | QLResNormTest                          |  x  |   x   |   x   |    x   |      | 
 | QLWidthTest                            |  x  |   x   |   x   |    x   |      | 
@@ -59,3 +59,6 @@ Skipped
 | AbinsCASTEPTestSmallerOrder            |     |   x   |       |        |      | 
 | AbinsCASTEPTestT                       |     |   x   |       |        |      | 
 | AbinsCRYSTALTestScratch                |     |   x   |       |        |      | 
+| ISISPowderDiffractionPol               |     |   x   |       |        |      | 
+| ISISPowderDiffractionPol2              |     |   x   |       |        |      | 
+| ISISPowderDiffractionPol3              |     |   x   |       |        |      | 
