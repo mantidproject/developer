@@ -1,15 +1,15 @@
 ---
 layout: default
-date: 2017-06-19
+date: 2017-06-20
 author: Peter Peterson
 title: Currently Skipped System Tests
 ---
 Summary
 =======
-* Job    : [Master Pipeline](http://builds.mantidproject.org/view/Master%20Pipeline/)2017-06-19
+* Job    : [Master Pipeline](http://builds.mantidproject.org/view/Master%20Pipeline/)2017-06-20
 * Labels : osx, rhel6, rhel7, ubuntu, win7
 * Failed : 0
-* Skipped: 29(42 unique)
+* Skipped: 23(39 unique)
 * Total  : 1918
 (= 383 * 5)
 
@@ -23,14 +23,10 @@ Skipped
 |----------------------------------------|-----|-------|-------|--------|------|
 | BuildSQWTest                           |  x  |   x   |   x   |    x   |   x  | 
 | EQSANSFlatTest                         |  x  |   x   |   x   |    x   |   x  | 
-| FocusTest                              |  x  |   x   |   x   |    x   |   x  | 
 | LoadSQW_FileBasedTest                  |  x  |   x   |   x   |    x   |   x  | 
 | LoadSQW_MemBasedTest                   |  x  |   x   |   x   |    x   |   x  | 
 | SNAP_short                             |  x  |   x   |   x   |    x   |   x  | 
 | SNAP_short_detcal                      |  x  |   x   |   x   |    x   |   x  | 
-| ISISPowderDiffractionGemTest           |  x  |       |   x   |    x   |   x  | 
-| ISISPowderDiffractionHrpdTest          |  x  |       |   x   |    x   |   x  | 
-| ISISPowderDiffractionPolarisTest       |  x  |       |   x   |    x   |   x  | 
 | QLDataTest                             |  x  |   x   |   x   |    x   |      | 
 | QLResNormTest                          |  x  |   x   |   x   |    x   |      | 
 | QLWidthTest                            |  x  |   x   |   x   |    x   |      | 
@@ -51,6 +47,7 @@ Skipped
 | ValidateGroupingFiles                  |  x  |       |       |    x   |      | 
 | ValidateInstrumentDefinitionFiles      |  x  |       |       |    x   |      | 
 | ValidateParameterFiles                 |  x  |       |       |    x   |      | 
+| VanadiumCalibrationTest                |     |   x   |       |        |      | 
 | WISHDiffractionFocussingReductionTest  |  x  |       |       |    x   |      | 
 | WISHSingleCrystalPeakPredictionTest    |  x  |       |       |    x   |      | 
 | AbinsCASTEPTestLargerOrder             |     |   x   |       |        |      | 
@@ -59,6 +56,7 @@ Skipped
 | AbinsCASTEPTestSmallerOrder            |     |   x   |       |        |      | 
 | AbinsCASTEPTestT                       |     |   x   |       |        |      | 
 | AbinsCRYSTALTestScratch                |     |   x   |       |        |      | 
+| FocusTest                              |     |   x   |       |        |      | 
 | ISISPowderDiffractionPol               |     |   x   |       |        |      | 
 | ISISPowderDiffractionPol2              |     |   x   |       |        |      | 
 | ISISPowderDiffractionPol3              |     |   x   |       |        |      | 
