@@ -8,7 +8,7 @@ Summary
 =======
 * Job    : [Master Pipeline](http://builds.mantidproject.org/view/Master%20Pipeline/)2017-07-13
 * Labels : osx, rhel6, rhel7, ubuntu, win7
-* Failed : 0(2 unique)
+* Failed : 0
 * Skipped: 24(40 unique)
 * Total  : 1914
 (= 382 * 5)
@@ -19,10 +19,9 @@ Details
 Failed
 ------
 
-| Test              | osx | rhel6 | rhel7 | ubuntu | win7 |
-|-------------------|-----|-------|-------|--------|------|
-| WishCalibration   |  x  |       |   x   |        |      | 
-| FittingBenchmars  |     |       |       |        |   x  | 
+| Test             | osx | rhel6 | rhel7 | ubuntu | win7 |
+|------------------|-----|-------|-------|--------|------|
+| WishCalibration  |  x  |       |   x   |        |   x  | 
 
 Skipped
 -------
