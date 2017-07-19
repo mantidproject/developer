@@ -1,12 +1,12 @@
 ---
 layout: default
-date: 2017-07-18
+date: 2017-07-19
 author: Peter Peterson
 title: Currently Skipped System Tests
 ---
 Summary
 =======
-* Job    : [Master Pipeline](http://builds.mantidproject.org/view/Master%20Pipeline/)2017-07-18
+* Job    : [Master Pipeline](http://builds.mantidproject.org/view/Master%20Pipeline/)2017-07-19
 * Labels : osx, rhel6, rhel7, ubuntu, win7
 * Failed : 0
 * Skipped: 24(40 unique)
@@ -21,7 +21,7 @@ Failed
 
 | Test             | osx | rhel6 | rhel7 | ubuntu | win7 |
 |------------------|-----|-------|-------|--------|------|
-| WishCalibration  |  x  |       |   x   |        |   x  | 
+| WishCalibration  |  x  |       |       |        |   x  | 
 
 Skipped
 -------
@@ -57,6 +57,7 @@ Skipped
 | VanadiumCalibrationTest                |     |   x   |       |        |      | 
 | WISHDiffractionFocussingReductionTest  |  x  |       |       |    x   |      | 
 | WISHSingleCrystalPeakPredictionTest    |  x  |       |       |    x   |      | 
+| WishCalibration                        |     |       |   x   |    x   |      | 
 | AbinsCASTEPTestLargerOrder             |     |   x   |       |        |      | 
 | AbinsCASTEPTestScale                   |     |   x   |       |        |      | 
 | AbinsCASTEPTestScratch                 |     |   x   |       |        |      | 
@@ -67,4 +68,3 @@ Skipped
 | ISISPowderDiffractionPol               |     |   x   |       |        |      | 
 | ISISPowderDiffractionPol2              |     |   x   |       |        |      | 
 | ISISPowderDiffractionPol3              |     |   x   |       |        |      | 
-| WishCalibration                        |     |       |       |    x   |      | 
