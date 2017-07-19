@@ -21,7 +21,7 @@ Failed
 
 | Test             | osx | rhel6 | rhel7 | ubuntu | win7 |
 |------------------|-----|-------|-------|--------|------|
-| WishCalibration  |  x  |       |       |        |   x  | 
+| WishCalibration  |  x  |       |       |        |      | 
 
 Skipped
 -------
@@ -43,6 +43,7 @@ Skipped
 | ResNormTest                            |  x  |   x   |   x   |    x   |      | 
 | PG3CCCalibration                       |  x  |   x   |       |        |   x  | 
 | PG3Calibration                         |  x  |   x   |       |        |   x  | 
+| WishCalibration                        |     |       |   x   |    x   |   x  | 
 | LETReductionEvent2015Multirep          |  x  |       |       |    x   |      | 
 | MAPSDgreduceReduction                  |  x  |       |       |    x   |      | 
 | MERLINReduction                        |  x  |       |       |    x   |      | 
@@ -57,7 +58,6 @@ Skipped
 | VanadiumCalibrationTest                |     |   x   |       |        |      | 
 | WISHDiffractionFocussingReductionTest  |  x  |       |       |    x   |      | 
 | WISHSingleCrystalPeakPredictionTest    |  x  |       |       |    x   |      | 
-| WishCalibration                        |     |       |   x   |    x   |      | 
 | AbinsCASTEPTestLargerOrder             |     |   x   |       |        |      | 
 | AbinsCASTEPTestScale                   |     |   x   |       |        |      | 
 | AbinsCASTEPTestScratch                 |     |   x   |       |        |      | 
