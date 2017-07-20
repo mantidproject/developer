@@ -1,27 +1,20 @@
 ---
 layout: default
-date: 2017-07-19
+date: 2017-07-20
 author: Peter Peterson
 title: Currently Skipped System Tests
 ---
 Summary
 =======
-* Job    : [Master Pipeline](http://builds.mantidproject.org/view/Master%20Pipeline/)2017-07-19
+* Job    : [Master Pipeline](http://builds.mantidproject.org/view/Master%20Pipeline/)2017-07-20
 * Labels : osx, rhel6, rhel7, ubuntu, win7
 * Failed : 0
 * Skipped: 24(40 unique)
-* Total  : 1914
-(= 382 * 5)
+* Total  : 1918
+(= 383 * 5)
 
 Details
 =======
-
-Failed
-------
-
-| Test             | osx | rhel6 | rhel7 | ubuntu | win7 |
-|------------------|-----|-------|-------|--------|------|
-| WishCalibration  |  x  |       |       |        |      | 
 
 Skipped
 -------
@@ -41,9 +34,9 @@ Skipped
 | QSeTest                                |  x  |   x   |   x   |    x   |      | 
 | QuestTest                              |  x  |   x   |   x   |    x   |      | 
 | ResNormTest                            |  x  |   x   |   x   |    x   |      | 
+| WishCalibration                        |  x  |       |   x   |    x   |   x  | 
 | PG3CCCalibration                       |  x  |   x   |       |        |   x  | 
 | PG3Calibration                         |  x  |   x   |       |        |   x  | 
-| WishCalibration                        |     |       |   x   |    x   |   x  | 
 | LETReductionEvent2015Multirep          |  x  |       |       |    x   |      | 
 | MAPSDgreduceReduction                  |  x  |       |       |    x   |      | 
 | MERLINReduction                        |  x  |       |       |    x   |      | 
