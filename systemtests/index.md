@@ -1,20 +1,29 @@
 ---
 layout: default
-date: 2017-08-09
+date: 2017-08-10
 author: Peter Peterson
 title: Currently Skipped System Tests
 ---
 Summary
 =======
-* Job    : [Master Pipeline](http://builds.mantidproject.org/view/Master%20Pipeline/)2017-08-09
+* Job    : [Master Pipeline](http://builds.mantidproject.org/view/Master%20Pipeline/)2017-08-10
 * Labels : osx, rhel6, rhel7, ubuntu, win7
-* Failed : 0
-* Skipped: 24(40 unique)
+* Failed : 0(3 unique)
+* Skipped: 27(43 unique)
 * Total  : 1926
 (= 385 * 5)
 
 Details
 =======
+
+Failed
+------
+
+| Test                          | osx | rhel6 | rhel7 | ubuntu | win7 |
+|-------------------------------|-----|-------|-------|--------|------|
+| SANSBatchReductionRunnerTest  |     |       |       |        |   x  | 
+| SANSReductionCoreRunnerTest   |     |       |       |        |   x  | 
+| SANSReductionRunnerTest       |     |       |       |        |   x  | 
 
 Skipped
 -------
@@ -35,22 +44,25 @@ Skipped
 | QuestTest                              |  x  |   x   |   x   |    x   |      | 
 | ResNormTest                            |  x  |   x   |   x   |    x   |      | 
 | WishCalibration                        |  x  |       |   x   |    x   |   x  | 
+| LETReductionEvent2015Multirep          |  x  |       |   x   |    x   |      | 
+| MAPSDgreduceReduction                  |  x  |       |   x   |    x   |      | 
+| MERLINReduction                        |  x  |       |   x   |    x   |      | 
 | PG3CCCalibration                       |  x  |   x   |       |        |   x  | 
 | PG3Calibration                         |  x  |   x   |       |        |   x  | 
-| LETReductionEvent2015Multirep          |  x  |       |       |    x   |      | 
-| MAPSDgreduceReduction                  |  x  |       |       |    x   |      | 
-| MERLINReduction                        |  x  |       |       |    x   |      | 
+| SANSBatchReductionTest                 |  x  |       |   x   |    x   |      | 
+| SANSReductionCoreTest                  |  x  |       |   x   |    x   |      | 
+| SANSSingleReductionTest                |  x  |       |   x   |    x   |      | 
+| TobyFitResolutionSimulationTest        |  x  |       |   x   |    x   |      | 
+| WISHDiffractionFocussingReductionTest  |  x  |       |   x   |    x   |      | 
+| WISHSingleCrystalPeakPredictionTest    |  x  |       |   x   |    x   |      | 
 | PG3Analysis                            |  x  |       |       |        |   x  | 
 | PG3StripPeaks                          |  x  |       |       |        |   x  | 
 | PVPythonTest                           |  x  |       |       |        |   x  | 
-| TobyFitResolutionSimulationTest        |  x  |       |       |    x   |      | 
 | ValidateFacilitiesFile                 |  x  |       |       |    x   |      | 
 | ValidateGroupingFiles                  |  x  |       |       |    x   |      | 
 | ValidateInstrumentDefinitionFiles      |  x  |       |       |    x   |      | 
 | ValidateParameterFiles                 |  x  |       |       |    x   |      | 
 | VanadiumCalibrationTest                |     |   x   |       |        |      | 
-| WISHDiffractionFocussingReductionTest  |  x  |       |       |    x   |      | 
-| WISHSingleCrystalPeakPredictionTest    |  x  |       |       |    x   |      | 
 | AbinsCASTEPTestLargerOrder             |     |   x   |       |        |      | 
 | AbinsCASTEPTestScale                   |     |   x   |       |        |      | 
 | AbinsCASTEPTestScratch                 |     |   x   |       |        |      | 
