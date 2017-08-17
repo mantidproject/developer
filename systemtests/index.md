@@ -1,15 +1,15 @@
 ---
 layout: default
-date: 2017-08-16
+date: 2017-08-17
 author: Peter Peterson
 title: Currently Skipped System Tests
 ---
 Summary
 =======
-* Job    : [Master Pipeline](http://builds.mantidproject.org/view/Master%20Pipeline/)2017-08-16
+* Job    : [Master Pipeline](http://builds.mantidproject.org/view/Master%20Pipeline/)2017-08-17
 * Labels : osx, rhel6, rhel7, ubuntu, win7
 * Failed : 0(3 unique)
-* Skipped: 27(43 unique)
+* Skipped: 28(44 unique)
 * Total  : 1930
 (= 386 * 5)
 
@@ -36,6 +36,7 @@ Skipped
 | LoadSQW_MemBasedTest                   |  x  |   x   |   x   |    x   |   x  | 
 | SNAP_short                             |  x  |   x   |   x   |    x   |   x  | 
 | SNAP_short_detcal                      |  x  |   x   |   x   |    x   |   x  | 
+| FittingBenchmarks                      |  x  |       |   x   |    x   |   x  | 
 | QLDataTest                             |  x  |   x   |   x   |    x   |      | 
 | QLResNormTest                          |  x  |   x   |   x   |    x   |      | 
 | QLWidthTest                            |  x  |   x   |   x   |    x   |      | 
