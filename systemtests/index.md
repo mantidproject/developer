@@ -1,29 +1,20 @@
 ---
 layout: default
-date: 2017-08-17
+date: 2017-08-18
 author: Peter Peterson
 title: Currently Skipped System Tests
 ---
 Summary
 =======
-* Job    : [Master Pipeline](http://builds.mantidproject.org/view/Master%20Pipeline/)2017-08-17
+* Job    : [Master Pipeline](http://builds.mantidproject.org/view/Master%20Pipeline/)2017-08-18
 * Labels : osx, rhel6, rhel7, ubuntu, win7
-* Failed : 0(3 unique)
-* Skipped: 28(44 unique)
-* Total  : 1930
-(= 386 * 5)
+* Failed : 0
+* Skipped: 25(44 unique)
+* Total  : 1936
+(= 387 * 5)
 
 Details
 =======
-
-Failed
-------
-
-| Test                          | osx | rhel6 | rhel7 | ubuntu | win7 |
-|-------------------------------|-----|-------|-------|--------|------|
-| SANSBatchReductionRunnerTest  |     |       |       |        |   x  | 
-| SANSReductionCoreRunnerTest   |     |       |       |        |   x  | 
-| SANSReductionRunnerTest       |     |       |       |        |   x  | 
 
 Skipped
 -------
@@ -47,9 +38,6 @@ Skipped
 | WishCalibration                        |  x  |       |   x   |    x   |   x  | 
 | PG3CCCalibration                       |  x  |   x   |       |        |   x  | 
 | PG3Calibration                         |  x  |   x   |       |        |   x  | 
-| SANSBatchReductionTest                 |  x  |       |   x   |    x   |      | 
-| SANSReductionCoreTest                  |  x  |       |   x   |    x   |      | 
-| SANSSingleReductionTest                |  x  |       |   x   |    x   |      | 
 | LETReductionEvent2015Multirep          |  x  |       |       |    x   |      | 
 | MAPSDgreduceReduction                  |  x  |       |       |    x   |      | 
 | MERLINReduction                        |  x  |       |       |    x   |      | 
@@ -74,3 +62,6 @@ Skipped
 | ISISPowderDiffractionPol               |     |   x   |       |        |      | 
 | ISISPowderDiffractionPol2              |     |   x   |       |        |      | 
 | ISISPowderDiffractionPol3              |     |   x   |       |        |      | 
+| SANSBatchReductionTest                 |  x  |       |       |        |      | 
+| SANSReductionCoreTest                  |  x  |       |       |        |      | 
+| SANSSingleReductionTest                |  x  |       |       |        |      | 
