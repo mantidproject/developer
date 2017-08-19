@@ -1,15 +1,15 @@
 ---
 layout: default
-date: 2017-08-18
+date: 2017-08-19
 author: Peter Peterson
 title: Currently Skipped System Tests
 ---
 Summary
 =======
-* Job    : [Master Pipeline](http://builds.mantidproject.org/view/Master%20Pipeline/)2017-08-18
+* Job    : [Master Pipeline](http://builds.mantidproject.org/view/Master%20Pipeline/)2017-08-19
 * Labels : osx, rhel6, rhel7, ubuntu, win7
 * Failed : 0
-* Skipped: 25(44 unique)
+* Skipped: 26(44 unique)
 * Total  : 1936
 (= 387 * 5)
 
@@ -28,6 +28,7 @@ Skipped
 | SNAP_short                             |  x  |   x   |   x   |    x   |   x  | 
 | SNAP_short_detcal                      |  x  |   x   |   x   |    x   |   x  | 
 | FittingBenchmarks                      |  x  |       |   x   |    x   |   x  | 
+| PVPythonTest                           |  x  |       |   x   |    x   |   x  | 
 | QLDataTest                             |  x  |   x   |   x   |    x   |      | 
 | QLResNormTest                          |  x  |   x   |   x   |    x   |      | 
 | QLWidthTest                            |  x  |   x   |   x   |    x   |      | 
@@ -43,7 +44,6 @@ Skipped
 | MERLINReduction                        |  x  |       |       |    x   |      | 
 | PG3Analysis                            |  x  |       |       |        |   x  | 
 | PG3StripPeaks                          |  x  |       |       |        |   x  | 
-| PVPythonTest                           |  x  |       |       |        |   x  | 
 | TobyFitResolutionSimulationTest        |  x  |       |       |    x   |      | 
 | ValidateFacilitiesFile                 |  x  |       |       |    x   |      | 
 | ValidateGroupingFiles                  |  x  |       |       |    x   |      | 
