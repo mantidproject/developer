@@ -1,16 +1,16 @@
 ---
 layout: default
-date: 2017-09-14
+date: 2017-09-15
 author: Peter Peterson
 title: Currently Skipped System Tests
 ---
 Summary
 =======
-* Job    : [Master Pipeline](http://builds.mantidproject.org/view/Master%20Pipeline/)2017-09-14
+* Job    : [Master Pipeline](http://builds.mantidproject.org/view/Master%20Pipeline/)2017-09-15
 * Labels : osx, rhel6, rhel7, ubuntu, win7
-* Failed : 0
+* Failed : 1(2 unique)
 * Skipped: 26(41 unique)
-* Total  : 1942
+* Total  : 1944
 (= 388 * 5)
 
 Details
@@ -21,6 +21,7 @@ Failed
 
 | Test                                   | osx | rhel6 | rhel7 | ubuntu | win7 |
 |----------------------------------------|-----|-------|-------|--------|------|
+| LoadLotsOfFiles                        |     |       |   x   |    x   |      | 
 | WISHDiffractionFocussingReductionTest  |     |       |   x   |        |      | 
 
 Skipped
