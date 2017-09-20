@@ -10,7 +10,7 @@ Summary
 * Labels : osx, rhel6, rhel7, ubuntu, win7
 * Failed : 0
 * Skipped: 26(41 unique)
-* Total  : 1950
+* Total  : 1952
 (= 390 * 5)
 
 Details
