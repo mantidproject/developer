@@ -107,8 +107,7 @@ Once the unscripted testing has passed:
 
 * Check the release notes and remove the "Under Construction" paragraph on the main index page.
 * Disable release deploy jobs by executing [close-release-testing](http://builds.mantidproject.org/view/All/job/close-release-testing) job.
-* Update major & minor version in `buildconfig/CMake/VersionNumber.cmake` on `release` branch.
-* Update patch number on `release` branch
+* On the `release-vX.Y` branch, update major & minor versions accordingly in `buildconfig/CMake/VersionNumber.cmake`. Also uncomment `VERSION_PATCH` and set it to `0`. 
 * Merge `release` branch back to `master`
 * Comment out patch number on `master` branch
 * Draft a [new release](https://github.com/mantidproject/mantid/releases) on GitHub. The new tag should be created based of the release branch in the form `vX.Y.Z`
