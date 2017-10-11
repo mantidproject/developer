@@ -119,6 +119,7 @@ Once the unscripted testing has passed:
   * Upload packages to GitHub once they are ready and have been checked
   * Publish the page
 * Update the [download](http://download.mantidproject.org) page, following the instructions [here](https://github.com/mantidproject/download.mantidproject.org)
+* Publish the draft release on GitHub (this will create the tag too).
 
 # Finalise
 
