@@ -8,6 +8,8 @@ Updates for Week 43 of 2017
 ---------------------------
 * Bugfix `IFunction::fixAll` in the presence of ties
 * Reformat "see also" sections in sphinx
+* Bugfix in creating isotopes of `Atom`
+* Fix mpl backend for matplotlib >= 2.1.0
 
 Detailed Merges for Oct 23 to 29, 2017
 --------------------------------------
@@ -19,5 +21,5 @@ Detailed Merges for Oct 23 to 29, 2017
 * *new* [PR20970](https://github.com/mantidproject/mantid/pull/20970) - Indirect Diffraction - Invalid parsing of run string containing C:/
 * [PR20982](https://github.com/mantidproject/mantid/pull/20982) - `IFunction::fixAll` fails if there are ties
 * [PR20989](https://github.com/mantidproject/mantid/pull/20989) - Reformat see also sections in sphinx
-* *new* [PR20998](https://github.com/mantidproject/mantid/pull/20998) - Fix ordering of Atom definitions
-* *new* [PR21003](https://github.com/mantidproject/mantid/pull/21003) - Fix mpl backend for matplotlib >= 2.1.0
+* [PR20998](https://github.com/mantidproject/mantid/pull/20998) - Fix ordering of `Atom` definitions
+* [PR21003](https://github.com/mantidproject/mantid/pull/21003) - Fix mpl backend for matplotlib >= 2.1.0
