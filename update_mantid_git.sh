@@ -13,6 +13,10 @@ if [ ! `git config --get push.default` ]; then
     git config push.default simple
 fi
 
+# update local git repo - should do nothing on build servers
+git fetch -p
+git rebase -v origin/gh_pages
+
 # update the ticket list
 tools/get_pull_requests.py --repo mantidproject/mantid || exit 1
 
