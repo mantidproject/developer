@@ -14,5 +14,6 @@ Detailed Merges for Oct 23 to 29, 2017
 [on github](https://github.com/mantidproject/mantid/pulls?q=is%3Apr+merged%3A2017-10-24..2017-10-29)
 
 * [PR20957](https://github.com/mantidproject/mantid/pull/20957) - Abins isotopes
+* *new* [PR20970](https://github.com/mantidproject/mantid/pull/20970) - Indirect Diffraction - Invalid parsing of run string containing C:/
 * [PR20982](https://github.com/mantidproject/mantid/pull/20982) - `IFunction::fixAll` fails if there are ties
 * [PR20989](https://github.com/mantidproject/mantid/pull/20989) - Reformat see also sections in sphinx
