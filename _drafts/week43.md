@@ -15,11 +15,16 @@ Detailed Merges for Oct 23 to 29, 2017
 --------------------------------------
 [on github](https://github.com/mantidproject/mantid/pulls?q=is%3Apr+merged%3A2017-10-24..2017-10-29)
 
+* *new* [PR20666](https://github.com/mantidproject/mantid/pull/20666) - Data Processor Refactoring Part 1
 * *new* [PR20668](https://github.com/mantidproject/mantid/pull/20668) - SimpleAPI: an option to control storing on ADS
+* *new* [PR20804](https://github.com/mantidproject/mantid/pull/20804) - NormaliseToMonitor Detector Scan and Single Count Workspaces
 * *new* [PR20878](https://github.com/mantidproject/mantid/pull/20878) - BASISDiffraction: algorithm to ease determination of crystal sample orientation in BASIS
+* *new* [PR20942](https://github.com/mantidproject/mantid/pull/20942) - Integrate parallel event loader
 * [PR20957](https://github.com/mantidproject/mantid/pull/20957) - Abins isotopes
 * *new* [PR20970](https://github.com/mantidproject/mantid/pull/20970) - Indirect Diffraction - Invalid parsing of run string containing C:/
 * [PR20982](https://github.com/mantidproject/mantid/pull/20982) - `IFunction::fixAll` fails if there are ties
 * [PR20989](https://github.com/mantidproject/mantid/pull/20989) - Reformat see also sections in sphinx
 * [PR20998](https://github.com/mantidproject/mantid/pull/20998) - Fix ordering of `Atom` definitions
 * [PR21003](https://github.com/mantidproject/mantid/pull/21003) - Fix mpl backend for matplotlib >= 2.1.0
+* *new* [PR21005](https://github.com/mantidproject/mantid/pull/21005) - Switch to use add_compile_options for gnu compile flags
+* *new* [PR21007](https://github.com/mantidproject/mantid/pull/21007) - Update SwitchToSliceViewer in MultiSlice view to work with nonorthogonal axes.
