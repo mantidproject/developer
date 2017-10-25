@@ -24,6 +24,7 @@ Detailed Merges for Oct 23 to 29, 2017
 * *new* [PR20970](https://github.com/mantidproject/mantid/pull/20970) - Indirect Diffraction - Invalid parsing of run string containing C:/
 * [PR20982](https://github.com/mantidproject/mantid/pull/20982) - `IFunction::fixAll` fails if there are ties
 * [PR20989](https://github.com/mantidproject/mantid/pull/20989) - Reformat see also sections in sphinx
+* *new* [PR20994](https://github.com/mantidproject/mantid/pull/20994) - Re #20992: Buffer Overrun in DataProcessorWidget table when pasting
 * [PR20998](https://github.com/mantidproject/mantid/pull/20998) - Fix ordering of `Atom` definitions
 * [PR21003](https://github.com/mantidproject/mantid/pull/21003) - Fix mpl backend for matplotlib >= 2.1.0
 * *new* [PR21005](https://github.com/mantidproject/mantid/pull/21005) - Switch to use add_compile_options for gnu compile flags
