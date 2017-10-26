@@ -35,3 +35,4 @@ Detailed Merges for Oct 23 to 29, 2017
 * *new* [PR21007](https://github.com/mantidproject/mantid/pull/21007) - Update SwitchToSliceViewer in MultiSlice view to work with nonorthogonal axes.
 * *new* [PR21028](https://github.com/mantidproject/mantid/pull/21028) - Change from std::move to std::forward
 * *new* [PR21030](https://github.com/mantidproject/mantid/pull/21030) - Fix modernize-deprecated-headers warnings
+* *new* [PR21035](https://github.com/mantidproject/mantid/pull/21035) - Fix Qt-header include style
