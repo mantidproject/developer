@@ -14,6 +14,7 @@ if [ ! `git config --get push.default` ]; then
 fi
 
 # update local git repo - should do nothing on build servers
+cd $(dirname $0)
 git fetch -p
 git rebase -v origin/gh_pages
 
