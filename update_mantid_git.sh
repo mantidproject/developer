@@ -16,7 +16,7 @@ fi
 # update local git repo - should do nothing on build servers
 cd $(dirname $0)
 git fetch -p
-git rebase -v origin/gh_pages
+git rebase -v origin/gh-pages
 
 # update the ticket list
 tools/get_pull_requests.py --repo mantidproject/mantid || exit 1
