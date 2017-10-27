@@ -37,3 +37,4 @@ Detailed Merges for Oct 23 to 29, 2017
 * [PR21028](https://github.com/mantidproject/mantid/pull/21028) - Change from `std::move` to `std::forward`
 * [PR21030](https://github.com/mantidproject/mantid/pull/21030) - Fix `modernize-deprecated-headers` warnings
 * [PR21035](https://github.com/mantidproject/mantid/pull/21035) - Fix Qt-header include style
+* *new* [PR21042](https://github.com/mantidproject/mantid/pull/21042) - Use qPrintable & QString::fromInt where appropriate.
