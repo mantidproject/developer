@@ -11,3 +11,4 @@ Detailed Merges for Oct 30 to Nov 5, 2017
 -----------------------------------------
 [on github](https://github.com/mantidproject/mantid/pulls?q=is%3Apr+merged%3A2017-10-31..2017-11-05)
 
+* *new* [PR21012](https://github.com/mantidproject/mantid/pull/21012) - Update the categories of some ILL algorithms
