@@ -14,6 +14,9 @@ Detailed Merges for Oct 30 to Nov 5, 2017
 [on github](https://github.com/mantidproject/mantid/pulls?q=is%3Apr+merged%3A2017-10-31..2017-11-05)
 
 * [PR20927](https://github.com/mantidproject/mantid/pull/20927) - Fixed LoadDialog crash by disabling ok button while updating dialog.
+* *new* [PR20933](https://github.com/mantidproject/mantid/pull/20933) - Indirect - Data Analysis Interfaces - Separate Mini-plot for Difference
+* *new* [PR20950](https://github.com/mantidproject/mantid/pull/20950) - ISIS-Powder POLARIS requirements for next cycle
+* *new* [PR20968](https://github.com/mantidproject/mantid/pull/20968) - Avoid MantidMatrix changing the number display format
 * [PR20973](https://github.com/mantidproject/mantid/pull/20973) - Fixed buffer overrun in MantidPlot Data View.
 * [PR21012](https://github.com/mantidproject/mantid/pull/21012) - Update the categories of some ILL algorithms
 * [PR21013](https://github.com/mantidproject/mantid/pull/21013) - Sans gui beam center finder
