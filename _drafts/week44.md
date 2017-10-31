@@ -18,6 +18,10 @@ Detailed Merges for Oct 30 to Nov 5, 2017
 * *new* [PR20950](https://github.com/mantidproject/mantid/pull/20950) - ISIS-Powder POLARIS requirements for next cycle
 * *new* [PR20968](https://github.com/mantidproject/mantid/pull/20968) - Avoid MantidMatrix changing the number display format
 * [PR20973](https://github.com/mantidproject/mantid/pull/20973) - Fixed buffer overrun in MantidPlot Data View.
+* *new* [PR20980](https://github.com/mantidproject/mantid/pull/20980) - Indirect - ConvFit - Enable Plot Guess for Diffusion Functions
 * [PR21012](https://github.com/mantidproject/mantid/pull/21012) - Update the categories of some ILL algorithms
 * [PR21013](https://github.com/mantidproject/mantid/pull/21013) - Sans gui beam center finder
 * [PR21019](https://github.com/mantidproject/mantid/pull/21019) - Check for input string ISO8601 conformity in DateAndTime
+* *new* [PR21039](https://github.com/mantidproject/mantid/pull/21039) - Fix ISIS SANS GUI failing to find file on UNIX
+* *new* [PR21077](https://github.com/mantidproject/mantid/pull/21077) - SumSpectra cleanup
+* *new* [PR21078](https://github.com/mantidproject/mantid/pull/21078) - Add links to our privacy pollicy
