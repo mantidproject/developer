@@ -20,9 +20,11 @@ Detailed Merges for Oct 30 to Nov 5, 2017
 * *new* [PR20968](https://github.com/mantidproject/mantid/pull/20968) - Avoid MantidMatrix changing the number display format
 * [PR20973](https://github.com/mantidproject/mantid/pull/20973) - Fixed buffer overrun in MantidPlot Data View.
 * *new* [PR20980](https://github.com/mantidproject/mantid/pull/20980) - Indirect - ConvFit - Enable Plot Guess for Diffusion Functions
+* *new* [PR20993](https://github.com/mantidproject/mantid/pull/20993) - Made "No RB number" warning more user friendly in Eng Diff GUI
 * [PR21012](https://github.com/mantidproject/mantid/pull/21012) - Update the categories of some ILL algorithms
 * [PR21013](https://github.com/mantidproject/mantid/pull/21013) - Sans gui beam center finder
 * [PR21019](https://github.com/mantidproject/mantid/pull/21019) - Check for input string ISO8601 conformity in DateAndTime
+* *new* [PR21029](https://github.com/mantidproject/mantid/pull/21029) - Abins: Fix order of isotopes.
 * *new* [PR21039](https://github.com/mantidproject/mantid/pull/21039) - Fix ISIS SANS GUI failing to find file on UNIX
 * *new* [PR21066](https://github.com/mantidproject/mantid/pull/21066) - ISIS SANS gui does not use q ranges when fitting merged data if they are specified
 * *new* [PR21067](https://github.com/mantidproject/mantid/pull/21067) - Enabled progress reporting in Engineering Diffraction GUI
