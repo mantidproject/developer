@@ -24,5 +24,11 @@ Detailed Merges for Oct 30 to Nov 5, 2017
 * [PR21013](https://github.com/mantidproject/mantid/pull/21013) - Sans gui beam center finder
 * [PR21019](https://github.com/mantidproject/mantid/pull/21019) - Check for input string ISO8601 conformity in DateAndTime
 * *new* [PR21039](https://github.com/mantidproject/mantid/pull/21039) - Fix ISIS SANS GUI failing to find file on UNIX
+* *new* [PR21066](https://github.com/mantidproject/mantid/pull/21066) - ISIS SANS gui does not use q ranges when fitting merged data if they are specified
+* *new* [PR21067](https://github.com/mantidproject/mantid/pull/21067) - Enabled progress reporting in Engineering Diffraction GUI
+* *new* [PR21071](https://github.com/mantidproject/mantid/pull/21071) - Sample Transmission Calculator - Do not allow negative wavelengths in the spin boxes
 * *new* [PR21077](https://github.com/mantidproject/mantid/pull/21077) - SumSpectra cleanup
 * *new* [PR21078](https://github.com/mantidproject/mantid/pull/21078) - Add links to our privacy pollicy
+* *new* [PR21090](https://github.com/mantidproject/mantid/pull/21090) - Fix crash in peaks viewer when deleting workspaces
+* *new* [PR21093](https://github.com/mantidproject/mantid/pull/21093) - Fix *IsoRotDiff doc-tests for scipy 1.0.0
+* *new* [PR21100](https://github.com/mantidproject/mantid/pull/21100) - Fix crash in slice viewer when replacing overlaid peaks workspace.
