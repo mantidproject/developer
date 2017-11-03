@@ -10,6 +10,8 @@ Updates for Week 44 of 2017
 * New gui beam center finder for ISIS SANS
 * Direct Convert to Energy interface was removed
 * [PDCalibration]({{ site.docpage }}/algorithms/PDCalibration.html) creates an observed resolution workspace
+* [ConjoinWorkspaces]({{ site.docpage }}/algorithms/ConjoinWorkspaces.html) now supports non-constant bins
+* Additional options for what to filter with [FilterPeaks]({{ site.docpage }}/algorithms/FilterPeaks.html)
 
 Detailed Merges for Oct 30 to Nov 5, 2017
 -----------------------------------------
@@ -17,13 +19,13 @@ Detailed Merges for Oct 30 to Nov 5, 2017
 
 * *new* [PR20907](https://github.com/mantidproject/mantid/pull/20907) - Running muon and neutron data in fit benchmarking
 * [PR20927](https://github.com/mantidproject/mantid/pull/20927) - Fixed LoadDialog crash by disabling ok button while updating dialog.
-* *new* [PR20931](https://github.com/mantidproject/mantid/pull/20931) - Add additional options to [FilterPeaks]({{ site.docpage }}/algorithms/FilterPeaks.html)
+* [PR20931](https://github.com/mantidproject/mantid/pull/20931) - Add additional options to [FilterPeaks]({{ site.docpage }}/algorithms/FilterPeaks.html)
 * *new* [PR20933](https://github.com/mantidproject/mantid/pull/20933) - Indirect - Data Analysis Interfaces - Separate Mini-plot for Difference
 * *new* [PR20950](https://github.com/mantidproject/mantid/pull/20950) - ISIS-Powder POLARIS requirements for next cycle
 * *new* [PR20968](https://github.com/mantidproject/mantid/pull/20968) - Avoid MantidMatrix changing the number display format
 * [PR20973](https://github.com/mantidproject/mantid/pull/20973) - Fixed buffer overrun in MantidPlot Data View.
 * *new* [PR20980](https://github.com/mantidproject/mantid/pull/20980) - Indirect - ConvFit - Enable Plot Guess for Diffusion Functions
-* *new* [PR20984](https://github.com/mantidproject/mantid/pull/20984) - Add support for non-constant bins to ConjoinWorkspaces
+* [PR20984](https://github.com/mantidproject/mantid/pull/20984) - Add support for non-constant bins to [ConjoinWorkspaces]({{ site.docpage }}/algorithms/ConjoinWorkspaces.html)
 * *new* [PR20993](https://github.com/mantidproject/mantid/pull/20993) - Made "No RB number" warning more user friendly in Eng Diff GUI
 * [PR21012](https://github.com/mantidproject/mantid/pull/21012) - Update the categories of some ILL algorithms
 * [PR21013](https://github.com/mantidproject/mantid/pull/21013) - Sans gui beam center finder
