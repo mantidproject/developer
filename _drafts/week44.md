@@ -27,6 +27,7 @@ Detailed Merges for Oct 30 to Nov 5, 2017
 * [PR21019](https://github.com/mantidproject/mantid/pull/21019) - Check for input string ISO8601 conformity in DateAndTime
 * *new* [PR21029](https://github.com/mantidproject/mantid/pull/21029) - Abins: Fix order of isotopes.
 * *new* [PR21031](https://github.com/mantidproject/mantid/pull/21031) - EstimateResolutionDiffraction documentation
+* *new* [PR21033](https://github.com/mantidproject/mantid/pull/21033) - Re #21011 Fix missaligned ticks on 2D plots
 * *new* [PR21039](https://github.com/mantidproject/mantid/pull/21039) - Fix ISIS SANS GUI failing to find file on UNIX
 * *new* [PR21066](https://github.com/mantidproject/mantid/pull/21066) - ISIS SANS gui does not use q ranges when fitting merged data if they are specified
 * *new* [PR21067](https://github.com/mantidproject/mantid/pull/21067) - Enabled progress reporting in Engineering Diffraction GUI
@@ -34,8 +35,10 @@ Detailed Merges for Oct 30 to Nov 5, 2017
 * [PR21077](https://github.com/mantidproject/mantid/pull/21077) - [SumSpectra]({{ site.docpage }}/algorithms/SumSpectra.html) cleanup
 * *new* [PR21078](https://github.com/mantidproject/mantid/pull/21078) - Add links to our privacy pollicy
 * *new* [PR21086](https://github.com/mantidproject/mantid/pull/21086) - Use generator expressions in pyunittest_add_test
+* *new* [PR21089](https://github.com/mantidproject/mantid/pull/21089) - Use IArchiveSearch more selectively
 * *new* [PR21090](https://github.com/mantidproject/mantid/pull/21090) - Fix crash in peaks viewer when deleting workspaces
 * *new* [PR21093](https://github.com/mantidproject/mantid/pull/21093) - Fix *IsoRotDiff doc-tests for scipy 1.0.0
 * *new* [PR21095](https://github.com/mantidproject/mantid/pull/21095) - Remove the direct c2e interface
 * *new* [PR21098](https://github.com/mantidproject/mantid/pull/21098) - Switch default package suffix to unstable for Linuxes
 * *new* [PR21100](https://github.com/mantidproject/mantid/pull/21100) - Fix crash in slice viewer when replacing overlaid peaks workspace.
+* *new* [PR21112](https://github.com/mantidproject/mantid/pull/21112) - Remove unused class after deleting Direct C2E interface
