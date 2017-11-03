@@ -49,4 +49,5 @@ Detailed Merges for Oct 30 to Nov 5, 2017
 * [PR21098](https://github.com/mantidproject/mantid/pull/21098) - Switch default package suffix to unstable for Linuxes
 * *new* [PR21100](https://github.com/mantidproject/mantid/pull/21100) - Fix crash in slice viewer when replacing overlaid peaks workspace.
 * *new* [PR21112](https://github.com/mantidproject/mantid/pull/21112) - Remove unused class after deleting Direct C2E interface
+* *new* [PR21114](https://github.com/mantidproject/mantid/pull/21114) - Load new D2B NeXus files
 * [PR21117](https://github.com/mantidproject/mantid/pull/21117) - [PDCalibration]({{ site.docpage }}/algorithms/PDCalibration.html) resolution
