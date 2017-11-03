@@ -25,6 +25,7 @@ Detailed Merges for Oct 30 to Nov 5, 2017
 * [PR21012](https://github.com/mantidproject/mantid/pull/21012) - Update the categories of some ILL algorithms
 * [PR21013](https://github.com/mantidproject/mantid/pull/21013) - Sans gui beam center finder
 * [PR21019](https://github.com/mantidproject/mantid/pull/21019) - Check for input string ISO8601 conformity in DateAndTime
+* *new* [PR21021](https://github.com/mantidproject/mantid/pull/21021) - Correctly handle units in parallel event loader
 * *new* [PR21029](https://github.com/mantidproject/mantid/pull/21029) - Abins: Fix order of isotopes.
 * *new* [PR21031](https://github.com/mantidproject/mantid/pull/21031) - EstimateResolutionDiffraction documentation
 * *new* [PR21033](https://github.com/mantidproject/mantid/pull/21033) - Re #21011 Fix missaligned ticks on 2D plots
