@@ -33,7 +33,9 @@ Detailed Merges for Oct 30 to Nov 5, 2017
 * *new* [PR21071](https://github.com/mantidproject/mantid/pull/21071) - Sample Transmission Calculator - Do not allow negative wavelengths in the spin boxes
 * [PR21077](https://github.com/mantidproject/mantid/pull/21077) - [SumSpectra]({{ site.docpage }}/algorithms/SumSpectra.html) cleanup
 * *new* [PR21078](https://github.com/mantidproject/mantid/pull/21078) - Add links to our privacy pollicy
+* *new* [PR21086](https://github.com/mantidproject/mantid/pull/21086) - Use generator expressions in pyunittest_add_test
 * *new* [PR21090](https://github.com/mantidproject/mantid/pull/21090) - Fix crash in peaks viewer when deleting workspaces
 * *new* [PR21093](https://github.com/mantidproject/mantid/pull/21093) - Fix *IsoRotDiff doc-tests for scipy 1.0.0
 * *new* [PR21095](https://github.com/mantidproject/mantid/pull/21095) - Remove the direct c2e interface
+* *new* [PR21098](https://github.com/mantidproject/mantid/pull/21098) - Switch default package suffix to unstable for Linuxes
 * *new* [PR21100](https://github.com/mantidproject/mantid/pull/21100) - Fix crash in slice viewer when replacing overlaid peaks workspace.
