@@ -13,6 +13,7 @@ Detailed Merges for Oct 30 to Nov 5, 2017
 -----------------------------------------
 [on github](https://github.com/mantidproject/mantid/pulls?q=is%3Apr+merged%3A2017-10-31..2017-11-05)
 
+* *new* [PR20907](https://github.com/mantidproject/mantid/pull/20907) - Running muon and neutron data in fit benchmarking
 * [PR20927](https://github.com/mantidproject/mantid/pull/20927) - Fixed LoadDialog crash by disabling ok button while updating dialog.
 * *new* [PR20931](https://github.com/mantidproject/mantid/pull/20931) - Add additional options to [FilterPeaks]({{ site.docpage }}/algorithms/FilterPeaks.html)
 * *new* [PR20933](https://github.com/mantidproject/mantid/pull/20933) - Indirect - Data Analysis Interfaces - Separate Mini-plot for Difference
@@ -38,8 +39,10 @@ Detailed Merges for Oct 30 to Nov 5, 2017
 * *new* [PR21086](https://github.com/mantidproject/mantid/pull/21086) - Use generator expressions in pyunittest_add_test
 * *new* [PR21089](https://github.com/mantidproject/mantid/pull/21089) - Use IArchiveSearch more selectively
 * *new* [PR21090](https://github.com/mantidproject/mantid/pull/21090) - Fix crash in peaks viewer when deleting workspaces
+* *new* [PR21091](https://github.com/mantidproject/mantid/pull/21091) - setAttributeValue resets parameters of polynomial functions
 * *new* [PR21093](https://github.com/mantidproject/mantid/pull/21093) - Fix *IsoRotDiff doc-tests for scipy 1.0.0
 * *new* [PR21095](https://github.com/mantidproject/mantid/pull/21095) - Remove the direct c2e interface
 * *new* [PR21098](https://github.com/mantidproject/mantid/pull/21098) - Switch default package suffix to unstable for Linuxes
 * *new* [PR21100](https://github.com/mantidproject/mantid/pull/21100) - Fix crash in slice viewer when replacing overlaid peaks workspace.
 * *new* [PR21112](https://github.com/mantidproject/mantid/pull/21112) - Remove unused class after deleting Direct C2E interface
+* *new* [PR21117](https://github.com/mantidproject/mantid/pull/21117) - PDCalibration resolution
