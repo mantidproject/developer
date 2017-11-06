@@ -11,3 +11,5 @@ Detailed Merges for Nov 6 to 12, 2017
 -------------------------------------
 [on github](https://github.com/mantidproject/mantid/pulls?q=is%3Apr+merged%3A2017-11-07..2017-11-12)
 
+* *new* [PR21105](https://github.com/mantidproject/mantid/pull/21105) - Bug in MultidomainFunction python wrapper
+* *new* [PR21119](https://github.com/mantidproject/mantid/pull/21119) - Added option for background shell for IntegratePeaksMDHKL
