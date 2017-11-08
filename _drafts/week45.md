@@ -14,6 +14,7 @@ Detailed Merges for Nov 6 to 12, 2017
 
 * *new* [PR20995](https://github.com/mantidproject/mantid/pull/20995) - Indirect - Container Subtraction - Allow for workspaces in non-wavelength units
 * *new* [PR21001](https://github.com/mantidproject/mantid/pull/21001) - Indirect - VESUVIO - Allow pre-loaded sample and container workspaces to be passed to fit_tof
+* *new* [PR21073](https://github.com/mantidproject/mantid/pull/21073) - Reorganise Qt cmake code
 * *new* [PR21105](https://github.com/mantidproject/mantid/pull/21105) - Bug in MultidomainFunction python wrapper
 * *new* [PR21119](https://github.com/mantidproject/mantid/pull/21119) - Added option for background shell for IntegratePeaksMDHKL
 * [PR21125](https://github.com/mantidproject/mantid/pull/21125) - New TOPAZ IDF for Nov 2017
