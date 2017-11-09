@@ -23,3 +23,4 @@ Detailed Merges for Nov 6 to 12, 2017
 * [PR21119](https://github.com/mantidproject/mantid/pull/21119) - Added option for background shell for [IntegratePeaksMDHKL]({{ site.docpage }}/algorithms/IntegratePeaksMDHKL.html)
 * [PR21125](https://github.com/mantidproject/mantid/pull/21125) - New TOPAZ IDF for Nov 2017
 * [PR21127](https://github.com/mantidproject/mantid/pull/21127) - Fix typo
+* *new* [PR21158](https://github.com/mantidproject/mantid/pull/21158) - Fix GUI test builds with Makefile generator
