@@ -6,7 +6,10 @@ title: Updates Week 45 of 2017
 ---
 Updates for Week 45 of 2017
 ---------------------------
+* Reorganised Qt cmake code
 * New TOPAZ instrument geometry for Nov 2017
+* Additional option for background shell for [IntegratePeaksMDHKL]({{ site.docpage }}/algorithms/IntegratePeaksMDHKL.html)
+* Bugfix in `MultidomainFunction` python wrapper
 
 Detailed Merges for Nov 6 to 12, 2017
 -------------------------------------
@@ -14,9 +17,9 @@ Detailed Merges for Nov 6 to 12, 2017
 
 * *new* [PR20995](https://github.com/mantidproject/mantid/pull/20995) - Indirect - Container Subtraction - Allow for workspaces in non-wavelength units
 * *new* [PR21001](https://github.com/mantidproject/mantid/pull/21001) - Indirect - VESUVIO - Allow pre-loaded sample and container workspaces to be passed to fit_tof
-* *new* [PR21073](https://github.com/mantidproject/mantid/pull/21073) - Reorganise Qt cmake code
-* *new* [PR21083](https://github.com/mantidproject/mantid/pull/21083) - Trust region code cleanup
-* *new* [PR21105](https://github.com/mantidproject/mantid/pull/21105) - Bug in MultidomainFunction python wrapper
-* *new* [PR21119](https://github.com/mantidproject/mantid/pull/21119) - Added option for background shell for IntegratePeaksMDHKL
+* [PR21073](https://github.com/mantidproject/mantid/pull/21073) - Reorganise Qt cmake code
+* [PR21083](https://github.com/mantidproject/mantid/pull/21083) - Trust region code cleanup
+* [PR21105](https://github.com/mantidproject/mantid/pull/21105) - Bug in MultidomainFunction python wrapper
+* [PR21119](https://github.com/mantidproject/mantid/pull/21119) - Added option for background shell for [IntegratePeaksMDHKL]({{ site.docpage }}/algorithms/IntegratePeaksMDHKL.html)
 * [PR21125](https://github.com/mantidproject/mantid/pull/21125) - New TOPAZ IDF for Nov 2017
-* *new* [PR21127](https://github.com/mantidproject/mantid/pull/21127) - Fix typo
+* [PR21127](https://github.com/mantidproject/mantid/pull/21127) - Fix typo
