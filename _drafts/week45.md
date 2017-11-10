@@ -15,6 +15,7 @@ Detailed Merges for Nov 6 to 12, 2017
 -------------------------------------
 [on github](https://github.com/mantidproject/mantid/pulls?q=is%3Apr+merged%3A2017-11-07..2017-11-12)
 
+* *new* [PR20945](https://github.com/mantidproject/mantid/pull/20945) - ISIS_Powder PEARL create_vanadium giving incorrect data
 * *new* [PR20995](https://github.com/mantidproject/mantid/pull/20995) - Indirect - Container Subtraction - Allow for workspaces in non-wavelength units
 * *new* [PR21001](https://github.com/mantidproject/mantid/pull/21001) - Indirect - VESUVIO - Allow pre-loaded sample and container workspaces to be passed to fit_tof
 * [PR21073](https://github.com/mantidproject/mantid/pull/21073) - Reorganise Qt cmake code
@@ -23,4 +24,6 @@ Detailed Merges for Nov 6 to 12, 2017
 * [PR21119](https://github.com/mantidproject/mantid/pull/21119) - Added option for background shell for [IntegratePeaksMDHKL]({{ site.docpage }}/algorithms/IntegratePeaksMDHKL.html)
 * [PR21125](https://github.com/mantidproject/mantid/pull/21125) - New TOPAZ IDF for Nov 2017
 * [PR21127](https://github.com/mantidproject/mantid/pull/21127) - Fix typo
+* *new* [PR21140](https://github.com/mantidproject/mantid/pull/21140) - Fixed up some issues in ISIS Powder tutorial
+* *new* [PR21144](https://github.com/mantidproject/mantid/pull/21144) - Enabled config file in ISIS Powder scripts HRPD
 * *new* [PR21158](https://github.com/mantidproject/mantid/pull/21158) - Fix GUI test builds with Makefile generator
