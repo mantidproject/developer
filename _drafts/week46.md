@@ -11,4 +11,6 @@ Detailed Merges for Nov 13 to 19, 2017
 --------------------------------------
 [on github](https://github.com/mantidproject/mantid/pulls?q=is%3Apr+merged%3A2017-11-14..2017-11-19)
 
+* *new* [PR20981](https://github.com/mantidproject/mantid/pull/20981) - Indirect - MSDFit Interface - Add Plot Guess feature
+* *new* [PR21018](https://github.com/mantidproject/mantid/pull/21018) - Automatic calibration creation in ISIS_Powder PEARL scripts
 * *new* [PR21165](https://github.com/mantidproject/mantid/pull/21165) - Fix packaging of Vates/ParaView plugins on OSX

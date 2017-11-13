@@ -32,5 +32,6 @@ Detailed Merges for Nov 6 to 12, 2017
 * *new* [PR21151](https://github.com/mantidproject/mantid/pull/21151) - Adds a cmake function to create targets for sip-based exports
 * *new* [PR21153](https://github.com/mantidproject/mantid/pull/21153) - Histogram slicing
 * *new* [PR21158](https://github.com/mantidproject/mantid/pull/21158) - Fix GUI test builds with Makefile generator
+* *new* [PR21160](https://github.com/mantidproject/mantid/pull/21160) - Fix package names for Windows/OSX on builders
 * *new* [PR21161](https://github.com/mantidproject/mantid/pull/21161) - Change from setting PYTHONPATH to using .pth files
 * *new* [PR21163](https://github.com/mantidproject/mantid/pull/21163) - Use correct length from MatrixWorkspace in RefAxis.
