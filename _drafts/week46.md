@@ -15,3 +15,4 @@ Detailed Merges for Nov 13 to 19, 2017
 * *new* [PR21018](https://github.com/mantidproject/mantid/pull/21018) - Automatic calibration creation in ISIS_Powder PEARL scripts
 * *new* [PR21165](https://github.com/mantidproject/mantid/pull/21165) - Fix packaging of Vates/ParaView plugins on OSX
 * *new* [PR21169](https://github.com/mantidproject/mantid/pull/21169) - One trust region minimizer using DTRS method
+* *new* [PR21186](https://github.com/mantidproject/mantid/pull/21186) - SEQ new idf
