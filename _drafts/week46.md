@@ -20,3 +20,4 @@ Detailed Merges for Nov 13 to 19, 2017
 * *new* [PR21169](https://github.com/mantidproject/mantid/pull/21169) - One trust region minimizer using DTRS method
 * *new* [PR21170](https://github.com/mantidproject/mantid/pull/21170) - Refactor CropToComponent to use the new instrument API
 * *new* [PR21186](https://github.com/mantidproject/mantid/pull/21186) - SEQ new idf
+* *new* [PR21200](https://github.com/mantidproject/mantid/pull/21200) - Fix FakeISISEventDAE for poco 1.8.0
