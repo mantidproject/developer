@@ -13,7 +13,10 @@ Detailed Merges for Nov 13 to 19, 2017
 
 * *new* [PR20906](https://github.com/mantidproject/mantid/pull/20906) - Re #20875: Modified HintingLineEdit to use normal text colour.
 * *new* [PR20981](https://github.com/mantidproject/mantid/pull/20981) - Indirect - MSDFit Interface - Add Plot Guess feature
+* *new* [PR20996](https://github.com/mantidproject/mantid/pull/20996) - Parallel event loader
 * *new* [PR21018](https://github.com/mantidproject/mantid/pull/21018) - Automatic calibration creation in ISIS_Powder PEARL scripts
+* *new* [PR21111](https://github.com/mantidproject/mantid/pull/21111) - Port some algorithms for MPI
+* *new* [PR21118](https://github.com/mantidproject/mantid/pull/21118) - Remove crash in debug build in LoadISISNexus
 * *new* [PR21164](https://github.com/mantidproject/mantid/pull/21164) - Engineering Diffraction GUI can load and plot multiple runs
 * *new* [PR21165](https://github.com/mantidproject/mantid/pull/21165) - Fix packaging of Vates/ParaView plugins on OSX
 * *new* [PR21166](https://github.com/mantidproject/mantid/pull/21166) - Cleanup Run sharing in ExperimentInfo
