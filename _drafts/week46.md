@@ -35,3 +35,4 @@ Detailed Merges for Nov 13 to 19, 2017
 * *new* [PR21179](https://github.com/mantidproject/mantid/pull/21179) - BASISReduction: exclude one time period from the reduction
 * [PR21186](https://github.com/mantidproject/mantid/pull/21186) - SEQ new idf
 * [PR21200](https://github.com/mantidproject/mantid/pull/21200) - Fix FakeISISEventDAE for poco 1.8.0
+* *new* [PR21203](https://github.com/mantidproject/mantid/pull/21203) - Upgrade UI and preprocessing for HB3A
