@@ -26,6 +26,7 @@ Detailed Merges for Nov 13 to 19, 2017
 * [PR21118](https://github.com/mantidproject/mantid/pull/21118) - Remove crash in debug build in [LoadISISNexus]({{ site.docpage }}/algorithms/LoadISISNexus.html)
 * [PR21139](https://github.com/mantidproject/mantid/pull/21139) - Removed the "Test the Curve Fit widget" interface
 * [PR21152](https://github.com/mantidproject/mantid/pull/21152) - Create basic mantidqt package layout
+* *new* [PR21155](https://github.com/mantidproject/mantid/pull/21155) - Refactor ExtractSpectra to add MPI support
 * *new* [PR21164](https://github.com/mantidproject/mantid/pull/21164) - Engineering Diffraction GUI can load and plot multiple runs
 * [PR21165](https://github.com/mantidproject/mantid/pull/21165) - Fix packaging of Vates/ParaView plugins on OSX
 * [PR21166](https://github.com/mantidproject/mantid/pull/21166) - Cleanup `Run` sharing in `ExperimentInfo`
