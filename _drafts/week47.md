@@ -16,6 +16,8 @@ Detailed Merges for Nov 20 to 26, 2017
 * [PR20606](https://github.com/mantidproject/mantid/pull/20606) - provide a user file column in the data table
 * [PR20930](https://github.com/mantidproject/mantid/pull/20930) - Adjust [MonitorEfficiencyCorUser]({{ site.docpage }}/algorithms/MonitorEfficiencyCorUser.html) for other instruments
 * [PR20966](https://github.com/mantidproject/mantid/pull/20966) - [GSASIIRefineFitPeaks]({{ site.docpage }}/algorithms/GSASIIRefineFitPeaks.html) reintegrated with latest version of GSAS-II
+* *new* [PR21016](https://github.com/mantidproject/mantid/pull/21016) - Re #20903 Output both workspaces for both reduction
+* *new* [PR21026](https://github.com/mantidproject/mantid/pull/21026) - ISIS SANS: Provide diagnostic output, ie put the transmission workspaces
 * [PR21131](https://github.com/mantidproject/mantid/pull/21131) - Add support for iterating over a `Histogram`
 * *new* [PR21174](https://github.com/mantidproject/mantid/pull/21174) - Output multidataset fit parameters in columns
 * [PR21190](https://github.com/mantidproject/mantid/pull/21190) - Indirect - Data Analysis Interfaces - Decrease Size of Difference Preview Plot
