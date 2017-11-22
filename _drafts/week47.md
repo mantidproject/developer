@@ -23,4 +23,6 @@ Detailed Merges for Nov 20 to 26, 2017
 * [PR21190](https://github.com/mantidproject/mantid/pull/21190) - Indirect - Data Analysis Interfaces - Decrease Size of Difference Preview Plot
 * *new* [PR21191](https://github.com/mantidproject/mantid/pull/21191) - CentroidPeaksMD is not showing up on algs list
 * *new* [PR21197](https://github.com/mantidproject/mantid/pull/21197) - ISIS Powder HRPD extra TOF windows
+* *new* [PR21202](https://github.com/mantidproject/mantid/pull/21202) - Added suffix in Merged or All reduction
+* *new* [PR21206](https://github.com/mantidproject/mantid/pull/21206) - (OSIRIS) Diffraction Reduction - Remove Manual D-Ranges and fully automate
 * [PR21220](https://github.com/mantidproject/mantid/pull/21220) - Import mantid in `testhelper.testrunner`
