@@ -8,6 +8,7 @@ Updates for Week 47 of 2017
 ---------------------------
 * Iterating over a `Histogram` is now supported in c++
 * `testhelper.testrunner` now does `import mantid`
+* [SaveGSS]({{ site.docpage }}/algorithms/SaveGSS.html) modified to support ILL
 
 Detailed Merges for Nov 20 to 26, 2017
 --------------------------------------
@@ -15,9 +16,9 @@ Detailed Merges for Nov 20 to 26, 2017
 
 * [PR20606](https://github.com/mantidproject/mantid/pull/20606) - provide a user file column in the data table
 * [PR20930](https://github.com/mantidproject/mantid/pull/20930) - Adjust [MonitorEfficiencyCorUser]({{ site.docpage }}/algorithms/MonitorEfficiencyCorUser.html) for other instruments
-* *new* [PR20951](https://github.com/mantidproject/mantid/pull/20951) - `SaveFocusedXYE` to write TEMP into the header
+* [PR20951](https://github.com/mantidproject/mantid/pull/20951) - [SaveFocusedXYE]({{ site.docpage }}/algorithms/SaveFocusedXYE.html) to write temperature (`TEMP`) into the header
 * [PR20966](https://github.com/mantidproject/mantid/pull/20966) - [GSASIIRefineFitPeaks]({{ site.docpage }}/algorithms/GSASIIRefineFitPeaks.html) reintegrated with latest version of GSAS-II
-* *new* [PR20999](https://github.com/mantidproject/mantid/pull/20999) - [SaveGSS]({{ site.docpage }}/algorithms/SaveGSS.html) generalisation
+* [PR20999](https://github.com/mantidproject/mantid/pull/20999) - [SaveGSS]({{ site.docpage }}/algorithms/SaveGSS.html) generalisation
 * *new* [PR21016](https://github.com/mantidproject/mantid/pull/21016) - Re #20903 Output both workspaces for both reduction
 * *new* [PR21026](https://github.com/mantidproject/mantid/pull/21026) - ISIS SANS: Provide diagnostic output, ie put the transmission workspaces
 * *new* [PR21107](https://github.com/mantidproject/mantid/pull/21107) - Allow user to manually specify merge point
