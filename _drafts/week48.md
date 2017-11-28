@@ -18,3 +18,4 @@ Detailed Merges for Nov 27 to Dec 3, 2017
 * *new* [PR21250](https://github.com/mantidproject/mantid/pull/21250) - Add workaround for symbol visiblity issue with boost python 1.64/1.65
 * *new* [PR21258](https://github.com/mantidproject/mantid/pull/21258) - Polaris set sample material
 * *new* [PR21266](https://github.com/mantidproject/mantid/pull/21266) - BASISReduction: check for existence of splitted temporary workspaces
+* *new* [PR21270](https://github.com/mantidproject/mantid/pull/21270) - mcstas concept page
