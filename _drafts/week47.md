@@ -12,6 +12,8 @@ Updates for Week 47 of 2017
 * [CompressEvents]({{ site.docpage }}/algorithms/CompressEvents.html) now supports wall-clock time tolerance
 * [SaveGSS]({{ site.docpage }}/algorithms/SaveGSS.html) modified to support ILL
 * Various bugfixes and improvements (diagnostic workspaces) to ISIS SANS reduction
+* `MultiDatasetFit` interface outputs parameters into columns to make easier plotting
+* HRPD has been added to the `isis_powder` python library
 
 Detailed Merges for Nov 20 to 26, 2017
 --------------------------------------
@@ -27,16 +29,16 @@ Detailed Merges for Nov 20 to 26, 2017
 * [PR21107](https://github.com/mantidproject/mantid/pull/21107) - Allow user to manually specify merge point
 * [PR21131](https://github.com/mantidproject/mantid/pull/21131) - Add support for iterating over a `Histogram`
 * [PR21136](https://github.com/mantidproject/mantid/pull/21136) - Correct handling of user angle and TOF delay in [LoadILLReflectometry]({{ site.docpage }}/algorithms/LoadILLReflectometry.html)
-* *new* [PR21174](https://github.com/mantidproject/mantid/pull/21174) - Output multidataset fit parameters in columns
+* [PR21174](https://github.com/mantidproject/mantid/pull/21174) - Output multidataset fit parameters in columns
 * [PR21190](https://github.com/mantidproject/mantid/pull/21190) - Indirect - Data Analysis Interfaces - Decrease Size of Difference Preview Plot
 * [PR21191](https://github.com/mantidproject/mantid/pull/21191) - [CentroidPeaksMD]({{ site.docpage }}/algorithms/CentroidPeaksMD.html) is not showing up on algs list in user docs
-* *new* [PR21197](https://github.com/mantidproject/mantid/pull/21197) - ISIS Powder HRPD extra TOF windows
+* [PR21197](https://github.com/mantidproject/mantid/pull/21197) - ISIS Powder HRPD extra TOF windows
 * [PR21201](https://github.com/mantidproject/mantid/pull/21201) - Compress weighted events
-* *new* [PR21202](https://github.com/mantidproject/mantid/pull/21202) - Added suffix in Merged or All reduction
+* [PR21202](https://github.com/mantidproject/mantid/pull/21202) - Added suffix in Merged or All reduction
 * [PR21205](https://github.com/mantidproject/mantid/pull/21205) - Intial layout and startup scripts for `workbench` package
-* *new* [PR21206](https://github.com/mantidproject/mantid/pull/21206) - (OSIRIS) Diffraction Reduction - Remove Manual D-Ranges and fully automate
+* [PR21206](https://github.com/mantidproject/mantid/pull/21206) - (OSIRIS) Diffraction Reduction - Remove Manual D-Ranges and fully automate
 * [PR21220](https://github.com/mantidproject/mantid/pull/21220) - Import mantid in `testhelper.testrunner`
 * [PR21232](https://github.com/mantidproject/mantid/pull/21232) - Suppress `clang-tidy` for generated code
 * [PR21234](https://github.com/mantidproject/mantid/pull/21234) - Use fixed Windows SDK Version on builders
-* *new* [PR21240](https://github.com/mantidproject/mantid/pull/21240) - Fix not being unfixed
+* [PR21240](https://github.com/mantidproject/mantid/pull/21240) - Fix not being unfixed
 * [PR21249](https://github.com/mantidproject/mantid/pull/21249) - "Provide Manage Directories button"
