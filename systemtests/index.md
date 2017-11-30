@@ -21,8 +21,8 @@ Failed
 
 | Test                | osx | rhel6 | rhel7 | ubuntu | win7 |
 |---------------------|-----|-------|-------|--------|------|
-| CreateVanadiumTest  |  x  |       |       |        |   x  | 
-| FocusTest           |  x  |       |       |        |   x  | 
+| CreateVanadiumTest  |  x  |       |       |        |      | 
+| FocusTest           |  x  |       |       |        |      | 
 
 Skipped
 -------
