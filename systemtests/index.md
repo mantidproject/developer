@@ -1,16 +1,16 @@
 ---
 layout: default
-date: 2017-11-30
+date: 2017-12-01
 author: Peter Peterson
 title: Currently Skipped System Tests
 ---
 Summary
 =======
-* Job    : [Master Pipeline](http://builds.mantidproject.org/view/Master%20Pipeline/)2017-11-30
+* Job    : [Master Pipeline](http://builds.mantidproject.org/view/Master%20Pipeline/)2017-12-01
 * Labels : osx, rhel6, rhel7, ubuntu, win7
-* Failed : 0(2 unique)
-* Skipped: 28(43 unique)
-* Total  : 2006
+* Failed : 0(3 unique)
+* Skipped: 27(43 unique)
+* Total  : 2009
 (= 401 * 5)
 
 Details
@@ -19,10 +19,11 @@ Details
 Failed
 ------
 
-| Test                | osx | rhel6 | rhel7 | ubuntu | win7 |
-|---------------------|-----|-------|-------|--------|------|
-| CreateVanadiumTest  |  x  |       |       |        |      | 
-| FocusTest           |  x  |       |       |        |      | 
+| Test                    | osx | rhel6 | rhel7 | ubuntu | win7 |
+|-------------------------|-----|-------|-------|--------|------|
+| CreateVanadiumTest      |  x  |       |       |        |      | 
+| CrystalDiffractionTest  |     |       |       |        |   x  | 
+| FocusTest               |  x  |       |       |        |      | 
 
 Skipped
 -------
@@ -36,7 +37,6 @@ Skipped
 | SNAP_short                             |  x  |   x   |   x   |    x   |   x  | 
 | SNAP_short_detcal                      |  x  |   x   |   x   |    x   |   x  | 
 | FittingBenchmarks                      |  x  |       |   x   |    x   |   x  | 
-| OrientedSampleTest                     |  x  |       |   x   |    x   |   x  | 
 | PVPythonTest                           |  x  |       |   x   |    x   |   x  | 
 | QLDataTest                             |  x  |   x   |   x   |    x   |      | 
 | QLResNormTest                          |  x  |   x   |   x   |    x   |      | 
@@ -72,3 +72,4 @@ Skipped
 | ISISPowderDiffractionPol               |     |   x   |       |        |      | 
 | ISISPowderDiffractionPol2              |     |   x   |       |        |      | 
 | ISISPowderDiffractionPol3              |     |   x   |       |        |      | 
+| OrientedSampleTest                     |  x  |       |       |        |      | 
