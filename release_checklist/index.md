@@ -68,6 +68,7 @@ will have to be changed
 **Task Priorities**: Blocker bug fixes, Testing, Release Presentation preparation, Release Notes, Next release development.
 
 ### Beta Test Open
+* Before sending an email to users, ensure that the Usage data .zip file containing usage data is up-to-date. This is done by downloading the current .zip from sourceforge, adding any missing files, and resending it. 
 * Send an email to beta test users explaining where to download the
   installers and how to report issues.
 * Developers to arrange to meet with their beta testers.
