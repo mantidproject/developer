@@ -35,3 +35,4 @@ Detailed Merges for Dec 4 to 10, 2017
 * *new* [PR21366](https://github.com/mantidproject/mantid/pull/21366) - isis_powder - add beam parameters
 * *new* [PR21368](https://github.com/mantidproject/mantid/pull/21368) - Reflectivity fixes for REFM
 * *new* [PR21372](https://github.com/mantidproject/mantid/pull/21372) - More efficient iteration over a python dict
+* *new* [PR21394](https://github.com/mantidproject/mantid/pull/21394) - Make 'reduce' call python 3 compliant
