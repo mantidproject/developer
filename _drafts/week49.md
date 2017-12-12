@@ -6,14 +6,16 @@ title: Updates Week 49 of 2017
 ---
 Updates for Week 49 of 2017
 ---------------------------
+* Add a [technique page for ISIS reflectometry]({{ site.docpage }}/techniques/ISIS_Reflectometry.html)
+* Lots of new code for ILL Powder Diffraction Reduction
 
 Detailed Merges for Dec 4 to 10, 2017
 -------------------------------------
 [on github](https://github.com/mantidproject/mantid/pulls?q=is%3Apr+merged%3A2017-12-05..2017-12-10)
 
-* *new* [PR20534](https://github.com/mantidproject/mantid/pull/20534) - Add a technique page for ISIS reflectometry
-* *new* [PR20849](https://github.com/mantidproject/mantid/pull/20849) - ILL Powder Diffraction Reduction
-* *new* [PR21084](https://github.com/mantidproject/mantid/pull/21084) - SumOverlappingTubes Algorithm
+* [PR20534](https://github.com/mantidproject/mantid/pull/20534) - Add a [technique page for ISIS reflectometry]({{ site.docpage }}/techniques/ISIS_Reflectometry.html)
+* [PR20849](https://github.com/mantidproject/mantid/pull/20849) - ILL Powder Diffraction Reduction
+* *new* [PR21084](https://github.com/mantidproject/mantid/pull/21084) - [SumOverlappingTubes]({{ site.docpage }}/algorithms/SumOverlappingTubes.html) Algorithm
 * *new* [PR21195](https://github.com/mantidproject/mantid/pull/21195) - Loader for ILL's reflectometer polarization efficiencies
 * *new* [PR21244](https://github.com/mantidproject/mantid/pull/21244) - Sans v2 continuous plotting
 * *new* [PR21245](https://github.com/mantidproject/mantid/pull/21245) - Make space for MeshObject
