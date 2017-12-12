@@ -16,5 +16,6 @@ Detailed Merges for Dec 11 to 17, 2017
 * *new* [PR21193](https://github.com/mantidproject/mantid/pull/21193) - 21187 add merge selection functionality to old sans gui
 * *new* [PR21289](https://github.com/mantidproject/mantid/pull/21289) - MuonProcess no longer crops data used in the Muon Analysis GUI
 * *new* [PR21303](https://github.com/mantidproject/mantid/pull/21303) - Total Scattering :: Add most basic form of total scattering workflow
+* *new* [PR21320](https://github.com/mantidproject/mantid/pull/21320) - Algorithms with optional workspace output properties can not run on group workspaces
 * *new* [PR21351](https://github.com/mantidproject/mantid/pull/21351) - buildscript support for cmake3
 * *new* [PR21399](https://github.com/mantidproject/mantid/pull/21399) - Revert "SEQ new idf"
