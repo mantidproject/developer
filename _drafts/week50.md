@@ -18,4 +18,6 @@ Detailed Merges for Dec 11 to 17, 2017
 * *new* [PR21303](https://github.com/mantidproject/mantid/pull/21303) - Total Scattering :: Add most basic form of total scattering workflow
 * *new* [PR21320](https://github.com/mantidproject/mantid/pull/21320) - Algorithms with optional workspace output properties can not run on group workspaces
 * *new* [PR21351](https://github.com/mantidproject/mantid/pull/21351) - buildscript support for cmake3
+* *new* [PR21398](https://github.com/mantidproject/mantid/pull/21398) - MR algorithm to determine reduction params
 * *new* [PR21399](https://github.com/mantidproject/mantid/pull/21399) - Revert "SEQ new idf"
+* *new* [PR21406](https://github.com/mantidproject/mantid/pull/21406) - Option for common UB for IndexPeaks
