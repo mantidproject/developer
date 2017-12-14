@@ -27,5 +27,6 @@ Detailed Merges for Dec 11 to 17, 2017
 * *new* [PR21395](https://github.com/mantidproject/mantid/pull/21395) - Fix BASISDiffraction system test on windows
 * *new* [PR21398](https://github.com/mantidproject/mantid/pull/21398) - MR algorithm to determine reduction params
 * *new* [PR21399](https://github.com/mantidproject/mantid/pull/21399) - Revert "SEQ new idf"
+* *new* [PR21400](https://github.com/mantidproject/mantid/pull/21400) - Fix in-place performance regression of ExtractSpectra if only crop used.
 * *new* [PR21406](https://github.com/mantidproject/mantid/pull/21406) - Option for common UB for IndexPeaks
 * *new* [PR21426](https://github.com/mantidproject/mantid/pull/21426) - Add minimum sip version
