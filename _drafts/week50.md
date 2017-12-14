@@ -19,6 +19,7 @@ Detailed Merges for Dec 11 to 17, 2017
 * *new* [PR21303](https://github.com/mantidproject/mantid/pull/21303) - Total Scattering :: Add most basic form of total scattering workflow
 * *new* [PR21304](https://github.com/mantidproject/mantid/pull/21304) - Indirect - Fit Interfaces - Update mini-plot correctly upon changing the selected function
 * *new* [PR21306](https://github.com/mantidproject/mantid/pull/21306) - Indirect - Vesuvio - Add 'LoadLogFiles' property to 'LoadVesuvio' and associated flag to Vesuvio driver script
+* *new* [PR21314](https://github.com/mantidproject/mantid/pull/21314) - Re #21313 Remove Direct Beam
 * *new* [PR21320](https://github.com/mantidproject/mantid/pull/21320) - Algorithms with optional workspace output properties can not run on group workspaces
 * *new* [PR21351](https://github.com/mantidproject/mantid/pull/21351) - buildscript support for cmake3
 * *new* [PR21354](https://github.com/mantidproject/mantid/pull/21354) - Moving the status from a fit to the top of the dialog
