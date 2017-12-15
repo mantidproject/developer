@@ -14,6 +14,8 @@ Detailed Merges for Dec 11 to 17, 2017
 * *new* [PR21079](https://github.com/mantidproject/mantid/pull/21079) - Try to make MaxEnt faster
 * *new* [PR21143](https://github.com/mantidproject/mantid/pull/21143) - Re #21134: Fixed incorrect title when transfering runs with th in their name.
 * *new* [PR21193](https://github.com/mantidproject/mantid/pull/21193) - 21187 add merge selection functionality to old sans gui
+* *new* [PR21227](https://github.com/mantidproject/mantid/pull/21227) - mantidqt algorithm selector widget.
+* *new* [PR21254](https://github.com/mantidproject/mantid/pull/21254) - Enabling and disabling reflectometry GUI components
 * *new* [PR21289](https://github.com/mantidproject/mantid/pull/21289) - MuonProcess no longer crops data used in the Muon Analysis GUI
 * *new* [PR21297](https://github.com/mantidproject/mantid/pull/21297) - Fix common widgets tests when Qt5 libraries are present
 * *new* [PR21303](https://github.com/mantidproject/mantid/pull/21303) - Total Scattering :: Add most basic form of total scattering workflow
