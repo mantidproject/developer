@@ -25,6 +25,7 @@ Detailed Merges for Dec 11 to 17, 2017
 * *new* [PR21320](https://github.com/mantidproject/mantid/pull/21320) - Algorithms with optional workspace output properties can not run on group workspaces
 * *new* [PR21351](https://github.com/mantidproject/mantid/pull/21351) - buildscript support for cmake3
 * *new* [PR21354](https://github.com/mantidproject/mantid/pull/21354) - Moving the status from a fit to the top of the dialog
+* *new* [PR21362](https://github.com/mantidproject/mantid/pull/21362) - EISFDiffSphere function
 * *new* [PR21376](https://github.com/mantidproject/mantid/pull/21376) - Engineering Diffraction GUI allow runs to be removed from the fitting list
 * *new* [PR21395](https://github.com/mantidproject/mantid/pull/21395) - Fix BASISDiffraction system test on windows
 * *new* [PR21398](https://github.com/mantidproject/mantid/pull/21398) - MR algorithm to determine reduction params
