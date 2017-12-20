@@ -11,6 +11,7 @@ Detailed Merges for Dec 18 to 24, 2017
 --------------------------------------
 [on github](https://github.com/mantidproject/mantid/pulls?q=is%3Apr+merged%3A2017-12-19..2017-12-24)
 
+* *new* [PR20798](https://github.com/mantidproject/mantid/pull/20798) - Add switchable mutli-period columns to ISIS SANS GUI
 * *new* [PR21326](https://github.com/mantidproject/mantid/pull/21326) - NormaliseToMonitor detector scan improvements
 * *new* [PR21333](https://github.com/mantidproject/mantid/pull/21333) - Indirect - Modify ApplyPaalmanPings to work with corrections from CalculateMonteCarloAbsorption
 * *new* [PR21396](https://github.com/mantidproject/mantid/pull/21396) - add navbar to the DGSPlannerGUI
@@ -20,6 +21,7 @@ Detailed Merges for Dec 18 to 24, 2017
 * *new* [PR21433](https://github.com/mantidproject/mantid/pull/21433) - Add Python 3 packages debian developer package
 * *new* [PR21435](https://github.com/mantidproject/mantid/pull/21435) - MaxEnt not outputing evolution of chi and MaxAngle once it has converged
 * *new* [PR21441](https://github.com/mantidproject/mantid/pull/21441) - Fix parsing serialization string in StepScan interface with LiveData
+* *new* [PR21443](https://github.com/mantidproject/mantid/pull/21443) - Fix leak of H5 attribute in parallel event loader
 * *new* [PR21448](https://github.com/mantidproject/mantid/pull/21448) - Refs #21447 fix peak picker for crystallography convention
 * *new* [PR21449](https://github.com/mantidproject/mantid/pull/21449) - Fix RHEL 7 - GCC7 build
 * *new* [PR21451](https://github.com/mantidproject/mantid/pull/21451) - Fix issues in LoadMask
