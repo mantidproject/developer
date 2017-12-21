@@ -16,6 +16,7 @@ Detailed Merges for Dec 18 to 24, 2017
 * *new* [PR21109](https://github.com/mantidproject/mantid/pull/21109) - Fix IntegrateEllipsoidsTwoStep always scaling by bin width
 * *new* [PR21326](https://github.com/mantidproject/mantid/pull/21326) - NormaliseToMonitor detector scan improvements
 * *new* [PR21333](https://github.com/mantidproject/mantid/pull/21333) - Indirect - Modify ApplyPaalmanPings to work with corrections from CalculateMonteCarloAbsorption
+* *new* [PR21373](https://github.com/mantidproject/mantid/pull/21373) - Fit funtion for EISF of alkyl chains
 * *new* [PR21396](https://github.com/mantidproject/mantid/pull/21396) - add navbar to the DGSPlannerGUI
 * *new* [PR21407](https://github.com/mantidproject/mantid/pull/21407) - Coerce data correctly from Python Matrixworkspace::setXYE methods
 * *new* [PR21416](https://github.com/mantidproject/mantid/pull/21416) - Tolerance for select cell algorithms in SCD interface
