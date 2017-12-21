@@ -30,3 +30,4 @@ Detailed Merges for Dec 18 to 24, 2017
 * *new* [PR21453](https://github.com/mantidproject/mantid/pull/21453) - Fix mantidqt.widgets.algorithmselector test under Python 3
 * *new* [PR21463](https://github.com/mantidproject/mantid/pull/21463) - Update maps idf
 * *new* [PR21464](https://github.com/mantidproject/mantid/pull/21464) - Remove SavePeaksFile algorithm
+* *new* [PR21484](https://github.com/mantidproject/mantid/pull/21484) - Fix the algorithm name in docs
