@@ -14,3 +14,4 @@ Detailed Merges for Jan 1 to 7, 2018
 
 * [PR21403](https://github.com/mantidproject/mantid/pull/21403) - MPI support for many algorithms as preparation for MPI support in SANS2D reduction
 * [PR21424](https://github.com/mantidproject/mantid/pull/21424) - Indirect - CorrectionsTabs - Error handling in the case of a WorkspaceGroup being provided
+* *new* [PR21489](https://github.com/mantidproject/mantid/pull/21489) - Add buildscript to create UsageData.zip
