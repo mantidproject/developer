@@ -23,3 +23,4 @@ Detailed Merges for Jan 1 to 7, 2018
 * *new* [PR21491](https://github.com/mantidproject/mantid/pull/21491) - Refactor QWorkspaceDockView
 * *new* [PR21493](https://github.com/mantidproject/mantid/pull/21493) - Fix OSX qmake issue
 * *new* [PR21494](https://github.com/mantidproject/mantid/pull/21494) - Improve finding of sip_dir on MacOS
+* *new* [PR21502](https://github.com/mantidproject/mantid/pull/21502) - Fix failing system test on OSX
