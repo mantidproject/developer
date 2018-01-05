@@ -22,9 +22,11 @@ Detailed Merges for Jan 1 to 7, 2018
 * *new* [PR21420](https://github.com/mantidproject/mantid/pull/21420) - ISIS Powder POLARIS validate chopper mode and make its value persistent
 * [PR21424](https://github.com/mantidproject/mantid/pull/21424) - Indirect - CorrectionsTabs - Error handling in the case of a WorkspaceGroup being provided
 * *new* [PR21471](https://github.com/mantidproject/mantid/pull/21471) - FindPeaksMD performance issue for tube based instruments
+* *new* [PR21473](https://github.com/mantidproject/mantid/pull/21473) - New loader for LAMP exports
 * *new* [PR21489](https://github.com/mantidproject/mantid/pull/21489) - Add buildscript to create UsageData.zip
 * *new* [PR21491](https://github.com/mantidproject/mantid/pull/21491) - Refactor QWorkspaceDockView
 * *new* [PR21493](https://github.com/mantidproject/mantid/pull/21493) - Fix OSX qmake issue
 * *new* [PR21494](https://github.com/mantidproject/mantid/pull/21494) - Improve finding of sip_dir on MacOS
 * *new* [PR21497](https://github.com/mantidproject/mantid/pull/21497) - Removing unwanted data file
 * *new* [PR21502](https://github.com/mantidproject/mantid/pull/21502) - Fix failing system test on OSX
+* *new* [PR21503](https://github.com/mantidproject/mantid/pull/21503) - Add IPython Console to Workbench
