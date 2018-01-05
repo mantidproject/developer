@@ -26,6 +26,7 @@ Detailed Merges for Jan 1 to 7, 2018
 * *new* [PR21471](https://github.com/mantidproject/mantid/pull/21471) - [FindPeaksMD]({{ site.docpage }}/algorithms/FindPeaksMD.html) performance issue for tube based instruments
 * *new* [PR21473](https://github.com/mantidproject/mantid/pull/21473) - New loader for LAMP exports
 * *new* [PR21489](https://github.com/mantidproject/mantid/pull/21489) - Add buildscript to create `UsageData.zip`
+* *new* [PR21490](https://github.com/mantidproject/mantid/pull/21490) - Modernize code
 * *new* [PR21491](https://github.com/mantidproject/mantid/pull/21491) - Refactor QWorkspaceDockView
 * [PR21493](https://github.com/mantidproject/mantid/pull/21493) - Fix OSX qmake issue
 * [PR21494](https://github.com/mantidproject/mantid/pull/21494) - Improve finding of sip_dir on MacOS
