@@ -15,4 +15,6 @@ Detailed Merges for Jan 8 to 14, 2018
 * *new* [PR21434](https://github.com/mantidproject/mantid/pull/21434) - Add ConfigObserver and ConfigPropertyObserver
 * *new* [PR21455](https://github.com/mantidproject/mantid/pull/21455) - Export algorithm dialogs to python
 * *new* [PR21495](https://github.com/mantidproject/mantid/pull/21495) - Fix CTWA and generate workspace
+* *new* [PR21499](https://github.com/mantidproject/mantid/pull/21499) - resurrect the old isis refl gui
 * [PR21515](https://github.com/mantidproject/mantid/pull/21515) - Fix compilation with Boost 1.66
+* *new* [PR21524](https://github.com/mantidproject/mantid/pull/21524) - Improve matplotlib interaction
