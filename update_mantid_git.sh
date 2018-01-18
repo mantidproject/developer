@@ -18,8 +18,14 @@ cd $(dirname $0)
 git fetch -p
 git rebase -v origin/gh-pages
 
+if [ $(command -v python3) ]; then
+    PYTHON_EXE=python3
+else
+    PYTHON_EXE=python
+fi
+
 # update the ticket list
-tools/get_pull_requests.py --repo mantidproject/mantid || exit 1
+$PYTHON_EXE tools/get_pull_requests.py --repo mantidproject/mantid || exit 1
 
 # commit the news page
 git add _drafts/week*.md
@@ -32,7 +38,7 @@ fi
 if [ ! -d systemtests ]; then
     mkdir systemtests
 fi
-python skipped_systemtests.py > systemtests/index.md
+$PYTHON_EXE skipped_systemtests.py > systemtests/index.md
 git add systemtests/index.md
 git commit -m "Updating skipped system tests via jenkins" systemtests/index.md
 
