@@ -21,6 +21,7 @@ Detailed Merges for Jan 15 to 21, 2018
 * [PR21488](https://github.com/mantidproject/mantid/pull/21488) - [CropworkspaceRagged]({{ site.docpage }}/algorithms/CropworkspaceRagged.html)
 * *new* [PR21511](https://github.com/mantidproject/mantid/pull/21511) - Modify SliceViewer to add support for sorting by I/sigma
 * [PR21516](https://github.com/mantidproject/mantid/pull/21516) - Fix unused-lambda-capture warning in [SCDCalibratePanels]({{ site.docpage }}/algorithms/SCDCalibratePanels.html)
+* *new* [PR21518](https://github.com/mantidproject/mantid/pull/21518) - Workspace2D Pickle Support
 * *new* [PR21522](https://github.com/mantidproject/mantid/pull/21522) - Update WorkspaceTreeWidget to not require shared ptr
 * *new* [PR21526](https://github.com/mantidproject/mantid/pull/21526) - No Regex for BoundingBox strategy in ComponentInfo
 * [PR21529](https://github.com/mantidproject/mantid/pull/21529) - Windows: Pull down fixed `librdkafka_d` libraries
