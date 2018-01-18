@@ -27,7 +27,7 @@ Detailed Merges for Jan 15 to 21, 2018
 * *new* [PR21529](https://github.com/mantidproject/mantid/pull/21529) - Windows: Pull down fixed librdkafka_d libraries
 * *new* [PR21536](https://github.com/mantidproject/mantid/pull/21536) - FlatPlatePaalmanPings input fixes
 * *new* [PR21538](https://github.com/mantidproject/mantid/pull/21538) - Update AbsorptionCorrection.cpp
-* *new* [PR21545](https://github.com/mantidproject/mantid/pull/21545) - Add WAND²
+* *new* [PR21545](https://github.com/mantidproject/mantid/pull/21545) - Add WAND2
 * *new* [PR21548](https://github.com/mantidproject/mantid/pull/21548) - Add python editor to workbench
 * *new* [PR21549](https://github.com/mantidproject/mantid/pull/21549) - LoadLamp made parameter loading optional
 * *new* [PR21551](https://github.com/mantidproject/mantid/pull/21551) - Fix crash when saving peaks workspace.
