@@ -16,14 +16,22 @@ Detailed Merges for Jan 15 to 21, 2018
 * *new* [PR21299](https://github.com/mantidproject/mantid/pull/21299) - Notify GDPP on Settings Change
 * *new* [PR21343](https://github.com/mantidproject/mantid/pull/21343) - Exposes CorrectDetectors in Reflectometry GUI Settings Tab
 * *new* [PR21405](https://github.com/mantidproject/mantid/pull/21405) - SpectrumView exposed to Python
-* *new* [PR21423](https://github.com/mantidproject/mantid/pull/21423) - [LoadMcStas]({{ site.docpage }}/algorithms/LoadMcStas.html) single, multiple and sum of scattering output
+* *new* [PR21423](https://github.com/mantidproject/mantid/pull/21423) - LoadMcStas single, multiple and sum of scattering output
 * *new* [PR21472](https://github.com/mantidproject/mantid/pull/21472) - Simpler MasterOnly MPI mechanism
-* [PR21488](https://github.com/mantidproject/mantid/pull/21488) - [CropworkspaceRagged]({{ site.docpage }}/algorithms/CropworkspaceRagged.html)
+* *new* [PR21488](https://github.com/mantidproject/mantid/pull/21488) - CropworkspaceRagged
 * *new* [PR21511](https://github.com/mantidproject/mantid/pull/21511) - Modify SliceViewer to add support for sorting by I/sigma
-* [PR21516](https://github.com/mantidproject/mantid/pull/21516) - Fix unused-lambda-capture warning in [SCDCalibratePanels]({{ site.docpage }}/algorithms/SCDCalibratePanels.html)
+* *new* [PR21516](https://github.com/mantidproject/mantid/pull/21516) - Fix unused-lambda-capture warning in SCDCalibratePanels
 * *new* [PR21518](https://github.com/mantidproject/mantid/pull/21518) - Workspace2D Pickle Support
 * *new* [PR21522](https://github.com/mantidproject/mantid/pull/21522) - Update WorkspaceTreeWidget to not require shared ptr
 * *new* [PR21526](https://github.com/mantidproject/mantid/pull/21526) - No Regex for BoundingBox strategy in ComponentInfo
-* [PR21529](https://github.com/mantidproject/mantid/pull/21529) - Windows: Pull down fixed `librdkafka_d` libraries
-* *new* [PR21536](https://github.com/mantidproject/mantid/pull/21536) - [FlatPlatePaalmanPings]({{ site.docpage }}/algorithms/FlatPlatePaalmanPings.html) input fixes
-* *new* [PR21538](https://github.com/mantidproject/mantid/pull/21538) - Update `AbsorptionCorrection.cpp`
+* *new* [PR21529](https://github.com/mantidproject/mantid/pull/21529) - Windows: Pull down fixed librdkafka_d libraries
+* *new* [PR21536](https://github.com/mantidproject/mantid/pull/21536) - FlatPlatePaalmanPings input fixes
+* *new* [PR21538](https://github.com/mantidproject/mantid/pull/21538) - Update AbsorptionCorrection.cpp
+* *new* [PR21545](https://github.com/mantidproject/mantid/pull/21545) - Add WAND²
+* *new* [PR21548](https://github.com/mantidproject/mantid/pull/21548) - Add python editor to workbench
+* *new* [PR21549](https://github.com/mantidproject/mantid/pull/21549) - LoadLamp made parameter loading optional
+* *new* [PR21551](https://github.com/mantidproject/mantid/pull/21551) - Fix crash when saving peaks workspace.
+* *new* [PR21554](https://github.com/mantidproject/mantid/pull/21554) - Export WorkspaceWidget to workbench
+* *new* [PR21558](https://github.com/mantidproject/mantid/pull/21558) - Add ability to convert TableWorkspace to python dict
+* *new* [PR21569](https://github.com/mantidproject/mantid/pull/21569) - Fixing intermittent failing tests for matplotlib
+* *new* [PR21572](https://github.com/mantidproject/mantid/pull/21572) - Dummy PR to fix bad base branch in merge of #21472.
