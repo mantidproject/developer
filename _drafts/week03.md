@@ -38,5 +38,6 @@ Detailed Merges for Jan 15 to 21, 2018
 * *new* [PR21556](https://github.com/mantidproject/mantid/pull/21556) - Add python extensions for new IPeak methods
 * *new* [PR21558](https://github.com/mantidproject/mantid/pull/21558) - Add ability to convert TableWorkspace to python dict
 * *new* [PR21569](https://github.com/mantidproject/mantid/pull/21569) - Fixing intermittent failing tests for matplotlib
+* *new* [PR21571](https://github.com/mantidproject/mantid/pull/21571) - Engineering Diffraction GUI - make RunMap its own class
 * [PR21572](https://github.com/mantidproject/mantid/pull/21572) - Dummy PR to fix bad base branch in merge of #21472.
 * *new* [PR21576](https://github.com/mantidproject/mantid/pull/21576) - Change doctests to use legacy numpy printing for numpy >=1.14
