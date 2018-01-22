@@ -14,3 +14,4 @@ Detailed Merges for Jan 22 to 28, 2018
 * *new* [PR20932](https://github.com/mantidproject/mantid/pull/20932) - Add SaveReflections for various single crystal peak formats.
 * *new* [PR21601](https://github.com/mantidproject/mantid/pull/21601) - Remove unnecessary copy in SaveEventNexus::appendEventListData.
 * *new* [PR21602](https://github.com/mantidproject/mantid/pull/21602) - Pull in fixed kafka v0.11.1 libs for win32
+* *new* [PR21613](https://github.com/mantidproject/mantid/pull/21613) - Add qtawesome to developer package lists
