@@ -22,6 +22,7 @@ Detailed Merges for Jan 22 to 28, 2018
 * *new* [PR21509](https://github.com/mantidproject/mantid/pull/21509) - Fix regression in GSASIIRefineFitPeaks and enable tests
 * *new* [PR21517](https://github.com/mantidproject/mantid/pull/21517) - Add peaks in SliceViewer in any coordinate frame
 * *new* [PR21528](https://github.com/mantidproject/mantid/pull/21528) - Update DirectILL* algorithms' property descriptions and documentation
+* *new* [PR21580](https://github.com/mantidproject/mantid/pull/21580) - Add getGoniometerMatrix method to IPeak
 * *new* [PR21584](https://github.com/mantidproject/mantid/pull/21584) - Workbench default layout
 * *new* [PR21585](https://github.com/mantidproject/mantid/pull/21585) - Engineering Diffraction GUI GSAS model
 * *new* [PR21591](https://github.com/mantidproject/mantid/pull/21591) - Fix bug in calculation of scattering length
