@@ -34,4 +34,8 @@ Detailed Merges for Jan 22 to 28, 2018
 * *new* [PR21613](https://github.com/mantidproject/mantid/pull/21613) - Add qtawesome to developer package lists
 * *new* [PR21615](https://github.com/mantidproject/mantid/pull/21615) - Change to try/except instead of checking version for numpy >= 1.14 doctests
 * *new* [PR21627](https://github.com/mantidproject/mantid/pull/21627) - Include time spent in Algorithm::execute in reported time.
+* *new* [PR21639](https://github.com/mantidproject/mantid/pull/21639) - Unicode workspace name
+* *new* [PR21642](https://github.com/mantidproject/mantid/pull/21642) - Added custom algorithm dialogs to the workbench
 * *new* [PR21644](https://github.com/mantidproject/mantid/pull/21644) - Fix Python API docs for Run.getGoniometer()
+* *new* [PR21645](https://github.com/mantidproject/mantid/pull/21645) - Add basic plotting to workbench
+* *new* [PR21646](https://github.com/mantidproject/mantid/pull/21646) - Masked invalid numbers (nans and infs) from plots
