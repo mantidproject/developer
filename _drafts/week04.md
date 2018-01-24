@@ -30,3 +30,4 @@ Detailed Merges for Jan 22 to 28, 2018
 * *new* [PR21606](https://github.com/mantidproject/mantid/pull/21606) - Manage User Directory for workbench
 * *new* [PR21613](https://github.com/mantidproject/mantid/pull/21613) - Add qtawesome to developer package lists
 * *new* [PR21615](https://github.com/mantidproject/mantid/pull/21615) - Change to try/except instead of checking version for numpy >= 1.14 doctests
+* *new* [PR21627](https://github.com/mantidproject/mantid/pull/21627) - Include time spent in Algorithm::execute in reported time.
