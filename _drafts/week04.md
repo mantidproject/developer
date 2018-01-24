@@ -18,8 +18,10 @@ Detailed Merges for Jan 22 to 28, 2018
 * *new* [PR21363](https://github.com/mantidproject/mantid/pull/21363) - Diffraction Reduction - OSIRIS - Remove validation involving comparison of the number of runs
 * *new* [PR21421](https://github.com/mantidproject/mantid/pull/21421) - Add debugging information to PythonScripting::start
 * *new* [PR21428](https://github.com/mantidproject/mantid/pull/21428) - Use CalMuonDetectorPhases in frequency domain analysis GUI
+* *new* [PR21462](https://github.com/mantidproject/mantid/pull/21462) - Reduce sans unit test file dependencies
 * *new* [PR21509](https://github.com/mantidproject/mantid/pull/21509) - Fix regression in GSASIIRefineFitPeaks and enable tests
 * *new* [PR21517](https://github.com/mantidproject/mantid/pull/21517) - Add peaks in SliceViewer in any coordinate frame
+* *new* [PR21528](https://github.com/mantidproject/mantid/pull/21528) - Update DirectILL* algorithms' property descriptions and documentation
 * *new* [PR21584](https://github.com/mantidproject/mantid/pull/21584) - Workbench default layout
 * *new* [PR21585](https://github.com/mantidproject/mantid/pull/21585) - Engineering Diffraction GUI GSAS model
 * *new* [PR21591](https://github.com/mantidproject/mantid/pull/21591) - Fix bug in calculation of scattering length
@@ -31,3 +33,4 @@ Detailed Merges for Jan 22 to 28, 2018
 * *new* [PR21613](https://github.com/mantidproject/mantid/pull/21613) - Add qtawesome to developer package lists
 * *new* [PR21615](https://github.com/mantidproject/mantid/pull/21615) - Change to try/except instead of checking version for numpy >= 1.14 doctests
 * *new* [PR21627](https://github.com/mantidproject/mantid/pull/21627) - Include time spent in Algorithm::execute in reported time.
+* *new* [PR21644](https://github.com/mantidproject/mantid/pull/21644) - Fix Python API docs for Run.getGoniometer()
