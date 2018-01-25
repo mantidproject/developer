@@ -39,3 +39,4 @@ Detailed Merges for Jan 22 to 28, 2018
 * *new* [PR21644](https://github.com/mantidproject/mantid/pull/21644) - Fix Python API docs for Run.getGoniometer()
 * *new* [PR21645](https://github.com/mantidproject/mantid/pull/21645) - Add basic plotting to workbench
 * *new* [PR21646](https://github.com/mantidproject/mantid/pull/21646) - Masked invalid numbers (nans and infs) from plots
+* *new* [PR21647](https://github.com/mantidproject/mantid/pull/21647) - Fix possible crash when plotting from an asynchronous script in workbench
