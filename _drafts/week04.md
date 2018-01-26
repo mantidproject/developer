@@ -19,8 +19,10 @@ Detailed Merges for Jan 22 to 28, 2018
 * *new* [PR21421](https://github.com/mantidproject/mantid/pull/21421) - Add debugging information to PythonScripting::start
 * *new* [PR21428](https://github.com/mantidproject/mantid/pull/21428) - Use CalMuonDetectorPhases in frequency domain analysis GUI
 * *new* [PR21462](https://github.com/mantidproject/mantid/pull/21462) - Reduce sans unit test file dependencies
+* *new* [PR21486](https://github.com/mantidproject/mantid/pull/21486) - MPI support for SANS2D reduction
 * *new* [PR21509](https://github.com/mantidproject/mantid/pull/21509) - Fix regression in GSASIIRefineFitPeaks and enable tests
 * *new* [PR21517](https://github.com/mantidproject/mantid/pull/21517) - Add peaks in SliceViewer in any coordinate frame
+* *new* [PR21527](https://github.com/mantidproject/mantid/pull/21527) - Fix python package build command for Makefiles
 * *new* [PR21528](https://github.com/mantidproject/mantid/pull/21528) - Update DirectILL* algorithms' property descriptions and documentation
 * *new* [PR21580](https://github.com/mantidproject/mantid/pull/21580) - Add getGoniometerMatrix method to IPeak
 * *new* [PR21584](https://github.com/mantidproject/mantid/pull/21584) - Workbench default layout
@@ -40,3 +42,4 @@ Detailed Merges for Jan 22 to 28, 2018
 * *new* [PR21645](https://github.com/mantidproject/mantid/pull/21645) - Add basic plotting to workbench
 * *new* [PR21646](https://github.com/mantidproject/mantid/pull/21646) - Masked invalid numbers (nans and infs) from plots
 * *new* [PR21647](https://github.com/mantidproject/mantid/pull/21647) - Fix possible crash when plotting from an asynchronous script in workbench
+* *new* [PR21651](https://github.com/mantidproject/mantid/pull/21651) - Expand check for numpy version
