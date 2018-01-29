@@ -11,3 +11,4 @@ Detailed Merges for Jan 29 to Feb 4, 2018
 -----------------------------------------
 [on github](https://github.com/mantidproject/mantid/pulls?q=is%3Apr+merged%3A2018-01-30..2018-02-04)
 
+* *new* [PR21623](https://github.com/mantidproject/mantid/pull/21623) - Support ISIS Nexus files in ParallelEventLoader
