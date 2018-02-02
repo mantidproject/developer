@@ -18,3 +18,4 @@ Detailed Merges for Jan 29 to Feb 4, 2018
 * *new* [PR21661](https://github.com/mantidproject/mantid/pull/21661) - Fix memory leak in Python setX/Y/E workspace methods
 * *new* [PR21664](https://github.com/mantidproject/mantid/pull/21664) - ISIS Powder update HRPD default bin widths
 * *new* [PR21667](https://github.com/mantidproject/mantid/pull/21667) - Fix small typo in ISIS Powder sample details docs
+* *new* [PR21669](https://github.com/mantidproject/mantid/pull/21669) - Bugs fixes for Eigen 3.3, use Eigen CMake target
