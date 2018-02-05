@@ -12,3 +12,5 @@ Detailed Merges for Feb 5 to 11, 2018
 [on github](https://github.com/mantidproject/mantid/pulls?q=is%3Apr+merged%3A2018-02-06..2018-02-11)
 
 * *new* [PR21595](https://github.com/mantidproject/mantid/pull/21595) - Speed up SumOverlappingTubes
+* *new* [PR21689](https://github.com/mantidproject/mantid/pull/21689) - Simplify docs configuration
+* *new* [PR21693](https://github.com/mantidproject/mantid/pull/21693) - Use np.datetime_to_string for consistent output in doctests
