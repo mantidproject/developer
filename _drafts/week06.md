@@ -18,3 +18,5 @@ Detailed Merges for Feb 5 to 11, 2018
 * *new* [PR21678](https://github.com/mantidproject/mantid/pull/21678) - Auto Email on Performance Regression
 * *new* [PR21689](https://github.com/mantidproject/mantid/pull/21689) - Simplify docs configuration
 * *new* [PR21693](https://github.com/mantidproject/mantid/pull/21693) - Use np.datetime_to_string for consistent output in doctests
+* *new* [PR21697](https://github.com/mantidproject/mantid/pull/21697) - Add script to check clang-format on Jenkins
+* *new* [PR21698](https://github.com/mantidproject/mantid/pull/21698) - Move back to running doctests on a separate thread
