@@ -27,6 +27,8 @@ Detailed Merges for Feb 5 to 11, 2018
 * *new* [PR21698](https://github.com/mantidproject/mantid/pull/21698) - Move back to running doctests on a separate thread
 * *new* [PR21702](https://github.com/mantidproject/mantid/pull/21702) - Fix relying on undocumented bug in older jinja2.
 * *new* [PR21703](https://github.com/mantidproject/mantid/pull/21703) - Update WAND² IDF
+* *new* [PR21706](https://github.com/mantidproject/mantid/pull/21706) - Fix ErrorFormatter to workaround bug in Python 3.4
 * *new* [PR21708](https://github.com/mantidproject/mantid/pull/21708) - Remove Python.h include
+* *new* [PR21711](https://github.com/mantidproject/mantid/pull/21711) - Force reset of googletest before applying patches
 * *new* [PR21713](https://github.com/mantidproject/mantid/pull/21713) - Fixes failing unit test for numpy >=1.14
 * *new* [PR21714](https://github.com/mantidproject/mantid/pull/21714) - Sphinx training docs
