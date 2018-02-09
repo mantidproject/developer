@@ -23,6 +23,7 @@ Detailed Merges for Feb 5 to 11, 2018
 * *new* [PR21676](https://github.com/mantidproject/mantid/pull/21676) - Fix docstring directives for old sip definitions.
 * *new* [PR21678](https://github.com/mantidproject/mantid/pull/21678) - Auto Email on Performance Regression
 * *new* [PR21683](https://github.com/mantidproject/mantid/pull/21683) - Add tools for parsing unit & system test speeds.
+* *new* [PR21687](https://github.com/mantidproject/mantid/pull/21687) - Add deprecation doxygen to WorkspaceFactory methods.
 * *new* [PR21689](https://github.com/mantidproject/mantid/pull/21689) - Simplify docs configuration
 * *new* [PR21693](https://github.com/mantidproject/mantid/pull/21693) - Use np.datetime_to_string for consistent output in doctests
 * *new* [PR21697](https://github.com/mantidproject/mantid/pull/21697) - Add script to check clang-format on Jenkins
