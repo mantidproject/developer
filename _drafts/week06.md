@@ -16,7 +16,9 @@ Detailed Merges for Feb 5 to 11, 2018
 * *new* [PR21595](https://github.com/mantidproject/mantid/pull/21595) - Speed up SumOverlappingTubes
 * *new* [PR21618](https://github.com/mantidproject/mantid/pull/21618) - GSASIIRefineFitPeaks XMin and XMax parameters added
 * *new* [PR21624](https://github.com/mantidproject/mantid/pull/21624) - GSASIIRefineFitPeaks output fitted peaks workspace
+* *new* [PR21633](https://github.com/mantidproject/mantid/pull/21633) - Add ability to pickle table workspaces
 * *new* [PR21658](https://github.com/mantidproject/mantid/pull/21658) - Engineering Diffraction GUI skeleton presenter for multi-run fitting widget
+* *new* [PR21659](https://github.com/mantidproject/mantid/pull/21659) - Indirect - Fitting - ExtractQENSMembers Algorithm
 * *new* [PR21673](https://github.com/mantidproject/mantid/pull/21673) - Disable network access on startup for mpi installs
 * *new* [PR21676](https://github.com/mantidproject/mantid/pull/21676) - Fix docstring directives for old sip definitions.
 * *new* [PR21678](https://github.com/mantidproject/mantid/pull/21678) - Auto Email on Performance Regression
