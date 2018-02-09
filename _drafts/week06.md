@@ -34,3 +34,4 @@ Detailed Merges for Feb 5 to 11, 2018
 * *new* [PR21711](https://github.com/mantidproject/mantid/pull/21711) - Force reset of googletest before applying patches
 * *new* [PR21713](https://github.com/mantidproject/mantid/pull/21713) - Fixes failing unit test for numpy >=1.14
 * *new* [PR21714](https://github.com/mantidproject/mantid/pull/21714) - Sphinx training docs
+* *new* [PR21721](https://github.com/mantidproject/mantid/pull/21721) - Add dependency on PythonInterface
