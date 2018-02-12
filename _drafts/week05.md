@@ -20,3 +20,4 @@ Detailed Merges for Jan 29 to Feb 4, 2018
 * *new* [PR21664](https://github.com/mantidproject/mantid/pull/21664) - ISIS Powder update HRPD default bin widths
 * *new* [PR21667](https://github.com/mantidproject/mantid/pull/21667) - Fix small typo in ISIS Powder sample details docs
 * *new* [PR21669](https://github.com/mantidproject/mantid/pull/21669) - Bugs fixes for Eigen 3.3, use Eigen CMake target
+* *new* [PR21672](https://github.com/mantidproject/mantid/pull/21672) - Copy ExperimentInfo to output in SliceMD
