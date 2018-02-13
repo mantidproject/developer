@@ -11,4 +11,5 @@ Detailed Merges for Feb 12 to 18, 2018
 --------------------------------------
 [on github](https://github.com/mantidproject/mantid/pulls?q=is%3Apr+merged%3A2018-02-13..2018-02-18)
 
+* *new* [PR21726](https://github.com/mantidproject/mantid/pull/21726) - FindPeaksMD calculate Goniometer rotation for CW
 * *new* [PR21728](https://github.com/mantidproject/mantid/pull/21728) - Add V20 IDFs
