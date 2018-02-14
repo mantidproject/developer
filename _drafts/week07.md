@@ -9,6 +9,7 @@ Updates for Week 7 of 2018
 
 * New IDFs for MAPS and V20
 * [FindPeaksMD]({{ site.docpage }}/algorithms/FindPeaksMD.html) calculate Goniometer rotation for CW
+* Bugfix loading `Facilities.xml` (and instruments) when `UpdateInstrumentDefinitions.OnStartup` is `true`
 
 Detailed Merges for Feb 12 to 18, 2018
 --------------------------------------
@@ -19,4 +20,4 @@ Detailed Merges for Feb 12 to 18, 2018
 * [PR21728](https://github.com/mantidproject/mantid/pull/21728) - Add V20 IDFs
 * [PR21740](https://github.com/mantidproject/mantid/pull/21740) - Updated instrument definition files for MAPS
 * [PR21743](https://github.com/mantidproject/mantid/pull/21743) - Add bibtex file for users
-* *new* [PR21748](https://github.com/mantidproject/mantid/pull/21748) - Bugfix UpdateInstrumentDefinitions.OnStartup and loading Facilities.xml
+* [PR21748](https://github.com/mantidproject/mantid/pull/21748) - Bugfix `UpdateInstrumentDefinitions.OnStartup` and loading `Facilities.xml`
