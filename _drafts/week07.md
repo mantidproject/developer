@@ -16,7 +16,7 @@ Detailed Merges for Feb 12 to 18, 2018
 [on github](https://github.com/mantidproject/mantid/pulls?q=is%3Apr+merged%3A2018-02-13..2018-02-18)
 
 * [PR21617](https://github.com/mantidproject/mantid/pull/21617) - Engineering Diffraction GUI enable loading and plotting runs in the new GSAS tab
-* *new* [PR21635](https://github.com/mantidproject/mantid/pull/21635) - Add toDict example to TableWorkspace concept page
+* [PR21635](https://github.com/mantidproject/mantid/pull/21635) - Add `toDict` example to [TableWorkspace concept page]({{ site.docpage }}/concepts/TableWorkspaces.html)
 * [PR21726](https://github.com/mantidproject/mantid/pull/21726) - [FindPeaksMD]({{ site.docpage }}/algorithms/FindPeaksMD.html) calculate Goniometer rotation for CW
 * [PR21728](https://github.com/mantidproject/mantid/pull/21728) - Add V20 IDFs
 * [PR21740](https://github.com/mantidproject/mantid/pull/21740) - Updated instrument definition files for MAPS
