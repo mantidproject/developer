@@ -19,6 +19,7 @@ Detailed Merges for Feb 12 to 18, 2018
 * [PR21617](https://github.com/mantidproject/mantid/pull/21617) - Engineering Diffraction GUI enable loading and plotting runs in the new GSAS tab
 * [PR21635](https://github.com/mantidproject/mantid/pull/21635) - Add `toDict` example to [TableWorkspace concept page]({{ site.docpage }}/concepts/TableWorkspaces.html)
 * *new* [PR21666](https://github.com/mantidproject/mantid/pull/21666) - Engineering Diffraction GUI implement skeleton model and view for multi-run widget
+* *new* [PR21668](https://github.com/mantidproject/mantid/pull/21668) - Improve Reflectometry Help Facilities
 * *new* [PR21685](https://github.com/mantidproject/mantid/pull/21685) - Performance improvements in NormaliseByPeakArea
 * *new* [PR21717](https://github.com/mantidproject/mantid/pull/21717) - Adding Muon Maxent
 * [PR21726](https://github.com/mantidproject/mantid/pull/21726) - [FindPeaksMD]({{ site.docpage }}/algorithms/FindPeaksMD.html) calculate Goniometer rotation for CW
