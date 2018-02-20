@@ -17,6 +17,7 @@ Detailed Merges for Feb 19 to 25, 2018
 * *new* [PR21440](https://github.com/mantidproject/mantid/pull/21440) - Added event sliced mergeing support
 * *new* [PR21513](https://github.com/mantidproject/mantid/pull/21513) - Clean up HFIR HB3A interface and fix bugs reported from user
 * *new* [PR21579](https://github.com/mantidproject/mantid/pull/21579) - New polarization correction algorithm for reflectometers
+* *new* [PR21609](https://github.com/mantidproject/mantid/pull/21609) - Allow `SofQW` to rebin in energy and speed it up
 * *new* [PR21638](https://github.com/mantidproject/mantid/pull/21638) - Engineering Diffraction GUI GSAS tab improve warnings
 * *new* [PR21654](https://github.com/mantidproject/mantid/pull/21654) - Allow additional type of calibration workspace
 * *new* [PR21680](https://github.com/mantidproject/mantid/pull/21680) - Disable editing on Events and Settings Reflectometry GUI tabs during processing.
