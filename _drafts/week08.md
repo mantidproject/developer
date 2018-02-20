@@ -21,3 +21,4 @@ Detailed Merges for Feb 19 to 25, 2018
 * *new* [PR21638](https://github.com/mantidproject/mantid/pull/21638) - Engineering Diffraction GUI GSAS tab improve warnings
 * *new* [PR21654](https://github.com/mantidproject/mantid/pull/21654) - Allow additional type of calibration workspace
 * *new* [PR21680](https://github.com/mantidproject/mantid/pull/21680) - Disable editing on Events and Settings Reflectometry GUI tabs during processing.
+* *new* [PR21772](https://github.com/mantidproject/mantid/pull/21772) - Add 3d plots to workbench
