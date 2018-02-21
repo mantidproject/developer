@@ -24,6 +24,10 @@ Detailed Merges for Feb 19 to 25, 2018
 * *new* [PR21654](https://github.com/mantidproject/mantid/pull/21654) - Allow additional type of calibration workspace
 * *new* [PR21680](https://github.com/mantidproject/mantid/pull/21680) - Disable editing on Events and Settings Reflectometry GUI tabs during processing.
 * *new* [PR21710](https://github.com/mantidproject/mantid/pull/21710) - ISIS Powder allow offset files to live outside calibration directory
+* *new* [PR21725](https://github.com/mantidproject/mantid/pull/21725) - ISIS Powder Mask out prompt pulses for HRPD
+* *new* [PR21736](https://github.com/mantidproject/mantid/pull/21736) - `ConjoinXRuns` to support varying bins
+* *new* [PR21758](https://github.com/mantidproject/mantid/pull/21758) - Fix complex run summation in MultiFileNameParser
 * *new* [PR21763](https://github.com/mantidproject/mantid/pull/21763) - Bare bones of sphinx-based developer documentation
 * *new* [PR21772](https://github.com/mantidproject/mantid/pull/21772) - Add 3d plots to workbench
 * *new* [PR21783](https://github.com/mantidproject/mantid/pull/21783) - Add slits to the IDF of D17, ILL
+* *new* [PR21797](https://github.com/mantidproject/mantid/pull/21797) - Increase tolerance when running ISIS Powder HRPD system test on OSX
