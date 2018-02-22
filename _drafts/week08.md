@@ -29,7 +29,9 @@ Detailed Merges for Feb 19 to 25, 2018
 * *new* [PR21758](https://github.com/mantidproject/mantid/pull/21758) - Fix complex run summation in MultiFileNameParser
 * *new* [PR21763](https://github.com/mantidproject/mantid/pull/21763) - Bare bones of sphinx-based developer documentation
 * *new* [PR21772](https://github.com/mantidproject/mantid/pull/21772) - Add 3d plots to workbench
+* *new* [PR21774](https://github.com/mantidproject/mantid/pull/21774) - MPI support for more algorithms.
 * *new* [PR21783](https://github.com/mantidproject/mantid/pull/21783) - Add slits to the IDF of D17, ILL
+* *new* [PR21789](https://github.com/mantidproject/mantid/pull/21789) - Output option for Lauescale
 * *new* [PR21790](https://github.com/mantidproject/mantid/pull/21790) - Add plotting for sample logs
 * *new* [PR21797](https://github.com/mantidproject/mantid/pull/21797) - Increase tolerance when running ISIS Powder HRPD system test on OSX
 * *new* [PR21809](https://github.com/mantidproject/mantid/pull/21809) - Fixes suggested by cppcheck 1.82
