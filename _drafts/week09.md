@@ -21,4 +21,8 @@ Detailed Merges for Feb 26 to Mar 4, 2018
 * *new* [PR21825](https://github.com/mantidproject/mantid/pull/21825) - Minor fix to default in calibration script
 * *new* [PR21841](https://github.com/mantidproject/mantid/pull/21841) - Cleaning up the sphinx documentation as discussed at dev meeting
 * *new* [PR21844](https://github.com/mantidproject/mantid/pull/21844) - SaveGSS shouldn't segfault with unwrittable path
+* *new* [PR21845](https://github.com/mantidproject/mantid/pull/21845) - MR reduction: allow passing a direct beam workspace
+* *new* [PR21846](https://github.com/mantidproject/mantid/pull/21846) - Plot gallery
 * *new* [PR21847](https://github.com/mantidproject/mantid/pull/21847) - Timestamps on source links
+* *new* [PR21871](https://github.com/mantidproject/mantid/pull/21871) - Make sphinx optional again
+* *new* [PR21872](https://github.com/mantidproject/mantid/pull/21872) - Add WAND² to MaskBTP
