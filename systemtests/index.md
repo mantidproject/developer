@@ -7,11 +7,11 @@ title: Currently Skipped System Tests
 Summary
 =======
 * Job    : [Master Pipeline](http://builds.mantidproject.org/view/Master%20Pipeline/)2018-02-27
-* Labels : osx, rhel7, ubuntu, ubuntu-16.04, win7
+* Labels : osx, rhel6, rhel7, ubuntu, win7
 * Failed : 0
-* Skipped: 22(33 unique)
-* Total  : 2135
-(= 427 * 5)
+* Skipped: 28(44 unique)
+* Total  : 2070
+(= 414 * 5)
 
 Details
 =======
@@ -19,45 +19,56 @@ Details
 Failed
 ------
 
-| Test                         | osx | rhel7 | ubuntu | ubuntu-16.04 | win7 |
-|------------------------------|-----|-------|--------|--------------|------|
-| CrystalFieldPythonInterface  |     |       |        |              |   x  | 
+| Test                         | osx | rhel6 | rhel7 | ubuntu | win7 |
+|------------------------------|-----|-------|-------|--------|------|
+| CrystalFieldPythonInterface  |     |       |       |        |   x  | 
 
 Skipped
 -------
 
-| Test                                   | osx | rhel7 | ubuntu | ubuntu-16.04 | win7 |
-|----------------------------------------|-----|-------|--------|--------------|------|
-| BuildSQWTest                           |  x  |   x   |    x   |       x      |   x  | 
-| EQSANSFlatTest                         |  x  |   x   |    x   |       x      |   x  | 
-| FittingBenchmarks                      |  x  |   x   |    x   |       x      |   x  | 
-| GSASIIRefineFitPeaksPawleyTest         |  x  |   x   |    x   |       x      |   x  | 
-| GSASIIRefineFitPeaksRietveldTest       |  x  |   x   |    x   |       x      |   x  | 
-| LoadSQW_FileBasedTest                  |  x  |   x   |    x   |       x      |   x  | 
-| LoadSQW_MemBasedTest                   |  x  |   x   |    x   |       x      |   x  | 
-| SNAP_short                             |  x  |   x   |    x   |       x      |   x  | 
-| SNAP_short_detcal                      |  x  |   x   |    x   |       x      |   x  | 
-| WishCalibration                        |  x  |   x   |    x   |       x      |   x  | 
-| _CreateVanadiumTest                    |  x  |   x   |    x   |       x      |   x  | 
-| QLDataTest                             |  x  |   x   |    x   |       x      |      | 
-| QLResNormTest                          |  x  |   x   |    x   |       x      |      | 
-| QLWidthTest                            |  x  |   x   |    x   |       x      |      | 
-| QLresTest                              |  x  |   x   |    x   |       x      |      | 
-| QSeTest                                |  x  |   x   |    x   |       x      |      | 
-| QuestTest                              |  x  |   x   |    x   |       x      |      | 
-| ResNormTest                            |  x  |   x   |    x   |       x      |      | 
-| ValidateFacilitiesFile                 |  x  |       |    x   |       x      |      | 
-| ValidateGroupingFiles                  |  x  |       |    x   |       x      |      | 
-| ValidateInstrumentDefinitionFiles      |  x  |       |    x   |       x      |      | 
-| ValidateParameterFiles                 |  x  |       |    x   |       x      |      | 
-| LETReductionEvent2015Multirep          |  x  |       |    x   |              |      | 
-| MAPSDgreduceReduction                  |  x  |       |    x   |              |      | 
-| MERLINReduction                        |  x  |       |    x   |              |      | 
-| PG3Analysis                            |  x  |       |        |              |   x  | 
-| PG3CCCalibration                       |  x  |       |        |              |   x  | 
-| PG3Calibration                         |  x  |       |        |              |   x  | 
-| PG3StripPeaks                          |  x  |       |        |              |   x  | 
-| PVPythonTest                           |  x  |       |        |              |   x  | 
-| TobyFitResolutionSimulationTest        |  x  |       |    x   |              |      | 
-| WISHDiffractionFocussingReductionTest  |  x  |       |    x   |              |      | 
-| WISHSingleCrystalPeakPredictionTest    |  x  |       |    x   |              |      | 
+| Test                                   | osx | rhel6 | rhel7 | ubuntu | win7 |
+|----------------------------------------|-----|-------|-------|--------|------|
+| BuildSQWTest                           |  x  |   x   |   x   |    x   |   x  | 
+| EQSANSFlatTest                         |  x  |   x   |   x   |    x   |   x  | 
+| LoadSQW_FileBasedTest                  |  x  |   x   |   x   |    x   |   x  | 
+| LoadSQW_MemBasedTest                   |  x  |   x   |   x   |    x   |   x  | 
+| SNAP_short                             |  x  |   x   |   x   |    x   |   x  | 
+| SNAP_short_detcal                      |  x  |   x   |   x   |    x   |   x  | 
+| FittingBenchmarks                      |  x  |       |   x   |    x   |   x  | 
+| GSASIIRefineFitPeaksPawleyTest         |  x  |       |   x   |    x   |   x  | 
+| GSASIIRefineFitPeaksRietveldTest       |  x  |       |   x   |    x   |   x  | 
+| QLDataTest                             |  x  |   x   |   x   |    x   |      | 
+| QLResNormTest                          |  x  |   x   |   x   |    x   |      | 
+| QLWidthTest                            |  x  |   x   |   x   |    x   |      | 
+| QLresTest                              |  x  |   x   |   x   |    x   |      | 
+| QSeTest                                |  x  |   x   |   x   |    x   |      | 
+| QuestTest                              |  x  |   x   |   x   |    x   |      | 
+| ResNormTest                            |  x  |   x   |   x   |    x   |      | 
+| WishCalibration                        |  x  |       |   x   |    x   |   x  | 
+| _CreateVanadiumTest                    |  x  |       |   x   |    x   |   x  | 
+| PG3CCCalibration                       |  x  |   x   |       |        |   x  | 
+| PG3Calibration                         |  x  |   x   |       |        |   x  | 
+| LETReductionEvent2015Multirep          |  x  |       |       |    x   |      | 
+| MAPSDgreduceReduction                  |  x  |       |       |    x   |      | 
+| MERLINReduction                        |  x  |       |       |    x   |      | 
+| PG3Analysis                            |  x  |       |       |        |   x  | 
+| PG3StripPeaks                          |  x  |       |       |        |   x  | 
+| PVPythonTest                           |  x  |       |       |        |   x  | 
+| TobyFitResolutionSimulationTest        |  x  |       |       |    x   |      | 
+| ValidateFacilitiesFile                 |  x  |       |       |    x   |      | 
+| ValidateGroupingFiles                  |  x  |       |       |    x   |      | 
+| ValidateInstrumentDefinitionFiles      |  x  |       |       |    x   |      | 
+| ValidateParameterFiles                 |  x  |       |       |    x   |      | 
+| VanadiumCalibrationTest                |     |   x   |       |        |      | 
+| WISHDiffractionFocussingReductionTest  |  x  |       |       |    x   |      | 
+| WISHSingleCrystalPeakPredictionTest    |  x  |       |       |    x   |      | 
+| AbinsCASTEPTestLargerOrder             |     |   x   |       |        |      | 
+| AbinsCASTEPTestScale                   |     |   x   |       |        |      | 
+| AbinsCASTEPTestScratch                 |     |   x   |       |        |      | 
+| AbinsCASTEPTestSmallerOrder            |     |   x   |       |        |      | 
+| AbinsCASTEPTestT                       |     |   x   |       |        |      | 
+| AbinsCRYSTALTestScratch                |     |   x   |       |        |      | 
+| FocusTest                              |     |   x   |       |        |      | 
+| ISISPowderDiffractionPol               |     |   x   |       |        |      | 
+| ISISPowderDiffractionPol2              |     |   x   |       |        |      | 
+| ISISPowderDiffractionPol3              |     |   x   |       |        |      | 
