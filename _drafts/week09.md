@@ -23,6 +23,7 @@ Detailed Merges for Feb 26 to Mar 4, 2018
 * *new* [PR21815](https://github.com/mantidproject/mantid/pull/21815) - ISIS Powder disable normalisation and empty corrections when current is 0
 * *new* [PR21824](https://github.com/mantidproject/mantid/pull/21824) - Resolution function rst file
 * *new* [PR21825](https://github.com/mantidproject/mantid/pull/21825) - Minor fix to default in calibration script
+* *new* [PR21838](https://github.com/mantidproject/mantid/pull/21838) - SNSPowderReduction sum and filter a single file
 * *new* [PR21839](https://github.com/mantidproject/mantid/pull/21839) - PyChop update
 * *new* [PR21841](https://github.com/mantidproject/mantid/pull/21841) - Cleaning up the sphinx documentation as discussed at dev meeting
 * *new* [PR21844](https://github.com/mantidproject/mantid/pull/21844) - SaveGSS shouldn't segfault with unwrittable path
