@@ -11,10 +11,13 @@ Detailed Merges for Feb 26 to Mar 4, 2018
 -----------------------------------------
 [on github](https://github.com/mantidproject/mantid/pulls?q=is%3Apr+merged%3A2018-02-27..2018-03-04)
 
+* *new* [PR20953](https://github.com/mantidproject/mantid/pull/20953) - Correct fractional binning in 2D workspaces (RebinnedOutput)
 * *new* [PR21537](https://github.com/mantidproject/mantid/pull/21537) - Fix DirectILLApplySelfShielding when running in no-op mode
 * *new* [PR21607](https://github.com/mantidproject/mantid/pull/21607) - Indirect - Fit Analysis Interfaces - The IndirectFitPropertyBrowser for Indirect Fit Analysis Tabs
+* *new* [PR21724](https://github.com/mantidproject/mantid/pull/21724) - Indirect - IqtFitMultiple and IqtFitSequential - Ability to extract fit members
 * *new* [PR21760](https://github.com/mantidproject/mantid/pull/21760) - ILL sans IDFs: update D33, add D11 and D22
 * *new* [PR21768](https://github.com/mantidproject/mantid/pull/21768) - Fix LoadMcStas crash with single event dataset
+* *new* [PR21778](https://github.com/mantidproject/mantid/pull/21778) - Crash reporting service
 * *new* [PR21799](https://github.com/mantidproject/mantid/pull/21799) - Re #21798 Added preservation of reduction mode
 * *new* [PR21810](https://github.com/mantidproject/mantid/pull/21810) - Add mslice to mantid as an external project
 * *new* [PR21815](https://github.com/mantidproject/mantid/pull/21815) - ISIS Powder disable normalisation and empty corrections when current is 0
@@ -29,3 +32,5 @@ Detailed Merges for Feb 26 to Mar 4, 2018
 * *new* [PR21849](https://github.com/mantidproject/mantid/pull/21849) - Clean-up around MeshObject
 * *new* [PR21871](https://github.com/mantidproject/mantid/pull/21871) - Make sphinx optional again
 * *new* [PR21872](https://github.com/mantidproject/mantid/pull/21872) - Add WAND² to MaskBTP
+* *new* [PR21873](https://github.com/mantidproject/mantid/pull/21873) - Add test for LRReflectivityOutput
+* *new* [PR21874](https://github.com/mantidproject/mantid/pull/21874) - Convert from byte array in py3
