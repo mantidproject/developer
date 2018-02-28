@@ -12,6 +12,7 @@ Detailed Merges for Feb 26 to Mar 4, 2018
 [on github](https://github.com/mantidproject/mantid/pulls?q=is%3Apr+merged%3A2018-02-27..2018-03-04)
 
 * *new* [PR20953](https://github.com/mantidproject/mantid/pull/20953) - Correct fractional binning in 2D workspaces (RebinnedOutput)
+* *new* [PR21460](https://github.com/mantidproject/mantid/pull/21460) - LoadMD needs dimension size for converting
 * *new* [PR21537](https://github.com/mantidproject/mantid/pull/21537) - Fix DirectILLApplySelfShielding when running in no-op mode
 * *new* [PR21607](https://github.com/mantidproject/mantid/pull/21607) - Indirect - Fit Analysis Interfaces - The IndirectFitPropertyBrowser for Indirect Fit Analysis Tabs
 * *new* [PR21724](https://github.com/mantidproject/mantid/pull/21724) - Indirect - IqtFitMultiple and IqtFitSequential - Ability to extract fit members
