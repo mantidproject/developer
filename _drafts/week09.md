@@ -19,6 +19,7 @@ Detailed Merges for Feb 26 to Mar 4, 2018
 * *new* [PR21768](https://github.com/mantidproject/mantid/pull/21768) - Fix LoadMcStas crash with single event dataset
 * *new* [PR21778](https://github.com/mantidproject/mantid/pull/21778) - Crash reporting service
 * *new* [PR21799](https://github.com/mantidproject/mantid/pull/21799) - Re #21798 Added preservation of reduction mode
+* *new* [PR21806](https://github.com/mantidproject/mantid/pull/21806) - Indirect - Vesuvio - Add option to calculate Cumulative Angle-Averaged Data within driver script
 * *new* [PR21810](https://github.com/mantidproject/mantid/pull/21810) - Add mslice to mantid as an external project
 * *new* [PR21815](https://github.com/mantidproject/mantid/pull/21815) - ISIS Powder disable normalisation and empty corrections when current is 0
 * *new* [PR21824](https://github.com/mantidproject/mantid/pull/21824) - Resolution function rst file
@@ -35,3 +36,4 @@ Detailed Merges for Feb 26 to Mar 4, 2018
 * *new* [PR21872](https://github.com/mantidproject/mantid/pull/21872) - Add WAND² to MaskBTP
 * *new* [PR21873](https://github.com/mantidproject/mantid/pull/21873) - Add test for LRReflectivityOutput
 * *new* [PR21874](https://github.com/mantidproject/mantid/pull/21874) - Convert from byte array in py3
+* *new* [PR21877](https://github.com/mantidproject/mantid/pull/21877) - New LoadWAND algorithm
