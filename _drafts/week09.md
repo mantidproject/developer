@@ -23,11 +23,13 @@ Detailed Merges for Feb 26 to Mar 4, 2018
 * *new* [PR21806](https://github.com/mantidproject/mantid/pull/21806) - Indirect - Vesuvio - Add option to calculate Cumulative Angle-Averaged Data within driver script
 * *new* [PR21810](https://github.com/mantidproject/mantid/pull/21810) - Add mslice to mantid as an external project
 * *new* [PR21815](https://github.com/mantidproject/mantid/pull/21815) - ISIS Powder disable normalisation and empty corrections when current is 0
+* *new* [PR21819](https://github.com/mantidproject/mantid/pull/21819) - Fix LoadEventNexus and LoadNexusMonitors for OFFSPEC 44754+
 * *new* [PR21824](https://github.com/mantidproject/mantid/pull/21824) - Resolution function rst file
 * *new* [PR21825](https://github.com/mantidproject/mantid/pull/21825) - Minor fix to default in calibration script
 * *new* [PR21838](https://github.com/mantidproject/mantid/pull/21838) - SNSPowderReduction sum and filter a single file
 * *new* [PR21839](https://github.com/mantidproject/mantid/pull/21839) - PyChop update
 * *new* [PR21841](https://github.com/mantidproject/mantid/pull/21841) - Cleaning up the sphinx documentation as discussed at dev meeting
+* *new* [PR21842](https://github.com/mantidproject/mantid/pull/21842) - Live Spectrum Viewer Issue
 * *new* [PR21844](https://github.com/mantidproject/mantid/pull/21844) - SaveGSS shouldn't segfault with unwrittable path
 * *new* [PR21845](https://github.com/mantidproject/mantid/pull/21845) - MR reduction: allow passing a direct beam workspace
 * *new* [PR21846](https://github.com/mantidproject/mantid/pull/21846) - Plot gallery
@@ -38,3 +40,5 @@ Detailed Merges for Feb 26 to Mar 4, 2018
 * *new* [PR21873](https://github.com/mantidproject/mantid/pull/21873) - Add test for LRReflectivityOutput
 * *new* [PR21874](https://github.com/mantidproject/mantid/pull/21874) - Convert from byte array in py3
 * *new* [PR21877](https://github.com/mantidproject/mantid/pull/21877) - New LoadWAND algorithm
+* *new* [PR21878](https://github.com/mantidproject/mantid/pull/21878) - Spell Orthorhombic correctly; short names for point groups & reflection conditions
+* *new* [PR21900](https://github.com/mantidproject/mantid/pull/21900) - Indirect - Abins - Add reference to documentation
