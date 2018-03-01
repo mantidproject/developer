@@ -12,7 +12,9 @@ Detailed Merges for Feb 26 to Mar 4, 2018
 [on github](https://github.com/mantidproject/mantid/pulls?q=is%3Apr+merged%3A2018-02-27..2018-03-04)
 
 * *new* [PR20953](https://github.com/mantidproject/mantid/pull/20953) - Correct fractional binning in 2D workspaces (RebinnedOutput)
+* *new* [PR21286](https://github.com/mantidproject/mantid/pull/21286) - Reconnect VSI Peaks Table to onSortPeaks.
 * *new* [PR21460](https://github.com/mantidproject/mantid/pull/21460) - LoadMD needs dimension size for converting
+* *new* [PR21478](https://github.com/mantidproject/mantid/pull/21478) - Add diagnostics tab to sans gui
 * *new* [PR21537](https://github.com/mantidproject/mantid/pull/21537) - Fix DirectILLApplySelfShielding when running in no-op mode
 * *new* [PR21607](https://github.com/mantidproject/mantid/pull/21607) - Indirect - Fit Analysis Interfaces - The IndirectFitPropertyBrowser for Indirect Fit Analysis Tabs
 * *new* [PR21724](https://github.com/mantidproject/mantid/pull/21724) - Indirect - IqtFitMultiple and IqtFitSequential - Ability to extract fit members
@@ -26,6 +28,7 @@ Detailed Merges for Feb 26 to Mar 4, 2018
 * *new* [PR21819](https://github.com/mantidproject/mantid/pull/21819) - Fix LoadEventNexus and LoadNexusMonitors for OFFSPEC 44754+
 * *new* [PR21824](https://github.com/mantidproject/mantid/pull/21824) - Resolution function rst file
 * *new* [PR21825](https://github.com/mantidproject/mantid/pull/21825) - Minor fix to default in calibration script
+* *new* [PR21831](https://github.com/mantidproject/mantid/pull/21831) - Added DET/OVERLAP option to user file parser
 * *new* [PR21838](https://github.com/mantidproject/mantid/pull/21838) - SNSPowderReduction sum and filter a single file
 * *new* [PR21839](https://github.com/mantidproject/mantid/pull/21839) - PyChop update
 * *new* [PR21841](https://github.com/mantidproject/mantid/pull/21841) - Cleaning up the sphinx documentation as discussed at dev meeting
@@ -42,3 +45,4 @@ Detailed Merges for Feb 26 to Mar 4, 2018
 * *new* [PR21877](https://github.com/mantidproject/mantid/pull/21877) - New LoadWAND algorithm
 * *new* [PR21878](https://github.com/mantidproject/mantid/pull/21878) - Spell Orthorhombic correctly; short names for point groups & reflection conditions
 * *new* [PR21900](https://github.com/mantidproject/mantid/pull/21900) - Indirect - Abins - Add reference to documentation
+* *new* [PR21908](https://github.com/mantidproject/mantid/pull/21908) - Fix and simplify error handling for external interfaces
