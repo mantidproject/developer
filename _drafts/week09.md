@@ -15,6 +15,7 @@ Detailed Merges for Feb 26 to Mar 4, 2018
 * *new* [PR21286](https://github.com/mantidproject/mantid/pull/21286) - Reconnect VSI Peaks Table to onSortPeaks.
 * *new* [PR21460](https://github.com/mantidproject/mantid/pull/21460) - LoadMD needs dimension size for converting
 * *new* [PR21478](https://github.com/mantidproject/mantid/pull/21478) - Add diagnostics tab to sans gui
+* *new* [PR21487](https://github.com/mantidproject/mantid/pull/21487) - Fit funtion for EISF of alkyl chains
 * *new* [PR21537](https://github.com/mantidproject/mantid/pull/21537) - Fix DirectILLApplySelfShielding when running in no-op mode
 * *new* [PR21607](https://github.com/mantidproject/mantid/pull/21607) - Indirect - Fit Analysis Interfaces - The IndirectFitPropertyBrowser for Indirect Fit Analysis Tabs
 * *new* [PR21724](https://github.com/mantidproject/mantid/pull/21724) - Indirect - IqtFitMultiple and IqtFitSequential - Ability to extract fit members
@@ -52,3 +53,4 @@ Detailed Merges for Feb 26 to Mar 4, 2018
 * *new* [PR21904](https://github.com/mantidproject/mantid/pull/21904) - Fix up Diffraction release notes 3.12
 * *new* [PR21908](https://github.com/mantidproject/mantid/pull/21908) - Fix and simplify error handling for external interfaces
 * *new* [PR21909](https://github.com/mantidproject/mantid/pull/21909) - Add KafkaEventListener to ZOOM
+* *new* [PR21914](https://github.com/mantidproject/mantid/pull/21914) - Fix ExternalInterfaces install command for macOS
