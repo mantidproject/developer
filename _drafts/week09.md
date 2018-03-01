@@ -21,6 +21,7 @@ Detailed Merges for Feb 26 to Mar 4, 2018
 * *new* [PR21760](https://github.com/mantidproject/mantid/pull/21760) - ILL sans IDFs: update D33, add D11 and D22
 * *new* [PR21768](https://github.com/mantidproject/mantid/pull/21768) - Fix LoadMcStas crash with single event dataset
 * *new* [PR21778](https://github.com/mantidproject/mantid/pull/21778) - Crash reporting service
+* *new* [PR21793](https://github.com/mantidproject/mantid/pull/21793) - Adjust slit positions in LoadILLReflectometry
 * *new* [PR21799](https://github.com/mantidproject/mantid/pull/21799) - Re #21798 Added preservation of reduction mode
 * *new* [PR21806](https://github.com/mantidproject/mantid/pull/21806) - Indirect - Vesuvio - Add option to calculate Cumulative Angle-Averaged Data within driver script
 * *new* [PR21810](https://github.com/mantidproject/mantid/pull/21810) - Add mslice to mantid as an external project
@@ -44,5 +45,10 @@ Detailed Merges for Feb 26 to Mar 4, 2018
 * *new* [PR21874](https://github.com/mantidproject/mantid/pull/21874) - Convert from byte array in py3
 * *new* [PR21877](https://github.com/mantidproject/mantid/pull/21877) - New LoadWAND algorithm
 * *new* [PR21878](https://github.com/mantidproject/mantid/pull/21878) - Spell Orthorhombic correctly; short names for point groups & reflection conditions
+* *new* [PR21897](https://github.com/mantidproject/mantid/pull/21897) - Indirect - Refactor release notes and add image of new style for Indirect Fitting Tabs
+* *new* [PR21898](https://github.com/mantidproject/mantid/pull/21898) - MR reduction: add dQ estimate
 * *new* [PR21900](https://github.com/mantidproject/mantid/pull/21900) - Indirect - Abins - Add reference to documentation
+* *new* [PR21902](https://github.com/mantidproject/mantid/pull/21902) - Sans and errorreporting release notes
+* *new* [PR21904](https://github.com/mantidproject/mantid/pull/21904) - Fix up Diffraction release notes 3.12
 * *new* [PR21908](https://github.com/mantidproject/mantid/pull/21908) - Fix and simplify error handling for external interfaces
+* *new* [PR21909](https://github.com/mantidproject/mantid/pull/21909) - Add KafkaEventListener to ZOOM
