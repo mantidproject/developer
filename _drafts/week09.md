@@ -33,6 +33,7 @@ Detailed Merges for Feb 26 to Mar 4, 2018
 * *new* [PR21831](https://github.com/mantidproject/mantid/pull/21831) - Added DET/OVERLAP option to user file parser
 * *new* [PR21838](https://github.com/mantidproject/mantid/pull/21838) - SNSPowderReduction sum and filter a single file
 * *new* [PR21839](https://github.com/mantidproject/mantid/pull/21839) - PyChop update
+* *new* [PR21840](https://github.com/mantidproject/mantid/pull/21840) - Python plotting utilities for direct geometry
 * *new* [PR21841](https://github.com/mantidproject/mantid/pull/21841) - Cleaning up the sphinx documentation as discussed at dev meeting
 * *new* [PR21842](https://github.com/mantidproject/mantid/pull/21842) - Live Spectrum Viewer Issue
 * *new* [PR21844](https://github.com/mantidproject/mantid/pull/21844) - SaveGSS shouldn't segfault with unwrittable path
@@ -54,3 +55,4 @@ Detailed Merges for Feb 26 to Mar 4, 2018
 * *new* [PR21908](https://github.com/mantidproject/mantid/pull/21908) - Fix and simplify error handling for external interfaces
 * *new* [PR21909](https://github.com/mantidproject/mantid/pull/21909) - Add KafkaEventListener to ZOOM
 * *new* [PR21914](https://github.com/mantidproject/mantid/pull/21914) - Fix ExternalInterfaces install command for macOS
+* *new* [PR21922](https://github.com/mantidproject/mantid/pull/21922) - Update LoadWAND masking and WAND² IDF
