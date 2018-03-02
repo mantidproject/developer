@@ -11,8 +11,10 @@ Detailed Merges for Feb 26 to Mar 4, 2018
 -----------------------------------------
 [on github](https://github.com/mantidproject/mantid/pulls?q=is%3Apr+merged%3A2018-02-27..2018-03-04)
 
+* *new* [PR20922](https://github.com/mantidproject/mantid/pull/20922) - Indirect - Elwin - Add check in case of invalid value within IPF file
 * *new* [PR20953](https://github.com/mantidproject/mantid/pull/20953) - Correct fractional binning in 2D workspaces (RebinnedOutput)
 * *new* [PR21286](https://github.com/mantidproject/mantid/pull/21286) - Reconnect VSI Peaks Table to onSortPeaks.
+* *new* [PR21386](https://github.com/mantidproject/mantid/pull/21386) - EISFDiffCylinder fit function
 * *new* [PR21460](https://github.com/mantidproject/mantid/pull/21460) - LoadMD needs dimension size for converting
 * *new* [PR21478](https://github.com/mantidproject/mantid/pull/21478) - Add diagnostics tab to sans gui
 * *new* [PR21487](https://github.com/mantidproject/mantid/pull/21487) - Fit funtion for EISF of alkyl chains
@@ -56,4 +58,6 @@ Detailed Merges for Feb 26 to Mar 4, 2018
 * *new* [PR21909](https://github.com/mantidproject/mantid/pull/21909) - Add KafkaEventListener to ZOOM
 * *new* [PR21910](https://github.com/mantidproject/mantid/pull/21910) - Fix Vesuvio system tests
 * *new* [PR21914](https://github.com/mantidproject/mantid/pull/21914) - Fix ExternalInterfaces install command for macOS
+* *new* [PR21918](https://github.com/mantidproject/mantid/pull/21918) - Error reporting of multidata fits
 * *new* [PR21922](https://github.com/mantidproject/mantid/pull/21922) - Update LoadWAND masking and WAND² IDF
+* *new* [PR21927](https://github.com/mantidproject/mantid/pull/21927) - muon release notes for 3.12
