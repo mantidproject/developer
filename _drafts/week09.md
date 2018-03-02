@@ -54,5 +54,6 @@ Detailed Merges for Feb 26 to Mar 4, 2018
 * *new* [PR21904](https://github.com/mantidproject/mantid/pull/21904) - Fix up Diffraction release notes 3.12
 * *new* [PR21908](https://github.com/mantidproject/mantid/pull/21908) - Fix and simplify error handling for external interfaces
 * *new* [PR21909](https://github.com/mantidproject/mantid/pull/21909) - Add KafkaEventListener to ZOOM
+* *new* [PR21910](https://github.com/mantidproject/mantid/pull/21910) - Fix Vesuvio system tests
 * *new* [PR21914](https://github.com/mantidproject/mantid/pull/21914) - Fix ExternalInterfaces install command for macOS
 * *new* [PR21922](https://github.com/mantidproject/mantid/pull/21922) - Update LoadWAND masking and WAND² IDF
