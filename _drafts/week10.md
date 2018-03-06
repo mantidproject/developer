@@ -12,6 +12,7 @@ Detailed Merges for Mar 5 to 11, 2018
 [on github](https://github.com/mantidproject/mantid/pulls?q=is%3Apr+merged%3A2018-03-06..2018-03-11)
 
 * *new* [PR21762](https://github.com/mantidproject/mantid/pull/21762) - Set transmission runs based on run angle
+* *new* [PR21784](https://github.com/mantidproject/mantid/pull/21784) - Indirect - ElasticWindowMultiple - Read temperature sensor names from instrument parameter files
 * *new* [PR21808](https://github.com/mantidproject/mantid/pull/21808) - Improve workspace names for time sliced data
 * *new* [PR21813](https://github.com/mantidproject/mantid/pull/21813) - Fixed results table in muon analysis to always use numeric values when needed
 * *new* [PR21833](https://github.com/mantidproject/mantid/pull/21833) - Indirect - IqtFit - Display ties added by 'Constrain Intensities' in the Fit Property Browser
