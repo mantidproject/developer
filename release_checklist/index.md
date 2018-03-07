@@ -58,6 +58,7 @@ will have to be changed
 * Run
   [open-release-testing](http://builds.mantidproject.org/view/All/job/open-release-testing/)
   to create the release branch and prepare build jobs
+* Enable and update the release branch name for [merge_release_into_master](http://builds.mantidproject.org/view/All/job/merge_release_into_master/)
 * Check state of all open pull requests for this milestone and update
   the base branch to the new release branch accordingly.
 * Create a skeleton set of release notes for the next version
