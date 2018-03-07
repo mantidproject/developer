@@ -16,6 +16,7 @@ Detailed Merges for Mar 5 to 11, 2018
 * *new* [PR21808](https://github.com/mantidproject/mantid/pull/21808) - Improve workspace names for time sliced data
 * *new* [PR21813](https://github.com/mantidproject/mantid/pull/21813) - Fixed results table in muon analysis to always use numeric values when needed
 * *new* [PR21833](https://github.com/mantidproject/mantid/pull/21833) - Indirect - IqtFit - Display ties added by 'Constrain Intensities' in the Fit Property Browser
+* *new* [PR21882](https://github.com/mantidproject/mantid/pull/21882) - Minor clean up of documentation index page
 * *new* [PR21920](https://github.com/mantidproject/mantid/pull/21920) - Only package MantidQt for Qt 4
 * *new* [PR21923](https://github.com/mantidproject/mantid/pull/21923) - Stop the resetting of group/pair selection in muon analysis
 * *new* [PR21928](https://github.com/mantidproject/mantid/pull/21928) - Restructured Absorbtion correction GUI
