@@ -17,6 +17,7 @@ Detailed Merges for Mar 5 to 11, 2018
 * *new* [PR21813](https://github.com/mantidproject/mantid/pull/21813) - Fixed results table in muon analysis to always use numeric values when needed
 * *new* [PR21833](https://github.com/mantidproject/mantid/pull/21833) - Indirect - IqtFit - Display ties added by 'Constrain Intensities' in the Fit Property Browser
 * *new* [PR21882](https://github.com/mantidproject/mantid/pull/21882) - Minor clean up of documentation index page
+* *new* [PR21917](https://github.com/mantidproject/mantid/pull/21917) - Add sub groups to fit sequential output in Muon Analysis
 * *new* [PR21920](https://github.com/mantidproject/mantid/pull/21920) - Only package MantidQt for Qt 4
 * *new* [PR21923](https://github.com/mantidproject/mantid/pull/21923) - Stop the resetting of group/pair selection in muon analysis
 * *new* [PR21928](https://github.com/mantidproject/mantid/pull/21928) - Restructured Absorbtion correction GUI
@@ -30,6 +31,9 @@ Detailed Merges for Mar 5 to 11, 2018
 * *new* [PR21947](https://github.com/mantidproject/mantid/pull/21947) - Allow negative sections in ALC background
 * *new* [PR21949](https://github.com/mantidproject/mantid/pull/21949) - MRInspectData: Fix logger bug
 * *new* [PR21951](https://github.com/mantidproject/mantid/pull/21951) - Change conversion to seconds
+* *new* [PR21953](https://github.com/mantidproject/mantid/pull/21953) - Removed temperature filtering from Muon Analysis
 * *new* [PR21962](https://github.com/mantidproject/mantid/pull/21962) - Remove ties when function is removed.
 * *new* [PR21963](https://github.com/mantidproject/mantid/pull/21963) - SANS GUI V2 Enable buttons on failure
 * *new* [PR21966](https://github.com/mantidproject/mantid/pull/21966) - Fix LiquidsReflectometryReductionTest on Windows
+* *new* [PR21971](https://github.com/mantidproject/mantid/pull/21971) - Fix tab ordering in Isis SANS
+* *new* [PR21972](https://github.com/mantidproject/mantid/pull/21972) - Fix DirectToolsTest for matplotlib v2
