@@ -21,6 +21,7 @@ Detailed Merges for Mar 5 to 11, 2018
 * *new* [PR21917](https://github.com/mantidproject/mantid/pull/21917) - Add sub groups to fit sequential output in Muon Analysis
 * *new* [PR21920](https://github.com/mantidproject/mantid/pull/21920) - Only package MantidQt for Qt 4
 * *new* [PR21923](https://github.com/mantidproject/mantid/pull/21923) - Stop the resetting of group/pair selection in muon analysis
+* *new* [PR21925](https://github.com/mantidproject/mantid/pull/21925) - Missing fractional propagation code in `FractionalRebinning`
 * *new* [PR21928](https://github.com/mantidproject/mantid/pull/21928) - Restructured Absorbtion correction GUI
 * *new* [PR21930](https://github.com/mantidproject/mantid/pull/21930) - Fix tooltip colours on RHEL7
 * *new* [PR21932](https://github.com/mantidproject/mantid/pull/21932) - Adding a help button to the sans V2 GUI
@@ -39,3 +40,5 @@ Detailed Merges for Mar 5 to 11, 2018
 * *new* [PR21966](https://github.com/mantidproject/mantid/pull/21966) - Fix LiquidsReflectometryReductionTest on Windows
 * *new* [PR21971](https://github.com/mantidproject/mantid/pull/21971) - Fix tab ordering in Isis SANS
 * *new* [PR21972](https://github.com/mantidproject/mantid/pull/21972) - Fix DirectToolsTest for matplotlib v2
+* *new* [PR21990](https://github.com/mantidproject/mantid/pull/21990) - Indirect - Bayes Stretch - current spectrum maximum
+* *new* [PR21998](https://github.com/mantidproject/mantid/pull/21998) - MR: Update filter to take in workspace
