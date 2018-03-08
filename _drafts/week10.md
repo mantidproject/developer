@@ -13,6 +13,7 @@ Detailed Merges for Mar 5 to 11, 2018
 
 * *new* [PR21762](https://github.com/mantidproject/mantid/pull/21762) - Set transmission runs based on run angle
 * *new* [PR21784](https://github.com/mantidproject/mantid/pull/21784) - Indirect - ElasticWindowMultiple - Read temperature sensor names from instrument parameter files
+* *new* [PR21785](https://github.com/mantidproject/mantid/pull/21785) - Rewrite SaveVulcanGSS for 27 bank GSAS
 * *new* [PR21808](https://github.com/mantidproject/mantid/pull/21808) - Improve workspace names for time sliced data
 * *new* [PR21813](https://github.com/mantidproject/mantid/pull/21813) - Fixed results table in muon analysis to always use numeric values when needed
 * *new* [PR21833](https://github.com/mantidproject/mantid/pull/21833) - Indirect - IqtFit - Display ties added by 'Constrain Intensities' in the Fit Property Browser
@@ -32,6 +33,7 @@ Detailed Merges for Mar 5 to 11, 2018
 * *new* [PR21949](https://github.com/mantidproject/mantid/pull/21949) - MRInspectData: Fix logger bug
 * *new* [PR21951](https://github.com/mantidproject/mantid/pull/21951) - Change conversion to seconds
 * *new* [PR21953](https://github.com/mantidproject/mantid/pull/21953) - Removed temperature filtering from Muon Analysis
+* *new* [PR21954](https://github.com/mantidproject/mantid/pull/21954) - Update handling of sample logs and monitors
 * *new* [PR21962](https://github.com/mantidproject/mantid/pull/21962) - Remove ties when function is removed.
 * *new* [PR21963](https://github.com/mantidproject/mantid/pull/21963) - SANS GUI V2 Enable buttons on failure
 * *new* [PR21966](https://github.com/mantidproject/mantid/pull/21966) - Fix LiquidsReflectometryReductionTest on Windows
