@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Python 3</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '3.12.20180320.1312',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-59110517-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+  </head>
+  <body role="document">
+
+
+
+
+
+  <div id="navbar" class="navbar navbar-default ">
+    <div class="container">
+      <div class="navbar-header">
+        
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://www.mantidproject.org"><img src="_static/Mantid_Logo_Transparent.png">
+           </a>
+        <span class="navbar-text navbar-version pull-left"><b>3.12</b></span>
+      </div>
+
+      
+        <div class="collapse navbar-collapse nav-collapse">
+      
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="http://www.mantidproject.org">Home</a></li>
+                <li><a href="http://download.mantidproject.org">Download</a></li>
+                <li><a href="http://www.mantidproject.org/Documentation">Documentation</a></li>
+                <li><a href="http://www.mantidproject.org/Contact">Contact Us</a></li>
+            
+            
+              
+              
+            
+            
+            
+            
+          </ul>
+              
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+            </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="python-3">
+<h1>Python 3<a class="headerlink" href="#python-3" title="Permalink to this headline">¶</a></h1>
+<p>Python 2 has an <a class="reference external" href="http://legacy.python.org/dev/peps/pep-0373/">end-of-life date set for 2020</a>
+and now that most third-party packages support both 2 and 3 we are starting to think about a
+migration strategy for Mantid.</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#building-against-python-3" id="id2">Building Against Python 3</a></li>
+<li><a class="reference internal" href="#supporting-python-2-and-3" id="id3">Supporting Python 2 and 3</a></li>
+<li><a class="reference internal" href="#migrating-from-python-2-to-3" id="id4">Migrating From Python 2 to 3</a></li>
+</ul>
+</div>
+<div class="section" id="building-against-python-3">
+<h2><a class="toc-backref" href="#id2">Building Against Python 3</a><a class="headerlink" href="#building-against-python-3" title="Permalink to this headline">¶</a></h2>
+<p>This is currently only possible on a Linux system with a pre-installed version of python 3. You need
+to install some additional packages as shown below:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>apt-get install python3-sip-dev python3-pyqt4  python3-numpy  python3-scipy  python3-sphinx <span class="se">\</span>
+  python3-sphinx-bootstrap-theme  python3-dateutil python3-matplotlib ipython3-qtconsole <span class="se">\</span>
+  python3-h5py python3-yaml
+</pre></div>
+</div>
+<p>or on fedora, with slightly different package names</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>dnf install python3-sip-devel python3-PyQt4-devel python3-numpy python3-scipy python3-sphinx <span class="se">\</span>
+  python3-sphinx-theme-bootstrap python3-dateutil python3-matplotlib python3-ipython-gui <span class="se">\</span>
+  boost-python3-devel python3-h5py python3-yaml
+</pre></div>
+</div>
+<p>then set <code class="docutils literal"><span class="pre">-DPYTHON_EXECUTABLE=/usr/bin/python3</span></code> when running cmake before building.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">If any of these packages are installed via pip, this could cause conflicts.
+Install as described here only.</p>
+</div>
+</div>
+<div class="section" id="supporting-python-2-and-3">
+<h2><a class="toc-backref" href="#id3">Supporting Python 2 and 3</a><a class="headerlink" href="#supporting-python-2-and-3" title="Permalink to this headline">¶</a></h2>
+<p>Python 3 introduces many exciting new features. For a full description see the official Python 3
+changes document. For a shorter overview see
+<a class="reference external" href="https://asmeurer.github.io/python3-presentation/slides.html#1">here</a> or
+<a class="reference external" href="http://python3porting.com/differences.html">here</a>.</p>
+<p>Some features of Python 3 have been backported to Python 2.x within the
+<a class="reference external" href="https://docs.python.org/2.7/library/__future__.html?highlight=future#module-__future__">__future__</a>
+module. These make it easier to write code that is compatible with both versions.</p>
+<p>This cheat sheet provides helpful examples of how to write code in a 2/3 compatible manner. Where an
+option is given to use either the <a class="reference external" href="https://pythonhosted.org/six/">six</a> or
+<a class="reference external" href="https://pypi.python.org/pypi/future">future</a> (not to be confused with <code class="docutils literal"><span class="pre">__future__</span></code>!) modules
+then <code class="docutils literal"><span class="pre">six</span></code> is used.</p>
+<p>All new code should be written to be compatible with Python 2 &amp; 3 and as a minimum the first import
+line of the module should be:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="p">(</span><span class="n">absolute_import</span><span class="p">,</span> <span class="n">division</span><span class="p">,</span> <span class="n">print_function</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>It is quite common to also see <code class="docutils literal"><span class="pre">unicode_literals</span></code> in the above import list, however, when running
+under Python 2 <code class="docutils literal"><span class="pre">Boost.Python</span></code> will not automatically convert a Python <code class="docutils literal"><span class="pre">str</span></code> to C++ <code class="docutils literal"><span class="pre">std::string</span></code>
+automatically if the string is unicode. When running with Python 3 <code class="docutils literal"><span class="pre">Boost.Python</span></code> will do this
+conversion automatically for unicode strings so this is in fact not a huge issue going forward.</p>
+</div>
+<div class="section" id="migrating-from-python-2-to-3">
+<h2><a class="toc-backref" href="#id4">Migrating From Python 2 to 3</a><a class="headerlink" href="#migrating-from-python-2-to-3" title="Permalink to this headline">¶</a></h2>
+<p>One way to migrate a file from python 2 to 3 is as follows...</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<div class="last line-block">
+<div class="line">To perform the following procedure on windows:</div>
+<div class="line">1. Git Bash or similar will be required.</div>
+<div class="line">2. To run the <code class="docutils literal"><span class="pre">2to3</span></code> script you will need to start the command-prompt.bat in the build directory and run <code class="docutils literal"><span class="pre">%PYTHONHOME%\Scripts\2to3</span></code></div>
+</div>
+</div>
+<p>Run the following script to run the python 2 to 3 translation tool and rename the file to <code class="docutils literal"><span class="pre">filename.py.bak</span></code></p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>2to3 --no-diffs -w filename.py
+mv filename.py<span class="o">{</span>,.bak<span class="o">}</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Run <strong>one</strong> of the following commands to append the import statement listed above.</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>awk <span class="s1">&#39;/(from|import)/ &amp;&amp; !x {print &quot;from __future__ import (absolute_import, division, print_function)\n&quot;; x=1} 1&#39;</span> <span class="se">\</span>
+    filename.py.bak &gt; filename.py
+</pre></div>
+</div>
+<p><strong>or</strong></p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>sed -i <span class="s1">&#39;0,/^import\|from.*/s/^import\|from.*/from __future__ import (absolute_import, division, print_function)\n&amp;/&#39;</span> filename.py
+</pre></div>
+</div>
+<p>Check each changed block,</p>
+<ul class="simple">
+<li>If any change has replaced <code class="docutils literal"><span class="pre">xrange</span></code> with <code class="docutils literal"><span class="pre">range</span></code> then add <code class="docutils literal"><span class="pre">from</span> <span class="pre">six.moves</span> <span class="pre">import</span> <span class="pre">range</span></code>
+to the imports list</li>
+<li>If any change has replaced <code class="docutils literal"><span class="pre">ifilterfalse</span></code> with <code class="docutils literal"><span class="pre">filterfalse</span></code> from <code class="docutils literal"><span class="pre">itertools</span></code> then replace a
+statement like <code class="docutils literal"><span class="pre">from</span> <span class="pre">itertools</span> <span class="pre">import</span> <span class="pre">filterfalse</span></code> with <code class="docutils literal"><span class="pre">from</span> <span class="pre">six.moves</span> <span class="pre">import</span> <span class="pre">filterfalse</span></code> in the
+imports list. There are more cases like this documented <a class="reference external" href="https://pythonhosted.org/six/#module-six.moves">here</a>.</li>
+<li>If any change has replaced <code class="docutils literal"><span class="pre">for</span> <span class="pre">k,</span> <span class="pre">v</span> <span class="pre">in</span> <span class="pre">knights.iteritems()</span></code> with <code class="docutils literal"><span class="pre">for</span> <span class="pre">k,</span> <span class="pre">v</span> <span class="pre">in</span> <span class="pre">knights.items()</span></code>
+then add <code class="docutils literal"><span class="pre">from</span> <span class="pre">six</span> <span class="pre">import</span> <span class="pre">iteritems</span></code> to the import list and update the replacement to
+<code class="docutils literal"><span class="pre">for</span> <span class="pre">k,</span> <span class="pre">v</span> <span class="pre">in</span> <span class="pre">iteritems(knights)</span></code>.</li>
+</ul>
+<p>In some cases like <code class="docutils literal"><span class="pre">range</span></code>, pylint will complain about <cite>Replacing builtin &#8216;range&#8217;</cite> or similar.
+Make sure to put the proper ignore statement on that line using <code class="docutils literal"><span class="pre">#pylint:</span> <span class="pre">disable=redefined-builtin</span></code>.</p>
+<p>Check the code still runs as expected in Python 2.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><code class="docutils literal"><span class="pre">2to3</span></code> will try to keep the type of the objects the same. So, for example <code class="docutils literal"><span class="pre">range(5)</span></code> will
+become <code class="docutils literal"><span class="pre">list(range(5))</span></code>. This is not necessary if you use it just for iteration. Things like
+<code class="docutils literal"><span class="pre">for</span> <span class="pre">i</span> <span class="pre">in</span> <span class="pre">range(5)</span></code> will work in both versions of Python, you don&#8217;t need to transform it into a
+list.</p>
+</div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+      <ul class="nav navbar-nav" style=" float: right;">
+      
+      
+          
+            
+          
+       
+          <li><a href="#">Back to top</a></li>
+       </ul>
+    <p>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Python vs C++ Algorithms</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '3.12.20180320.1312',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-59110517-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+  </head>
+  <body role="document">
+
+
+
+
+
+  <div id="navbar" class="navbar navbar-default ">
+    <div class="container">
+      <div class="navbar-header">
+        
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://www.mantidproject.org"><img src="_static/Mantid_Logo_Transparent.png">
+           </a>
+        <span class="navbar-text navbar-version pull-left"><b>3.12</b></span>
+      </div>
+
+      
+        <div class="collapse navbar-collapse nav-collapse">
+      
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="http://www.mantidproject.org">Home</a></li>
+                <li><a href="http://download.mantidproject.org">Download</a></li>
+                <li><a href="http://www.mantidproject.org/Documentation">Documentation</a></li>
+                <li><a href="http://www.mantidproject.org/Contact">Contact Us</a></li>
+            
+            
+              
+              
+            
+            
+            
+            
+          </ul>
+              
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+            </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="python-vs-c-algorithms">
+<span id="pythonvscppalgorithms"></span><h1>Python vs C++ Algorithms<a class="headerlink" href="#python-vs-c-algorithms" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#overview" id="id1">Overview</a></li>
+<li><a class="reference internal" href="#algorithm-language-comparison" id="id2">Algorithm Language Comparison</a></li>
+<li><a class="reference internal" href="#multiple-possibilities-in-mantid" id="id3">Multiple Possibilities in Mantid</a></li>
+<li><a class="reference internal" href="#should-i-write-a-c-algorithm" id="id4">Should I Write a C++ Algorithm?</a></li>
+<li><a class="reference internal" href="#should-i-write-a-python-algorithm" id="id5">Should I Write a Python Algorithm?</a></li>
+<li><a class="reference internal" href="#note-for-mantid-developers" id="id6">Note for Mantid Developers</a></li>
+</ul>
+</div>
+<div class="section" id="overview">
+<h2><a class="toc-backref" href="#id1">Overview</a><a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>Mantid can be extended both with python and C++ algorithms as plug-ins. There are a number of considerations to take into account when deciding which language to choose.
+These are summarised in the table and discussed below. Generally, it is recommended to implement <strong>atomic</strong> operations in C++, and <strong>workflows</strong> in python.</p>
+</div>
+<div class="section" id="algorithm-language-comparison">
+<h2><a class="toc-backref" href="#id2">Algorithm Language Comparison</a><a class="headerlink" href="#algorithm-language-comparison" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="51%" />
+<col width="37%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Consideration</th>
+<th class="head">C++</th>
+<th class="head">Python</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Execution Speed</strong></td>
+<td>Generally much faster (order of magnitude, and beyond), since compiled.
+Lots of optimisations can be made. OpenMP parallelisation for trivial loops (e.g. loops over spectra).</td>
+<td>Generally slower. Numpy should be used wherever possible.
+Large loops should be avoided, especially the nested ones.
+Provides no means for trivial parallelisation.</td>
+</tr>
+<tr class="row-odd"><td><strong>Creation</strong></td>
+<td>Generally slower and more complicated, but you do get the advantage of compile-time type checking.</td>
+<td>Generally easier and faster.</td>
+</tr>
+<tr class="row-even"><td><strong>Workflow</strong></td>
+<td>Large overhead when setting and getting the properties of child algorithms.
+Can quickly grow cumbersome, if many child algorithms have to be run.</td>
+<td>Very convenient and concise for workflows thanks to the python SimpleAPI.</td>
+</tr>
+<tr class="row-odd"><td><strong>Testability</strong></td>
+<td>Easy in C++</td>
+<td>Easy in python</td>
+</tr>
+<tr class="row-even"><td><strong>API Accessibility</strong></td>
+<td>Full</td>
+<td>Some of the framework functionality is not exposed to python.</td>
+</tr>
+<tr class="row-odd"><td><strong>User Readability</strong></td>
+<td>Users are not generally expected to understand C++ code.</td>
+<td>Better readability. Power users are expected to understand python code.</td>
+</tr>
+<tr class="row-even"><td><strong>User Modifiability</strong></td>
+<td>Users can not change C++ algorithms, since they are shipped in the compiled form.</td>
+<td>Users can play with python algorithms, since they are shipped as source.
+It is not advised, of course, do to so, but in case of a spurious result,
+they have the opportunity to play with the algorithm before contacting us.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="multiple-possibilities-in-mantid">
+<h2><a class="toc-backref" href="#id3">Multiple Possibilities in Mantid</a><a class="headerlink" href="#multiple-possibilities-in-mantid" title="Permalink to this headline">¶</a></h2>
+<p>There are many ways to extend Mantid to add new features not present out-of-the-box.</p>
+<p>The easiest way to extend Mantid, and possibly the best starting place for any improvements, is a python script. Mantid provides a very high level of scriptable control, including plotting and visualisation as well as the execution of core routines. The scripting manual for Mantid provides an overview of the possibilities offered for scripting, including automatic generation via the graphical user interface for Mantid.</p>
+<p><a class="reference external" href="http://docs.mantidproject.org/nightly/concepts/Algorithm.html#algorithm" title="(in MantidProject v3.11)"><span class="xref std std-ref">Algorithms</span></a> and <a class="reference external" href="http://docs.mantidproject.org/nightly/concepts/Workspace.html#workspace" title="(in MantidProject v3.11)"><span class="xref std std-ref">workspaces</span></a> are core concepts in Mantid. Generally, an Algorithm does something based on input workspaces, either to create a new one from the results, or to modify the input in-place. One reason to create an Algorithm, is because you have a script containing a well-defined and useful procedure, that you would like to share with a wider audience. It usually requires a low amount of effort to adapt a python script into one or more Python Algorithms.</p>
+<p>Core Mantid Algorithms as well as some user defined Algorithms, are generally written in C++. There are a number of advantages to doing this (which are covered later), but also some serious disadvantages. When thinking about writing new functionality against Mantid, C++ does not need to be the default option.</p>
+</div>
+<div class="section" id="should-i-write-a-c-algorithm">
+<h2><a class="toc-backref" href="#id4">Should I Write a C++ Algorithm?</a><a class="headerlink" href="#should-i-write-a-c-algorithm" title="Permalink to this headline">¶</a></h2>
+<p>The main reason to write algorithms in C++ is that you can often significantly reduce the run-time processing time over code written in Python. Looping over large volumes of data tends to be fastest in C++. Mantid also has facilities for running your Algorithm in a multi-threaded context when assembled in C++.</p>
+<p>Writing an algorithm in C++ gives you all the advantages associated with a compiled language including compile-time type checking. Some developers find this advantage significant enough to make writing C++ algorithms faster than Python equivalents.</p>
+<p>Writing clean Mantid Algorithm code in C++ is sometimes not a good idea. Here are some brief reasons why:</p>
+<p>For workflow Algorithms consisting mainly of child-algorithms execution, child-algorithm set-up in C++ can be long-winded and more fragile than Python.
+There are many different ways to do the same thing in C++, and therefore more ways to get it wrong.
+You are responsible for all the heap-allocated memory, as well as other resources you create.
+Our target platforms have different compilers, with different interpretations of the same C++ standard, this can make writing cross-platform code tricky.
+Compiler and linker outputs can be verbose, particularly in the presence of templated code.</p>
+</div>
+<div class="section" id="should-i-write-a-python-algorithm">
+<h2><a class="toc-backref" href="#id5">Should I Write a Python Algorithm?</a><a class="headerlink" href="#should-i-write-a-python-algorithm" title="Permalink to this headline">¶</a></h2>
+<p>Python algorithms are generally easier to put together than those assembled in C++. Because python has a limited dictionary, the barriers to writing effective code are much lower. Furthermore, not all algorithms need to run at the speed of light. For Algorithms that are only fed small volumes of data from small instruments, the user will not notice the difference between it running in half a second in Python or a tenth of a second in C++.</p>
+<p>It&#8217;s more natural to convert a python script into a python Algorithm than directly into a C++ algorithm. In many cases, the algorithm functionality is best assembled by procedural execution of existing algorithms. For this, the python API provides the best means of executing an algorithm in a single line, using well defined, named variables. An algorithm of this nature will take up only a few lines in Python and therefore be very easy to read and maintain.</p>
+<p>Python algorithms also benefit from automatic GUI creation when they are registered with Mantid, so they can be used equally well through the command line, or through MantidPlot graphically.</p>
+<p>Python algorithms are great for editing and re-registering. Users can tweak existing Python algorithms or generate their own, without the complication of setting up a build environment. They can also more easily be re-issued to fix particular issues than C++ algorithms.</p>
+</div>
+<div class="section" id="note-for-mantid-developers">
+<h2><a class="toc-backref" href="#id6">Note for Mantid Developers</a><a class="headerlink" href="#note-for-mantid-developers" title="Permalink to this headline">¶</a></h2>
+<p>Developers creating new algorithms in python must still generate unit tests for them. When an algorithm breaks, users do not care what language they are written in. The developer test suites allow you to create the same level of test coverage in python as you would in C++. Developers should also take care to ensure that the test exercises all of the code, as Python provides no compile-time type checking.</p>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+      <ul class="nav navbar-nav" style=" float: right;">
+      
+      
+          
+            
+          
+       
+          <li><a href="#">Back to top</a></li>
+       </ul>
+    <p>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
