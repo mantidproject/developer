@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 
 
@@ -6,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Index</title>
+    <title>Interface Documentation</title>
     
     <link rel="stylesheet" href="_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -32,7 +31,7 @@
     <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
     <script type="text/javascript" src="_static/bootstrap-3.3.6/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
-    <link rel="index" title="Index" href="#" />
+    <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
 
 <script>
@@ -104,11 +103,54 @@
   <div class="row">
     <div class="col-md-12 content">
       
-
-<h1 id="index">Index</h1>
-
-<div class="genindex-jumpbox">
- 
+  <div class="section" id="interface-documentation">
+<span id="interfacedocumentation"></span><h1>Interface Documentation<a class="headerlink" href="#interface-documentation" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#summary" id="id1">Summary</a></li>
+<li><a class="reference internal" href="#the-interface-directive" id="id2">The <code class="docutils literal"><span class="pre">interface</span></code> Directive</a><ul>
+<li><a class="reference internal" href="#options" id="id3">Options</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#examples" id="id4">Examples</a></li>
+</ul>
+</div>
+<div class="section" id="summary">
+<h2><a class="toc-backref" href="#id1">Summary</a><a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>This page deals with the specifics of how to document Custom Interfaces. For a more general guide to the Mantid documentation system see <a class="reference external" href="DocumentationGuideForDevs.html">Documentation Guide For Devs</a>.</p>
+</div>
+<div class="section" id="the-interface-directive">
+<h2><a class="toc-backref" href="#id2">The <code class="docutils literal"><span class="pre">interface</span></code> Directive</a><a class="headerlink" href="#the-interface-directive" title="Permalink to this headline">¶</a></h2>
+<p>This directive allows you to insert a screenshot of the interface into the documentation. It has one required argument: the name of the interface, as given by the interface&#8217;s <code class="docutils literal"><span class="pre">name()</span></code> method. Several options, detailed below, may also be provided to further control the behaviour of this directive.</p>
+<p>The inserted screenshots are generated automatically when the documentation is being compiled. This is preferable to screenshots taken manually as these will automatically stay up to date.</p>
+<div class="section" id="options">
+<h3><a class="toc-backref" href="#id3">Options</a><a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>widget</dt>
+<dd>You can give the name of a widget in the interface to only take a screenshot of that widget. If not given, a screenshot of the entire interface will be inserted.</dd>
+<dt>align</dt>
+<dd>This specifies the alignment to use for the screenshot. Valid settings are <em>left</em>, <em>center</em>, and <em>right</em>. Defaults to <em>center</em>.</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="examples">
+<h2><a class="toc-backref" href="#id4">Examples</a><a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>This inserts a screenshot of the Muon Analysis interface:</p>
+<div class="highlight-rest"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">interface</span><span class="p">::</span> Muon Analysis
+</pre></div>
+</div>
+<p>This inserts a screenshot of the Muon Analysis interface&#8217;s Grouping Options tab:</p>
+<div class="highlight-rest"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">interface</span><span class="p">::</span> Muon Analysis
+   <span class="nc">:widget:</span> <span class="nf">GroupingOptions</span>
+</pre></div>
+</div>
+<p>This inserts a screenshot of the main table in the ISIS Reflectometry custom interface, aligned to the right:</p>
+<div class="highlight-rest"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">interface</span><span class="p">::</span> ISIS Reflectometry
+   <span class="nc">:widget:</span> <span class="nf">viewTable</span>
+   <span class="nc">:align:</span> <span class="nf">right</span>
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -122,11 +164,8 @@
       
       
           
-
-   
             
           
-
        
           <li><a href="#">Back to top</a></li>
        </ul>

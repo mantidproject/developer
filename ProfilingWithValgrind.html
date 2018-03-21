@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Profiling with Valgrind</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '3.12.20180321.1947',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-59110517-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+  </head>
+  <body role="document">
+
+
+
+
+
+  <div id="navbar" class="navbar navbar-default ">
+    <div class="container">
+      <div class="navbar-header">
+        
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://www.mantidproject.org"><img src="_static/Mantid_Logo_Transparent.png">
+           </a>
+        <span class="navbar-text navbar-version pull-left"><b>3.12</b></span>
+      </div>
+
+      
+        <div class="collapse navbar-collapse nav-collapse">
+      
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="http://www.mantidproject.org">Home</a></li>
+                <li><a href="http://download.mantidproject.org">Download</a></li>
+                <li><a href="http://www.mantidproject.org/Documentation">Documentation</a></li>
+                <li><a href="http://www.mantidproject.org/Contact">Contact Us</a></li>
+            
+            
+              
+              
+            
+            
+            
+            
+          </ul>
+              
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+            </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="profiling-with-valgrind">
+<span id="profilingwithvalgrind"></span><h1>Profiling with Valgrind<a class="headerlink" href="#profiling-with-valgrind" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>Describes how to use the
+<a class="reference external" href="http://valgrind.org/docs/manual/cl-manual.html">callgrind</a> plugin to
+the <a class="reference external" href="http://valgrind.org/">valgrind</a> tool set to profile your code.</p>
+<p><em>Note: Valgrind is a Linux only tool</em></p>
+</div>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>You will need to install both <em>valgrind</em> &amp; the visualizer tool
+<em>kcachegrind</em> - both of which should be available in your distribution&#8217;s
+repositories.</p>
+<div class="section" id="ubuntu">
+<h3>Ubuntu<a class="headerlink" href="#ubuntu" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">valgrind</span> <span class="n">kcachegrind</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="red-hat-fedora">
+<h3>Red Hat/Fedora<a class="headerlink" href="#red-hat-fedora" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">yum</span> <span class="n">install</span> <span class="n">valgrind</span> <span class="n">kcachegrind</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="preparation">
+<h2>Preparation<a class="headerlink" href="#preparation" title="Permalink to this headline">¶</a></h2>
+<p>To be most effective valgrind requires that debugging information be
+present in the binaries that are being instrumented, although a full
+debug build is not required. On gcc this means compiling with the <em>-g</em>
+flag. For Mantid the recommended setup is to use a separate build with
+the <em>CMAKE_BUILD_TYPE</em> set to <em>RelWithDebInfo</em>. This provides a good
+balance between performance and availability of debugging information.</p>
+</div>
+<div class="section" id="running-the-profiler">
+<h2>Running the Profiler<a class="headerlink" href="#running-the-profiler" title="Permalink to this headline">¶</a></h2>
+<p>The profiler can instrument the code in a number of different ways. Some
+of these will be described here. For more detail information see the
+<a class="reference external" href="http://valgrind.org/docs/manual/cl-manual.html">callgrind manual</a>.</p>
+<p>During execution the callgrind tool creates many output file named
+<em>callgrind.output.pid.X</em>. For this reason it is recommended that each
+profile run be executed from within a separate directory, named with a
+description of the activity. This allows the separate profiled runs to
+be found more easily in the future.</p>
+<p><strong>Beware</strong>: The code will execute many times (factors of 10) slower than
+when not profiling - this is just a consequence of how valgrind
+instruments the code.</p>
+<div class="section" id="profile-a-whole-program-run">
+<h3>Profile a Whole Program Run<a class="headerlink" href="#profile-a-whole-program-run" title="Permalink to this headline">¶</a></h3>
+<p>This is the simplest mode of operation. Simply pass the program
+executable, along with any arguments to the valgrind executable:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">valgrind</span> <span class="o">--</span><span class="n">tool</span><span class="o">=</span><span class="n">callgrind</span> <span class="o">--</span><span class="n">dump</span><span class="o">-</span><span class="n">instr</span><span class="o">=</span><span class="n">yes</span> <span class="o">--</span><span class="n">simulate</span><span class="o">-</span><span class="n">cache</span><span class="o">=</span><span class="n">yes</span> <span class="o">--</span><span class="n">collect</span><span class="o">-</span><span class="n">jumps</span><span class="o">=</span><span class="n">yes</span> <span class="o">&lt;</span><span class="n">executable</span><span class="o">&gt;</span> <span class="p">[</span><span class="n">args</span><span class="o">...</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="profile-selected-portions-of-the-code">
+<h3>Profile Selected Portions of the Code<a class="headerlink" href="#profile-selected-portions-of-the-code" title="Permalink to this headline">¶</a></h3>
+<p>For larger pieces of code it can be quite likely that you wish to
+profile only a selected portion of it. This is possible if you have a
+access to recompile the source code of the binaries to be instrumented
+as valgrind has a C api that can be used talk to the profiler. It uses a
+set of
+<a class="reference external" href="http://valgrind.org/docs/manual/cl-manual.html#cl-manual.clientrequests">macros</a>
+to instruct the profiler what to do when it hits certain points of the
+code.</p>
+<p>As an example take a simple main function composed of several function
+calls:</p>
+<div class="code cpp highlight-default"><div class="highlight"><pre><span></span><span class="nb">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="n">foo1</span><span class="p">();</span>
+  <span class="n">bar1</span><span class="p">();</span>
+  <span class="n">foo2</span><span class="p">();</span>
+  <span class="n">foo3</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>To profile only the call to <code class="docutils literal"><span class="pre">bar1()</span></code> then you would do the following
+to the code:</p>
+<div class="code cpp highlight-default"><div class="highlight"><pre><span></span><span class="c1">#include &lt;valgrind/callgrind.h&gt;</span>
+
+<span class="nb">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="n">foo1</span><span class="p">();</span>
+  <span class="n">CALLGRIND_START_INSTRUMENTATION</span><span class="p">;</span>
+  <span class="n">CALLGRIND_TOGGLE_COLLECT</span><span class="p">;</span>
+  <span class="n">bar1</span><span class="p">();</span>
+  <span class="n">CALLGRIND_TOGGLE_COLLECT</span><span class="p">;</span>
+  <span class="n">CALLGRIND_STOP_INSTRUMENTATION</span><span class="p">;</span>
+  <span class="n">foo2</span><span class="p">();</span>
+  <span class="n">foo3</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>After recompiling the code you would then run the profiler again but
+this time adding the <em>&#8211;instr-atstart=no &#8211;collect-atstart=no</em> flags,
+like so</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">valgrind</span> <span class="o">--</span><span class="n">tool</span><span class="o">=</span><span class="n">callgrind</span> <span class="o">--</span><span class="n">dump</span><span class="o">-</span><span class="n">instr</span><span class="o">=</span><span class="n">yes</span> <span class="o">--</span><span class="n">simulate</span><span class="o">-</span><span class="n">cache</span><span class="o">=</span><span class="n">yes</span> <span class="o">--</span><span class="n">collect</span><span class="o">-</span><span class="n">jumps</span><span class="o">=</span><span class="n">yes</span> <span class="o">--</span><span class="n">collect</span><span class="o">-</span><span class="n">atstart</span><span class="o">=</span><span class="n">no</span> <span class="o">--</span><span class="n">instr</span><span class="o">-</span><span class="n">atstart</span><span class="o">=</span><span class="n">no</span> <span class="o">&lt;</span><span class="n">executable</span><span class="o">&gt;</span> <span class="p">[</span><span class="n">args</span><span class="o">...</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>The <em>&#8211;instru-at-start=no</em> is not strictly necessary but it will speed
+up the code up until the profiling point at the cost of the less
+accuracy about the cache usage. See
+<a class="reference external" href="http://valgrind.org/docs/manual/cl-manual.html#opt.instr-atstart">here</a>
+more details.</p>
+</div>
+</div>
+<div class="section" id="visualisation">
+<h2>Visualisation<a class="headerlink" href="#visualisation" title="Permalink to this headline">¶</a></h2>
+<p>Callgrind produces a large amount of data about the program&#8217;s execution.
+It is most easily understood using the <em>kcachegrind</em> GUI tool. This
+reads the information produced by callgrind and creates a list of
+function calls along with information on timings of each of the calls
+during the profiled run. If the source code is available it can also
+show the lines of code that relate to the functions being inspected.</p>
+<div class="figure" id="id1">
+<img alt="Example of KCachegrind display a profile of MantidPlot starting up and closing down" src="_images/KCachegrind_MantidPlot.png" />
+<p class="caption"><span class="caption-text">Example of KCachegrind display a profile of MantidPlot starting up
+and closing down</span></p>
+</div>
+<p>By default KCachegrind shows the number of instructions fetched within
+its displays. This can be changed using the drop-down box at the top
+right of the screen. The <em>Instruction Fetch</em> and <em>Cycle Estimation</em> are
+generally the most widely used and roughly correlate to the amount of
+time spent performing the displayed functions.</p>
+<p>Some of the key features display are:</p>
+<div class="section" id="flat-profile-view">
+<h3>Flat Profile View<a class="headerlink" href="#flat-profile-view" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Incl. - Sum of itself + all child calls as a percentage of the whole.
+Programs with little static allocation should have main() at 100%.
+Units are those selected by the to-right drop-down</li>
+<li>Self - Exclusive count spent in the selected function. Units are
+those selected by the to-right drop-down</li>
+<li>Called - Number of times the function was called.</li>
+</ul>
+</div>
+<div class="section" id="function-call-detail">
+<h3>Function Call Detail<a class="headerlink" href="#function-call-detail" title="Permalink to this headline">¶</a></h3>
+<p>Click on function in flat view to get more detail on the right.</p>
+<p>Displays details about the selected function call plus details about all
+child calls it made. The <em>call graph</em> tab at the bottom gives a nice
+graphical overview of the relative function cost.</p>
+</div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+      <ul class="nav navbar-nav" style=" float: right;">
+      
+      
+          
+            
+          
+       
+          <li><a href="#">Back to top</a></li>
+       </ul>
+    <p>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

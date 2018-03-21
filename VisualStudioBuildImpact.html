@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Visual Studio Build Impact</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '3.12.20180321.1947',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-59110517-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+  </head>
+  <body role="document">
+
+
+
+
+
+  <div id="navbar" class="navbar navbar-default ">
+    <div class="container">
+      <div class="navbar-header">
+        
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://www.mantidproject.org"><img src="_static/Mantid_Logo_Transparent.png">
+           </a>
+        <span class="navbar-text navbar-version pull-left"><b>3.12</b></span>
+      </div>
+
+      
+        <div class="collapse navbar-collapse nav-collapse">
+      
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="http://www.mantidproject.org">Home</a></li>
+                <li><a href="http://download.mantidproject.org">Download</a></li>
+                <li><a href="http://www.mantidproject.org/Documentation">Documentation</a></li>
+                <li><a href="http://www.mantidproject.org/Contact">Contact Us</a></li>
+            
+            
+              
+              
+            
+            
+            
+            
+          </ul>
+              
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+            </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="visual-studio-build-impact">
+<h1>Visual Studio Build Impact<a class="headerlink" href="#visual-studio-build-impact" title="Permalink to this headline">¶</a></h1>
+<p>Building Mantid on Visual Studio can take a while, and really tie up the
+computer. This is because Visual Studio starts all of the compilation
+processes at normal priority, so they compete as equals with everything
+you are doing.</p>
+<p>So you might think that you can open task manage and reduce the priority
+of all the cl.exe processes, well there can be quite a few, and no it
+won&#8217;t work for long as these processes are replaced for every file it
+compiles.</p>
+<p>What you want to do it hunt down the MSBuild.exe processes and reduce
+the priority of them, there should be the same number as you have
+logical processors. The MSBuild processes spawn all of the compiler and
+linker tasks, an they inherit the priority of the MSBuild process.</p>
+<div class="section" id="script">
+<h2>Script<a class="headerlink" href="#script" title="Permalink to this headline">¶</a></h2>
+<p>Of course if you don&#8217;t want to do this yourself then you can use this
+script.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Const</span> <span class="n">BELOW_NORMAL</span> <span class="o">=</span> <span class="mi">16384</span>
+
+<span class="n">strComputer</span> <span class="o">=</span> <span class="s2">&quot;.&quot;</span>
+<span class="n">Set</span> <span class="n">objWMIService</span> <span class="o">=</span> <span class="n">GetObject</span><span class="p">(</span><span class="s2">&quot;winmgmts:</span><span class="se">\\</span><span class="s2">&quot;</span> <span class="o">&amp;</span> <span class="n">strComputer</span> <span class="o">&amp;</span> <span class="s2">&quot;</span><span class="se">\r</span><span class="s2">oot\cimv2&quot;</span><span class="p">)</span>
+
+<span class="n">Set</span> <span class="n">colProcesses</span> <span class="o">=</span> <span class="n">objWMIService</span><span class="o">.</span><span class="n">ExecQuery</span> <span class="n">_</span>
+    <span class="p">(</span><span class="s2">&quot;Select * from Win32_Process Where Name = &#39;MSBuild.exe&#39;&quot;</span><span class="p">)</span>
+<span class="n">For</span> <span class="n">Each</span> <span class="n">objProcess</span> <span class="ow">in</span> <span class="n">colProcesses</span>
+    <span class="n">objProcess</span><span class="o">.</span><span class="n">SetPriority</span><span class="p">(</span><span class="n">BELOW_NORMAL</span><span class="p">)</span>
+<span class="n">Next</span>
+</pre></div>
+</div>
+<p>Save it as Reduce_Build_Impact.vbs, and use when things are running like
+a dog!</p>
+</div>
+<div class="section" id="monitoring-script">
+<h2>Monitoring Script<a class="headerlink" href="#monitoring-script" title="Permalink to this headline">¶</a></h2>
+<p>If you don&#8217;t want to keep running the script for each build, here&#8217;s one
+that keeps a watch on your system every 5 seconds.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Const</span> <span class="n">BELOW_NORMAL</span> <span class="o">=</span> <span class="mi">16384</span>
+
+<span class="n">strComputer</span> <span class="o">=</span> <span class="s2">&quot;.&quot;</span>
+<span class="n">Set</span> <span class="n">objWMIService</span> <span class="o">=</span> <span class="n">GetObject</span><span class="p">(</span><span class="s2">&quot;winmgmts:</span><span class="se">\\</span><span class="s2">&quot;</span> <span class="o">&amp;</span> <span class="n">strComputer</span> <span class="o">&amp;</span> <span class="s2">&quot;</span><span class="se">\r</span><span class="s2">oot\cimv2&quot;</span><span class="p">)</span>
+<span class="n">Do</span> <span class="n">While</span> <span class="n">true</span>
+  <span class="n">Set</span> <span class="n">colProcesses</span> <span class="o">=</span> <span class="n">objWMIService</span><span class="o">.</span><span class="n">ExecQuery</span> <span class="n">_</span>
+      <span class="p">(</span><span class="s2">&quot;Select * from Win32_Process Where Name = &#39;MSBuild.exe&#39;&quot;</span><span class="p">)</span>
+  <span class="n">For</span> <span class="n">Each</span> <span class="n">objProcess</span> <span class="ow">in</span> <span class="n">colProcesses</span>
+      <span class="n">objProcess</span><span class="o">.</span><span class="n">SetPriority</span><span class="p">(</span><span class="n">BELOW_NORMAL</span><span class="p">)</span>
+  <span class="n">Next</span>
+  <span class="n">WScript</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">5000</span>
+<span class="n">loop</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+      <ul class="nav navbar-nav" style=" float: right;">
+      
+      
+          
+            
+          
+       
+          <li><a href="#">Back to top</a></li>
+       </ul>
+    <p>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
