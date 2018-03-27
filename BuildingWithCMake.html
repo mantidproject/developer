@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Building with CMake</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '3.12.20180326.1618',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-59110517-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+  </head>
+  <body role="document">
+
+
+
+
+
+  <div id="navbar" class="navbar navbar-default ">
+    <div class="container">
+      <div class="navbar-header">
+        
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://www.mantidproject.org"><img src="_static/Mantid_Logo_Transparent.png">
+           </a>
+        <span class="navbar-text navbar-version pull-left"><b>3.12</b></span>
+      </div>
+
+      
+        <div class="collapse navbar-collapse nav-collapse">
+      
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="http://www.mantidproject.org">Home</a></li>
+                <li><a href="http://download.mantidproject.org">Download</a></li>
+                <li><a href="http://www.mantidproject.org/Documentation">Documentation</a></li>
+                <li><a href="http://www.mantidproject.org/Contact">Contact Us</a></li>
+            
+            
+              
+              
+            
+            
+            
+            
+          </ul>
+              
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+            </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="building-with-cmake">
+<span id="buildingwithcmake"></span><h1>Building with CMake<a class="headerlink" href="#building-with-cmake" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#installing-cmake" id="id1">Installing CMake</a></li>
+<li><a class="reference internal" href="#installing-git" id="id2">Installing Git</a></li>
+<li><a class="reference internal" href="#installing-git-lfs-windows-only" id="id3">Installing Git LFS (Windows only)</a></li>
+<li><a class="reference internal" href="#configuring-your-environment" id="id4">Configuring your environment</a><ul>
+<li><a class="reference internal" href="#ubuntu" id="id5">Ubuntu</a></li>
+<li><a class="reference internal" href="#red-hat-7-centos-7" id="id6">Red Hat 7/CentOS 7</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#ccache" id="id7">CCache</a><ul>
+<li><a class="reference internal" href="#network-drives" id="id8">Network Drives</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#configuring-your-build" id="id9">Configuring your build</a><ul>
+<li><a class="reference internal" href="#red-hat-enterprise-linux-rhel-6-special-notes" id="id10">Red Hat Enterprise Linux (RHEL) 6 Special Notes</a></li>
+<li><a class="reference internal" href="#from-the-command-line" id="id11">From the command line ...</a></li>
+<li><a class="reference internal" href="#from-the-cmake-gui" id="id12">From the CMake gui ...</a></li>
+<li><a class="reference internal" href="#data-files-location" id="id13">Data Files Location</a></li>
+<li><a class="reference internal" href="#with-qt-creator" id="id14">With Qt Creator ...</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#building-and-working-with-cmake" id="id15">Building and working with CMake</a></li>
+<li><a class="reference internal" href="#building-the-installer-package" id="id16">Building the installer package</a><ul>
+<li><a class="reference internal" href="#troubleshooting-on-osx" id="id17">Troubleshooting on OSX</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#caveats-and-known-issues" id="id18">Caveats and Known Issues</a></li>
+<li><a class="reference internal" href="#tips" id="id19">Tips</a></li>
+</ul>
+</div>
+<p>CMake is the build system for the entirety of Mantid (Framework, MantidQt &amp; MantidPlot). It is used to generate native build files for your platform, which can be Makefiles (for use with make, nmake or jom) for command line builds or project/solution files for an IDE (e.g. Visual Studio, Eclipse, Qt Creator, XCode).</p>
+<div class="section" id="installing-cmake">
+<h2><a class="toc-backref" href="#id1">Installing CMake</a><a class="headerlink" href="#installing-cmake" title="Permalink to this headline">¶</a></h2>
+<p>The first thing to do is get hold of CMake. You can get it from <a class="reference external" href="http://www.cmake.org/cmake/resources/software.html">here</a> or via your package manager (e.g. yum). It is advised to download a stable release and <strong>not</strong> a release candidate. For Mac/Windows check the option that adds <code class="docutils literal"><span class="pre">cmake</span></code> to the system path for all users</p>
+</div>
+<div class="section" id="installing-git">
+<h2><a class="toc-backref" href="#id2">Installing Git</a><a class="headerlink" href="#installing-git" title="Permalink to this headline">¶</a></h2>
+<p>Git is required to fetch the source code. Install with a package manager or from <a class="reference external" href="https://git-scm.com/download/win">https://git-scm.com/download/win</a> on Windows. Choose the option that adds <code class="docutils literal"><span class="pre">git</span></code> and minimal tools to the path</p>
+</div>
+<div class="section" id="installing-git-lfs-windows-only">
+<h2><a class="toc-backref" href="#id3">Installing Git LFS (Windows only)</a><a class="headerlink" href="#installing-git-lfs-windows-only" title="Permalink to this headline">¶</a></h2>
+<p>The Windows dependencies are managed by <a class="reference external" href="https://git-lfs.github.com/">git-lfs</a>. Download and install this. <strong>At ISIS make sure you use the admin account and install it in Program Files</strong>.</p>
+<p>Please ensure that once installed you open a new &#8220;Git Bash&#8221; shell and type <code class="docutils literal"><span class="pre">git</span> <span class="pre">lfs</span> <span class="pre">install</span></code>.</p>
+</div>
+<div class="section" id="configuring-your-environment">
+<h2><a class="toc-backref" href="#id4">Configuring your environment</a><a class="headerlink" href="#configuring-your-environment" title="Permalink to this headline">¶</a></h2>
+<p>Mantid has [[Mantid_Prerequisites|several prerequisites]] and CMake must be able to find these when the build is being set up. The set up varies depending on the environment you are running:</p>
+<ul class="simple">
+<li>Windows: Install <a class="reference external" href="https://go.microsoft.com/fwlink/?LinkId=532606&amp;clcid=0x409">Visual Studio 2015 Community Edition</a>. Make sure you register the copy as by default it is a trial edition with a 30-day license</li>
+<li>Mac OS X: All dependencies are installed via homebrew. Please follow [<a class="reference external" href="https://github.com/mantidproject/mantid/wiki/Building-Mantid-on-OS-X-10.10-&amp;-10.11-using-clang-and-Xcode">https://github.com/mantidproject/mantid/wiki/Building-Mantid-on-OS-X-10.10-&amp;-10.11-using-clang-and-Xcode</a> these] instructions to install the required packages.</li>
+<li>Linux: All prerequisites are installed in system paths from repositories so no set up should be necessary.</li>
+</ul>
+<div class="section" id="ubuntu">
+<h3><a class="toc-backref" href="#id5">Ubuntu</a><a class="headerlink" href="#ubuntu" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>To install all pre-requisites for building mantid you will first need access to the Mantid PPA for a newer version of Poco:</li>
+</ul>
+<p>&lt;pre&gt;
+sudo apt-get install software-properties-common gdebi-core
+sudo apt-add-repository ppa:mantid/mantid
+sudo apt-get update
+&lt;/pre&gt;</p>
+<p>Now download the latest version of [<a class="reference external" href="https://sourceforge.net/projects/mantid/files/developer/">https://sourceforge.net/projects/mantid/files/developer/</a> mantid-developer] package and install it (this may take a while)
+&lt;pre&gt;
+sudo gdebi ~/Downloads/mantid-developer-X.Y.Z_all.deb
+&lt;/pre&gt;</p>
+<p>You are now ready to configure your build with CMake.</p>
+</div>
+<div class="section" id="red-hat-7-centos-7">
+<h3><a class="toc-backref" href="#id6">Red Hat 7/CentOS 7</a><a class="headerlink" href="#red-hat-7-centos-7" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>First we need to set up the the yum repos for the Mantid dependencies. Create a file called &lt;code&gt;/etc/yum.repos.d/isis-rhel.repo&lt;/code&gt; with the following content:</li>
+</ul>
+<p>&lt;pre&gt;
+[isis-rhel]
+name=ISIS Software Repository for Redhat Enterprise Linux $releasever - $basearch
+baseurl=http://yum.isis.rl.ac.uk/rhel/$releasever/$basearch
+failovermethod=priority
+enabled=1
+gpgcheck=0</p>
+<p>[isis-rhel-noarch]
+name=ISIS Software Repository for Redhat Enterprise Linux $releasever - noarch
+baseurl=http://yum.isis.rl.ac.uk/rhel/$releasever/noarch
+failovermethod=priority
+enabled=1
+gpgcheck=0</p>
+<p>[isis-rhel-debuginfo]
+name=ISIS Software Repository for Redhat Enterprise Linux $releasever - $basearch - Debug
+baseurl=http://yum.isis.rl.ac.uk/rhel/$releasever/$basearch/debug
+failovermethod=priority
+enabled=1
+gpgcheck=0</p>
+<p>[isis-rhel-source]
+name=ISIS Software Repository for Redhat Enterprise Linux $releasever - $basearch - Source
+baseurl=http://yum.isis.rl.ac.uk/rhel/$releasever/SRPMS
+failovermethod=priority
+enabled=0
+gpgcheck=0
+&lt;/pre&gt;
+* Now set up the EPEL repository by running:
+&lt;pre&gt;
+su -c &#8216;rpm -Uvh <a class="reference external" href="https://download.fedoraproject.org/pub/epel/7/x86_64/Packages/e/epel-release-7-11.noarch.rpm">https://download.fedoraproject.org/pub/epel/7/x86_64/Packages/e/epel-release-7-11.noarch.rpm</a>&#8216;
+&lt;/pre&gt;</p>
+<ul class="simple">
+<li>On RHEL enable the optional repository by running:</li>
+</ul>
+<p>&lt;pre&gt;
+su -c &#8216;subscription-manager repos &#8211;enable rhel-7-server-optional-rpms&#8217;
+&lt;/pre&gt;</p>
+<ul class="simple">
+<li>Next install the &lt;code&gt;mantid-developer&lt;/code&gt; rpm</li>
+</ul>
+<p>&lt;pre&gt;
+yum install mantid-developer
+&lt;/pre&gt;</p>
+<p>You should now be set up to clone the code and build with cmake. Please note that the executable is called &lt;code&gt;cmake3&lt;/code&gt;.</p>
+<p>Also, if you use the Ninja generator then the executable is called &lt;code&gt;ninja-build&lt;/code&gt;</p>
+</div>
+</div>
+<div class="section" id="ccache">
+<h2><a class="toc-backref" href="#id7">CCache</a><a class="headerlink" href="#ccache" title="Permalink to this headline">¶</a></h2>
+<p>Mantid&#8217;s cmake is configure to use the [<a class="reference external" href="https://ccache.samba.org/">https://ccache.samba.org/</a> ccache] tool if it is available. It is highly recommended that this be used on Linux/macOS systems.</p>
+<p>For Linux either run either</p>
+<ul class="simple">
+<li>&lt;code&gt;sudo yum install ccache&lt;/code&gt; (RedHat) or</li>
+<li>&lt;code&gt;sudo apt-get install ccache&lt;/code&gt; (Ubuntu)</li>
+</ul>
+<p>For macOS run:</p>
+<ul class="simple">
+<li>&lt;code&gt;brew install ccache&lt;/code&gt;</li>
+</ul>
+<p>After it is installed run &lt;code&gt;ccache &#8211;max-size=20G&lt;/code&gt; to increase the size of the cache.</p>
+<p>If you&#8217;re build with &lt;code&gt;ccache&lt;/code&gt; exhibits warnings that are not usually present then try setting the &lt;code&gt;ccache &#8211;set-config=run_second_cpp=&#8221;true&#8221;&lt;/code&gt; config option (or set &lt;code&gt;CCACHE_CPP2=yes&lt;/code&gt; environment variable on older versions).</p>
+<div class="section" id="network-drives">
+<h3><a class="toc-backref" href="#id8">Network Drives</a><a class="headerlink" href="#network-drives" title="Permalink to this headline">¶</a></h3>
+<p>The default location for the cache directory is &lt;code&gt;$HOME/.ccache&lt;/code&gt;. If you&#8217;re home directory is on a network-mounted drive then the location of this cache be moved to provide the best performance. On newer versions of &lt;code&gt;ccache&lt;/code&gt; run &lt;code&gt;ccache &#8211;set-config=cache_dir=PATH_TO_CACHE&lt;/code&gt;. Older versions (&lt;3.2) do not allow this and must fall back to setting the &lt;code&gt;CCACHE_DIR&lt;/code&gt; environment variable in your shell profile.</p>
+</div>
+</div>
+<div class="section" id="configuring-your-build">
+<h2><a class="toc-backref" href="#id9">Configuring your build</a><a class="headerlink" href="#configuring-your-build" title="Permalink to this headline">¶</a></h2>
+<p>CMake encourages the use of &#8216;out of source&#8217; builds. This means that all generated files are placed in a separate directory structure to the source files. This separation makes a full clean easier (you just delete everything) and means that you can have different types of build (Release, Debug, different compiler versions, ....) in separate places (N.B. For Visual Studio &amp; XCode, you can still select the type of build from within the IDE).</p>
+<div class="section" id="red-hat-enterprise-linux-rhel-6-special-notes">
+<h3><a class="toc-backref" href="#id10">Red Hat Enterprise Linux (RHEL) 6 Special Notes</a><a class="headerlink" href="#red-hat-enterprise-linux-rhel-6-special-notes" title="Permalink to this headline">¶</a></h3>
+<p>As RHEL6 contains versions of various software that are out of date, we need to use newer versions.  In order for these new versions to not interfere with the default versions on the system, we install them using something called [<a class="reference external" href="https://access.redhat.com/site/documentation//en-US/Red_Hat_Developer_Toolset/1/html/Software_Collections_Guide/index.html">https://access.redhat.com/site/documentation//en-US/Red_Hat_Developer_Toolset/1/html/Software_Collections_Guide/index.html</a> Software Collections].  The basic upshot of using these is that you have to prefix your configure and make commands with &lt;code&gt;scl enable mantidlibs34&lt;/code&gt;.  You always need to enclose the command you want to run in single quotes.  &lt;br/&gt;
+So some examples of commands we might use are:&lt;br/&gt;
+&lt;code&gt;
+scl enable mantidlibs34 &#8216;cmake-gui&#8217;&lt;br/&gt;
+scl enable mantidlibs34 &#8216;cmake -G&#8221;Ninja&#8221; /path/to/Mantid&#8217; &lt;br/&gt;
+scl enable mantidlibs34 &#8216;ninja -j10&#8217;
+&lt;/code&gt;</p>
+</div>
+<div class="section" id="from-the-command-line">
+<h3><a class="toc-backref" href="#id11">From the command line ...</a><a class="headerlink" href="#from-the-command-line" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>If wanting an out of source build, create the directory you want to build in and &lt;code&gt;cd&lt;/code&gt; into it.</li>
+<li>On Windows, you may need to be in a Visual Studio Command Prompt.</li>
+<li>Run &lt;code&gt;cmake /path/to/Mantid&lt;/code&gt;, or to &lt;code&gt;/path/to/Mantid/Framework&lt;/code&gt; if you only want a build of the Framework (typically not recommended, but possible nonetheless). This will generate build files using the default generator for your platform (e.g. Unix Makefiles on Linux).</li>
+<li>If you want to use a specific generator (run &lt;code&gt;cmake &#8211;help&lt;/code&gt; for a list of available generators for your platform), use the &lt;code&gt;-G&lt;/code&gt; option, e.g. &lt;code&gt;cmake -G&#8221;NMake Makefiles&#8221; /path/to/Mantid&lt;/code&gt;.</li>
+<li>If you want to set the build type (e.g. Release, Debug) you can run cmake with the &lt;code&gt;-i&lt;/code&gt; option or by passing the argument &lt;code&gt;-DCMAKE_BUILD_TYPE=Debug&lt;/code&gt; to cmake. The default is Release.</li>
+</ul>
+</div>
+<div class="section" id="from-the-cmake-gui">
+<h3><a class="toc-backref" href="#id12">From the CMake gui ...</a><a class="headerlink" href="#from-the-cmake-gui" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>The cmake gui is available from, e.g., the Windows Program menu or the command line executable &lt;code&gt;cmake-gui&lt;/code&gt;.</li>
+<li>Start it and click the &#8220;Browse Source&#8221; button to point to &lt;code&gt;/path/to/Mantid&lt;/code&gt;, or to &lt;code&gt;/path/to/Mantid/Framework&lt;/code&gt; if you only want a build of the Framework (typically not recommended, but possible nonetheless).</li>
+<li>Click &#8220;Browse Build&#8221; and point to the directory you want to build into - it&#8217;s recommended that you create a new directory for this (see above), though it can be the same as the source directory.</li>
+<li>Click &#8220;Configure&#8221; down near the bottom of the window.</li>
+<li>A new window will appear asking which &#8216;Generator&#8217; you want to use. Choose one and click OK (N.B. VS2010 = Visual Studio 10, and note that you should append Win64 to this for a 64 bit build).</li>
+<li>Wait a while....</li>
+<li>You will be presented with a list of options in red that can in principle be changed. You probably don&#8217;t want to change anything, except perhaps checking &#8220;MAKE_VATES&#8221; if you want to build that.</li>
+<li>Click &#8220;Configure&#8221; again and wait....</li>
+<li>Finally, click &#8220;Generate&#8221;. This will create the build files, e.g. there will be a Mantid.sln in the directory you selected as your build directory.</li>
+</ul>
+</div>
+<div class="section" id="data-files-location">
+<h3><a class="toc-backref" href="#id13">Data Files Location</a><a class="headerlink" href="#data-files-location" title="Permalink to this headline">¶</a></h3>
+<p>Mantid used the CMake ExternalData system for managing testing data. See [[Data Files in Mantid#Developer_Setup]] for further instructions.</p>
+</div>
+<div class="section" id="with-qt-creator">
+<h3><a class="toc-backref" href="#id14">With Qt Creator ...</a><a class="headerlink" href="#with-qt-creator" title="Permalink to this headline">¶</a></h3>
+<p>[<a class="reference external" href="http://qt.nokia.com/products/developer-tools/">http://qt.nokia.com/products/developer-tools/</a> Qt Creator] has some really nice features (it&#8217;s cross-platform, you can directly open Qt Designer within it, you can highlight a Qt type and go directly to it&#8217;s help page, it knows about Qt types when debugging....).
+The nice feature in this context is that it has CMake support built in. So you can just open the project by pointing to the main CMakeLists file and then run CMake all within the IDE itself.</p>
+</div>
+</div>
+<div class="section" id="building-and-working-with-cmake">
+<h2><a class="toc-backref" href="#id15">Building and working with CMake</a><a class="headerlink" href="#building-and-working-with-cmake" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>You can now start your IDE and point to or import the generated solution/project files or run &lt;code&gt;make&lt;/code&gt;,&lt;code&gt;nmake&lt;/code&gt; or &lt;code&gt;jom&lt;/code&gt; to build the whole of Mantid (sub-targets are available - run &lt;code&gt;make help&lt;/code&gt; to see them).</li>
+<li>&#8216;&#8217;&#8216;Visual Studio users&#8217;&#8216;&#8217;: Use the &lt;code&gt;visual-studio.bat&lt;/code&gt; generated in the build directory to start the IDE. This sets up the environment correctly.</li>
+<li>You should typically never have to run CMake manually again (unless you want to create a new, separate build) - it will be run automatically if one of the CMake input files changes.</li>
+<li>It should be rare that you will need to edit the CMake build (&#8220;CMakeLists.txt&#8221;) files. The most common occurrence will be when you add a new file. This must be added to the corresponding CMakeLists file, e.g. if you add a file to Kernel, edit &lt;code&gt;Mantid/Framework/Kernel/CMakeLists.txt&lt;/code&gt; to add the source, header and test files to the long lists of filepaths at the top of the file.</li>
+</ul>
+<p>** The [[Useful_Tools_for_Developers#class_maker.py|class maker]] utility can edit the CMakeList.txt for you automatically
+* There are similar places in the Qt projects for ui files and files that need moc-ing.
+* If you add a new dependency, that will need to be added (this is less straightforward - do ask for help).
+* Cache variables can be added via the CMake Gui or by running &lt;code&gt;ccmake&lt;/code&gt;.</p>
+</div>
+<div class="section" id="building-the-installer-package">
+<h2><a class="toc-backref" href="#id16">Building the installer package</a><a class="headerlink" href="#building-the-installer-package" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>For WIndows only, you first need to install NSIS, available at: <a class="reference external" href="http://nsis.sourceforge.net/Download">http://nsis.sourceforge.net/Download</a>. Ensure that the install directory is added to the PATH. You should be able to type &lt;code&gt;makensis /?&lt;/code&gt; in a command prompt.</li>
+<li>Run CMake with &#8220;ENABLE_CPACK&#8221; enabled. If using the GUI you need to click the &#8220;Advanced&#8221; checkbox to see this option.</li>
+<li>You will now have a build target called &#8220;PACKAGE&#8221; available to create the installer package.</li>
+</ul>
+<p>More information can be found at: [[MantidPlot_Windows_Installer]]</p>
+<div class="section" id="troubleshooting-on-osx">
+<h3><a class="toc-backref" href="#id17">Troubleshooting on OSX</a><a class="headerlink" href="#troubleshooting-on-osx" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>If you have problems building the package because macdeplotqt fails to find the plugins folder you need to update your homebrew version of Qt (See [<a class="reference external" href="https://github.com/cartr/homebrew-qt4/issues/38">https://github.com/cartr/homebrew-qt4/issues/38</a> this] bug report for more details).</li>
+</ul>
+</div>
+</div>
+<div class="section" id="caveats-and-known-issues">
+<h2><a class="toc-backref" href="#id18">Caveats and Known Issues</a><a class="headerlink" href="#caveats-and-known-issues" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>For Visual Studio &amp; XCode, the libraries and executable are put into &lt;code&gt;Mantid/bin/Release&lt;/code&gt;, &lt;code&gt;Debug&lt;/code&gt;, etc.</li>
+<li>There is a known issue with using source control with Eclipse on an out of source build. Set the cache variable ECLIPSE_CDT4_GENERATE_SOURCE_PROJECT to true and CMake will generate a set of &#8216;dummy&#8217; project files within the source tree so that you can import that project and use it for source control actions.</li>
+</ul>
+</div>
+<div class="section" id="tips">
+<h2><a class="toc-backref" href="#id19">Tips</a><a class="headerlink" href="#tips" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Running unit test executables directly with the CMake-generated Mantid.properties file will lead to a bunch of logging output to the console. You are encouraged to use CTest instead, which suppresses this output automatically. Otherwise, adding the line &lt;code&gt;logging.channels.consoleChannel.class = NullChannel&lt;/code&gt; to your Mantid.user.properties file will turn if off.</li>
+<li>If you have more than one gcc and want to build with a version other than the default (e.g. on RedHat), setting CC &amp; CXX environment variables is one way to make it so.</li>
+</ul>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+      <ul class="nav navbar-nav" style=" float: right;">
+      
+      
+          
+            
+          
+       
+          <li><a href="#">Back to top</a></li>
+       </ul>
+    <p>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

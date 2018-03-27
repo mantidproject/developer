@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Using QtCreator to Generate Python GUI Layouts</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '3.12.20180326.1618',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-59110517-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+  </head>
+  <body role="document">
+
+
+
+
+
+  <div id="navbar" class="navbar navbar-default ">
+    <div class="container">
+      <div class="navbar-header">
+        
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://www.mantidproject.org"><img src="_static/Mantid_Logo_Transparent.png">
+           </a>
+        <span class="navbar-text navbar-version pull-left"><b>3.12</b></span>
+      </div>
+
+      
+        <div class="collapse navbar-collapse nav-collapse">
+      
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="http://www.mantidproject.org">Home</a></li>
+                <li><a href="http://download.mantidproject.org">Download</a></li>
+                <li><a href="http://www.mantidproject.org/Documentation">Documentation</a></li>
+                <li><a href="http://www.mantidproject.org/Contact">Contact Us</a></li>
+            
+            
+              
+              
+            
+            
+            
+            
+          </ul>
+              
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+            </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="using-qtcreator-to-generate-python-gui-layouts">
+<span id="dev-docs-mvp-python-views"></span><h1>Using QtCreator to Generate Python GUI Layouts<a class="headerlink" href="#using-qtcreator-to-generate-python-gui-layouts" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="motivation">
+<h2>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">¶</a></h2>
+<p>Code for setting up individual widgets and the layout of a view can
+become large and difficult to maintain by hand. It usually easier to
+edit such code using a drag and drop WYSIWYG (What You See Is What You
+Get) editor such as Qt Creator. However, doing so requires some
+additional actions at build time.</p>
+</div>
+<div class="section" id="implementation">
+<h2>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h2>
+<p>Qt Creator was not originally designed to work with Python, and it is
+therefore not possible to directly save or export the layout as a
+Python script. Instead you must first save the layout in a <code class="docutils literal"><span class="pre">.ui</span></code>
+file and use the <code class="docutils literal"><span class="pre">pyuic4</span></code> tool to convert it to a python script.</p>
+</div>
+<div class="section" id="integration-with-cmake">
+<h2>Integration With CMake<a class="headerlink" href="#integration-with-cmake" title="Permalink to this headline">¶</a></h2>
+<p>Running this tool manually for each ui file in the project would
+quickly become infeasible. Fortunately it is easy to integrate this
+with the cmake build using the <code class="docutils literal"><span class="pre">UiToPy</span></code> function defined in
+<code class="docutils literal"><span class="pre">buildconfig/CMake/UiToPy.cmake</span></code>. This function takes a list of ui
+files and a name to be used for a cmake target. It will produce a
+target with the specified name, which, when built runs the <code class="docutils literal"><span class="pre">pyuic4</span></code>
+command on each of the <code class="docutils literal"><span class="pre">.ui</span></code> files to generate a <code class="docutils literal"><span class="pre">.py</span></code> file with a
+<code class="docutils literal"><span class="pre">ui_</span></code> prefix in the same directory.</p>
+<p>For example the following CMakeLists.txt:</p>
+<div class="code cmake highlight-default"><div class="highlight"><pre><span></span><span class="n">include</span><span class="p">(</span><span class="n">UiToPy</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="n">UI_FILES</span>
+  <span class="n">sans_data_processor_window</span><span class="o">.</span><span class="n">ui</span>
+  <span class="n">settings_diagnostic_tab</span><span class="o">.</span><span class="n">ui</span>
+  <span class="n">masking_table</span><span class="o">.</span><span class="n">ui</span>
+<span class="p">)</span>
+
+<span class="n">UiToPy</span><span class="p">(</span><span class="n">UI_FILES</span> <span class="n">CompileUISANSDataProcessorInterface</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Produces a cmake target <code class="docutils literal"><span class="pre">CompileUISANSDataProcessorInterface</span></code> which
+when built runs</p>
+<div class="line-block">
+<div class="line"><code class="docutils literal"><span class="pre">pyuic4</span> <span class="pre">sans_data_processor_window.ui</span> <span class="pre">-o</span> <span class="pre">ui_sans_data_processor_window.py</span></code></div>
+<div class="line"><code class="docutils literal"><span class="pre">pyuic4</span> <span class="pre">settings_diagnostic_tab.ui</span> <span class="pre">-o</span> <span class="pre">ui_settings_diagnostic_tab.py</span></code></div>
+<div class="line"><code class="docutils literal"><span class="pre">pyuic4</span> <span class="pre">masking_table.ui</span> <span class="pre">-o</span> <span class="pre">ui_masking_table.py</span></code></div>
+</div>
+<p>The generated target also runs a script wrap_pyui.py which prepends
+<code class="docutils literal"><span class="pre">#pylint:</span> <span class="pre">skip-file</span></code> to the top of the generated file.</p>
+<p>It is worth noting that for the main Mantid repository, in most cases
+<code class="docutils literal"><span class="pre">include(UiToPy)</span></code> can be omitted since the majority of Python GUIs
+have their <code class="docutils literal"><span class="pre">.ui</span></code> files under the <code class="docutils literal"><span class="pre">scripts/Interface/ui</span></code> directory
+and so <code class="docutils literal"><span class="pre">scripts/Interface/ui/CMakeLists.txt</span></code> performs this include.</p>
+</div>
+<div class="section" id="using-the-generated-script">
+<h2>Using the Generated Script<a class="headerlink" href="#using-the-generated-script" title="Permalink to this headline">¶</a></h2>
+<p>When following the MVP design pattern as described at
+<a class="reference internal" href="GUIDesignGuidelines.html#dev-docs-mvp-intro"><span class="std std-ref">MVP (Model View Presenter)</span></a>, the generated file alone is not sufficient
+as a <a class="reference internal" href="GUIDesignGuidelines.html#dev-docs-mvp-view"><span class="std std-ref">View</span></a>. Directly accessing the widgets and the
+signals defined on the view from the presenter moves the view
+implementation details into the presenter, which makes it harder to
+change the names and types of widgets used to display the
+information. Instead it is best to create a separate Python file which
+imports the generated one and adds a separate view class which
+inherits from the generated one.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ui_add_runs_page</span> <span class="c1"># This imports the file generated by pyuic.</span>
+
+<span class="k">class</span> <span class="nc">AddRunsPage</span><span class="p">(</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QWidget</span><span class="p">,</span> <span class="n">ui_add_runs_page</span><span class="o">.</span><span class="n">Ui_AddRunsPage</span><span class="p">):</span>
+   <span class="k">pass</span>
+</pre></div>
+</div>
+<p>You can then add separate methods to the view for accessing and mutating
+the content of the widgets as well as add any necessary signals which
+form the interface to the view.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ui_add_runs_page</span> <span class="c1"># This imports the file generated by pyuic.</span>
+
+<span class="k">class</span> <span class="nc">AddRunsPage</span><span class="p">(</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QWidget</span><span class="p">,</span> <span class="n">ui_add_runs_page</span><span class="o">.</span><span class="n">Ui_AddRunsPage</span><span class="p">):</span>
+    <span class="n">outFileChanged</span> <span class="o">=</span> <span class="n">pyqtSignal</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">AddRunsPage</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setupUi</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_connect_signals</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_connect_signals</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fileNameEdit</span><span class="o">.</span><span class="n">editingFinished</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">outFileChanged</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">out_file_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">fileNameEdit</span><span class="o">.</span><span class="n">text</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="keeping-guis-modular-using-widgets">
+<h3>Keeping GUIs modular using Widgets<a class="headerlink" href="#keeping-guis-modular-using-widgets" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="motivation-1">
+<span id="id1"></span><h2>Motivation<a class="headerlink" href="#motivation-1" title="Permalink to this headline">¶</a></h2>
+<p>When designing a GUI in QtCreator it is often too easy to end up with
+the entire interface in a single UI file. This can then lead to having a
+single presenter for the entire GUI and sometimes even a single model.
+This makes the UI harder to maintain as a whole and difficult to re-use,
+move and separate out individual sections.</p>
+<p>Instead when building a GUI it is sometimes better to separate parts of
+the interface into smaller views and presenters which form a hierarchy
+of widgets. For example the new SANS Run Summation page is in it&#8217;s own
+UI file and uses two separate widgets - a <code class="docutils literal"><span class="pre">RunSelectorWidget</span></code> and a
+<code class="docutils literal"><span class="pre">SummationSettingsWidget</span></code>. Although these widgets are not currently
+used in any other interface, they are still isolated from the Run
+Summation tab and could easily be used in another interface should the
+need arise. The code is also better organised and more modular as a
+result of this clean separation.</p>
+</div>
+<div class="section" id="implementation-1">
+<span id="id2"></span><h2>Implementation<a class="headerlink" href="#implementation-1" title="Permalink to this headline">¶</a></h2>
+<p>Assuming we start with QtCreator with .ui file open which contains a
+section of an interface which we wish to move to its own widget. We must
+start by creating a new .ui file</p>
+<p>1. Go to <em>File</em> &gt; <em>New File Or Project</em> and select <em>Qt Designer Form</em>
+from the list of templates.</p>
+<img alt="_images/NewForm.png" src="_images/NewForm.png" />
+<ol class="arabic simple" start="2">
+<li>Then select <em>Widget</em> from the list of form templates.</li>
+</ol>
+<img alt="_images/SelectTemplate.png" src="_images/SelectTemplate.png" />
+<p>3. Enter the name for the file and save it to the location containing
+the corresponding CMakeLists.txt</p>
+<img alt="_images/NewFileName.png" src="_images/NewFileName.png" />
+<p>4. Click <em>Next</em> and adjust any project management settings as you wish
+before clicking <em>Finish</em>.</p>
+<p>At this point you should have an empty Widget in the design area.</p>
+<img alt="_images/SelectFile.png" src="_images/SelectFile.png" />
+<p>You can switch between the two <code class="docutils literal"><span class="pre">.ui</span></code> files using the menu in the top left.</p>
+<p>5. Next, copy the components you wish to move into the new widget and
+paste them into the new file.</p>
+<img alt="_images/CopyFromMainUI.png" src="_images/CopyFromMainUI.png" />
+<img alt="_images/PasteIntoWidget.png" src="_images/PasteIntoWidget.png" />
+<p>6. Make adjustments to the layout and resize behaviour of the widget as
+you see fit.</p>
+<img alt="_images/AdjustWidgetLayout.png" src="_images/AdjustWidgetLayout.png" />
+<p>7. Add the following CMake snippet to your CMakeLists.txt, note that
+you may already have a target for generating the Python files in which
+case you can simply add your new <code class="docutils literal"><span class="pre">.ui</span></code> file to the list of existing
+<code class="docutils literal"><span class="pre">.ui</span></code> files.</p>
+<div class="code cmake highlight-default"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="p">(</span><span class="n">UI_FILES</span>
+  <span class="n">my_widget</span><span class="o">.</span><span class="n">ui</span>
+<span class="p">)</span>
+
+<span class="n">UiToPy</span><span class="p">(</span><span class="n">UI_FILES</span> <span class="n">CompileUIMyWidget</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Test that this has worked by saving your <code class="docutils literal"><span class="pre">.ui</span></code> file and re-running
+the build, the output should contain a line similar to the following:</p>
+<p><code class="docutils literal"><span class="pre">[1/1]</span> <span class="pre">Generating</span> <span class="pre">scripts/Interface/ui/sans/ui_my_widget.py</span></code></p>
+<p>8. Add a separate python file containing the <a class="reference external" href="dev-docs-mvp-view">View</a> class which extends the generated one.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="c1"># my_widget.py</span>
+<span class="kn">import</span> <span class="nn">ui_my_widget</span>
+
+<span class="k">class</span> <span class="nc">MyWidget</span><span class="p">(</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QWidget</span><span class="p">,</span> <span class="n">ui_add_runs_page</span><span class="o">.</span><span class="n">Ui_MyWidget</span><span class="p">):</span>
+   <span class="k">pass</span>
+</pre></div>
+</div>
+<p>9. Return to the original interface file, delete the components you
+copied across and replace them with a single <em>Widget</em> component found in
+the containers section.</p>
+<img alt="_images/PreReplacedWidget.png" src="_images/PreReplacedWidget.png" />
+<img alt="_images/PostReplacedWidget.png" src="_images/PostReplacedWidget.png" />
+<p>10. Right click on the newly created widget container and select
+<em>Promote To...</em></p>
+<img alt="_images/PromoteWidget.png" src="_images/PromoteWidget.png" />
+<p>11. For the <em>Promoted Class Name</em> field enter the name of the view
+class. If you are taking the advice given above, this should be the name
+of the class which inherits from the generated
+<code class="docutils literal"><span class="pre">ui_my_widget.Ui_MyWidget</span></code> class.</p>
+<p>12. For the <em>Header File</em> field enter the fully qualified path of the
+python module which contains the class mentioned above.</p>
+<p>13. You can leave the <em>Global Include</em> box un-ticked. Finish the
+promotion by pressing <em>Add</em> and then <em>Promote</em>.</p>
+<img alt="_images/CompletePromote.png" src="_images/CompletePromote.png" />
+<p>14. Save your ui files, re-run and launch the build to see the finished
+result.</p>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+      <ul class="nav navbar-nav" style=" float: right;">
+      
+      
+          
+            
+          
+       
+          <li><a href="#">Back to top</a></li>
+       </ul>
+    <p>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

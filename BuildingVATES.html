@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Building VATES</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '3.12.20180326.1618',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-59110517-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+  </head>
+  <body role="document">
+
+
+
+
+
+  <div id="navbar" class="navbar navbar-default ">
+    <div class="container">
+      <div class="navbar-header">
+        
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://www.mantidproject.org"><img src="_static/Mantid_Logo_Transparent.png">
+           </a>
+        <span class="navbar-text navbar-version pull-left"><b>3.12</b></span>
+      </div>
+
+      
+        <div class="collapse navbar-collapse nav-collapse">
+      
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="http://www.mantidproject.org">Home</a></li>
+                <li><a href="http://download.mantidproject.org">Download</a></li>
+                <li><a href="http://www.mantidproject.org/Documentation">Documentation</a></li>
+                <li><a href="http://www.mantidproject.org/Contact">Contact Us</a></li>
+            
+            
+              
+              
+            
+            
+            
+            
+          </ul>
+              
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+            </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="building-vates">
+<span id="buildingvates"></span><h1>Building VATES<a class="headerlink" href="#building-vates" title="Permalink to this headline">¶</a></h1>
+<p>== What Is the VSI? ==
+The VSI stands for VATES Simple Interface. This is best thought of as the way to visualise 3D+ dimensional data in Mantid. Mantid stores n dimensional data in MDWorkspaces, which may be rendered using the ParaView visualisation tools.</p>
+<p>== How Do I Get the VSI? ==
+The VSI components are part of the Mantid distribution.</p>
+<p>== ParaView ==
+The visualisation components for the VSI require the ParaView visualisation platform. However, the CMake option &#8216;&#8217;&#8216;MAKE_VATES&#8217;&#8216;&#8217;, can be used to turn off its use. The patch files used in this section as well as build scripts for Windows &amp; OSX/Linux which automate the steps described below can be found [<a class="reference external" href="https://github.com/mantidproject/paraview-build">https://github.com/mantidproject/paraview-build</a> here].</p>
+<ul class="simple">
+<li>Execute the following lines from the command prompt</li>
+</ul>
+<blockquote>
+<div>git clone <a class="reference external" href="https://gitlab.kitware.com/paraview/paraview.git">https://gitlab.kitware.com/paraview/paraview.git</a> &lt;Your ParaView source root&gt;
+cd &lt;Your ParaView source root&gt;
+git checkout v5.4.0
+git submodule init
+git submodule update</div></blockquote>
+<p>The VSI uses a custom data array layout to minimize memory copies. The name and header must be available to ParaView at compile time.</p>
+<blockquote>
+<div>mkdir vtkMDHWSignalArray
+cd  vtkMDHWSignalArray
+wget <a class="reference external" href="https://raw.githubusercontent.com/mantidproject/paraview-build/2b28ebc5fd40ad727ca66772522bf220b834c1f7/vtkMDHWSignalArray/vtkMDHWSignalArray.h">https://raw.githubusercontent.com/mantidproject/paraview-build/2b28ebc5fd40ad727ca66772522bf220b834c1f7/vtkMDHWSignalArray/vtkMDHWSignalArray.h</a>
+SIGNAL_NAME=vtkArrayDispatch_extra_arrays=vtkMDHWSignalArray&lt;double&gt;
+SIGNAL_HEADER=vtkArrayDispatch_extra_headers=&lt;path to vtkMDHWSignalArray.h&gt;</div></blockquote>
+<p>Everyone is encouraged to apply the [<a class="reference external" href="https://github.com/mantidproject/paraview-build/tree/875fe2a3c800996b75591c8dbe26909b51bdf963/patches">https://github.com/mantidproject/paraview-build/tree/875fe2a3c800996b75591c8dbe26909b51bdf963/patches</a> additional patchfiles] in our buildscript.</p>
+<p>=== Building ParaView ===
+This is the visualisation plugins to build and use. This works on Windows/Linux/Mac. Download the source code and build using CMake out of source. You&#8217;ll need the Qt development libraries, in order to build the GUI and also python. For Windows user, the Third_Party directory contains qmake as well as all the development libraries you should need to build Paraview.</p>
+<p>The scripts and cmake cache files used by the build servers are available [<a class="reference external" href="https://github.com/mantidproject/paraview-build/tree/875fe2a3c800996b75591c8dbe26909b51bdf963">https://github.com/mantidproject/paraview-build/tree/875fe2a3c800996b75591c8dbe26909b51bdf963</a> here]</p>
+<blockquote>
+<div><p>cd &lt;Your paraview source root&gt;
+mkdir Build
+cd Build</p>
+<p>cmake -D$SIGNAL_NAME -D$SIGNAL_HEADER -C&lt;path to common.cmake&gt; -C&lt;path to platform specific cache file&gt;  ..
+cmake &#8211;build .</p>
+</div></blockquote>
+<p>== Building the VSI ==
+<a href="#id1"><span class="problematic" id="id2">*</span></a>Get Paraview (see above)
+<a href="#id3"><span class="problematic" id="id4">*</span></a>Edit the CMake configuration for Mantid
+<a href="#id5"><span class="problematic" id="id6">**</span></a>Via CMake enable &#8216;&#8217;&#8216;MAKE_VATES&#8217;&#8216;&#8217; (If editing from the GUI, press &#8216;&#8217;&#8216;Configure&#8217;&#8216;&#8217; after checking this)
+<a href="#id7"><span class="problematic" id="id8">**</span></a>Via CMake set &#8216;&#8217;&#8216;ParaView_DIR&#8217;&#8216;&#8217; to the directory where paraview has been built.
+<a href="#id9"><span class="problematic" id="id10">*</span></a>Make Mantid
+This should produce the VSI related binaries for Mantid as well as plugins usable by ParaView.</p>
+<p>===== Sample Mantid cmake command =====</p>
+<p>This build command enables the VSI:</p>
+<blockquote>
+<div>cmake -G Ninja  -DCMAKE_BUILD_TYPE=Release -DMAKE_VATES=TRUE -DParaView_DIR=~/Code/paraview/build ../Code/Mantid
+cmake &#8211;build .</div></blockquote>
+<p>===== Additional Libraries for Paraview/Mantid =====</p>
+<p>&#8216;&#8217;&#8216;Ubuntu:&#8217;&#8216;&#8217; The package list from [[Mantid_Prerequisites <a href="#id11"><span class="problematic" id="id12">|</span></a>here]] contains all the required libraries.</p>
+<p>== Using Paraview Plugins ==</p>
+<p>This section will be fleshed-out or appear as a separate page in the near future.</p>
+<p>#Launch the Paraview GUI
+#Go to Tools -&gt; Manage Plugins and load the MantidParaview... libraries listed above (except for MantidParaViewQtWidgets)
+#There are several reasons why you may get a warning symbol when you try to load the plugins (see troubleshooting)
+#Of those loaded plugins, you may wish to expand them using the (+) tree and assigning them as autoload, so that they are immediately available the next time Paraview is launched.
+#You can now open a sqw file in Paraview.
+#Use the Rebinning Cutter filter to rebin,integrate,rearrange,slice the workspace.</p>
+<p>== Help ==
+We suggest contacting the core Mantid development team if any problems are experienced.
+==Troubleshooting==
+:Can&#8217;t load plugins
+:<a href="#id13"><span class="problematic" id="id14">*</span></a>Have you built both Mantid and Paraview to be either Debug or Release (both the same)?
+:<a href="#id15"><span class="problematic" id="id16">*</span></a>Do you have the Mantid binaries present and in the right order in the system path (windows)?
+:Can&#8217;t start-up Paraview
+:<a href="#id17"><span class="problematic" id="id18">*</span></a>Try deleting or temporarily renaming the ParaView directory in %APPDATA/Roaming% Paraview may be crashing as it&#8217;s trying to autoload plugins that are causing problems.
+:Cannot complete the loading of a file
+:<a href="#id19"><span class="problematic" id="id20">*</span></a>Check you have MANTIDPATH set correctly.</p>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+      <ul class="nav navbar-nav" style=" float: right;">
+      
+      
+          
+            
+          
+       
+          <li><a href="#">Back to top</a></li>
+       </ul>
+    <p>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
