@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Unit Test Good Practice</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '3.12.20180329.1038',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-59110517-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+  </head>
+  <body role="document">
+
+
+
+
+
+  <div id="navbar" class="navbar navbar-default ">
+    <div class="container">
+      <div class="navbar-header">
+        
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://www.mantidproject.org"><img src="_static/Mantid_Logo_Transparent.png">
+           </a>
+        <span class="navbar-text navbar-version pull-left"><b>3.12</b></span>
+      </div>
+
+      
+        <div class="collapse navbar-collapse nav-collapse">
+      
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="http://www.mantidproject.org">Home</a></li>
+                <li><a href="http://download.mantidproject.org">Download</a></li>
+                <li><a href="http://www.mantidproject.org/Documentation">Documentation</a></li>
+                <li><a href="http://www.mantidproject.org/Contact">Contact Us</a></li>
+            
+            
+              
+              
+            
+            
+            
+            
+          </ul>
+              
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+            </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="unit-test-good-practice">
+<span id="unittestgoodpractice"></span><h1>Unit Test Good Practice<a class="headerlink" href="#unit-test-good-practice" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#general-guidance" id="id2">General Guidance</a><ul>
+<li><a class="reference internal" href="#what-to-test" id="id3">What to test</a></li>
+<li><a class="reference internal" href="#how-to-test-private-or-protected-members-of-a-class" id="id4">How to test private or protected members of a class</a><ul>
+<li><a class="reference internal" href="#protected" id="id5">Protected</a></li>
+<li><a class="reference internal" href="#private" id="id6">Private</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#good-practices-for-writing-tests" id="id7">Good practices for writing tests</a><ul>
+<li><a class="reference internal" href="#other-more-general-points" id="id8">Other More General Points</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#mantid-specific-guidelines" id="id9">Mantid-specific Guidelines</a><ul>
+<li><a class="reference internal" href="#using-files-in-unit-tests" id="id10">Using files in Unit tests</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#mocking" id="id11">Mocking</a></li>
+</ul>
+</div>
+<div class="section" id="general-guidance">
+<h2><a class="toc-backref" href="#id2">General Guidance</a><a class="headerlink" href="#general-guidance" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="what-to-test">
+<h3><a class="toc-backref" href="#id3">What to test</a><a class="headerlink" href="#what-to-test" title="Permalink to this headline">¶</a></h3>
+<p>Simply put you should test.</p>
+<ul class="simple">
+<li>Every public member of a class.</li>
+<li>That the class can be cast to any of the interfaces or base classes
+it inherits from.</li>
+<li>Any private or protected members.<ul>
+<li>That aren’t directly covered by a public method test.</li>
+<li>That do any significant processing.</li>
+</ul>
+</li>
+</ul>
+<p>For each method you are testing you should include tests for the
+following:</p>
+<ul class="simple">
+<li>To confirm that the methods meet the requirements associated with
+them. Thus the test should verify that the function does what it is
+supposed to do.</li>
+<li>To confirm the expected behaviour for boundary and special values.</li>
+<li>To confirm that exceptions are thrown when expected.</li>
+</ul>
+</div>
+<div class="section" id="how-to-test-private-or-protected-members-of-a-class">
+<h3><a class="toc-backref" href="#id4">How to test private or protected members of a class</a><a class="headerlink" href="#how-to-test-private-or-protected-members-of-a-class" title="Permalink to this headline">¶</a></h3>
+<p>Testing the internals of a class can be considered harmful as it exposes
+the internals of the class, which can arguably be freely changed (so
+long as it does not affect the function of the public interface).
+However there are cases where the internals of a class need unit tests
+either due to complexity or tracking down specific bugs.</p>
+<p>In the circumstance where the implementation within the private/protected
+methods of a class is sufficiently complex, such to require dedicated unit
+tests, this code should be moved into a separate class(es).</p>
+<div class="section" id="protected">
+<h4><a class="toc-backref" href="#id5">Protected</a><a class="headerlink" href="#protected" title="Permalink to this headline">¶</a></h4>
+<p>Within the test library you can add a new testable class that inherits
+from the class you need to test. This class can simply expose any
+protected methods as testable public methods.</p>
+</div>
+<div class="section" id="private">
+<h4><a class="toc-backref" href="#id6">Private</a><a class="headerlink" href="#private" title="Permalink to this headline">¶</a></h4>
+<p>There is no ideal way to test a private member of a class as they are
+intentionally hidden from the class interface. There are two options to
+consider in preference order:</p>
+<ol class="arabic simple">
+<li>Change the protection level to protected and follow the approach
+above.</li>
+<li>Declare the test class as a friend, which can access private members.</li>
+</ol>
+</div>
+</div>
+<div class="section" id="good-practices-for-writing-tests">
+<h3><a class="toc-backref" href="#id7">Good practices for writing tests</a><a class="headerlink" href="#good-practices-for-writing-tests" title="Permalink to this headline">¶</a></h3>
+<p>The following are good practices for writing your unit tests. Many of
+them are standard good coding practices. You will notice that in several
+situations they can clash with each other, in this case common sense
+needs to be applied.</p>
+<ul class="simple">
+<li>Unit tests should test one method only. This allows you to easily
+identify what failed if the test fails.</li>
+<li>Unit tests should not be coupled together, therefore one unit test
+<strong>CANNOT</strong> rely on another unit test having completed first.</li>
+</ul>
+<p>These two often clash, in which case it is often better to compromise on
+the first, and in fact we have relaxed this rule for Mantid (see below).</p>
+<ul class="simple">
+<li>Units tests should use realistic data</li>
+<li>Unit tests should use small and simple data sets.</li>
+</ul>
+<p>Again these can often conflict.</p>
+<ul class="simple">
+<li>Each test class should be named after the class it is testing (e.g.
+tests for the <code class="docutils literal"><span class="pre">AlgorithmFactory</span></code> should go in a <code class="docutils literal"><span class="pre">AlgorithmFactoryTest</span></code>
+class).</li>
+<li>Each test within a test class should use a descriptive test name,
+prefixed with test (tests for the <code class="docutils literal"><span class="pre">CreateAlgorithm</span></code> method would be
+included in <code class="docutils literal"><span class="pre">testCreateAlgorithm</span></code>). If there are specific tests for
+failure situations then these should be added to the end (e.g.
+<code class="docutils literal"><span class="pre">testCreateAlgorithmNoAlgorithmException</span></code>). THE AIM IS THAT FROM THE
+TEST METHOD NAME ALONE, YOU SHOULD BE ABLE TO IDENTIFY THE PROBLEM.</li>
+</ul>
+<div class="section" id="other-more-general-points">
+<h4><a class="toc-backref" href="#id8">Other More General Points</a><a class="headerlink" href="#other-more-general-points" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>Tests should be <strong>fast</strong>, ideally really fast - certainly not more
+than a few seconds. Unit tests test functionality, performance tests
+can be used to check stress and timings.</li>
+<li>Untestable code is a code-smell, if you can&#8217;t get the code under test
+it probably needs refactoring.</li>
+<li>Weight your testing to be destructive rather than demonstrative.
+Destructive tests have a higher efficacy for finding bugs.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="mantid-specific-guidelines">
+<h2><a class="toc-backref" href="#id9">Mantid-specific Guidelines</a><a class="headerlink" href="#mantid-specific-guidelines" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">As noted above, you can assume that individual tests within a cxxtest
+suite will be run in order.</p>
+</li>
+<li><p class="first">There must be <strong>no relative paths</strong> (or, more obviously, absolute
+ones) used in tests as with CMake the code can be build anywhere with
+respect to the source tree. Make use of the datasearch.directories
+property (which CMake configures to hold correct paths for a given
+build).</p>
+</li>
+<li><p class="first">Ideally, test suites should not have a constructor. If one is
+required, the following boiler-plate code <strong>must</strong> be inserted in the
+test class:</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="k">static</span> <span class="n">NameOfTest</span> <span class="o">*</span><span class="nf">createSuite</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="k">new</span> <span class="n">NameOfTest</span><span class="p">();</span> <span class="p">}</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">destroySuite</span><span class="p">(</span><span class="n">NameOfTest</span> <span class="o">*</span><span class="n">suite</span><span class="p">)</span> <span class="p">{</span> <span class="k">delete</span> <span class="n">suite</span><span class="p">;</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal"><span class="pre">NameOfTest</span></code> is the name of the test class. Without this, the
+class is turned into a static meaning that the constructor is run at
+initialisation even if (via an argument) you are not going to run that
+particular test suite. Also, this can cause problems if running tests in
+parallel.</p>
+</li>
+<li><p class="first">Be cautious in use of the <code class="docutils literal"><span class="pre">setUp()``and</span> <span class="pre">``tearDown()</span></code> methods. Be aware
+that if you use these in your suite they will be run before/after
+<strong>every single</strong> individual test. That&#8217;s fine if it&#8217;s the behaviour
+you really need, but we have found that to be rare - use the
+constructor or set things up within the test.</p>
+</li>
+<li><p class="first">To avoid clashes, use unique names for workspaces that will go into
+the [Analysis Data Service], perhaps by prepending the name of the
+test suite. Even better, don&#8217;t put workspaces into the ADS in the
+first place: for example, an InputWorkspace property can be set via
+pointer instead of by name.</p>
+</li>
+<li><p class="first">Clean up the ADS at (or before) the end of the test suite.</p>
+</li>
+</ul>
+<div class="section" id="using-files-in-unit-tests">
+<h3><a class="toc-backref" href="#id10">Using files in Unit tests</a><a class="headerlink" href="#using-files-in-unit-tests" title="Permalink to this headline">¶</a></h3>
+<p>Files for unit tests bloat our repository and slow down the testing
+process. Therefore unless the prime purpose of the algorithms is to load
+or save a file then you should not use a file in your unit tests.</p>
+<dl class="docutils">
+<dt>How do I get a workspace filled with data?</dt>
+<dd>Firstly you want to think about how much data you really need, unit
+tests need to be fast so you don&#8217;t want too much data.
+Secondly you should use and extend helper classes (like
+<a class="reference external" href="https://github.com/mantidproject/mantid/blob/master/Framework/TestHelpers/inc/MantidTestHelpers/WorkspaceCreationHelper.h">1</a>)
+to provide the workspaces for you. Keep things as generic as you can
+and it will help you and others for other tests.
+More details of this will be provided at <a class="reference external" href="TestingUtilities">Testing Utilities</a>.</dd>
+<dt>I want a workspace with a valid instrument definition and Spectra-detector map</dt>
+<dd>As above use or extend a method in one of the <a class="reference external" href="TestingUtilities">helper classes</a>
+that actually creates a minimal workspace for you in code - it will
+only hurt the first time but everyone will benefit.
+Loading instrument XML files in debug <strong>really</strong> hurts performance;
+avoid this like the plague.</dd>
+<dt>What if it <strong>really</strong> needs a file</dt>
+<dd>First justify your reasoning with the PM or Lead developer
+Ensure the file is as small as possible. Perhaps edit the file to
+only contain 2 spectra
+Note: this is not the same as just loading 2 spectra from a large
+file.
+Do not use a relative path to a file
+Used the <a class="reference external" href="https://github.com/mantidproject/mantid/blob/master/Framework/TestHelpers/inc/MantidTestHelpers/ScopedFileHelper.h">Scoped
+File</a>
+helper, to ensure that resources are cleaned-up in an exception safe
+manner.</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="mocking">
+<h2><a class="toc-backref" href="#id11">Mocking</a><a class="headerlink" href="#mocking" title="Permalink to this headline">¶</a></h2>
+<p>Mocking is a very powerful tool that allows you to simulate components
+in your unit environment and check how your code operates within this
+environment. Mocking allows you to avoid creating Fake objects of any
+kind, and results in fast executing code with a very high test coverage.
+See <a class="reference external" href="Mocking">Mocking</a> in Mantid to find out what it is and how it
+works.</p>
+<div class="figure" id="id1">
+<img alt="Object under test using Mocking to isolate the testing.|400px" src="_images/Mocking.png" />
+<p class="caption"><span class="caption-text">Object under test using Mocking to isolate the testing.|400px</span></p>
+</div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+      <ul class="nav navbar-nav" style=" float: right;">
+      
+      
+          
+            
+          
+       
+          <li><a href="#">Back to top</a></li>
+       </ul>
+    <p>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

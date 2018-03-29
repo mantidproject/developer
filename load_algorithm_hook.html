@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Load Algorithm Hook</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '3.12.20180329.1038',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-59110517-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+  </head>
+  <body role="document">
+
+
+
+
+
+  <div id="navbar" class="navbar navbar-default ">
+    <div class="container">
+      <div class="navbar-header">
+        
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://www.mantidproject.org"><img src="_static/Mantid_Logo_Transparent.png">
+           </a>
+        <span class="navbar-text navbar-version pull-left"><b>3.12</b></span>
+      </div>
+
+      
+        <div class="collapse navbar-collapse nav-collapse">
+      
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="http://www.mantidproject.org">Home</a></li>
+                <li><a href="http://download.mantidproject.org">Download</a></li>
+                <li><a href="http://www.mantidproject.org/Documentation">Documentation</a></li>
+                <li><a href="http://www.mantidproject.org/Contact">Contact Us</a></li>
+            
+            
+              
+              
+            
+            
+            
+            
+          </ul>
+              
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+            </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="load-algorithm-hook">
+<h1>Load Algorithm Hook<a class="headerlink" href="#load-algorithm-hook" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#the-load-algorithm" id="id1">The Load Algorithm</a></li>
+<li><a class="reference internal" href="#descriptors" id="id2">Descriptors</a><ul>
+<li><a class="reference internal" href="#hdf" id="id3">HDF</a><ul>
+<li><a class="reference internal" href="#hdfdescriptor" id="id4">HDFDescriptor</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#non-hdf" id="id5">Non-HDF</a><ul>
+<li><a class="reference internal" href="#filedescriptor" id="id6">FileDescriptor</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="the-load-algorithm">
+<h2><a class="toc-backref" href="#id1">The Load Algorithm</a><a class="headerlink" href="#the-load-algorithm" title="Permalink to this headline">¶</a></h2>
+<p>This page describes how to register a new file loading algorithm so that it can be used through
+the general-purpose <a class="reference external" href="http://docs.mantidproject.org/nightly/algorithms/Load-v1.html#algm-load" title="(in MantidProject v3.12)"><span class="xref std std-ref">Load</span></a> algorithm.
+The <a class="reference external" href="http://docs.mantidproject.org/nightly/algorithms/Load-v1.html#algm-load" title="(in MantidProject v3.12)"><span class="xref std std-ref">Load</span></a> algorithm is a special algorithm as does very little work itself.
+It instead tries to search for the most suitable algorithm for a given file and then uses this
+algorithm as a child to load the file. An algorithm wishing to be included as part of the search
+must register itself slightly differently and not use <code class="docutils literal"><span class="pre">DECLARE_ALGORITHM</span></code> macro.</p>
+<p>The process of searching for the correct loader needs to be fairly quick as it will be especially
+noticeable in the GUI if the process takes a long time. To speed up the process the loaders are
+currently split into 2 categories:</p>
+<ul class="simple">
+<li>HDF - Currently only HDF4/5</li>
+<li>NonHDF - The rest</li>
+</ul>
+<p>A quick check is performed, using <code class="docutils literal"><span class="pre">HDFDescriptor::isHDF()</span></code>, to test whether the file looks like a
+<a class="reference external" href="http://www.hdfgroup.org/">HDF</a> file.
+If the check succeeds then only the HDF group of loaders are checked, otherwise only the NonHDF group are checked.</p>
+</div>
+<div class="section" id="descriptors">
+<h2><a class="toc-backref" href="#id2">Descriptors</a><a class="headerlink" href="#descriptors" title="Permalink to this headline">¶</a></h2>
+<p>To avoid the file being opened/closed by each <code class="docutils literal"><span class="pre">confidence</span></code> method, a <code class="docutils literal"><span class="pre">Descriptor</span></code> object is provided.
+The actual <code class="docutils literal"><span class="pre">Descriptor</span></code> class depends on whether the file is a HDF file or not.</p>
+<div class="section" id="hdf">
+<h3><a class="toc-backref" href="#id3">HDF</a><a class="headerlink" href="#hdf" title="Permalink to this headline">¶</a></h3>
+<p>To register an algorithm as a HDF loader use the IHDFLoader interface as a base class for your algorithm.
+In your cpp file include the <code class="docutils literal"><span class="pre">MantidAPI/RegisterFileLoader.h</span></code> header and use the <code class="docutils literal"><span class="pre">DECLARE_HDF_FILELOADER</span></code>
+macro <em>instead</em> of the standard <code class="docutils literal"><span class="pre">DECLARE_ALGORITHM</span></code> macro.</p>
+<p>The interface requires that the method <code class="docutils literal"><span class="pre">virtual</span> <span class="pre">int</span> <span class="pre">confidence(Kernel::HDFDescriptor</span> <span class="pre">&amp;</span> <span class="pre">descriptor)</span> <span class="pre">const</span> <span class="pre">=</span> <span class="pre">0;</span></code>
+be overloaded in the inheriting class. It should use the provided descriptor to check whether the loader is
+able to load the wrapped file and return a confidence level as an integer.</p>
+<div class="section" id="hdfdescriptor">
+<h4><a class="toc-backref" href="#id4">HDFDescriptor</a><a class="headerlink" href="#hdfdescriptor" title="Permalink to this headline">¶</a></h4>
+<p>This provides methods to query characteristics of the current file to avoid repeated accessing of the tree.</p>
+</div>
+</div>
+<div class="section" id="non-hdf">
+<h3><a class="toc-backref" href="#id5">Non-HDF</a><a class="headerlink" href="#non-hdf" title="Permalink to this headline">¶</a></h3>
+<p>To register an algorithm as a Non-HDF loader use the <code class="docutils literal"><span class="pre">IFileLoader</span></code> interface as a base class for your algorithm.
+In your cpp file include the <code class="docutils literal"><span class="pre">MantidAPI/RegisterFileLoader.h</span></code> header and use the <code class="docutils literal"><span class="pre">DECLARE_FILELOADER</span></code> macro
+<em>instead</em> of the standard <code class="docutils literal"><span class="pre">DECLARE_ALGORITHM</span></code> macro.</p>
+<p>The interface requires that the method <code class="docutils literal"><span class="pre">virtual</span> <span class="pre">int</span> <span class="pre">confidence(Kernel::FileDescriptor</span> <span class="pre">&amp;</span> <span class="pre">descriptor)</span> <span class="pre">const</span> <span class="pre">=</span> <span class="pre">0;</span></code>
+be overloaded in the inheriting class. It should use the provided descriptor to check whether the loader is
+able to load the wrapped file and return a confidence level as an integer.</p>
+<div class="section" id="filedescriptor">
+<h4><a class="toc-backref" href="#id6">FileDescriptor</a><a class="headerlink" href="#filedescriptor" title="Permalink to this headline">¶</a></h4>
+<p>This provides methods to query some characteristics of the current file and also access the open stream to avoid
+repeated opening/closing of the file. <em>Avoid</em> closing the stream. The code calling the <code class="docutils literal"><span class="pre">confidence</span></code> method ensures
+that the stream is back at the start of the file before checking the next loader so simply use the stream as
+necessary and leave it as it is.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+      <ul class="nav navbar-nav" style=" float: right;">
+      
+      
+          
+            
+          
+       
+          <li><a href="#">Back to top</a></li>
+       </ul>
+    <p>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

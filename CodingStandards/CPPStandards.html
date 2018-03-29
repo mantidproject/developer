@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>C++ Coding Standards</title>
+    
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-3.3.6/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-3.3.6/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.12.20180329.1038',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-59110517-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+  </head>
+  <body role="document">
+
+
+
+
+
+  <div id="navbar" class="navbar navbar-default ">
+    <div class="container">
+      <div class="navbar-header">
+        
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://www.mantidproject.org"><img src="../_static/Mantid_Logo_Transparent.png">
+           </a>
+        <span class="navbar-text navbar-version pull-left"><b>3.12</b></span>
+      </div>
+
+      
+        <div class="collapse navbar-collapse nav-collapse">
+      
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="http://www.mantidproject.org">Home</a></li>
+                <li><a href="http://download.mantidproject.org">Download</a></li>
+                <li><a href="http://www.mantidproject.org/Documentation">Documentation</a></li>
+                <li><a href="http://www.mantidproject.org/Contact">Contact Us</a></li>
+            
+            
+              
+              
+            
+            
+            
+            
+          </ul>
+              
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+            </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="c-coding-standards">
+<span id="dev-docs-cpp-standards"></span><h1>C++ Coding Standards<a class="headerlink" href="#c-coding-standards" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#references" id="id1">References</a></li>
+<li><a class="reference internal" href="#overview" id="id2">Overview</a></li>
+<li><a class="reference internal" href="#files" id="id3">Files</a></li>
+<li><a class="reference internal" href="#headers" id="id4">Headers</a><ul>
+<li><a class="reference internal" href="#header-files" id="id5">Header Files</a></li>
+<li><a class="reference internal" href="#layout-of-header-file" id="id6">Layout of Header File</a></li>
+<li><a class="reference internal" href="#cpp-file-headers" id="id7">CPP file Headers</a></li>
+<li><a class="reference internal" href="#function-headers" id="id8">Function headers</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#naming-conventions" id="id9">Naming Conventions</a></li>
+<li><a class="reference internal" href="#preprocessor" id="id10">Preprocessor</a></li>
+<li><a class="reference internal" href="#classes-and-namespaces" id="id11">Classes and Namespaces</a><ul>
+<li><a class="reference internal" href="#mantid-namespaces" id="id12">Mantid Namespaces</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#functions-and-variables" id="id13">Functions and Variables</a></li>
+<li><a class="reference internal" href="#expressions-and-statements" id="id14">Expressions and Statements</a></li>
+<li><a class="reference internal" href="#comments" id="id15">Comments</a></li>
+<li><a class="reference internal" href="#error-handling" id="id16">Error Handling</a></li>
+</ul>
+</div>
+<div class="section" id="references">
+<h2><a class="toc-backref" href="#id1">References</a><a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="http://llvm.org/docs/CodingStandards.html">LLVM Coding standard</a></li>
+<li><em>The C++ Programming Language</em> (third edition), Bjarne Stroustrup</li>
+<li><a class="reference external" href="http://www.open-std.org/jtc1/sc22/wg21/">C++ ANSI Standards</a></li>
+</ul>
+</div>
+<div class="section" id="overview">
+<h2><a class="toc-backref" href="#id2">Overview</a><a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>Mantid follow the LLVM C++ coding standards and standards on this
+page.  Where these standards overlap the standards on this page take
+precedence.</p>
+<p><a class="reference external" href="https://github.com/mantidproject/mantid/wiki/clang-format">This page</a>
+describes a tool that you may find useful for checking your code
+satisfies LLVM whitespace conventions. It&#8217;s also useful to set up your
+text editor to use <a class="reference external" href="http://llvm.org/docs/CodingStandards.html#use-spaces-instead-of-tabs">two spaces instead of tabs</a>.</p>
+</div>
+<div class="section" id="files">
+<h2><a class="toc-backref" href="#id3">Files</a><a class="headerlink" href="#files" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Header files will use the <code class="docutils literal"><span class="pre">.h</span></code> extension.</li>
+<li>Code body files will use the <code class="docutils literal"><span class="pre">.cpp</span></code> file extension.</li>
+<li>All <code class="docutils literal"><span class="pre">.cpp</span></code> files must have a corresponding <code class="docutils literal"><span class="pre">.h</span></code> file.</li>
+</ul>
+</div>
+<div class="section" id="headers">
+<h2><a class="toc-backref" href="#id4">Headers</a><a class="headerlink" href="#headers" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="header-files">
+<h3><a class="toc-backref" href="#id5">Header Files</a><a class="headerlink" href="#header-files" title="Permalink to this headline">¶</a></h3>
+<p>All header files in a project must have a header comment. In many
+cases this will be included as part of the class header, but any
+header files that do not contain classes must include the same
+information as a file header. The information that must be included
+is:</p>
+<ul class="simple">
+<li>class description</li>
+<li>Copyright</li>
+<li>GPL license text</li>
+</ul>
+</div>
+<div class="section" id="layout-of-header-file">
+<h3><a class="toc-backref" href="#id6">Layout of Header File</a><a class="headerlink" href="#layout-of-header-file" title="Permalink to this headline">¶</a></h3>
+<p>The contents of the header file should be arranged in the following
+order:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">#include</span></code> directives in the following order, where each section shold be
+sorted alphabetically:<ul>
+<li>Main Module Header</li>
+<li>Mantid Headers from the same project</li>
+<li>Mantid headers from other projects</li>
+<li>3rd party library headers</li>
+<li>System <code class="docutils literal"><span class="pre">#include</span></code> directives</li>
+</ul>
+</li>
+<li>Forward declarations of other classes</li>
+<li>Global constants, enumerations &amp; typedefs</li>
+<li>Doxygen class description</li>
+<li>Class definition:<ul>
+<li>Public constants, enumerations &amp; types</li>
+<li>Public constructors &amp; destructors</li>
+<li>Public functions &amp; operators</li>
+<li>Protected functions</li>
+<li>Private constants, enumerations &amp; types</li>
+<li>Private functions</li>
+<li>Private variables</li>
+<li>Bodies of inline functions and (for a template class) member
+functions.</li>
+</ul>
+</li>
+</ul>
+<p>In most cases header files should only contain a single class. The only
+exceptions to this should be for internal utility classes, and extremely
+small highly related classes such as exception classes.</p>
+</div>
+<div class="section" id="cpp-file-headers">
+<h3><a class="toc-backref" href="#id7">CPP file Headers</a><a class="headerlink" href="#cpp-file-headers" title="Permalink to this headline">¶</a></h3>
+<p>We will not be including body file headers. The relevant class file
+header in the <code class="docutils literal"><span class="pre">.h</span></code> file will suffice.</p>
+</div>
+<div class="section" id="function-headers">
+<h3><a class="toc-backref" href="#id8">Function headers</a><a class="headerlink" href="#function-headers" title="Permalink to this headline">¶</a></h3>
+<p>These will follow the style put forward in the <a class="reference external" href="http://www.stack.nl/~dimitri/doxygen/docblocks.html">Doxygen documentation</a>.  Headers
+comments must be included above all functions definitions and should
+describe the function, all parameters and returns values as a minimum.</p>
+<p>Where a function is declared in the header file and defined in the
+<code class="docutils literal"><span class="pre">.cpp</span></code> file the following approach should be taken:</p>
+<ul class="simple">
+<li>The header file need only contain documentation for items that do
+not appear in a <code class="docutils literal"><span class="pre">.cpp</span></code> file (e.g. the class itself, member
+variables, inlined methods and templated classes). This keeps the
+header files compact and easier to read. Brief comments can
+optionally be included (as in the example below).</li>
+</ul>
+<p>Example header file function declaration</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">/// Creates an instance of an algorithm</span>
+<span class="n">IAlgorithm</span><span class="o">*</span> <span class="nf">createAlgorithm</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">algName</span><span class="p">,</span> <span class="k">const</span> <span class="kt">int</span><span class="o">&amp;</span> <span class="n">version</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Example CPP file function definition</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="cm">/** Creates and initialises an instance of an algorithm</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param algName The name of the algorithm required</span>
+<span class="cm"> * @param version The version of the algorithm</span>
+<span class="cm"> * @return A pointer to the created algorithm</span>
+<span class="cm"> *</span>
+<span class="cm"> * @throw NotFoundError Thrown if algorithm requested is not registered</span>
+<span class="cm"> */</span>
+ <span class="n">IAlgorithm</span><span class="o">*</span> <span class="n">FrameworkManagerImpl</span><span class="o">::</span><span class="n">createAlgorithm</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">algName</span><span class="p">,</span> <span class="k">const</span> <span class="kt">int</span><span class="o">&amp;</span> <span class="n">version</span><span class="p">)</span> <span class="p">{</span>
+   <span class="n">IAlgorithm</span><span class="o">*</span> <span class="n">alg</span> <span class="o">=</span> <span class="n">AlgorithmManager</span><span class="o">::</span><span class="n">Instance</span><span class="p">().</span><span class="n">create</span><span class="p">(</span><span class="n">algName</span><span class="p">,</span><span class="n">version</span><span class="p">).</span><span class="n">get</span><span class="p">();</span>
+   <span class="k">return</span> <span class="n">alg</span><span class="p">;</span>
+ <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="naming-conventions">
+<h2><a class="toc-backref" href="#id9">Naming Conventions</a><a class="headerlink" href="#naming-conventions" title="Permalink to this headline">¶</a></h2>
+<p>Names should be descriptive and meaningful, but not too long (say &lt;20
+characters). This is helped by sensible and consistent (across the
+project) use of abbreviations.</p>
+<ul class="simple">
+<li><strong>Constants</strong> (including static const members): All upper
+case. Internal words separated by underscore eg: <code class="docutils literal"><span class="pre">ERROR_NO_DATA</span></code></li>
+<li><strong>Classes, namespaces, structs, enums (and enum values) and typedefs</strong>:
+PascalCase (First letter upper case, then lower
+case. Internal words begin with upper case letter).</li>
+<li><strong>Function Names</strong>: function names will be in camelCase (starting
+with a lower case character and capital for each later word).</li>
+<li><strong>Variable Names / Type Prefixes</strong>: variables will be given sensible
+descriptive names. Type prefixes will not be used. variable names
+in Mantid are usually camelCase (starting with a lower case
+character and capital for each later word).</li>
+<li><dl class="first docutils">
+<dt><strong>Scope Prefixes</strong></dt>
+<dd><ul class="first last">
+<li>Static member variables use a <code class="docutils literal"><span class="pre">g_</span></code> prefix.</li>
+<li>Non-static member variables use an <code class="docutils literal"><span class="pre">m_</span></code> prefix.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><strong>Local variables used as integer loop counters</strong> As an exception,
+these may use very short names like <code class="docutils literal"><span class="pre">i,</span> <span class="pre">j,</span> <span class="pre">k,</span> <span class="pre">l</span></code> eg. <code class="docutils literal"><span class="pre">for</span> <span class="pre">(int</span>
+<span class="pre">i</span> <span class="pre">=</span> <span class="pre">0;</span> <span class="pre">i</span> <span class="pre">&lt;</span> <span class="pre">5;</span> <span class="pre">i++)</span></code></li>
+</ul>
+</div>
+<div class="section" id="preprocessor">
+<h2><a class="toc-backref" href="#id10">Preprocessor</a><a class="headerlink" href="#preprocessor" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Use of the pre-processor should be minimised. Constants and type
+aliases should be declared using <code class="docutils literal"><span class="pre">const</span></code> and <code class="docutils literal"><span class="pre">typedef</span></code> rather
+than <code class="docutils literal"><span class="pre">#define</span></code>, and functions should be used in favour of macros.</li>
+<li><code class="docutils literal"><span class="pre">#include</span></code> statements should use quotes (<code class="docutils literal"><span class="pre">&quot;&quot;</span></code>) for inclusion of
+Mantid code and angle brackets (<code class="docutils literal"><span class="pre">&lt;&gt;</span></code>) for system files (this
+includes headers from <code class="docutils literal"><span class="pre">Third_Party</span></code>)</li>
+<li>All header files should have guards against repeated inclusion,
+with the guard flags named consistently. (See <a class="reference external" href="https://en.wikipedia.org/wiki/Include_guard">here</a> for an
+explanation)</li>
+<li>Header files should only include those other header files within
+the project that are necessary (e.g. for definition of the base
+class).  In many cases a forward declaration of the form <code class="docutils literal"><span class="pre">class</span>
+<span class="pre">CPidClientObject;</span></code> is sufficient, and this helps to avoid cyclical
+inclusions of headers.</li>
+<li>It should be possible to compile each header file
+individually. That is, a file consisting solely of <code class="docutils literal"><span class="pre">#include</span>
+<span class="pre">&quot;header.h&quot;</span></code> should compile without errors. This avoids
+undocumented interdependencies between headers.</li>
+</ol>
+</div>
+<div class="section" id="classes-and-namespaces">
+<h2><a class="toc-backref" href="#id11">Classes and Namespaces</a><a class="headerlink" href="#classes-and-namespaces" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>There should be only one class or namespace declared in each header
+file. This recommendation should only be relaxed where classes are
+closely tied together.</li>
+<li>There should be only one class or namespace defined per body file
+(unless classes are closely tied as in (1) above). All the
+definitions for that class/namespace should be in the one file
+(unless this yields a source file that is unmanageably large).</li>
+<li>Data members should be private. Access to data from other classes
+should only be through protected or public methods (or by
+‘friends’, but see item 8). Inside a large class, consider
+reserving direct access to private data members for a smaller
+manageable core of member functions.</li>
+<li>All constructors for a class must initialise all its member variables
+that do not have a default constructor (including primitive and
+pointer types).</li>
+<li>All base classes must have a virtual destructor.<ul>
+<li>This may be disregarded only in exceptional circumstances when
+the overhead of a virtual-table would significantly affect
+performance. Such a class must not be subclassed, and must be
+adequately commented to warn other developers against subclassing
+the class.</li>
+<li>In addition, it is recommended that where possible, programming
+techniques are used to prevent inheritance of classes with a
+non-virtual destructor. While comments may suffice they can
+easily be ignored or misunderstood, particularly by inexperienced
+developers</li>
+</ul>
+</li>
+<li>Classes’ constructors and destructors must not call their own virtual
+member functions, directly or indirectly. (C++ does not resolve such
+function calls polymorphically.)</li>
+<li>Do not define special members functions when they would be
+identical to those automatically generated by the compiler. Use <code class="docutils literal"><span class="pre">=</span>
+<span class="pre">delete</span></code> to remove invalid compiler-generated versions. Consider
+following the <a class="reference external" href="https://rmf.io/cxx11/rule-of-zero/">rule-of-zero</a>
+and writing an additional class for resource management.</li>
+<li>The use of <code class="docutils literal"><span class="pre">friend</span></code> should be avoided and its use requires
+justification. As an exception, overloads of the <code class="docutils literal"><span class="pre">&lt;&lt;</span></code> and <code class="docutils literal"><span class="pre">&gt;&gt;</span></code>
+operators for serialising the class may be declared as <code class="docutils literal"><span class="pre">friend</span></code>.</li>
+<li>Use of multiple inheritance should be restricted to cases in which
+the second and subsequent base classes are all interfaces. (An
+interface in this context is a class consisting only of pure virtual
+functions.).</li>
+<li>Virtual inheritance should only be used when the base class
+involved is an interface.</li>
+<li>Unions and bitfields should only be used where essential for
+performance, or where required for interfacing with a third party
+library.</li>
+</ol>
+<div class="section" id="mantid-namespaces">
+<h3><a class="toc-backref" href="#id12">Mantid Namespaces</a><a class="headerlink" href="#mantid-namespaces" title="Permalink to this headline">¶</a></h3>
+<p>All Mantid code lives within a minimum of a two tiered namespace. The
+outer namespace for all Mantid code is Mantid, and this is followed by
+a namespace identifying the library that contains the code. Third and
+further level namespaces may be used to section code to further
+improve readability and maintenance.</p>
+</div>
+</div>
+<div class="section" id="functions-and-variables">
+<h2><a class="toc-backref" href="#id13">Functions and Variables</a><a class="headerlink" href="#functions-and-variables" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Variables, functions parameters, and function return values must have
+explicit types (no defaulting to <code class="docutils literal"><span class="pre">int</span></code>).</li>
+<li>A function declaration should not use <code class="docutils literal"><span class="pre">void</span></code> to indicate an empty
+parameter list.</li>
+<li>Parameters in function prototypes should include names, not just
+their types. For example, use <code class="docutils literal"><span class="pre">void</span> <span class="pre">eraseRange(int</span> <span class="pre">nFirst,</span> <span class="pre">int</span>
+<span class="pre">nLast);</span></code> rather than <code class="docutils literal"><span class="pre">void</span> <span class="pre">eraseRange(int,</span> <span class="pre">int);</span></code> as this
+improves self-documentation.</li>
+<li>Non-static member functions should be declared <code class="docutils literal"><span class="pre">const</span></code> if logically
+they do not alter the state of the class instance.</li>
+<li>Simple accessor functions may be inline (e.g. <code class="docutils literal"><span class="pre">inline</span> <span class="pre">int</span>
+<span class="pre">getCount()</span> <span class="pre">const</span> <span class="pre">{</span> <span class="pre">return</span> <span class="pre">m_nCount;}</span></code>). Otherwise, inline
+functions should be avoided unless essential for performance.</li>
+<li>Operators should be overloaded sparingly. Operator overloads should
+behave in accordance with the semantics of the operator as applied
+to primitive types, or according to established conventions
+(e.g. <code class="docutils literal"><span class="pre">&lt;&lt;</span></code> and <code class="docutils literal"><span class="pre">&gt;&gt;</span></code> for serialisation).</li>
+<li>‘Magic numbers’ must not be used in the code. Constants and
+enumerations must be used instead.</li>
+</ol>
+</div>
+<div class="section" id="expressions-and-statements">
+<h2><a class="toc-backref" href="#id14">Expressions and Statements</a><a class="headerlink" href="#expressions-and-statements" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Integers should not be cast to Booleans. For example, prefer <code class="docutils literal"><span class="pre">if</span> <span class="pre">(x</span>
+<span class="pre">!=</span> <span class="pre">0)</span></code> rather than <code class="docutils literal"><span class="pre">if(x)</span></code></li>
+<li>The new style type casting must be used in place of the old C style
+type casts. If casting up or down an inheritance hierarchy, use
+<code class="docutils literal"><span class="pre">dynamic_cast</span></code> (which performs a run-time type check) rather than
+<code class="docutils literal"><span class="pre">static_cast</span></code>.</li>
+<li>Function calls with side effects, and the <code class="docutils literal"><span class="pre">++</span></code>/<code class="docutils literal"><span class="pre">--</span></code>/assignment operators,
+should only be called as a standalone statement rather than embedded
+inside an expression.<ul>
+<li>It is permissible, although discouraged, to have a function call
+with side effects as the right-operand of <code class="docutils literal"><span class="pre">&amp;&amp;</span></code> or <code class="docutils literal"><span class="pre">||</span></code>. Any such
+instances must be commented in detail to alert other developers to
+the fact that the function is not always called.</li>
+</ul>
+</li>
+<li><code class="docutils literal"><span class="pre">for</span></code> and <code class="docutils literal"><span class="pre">while</span></code> loops should not use <code class="docutils literal"><span class="pre">break</span></code> and
+<code class="docutils literal"><span class="pre">continue</span></code> where they can be avoided. Where they are required,
+comments should draw attention to them as an alternative exit point
+from the loop.</li>
+<li>A <code class="docutils literal"><span class="pre">for</span></code> loop should only have one control variable, and should
+not modify it in the body.</li>
+<li><code class="docutils literal"><span class="pre">switch</span></code> statements must include a <code class="docutils literal"><span class="pre">default</span></code> clause, even if
+only to catch errors.</li>
+<li>Each <code class="docutils literal"><span class="pre">case</span></code> of a <code class="docutils literal"><span class="pre">switch</span></code> statement must either end with a
+<code class="docutils literal"><span class="pre">break</span></code>/<code class="docutils literal"><span class="pre">return</span></code>, or contain a clear comment to alert other
+developers to the fact that execution will fall through to the next
+case. Multiple <code class="docutils literal"><span class="pre">case</span></code> labels (with no code between them) are,
+however, permitted for the same block of code.</li>
+<li><code class="docutils literal"><span class="pre">goto</span></code> must be avoided. When there is a need to break out of two
+or more nested loops in one go, the loops should be moved to a
+separate function where &#8216;return&#8217; can be used instead.</li>
+</ol>
+</div>
+<div class="section" id="comments">
+<h2><a class="toc-backref" href="#id15">Comments</a><a class="headerlink" href="#comments" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Sufficient commenting (to the level mandated by this document) of a
+piece of code must be performed at the same time as the code is
+written. It must not be put off until the end of development. When
+code is updated, all relevant comments must be updated as well
+(including those in the header).</li>
+<li>‘Dead code’ must not be kept in the source code. (‘Dead code’ here
+means code that has been commented out or unconditionally
+suppressed in some other way, for example using <code class="docutils literal"><span class="pre">#if</span> <span class="pre">0</span></code>
+preprocessor directives.)<ul>
+<li>In the (rare) instances that dead code would serve an important
+documentation purpose for ongoing development, the dead code must
+be placed in an external location and may be referenced from the
+‘live’ source code.</li>
+</ul>
+</li>
+<li>Comments must be indented to the same level as the code to which
+they refer.</li>
+<li>The language used in comments must be professional and to the
+point.  Flippant or derogatory remarks must be avoided.</li>
+<li>The collection of comments in a function must, on its own, be
+sufficient that a competent C++ developer can pick up the function
+for subsequent development.</li>
+<li>Comments on a single line should use <code class="docutils literal"><span class="pre">//</span></code> rather than <code class="docutils literal"><span class="pre">/*</span> <span class="pre">…</span> <span class="pre">*/</span></code>.</li>
+<li>No code block should exceed 20 statement lines without a comment of
+some sort. In general all code should contain 15% comment lines.</li>
+<li>The style of the comments is not mandated here. However the following
+are general recommendations:<ul>
+<li>Comments should always be used to describe potential “difficult”
+sections of code utilising, for example, special algorithms</li>
+<li>Comments should be used in particular to explain branch conditions
+in <code class="docutils literal"><span class="pre">if</span> <span class="pre">...</span> <span class="pre">else</span></code> and <code class="docutils literal"><span class="pre">switch</span> <span class="pre">{</span> <span class="pre">case</span> <span class="pre">...</span></code>-like statements</li>
+<li><strong>Comments should be written at a higher level of abstraction
+than the code to which they pertain, rather than merely
+restating it</strong></li>
+</ul>
+</li>
+</ol>
+</div>
+<div class="section" id="error-handling">
+<h2><a class="toc-backref" href="#id16">Error Handling</a><a class="headerlink" href="#error-handling" title="Permalink to this headline">¶</a></h2>
+<p>The type of error handling needed depends on what the code is
+doing. In daemon / service type of program almost nothing may be
+allowed to cause the process to terminate, whereas in some utility
+programs it may be acceptable to terminate for many error
+conditions. This is a design issue and the strictness of application
+of the following should take into account the use of the code.</p>
+<ol class="arabic simple">
+<li>The developer should identify all errors that can be generated by a
+function and ensure that they are dealt with appropriately at some
+point in the system. This may be within the function itself or
+higher up in the call stack.</li>
+<li>All exceptions must be caught and handled properly. (This may
+include terminating the program cleanly, for instance if no more
+memory can be allocated.)</li>
+<li>Public functions should check their input parameters before using
+them. This checking may be made using the <code class="docutils literal"><span class="pre">assert()</span></code> macro or
+similar mechanism, and so only checked in the debug build, in which
+case comprehensive testing must be performed of the release build.</li>
+<li>All error status values returned from a function call must be checked
+or explicitly ignored. (To explicitly ignore a function call&#8217;s return
+value cast it to void, e.g. <code class="docutils literal"><span class="pre">(void)</span> <span class="pre">f(a,</span> <span class="pre">b);</span></code>)</li>
+<li>When using <code class="docutils literal"><span class="pre">dynamic_cast</span></code> on a pointer, a check must be made that
+the result is not <code class="docutils literal"><span class="pre">null</span></code> (i.e. that the cast was successful).</li>
+<li>Destructors must not throw any exceptions, directly or indirectly.
+(Exceptions encountered while calling destructors during stack
+unwinding from an earlier exception will cause immediate program
+termination.)</li>
+<li>Where the language permits it, and where the occurrence of errors
+can be identified at coding time (e.g. opening a file), errors
+should be trapped on an individual basis, rather than using a
+catch-all error handler.</li>
+<li>Error messages displayed to the user must be understandable and
+informative. They must suggest an action to the user, which will
+resolve the problem, for example:<ul>
+<li>No further action is required.</li>
+<li>Check the XYZ input data and then repeat the process.</li>
+<li>Contact the system administrator.</li>
+</ul>
+</li>
+</ol>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+      <ul class="nav navbar-nav" style=" float: right;">
+      
+      
+          
+            
+          
+       
+          <li><a href="#">Back to top</a></li>
+       </ul>
+    <p>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

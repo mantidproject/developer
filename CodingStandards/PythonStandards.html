@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Python Coding Standards</title>
+    
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-3.3.6/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-3.3.6/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.12.20180329.1038',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-59110517-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+  </head>
+  <body role="document">
+
+
+
+
+
+  <div id="navbar" class="navbar navbar-default ">
+    <div class="container">
+      <div class="navbar-header">
+        
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://www.mantidproject.org"><img src="../_static/Mantid_Logo_Transparent.png">
+           </a>
+        <span class="navbar-text navbar-version pull-left"><b>3.12</b></span>
+      </div>
+
+      
+        <div class="collapse navbar-collapse nav-collapse">
+      
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="http://www.mantidproject.org">Home</a></li>
+                <li><a href="http://download.mantidproject.org">Download</a></li>
+                <li><a href="http://www.mantidproject.org/Documentation">Documentation</a></li>
+                <li><a href="http://www.mantidproject.org/Contact">Contact Us</a></li>
+            
+            
+              
+              
+            
+            
+            
+            
+          </ul>
+              
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+            </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="python-coding-standards">
+<h1>Python Coding Standards<a class="headerlink" href="#python-coding-standards" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#style" id="id1">Style</a><ul>
+<li><a class="reference internal" href="#none-checks" id="id2">None checks</a></li>
+<li><a class="reference internal" href="#imports" id="id3">Imports</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#python-qt" id="id4">Python/Qt</a></li>
+</ul>
+</div>
+<div class="section" id="style">
+<h2><a class="toc-backref" href="#id1">Style</a><a class="headerlink" href="#style" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Unless otherwise specified, follow <a class="reference external" href="https://www.python.org/dev/peps/pep-0008">PEP 8</a>; this means using
+<a class="reference external" href="https://en.wikipedia.org/wiki/Snake_case">snake_case</a></li>
+<li>Use <a class="reference external" href="http://flake8.pycqa.org/en/latest">flake8</a> to check
+for problems in this area. Remember that PEP 8 is only a guide, so
+respect the style of the surrounding code as a primary goal</li>
+<li>Always use four spaces for indentation</li>
+<li>For docstrings please follow <a class="reference external" href="https://www.python.org/dev/peps/pep-0257">Docstring Conventions PEP 257</a> and document code to
+aid <a class="reference external" href="https://pythonhosted.org/an_example_pypi_project/sphinx.html#full-code-example">sphinx</a></li>
+</ul>
+<div class="section" id="none-checks">
+<h3><a class="toc-backref" href="#id2">None checks</a><a class="headerlink" href="#none-checks" title="Permalink to this headline">¶</a></h3>
+<p>Prefer <code class="docutils literal"><span class="pre">if</span> <span class="pre">obj</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">None:</span></code> over <code class="docutils literal"><span class="pre">if</span> <span class="pre">obj:</span></code>. The latter invokes
+<code class="docutils literal"><span class="pre">object.__nonzero__</span></code> whereas the former simply compares that obj
+references the same object as <code class="docutils literal"><span class="pre">None</span></code>.</p>
+</div>
+<div class="section" id="imports">
+<h3><a class="toc-backref" href="#id3">Imports</a><a class="headerlink" href="#imports" title="Permalink to this headline">¶</a></h3>
+<p>Imports should be grouped in the following order:</p>
+<ol class="arabic simple">
+<li>stdlib</li>
+<li>third party libraries</li>
+<li>local modules</li>
+</ol>
+<p>Each group should be alphabetically sorted and separate by a newline, e.g.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="kn">from</span> <span class="nn">qtpy.QtWidgets</span> <span class="kn">import</span> <span class="n">QMainWindow</span>
+
+<span class="kn">from</span> <span class="nn">mypackage.subpkg</span> <span class="kn">import</span> <span class="n">MyClass</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="python-qt">
+<h2><a class="toc-backref" href="#id4">Python/Qt</a><a class="headerlink" href="#python-qt" title="Permalink to this headline">¶</a></h2>
+<p>Use the <a class="reference external" href="https://pypi.python.org/pypi/QtPy">qtpy</a> module to hide the
+differences between PyQt versions.  When working with signals, use the
+new style. For naming new custom signals, use the <code class="docutils literal"><span class="pre">sig_</span></code> prefix:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qtpy.QtCore</span> <span class="kn">import</span> <span class="n">Signal</span>
+<span class="o">...</span>
+
+<span class="k">class</span> <span class="nc">MyWidget</span><span class="p">(</span><span class="o">...</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Funky new widget&quot;&quot;&quot;</span>
+
+    <span class="c1"># Signals</span>
+    <span class="n">sig_run_a_thing_happened</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">bool</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+      <ul class="nav navbar-nav" style=" float: right;">
+      
+      
+          
+            
+          
+       
+          <li><a href="#">Back to top</a></li>
+       </ul>
+    <p>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

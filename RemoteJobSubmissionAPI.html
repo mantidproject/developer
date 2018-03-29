@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Remote Job Submission API</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '3.12.20180329.1038',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-59110517-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+  </head>
+  <body role="document">
+
+
+
+
+
+  <div id="navbar" class="navbar navbar-default ">
+    <div class="container">
+      <div class="navbar-header">
+        
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://www.mantidproject.org"><img src="_static/Mantid_Logo_Transparent.png">
+           </a>
+        <span class="navbar-text navbar-version pull-left"><b>3.12</b></span>
+      </div>
+
+      
+        <div class="collapse navbar-collapse nav-collapse">
+      
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="http://www.mantidproject.org">Home</a></li>
+                <li><a href="http://download.mantidproject.org">Download</a></li>
+                <li><a href="http://www.mantidproject.org/Documentation">Documentation</a></li>
+                <li><a href="http://www.mantidproject.org/Contact">Contact Us</a></li>
+            
+            
+              
+              
+            
+            
+            
+            
+          </ul>
+              
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+            </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="remote-job-submission-api">
+<h1>Remote Job Submission API<a class="headerlink" href="#remote-job-submission-api" title="Permalink to this headline">¶</a></h1>
+<p>This document describes the web service API that the Mantid Framework uses to submit algorithms to remote compute
+resources. The API is designed to be flexible enough that it can be implemented for just about any compute resource at
+nearly any facility. This document should hopefully contain enough detail for programmers &amp; sysadmins at other
+facilities to implement the API and allow Mantid users to submit jobs to compute resources at those other facilities.</p>
+<p>A &#8216;compute resource&#8217; may be any computer capable of running the Mantid framework. This could range from a single large
+server, to some sort of Beowulf cluster to machines with specialized hardware such as GPU&#8217;s or Intel MIC&#8217;s. The idea is
+that the &#8216;compute resource&#8217; will be used to execute tasks that are impractical to run on the user&#8217;s local workstation.</p>
+<p>The reference implementation is the Fermi cluster at the Oak Ridge Spallation Neutron Source (fermi.ornl.gov). Specific
+details of the implementation on Fermi are used as examples throughout this document.</p>
+</div>
+<div class="section" id="contents">
+<h1>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><a class="reference external" href="#Basic_Requirements_For_API_Implementations">1 Basic Requirements For API Implementations</a></li>
+<li><a class="reference external" href="#Versioning">2 Versioning</a></li>
+<li><a class="reference external" href="#Authentication">3 Authentication</a></li>
+<li><a class="reference external" href="#Transactions">4 Transactions</a></li>
+<li><a class="reference external" href="#A_Note_About_File_Uploads">5 A Note About File Uploads</a></li>
+<li><a class="reference external" href="#API_v1_URL.27s">6 API v1 URL&#8217;s</a><ul>
+<li><a class="reference external" href="#Information">6.1 Information</a></li>
+<li><a class="reference external" href="#Authentication_2">6.2 Authentication</a></li>
+<li><a class="reference external" href="#Transactions_2">6.3 Transactions</a></li>
+<li><a class="reference external" href="#File_Transfer">6.4 File Transfer</a></li>
+<li><a class="reference external" href="#File_Listing">6.5 File Listing</a></li>
+<li><a class="reference external" href="#Job_Submission">6.6 Job Submission</a></li>
+<li><a class="reference external" href="#Job_Query">6.7 Job Query</a></li>
+<li><a class="reference external" href="#Job_Abort">6.8 Job Abort</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#API_v1_Extensions">7 API v1 Extensions</a><ul>
+<li><a class="reference external" href="#JOB_DATES">7.1 JOB_DATES</a></li>
+<li><a class="reference external" href="#AUTH_USER_NAME">7.2 AUTH_USER_NAME</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="basic-requirements-for-api-implementations">
+<h1>Basic Requirements For API Implementations<a class="headerlink" href="#basic-requirements-for-api-implementations" title="Permalink to this headline">¶</a></h1>
+<p>The Mantid framework has certain expectations for the API and it&#8217;s the responsibility of API implementations to meet
+these expectations:</p>
+<ol class="arabic simple">
+<li>The API provides a mechanism for executing python scripts in an environment that includes the Mantid framework. (ie:
+one where &#8220;from mantid.simpleapi import *&#8221; works) (Note: exactly *how* this happens is purposely left up to the
+implementor.)</li>
+<li>Scripts are executed in a batch environment - interactive scripts are not supported and scripts must be able to run
+without input from the user.</li>
+<li>No mechanism for passing command line parameters to the python scripts is provided. Things like experiment and run
+numbers must be hard-coded into the script. (We consider this acceptable because we expect a new script to be
+auto-generated by MantidPlot for each job.)</li>
+<li>Scripts can write output to what is the current working directory when the script starts. These output files will be
+available for download back to MantidPlot (or wherever) once the script finishes.</li>
+<li>Files that were uploaded prior to running the script will be available from the script&#8217;s working directory.</li>
+<li>Authentication is used to prevent individual users from interfering with others&#8217; jobs (or even reading their files)</li>
+<li>Data from the various API calls is returned in two ways: the standard HTTP status codes (200, 404, 500, etc...) and
+JSON text in the body. (Note: There&#8217;s no HTML markup in the output.) In the case of error status codes, the JSON
+output will contain a field called &#8216;error_msg&#8217; who&#8217;s value is a string describing the error.</li>
+<li>Clients should assume that all parts of the URL - including query parameters - are case sensitive. However, servers
+don&#8217;t *have* to accept URL&#8217;s with improper case, but may if it makes the code simpler.</li>
+</ol>
+</div>
+<div class="section" id="versioning">
+<h1>Versioning<a class="headerlink" href="#versioning" title="Permalink to this headline">¶</a></h1>
+<p>A quick Google search shows that versioning web API&#8217;s is tricky. The technique employed here will be to use a major
+version plus optional extensions.</p>
+<p>Between major versions there are no guarantees of backwards or forwards compatibility. Changing the major version is
+essentially starting over from scratch with a clean slate. The major version starts at 1 and will hopefully never
+change.</p>
+<p>Backwards-compatible changes are handled by means of optional extensions.</p>
+<p>A server must implement all of the functions defined in the base level of the version and a client may assume those
+functions exist. A server is NOT required to implement the extensions (they&#8217;re optional) and a client may query the
+server to discover which extensions are implemented. (Note that what the server returns is really just a name. It&#8217;s up
+to the client and server implementers to agree on exactly what that name means and then document it - presumably here in
+this API doc.)</p>
+<p>Backwards-incompatible changes to the API are not allowed. That includes the URL itself, the GET or POST variables it
+expects and the JSON that it outputs. If changes are needed, they can be handled through the extension mechanism. For
+example, more GET or POST variables could be accepted by the server, so long as they are not required. An extension
+should be created (and documented here) so that a client may query the server about whether it supports the new
+variables.</p>
+<p>Old GET or POST variables cannot be deleted however. This would break clients that expect to use them. If there&#8217;s a case
+where old varibles no longer make sense, then a completely new URL should be created (and again, documented as an
+extension).</p>
+<p>Similar rules apply to the JSON data returned by the API. Extra fields can be added to the JSON returned by a URL, but
+original fields may not be removed.</p>
+<p>It&#8217;s worth noting that it is possible for extensions to be mutually exclusive.</p>
+</div>
+<div class="section" id="authentication">
+<h1>Authentication<a class="headerlink" href="#authentication" title="Permalink to this headline">¶</a></h1>
+<p>The initial API uses HTTP Basic-Auth name/password combo for authentication. (Other methods may be added via API
+extensions as described above.) Upon successful authentication, a session cookie is created. All other URL&#8217;s require
+this session cookie.</p>
+<p>Because the Basic-Auth scheme does not encrypt the password when it is sent to the server, the use of the HTTPS protocol
+is <strong>STRONGLY</strong> encouraged.</p>
+<p>Note that HTTP Basic-Auth is simply the mechanism for passing a username/password combo to the web service. Exactly how
+the web service uses that combo to authenticate (and authorize) a user is not specified by the API. Individual
+implementations are free to do what they like. (For example, the implementation on Fermi checks the username &amp; password
+against an LDAP server.)</p>
+</div>
+<div class="section" id="transactions">
+<h1>Transactions<a class="headerlink" href="#transactions" title="Permalink to this headline">¶</a></h1>
+<p>The API details below mention starting &amp; stopping transactions. It should be noted that in this context, the word
+transaction doesn&#8217;t really have anything to do with databases. In this context, transactions are a mechanism for the web
+service to associate files with specific jobs. Multiple jobs may be submitted under a given transaction.</p>
+<p>Note that the API doesn&#8217;t specify how this association occurs. That is a detail left up to the individual
+implementation. However, remember the points in the Basic Requirements section above about scripts reading from and
+writing to their current working directory while not allowing other users to see or modify their files. That implies
+that each job will store files in its own directory and will execute scripts from that directory. (This is, in fact, how
+the implementation on Fermi works.)</p>
+<p>A user must start a transaction after authenticating, but before transferring files or submitting job scripts. When the
+user&#8217;s job (or jobs) has finished and the user no longer needs the files associated with the transaction, he or she
+should end the transaction. This will allow the web service to delete the files and recover the disk space.</p>
+</div>
+<div class="section" id="a-note-about-file-uploads">
+<h1>A Note About File Uploads<a class="headerlink" href="#a-note-about-file-uploads" title="Permalink to this headline">¶</a></h1>
+<p>It is generally assumed that the input files for the submitted python scripts are already available on the compute
+resource (presumably via some kind of network filesystem). Thus, although the API allows for file uploads, this is
+really intended for relatively small support files that a particular script might need. The HTTP protocol really isn&#8217;t
+intended or suitable for transferring the sort of multi-gigabyte files that are likely to be the inputs for these python
+scripts.</p>
+</div>
+<div class="section" id="api-v1-url-s">
+<h1>API v1 URL&#8217;s<a class="headerlink" href="#api-v1-url-s" title="Permalink to this headline">¶</a></h1>
+<p>General notes:</p>
+<ul class="simple">
+<li>All URL&#8217;s expect GET requests unless otherwise noted.</li>
+<li>The session cookie returned by the authentication URL is required by all other URL&#8217;s (except for the info URL)</li>
+<li>Success is indicated by an HTTP status code in the 200 range. (Typically, 200, but in some cases 201.) Errors are
+indicated with error codes in the 400 and 500 range.</li>
+<li>In the case of errors, the JSON output will include a field named &#8220;Err_Msg&#8221; whose value is a text string describing
+the particular error.</li>
+</ul>
+<div class="section" id="information">
+<h2>Information<a class="headerlink" href="#information" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="27%" />
+<col width="73%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Description</td>
+<td>Returns information about the server including the API version and supported
+extensions.</td>
+</tr>
+<tr class="row-even"><td>URL</td>
+<td>&lt;base_url&gt;/info</td>
+</tr>
+<tr class="row-odd"><td>Query Parameters</td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td>JSON Output</td>
+<td>API_Version&nbsp;: &lt;integer&gt; API_Extensions&nbsp;: [&lt;extension_1&gt;, &lt;extensions_2&gt;, .... ]
+Implementation_Specific_Post_Variables&nbsp;: [ &lt;variable_1&gt;, &lt;variable_2&gt;, .... ]</td>
+</tr>
+<tr class="row-odd"><td>Notes</td>
+<td>May be called without first authenticating. The
+&#8216;Implementation_Specific_Submit_Variables&#8217; field lists the particular POST
+variables that this implementation requires when submitting a job. See the
+&#8216;Job Submission &lt;#Job_Submission&gt;`__ URL.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id1">
+<h2>Authentication<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Description</td>
+<td>Authenticate to the web service.</td>
+</tr>
+<tr class="row-even"><td>URL</td>
+<td>&lt;base_url&gt;/authenticate</td>
+</tr>
+<tr class="row-odd"><td>Query Parameters</td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td>JSON Output</td>
+<td>None</td>
+</tr>
+<tr class="row-odd"><td>Notes</td>
+<td>Username and password are passed in using HTTP Basic
+Authentication Returns a session cookie which must be
+passed to the other URL&#8217;s</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id2">
+<h2>Transactions<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>This URL has two forms: one to start a new transaction and the other to end an existing transaction.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="42%" />
+<col width="58%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Description</td>
+<td>Start a new transaction</td>
+</tr>
+<tr class="row-even"><td>URL</td>
+<td>&lt;base_url&gt;/transaction</td>
+</tr>
+<tr class="row-odd"><td>Query Parameters</td>
+<td>Action=Start</td>
+</tr>
+<tr class="row-even"><td>JSON Output</td>
+<td>TransID&nbsp;: &lt;string&gt;</td>
+</tr>
+<tr class="row-odd"><td>Notes</td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Description</td>
+<td>End an existing transaction</td>
+</tr>
+<tr class="row-even"><td>URL</td>
+<td>&lt;base_url&gt;/transaction</td>
+</tr>
+<tr class="row-odd"><td>Query Parameters</td>
+<td>Action=Stop TransID=&lt;transaction_id&gt;</td>
+</tr>
+<tr class="row-even"><td>JSON Output</td>
+<td>None</td>
+</tr>
+<tr class="row-odd"><td>Notes</td>
+<td>Once a transaction is stopped, any files associated with
+it will no longer be available for download and the
+server is free to delete those files.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="file-transfer">
+<h2>File Transfer<a class="headerlink" href="#file-transfer" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Description</td>
+<td>Transfer a file from the server back to the client</td>
+</tr>
+<tr class="row-even"><td>URL</td>
+<td>&lt;base_url&gt;/download</td>
+</tr>
+<tr class="row-odd"><td>Query Parameters</td>
+<td>TransID=&lt;transaction ID&gt; File=&lt;filename&gt;</td>
+</tr>
+<tr class="row-even"><td>JSON Output</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>Notes</td>
+<td>&lt;filename&gt; does not include any path information. The
+actual directory where the file is stored is chosen by
+the web service and hidden from the user</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Description</td>
+<td>Transfer one or more files from the client up to the
+server</td>
+</tr>
+<tr class="row-even"><td>URL</td>
+<td>&lt;base_url&gt;/upload</td>
+</tr>
+<tr class="row-odd"><td>Query Parameters</td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td>JSON Output</td>
+<td>None</td>
+</tr>
+<tr class="row-odd"><td>Notes</td>
+<td>This is a POST method Multiple files may be submitted
+with one call
+File(s) are submitted as
+multipart form data (ie: &#8220;Content-Type:
+multipart/form-data&#8221; header)
+File names should not include
+any directory or path information. (Exactly where the
+file is stored is left to the web service to determine.)
+The transaction ID must also be
+specified as form data with a field name of &#8220;TransID&#8221;
+On success, returns a &#8220;201 - Created&#8221; status code</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="file-listing">
+<h2>File Listing<a class="headerlink" href="#file-listing" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Description</td>
+<td>Return a listing of files associated with the specified
+transaction</td>
+</tr>
+<tr class="row-even"><td>URL</td>
+<td>&lt;base_url&gt;/files</td>
+</tr>
+<tr class="row-odd"><td>Query Parameters</td>
+<td>TransID=&lt;transaction ID&gt;</td>
+</tr>
+<tr class="row-even"><td>JSON Output</td>
+<td>Files&nbsp;: [ &lt;file_1&gt;, &lt;file_2&gt;, ... &lt;file_n&gt; ]</td>
+</tr>
+<tr class="row-odd"><td>Notes</td>
+<td>No guarantees are made about the order files are listed</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="job-submission">
+<h2>Job Submission<a class="headerlink" href="#job-submission" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Description</td>
+<td>Submit a python script for execution on the compute
+resource</td>
+</tr>
+<tr class="row-even"><td>URL</td>
+<td>&lt;base_url&gt;/submit</td>
+</tr>
+<tr class="row-odd"><td>Query Parameters</td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td>Mandatory POST Variables</td>
+<td>TransID&nbsp;: &lt;trans_id&gt;
+ScriptName&nbsp;: &lt;name_of_python_script&gt;
+&lt;name_of_python_script&gt;&nbsp;: &lt;python code&gt;</td>
+</tr>
+<tr class="row-odd"><td>Optional POST Variables</td>
+<td>JobName&nbsp;: &lt;name&gt;</td>
+</tr>
+<tr class="row-even"><td>Implementation Specific POST Variables</td>
+<td>NumNodes&nbsp;: &lt;number_of_nodes&gt;
+CoresPerNode: &lt;cores_per_node&gt;</td>
+</tr>
+<tr class="row-odd"><td>JSON Output</td>
+<td>JobID&nbsp;: &lt;job_id&gt;</td>
+</tr>
+<tr class="row-even"><td>Notes</td>
+<td>This is a POST method
+Request is submitted as multipart form data (ie:
+&#8220;Content-Type: multipart/form-data&#8221; header)
+POST variables listed above are individual form data
+fields
+The content of the &#8220;ScriptName&#8221; field specifies the name
+of the python script. There must be another field with
+this name that actually contains the python code. This
+allows the web service to keep track of multiple scripts
+associated with the same transaction.
+The JobName variable allows the user to specify a name
+for a job. The name is included in the output of queries.
+(Presumably, the user will pick a name that&#8217;s more
+descriptive and easier to remember than the automatically
+assigned job ID.)
+The Implementation Specific Post Variables are - like the
+name says - specific to a particular implementation. They
+may not be applicable to all implementations and it&#8217;s
+valid for an implementation to ignore those that aren&#8217;t.
+Which variables are required by a specific implementation
+are listed in the <a class="reference external" href="#Information">Information</a> URL.
+(The two specified above are used by the Fermi
+implementation, and would probably be valid for all
+compute clusters.)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="job-query">
+<h2>Job Query<a class="headerlink" href="#job-query" title="Permalink to this headline">¶</a></h2>
+<p>This URL has two forms: one to query a specific job and one to query all of a user&#8217;s jobs.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Description</td>
+<td>Query all jobs submitted by the user</td>
+</tr>
+<tr class="row-even"><td>URL</td>
+<td>&lt;base_url&gt;/query</td>
+</tr>
+<tr class="row-odd"><td>Query Parameters</td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td>JSON Output</td>
+<td>&lt;job_id&gt;&nbsp;: &lt;job_description_object&gt;
+&lt;job_id&gt;&nbsp;: &lt;job_description_object&gt;
+&lt;job_id&gt;&nbsp;: &lt;job_description_object&gt;
+etc...</td>
+</tr>
+<tr class="row-odd"><td>Notes</td>
+<td>See below for a description of the job_description_object
+The length of time the compute resource will &#8216;remember&#8217;
+jobs is up to the implementer, but several days should be
+considered an absolute minimum. (A user should be able to
+submit a job on Friday and still be able to query it on
+Monday morning.)</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Description</td>
+<td>Query one specific job submitted by the user</td>
+</tr>
+<tr class="row-even"><td>URL</td>
+<td>&lt;base_url&gt;/query</td>
+</tr>
+<tr class="row-odd"><td>Query Parameters</td>
+<td>JobID&nbsp;: &lt;job_id&gt;</td>
+</tr>
+<tr class="row-even"><td>JSON Output</td>
+<td>&lt;job_id&gt;&nbsp;: &lt;job_description_object&gt;</td>
+</tr>
+<tr class="row-odd"><td>Notes</td>
+<td>See below for a description of the job_description_object
+The length of time the compute resource will &#8216;remember&#8217;
+jobs is up to the implementer, but several days should be
+considered an absolute minimum. (A user should be able to
+submit a job on Friday and still be able to query it on
+Monday morning.)</td>
+</tr>
+</tbody>
+</table>
+<p>The job description object is a JSON object who&#8217;s fields contain specific information about the job. The fields are:</p>
+<ul class="simple">
+<li>TransID - The transaction ID the job is associated with</li>
+<li>JobName - The name that was given to the submit API</li>
+<li>ScriptName - The name of the python script that was executed</li>
+<li>JobStatus - The execution status of the job. Will be one of: RUNNING, QUEUED, COMPLETED, REMOVED, DEFERRED, IDLE or
+UNKNOWN</li>
+</ul>
+</div>
+<div class="section" id="job-abort">
+<h2>Job Abort<a class="headerlink" href="#job-abort" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Description</td>
+<td>Abort a previously submitted job. Jobs that are queued
+will be dequeued. Jobs that are running will be stopped
+immediately. Jobs that have already completed will simply
+be ignored.</td>
+</tr>
+<tr class="row-even"><td>URL</td>
+<td>&lt;base_url&gt;/abort</td>
+</tr>
+<tr class="row-odd"><td>Query Parameters</td>
+<td>JobID&nbsp;: &lt;job_id&gt;</td>
+</tr>
+<tr class="row-even"><td>JSON Output</td>
+<td>None</td>
+</tr>
+<tr class="row-odd"><td>Notes</td>
+<td>Returns a 400 error code if the job ID does not exist.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="api-v1-extensions">
+<h1>API v1 Extensions<a class="headerlink" href="#api-v1-extensions" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="job-dates">
+<h2>JOB_DATES<a class="headerlink" href="#job-dates" title="Permalink to this headline">¶</a></h2>
+<p>The JOB_DATES extension adds three fields to the job_description_object that is returned by queries. The fields are
+&#8220;SubmitDate&#8221;, &#8220;StartDate&#8221; &amp; &#8220;CompletionDate&#8221; which represent the dates (including time) that the job was first
+submitted, when it started executing and when it stopped (either because it finished or because it was interrupted for
+some reason). The values are ISO8601 strings suitable for importing into a Mantid DateAndTime object.</p>
+</div>
+<div class="section" id="auth-user-name">
+<h2>AUTH_USER_NAME<a class="headerlink" href="#auth-user-name" title="Permalink to this headline">¶</a></h2>
+<p>The AUTH_USER_NAME extension adds a single field the the JSON text returned by the &#8216;info&#8217; URL. The field name is
+&#8216;Authenticated_As&#8217; and its value is either the name of the user that&#8217;s been authenticated, or empty if no authentication
+has taken place yet.</p>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+      <ul class="nav navbar-nav" style=" float: right;">
+      
+      
+          
+            
+          
+       
+          <li><a href="#">Back to top</a></li>
+       </ul>
+    <p>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
