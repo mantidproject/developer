@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '3.12.20180329.1038',
+        VERSION:     '3.12.20180406.1413',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -33,6 +33,7 @@
     <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Writing An Algorithm" href="WritingAnAlgorithm.html" />
 
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -74,9 +75,10 @@
           <ul class="nav navbar-nav">
             <li class="divider-vertical"></li>
             
-                <li><a href="http://www.mantidproject.org">Home</a></li>
+                <li><a href="index.html">Home</a></li>
                 <li><a href="http://download.mantidproject.org">Download</a></li>
-                <li><a href="http://www.mantidproject.org/Documentation">Documentation</a></li>
+                <li><a href="http://www.mantidproject.org">Wiki</a></li>
+                <li><a href="http://docs.mantidproject.org">User Documentation</a></li>
                 <li><a href="http://www.mantidproject.org/Contact">Contact Us</a></li>
             
             
@@ -107,20 +109,20 @@
 <span id="writingcustomconverttomdtransformation"></span><h1>Writing a Custom ConvertToMD Transformation<a class="headerlink" href="#writing-a-custom-converttomd-transformation" title="Permalink to this headline">¶</a></h1>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><a class="reference internal" href="#introduction" id="id3">Introduction</a></li>
-<li><a class="reference internal" href="#writing-a-simple-custom-plugin" id="id4">Writing a simple custom plugin</a><ul>
-<li><a class="reference internal" href="#summary" id="id5">Summary</a></li>
-<li><a class="reference internal" href="#workflow" id="id6">Workflow</a></li>
-<li><a class="reference internal" href="#defining-the-target-workspace" id="id7">Defining the target workspace</a></li>
-<li><a class="reference internal" href="#doing-the-transformation" id="id8">Doing the transformation</a></li>
-<li><a class="reference internal" href="#preprocessdetectorstomd-with-custom-plugins" id="id9">PreprocessDetectorsToMD with custom plugins</a></li>
+<li><a class="reference internal" href="#introduction" id="id1">Introduction</a></li>
+<li><a class="reference internal" href="#writing-a-simple-custom-plugin" id="id2">Writing a simple custom plugin</a><ul>
+<li><a class="reference internal" href="#summary" id="id3">Summary</a></li>
+<li><a class="reference internal" href="#workflow" id="id4">Workflow</a></li>
+<li><a class="reference internal" href="#defining-the-target-workspace" id="id5">Defining the target workspace</a></li>
+<li><a class="reference internal" href="#doing-the-transformation" id="id6">Doing the transformation</a></li>
+<li><a class="reference internal" href="#preprocessdetectorstomd-with-custom-plugins" id="id7">PreprocessDetectorsToMD with custom plugins</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#complex-transformations" id="id10">Complex Transformations</a></li>
+<li><a class="reference internal" href="#complex-transformations" id="id8">Complex Transformations</a></li>
 </ul>
 </div>
 <div class="section" id="introduction">
-<h2><a class="toc-backref" href="#id3">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id1">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>This information is intended for a developer who needs to write a customized
 <a class="reference external" href="http://docs.mantidproject.org/nightly/algorithms/ConvertToMD.html">ConvertToMD class</a> (plugin). The
 plugin then becomes automatically available to use in the
@@ -138,12 +140,12 @@ into a generic m-dimensional point of an <code class="docutils literal"><span cl
 at specific time of flight plus log values for temperature and pressure (<strong>The instrument&#8217;s
 space</strong>: 4 numbers + information about the detector) into 6-D point in the <strong>Physical space
 qx,qy,qz,dE,T,P</strong> (qx,qy,qz &#8211; the components of momentum transfer) or into 3-D point in
-<strong>Physical space |Q|,dE,Fugacity</strong> (<a href="#id1"><span class="problematic" id="id2">|Q|</span></a> - modulus of momentum transfer).</p>
+<strong>Physical space |Q|,dE,Fugacity</strong> (|Q| - modulus of momentum transfer).</p>
 </div>
 <div class="section" id="writing-a-simple-custom-plugin">
-<h2><a class="toc-backref" href="#id4">Writing a simple custom plugin</a><a class="headerlink" href="#writing-a-simple-custom-plugin" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id2">Writing a simple custom plugin</a><a class="headerlink" href="#writing-a-simple-custom-plugin" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="summary">
-<h3><a class="toc-backref" href="#id5">Summary</a><a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id3">Summary</a><a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h3>
 <p>If a single point of a <code class="docutils literal"><span class="pre">MatrixWorkspace</span></code> together with correspondent log files can be converted into a single
 <code class="docutils literal"><span class="pre">MDEvent</span></code> (multidimensional point of MD workspace), a simple custom plugin can be written to do this transformation.
 The existing framework in this case deals with all other tasks, namely the iterations over source workspace,
@@ -164,7 +166,7 @@ The <code class="docutils literal"><span class="pre">initialize</span></code> fu
 the transformation from a point of a <code class="docutils literal"><span class="pre">MatrixWorkspace</span></code> into an MD point of a target <code class="docutils literal"><span class="pre">MDWorkspace</span></code>.</p>
 </div>
 <div class="section" id="workflow">
-<h3><a class="toc-backref" href="#id6">Workflow</a><a class="headerlink" href="#workflow" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id4">Workflow</a><a class="headerlink" href="#workflow" title="Permalink to this headline">¶</a></h3>
 <p>This workflow is implemented in the <code class="docutils literal"><span class="pre">ConvertToMD</span></code> algorithm&#8217;s <code class="docutils literal"><span class="pre">exec()</span></code> function.</p>
 <ol class="arabic simple">
 <li>Select a conversion and obtain additional algorithm parameters from the algorithm interface.</li>
@@ -178,7 +180,7 @@ each input point into output MD point).</li>
 specified in <code class="docutils literal"><span class="pre">MDTransformationInterface.h</span></code>.</p>
 </div>
 <div class="section" id="defining-the-target-workspace">
-<h3><a class="toc-backref" href="#id7">Defining the target workspace</a><a class="headerlink" href="#defining-the-target-workspace" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id5">Defining the target workspace</a><a class="headerlink" href="#defining-the-target-workspace" title="Permalink to this headline">¶</a></h3>
 <p>This describes steps 1-3 of the workflow.</p>
 <p>The input data at this stage are the name of the plugin and the outputs &#8211; the information necessary for the transformation to work
 including the number of output dimensions, units for the selected physical transformation formula, units of the target workspace, etc.</p>
@@ -191,7 +193,7 @@ excessive memory usage or overhead.</p>
 to the class, custom copy constructor and assignment operators have to be defined.</p>
 </div>
 <div class="section" id="doing-the-transformation">
-<h3><a class="toc-backref" href="#id8">Doing the transformation</a><a class="headerlink" href="#doing-the-transformation" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id6">Doing the transformation</a><a class="headerlink" href="#doing-the-transformation" title="Permalink to this headline">¶</a></h3>
 <p>This describes steps 4-5 of the workflow.</p>
 <p>The input data at this stage are points of the &#8220;Experimental Space&#8221;, e.g. coordinates of points in the input workspace and
 additional information about these points, e.g. detectors coordinates and log files for values of interest. The output values
@@ -238,7 +240,7 @@ over the whole workspace:</p>
 </div>
 </div>
 <div class="section" id="preprocessdetectorstomd-with-custom-plugins">
-<h3><a class="toc-backref" href="#id9">PreprocessDetectorsToMD with custom plugins</a><a class="headerlink" href="#preprocessdetectorstomd-with-custom-plugins" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id7">PreprocessDetectorsToMD with custom plugins</a><a class="headerlink" href="#preprocessdetectorstomd-with-custom-plugins" title="Permalink to this headline">¶</a></h3>
 <p>Unit conversion uses the angular positions and sample-detector distances.
 This information is usually expensive to calculate so it is calculated separately by the
 <a class="reference external" href="http://docs.mantidproject.org/nightly/algorithms/PreprocessDetectorsToMD-v1.html">PreprocessDetectorsToMD</a> algorithm.
@@ -253,7 +255,7 @@ All currently existing plugins use the information about the detector&#8217;s po
 </div>
 </div>
 <div class="section" id="complex-transformations">
-<h2><a class="toc-backref" href="#id10">Complex Transformations</a><a class="headerlink" href="#complex-transformations" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id8">Complex Transformations</a><a class="headerlink" href="#complex-transformations" title="Permalink to this headline">¶</a></h2>
 <p>It is possible that the approach of converting a single point of a <code class="docutils literal"><span class="pre">MatrixWorkspace</span></code> into a single <code class="docutils literal"><span class="pre">MDEvent</span></code> is
 incorrect or inefficient for what is required. In this situation, more complex changes to the conversion framework
 have to be implemented.
@@ -295,6 +297,10 @@ you are modifying <code class="docutils literal"><span class="pre">MDEventWorksp
       
           
             
+  <li>
+    <a href="WritingAnAlgorithm.html" title="Previous Chapter: Writing An Algorithm"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Writing An Algorithm</span>
+    </a>
+  </li>
           
        
           <li><a href="#">Back to top</a></li>

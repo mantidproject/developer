@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Getting Started with Mantid</title>
+    <title>Getting Started</title>
     
     <link rel="stylesheet" href="_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '3.12.20180329.1038',
+        VERSION:     '3.12.20180406.1413',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -33,8 +33,8 @@
     <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="MPI Support for Algorithms" href="AlgorithmMPISupport.html" />
-    <link rel="prev" title="Developer Documentation" href="index.html" />
+    <link rel="next" title="Building on OS X" href="BuildingOnOSX.html" />
+    <link rel="prev" title="Developer Accounts" href="DeveloperAccounts.html" />
 
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -76,9 +76,10 @@
           <ul class="nav navbar-nav">
             <li class="divider-vertical"></li>
             
-                <li><a href="http://www.mantidproject.org">Home</a></li>
+                <li><a href="index.html">Home</a></li>
                 <li><a href="http://download.mantidproject.org">Download</a></li>
-                <li><a href="http://www.mantidproject.org/Documentation">Documentation</a></li>
+                <li><a href="http://www.mantidproject.org">Wiki</a></li>
+                <li><a href="http://docs.mantidproject.org">User Documentation</a></li>
                 <li><a href="http://www.mantidproject.org/Contact">Contact Us</a></li>
             
             
@@ -105,55 +106,63 @@
   <div class="row">
     <div class="col-md-12 content">
       
-  <div class="section" id="getting-started-with-mantid">
-<h1>Getting Started with Mantid<a class="headerlink" href="#getting-started-with-mantid" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="getting-started">
+<span id="gettingstarted"></span><h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><a class="reference internal" href="#prerequisites" id="id1">Prerequisites</a><ul>
-<li><a class="reference internal" href="#windows" id="id2">Windows</a></li>
-<li><a class="reference internal" href="#linux" id="id3">Linux</a><ul>
-<li><a class="reference internal" href="#red-hat-cent-os-fedora" id="id4">Red Hat/Cent OS/Fedora</a></li>
-<li><a class="reference internal" href="#ubuntu" id="id5">Ubuntu</a></li>
+<li><a class="reference internal" href="#environment" id="id2">Environment</a><ul>
+<li><a class="reference internal" href="#windows" id="id3">Windows</a></li>
+<li><a class="reference internal" href="#linux" id="id4">Linux</a><ul>
+<li><a class="reference internal" href="#red-hat-cent-os-fedora" id="id5">Red Hat/Cent OS/Fedora</a></li>
+<li><a class="reference internal" href="#ubuntu" id="id6">Ubuntu</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#osx" id="id7">OSX</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#getting-the-mantid-code" id="id8">Getting the Mantid code</a></li>
+<li><a class="reference internal" href="#building-mantid" id="id9">Building Mantid</a></li>
+<li><a class="reference internal" href="#building-vates" id="id10">Building VATES</a></li>
 </ul>
 </div>
-<div class="section" id="prerequisites">
-<h2><a class="toc-backref" href="#id1">Prerequisites</a><a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
-<p>Some intial setup is required before being able to build the code. This is platform
+<div class="section" id="environment">
+<h2><a class="toc-backref" href="#id2">Environment</a><a class="headerlink" href="#environment" title="Permalink to this headline">¶</a></h2>
+<p>Some initial setup is required before being able to build the code. This is platform
 specific and described here.</p>
 <div class="section" id="windows">
-<h3><a class="toc-backref" href="#id2">Windows</a><a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id3">Windows</a><a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h3>
 <p>Install the following:</p>
 <ul class="simple">
 <li><a class="reference external" href="https://go.microsoft.com/fwlink/?LinkId=532606&amp;clcid=0x409">Visual Studio 2015 Community Edition</a>. If you are at RAL then
 ask for the location of the locally-cached offline version.</li>
-<li><a class="reference external" href="https://git-scm.com/download/win">Git</a></li>
-<li><a class="reference external" href="https://git-lfs.github.com/">Git LFS</a><ul>
-<li>After installation open Git Bash and run <code class="docutils literal"><span class="pre">git</span> <span class="pre">lfs</span> <span class="pre">install</span></code></li>
-</ul>
-</li>
+<li><a class="reference external" href="https://git-scm.com/">Git</a>. After installation open Git Bash and run <code class="docutils literal"><span class="pre">git</span> <span class="pre">lfs</span> <span class="pre">install</span></code>.</li>
 <li><a class="reference external" href="https://cmake.org/download/">CMake</a></li>
-<li><a class="reference external" href="https://miktex.org/download">MiKTeX</a>. Instructions are available
-<a class="reference external" href="https://miktex.org/howto/install-miktex">here</a>.</li>
+<li><a class="reference external" href="https://miktex.org/download">MiKTeX</a>. Instructions are
+<a class="reference external" href="https://miktex.org/howto/install-miktex">available here</a>.</li>
 <li><a class="reference external" href="http://nsis.sourceforge.net/Download">NSIS</a> (optional). Used for building packages</li>
+</ul>
+<p><a class="reference external" href="http://graphviz.org/download/">Graphviz</a> is required to generate the workflow diagrams in the documentation.
+Unfortunately CMake can&#8217;t find it out of the box and the following steps are required to make this link</p>
+<ul class="simple">
+<li>open regedit</li>
+<li>add a new key <code class="docutils literal"><span class="pre">[HKEY_LOCAL_MACHINE\\SOFTWARE\\ATT\\Graphviz]</span></code></li>
+<li>create a new string value named <code class="docutils literal"><span class="pre">InstallPath</span></code> within this key and set the value
+to point to the install directory of Graphviz.</li>
 </ul>
 </div>
 <div class="section" id="linux">
-<h3><a class="toc-backref" href="#id3">Linux</a><a class="headerlink" href="#linux" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id4">Linux</a><a class="headerlink" href="#linux" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="red-hat-cent-os-fedora">
-<h4><a class="toc-backref" href="#id4">Red Hat/Cent OS/Fedora</a><a class="headerlink" href="#red-hat-cent-os-fedora" title="Permalink to this headline">¶</a></h4>
-<p>Follow the instructions at <a class="reference external" href="http://download.mantidproject.org/redhat.html">http://download.mantidproject.org/redhat.html</a> to add the
+<h4><a class="toc-backref" href="#id5">Red Hat/Cent OS/Fedora</a><a class="headerlink" href="#red-hat-cent-os-fedora" title="Permalink to this headline">¶</a></h4>
+<p>Follow the <a class="reference external" href="http://download.mantidproject.org/redhat.html">Red Hat instructions</a> to add the
 stable release yum repository and then install the <code class="docutils literal"><span class="pre">mantid-developer</span></code> package:</p>
 <div class="highlight-sh"><div class="highlight"><pre><span></span>yum install mantid-developer
 </pre></div>
 </div>
 </div>
 <div class="section" id="ubuntu">
-<h4><a class="toc-backref" href="#id5">Ubuntu</a><a class="headerlink" href="#ubuntu" title="Permalink to this headline">¶</a></h4>
-<p>Follow the instructions at <a class="reference external" href="http://download.mantidproject.org/ubuntu.html">http://download.mantidproject.org/ubuntu.html</a> to add the
+<h4><a class="toc-backref" href="#id6">Ubuntu</a><a class="headerlink" href="#ubuntu" title="Permalink to this headline">¶</a></h4>
+<p>Follow the <a class="reference external" href="http://download.mantidproject.org/ubuntu.html">Ubuntu instructions</a> to add the
 stable release repository and mantid ppa. Download the latest
 <a class="reference external" href="https://sourceforge.net/projects/mantid/files/developer">mantid-developer</a>
 package and install it:</p>
@@ -164,6 +173,36 @@ apt install ~/Downloads/mantid-developer.X.Y.Z.deb
 <p>where <code class="docutils literal"><span class="pre">X.Y.Z</span></code> should be replaced with the version that was downloaded.</p>
 </div>
 </div>
+<div class="section" id="osx">
+<h3><a class="toc-backref" href="#id7">OSX</a><a class="headerlink" href="#osx" title="Permalink to this headline">¶</a></h3>
+<p>The build environment on OS X is described here <a class="reference internal" href="BuildingOnOSX.html#buildingonosx"><span class="std std-ref">Building on OS X</span></a>.</p>
+</div>
+</div>
+<div class="section" id="getting-the-mantid-code">
+<h2><a class="toc-backref" href="#id8">Getting the Mantid code</a><a class="headerlink" href="#getting-the-mantid-code" title="Permalink to this headline">¶</a></h2>
+<p>We use <a class="reference external" href="https://git-scm.com/">Git</a> as our version control system (VCS). The master copies of our repositories are located at <a class="reference external" href="http://github.com/mantidproject">GitHub</a>. We have a number of repositories, of which the main one (the one containing all the source code for Mantid itself) is called simply <a class="reference external" href="http://github.com/mantidproject/mantid">mantid</a>.</p>
+<p>If you are not already set up with Git, you can follow these <a class="reference external" href="https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup">instructions</a>.</p>
+<p>If you are at RAL then please run the following commands before cloning the repository:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>git config --global url.git@github.com:mantidproject.insteadOf http://mantidweb.nd.rl.ac.uk/mirror/git/
+</pre></div>
+</div>
+<p>This will speed up the clone and intial cmake run considerably.</p>
+<p>There are a number of URLs via which the code can be checked out using various protocols. The easiest way to get the one you want is to select the protocol you want on the right side of the <a class="reference external" href="http://github.com/mantidproject/mantid">mantid</a> repository page on github and copy the url into your clipboard. The way to clone the repository via ssh on the command line, into a directory called Mantid, is:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>git clone git@github.com:mantidproject/mantid.git
+</pre></div>
+</div>
+<p>If at RAL now remove the config section above</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>git config --global --unset url.git@github.com:mantidproject
+</pre></div>
+</div>
+</div>
+<div class="section" id="building-mantid">
+<h2><a class="toc-backref" href="#id9">Building Mantid</a><a class="headerlink" href="#building-mantid" title="Permalink to this headline">¶</a></h2>
+<p>See <a class="reference internal" href="BuildingWithCMake.html#buildingwithcmake"><span class="std std-ref">Building with CMake</span></a> for information about building Mantid.</p>
+</div>
+<div class="section" id="building-vates">
+<h2><a class="toc-backref" href="#id10">Building VATES</a><a class="headerlink" href="#building-vates" title="Permalink to this headline">¶</a></h2>
+<p>See <a class="reference internal" href="BuildingVATES.html#buildingvates"><span class="std std-ref">Building VATES</span></a> for infromation about building VATES.</p>
 </div>
 </div>
 
@@ -180,11 +219,11 @@ apt install ~/Downloads/mantid-developer.X.Y.Z.deb
           
             
   <li>
-    <a href="index.html" title="Previous Chapter: Developer Documentation"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Developer Doc...</span>
+    <a href="DeveloperAccounts.html" title="Previous Chapter: Developer Accounts"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Developer Accounts</span>
     </a>
   </li>
   <li>
-    <a href="AlgorithmMPISupport.html" title="Next Chapter: MPI Support for Algorithms"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">MPI Support f... &raquo;</span>
+    <a href="BuildingOnOSX.html" title="Next Chapter: Building on OS X"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Building on OS X &raquo;</span>
     </a>
   </li>
           

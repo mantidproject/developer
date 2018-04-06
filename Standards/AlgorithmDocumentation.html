@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Algorithm Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-3.3.6/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-3.3.6/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.12.20180406.1413',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Algorithm Usage Examples" href="AlgorithmUsageExamples.html" />
+    <link rel="prev" title="Documentation Guide for Devs" href="DocumentationGuideForDevs.html" />
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-59110517-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+  </head>
+  <body role="document">
+
+
+
+
+
+  <div id="navbar" class="navbar navbar-default ">
+    <div class="container">
+      <div class="navbar-header">
+        
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://www.mantidproject.org"><img src="../_static/Mantid_Logo_Transparent.png">
+           </a>
+        <span class="navbar-text navbar-version pull-left"><b>3.12</b></span>
+      </div>
+
+      
+        <div class="collapse navbar-collapse nav-collapse">
+      
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="http://download.mantidproject.org">Download</a></li>
+                <li><a href="http://www.mantidproject.org">Wiki</a></li>
+                <li><a href="http://docs.mantidproject.org">User Documentation</a></li>
+                <li><a href="http://www.mantidproject.org/Contact">Contact Us</a></li>
+            
+            
+              
+              
+            
+            
+            
+            
+          </ul>
+              
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+            </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="algorithm-documentation">
+<span id="algorithmdocumentation"></span><h1>Algorithm Documentation<a class="headerlink" href="#algorithm-documentation" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#summary" id="id1">Summary</a></li>
+<li><a class="reference internal" href="#how-to-document-an-algorithm" id="id2">How to Document an Algorithm</a><ul>
+<li><a class="reference internal" href="#the-code-files" id="id3">The Code Files</a></li>
+<li><a class="reference internal" href="#property-descriptions" id="id4">Property Descriptions</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#workflow-algorithms" id="id5">Workflow algorithms</a></li>
+<li><a class="reference internal" href="#algorithm-directives" id="id6">Algorithm Directives</a></li>
+<li><a class="reference internal" href="#description" id="id7">Description</a><ul>
+<li><a class="reference internal" href="#referencing-other-algorithms" id="id8">Referencing Other Algorithms</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#usage" id="id9">Usage</a></li>
+<li><a class="reference internal" href="#building-the-documentation" id="id10">Building the Documentation</a></li>
+</ul>
+</div>
+<div class="section" id="summary">
+<h2><a class="toc-backref" href="#id1">Summary</a><a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>This page deals with the specifics of how to document an algorithm. For a more general guide to the Mantid documentation system see <a class="reference external" href="DocumentationGuideForDevs.html">Documentation Guide For Devs</a>.</p>
+</div>
+<div class="section" id="how-to-document-an-algorithm">
+<h2><a class="toc-backref" href="#id2">How to Document an Algorithm</a><a class="headerlink" href="#how-to-document-an-algorithm" title="Permalink to this headline">¶</a></h2>
+<p>Algorithm documentation is stored in two places.</p>
+<ul class="simple">
+<li>The code (.cpp / .h / .py) files: For strings that are needed in the GUI for tooltips etc.</li>
+<li>The .rst file: For all other documentation, including the algorithm description and <a class="reference external" href="AlgorithmUsageExamples.html">usage examples</a>.</li>
+</ul>
+<div class="section" id="the-code-files">
+<h3><a class="toc-backref" href="#id3">The Code Files</a><a class="headerlink" href="#the-code-files" title="Permalink to this headline">¶</a></h3>
+<p>The code files hold documentation in two important areas.</p>
+<dl class="docutils">
+<dt>The <code class="docutils literal"><span class="pre">summary</span></code> method</dt>
+<dd>The summary method should return a string (in plain text) that describes in a short sentence the purpose of the algorithm. This is used to provide a summary in the algorithm dialog box and in the algorithm documentation web page.</dd>
+</dl>
+<p>In C++: (This example uses the .h file, you could of course implement it in the .cpp file)</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">/// Algorithm&#39;s name for identification overriding a virtual method</span>
+<span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span><span class="p">()</span> <span class="k">const</span> <span class="k">override</span> <span class="p">{</span> <span class="k">return</span> <span class="s">&quot;Rebin&quot;</span><span class="p">;}</span>
+
+<span class="c1">///Summary of algorithms purpose</span>
+<span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">summary</span><span class="p">()</span> <span class="k">const</span> <span class="k">override</span> <span class="p">{</span><span class="k">return</span> <span class="s">&quot;Rebins data with new X bin boundaries.&quot;</span><span class="p">;}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="property-descriptions">
+<h3><a class="toc-backref" href="#id4">Property Descriptions</a><a class="headerlink" href="#property-descriptions" title="Permalink to this headline">¶</a></h3>
+<p>Each property declaration in the init method of the .cpp file should include a description. This is used as a tooltip, and in the &#8216;properties&#8217; table on the algorithm&#8217;s documentation web page.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The tooltip may only show the description up to the first dot. Be sure that the first sentence in the description gives enough information to understand the purpose of the property.</p>
+</div>
+<p>For example:</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="n">declareProperty</span><span class="p">(</span>
+<span class="k">new</span> <span class="n">WorkspaceProperty</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="s">&quot;InputWorkspace&quot;</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">,</span> <span class="n">Direction</span><span class="o">::</span><span class="n">Input</span><span class="p">),</span>
+  <span class="s">&quot;Workspace containing the input data&quot;</span><span class="p">);</span>
+<span class="n">declareProperty</span><span class="p">(</span>
+<span class="k">new</span> <span class="n">WorkspaceProperty</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="s">&quot;OutputWorkspace&quot;</span><span class="p">,</span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="n">Direction</span><span class="o">::</span><span class="n">Output</span><span class="p">),</span>
+  <span class="s">&quot;The name to give the output workspace&quot;</span><span class="p">);</span>
+<span class="n">declareProperty</span><span class="p">(</span>
+<span class="k">new</span> <span class="n">ArrayProperty</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;Params&quot;</span><span class="p">,</span> <span class="n">boost</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">RebinParamsValidator</span><span class="o">&gt;</span><span class="p">()),</span>
+  <span class="s">&quot;A comma separated list of first bin boundary, width, last bin boundary. Optionally &quot;</span>
+  <span class="s">&quot;this can be followed by a comma and more widths and last boundary pairs. &quot;</span>
+  <span class="s">&quot;Optionally this can also be a single number, which is the bin width. &quot;</span>
+  <span class="s">&quot;In this case, the boundary of binning will be determined by minimum and maximum TOF &quot;</span>
+  <span class="s">&quot;values among all events, or previous binning boundary, in case of event Workspace, or &quot;</span>
+  <span class="s">&quot;non-event Workspace, respectively. Negative width values indicate logarithmic binning. &quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="workflow-algorithms">
+<h2><a class="toc-backref" href="#id5">Workflow algorithms</a><a class="headerlink" href="#workflow-algorithms" title="Permalink to this headline">¶</a></h2>
+<p>There should be a flow chart for workflow algorithms. See <a class="reference external" href="FlowchartCreation.html">here</a> on how to make one.</p>
+</div>
+<div class="section" id="algorithm-directives">
+<h2><a class="toc-backref" href="#id6">Algorithm Directives</a><a class="headerlink" href="#algorithm-directives" title="Permalink to this headline">¶</a></h2>
+<p>We have defined several custom directives using the Sphinx extension framework. These are defined to generate the information from an algorithm that is not required to be hand written, i.e the properties table. Each .rst file that is documenting an algorithm should use these directives.</p>
+<p>As the <strong>Description</strong> and <strong>Usage</strong> of an algorithm <em>cannot</em> be obtained automatically, it must be manually entered. The structure of an algorithm&#8217;s .rst is:</p>
+<div class="highlight-rest"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">algorithm</span><span class="p">::</span>
+
+<span class="p">..</span> <span class="ow">summary</span><span class="p">::</span>
+
+<span class="p">..</span> <span class="ow">alias</span><span class="p">::</span>
+
+<span class="p">..</span> <span class="ow">properties</span><span class="p">::</span>
+
+<span class="gh">Description</span>
+<span class="gh">-----------</span>
+
+The description of your algorithm here.
+
+<span class="gh">Usage</span>
+<span class="gh">-----</span>
+
+A custom usage example.
+
+<span class="p">..</span> <span class="ow">categories</span><span class="p">::</span>
+
+<span class="p">..</span> <span class="ow">sourcelink</span><span class="p">::</span>
+</pre></div>
+</div>
+<dl class="docutils">
+<dt><code class="docutils literal"><span class="pre">..</span> <span class="pre">algorithm</span> <span class="pre">::</span></code></dt>
+<dd>This directive has several pieces of functionality, which includes:</dd>
+</dl>
+<ul class="simple">
+<li>A referable link is created for the algorithm. This allows other documentation pages create references to it (e.g. create links to it).</li>
+<li>Insertion of the page title (which is the name of the algorithm, including the version).</li>
+<li>Insertion of a screenshot of the algorithm&#8217;s dialog.</li>
+<li>Insertion of the Table Of Contents.</li>
+</ul>
+<dl class="docutils">
+<dt><code class="docutils literal"><span class="pre">..</span> <span class="pre">summary::</span></code></dt>
+<dd>The content of the summary method declared in your algorithm is output as HTML, for example, the following method is used in Rebin:</dd>
+</dl>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">/// Summary of algorithms purpose</span>
+<span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">summary</span><span class="p">()</span> <span class="k">const</span> <span class="k">override</span> <span class="p">{</span>
+   <span class="k">return</span> <span class="s">&quot;Rebins data with new X bin boundaries. For EventWorkspaces, you can very quickly rebin in-place by keeping the same output name and PreserveEvents=true.&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<dl class="docutils">
+<dt><code class="docutils literal"><span class="pre">..</span> <span class="pre">alias::</span></code></dt>
+<dd>This directive obtains aliases from the required <code class="docutils literal"><span class="pre">alias</span></code> method in the algorithm, for example, the following method is used in Rebin:</dd>
+</dl>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">/// Algorithm&#39;s aliases</span>
+<span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">alias</span><span class="p">()</span> <span class="k">const</span> <span class="k">override</span> <span class="p">{</span> <span class="k">return</span> <span class="s">&quot;rebin&quot;</span><span class="p">;</span> <span class="p">}</span>
+</pre></div>
+</div>
+<dl class="docutils">
+<dt><code class="docutils literal"><span class="pre">..</span> <span class="pre">properties::</span></code></dt>
+<dd>As mentioned above, it is <em>critical</em> that you include a description for the properties of your algorithm. This directive obtains all of the algorithm&#8217;s properties (set inside the algorithm&#8217;s <code class="docutils literal"><span class="pre">init</span></code> method) and outputs in a table format.</dd>
+<dt><code class="docutils literal"><span class="pre">..</span> <span class="pre">categories::</span></code></dt>
+<dd>By default, this directive obtains the categories that were set in the <code class="docutils literal"><span class="pre">categories</span></code> method the algorithm. For example, in Rebin the category method is in the header and contains:</dd>
+</dl>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="c1">/// Algorithm&#39;s category for identification</span>
+<span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">category</span><span class="p">()</span> <span class="k">const</span> <span class="k">override</span> <span class="p">{</span><span class="k">return</span> <span class="s">&quot;Transforms</span><span class="se">\\</span><span class="s">Rebin&quot;</span><span class="p">;}</span>
+</pre></div>
+</div>
+<p>When the HTML is generate a categories list is built that contains: Algorithms, Transforms and Rebin.</p>
+<p>It is possible to add additional categories by passing the directive arguments, for example, the following would output the above categories, and also <cite>Example</cite>:</p>
+<dl class="docutils">
+<dt><code class="docutils literal"><span class="pre">..sourcelink</span> <span class="pre">::</span></code></dt>
+<dd>This directive adds links to the algorithms source code.</dd>
+</dl>
+</div>
+<div class="section" id="description">
+<h2><a class="toc-backref" href="#id7">Description</a><a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p>This section must be manually entered. The description is an extension of the summary, and must contain a detailed overview of the algorithm&#8217;s functionality.</p>
+<div class="section" id="referencing-other-algorithms">
+<h3><a class="toc-backref" href="#id8">Referencing Other Algorithms</a><a class="headerlink" href="#referencing-other-algorithms" title="Permalink to this headline">¶</a></h3>
+<p>Every algorithm and version has been marked with a tag that can be used to reference it from other documents. If you need to reference the latest version of an algorithm, e.g. DiffractionFocussing, then in Sphinx you type would type</p>
+<div class="highlight-rest"><div class="highlight"><pre><span></span><span class="na">:ref:</span><span class="nv">`DiffractionFocussing &lt;algm-DiffractionFocussing&gt;`</span>
+</pre></div>
+</div>
+<p>If you need to reference a particular version then you would type</p>
+<div class="highlight-rest"><div class="highlight"><pre><span></span><span class="na">:ref:</span><span class="nv">`DiffractionFocussing version 2 &lt;algm-DiffractionFocussing-v2&gt;`</span>
+</pre></div>
+</div>
+<p>where the first part outside the angle brackets defines the link text and the part inside the angle brackets references the tag name.</p>
+</div>
+</div>
+<div class="section" id="usage">
+<h2><a class="toc-backref" href="#id9">Usage</a><a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<p>This section <em>must</em> be manually entered. The usage is a &#8216;code&#8217; example of the algorithm in use. The <cite>testcode</cite> directive must be used to verify the usage code you entered works correctly. See <a class="reference external" href="AlgorithmUsageExamples">here</a> for more information on how to write usage examples.</p>
+</div>
+<div class="section" id="building-the-documentation">
+<h2><a class="toc-backref" href="#id10">Building the Documentation</a><a class="headerlink" href="#building-the-documentation" title="Permalink to this headline">¶</a></h2>
+<p>One can update the documentation for a particular algorithm after changes have been introduced into the corresponding documentation file. Assuming you are in the build directory and want to update the documentation for Rebin:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nb">bin</span><span class="o">/</span><span class="n">MantidPlot</span> <span class="o">-</span><span class="n">xq</span> <span class="n">docs</span><span class="o">/</span><span class="n">runsphinx_html</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">R</span> <span class="n">Rebin</span>  <span class="c1"># builds HTML documentation</span>
+<span class="nb">bin</span><span class="o">/</span><span class="n">MantidPlot</span> <span class="o">-</span><span class="n">xq</span> <span class="n">docs</span><span class="o">/</span><span class="n">runsphinx_qthelp</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">R</span> <span class="n">Rebin</span>  <span class="c1"># builds Qt-help documentation</span>
+</pre></div>
+</div>
+<p>or with vanilla python</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>python docs/runsphinx_html.py -m $PWD/bin -R Rebin
+</pre></div>
+</div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+      <ul class="nav navbar-nav" style=" float: right;">
+      
+      
+          
+            
+  <li>
+    <a href="DocumentationGuideForDevs.html" title="Previous Chapter: Documentation Guide for Devs"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Documentation...</span>
+    </a>
+  </li>
+  <li>
+    <a href="AlgorithmUsageExamples.html" title="Next Chapter: Algorithm Usage Examples"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Algorithm Usa... &raquo;</span>
+    </a>
+  </li>
+          
+       
+          <li><a href="#">Back to top</a></li>
+       </ul>
+    <p>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

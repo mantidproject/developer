@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Tools Overview</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '3.12.20180406.1413',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Profiling with Valgrind" href="ProfilingWithValgrind.html" />
+    <link rel="prev" title="Design Document Guidelines" href="DesignDocumentGuides.html" />
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-59110517-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+  </head>
+  <body role="document">
+
+
+
+
+
+  <div id="navbar" class="navbar navbar-default ">
+    <div class="container">
+      <div class="navbar-header">
+        
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://www.mantidproject.org"><img src="_static/Mantid_Logo_Transparent.png">
+           </a>
+        <span class="navbar-text navbar-version pull-left"><b>3.12</b></span>
+      </div>
+
+      
+        <div class="collapse navbar-collapse nav-collapse">
+      
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="index.html">Home</a></li>
+                <li><a href="http://download.mantidproject.org">Download</a></li>
+                <li><a href="http://www.mantidproject.org">Wiki</a></li>
+                <li><a href="http://docs.mantidproject.org">User Documentation</a></li>
+                <li><a href="http://www.mantidproject.org/Contact">Contact Us</a></li>
+            
+            
+              
+              
+            
+            
+            
+            
+          </ul>
+              
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+            </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="tools-overview">
+<span id="toolsoverview"></span><h1>Tools Overview<a class="headerlink" href="#tools-overview" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="creating-classes-class-maker-py">
+<h2>Creating classes: class_maker.py<a class="headerlink" href="#creating-classes-class-maker-py" title="Permalink to this headline">¶</a></h2>
+<p><strong>To make it faster to create a new class</strong>. This is a small python
+script located in /buildconfig/. It generates the .cpp, .h and test
+files for a class along with some code stubs. It can also flesh out more
+methods for new Algorithms, using the &#8220;&#8211;alg&#8221; option.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>usage: class_maker.py [-h] [--force] [--test] [--alg] SUBPROJECT CLASSNAME
+Utility to create Mantid class files: header, source and test.
+positional arguments:
+ SUBPROJECT  The subproject under Framework/; e.g. Kernel
+ CLASSNAME   Name of the class to create
+optional arguments:
+ -h, --help  show this help message and exit
+ --force     Force overwriting existing files. Use with caution!
+ --test      Create only the test file.
+ --alg       Create an Algorithm stub. This adds some methods common to
+             algorithms.
+</pre></div>
+</div>
+</div>
+<div class="section" id="moving-renaming-classes-move-class-py">
+<h2>Moving/Renaming classes: move_class.py<a class="headerlink" href="#moving-renaming-classes-move-class-py" title="Permalink to this headline">¶</a></h2>
+<p>This python script is located in in /buidconfig/. It will move a class
+from one subproject to another and/or rename the class. Namespaces and
+cmakelists are adjusted. For details, run:</p>
+<p><code class="docutils literal"><span class="pre">buildconfig/move_class.py&nbsp;--help</span></code></p>
+</div>
+<div class="section" id="deleting-a-class-delete-class-py">
+<h2>Deleting a class: delete_class.py<a class="headerlink" href="#deleting-a-class-delete-class-py" title="Permalink to this headline">¶</a></h2>
+<p>This python script is located in in /buildconfig/. It will delete a
+class from one subproject. CMakeList.txt is adjusted. For details, run:</p>
+<p><code class="docutils literal"><span class="pre">buildconfig/delete_class.py&nbsp;--help</span></code></p>
+</div>
+<div class="section" id="leak-checking-etc">
+<h2>Leak checking etc<a class="headerlink" href="#leak-checking-etc" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="linux">
+<h3>Linux<a class="headerlink" href="#linux" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="http://valgrind.org/docs/manual/mc-manual.html">Memcheck</a></p>
+<ul class="simple">
+<li>Keeps track of allocs/deallocs and reports anything missing at exit.</li>
+<li>Slow but thorough</li>
+<li>Useful options to run with</li>
+</ul>
+<p><code class="docutils literal"><span class="pre">valgrind&nbsp;--tool=memcheck&nbsp;--leak-check=full&nbsp;--show-reachable=yes&nbsp;--num-callers=20&nbsp;--track-fds=yes&nbsp;--track-origins=yes&nbsp;--freelist-vol=500000000&nbsp;</span></code><code class="docutils literal"><span class="pre">&nbsp;[args...]</span></code></p>
+</div>
+<div class="section" id="windows">
+<h3>Windows<a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://vld.codeplex.com/releases">Visual Leak Detector</a></p>
+<ol class="arabic simple">
+<li>Setup the additional paths as defined in the readme file</li>
+<li>Adjust the configuration file, &#8220;C:Program FilesVisual Leak
+Detectorvld.ini&#8221; to output to both File and debugger by changing the
+<code class="docutils literal"><span class="pre">ReportTo</span></code> to</li>
+</ol>
+<p><code class="docutils literal"><span class="pre">ReportTo&nbsp;=&nbsp;both</span></code></p>
+<ol class="arabic simple">
+<li>Add #include &lt;vld.h&gt; to the system.h file in Kernel</li>
+<li>Compile everything in debug</li>
+<li>Running unit tests should now create a file memory_leak_report.txt in
+the test directory.</li>
+<li>IMPORTANT remove the #include &lt;vld.ini&gt; before checking in.</li>
+</ol>
+</div>
+</div>
+<div class="section" id="thread-checking">
+<h2>Thread checking<a class="headerlink" href="#thread-checking" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="helgrind-or-drd">
+<h3><a class="reference external" href="http://valgrind.org/docs/manual/hg-manual.html">Helgrind</a> or  <a class="reference external" href="http://valgrind.org/docs/manual/drd-manual.html">drd</a><a class="headerlink" href="#helgrind-or-drd" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Identifies race conditions &amp; dead-locks</li>
+<li>Slow but accurate</li>
+<li>A pain to get working with OpenMP. GCC must be recompiled to use a different call to create OMP threads or helgrind/drd cannot &#8220;see&#8221; the thread calls. Use this <a class="reference external" href="https://github.com/UCSCSlang/Adversarial-Helgrind/raw/master/drd/scripts/download-and-build-gcc">script</a> to recompile the same version off gcc that is onyour system. The script will need editing to change the appropriate variables.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="profiling">
+<h2>Profiling<a class="headerlink" href="#profiling" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="linux-1">
+<span id="id1"></span><h3>Linux<a class="headerlink" href="#linux-1" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="http://kcachegrind.sourceforge.net/cgi-bin/show.cgi/KcacheGrindIndex">Callgrind/KCachegrind</a></p>
+<ul class="simple">
+<li>KCachegrind visualizes callgrind output.</li>
+<li>See <a class="reference internal" href="ProfilingWithValgrind.html#profilingwithvalgrind"><span class="std std-ref">Profiling With Valgrind</span></a> for help on
+running callgrind</li>
+</ul>
+<p><a class="reference external" href="https://github.com/gperftools/gperftools">gperftools</a></p>
+<ul class="simple">
+<li>Takes snapshot of run and prints percentage of calls in functions</li>
+</ul>
+<p>See here for a list of other tools:
+<a class="reference external" href="http://www.pixelbeat.org/programming/profiling/">http://www.pixelbeat.org/programming/profiling/</a></p>
+</div>
+<div class="section" id="windows-1">
+<span id="id2"></span><h3>Windows<a class="headerlink" href="#windows-1" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="http://www.codersnotes.com/sleepy/">Very Sleepy</a> (Windows):</p>
+<ul class="simple">
+<li>Start/stop recording of program using a button</li>
+<li>Not as detailed or flexible as callgrind</li>
+</ul>
+</div>
+</div>
+<div class="section" id="iwyu">
+<h2>IWYU<a class="headerlink" href="#iwyu" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://code.google.com/p/include-what-you-use/">include what you
+use</a> (iwyu) is a
+clang-based tool for determining what include statements are needed in
+C/C++ files. Below are instructions for getting it to run with mantid on
+linux which is a filled in version of <a class="reference external" href="https://code.google.com/p/include-what-you-use/issues/detail?id=164">this
+bug</a>.</p>
+<ol class="arabic simple">
+<li>Install the software. The version available from system installs
+should be fine (e.g. yum or apt-get).</li>
+<li>Get a copy of
+<a class="reference external" href="https://code.google.com/p/include-what-you-use/source/browse/trunk/iwyu_tool.py">iwyu_tool.py</a>
+which is in the project&#8217;s repository, but may not be installed if you
+got it from your operating system locations (e.g. yum).</li>
+<li>Run <code class="docutils literal"><span class="pre">cmake</span> <span class="pre">-DCMAKE_EXPORT_COMPILE_COMMANDS=TRUE</span></code>. This will
+generate an extra file, <code class="docutils literal"><span class="pre">compile_commands.json</span></code>, in your build area
+which has instructions on compiling every file in mantid.</li>
+<li>Run <code class="docutils literal"><span class="pre">iwyu_tool.py</span> <span class="pre">-p</span> <span class="pre">`pwd</span></code> 2&gt; iwyu.log` to generate the
+report of changes redirecting into the file <code class="docutils literal"><span class="pre">iwyu.log</span></code>. This will
+take a long time since it is going through the whole repository. If
+you want it for a single file, then supply that as an additional
+argument with full path. Only one file can be supplied at a time.</li>
+<li>Run <code class="docutils literal"><span class="pre">fix_includes</span> <span class="pre">&lt;</span> <span class="pre">iwyu.log</span></code> and compile the results. Depending on
+how you installed iwyu, the program may be called
+<code class="docutils literal"><span class="pre">fix_includes.py</span></code>. If it doesn&#8217;t compile, the most likely suspect
+is that iwyu included a private header. See <a class="reference external" href="https://code.google.com/p/include-what-you-use/wiki/InstructionsForUsers#How_to_Run">iwyu instructions for
+users</a>
+for ways to handle this. Generally, they suggest deleting the
+offending lines.</li>
+<li>Check that your build path didn&#8217;t make it into source files. Since
+<code class="docutils literal"><span class="pre">compile_commands.json</span></code> has full paths, iwyu will put full paths in
+the include statements. This will not produce an error on your
+system, but it will on the build servers. The easiest way to check is
+to use <a class="reference external" href="https://github.com/ggreer/the_silver_searcher">the silver
+searcher</a> to check
+for your username in your source tree.</li>
+<li>Enjoy your success.</li>
+</ol>
+<p><strong>Note:</strong> <code class="docutils literal"><span class="pre">iwyu</span></code> outputs to <code class="docutils literal"><span class="pre">stderr</span></code> and always returns a failure
+status code since it generates no output. The output stream also affects
+<code class="docutils literal"><span class="pre">iwyu_tool.py</span></code></p>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+      <ul class="nav navbar-nav" style=" float: right;">
+      
+      
+          
+            
+  <li>
+    <a href="DesignDocumentGuides.html" title="Previous Chapter: Design Document Guidelines"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Design Docume...</span>
+    </a>
+  </li>
+  <li>
+    <a href="ProfilingWithValgrind.html" title="Next Chapter: Profiling with Valgrind"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Profiling wit... &raquo;</span>
+    </a>
+  </li>
+          
+       
+          <li><a href="#">Back to top</a></li>
+       </ul>
+    <p>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

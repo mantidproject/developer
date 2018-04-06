@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Patch Release Checklist</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '3.12.20180406.1413',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Technical Steering Committee" href="TSC.html" />
+    <link rel="prev" title="Release Checklist" href="ReleaseChecklist.html" />
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-59110517-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+  </head>
+  <body role="document">
+
+
+
+
+
+  <div id="navbar" class="navbar navbar-default ">
+    <div class="container">
+      <div class="navbar-header">
+        
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://www.mantidproject.org"><img src="_static/Mantid_Logo_Transparent.png">
+           </a>
+        <span class="navbar-text navbar-version pull-left"><b>3.12</b></span>
+      </div>
+
+      
+        <div class="collapse navbar-collapse nav-collapse">
+      
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="index.html">Home</a></li>
+                <li><a href="http://download.mantidproject.org">Download</a></li>
+                <li><a href="http://www.mantidproject.org">Wiki</a></li>
+                <li><a href="http://docs.mantidproject.org">User Documentation</a></li>
+                <li><a href="http://www.mantidproject.org/Contact">Contact Us</a></li>
+            
+            
+              
+              
+            
+            
+            
+            
+          </ul>
+              
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+            </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="patch-release-checklist">
+<span id="patchreleasechecklist"></span><h1>Patch Release Checklist<a class="headerlink" href="#patch-release-checklist" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#request" id="id1">Request</a></li>
+<li><a class="reference internal" href="#authorisation" id="id2">Authorisation</a></li>
+<li><a class="reference internal" href="#development" id="id3">Development</a></li>
+<li><a class="reference internal" href="#release-branch" id="id4">Release Branch</a><ul>
+<li><a class="reference internal" href="#release-notes" id="id5">Release Notes</a></li>
+<li><a class="reference internal" href="#cherry-picking-code-review" id="id6">Cherry Picking &amp; Code Review</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nightly-builds" id="id7">Nightly Builds</a></li>
+<li><a class="reference internal" href="#release-day" id="id8">Release Day</a></li>
+</ul>
+</div>
+<p>These are the steps involved in performing a Mantid patch release. To
+perform a full release look see <a class="reference internal" href="ReleaseChecklist.html#releasechecklist"><span class="std std-ref">Release Checklist</span></a>.</p>
+<div class="section" id="request">
+<h2><a class="toc-backref" href="#id1">Request</a><a class="headerlink" href="#request" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Anyone may request a patch release, but that request must be intially
+approved by Project manager (Nick) or one of the team leaders (Pete
+or Mattieu).</li>
+</ul>
+</div>
+<div class="section" id="authorisation">
+<h2><a class="toc-backref" href="#id2">Authorisation</a><a class="headerlink" href="#authorisation" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>The Project Manager and Team leaders must meet to authorise the patch
+release.</li>
+<li>During the meeting other high value, low impact changes may be
+considered for inclusion for the release. Any that are to be included
+must be added to the patch release notes.</li>
+<li>The Project Manager will create a new milestone in github, and all
+tickets to be included must be moved to that milestone.</li>
+<li>A developer will be nominated to be the main reviewer and compiler of
+the patch.</li>
+</ul>
+</div>
+<div class="section" id="development">
+<h2><a class="toc-backref" href="#id3">Development</a><a class="headerlink" href="#development" title="Permalink to this headline">¶</a></h2>
+<p>The patch release will be prepared based off the branch used to
+construct to most recent major point release, e.g. <code class="docutils literal"><span class="pre">release-v3.9</span></code>
+would be used for any <code class="docutils literal"><span class="pre">3.9.x</span></code> patches. Changes for the patch should be made using the standard GitHub
+workflow for merging code with <code class="docutils literal"><span class="pre">master</span></code>. The issue and pull request should then have the <code class="docutils literal"><span class="pre">PatchCandidate</span></code> label applied to them. These
+commits will then be cherry picked from <code class="docutils literal"><span class="pre">master</span></code> on to the release branch.</p>
+</div>
+<div class="section" id="release-branch">
+<h2><a class="toc-backref" href="#id4">Release Branch</a><a class="headerlink" href="#release-branch" title="Permalink to this headline">¶</a></h2>
+<p>The release branch will currently have its version fixed to exact
+version of the last major/patch release. It is not a requirement but
+advised to unfix the patch number while the patch is being compiled.
+This prevents the nightly builds from generating a collection of packages that have
+exactly the same version. The patch number can be unfixed by commenting the line in
+<a class="reference external" href="https://www.github.com/mantidproject/mantid/blob/release-vX.Y/buildconfig/CMake/VersionNumber.cmake#L9">https://www.github.com/mantidproject/mantid/blob/release-vX.Y/buildconfig/CMake/VersionNumber.cmake#L9</a>, where
+<code class="docutils literal"><span class="pre">X.Y</span></code> should be replace with the appropriate numbers.</p>
+<div class="section" id="release-notes">
+<h3><a class="toc-backref" href="#id5">Release Notes</a><a class="headerlink" href="#release-notes" title="Permalink to this headline">¶</a></h3>
+<p>Once the patch version has been unfixed the main reviewer should
+create a skeleton set of patch release notes on the release branch
+using the <a class="reference external" href="https://www.github.com/mantidproject/mantid/blob/master/tools/release_generator/patch.py">python helper tool</a>.</p>
+</div>
+<div class="section" id="cherry-picking-code-review">
+<h3><a class="toc-backref" href="#id6">Cherry Picking &amp; Code Review</a><a class="headerlink" href="#cherry-picking-code-review" title="Permalink to this headline">¶</a></h3>
+<p>It is the job of the main reviewer of the release to review each
+issue/pull request marked <code class="docutils literal"><span class="pre">PatchCandiate</span></code> and decide if the risks of
+the changes are low enough to include in a release that will not
+undergo full beta testing by scientists. If it is acceptable then on the release branch for each pull request:</p>
+<ul class="simple">
+<li>find the list of commit <code class="docutils literal"><span class="pre">SHA1</span></code> values in that pull request</li>
+<li>check if any of these commits has altered the release notes for the
+next major release</li>
+<li>if not then pass all commits in the order oldest-&gt;newest to
+<code class="docutils literal"><span class="pre">git</span> <span class="pre">cherry-pick</span> <span class="pre">-x</span></code></li>
+<li>if release notes were modified in a commit on their own then pass all
+commits except this one in the order oldest-&gt;newest to
+<code class="docutils literal"><span class="pre">git</span> <span class="pre">cherry-pick</span> <span class="pre">-x</span></code></li>
+<li>if a commit has a mixture of code/release note changes then:<ul>
+<li>pass the list of commits up to but not including this commit to
+<code class="docutils literal"><span class="pre">git</span> <span class="pre">cherry-pick</span> <span class="pre">-x</span></code></li>
+<li>now pass this single commit to <code class="docutils literal"><span class="pre">git</span> <span class="pre">cherry-pick</span> <span class="pre">-x</span> <span class="pre">-n</span></code> and it
+will not make a commit. Remove the major release note changes and
+commit <code class="docutils literal"><span class="pre">git</span> <span class="pre">add</span></code>/<code class="docutils literal"><span class="pre">git</span> <span class="pre">commit</span></code></li>
+<li>if there are any remaining commits after this then pass them to
+<code class="docutils literal"><span class="pre">git</span> <span class="pre">cherry-pick</span> <span class="pre">-x</span></code> as before.</li>
+</ul>
+</li>
+<li>finally add a commit that updates the patch release notes with this
+pull request link and description in the table.</li>
+</ul>
+<p>Once cherry picked the milestone of the original pull request should be
+updated to the patch milestone.</p>
+</div>
+</div>
+<div class="section" id="nightly-builds">
+<h2><a class="toc-backref" href="#id7">Nightly Builds</a><a class="headerlink" href="#nightly-builds" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="http://builds.mantidproject.org/view/Release%20Pipeline/">Jenkins Release Pipeline</a> contains jobs
+that check for changes on the current release branch each night (00:00 GMT). Any detected changes will cause a clean build of the code followed
+by a run of the system tests. These jobs should be checked each morning
+to confirm that everything is green.</p>
+</div>
+<div class="section" id="release-day">
+<h2><a class="toc-backref" href="#id8">Release Day</a><a class="headerlink" href="#release-day" title="Permalink to this headline">¶</a></h2>
+<p>On the day of release a few steps are required:</p>
+<ul class="simple">
+<li>update the patch version:</li>
+<li>navigate to
+{{site.mantidrepo}}/blob/release-X.Y./buildconfig/CMake/VersionNumber.cmake,
+where <code class="docutils literal"><span class="pre">X</span></code> &amp; <code class="docutils literal"><span class="pre">Y</span></code> are the major and minor release versions
+respectively.</li>
+<li>edit the <code class="docutils literal"><span class="pre">VERSION_PATCH</span></code> to the required number for the patch and
+commit the result.</li>
+<li>run a manual build of all of the OS jobs under {{
+site.mantidreleasebuilds }} and when asked for a suffix use an empty
+string</li>
+<li>wait for the builds to finish (will take more than 1 cup of
+tea/coffee/beverage of choice)</li>
+</ul>
+<p>While waiting for the builds create a new release on GitHub, using a tag
+of the form <code class="docutils literal"><span class="pre">v.X.Y.Z</span></code> and populate with information from the release
+notes (see a previous version of the format).</p>
+<p>Once the builds complete have the development team run unscripted
+testing on the packages generated by the clean release builds. In
+particular the issues intended to be fixed should be tested.</p>
+<p>Once the testing has passed:</p>
+<ul class="simple">
+<li>Use the manual deploy job at {{ site.mantidreleasebuilds }} to deploy
+packages and documentation to the public web.</li>
+<li>The windows binary will <strong>not</strong> be deployed and must be signed by
+someone at ISIS and uploaded to sourceforge manually</li>
+<li>Put packages on GitHub</li>
+<li>RHEL 7 only: Build the suffix-package <code class="docutils literal"><span class="pre">mantidXY</span></code> by running another
+clean RHEL 7 build at {{ site.mantidreleasebuilds }} but use the
+suffix XY, where <code class="docutils literal"><span class="pre">X</span></code> is the major version and <code class="docutils literal"><span class="pre">Y</span></code> is the minor
+version (currently used at SNS)</li>
+<li>Have someone at the SNS follow the instructions
+<a class="reference external" href="http://www.mantidproject.org/Fermi_cluster_at_ORNL">here</a> to
+deploy an MPI version of the patch release.</li>
+<li>Create new DOI using the scripts in the codebase and instructions on
+<a class="reference internal" href="ReleaseChecklist.html#releasechecklist"><span class="std std-ref">release checklist</span></a>.</li>
+<li>Send an email, including the text of the release notes, to the
+following lists</li>
+<li><code class="docutils literal"><span class="pre">mantid-announce&#64;mantidproject.org</span></code></li>
+<li><code class="docutils literal"><span class="pre">mantid-developers&#64;mantidproject.org</span></code></li>
+<li><code class="docutils literal"><span class="pre">nobugs&#64;nobugsconference.org</span></code></li>
+<li><code class="docutils literal"><span class="pre">news&#64;neutronsources.org</span></code></li>
+<li><code class="docutils literal"><span class="pre">neutron&#64;neutronsources.org</span></code></li>
+<li>Add topic to the news page on the <a class="reference external" href="http://forum.mantidproject.org/">forum</a></li>
+<li>Close the release milestone in github</li>
+<li>Remove the patch candidate tag from pull requests (if not already done)</li>
+</ul>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+      <ul class="nav navbar-nav" style=" float: right;">
+      
+      
+          
+            
+  <li>
+    <a href="ReleaseChecklist.html" title="Previous Chapter: Release Checklist"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Release Checklist</span>
+    </a>
+  </li>
+  <li>
+    <a href="TSC.html" title="Next Chapter: Technical Steering Committee"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Technical Ste... &raquo;</span>
+    </a>
+  </li>
+          
+       
+          <li><a href="#">Back to top</a></li>
+       </ul>
+    <p>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
