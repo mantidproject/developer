@@ -1,23 +1,19 @@
 <!DOCTYPE html>
 
-
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>ISIS SANS Reduction Back-end</title>
-    
     <link rel="stylesheet" href="_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap-theme.min.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="_static/custom.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '3.12.20180412.1313',
+        VERSION:     '3.12.20180427.1324',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -49,7 +45,7 @@
 
 
   </head>
-  <body role="document">
+  <body>
 
 
 
@@ -310,7 +306,7 @@ the state construction.</p>
 <p>The <em>state_base.py</em> module contains the essential ingredients for defining a
 state object. These are the <em>StateBase</em> class which allows for serialization
 and a set of <em>TypedParameter</em>.</p>
-<p>The <em>StateBase</em>&#8216;s <em>property_manager</em> property is responsible for serialization.
+<p>The <em>StateBase</em>’s <em>property_manager</em> property is responsible for serialization.
 Due to the nature of the <em>PropertyManagerProperty</em> of algorithms it serializes
 the state object to a Python dictionary and receives a Mantid <em>PropertyManager</em>
 object. This asymmetry is unfortunate, but mirrors the asymmetry of the
@@ -2351,7 +2347,7 @@ hence which sub-state to choose. This data-driven approach was chosen deliberate
 the data automatically defines the values of a large set of reduction parameters, e.g. the
 instrument name or the path to the IDF file. Note that the coordination of the
 builders for the different states is performed by a state director.</p>
-<p>Let&#8217;s have a look at an example of a typical builder. We examine the builder for scaling.
+<p>Let’s have a look at an example of a typical builder. We examine the builder for scaling.
 The relevant builder is chosen via the factory method <em>def get_scale_builder(data_info)</em>
 where <em>data_info</em> is an object of type <em>StateData</em>. The resulting <em>StateScaleBuilder</em> allows
 for setting the parameters on the state object which is currently being built. Via the
@@ -2391,7 +2387,7 @@ is actually aware of them is <em>StateDirectorISIS</em>. The director manages th
 dictionary which was discussed earlier. It is also possible to provide a user file as input or
 a user input dictionary.</p>
 <p>This director is used by other directors which are responsible for creating the user input
-dictionary for the CLI and GUI case. These directors don&#8217;t know anything about the builders or
+dictionary for the CLI and GUI case. These directors don’t know anything about the builders or
 the state, but are only responsible for providing the user input. An exception to this
 is the <em>StateData</em> object, since it is used indirectly to choose the correct builders
 for the other sub-states. Hence the role of the outer level directors is to provide the
@@ -2436,7 +2432,7 @@ which is to be reduced, is stored in the <em>TableModel</em> in <em>table_model.
 <div class="section" id="enum-py">
 <h5><a class="toc-backref" href="#id32"><em>enum.py</em></a><a class="headerlink" href="#enum-py" title="Permalink to this headline">¶</a></h5>
 <p>This module contains many enum-like classes. Since we cannot make use of the <em>enum</em>
-features of Python 3 and don&#8217;t want to work with string comparisons, we roll out
+features of Python 3 and don’t want to work with string comparisons, we roll out
 our own enums. Two things are noteworthy here:</p>
 <ul class="simple">
 <li>Using the <em>string_convertible</em> decorator allows the enum classes to be
@@ -2618,7 +2614,7 @@ on the ADS. If so, fetch it and return it. We are done with loading this data se
 <li>Else get the correct loader strategy (e.g. for event-mode files) and load
 the data. This will load either all periods or just the specified period
 where applicable. If scatter data is loaded, then the monitor data is loaded
-into a separate workspace with the suffix &#8220;_monitors&#8221;.</li>
+into a separate workspace with the suffix “_monitors”.</li>
 </ol>
 </li>
 <li>Apply calibration if required. Note that the algorithm loads the calibration
@@ -2757,7 +2753,7 @@ workspace to the proton charnge of the full workspace.</p>
 <p>The sub-states of this algorithm are:</p>
 <ol class="arabic simple">
 <li>Get the start time and the end time of the time slice</li>
-<li>If the data set is from a <em>Can</em> measurement, then don&#8217;t perform a slice</li>
+<li>If the data set is from a <em>Can</em> measurement, then don’t perform a slice</li>
 <li>Slice the scatter workspace using the start and end time and <a class="reference external" href="http://docs.mantidproject.org/nightly/algorithms/FilterByTime-v1.html#algm-filterbytime" title="(in MantidProject v3.12)"><span class="xref std std-ref">FilterByTime</span></a></li>
 <li>Get the partial charge for the sliced data and calculate the slice factor which is <em>(partial charge) / (total charge)</em></li>
 <li>Multiply the monitor workspace with the scale factor</li>

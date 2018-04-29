@@ -1,23 +1,19 @@
 <!DOCTYPE html>
 
-
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Building on OS X</title>
-    
     <link rel="stylesheet" href="_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap-theme.min.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="_static/custom.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '3.12.20180412.1313',
+        VERSION:     '3.12.20180427.1324',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -49,7 +45,7 @@
 
 
   </head>
-  <body role="document">
+  <body>
 
 
 
@@ -154,7 +150,7 @@ You may need to install additional packages to be able to build libNeXus.
 </pre></div>
 </div>
 </li>
-<li><p class="first">libNeXus must be recompiled after update of the macports if it&#8217;s dependencies have been updated. Otherwise it may depend on some non-existent libraries.</p>
+<li><p class="first">libNeXus must be recompiled after update of the macports if it’s dependencies have been updated. Otherwise it may depend on some non-existent libraries.</p>
 </li>
 </ol>
 </li>
@@ -224,7 +220,7 @@ You may need to install additional packages to be able to build libNeXus.
 <li>As of August 1, 2016, our OS X El Capitan build server is running Xcode 7.3.1</li>
 </ul>
 <ol class="arabic simple" start="2">
-<li>Install Apple&#8217;s Command Line tools (without this then /usr/include will not exist)</li>
+<li>Install Apple’s Command Line tools (without this then /usr/include will not exist)</li>
 </ol>
 <div class="highlight-sh"><div class="highlight"><pre><span></span>xcode-select --install
 </pre></div>
@@ -236,9 +232,9 @@ You may need to install additional packages to be able to build libNeXus.
 </pre></div>
 </div>
 <ol class="arabic simple" start="3">
-<li>Add the necessary &#8216;taps&#8217;. The last 4 are to use qt4.</li>
+<li>Add the necessary ‘taps’. The last 4 are to use qt4.</li>
 </ol>
-<p>In order to be able to &#8216;tap&#8217; the <code class="docutils literal"><span class="pre">mantidproject/mantid</span></code> &#8216;tap&#8217; we need to have a couple of packages installed</p>
+<p>In order to be able to ‘tap’ the <code class="docutils literal"><span class="pre">mantidproject/mantid</span></code> ‘tap’ we need to have a couple of packages installed</p>
 <div class="highlight-sh"><div class="highlight"><pre><span></span>brew install git
 brew install git-lfs
 
@@ -383,7 +379,7 @@ open Mantid.xcodeproj
 <ol class="arabic simple">
 <li>The main problem that can arise is due to python path issues.  This usually either arises at the CMake or Run from Xcode steps.  It is because the PYTHONPATH is not being picked up.</li>
 <li>If you have upgraded to Mavericks (OS X 10.9) from a previous version of OS X with homebrew already installed then you may encounter some issues related to the fact that the default std lib has changed.  The easiest way to avoid this is to remove and then re-install all your formulas.</li>
-<li>You may find that if you build the <code class="docutils literal"><span class="pre">MantidPlot</span></code> target then you will get errors when you run, such as <em>Can&#8217;t start python</em> and <em>Cannot load Curve Fitting Plugins</em>, this is due to the fact that the MantidPlot target does not contain all the dependencies.  You are best, if you are unsure of the hierarchy, to just use the ALL_BUILD target and then just switch to the MantidPlot target in order to run.</li>
+<li>You may find that if you build the <code class="docutils literal"><span class="pre">MantidPlot</span></code> target then you will get errors when you run, such as <em>Can’t start python</em> and <em>Cannot load Curve Fitting Plugins</em>, this is due to the fact that the MantidPlot target does not contain all the dependencies.  You are best, if you are unsure of the hierarchy, to just use the ALL_BUILD target and then just switch to the MantidPlot target in order to run.</li>
 <li>NOTE that you might need to run <code class="docutils literal"><span class="pre">./MantidPlot.app/Contents/MacOS/MantidPlot</span></code> from the <code class="docutils literal"><span class="pre">BUILD-DIR/bin</span></code> (instead of <code class="docutils literal"><span class="pre">open</span> <span class="pre">MantidPlot.app</span></code> OR <code class="docutils literal"><span class="pre">./MantidPlot</span></code> from <code class="docutils literal"><span class="pre">BUILD-DIR/bin/MantidPlot.app/Contents/MacOS/</span></code>) to get the library paths correct. Otherwise the issues above might show up (at least on OS X 10.11 El Capitan).</li>
 <li>Upgrading HDF5 requires also rebuilding nexusformat, h5py, and ParaView.</li>
 </ol>
@@ -406,9 +402,9 @@ open Mantid.xcodeproj
 </pre></div>
 </div>
 <ol class="arabic simple" start="4">
-<li>Add the necessary &#8216;taps&#8217;</li>
+<li>Add the necessary ‘taps’</li>
 </ol>
-<p>In order to be able to &#8216;tap&#8217; the <cite>mantidproject/mantid</cite> &#8216;tap&#8217; we need to have a couple of packages installed</p>
+<p>In order to be able to ‘tap’ the <cite>mantidproject/mantid</cite> ‘tap’ we need to have a couple of packages installed</p>
 <div class="highlight-sh"><div class="highlight"><pre><span></span>brew install git
 brew install git-lfs
 
@@ -451,7 +447,7 @@ brew install google-perftools
 brew install librdkafka
 </pre></div>
 </div>
-<p>If, while configuring Mantid, cmake complains that it cannot find sip, uninstall the package by <code class="docutils literal"><span class="pre">brew</span> <span class="pre">uninstall</span> <span class="pre">--ignore-dependencies</span> <span class="pre">sip</span></code>, reinstall it using the line above and follow the instructions on how to add Homebrew&#8217;s site-packages to Python <code class="docutils literal"><span class="pre">sys.path</span></code>.</p>
+<p>If, while configuring Mantid, cmake complains that it cannot find sip, uninstall the package by <code class="docutils literal"><span class="pre">brew</span> <span class="pre">uninstall</span> <span class="pre">--ignore-dependencies</span> <span class="pre">sip</span></code>, reinstall it using the line above and follow the instructions on how to add Homebrew’s site-packages to Python <code class="docutils literal"><span class="pre">sys.path</span></code>.</p>
 <ol class="arabic simple" start="6">
 <li>Uninstall the brew python if it has been previously installed</li>
 </ol>
@@ -532,7 +528,7 @@ sudo patch pyport.h <span class="nv">$MANTIDCHECKOUTROOT</span>/buildconfig/pypo
 <span class="nv">PATH</span><span class="o">=</span>/usr/local/bin/:<span class="nv">$PATH</span>
 </pre></div>
 </div>
-<p>Local bin contains the symlink to the brew packages, which have to come first in path, before <cite>/usr/bin</cite>. That&#8217;s why it is important not to have python or clang (with this setup) in brew.</p>
+<p>Local bin contains the symlink to the brew packages, which have to come first in path, before <cite>/usr/bin</cite>. That’s why it is important not to have python or clang (with this setup) in brew.</p>
 <ol class="arabic simple" start="16">
 <li>Add to your <cite>.profile</cite></li>
 </ol>

@@ -1,23 +1,19 @@
 <!DOCTYPE html>
 
-
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>System Tests</title>
-    
     <link rel="stylesheet" href="_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap-theme.min.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="_static/custom.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '3.12.20180412.1313',
+        VERSION:     '3.12.20180427.1324',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -49,7 +45,7 @@
 
 
   </head>
-  <body role="document">
+  <body>
 
 
 
@@ -139,8 +135,8 @@
 <p>System tests are high-level tests, which check that Mantid is able to
 reproduce accepted, standardised results as part of its calculations,
 when executing user stories. The system test suite is written against
-Mantid&#8217;s Python API.</p>
-<p>As part of our nightly-build and nightly-test procedure, Mantid&#8217;s system
+Mantid’s Python API.</p>
+<p>As part of our nightly-build and nightly-test procedure, Mantid’s system
 tests are run as acceptance tests. The nightly-test jobs deploy a
 packaged version of Mantid to the target OS, before executing the system
 tests scripts on that environment.</p>
@@ -151,7 +147,7 @@ tests scripts on that environment.</p>
 repository at
 <a class="reference external" href="http://github.com/mantidproject/mantid">mantidproject/mantid</a>, under
 the <code class="docutils literal"><span class="pre">Testing/SystemTests</span></code> directory.</p>
-<p>Like their &#8216;stress&#8217; equivalents (<a class="reference external" href="Stress_Tests">stress testing</a>),
+<p>Like their ‘stress’ equivalents (<a class="reference external" href="Stress_Tests">stress testing</a>),
 system tests inherit from the stresstesting.MantidStressTest class. The
 methods that need to be overridden are <code class="docutils literal"><span class="pre">runTest(self)</span></code>, where the
 python code that runs the test should be placed, and <code class="docutils literal"><span class="pre">validate(self)</span></code>,
@@ -190,7 +186,7 @@ override the validateMethod on a test with any one of three options.</p>
 <h3><a class="toc-backref" href="#id5">No Workspace Validation</a><a class="headerlink" href="#no-workspace-validation" title="Permalink to this headline">¶</a></h3>
 <p>If the system test does not need comparison/validation against a
 standard workpace, then this step can be skipped. Simply omitting the</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 </pre></div>
 </div>
 <p>method from the system test is sufficient.</p>
@@ -224,14 +220,14 @@ are not available then the tests are skipped.</p>
 </pre></div>
 </div>
 <p>The above function limits the test to run on a machine that can find the
-files &#8216;a.nxs&#8217; &amp; &#8216;b.nxs&#8217;</p>
+files ‘a.nxs’ &amp; ‘b.nxs’</p>
 </div>
 </div>
 <div class="section" id="set-the-tolerance">
 <h3><a class="toc-backref" href="#id9">Set the Tolerance</a><a class="headerlink" href="#set-the-tolerance" title="Permalink to this headline">¶</a></h3>
 <p>You may specialise the tolerance used by <code class="docutils literal"><span class="pre">CompareWorkspace</span></code> in your
 system test.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">tolerance</span> <span class="o">=</span> <span class="mf">0.00000001</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">tolerance</span> <span class="o">=</span> <span class="mf">0.00000001</span>
 </pre></div>
 </div>
 </div>
@@ -240,8 +236,8 @@ system test.</p>
 <p>You may disable some checks performed by the <code class="docutils literal"><span class="pre">CompareWorkspaces</span></code>
 algorithm by appending them to the disableChecking list, which, by
 default, is empty.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># A list of things not to check when validating</span>
-<span class="bp">self</span><span class="o">.</span><span class="n">disableChecking</span> <span class="o">=</span> <span class="p">[]</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># A list of things not to check when validating</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">disableChecking</span> <span class="o">=</span> <span class="p">[]</span>
 </pre></div>
 </div>
 </div>
@@ -250,11 +246,11 @@ default, is empty.</p>
 <p>Additional assertions can be used as the basis for your own comparison
 tests. The following assertions are already implemented in the base
 class.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">assertTrue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
-<span class="k">def</span> <span class="nf">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">expected</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
-<span class="k">def</span> <span class="nf">assertDelta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">expected</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
-<span class="k">def</span> <span class="nf">assertLessThan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">expected</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
-<span class="k">def</span> <span class="nf">assertGreaterThan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">expected</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">assertTrue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">expected</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">assertDelta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">expected</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">assertLessThan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">expected</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">assertGreaterThan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">expected</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
 </pre></div>
 </div>
 </div>
@@ -276,7 +272,7 @@ multi-configuration generator such as Visual Studio or Xcode.</p>
 <p>The user must first open command-prompt from, the build directory. The
 script requires the developer to select the configuration that will be
 used to execute the tests, one of: <em>Release</em>, <em>Debug</em>, <em>RelWithDebInfo</em>
-or &#8216;MinSizeRelease&#8217;&#8216;. Note that the script does not build the code so
+or ‘MinSizeRelease’‘. Note that the script does not build the code so
 the chosen configuration must have already been built. An example to
 execute all of the tests for the release configuration would be (in the
 command-prompt):</p>
@@ -308,7 +304,7 @@ systemtest -C &lt;cfg&gt; -R SNS
 </div>
 <div class="section" id="adding-new-data-references-files">
 <h3><a class="toc-backref" href="#id16">Adding New Data &amp; References Files</a><a class="headerlink" href="#adding-new-data-references-files" title="Permalink to this headline">¶</a></h3>
-<p>The data is managed by CMake&#8217;s external data system that is described by
+<p>The data is managed by CMake’s external data system that is described by
 <a class="reference external" href="Data_Files_in_Mantid">Data_Files_in_Mantid</a>. Please see <a class="reference external" href="Data_Files_in_Mantid#Adding_A_New_File">Adding a
 new file</a> for how to add new
 files.</p>

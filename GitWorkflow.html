@@ -1,23 +1,19 @@
 <!DOCTYPE html>
 
-
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Mantid Git Workflow</title>
-    
     <link rel="stylesheet" href="_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap-theme.min.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="_static/custom.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '3.12.20180412.1313',
+        VERSION:     '3.12.20180427.1324',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -49,7 +45,7 @@
 
 
   </head>
-  <body role="document">
+  <body>
 
 
 
@@ -172,7 +168,7 @@ should not be rebased.</p>
 <code class="docutils literal"><span class="pre">yourname/issuenumber_short_description</span></code>.  You can sync these with
 GitHub (for backup reasons) and rebase. Since the branch name is
 prefixed with your name people will know, by convention, that it is a
-private branch and can be rebased, deleted, etc at the owner&#8217;s
+private branch and can be rebased, deleted, etc at the owner’s
 whim. Changing a private branch is done by simply renaming the branch
 to drop the prefix.</p>
 </div>
@@ -249,20 +245,20 @@ view shows changes other than your own it is most likely that the base
 branch is incorrect and it needs to be fixed.</p>
 <p>As an example consider the scenario where a branch named <code class="docutils literal"><span class="pre">topic</span></code> has
 been based off the <code class="docutils literal"><span class="pre">master</span></code> branch as follows:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>o---o---o---o---o  master
-   <span class="p">|</span>           <span class="se">\</span>
-   <span class="p">|</span>            o---o---o  topic
-    <span class="se">\</span>
-     o---o---o---o---o  release
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">o</span><span class="o">---</span><span class="n">o</span><span class="o">---</span><span class="n">o</span><span class="o">---</span><span class="n">o</span><span class="o">---</span><span class="n">o</span>  <span class="n">master</span>
+   <span class="o">|</span>           \
+   <span class="o">|</span>            <span class="n">o</span><span class="o">---</span><span class="n">o</span><span class="o">---</span><span class="n">o</span>  <span class="n">topic</span>
+    \
+     <span class="n">o</span><span class="o">---</span><span class="n">o</span><span class="o">---</span><span class="n">o</span><span class="o">---</span><span class="n">o</span><span class="o">---</span><span class="n">o</span>  <span class="n">release</span>
 </pre></div>
 </div>
 <p>where we actually want the <code class="docutils literal"><span class="pre">topic</span></code> branch based off <code class="docutils literal"><span class="pre">release</span></code>
 instead i.e.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>o---o---o---o---o  master
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">o</span><span class="o">---</span><span class="n">o</span><span class="o">---</span><span class="n">o</span><span class="o">---</span><span class="n">o</span><span class="o">---</span><span class="n">o</span>  <span class="n">master</span>
     \
-     o---o---o---o---o  release
+     <span class="n">o</span><span class="o">---</span><span class="n">o</span><span class="o">---</span><span class="n">o</span><span class="o">---</span><span class="n">o</span><span class="o">---</span><span class="n">o</span>  <span class="n">release</span>
                              \
-                              o&#39;---o&#39;---o&#39;  topic
+                              <span class="n">o</span><span class="s1">&#39;---o&#39;</span><span class="o">---</span><span class="n">o</span><span class="s1">&#39;  topic</span>
 </pre></div>
 </div>
 <p>To fix this situation we use the <code class="docutils literal"><span class="pre">rebase</span></code> command, providing the

@@ -1,23 +1,19 @@
 <!DOCTYPE html>
 
-
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Writing Performance Tests</title>
-    
     <link rel="stylesheet" href="_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap-theme.min.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="_static/custom.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '3.12.20180412.1313',
+        VERSION:     '3.12.20180427.1324',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -49,7 +45,7 @@
 
 
   </head>
-  <body role="document">
+  <body>
 
 
 
@@ -141,36 +137,36 @@ avoided.</p>
 the same file as the unit tests for a particular class, except that you
 will add <em>Performance</em> to the end of the name of the test suite. For
 example, in MyAlgorithmTest.h:</p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyAlgorithmTest</span> <span class="o">:</span> <span class="k">public</span> <span class="n">CxxTest</span><span class="o">::</span><span class="n">TestSuite</span> <span class="p">{</span>
-   <span class="c1">// Put in your usual, quick unit tests here</span>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyAlgorithmTest</span> <span class="o">:</span> <span class="k">public</span> <span class="n">CxxTest</span><span class="o">::</span><span class="n">TestSuite</span> <span class="p">{</span>
+   <span class="c1">// Put in your usual, quick unit tests here</span>
 <span class="p">};</span>
 
-<span class="k">class</span> <span class="nc">MyAlgorithmTestPerformance</span> <span class="o">:</span> <span class="k">public</span> <span class="n">CxxTest</span><span class="o">::</span><span class="n">TestSuite</span> <span class="p">{</span>
+<span class="k">class</span> <span class="nc">MyAlgorithmTestPerformance</span> <span class="o">:</span> <span class="k">public</span> <span class="n">CxxTest</span><span class="o">::</span><span class="n">TestSuite</span> <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-   <span class="n">MatrixWorkspace_sptr</span> <span class="n">WS</span><span class="p">;</span>
-   <span class="kt">int</span> <span class="n">numpixels</span><span class="p">;</span>
+   <span class="n">MatrixWorkspace_sptr</span> <span class="n">WS</span><span class="p">;</span>
+   <span class="kt">int</span> <span class="n">numpixels</span><span class="p">;</span>
 
-   <span class="kt">void</span> <span class="nf">setUp</span><span class="p">()</span> <span class="p">{</span>
-      <span class="c1">// Put in any code needed to set up your test,</span>
-      <span class="c1">// but that should NOT be counted in the execution time.</span>
-   <span class="p">}</span>
+   <span class="kt">void</span> <span class="nf">setUp</span><span class="p">()</span> <span class="p">{</span>
+      <span class="c1">// Put in any code needed to set up your test,</span>
+      <span class="c1">// but that should NOT be counted in the execution time.</span>
+   <span class="p">}</span>
 
-   <span class="kt">void</span> <span class="nf">tearDown</span><span class="p">()</span> <span class="p">{</span>
-      <span class="c1">// Clean-up code, also NOT counted in execution time.</span>
-   <span class="p">}</span>
+   <span class="kt">void</span> <span class="nf">tearDown</span><span class="p">()</span> <span class="p">{</span>
+      <span class="c1">// Clean-up code, also NOT counted in execution time.</span>
+   <span class="p">}</span>
 
-   <span class="kt">void</span> <span class="nf">test_slow_performance</span><span class="p">()</span> <span class="p">{</span>
-      <span class="c1">// Put in a unit test that will be slow.</span>
-   <span class="p">}</span>
+   <span class="kt">void</span> <span class="nf">test_slow_performance</span><span class="p">()</span> <span class="p">{</span>
+      <span class="c1">// Put in a unit test that will be slow.</span>
+   <span class="p">}</span>
 <span class="p">};</span>
 </pre></div>
 </div>
 <p>Only the presence/absence of the word Performance is used to determine
 if it is a Performance test. As with unit tests, your suite name has to
 match the file name.</p>
-<p>You may include ASSERT&#8217;s in the same way as a unit test to check that
+<p>You may include ASSERT’s in the same way as a unit test to check that
 results are meaningful, but that is unnecessary since these tests are
-for performance, not function. Avoid adding so many assert&#8217;s that it
+for performance, not function. Avoid adding so many assert’s that it
 would slow down your test.</p>
 </div>
 <div class="section" id="running-performance-tests">

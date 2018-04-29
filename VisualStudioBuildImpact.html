@@ -1,23 +1,19 @@
 <!DOCTYPE html>
 
-
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Visual Studio Build Impact</title>
-    
     <link rel="stylesheet" href="_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap-theme.min.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="_static/custom.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '3.12.20180412.1313',
+        VERSION:     '3.12.20180427.1324',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -49,7 +45,7 @@
 
 
   </head>
-  <body role="document">
+  <body>
 
 
 
@@ -114,7 +110,7 @@ processes at normal priority, so they compete as equals with everything
 you are doing.</p>
 <p>So you might think that you can open task manage and reduce the priority
 of all the cl.exe processes, well there can be quite a few, and no it
-won&#8217;t work for long as these processes are replaced for every file it
+won’t work for long as these processes are replaced for every file it
 compiles.</p>
 <p>What you want to do it hunt down the MSBuild.exe processes and reduce
 the priority of them, there should be the same number as you have
@@ -122,7 +118,7 @@ logical processors. The MSBuild processes spawn all of the compiler and
 linker tasks, an they inherit the priority of the MSBuild process.</p>
 <div class="section" id="script">
 <h2>Script<a class="headerlink" href="#script" title="Permalink to this headline">¶</a></h2>
-<p>Of course if you don&#8217;t want to do this yourself then you can use this
+<p>Of course if you don’t want to do this yourself then you can use this
 script.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Const</span> <span class="n">BELOW_NORMAL</span> <span class="o">=</span> <span class="mi">16384</span>
 
@@ -141,7 +137,7 @@ a dog!</p>
 </div>
 <div class="section" id="monitoring-script">
 <h2>Monitoring Script<a class="headerlink" href="#monitoring-script" title="Permalink to this headline">¶</a></h2>
-<p>If you don&#8217;t want to keep running the script for each build, here&#8217;s one
+<p>If you don’t want to keep running the script for each build, here’s one
 that keeps a watch on your system every 5 seconds.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Const</span> <span class="n">BELOW_NORMAL</span> <span class="o">=</span> <span class="mi">16384</span>
 

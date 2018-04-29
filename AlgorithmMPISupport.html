@@ -1,23 +1,19 @@
 <!DOCTYPE html>
 
-
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>MPI Support for Algorithms</title>
-    
     <link rel="stylesheet" href="_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap-theme.min.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="_static/custom.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '3.12.20180412.1313',
+        VERSION:     '3.12.20180427.1324',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -49,7 +45,7 @@
 
 
   </head>
-  <body role="document">
+  <body>
 
 
 
@@ -236,7 +232,7 @@ There are five execution modes (in namespace <code class="docutils literal"><spa
 <li><code class="docutils literal"><span class="pre">ExecutionMode::Distributed</span></code> is used for running an algorithm in a distributed way across all MPI ranks. This would typically be used if the input workspaces have <code class="docutils literal"><span class="pre">StorageMode::Distributed</span></code>.</li>
 <li><code class="docutils literal"><span class="pre">ExecutionMode::MasterOnly</span></code> is typically used for running an algorithm if the input workspaces have <code class="docutils literal"><span class="pre">StorageMode::MasterOnly</span></code>.</li>
 </ul>
-<p>The use of the word &#8216;typically&#8217; above is intentional and indicates that there may be other cases.
+<p>The use of the word ‘typically’ above is intentional and indicates that there may be other cases.
 In particular, an algorithm may cause a transition from one storage mode to another, or may take inputs with different storage modes.
 Examples are given in the series of figures on the right.</p>
 </div>
@@ -358,7 +354,7 @@ In that case the execution mode can simply be determined from the input workspac
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Here the helper <code class="docutils literal"><span class="pre">Parallel::getCorrespondingExecutionMode</span></code> is used to obtain the &#8216;natural&#8217; execution mode from a storage mode, i.e., <code class="docutils literal"><span class="pre">ExecutionMode::Identical</span></code> for <code class="docutils literal"><span class="pre">StorageMode::Cloned</span></code>, <code class="docutils literal"><span class="pre">ExecutionMode::Distributed</span></code> for <code class="docutils literal"><span class="pre">StorageMode::Distributed</span></code>, and <code class="docutils literal"><span class="pre">ExecutionMode::MasterOnly</span></code> for <code class="docutils literal"><span class="pre">StorageMode::MasterOnly</span></code>.
+<p>Here the helper <code class="docutils literal"><span class="pre">Parallel::getCorrespondingExecutionMode</span></code> is used to obtain the ‘natural’ execution mode from a storage mode, i.e., <code class="docutils literal"><span class="pre">ExecutionMode::Identical</span></code> for <code class="docutils literal"><span class="pre">StorageMode::Cloned</span></code>, <code class="docutils literal"><span class="pre">ExecutionMode::Distributed</span></code> for <code class="docutils literal"><span class="pre">StorageMode::Distributed</span></code>, and <code class="docutils literal"><span class="pre">ExecutionMode::MasterOnly</span></code> for <code class="docutils literal"><span class="pre">StorageMode::MasterOnly</span></code>.
 More complex algorithms may require more complex decision mechanism, e.g., when there is more than one input workspace.</p>
 <p>For many algorithms a sufficient default implementation of <code class="docutils literal"><span class="pre">Algorithm::getParallelExecutionMode()</span></code> is provided by one of the base classes <code class="docutils literal"><span class="pre">API::SerialAlgorithm</span></code>, <code class="docutils literal"><span class="pre">API::ParallelAlgorithm</span></code>, or <code class="docutils literal"><span class="pre">API::DistributedAlgorithm</span></code>.
 MPI support can simply be enabled by inheriting from one of these instead of from <code class="docutils literal"><span class="pre">Algorithm</span></code>.
@@ -372,7 +368,7 @@ The level of thereby enabled MPI support is as follows:</p>
 Thus this usually works only for algorithms with a single input (and a single output) such that the execution mode can be uniquely derived from the storage mode of the input workpace.
 Multiple inputs are also supported to a certain extent. For example, for <code class="docutils literal"><span class="pre">API::DistributedAlgorithm</span></code> the storage modes of the inputs can be mixed if they are compatible, such as <code class="docutils literal"><span class="pre">StorageMode::Distributed</span></code> with <code class="docutils literal"><span class="pre">StorageMode::Cloned</span></code> (resulting in <code class="docutils literal"><span class="pre">ExecutionMode::Distributed</span></code>).</p>
 <p>If none of the other virtual methods listed above is implemented, <code class="docutils literal"><span class="pre">Algorithm</span></code> will run the normal <code class="docutils literal"><span class="pre">exec()</span></code> method on all MPI ranks.
-The exception are non-master ranks if the execution mode is <code class="docutils literal"><span class="pre">ExecutionMode::MasterOnly</span></code> &#8211; in that case creating a dummy workspace is attempted.
+The exception are non-master ranks if the execution mode is <code class="docutils literal"><span class="pre">ExecutionMode::MasterOnly</span></code> – in that case creating a dummy workspace is attempted.
 This is discussed in more detail in the subsections below.</p>
 </div>
 <div class="section" id="identical-execution">
@@ -429,7 +425,7 @@ Spectrum numbers should be set by using <code class="docutils literal"><span cla
 <h3><a class="toc-backref" href="#id29">Workspace indices</a><a class="headerlink" href="#workspace-indices" title="Permalink to this headline">¶</a></h3>
 <p>If a workspace is distributed, i.e., has storage mode <code class="docutils literal"><span class="pre">StorageMode::Distributed</span></code> workspaces indices lose their meaning.
 In particular, <code class="docutils literal"><span class="pre">MatrixWorkspace::getNumberHistograms()</span></code> will return the local number of spectra and not the global size of the workspace.
-For purposes of interaction with the user interface and for internal consistency a global equivalent of the &#8216;workspace index&#8217; concept has been introduced.
+For purposes of interaction with the user interface and for internal consistency a global equivalent of the ‘workspace index’ concept has been introduced.
 This index is represented by <code class="docutils literal"><span class="pre">Indexing::GlobalSpectrumIndex</span></code>. <a class="footnote-reference" href="#spectrum-index" id="id2">[2]</a></p>
 <p>The consequences are as follows:</p>
 <ul class="simple">
@@ -440,7 +436,7 @@ If the total number of spectra in a workspace is required it can be accessed via
 <li>User input providing indices or spectrum numbers in one way or another must be translated into local indices by <code class="docutils literal"><span class="pre">IndexInfo</span></code>.
 The most common cases are a workspace property that also accepts indices, see <a class="reference external" href="../concepts/IndexProperty.html">IndexProperty</a>.</li>
 <li>The distinction between local and global indices must not be exposed to the user.
-In particular, the &#8216;global&#8217; prefix should be omitted, i.e., for the user interface we keep referring to &#8216;workspace index&#8217;, even though it is internally not what used to be the workspace index but rather a global index.
+In particular, the ‘global’ prefix should be omitted, i.e., for the user interface we keep referring to ‘workspace index’, even though it is internally not what used to be the workspace index but rather a global index.
 Indices provided by a user may never be interpreted as local indices, since a local index has no fixed meaning.</li>
 </ul>
 </div>
@@ -544,7 +540,7 @@ Potential limitations must be described in the comments.</p>
 </div>
 <div class="section" id="porting-python-reduction-scripts-in-practice">
 <h3><a class="toc-backref" href="#id34">Porting Python reduction scripts in practice</a><a class="headerlink" href="#porting-python-reduction-scripts-in-practice" title="Permalink to this headline">¶</a></h3>
-<p>The mechanism of execution modes and storage modes allows for &#8220;guided&#8221; porting of algorithms as follows:</p>
+<p>The mechanism of execution modes and storage modes allows for “guided” porting of algorithms as follows:</p>
 <ol class="arabic simple">
 <li>Run Python script such as a system test with two (or more) MPI ranks.</li>
 <li>At some point an algorithm without any MPI support or inadequate MPI support may be encountered, resulting in an error message similar to this:</li>
@@ -1206,7 +1202,7 @@ MyAlg-[Error] .
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td>Some will argue that this should be <code class="docutils literal"><span class="pre">GlobalWorkspaceIndex</span></code>.
 However it is not an index of a workspace so the term <code class="docutils literal"><span class="pre">GlobalSpectrumIndex</span></code> has been chosen for clarity.
-On the user interface side this will still be named &#8216;workspace index&#8217;, dropping the &#8216;global&#8217; since the distinction between global and local indices is irrelevant for users.</td></tr>
+On the user interface side this will still be named ‘workspace index’, dropping the ‘global’ since the distinction between global and local indices is irrelevant for users.</td></tr>
 </tbody>
 </table>
 </div>

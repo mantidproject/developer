@@ -1,23 +1,19 @@
 <!DOCTYPE html>
 
-
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Multithreading in Algorithms</title>
-    
     <link rel="stylesheet" href="_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap-theme.min.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="_static/custom.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '3.12.20180412.1313',
+        VERSION:     '3.12.20180427.1324',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -49,7 +45,7 @@
 
 
   </head>
-  <body role="document">
+  <body>
 
 
 
@@ -114,7 +110,7 @@ devoted to the technology can be found <a class="reference external" href="https
 <p>Access to the OpenMP API is via a set of macros defined in
 <a class="reference external" href="https://github.com/mantidproject/mantid/blob/master/Framework/Kernel/inc/MantidKernel/MultiThreaded.h">MultiThreading.h</a>.
 This accomplishes seamless fall-back to single-threaded behaviour for
-compilers that don&#8217;t have OpenMP available, as well as providing
+compilers that don’t have OpenMP available, as well as providing
 protection against multithreading when non-thread-safe workspaces are in use.</p>
 <p>The canonical way to use OpenMP in an algorithm loop (typically
 one over the spectra in a workspace) is as follows:</p>
@@ -140,15 +136,15 @@ otherwise cause program termination) - this includes dealing with
 algorithm cancellation.</p>
 <div class="section" id="ensuring-thread-safety">
 <h2>Ensuring thread-safety<a class="headerlink" href="#ensuring-thread-safety" title="Permalink to this headline">¶</a></h2>
-<p>The first rule is this: <strong>Don&#8217;t write to shared variables.</strong> Or, if you
+<p>The first rule is this: <strong>Don’t write to shared variables.</strong> Or, if you
 do, protect the write with PARALLEL_CRITICAL or PARALLEL_ATOMIC calls.
 Note that a write to a workspace data spectrum selected by the loop
 index is not typically a shared write (though see below).</p>
 <p>One gotcha comes from the use of copy-on-write pointers to store the
-workspace data. Here&#8217;s an example:</p>
-<div class="code cpp highlight-default"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Get</span> <span class="n">references</span> <span class="n">to</span> <span class="n">the</span> <span class="n">x</span> <span class="n">data</span>
-<span class="n">const</span> <span class="n">auto</span><span class="o">&amp;</span> <span class="n">xIn</span> <span class="o">=</span> <span class="n">inputWS</span><span class="o">-&gt;</span><span class="n">x</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
-<span class="n">auto</span><span class="o">&amp;</span> <span class="n">xOut</span> <span class="o">=</span> <span class="n">outputWS</span><span class="o">-&gt;</span><span class="n">mutableX</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+workspace data. Here’s an example:</p>
+<div class="code cpp highlight-default"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Get</span> <span class="n">references</span> <span class="n">to</span> <span class="n">the</span> <span class="n">x</span> <span class="n">data</span>
+<span class="n">const</span> <span class="n">auto</span><span class="o">&amp;</span> <span class="n">xIn</span> <span class="o">=</span> <span class="n">inputWS</span><span class="o">-&gt;</span><span class="n">x</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<span class="n">auto</span><span class="o">&amp;</span> <span class="n">xOut</span> <span class="o">=</span> <span class="n">outputWS</span><span class="o">-&gt;</span><span class="n">mutableX</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>This can cause problems in the case where the input and output

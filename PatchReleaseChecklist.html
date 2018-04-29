@@ -1,23 +1,19 @@
 <!DOCTYPE html>
 
-
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Patch Release Checklist</title>
-    
     <link rel="stylesheet" href="_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap-theme.min.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="_static/custom.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '3.12.20180412.1313',
+        VERSION:     '3.12.20180427.1324',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -49,7 +45,7 @@
 
 
   </head>
-  <body role="document">
+  <body>
 
 
 
@@ -110,22 +106,22 @@
 <span id="patchreleasechecklist"></span><h1>Patch Release Checklist<a class="headerlink" href="#patch-release-checklist" title="Permalink to this headline">¶</a></h1>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><a class="reference internal" href="#request" id="id1">Request</a></li>
-<li><a class="reference internal" href="#authorisation" id="id2">Authorisation</a></li>
-<li><a class="reference internal" href="#development" id="id3">Development</a></li>
-<li><a class="reference internal" href="#release-branch" id="id4">Release Branch</a><ul>
-<li><a class="reference internal" href="#release-notes" id="id5">Release Notes</a></li>
-<li><a class="reference internal" href="#cherry-picking-code-review" id="id6">Cherry Picking &amp; Code Review</a></li>
+<li><a class="reference internal" href="#request" id="id4">Request</a></li>
+<li><a class="reference internal" href="#authorisation" id="id5">Authorisation</a></li>
+<li><a class="reference internal" href="#development" id="id6">Development</a></li>
+<li><a class="reference internal" href="#release-branch" id="id7">Release Branch</a><ul>
+<li><a class="reference internal" href="#release-notes" id="id8">Release Notes</a></li>
+<li><a class="reference internal" href="#cherry-picking-code-review" id="id9">Cherry Picking &amp; Code Review</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#nightly-builds" id="id7">Nightly Builds</a></li>
-<li><a class="reference internal" href="#release-day" id="id8">Release Day</a></li>
+<li><a class="reference internal" href="#nightly-builds" id="id10">Nightly Builds</a></li>
+<li><a class="reference internal" href="#release-day" id="id11">Release Day</a></li>
 </ul>
 </div>
 <p>These are the steps involved in performing a Mantid patch release. To
 perform a full release look see <a class="reference internal" href="ReleaseChecklist.html#releasechecklist"><span class="std std-ref">Release Checklist</span></a>.</p>
 <div class="section" id="request">
-<h2><a class="toc-backref" href="#id1">Request</a><a class="headerlink" href="#request" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id4">Request</a><a class="headerlink" href="#request" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>Anyone may request a patch release, but that request must be intially
 approved by Project manager (Nick) or one of the team leaders (Pete
@@ -133,7 +129,7 @@ or Mattieu).</li>
 </ul>
 </div>
 <div class="section" id="authorisation">
-<h2><a class="toc-backref" href="#id2">Authorisation</a><a class="headerlink" href="#authorisation" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id5">Authorisation</a><a class="headerlink" href="#authorisation" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>The Project Manager and Team leaders must meet to authorise the patch
 release.</li>
@@ -147,7 +143,7 @@ the patch.</li>
 </ul>
 </div>
 <div class="section" id="development">
-<h2><a class="toc-backref" href="#id3">Development</a><a class="headerlink" href="#development" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id6">Development</a><a class="headerlink" href="#development" title="Permalink to this headline">¶</a></h2>
 <p>The patch release will be prepared based off the branch used to
 construct to most recent major point release, e.g. <code class="docutils literal"><span class="pre">release-v3.9</span></code>
 would be used for any <code class="docutils literal"><span class="pre">3.9.x</span></code> patches. Changes for the patch should be made using the standard GitHub
@@ -155,7 +151,7 @@ workflow for merging code with <code class="docutils literal"><span class="pre">
 commits will then be cherry picked from <code class="docutils literal"><span class="pre">master</span></code> on to the release branch.</p>
 </div>
 <div class="section" id="release-branch">
-<h2><a class="toc-backref" href="#id4">Release Branch</a><a class="headerlink" href="#release-branch" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id7">Release Branch</a><a class="headerlink" href="#release-branch" title="Permalink to this headline">¶</a></h2>
 <p>The release branch will currently have its version fixed to exact
 version of the last major/patch release. It is not a requirement but
 advised to unfix the patch number while the patch is being compiled.
@@ -164,13 +160,13 @@ exactly the same version. The patch number can be unfixed by commenting the line
 <a class="reference external" href="https://www.github.com/mantidproject/mantid/blob/release-vX.Y/buildconfig/CMake/VersionNumber.cmake#L9">https://www.github.com/mantidproject/mantid/blob/release-vX.Y/buildconfig/CMake/VersionNumber.cmake#L9</a>, where
 <code class="docutils literal"><span class="pre">X.Y</span></code> should be replace with the appropriate numbers.</p>
 <div class="section" id="release-notes">
-<h3><a class="toc-backref" href="#id5">Release Notes</a><a class="headerlink" href="#release-notes" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id8">Release Notes</a><a class="headerlink" href="#release-notes" title="Permalink to this headline">¶</a></h3>
 <p>Once the patch version has been unfixed the main reviewer should
 create a skeleton set of patch release notes on the release branch
 using the <a class="reference external" href="https://www.github.com/mantidproject/mantid/blob/master/tools/release_generator/patch.py">python helper tool</a>.</p>
 </div>
 <div class="section" id="cherry-picking-code-review">
-<h3><a class="toc-backref" href="#id6">Cherry Picking &amp; Code Review</a><a class="headerlink" href="#cherry-picking-code-review" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id9">Cherry Picking &amp; Code Review</a><a class="headerlink" href="#cherry-picking-code-review" title="Permalink to this headline">¶</a></h3>
 <p>It is the job of the main reviewer of the release to review each
 issue/pull request marked <code class="docutils literal"><span class="pre">PatchCandiate</span></code> and decide if the risks of
 the changes are low enough to include in a release that will not
@@ -202,18 +198,21 @@ updated to the patch milestone.</p>
 </div>
 </div>
 <div class="section" id="nightly-builds">
-<h2><a class="toc-backref" href="#id7">Nightly Builds</a><a class="headerlink" href="#nightly-builds" title="Permalink to this headline">¶</a></h2>
-<p>The <a class="reference external" href="http://builds.mantidproject.org/view/Release%20Pipeline/">Jenkins Release Pipeline</a> contains jobs
-that check for changes on the current release branch each night (00:00 GMT). Any detected changes will cause a clean build of the code followed by a run of the system tests. The Linux clean builds should have the <cite>PACKAGE_SUFFIX</cite> set to <cite>nightly</cite> while testing the patch.</p>
+<h2><a class="toc-backref" href="#id10">Nightly Builds</a><a class="headerlink" href="#nightly-builds" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="release-pipeline">release pipeline</a> contains jobs
+that check for changes on the current release branch each night (00:00 GMT).
+Any detected changes will cause a clean build of the code followed by a run
+of the system tests. The Linux clean builds should have the <cite>PACKAGE_SUFFIX</cite> set
+to <cite>nightly</cite> while testing the patch.</p>
 <p>These jobs should be checked each morning to confirm that everything is green.</p>
 </div>
 <div class="section" id="release-day">
-<h2><a class="toc-backref" href="#id8">Release Day</a><a class="headerlink" href="#release-day" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id11">Release Day</a><a class="headerlink" href="#release-day" title="Permalink to this headline">¶</a></h2>
 <p>On the day of release a few steps are required:</p>
 <ul class="simple">
 <li>update the patch version:</li>
 <li>navigate to
-{{site.mantidrepo}}/blob/release-X.Y./buildconfig/CMake/VersionNumber.cmake,
+<a class="reference external" href="https://www.github.com/mantidproject/mantid/blob/release-X.Y./buildconfig/CMake/VersionNumber.cmake">https://www.github.com/mantidproject/mantid/blob/release-X.Y./buildconfig/CMake/VersionNumber.cmake</a>,
 where <code class="docutils literal"><span class="pre">X</span></code> &amp; <code class="docutils literal"><span class="pre">Y</span></code> are the major and minor release versions
 respectively.</li>
 <li>edit the <code class="docutils literal"><span class="pre">VERSION_PATCH</span></code> to the required number for the patch and
@@ -232,13 +231,13 @@ testing on the packages generated by the clean release builds. In
 particular the issues intended to be fixed should be tested.</p>
 <p>Once the testing has passed:</p>
 <ul class="simple">
-<li>Use the manual deploy job at {{ site.mantidreleasebuilds }} to deploy
+<li>Use the manual deploy job at <a class="reference external" href="release-pipeline">release pipeline</a> to deploy
 packages and documentation to the public web.</li>
 <li>The windows binary will <strong>not</strong> be deployed and must be signed by
 someone at ISIS and uploaded to sourceforge manually</li>
 <li>Put packages on GitHub</li>
 <li>RHEL 7 only: Build the suffix-package <code class="docutils literal"><span class="pre">mantidXY</span></code> by running another
-clean RHEL 7 build at {{ site.mantidreleasebuilds }} but use the
+clean RHEL 7 build from the <a class="reference external" href="release-pipeline">release pipeline</a> but use the
 suffix XY, where <code class="docutils literal"><span class="pre">X</span></code> is the major version and <code class="docutils literal"><span class="pre">Y</span></code> is the minor
 version (currently used at SNS)</li>
 <li>Have someone at the SNS follow the instructions
