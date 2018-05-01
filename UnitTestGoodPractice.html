@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 
+
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
     <title>Unit Test Good Practice</title>
+    
     <link rel="stylesheet" href="_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap-theme.min.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '3.12.20180427.1324',
+        VERSION:     '3.12.20180501.1345',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -45,7 +49,7 @@
 
 
   </head>
-  <body>
+  <body role="document">
 
 
 
@@ -215,7 +219,7 @@ TEST METHOD NAME ALONE, YOU SHOULD BE ABLE TO IDENTIFY THE PROBLEM.</li>
 <li>Tests should be <strong>fast</strong>, ideally really fast - certainly not more
 than a few seconds. Unit tests test functionality, performance tests
 can be used to check stress and timings.</li>
-<li>Untestable code is a code-smell, if you can’t get the code under test
+<li>Untestable code is a code-smell, if you can&#8217;t get the code under test
 it probably needs refactoring.</li>
 <li>Weight your testing to be destructive rather than demonstrative.
 Destructive tests have a higher efficacy for finding bugs.</li>
@@ -250,13 +254,13 @@ parallel.</p>
 </li>
 <li><p class="first">Be cautious in use of the <code class="docutils literal"><span class="pre">setUp()``and</span> <span class="pre">``tearDown()</span></code> methods. Be aware
 that if you use these in your suite they will be run before/after
-<strong>every single</strong> individual test. That’s fine if it’s the behaviour
+<strong>every single</strong> individual test. That&#8217;s fine if it&#8217;s the behaviour
 you really need, but we have found that to be rare - use the
 constructor or set things up within the test.</p>
 </li>
 <li><p class="first">To avoid clashes, use unique names for workspaces that will go into
 the [Analysis Data Service], perhaps by prepending the name of the
-test suite. Even better, don’t put workspaces into the ADS in the
+test suite. Even better, don&#8217;t put workspaces into the ADS in the
 first place: for example, an InputWorkspace property can be set via
 pointer instead of by name.</p>
 </li>
@@ -271,7 +275,7 @@ or save a file then you should not use a file in your unit tests.</p>
 <dl class="docutils">
 <dt>How do I get a workspace filled with data?</dt>
 <dd>Firstly you want to think about how much data you really need, unit
-tests need to be fast so you don’t want too much data.
+tests need to be fast so you don&#8217;t want too much data.
 Secondly you should use and extend helper classes (like
 <a class="reference external" href="https://github.com/mantidproject/mantid/blob/master/Framework/TestHelpers/inc/MantidTestHelpers/WorkspaceCreationHelper.h">1</a>)
 to provide the workspaces for you. Keep things as generic as you can

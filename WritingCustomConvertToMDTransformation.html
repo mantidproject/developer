@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 
+
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
     <title>Writing a Custom ConvertToMD Transformation</title>
+    
     <link rel="stylesheet" href="_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap-theme.min.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '3.12.20180427.1324',
+        VERSION:     '3.12.20180501.1345',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -44,7 +48,7 @@
 
 
   </head>
-  <body>
+  <body role="document">
 
 
 
@@ -133,9 +137,9 @@ or writing a new algorithm to use with Mantid.</p>
 <p>The plugin interface deals with the task of converting a generic n-dimensional point of a <code class="docutils literal"><span class="pre">MatrixWorkspace</span></code>
 into a generic m-dimensional point of an <code class="docutils literal"><span class="pre">MDWorkspace</span></code> using the necessary parameters.</p>
 <p>Examples of such transformations could be a conversion of signal and error at detector num
-at specific time of flight plus log values for temperature and pressure (<strong>The instrument’s
+at specific time of flight plus log values for temperature and pressure (<strong>The instrument&#8217;s
 space</strong>: 4 numbers + information about the detector) into 6-D point in the <strong>Physical space
-qx,qy,qz,dE,T,P</strong> (qx,qy,qz – the components of momentum transfer) or into 3-D point in
+qx,qy,qz,dE,T,P</strong> (qx,qy,qz &#8211; the components of momentum transfer) or into 3-D point in
 <strong>Physical space |Q|,dE,Fugacity</strong> (|Q| - modulus of momentum transfer).</p>
 </div>
 <div class="section" id="writing-a-simple-custom-plugin">
@@ -163,7 +167,7 @@ the transformation from a point of a <code class="docutils literal"><span class=
 </div>
 <div class="section" id="workflow">
 <h3><a class="toc-backref" href="#id4">Workflow</a><a class="headerlink" href="#workflow" title="Permalink to this headline">¶</a></h3>
-<p>This workflow is implemented in the <code class="docutils literal"><span class="pre">ConvertToMD</span></code> algorithm’s <code class="docutils literal"><span class="pre">exec()</span></code> function.</p>
+<p>This workflow is implemented in the <code class="docutils literal"><span class="pre">ConvertToMD</span></code> algorithm&#8217;s <code class="docutils literal"><span class="pre">exec()</span></code> function.</p>
 <ol class="arabic simple">
 <li>Select a conversion and obtain additional algorithm parameters from the algorithm interface.</li>
 <li>Build <code class="docutils literal"><span class="pre">MDWorkspace</span></code> description (call <code class="docutils literal"><span class="pre">MDTransfFactory</span></code> and ask for the conversion plugin parameters).</li>
@@ -178,11 +182,11 @@ specified in <code class="docutils literal"><span class="pre">MDTransformationIn
 <div class="section" id="defining-the-target-workspace">
 <h3><a class="toc-backref" href="#id5">Defining the target workspace</a><a class="headerlink" href="#defining-the-target-workspace" title="Permalink to this headline">¶</a></h3>
 <p>This describes steps 1-3 of the workflow.</p>
-<p>The input data at this stage are the name of the plugin and the outputs – the information necessary for the transformation to work
+<p>The input data at this stage are the name of the plugin and the outputs &#8211; the information necessary for the transformation to work
 including the number of output dimensions, units for the selected physical transformation formula, units of the target workspace, etc.</p>
 <p>The methods used while defining the workspace should not access or change anything accessed through this pointer of
 the custom plugin. The result of the first stage is a <code class="docutils literal"><span class="pre">MDWSDescription</span></code> class, which can be considered
-as a large XML string that provides a common interface to different data obtained from the algorithm’s parameters.
+as a large XML string that provides a common interface to different data obtained from the algorithm&#8217;s parameters.
 Any data users want to transfer to the custom plugin can be added to this class, as long as this does not lead to
 excessive memory usage or overhead.</p>
 <p>The <code class="docutils literal"><span class="pre">MDWSDescription</span></code> class is copy constructable and assignable and if these operators fail due to the changes
@@ -191,7 +195,7 @@ to the class, custom copy constructor and assignment operators have to be define
 <div class="section" id="doing-the-transformation">
 <h3><a class="toc-backref" href="#id6">Doing the transformation</a><a class="headerlink" href="#doing-the-transformation" title="Permalink to this headline">¶</a></h3>
 <p>This describes steps 4-5 of the workflow.</p>
-<p>The input data at this stage are points of the “Experimental Space”, e.g. coordinates of points in the input workspace and
+<p>The input data at this stage are points of the &#8220;Experimental Space&#8221;, e.g. coordinates of points in the input workspace and
 additional information about these points, e.g. detectors coordinates and log files for values of interest. The output values
 are the vectors of the coordinates of the selected points in the space of interest and (possibly) modified/corrected values of
 the signal and error at this point.</p>
@@ -246,7 +250,7 @@ and check if the information is already provided there.</p>
 <p><a class="reference external" href="http://docs.mantidproject.org/nightly/algorithms/PreprocessDetectorsToMD-v1.html">PreprocessDetectorsToMD</a> can also
 be modified to add some additional detector information. This information can then be added to the resulting table workspace
 and used in the custom plugin.
-All currently existing plugins use the information about the detector’s positions calculated by
+All currently existing plugins use the information about the detector&#8217;s positions calculated by
 <a class="reference external" href="http://docs.mantidproject.org/nightly/algorithms/PreprocessDetectorsToMD-v1.html">PreprocessDetectorsToMD</a>.</p>
 </div>
 </div>

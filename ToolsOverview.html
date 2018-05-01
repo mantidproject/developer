@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 
+
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
     <title>Tools Overview</title>
+    
     <link rel="stylesheet" href="_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap-theme.min.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '3.12.20180427.1324',
+        VERSION:     '3.12.20180501.1345',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -45,7 +49,7 @@
 
 
   </head>
-  <body>
+  <body role="document">
 
 
 
@@ -109,7 +113,7 @@
 <p><strong>To make it faster to create a new class</strong>. This is a small python
 script located in /buildconfig/. It generates the .cpp, .h and test
 files for a class along with some code stubs. It can also flesh out more
-methods for new Algorithms, using the “–alg” option.</p>
+methods for new Algorithms, using the &#8220;&#8211;alg&#8221; option.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>usage: class_maker.py [-h] [--force] [--test] [--alg] SUBPROJECT CLASSNAME
 Utility to create Mantid class files: header, source and test.
 positional arguments:
@@ -154,8 +158,8 @@ class from one subproject. CMakeList.txt is adjusted. For details, run:</p>
 <p><a class="reference external" href="https://vld.codeplex.com/releases">Visual Leak Detector</a></p>
 <ol class="arabic simple">
 <li>Setup the additional paths as defined in the readme file</li>
-<li>Adjust the configuration file, “C:Program FilesVisual Leak
-Detectorvld.ini” to output to both File and debugger by changing the
+<li>Adjust the configuration file, &#8220;C:Program FilesVisual Leak
+Detectorvld.ini&#8221; to output to both File and debugger by changing the
 <code class="docutils literal"><span class="pre">ReportTo</span></code> to</li>
 </ol>
 <p><code class="docutils literal"><span class="pre">ReportTo</span> <span class="pre">=</span> <span class="pre">both</span></code></p>
@@ -175,7 +179,7 @@ the test directory.</li>
 <ul class="simple">
 <li>Identifies race conditions &amp; dead-locks</li>
 <li>Slow but accurate</li>
-<li>A pain to get working with OpenMP. GCC must be recompiled to use a different call to create OMP threads or helgrind/drd cannot “see” the thread calls. Use this <a class="reference external" href="https://github.com/UCSCSlang/Adversarial-Helgrind/raw/master/drd/scripts/download-and-build-gcc">script</a> to recompile the same version off gcc that is onyour system. The script will need editing to change the appropriate variables.</li>
+<li>A pain to get working with OpenMP. GCC must be recompiled to use a different call to create OMP threads or helgrind/drd cannot &#8220;see&#8221; the thread calls. Use this <a class="reference external" href="https://github.com/UCSCSlang/Adversarial-Helgrind/raw/master/drd/scripts/download-and-build-gcc">script</a> to recompile the same version off gcc that is onyour system. The script will need editing to change the appropriate variables.</li>
 </ul>
 </div>
 </div>
@@ -218,7 +222,7 @@ bug</a>.</p>
 should be fine (e.g. yum or apt-get).</li>
 <li>Get a copy of
 <a class="reference external" href="https://code.google.com/p/include-what-you-use/source/browse/trunk/iwyu_tool.py">iwyu_tool.py</a>
-which is in the project’s repository, but may not be installed if you
+which is in the project&#8217;s repository, but may not be installed if you
 got it from your operating system locations (e.g. yum).</li>
 <li>Run <code class="docutils literal"><span class="pre">cmake</span> <span class="pre">-DCMAKE_EXPORT_COMPILE_COMMANDS=TRUE</span></code>. This will
 generate an extra file, <code class="docutils literal"><span class="pre">compile_commands.json</span></code>, in your build area
@@ -230,12 +234,12 @@ you want it for a single file, then supply that as an additional
 argument with full path. Only one file can be supplied at a time.</li>
 <li>Run <code class="docutils literal"><span class="pre">fix_includes</span> <span class="pre">&lt;</span> <span class="pre">iwyu.log</span></code> and compile the results. Depending on
 how you installed iwyu, the program may be called
-<code class="docutils literal"><span class="pre">fix_includes.py</span></code>. If it doesn’t compile, the most likely suspect
+<code class="docutils literal"><span class="pre">fix_includes.py</span></code>. If it doesn&#8217;t compile, the most likely suspect
 is that iwyu included a private header. See <a class="reference external" href="https://code.google.com/p/include-what-you-use/wiki/InstructionsForUsers#How_to_Run">iwyu instructions for
 users</a>
 for ways to handle this. Generally, they suggest deleting the
 offending lines.</li>
-<li>Check that your build path didn’t make it into source files. Since
+<li>Check that your build path didn&#8217;t make it into source files. Since
 <code class="docutils literal"><span class="pre">compile_commands.json</span></code> has full paths, iwyu will put full paths in
 the include statements. This will not produce an error on your
 system, but it will on the build servers. The easiest way to check is

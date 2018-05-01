@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 
+
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
     <title>Data Files for Testing</title>
+    
     <link rel="stylesheet" href="_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap-theme.min.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '3.12.20180427.1324',
+        VERSION:     '3.12.20180501.1345',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -45,7 +49,7 @@
 
 
   </head>
-  <body>
+  <body role="document">
 
 
 
@@ -108,7 +112,7 @@
 <ul class="simple">
 <li><a class="reference internal" href="#summary" id="id2">Summary</a></li>
 <li><a class="reference internal" href="#motivation" id="id3">Motivation</a></li>
-<li><a class="reference internal" href="#cmake-s-external-data" id="id4">CMake’s External Data</a></li>
+<li><a class="reference internal" href="#cmake-s-external-data" id="id4">CMake&#8217;s External Data</a></li>
 <li><a class="reference internal" href="#local-object-store" id="id5">Local Object Store</a></li>
 <li><a class="reference internal" href="#binary-root" id="id6">Binary Root</a></li>
 <li><a class="reference internal" href="#using-existing-data" id="id7">Using Existing Data</a></li>
@@ -148,20 +152,20 @@ files</li>
 </ul>
 <p>Possible solutions:</p>
 <ul class="simple">
-<li>don’t have any reference to data in git and force developers to
+<li>don&#8217;t have any reference to data in git and force developers to
 manage the data stored on a file server</li>
 <li>extensions to git, e.g.
 <a class="reference external" href="https://github.com/jedbrown/git-fat">git-fat</a>,
 <a class="reference external" href="https://git-annex.branchable.com/">git-annex</a> to deal with large
 files</li>
-<li>CMake’s
+<li>CMake&#8217;s
 <a class="reference external" href="http://www.kitware.com/source/home/post/107">ExternalData</a></li>
 </ul>
 <p>We have chosen to use CMake as it is already in use as a build system
-and it doesn’t involve introducing extra work with git.</p>
+and it doesn&#8217;t involve introducing extra work with git.</p>
 </div>
 <div class="section" id="cmake-s-external-data">
-<h2><a class="toc-backref" href="#id4">CMake’s External Data</a><a class="headerlink" href="#cmake-s-external-data" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id4">CMake&#8217;s External Data</a><a class="headerlink" href="#cmake-s-external-data" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-center" id="id1">
 <img alt="Image originated at http://www.kitware.com/source/home/post/107" src="_images/ExternalDataSchematic.png" />
 <p class="caption"><span class="caption-text">Image originated at <a class="reference external" href="http://www.kitware.com/source/home/post/107">http://www.kitware.com/source/home/post/107</a></span></p>
@@ -209,7 +213,7 @@ for test <a class="reference external" href="IDF">IDF</a> files</li>
 </ul>
 </div>
 <div class="section" id="adding-a-new-file-s">
-<h2><a class="toc-backref" href="#id8">Adding A New File(s)</a><a class="headerlink" href="#adding-a-new-file-s" title="Permalink to this headline">¶</a></h2>
+<span id="datafilesfortesting-addinganewfile"></span><h2><a class="toc-backref" href="#id8">Adding A New File(s)</a><a class="headerlink" href="#adding-a-new-file-s" title="Permalink to this headline">¶</a></h2>
 <p>A helper git command is defined called <code class="docutils literal"><span class="pre">add-test-data</span></code>. It would be
 called like this:</p>
 <div class="highlight-sh"><div class="highlight"><pre><span></span>git add-test-data Testing/Data/UnitTest/INST12345.nxs
@@ -258,8 +262,8 @@ instrument prefix in the file name.</li>
 </pre></div>
 </div>
 <p>in the git bash shell. The single quotes are important so that bash
-doesn’t expand the exclamation mark as a variable.</p>
-<p>It is advised that CMake is told where to put the “real” data as the
+doesn&#8217;t expand the exclamation mark as a variable.</p>
+<p>It is advised that CMake is told where to put the &#8220;real&#8221; data as the
 default is <code class="docutils literal"><span class="pre">$HOME/MantidExternalData</span></code> on Linux/Mac or
 <code class="docutils literal"><span class="pre">C:/MantidExternalData</span></code> on Windows. Over time the store will grow so
 it is recommended that it be placed on a disk with a large amount of
@@ -285,7 +289,7 @@ for getting dropbox running on linux.</p>
 cmake -DMANTID_DATA_STORE<span class="o">=</span>/home/mgigg/Dropbox<span class="se">\ \(</span>ORNL<span class="se">\)</span>/MantidExternalData ../Code/Mantid
 </pre></div>
 </div>
-<p>If you don’t want to define the MANTID_DATA_STORE everytime you run
+<p>If you don&#8217;t want to define the MANTID_DATA_STORE everytime you run
 cmake, you can link the default data store location to the Dropbox one.</p>
 <div class="highlight-sh"><div class="highlight"><pre><span></span>ln -s ~/Dropbox<span class="se">\ \(</span>ORNL<span class="se">\)</span>/MantidExternalData ~
 </pre></div>
@@ -297,7 +301,7 @@ needs to know about the proxy server. You must set the <code class="docutils lit
 environment variable to <code class="docutils literal"><span class="pre">http://HOSTNAME:PORT</span></code>.</p>
 <p>On Windows you go to <strong>Control Panel-&gt;System and
 Security-&gt;System-&gt;Advanced System settings-&gt;Environment Variables</strong> and
-click <strong>New…</strong> to add a variable.</p>
+click <strong>New...</strong> to add a variable.</p>
 <p>On Linux/Mac you will need to set the variable in the shell profile or
 on Linux you can set it system wide in <code class="docutils literal"><span class="pre">/etc/environment</span></code>.</p>
 </div>
@@ -311,7 +315,7 @@ the Mantid file repository</li>
 <li>Check that you have re-run CMake in the build directory.</li>
 <li>Check that you have removed any user defined data search directories
 in ~/.mantid</li>
-<li>Check that you have rebuilt the test executable you’re trying to run</li>
+<li>Check that you have rebuilt the test executable you&#8217;re trying to run</li>
 <li>Check that you have rebuilt the SystemTestData target</li>
 </ul>
 </div>

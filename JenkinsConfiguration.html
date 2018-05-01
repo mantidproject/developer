@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 
+
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
     <title>Jenkins Configuration</title>
+    
     <link rel="stylesheet" href="_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap-theme.min.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '3.12.20180427.1324',
+        VERSION:     '3.12.20180501.1345',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -45,7 +49,7 @@
 
 
   </head>
-  <body>
+  <body role="document">
 
 
 
@@ -152,7 +156,7 @@ aims to describe the general setup of the system.</p>
 </div>
 <div class="section" id="introduction">
 <h2><a class="toc-backref" href="#id2">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
-<p>Jenkins works on a ‘master-&gt;slave’ principle. The master node is
+<p>Jenkins works on a &#8216;master-&gt;slave&#8217; principle. The master node is
 responsible for orchestrating jobs and managing the slave nodes, where the
 work is actually performed. The master node is located at
 <a class="reference external" href="http://builds.mantidproject.org">http://builds.mantidproject.org</a> and each facility is responsible for providing
@@ -187,15 +191,15 @@ may be used in place of a full Visual Studio install from version 2017 onwards (
 <p>There are following additional steps required to be able to connect a
 Windows slave using JNLP as a Windows service :</p>
 <ol class="arabic simple">
-<li>Setup the slave on the master node using “New Node” under
-<a class="reference external" href="http://builds.mantidproject.org/computer/">http://builds.mantidproject.org/computer/</a>. If “New Node” is not visible
+<li>Setup the slave on the master node using &#8220;New Node&#8221; under
+<a class="reference external" href="http://builds.mantidproject.org/computer/">http://builds.mantidproject.org/computer/</a>. If &#8220;New Node&#8221; is not visible
 then you do not have the required permissions - ask an admin for help. It is
 recommended that you copy from an existing node of a similar type.</li>
 <li>Once configured on the master, remote desktop to the slave, open a browser and connect to the webpage of the
 slave, .e.g. <a class="reference external" href="http://builds.mantidproject.org/computer/ornl-pc73896/">http://builds.mantidproject.org/computer/ornl-pc73896/</a></li>
 <li>Click on the <strong>connect</strong> button to launch the JNLP client.</li>
-<li>Once the client is launched, you can select “Install as Windows
-Service” from the clients menu. If you have a proxy then see the
+<li>Once the client is launched, you can select &#8220;Install as Windows
+Service&#8221; from the clients menu. If you have a proxy then see the
 section below for further configuration steps.</li>
 <li>Once installed change the recovery behaviour for
 the service. Do this by right-clicking on the Jenkins
@@ -204,7 +208,7 @@ failures to restart the service.</li>
 <li>Change the account that the service uses to log on by right-clicking
 on the Jenkins service-&gt;Properties-&gt;Log On and enter the details in
 the builder account</li>
-<li>Change the “Startup type:” of the service to be “Automatic (Delayed Start)”</li>
+<li>Change the &#8220;Startup type:&#8221; of the service to be &#8220;Automatic (Delayed Start)&#8221;</li>
 <li>Ensure the msbuild directory is on the <code class="docutils literal"><span class="pre">PATH</span></code></li>
 <li>Finally reboot the slave (this is the easiest way for the Jenkins to
 start trying to reconnect to it)</li>
@@ -216,8 +220,8 @@ order to be reflected in the build environment.</p>
 <h4><a class="toc-backref" href="#id8">Connecting Through a Proxy Server</a><a class="headerlink" href="#connecting-through-a-proxy-server" title="Permalink to this headline">¶</a></h4>
 <p>It is a little more tricky to windows slaves connected through a
 proxy.To do this you must modify the java arguments that are used to
-start the <code class="docutils literal"><span class="pre">jenkins-slave</span></code> process. Once the “Install as a Windows
-Service” has completed you should</p>
+start the <code class="docutils literal"><span class="pre">jenkins-slave</span></code> process. Once the &#8220;Install as a Windows
+Service&#8221; has completed you should</p>
 <ol class="arabic simple">
 <li>Find a directory on the machine such as <code class="docutils literal"><span class="pre">C:\Jenkins`</span></code> or whatever
 was configured in the slave config.</li>
@@ -265,7 +269,7 @@ Defaults!/usr/bin/yum       !requiretty
 </div>
 <div class="section" id="mac-os">
 <h3><a class="toc-backref" href="#id12">Mac OS</a><a class="headerlink" href="#mac-os" title="Permalink to this headline">¶</a></h3>
-<p>Enable <a class="reference external" href="https://apple.stackexchange.com/a/73919">SSH (“Remote Login”) and VNC (“Remote Management”)</a>.  If you have
+<p>Enable <a class="reference external" href="https://apple.stackexchange.com/a/73919">SSH (&#8220;Remote Login&#8221;) and VNC (&#8220;Remote Management&#8221;)</a>.  If you have
 connection issues from a non-OS X client then try adjusting your color depth settings (True Color 32bpp works on Remmina).</p>
 <p>Install <code class="docutils literal"><span class="pre">cppcheck</span></code> from brew.</p>
 <p>The <code class="docutils literal"><span class="pre">builder</span></code> account must be setup to be able to run <code class="docutils literal"><span class="pre">gdebi</span></code> non-interactively. Use <code class="docutils literal"><span class="pre">visudo</span></code> to add the following
@@ -299,7 +303,7 @@ should be available.</p>
 <h3><a class="toc-backref" href="#id14">Post-Connection Setup - All Systems</a><a class="headerlink" href="#post-connection-setup-all-systems" title="Permalink to this headline">¶</a></h3>
 <p>Ensure the new machine is added to the relevant <a class="reference external" href="http://builds.mantidproject.org/view/ParaView/">ParaView build job</a> and build
 ParaView. Set the <code class="docutils literal"><span class="pre">PARAVIEW_DIR</span></code> &amp; <code class="docutils literal"><span class="pre">PARAVIEW_NEXT_DIR</span></code> variables
-(it’s easiest to just look at the configuration for one of the other
+(it&#8217;s easiest to just look at the configuration for one of the other
 nodes of a similar type.</p>
 </div>
 </div>
@@ -341,7 +345,7 @@ You must have admin privileges to run them.</p>
 <div class="section" id="update-paraview-variables-on-nodes">
 <h3><a class="toc-backref" href="#id17">Update ParaView variables on nodes</a><a class="headerlink" href="#update-paraview-variables-on-nodes" title="Permalink to this headline">¶</a></h3>
 <p><strong>After running this script the variables look like they are updated but
-are in fact cached on the slaves so the new values don’t take effect
+are in fact cached on the slaves so the new values don&#8217;t take effect
 without disconnecting and forcing each slave to reconnect</strong></p>
 <div class="highlight-groovy"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">jenkins.model.*</span>
 <span class="kn">import</span> <span class="nn">hudson.model.*</span>
