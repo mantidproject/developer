@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Event Workspace Development</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '3.12.20180622.2012',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="" href="index.html" />
+    <link rel="next" title="Handling XML" href="HandlingXML.html" />
+    <link rel="prev" title="Cell Based View Properties" href="BatchWidget/Internals/CellBasedViewProperties.html" />
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-59110517-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+  </head>
+  <body>
+
+
+
+
+
+  <div id="navbar" class="navbar navbar-default ">
+    <div class="container">
+      <div class="navbar-header">
+        
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://www.mantidproject.org"><img src="_static/Mantid_Logo_Transparent.png">
+           </a>
+        <span class="navbar-text navbar-version pull-left"><b>3.12</b></span>
+      </div>
+
+      
+        <div class="collapse navbar-collapse nav-collapse">
+      
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="index.html">Home</a></li>
+                <li><a href="http://download.mantidproject.org">Download</a></li>
+                <li><a href="http://www.mantidproject.org">Wiki</a></li>
+                <li><a href="http://docs.mantidproject.org">User Documentation</a></li>
+                <li><a href="http://www.mantidproject.org/Contact">Contact Us</a></li>
+            
+            
+              
+              
+            
+            
+            
+            
+          </ul>
+              
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+            </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="event-workspace-development">
+<span id="event-workspace-dev"></span><h1>Event Workspace Development<a class="headerlink" href="#event-workspace-development" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#individual-neutron-event-data-tofevent" id="id1">Individual Neutron Event Data (TofEvent)</a></li>
+<li><a class="reference internal" href="#lists-of-events-eventlist" id="id2">Lists of Events (EventList)</a></li>
+<li><a class="reference internal" href="#most-recently-used-list-mrulist" id="id3">Most Recently Used List (MRUList)</a></li>
+<li><a class="reference internal" href="#a-note-about-workspace-index-spectrum-number-detector-id" id="id4">A note about workspace index / spectrum number / detector ID</a></li>
+<li><a class="reference internal" href="#workspace2d-compatibility" id="id5">Workspace2D compatibility</a></li>
+<li><a class="reference internal" href="#a-note-about-thread-safety" id="id6">A Note about Thread Safety</a></li>
+</ul>
+</div>
+<p>The following information will be useful to you if you want to write an
+<a class="reference external" href="http://docs.mantidproject.org/concepts/Algorithm.html#algorithm" title="(in MantidProject v3.12)"><em>Algorithm</em></a> that is <a class="reference external" href="http://docs.mantidproject.org/concepts/EventWorkspace.html#eventworkspace" title="(in MantidProject v3.12)"><em class="xref std std-ref">Event Workspace</em></a> aware.</p>
+<div class="section" id="individual-neutron-event-data-tofevent">
+<h2><a class="toc-backref" href="#id1">Individual Neutron Event Data (TofEvent)</a><a class="headerlink" href="#individual-neutron-event-data-tofevent" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="https://github.com/mantidproject/mantid/blob/master/Framework/Types/inc/MantidTypes/Event/TofEvent.h">TofEvent</a> class holds information for each neutron detection event
+data:</p>
+<ul class="simple">
+<li>PulseTime: An absolute time of the pulse that generated this neutron.
+This is saved as an INT64 of the number of nanoseconds since Jan 1,
+1990; this can be converted to other date and time formats as needed.
+Internall the PulseTime is represented as a Kernel::DateAndTime type.</li>
+<li>tof: Time-of-flight of the neutron, in microseconds, as a double.
+Note that this field can be converted to other units, e.g. d-spacing.</li>
+</ul>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">There are in fact several variants of the Event type within Mantid. The common by far is the RAW TOF described above, but there are also <tt class="docutils literal"><span class="pre">Weighted</span></tt> events that offer better compression.</p>
+</div>
+</div>
+<div class="section" id="lists-of-events-eventlist">
+<h2><a class="toc-backref" href="#id2">Lists of Events (EventList)</a><a class="headerlink" href="#lists-of-events-eventlist" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>The EventList class consists of a list of TofEvent&#8217;s. The order of
+this list is not significant, since various algorithms will resort by
+time of flight or pulse time, as needed.</li>
+<li>Also contained in the EventList is a std::set of detector ID&#8217;s. This tracks which detector(s) were hit by the events in the list. <tt class="docutils literal"><span class="pre">EventList</span></tt> is a subtype of <tt class="docutils literal"><span class="pre">ISpectrum</span></tt>, which provides the interface to many of the spectrum level access methods.</li>
+<li>The histogram bins (X axis) are also stored in EventList. The Y and E
+histogram data are not, however, as they are calculated on demand by the MRU
+(below).</li>
+</ul>
+<p>The += operator can be used to append two EventList&#8217;s together. The
+lists of TofEvent&#8217;s get appended, as is the list of
+detector ID&#8217;s. Don&#8217;t mess with the udetmap manually if
+you start appending event lists - just call
+EventWorkpspace-&gt;makeSpectraMap to generate the spectra map (map between
+spectrum # and detector IDs) by using the info in each EventList.</p>
+</div>
+<div class="section" id="most-recently-used-list-mrulist">
+<h2><a class="toc-backref" href="#id3">Most Recently Used List (MRUList)</a><a class="headerlink" href="#most-recently-used-list-mrulist" title="Permalink to this headline">¶</a></h2>
+<p>An Event Workspace contains a list of the 100 most-recently used
+histograms, a MRUList. This MRU caches the last histogram
+data generated for fastest display.</p>
+</div>
+<div class="section" id="a-note-about-workspace-index-spectrum-number-detector-id">
+<h2><a class="toc-backref" href="#id4">A note about workspace index / spectrum number / detector ID</a><a class="headerlink" href="#a-note-about-workspace-index-spectrum-number-detector-id" title="Permalink to this headline">¶</a></h2>
+<p>For event workspaces there is no benefit, and only a drawback to grouping detectors in hardware, therefore most of the loading algorithms for event data <strong>match</strong> the workspace index and spectrum number
+in the Event Workspace. Therefore, in an Event Workspace, the two numbers
+will often be the same, and your workspace&#8217;s Axis[1] is a simple 1:1 map. As
+mentioned above, the detectorID is saved in EventList, but the
+makeSpectraMap() method generates the usual SpectraDetectorMap object.</p>
+</div>
+<div class="section" id="workspace2d-compatibility">
+<h2><a class="toc-backref" href="#id5">Workspace2D compatibility</a><a class="headerlink" href="#workspace2d-compatibility" title="Permalink to this headline">¶</a></h2>
+<p>Event Workspace is designed to be able to be read (but not written to)
+like a <a class="reference external" href="http://docs.mantidproject.org/concepts/MatrixWorkspace.html#matrixworkspace" title="(in MantidProject v3.12)"><em class="xref std std-ref">MatrixWorkspace</em></a>. By default, if an algorithm
+performs an operation and outputs a new workspace, the
+WorkspaceFactory will create a <a class="reference external" href="http://docs.mantidproject.org/concepts/Workspace2D.html#workspace2d" title="(in MantidProject v3.12)"><em>Workspace2D</em></a> <em>copy</em>
+of your Event Workspace&#8217;s histogram representation. If you attempt to
+change an Event Workspace&#8217;s Y or E data in place, you will get an <tt class="docutils literal"><span class="pre">NotImplementedError</span></tt> raised, since that is not possible.</p>
+</div>
+<div class="section" id="a-note-about-thread-safety">
+<h2><a class="toc-backref" href="#id6">A Note about Thread Safety</a><a class="headerlink" href="#a-note-about-thread-safety" title="Permalink to this headline">¶</a></h2>
+<p>Thread safety can be surprising when using an Event Workspace:</p>
+<p>If two threads <em>read</em> a Y histogram at the same time, this <em>can</em> cause
+problems. This is because the histogramming code will try to sort the
+event list. If two threads try to sort the same event list, you can get
+segfaults.</p>
+<p>Remember that the <tt class="docutils literal"><span class="pre">PARALLEL\_FOR1()</span></tt>, <tt class="docutils literal"><span class="pre">PARALLEL\_FOR2()</span></tt> etc. macros will
+perform the check Workspace-&gt;threadSafe() on the input Event Workspace.
+This function will return <em>false</em> (thereby disabling parallelization) if
+any of the event lists are unsorted.</p>
+<p>You can go around this by forcing the parallel loop with a plain
+<tt class="docutils literal"><span class="pre">PARALLEL\_FOR()</span></tt> macro. <strong>Make sure you do not read from the same
+spectrum in parallel!</strong></p>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+      <ul class="nav navbar-nav" style=" float: right;">
+      
+      
+          
+            
+  <li>
+    <a href="BatchWidget/Internals/CellBasedViewProperties.html" title="Previous Chapter: Cell Based View Properties"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Cell Based View ...</span>
+    </a>
+  </li>
+  <li>
+    <a href="HandlingXML.html" title="Next Chapter: Handling XML"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Handling XML &raquo;</span>
+    </a>
+  </li>
+          
+       
+          <li><a href="#">Back to top</a></li>
+       </ul>
+    <p>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

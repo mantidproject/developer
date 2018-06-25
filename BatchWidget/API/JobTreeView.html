@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Job Tree View</title>
+    
+    <link rel="stylesheet" href="../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootstrap-3.3.6/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootstrap-3.3.6/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '3.12.20180622.2012',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="" href="../../index.html" />
+    <link rel="up" title="Batch Widget Manual" href="../index.html" />
+    <link rel="next" title="Find Subtree Roots" href="../Internals/FindSubtreeRoots.html" />
+    <link rel="prev" title="Batch Widget Manual" href="../index.html" />
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-59110517-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+  </head>
+  <body>
+
+
+
+
+
+  <div id="navbar" class="navbar navbar-default ">
+    <div class="container">
+      <div class="navbar-header">
+        
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://www.mantidproject.org"><img src="../../_static/Mantid_Logo_Transparent.png">
+           </a>
+        <span class="navbar-text navbar-version pull-left"><b>3.12</b></span>
+      </div>
+
+      
+        <div class="collapse navbar-collapse nav-collapse">
+      
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="http://download.mantidproject.org">Download</a></li>
+                <li><a href="http://www.mantidproject.org">Wiki</a></li>
+                <li><a href="http://docs.mantidproject.org">User Documentation</a></li>
+                <li><a href="http://www.mantidproject.org/Contact">Contact Us</a></li>
+            
+            
+              
+              
+            
+            
+            
+            
+          </ul>
+              
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+            </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="job-tree-view">
+<span id="jobtreeview"></span><h1>Job Tree View<a class="headerlink" href="#job-tree-view" title="Permalink to this headline">¶</a></h1>
+<p>The <tt class="code docutils literal"><span class="pre">JobTreeView</span></tt> component provides an MVP style view interface for a hierarchical table
+with a spreadsheet-like appearance for configuring and indicating the status of multiple (batch)
+reduction jobs. It is currently used to implement the tree component of the Batch Widget.</p>
+<p>It is written in C++ and exposed to python through SIP leading to similar APIs as shown by the
+examples below.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">mantidqtpython</span> <span class="kn">import</span> <span class="n">MantidQt</span>
+
+
+<span class="c"># Inside the parent view</span>
+<span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">table</span> <span class="o">=</span> <span class="n">MantidQt</span><span class="o">.</span><span class="n">MantidWidgets</span><span class="o">.</span><span class="n">Batch</span><span class="o">.</span><span class="n">JobTreeView</span><span class="p">(</span>
+        <span class="p">[</span><span class="s">&quot;Column 1&quot;</span><span class="p">,</span> <span class="s">&quot;Column 2&quot;</span><span class="p">],</span> <span class="c"># The table column headings</span>
+        <span class="n">cell</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">),</span> <span class="c"># The default style and content for new &#39;empty&#39; cells.</span>
+        <span class="bp">self</span> <span class="c"># The parent QObject.</span>
+    <span class="p">)</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">table_signals</span> <span class="o">=</span> \
+        <span class="n">MantidQt</span><span class="o">.</span><span class="n">MantidWidgets</span><span class="o">.</span><span class="n">Batch</span><span class="o">.</span><span class="n">JobTreeViewSignalAdapter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+    <span class="c"># The signal adapter subscribes to events from the table</span>
+    <span class="c"># and emits signals whenever it is notified.</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="o">.</span><span class="n">appendChildRowOf</span><span class="p">(</span><span class="n">row</span><span class="p">([]),</span> <span class="p">[</span><span class="n">cell</span><span class="p">(</span><span class="s">&quot;Value for Column A&quot;</span><span class="p">),</span> <span class="n">cell</span><span class="p">(</span><span class="s">&quot;Value for Column B&quot;</span><span class="p">)])</span>
+
+
+<span class="k">def</span> <span class="nf">cell</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">MantidQt</span><span class="o">.</span><span class="n">MantidWidgets</span><span class="o">.</span><span class="n">Batch</span><span class="o">.</span><span class="n">Cell</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">row</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">MantidQt</span><span class="o">.</span><span class="n">MantidWidgets</span><span class="o">.</span><span class="n">Batch</span><span class="o">.</span><span class="n">RowLocation</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-c++"><div class="highlight"><pre><span class="cp">#include &quot;MantidQtWidgets/Common/Batch/JobTreeView.h&quot;</span>
+
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">MantidWidgets</span><span class="o">::</span><span class="n">Common</span><span class="o">::</span><span class="n">Batch</span><span class="p">;</span>
+
+<span class="c1">// Inside the parent view constructor</span>
+<span class="n">m_treeView</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JobTreeView</span><span class="p">(</span>
+    <span class="p">{</span><span class="s">&quot;Heading 1&quot;</span><span class="p">,</span> <span class="s">&quot;Heading 2&quot;</span><span class="p">},</span> <span class="c1">// The table column headings.</span>
+    <span class="n">Cell</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">),</span> <span class="c1">// The default style and content for the new &#39;empty&#39; cells.</span>
+    <span class="k">this</span>      <span class="c1">// The parent QObject</span>
+    <span class="p">);</span>
+<span class="n">m_treeViewSignals</span> <span class="o">=</span> <span class="c1">// JobTreeViewSignalAdapter is also available from C++</span>
+    <span class="c1">// Constructing a signal adapter with the view implicitly calls subscribe.</span>
+    <span class="k">new</span> <span class="n">JobTreeViewSignalAdapter</span><span class="p">(</span><span class="o">*</span><span class="n">m_treeView</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+<span class="n">m_treeView</span><span class="o">-&gt;</span><span class="n">appendChildRowOf</span><span class="p">(</span><span class="n">RowLocation</span><span class="p">(),</span> <span class="p">{</span><span class="n">Cell</span><span class="p">(</span><span class="s">&quot;Value for Column A&quot;</span><span class="p">),</span>
+                                             <span class="n">Cell</span><span class="p">(</span><span class="s">&quot;Value for Column B&quot;</span><span class="p">)})</span>
+</pre></div>
+</div>
+<div class="section" id="api-concepts">
+<h2>API Concepts<a class="headerlink" href="#api-concepts" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="row-location">
+<h3>Row Location<a class="headerlink" href="#row-location" title="Permalink to this headline">¶</a></h3>
+<p>A row location is the notion of an individual row&#8217;s position within the table. Since the
+table is hierarchical, unlike a traditional spreadsheet, the table is more like a
+tree of rows where all non-leaf nodes can have any number of children.</p>
+<p>In practice some interfaces such as Reflectometry are likely to want to constrain the
+number of children or depth of the tree, the batch widget has mechanisms for performing this.</p>
+<p>Currently a row location is represented as a path from the root node to the row node in question,
+this is actualised in the <tt class="code docutils literal"><span class="pre">RowLocation</span></tt> class which contains an ordered list of integers where
+each element represents the index of the next node in the path relative to it&#8217;s predecessor in the
+path. An example table and corresponding tree structure are illustrated in the diagram below
+(complete with their paths).</p>
+<a class="reference internal image-reference" href="../../_images/row_location_path.svg"><div align="center" class="align-center"><img src="../../_images/row_location_path.svg" width="800px" /></div>
+</a>
+<p>Equality over <tt class="code docutils literal"><span class="pre">RowLocation</span></tt> objects is based on the equality of their paths. The other relational
+operators have a definition based on a lexicographical comparison such that sorting a range of
+<tt class="code docutils literal"><span class="pre">RowLocation</span></tt>s puts them in the same order as they would appear in the table. This is
+demonstrated by the code below.</p>
+<div class="highlight-c++"><div class="highlight"><pre><span class="k">auto</span> <span class="n">items</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">RowLocation</span><span class="o">&gt;</span><span class="p">({</span>
+  <span class="n">RowLocation</span><span class="p">({</span><span class="mi">2</span><span class="p">}),</span>
+  <span class="n">RowLocation</span><span class="p">({</span><span class="mi">0</span><span class="p">}),</span>
+  <span class="n">RowLocation</span><span class="p">({</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">}),</span>
+  <span class="n">RowLocation</span><span class="p">({</span><span class="mi">1</span><span class="p">})</span>
+<span class="p">});</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">sort</span><span class="p">(</span><span class="n">items</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">items</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+
+<span class="k">auto</span> <span class="n">expectedItems</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">RowLocation</span><span class="o">&gt;</span><span class="p">({</span>
+  <span class="n">RowLocation</span><span class="p">({</span><span class="mi">0</span><span class="p">}),</span>
+  <span class="n">RowLocation</span><span class="p">({</span><span class="mi">1</span><span class="p">}),</span>
+  <span class="n">RowLocation</span><span class="p">({</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">}),</span>
+  <span class="n">RowLocation</span><span class="p">({</span><span class="mi">2</span><span class="p">})</span>
+<span class="p">});</span>
+
+<span class="n">assert</span><span class="p">(</span><span class="n">expectedItems</span> <span class="o">==</span> <span class="n">items</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="section" id="dealing-with-cells">
+<h4>Dealing With Cells<a class="headerlink" href="#dealing-with-cells" title="Permalink to this headline">¶</a></h4>
+<p>Each row in the table can have 0-N cells. When interacting with the <tt class="code docutils literal"><span class="pre">JobTreeView</span></tt> we
+sometimes need to be able to address and change the properties of an individual cell. To do this
+we use both a <tt class="code docutils literal"><span class="pre">RowLocation</span></tt> and a column index.</p>
+</div>
+</div>
+<div class="section" id="cells">
+<h3>Cells<a class="headerlink" href="#cells" title="Permalink to this headline">¶</a></h3>
+<p>In order to retrieve the view properties for one or more specific cells, the methods <tt class="code docutils literal"><span class="pre">cellAt</span></tt>
+and <tt class="code docutils literal"><span class="pre">cellsAt</span></tt> can be used to retrieve <tt class="code docutils literal"><span class="pre">Cell</span></tt> objects for the cell at a row and column
+index or all the cells for a particular row respectively.</p>
+<p>The <tt class="code docutils literal"><span class="pre">Cell</span></tt> class contains the per-cell view properties (such as the text it contains) in a
+view-implementation independent format.</p>
+<p>These cell objects intentionally have no link back to the view they originated from, so mutating
+them does not directly update the view. In order to update the cell or cells corresponding to a row,
+the methods <tt class="code docutils literal"><span class="pre">setCellAt</span></tt> or <tt class="code docutils literal"><span class="pre">setCellsAt</span></tt> should be used. This process is illustrated in
+the example code below.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">mantidqtpython</span> <span class="kn">import</span> <span class="n">MantidQt</span>
+
+
+<span class="c"># Inside the parent view</span>
+<span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">table</span> <span class="o">=</span> <span class="n">MantidQt</span><span class="o">.</span><span class="n">MantidWidgets</span><span class="o">.</span><span class="n">Batch</span><span class="o">.</span><span class="n">JobTreeView</span><span class="p">(</span>
+        <span class="p">[</span><span class="s">&quot;Column 1&quot;</span><span class="p">,</span> <span class="s">&quot;Column 2&quot;</span><span class="p">],</span> <span class="n">cell</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">),</span> <span class="bp">self</span><span class="p">)</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">table_signals</span> <span class="o">=</span> \
+        <span class="n">MantidQt</span><span class="o">.</span><span class="n">MantidWidgets</span><span class="o">.</span><span class="n">Batch</span><span class="o">.</span><span class="n">JobTreeViewSignalAdapter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="o">.</span><span class="n">appendChildRowOf</span><span class="p">(</span><span class="n">row</span><span class="p">([]),</span> <span class="p">[</span><span class="n">cell</span><span class="p">(</span><span class="s">&quot;Value for Column A&quot;</span><span class="p">),</span> <span class="n">cell</span><span class="p">(</span><span class="s">&quot;Value for Column B&quot;</span><span class="p">)])</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">change_colour_to_red</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="n">row</span><span class="p">([</span><span class="mi">0</span><span class="p">]),</span> <span class="n">column_index</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">change_colour_to_red</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">location</span><span class="p">,</span> <span class="n">column_index</span><span class="p">):</span>
+    <span class="n">cell</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="o">.</span><span class="n">cellAt</span><span class="p">(</span><span class="n">location</span><span class="p">,</span> <span class="n">column_index</span><span class="p">)</span>
+    <span class="n">cell</span><span class="o">.</span><span class="n">setBackgroundColor</span><span class="p">(</span><span class="s">&quot;#FF0000&quot;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="o">.</span><span class="n">setCellAt</span><span class="p">(</span><span class="n">location</span><span class="p">,</span> <span class="n">column_index</span><span class="p">,</span> <span class="n">cell</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">cell</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">MantidQt</span><span class="o">.</span><span class="n">MantidWidgets</span><span class="o">.</span><span class="n">Batch</span><span class="o">.</span><span class="n">Cell</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">row</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">MantidQt</span><span class="o">.</span><span class="n">MantidWidgets</span><span class="o">.</span><span class="n">Batch</span><span class="o">.</span><span class="n">RowLocation</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="subtrees">
+<h3>Subtrees<a class="headerlink" href="#subtrees" title="Permalink to this headline">¶</a></h3>
+<p>As previously illustrated the conceptual model for the API is a tree of tables. Initially, this
+model presents some challenges when you think about how to represent a user&#8217;s selection while
+preserving the tree structure. This is however necessary in order to support presenters which wish
+to have sensible behaviour for actions such as copy and
+paste.</p>
+<p>A subtree in this context refers to a set of one or more nodes within the tree where if the set has
+a size greater than one, each node is directly connected to at least one other node in the set.
+An example of a set of nodes which meets this constraint and a set of nodes which do not are
+outlined in blue in the diagram below.</p>
+<a class="reference internal image-reference" href="../../_images/subtree.svg"><div align="center" class="align-center"><img src="../../_images/subtree.svg" width="800px" /></div>
+</a>
+<p>The <tt class="code docutils literal"><span class="pre">Subtree</span></tt> type used to represent this concept in the API is defined in the header
+<tt class="code docutils literal"><span class="pre">Row.h</span></tt>. Refer to the documentation for the component <a class="reference internal" href="../Internals/ExtractSubtrees.html"><em>Extract Subtrees</em></a> for more detail
+on the internal representation of a subtree in this API.</p>
+</div>
+<div class="section" id="notification">
+<h3>Notification<a class="headerlink" href="#notification" title="Permalink to this headline">¶</a></h3>
+<p><tt class="code docutils literal"><span class="pre">JobTreeViewSubscriber</span></tt> is the mechanism by which the JobTreeView communicates events such as
+key presses to the presenter in an MVP setup.</p>
+<div class="highlight-c++"><div class="highlight"><pre><span class="cp">#include &quot;MantidQtWidgets/Common/Batch/JobTreeView.h&quot;</span>
+
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">MantidWidgets</span><span class="o">::</span><span class="n">Common</span><span class="o">::</span><span class="n">Batch</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">SimplePresenter</span> <span class="o">:</span> <span class="k">public</span> <span class="n">JobTreeViewSubscriber</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+  <span class="n">SimplePresenter</span><span class="p">(</span><span class="n">JobTreeView</span> <span class="o">*</span><span class="n">view</span><span class="p">)</span> <span class="o">:</span> <span class="n">m_view</span><span class="p">(</span><span class="n">view</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">m_view</span><span class="o">-&gt;</span><span class="n">subscribe</span><span class="p">(</span><span class="k">this</span><span class="p">);</span> <span class="c1">// Since we aren&#39;t using signal adapter</span>
+                             <span class="c1">// we must remember the call to subscribe.</span>
+  <span class="p">}</span>
+
+  <span class="kt">void</span> <span class="n">notifyCellChanged</span><span class="p">(</span><span class="n">RowLocation</span> <span class="k">const</span> <span class="o">&amp;</span><span class="n">itemIndex</span><span class="p">,</span> <span class="kt">int</span> <span class="n">column</span><span class="p">,</span>
+                         <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="k">const</span> <span class="o">&amp;</span><span class="n">newValue</span><span class="p">)</span> <span class="n">override</span> <span class="p">{}</span>
+  <span class="kt">void</span> <span class="n">notifyRowInserted</span><span class="p">(</span><span class="n">RowLocation</span> <span class="k">const</span> <span class="o">&amp;</span><span class="n">newRowLocation</span><span class="p">)</span> <span class="n">override</span> <span class="p">{}</span>
+  <span class="kt">void</span> <span class="n">notifyRemoveRowsRequested</span><span class="p">(</span>
+      <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">RowLocation</span><span class="o">&gt;</span> <span class="k">const</span> <span class="o">&amp;</span><span class="n">locationsOfRowsToRemove</span><span class="p">)</span> <span class="n">override</span> <span class="p">{}</span>
+  <span class="kt">void</span> <span class="n">notifyCopyRowsRequested</span><span class="p">()</span> <span class="n">override</span> <span class="p">{}</span>
+  <span class="kt">void</span> <span class="n">notifyPasteRowsRequested</span><span class="p">()</span> <span class="n">override</span> <span class="p">{}</span>
+  <span class="kt">void</span> <span class="n">notifyFilterReset</span><span class="p">()</span> <span class="n">override</span> <span class="p">{}</span>
+
+<span class="k">private</span><span class="o">:</span>
+  <span class="n">JobTreeView</span> <span class="o">*</span><span class="n">m_view</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="c1">// Elsewhere - Inside initialization</span>
+<span class="n">m_treeView</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JobTreeView</span><span class="p">(</span>
+    <span class="p">{</span><span class="s">&quot;Heading 1&quot;</span><span class="p">,</span> <span class="s">&quot;Heading 2&quot;</span><span class="p">},</span> <span class="c1">// The table column headings.</span>
+    <span class="n">Cell</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">),</span> <span class="c1">// The default style and content for the new &#39;empty&#39; cells.</span>
+    <span class="k">this</span>      <span class="c1">// The parent QObject</span>
+    <span class="p">);</span>
+<span class="n">m_childPresenter</span> <span class="o">=</span> <span class="n">SimplePresenter</span><span class="p">(</span><span class="n">m_treeView</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>This interface is also implemented by <tt class="code docutils literal"><span class="pre">JobTreeViewSignalAdapter</span></tt> which makes it easy to use
+signals and slots instead when writing a GUI from python.</p>
+<p>Due to the interactive nature of some events (such as row insertion, cell modification and filter resets),
+notification does not happen until after said event has taken place and the view has
+already been updated. Therefore, if a presenter determines that said action is on-reflection invalid
+it will be required to call a method which updates the view and rolls back the action.
+This is illustrated in the example below.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">mantidqtpython</span> <span class="kn">import</span> <span class="n">MantidQt</span>
+
+
+<span class="k">def</span> <span class="nf">empty_cell</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">MantidQt</span><span class="o">.</span><span class="n">MantidWidgets</span><span class="o">.</span><span class="n">Batch</span><span class="o">.</span><span class="n">Cell</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">)</span>
+
+
+<span class="c"># Inside the parent view</span>
+<span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">table</span> <span class="o">=</span> <span class="n">MantidQt</span><span class="o">.</span><span class="n">MantidWidgets</span><span class="o">.</span><span class="n">Batch</span><span class="o">.</span><span class="n">JobTreeView</span><span class="p">(</span>
+        <span class="p">[</span><span class="s">&quot;Column 1&quot;</span><span class="p">,</span> <span class="s">&quot;Column 2&quot;</span><span class="p">],</span> <span class="n">empty_cell</span><span class="p">(),</span> <span class="bp">self</span><span class="p">)</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">table_signals</span> <span class="o">=</span> <span class="n">MantidQt</span><span class="o">.</span><span class="n">MantidWidgets</span><span class="o">.</span><span class="n">Batch</span><span class="o">.</span><span class="n">JobTreeViewSignalAdapter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">table_signals</span><span class="o">.</span><span class="n">rowInserted</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">on_row_inserted</span><span class="p">)</span>
+    <span class="c"># The rowInserted signal is fired every time a user inserts a row.</span>
+    <span class="c"># It is NOT fired if we manually insert a row.</span>
+
+
+<span class="k">def</span> <span class="nf">on_row_inserted</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rowLocation</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">rowLocation</span><span class="o">.</span><span class="n">depth</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span> <span class="c"># If the depth is more than two then</span>
+                             <span class="c"># we can safely &#39;rollback&#39; the insertion.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="o">.</span><span class="n">removeRowAt</span><span class="p">(</span><span class="n">rowLocation</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Other events (those who&#8217;s notification method name ends with <tt class="code docutils literal"><span class="pre">Requested</span></tt>) require the presenter
+to update the view and/or model and so the notification happens before the view has been updated.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">After creating a <tt class="code docutils literal"><span class="pre">JobTreeView</span></tt> it is important to call the <tt class="code docutils literal"><span class="pre">subscribe</span></tt> method passing in
+the subscriber prior to calling any other methods, failure to do so may result in undefined behavior.</p>
+</div>
+</div>
+<div class="section" id="filtering">
+<h3>Filtering<a class="headerlink" href="#filtering" title="Permalink to this headline">¶</a></h3>
+<p>Is is possible to make the JobTreeView only show a subset of the nodes in the tree based on an
+arbitrary predicate over row locations. These can be translated to their corresponding
+node in the MVP model or their corresponding cells from the view.</p>
+<p>The header <tt class="code docutils literal"><span class="pre">RowPredicate.h</span></tt> defines the interface which must be implemented by implementations
+of such predicates. The method <tt class="code docutils literal"><span class="pre">filterRowsBy</span></tt> defined in <tt class="code docutils literal"><span class="pre">JobTreeView</span></tt> can be used to set
+the currently active filter as demonstrated by the code below.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">mantidqtpython</span> <span class="kn">import</span> <span class="n">MantidQt</span>
+<span class="kn">import</span> <span class="nn">re</span>
+
+
+<span class="k">class</span> <span class="nc">Predicate</span><span class="p">(</span><span class="n">MantidQt</span><span class="o">.</span><span class="n">MantidWidgets</span><span class="o">.</span><span class="n">Batch</span><span class="o">.</span><span class="n">RowPredicate</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">meetsCriteria</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">MantidQt</span><span class="o">.</span><span class="n">MantidWidgets</span><span class="o">.</span><span class="n">Batch</span><span class="o">.</span><span class="n">RowPredicate</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">meetsCriteria</span> <span class="o">=</span> <span class="n">meetsCriteria</span>
+
+    <span class="k">def</span> <span class="nf">rowMeetsCriteria</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">location</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">meetsCriteria</span><span class="p">(</span><span class="n">location</span><span class="p">))</span>
+
+
+<span class="k">def</span> <span class="nf">make_regex_filter</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">regex</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">Predicate</span><span class="p">(</span><span class="k">lambda</span> <span class="n">location</span><span class="p">:</span> <span class="n">regex</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">cellAt</span><span class="p">(</span><span class="n">location</span><span class="p">,</span> <span class="n">col</span><span class="p">)</span><span class="o">.</span><span class="n">contentText</span><span class="p">()))</span>
+    <span class="k">except</span> <span class="n">re</span><span class="o">.</span><span class="n">error</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">Predicate</span><span class="p">(</span><span class="k">lambda</span> <span class="n">location</span><span class="p">:</span> <span class="bp">True</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">row</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">MantidQt</span><span class="o">.</span><span class="n">MantidWidgets</span><span class="o">.</span><span class="n">Batch</span><span class="o">.</span><span class="n">RowLocation</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">empty_cell</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">cell</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">cell</span><span class="p">(</span><span class="n">cell_text</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">MantidQt</span><span class="o">.</span><span class="n">MantidWidgets</span><span class="o">.</span><span class="n">Batch</span><span class="o">.</span><span class="n">Cell</span><span class="p">(</span><span class="n">cell_text</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">row_from_text</span><span class="p">(</span><span class="o">*</span><span class="n">cell_texts</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">cell</span><span class="p">(</span><span class="n">cell_text</span><span class="p">)</span> <span class="k">for</span> <span class="n">cell_text</span> <span class="ow">in</span> <span class="n">cell_texts</span><span class="p">]</span>
+
+
+<span class="c"># Inside the parent view</span>
+<span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">table</span> <span class="o">=</span> <span class="n">MantidQt</span><span class="o">.</span><span class="n">MantidWidgets</span><span class="o">.</span><span class="n">Batch</span><span class="o">.</span><span class="n">JobTreeView</span><span class="p">([</span><span class="s">&quot;Column 1&quot;</span><span class="p">],</span> <span class="n">empty_cell</span><span class="p">(),</span> <span class="bp">self</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">table_signals</span> <span class="o">=</span> <span class="n">MantidQt</span><span class="o">.</span><span class="n">MantidWidgets</span><span class="o">.</span><span class="n">Batch</span><span class="o">.</span><span class="n">JobTreeViewSignalAdapter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="o">.</span><span class="n">appendChildRowOf</span><span class="p">(</span><span class="n">row</span><span class="p">([]),</span>  <span class="p">[</span><span class="n">cell</span><span class="p">(</span><span class="s">&quot;DD&quot;</span><span class="p">)])</span> <span class="c"># DD</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="o">.</span><span class="n">appendChildRowOf</span><span class="p">(</span><span class="n">row</span><span class="p">([</span><span class="mi">0</span><span class="p">]),</span> <span class="p">[</span><span class="n">cell</span><span class="p">(</span><span class="s">&quot;DC&quot;</span><span class="p">)])</span> <span class="c">#   DC</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="o">.</span><span class="n">appendChildRowOf</span><span class="p">(</span><span class="n">row</span><span class="p">([</span><span class="mi">0</span><span class="p">]),</span> <span class="p">[</span><span class="n">cell</span><span class="p">(</span><span class="s">&quot;A9&quot;</span><span class="p">)])</span> <span class="c">#     A9</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="o">.</span><span class="n">appendChildRowOf</span><span class="p">(</span><span class="n">row</span><span class="p">([]),</span>  <span class="p">[</span><span class="n">cell</span><span class="p">(</span><span class="s">&quot;B0&quot;</span><span class="p">)])</span> <span class="c"># B0</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="o">.</span><span class="n">appendChildRowOf</span><span class="p">(</span><span class="n">row</span><span class="p">([]),</span>  <span class="p">[</span><span class="n">cell</span><span class="p">(</span><span class="s">&quot;C0&quot;</span><span class="p">)])</span> <span class="c"># C0</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="o">.</span><span class="n">appendChildRowOf</span><span class="p">(</span><span class="n">row</span><span class="p">([</span><span class="mi">2</span><span class="p">]),</span> <span class="p">[</span><span class="n">cell</span><span class="p">(</span><span class="s">&quot;A1&quot;</span><span class="p">)])</span> <span class="c">#   A1</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="o">.</span><span class="n">filterRowsBy</span><span class="p">(</span><span class="n">make_regex_filter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="p">,</span> <span class="s">&quot;A[0-9]+&quot;</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+    <span class="c"># Applying this filter excludes B0 since neither itself not it&#39;s decendant&#39;s contents</span>
+    <span class="c"># match the regex given.</span>
+</pre></div>
+</div>
+<p>The method <tt class="code docutils literal"><span class="pre">resetFilter</span></tt> is used to unset the filter so that all items are shown again and
+the <tt class="code docutils literal"><span class="pre">hasFilter</span></tt> method is used to determine if the filter is currently set.</p>
+<p>Some actions performed on the <tt class="code docutils literal"><span class="pre">JobTreeView</span></tt> can trigger the filter to be reset automatically.
+This necessitates the <tt class="code docutils literal"><span class="pre">notifyFilterReset</span></tt> method in <tt class="code docutils literal"><span class="pre">JobTreeViewSubscriber</span></tt> which is
+called whenever the filter is reset, even when requested explicitly.</p>
+</div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+      <ul class="nav navbar-nav" style=" float: right;">
+      
+      
+          
+            
+  <li>
+    <a href="../index.html" title="Previous Chapter: Batch Widget Manual"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Batch Widget Man...</span>
+    </a>
+  </li>
+  <li>
+    <a href="../Internals/FindSubtreeRoots.html" title="Next Chapter: Find Subtree Roots"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Find Subtree Roo... &raquo;</span>
+    </a>
+  </li>
+          
+       
+          <li><a href="#">Back to top</a></li>
+       </ul>
+    <p>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Extract Subtrees</title>
+    
+    <link rel="stylesheet" href="../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootstrap-3.3.6/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootstrap-3.3.6/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '3.12.20180622.2012',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="" href="../../index.html" />
+    <link rel="up" title="Batch Widget Manual" href="../index.html" />
+    <link rel="next" title="Model Indices in Job Tree View" href="StrictModelIndexing.html" />
+    <link rel="prev" title="Find Subtree Roots" href="FindSubtreeRoots.html" />
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-59110517-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+  </head>
+  <body>
+
+
+
+
+
+  <div id="navbar" class="navbar navbar-default ">
+    <div class="container">
+      <div class="navbar-header">
+        
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://www.mantidproject.org"><img src="../../_static/Mantid_Logo_Transparent.png">
+           </a>
+        <span class="navbar-text navbar-version pull-left"><b>3.12</b></span>
+      </div>
+
+      
+        <div class="collapse navbar-collapse nav-collapse">
+      
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="http://download.mantidproject.org">Download</a></li>
+                <li><a href="http://www.mantidproject.org">Wiki</a></li>
+                <li><a href="http://docs.mantidproject.org">User Documentation</a></li>
+                <li><a href="http://www.mantidproject.org/Contact">Contact Us</a></li>
+            
+            
+              
+              
+            
+            
+            
+            
+          </ul>
+              
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+            </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="extract-subtrees">
+<span id="extractsubtrees"></span><h1>Extract Subtrees<a class="headerlink" href="#extract-subtrees" title="Permalink to this headline">¶</a></h1>
+<p>The <tt class="code docutils literal"><span class="pre">ExtractSubtrees</span></tt> component converts a set of row cell contents and a set of row
+locations into a structured set of subtrees. This is better described by the illustration below.</p>
+<a class="reference internal image-reference" href="../../_images/extract_subtree.svg"><div align="center" class="align-center"><img src="../../_images/extract_subtree.svg" width="800px" /></div>
+</a>
+<p>Where multiple solutions are possible this algorithm will find the set of subtrees with
+the minimal number of subtrees by grouping connected row locations together into a
+single subtree.</p>
+<p>The algorithm used to perform this conversion makes a simplifying assumption that the roots of all
+subtrees in the result share a common parent. If this assumption is untrue then the input set
+is unsuitable and the algorithm will return an empty optional.</p>
+<a class="reference internal image-reference" href="../../_images/subtree_fail_shallow.svg"><div align="center" class="align-center"><img src="../../_images/subtree_fail_shallow.svg" width="800px" /></div>
+</a>
+<p>The above example fails due to a <em>shallow</em> root, a root which has a depth <em>smaller</em> than the first
+root we encounter.</p>
+<a class="reference internal image-reference" href="../../_images/subtree_fail_deep.svg"><div align="center" class="align-center"><img src="../../_images/subtree_fail_deep.svg" width="800px" /></div>
+</a>
+<p>This example fails due to a <em>deep</em> root, a root which has a depth <em>larger</em> than the first
+root we encounter.</p>
+<a class="reference internal image-reference" href="../../_images/subtree_fail_parent.svg"><div align="center" class="align-center"><img src="../../_images/subtree_fail_parent.svg" width="800px" /></div>
+</a>
+<p>This example fails due to the fact that the parents of the subtree roots are not the same.</p>
+<p>These conditions are checked using the functions defined in <tt class="code docutils literal"><span class="pre">Subtree.h</span></tt>.</p>
+<p>This algorithm is used by <a class="reference internal" href="../API/JobTreeView.html"><em>Job Tree View</em></a> in the <tt class="code docutils literal"><span class="pre">selectedSubtrees</span></tt> method which is
+required to implement non-trivial copy and paste.</p>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+      <ul class="nav navbar-nav" style=" float: right;">
+      
+      
+          
+            
+  <li>
+    <a href="FindSubtreeRoots.html" title="Previous Chapter: Find Subtree Roots"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Find Subtree Roo...</span>
+    </a>
+  </li>
+  <li>
+    <a href="StrictModelIndexing.html" title="Next Chapter: Model Indices in Job Tree View"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Model Indices in... &raquo;</span>
+    </a>
+  </li>
+          
+       
+          <li><a href="#">Back to top</a></li>
+       </ul>
+    <p>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
