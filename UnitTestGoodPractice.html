@@ -17,11 +17,10 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '3.12.20180515.1233',
+        VERSION:     '3.12.20180622.2012',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
+        HAS_SOURCE:  true
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
@@ -31,8 +30,7 @@
     <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
     <script type="text/javascript" src="_static/bootstrap-3.3.6/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
+    <link rel="top" title="" href="index.html" />
     <link rel="next" title="Writing Performance Tests" href="WritingPerformanceTests.html" />
     <link rel="prev" title="Debugging Unit Tests" href="DebuggingUnitTests.html" />
 
@@ -49,7 +47,7 @@
 
 
   </head>
-  <body role="document">
+  <body>
 
 
 
@@ -110,30 +108,30 @@
 <span id="unittestgoodpractice"></span><h1>Unit Test Good Practice<a class="headerlink" href="#unit-test-good-practice" title="Permalink to this headline">¶</a></h1>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><a class="reference internal" href="#general-guidance" id="id2">General Guidance</a><ul>
-<li><a class="reference internal" href="#what-to-test" id="id3">What to test</a></li>
-<li><a class="reference internal" href="#how-to-test-private-or-protected-members-of-a-class" id="id4">How to test private or protected members of a class</a><ul>
-<li><a class="reference internal" href="#protected" id="id5">Protected</a></li>
-<li><a class="reference internal" href="#private" id="id6">Private</a></li>
+<li><a class="reference internal" href="#general-guidance" id="id1">General Guidance</a><ul>
+<li><a class="reference internal" href="#what-to-test" id="id2">What to test</a></li>
+<li><a class="reference internal" href="#how-to-test-private-or-protected-members-of-a-class" id="id3">How to test private or protected members of a class</a><ul>
+<li><a class="reference internal" href="#protected" id="id4">Protected</a></li>
+<li><a class="reference internal" href="#private" id="id5">Private</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#good-practices-for-writing-tests" id="id7">Good practices for writing tests</a><ul>
-<li><a class="reference internal" href="#other-more-general-points" id="id8">Other More General Points</a></li>
+<li><a class="reference internal" href="#good-practices-for-writing-tests" id="id6">Good practices for writing tests</a><ul>
+<li><a class="reference internal" href="#other-more-general-points" id="id7">Other More General Points</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a class="reference internal" href="#mantid-specific-guidelines" id="id9">Mantid-specific Guidelines</a><ul>
-<li><a class="reference internal" href="#using-files-in-unit-tests" id="id10">Using files in Unit tests</a></li>
+<li><a class="reference internal" href="#mantid-specific-guidelines" id="id8">Mantid-specific Guidelines</a><ul>
+<li><a class="reference internal" href="#using-files-in-unit-tests" id="id9">Using files in Unit tests</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#mocking" id="id11">Mocking</a></li>
+<li><a class="reference internal" href="#mocking" id="id10">Mocking</a></li>
 </ul>
 </div>
 <div class="section" id="general-guidance">
-<h2><a class="toc-backref" href="#id2">General Guidance</a><a class="headerlink" href="#general-guidance" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id1">General Guidance</a><a class="headerlink" href="#general-guidance" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="what-to-test">
-<h3><a class="toc-backref" href="#id3">What to test</a><a class="headerlink" href="#what-to-test" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id2">What to test</a><a class="headerlink" href="#what-to-test" title="Permalink to this headline">¶</a></h3>
 <p>Simply put you should test.</p>
 <ul class="simple">
 <li>Every public member of a class.</li>
@@ -156,7 +154,7 @@ supposed to do.</li>
 </ul>
 </div>
 <div class="section" id="how-to-test-private-or-protected-members-of-a-class">
-<h3><a class="toc-backref" href="#id4">How to test private or protected members of a class</a><a class="headerlink" href="#how-to-test-private-or-protected-members-of-a-class" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id3">How to test private or protected members of a class</a><a class="headerlink" href="#how-to-test-private-or-protected-members-of-a-class" title="Permalink to this headline">¶</a></h3>
 <p>Testing the internals of a class can be considered harmful as it exposes
 the internals of the class, which can arguably be freely changed (so
 long as it does not affect the function of the public interface).
@@ -166,13 +164,13 @@ either due to complexity or tracking down specific bugs.</p>
 methods of a class is sufficiently complex, such to require dedicated unit
 tests, this code should be moved into a separate class(es).</p>
 <div class="section" id="protected">
-<h4><a class="toc-backref" href="#id5">Protected</a><a class="headerlink" href="#protected" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id4">Protected</a><a class="headerlink" href="#protected" title="Permalink to this headline">¶</a></h4>
 <p>Within the test library you can add a new testable class that inherits
 from the class you need to test. This class can simply expose any
 protected methods as testable public methods.</p>
 </div>
 <div class="section" id="private">
-<h4><a class="toc-backref" href="#id6">Private</a><a class="headerlink" href="#private" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id5">Private</a><a class="headerlink" href="#private" title="Permalink to this headline">¶</a></h4>
 <p>There is no ideal way to test a private member of a class as they are
 intentionally hidden from the class interface. There are two options to
 consider in preference order:</p>
@@ -184,7 +182,7 @@ above.</li>
 </div>
 </div>
 <div class="section" id="good-practices-for-writing-tests">
-<h3><a class="toc-backref" href="#id7">Good practices for writing tests</a><a class="headerlink" href="#good-practices-for-writing-tests" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id6">Good practices for writing tests</a><a class="headerlink" href="#good-practices-for-writing-tests" title="Permalink to this headline">¶</a></h3>
 <p>The following are good practices for writing your unit tests. Many of
 them are standard good coding practices. You will notice that in several
 situations they can clash with each other, in this case common sense
@@ -204,17 +202,17 @@ the first, and in fact we have relaxed this rule for Mantid (see below).</p>
 <p>Again these can often conflict.</p>
 <ul class="simple">
 <li>Each test class should be named after the class it is testing (e.g.
-tests for the <code class="docutils literal"><span class="pre">AlgorithmFactory</span></code> should go in a <code class="docutils literal"><span class="pre">AlgorithmFactoryTest</span></code>
+tests for the <tt class="docutils literal"><span class="pre">AlgorithmFactory</span></tt> should go in a <tt class="docutils literal"><span class="pre">AlgorithmFactoryTest</span></tt>
 class).</li>
 <li>Each test within a test class should use a descriptive test name,
-prefixed with test (tests for the <code class="docutils literal"><span class="pre">CreateAlgorithm</span></code> method would be
-included in <code class="docutils literal"><span class="pre">testCreateAlgorithm</span></code>). If there are specific tests for
+prefixed with test (tests for the <tt class="docutils literal"><span class="pre">CreateAlgorithm</span></tt> method would be
+included in <tt class="docutils literal"><span class="pre">testCreateAlgorithm</span></tt>). If there are specific tests for
 failure situations then these should be added to the end (e.g.
-<code class="docutils literal"><span class="pre">testCreateAlgorithmNoAlgorithmException</span></code>). THE AIM IS THAT FROM THE
+<tt class="docutils literal"><span class="pre">testCreateAlgorithmNoAlgorithmException</span></tt>). THE AIM IS THAT FROM THE
 TEST METHOD NAME ALONE, YOU SHOULD BE ABLE TO IDENTIFY THE PROBLEM.</li>
 </ul>
 <div class="section" id="other-more-general-points">
-<h4><a class="toc-backref" href="#id8">Other More General Points</a><a class="headerlink" href="#other-more-general-points" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id7">Other More General Points</a><a class="headerlink" href="#other-more-general-points" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li>Tests should be <strong>fast</strong>, ideally really fast - certainly not more
 than a few seconds. Unit tests test functionality, performance tests
@@ -228,7 +226,7 @@ Destructive tests have a higher efficacy for finding bugs.</li>
 </div>
 </div>
 <div class="section" id="mantid-specific-guidelines">
-<h2><a class="toc-backref" href="#id9">Mantid-specific Guidelines</a><a class="headerlink" href="#mantid-specific-guidelines" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id8">Mantid-specific Guidelines</a><a class="headerlink" href="#mantid-specific-guidelines" title="Permalink to this headline">¶</a></h2>
 <ul>
 <li><p class="first">As noted above, you can assume that individual tests within a cxxtest
 suite will be run in order.</p>
@@ -242,17 +240,17 @@ build).</p>
 <li><p class="first">Ideally, test suites should not have a constructor. If one is
 required, the following boiler-plate code <strong>must</strong> be inserted in the
 test class:</p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="k">static</span> <span class="n">NameOfTest</span> <span class="o">*</span><span class="nf">createSuite</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="k">new</span> <span class="n">NameOfTest</span><span class="p">();</span> <span class="p">}</span>
-<span class="k">static</span> <span class="kt">void</span> <span class="nf">destroySuite</span><span class="p">(</span><span class="n">NameOfTest</span> <span class="o">*</span><span class="n">suite</span><span class="p">)</span> <span class="p">{</span> <span class="k">delete</span> <span class="n">suite</span><span class="p">;</span> <span class="p">}</span>
+<div class="highlight-c++"><div class="highlight"><pre><span class="k">static</span> <span class="n">NameOfTest</span> <span class="o">*</span><span class="n">createSuite</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="k">new</span> <span class="n">NameOfTest</span><span class="p">();</span> <span class="p">}</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="n">destroySuite</span><span class="p">(</span><span class="n">NameOfTest</span> <span class="o">*</span><span class="n">suite</span><span class="p">)</span> <span class="p">{</span> <span class="k">delete</span> <span class="n">suite</span><span class="p">;</span> <span class="p">}</span>
 </pre></div>
 </div>
-<p>where <code class="docutils literal"><span class="pre">NameOfTest</span></code> is the name of the test class. Without this, the
+<p>where <tt class="docutils literal"><span class="pre">NameOfTest</span></tt> is the name of the test class. Without this, the
 class is turned into a static meaning that the constructor is run at
 initialisation even if (via an argument) you are not going to run that
 particular test suite. Also, this can cause problems if running tests in
 parallel.</p>
 </li>
-<li><p class="first">Be cautious in use of the <code class="docutils literal"><span class="pre">setUp()``and</span> <span class="pre">``tearDown()</span></code> methods. Be aware
+<li><p class="first">Be cautious in use of the <tt class="docutils literal"><span class="pre">setUp()``and</span> <span class="pre">``tearDown()</span></tt> methods. Be aware
 that if you use these in your suite they will be run before/after
 <strong>every single</strong> individual test. That&#8217;s fine if it&#8217;s the behaviour
 you really need, but we have found that to be rare - use the
@@ -268,7 +266,7 @@ pointer instead of by name.</p>
 </li>
 </ul>
 <div class="section" id="using-files-in-unit-tests">
-<h3><a class="toc-backref" href="#id10">Using files in Unit tests</a><a class="headerlink" href="#using-files-in-unit-tests" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id9">Using files in Unit tests</a><a class="headerlink" href="#using-files-in-unit-tests" title="Permalink to this headline">¶</a></h3>
 <p>Files for unit tests bloat our repository and slow down the testing
 process. Therefore unless the prime purpose of the algorithms is to load
 or save a file then you should not use a file in your unit tests.</p>
@@ -302,16 +300,16 @@ manner.</dd>
 </div>
 </div>
 <div class="section" id="mocking">
-<h2><a class="toc-backref" href="#id11">Mocking</a><a class="headerlink" href="#mocking" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id10">Mocking</a><a class="headerlink" href="#mocking" title="Permalink to this headline">¶</a></h2>
 <p>Mocking is a very powerful tool that allows you to simulate components
 in your unit environment and check how your code operates within this
 environment. Mocking allows you to avoid creating Fake objects of any
 kind, and results in fast executing code with a very high test coverage.
 See <a class="reference external" href="Mocking">Mocking</a> in Mantid to find out what it is and how it
 works.</p>
-<div class="figure" id="id1">
+<div class="figure">
 <img alt="Object under test using Mocking to isolate the testing.|400px" src="_images/Mocking.png" />
-<p class="caption"><span class="caption-text">Object under test using Mocking to isolate the testing.|400px</span></p>
+<p class="caption">Object under test using Mocking to isolate the testing.|400px</p>
 </div>
 </div>
 </div>
@@ -329,11 +327,11 @@ works.</p>
           
             
   <li>
-    <a href="DebuggingUnitTests.html" title="Previous Chapter: Debugging Unit Tests"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Debugging Unit Tests</span>
+    <a href="DebuggingUnitTests.html" title="Previous Chapter: Debugging Unit Tests"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Debugging Unit T...</span>
     </a>
   </li>
   <li>
-    <a href="WritingPerformanceTests.html" title="Next Chapter: Writing Performance Tests"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Writing Perfo... &raquo;</span>
+    <a href="WritingPerformanceTests.html" title="Next Chapter: Writing Performance Tests"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Writing Performa... &raquo;</span>
     </a>
   </li>
           

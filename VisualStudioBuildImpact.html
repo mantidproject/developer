@@ -17,11 +17,10 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '3.12.20180515.1233',
+        VERSION:     '3.12.20180622.2012',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
+        HAS_SOURCE:  true
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
@@ -31,8 +30,7 @@
     <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
     <script type="text/javascript" src="_static/bootstrap-3.3.6/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
+    <link rel="top" title="" href="index.html" />
     <link rel="next" title="Running the Unit Tests" href="RunningTheUnitTests.html" />
     <link rel="prev" title="Flowchart Creation" href="FlowchartCreation.html" />
 
@@ -49,7 +47,7 @@
 
 
   </head>
-  <body role="document">
+  <body>
 
 
 
@@ -124,16 +122,16 @@ linker tasks, an they inherit the priority of the MSBuild process.</p>
 <h2>Script<a class="headerlink" href="#script" title="Permalink to this headline">¶</a></h2>
 <p>Of course if you don&#8217;t want to do this yourself then you can use this
 script.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Const</span> <span class="n">BELOW_NORMAL</span> <span class="o">=</span> <span class="mi">16384</span>
+<div class="highlight-python"><div class="highlight"><pre>Const BELOW_NORMAL = 16384
 
-<span class="n">strComputer</span> <span class="o">=</span> <span class="s2">&quot;.&quot;</span>
-<span class="n">Set</span> <span class="n">objWMIService</span> <span class="o">=</span> <span class="n">GetObject</span><span class="p">(</span><span class="s2">&quot;winmgmts:</span><span class="se">\\</span><span class="s2">&quot;</span> <span class="o">&amp;</span> <span class="n">strComputer</span> <span class="o">&amp;</span> <span class="s2">&quot;</span><span class="se">\r</span><span class="s2">oot\cimv2&quot;</span><span class="p">)</span>
+strComputer = &quot;.&quot;
+Set objWMIService = GetObject(&quot;winmgmts:\\&quot; &amp; strComputer &amp; &quot;\root\cimv2&quot;)
 
-<span class="n">Set</span> <span class="n">colProcesses</span> <span class="o">=</span> <span class="n">objWMIService</span><span class="o">.</span><span class="n">ExecQuery</span> <span class="n">_</span>
-    <span class="p">(</span><span class="s2">&quot;Select * from Win32_Process Where Name = &#39;MSBuild.exe&#39;&quot;</span><span class="p">)</span>
-<span class="n">For</span> <span class="n">Each</span> <span class="n">objProcess</span> <span class="ow">in</span> <span class="n">colProcesses</span>
-    <span class="n">objProcess</span><span class="o">.</span><span class="n">SetPriority</span><span class="p">(</span><span class="n">BELOW_NORMAL</span><span class="p">)</span>
-<span class="n">Next</span>
+Set colProcesses = objWMIService.ExecQuery _
+    (&quot;Select * from Win32_Process Where Name = &#39;MSBuild.exe&#39;&quot;)
+For Each objProcess in colProcesses
+    objProcess.SetPriority(BELOW_NORMAL)
+Next
 </pre></div>
 </div>
 <p>Save it as Reduce_Build_Impact.vbs, and use when things are running like
@@ -143,18 +141,18 @@ a dog!</p>
 <h2>Monitoring Script<a class="headerlink" href="#monitoring-script" title="Permalink to this headline">¶</a></h2>
 <p>If you don&#8217;t want to keep running the script for each build, here&#8217;s one
 that keeps a watch on your system every 5 seconds.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Const</span> <span class="n">BELOW_NORMAL</span> <span class="o">=</span> <span class="mi">16384</span>
+<div class="highlight-python"><div class="highlight"><pre>Const BELOW_NORMAL = 16384
 
-<span class="n">strComputer</span> <span class="o">=</span> <span class="s2">&quot;.&quot;</span>
-<span class="n">Set</span> <span class="n">objWMIService</span> <span class="o">=</span> <span class="n">GetObject</span><span class="p">(</span><span class="s2">&quot;winmgmts:</span><span class="se">\\</span><span class="s2">&quot;</span> <span class="o">&amp;</span> <span class="n">strComputer</span> <span class="o">&amp;</span> <span class="s2">&quot;</span><span class="se">\r</span><span class="s2">oot\cimv2&quot;</span><span class="p">)</span>
-<span class="n">Do</span> <span class="n">While</span> <span class="n">true</span>
-  <span class="n">Set</span> <span class="n">colProcesses</span> <span class="o">=</span> <span class="n">objWMIService</span><span class="o">.</span><span class="n">ExecQuery</span> <span class="n">_</span>
-      <span class="p">(</span><span class="s2">&quot;Select * from Win32_Process Where Name = &#39;MSBuild.exe&#39;&quot;</span><span class="p">)</span>
-  <span class="n">For</span> <span class="n">Each</span> <span class="n">objProcess</span> <span class="ow">in</span> <span class="n">colProcesses</span>
-      <span class="n">objProcess</span><span class="o">.</span><span class="n">SetPriority</span><span class="p">(</span><span class="n">BELOW_NORMAL</span><span class="p">)</span>
-  <span class="n">Next</span>
-  <span class="n">WScript</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">5000</span>
-<span class="n">loop</span>
+strComputer = &quot;.&quot;
+Set objWMIService = GetObject(&quot;winmgmts:\\&quot; &amp; strComputer &amp; &quot;\root\cimv2&quot;)
+Do While true
+  Set colProcesses = objWMIService.ExecQuery _
+      (&quot;Select * from Win32_Process Where Name = &#39;MSBuild.exe&#39;&quot;)
+  For Each objProcess in colProcesses
+      objProcess.SetPriority(BELOW_NORMAL)
+  Next
+  WScript.Sleep 5000
+loop
 </pre></div>
 </div>
 </div>
@@ -173,11 +171,11 @@ that keeps a watch on your system every 5 seconds.</p>
           
             
   <li>
-    <a href="FlowchartCreation.html" title="Previous Chapter: Flowchart Creation"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Flowchart Creation</span>
+    <a href="FlowchartCreation.html" title="Previous Chapter: Flowchart Creation"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Flowchart Creati...</span>
     </a>
   </li>
   <li>
-    <a href="RunningTheUnitTests.html" title="Next Chapter: Running the Unit Tests"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Running the U... &raquo;</span>
+    <a href="RunningTheUnitTests.html" title="Next Chapter: Running the Unit Tests"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Running the Unit... &raquo;</span>
     </a>
   </li>
           

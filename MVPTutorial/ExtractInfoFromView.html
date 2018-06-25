@@ -17,11 +17,10 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '3.12.20180515.1233',
+        VERSION:     '3.12.20180622.2012',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
+        HAS_SOURCE:  true
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
@@ -31,8 +30,8 @@
     <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-3.3.6/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="" href="../index.html" />
+    <link rel="up" title="MVP Tutorial" href="index.html" />
     <link rel="next" title="Presenter Exercise" href="PresenterExercise.html" />
     <link rel="prev" title="Receiving a signal from the view" href="ReceivingSignalFromView.html" />
 
@@ -49,7 +48,7 @@
 
 
   </head>
-  <body role="document">
+  <body>
 
 
 
@@ -112,7 +111,7 @@
 View. This can be done by <strong>get</strong> methods, as with normal
 classes. Here is a simple example of how a <strong>get</strong> method for the view can
 be used.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="p">(</span><span class="n">absolute_import</span><span class="p">,</span> <span class="n">division</span><span class="p">,</span> <span class="n">print_function</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="p">(</span><span class="n">absolute_import</span><span class="p">,</span> <span class="n">division</span><span class="p">,</span> <span class="n">print_function</span><span class="p">)</span>
 
 <span class="kn">import</span> <span class="nn">PyQt4.QtGui</span>  <span class="kn">as</span> <span class="nn">QtGui</span>
 <span class="kn">import</span> <span class="nn">PyQt4.QtCore</span> <span class="kn">as</span> <span class="nn">QtCore</span>
@@ -122,18 +121,18 @@ be used.</p>
 
     <span class="n">doSomethingSignal</span> <span class="o">=</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">pyqtSignal</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">view</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">view</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">button</span> <span class="o">=</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QPushButton</span><span class="p">(</span><span class="s1">&#39;Hi&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">button</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="s2">&quot;background-color:lightgrey&quot;</span><span class="p">)</span>
-        <span class="c1"># connect button to signal</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">button</span> <span class="o">=</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QPushButton</span><span class="p">(</span><span class="s">&#39;Hi&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">button</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="s">&quot;background-color:lightgrey&quot;</span><span class="p">)</span>
+        <span class="c"># connect button to signal</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">button</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">btn_click</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QLabel</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s2">&quot;Button&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s">&quot;Button&quot;</span><span class="p">)</span>
 
-        <span class="c1"># add widgets to layout</span>
+        <span class="c"># add widgets to layout</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sub_layout</span> <span class="o">=</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QHBoxLayout</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sub_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sub_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">button</span><span class="p">)</span>
@@ -145,24 +144,24 @@ be used.</p>
         <span class="n">grid</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
 
 
-        <span class="c1"># set the layout for the view widget</span>
+        <span class="c"># set the layout for the view widget</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">setLayout</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span>
 
-    <span class="c1">#send signals</span>
+    <span class="c">#send signals</span>
     <span class="k">def</span> <span class="nf">btn_click</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">print</span> <span class="p">(</span><span class="s2">&quot;hellow from view&quot;</span><span class="p">)</span>
+        <span class="k">print</span> <span class="p">(</span><span class="s">&quot;hellow from view&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">doSomethingSignal</span><span class="o">.</span><span class="n">emit</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">getValue</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
 </pre></div>
 </div>
-<p>The last function <code class="docutils literal"><span class="pre">getValue</span></code> returns the value of the line
-edit. Since <code class="docutils literal"><span class="pre">text()</span></code> returns a string the output is type cast into a
+<p>The last function <tt class="docutils literal"><span class="pre">getValue</span></tt> returns the value of the line
+edit. Since <tt class="docutils literal"><span class="pre">text()</span></tt> returns a string the output is type cast into a
 float.</p>
-<p>The Presenter has the following code added to the <code class="docutils literal"><span class="pre">handleButton</span></code> method:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">getValue</span><span class="p">()</span>
-<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Value is &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+<p>The Presenter has the following code added to the <tt class="docutils literal"><span class="pre">handleButton</span></tt> method:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">getValue</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;Value is &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>which gets the value from the View and then prints it to the screen.</p>
@@ -181,11 +180,11 @@ float.</p>
           
             
   <li>
-    <a href="ReceivingSignalFromView.html" title="Previous Chapter: Receiving a signal from the view"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Receiving a s...</span>
+    <a href="ReceivingSignalFromView.html" title="Previous Chapter: Receiving a signal from the view"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Receiving a sign...</span>
     </a>
   </li>
   <li>
-    <a href="PresenterExercise.html" title="Next Chapter: Presenter Exercise"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Presenter Exercise &raquo;</span>
+    <a href="PresenterExercise.html" title="Next Chapter: Presenter Exercise"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Presenter Exerci... &raquo;</span>
     </a>
   </li>
           

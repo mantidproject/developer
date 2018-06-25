@@ -17,11 +17,10 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '3.12.20180515.1233',
+        VERSION:     '3.12.20180622.2012',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
+        HAS_SOURCE:  true
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
@@ -31,8 +30,7 @@
     <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
     <script type="text/javascript" src="_static/bootstrap-3.3.6/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
+    <link rel="top" title="" href="index.html" />
     <link rel="next" title="Flowchart Creation" href="FlowchartCreation.html" />
     <link rel="prev" title="Tools Overview" href="ToolsOverview.html" />
 
@@ -49,7 +47,7 @@
 
 
   </head>
-  <body role="document">
+  <body>
 
 
 
@@ -122,13 +120,13 @@ the <a class="reference external" href="http://valgrind.org/">valgrind</a> tool 
 repositories.</p>
 <div class="section" id="ubuntu">
 <h3>Ubuntu<a class="headerlink" href="#ubuntu" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">valgrind</span> <span class="n">kcachegrind</span>
+<div class="highlight-python"><div class="highlight"><pre>&gt;&gt; apt-get install valgrind kcachegrind
 </pre></div>
 </div>
 </div>
 <div class="section" id="red-hat-fedora">
 <h3>Red Hat/Fedora<a class="headerlink" href="#red-hat-fedora" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">yum</span> <span class="n">install</span> <span class="n">valgrind</span> <span class="n">kcachegrind</span>
+<div class="highlight-python"><div class="highlight"><pre>&gt;&gt; yum install valgrind kcachegrind
 </pre></div>
 </div>
 </div>
@@ -159,7 +157,7 @@ instruments the code.</p>
 <h3>Profile a Whole Program Run<a class="headerlink" href="#profile-a-whole-program-run" title="Permalink to this headline">¶</a></h3>
 <p>This is the simplest mode of operation. Simply pass the program
 executable, along with any arguments to the valgrind executable:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">valgrind</span> <span class="o">--</span><span class="n">tool</span><span class="o">=</span><span class="n">callgrind</span> <span class="o">--</span><span class="n">dump</span><span class="o">-</span><span class="n">instr</span><span class="o">=</span><span class="n">yes</span> <span class="o">--</span><span class="n">simulate</span><span class="o">-</span><span class="n">cache</span><span class="o">=</span><span class="n">yes</span> <span class="o">--</span><span class="n">collect</span><span class="o">-</span><span class="n">jumps</span><span class="o">=</span><span class="n">yes</span> <span class="o">&lt;</span><span class="n">executable</span><span class="o">&gt;</span> <span class="p">[</span><span class="n">args</span><span class="o">...</span><span class="p">]</span>
+<div class="highlight-python"><div class="highlight"><pre>&gt;&gt; valgrind --tool=callgrind --dump-instr=yes --simulate-cache=yes --collect-jumps=yes &lt;executable&gt; [args...]
 </pre></div>
 </div>
 </div>
@@ -175,36 +173,36 @@ to instruct the profiler what to do when it hits certain points of the
 code.</p>
 <p>As an example take a simple main function composed of several function
 calls:</p>
-<div class="code cpp highlight-default"><div class="highlight"><pre><span></span><span class="nb">int</span> <span class="n">main</span><span class="p">()</span>
-<span class="p">{</span>
-  <span class="n">foo1</span><span class="p">();</span>
-  <span class="n">bar1</span><span class="p">();</span>
-  <span class="n">foo2</span><span class="p">();</span>
-  <span class="n">foo3</span><span class="p">();</span>
-<span class="p">}</span>
+<div class="code cpp highlight-python"><div class="highlight"><pre>int main()
+{
+  foo1();
+  bar1();
+  foo2();
+  foo3();
+}
 </pre></div>
 </div>
-<p>To profile only the call to <code class="docutils literal"><span class="pre">bar1()</span></code> then you would do the following
+<p>To profile only the call to <tt class="docutils literal"><span class="pre">bar1()</span></tt> then you would do the following
 to the code:</p>
-<div class="code cpp highlight-default"><div class="highlight"><pre><span></span><span class="c1">#include &lt;valgrind/callgrind.h&gt;</span>
+<div class="code cpp highlight-python"><div class="highlight"><pre>#include &lt;valgrind/callgrind.h&gt;
 
-<span class="nb">int</span> <span class="n">main</span><span class="p">()</span>
-<span class="p">{</span>
-  <span class="n">foo1</span><span class="p">();</span>
-  <span class="n">CALLGRIND_START_INSTRUMENTATION</span><span class="p">;</span>
-  <span class="n">CALLGRIND_TOGGLE_COLLECT</span><span class="p">;</span>
-  <span class="n">bar1</span><span class="p">();</span>
-  <span class="n">CALLGRIND_TOGGLE_COLLECT</span><span class="p">;</span>
-  <span class="n">CALLGRIND_STOP_INSTRUMENTATION</span><span class="p">;</span>
-  <span class="n">foo2</span><span class="p">();</span>
-  <span class="n">foo3</span><span class="p">();</span>
-<span class="p">}</span>
+int main()
+{
+  foo1();
+  CALLGRIND_START_INSTRUMENTATION;
+  CALLGRIND_TOGGLE_COLLECT;
+  bar1();
+  CALLGRIND_TOGGLE_COLLECT;
+  CALLGRIND_STOP_INSTRUMENTATION;
+  foo2();
+  foo3();
+}
 </pre></div>
 </div>
 <p>After recompiling the code you would then run the profiler again but
 this time adding the <em>&#8211;instr-atstart=no &#8211;collect-atstart=no</em> flags,
 like so</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">valgrind</span> <span class="o">--</span><span class="n">tool</span><span class="o">=</span><span class="n">callgrind</span> <span class="o">--</span><span class="n">dump</span><span class="o">-</span><span class="n">instr</span><span class="o">=</span><span class="n">yes</span> <span class="o">--</span><span class="n">simulate</span><span class="o">-</span><span class="n">cache</span><span class="o">=</span><span class="n">yes</span> <span class="o">--</span><span class="n">collect</span><span class="o">-</span><span class="n">jumps</span><span class="o">=</span><span class="n">yes</span> <span class="o">--</span><span class="n">collect</span><span class="o">-</span><span class="n">atstart</span><span class="o">=</span><span class="n">no</span> <span class="o">--</span><span class="n">instr</span><span class="o">-</span><span class="n">atstart</span><span class="o">=</span><span class="n">no</span> <span class="o">&lt;</span><span class="n">executable</span><span class="o">&gt;</span> <span class="p">[</span><span class="n">args</span><span class="o">...</span><span class="p">]</span>
+<div class="highlight-python"><div class="highlight"><pre>&gt;&gt; valgrind --tool=callgrind --dump-instr=yes --simulate-cache=yes --collect-jumps=yes --collect-atstart=no --instr-atstart=no &lt;executable&gt; [args...]
 </pre></div>
 </div>
 <p>The <em>&#8211;instru-at-start=no</em> is not strictly necessary but it will speed
@@ -222,10 +220,10 @@ reads the information produced by callgrind and creates a list of
 function calls along with information on timings of each of the calls
 during the profiled run. If the source code is available it can also
 show the lines of code that relate to the functions being inspected.</p>
-<div class="figure" id="id1">
+<div class="figure">
 <img alt="Example of KCachegrind display a profile of MantidPlot starting up and closing down" src="_images/KCachegrind_MantidPlot.png" />
-<p class="caption"><span class="caption-text">Example of KCachegrind display a profile of MantidPlot starting up
-and closing down</span></p>
+<p class="caption">Example of KCachegrind display a profile of MantidPlot starting up
+and closing down</p>
 </div>
 <p>By default KCachegrind shows the number of instructions fetched within
 its displays. This can be changed using the drop-down box at the top
@@ -271,7 +269,7 @@ graphical overview of the relative function cost.</p>
     </a>
   </li>
   <li>
-    <a href="FlowchartCreation.html" title="Next Chapter: Flowchart Creation"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Flowchart Creation &raquo;</span>
+    <a href="FlowchartCreation.html" title="Next Chapter: Flowchart Creation"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Flowchart Creati... &raquo;</span>
     </a>
   </li>
           

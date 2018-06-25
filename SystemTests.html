@@ -17,11 +17,10 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '3.12.20180515.1233',
+        VERSION:     '3.12.20180622.2012',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
+        HAS_SOURCE:  true
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
@@ -31,8 +30,7 @@
     <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
     <script type="text/javascript" src="_static/bootstrap-3.3.6/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
+    <link rel="top" title="" href="index.html" />
     <link rel="next" title="Data Files for Testing" href="DataFilesForTesting.html" />
     <link rel="prev" title="Writing Performance Tests" href="WritingPerformanceTests.html" />
 
@@ -49,7 +47,7 @@
 
 
   </head>
-  <body role="document">
+  <body>
 
 
 
@@ -150,22 +148,22 @@ tests scripts on that environment.</p>
 <p>The (python) code for the system tests can be found in the git
 repository at
 <a class="reference external" href="http://github.com/mantidproject/mantid">mantidproject/mantid</a>, under
-the <code class="docutils literal"><span class="pre">Testing/SystemTests</span></code> directory.</p>
+the <tt class="docutils literal"><span class="pre">Testing/SystemTests</span></tt> directory.</p>
 <p>Like their &#8216;stress&#8217; equivalents (<a class="reference external" href="Stress_Tests">stress testing</a>),
 system tests inherit from the stresstesting.MantidStressTest class. The
-methods that need to be overridden are <code class="docutils literal"><span class="pre">runTest(self)</span></code>, where the
-python code that runs the test should be placed, and <code class="docutils literal"><span class="pre">validate(self)</span></code>,
+methods that need to be overridden are <tt class="docutils literal"><span class="pre">runTest(self)</span></tt>, where the
+python code that runs the test should be placed, and <tt class="docutils literal"><span class="pre">validate(self)</span></tt>,
 which should simply return a pair of strings: the name of the final
-workspace that results from the <code class="docutils literal"><span class="pre">runTest</span></code> method and the name of a
+workspace that results from the <tt class="docutils literal"><span class="pre">runTest</span></tt> method and the name of a
 nexus file that should be saved in the ReferenceResults sub-directory in
 the repository. The test code itself is likely to be the output of a
 <em>Save History</em> command, though it can be any python code. In the
 unlikely case of files being used during a system test, implement the
-method <code class="docutils literal"><span class="pre">requiredFiles</span></code> which should return a list of filenames without
+method <tt class="docutils literal"><span class="pre">requiredFiles</span></tt> which should return a list of filenames without
 paths. The file to validate against should be included as well. If any
 of those files are missing the test will be marked as skipped.</p>
-<p>The tests should be added to the <code class="docutils literal"><span class="pre">Testing/SystemTests/tests/analysis</span></code>,
-with the template result going in the <code class="docutils literal"><span class="pre">reference</span></code> sub-folder. It will
+<p>The tests should be added to the <tt class="docutils literal"><span class="pre">Testing/SystemTests/tests/analysis</span></tt>,
+with the template result going in the <tt class="docutils literal"><span class="pre">reference</span></tt> sub-folder. It will
 then be included in the suite of tests from the following night.</p>
 <div class="section" id="specifying-validation">
 <h3><a class="toc-backref" href="#id4">Specifying Validation</a><a class="headerlink" href="#specifying-validation" title="Permalink to this headline">¶</a></h3>
@@ -181,8 +179,8 @@ override the validateMethod on a test with any one of three options.</p>
 <li>ValidateAscii (Benchmark workspace is stored as an ascii file)</li>
 </ul>
 <p>For example:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">validateMethod</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="k">return</span> <span class="s1">&#39;WorkspaceToNeXus&#39;</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">validateMethod</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span> <span class="s">&#39;WorkspaceToNeXus&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -190,7 +188,7 @@ override the validateMethod on a test with any one of three options.</p>
 <h3><a class="toc-backref" href="#id5">No Workspace Validation</a><a class="headerlink" href="#no-workspace-validation" title="Permalink to this headline">¶</a></h3>
 <p>If the system test does not need comparison/validation against a
 standard workpace, then this step can be skipped. Simply omitting the</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 </pre></div>
 </div>
 <p>method from the system test is sufficient.</p>
@@ -198,7 +196,7 @@ standard workpace, then this step can be skipped. Simply omitting the</p>
 <div class="section" id="skipping-tests">
 <h3><a class="toc-backref" href="#id6">Skipping tests</a><a class="headerlink" href="#skipping-tests" title="Permalink to this headline">¶</a></h3>
 <p>Tests can be skipped based on arbitrary criteria by implementing the
-<code class="docutils literal"><span class="pre">skipTests</span></code> method and returning True if your criteria are met, and
+<tt class="docutils literal"><span class="pre">skipTests</span></tt> method and returning True if your criteria are met, and
 False otherwise. Examples are the availability of a data file or of
 certain python modules (e.g. for the XML validation tests).</p>
 <div class="section" id="target-platform-based-on-free-memory">
@@ -206,7 +204,7 @@ certain python modules (e.g. for the XML validation tests).</p>
 <p>Some tests consume a large amount memory resources, and are therefore
 best executed on hardware where enough memory is available. You can set
 a minimum RAM specification by overriding requiredMemoryMB:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">requiredMemoryMB</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">requiredMemoryMB</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="k">return</span> <span class="mi">2000</span>
 </pre></div>
 </div>
@@ -216,11 +214,11 @@ least 2GB of free memory.</p>
 <div class="section" id="id1">
 <h4><a class="toc-backref" href="#id8">Target Platform Based on Free Memory</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
 <p>Some tests require very large files that cannot be placed in the shared
-repository. The <code class="docutils literal"><span class="pre">requiredFiles()</span></code> method returns a list of these files
+repository. The <tt class="docutils literal"><span class="pre">requiredFiles()</span></tt> method returns a list of these files
 so that they test can check that they are all available. If all files
 are not available then the tests are skipped.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">requiredFiles</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;a.nxs&#39;</span><span class="p">,</span> <span class="s1">&#39;b.nxs&#39;</span><span class="p">]</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">requiredFiles</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="s">&#39;a.nxs&#39;</span><span class="p">,</span> <span class="s">&#39;b.nxs&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>The above function limits the test to run on a machine that can find the
@@ -229,18 +227,18 @@ files &#8216;a.nxs&#8217; &amp; &#8216;b.nxs&#8217;</p>
 </div>
 <div class="section" id="set-the-tolerance">
 <h3><a class="toc-backref" href="#id9">Set the Tolerance</a><a class="headerlink" href="#set-the-tolerance" title="Permalink to this headline">¶</a></h3>
-<p>You may specialise the tolerance used by <code class="docutils literal"><span class="pre">CompareWorkspace</span></code> in your
+<p>You may specialise the tolerance used by <tt class="docutils literal"><span class="pre">CompareWorkspace</span></tt> in your
 system test.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">tolerance</span> <span class="o">=</span> <span class="mf">0.00000001</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="bp">self</span><span class="o">.</span><span class="n">tolerance</span> <span class="o">=</span> <span class="mf">0.00000001</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="disable-some-checks">
 <h3><a class="toc-backref" href="#id10">Disable Some Checks</a><a class="headerlink" href="#disable-some-checks" title="Permalink to this headline">¶</a></h3>
-<p>You may disable some checks performed by the <code class="docutils literal"><span class="pre">CompareWorkspaces</span></code>
+<p>You may disable some checks performed by the <tt class="docutils literal"><span class="pre">CompareWorkspaces</span></tt>
 algorithm by appending them to the disableChecking list, which, by
 default, is empty.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># A list of things not to check when validating</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># A list of things not to check when validating</span>
 <span class="bp">self</span><span class="o">.</span><span class="n">disableChecking</span> <span class="o">=</span> <span class="p">[]</span>
 </pre></div>
 </div>
@@ -250,24 +248,24 @@ default, is empty.</p>
 <p>Additional assertions can be used as the basis for your own comparison
 tests. The following assertions are already implemented in the base
 class.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">assertTrue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
-<span class="k">def</span> <span class="nf">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">expected</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
-<span class="k">def</span> <span class="nf">assertDelta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">expected</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
-<span class="k">def</span> <span class="nf">assertLessThan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">expected</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
-<span class="k">def</span> <span class="nf">assertGreaterThan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">expected</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">assertTrue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">expected</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">assertDelta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">expected</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">assertLessThan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">expected</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">assertGreaterThan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">expected</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">):</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="section" id="running-tests-locally">
 <h2><a class="toc-backref" href="#id12">Running Tests Locally</a><a class="headerlink" href="#running-tests-locally" title="Permalink to this headline">¶</a></h2>
-<p>CMake configures a script file called <code class="docutils literal"><span class="pre">systemtest</span></code> (<code class="docutils literal"><span class="pre">systemtest.bat</span></code>
+<p>CMake configures a script file called <tt class="docutils literal"><span class="pre">systemtest</span></tt> (<tt class="docutils literal"><span class="pre">systemtest.bat</span></tt>
 on Windows) in the root of the build directory. This file is the driver
 script to execute the system tests that runs the lower-level
-<code class="docutils literal"><span class="pre">Testing/SystemTests/scripts/runSystemTests.py</span></code> script but ensures
+<tt class="docutils literal"><span class="pre">Testing/SystemTests/scripts/runSystemTests.py</span></tt> script but ensures
 that the environment is set up correctly for that particular build and
 that the required test data has been updated. The script accepts a
-<code class="docutils literal"><span class="pre">-h</span></code> option to print out the standard usage information.</p>
+<tt class="docutils literal"><span class="pre">-h</span></tt> option to print out the standard usage information.</p>
 <p>Usage differs depending on whether you are using a single-configuration
 generator with CMake, for example Makefiles/Ninja, or a
 multi-configuration generator such as Visual Studio or Xcode.</p>
@@ -280,7 +278,7 @@ or &#8216;MinSizeRelease&#8217;&#8216;. Note that the script does not build the 
 the chosen configuration must have already been built. An example to
 execute all of the tests for the release configuration would be (in the
 command-prompt):</p>
-<div class="highlight-sh"><div class="highlight"><pre><span></span>&gt; systemtest -C Release
+<div class="highlight-sh"><div class="highlight"><pre>&gt; systemtest -C Release
 </pre></div>
 </div>
 </div>
@@ -288,19 +286,19 @@ command-prompt):</p>
 <h3><a class="toc-backref" href="#id14">Makefile-like Generators</a><a class="headerlink" href="#makefile-like-generators" title="Permalink to this headline">¶</a></h3>
 <p>The script requires no additional arguments as the configuration is
 fixed when running CMake, e.g.</p>
-<div class="highlight-sh"><div class="highlight"><pre><span></span><span class="nb">cd</span> build
+<div class="highlight-sh"><div class="highlight"><pre><span class="nb">cd </span>build
 systemtest
 </pre></div>
 </div>
 </div>
 <div class="section" id="selecting-tests-to-run">
 <h3><a class="toc-backref" href="#id15">Selecting Tests To Run</a><a class="headerlink" href="#selecting-tests-to-run" title="Permalink to this headline">¶</a></h3>
-<p>The most important option on the script is the <code class="docutils literal"><span class="pre">-R</span></code> option. This
+<p>The most important option on the script is the <tt class="docutils literal"><span class="pre">-R</span></tt> option. This
 restricts the tests that will run to those that match the given regex,
 e.g.</p>
-<div class="highlight-sh"><div class="highlight"><pre><span></span><span class="nb">cd</span> build
+<div class="highlight-sh"><div class="highlight"><pre><span class="nb">cd </span>build
 systemtest -R SNS
-<span class="c1"># or for msvc/xcode</span>
+<span class="c"># or for msvc/xcode</span>
 systemtest -C &lt;cfg&gt; -R SNS
 </pre></div>
 </div>
@@ -309,7 +307,7 @@ systemtest -C &lt;cfg&gt; -R SNS
 <div class="section" id="adding-new-data-references-files">
 <h3><a class="toc-backref" href="#id16">Adding New Data &amp; References Files</a><a class="headerlink" href="#adding-new-data-references-files" title="Permalink to this headline">¶</a></h3>
 <p>The data is managed by CMake&#8217;s external data system that is described by
-<a class="reference internal" href="DataFilesForTesting.html#datafilesfortesting"><span class="std std-ref">Data Files for Testing</span></a>. Please see <a class="reference internal" href="DataFilesForTesting.html#datafilesfortesting-addinganewfile"><span class="std std-ref">Adding A New File(s)</span></a> for how to add new
+<a class="reference internal" href="DataFilesForTesting.html#datafilesfortesting"><em>Data Files for Testing</em></a>. Please see <a class="reference internal" href="DataFilesForTesting.html#datafilesfortesting-addinganewfile"><em>Adding A New File(s)</em></a> for how to add new
 files.</p>
 </div>
 </div>
@@ -336,11 +334,11 @@ files.</p>
           
             
   <li>
-    <a href="WritingPerformanceTests.html" title="Previous Chapter: Writing Performance Tests"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Writing Perfo...</span>
+    <a href="WritingPerformanceTests.html" title="Previous Chapter: Writing Performance Tests"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Writing Performa...</span>
     </a>
   </li>
   <li>
-    <a href="DataFilesForTesting.html" title="Next Chapter: Data Files for Testing"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Data Files fo... &raquo;</span>
+    <a href="DataFilesForTesting.html" title="Next Chapter: Data Files for Testing"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Data Files for T... &raquo;</span>
     </a>
   </li>
           

@@ -17,11 +17,10 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '3.12.20180515.1233',
+        VERSION:     '3.12.20180622.2012',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
+        HAS_SOURCE:  true
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
@@ -31,8 +30,7 @@
     <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
     <script type="text/javascript" src="_static/bootstrap-3.3.6/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
+    <link rel="top" title="" href="index.html" />
     <link rel="next" title="Patch Release Checklist" href="PatchReleaseChecklist.html" />
     <link rel="prev" title="Jenkins Configuration" href="JenkinsConfiguration.html" />
 
@@ -49,7 +47,7 @@
 
 
   </head>
-  <body role="document">
+  <body>
 
 
 
@@ -146,7 +144,7 @@
 </div>
 <p>These are the steps involved in performing a full Mantid release. To
 request or perform a patch release look at the
-<a class="reference internal" href="PatchReleaseChecklist.html#patchreleasechecklist"><span class="std std-ref">patch release checklist</span></a>.</p>
+<a class="reference internal" href="PatchReleaseChecklist.html#patchreleasechecklist"><em>patch release checklist</em></a>.</p>
 <div class="section" id="timeline">
 <h2><a class="toc-backref" href="#id1">Timeline</a><a class="headerlink" href="#timeline" title="Permalink to this headline">¶</a></h2>
 <p>Releases are normally planned to occur on a Friday, therefore this
@@ -268,24 +266,24 @@ on the main index page.</li>
 <li>Disable release deploy jobs by executing
 <a class="reference external" href="http://builds.mantidproject.org/view/All/job/close-release-testing">close-release-testing</a>
 job.</li>
-<li>On the <code class="docutils literal"><span class="pre">release-vX.Y</span></code> branch, update major &amp; minor versions
-accordingly in <code class="docutils literal"><span class="pre">buildconfig/CMake/VersionNumber.cmake</span></code>. Also
-uncomment <code class="docutils literal"><span class="pre">VERSION_PATCH</span></code> and set it to <code class="docutils literal"><span class="pre">0</span></code>.</li>
-<li>Merge <code class="docutils literal"><span class="pre">release</span></code> branch back to <code class="docutils literal"><span class="pre">master</span></code></li>
-<li>Comment out patch number on <code class="docutils literal"><span class="pre">master</span></code> branch</li>
+<li>On the <tt class="docutils literal"><span class="pre">release-vX.Y</span></tt> branch, update major &amp; minor versions
+accordingly in <tt class="docutils literal"><span class="pre">buildconfig/CMake/VersionNumber.cmake</span></tt>. Also
+uncomment <tt class="docutils literal"><span class="pre">VERSION_PATCH</span></tt> and set it to <tt class="docutils literal"><span class="pre">0</span></tt>.</li>
+<li>Merge <tt class="docutils literal"><span class="pre">release</span></tt> branch back to <tt class="docutils literal"><span class="pre">master</span></tt></li>
+<li>Comment out patch number on <tt class="docutils literal"><span class="pre">master</span></tt> branch</li>
 <li>Draft a <a class="reference external" href="https://github.com/mantidproject/mantid/releases">new
 release</a> on
 GitHub. The new tag should be created based of the release branch in
-the form <code class="docutils literal"><span class="pre">vX.Y.Z</span></code></li>
+the form <tt class="docutils literal"><span class="pre">vX.Y.Z</span></tt></li>
 <li>Hit build on <a class="reference external" href="http://builds.mantidproject.org/view/Release%20Pipeline/">release kit
 builds</a>
-and set the <code class="docutils literal"><span class="pre">PACKAGE_SUFFIX</span></code> parameter to an empty string</li>
+and set the <tt class="docutils literal"><span class="pre">PACKAGE_SUFFIX</span></tt> parameter to an empty string</li>
 <li>After all of the packages have been smoke tested build the
-<code class="docutils literal"><span class="pre">release_deploy</span></code> job to put the packages (not windows) on
+<tt class="docutils literal"><span class="pre">release_deploy</span></tt> job to put the packages (not windows) on
 Sourceforge.</li>
-<li>Kick off the build for <code class="docutils literal"><span class="pre">mantidXY</span></code> on RHEL7 for SNS:
+<li>Kick off the build for <tt class="docutils literal"><span class="pre">mantidXY</span></tt> on RHEL7 for SNS:
 <a class="reference external" href="http://builds.mantidproject.org/job/release_clean-rhel7/">http://builds.mantidproject.org/job/release_clean-rhel7/</a> with suffix
-<code class="docutils literal"><span class="pre">XY</span></code></li>
+<tt class="docutils literal"><span class="pre">XY</span></tt></li>
 <li>Make sure someone at ISIS signs the Windows binary and uploads this
 manually to Sourceforge</li>
 <li>Set the default package for each OS to the new version</li>
@@ -301,11 +299,11 @@ following the instructions
 <ul class="simple">
 <li>Send an email, including the text of the release notes, to the
 following lists</li>
-<li><code class="docutils literal"><span class="pre">mantid-announce&#64;mantidproject.org</span></code></li>
-<li><code class="docutils literal"><span class="pre">mantid-developers&#64;mantidproject.org</span></code></li>
-<li><code class="docutils literal"><span class="pre">nobugs&#64;nobugsconference.org</span></code></li>
-<li><code class="docutils literal"><span class="pre">news&#64;neutronsources.org</span></code></li>
-<li><code class="docutils literal"><span class="pre">neutron&#64;neutronsources.org</span></code></li>
+<li><tt class="docutils literal"><span class="pre">mantid-announce&#64;mantidproject.org</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">mantid-developers&#64;mantidproject.org</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">nobugs&#64;nobugsconference.org</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">news&#64;neutronsources.org</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">neutron&#64;neutronsources.org</span></tt></li>
 <li>Create a new item on the forum news</li>
 <li>Close the release milestone in the issue tracker</li>
 </ul>
@@ -319,13 +317,13 @@ automatically if a new
 created on GitHub.</p>
 <ul class="simple">
 <li>Make sure that you have updated your local copy of git to grab the
-new tag. <code class="docutils literal"><span class="pre">git</span> <span class="pre">fetch</span> <span class="pre">-p</span></code></li>
+new tag. <tt class="docutils literal"><span class="pre">git</span> <span class="pre">fetch</span> <span class="pre">-p</span></tt></li>
 <li>If the script below fails you may need to update the authors list and
-push the updates to master. Look for <code class="docutils literal"><span class="pre">authors.py</span></code> in the
-<code class="docutils literal"><span class="pre">tools/DOI</span></code> directory. It does not matter that these are not on the
+push the updates to master. Look for <tt class="docutils literal"><span class="pre">authors.py</span></tt> in the
+<tt class="docutils literal"><span class="pre">tools/DOI</span></tt> directory. It does not matter that these are not on the
 release branch.</li>
 </ul>
-<p><code class="docutils literal"><span class="pre">python</span> <span class="pre">tools/DOI/doi.py</span>&#160; <span class="pre">--username=_____</span>&#160; <span class="pre">X.Y.Z</span></code></p>
+<p><tt class="docutils literal"><span class="pre">python</span> <span class="pre">tools/DOI/doi.py</span>&nbsp; <span class="pre">--username=_____</span>&nbsp; <span class="pre">X.Y.Z</span></tt></p>
 <ul class="simple">
 <li>Major/minor/patch version numbers must be supplied, as well as a
 username which can be found in the <a class="reference external" href="http://www.mantidproject.org/Protected_Information">Protected
@@ -362,11 +360,11 @@ next release.</li>
           
             
   <li>
-    <a href="JenkinsConfiguration.html" title="Previous Chapter: Jenkins Configuration"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Jenkins Configuration</span>
+    <a href="JenkinsConfiguration.html" title="Previous Chapter: Jenkins Configuration"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Jenkins Configur...</span>
     </a>
   </li>
   <li>
-    <a href="PatchReleaseChecklist.html" title="Next Chapter: Patch Release Checklist"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Patch Release... &raquo;</span>
+    <a href="PatchReleaseChecklist.html" title="Next Chapter: Patch Release Checklist"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Patch Release Ch... &raquo;</span>
     </a>
   </li>
           

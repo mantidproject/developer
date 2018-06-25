@@ -17,11 +17,10 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '3.12.20180515.1233',
+        VERSION:     '3.12.20180622.2012',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
+        HAS_SOURCE:  true
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
@@ -31,8 +30,7 @@
     <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
     <script type="text/javascript" src="_static/bootstrap-3.3.6/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
+    <link rel="top" title="" href="index.html" />
     <link rel="next" title="Profiling with Valgrind" href="ProfilingWithValgrind.html" />
     <link rel="prev" title="Design Document Guidelines" href="DesignDocumentGuides.html" />
 
@@ -49,7 +47,7 @@
 
 
   </head>
-  <body role="document">
+  <body>
 
 
 
@@ -114,7 +112,7 @@
 script located in /buildconfig/. It generates the .cpp, .h and test
 files for a class along with some code stubs. It can also flesh out more
 methods for new Algorithms, using the &#8220;&#8211;alg&#8221; option.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>usage: class_maker.py [-h] [--force] [--test] [--alg] SUBPROJECT CLASSNAME
+<div class="highlight-python"><div class="highlight"><pre>usage: class_maker.py [-h] [--force] [--test] [--alg] SUBPROJECT CLASSNAME
 Utility to create Mantid class files: header, source and test.
 positional arguments:
  SUBPROJECT  The subproject under Framework/; e.g. Kernel
@@ -133,13 +131,13 @@ optional arguments:
 <p>This python script is located in in /buidconfig/. It will move a class
 from one subproject to another and/or rename the class. Namespaces and
 cmakelists are adjusted. For details, run:</p>
-<p><code class="docutils literal"><span class="pre">buildconfig/move_class.py</span> <span class="pre">--help</span></code></p>
+<p><tt class="docutils literal"><span class="pre">buildconfig/move_class.py</span> <span class="pre">--help</span></tt></p>
 </div>
 <div class="section" id="deleting-a-class-delete-class-py">
 <h2>Deleting a class: delete_class.py<a class="headerlink" href="#deleting-a-class-delete-class-py" title="Permalink to this headline">¶</a></h2>
 <p>This python script is located in in /buildconfig/. It will delete a
 class from one subproject. CMakeList.txt is adjusted. For details, run:</p>
-<p><code class="docutils literal"><span class="pre">buildconfig/delete_class.py</span> <span class="pre">--help</span></code></p>
+<p><tt class="docutils literal"><span class="pre">buildconfig/delete_class.py</span> <span class="pre">--help</span></tt></p>
 </div>
 <div class="section" id="leak-checking-etc">
 <h2>Leak checking etc<a class="headerlink" href="#leak-checking-etc" title="Permalink to this headline">¶</a></h2>
@@ -151,7 +149,7 @@ class from one subproject. CMakeList.txt is adjusted. For details, run:</p>
 <li>Slow but thorough</li>
 <li>Useful options to run with</li>
 </ul>
-<p><code class="docutils literal"><span class="pre">valgrind</span> <span class="pre">--tool=memcheck</span> <span class="pre">--leak-check=full</span> <span class="pre">--show-reachable=yes</span> <span class="pre">--num-callers=20</span> <span class="pre">--track-fds=yes</span> <span class="pre">--track-origins=yes</span> <span class="pre">--freelist-vol=500000000</span> <span class="pre">``\</span> <span class="pre">\</span> <span class="pre">``</span> <span class="pre">[args...]</span></code></p>
+<p><tt class="docutils literal"><span class="pre">valgrind</span> <span class="pre">--tool=memcheck</span> <span class="pre">--leak-check=full</span> <span class="pre">--show-reachable=yes</span> <span class="pre">--num-callers=20</span> <span class="pre">--track-fds=yes</span> <span class="pre">--track-origins=yes</span> <span class="pre">--freelist-vol=500000000</span> <span class="pre">``\</span> <span class="pre">\</span> <span class="pre">``</span> <span class="pre">[args...]</span></tt></p>
 </div>
 <div class="section" id="windows">
 <h3>Windows<a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h3>
@@ -160,9 +158,9 @@ class from one subproject. CMakeList.txt is adjusted. For details, run:</p>
 <li>Setup the additional paths as defined in the readme file</li>
 <li>Adjust the configuration file, &#8220;C:Program FilesVisual Leak
 Detectorvld.ini&#8221; to output to both File and debugger by changing the
-<code class="docutils literal"><span class="pre">ReportTo</span></code> to</li>
+<tt class="docutils literal"><span class="pre">ReportTo</span></tt> to</li>
 </ol>
-<p><code class="docutils literal"><span class="pre">ReportTo</span> <span class="pre">=</span> <span class="pre">both</span></code></p>
+<p><tt class="docutils literal"><span class="pre">ReportTo</span> <span class="pre">=</span> <span class="pre">both</span></tt></p>
 <ol class="arabic simple">
 <li>Add #include &lt;vld.h&gt; to the system.h file in Kernel</li>
 <li>Compile everything in debug</li>
@@ -190,7 +188,7 @@ the test directory.</li>
 <p><a class="reference external" href="http://kcachegrind.sourceforge.net/cgi-bin/show.cgi/KcacheGrindIndex">Callgrind/KCachegrind</a></p>
 <ul class="simple">
 <li>KCachegrind visualizes callgrind output.</li>
-<li>See <a class="reference internal" href="ProfilingWithValgrind.html#profilingwithvalgrind"><span class="std std-ref">Profiling With Valgrind</span></a> for help on
+<li>See <a class="reference internal" href="ProfilingWithValgrind.html#profilingwithvalgrind"><em>Profiling With Valgrind</em></a> for help on
 running callgrind</li>
 </ul>
 <p><a class="reference external" href="https://github.com/gperftools/gperftools">gperftools</a></p>
@@ -224,23 +222,23 @@ should be fine (e.g. yum or apt-get).</li>
 <a class="reference external" href="https://code.google.com/p/include-what-you-use/source/browse/trunk/iwyu_tool.py">iwyu_tool.py</a>
 which is in the project&#8217;s repository, but may not be installed if you
 got it from your operating system locations (e.g. yum).</li>
-<li>Run <code class="docutils literal"><span class="pre">cmake</span> <span class="pre">-DCMAKE_EXPORT_COMPILE_COMMANDS=TRUE</span></code>. This will
-generate an extra file, <code class="docutils literal"><span class="pre">compile_commands.json</span></code>, in your build area
+<li>Run <tt class="docutils literal"><span class="pre">cmake</span> <span class="pre">-DCMAKE_EXPORT_COMPILE_COMMANDS=TRUE</span></tt>. This will
+generate an extra file, <tt class="docutils literal"><span class="pre">compile_commands.json</span></tt>, in your build area
 which has instructions on compiling every file in mantid.</li>
-<li>Run <code class="docutils literal"><span class="pre">iwyu_tool.py</span> <span class="pre">-p</span> <span class="pre">`pwd</span></code> 2&gt; iwyu.log` to generate the
-report of changes redirecting into the file <code class="docutils literal"><span class="pre">iwyu.log</span></code>. This will
+<li>Run <tt class="docutils literal"><span class="pre">iwyu_tool.py</span> <span class="pre">-p</span> <span class="pre">`pwd</span></tt> 2&gt; iwyu.log` to generate the
+report of changes redirecting into the file <tt class="docutils literal"><span class="pre">iwyu.log</span></tt>. This will
 take a long time since it is going through the whole repository. If
 you want it for a single file, then supply that as an additional
 argument with full path. Only one file can be supplied at a time.</li>
-<li>Run <code class="docutils literal"><span class="pre">fix_includes</span> <span class="pre">&lt;</span> <span class="pre">iwyu.log</span></code> and compile the results. Depending on
+<li>Run <tt class="docutils literal"><span class="pre">fix_includes</span> <span class="pre">&lt;</span> <span class="pre">iwyu.log</span></tt> and compile the results. Depending on
 how you installed iwyu, the program may be called
-<code class="docutils literal"><span class="pre">fix_includes.py</span></code>. If it doesn&#8217;t compile, the most likely suspect
+<tt class="docutils literal"><span class="pre">fix_includes.py</span></tt>. If it doesn&#8217;t compile, the most likely suspect
 is that iwyu included a private header. See <a class="reference external" href="https://code.google.com/p/include-what-you-use/wiki/InstructionsForUsers#How_to_Run">iwyu instructions for
 users</a>
 for ways to handle this. Generally, they suggest deleting the
 offending lines.</li>
 <li>Check that your build path didn&#8217;t make it into source files. Since
-<code class="docutils literal"><span class="pre">compile_commands.json</span></code> has full paths, iwyu will put full paths in
+<tt class="docutils literal"><span class="pre">compile_commands.json</span></tt> has full paths, iwyu will put full paths in
 the include statements. This will not produce an error on your
 system, but it will on the build servers. The easiest way to check is
 to use <a class="reference external" href="https://github.com/ggreer/the_silver_searcher">the silver
@@ -248,9 +246,9 @@ searcher</a> to check
 for your username in your source tree.</li>
 <li>Enjoy your success.</li>
 </ol>
-<p><strong>Note:</strong> <code class="docutils literal"><span class="pre">iwyu</span></code> outputs to <code class="docutils literal"><span class="pre">stderr</span></code> and always returns a failure
+<p><strong>Note:</strong> <tt class="docutils literal"><span class="pre">iwyu</span></tt> outputs to <tt class="docutils literal"><span class="pre">stderr</span></tt> and always returns a failure
 status code since it generates no output. The output stream also affects
-<code class="docutils literal"><span class="pre">iwyu_tool.py</span></code></p>
+<tt class="docutils literal"><span class="pre">iwyu_tool.py</span></tt></p>
 </div>
 </div>
 
@@ -267,11 +265,11 @@ status code since it generates no output. The output stream also affects
           
             
   <li>
-    <a href="DesignDocumentGuides.html" title="Previous Chapter: Design Document Guidelines"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Design Docume...</span>
+    <a href="DesignDocumentGuides.html" title="Previous Chapter: Design Document Guidelines"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Design Document ...</span>
     </a>
   </li>
   <li>
-    <a href="ProfilingWithValgrind.html" title="Next Chapter: Profiling with Valgrind"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Profiling wit... &raquo;</span>
+    <a href="ProfilingWithValgrind.html" title="Next Chapter: Profiling with Valgrind"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Profiling with V... &raquo;</span>
     </a>
   </li>
           

@@ -17,11 +17,10 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '3.12.20180515.1233',
+        VERSION:     '3.12.20180622.2012',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
+        HAS_SOURCE:  true
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
@@ -31,8 +30,7 @@
     <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
     <script type="text/javascript" src="_static/bootstrap-3.3.6/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
+    <link rel="top" title="" href="index.html" />
     <link rel="next" title="Python vs C++ Algorithms" href="PythonVSCppAlgorithms.html" />
     <link rel="prev" title="Logging" href="Logging.html" />
 
@@ -49,7 +47,7 @@
 
 
   </head>
-  <body role="document">
+  <body>
 
 
 
@@ -109,7 +107,7 @@
   <div class="section" id="multithreading-in-algorithms">
 <h1>Multithreading in Algorithms<a class="headerlink" href="#multithreading-in-algorithms" title="Permalink to this headline">¶</a></h1>
 <p>Mantid uses <a class="reference external" href="http://openmp.org/wp/about-openmp/">OpenMP</a> to improve
-performance within algorithms by parallelizing <code class="docutils literal"><span class="pre">for</span></code> loops. A tutorial
+performance within algorithms by parallelizing <tt class="docutils literal"><span class="pre">for</span></tt> loops. A tutorial
 devoted to the technology can be found <a class="reference external" href="https://computing.llnl.gov/tutorials/openMP/">here</a>.</p>
 <p>Access to the OpenMP API is via a set of macros defined in
 <a class="reference external" href="https://github.com/mantidproject/mantid/blob/master/Framework/Kernel/inc/MantidKernel/MultiThreaded.h">MultiThreading.h</a>.
@@ -118,16 +116,16 @@ compilers that don&#8217;t have OpenMP available, as well as providing
 protection against multithreading when non-thread-safe workspaces are in use.</p>
 <p>The canonical way to use OpenMP in an algorithm loop (typically
 one over the spectra in a workspace) is as follows:</p>
-<div class="code cpp highlight-default"><div class="highlight"><pre><span></span><span class="n">PARALLEL_FOR_IF</span><span class="p">(</span><span class="n">Kernel</span><span class="p">::</span><span class="n">threadSafe</span><span class="p">(</span><span class="o">*</span><span class="n">inputWS</span><span class="p">,</span> <span class="o">*</span><span class="n">outputWS</span><span class="p">))</span>
-<span class="k">for</span> <span class="p">(</span><span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">numSpec</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="n">PARALLEL_START_INTERUPT_REGION</span>
+<div class="code cpp highlight-python"><div class="highlight"><pre>PARALLEL_FOR_IF(Kernel::threadSafe(*inputWS, *outputWS))
+for (int i = 0; i &lt; numSpec; ++i)
+{
+  PARALLEL_START_INTERUPT_REGION
 
-  <span class="o">//</span> <span class="o">....</span> <span class="n">algorithm</span> <span class="n">code</span> <span class="o">....</span>
+  // .... algorithm code ....
 
-  <span class="n">PARALLEL_END_INTERUPT_REGION</span>
-<span class="p">}</span>
-<span class="n">PARALLEL_CHECK_INTERUPT_REGION</span>
+  PARALLEL_END_INTERUPT_REGION
+}
+PARALLEL_CHECK_INTERUPT_REGION
 </pre></div>
 </div>
 <p>The main work is in the first statement, which contains the
@@ -146,13 +144,13 @@ Note that a write to a workspace data spectrum selected by the loop
 index is not typically a shared write (though see below).</p>
 <p>One gotcha comes from the use of copy-on-write pointers to store the
 workspace data. Here&#8217;s an example:</p>
-<div class="code cpp highlight-default"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Get</span> <span class="n">references</span> <span class="n">to</span> <span class="n">the</span> <span class="n">x</span> <span class="n">data</span>
-<span class="n">const</span> <span class="n">auto</span><span class="o">&amp;</span> <span class="n">xIn</span> <span class="o">=</span> <span class="n">inputWS</span><span class="o">-&gt;</span><span class="n">x</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
-<span class="n">auto</span><span class="o">&amp;</span> <span class="n">xOut</span> <span class="o">=</span> <span class="n">outputWS</span><span class="o">-&gt;</span><span class="n">mutableX</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<div class="code cpp highlight-python"><div class="highlight"><pre>// Get references to the x data
+const auto&amp; xIn = inputWS-&gt;x(i);
+auto&amp; xOut = outputWS-&gt;mutableX(i);
 </pre></div>
 </div>
 <p>This can cause problems in the case where the input and output
-workspaces are the same. Although the call to <code class="docutils literal"><span class="pre">outputWS-&gt;x()</span></code> to get a
+workspaces are the same. Although the call to <tt class="docutils literal"><span class="pre">outputWS-&gt;x()</span></tt> to get a
 reference to the output data may look innocuous, in the case where
 different spectra are pointing to the same underlying data array this
 call will cause the array to be copied, which will invalidate the
@@ -179,7 +177,7 @@ case by reversing the two lines).</p>
     </a>
   </li>
   <li>
-    <a href="PythonVSCppAlgorithms.html" title="Next Chapter: Python vs C++ Algorithms"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Python vs C++... &raquo;</span>
+    <a href="PythonVSCppAlgorithms.html" title="Next Chapter: Python vs C++ Algorithms"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Python vs C++ Al... &raquo;</span>
     </a>
   </li>
           
