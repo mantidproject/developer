@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '3.12.20180622.2012',
+        VERSION:     '3.12.20180705.707',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -47,7 +47,7 @@
 
 
   </head>
-  <body>
+  <body role="document">
 
 
 
@@ -114,9 +114,9 @@ useful introductory presentation can be found <a class="reference external" href
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="parsing">
 <h3>Parsing<a class="headerlink" href="#parsing" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &lt;Poco/DOM/Document.h&gt;</span>
-<span class="cp">#include &lt;Poco/DOM/DOMParser.h&gt;</span>
-<span class="cp">#include &lt;Poco/DOM/Element.h&gt;</span>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include</span> <span class="cpf">&lt;Poco/DOM/Document.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;Poco/DOM/DOMParser.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;Poco/DOM/Element.h&gt;</span><span class="cp"></span>
 
 <span class="n">Poco</span><span class="o">::</span><span class="n">XML</span><span class="o">::</span><span class="n">DOMParser</span> <span class="n">pParser</span><span class="p">;</span>
 <span class="n">Poco</span><span class="o">::</span><span class="n">AutoPtr</span><span class="o">&lt;</span><span class="n">Poco</span><span class="o">::</span><span class="n">XML</span><span class="o">::</span><span class="n">Document</span><span class="o">&gt;</span> <span class="n">pDoc</span><span class="p">;</span>
@@ -159,11 +159,11 @@ useful introductory presentation can be found <a class="reference external" href
 </div>
 <div class="section" id="avoid-nodelist">
 <h2>Avoid NodeList<a class="headerlink" href="#avoid-nodelist" title="Permalink to this headline">¶</a></h2>
-<p>There are numerous functions that return a <tt class="docutils literal"><span class="pre">Poco::XML::NodeList</span></tt>. You
+<p>There are numerous functions that return a <code class="docutils literal"><span class="pre">Poco::XML::NodeList</span></code>. You
 should avoid using them and the list they return as best you can.</p>
-<p>NodeList is a very inefficient container. Its <tt class="docutils literal"><span class="pre">item</span></tt> method has a cost
-equivalent to the value of <tt class="docutils literal"><span class="pre">i</span></tt> given to it, and its <tt class="docutils literal"><span class="pre">length</span></tt> method
-a cost of <tt class="docutils literal"><span class="pre">n</span></tt>, where <tt class="docutils literal"><span class="pre">n</span></tt> is the number of nodes in the list.</p>
+<p>NodeList is a very inefficient container. Its <code class="docutils literal"><span class="pre">item</span></code> method has a cost
+equivalent to the value of <code class="docutils literal"><span class="pre">i</span></code> given to it, and its <code class="docutils literal"><span class="pre">length</span></code> method
+a cost of <code class="docutils literal"><span class="pre">n</span></code>, where <code class="docutils literal"><span class="pre">n</span></code> is the number of nodes in the list.</p>
 <p>This means that running the following is horrendously slow:</p>
 <div class="highlight-cpp"><div class="highlight"><pre><span class="c1">// NEVER DO THIS</span>
 <span class="n">Poco</span><span class="o">::</span><span class="n">AutoPtr</span><span class="o">&lt;</span><span class="n">Poco</span><span class="o">::</span><span class="n">XML</span><span class="o">::</span><span class="n">NodeList</span><span class="o">&gt;</span> <span class="n">pElems</span> <span class="o">=</span> <span class="n">pElem</span><span class="o">-&gt;</span><span class="n">getElementsByTagName</span><span class="p">(</span><span class="s">&quot;foo&quot;</span><span class="p">);</span>
@@ -173,7 +173,7 @@ a cost of <tt class="docutils literal"><span class="pre">n</span></tt>, where <t
 <span class="c1">// NEVER DO THIS</span>
 </pre></div>
 </div>
-<p>Even if the compiler is smart enough to optimise <tt class="docutils literal"><span class="pre">pElems-&gt;length()</span></tt> to
+<p>Even if the compiler is smart enough to optimise <code class="docutils literal"><span class="pre">pElems-&gt;length()</span></code> to
 a single call, we still have N² + N performance at best. Instead, we
 should <strong>always</strong> use the iteration example given earlier, as that runs
 in N time, instead of N².</p>
@@ -193,7 +193,7 @@ in N time, instead of N².</p>
           
             
   <li>
-    <a href="EventWorkspaceDev.html" title="Previous Chapter: Event Workspace Development"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Event Workspace ...</span>
+    <a href="EventWorkspaceDev.html" title="Previous Chapter: Event Workspace Development"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Event Workspa...</span>
     </a>
   </li>
   <li>

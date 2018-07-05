@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '3.12.20180622.2012',
+        VERSION:     '3.12.20180705.707',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -48,7 +48,7 @@
 
 
   </head>
-  <body>
+  <body role="document">
 
 
 
@@ -127,52 +127,52 @@ pressed. First we will start with the View:</p>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">view</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">button</span> <span class="o">=</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QPushButton</span><span class="p">(</span><span class="s">&#39;Hi&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">button</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="s">&quot;background-color:lightgrey&quot;</span><span class="p">)</span>
-        <span class="c"># connect button to signal</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">button</span> <span class="o">=</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QPushButton</span><span class="p">(</span><span class="s1">&#39;Hi&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">button</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="s2">&quot;background-color:lightgrey&quot;</span><span class="p">)</span>
+        <span class="c1"># connect button to signal</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">button</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">btn_click</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QLabel</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s">&quot;Button&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s2">&quot;Button&quot;</span><span class="p">)</span>
 
-        <span class="c"># add widgets to layout</span>
+        <span class="c1"># add widgets to layout</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sub_layout</span> <span class="o">=</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QHBoxLayout</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sub_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sub_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">button</span><span class="p">)</span>
 
         <span class="n">grid</span> <span class="o">=</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QVBoxLayout</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="n">grid</span><span class="o">.</span><span class="n">addLayout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sub_layout</span><span class="p">)</span>
-        <span class="c"># set the layout for the view widget</span>
+        <span class="c1"># set the layout for the view widget</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">setLayout</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span>
 
-    <span class="c">#send signals</span>
+    <span class="c1">#send signals</span>
     <span class="k">def</span> <span class="nf">btn_click</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">print</span> <span class="p">(</span><span class="s">&quot;hellow from view&quot;</span><span class="p">)</span>
+        <span class="k">print</span> <span class="p">(</span><span class="s2">&quot;hellow from view&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">doSomethingSignal</span><span class="o">.</span><span class="n">emit</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>The above code has two new additions. The first is the creation of a
 custom signal on line eight. It is also possible to pass objects with
-the signals. The second addition is that <tt class="docutils literal"><span class="pre">btn_click</span></tt> now emits the
+the signals. The second addition is that <code class="docutils literal"><span class="pre">btn_click</span></code> now emits the
 custom signal and will be caught by the Presenter.</p>
 <p>The Presenter is initialised with the View and must be a member of the
 Presenter class. It is therefore possible to change the View by
 passing a different one to the presenter. For example you may want to
 have the widgets in a grid or in a table. The Presenter connects the
-custom signal from the View to its own function (<tt class="docutils literal"><span class="pre">handleButton</span></tt>).</p>
+custom signal from the View to its own function (<code class="docutils literal"><span class="pre">handleButton</span></code>).</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="p">(</span><span class="n">absolute_import</span><span class="p">,</span> <span class="n">division</span><span class="p">,</span> <span class="n">print_function</span><span class="p">)</span>
 
 <span class="k">class</span> <span class="nc">Presenter</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 
-    <span class="c"># pass the view and model into the presenter</span>
+    <span class="c1"># pass the view and model into the presenter</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">view</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">view</span> <span class="o">=</span> <span class="n">view</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">doSomethingSignal</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">handleButton</span><span class="p">)</span>
 
-    <span class="c"># handle signals</span>
+    <span class="c1"># handle signals</span>
     <span class="k">def</span> <span class="nf">handleButton</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">print</span><span class="p">(</span><span class="s">&quot;hello world, from the presenter&quot;</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;hello world, from the presenter&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>The main is now:</p>
@@ -196,10 +196,10 @@ custom signal from the View to its own function (<tt class="docutils literal"><s
         <span class="bp">self</span><span class="o">.</span><span class="n">window</span> <span class="o">=</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QMainWindow</span><span class="p">()</span>
         <span class="n">my_view</span> <span class="o">=</span> <span class="n">view</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">my_presenter</span> <span class="o">=</span> <span class="n">presenter</span><span class="o">.</span><span class="n">Presenter</span><span class="p">(</span><span class="n">my_view</span><span class="p">)</span>
-        <span class="c"># set the view for the main window</span>
+        <span class="c1"># set the view for the main window</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">setCentralWidget</span><span class="p">(</span><span class="n">my_view</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="s">&quot;view tutorial&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="s2">&quot;view tutorial&quot;</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">qapp</span><span class="p">():</span>
         <span class="k">if</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QApplication</span><span class="o">.</span><span class="n">instance</span><span class="p">():</span>
@@ -233,11 +233,11 @@ Presenter and the View could easily be replaced.</p>
           
             
   <li>
-    <a href="ViewExercise1Solution.html" title="Previous Chapter: View Exercise 1 Solution"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; View Exercise 1 ...</span>
+    <a href="ViewExercise1Solution.html" title="Previous Chapter: View Exercise 1 Solution"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; View Exercise...</span>
     </a>
   </li>
   <li>
-    <a href="ExtractInfoFromView.html" title="Next Chapter: Extracting Information from the View"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Extracting Infor... &raquo;</span>
+    <a href="ExtractInfoFromView.html" title="Next Chapter: Extracting Information from the View"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Extracting In... &raquo;</span>
     </a>
   </li>
           

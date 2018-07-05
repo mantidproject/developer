@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '3.12.20180622.2012',
+        VERSION:     '3.12.20180705.707',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -47,7 +47,7 @@
 
 
   </head>
-  <body>
+  <body role="document">
 
 
 
@@ -131,7 +131,7 @@ to install some additional packages as shown below:</p>
   boost-python3-devel python3-h5py python3-yaml
 </pre></div>
 </div>
-<p>then set <tt class="docutils literal"><span class="pre">-DPYTHON_EXECUTABLE=/usr/bin/python3</span></tt> when running cmake before building.</p>
+<p>then set <code class="docutils literal"><span class="pre">-DPYTHON_EXECUTABLE=/usr/bin/python3</span></code> when running cmake before building.</p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">If any of these packages are installed via pip, this could cause conflicts.
@@ -149,16 +149,16 @@ changes document. For a shorter overview see
 module. These make it easier to write code that is compatible with both versions.</p>
 <p>This cheat sheet provides helpful examples of how to write code in a 2/3 compatible manner. Where an
 option is given to use either the <a class="reference external" href="https://pythonhosted.org/six/">six</a> or
-<a class="reference external" href="https://pypi.python.org/pypi/future">future</a> (not to be confused with <tt class="docutils literal"><span class="pre">__future__</span></tt>!) modules
-then <tt class="docutils literal"><span class="pre">six</span></tt> is used.</p>
+<a class="reference external" href="https://pypi.python.org/pypi/future">future</a> (not to be confused with <code class="docutils literal"><span class="pre">__future__</span></code>!) modules
+then <code class="docutils literal"><span class="pre">six</span></code> is used.</p>
 <p>All new code should be written to be compatible with Python 2 &amp; 3 and as a minimum the first import
 line of the module should be:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="p">(</span><span class="n">absolute_import</span><span class="p">,</span> <span class="n">division</span><span class="p">,</span> <span class="n">print_function</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>It is quite common to also see <tt class="docutils literal"><span class="pre">unicode_literals</span></tt> in the above import list, however, when running
-under Python 2 <tt class="docutils literal"><span class="pre">Boost.Python</span></tt> will not automatically convert a Python <tt class="docutils literal"><span class="pre">str</span></tt> to C++ <tt class="docutils literal"><span class="pre">std::string</span></tt>
-automatically if the string is unicode. When running with Python 3 <tt class="docutils literal"><span class="pre">Boost.Python</span></tt> will do this
+<p>It is quite common to also see <code class="docutils literal"><span class="pre">unicode_literals</span></code> in the above import list, however, when running
+under Python 2 <code class="docutils literal"><span class="pre">Boost.Python</span></code> will not automatically convert a Python <code class="docutils literal"><span class="pre">str</span></code> to C++ <code class="docutils literal"><span class="pre">std::string</span></code>
+automatically if the string is unicode. When running with Python 3 <code class="docutils literal"><span class="pre">Boost.Python</span></code> will do this
 conversion automatically for unicode strings so this is in fact not a huge issue going forward.</p>
 </div>
 <div class="section" id="migrating-from-python-2-to-3">
@@ -169,12 +169,12 @@ conversion automatically for unicode strings so this is in fact not a huge issue
 <div class="last line-block">
 <div class="line">To perform the following procedure on windows:</div>
 <div class="line">1. Git Bash or similar will be required.</div>
-<div class="line">2. To run the <tt class="docutils literal"><span class="pre">2to3</span></tt> script you will need to start the command-prompt.bat in the build directory and run <tt class="docutils literal"><span class="pre">%PYTHONHOME%\Scripts\2to3</span></tt></div>
+<div class="line">2. To run the <code class="docutils literal"><span class="pre">2to3</span></code> script you will need to start the command-prompt.bat in the build directory and run <code class="docutils literal"><span class="pre">%PYTHONHOME%\Scripts\2to3</span></code></div>
 </div>
 </div>
-<p>Run the following script to run the python 2 to 3 translation tool and rename the file to <tt class="docutils literal"><span class="pre">filename.py.bak</span></tt></p>
+<p>Run the following script to run the python 2 to 3 translation tool and rename the file to <code class="docutils literal"><span class="pre">filename.py.bak</span></code></p>
 <div class="highlight-sh"><div class="highlight"><pre>2to3 --no-diffs -w filename.py
-mv filename.py<span class="o">{</span>,.bak<span class="o">}</span>;
+mv filename.py<span class="o">{</span>,.bak<span class="o">}</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Run <strong>one</strong> of the following commands to append the import statement listed above.</p>
@@ -188,23 +188,23 @@ mv filename.py<span class="o">{</span>,.bak<span class="o">}</span>;
 </div>
 <p>Check each changed block,</p>
 <ul class="simple">
-<li>If any change has replaced <tt class="docutils literal"><span class="pre">xrange</span></tt> with <tt class="docutils literal"><span class="pre">range</span></tt> then add <tt class="docutils literal"><span class="pre">from</span> <span class="pre">six.moves</span> <span class="pre">import</span> <span class="pre">range</span></tt>
+<li>If any change has replaced <code class="docutils literal"><span class="pre">xrange</span></code> with <code class="docutils literal"><span class="pre">range</span></code> then add <code class="docutils literal"><span class="pre">from</span> <span class="pre">six.moves</span> <span class="pre">import</span> <span class="pre">range</span></code>
 to the imports list</li>
-<li>If any change has replaced <tt class="docutils literal"><span class="pre">ifilterfalse</span></tt> with <tt class="docutils literal"><span class="pre">filterfalse</span></tt> from <tt class="docutils literal"><span class="pre">itertools</span></tt> then replace a
-statement like <tt class="docutils literal"><span class="pre">from</span> <span class="pre">itertools</span> <span class="pre">import</span> <span class="pre">filterfalse</span></tt> with <tt class="docutils literal"><span class="pre">from</span> <span class="pre">six.moves</span> <span class="pre">import</span> <span class="pre">filterfalse</span></tt> in the
+<li>If any change has replaced <code class="docutils literal"><span class="pre">ifilterfalse</span></code> with <code class="docutils literal"><span class="pre">filterfalse</span></code> from <code class="docutils literal"><span class="pre">itertools</span></code> then replace a
+statement like <code class="docutils literal"><span class="pre">from</span> <span class="pre">itertools</span> <span class="pre">import</span> <span class="pre">filterfalse</span></code> with <code class="docutils literal"><span class="pre">from</span> <span class="pre">six.moves</span> <span class="pre">import</span> <span class="pre">filterfalse</span></code> in the
 imports list. There are more cases like this documented <a class="reference external" href="https://pythonhosted.org/six/#module-six.moves">here</a>.</li>
-<li>If any change has replaced <tt class="docutils literal"><span class="pre">for</span> <span class="pre">k,</span> <span class="pre">v</span> <span class="pre">in</span> <span class="pre">knights.iteritems()</span></tt> with <tt class="docutils literal"><span class="pre">for</span> <span class="pre">k,</span> <span class="pre">v</span> <span class="pre">in</span> <span class="pre">knights.items()</span></tt>
-then add <tt class="docutils literal"><span class="pre">from</span> <span class="pre">six</span> <span class="pre">import</span> <span class="pre">iteritems</span></tt> to the import list and update the replacement to
-<tt class="docutils literal"><span class="pre">for</span> <span class="pre">k,</span> <span class="pre">v</span> <span class="pre">in</span> <span class="pre">iteritems(knights)</span></tt>.</li>
+<li>If any change has replaced <code class="docutils literal"><span class="pre">for</span> <span class="pre">k,</span> <span class="pre">v</span> <span class="pre">in</span> <span class="pre">knights.iteritems()</span></code> with <code class="docutils literal"><span class="pre">for</span> <span class="pre">k,</span> <span class="pre">v</span> <span class="pre">in</span> <span class="pre">knights.items()</span></code>
+then add <code class="docutils literal"><span class="pre">from</span> <span class="pre">six</span> <span class="pre">import</span> <span class="pre">iteritems</span></code> to the import list and update the replacement to
+<code class="docutils literal"><span class="pre">for</span> <span class="pre">k,</span> <span class="pre">v</span> <span class="pre">in</span> <span class="pre">iteritems(knights)</span></code>.</li>
 </ul>
-<p>In some cases like <tt class="docutils literal"><span class="pre">range</span></tt>, pylint will complain about <cite>Replacing builtin &#8216;range&#8217;</cite> or similar.
-Make sure to put the proper ignore statement on that line using <tt class="docutils literal"><span class="pre">#pylint:</span> <span class="pre">disable=redefined-builtin</span></tt>.</p>
+<p>In some cases like <code class="docutils literal"><span class="pre">range</span></code>, pylint will complain about <cite>Replacing builtin &#8216;range&#8217;</cite> or similar.
+Make sure to put the proper ignore statement on that line using <code class="docutils literal"><span class="pre">#pylint:</span> <span class="pre">disable=redefined-builtin</span></code>.</p>
 <p>Check the code still runs as expected in Python 2.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last"><tt class="docutils literal"><span class="pre">2to3</span></tt> will try to keep the type of the objects the same. So, for example <tt class="docutils literal"><span class="pre">range(5)</span></tt> will
-become <tt class="docutils literal"><span class="pre">list(range(5))</span></tt>. This is not necessary if you use it just for iteration. Things like
-<tt class="docutils literal"><span class="pre">for</span> <span class="pre">i</span> <span class="pre">in</span> <span class="pre">range(5)</span></tt> will work in both versions of Python, you don&#8217;t need to transform it into a
+<p class="last"><code class="docutils literal"><span class="pre">2to3</span></code> will try to keep the type of the objects the same. So, for example <code class="docutils literal"><span class="pre">range(5)</span></code> will
+become <code class="docutils literal"><span class="pre">list(range(5))</span></code>. This is not necessary if you use it just for iteration. Things like
+<code class="docutils literal"><span class="pre">for</span> <span class="pre">i</span> <span class="pre">in</span> <span class="pre">range(5)</span></code> will work in both versions of Python, you don&#8217;t need to transform it into a
 list.</p>
 </div>
 </div>
@@ -227,7 +227,7 @@ list.</p>
     </a>
   </li>
   <li>
-    <a href="DevelopmentAndReleaseCycle.html" title="Next Chapter: Development and Release Cycle"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Development and ... &raquo;</span>
+    <a href="DevelopmentAndReleaseCycle.html" title="Next Chapter: Development and Release Cycle"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Development a... &raquo;</span>
     </a>
   </li>
           

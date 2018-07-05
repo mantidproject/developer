@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '3.12.20180622.2012',
+        VERSION:     '3.12.20180705.707',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -47,7 +47,7 @@
 
 
   </head>
-  <body>
+  <body role="document">
 
 
 
@@ -132,12 +132,12 @@
 </div>
 <div class="section" id="paraview">
 <h2><a class="toc-backref" href="#id3">ParaView</a><a class="headerlink" href="#paraview" title="Permalink to this headline">¶</a></h2>
-<p>The visualisation components for the VSI require the ParaView visualisation platform. However, the CMake option <tt class="docutils literal"><span class="pre">MAKE_VATES</span></tt>, can be used to turn off its use. The patch files used in this section as well as build scripts for Windows &amp; OSX/Linux which automate the steps described below can be found <a class="reference external" href="https://github.com/mantidproject/paraview-build">here</a>.</p>
+<p>The visualisation components for the VSI require the ParaView visualisation platform. However, the CMake option <code class="docutils literal"><span class="pre">MAKE_VATES</span></code>, can be used to turn off its use. The patch files used in this section as well as build scripts for Windows &amp; OSX/Linux which automate the steps described below can be found <a class="reference external" href="https://github.com/mantidproject/paraview-build">here</a>.</p>
 <ul class="simple">
 <li>Execute the following lines from the command prompt</li>
 </ul>
-<div class="highlight-sh"><div class="highlight"><pre>git clone https://gitlab.kitware.com/paraview/paraview.git &lt;Your ParaView <span class="nb">source </span>root&gt;
-<span class="nb">cd</span> &lt;Your ParaView <span class="nb">source </span>root&gt;
+<div class="highlight-sh"><div class="highlight"><pre>git clone https://gitlab.kitware.com/paraview/paraview.git &lt;Your ParaView <span class="nb">source</span> root&gt;
+<span class="nb">cd</span> &lt;Your ParaView <span class="nb">source</span> root&gt;
 git checkout v5.4.0
 git submodule init
 git submodule update
@@ -145,7 +145,7 @@ git submodule update
 </div>
 <p>The VSI uses a custom data array layout to minimize memory copies. The name and header must be available to ParaView at compile time.</p>
 <div class="highlight-sh"><div class="highlight"><pre>mkdir vtkMDHWSignalArray
-<span class="nb">cd  </span>vtkMDHWSignalArray
+<span class="nb">cd</span>  vtkMDHWSignalArray
 wget https://raw.githubusercontent.com/mantidproject/paraview-build/2b28ebc5fd40ad727ca66772522bf220b834c1f7/vtkMDHWSignalArray/vtkMDHWSignalArray.h
 <span class="nv">SIGNAL_NAME</span><span class="o">=</span><span class="nv">vtkArrayDispatch_extra_arrays</span><span class="o">=</span>vtkMDHWSignalArray<span class="se">\&lt;</span>double<span class="se">\&gt;</span>
 <span class="nv">SIGNAL_HEADER</span><span class="o">=</span><span class="nv">vtkArrayDispatch_extra_headers</span><span class="o">=</span>&lt;path to vtkMDHWSignalArray.h&gt;
@@ -157,11 +157,11 @@ wget https://raw.githubusercontent.com/mantidproject/paraview-build/2b28ebc5fd40
 <h2><a class="toc-backref" href="#id4">Building ParaView</a><a class="headerlink" href="#building-paraview" title="Permalink to this headline">¶</a></h2>
 <p>This is the visualisation plugins to build and use. This works on Windows/Linux/Mac. Download the source code and build using CMake out of source. You&#8217;ll need the Qt development libraries, in order to build the GUI and also python. For Windows user, the Third_Party directory contains qmake as well as all the development libraries you should need to build Paraview.</p>
 <p>The scripts and cmake cache files used by the build servers are available <a class="reference external" href="https://github.com/mantidproject/paraview-build/tree/875fe2a3c800996b75591c8dbe26909b51bdf963">here</a>.</p>
-<div class="highlight-sh"><div class="highlight"><pre><span class="nb">cd</span> &lt;Your paraview <span class="nb">source </span>root&gt;
+<div class="highlight-sh"><div class="highlight"><pre><span class="nb">cd</span> &lt;Your paraview <span class="nb">source</span> root&gt;
 mkdir Build
-<span class="nb">cd </span>Build
+<span class="nb">cd</span> Build
 
-cmake -D<span class="nv">$SIGNAL_NAME</span> -D<span class="nv">$SIGNAL_HEADER</span> -C&lt;path to common.cmake&gt; -C&lt;path to platform specific cache file&gt;  ..
+cmake -D$SIGNAL_NAME -D$SIGNAL_HEADER -C&lt;path to common.cmake&gt; -C&lt;path to platform specific cache file&gt;  ..
 cmake --build .
 </pre></div>
 </div>
@@ -171,8 +171,8 @@ cmake --build .
 <ul class="simple">
 <li>Get Paraview (see above)</li>
 <li>Edit the CMake configuration for Mantid<ul>
-<li>Via CMake enable <tt class="docutils literal"><span class="pre">MAKE_VATES</span></tt> (If editing from the GUI, press <tt class="docutils literal"><span class="pre">Configure</span></tt> after checking this)</li>
-<li>Via CMake set <tt class="docutils literal"><span class="pre">ParaView_DIR</span></tt> to the directory where paraview has been built.</li>
+<li>Via CMake enable <code class="docutils literal"><span class="pre">MAKE_VATES</span></code> (If editing from the GUI, press <code class="docutils literal"><span class="pre">Configure</span></code> after checking this)</li>
+<li>Via CMake set <code class="docutils literal"><span class="pre">ParaView_DIR</span></code> to the directory where paraview has been built.</li>
 </ul>
 </li>
 <li>Make Mantid</li>
@@ -188,7 +188,7 @@ cmake --build .
 </div>
 <div class="section" id="additional-libraries-for-paraview-mantid">
 <h3><a class="toc-backref" href="#id7">Additional Libraries for Paraview/Mantid</a><a class="headerlink" href="#additional-libraries-for-paraview-mantid" title="Permalink to this headline">¶</a></h3>
-<p>Ubuntu: The package list from <a class="reference internal" href="GettingStarted.html#gettingstarted"><em>Getting Started</em></a> contains all the required libraries.</p>
+<p>Ubuntu: The package list from <a class="reference internal" href="GettingStarted.html#gettingstarted"><span>Getting Started</span></a> contains all the required libraries.</p>
 </div>
 </div>
 <div class="section" id="using-paraview-plugins">
@@ -216,11 +216,11 @@ cmake --build .
 </ul>
 </li>
 <li>Can&#8217;t start-up Paraview<ul>
-<li>Try deleting or temporarily renaming the ParaView directory in <tt class="docutils literal"><span class="pre">%APPDATA/Roaming%</span></tt> Paraview may be crashing as it&#8217;s trying to autoload plugins that are causing problems.</li>
+<li>Try deleting or temporarily renaming the ParaView directory in <code class="docutils literal"><span class="pre">%APPDATA/Roaming%</span></code> Paraview may be crashing as it&#8217;s trying to autoload plugins that are causing problems.</li>
 </ul>
 </li>
 <li>Cannot complete the loading of a file<ul>
-<li>Check you have <tt class="docutils literal"><span class="pre">MANTIDPATH</span></tt> set correctly.</li>
+<li>Check you have <code class="docutils literal"><span class="pre">MANTIDPATH</span></code> set correctly.</li>
 </ul>
 </li>
 </ul>
@@ -240,7 +240,7 @@ cmake --build .
           
             
   <li>
-    <a href="BuildingWithCMake.html" title="Previous Chapter: Building with CMake"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Building with CM...</span>
+    <a href="BuildingWithCMake.html" title="Previous Chapter: Building with CMake"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Building with...</span>
     </a>
   </li>
   <li>

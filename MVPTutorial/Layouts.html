@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '3.12.20180622.2012',
+        VERSION:     '3.12.20180705.707',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -48,7 +48,7 @@
 
 
   </head>
-  <body>
+  <body role="document">
 
 
 
@@ -110,24 +110,24 @@
 <p>In the previous task a label was added to the View. However, the label
 appeared below the button. It would be sensible to place the label
 next to the button. This is possible by using <strong>layouts</strong>.</p>
-<p>So far we have used the vertical layout (<tt class="docutils literal"><span class="pre">QtGui.QVBoxLayout</span></tt>) and we
+<p>So far we have used the vertical layout (<code class="docutils literal"><span class="pre">QtGui.QVBoxLayout</span></code>) and we
 will now use the horizontal layout. It is possible to add sub-layouts
 to a layout, which we will do here by adding a horizontal layout to
 the vertical one. The order in which widgets are added to the layout
 will determine their location.</p>
-<p>In the View we will replace the <tt class="docutils literal"><span class="pre">__init__</span></tt> with the following:</p>
+<p>In the View we will replace the <code class="docutils literal"><span class="pre">__init__</span></code> with the following:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="nb">super</span><span class="p">(</span><span class="n">view</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
 
-    <span class="bp">self</span><span class="o">.</span><span class="n">button</span> <span class="o">=</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QPushButton</span><span class="p">(</span><span class="s">&#39;Hi&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">button</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="s">&quot;background-color:lightgrey&quot;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">button</span> <span class="o">=</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QPushButton</span><span class="p">(</span><span class="s1">&#39;Hi&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">button</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="s2">&quot;background-color:lightgrey&quot;</span><span class="p">)</span>
 
-    <span class="c"># connect button to signal</span>
+    <span class="c1"># connect button to signal</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">button</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">btn_click</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QLabel</span><span class="p">()</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s">&quot;Button&quot;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s2">&quot;Button&quot;</span><span class="p">)</span>
 
-    <span class="c"># add widgets to layout</span>
+    <span class="c1"># add widgets to layout</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">sub_layout</span> <span class="o">=</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QHBoxLayout</span><span class="p">()</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">sub_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">sub_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">button</span><span class="p">)</span>
@@ -135,7 +135,7 @@ will determine their location.</p>
     <span class="n">grid</span> <span class="o">=</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QVBoxLayout</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
     <span class="n">grid</span><span class="o">.</span><span class="n">addLayout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sub_layout</span><span class="p">)</span>
 
-    <span class="c"># set the layout for the view widget</span>
+    <span class="c1"># set the layout for the view widget</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">setLayout</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span>
 </pre></div>
 </div>

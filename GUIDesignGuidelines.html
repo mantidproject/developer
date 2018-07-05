@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '3.12.20180622.2012',
+        VERSION:     '3.12.20180705.707',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -47,7 +47,7 @@
 
 
   </head>
-  <body>
+  <body role="document">
 
 
 
@@ -143,8 +143,8 @@ is given below.</p>
 <p>To illustrate MVP, a simple example of a calculator GUI has been
 created using Python (the concepts of MVP can be applied to any
 programming language). This example can be found in
-<a class="reference internal" href="MVPTutorial/CalculatorExample/index.html#mvpcalculatorguiexample"><em>MVP Calculator GUI Example</em></a>, and you can run it with
-<tt class="docutils literal"><span class="pre">python</span> <span class="pre">Calculator.py</span></tt>.</p>
+<a class="reference internal" href="MVPTutorial/CalculatorExample/index.html#mvpcalculatorguiexample"><span>MVP Calculator GUI Example</span></a>, and you can run it with
+<code class="docutils literal"><span class="pre">python</span> <span class="pre">Calculator.py</span></code>.</p>
 <p>It is good practice to have model, view or presenter (as appropriate)
 at the end of the name for each file (e.g. FFTView, FFTModel,
 FFTPresenter), and each component should be a class in its own
@@ -170,7 +170,7 @@ should be received from the presenter (more of which below).</p>
 will generally be very little logic in the view. A view should define
 the following sections:</p>
 <ul class="simple">
-<li>The look of the GUI (often this will be defined in a Qt <tt class="docutils literal"><span class="pre">.ui</span></tt> file
+<li>The look of the GUI (often this will be defined in a Qt <code class="docutils literal"><span class="pre">.ui</span></code> file
 instead)</li>
 <li><strong>Get</strong> methods to return values from the widgets (text input,
 checkbox etc)</li>
@@ -180,11 +180,11 @@ data, fill in some text boxes)</li>
 <p>A view will probably also contain <strong>connections</strong>. A detailed
 explanation of signals and slots can be foud <a class="reference external" href="http://doc.qt.io/archives/qt-4.8/signalsandslots.html">here</a>. Briefly, a
 widget may emit <strong>signals</strong>. For example QPushButton emits the signal
-<tt class="docutils literal"><span class="pre">clicked</span></tt> when it is clicked. In order to handle the button being
+<code class="docutils literal"><span class="pre">clicked</span></code> when it is clicked. In order to handle the button being
 clicked, the view will implement a <strong>slot</strong> method. This method does
 whatever we need for a button click. To ensure that this method is
-called whenever the button is clicked, we connect the <tt class="docutils literal"><span class="pre">clicked</span></tt>
-signal of our button to the <tt class="docutils literal"><span class="pre">handleButtonClick</span></tt> slot of our view.</p>
+called whenever the button is clicked, we connect the <code class="docutils literal"><span class="pre">clicked</span></code>
+signal of our button to the <code class="docutils literal"><span class="pre">handleButtonClick</span></code> slot of our view.</p>
 <p>The view should have a parent - this will be the widget containing
 it. An example of a parent would be a main window containing tabs -
 the children of the main window would be the tabs, and the children of
@@ -207,15 +207,15 @@ involved. There are two ways of doing it:</p>
 <ul class="simple">
 <li><strong>Connections</strong> - the presenter may contain connections as well as
 the view. You may choose to define custom signals in your view, such
-as a <tt class="docutils literal"><span class="pre">plotRequested</span></tt> signal to announce that the user has asked to
+as a <code class="docutils literal"><span class="pre">plotRequested</span></code> signal to announce that the user has asked to
 plot some data, probably by clicking a button. The presenter will
-need to implement a slot (let&#8217;s call it <tt class="docutils literal"><span class="pre">handlePlotRequested</span></tt>) to
+need to implement a slot (let&#8217;s call it <code class="docutils literal"><span class="pre">handlePlotRequested</span></code>) to
 handle this, which gets the relevant data from the model and passes
 it to the view. We then need to connect the signal to the slot in
 the presenter&#8217;s constructor. It is also possible for a signal
 emitted by a view to be caught in the presenter of a parent view. In
 order to communicate by connections using Qt in C++ the presenter
-must inherit from <tt class="docutils literal"><span class="pre">QObject</span></tt>. It&#8217;s generally considered good
+must inherit from <code class="docutils literal"><span class="pre">QObject</span></code>. It&#8217;s generally considered good
 practice to avoid having Qt in the presenter, so this method works
 best for GUIs written in Python (or another language with a more
 relaxed type system).<ul>
@@ -228,14 +228,14 @@ test the handling of the signals.</li>
 <li><strong>Notify</strong> - the presenter may instead allow the view to &#8216;notify&#8217;
 it. This can be achieved by implementing a set of possible
 notifications (in C++ an enum class works well) and a method
-<tt class="docutils literal"><span class="pre">notify(notification)</span></tt> on the presenter. In the above example,
-<tt class="docutils literal"><span class="pre">handlePlotRequested</span></tt> is still needed, but now <tt class="docutils literal"><span class="pre">notify</span></tt> invokes
-it whenever it is passed a <tt class="docutils literal"><span class="pre">plotRequested</span></tt> notification. This
+<code class="docutils literal"><span class="pre">notify(notification)</span></code> on the presenter. In the above example,
+<code class="docutils literal"><span class="pre">handlePlotRequested</span></code> is still needed, but now <code class="docutils literal"><span class="pre">notify</span></code> invokes
+it whenever it is passed a <code class="docutils literal"><span class="pre">plotRequested</span></code> notification. This
 method requires the view to have a pointer to the presenter, which
 introduces a circular dependency and leaks information about the
 presenter to the view. The leak can be resolved by having the
 presenter implement an interface which exposes <strong>only</strong> the
-<tt class="docutils literal"><span class="pre">notify</span></tt> method, and having the view keep a pointer to
+<code class="docutils literal"><span class="pre">notify</span></code> method, and having the view keep a pointer to
 this.</li>
 </ul>
 <p>Doing presenter-view communication with connections is the cleaner of
@@ -391,13 +391,13 @@ type can be used from within the Qt Designer.</p>
 <h2><a class="toc-backref" href="#id10">Python</a><a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h2>
 <p>Interfaces can also be created in Python using the <a class="reference external" href="http://pyqt.sourceforge.net/Docs/PyQt4/">PyQt4</a> package. The code for the
 interface should be placed in a Python <a class="reference external" href="https://docs.python.org/2/tutorial/modules.html#packages">package</a> under the
-<tt class="docutils literal"><span class="pre">Code/Mantid/scripts</span></tt> directory. It should be named after the interface
+<code class="docutils literal"><span class="pre">Code/Mantid/scripts</span></code> directory. It should be named after the interface
 name (without spaces). The code within the package should be
 structured to avoid placing all of the code in a single file,
 i.e. separate files for different classes etc. Sub packages are
 recommended for grouping together logical sets of files.</p>
 <p>For the interface to appear from within MantidPlot create a startup
-python file under the <tt class="docutils literal"><span class="pre">Code/Mantid/scripts</span></tt> directory. Assuming the code
+python file under the <code class="docutils literal"><span class="pre">Code/Mantid/scripts</span></code> directory. Assuming the code
 for the interface is in a directory called foo_app then the startup
 file would look like:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">foo_app</span> <span class="kn">import</span> <span class="n">FooGUI</span>
@@ -406,18 +406,18 @@ file would look like:</p>
 <span class="n">app</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>where <tt class="docutils literal"><span class="pre">FooGUI</span></tt> is the <tt class="docutils literal"><span class="pre">MainWindow</span></tt> for the interface. Some more
+<p>where <code class="docutils literal"><span class="pre">FooGUI</span></code> is the <code class="docutils literal"><span class="pre">MainWindow</span></code> for the interface. Some more
 detailed documentation on creating GUIs in Python can be found at
-<a class="reference internal" href="QtDesignerForPython.html#qtdesignerforpython"><em>Qt Designer for Python</em></a>.</p>
+<a class="reference internal" href="QtDesignerForPython.html#qtdesignerforpython"><span>Qt Designer for Python</span></a>.</p>
 <div class="section" id="id1">
 <h3><a class="toc-backref" href="#id11">Designer</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <p>As with the C++ GUI the Qt Designer should be used for layouts of all
-widgets and the main interface. It is recommended that the <tt class="docutils literal"><span class="pre">.ui</span></tt>
-files be placed in a <tt class="docutils literal"><span class="pre">ui</span></tt> subdirectory of the interface package. To
-generate PyQt code from the UI xml you will need to run the <tt class="docutils literal"><span class="pre">pyuic4</span></tt>
+widgets and the main interface. It is recommended that the <code class="docutils literal"><span class="pre">.ui</span></code>
+files be placed in a <code class="docutils literal"><span class="pre">ui</span></code> subdirectory of the interface package. To
+generate PyQt code from the UI xml you will need to run the <code class="docutils literal"><span class="pre">pyuic4</span></code>
 program that ships with PyQt4. It is also recommended that the output
-file is named, using the <tt class="docutils literal"><span class="pre">-o</span></tt> argument, <tt class="docutils literal"><span class="pre">ui_[widgetname].py</span></tt> and
-placed in the <tt class="docutils literal"><span class="pre">ui</span></tt> subdirectory.</p>
+file is named, using the <code class="docutils literal"><span class="pre">-o</span></code> argument, <code class="docutils literal"><span class="pre">ui_[widgetname].py</span></code> and
+placed in the <code class="docutils literal"><span class="pre">ui</span></code> subdirectory.</p>
 </div>
 </div>
 </div>
@@ -435,7 +435,7 @@ placed in the <tt class="docutils literal"><span class="pre">ui</span></tt> subd
           
             
   <li>
-    <a href="TestingUtilities.html" title="Previous Chapter: Testing Utilities"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Testing Utilitie...</span>
+    <a href="TestingUtilities.html" title="Previous Chapter: Testing Utilities"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Testing Utili...</span>
     </a>
   </li>
   <li>

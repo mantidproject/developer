@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '3.12.20180622.2012',
+        VERSION:     '3.12.20180705.707',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -48,7 +48,7 @@
 
 
   </head>
-  <body>
+  <body role="document">
 
 
 
@@ -161,25 +161,25 @@ Output:
 </div>
 <p>What is required is:</p>
 <ul class="simple">
-<li>Short description explaining the example, formatted as shown above, i.e. using <tt class="docutils literal"><span class="pre">**</span></tt> to embolden the text.</li>
-<li>A <tt class="docutils literal"><span class="pre">..</span> <span class="pre">testcode::</span></tt> section, with a unique &#8216;namespace&#8217; name, here <tt class="docutils literal"><span class="pre">ExHistSimple</span></tt>. This &#8216;namespace&#8217; is not shown when converted to HTML, but is used in testing the code. This section contains the actual Python code demonstrating a usage of the algorithm. This code block contains commented code, finishing with one or more Python <tt class="docutils literal"><span class="pre">print</span></tt> lines as shown</li>
-<li>A <tt class="docutils literal"><span class="pre">..</span> <span class="pre">testoutput::</span></tt> section. This section must have a matching &#8216;namespace&#8217; name to the <tt class="docutils literal"><span class="pre">..testcode::</span></tt> section. It simply contains a copy of the text that is printed out in the <tt class="docutils literal"><span class="pre">..testcode::</span></tt> section.</li>
-<li>Include the &#8220;Output:&#8221; string above the <tt class="docutils literal"><span class="pre">..testoutput::</span></tt> directive.</li>
+<li>Short description explaining the example, formatted as shown above, i.e. using <code class="docutils literal"><span class="pre">**</span></code> to embolden the text.</li>
+<li>A <code class="docutils literal"><span class="pre">..</span> <span class="pre">testcode::</span></code> section, with a unique &#8216;namespace&#8217; name, here <code class="docutils literal"><span class="pre">ExHistSimple</span></code>. This &#8216;namespace&#8217; is not shown when converted to HTML, but is used in testing the code. This section contains the actual Python code demonstrating a usage of the algorithm. This code block contains commented code, finishing with one or more Python <code class="docutils literal"><span class="pre">print</span></code> lines as shown</li>
+<li>A <code class="docutils literal"><span class="pre">..</span> <span class="pre">testoutput::</span></code> section. This section must have a matching &#8216;namespace&#8217; name to the <code class="docutils literal"><span class="pre">..testcode::</span></code> section. It simply contains a copy of the text that is printed out in the <code class="docutils literal"><span class="pre">..testcode::</span></code> section.</li>
+<li>Include the &#8220;Output:&#8221; string above the <code class="docutils literal"><span class="pre">..testoutput::</span></code> directive.</li>
 </ul>
 <p>What is optional:</p>
 <ul class="simple">
-<li>A <tt class="docutils literal"><span class="pre">..testcleanup::</span></tt> section. This section must have a matching &#8216;namespace&#8217; name to the <tt class="docutils literal"><span class="pre">..testcode::</span></tt> section. Here, add Python code to do any cleanup of files etc. that were created by the tests. See the notes below for things that are cleaned automatically.</li>
+<li>A <code class="docutils literal"><span class="pre">..testcleanup::</span></code> section. This section must have a matching &#8216;namespace&#8217; name to the <code class="docutils literal"><span class="pre">..testcode::</span></code> section. Here, add Python code to do any cleanup of files etc. that were created by the tests. See the notes below for things that are cleaned automatically.</li>
 </ul>
 <p>Notes:</p>
 <ul class="simple">
-<li>The configuration has a global &#8220;testcleanup&#8221; implemented which calls <tt class="docutils literal"><span class="pre">FrameworkManager::clear()</span></tt> to clear algorithms, workspaces &amp; instruments so these are dealt with automatically.</li>
-<li>There must be a clear blank line before the <tt class="docutils literal"><span class="pre">..</span> <span class="pre">testcode::</span></tt> and <tt class="docutils literal"><span class="pre">..</span> <span class="pre">testoutput</span></tt> directives or the test is ignored. As with unit tests you should write a failing test first to ensure it is running.</li>
+<li>The configuration has a global &#8220;testcleanup&#8221; implemented which calls <code class="docutils literal"><span class="pre">FrameworkManager::clear()</span></code> to clear algorithms, workspaces &amp; instruments so these are dealt with automatically.</li>
+<li>There must be a clear blank line before the <code class="docutils literal"><span class="pre">..</span> <span class="pre">testcode::</span></code> and <code class="docutils literal"><span class="pre">..</span> <span class="pre">testoutput</span></code> directives or the test is ignored. As with unit tests you should write a failing test first to ensure it is running.</li>
 </ul>
 <p>What is worth keeping in mind is:</p>
 <ul class="simple">
 <li><em>Assume the user is new to Python</em>. Consider giving hints to more advanced Python in comments, or introduce a simple example first.</li>
 <li>Use comments.</li>
-<li>Use Python <tt class="docutils literal"><span class="pre">print</span></tt> to output results, which, where possible, helps to understand the algorithm.</li>
+<li>Use Python <code class="docutils literal"><span class="pre">print</span></code> to output results, which, where possible, helps to understand the algorithm.</li>
 </ul>
 <p>A Jenkins job tests that the usage examples are not broken, i.e. that they continue to provide a working demonstration against the current build. It is vital to stress that the purpose of usage testing is <em>not to replace unit testing</em> (or system testing). The purpose of usage testing (better described as demonstration examples), is to provide some happy-path examples, which, where this is possible, can assist the user understanding of the Python code. This is very different from the purposes of testing in general, see <a class="reference external" href="UnitTestGoodPractice.html">here</a>.</p>
 <p>Additional benefits of usage examples:</p>
@@ -190,7 +190,7 @@ Output:
 </ul>
 <div class="section" id="using-createsampleworkspace-and-createworkspace">
 <h3><a class="toc-backref" href="#id3">Using CreateSampleWorkspace and CreateWorkspace</a><a class="headerlink" href="#using-createsampleworkspace-and-createworkspace" title="Permalink to this headline">¶</a></h3>
-<p>There are many ways to create sample workspaces. For example <a class="reference external" href="http://docs.mantidproject.org/algorithms/CreateMDHistoWorkspace-v1.html#algm-createmdhistoworkspace" title="(in MantidProject v3.12)"><em class="xref std std-ref">CreateMDHistoWorkspace</em></a>, <a class="reference external" href="http://docs.mantidproject.org/algorithms/CreateSampleWorkspace-v1.html#algm-createsampleworkspace" title="(in MantidProject v3.12)"><em class="xref std std-ref">CreateSampleWorkspace</em></a> and <a class="reference external" href="http://docs.mantidproject.org/algorithms/CreateWorkspace-v1.html#algm-createworkspace" title="(in MantidProject v3.12)"><em class="xref std std-ref">CreateWorkspace</em></a>. CreateSampleWorkspace creates a fully defined workspace (either event or histogram) but for creating simple histogram workspace CreateWorkspace may be a better option. Above is shown an example where CreateWorkspace is used. Below is a more complex use of CreateSampleWorkspace:</p>
+<p>There are many ways to create sample workspaces. For example <a class="reference external" href="http://docs.mantidproject.org/algorithms/CreateMDHistoWorkspace-v1.html#algm-createmdhistoworkspace" title="(in MantidProject v3.12)"><span class="xref std std-ref">CreateMDHistoWorkspace</span></a>, <a class="reference external" href="http://docs.mantidproject.org/algorithms/CreateSampleWorkspace-v1.html#algm-createsampleworkspace" title="(in MantidProject v3.12)"><span class="xref std std-ref">CreateSampleWorkspace</span></a> and <a class="reference external" href="http://docs.mantidproject.org/algorithms/CreateWorkspace-v1.html#algm-createworkspace" title="(in MantidProject v3.12)"><span class="xref std std-ref">CreateWorkspace</span></a>. CreateSampleWorkspace creates a fully defined workspace (either event or histogram) but for creating simple histogram workspace CreateWorkspace may be a better option. Above is shown an example where CreateWorkspace is used. Below is a more complex use of CreateSampleWorkspace:</p>
 <div class="highlight-rest"><div class="highlight"><pre><span class="gh">Usage</span>
 <span class="gh">-----</span>
 
@@ -334,11 +334,11 @@ Output:
           
             
   <li>
-    <a href="AlgorithmDocumentation.html" title="Previous Chapter: Algorithm Documentation"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Algorithm Docume...</span>
+    <a href="AlgorithmDocumentation.html" title="Previous Chapter: Algorithm Documentation"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Algorithm Doc...</span>
     </a>
   </li>
   <li>
-    <a href="InterfaceDocumentation.html" title="Next Chapter: Interface Documentation"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Interface Docume... &raquo;</span>
+    <a href="InterfaceDocumentation.html" title="Next Chapter: Interface Documentation"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Interface Doc... &raquo;</span>
     </a>
   </li>
           

@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '3.12.20180622.2012',
+        VERSION:     '3.12.20180705.707',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -46,7 +46,7 @@
 
 
   </head>
-  <body>
+  <body role="document">
 
 
 
@@ -129,11 +129,11 @@ plugin then becomes automatically available to use in the
 interface to produce multidimensional workspace for further visualization and analysis.</p>
 <p>As the MD transformation factory is similar to the <a class="reference external" href="http://www.mantidproject.org/Dynamic_Factory">Dynamic Factory</a>
 used for <a class="reference external" href="http://docs.mantidproject.org/nightly/concepts/UnitFactory.html">converting units</a>, the
-procedure of writing a custom <tt class="docutils literal"><span class="pre">ConvertToMD</span></tt> transformation is very similar to adding a new unit to use
+procedure of writing a custom <code class="docutils literal"><span class="pre">ConvertToMD</span></code> transformation is very similar to adding a new unit to use
 with <a class="reference external" href="http://docs.mantidproject.org/nightly/algorithms/ConvertUnits.html">ConvertUnits</a> algorithm
 or writing a new algorithm to use with Mantid.</p>
-<p>The plugin interface deals with the task of converting a generic n-dimensional point of a <tt class="docutils literal"><span class="pre">MatrixWorkspace</span></tt>
-into a generic m-dimensional point of an <tt class="docutils literal"><span class="pre">MDWorkspace</span></tt> using the necessary parameters.</p>
+<p>The plugin interface deals with the task of converting a generic n-dimensional point of a <code class="docutils literal"><span class="pre">MatrixWorkspace</span></code>
+into a generic m-dimensional point of an <code class="docutils literal"><span class="pre">MDWorkspace</span></code> using the necessary parameters.</p>
 <p>Examples of such transformations could be a conversion of signal and error at detector num
 at specific time of flight plus log values for temperature and pressure (<strong>The instrument&#8217;s
 space</strong>: 4 numbers + information about the detector) into 6-D point in the <strong>Physical space
@@ -144,38 +144,38 @@ qx,qy,qz,dE,T,P</strong> (qx,qy,qz &#8211; the components of momentum transfer) 
 <h2><a class="toc-backref" href="#id2">Writing a simple custom plugin</a><a class="headerlink" href="#writing-a-simple-custom-plugin" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="summary">
 <h3><a class="toc-backref" href="#id3">Summary</a><a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h3>
-<p>If a single point of a <tt class="docutils literal"><span class="pre">MatrixWorkspace</span></tt> together with correspondent log files can be converted into a single
-<tt class="docutils literal"><span class="pre">MDEvent</span></tt> (multidimensional point of MD workspace), a simple custom plugin can be written to do this transformation.
+<p>If a single point of a <code class="docutils literal"><span class="pre">MatrixWorkspace</span></code> together with correspondent log files can be converted into a single
+<code class="docutils literal"><span class="pre">MDEvent</span></code> (multidimensional point of MD workspace), a simple custom plugin can be written to do this transformation.
 The existing framework in this case deals with all other tasks, namely the iterations over source workspace,
 conversion of the workspace units into the units of the conversion formula, defining the target workspace,
-constructing <tt class="docutils literal"><span class="pre">MDEvent</span></tt> instances and adding these events to the <tt class="docutils literal"><span class="pre">MDWorkspace</span></tt>.</p>
-<p>A <tt class="docutils literal"><span class="pre">ConvertToMD</span></tt> plugin implements <tt class="docutils literal"><span class="pre">MDTransfInterface</span></tt>, so to write a plugin you must write a class
-which inherits from this interface and register this class with <tt class="docutils literal"><span class="pre">MDTransfFactory</span></tt>. The macro to
+constructing <code class="docutils literal"><span class="pre">MDEvent</span></code> instances and adding these events to the <code class="docutils literal"><span class="pre">MDWorkspace</span></code>.</p>
+<p>A <code class="docutils literal"><span class="pre">ConvertToMD</span></code> plugin implements <code class="docutils literal"><span class="pre">MDTransfInterface</span></code>, so to write a plugin you must write a class
+which inherits from this interface and register this class with <code class="docutils literal"><span class="pre">MDTransfFactory</span></code>. The macro to
 register the class with the factory is similar to the macro used to register an algorithm with
-Mantid or a <tt class="docutils literal"><span class="pre">Unit</span></tt> class with the Unit conversion factory. The macro is located in <tt class="docutils literal"><span class="pre">MDTransfFactory.h</span></tt>.</p>
-<p>The class inheriting from <tt class="docutils literal"><span class="pre">MDTransfInterface</span></tt> performs two tasks:</p>
+Mantid or a <code class="docutils literal"><span class="pre">Unit</span></code> class with the Unit conversion factory. The macro is located in <code class="docutils literal"><span class="pre">MDTransfFactory.h</span></code>.</p>
+<p>The class inheriting from <code class="docutils literal"><span class="pre">MDTransfInterface</span></code> performs two tasks:</p>
 <ul class="simple">
-<li>Define the target <tt class="docutils literal"><span class="pre">MDWorkspace</span></tt> and its dimensions (both the number of dimensions and the dimension units).</li>
+<li>Define the target <code class="docutils literal"><span class="pre">MDWorkspace</span></code> and its dimensions (both the number of dimensions and the dimension units).</li>
 <li>Initialize the transformation and define a formula to transform a single point of input data into output data.</li>
 </ul>
 <p>These two tasks are mainly independent, but implemented within a single class to be handled by the single dynamic factory.
 <strong>Note that the functions which define the target MDWorkspace are called before the MDTransfFactory initialize function.</strong>
-The <tt class="docutils literal"><span class="pre">initialize</span></tt> function accepts the <tt class="docutils literal"><span class="pre">MDWorkspace</span></tt> description and is expected to fully define all class variables used during
-the transformation from a point of a <tt class="docutils literal"><span class="pre">MatrixWorkspace</span></tt> into an MD point of a target <tt class="docutils literal"><span class="pre">MDWorkspace</span></tt>.</p>
+The <code class="docutils literal"><span class="pre">initialize</span></code> function accepts the <code class="docutils literal"><span class="pre">MDWorkspace</span></code> description and is expected to fully define all class variables used during
+the transformation from a point of a <code class="docutils literal"><span class="pre">MatrixWorkspace</span></code> into an MD point of a target <code class="docutils literal"><span class="pre">MDWorkspace</span></code>.</p>
 </div>
 <div class="section" id="workflow">
 <h3><a class="toc-backref" href="#id4">Workflow</a><a class="headerlink" href="#workflow" title="Permalink to this headline">¶</a></h3>
-<p>This workflow is implemented in the <tt class="docutils literal"><span class="pre">ConvertToMD</span></tt> algorithm&#8217;s <tt class="docutils literal"><span class="pre">exec()</span></tt> function.</p>
+<p>This workflow is implemented in the <code class="docutils literal"><span class="pre">ConvertToMD</span></code> algorithm&#8217;s <code class="docutils literal"><span class="pre">exec()</span></code> function.</p>
 <ol class="arabic simple">
 <li>Select a conversion and obtain additional algorithm parameters from the algorithm interface.</li>
-<li>Build <tt class="docutils literal"><span class="pre">MDWorkspace</span></tt> description (call <tt class="docutils literal"><span class="pre">MDTransfFactory</span></tt> and ask for the conversion plugin parameters).</li>
-<li>Build new <tt class="docutils literal"><span class="pre">MDWorkspace</span></tt> on the basis of its description (if new workspace is requested or check if existing workspace is suitable).</li>
-<li>Initialize the conversion plugin (using <tt class="docutils literal"><span class="pre">MDWSDescription</span></tt>).</li>
-<li>Run the conversion itself by looping over detectors and their values (use <tt class="docutils literal"><span class="pre">MDTransfFactory</span></tt> and selected conversion plugin to convert
+<li>Build <code class="docutils literal"><span class="pre">MDWorkspace</span></code> description (call <code class="docutils literal"><span class="pre">MDTransfFactory</span></code> and ask for the conversion plugin parameters).</li>
+<li>Build new <code class="docutils literal"><span class="pre">MDWorkspace</span></code> on the basis of its description (if new workspace is requested or check if existing workspace is suitable).</li>
+<li>Initialize the conversion plugin (using <code class="docutils literal"><span class="pre">MDWSDescription</span></code>).</li>
+<li>Run the conversion itself by looping over detectors and their values (use <code class="docutils literal"><span class="pre">MDTransfFactory</span></code> and selected conversion plugin to convert
 each input point into output MD point).</li>
 </ol>
-<p>The <tt class="docutils literal"><span class="pre">MDTransformationFactory</span></tt> is deployed twice during the conversion. The methods used during each conversion stage are clearly
-specified in <tt class="docutils literal"><span class="pre">MDTransformationInterface.h</span></tt>.</p>
+<p>The <code class="docutils literal"><span class="pre">MDTransformationFactory</span></code> is deployed twice during the conversion. The methods used during each conversion stage are clearly
+specified in <code class="docutils literal"><span class="pre">MDTransformationInterface.h</span></code>.</p>
 </div>
 <div class="section" id="defining-the-target-workspace">
 <h3><a class="toc-backref" href="#id5">Defining the target workspace</a><a class="headerlink" href="#defining-the-target-workspace" title="Permalink to this headline">¶</a></h3>
@@ -183,11 +183,11 @@ specified in <tt class="docutils literal"><span class="pre">MDTransformationInte
 <p>The input data at this stage are the name of the plugin and the outputs &#8211; the information necessary for the transformation to work
 including the number of output dimensions, units for the selected physical transformation formula, units of the target workspace, etc.</p>
 <p>The methods used while defining the workspace should not access or change anything accessed through this pointer of
-the custom plugin. The result of the first stage is a <tt class="docutils literal"><span class="pre">MDWSDescription</span></tt> class, which can be considered
+the custom plugin. The result of the first stage is a <code class="docutils literal"><span class="pre">MDWSDescription</span></code> class, which can be considered
 as a large XML string that provides a common interface to different data obtained from the algorithm&#8217;s parameters.
 Any data users want to transfer to the custom plugin can be added to this class, as long as this does not lead to
 excessive memory usage or overhead.</p>
-<p>The <tt class="docutils literal"><span class="pre">MDWSDescription</span></tt> class is copy constructable and assignable and if these operators fail due to the changes
+<p>The <code class="docutils literal"><span class="pre">MDWSDescription</span></code> class is copy constructable and assignable and if these operators fail due to the changes
 to the class, custom copy constructor and assignment operators have to be defined.</p>
 </div>
 <div class="section" id="doing-the-transformation">
@@ -206,18 +206,18 @@ over the whole workspace:</p>
 <span class="n">plugin</span><span class="o">-&gt;</span><span class="n">initialize</span><span class="p">(</span><span class="n">WorkspaceDescription</span><span class="p">);</span>
 <span class="cm">/** calculate generic variables, which are usually placed in logs and do not depend on detectors positions</span>
 <span class="cm">   or neutron counts (e.g. temperature) and place these values into proper position in the coordinates vector. */</span>
-<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">plugin</span><span class="o">-&gt;</span><span class="n">calcGenericVariables</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">coord_t</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">Coord</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">N_Dimensions</span><span class="p">))</span>
+<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">plugin</span><span class="o">-&gt;</span><span class="n">calcGenericVariables</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">coord_t</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">Coord</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">N_Dimensions</span><span class="p">))</span>
     <span class="k">return</span><span class="p">;</span> <span class="c1">// finish if these data are out of range requested</span>
 
 <span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="n">array</span> <span class="n">of</span> <span class="n">detectors</span><span class="p">)</span>
 <span class="p">{</span>
      <span class="cm">/** Here we calculate all MD coordinates which depend on detectors position only. The plugin also</span>
 <span class="cm">     changes the internal plugin values which depend on detector&#39;s position e.g. sets up the unit conversion */</span>
-     <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">plugin</span><span class="o">-&gt;</span><span class="n">calcYDepCoordinates</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">coord_t</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">Coord</span><span class="p">,</span><span class="n">size_t</span> <span class="n">i</span><span class="p">))</span>
+     <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">plugin</span><span class="o">-&gt;</span><span class="n">calcYDepCoordinates</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">coord_t</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">Coord</span><span class="p">,</span><span class="kt">size_t</span> <span class="n">i</span><span class="p">))</span>
          <span class="k">continue</span><span class="p">;</span>  <span class="c1">// skip detector if these data are out of range requested</span>
 
      <span class="cm">/** obtain signal and error, array, corresponding to the i-th detector */</span>
-     <span class="n">spectra</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">InputWorkspace</span><span class="o">-&gt;</span><span class="n">getSpectraCorrespondingToTheDetector</span><span class="p">(</span><span class="n">size_t</span> <span class="n">i</span><span class="p">);</span>
+     <span class="n">spectra</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">InputWorkspace</span><span class="o">-&gt;</span><span class="n">getSpectraCorrespondingToTheDetector</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span><span class="p">);</span>
 
      <span class="cm">/**Convert units into the units, requested by the plugin */</span>
      <span class="n">MantidVector</span> <span class="n">X</span> <span class="o">=</span> <span class="n">convertUnits</span><span class="p">(</span><span class="n">spectra</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">X_coordinates</span><span class="p">);</span>
@@ -227,7 +227,7 @@ over the whole workspace:</p>
         <span class="n">Error</span>  <span class="o">=</span> <span class="n">spectra</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">Error</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
         <span class="cm">/**Calculate remaining MD coordinates and put them into vector of coordinates.</span>
 <span class="cm">           Modify Signal and error if the signal and error depends on Coord */</span>
-        <span class="n">plugin</span><span class="o">-&gt;</span><span class="n">calcMatrixCoordinates</span><span class="p">(</span><span class="k">const</span> <span class="n">MantidVec</span><span class="o">&amp;</span> <span class="n">X</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">i</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">j</span><span class="p">,</span>
+        <span class="n">plugin</span><span class="o">-&gt;</span><span class="n">calcMatrixCoordinates</span><span class="p">(</span><span class="k">const</span> <span class="n">MantidVec</span><span class="o">&amp;</span> <span class="n">X</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">i</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">j</span><span class="p">,</span>
                                       <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">coord_t</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">Coord</span><span class="p">,</span> <span class="n">Signal</span><span class="p">,</span> <span class="n">Error</span><span class="p">);</span>
 
         <span class="cm">/**Convert Coord signal and error to MD event with coordinate Coord and add the MDEvent to MD workspace*/</span>
@@ -254,7 +254,7 @@ All currently existing plugins use the information about the detector&#8217;s po
 </div>
 <div class="section" id="complex-transformations">
 <h2><a class="toc-backref" href="#id8">Complex Transformations</a><a class="headerlink" href="#complex-transformations" title="Permalink to this headline">¶</a></h2>
-<p>It is possible that the approach of converting a single point of a <tt class="docutils literal"><span class="pre">MatrixWorkspace</span></tt> into a single <tt class="docutils literal"><span class="pre">MDEvent</span></tt> is
+<p>It is possible that the approach of converting a single point of a <code class="docutils literal"><span class="pre">MatrixWorkspace</span></code> into a single <code class="docutils literal"><span class="pre">MDEvent</span></code> is
 incorrect or inefficient for what is required. In this situation, more complex changes to the conversion framework
 have to be implemented.
 To make the changes one needs to understand the interaction between different classes involved in the conversion.</p>
@@ -262,24 +262,24 @@ To make the changes one needs to understand the interaction between different cl
 <div class="figure">
 <img alt="ConvertToMDClassDiagram.gif" src="_images/ConvertToMDClassDiagram.gif" />
 </div>
-<p>Two factories are involved into the conversion. <tt class="docutils literal"><span class="pre">MDTransfFactory</span></tt> deals with different formulae to
-transform a single matrix point into an MD point. The other factory (<tt class="docutils literal"><span class="pre">ConvToMDSelector</span></tt> and the algorithm inheriting
-from <tt class="docutils literal"><span class="pre">ConvToMDBase</span></tt>) deal with different kinds of workspaces. There are currently two workspaces that can be transformed
-into an <tt class="docutils literal"><span class="pre">MDWorkspace</span></tt>, namely <tt class="docutils literal"><span class="pre">EventWorkspace</span></tt> and <tt class="docutils literal"><span class="pre">MatrixWorkspace</span></tt>. <tt class="docutils literal"><span class="pre">ConvToMDSelector</span></tt> identifies which algorithm to
+<p>Two factories are involved into the conversion. <code class="docutils literal"><span class="pre">MDTransfFactory</span></code> deals with different formulae to
+transform a single matrix point into an MD point. The other factory (<code class="docutils literal"><span class="pre">ConvToMDSelector</span></code> and the algorithm inheriting
+from <code class="docutils literal"><span class="pre">ConvToMDBase</span></code>) deal with different kinds of workspaces. There are currently two workspaces that can be transformed
+into an <code class="docutils literal"><span class="pre">MDWorkspace</span></code>, namely <code class="docutils literal"><span class="pre">EventWorkspace</span></code> and <code class="docutils literal"><span class="pre">MatrixWorkspace</span></code>. <code class="docutils literal"><span class="pre">ConvToMDSelector</span></code> identifies which algorithm to
 deploy based on the input workspace.</p>
 <p>If the input workspace has some special properties (e.g. a workspace obtained for an experiment with a rotating crystal,
 which has special units of time of flight with a special time series attached which describe a crystal position),
-the <tt class="docutils literal"><span class="pre">ConvToMDSelector</span></tt> should be modified to identify such a workspace and an additional class inheriting from
-<tt class="docutils literal"><span class="pre">ConvToMDBase</span></tt> to deal with such workspaces has to be written.</p>
-<p>There are two other important classes in the diagram. The first one is <tt class="docutils literal"><span class="pre">MDWSDescription</span></tt>, briefly mentioned above.
+the <code class="docutils literal"><span class="pre">ConvToMDSelector</span></code> should be modified to identify such a workspace and an additional class inheriting from
+<code class="docutils literal"><span class="pre">ConvToMDBase</span></code> to deal with such workspaces has to be written.</p>
+<p>There are two other important classes in the diagram. The first one is <code class="docutils literal"><span class="pre">MDWSDescription</span></code>, briefly mentioned above.
 The purpose of this class is to collect all input information from the algorithm interface and transfer this information
 through the common interface in a way convenient for a plugin to use. The user who is writing his own plugin is expected to
 add all the information necessary for the plugin to work to this class.</p>
-<p>Another is the <tt class="docutils literal"><span class="pre">MDEventWSWrapper</span></tt>. This class interfaces <tt class="docutils literal"><span class="pre">MDEventWorkspace</span></tt>. The <tt class="docutils literal"><span class="pre">MDEventWorkspace</span></tt> is templated by number
-of dimensions and the purpose of <tt class="docutils literal"><span class="pre">MDEventWSWrapper</span></tt> is to provide a unified interface to this workspace regardless of the
-number of workspace dimensions calculated during the run. It uses <tt class="docutils literal"><span class="pre">MDEventWorkspace</span></tt> methods for which the
-<tt class="docutils literal"><span class="pre">IMDWorkspace</span></tt> interface to the <tt class="docutils literal"><span class="pre">MDEventWorkspace</span></tt> is not efficient. You do not usually need to modify this class unless
-you are modifying <tt class="docutils literal"><span class="pre">MDEventWorkspace</span></tt> code.</p>
+<p>Another is the <code class="docutils literal"><span class="pre">MDEventWSWrapper</span></code>. This class interfaces <code class="docutils literal"><span class="pre">MDEventWorkspace</span></code>. The <code class="docutils literal"><span class="pre">MDEventWorkspace</span></code> is templated by number
+of dimensions and the purpose of <code class="docutils literal"><span class="pre">MDEventWSWrapper</span></code> is to provide a unified interface to this workspace regardless of the
+number of workspace dimensions calculated during the run. It uses <code class="docutils literal"><span class="pre">MDEventWorkspace</span></code> methods for which the
+<code class="docutils literal"><span class="pre">IMDWorkspace</span></code> interface to the <code class="docutils literal"><span class="pre">MDEventWorkspace</span></code> is not efficient. You do not usually need to modify this class unless
+you are modifying <code class="docutils literal"><span class="pre">MDEventWorkspace</span></code> code.</p>
 </div>
 </div>
 
@@ -296,7 +296,7 @@ you are modifying <tt class="docutils literal"><span class="pre">MDEventWorkspac
           
             
   <li>
-    <a href="WritingAnAlgorithm.html" title="Previous Chapter: Writing An Algorithm"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Writing An Algor...</span>
+    <a href="WritingAnAlgorithm.html" title="Previous Chapter: Writing An Algorithm"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Writing An Al...</span>
     </a>
   </li>
           

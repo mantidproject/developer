@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '3.12.20180622.2012',
+        VERSION:     '3.12.20180705.707',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -47,7 +47,7 @@
 
 
   </head>
-  <body>
+  <body role="document">
 
 
 
@@ -129,8 +129,8 @@
 <p>CMake is the build system for the entirety of Mantid (Framework, MantidQt &amp; MantidPlot). It is used to generate native build files for your platform, which can be Makefiles (for use with make, nmake or jom) for command line builds or project/solution files for an IDE (e.g. Visual Studio, Eclipse, Qt Creator, XCode).</p>
 <div class="section" id="environment">
 <h2><a class="toc-backref" href="#id2">Environment</a><a class="headerlink" href="#environment" title="Permalink to this headline">¶</a></h2>
-<p>The  <a class="reference internal" href="GettingStarted.html#gettingstarted"><em>Getting Started</em></a> page describes how to set up your environment to build Mantid. Follow those instructions and install the Mantid dependencies first.</p>
-<p>Also, if you use the Ninja generator then the executable is called <tt class="docutils literal"><span class="pre">ninja-build</span></tt>.</p>
+<p>The  <a class="reference internal" href="GettingStarted.html#gettingstarted"><span>Getting Started</span></a> page describes how to set up your environment to build Mantid. Follow those instructions and install the Mantid dependencies first.</p>
+<p>Also, if you use the Ninja generator then the executable is called <code class="docutils literal"><span class="pre">ninja-build</span></code>.</p>
 </div>
 <div class="section" id="ccache">
 <h2><a class="toc-backref" href="#id3">CCache</a><a class="headerlink" href="#ccache" title="Permalink to this headline">¶</a></h2>
@@ -148,11 +148,11 @@
 <div class="highlight-sh"><div class="highlight"><pre>brew install ccache
 </pre></div>
 </div>
-<p>After it is installed run <tt class="docutils literal"><span class="pre">ccache</span> <span class="pre">--max-size=20G</span></tt> to increase the size of the cache.</p>
-<p>If you&#8217;re build with <tt class="docutils literal"><span class="pre">ccache</span></tt> exhibits warnings that are not usually present then try setting the <tt class="docutils literal"><span class="pre">ccache</span> <span class="pre">--set-config=run_second_cpp=&quot;true&quot;</span></tt> config option (or set <tt class="docutils literal"><span class="pre">CCACHE_CPP2=yes</span></tt> environment variable on older versions).</p>
+<p>After it is installed run <code class="docutils literal"><span class="pre">ccache</span> <span class="pre">--max-size=20G</span></code> to increase the size of the cache.</p>
+<p>If you&#8217;re build with <code class="docutils literal"><span class="pre">ccache</span></code> exhibits warnings that are not usually present then try setting the <code class="docutils literal"><span class="pre">ccache</span> <span class="pre">--set-config=run_second_cpp=&quot;true&quot;</span></code> config option (or set <code class="docutils literal"><span class="pre">CCACHE_CPP2=yes</span></code> environment variable on older versions).</p>
 <div class="section" id="network-drives">
 <h3><a class="toc-backref" href="#id4">Network Drives</a><a class="headerlink" href="#network-drives" title="Permalink to this headline">¶</a></h3>
-<p>The default location for the cache directory is <tt class="docutils literal"><span class="pre">$HOME/.ccache</span></tt>. If you&#8217;re home directory is on a network-mounted drive then the location of this cache be moved to provide the best performance. On newer versions of <tt class="docutils literal"><span class="pre">ccache</span></tt> run <tt class="docutils literal"><span class="pre">ccache</span> <span class="pre">--set-config=cache_dir=PATH_TO_CACHE</span></tt>. Older versions (&lt;3.2) do not allow this and must fall back to setting the <tt class="docutils literal"><span class="pre">CCACHE_DIR</span></tt> environment variable in your shell profile.</p>
+<p>The default location for the cache directory is <code class="docutils literal"><span class="pre">$HOME/.ccache</span></code>. If you&#8217;re home directory is on a network-mounted drive then the location of this cache be moved to provide the best performance. On newer versions of <code class="docutils literal"><span class="pre">ccache</span></code> run <code class="docutils literal"><span class="pre">ccache</span> <span class="pre">--set-config=cache_dir=PATH_TO_CACHE</span></code>. Older versions (&lt;3.2) do not allow this and must fall back to setting the <code class="docutils literal"><span class="pre">CCACHE_DIR</span></code> environment variable in your shell profile.</p>
 </div>
 </div>
 <div class="section" id="configuring-your-build">
@@ -161,19 +161,19 @@
 <div class="section" id="from-the-command-line">
 <h3><a class="toc-backref" href="#id6">From the command line</a><a class="headerlink" href="#from-the-command-line" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>If wanting an out of source build, create the directory you want to build in and <tt class="docutils literal"><span class="pre">cd</span></tt> into it.</li>
+<li>If wanting an out of source build, create the directory you want to build in and <code class="docutils literal"><span class="pre">cd</span></code> into it.</li>
 <li>On Windows, you may need to be in a Visual Studio Command Prompt.</li>
-<li>Run <tt class="docutils literal"><span class="pre">cmake</span> <span class="pre">/path/to/Mantid</span></tt>, or to <tt class="docutils literal"><span class="pre">/path/to/Mantid/Framework</span></tt> if you only want a build of the Framework (typically not recommended, but possible nonetheless). This will generate build files using the default generator for your platform (e.g. Unix Makefiles on Linux).</li>
-<li>If you want to use a specific generator (run <tt class="docutils literal"><span class="pre">cmake</span> <span class="pre">--help</span></tt> for a list of available generators for your platform), use the <tt class="docutils literal"><span class="pre">-G</span></tt> option, e.g. <tt class="docutils literal"><span class="pre">cmake</span> <span class="pre">-G&quot;NMake</span> <span class="pre">Makefiles&quot;</span> <span class="pre">/path/to/Mantid</span></tt>.</li>
-<li>If you want to set the build type (e.g. Release, Debug) you can run cmake with the <tt class="docutils literal"><span class="pre">-i</span></tt> option or by passing the argument <tt class="docutils literal"><span class="pre">-DCMAKE_BUILD_TYPE=Debug</span></tt> to cmake. The default is Release.</li>
-<li>Please note that the executable is called <tt class="docutils literal"><span class="pre">cmake3</span></tt> on Red Hat 7 / CentOS7.</li>
+<li>Run <code class="docutils literal"><span class="pre">cmake</span> <span class="pre">/path/to/Mantid</span></code>, or to <code class="docutils literal"><span class="pre">/path/to/Mantid/Framework</span></code> if you only want a build of the Framework (typically not recommended, but possible nonetheless). This will generate build files using the default generator for your platform (e.g. Unix Makefiles on Linux).</li>
+<li>If you want to use a specific generator (run <code class="docutils literal"><span class="pre">cmake</span> <span class="pre">--help</span></code> for a list of available generators for your platform), use the <code class="docutils literal"><span class="pre">-G</span></code> option, e.g. <code class="docutils literal"><span class="pre">cmake</span> <span class="pre">-G&quot;NMake</span> <span class="pre">Makefiles&quot;</span> <span class="pre">/path/to/Mantid</span></code>.</li>
+<li>If you want to set the build type (e.g. Release, Debug) you can run cmake with the <code class="docutils literal"><span class="pre">-i</span></code> option or by passing the argument <code class="docutils literal"><span class="pre">-DCMAKE_BUILD_TYPE=Debug</span></code> to cmake. The default is Release.</li>
+<li>Please note that the executable is called <code class="docutils literal"><span class="pre">cmake3</span></code> on Red Hat 7 / CentOS7.</li>
 </ul>
 </div>
 <div class="section" id="from-the-cmake-gui">
 <h3><a class="toc-backref" href="#id7">From the CMake gui</a><a class="headerlink" href="#from-the-cmake-gui" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>The cmake gui is available from, e.g., the Windows Program menu or the command line executable <tt class="docutils literal"><span class="pre">cmake-gui</span></tt>.</li>
-<li>Start it and click the &#8220;Browse Source&#8221; button to point to <tt class="docutils literal"><span class="pre">/path/to/Mantid</span></tt>, or to <tt class="docutils literal"><span class="pre">/path/to/Mantid/Framework</span></tt> if you only want a build of the Framework (typically not recommended, but possible nonetheless).</li>
+<li>The cmake gui is available from, e.g., the Windows Program menu or the command line executable <code class="docutils literal"><span class="pre">cmake-gui</span></code>.</li>
+<li>Start it and click the &#8220;Browse Source&#8221; button to point to <code class="docutils literal"><span class="pre">/path/to/Mantid</span></code>, or to <code class="docutils literal"><span class="pre">/path/to/Mantid/Framework</span></code> if you only want a build of the Framework (typically not recommended, but possible nonetheless).</li>
 <li>Click &#8220;Browse Build&#8221; and point to the directory you want to build into - it&#8217;s recommended that you create a new directory for this (see above), though it can be the same as the source directory.</li>
 <li>Click &#8220;Configure&#8221; down near the bottom of the window.</li>
 <li>A new window will appear asking which &#8216;Generator&#8217; you want to use. Choose one and click OK (N.B. VS2010 = Visual Studio 10, and note that you should append Win64 to this for a 64 bit build).</li>
@@ -185,7 +185,7 @@
 </div>
 <div class="section" id="data-files-location">
 <h3><a class="toc-backref" href="#id8">Data Files Location</a><a class="headerlink" href="#data-files-location" title="Permalink to this headline">¶</a></h3>
-<p>Mantid used the CMake ExternalData system for managing testing data. See <a class="reference internal" href="DataFilesForTesting.html#datafilesfortesting"><em>Data Files for Testing</em></a> for further instructions.</p>
+<p>Mantid used the CMake ExternalData system for managing testing data. See <a class="reference internal" href="DataFilesForTesting.html#datafilesfortesting"><span>Data Files for Testing</span></a> for further instructions.</p>
 </div>
 <div class="section" id="with-qt-creator">
 <h3><a class="toc-backref" href="#id9">With Qt Creator</a><a class="headerlink" href="#with-qt-creator" title="Permalink to this headline">¶</a></h3>
@@ -197,24 +197,24 @@ The nice feature in this context is that it has CMake support built in. So you c
 <h2><a class="toc-backref" href="#id10">Building and working with CMake</a><a class="headerlink" href="#building-and-working-with-cmake" title="Permalink to this headline">¶</a></h2>
 <p>Building from IDE:</p>
 <ul class="simple">
-<li>Windows using Visual studio: Use the <tt class="docutils literal"><span class="pre">visual-studio.bat</span></tt> generated in the build directory to start the IDE. This sets up the environment correctly.</li>
+<li>Windows using Visual studio: Use the <code class="docutils literal"><span class="pre">visual-studio.bat</span></code> generated in the build directory to start the IDE. This sets up the environment correctly.</li>
 <li>Otherwise start your IDE and point to or import the generated solution/project files</li>
 </ul>
-<p>Command line: run <tt class="docutils literal"><span class="pre">make</span></tt>, <tt class="docutils literal"><span class="pre">nmake</span></tt> or <tt class="docutils literal"><span class="pre">jom</span></tt> to build the whole of Mantid (sub-targets are available - run <tt class="docutils literal"><span class="pre">make</span> <span class="pre">help</span></tt> to see them).</p>
+<p>Command line: run <code class="docutils literal"><span class="pre">make</span></code>, <code class="docutils literal"><span class="pre">nmake</span></code> or <code class="docutils literal"><span class="pre">jom</span></code> to build the whole of Mantid (sub-targets are available - run <code class="docutils literal"><span class="pre">make</span> <span class="pre">help</span></code> to see them).</p>
 <p>Working with CMake:</p>
 <ul class="simple">
 <li>You should typically never have to run CMake manually again (unless you want to create a new, separate build) - it will be run automatically if one of the CMake input files changes.</li>
-<li>It should be rare that you will need to edit the CMake build (<tt class="docutils literal"><span class="pre">CMakeLists.txt</span></tt>) files. The most common occurrence will be when you add a new file. This must be added to the corresponding CMakeLists file, e.g. if you add a file to Kernel, edit <tt class="docutils literal"><span class="pre">Mantid/Framework/Kernel/CMakeLists.txt</span></tt> to add the source, header and test files to the long lists of filepaths at the top of the file.</li>
-<li>The class maker utility (<a class="reference internal" href="ToolsOverview.html#toolsoverview"><em>Tools Overview</em></a>) can edit the <tt class="docutils literal"><span class="pre">CMakeList.txt</span></tt> for you automatically</li>
+<li>It should be rare that you will need to edit the CMake build (<code class="docutils literal"><span class="pre">CMakeLists.txt</span></code>) files. The most common occurrence will be when you add a new file. This must be added to the corresponding CMakeLists file, e.g. if you add a file to Kernel, edit <code class="docutils literal"><span class="pre">Mantid/Framework/Kernel/CMakeLists.txt</span></code> to add the source, header and test files to the long lists of filepaths at the top of the file.</li>
+<li>The class maker utility (<a class="reference internal" href="ToolsOverview.html#toolsoverview"><span>Tools Overview</span></a>) can edit the <code class="docutils literal"><span class="pre">CMakeList.txt</span></code> for you automatically</li>
 <li>There are similar places in the Qt projects for ui files and files that need moc-ing.</li>
 <li>If you add a new dependency, that will need to be added (this is less straightforward - do ask for help).</li>
-<li>Cache variables can be added via the CMake Gui or by running <tt class="docutils literal"><span class="pre">ccmake</span></tt>.</li>
+<li>Cache variables can be added via the CMake Gui or by running <code class="docutils literal"><span class="pre">ccmake</span></code>.</li>
 </ul>
 </div>
 <div class="section" id="building-the-installer-package">
 <h2><a class="toc-backref" href="#id11">Building the installer package</a><a class="headerlink" href="#building-the-installer-package" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>For Windows only, you first need to install NSIS, available at: <a class="reference external" href="http://nsis.sourceforge.net/Download">http://nsis.sourceforge.net/Download</a>. Ensure that the install directory is added to the PATH. You should be able to type <tt class="docutils literal"><span class="pre">makensis</span> <span class="pre">/?</span></tt> in a command prompt.</li>
+<li>For Windows only, you first need to install NSIS, available at: <a class="reference external" href="http://nsis.sourceforge.net/Download">http://nsis.sourceforge.net/Download</a>. Ensure that the install directory is added to the PATH. You should be able to type <code class="docutils literal"><span class="pre">makensis</span> <span class="pre">/?</span></code> in a command prompt.</li>
 <li>Run CMake with &#8220;ENABLE_CPACK&#8221; enabled. If using the GUI you need to click the &#8220;Advanced&#8221; checkbox to see this option.</li>
 <li>You will now have a build target called &#8220;PACKAGE&#8221; available to create the installer package.</li>
 </ul>
@@ -222,14 +222,14 @@ The nice feature in this context is that it has CMake support built in. So you c
 <div class="section" id="caveats-and-known-issues">
 <h2><a class="toc-backref" href="#id12">Caveats and Known Issues</a><a class="headerlink" href="#caveats-and-known-issues" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>For Visual Studio &amp; XCode, the libraries and executable are put into <tt class="docutils literal"><span class="pre">Mantid/bin/Release</span></tt>, <tt class="docutils literal"><span class="pre">Debug</span></tt>, etc.</li>
-<li>There is a known issue with using source control with Eclipse on an out of source build. Set the cache variable <tt class="docutils literal"><span class="pre">ECLIPSE_CDT4_GENERATE_SOURCE_PROJECT</span></tt> to true and CMake will generate a set of &#8216;dummy&#8217; project files within the source tree so that you can import that project and use it for source control actions.</li>
+<li>For Visual Studio &amp; XCode, the libraries and executable are put into <code class="docutils literal"><span class="pre">Mantid/bin/Release</span></code>, <code class="docutils literal"><span class="pre">Debug</span></code>, etc.</li>
+<li>There is a known issue with using source control with Eclipse on an out of source build. Set the cache variable <code class="docutils literal"><span class="pre">ECLIPSE_CDT4_GENERATE_SOURCE_PROJECT</span></code> to true and CMake will generate a set of &#8216;dummy&#8217; project files within the source tree so that you can import that project and use it for source control actions.</li>
 </ul>
 </div>
 <div class="section" id="tips">
 <h2><a class="toc-backref" href="#id13">Tips</a><a class="headerlink" href="#tips" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Running unit test executables directly with the CMake-generated <tt class="docutils literal"><span class="pre">Mantid.properties</span></tt> file will lead to a bunch of logging output to the console. You are encouraged to use CTest instead, which suppresses this output automatically. Otherwise, adding the line <tt class="docutils literal"><span class="pre">logging.channels.consoleChannel.class</span> <span class="pre">=</span> <span class="pre">NullChannel</span></tt> to your Mantid.user.properties file will turn if off.</li>
+<li>Running unit test executables directly with the CMake-generated <code class="docutils literal"><span class="pre">Mantid.properties</span></code> file will lead to a bunch of logging output to the console. You are encouraged to use CTest instead, which suppresses this output automatically. Otherwise, adding the line <code class="docutils literal"><span class="pre">logging.channels.consoleChannel.class</span> <span class="pre">=</span> <span class="pre">NullChannel</span></code> to your Mantid.user.properties file will turn if off.</li>
 <li>If you have more than one gcc and want to build with a version other than the default (e.g. on RedHat), setting CC &amp; CXX environment variables is one way to make it so.</li>
 </ul>
 </div>

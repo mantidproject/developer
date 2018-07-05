@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '3.12.20180622.2012',
+        VERSION:     '3.12.20180705.707',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -47,7 +47,7 @@
 
 
   </head>
-  <body>
+  <body role="document">
 
 
 
@@ -114,21 +114,21 @@
 </div>
 <div class="section" id="why-indexproperty">
 <h2><a class="toc-backref" href="#id7">Why IndexProperty?</a><a class="headerlink" href="#why-indexproperty" title="Permalink to this headline">¶</a></h2>
-<p>In many cases, indices are captured from the user with the <tt class="docutils literal"><span class="pre">ArrayProperty&lt;int&gt;</span></tt> property type. However, this lacks a few key behaviours which
+<p>In many cases, indices are captured from the user with the <code class="docutils literal"><span class="pre">ArrayProperty&lt;int&gt;</span></code> property type. However, this lacks a few key behaviours which
 a property collecting workspace index information should have. Firstly, there is no automatic validation of the indices with respect to
 the workspace itself. Therefore users could enter invalid input e.g negative numbers, or numbers outside of
-the range of spectra held by the workspace, unless bounded validators or used. Additionally, the <tt class="docutils literal"><span class="pre">ArrayProperty&lt;int&gt;</span></tt>
+the range of spectra held by the workspace, unless bounded validators or used. Additionally, the <code class="docutils literal"><span class="pre">ArrayProperty&lt;int&gt;</span></code>
 does not lend itself to a distributed method for accessing workspace data, this would require manual conversion
 of global indices to local indices on each mpi rank. Finally, any conversion between &#8220;index types&#8221; i.e. conversion from
 spectrum numbers to workspace indices (also known as spectrum indices) must be managed by the algorithm developer. This style
 of development is very error prone, particularly in the MPI case, and could lead to inconsitencies across algorithms as
 each developer may have a different approach to addressing the aforementioned issues.</p>
-<p>The <tt class="docutils literal"><span class="pre">IndexProperty</span></tt> in Mantid provides a consistent interface for algorithms
-which need to access a subset of the workspace spectra for processing.The <tt class="docutils literal"><span class="pre">IndexProperty</span></tt> facilitates
-the retrieval of a set of workspace indices, called a <tt class="docutils literal"><span class="pre">SpectrumIndexSet</span></tt>, once provided with a set of workspace indices or
+<p>The <code class="docutils literal"><span class="pre">IndexProperty</span></code> in Mantid provides a consistent interface for algorithms
+which need to access a subset of the workspace spectra for processing.The <code class="docutils literal"><span class="pre">IndexProperty</span></code> facilitates
+the retrieval of a set of workspace indices, called a <code class="docutils literal"><span class="pre">SpectrumIndexSet</span></code>, once provided with a set of workspace indices or
 spectrum numbers <a class="footnote-reference" href="#id3" id="id1">[1]</a>. Therefore algorithm developers do not need to perform any conversions manually.  In situations where data is
-distributed across several clusters (distributed processing) <a class="footnote-reference" href="#id4" id="id2">[2]</a>, the underlying <tt class="docutils literal"><span class="pre">IndexInfo</span></tt> object, which is used to
-obtain a <tt class="docutils literal"><span class="pre">SpectrumIndexSet</span></tt>, hides these mpi-specific details by automatically selecting the correct indices for
+distributed across several clusters (distributed processing) <a class="footnote-reference" href="#id4" id="id2">[2]</a>, the underlying <code class="docutils literal"><span class="pre">IndexInfo</span></code> object, which is used to
+obtain a <code class="docutils literal"><span class="pre">SpectrumIndexSet</span></code>, hides these mpi-specific details by automatically selecting the correct indices for
 a specific mpi rank. Therefore access to the workspace data remains unchanged for developers.</p>
 <table class="docutils footnote" frame="void" id="id3" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
@@ -139,20 +139,20 @@ a specific mpi rank. Therefore access to the workspace data remains unchanged fo
 <table class="docutils footnote" frame="void" id="id4" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td>See <a class="reference internal" href="AlgorithmMPISupport.html#algorithmmpisupport"><em>MPI Support for Algorithms</em></a> for more information on MPI support.</td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td>See <a class="reference internal" href="AlgorithmMPISupport.html#algorithmmpisupport"><span>MPI Support for Algorithms</span></a> for more information on MPI support.</td></tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="how-to-use-the-indexproperty">
 <h2><a class="toc-backref" href="#id8">How to use the IndexProperty</a><a class="headerlink" href="#how-to-use-the-indexproperty" title="Permalink to this headline">¶</a></h2>
-<p>Unlike other property types in Mantid, the <tt class="docutils literal"><span class="pre">IndexProperty</span></tt> is designed to be used in conjunction with other properties
+<p>Unlike other property types in Mantid, the <code class="docutils literal"><span class="pre">IndexProperty</span></code> is designed to be used in conjunction with other properties
 which define the workspace and the input type of the indices which represent
 the subset of the data. However, developers do not need to concern themselves
 with maintaining these properties on their own. There are few special methods in
-<tt class="docutils literal"><span class="pre">Algorithm</span></tt> which handle this. Namely, <tt class="docutils literal"><span class="pre">Algorithm::declareWorkspaceInputProperties</span></tt>,
-<tt class="docutils literal"><span class="pre">Algorithm::setWorkspaceInputProperties</span></tt> and <tt class="docutils literal"><span class="pre">Algorithm::getWorkspaceAndIndices</span></tt> <a class="footnote-reference" href="#id6" id="id5">[3]</a>.</p>
+<code class="docutils literal"><span class="pre">Algorithm</span></code> which handle this. Namely, <code class="docutils literal"><span class="pre">Algorithm::declareWorkspaceInputProperties</span></code>,
+<code class="docutils literal"><span class="pre">Algorithm::setWorkspaceInputProperties</span></code> and <code class="docutils literal"><span class="pre">Algorithm::getWorkspaceAndIndices</span></code> <a class="footnote-reference" href="#id6" id="id5">[3]</a>.</p>
 <p>Property declaration is as shown below:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &quot;MantidAPI/Algorithm.tcc&quot;</span>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include</span> <span class="cpf">&quot;MantidAPI/Algorithm.tcc&quot;</span><span class="cp"></span>
 
 <span class="c1">// Declare property with default settings</span>
 <span class="c1">// IndexType::WorkspaceIndex is default</span>
@@ -168,7 +168,7 @@ with maintaining these properties on their own. There are few special methods in
     <span class="cm">/* optional PropertyMode, LockMode, and validator forwarded to WorkspaceProperty */</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>Internally, a <tt class="docutils literal"><span class="pre">WorkspaceProperty</span></tt> is created along with an <tt class="docutils literal"><span class="pre">IndexTypeProperty</span></tt> for
+<p>Internally, a <code class="docutils literal"><span class="pre">WorkspaceProperty</span></code> is created along with an <code class="docutils literal"><span class="pre">IndexTypeProperty</span></code> for
 managing the workspace and the type of user-defined input index list respectively. Their names are
 automatically generated based on the property name in the declaration.
 A toy example algorithm dialog in the GUI would have the following inputs defined:</p>
@@ -184,7 +184,7 @@ within the algorithm as follows:</p>
 <span class="n">std</span><span class="o">::</span><span class="n">tie</span><span class="p">(</span><span class="n">inputWs</span><span class="p">,</span> <span class="n">indexSet</span><span class="p">)</span> <span class="o">=</span>
       <span class="n">getWorkspaceAndIndices</span><span class="o">&lt;</span><span class="n">MatrixWorkspace</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;InputWorkspace&quot;</span><span class="p">);</span>
 
-<span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="nl">index:</span> <span class="n">indexSet</span><span class="p">){</span>
+<span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="nl">index</span><span class="p">:</span> <span class="n">indexSet</span><span class="p">){</span>
   <span class="k">auto</span> <span class="o">&amp;</span><span class="n">spec</span> <span class="o">=</span> <span class="n">inputWs</span><span class="o">-&gt;</span><span class="n">getSpectrum</span><span class="p">(</span><span class="n">index</span><span class="p">);</span>
   <span class="c1">//do something with spectrum.</span>
 <span class="p">}</span>
@@ -213,7 +213,7 @@ within the algorithm as follows:</p>
 <table class="docutils footnote" frame="void" id="id6" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id5">[3]</a></td><td>It is important to note that any attempt to access the <tt class="docutils literal"><span class="pre">IndexProperty</span></tt> or the <tt class="docutils literal"><span class="pre">WorkspaceProperty</span></tt> in isolation will fail. Once defined using the <tt class="docutils literal"><span class="pre">Algorithm::declareWorkspaceInputProperties</span></tt> method, all access must be via the three methods mentioned above.</td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id5">[3]</a></td><td>It is important to note that any attempt to access the <code class="docutils literal"><span class="pre">IndexProperty</span></code> or the <code class="docutils literal"><span class="pre">WorkspaceProperty</span></code> in isolation will fail. Once defined using the <code class="docutils literal"><span class="pre">Algorithm::declareWorkspaceInputProperties</span></code> method, all access must be via the three methods mentioned above.</td></tr>
 </tbody>
 </table>
 </div>
@@ -236,7 +236,7 @@ within the algorithm as follows:</p>
     </a>
   </li>
   <li>
-    <a href="InstrumentViewer.html" title="Next Chapter: Instrument Viewer Widget"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Instrument Viewe... &raquo;</span>
+    <a href="InstrumentViewer.html" title="Next Chapter: Instrument Viewer Widget"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Instrument Vi... &raquo;</span>
     </a>
   </li>
           

@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '3.12.20180622.2012',
+        VERSION:     '3.12.20180705.707',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -48,7 +48,7 @@
 
 
   </head>
-  <body>
+  <body role="document">
 
 
 
@@ -136,9 +136,9 @@
         <span class="n">my_view</span> <span class="o">=</span> <span class="n">masterView</span><span class="o">.</span><span class="n">MasterView</span><span class="p">(</span><span class="n">parent</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">master_presenter</span> <span class="o">=</span> <span class="n">masterPresenter</span><span class="o">.</span><span class="n">MasterPresenter</span><span class="p">(</span><span class="n">my_view</span><span class="p">,</span> <span class="n">data_model</span><span class="p">,</span> <span class="n">colour_model</span><span class="p">)</span>
 
-        <span class="c"># set the view for the main window</span>
+        <span class="c1"># set the view for the main window</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">setCentralWidget</span><span class="p">(</span><span class="n">my_view</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="s">&quot;view tutorial&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="s2">&quot;view tutorial&quot;</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">qapp</span><span class="p">():</span>
         <span class="k">if</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QApplication</span><span class="o">.</span><span class="n">instance</span><span class="p">():</span>
@@ -210,12 +210,12 @@ later date.</p>
 
     <span class="bp">self</span><span class="o">.</span><span class="n">presenter</span> <span class="o">=</span> <span class="n">presenter</span><span class="o">.</span><span class="n">Presenter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">getOptionView</span><span class="p">(),</span> <span class="n">colours</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">plot_presenter</span> <span class="o">=</span> <span class="n">plotPresenter</span><span class="o">.</span><span class="n">PlotPresenter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">getPlotView</span><span class="p">())</span>
-    <span class="c"># connect statements</span>
+    <span class="c1"># connect statements</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">getOptionView</span><span class="p">()</span><span class="o">.</span><span class="n">plotSignal</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">updatePlot</span><span class="p">)</span>
 
-    <span class="c"># handle signals</span>
+    <span class="c1"># handle signals</span>
     <span class="k">def</span> <span class="nf">updatePlot</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c"># only care about the colour if the button is pressed</span>
+        <span class="c1"># only care about the colour if the button is pressed</span>
         <span class="n">colour</span><span class="p">,</span> <span class="n">freq</span><span class="p">,</span><span class="n">phi</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">presenter</span><span class="o">.</span><span class="n">getPlotInfo</span><span class="p">()</span>
         <span class="n">grid_lines</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">presenter</span><span class="o">.</span><span class="n">getGridLines</span><span class="p">()</span>
 
@@ -238,7 +238,7 @@ later date.</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">view</span> <span class="o">=</span> <span class="n">view</span>
 
     <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_data</span><span class="p">,</span> <span class="n">y_data</span><span class="p">,</span> <span class="n">grid_lines</span><span class="p">,</span> <span class="n">colour_code</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">addData</span><span class="p">(</span><span class="n">x_data</span><span class="p">,</span> <span class="n">y_data</span><span class="p">,</span> <span class="n">grid_lines</span><span class="p">,</span> <span class="n">colour_code</span><span class="p">,</span> <span class="s">&quot;x&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">addData</span><span class="p">(</span><span class="n">x_data</span><span class="p">,</span> <span class="n">y_data</span><span class="p">,</span> <span class="n">grid_lines</span><span class="p">,</span> <span class="n">colour_code</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -288,11 +288,11 @@ later date.</p>
           
             
   <li>
-    <a href="ModelExerciseSolution.html" title="Previous Chapter: Model Exercise Solution"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Model Exercise S...</span>
+    <a href="ModelExerciseSolution.html" title="Previous Chapter: Model Exercise Solution"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Model Exercis...</span>
     </a>
   </li>
   <li>
-    <a href="CalculatorExample/index.html" title="Next Chapter: MVP Calculator GUI Example"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">MVP Calculator G... &raquo;</span>
+    <a href="CalculatorExample/index.html" title="Next Chapter: MVP Calculator GUI Example"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">MVP Calculato... &raquo;</span>
     </a>
   </li>
           

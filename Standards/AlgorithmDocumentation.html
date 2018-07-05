@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '3.12.20180622.2012',
+        VERSION:     '3.12.20180705.707',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -48,7 +48,7 @@
 
 
   </head>
-  <body>
+  <body role="document">
 
 
 
@@ -140,15 +140,15 @@
 <h3><a class="toc-backref" href="#id3">The Code Files</a><a class="headerlink" href="#the-code-files" title="Permalink to this headline">¶</a></h3>
 <p>The code files hold documentation in two important areas.</p>
 <dl class="docutils">
-<dt>The <tt class="docutils literal"><span class="pre">summary</span></tt> method</dt>
+<dt>The <code class="docutils literal"><span class="pre">summary</span></code> method</dt>
 <dd>The summary method should return a string (in plain text) that describes in a short sentence the purpose of the algorithm. This is used to provide a summary in the algorithm dialog box and in the algorithm documentation web page.</dd>
 </dl>
 <p>In C++: (This example uses the .h file, you could of course implement it in the .cpp file)</p>
 <div class="highlight-c++"><div class="highlight"><pre><span class="c1">/// Algorithm&#39;s name for identification overriding a virtual method</span>
-<span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span><span class="p">()</span> <span class="k">const</span> <span class="n">override</span> <span class="p">{</span> <span class="k">return</span> <span class="s">&quot;Rebin&quot;</span><span class="p">;}</span>
+<span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span><span class="p">()</span> <span class="k">const</span> <span class="k">override</span> <span class="p">{</span> <span class="k">return</span> <span class="s">&quot;Rebin&quot;</span><span class="p">;}</span>
 
 <span class="c1">///Summary of algorithms purpose</span>
-<span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">summary</span><span class="p">()</span> <span class="k">const</span> <span class="n">override</span> <span class="p">{</span><span class="k">return</span> <span class="s">&quot;Rebins data with new X bin boundaries.&quot;</span><span class="p">;}</span>
+<span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">summary</span><span class="p">()</span> <span class="k">const</span> <span class="k">override</span> <span class="p">{</span><span class="k">return</span> <span class="s">&quot;Rebins data with new X bin boundaries.&quot;</span><span class="p">;}</span>
 </pre></div>
 </div>
 </div>
@@ -210,7 +210,7 @@ A custom usage example.
 </pre></div>
 </div>
 <dl class="docutils">
-<dt><tt class="docutils literal"><span class="pre">..</span> <span class="pre">algorithm</span> <span class="pre">::</span></tt></dt>
+<dt><code class="docutils literal"><span class="pre">..</span> <span class="pre">algorithm</span> <span class="pre">::</span></code></dt>
 <dd>This directive has several pieces of functionality, which includes:</dd>
 </dl>
 <ul class="simple">
@@ -220,37 +220,37 @@ A custom usage example.
 <li>Insertion of the Table Of Contents.</li>
 </ul>
 <dl class="docutils">
-<dt><tt class="docutils literal"><span class="pre">..</span> <span class="pre">summary::</span></tt></dt>
+<dt><code class="docutils literal"><span class="pre">..</span> <span class="pre">summary::</span></code></dt>
 <dd>The content of the summary method declared in your algorithm is output as HTML, for example, the following method is used in Rebin:</dd>
 </dl>
 <div class="highlight-c++"><div class="highlight"><pre><span class="c1">/// Summary of algorithms purpose</span>
-<span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">summary</span><span class="p">()</span> <span class="k">const</span> <span class="n">override</span> <span class="p">{</span>
+<span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">summary</span><span class="p">()</span> <span class="k">const</span> <span class="k">override</span> <span class="p">{</span>
    <span class="k">return</span> <span class="s">&quot;Rebins data with new X bin boundaries. For EventWorkspaces, you can very quickly rebin in-place by keeping the same output name and PreserveEvents=true.&quot;</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 <dl class="docutils">
-<dt><tt class="docutils literal"><span class="pre">..</span> <span class="pre">alias::</span></tt></dt>
-<dd>This directive obtains aliases from the required <tt class="docutils literal"><span class="pre">alias</span></tt> method in the algorithm, for example, the following method is used in Rebin:</dd>
+<dt><code class="docutils literal"><span class="pre">..</span> <span class="pre">alias::</span></code></dt>
+<dd>This directive obtains aliases from the required <code class="docutils literal"><span class="pre">alias</span></code> method in the algorithm, for example, the following method is used in Rebin:</dd>
 </dl>
 <div class="highlight-c++"><div class="highlight"><pre><span class="c1">/// Algorithm&#39;s aliases</span>
-<span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">alias</span><span class="p">()</span> <span class="k">const</span> <span class="n">override</span> <span class="p">{</span> <span class="k">return</span> <span class="s">&quot;rebin&quot;</span><span class="p">;</span> <span class="p">}</span>
+<span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">alias</span><span class="p">()</span> <span class="k">const</span> <span class="k">override</span> <span class="p">{</span> <span class="k">return</span> <span class="s">&quot;rebin&quot;</span><span class="p">;</span> <span class="p">}</span>
 </pre></div>
 </div>
 <dl class="docutils">
-<dt><tt class="docutils literal"><span class="pre">..</span> <span class="pre">properties::</span></tt></dt>
-<dd>As mentioned above, it is <em>critical</em> that you include a description for the properties of your algorithm. This directive obtains all of the algorithm&#8217;s properties (set inside the algorithm&#8217;s <tt class="docutils literal"><span class="pre">init</span></tt> method) and outputs in a table format.</dd>
-<dt><tt class="docutils literal"><span class="pre">..</span> <span class="pre">categories::</span></tt></dt>
-<dd>By default, this directive obtains the categories that were set in the <tt class="docutils literal"><span class="pre">categories</span></tt> method the algorithm. For example, in Rebin the category method is in the header and contains:</dd>
+<dt><code class="docutils literal"><span class="pre">..</span> <span class="pre">properties::</span></code></dt>
+<dd>As mentioned above, it is <em>critical</em> that you include a description for the properties of your algorithm. This directive obtains all of the algorithm&#8217;s properties (set inside the algorithm&#8217;s <code class="docutils literal"><span class="pre">init</span></code> method) and outputs in a table format.</dd>
+<dt><code class="docutils literal"><span class="pre">..</span> <span class="pre">categories::</span></code></dt>
+<dd>By default, this directive obtains the categories that were set in the <code class="docutils literal"><span class="pre">categories</span></code> method the algorithm. For example, in Rebin the category method is in the header and contains:</dd>
 </dl>
 <div class="highlight-c++"><div class="highlight"><pre><span class="c1">/// Algorithm&#39;s category for identification</span>
-<span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">category</span><span class="p">()</span> <span class="k">const</span> <span class="n">override</span> <span class="p">{</span><span class="k">return</span> <span class="s">&quot;Transforms</span><span class="se">\\</span><span class="s">Rebin&quot;</span><span class="p">;}</span>
+<span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">category</span><span class="p">()</span> <span class="k">const</span> <span class="k">override</span> <span class="p">{</span><span class="k">return</span> <span class="s">&quot;Transforms</span><span class="se">\\</span><span class="s">Rebin&quot;</span><span class="p">;}</span>
 </pre></div>
 </div>
 <p>When the HTML is generate a categories list is built that contains: Algorithms, Transforms and Rebin.</p>
 <p>It is possible to add additional categories by passing the directive arguments, for example, the following would output the above categories, and also <cite>Example</cite>:</p>
 <dl class="docutils">
-<dt><tt class="docutils literal"><span class="pre">..sourcelink</span> <span class="pre">::</span></tt></dt>
+<dt><code class="docutils literal"><span class="pre">..sourcelink</span> <span class="pre">::</span></code></dt>
 <dd>This directive adds links to the algorithms source code.</dd>
 </dl>
 </div>
@@ -301,11 +301,11 @@ bin/MantidPlot -xq docs/runsphinx_qthelp.py -R Rebin  # builds Qt-help documenta
           
             
   <li>
-    <a href="DocumentationGuideForDevs.html" title="Previous Chapter: Documentation Guide for Devs"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Documentation Gu...</span>
+    <a href="DocumentationGuideForDevs.html" title="Previous Chapter: Documentation Guide for Devs"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Documentation...</span>
     </a>
   </li>
   <li>
-    <a href="AlgorithmUsageExamples.html" title="Next Chapter: Algorithm Usage Examples"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Algorithm Usage ... &raquo;</span>
+    <a href="AlgorithmUsageExamples.html" title="Next Chapter: Algorithm Usage Examples"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Algorithm Usa... &raquo;</span>
     </a>
   </li>
           
