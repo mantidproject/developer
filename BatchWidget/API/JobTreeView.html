@@ -1,37 +1,22 @@
 <!DOCTYPE html>
 
-
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Job Tree View</title>
-    
-    <link rel="stylesheet" href="../../_static/basic.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/bootstrap-3.3.6/css/bootstrap.min.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/bootstrap-3.3.6/css/bootstrap-theme.min.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../../',
-        VERSION:     '3.12.20180709.1546',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="../../_static/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../../_static/bootstrap-sphinx.js"></script>
-    <link rel="top" title="" href="../../index.html" />
-    <link rel="up" title="Batch Widget Manual" href="../index.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Find Subtree Roots" href="../Internals/FindSubtreeRoots.html" />
     <link rel="prev" title="Batch Widget Manual" href="../index.html" />
 
@@ -47,8 +32,7 @@
 </script>
 
 
-  </head>
-  <body role="document">
+  </head><body>
 
 
 
@@ -66,7 +50,7 @@
         </button>
         <a class="navbar-brand" href="http://www.mantidproject.org"><img src="../../_static/Mantid_Logo_Transparent.png">
            </a>
-        <span class="navbar-text navbar-version pull-left"><b>3.12</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.0</b></span>
       </div>
 
       
@@ -107,12 +91,12 @@
       
   <div class="section" id="job-tree-view">
 <span id="jobtreeview"></span><h1>Job Tree View<a class="headerlink" href="#job-tree-view" title="Permalink to this headline">¶</a></h1>
-<p>The <code class="code docutils literal"><span class="pre">JobTreeView</span></code> component provides an MVP style view interface for a hierarchical table
+<p>The <code class="code docutils literal notranslate"><span class="pre">JobTreeView</span></code> component provides an MVP style view interface for a hierarchical table
 with a spreadsheet-like appearance for configuring and indicating the status of multiple (batch)
 reduction jobs. It is currently used to implement the tree component of the Batch Widget.</p>
 <p>It is written in C++ and exposed to python through SIP leading to similar APIs as shown by the
 examples below.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">mantidqtpython</span> <span class="kn">import</span> <span class="n">MantidQt</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">mantidqtpython</span> <span class="k">import</span> <span class="n">MantidQt</span>
 
 
 <span class="c1"># Inside the parent view</span>
@@ -139,7 +123,7 @@ examples below.</p>
     <span class="k">return</span> <span class="n">MantidQt</span><span class="o">.</span><span class="n">MantidWidgets</span><span class="o">.</span><span class="n">Batch</span><span class="o">.</span><span class="n">RowLocation</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-c++"><div class="highlight"><pre><span class="cp">#include</span> <span class="cpf">&quot;MantidQtWidgets/Common/Batch/JobTreeView.h&quot;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span class="cp">#include</span> <span class="cpf">&quot;MantidQtWidgets/Common/Batch/JobTreeView.h&quot;</span><span class="cp"></span>
 
 <span class="k">using</span> <span class="k">namespace</span> <span class="n">MantidWidgets</span><span class="o">::</span><span class="n">Common</span><span class="o">::</span><span class="n">Batch</span><span class="p">;</span>
 
@@ -160,23 +144,23 @@ examples below.</p>
 <h2>API Concepts<a class="headerlink" href="#api-concepts" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="row-location">
 <h3>Row Location<a class="headerlink" href="#row-location" title="Permalink to this headline">¶</a></h3>
-<p>A row location is the notion of an individual row&#8217;s position within the table. Since the
+<p>A row location is the notion of an individual row’s position within the table. Since the
 table is hierarchical, unlike a traditional spreadsheet, the table is more like a
 tree of rows where all non-leaf nodes can have any number of children.</p>
 <p>In practice some interfaces such as Reflectometry are likely to want to constrain the
 number of children or depth of the tree, the batch widget has mechanisms for performing this.</p>
 <p>Currently a row location is represented as a path from the root node to the row node in question,
-this is actualised in the <code class="code docutils literal"><span class="pre">RowLocation</span></code> class which contains an ordered list of integers where
-each element represents the index of the next node in the path relative to it&#8217;s predecessor in the
+this is actualised in the <code class="code docutils literal notranslate"><span class="pre">RowLocation</span></code> class which contains an ordered list of integers where
+each element represents the index of the next node in the path relative to it’s predecessor in the
 path. An example table and corresponding tree structure are illustrated in the diagram below
 (complete with their paths).</p>
-<a class="reference internal image-reference" href="../../_images/row_location_path.svg"><div align="center" class="align-center"><img src="../../_images/row_location_path.svg" width="800px" /></div>
+<a class="reference internal image-reference" href="../../_images/row_location_path.svg"><div align="center" class="align-center"><img alt="../../_images/row_location_path.svg" src="../../_images/row_location_path.svg" width="800px" /></div>
 </a>
-<p>Equality over <code class="code docutils literal"><span class="pre">RowLocation</span></code> objects is based on the equality of their paths. The other relational
+<p>Equality over <code class="code docutils literal notranslate"><span class="pre">RowLocation</span></code> objects is based on the equality of their paths. The other relational
 operators have a definition based on a lexicographical comparison such that sorting a range of
-<code class="code docutils literal"><span class="pre">RowLocation</span></code>s puts them in the same order as they would appear in the table. This is
+<code class="code docutils literal notranslate"><span class="pre">RowLocation</span></code>s puts them in the same order as they would appear in the table. This is
 demonstrated by the code below.</p>
-<div class="highlight-c++"><div class="highlight"><pre><span class="k">auto</span> <span class="n">items</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">RowLocation</span><span class="o">&gt;</span><span class="p">({</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span class="k">auto</span> <span class="n">items</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">RowLocation</span><span class="o">&gt;</span><span class="p">({</span>
   <span class="n">RowLocation</span><span class="p">({</span><span class="mi">2</span><span class="p">}),</span>
   <span class="n">RowLocation</span><span class="p">({</span><span class="mi">0</span><span class="p">}),</span>
   <span class="n">RowLocation</span><span class="p">({</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">}),</span>
@@ -197,23 +181,23 @@ demonstrated by the code below.</p>
 </div>
 <div class="section" id="dealing-with-cells">
 <h4>Dealing With Cells<a class="headerlink" href="#dealing-with-cells" title="Permalink to this headline">¶</a></h4>
-<p>Each row in the table can have 0-N cells. When interacting with the <code class="code docutils literal"><span class="pre">JobTreeView</span></code> we
+<p>Each row in the table can have 0-N cells. When interacting with the <code class="code docutils literal notranslate"><span class="pre">JobTreeView</span></code> we
 sometimes need to be able to address and change the properties of an individual cell. To do this
-we use both a <code class="code docutils literal"><span class="pre">RowLocation</span></code> and a column index.</p>
+we use both a <code class="code docutils literal notranslate"><span class="pre">RowLocation</span></code> and a column index.</p>
 </div>
 </div>
 <div class="section" id="cells">
 <h3>Cells<a class="headerlink" href="#cells" title="Permalink to this headline">¶</a></h3>
-<p>In order to retrieve the view properties for one or more specific cells, the methods <code class="code docutils literal"><span class="pre">cellAt</span></code>
-and <code class="code docutils literal"><span class="pre">cellsAt</span></code> can be used to retrieve <code class="code docutils literal"><span class="pre">Cell</span></code> objects for the cell at a row and column
+<p>In order to retrieve the view properties for one or more specific cells, the methods <code class="code docutils literal notranslate"><span class="pre">cellAt</span></code>
+and <code class="code docutils literal notranslate"><span class="pre">cellsAt</span></code> can be used to retrieve <code class="code docutils literal notranslate"><span class="pre">Cell</span></code> objects for the cell at a row and column
 index or all the cells for a particular row respectively.</p>
-<p>The <code class="code docutils literal"><span class="pre">Cell</span></code> class contains the per-cell view properties (such as the text it contains) in a
+<p>The <code class="code docutils literal notranslate"><span class="pre">Cell</span></code> class contains the per-cell view properties (such as the text it contains) in a
 view-implementation independent format.</p>
 <p>These cell objects intentionally have no link back to the view they originated from, so mutating
 them does not directly update the view. In order to update the cell or cells corresponding to a row,
-the methods <code class="code docutils literal"><span class="pre">setCellAt</span></code> or <code class="code docutils literal"><span class="pre">setCellsAt</span></code> should be used. This process is illustrated in
+the methods <code class="code docutils literal notranslate"><span class="pre">setCellAt</span></code> or <code class="code docutils literal notranslate"><span class="pre">setCellsAt</span></code> should be used. This process is illustrated in
 the example code below.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">mantidqtpython</span> <span class="kn">import</span> <span class="n">MantidQt</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">mantidqtpython</span> <span class="k">import</span> <span class="n">MantidQt</span>
 
 
 <span class="c1"># Inside the parent view</span>
@@ -246,7 +230,7 @@ the example code below.</p>
 <div class="section" id="subtrees">
 <h3>Subtrees<a class="headerlink" href="#subtrees" title="Permalink to this headline">¶</a></h3>
 <p>As previously illustrated the conceptual model for the API is a tree of tables. Initially, this
-model presents some challenges when you think about how to represent a user&#8217;s selection while
+model presents some challenges when you think about how to represent a user’s selection while
 preserving the tree structure. This is however necessary in order to support presenters which wish
 to have sensible behaviour for actions such as copy and
 paste.</p>
@@ -254,17 +238,17 @@ paste.</p>
 a size greater than one, each node is directly connected to at least one other node in the set.
 An example of a set of nodes which meets this constraint and a set of nodes which do not are
 outlined in blue in the diagram below.</p>
-<a class="reference internal image-reference" href="../../_images/subtree.svg"><div align="center" class="align-center"><img src="../../_images/subtree.svg" width="800px" /></div>
+<a class="reference internal image-reference" href="../../_images/subtree.svg"><div align="center" class="align-center"><img alt="../../_images/subtree.svg" src="../../_images/subtree.svg" width="800px" /></div>
 </a>
-<p>The <code class="code docutils literal"><span class="pre">Subtree</span></code> type used to represent this concept in the API is defined in the header
-<code class="code docutils literal"><span class="pre">Row.h</span></code>. Refer to the documentation for the component <a class="reference internal" href="../Internals/ExtractSubtrees.html"><em>Extract Subtrees</em></a> for more detail
+<p>The <code class="code docutils literal notranslate"><span class="pre">Subtree</span></code> type used to represent this concept in the API is defined in the header
+<code class="code docutils literal notranslate"><span class="pre">Row.h</span></code>. Refer to the documentation for the component <a class="reference internal" href="../Internals/ExtractSubtrees.html"><span class="doc">Extract Subtrees</span></a> for more detail
 on the internal representation of a subtree in this API.</p>
 </div>
 <div class="section" id="notification">
 <h3>Notification<a class="headerlink" href="#notification" title="Permalink to this headline">¶</a></h3>
-<p><code class="code docutils literal"><span class="pre">JobTreeViewSubscriber</span></code> is the mechanism by which the JobTreeView communicates events such as
+<p><code class="code docutils literal notranslate"><span class="pre">JobTreeViewSubscriber</span></code> is the mechanism by which the JobTreeView communicates events such as
 key presses to the presenter in an MVP setup.</p>
-<div class="highlight-c++"><div class="highlight"><pre><span class="cp">#include</span> <span class="cpf">&quot;MantidQtWidgets/Common/Batch/JobTreeView.h&quot;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span class="cp">#include</span> <span class="cpf">&quot;MantidQtWidgets/Common/Batch/JobTreeView.h&quot;</span><span class="cp"></span>
 
 <span class="k">using</span> <span class="k">namespace</span> <span class="n">MantidWidgets</span><span class="o">::</span><span class="n">Common</span><span class="o">::</span><span class="n">Batch</span><span class="p">;</span>
 
@@ -297,14 +281,14 @@ key presses to the presenter in an MVP setup.</p>
 <span class="n">m_childPresenter</span> <span class="o">=</span> <span class="n">SimplePresenter</span><span class="p">(</span><span class="n">m_treeView</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>This interface is also implemented by <code class="code docutils literal"><span class="pre">JobTreeViewSignalAdapter</span></code> which makes it easy to use
+<p>This interface is also implemented by <code class="code docutils literal notranslate"><span class="pre">JobTreeViewSignalAdapter</span></code> which makes it easy to use
 signals and slots instead when writing a GUI from python.</p>
 <p>Due to the interactive nature of some events (such as row insertion, cell modification and filter resets),
 notification does not happen until after said event has taken place and the view has
 already been updated. Therefore, if a presenter determines that said action is on-reflection invalid
 it will be required to call a method which updates the view and rolls back the action.
 This is illustrated in the example below.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">mantidqtpython</span> <span class="kn">import</span> <span class="n">MantidQt</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">mantidqtpython</span> <span class="k">import</span> <span class="n">MantidQt</span>
 
 
 <span class="k">def</span> <span class="nf">empty_cell</span><span class="p">():</span>
@@ -329,11 +313,11 @@ This is illustrated in the example below.</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="o">.</span><span class="n">removeRowAt</span><span class="p">(</span><span class="n">rowLocation</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Other events (those who&#8217;s notification method name ends with <code class="code docutils literal"><span class="pre">Requested</span></code>) require the presenter
+<p>Other events (those who’s notification method name ends with <code class="code docutils literal notranslate"><span class="pre">Requested</span></code>) require the presenter
 to update the view and/or model and so the notification happens before the view has been updated.</p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">After creating a <code class="code docutils literal"><span class="pre">JobTreeView</span></code> it is important to call the <code class="code docutils literal"><span class="pre">subscribe</span></code> method passing in
+<p class="last">After creating a <code class="code docutils literal notranslate"><span class="pre">JobTreeView</span></code> it is important to call the <code class="code docutils literal notranslate"><span class="pre">subscribe</span></code> method passing in
 the subscriber prior to calling any other methods, failure to do so may result in undefined behavior.</p>
 </div>
 </div>
@@ -342,10 +326,10 @@ the subscriber prior to calling any other methods, failure to do so may result i
 <p>Is is possible to make the JobTreeView only show a subset of the nodes in the tree based on an
 arbitrary predicate over row locations. These can be translated to their corresponding
 node in the MVP model or their corresponding cells from the view.</p>
-<p>The header <code class="code docutils literal"><span class="pre">RowPredicate.h</span></code> defines the interface which must be implemented by implementations
-of such predicates. The method <code class="code docutils literal"><span class="pre">filterRowsBy</span></code> defined in <code class="code docutils literal"><span class="pre">JobTreeView</span></code> can be used to set
+<p>The header <code class="code docutils literal notranslate"><span class="pre">RowPredicate.h</span></code> defines the interface which must be implemented by implementations
+of such predicates. The method <code class="code docutils literal notranslate"><span class="pre">filterRowsBy</span></code> defined in <code class="code docutils literal notranslate"><span class="pre">JobTreeView</span></code> can be used to set
 the currently active filter as demonstrated by the code below.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">mantidqtpython</span> <span class="kn">import</span> <span class="n">MantidQt</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">mantidqtpython</span> <span class="k">import</span> <span class="n">MantidQt</span>
 <span class="kn">import</span> <span class="nn">re</span>
 
 
@@ -363,7 +347,7 @@ the currently active filter as demonstrated by the code below.</p>
         <span class="n">regex</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">Predicate</span><span class="p">(</span><span class="k">lambda</span> <span class="n">location</span><span class="p">:</span> <span class="n">regex</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">cellAt</span><span class="p">(</span><span class="n">location</span><span class="p">,</span> <span class="n">col</span><span class="p">)</span><span class="o">.</span><span class="n">contentText</span><span class="p">()))</span>
     <span class="k">except</span> <span class="n">re</span><span class="o">.</span><span class="n">error</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">Predicate</span><span class="p">(</span><span class="k">lambda</span> <span class="n">location</span><span class="p">:</span> <span class="bp">True</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">Predicate</span><span class="p">(</span><span class="k">lambda</span> <span class="n">location</span><span class="p">:</span> <span class="kc">True</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">row</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
@@ -399,10 +383,10 @@ the currently active filter as demonstrated by the code below.</p>
     <span class="c1"># match the regex given.</span>
 </pre></div>
 </div>
-<p>The method <code class="code docutils literal"><span class="pre">resetFilter</span></code> is used to unset the filter so that all items are shown again and
-the <code class="code docutils literal"><span class="pre">hasFilter</span></code> method is used to determine if the filter is currently set.</p>
-<p>Some actions performed on the <code class="code docutils literal"><span class="pre">JobTreeView</span></code> can trigger the filter to be reset automatically.
-This necessitates the <code class="code docutils literal"><span class="pre">notifyFilterReset</span></code> method in <code class="code docutils literal"><span class="pre">JobTreeViewSubscriber</span></code> which is
+<p>The method <code class="code docutils literal notranslate"><span class="pre">resetFilter</span></code> is used to unset the filter so that all items are shown again and
+the <code class="code docutils literal notranslate"><span class="pre">hasFilter</span></code> method is used to determine if the filter is currently set.</p>
+<p>Some actions performed on the <code class="code docutils literal notranslate"><span class="pre">JobTreeView</span></code> can trigger the filter to be reset automatically.
+This necessitates the <code class="code docutils literal notranslate"><span class="pre">notifyFilterReset</span></code> method in <code class="code docutils literal notranslate"><span class="pre">JobTreeViewSubscriber</span></code> which is
 called whenever the filter is reset, even when requested explicitly.</p>
 </div>
 </div>

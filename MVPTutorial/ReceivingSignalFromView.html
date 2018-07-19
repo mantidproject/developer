@@ -1,37 +1,22 @@
 <!DOCTYPE html>
 
-
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Receiving a signal from the view</title>
-    
-    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/bootstrap-3.3.6/css/bootstrap.min.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/bootstrap-3.3.6/css/bootstrap-theme.min.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '3.12.20180709.1546',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="../_static/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
-    <link rel="top" title="" href="../index.html" />
-    <link rel="up" title="MVP Tutorial" href="index.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Extracting Information from the View" href="ExtractInfoFromView.html" />
     <link rel="prev" title="View Exercise 1 Solution" href="ViewExercise1Solution.html" />
 
@@ -47,8 +32,7 @@
 </script>
 
 
-  </head>
-  <body role="document">
+  </head><body>
 
 
 
@@ -66,7 +50,7 @@
         </button>
         <a class="navbar-brand" href="http://www.mantidproject.org"><img src="../_static/Mantid_Logo_Transparent.png">
            </a>
-        <span class="navbar-text navbar-version pull-left"><b>3.12</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.0</b></span>
       </div>
 
       
@@ -115,7 +99,7 @@ look of the GUI is fairly simple and any logic/responses should be
 contained within the Presenter.</p>
 <p>In this section we will make a simple Presenter for when a button is
 pressed. First we will start with the View:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="p">(</span><span class="n">absolute_import</span><span class="p">,</span> <span class="n">division</span><span class="p">,</span> <span class="n">print_function</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="p">(</span><span class="n">absolute_import</span><span class="p">,</span> <span class="n">division</span><span class="p">,</span> <span class="n">print_function</span><span class="p">)</span>
 <span class="kn">import</span> <span class="nn">PyQt4.QtGui</span> <span class="kn">as</span> <span class="nn">QtGui</span>
 <span class="kn">import</span> <span class="nn">PyQt4.QtCore</span> <span class="kn">as</span> <span class="nn">QtCore</span>
 
@@ -153,14 +137,14 @@ pressed. First we will start with the View:</p>
 </div>
 <p>The above code has two new additions. The first is the creation of a
 custom signal on line eight. It is also possible to pass objects with
-the signals. The second addition is that <code class="docutils literal"><span class="pre">btn_click</span></code> now emits the
+the signals. The second addition is that <code class="docutils literal notranslate"><span class="pre">btn_click</span></code> now emits the
 custom signal and will be caught by the Presenter.</p>
 <p>The Presenter is initialised with the View and must be a member of the
 Presenter class. It is therefore possible to change the View by
 passing a different one to the presenter. For example you may want to
 have the widgets in a grid or in a table. The Presenter connects the
-custom signal from the View to its own function (<code class="docutils literal"><span class="pre">handleButton</span></code>).</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="p">(</span><span class="n">absolute_import</span><span class="p">,</span> <span class="n">division</span><span class="p">,</span> <span class="n">print_function</span><span class="p">)</span>
+custom signal from the View to its own function (<code class="docutils literal notranslate"><span class="pre">handleButton</span></code>).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="p">(</span><span class="n">absolute_import</span><span class="p">,</span> <span class="n">division</span><span class="p">,</span> <span class="n">print_function</span><span class="p">)</span>
 
 <span class="k">class</span> <span class="nc">Presenter</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 
@@ -176,7 +160,7 @@ custom signal from the View to its own function (<code class="docutils literal">
 </pre></div>
 </div>
 <p>The main is now:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="p">(</span><span class="n">absolute_import</span><span class="p">,</span> <span class="n">division</span><span class="p">,</span> <span class="n">print_function</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="p">(</span><span class="n">absolute_import</span><span class="p">,</span> <span class="n">division</span><span class="p">,</span> <span class="n">print_function</span><span class="p">)</span>
 
 <span class="kn">import</span> <span class="nn">PyQt4.QtGui</span> <span class="kn">as</span> <span class="nn">QtGui</span>
 <span class="kn">import</span> <span class="nn">PyQt4.QtCore</span> <span class="kn">as</span> <span class="nn">QtCore</span>

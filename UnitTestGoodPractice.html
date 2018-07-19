@@ -1,36 +1,22 @@
 <!DOCTYPE html>
 
-
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Unit Test Good Practice</title>
-    
-    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap.min.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap-theme.min.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
-    <link rel="stylesheet" href="_static/custom.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '3.12.20180709.1546',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="_static/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
-    <link rel="top" title="" href="index.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Writing Performance Tests" href="WritingPerformanceTests.html" />
     <link rel="prev" title="Debugging Unit Tests" href="DebuggingUnitTests.html" />
 
@@ -46,8 +32,7 @@
 </script>
 
 
-  </head>
-  <body role="document">
+  </head><body>
 
 
 
@@ -65,7 +50,7 @@
         </button>
         <a class="navbar-brand" href="http://www.mantidproject.org"><img src="_static/Mantid_Logo_Transparent.png">
            </a>
-        <span class="navbar-text navbar-version pull-left"><b>3.12</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.0</b></span>
       </div>
 
       
@@ -202,13 +187,13 @@ the first, and in fact we have relaxed this rule for Mantid (see below).</p>
 <p>Again these can often conflict.</p>
 <ul class="simple">
 <li>Each test class should be named after the class it is testing (e.g.
-tests for the <code class="docutils literal"><span class="pre">AlgorithmFactory</span></code> should go in a <code class="docutils literal"><span class="pre">AlgorithmFactoryTest</span></code>
+tests for the <code class="docutils literal notranslate"><span class="pre">AlgorithmFactory</span></code> should go in a <code class="docutils literal notranslate"><span class="pre">AlgorithmFactoryTest</span></code>
 class).</li>
 <li>Each test within a test class should use a descriptive test name,
-prefixed with test (tests for the <code class="docutils literal"><span class="pre">CreateAlgorithm</span></code> method would be
-included in <code class="docutils literal"><span class="pre">testCreateAlgorithm</span></code>). If there are specific tests for
+prefixed with test (tests for the <code class="docutils literal notranslate"><span class="pre">CreateAlgorithm</span></code> method would be
+included in <code class="docutils literal notranslate"><span class="pre">testCreateAlgorithm</span></code>). If there are specific tests for
 failure situations then these should be added to the end (e.g.
-<code class="docutils literal"><span class="pre">testCreateAlgorithmNoAlgorithmException</span></code>). THE AIM IS THAT FROM THE
+<code class="docutils literal notranslate"><span class="pre">testCreateAlgorithmNoAlgorithmException</span></code>). THE AIM IS THAT FROM THE
 TEST METHOD NAME ALONE, YOU SHOULD BE ABLE TO IDENTIFY THE PROBLEM.</li>
 </ul>
 <div class="section" id="other-more-general-points">
@@ -217,7 +202,7 @@ TEST METHOD NAME ALONE, YOU SHOULD BE ABLE TO IDENTIFY THE PROBLEM.</li>
 <li>Tests should be <strong>fast</strong>, ideally really fast - certainly not more
 than a few seconds. Unit tests test functionality, performance tests
 can be used to check stress and timings.</li>
-<li>Untestable code is a code-smell, if you can&#8217;t get the code under test
+<li>Untestable code is a code-smell, if you can’t get the code under test
 it probably needs refactoring.</li>
 <li>Weight your testing to be destructive rather than demonstrative.
 Destructive tests have a higher efficacy for finding bugs.</li>
@@ -240,25 +225,25 @@ build).</p>
 <li><p class="first">Ideally, test suites should not have a constructor. If one is
 required, the following boiler-plate code <strong>must</strong> be inserted in the
 test class:</p>
-<div class="highlight-c++"><div class="highlight"><pre><span class="k">static</span> <span class="n">NameOfTest</span> <span class="o">*</span><span class="nf">createSuite</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="k">new</span> <span class="n">NameOfTest</span><span class="p">();</span> <span class="p">}</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span class="k">static</span> <span class="n">NameOfTest</span> <span class="o">*</span><span class="nf">createSuite</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="k">new</span> <span class="n">NameOfTest</span><span class="p">();</span> <span class="p">}</span>
 <span class="k">static</span> <span class="kt">void</span> <span class="nf">destroySuite</span><span class="p">(</span><span class="n">NameOfTest</span> <span class="o">*</span><span class="n">suite</span><span class="p">)</span> <span class="p">{</span> <span class="k">delete</span> <span class="n">suite</span><span class="p">;</span> <span class="p">}</span>
 </pre></div>
 </div>
-<p>where <code class="docutils literal"><span class="pre">NameOfTest</span></code> is the name of the test class. Without this, the
+<p>where <code class="docutils literal notranslate"><span class="pre">NameOfTest</span></code> is the name of the test class. Without this, the
 class is turned into a static meaning that the constructor is run at
 initialisation even if (via an argument) you are not going to run that
 particular test suite. Also, this can cause problems if running tests in
 parallel.</p>
 </li>
-<li><p class="first">Be cautious in use of the <code class="docutils literal"><span class="pre">setUp()``and</span> <span class="pre">``tearDown()</span></code> methods. Be aware
+<li><p class="first">Be cautious in use of the <code class="docutils literal notranslate"><span class="pre">setUp()``and</span> <span class="pre">``tearDown()</span></code> methods. Be aware
 that if you use these in your suite they will be run before/after
-<strong>every single</strong> individual test. That&#8217;s fine if it&#8217;s the behaviour
+<strong>every single</strong> individual test. That’s fine if it’s the behaviour
 you really need, but we have found that to be rare - use the
 constructor or set things up within the test.</p>
 </li>
 <li><p class="first">To avoid clashes, use unique names for workspaces that will go into
 the [Analysis Data Service], perhaps by prepending the name of the
-test suite. Even better, don&#8217;t put workspaces into the ADS in the
+test suite. Even better, don’t put workspaces into the ADS in the
 first place: for example, an InputWorkspace property can be set via
 pointer instead of by name.</p>
 </li>
@@ -273,7 +258,7 @@ or save a file then you should not use a file in your unit tests.</p>
 <dl class="docutils">
 <dt>How do I get a workspace filled with data?</dt>
 <dd>Firstly you want to think about how much data you really need, unit
-tests need to be fast so you don&#8217;t want too much data.
+tests need to be fast so you don’t want too much data.
 Secondly you should use and extend helper classes (like
 <a class="reference external" href="https://github.com/mantidproject/mantid/blob/master/Framework/TestHelpers/inc/MantidTestHelpers/WorkspaceCreationHelper.h">1</a>)
 to provide the workspaces for you. Keep things as generic as you can

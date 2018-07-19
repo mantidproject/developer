@@ -1,36 +1,22 @@
 <!DOCTYPE html>
 
-
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Load Algorithm Hook</title>
-    
-    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap.min.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap-theme.min.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
-    <link rel="stylesheet" href="_static/custom.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '3.12.20180709.1546',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="_static/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
-    <link rel="top" title="" href="index.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Logging" href="Logging.html" />
     <link rel="prev" title="ISIS SANS Reduction Back-end" href="ISISSANSReductionBackend.html" />
 
@@ -46,8 +32,7 @@
 </script>
 
 
-  </head>
-  <body role="document">
+  </head><body>
 
 
 
@@ -65,7 +50,7 @@
         </button>
         <a class="navbar-brand" href="http://www.mantidproject.org"><img src="_static/Mantid_Logo_Transparent.png">
            </a>
-        <span class="navbar-text navbar-version pull-left"><b>3.12</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.0</b></span>
       </div>
 
       
@@ -125,11 +110,11 @@
 <div class="section" id="the-load-algorithm">
 <h2><a class="toc-backref" href="#id1">The Load Algorithm</a><a class="headerlink" href="#the-load-algorithm" title="Permalink to this headline">¶</a></h2>
 <p>This page describes how to register a new file loading algorithm so that it can be used through
-the general-purpose <a class="reference external" href="http://docs.mantidproject.org/algorithms/Load-v1.html#algm-load" title="(in MantidProject v3.12)"><span class="xref std std-ref">Load</span></a> algorithm.
-The <a class="reference external" href="http://docs.mantidproject.org/algorithms/Load-v1.html#algm-load" title="(in MantidProject v3.12)"><span class="xref std std-ref">Load</span></a> algorithm is a special algorithm as does very little work itself.
+the general-purpose <a class="reference external" href="http://docs.mantidproject.org/nightly/algorithms/Load-v1.html#algm-load" title="(in MantidProject v3.12)"><span class="xref std std-ref">Load</span></a> algorithm.
+The <a class="reference external" href="http://docs.mantidproject.org/nightly/algorithms/Load-v1.html#algm-load" title="(in MantidProject v3.12)"><span class="xref std std-ref">Load</span></a> algorithm is a special algorithm as does very little work itself.
 It instead tries to search for the most suitable algorithm for a given file and then uses this
 algorithm as a child to load the file. An algorithm wishing to be included as part of the search
-must register itself slightly differently and not use <code class="docutils literal"><span class="pre">DECLARE_ALGORITHM</span></code> macro.</p>
+must register itself slightly differently and not use <code class="docutils literal notranslate"><span class="pre">DECLARE_ALGORITHM</span></code> macro.</p>
 <p>The process of searching for the correct loader needs to be fairly quick as it will be especially
 noticeable in the GUI if the process takes a long time. To speed up the process the loaders are
 currently split into 2 categories:</p>
@@ -137,20 +122,20 @@ currently split into 2 categories:</p>
 <li>HDF - Currently only HDF4/5</li>
 <li>NonHDF - The rest</li>
 </ul>
-<p>A quick check is performed, using <code class="docutils literal"><span class="pre">HDFDescriptor::isHDF()</span></code>, to test whether the file looks like a
+<p>A quick check is performed, using <code class="docutils literal notranslate"><span class="pre">HDFDescriptor::isHDF()</span></code>, to test whether the file looks like a
 <a class="reference external" href="http://www.hdfgroup.org/">HDF</a> file.
 If the check succeeds then only the HDF group of loaders are checked, otherwise only the NonHDF group are checked.</p>
 </div>
 <div class="section" id="descriptors">
 <h2><a class="toc-backref" href="#id2">Descriptors</a><a class="headerlink" href="#descriptors" title="Permalink to this headline">¶</a></h2>
-<p>To avoid the file being opened/closed by each <code class="docutils literal"><span class="pre">confidence</span></code> method, a <code class="docutils literal"><span class="pre">Descriptor</span></code> object is provided.
-The actual <code class="docutils literal"><span class="pre">Descriptor</span></code> class depends on whether the file is a HDF file or not.</p>
+<p>To avoid the file being opened/closed by each <code class="docutils literal notranslate"><span class="pre">confidence</span></code> method, a <code class="docutils literal notranslate"><span class="pre">Descriptor</span></code> object is provided.
+The actual <code class="docutils literal notranslate"><span class="pre">Descriptor</span></code> class depends on whether the file is a HDF file or not.</p>
 <div class="section" id="hdf">
 <h3><a class="toc-backref" href="#id3">HDF</a><a class="headerlink" href="#hdf" title="Permalink to this headline">¶</a></h3>
 <p>To register an algorithm as a HDF loader use the IHDFLoader interface as a base class for your algorithm.
-In your cpp file include the <code class="docutils literal"><span class="pre">MantidAPI/RegisterFileLoader.h</span></code> header and use the <code class="docutils literal"><span class="pre">DECLARE_HDF_FILELOADER</span></code>
-macro <em>instead</em> of the standard <code class="docutils literal"><span class="pre">DECLARE_ALGORITHM</span></code> macro.</p>
-<p>The interface requires that the method <code class="docutils literal"><span class="pre">virtual</span> <span class="pre">int</span> <span class="pre">confidence(Kernel::HDFDescriptor</span> <span class="pre">&amp;</span> <span class="pre">descriptor)</span> <span class="pre">const</span> <span class="pre">=</span> <span class="pre">0;</span></code>
+In your cpp file include the <code class="docutils literal notranslate"><span class="pre">MantidAPI/RegisterFileLoader.h</span></code> header and use the <code class="docutils literal notranslate"><span class="pre">DECLARE_HDF_FILELOADER</span></code>
+macro <em>instead</em> of the standard <code class="docutils literal notranslate"><span class="pre">DECLARE_ALGORITHM</span></code> macro.</p>
+<p>The interface requires that the method <code class="docutils literal notranslate"><span class="pre">virtual</span> <span class="pre">int</span> <span class="pre">confidence(Kernel::HDFDescriptor</span> <span class="pre">&amp;</span> <span class="pre">descriptor)</span> <span class="pre">const</span> <span class="pre">=</span> <span class="pre">0;</span></code>
 be overloaded in the inheriting class. It should use the provided descriptor to check whether the loader is
 able to load the wrapped file and return a confidence level as an integer.</p>
 <div class="section" id="hdfdescriptor">
@@ -160,16 +145,16 @@ able to load the wrapped file and return a confidence level as an integer.</p>
 </div>
 <div class="section" id="non-hdf">
 <h3><a class="toc-backref" href="#id5">Non-HDF</a><a class="headerlink" href="#non-hdf" title="Permalink to this headline">¶</a></h3>
-<p>To register an algorithm as a Non-HDF loader use the <code class="docutils literal"><span class="pre">IFileLoader</span></code> interface as a base class for your algorithm.
-In your cpp file include the <code class="docutils literal"><span class="pre">MantidAPI/RegisterFileLoader.h</span></code> header and use the <code class="docutils literal"><span class="pre">DECLARE_FILELOADER</span></code> macro
-<em>instead</em> of the standard <code class="docutils literal"><span class="pre">DECLARE_ALGORITHM</span></code> macro.</p>
-<p>The interface requires that the method <code class="docutils literal"><span class="pre">virtual</span> <span class="pre">int</span> <span class="pre">confidence(Kernel::FileDescriptor</span> <span class="pre">&amp;</span> <span class="pre">descriptor)</span> <span class="pre">const</span> <span class="pre">=</span> <span class="pre">0;</span></code>
+<p>To register an algorithm as a Non-HDF loader use the <code class="docutils literal notranslate"><span class="pre">IFileLoader</span></code> interface as a base class for your algorithm.
+In your cpp file include the <code class="docutils literal notranslate"><span class="pre">MantidAPI/RegisterFileLoader.h</span></code> header and use the <code class="docutils literal notranslate"><span class="pre">DECLARE_FILELOADER</span></code> macro
+<em>instead</em> of the standard <code class="docutils literal notranslate"><span class="pre">DECLARE_ALGORITHM</span></code> macro.</p>
+<p>The interface requires that the method <code class="docutils literal notranslate"><span class="pre">virtual</span> <span class="pre">int</span> <span class="pre">confidence(Kernel::FileDescriptor</span> <span class="pre">&amp;</span> <span class="pre">descriptor)</span> <span class="pre">const</span> <span class="pre">=</span> <span class="pre">0;</span></code>
 be overloaded in the inheriting class. It should use the provided descriptor to check whether the loader is
 able to load the wrapped file and return a confidence level as an integer.</p>
 <div class="section" id="filedescriptor">
 <h4><a class="toc-backref" href="#id6">FileDescriptor</a><a class="headerlink" href="#filedescriptor" title="Permalink to this headline">¶</a></h4>
 <p>This provides methods to query some characteristics of the current file and also access the open stream to avoid
-repeated opening/closing of the file. <em>Avoid</em> closing the stream. The code calling the <code class="docutils literal"><span class="pre">confidence</span></code> method ensures
+repeated opening/closing of the file. <em>Avoid</em> closing the stream. The code calling the <code class="docutils literal notranslate"><span class="pre">confidence</span></code> method ensures
 that the stream is back at the start of the file before checking the next loader so simply use the stream as
 necessary and leave it as it is.</p>
 </div>

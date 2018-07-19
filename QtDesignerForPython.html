@@ -1,36 +1,22 @@
 <!DOCTYPE html>
 
-
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Qt Designer for Python</title>
-    
-    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap.min.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap-theme.min.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
-    <link rel="stylesheet" href="_static/custom.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '3.12.20180709.1546',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="_static/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
-    <link rel="top" title="" href="index.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="MPI Support for Algorithms" href="AlgorithmMPISupport.html" />
     <link rel="prev" title="MVP Calculator GUI Example" href="MVPTutorial/CalculatorExample/index.html" />
 
@@ -46,8 +32,7 @@
 </script>
 
 
-  </head>
-  <body role="document">
+  </head><body>
 
 
 
@@ -65,7 +50,7 @@
         </button>
         <a class="navbar-brand" href="http://www.mantidproject.org"><img src="_static/Mantid_Logo_Transparent.png">
            </a>
-        <span class="navbar-text navbar-version pull-left"><b>3.12</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.0</b></span>
       </div>
 
       
@@ -118,56 +103,56 @@ additional actions at build time.</p>
 <h2>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h2>
 <p>Qt Creator was not originally designed to work with Python, and it is
 therefore not possible to directly save or export the layout as a
-Python script. Instead you must first save the layout in a <code class="docutils literal"><span class="pre">.ui</span></code>
-file and use the <code class="docutils literal"><span class="pre">pyuic4</span></code> tool to convert it to a python script.</p>
+Python script. Instead you must first save the layout in a <code class="docutils literal notranslate"><span class="pre">.ui</span></code>
+file and use the <code class="docutils literal notranslate"><span class="pre">pyuic4</span></code> tool to convert it to a python script.</p>
 </div>
 <div class="section" id="integration-with-cmake">
 <h2>Integration With CMake<a class="headerlink" href="#integration-with-cmake" title="Permalink to this headline">¶</a></h2>
 <p>Running this tool manually for each ui file in the project would
 quickly become infeasible. Fortunately it is easy to integrate this
-with the cmake build using the <code class="docutils literal"><span class="pre">UiToPy</span></code> function defined in
-<code class="docutils literal"><span class="pre">buildconfig/CMake/UiToPy.cmake</span></code>. This function takes a list of ui
+with the cmake build using the <code class="docutils literal notranslate"><span class="pre">UiToPy</span></code> function defined in
+<code class="docutils literal notranslate"><span class="pre">buildconfig/CMake/UiToPy.cmake</span></code>. This function takes a list of ui
 files and a name to be used for a cmake target. It will produce a
-target with the specified name, which, when built runs the <code class="docutils literal"><span class="pre">pyuic4</span></code>
-command on each of the <code class="docutils literal"><span class="pre">.ui</span></code> files to generate a <code class="docutils literal"><span class="pre">.py</span></code> file with a
-<code class="docutils literal"><span class="pre">ui_</span></code> prefix in the same directory.</p>
+target with the specified name, which, when built runs the <code class="docutils literal notranslate"><span class="pre">pyuic4</span></code>
+command on each of the <code class="docutils literal notranslate"><span class="pre">.ui</span></code> files to generate a <code class="docutils literal notranslate"><span class="pre">.py</span></code> file with a
+<code class="docutils literal notranslate"><span class="pre">ui_</span></code> prefix in the same directory.</p>
 <p>For example the following CMakeLists.txt:</p>
-<div class="code cmake highlight-python"><div class="highlight"><pre>include(UiToPy)
-set(UI_FILES
-  sans_data_processor_window.ui
-  settings_diagnostic_tab.ui
-  masking_table.ui
-)
+<div class="code cmake highlight-default notranslate"><div class="highlight"><pre><span class="n">include</span><span class="p">(</span><span class="n">UiToPy</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="n">UI_FILES</span>
+  <span class="n">sans_data_processor_window</span><span class="o">.</span><span class="n">ui</span>
+  <span class="n">settings_diagnostic_tab</span><span class="o">.</span><span class="n">ui</span>
+  <span class="n">masking_table</span><span class="o">.</span><span class="n">ui</span>
+<span class="p">)</span>
 
-UiToPy(UI_FILES CompileUISANSDataProcessorInterface)
+<span class="n">UiToPy</span><span class="p">(</span><span class="n">UI_FILES</span> <span class="n">CompileUISANSDataProcessorInterface</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Produces a cmake target <code class="docutils literal"><span class="pre">CompileUISANSDataProcessorInterface</span></code> which
+<p>Produces a cmake target <code class="docutils literal notranslate"><span class="pre">CompileUISANSDataProcessorInterface</span></code> which
 when built runs:</p>
-<div class="highlight-python"><div class="highlight"><pre>pyuic4 sans_data_processor_window.ui -o ui_sans_data_processor_window.py
-pyuic4 settings_diagnostic_tab.ui -o ui_settings_diagnostic_tab.py
-pyuic4 masking_table.ui -o ui_masking_table.py
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="n">pyuic4</span> <span class="n">sans_data_processor_window</span><span class="o">.</span><span class="n">ui</span> <span class="o">-</span><span class="n">o</span> <span class="n">ui_sans_data_processor_window</span><span class="o">.</span><span class="n">py</span>
+<span class="n">pyuic4</span> <span class="n">settings_diagnostic_tab</span><span class="o">.</span><span class="n">ui</span> <span class="o">-</span><span class="n">o</span> <span class="n">ui_settings_diagnostic_tab</span><span class="o">.</span><span class="n">py</span>
+<span class="n">pyuic4</span> <span class="n">masking_table</span><span class="o">.</span><span class="n">ui</span> <span class="o">-</span><span class="n">o</span> <span class="n">ui_masking_table</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 </div>
 <p>The generated target also runs a script wrap_pyui.py which prepends
-<code class="docutils literal"><span class="pre">#pylint:</span> <span class="pre">skip-file</span></code> to the top of the generated file.</p>
+<code class="docutils literal notranslate"><span class="pre">#pylint:</span> <span class="pre">skip-file</span></code> to the top of the generated file.</p>
 <p>It is worth noting that for the main Mantid repository, in most cases
-<code class="docutils literal"><span class="pre">include(UiToPy)</span></code> can be omitted since the majority of Python GUIs
-have their <code class="docutils literal"><span class="pre">.ui</span></code> files under the <code class="docutils literal"><span class="pre">scripts/Interface/ui</span></code> directory
-and so <code class="docutils literal"><span class="pre">scripts/Interface/ui/CMakeLists.txt</span></code> performs this include.</p>
+<code class="docutils literal notranslate"><span class="pre">include(UiToPy)</span></code> can be omitted since the majority of Python GUIs
+have their <code class="docutils literal notranslate"><span class="pre">.ui</span></code> files under the <code class="docutils literal notranslate"><span class="pre">scripts/Interface/ui</span></code> directory
+and so <code class="docutils literal notranslate"><span class="pre">scripts/Interface/ui/CMakeLists.txt</span></code> performs this include.</p>
 </div>
 <div class="section" id="using-the-generated-script">
 <h2>Using the Generated Script<a class="headerlink" href="#using-the-generated-script" title="Permalink to this headline">¶</a></h2>
 <p>When following the MVP design pattern as described at
-<a class="reference internal" href="GUIDesignGuidelines.html#guidesignguidelinesmvpintro"><span>MVP (Model View Presenter)</span></a>, the generated file alone is not sufficient
-as a <a class="reference internal" href="GUIDesignGuidelines.html#guidesignguidelinesmvpview"><span>View</span></a>. Directly accessing the widgets and the
+<a class="reference internal" href="GUIDesignGuidelines.html#guidesignguidelinesmvpintro"><span class="std std-ref">MVP (Model View Presenter)</span></a>, the generated file alone is not sufficient
+as a <a class="reference internal" href="GUIDesignGuidelines.html#guidesignguidelinesmvpview"><span class="std std-ref">View</span></a>. Directly accessing the widgets and the
 signals defined on the view from the presenter moves the view
 implementation details into the presenter, which makes it harder to
 change the names and types of widgets used to display the
 information. Instead it is best to create a separate Python file which
 imports the generated one and adds a separate view class which
 inherits from the generated one.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">ui_add_runs_page</span> <span class="c1"># This imports the file generated by pyuic.</span>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">ui_add_runs_page</span> <span class="c1"># This imports the file generated by pyuic.</span>
 
 <span class="k">class</span> <span class="nc">AddRunsPage</span><span class="p">(</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QWidget</span><span class="p">,</span> <span class="n">ui_add_runs_page</span><span class="o">.</span><span class="n">Ui_AddRunsPage</span><span class="p">):</span>
    <span class="k">pass</span>
@@ -176,12 +161,12 @@ inherits from the generated one.</p>
 <p>You can then add separate methods to the view for accessing and mutating
 the content of the widgets as well as add any necessary signals which
 form the interface to the view.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">ui_add_runs_page</span> <span class="c1"># This imports the file generated by pyuic.</span>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">ui_add_runs_page</span> <span class="c1"># This imports the file generated by pyuic.</span>
 
 <span class="k">class</span> <span class="nc">AddRunsPage</span><span class="p">(</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QWidget</span><span class="p">,</span> <span class="n">ui_add_runs_page</span><span class="o">.</span><span class="n">Ui_AddRunsPage</span><span class="p">):</span>
     <span class="n">outFileChanged</span> <span class="o">=</span> <span class="n">pyqtSignal</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">AddRunsPage</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">setupUi</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_connect_signals</span><span class="p">()</span>
@@ -206,9 +191,9 @@ This makes the UI harder to maintain as a whole and difficult to re-use,
 move and separate out individual sections.</p>
 <p>Instead when building a GUI it is sometimes better to separate parts of
 the interface into smaller views and presenters which form a hierarchy
-of widgets. For example the new SANS Run Summation page is in it&#8217;s own
-UI file and uses two separate widgets - a <code class="docutils literal"><span class="pre">RunSelectorWidget</span></code> and a
-<code class="docutils literal"><span class="pre">SummationSettingsWidget</span></code>. Although these widgets are not currently
+of widgets. For example the new SANS Run Summation page is in it’s own
+UI file and uses two separate widgets - a <code class="docutils literal notranslate"><span class="pre">RunSelectorWidget</span></code> and a
+<code class="docutils literal notranslate"><span class="pre">SummationSettingsWidget</span></code>. Although these widgets are not currently
 used in any other interface, they are still isolated from the Run
 Summation tab and could easily be used in another interface should the
 need arise. The code is also better organised and more modular as a
@@ -233,7 +218,7 @@ the corresponding CMakeLists.txt</p>
 before clicking <em>Finish</em>.</p>
 <p>At this point you should have an empty Widget in the design area.</p>
 <img alt="_images/SelectFile.png" src="_images/SelectFile.png" />
-<p>You can switch between the two <code class="docutils literal"><span class="pre">.ui</span></code> files using the menu in the top left.</p>
+<p>You can switch between the two <code class="docutils literal notranslate"><span class="pre">.ui</span></code> files using the menu in the top left.</p>
 <p>5. Next, copy the components you wish to move into the new widget and
 paste them into the new file.</p>
 <img alt="_images/CopyFromMainUI.png" src="_images/CopyFromMainUI.png" />
@@ -243,21 +228,21 @@ you see fit.</p>
 <img alt="_images/AdjustWidgetLayout.png" src="_images/AdjustWidgetLayout.png" />
 <p>7. Add the following CMake snippet to your CMakeLists.txt, note that
 you may already have a target for generating the Python files in which
-case you can simply add your new <code class="docutils literal"><span class="pre">.ui</span></code> file to the list of existing
-<code class="docutils literal"><span class="pre">.ui</span></code> files.</p>
-<div class="code cmake highlight-python"><div class="highlight"><pre>set(UI_FILES
-  my_widget.ui
-)
+case you can simply add your new <code class="docutils literal notranslate"><span class="pre">.ui</span></code> file to the list of existing
+<code class="docutils literal notranslate"><span class="pre">.ui</span></code> files.</p>
+<div class="code cmake highlight-default notranslate"><div class="highlight"><pre><span class="nb">set</span><span class="p">(</span><span class="n">UI_FILES</span>
+  <span class="n">my_widget</span><span class="o">.</span><span class="n">ui</span>
+<span class="p">)</span>
 
-UiToPy(UI_FILES CompileUIMyWidget)
+<span class="n">UiToPy</span><span class="p">(</span><span class="n">UI_FILES</span> <span class="n">CompileUIMyWidget</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Test that this has worked by saving your <code class="docutils literal"><span class="pre">.ui</span></code> file and re-running
+<p>Test that this has worked by saving your <code class="docutils literal notranslate"><span class="pre">.ui</span></code> file and re-running
 the build, the output should contain a line similar to the following:</p>
-<p><code class="docutils literal"><span class="pre">[1/1]</span> <span class="pre">Generating</span> <span class="pre">scripts/Interface/ui/sans/ui_my_widget.py</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">[1/1]</span> <span class="pre">Generating</span> <span class="pre">scripts/Interface/ui/sans/ui_my_widget.py</span></code></p>
 <p>8. Add a separate python file containing the <a class="reference external" href="GuiDesignGuidelinesMVPView">View</a>
 class which extends the generated one.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="c1"># my_widget.py</span>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span class="c1"># my_widget.py</span>
 <span class="kn">import</span> <span class="nn">ui_my_widget</span>
 
 <span class="k">class</span> <span class="nc">MyWidget</span><span class="p">(</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QWidget</span><span class="p">,</span> <span class="n">ui_add_runs_page</span><span class="o">.</span><span class="n">Ui_MyWidget</span><span class="p">):</span>
@@ -270,12 +255,12 @@ the containers section.</p>
 <img alt="_images/PreReplacedWidget.png" src="_images/PreReplacedWidget.png" />
 <img alt="_images/PostReplacedWidget.png" src="_images/PostReplacedWidget.png" />
 <p>10. Right click on the newly created widget container and select
-<em>Promote To...</em></p>
+<em>Promote To…</em></p>
 <img alt="_images/PromoteWidget.png" src="_images/PromoteWidget.png" />
 <p>11. For the <em>Promoted Class Name</em> field enter the name of the view
 class. If you are taking the advice given above, this should be the name
 of the class which inherits from the generated
-<code class="docutils literal"><span class="pre">ui_my_widget.Ui_MyWidget</span></code> class.</p>
+<code class="docutils literal notranslate"><span class="pre">ui_my_widget.Ui_MyWidget</span></code> class.</p>
 <p>12. For the <em>Header File</em> field enter the fully qualified path of the
 python module which contains the class mentioned above.</p>
 <p>13. You can leave the <em>Global Include</em> box un-ticked. Finish the

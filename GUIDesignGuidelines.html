@@ -1,36 +1,22 @@
 <!DOCTYPE html>
 
-
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>GUI Design Guidelines</title>
-    
-    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap.min.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap-theme.min.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
-    <link rel="stylesheet" href="_static/custom.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '3.12.20180709.1546',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="_static/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
-    <link rel="top" title="" href="index.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="MVP Tutorial" href="MVPTutorial/index.html" />
     <link rel="prev" title="Testing Utilities" href="TestingUtilities.html" />
 
@@ -46,8 +32,7 @@
 </script>
 
 
-  </head>
-  <body role="document">
+  </head><body>
 
 
 
@@ -65,7 +50,7 @@
         </button>
         <a class="navbar-brand" href="http://www.mantidproject.org"><img src="_static/Mantid_Logo_Transparent.png">
            </a>
-        <span class="navbar-text navbar-version pull-left"><b>3.12</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.0</b></span>
       </div>
 
       
@@ -143,8 +128,8 @@ is given below.</p>
 <p>To illustrate MVP, a simple example of a calculator GUI has been
 created using Python (the concepts of MVP can be applied to any
 programming language). This example can be found in
-<a class="reference internal" href="MVPTutorial/CalculatorExample/index.html#mvpcalculatorguiexample"><span>MVP Calculator GUI Example</span></a>, and you can run it with
-<code class="docutils literal"><span class="pre">python</span> <span class="pre">Calculator.py</span></code>.</p>
+<a class="reference internal" href="MVPTutorial/CalculatorExample/index.html#mvpcalculatorguiexample"><span class="std std-ref">MVP Calculator GUI Example</span></a>, and you can run it with
+<code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">Calculator.py</span></code>.</p>
 <p>It is good practice to have model, view or presenter (as appropriate)
 at the end of the name for each file (e.g. FFTView, FFTModel,
 FFTPresenter), and each component should be a class in its own
@@ -152,7 +137,7 @@ right. Within the MVP pattern the model and view never exchange any
 information directly.</p>
 <div class="section" id="model">
 <h3><a class="toc-backref" href="#id4">Model</a><a class="headerlink" href="#model" title="Permalink to this headline">¶</a></h3>
-<p>The model is where the &#8216;hard sums&#8217; take place within GUI. Any Mantid
+<p>The model is where the ‘hard sums’ take place within GUI. Any Mantid
 algorithms should be run in the model, as well any other calculations
 that may need to be performed.</p>
 <p>It is possible that a presenter may have multiple models. For example
@@ -170,7 +155,7 @@ should be received from the presenter (more of which below).</p>
 will generally be very little logic in the view. A view should define
 the following sections:</p>
 <ul class="simple">
-<li>The look of the GUI (often this will be defined in a Qt <code class="docutils literal"><span class="pre">.ui</span></code> file
+<li>The look of the GUI (often this will be defined in a Qt <code class="docutils literal notranslate"><span class="pre">.ui</span></code> file
 instead)</li>
 <li><strong>Get</strong> methods to return values from the widgets (text input,
 checkbox etc)</li>
@@ -180,11 +165,11 @@ data, fill in some text boxes)</li>
 <p>A view will probably also contain <strong>connections</strong>. A detailed
 explanation of signals and slots can be foud <a class="reference external" href="http://doc.qt.io/archives/qt-4.8/signalsandslots.html">here</a>. Briefly, a
 widget may emit <strong>signals</strong>. For example QPushButton emits the signal
-<code class="docutils literal"><span class="pre">clicked</span></code> when it is clicked. In order to handle the button being
+<code class="docutils literal notranslate"><span class="pre">clicked</span></code> when it is clicked. In order to handle the button being
 clicked, the view will implement a <strong>slot</strong> method. This method does
 whatever we need for a button click. To ensure that this method is
-called whenever the button is clicked, we connect the <code class="docutils literal"><span class="pre">clicked</span></code>
-signal of our button to the <code class="docutils literal"><span class="pre">handleButtonClick</span></code> slot of our view.</p>
+called whenever the button is clicked, we connect the <code class="docutils literal notranslate"><span class="pre">clicked</span></code>
+signal of our button to the <code class="docutils literal notranslate"><span class="pre">handleButtonClick</span></code> slot of our view.</p>
 <p>The view should have a parent - this will be the widget containing
 it. An example of a parent would be a main window containing tabs -
 the children of the main window would be the tabs, and the children of
@@ -192,7 +177,7 @@ the tabs would be the widgets contained within the tabs.</p>
 </div>
 <div class="section" id="presenter">
 <h3><a class="toc-backref" href="#id6">Presenter</a><a class="headerlink" href="#presenter" title="Permalink to this headline">¶</a></h3>
-<p>The presenter acts as a &#8216;go-between&#8217;. It receives data from the view,
+<p>The presenter acts as a ‘go-between’. It receives data from the view,
 passes it to the model for processing, receives it back from the model
 and passes it to the view to be displayed to the user. The presenter
 generally should contain relatively simple logic (though it will be
@@ -207,15 +192,15 @@ involved. There are two ways of doing it:</p>
 <ul class="simple">
 <li><strong>Connections</strong> - the presenter may contain connections as well as
 the view. You may choose to define custom signals in your view, such
-as a <code class="docutils literal"><span class="pre">plotRequested</span></code> signal to announce that the user has asked to
+as a <code class="docutils literal notranslate"><span class="pre">plotRequested</span></code> signal to announce that the user has asked to
 plot some data, probably by clicking a button. The presenter will
-need to implement a slot (let&#8217;s call it <code class="docutils literal"><span class="pre">handlePlotRequested</span></code>) to
+need to implement a slot (let’s call it <code class="docutils literal notranslate"><span class="pre">handlePlotRequested</span></code>) to
 handle this, which gets the relevant data from the model and passes
 it to the view. We then need to connect the signal to the slot in
-the presenter&#8217;s constructor. It is also possible for a signal
+the presenter’s constructor. It is also possible for a signal
 emitted by a view to be caught in the presenter of a parent view. In
 order to communicate by connections using Qt in C++ the presenter
-must inherit from <code class="docutils literal"><span class="pre">QObject</span></code>. It&#8217;s generally considered good
+must inherit from <code class="docutils literal notranslate"><span class="pre">QObject</span></code>. It’s generally considered good
 practice to avoid having Qt in the presenter, so this method works
 best for GUIs written in Python (or another language with a more
 relaxed type system).<ul>
@@ -225,26 +210,26 @@ view. This is because by going through the presenter we can unit
 test the handling of the signals.</li>
 </ul>
 </li>
-<li><strong>Notify</strong> - the presenter may instead allow the view to &#8216;notify&#8217;
+<li><strong>Notify</strong> - the presenter may instead allow the view to ‘notify’
 it. This can be achieved by implementing a set of possible
 notifications (in C++ an enum class works well) and a method
-<code class="docutils literal"><span class="pre">notify(notification)</span></code> on the presenter. In the above example,
-<code class="docutils literal"><span class="pre">handlePlotRequested</span></code> is still needed, but now <code class="docutils literal"><span class="pre">notify</span></code> invokes
-it whenever it is passed a <code class="docutils literal"><span class="pre">plotRequested</span></code> notification. This
+<code class="docutils literal notranslate"><span class="pre">notify(notification)</span></code> on the presenter. In the above example,
+<code class="docutils literal notranslate"><span class="pre">handlePlotRequested</span></code> is still needed, but now <code class="docutils literal notranslate"><span class="pre">notify</span></code> invokes
+it whenever it is passed a <code class="docutils literal notranslate"><span class="pre">plotRequested</span></code> notification. This
 method requires the view to have a pointer to the presenter, which
 introduces a circular dependency and leaks information about the
 presenter to the view. The leak can be resolved by having the
 presenter implement an interface which exposes <strong>only</strong> the
-<code class="docutils literal"><span class="pre">notify</span></code> method, and having the view keep a pointer to
+<code class="docutils literal notranslate"><span class="pre">notify</span></code> method, and having the view keep a pointer to
 this.</li>
 </ul>
 <p>Doing presenter-view communication with connections is the cleaner of
 the two, so this method should be used unless writing a GUI in
-C++. You&#8217;ll notice that, in both cases, the view never passes data
+C++. You’ll notice that, in both cases, the view never passes data
 (for example, the input from a text box) directly to the presenter,
 instead it justs tells the presenter that something needs to be
 done. In passive-view MVP the presenter, in handling this, gets any
-data it needs from the view using the view&#8217;s <strong>get</strong> methods.</p>
+data it needs from the view using the view’s <strong>get</strong> methods.</p>
 </div>
 <div class="section" id="testing-mvp-components">
 <h3><a class="toc-backref" href="#id7">Testing MVP Components</a><a class="headerlink" href="#testing-mvp-components" title="Permalink to this headline">¶</a></h3>
@@ -255,8 +240,8 @@ possible, ideally containing no logic at all).</p>
 <p><strong>Mocking</strong> is very useful tool for testing the presenter. Mocking
 allows us to return a predefined result from a method of either the
 view or the model.</p>
-<p>It is useful to mock out the model because, providing that we&#8217;ve
-written adequate tests for it, we don&#8217;t care what the output is in the
+<p>It is useful to mock out the model because, providing that we’ve
+written adequate tests for it, we don’t care what the output is in the
 tests for the presenter - we just care that the presenter handles it
 correctly. The model may perform time-consuming calculations, such as
 fitting, so by returning a dummy value from the fitting method we cut
@@ -264,7 +249,7 @@ down the time our tests take to run. We can also potentially change
 how the model works - if the GUI uses an algorithm which undergoes
 some changes, such as applying a different set of corrections, the
 tests for the presenter will be unaffected.</p>
-<p>It&#8217;s useful to mock out the view because we don&#8217;t want to have to
+<p>It’s useful to mock out the view because we don’t want to have to
 manually input data every time the unit tests are run - instead we can
 mock the <strong>get</strong> methods to simulate the user entering data.</p>
 <p>Using <a class="reference external" href="https://github.com/google/googletest/blob/master/googlemock/docs/Documentation.md">GMock</a>
@@ -276,7 +261,7 @@ called, and with certain arguments.</p>
 <div class="section" id="qt-designer">
 <h2><a class="toc-backref" href="#id8">Qt Designer</a><a class="headerlink" href="#qt-designer" title="Permalink to this headline">¶</a></h2>
 <p>The layout of all interfaces and reusable widgets should be done by
-using the Qt&#8217;s <a class="reference external" href="http://qt-project.org/doc/qt-4.8/designer-manual.html">Designer</a> tool. This
+using the Qt’s <a class="reference external" href="http://qt-project.org/doc/qt-4.8/designer-manual.html">Designer</a> tool. This
 has several advantages:</p>
 <ul class="simple">
 <li>immediate visual feedback of what the widget/interface will look
@@ -292,7 +277,7 @@ discussed with a senior developer.</p>
 <h2><a class="toc-backref" href="#id9">Reusable Widgets</a><a class="headerlink" href="#reusable-widgets" title="Permalink to this headline">¶</a></h2>
 <p>Many interfaces will require similar functionality. For example, the
 ability to enter a filename string to search for a file along with a
-&#8216;Browse&#8217; button to select a file from the filesystem. This type of
+‘Browse’ button to select a file from the filesystem. This type of
 behaviour should be captured in a new composite widget that can be
 reused by other components.</p>
 <p>The new widget should be placed in the MantidWidgets plugin and a
@@ -391,33 +376,33 @@ type can be used from within the Qt Designer.</p>
 <h2><a class="toc-backref" href="#id10">Python</a><a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h2>
 <p>Interfaces can also be created in Python using the <a class="reference external" href="http://pyqt.sourceforge.net/Docs/PyQt4/">PyQt4</a> package. The code for the
 interface should be placed in a Python <a class="reference external" href="https://docs.python.org/2/tutorial/modules.html#packages">package</a> under the
-<code class="docutils literal"><span class="pre">Code/Mantid/scripts</span></code> directory. It should be named after the interface
+<code class="docutils literal notranslate"><span class="pre">Code/Mantid/scripts</span></code> directory. It should be named after the interface
 name (without spaces). The code within the package should be
 structured to avoid placing all of the code in a single file,
 i.e. separate files for different classes etc. Sub packages are
 recommended for grouping together logical sets of files.</p>
 <p>For the interface to appear from within MantidPlot create a startup
-python file under the <code class="docutils literal"><span class="pre">Code/Mantid/scripts</span></code> directory. Assuming the code
+python file under the <code class="docutils literal notranslate"><span class="pre">Code/Mantid/scripts</span></code> directory. Assuming the code
 for the interface is in a directory called foo_app then the startup
 file would look like:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">foo_app</span> <span class="kn">import</span> <span class="n">FooGUI</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">foo_app</span> <span class="kn">import</span> <span class="n">FooGUI</span>
 
 <span class="n">app</span> <span class="o">=</span> <span class="n">FooGUI</span><span class="p">()</span>
 <span class="n">app</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>where <code class="docutils literal"><span class="pre">FooGUI</span></code> is the <code class="docutils literal"><span class="pre">MainWindow</span></code> for the interface. Some more
+<p>where <code class="docutils literal notranslate"><span class="pre">FooGUI</span></code> is the <code class="docutils literal notranslate"><span class="pre">MainWindow</span></code> for the interface. Some more
 detailed documentation on creating GUIs in Python can be found at
-<a class="reference internal" href="QtDesignerForPython.html#qtdesignerforpython"><span>Qt Designer for Python</span></a>.</p>
+<a class="reference internal" href="QtDesignerForPython.html#qtdesignerforpython"><span class="std std-ref">Qt Designer for Python</span></a>.</p>
 <div class="section" id="id1">
 <h3><a class="toc-backref" href="#id11">Designer</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <p>As with the C++ GUI the Qt Designer should be used for layouts of all
-widgets and the main interface. It is recommended that the <code class="docutils literal"><span class="pre">.ui</span></code>
-files be placed in a <code class="docutils literal"><span class="pre">ui</span></code> subdirectory of the interface package. To
-generate PyQt code from the UI xml you will need to run the <code class="docutils literal"><span class="pre">pyuic4</span></code>
+widgets and the main interface. It is recommended that the <code class="docutils literal notranslate"><span class="pre">.ui</span></code>
+files be placed in a <code class="docutils literal notranslate"><span class="pre">ui</span></code> subdirectory of the interface package. To
+generate PyQt code from the UI xml you will need to run the <code class="docutils literal notranslate"><span class="pre">pyuic4</span></code>
 program that ships with PyQt4. It is also recommended that the output
-file is named, using the <code class="docutils literal"><span class="pre">-o</span></code> argument, <code class="docutils literal"><span class="pre">ui_[widgetname].py</span></code> and
-placed in the <code class="docutils literal"><span class="pre">ui</span></code> subdirectory.</p>
+file is named, using the <code class="docutils literal notranslate"><span class="pre">-o</span></code> argument, <code class="docutils literal notranslate"><span class="pre">ui_[widgetname].py</span></code> and
+placed in the <code class="docutils literal notranslate"><span class="pre">ui</span></code> subdirectory.</p>
 </div>
 </div>
 </div>

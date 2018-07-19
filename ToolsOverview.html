@@ -1,36 +1,22 @@
 <!DOCTYPE html>
 
-
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Tools Overview</title>
-    
-    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap.min.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap-theme.min.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
-    <link rel="stylesheet" href="_static/custom.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '3.12.20180709.1546',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="_static/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
-    <link rel="top" title="" href="index.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Profiling with Valgrind" href="ProfilingWithValgrind.html" />
     <link rel="prev" title="Design Document Guidelines" href="DesignDocumentGuides.html" />
 
@@ -46,8 +32,7 @@
 </script>
 
 
-  </head>
-  <body role="document">
+  </head><body>
 
 
 
@@ -65,7 +50,7 @@
         </button>
         <a class="navbar-brand" href="http://www.mantidproject.org"><img src="_static/Mantid_Logo_Transparent.png">
            </a>
-        <span class="navbar-text navbar-version pull-left"><b>3.12</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.0</b></span>
       </div>
 
       
@@ -111,8 +96,8 @@
 <p><strong>To make it faster to create a new class</strong>. This is a small python
 script located in /buildconfig/. It generates the .cpp, .h and test
 files for a class along with some code stubs. It can also flesh out more
-methods for new Algorithms, using the &#8220;&#8211;alg&#8221; option.</p>
-<div class="highlight-python"><div class="highlight"><pre>usage: class_maker.py [-h] [--force] [--test] [--alg] SUBPROJECT CLASSNAME
+methods for new Algorithms, using the “–alg” option.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre>usage: class_maker.py [-h] [--force] [--test] [--alg] SUBPROJECT CLASSNAME
 Utility to create Mantid class files: header, source and test.
 positional arguments:
  SUBPROJECT  The subproject under Framework/; e.g. Kernel
@@ -131,13 +116,13 @@ optional arguments:
 <p>This python script is located in in /buidconfig/. It will move a class
 from one subproject to another and/or rename the class. Namespaces and
 cmakelists are adjusted. For details, run:</p>
-<p><code class="docutils literal"><span class="pre">buildconfig/move_class.py</span> <span class="pre">--help</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">buildconfig/move_class.py</span> <span class="pre">--help</span></code></p>
 </div>
 <div class="section" id="deleting-a-class-delete-class-py">
 <h2>Deleting a class: delete_class.py<a class="headerlink" href="#deleting-a-class-delete-class-py" title="Permalink to this headline">¶</a></h2>
 <p>This python script is located in in /buildconfig/. It will delete a
 class from one subproject. CMakeList.txt is adjusted. For details, run:</p>
-<p><code class="docutils literal"><span class="pre">buildconfig/delete_class.py</span> <span class="pre">--help</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">buildconfig/delete_class.py</span> <span class="pre">--help</span></code></p>
 </div>
 <div class="section" id="leak-checking-etc">
 <h2>Leak checking etc<a class="headerlink" href="#leak-checking-etc" title="Permalink to this headline">¶</a></h2>
@@ -149,18 +134,18 @@ class from one subproject. CMakeList.txt is adjusted. For details, run:</p>
 <li>Slow but thorough</li>
 <li>Useful options to run with</li>
 </ul>
-<p><code class="docutils literal"><span class="pre">valgrind</span> <span class="pre">--tool=memcheck</span> <span class="pre">--leak-check=full</span> <span class="pre">--show-reachable=yes</span> <span class="pre">--num-callers=20</span> <span class="pre">--track-fds=yes</span> <span class="pre">--track-origins=yes</span> <span class="pre">--freelist-vol=500000000</span> <span class="pre">``\</span> <span class="pre">\</span> <span class="pre">``</span> <span class="pre">[args...]</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">valgrind</span> <span class="pre">--tool=memcheck</span> <span class="pre">--leak-check=full</span> <span class="pre">--show-reachable=yes</span> <span class="pre">--num-callers=20</span> <span class="pre">--track-fds=yes</span> <span class="pre">--track-origins=yes</span> <span class="pre">--freelist-vol=500000000</span> <span class="pre">``\</span> <span class="pre">\</span> <span class="pre">``</span> <span class="pre">[args...]</span></code></p>
 </div>
 <div class="section" id="windows">
 <h3>Windows<a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://vld.codeplex.com/releases">Visual Leak Detector</a></p>
 <ol class="arabic simple">
 <li>Setup the additional paths as defined in the readme file</li>
-<li>Adjust the configuration file, &#8220;C:Program FilesVisual Leak
-Detectorvld.ini&#8221; to output to both File and debugger by changing the
-<code class="docutils literal"><span class="pre">ReportTo</span></code> to</li>
+<li>Adjust the configuration file, “C:Program FilesVisual Leak
+Detectorvld.ini” to output to both File and debugger by changing the
+<code class="docutils literal notranslate"><span class="pre">ReportTo</span></code> to</li>
 </ol>
-<p><code class="docutils literal"><span class="pre">ReportTo</span> <span class="pre">=</span> <span class="pre">both</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">ReportTo</span> <span class="pre">=</span> <span class="pre">both</span></code></p>
 <ol class="arabic simple">
 <li>Add #include &lt;vld.h&gt; to the system.h file in Kernel</li>
 <li>Compile everything in debug</li>
@@ -177,7 +162,7 @@ the test directory.</li>
 <ul class="simple">
 <li>Identifies race conditions &amp; dead-locks</li>
 <li>Slow but accurate</li>
-<li>A pain to get working with OpenMP. GCC must be recompiled to use a different call to create OMP threads or helgrind/drd cannot &#8220;see&#8221; the thread calls. Use this <a class="reference external" href="https://github.com/UCSCSlang/Adversarial-Helgrind/raw/master/drd/scripts/download-and-build-gcc">script</a> to recompile the same version off gcc that is onyour system. The script will need editing to change the appropriate variables.</li>
+<li>A pain to get working with OpenMP. GCC must be recompiled to use a different call to create OMP threads or helgrind/drd cannot “see” the thread calls. Use this <a class="reference external" href="https://github.com/UCSCSlang/Adversarial-Helgrind/raw/master/drd/scripts/download-and-build-gcc">script</a> to recompile the same version off gcc that is onyour system. The script will need editing to change the appropriate variables.</li>
 </ul>
 </div>
 </div>
@@ -188,7 +173,7 @@ the test directory.</li>
 <p><a class="reference external" href="http://kcachegrind.sourceforge.net/cgi-bin/show.cgi/KcacheGrindIndex">Callgrind/KCachegrind</a></p>
 <ul class="simple">
 <li>KCachegrind visualizes callgrind output.</li>
-<li>See <a class="reference internal" href="ProfilingWithValgrind.html#profilingwithvalgrind"><span>Profiling With Valgrind</span></a> for help on
+<li>See <a class="reference internal" href="ProfilingWithValgrind.html#profilingwithvalgrind"><span class="std std-ref">Profiling With Valgrind</span></a> for help on
 running callgrind</li>
 </ul>
 <p><a class="reference external" href="https://github.com/gperftools/gperftools">gperftools</a></p>
@@ -220,25 +205,25 @@ bug</a>.</p>
 should be fine (e.g. yum or apt-get).</li>
 <li>Get a copy of
 <a class="reference external" href="https://code.google.com/p/include-what-you-use/source/browse/trunk/iwyu_tool.py">iwyu_tool.py</a>
-which is in the project&#8217;s repository, but may not be installed if you
+which is in the project’s repository, but may not be installed if you
 got it from your operating system locations (e.g. yum).</li>
-<li>Run <code class="docutils literal"><span class="pre">cmake</span> <span class="pre">-DCMAKE_EXPORT_COMPILE_COMMANDS=TRUE</span></code>. This will
-generate an extra file, <code class="docutils literal"><span class="pre">compile_commands.json</span></code>, in your build area
+<li>Run <code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">-DCMAKE_EXPORT_COMPILE_COMMANDS=TRUE</span></code>. This will
+generate an extra file, <code class="docutils literal notranslate"><span class="pre">compile_commands.json</span></code>, in your build area
 which has instructions on compiling every file in mantid.</li>
-<li>Run <code class="docutils literal"><span class="pre">iwyu_tool.py</span> <span class="pre">-p</span> <span class="pre">`pwd</span></code> 2&gt; iwyu.log` to generate the
-report of changes redirecting into the file <code class="docutils literal"><span class="pre">iwyu.log</span></code>. This will
+<li>Run <code class="docutils literal notranslate"><span class="pre">iwyu_tool.py</span> <span class="pre">-p</span> <span class="pre">`pwd</span></code> 2&gt; iwyu.log` to generate the
+report of changes redirecting into the file <code class="docutils literal notranslate"><span class="pre">iwyu.log</span></code>. This will
 take a long time since it is going through the whole repository. If
 you want it for a single file, then supply that as an additional
 argument with full path. Only one file can be supplied at a time.</li>
-<li>Run <code class="docutils literal"><span class="pre">fix_includes</span> <span class="pre">&lt;</span> <span class="pre">iwyu.log</span></code> and compile the results. Depending on
+<li>Run <code class="docutils literal notranslate"><span class="pre">fix_includes</span> <span class="pre">&lt;</span> <span class="pre">iwyu.log</span></code> and compile the results. Depending on
 how you installed iwyu, the program may be called
-<code class="docutils literal"><span class="pre">fix_includes.py</span></code>. If it doesn&#8217;t compile, the most likely suspect
+<code class="docutils literal notranslate"><span class="pre">fix_includes.py</span></code>. If it doesn’t compile, the most likely suspect
 is that iwyu included a private header. See <a class="reference external" href="https://code.google.com/p/include-what-you-use/wiki/InstructionsForUsers#How_to_Run">iwyu instructions for
 users</a>
 for ways to handle this. Generally, they suggest deleting the
 offending lines.</li>
-<li>Check that your build path didn&#8217;t make it into source files. Since
-<code class="docutils literal"><span class="pre">compile_commands.json</span></code> has full paths, iwyu will put full paths in
+<li>Check that your build path didn’t make it into source files. Since
+<code class="docutils literal notranslate"><span class="pre">compile_commands.json</span></code> has full paths, iwyu will put full paths in
 the include statements. This will not produce an error on your
 system, but it will on the build servers. The easiest way to check is
 to use <a class="reference external" href="https://github.com/ggreer/the_silver_searcher">the silver
@@ -246,9 +231,9 @@ searcher</a> to check
 for your username in your source tree.</li>
 <li>Enjoy your success.</li>
 </ol>
-<p><strong>Note:</strong> <code class="docutils literal"><span class="pre">iwyu</span></code> outputs to <code class="docutils literal"><span class="pre">stderr</span></code> and always returns a failure
+<p><strong>Note:</strong> <code class="docutils literal notranslate"><span class="pre">iwyu</span></code> outputs to <code class="docutils literal notranslate"><span class="pre">stderr</span></code> and always returns a failure
 status code since it generates no output. The output stream also affects
-<code class="docutils literal"><span class="pre">iwyu_tool.py</span></code></p>
+<code class="docutils literal notranslate"><span class="pre">iwyu_tool.py</span></code></p>
 </div>
 </div>
 

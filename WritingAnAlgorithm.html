@@ -1,36 +1,22 @@
 <!DOCTYPE html>
 
-
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Writing An Algorithm</title>
-    
-    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap.min.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap-theme.min.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
-    <link rel="stylesheet" href="_static/custom.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '3.12.20180709.1546',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="_static/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
-    <link rel="top" title="" href="index.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Writing a Custom ConvertToMD Transformation" href="WritingCustomConvertToMDTransformation.html" />
     <link rel="prev" title="Remote Job Submission API" href="RemoteJobSubmissionAPI.html" />
 
@@ -46,8 +32,7 @@
 </script>
 
 
-  </head>
-  <body role="document">
+  </head><body>
 
 
 
@@ -65,7 +50,7 @@
         </button>
         <a class="navbar-brand" href="http://www.mantidproject.org"><img src="_static/Mantid_Logo_Transparent.png">
            </a>
-        <span class="navbar-text navbar-version pull-left"><b>3.12</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.0</b></span>
       </div>
 
       
@@ -132,7 +117,7 @@
 </div>
 <div class="section" id="introduction">
 <h2><a class="toc-backref" href="#id1">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
-<p>Mantid&#8217;s <a class="reference external" href="https://www.mantidproject.org/Plugin">plugin</a> architecture has been engineered so that it is easy for a user
+<p>Mantid’s <a class="reference external" href="https://www.mantidproject.org/Plugin">plugin</a> architecture has been engineered so that it is easy for a user
 to write their own algorithm. This page is a primer for the user about to write their first algorithm and assumes no
 great knowledge of C++.
 It covers the basics, with links to more advanced options where appropriate. Note if you are looking to add a
@@ -140,23 +125,23 @@ It covers the basics, with links to more advanced options where appropriate. Not
 <a class="reference external" href="https://www.mantidproject.org/Writing_a_Fit_Function">Writing a Fit Function</a>.
 There is special description for the case when you are looking to add a custom <a class="reference external" href="WritingCustomConvertToMDTransformation">MD conversion plugin</a>.</p>
 <p>Alternatively, you can implement your algorithm in <a class="reference external" href="https://www.mantidproject.org/Extending_Mantid_With_Python">Python</a>.
-See <a class="reference external" href="https://www.mantidproject.org/Python_Vs_C%2B%2B_Algorithms">Python Vs C++ Algorithms</a> for a comparison of Mantid&#8217;s
+See <a class="reference external" href="https://www.mantidproject.org/Python_Vs_C%2B%2B_Algorithms">Python Vs C++ Algorithms</a> for a comparison of Mantid’s
 two programming languages.</p>
 <p>All <a class="reference external" href="https://www.mantidproject.org/Algorithm">algorithms</a> in Mantid <a class="reference external" href="http://en.wikipedia.org/wiki/Inheritance_(computer_science)">inherit</a>
-from a base <code class="docutils literal"><span class="pre">Algorithm</span></code> class, which provides the support and services required for running a specific
+from a base <code class="docutils literal notranslate"><span class="pre">Algorithm</span></code> class, which provides the support and services required for running a specific
 algorithm and greatly simplifies the process of writing a new one.</p>
 </div>
 <div class="section" id="getting-started">
 <h2><a class="toc-backref" href="#id2">Getting Started</a><a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
 <p>The first step is to create a new directory, with any name of your choice, under your MantidInstall directory
-(on Windows, probably located at <code class="docutils literal"><span class="pre">C:\\MantidInstall</span></code>). Alternatively, you can just do everything in the
-UserAlgorithms directory. The UserAlgorithms directory contains a simple Python script called <code class="docutils literal"><span class="pre">createAlg.py</span></code>.
-This can be used to create a new &#8216;empty&#8217; algorithm - to create one called &#8216;MyAlg&#8217; you should type <code class="docutils literal"><span class="pre">python</span>
-<span class="pre">createAlg.py</span> <span class="pre">myAlg</span> <span class="pre">category</span></code>, where category is an optional argument to set the algorithm&#8217;s category.
-To do the same thing &#8216;by hand&#8217;, create files called <code class="docutils literal"><span class="pre">MyAlg.h</span></code> and <code class="docutils literal"><span class="pre">MyAlg.cpp</span></code> and paste in the following
-boilerplate C++ code (changing each occurrence of &#8216;MyAlg&#8217; to your chosen algorithm name):</p>
+(on Windows, probably located at <code class="docutils literal notranslate"><span class="pre">C:\\MantidInstall</span></code>). Alternatively, you can just do everything in the
+UserAlgorithms directory. The UserAlgorithms directory contains a simple Python script called <code class="docutils literal notranslate"><span class="pre">createAlg.py</span></code>.
+This can be used to create a new ‘empty’ algorithm - to create one called ‘MyAlg’ you should type <code class="docutils literal notranslate"><span class="pre">python</span>
+<span class="pre">createAlg.py</span> <span class="pre">myAlg</span> <span class="pre">category</span></code>, where category is an optional argument to set the algorithm’s category.
+To do the same thing ‘by hand’, create files called <code class="docutils literal notranslate"><span class="pre">MyAlg.h</span></code> and <code class="docutils literal notranslate"><span class="pre">MyAlg.cpp</span></code> and paste in the following
+boilerplate C++ code (changing each occurrence of ‘MyAlg’ to your chosen algorithm name):</p>
 <p><strong>Header file (MyAlg.h)</strong>:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#ifndef MYALG_H_</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span class="cp">#ifndef MYALG_H_</span>
 <span class="cp">#define MYALG_H_</span>
 
 <span class="cp">#include</span> <span class="cpf">&quot;MantidAPI/Algorithm.h&quot;</span><span class="cp"></span>
@@ -186,7 +171,7 @@ boilerplate C++ code (changing each occurrence of &#8216;MyAlg&#8217; to your ch
 </pre></div>
 </div>
 <p><strong>Source file (MyAlg.cpp)</strong>:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include</span> <span class="cpf">&quot;MyAlg.h&quot;</span><span class="cp"></span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span class="cp">#include</span> <span class="cpf">&quot;MyAlg.h&quot;</span><span class="cp"></span>
 
 <span class="c1">// Register the algorithm into the AlgorithmFactory</span>
 <span class="n">DECLARE_ALGORITHM</span><span class="p">(</span><span class="n">MyAlg</span><span class="p">);</span>
@@ -201,36 +186,36 @@ boilerplate C++ code (changing each occurrence of &#8216;MyAlg&#8217; to your ch
 </pre></div>
 </div>
 <p>At this point you will already have something that will compile and run. To do so (on Windows), copy the files
-<code class="docutils literal"><span class="pre">build.bat</span></code> &amp; <code class="docutils literal"><span class="pre">SConstruct</span></code> from <code class="docutils literal"><span class="pre">UserAlgorithms</span></code> into the directory containing your code and execute <code class="docutils literal"><span class="pre">build.bat</span></code>.
+<code class="docutils literal notranslate"><span class="pre">build.bat</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">SConstruct</span></code> from <code class="docutils literal notranslate"><span class="pre">UserAlgorithms</span></code> into the directory containing your code and execute <code class="docutils literal notranslate"><span class="pre">build.bat</span></code>.
 If you then start MantidPlot your algorithm will appear in the list of available algorithms and could be run.
-But, of course, it won&#8217;t do anything of interest until you have written some algorithm code...</p>
+But, of course, it won’t do anything of interest until you have written some algorithm code…</p>
 </div>
 <div class="section" id="coding-the-algorithm">
 <h2><a class="toc-backref" href="#id3">Coding the Algorithm</a><a class="headerlink" href="#coding-the-algorithm" title="Permalink to this headline">¶</a></h2>
 <p>You will see that the algorithm skeletons set up in the last section contain two methods/functions/subroutines
-called <code class="docutils literal"><span class="pre">init</span></code> and <code class="docutils literal"><span class="pre">exec</span></code>. It will be no surprise to discover that these will, respectively, contain the code to
-initialise and execute the algorithm, which goes in the <code class="docutils literal"><span class="pre">.cpp</span></code> file between the curly brackets of each method.
+called <code class="docutils literal notranslate"><span class="pre">init</span></code> and <code class="docutils literal notranslate"><span class="pre">exec</span></code>. It will be no surprise to discover that these will, respectively, contain the code to
+initialise and execute the algorithm, which goes in the <code class="docutils literal notranslate"><span class="pre">.cpp</span></code> file between the curly brackets of each method.
 Note that these are private methods (i.e. cannot be called directly); an algorithm is run by calling the base
-class&#8217;s <code class="docutils literal"><span class="pre">initialize()</span></code> and <code class="docutils literal"><span class="pre">execute()</span></code> methods, which provide additional services such as the validation of properties,
-fetching workspaces from the <code class="docutils literal"><span class="pre">AnalysisDataService</span></code>, handling errors and filling the workspace histories.</p>
+class’s <code class="docutils literal notranslate"><span class="pre">initialize()</span></code> and <code class="docutils literal notranslate"><span class="pre">execute()</span></code> methods, which provide additional services such as the validation of properties,
+fetching workspaces from the <code class="docutils literal notranslate"><span class="pre">AnalysisDataService</span></code>, handling errors and filling the workspace histories.</p>
 <div class="section" id="initialization">
 <h3><a class="toc-backref" href="#id4">Initialization</a><a class="headerlink" href="#initialization" title="Permalink to this headline">¶</a></h3>
-<p>The initialization (init) method is executed by the <code class="docutils literal"><span class="pre">FrameworkManager</span></code> when an algorithm is requested and must
+<p>The initialization (init) method is executed by the <code class="docutils literal notranslate"><span class="pre">FrameworkManager</span></code> when an algorithm is requested and must
 contain the declaration of the properties required by the algorithm. Atypically, it can also contain other
 initialization code such as the calculation of constants used by the algorithm, so long as this does not
 rely on the values of any of the properties.</p>
-<p>Calls to the <code class="docutils literal"><span class="pre">declareProperty</span></code> method are used to add a property to this algorithm. See the properties page
-for more information on the types of properties supported and the example algorithms in <code class="docutils literal"><span class="pre">UserAlgorithms</span></code>
+<p>Calls to the <code class="docutils literal notranslate"><span class="pre">declareProperty</span></code> method are used to add a property to this algorithm. See the properties page
+for more information on the types of properties supported and the example algorithms in <code class="docutils literal notranslate"><span class="pre">UserAlgorithms</span></code>
 (especially <a class="reference external" href="http://svn.mantidproject.org/mantid/trunk/Code/Mantid/UserAlgorithms/PropertyAlgorithm.cpp">PropertyAlgorithm</a>
 and <a class="reference external" href="http://svn.mantidproject.org/mantid/trunk/Code/Mantid/UserAlgorithms/WorkspaceAlgorithm.cpp">WorkspaceAlgorithm</a>)
 for further guidance on how to use them.</p>
 <p>For the simple types (integer, double or string), the basic syntax is:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">declareProperty</span><span class="p">(</span><span class="s2">&quot;UniquePropertyName&quot;</span><span class="p">,</span><span class="n">value</span><span class="p">);</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="n">declareProperty</span><span class="p">(</span><span class="s2">&quot;UniquePropertyName&quot;</span><span class="p">,</span><span class="n">value</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>An optional <a class="reference external" href="https://www.mantidproject.org/Properties#Validators">validator</a> or
 <a class="reference external" href="https://www.mantidproject.org/Properties#Direction">directional argument</a> (input, output or both)
-can also be appended. The syntax for other property types (<code class="docutils literal"><span class="pre">WorkspaceProperty</span></code> &amp; <code class="docutils literal"><span class="pre">ArrayProperty</span></code>) is more
+can also be appended. The syntax for other property types (<code class="docutils literal notranslate"><span class="pre">WorkspaceProperty</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">ArrayProperty</span></code>) is more
 complex - see the <a class="reference external" href="https://www.mantidproject.org/Properties#Direction">properties</a> page or the
 example algorithms in <a class="reference external" href="https://www.mantidproject.org/UserAlgorithms">UserAlgorithms</a> for further details.</p>
 </div>
@@ -240,37 +225,37 @@ example algorithms in <a class="reference external" href="https://www.mantidproj
 <div class="section" id="fetching-properties">
 <h3><a class="toc-backref" href="#id6">Fetching properties</a><a class="headerlink" href="#fetching-properties" title="Permalink to this headline">¶</a></h3>
 <p>Before the data can be processed, the first task is likely to be to fetch the values of the input properties.
-This uses the <code class="docutils literal"><span class="pre">getProperty</span></code> method as follows:</p>
-<div class="highlight-python"><div class="highlight"><pre>TYPE myProperty = getProperty(&quot;PropertyName&quot;);
+This uses the <code class="docutils literal notranslate"><span class="pre">getProperty</span></code> method as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="n">TYPE</span> <span class="n">myProperty</span> <span class="o">=</span> <span class="n">getProperty</span><span class="p">(</span><span class="s2">&quot;PropertyName&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>where <code class="docutils literal"><span class="pre">TYPE</span></code> is the type of the property (<code class="docutils literal"><span class="pre">int</span></code>, <code class="docutils literal"><span class="pre">double</span></code>, <code class="docutils literal"><span class="pre">std::string</span></code>, <code class="docutils literal"><span class="pre">std::vector</span></code>...). Note that the
-value of a <code class="docutils literal"><span class="pre">WorkspaceProperty</span></code> is a <a class="reference external" href="https://www.mantidproject.org/Shared_Pointer">shared pointer</a>
-to the workspace, which is referred to as <code class="docutils literal"><span class="pre">Mantid::API::Workspace_sptr</span></code> or <code class="docutils literal"><span class="pre">Mantid::API::Workspace_const_sptr</span></code>.
+<p>where <code class="docutils literal notranslate"><span class="pre">TYPE</span></code> is the type of the property (<code class="docutils literal notranslate"><span class="pre">int</span></code>, <code class="docutils literal notranslate"><span class="pre">double</span></code>, <code class="docutils literal notranslate"><span class="pre">std::string</span></code>, <code class="docutils literal notranslate"><span class="pre">std::vector</span></code>…). Note that the
+value of a <code class="docutils literal notranslate"><span class="pre">WorkspaceProperty</span></code> is a <a class="reference external" href="https://www.mantidproject.org/Shared_Pointer">shared pointer</a>
+to the workspace, which is referred to as <code class="docutils literal notranslate"><span class="pre">Mantid::API::Workspace_sptr</span></code> or <code class="docutils literal notranslate"><span class="pre">Mantid::API::Workspace_const_sptr</span></code>.
 The latter should be used for input workspaces that will not need to be changed in the course of the algorithm.</p>
 <p>If a handle is required on the property itself, rather than just its value, then the same method is used as follows:</p>
-<div class="highlight-python"><div class="highlight"><pre>Mantid::Kernel::Property* myProperty = getProperty(&quot;PropertyName&quot;);
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="n">Mantid</span><span class="p">::</span><span class="n">Kernel</span><span class="p">::</span><span class="n">Property</span><span class="o">*</span> <span class="n">myProperty</span> <span class="o">=</span> <span class="n">getProperty</span><span class="p">(</span><span class="s2">&quot;PropertyName&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>This is useful, for example, for checking whether or not an optional property has been set (using Property&#8217;s
-<code class="docutils literal"><span class="pre">isDefault()</span></code> method).</p>
+<p>This is useful, for example, for checking whether or not an optional property has been set (using Property’s
+<code class="docutils literal notranslate"><span class="pre">isDefault()</span></code> method).</p>
 </div>
 <div class="section" id="creating-the-output-workspace">
 <h3><a class="toc-backref" href="#id7">Creating the output workspace</a><a class="headerlink" href="#creating-the-output-workspace" title="Permalink to this headline">¶</a></h3>
 <p>Usually, the result of an algorithm will be stored in another new workspace and the algorithm
-will need to create that new workspace through a call to the <code class="docutils literal"><span class="pre">WorkspaceFactory</span></code>. For the (common)
+will need to create that new workspace through a call to the <code class="docutils literal notranslate"><span class="pre">WorkspaceFactory</span></code>. For the (common)
 example where the output workspace should be of the same type and size as the input one, the code
 would read as follows:</p>
-<div class="highlight-python"><div class="highlight"><pre>Mantid::API::Workspace_sptr outputWorkspace = Mantid::API::WorkspaceFactory::Instance().create(inputWorkspace);
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="n">Mantid</span><span class="p">::</span><span class="n">API</span><span class="p">::</span><span class="n">Workspace_sptr</span> <span class="n">outputWorkspace</span> <span class="o">=</span> <span class="n">Mantid</span><span class="p">::</span><span class="n">API</span><span class="p">::</span><span class="n">WorkspaceFactory</span><span class="p">::</span><span class="n">Instance</span><span class="p">()</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">inputWorkspace</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>where <code class="docutils literal"><span class="pre">inputWorkspace</span></code> is a shared pointer to the input workspace.</p>
+<p>where <code class="docutils literal notranslate"><span class="pre">inputWorkspace</span></code> is a shared pointer to the input workspace.</p>
 <p>It is also important to, at some point, set the output workspace property to point at this workspace.
-This is achieved through a call to the <code class="docutils literal"><span class="pre">setProperty</span></code> method as follows:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">setProperty</span><span class="p">(</span><span class="s2">&quot;OutputWorkspacePropertyName&quot;</span><span class="p">,</span><span class="n">outputWorkspace</span><span class="p">);</span>
+This is achieved through a call to the <code class="docutils literal notranslate"><span class="pre">setProperty</span></code> method as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="n">setProperty</span><span class="p">(</span><span class="s2">&quot;OutputWorkspacePropertyName&quot;</span><span class="p">,</span><span class="n">outputWorkspace</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>where <code class="docutils literal"><span class="pre">outputWorkspace</span></code> is a shared pointer to the created output workspace.</p>
+<p>where <code class="docutils literal notranslate"><span class="pre">outputWorkspace</span></code> is a shared pointer to the created output workspace.</p>
 </div>
 <div class="section" id="using-workspaces">
 <h3><a class="toc-backref" href="#id8">Using workspaces</a><a class="headerlink" href="#using-workspaces" title="Permalink to this headline">¶</a></h3>
@@ -285,35 +270,35 @@ more manageable and readable sections.</p>
 <div class="section" id="further-features">
 <h2><a class="toc-backref" href="#id9">Further Features</a><a class="headerlink" href="#further-features" title="Permalink to this headline">¶</a></h2>
 <p>The advanced user is referred to the <a class="reference external" href="http://doxygen.mantidproject.org/nightly/d3/de9/classMantid_1_1API_1_1Workspace.html">full documentation page</a>
-for the <code class="docutils literal"><span class="pre">Algorithm</span></code> base class to explore the full range of methods available for use within an algorithm.
+for the <code class="docutils literal notranslate"><span class="pre">Algorithm</span></code> base class to explore the full range of methods available for use within an algorithm.
 A few aspects are highlighted below.</p>
 <div class="section" id="child-algorithms">
 <h3><a class="toc-backref" href="#id10">Child Algorithms</a><a class="headerlink" href="#child-algorithms" title="Permalink to this headline">¶</a></h3>
 <p>Algorithms may wish to make use of the functionality of other algorithms as part of their execution.
-For example, if a units change is required the <code class="docutils literal"><span class="pre">ConvertUnits</span></code> algorithm could be used. Mantid therefore
+For example, if a units change is required the <code class="docutils literal notranslate"><span class="pre">ConvertUnits</span></code> algorithm could be used. Mantid therefore
 has the concept of a child algorithm and this is accessed through a call to the
-<code class="docutils literal"><span class="pre">createChildAlgorithm</span></code> method as follows:</p>
-<div class="highlight-python"><div class="highlight"><pre>Mantid::API::Algorithm_sptr childAlg = createChildAlgorithm(&quot;AlgorithmName&quot;);
+<code class="docutils literal notranslate"><span class="pre">createChildAlgorithm</span></code> method as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="n">Mantid</span><span class="p">::</span><span class="n">API</span><span class="p">::</span><span class="n">Algorithm_sptr</span> <span class="n">childAlg</span> <span class="o">=</span> <span class="n">createChildAlgorithm</span><span class="p">(</span><span class="s2">&quot;AlgorithmName&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>This call will also initialise the algorithm, so the algorithm&#8217;s properties can then be set and it can be executed:</p>
-<div class="highlight-python"><div class="highlight"><pre>childAlg-&gt;setPropertyValue(&quot;number&quot;, 0);
-childAlg-&gt;setProperty&lt;Workspace_sptr&gt;(&quot;Workspace&quot;,workspacePointer);
-childAlg-&gt;execute();
+<p>This call will also initialise the algorithm, so the algorithm’s properties can then be set and it can be executed:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="n">childAlg</span><span class="o">-&gt;</span><span class="n">setPropertyValue</span><span class="p">(</span><span class="s2">&quot;number&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="n">childAlg</span><span class="o">-&gt;</span><span class="n">setProperty</span><span class="o">&lt;</span><span class="n">Workspace_sptr</span><span class="o">&gt;</span><span class="p">(</span><span class="s2">&quot;Workspace&quot;</span><span class="p">,</span><span class="n">workspacePointer</span><span class="p">);</span>
+<span class="n">childAlg</span><span class="o">-&gt;</span><span class="n">execute</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="logging">
 <h3><a class="toc-backref" href="#id11">Logging</a><a class="headerlink" href="#logging" title="Permalink to this headline">¶</a></h3>
-<p>The <code class="docutils literal"><span class="pre">g_log</span></code> object enables access to the <a class="reference external" href="Logging">logging</a> facilities of Mantid, and is an invaluable
+<p>The <code class="docutils literal notranslate"><span class="pre">g_log</span></code> object enables access to the <a class="reference external" href="Logging">logging</a> facilities of Mantid, and is an invaluable
 tool in understanding the running of your algorithms.</p>
 </div>
 <div class="section" id="enhancing-asynchronous-running">
 <h3><a class="toc-backref" href="#id12">Enhancing asynchronous running</a><a class="headerlink" href="#enhancing-asynchronous-running" title="Permalink to this headline">¶</a></h3>
 <p>Any algorithm can be run asynchronously (e.g. by MantidPlot) without modification. However, some features
-are only enabled if code is added within the <code class="docutils literal"><span class="pre">exec()</span></code> method. <code class="docutils literal"><span class="pre">Algorithm::interruption_point()</span></code> should
-be called at appropriate intervals so that the algorithm&#8217;s execution can be interrupted.
-<code class="docutils literal"><span class="pre">Algorithm::progress(double</span> <span class="pre">p)</span></code> reports the progress of the algorithm. <code class="docutils literal"><span class="pre">p</span></code> must be between
+are only enabled if code is added within the <code class="docutils literal notranslate"><span class="pre">exec()</span></code> method. <code class="docutils literal notranslate"><span class="pre">Algorithm::interruption_point()</span></code> should
+be called at appropriate intervals so that the algorithm’s execution can be interrupted.
+<code class="docutils literal notranslate"><span class="pre">Algorithm::progress(double</span> <span class="pre">p)</span></code> reports the progress of the algorithm. <code class="docutils literal notranslate"><span class="pre">p</span></code> must be between
 0 (start) and 1 (finish).</p>
 </div>
 <div class="section" id="exceptions">
@@ -326,21 +311,21 @@ These will be caught in the base Algorithm class, which will report the failure 
 <p><a class="reference external" href="https://www.mantidproject.org/Properties#Validators">Validators</a> allow you to give feedback
 to the user if the input of a property is incorrect (for example, typing non-numeric characters
 in a number field).</p>
-<p>For more advanced validation, override the <code class="docutils literal"><span class="pre">Algorithm::validateInputs()</span></code> method. This is a
+<p>For more advanced validation, override the <code class="docutils literal notranslate"><span class="pre">Algorithm::validateInputs()</span></code> method. This is a
 method that returns a map where:</p>
 <ul class="simple">
 <li>The key is the name of the property that is in error.</li>
 <li>The value is a string describing the error.</li>
 </ul>
 <p>This method allows you to provide validation that depends on several property values at once
-(something that cannot be done with <code class="docutils literal"><span class="pre">IValidator</span></code>). Its default implementation returns an empty map,
+(something that cannot be done with <code class="docutils literal notranslate"><span class="pre">IValidator</span></code>). Its default implementation returns an empty map,
 signifying no errors.</p>
 <p>It will be called in dialogs <strong>after</strong> parsing all inputs and setting the properties, but <strong>before</strong> executing.
-It is also called again in the <code class="docutils literal"><span class="pre">execute()</span></code> call, which will throw if this returns something.</p>
-<p>In the MantidPlot GUI, this will set a &#8220;star&#8221; <code class="docutils literal"><span class="pre">*</span></code> label next to each property that is reporting an error.
+It is also called again in the <code class="docutils literal notranslate"><span class="pre">execute()</span></code> call, which will throw if this returns something.</p>
+<p>In the MantidPlot GUI, this will set a “star” <code class="docutils literal notranslate"><span class="pre">*</span></code> label next to each property that is reporting an error.
 This makes it easier for users to find where they went wrong.</p>
-<p>If your <code class="docutils literal"><span class="pre">validateInputs()</span></code> method validates an input workspace property, bear in mind that the user
-could provide a <code class="docutils literal"><span class="pre">WorkspaceGroup</span></code> (or an unexpected type of workspace) - when retrieving the property,
+<p>If your <code class="docutils literal notranslate"><span class="pre">validateInputs()</span></code> method validates an input workspace property, bear in mind that the user
+could provide a <code class="docutils literal notranslate"><span class="pre">WorkspaceGroup</span></code> (or an unexpected type of workspace) - when retrieving the property,
 check that casting it to its intended type succeeded before attempting to use it.</p>
 </div>
 </div>

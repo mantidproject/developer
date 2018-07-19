@@ -1,36 +1,22 @@
 <!DOCTYPE html>
 
-
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Jenkins Configuration</title>
-    
-    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap.min.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap-theme.min.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
-    <link rel="stylesheet" href="_static/custom.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '3.12.20180709.1546',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="_static/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
-    <link rel="top" title="" href="index.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Release Checklist" href="ReleaseChecklist.html" />
     <link rel="prev" title="The Automated Build Process" href="AutomatedBuildProcess.html" />
 
@@ -46,8 +32,7 @@
 </script>
 
 
-  </head>
-  <body role="document">
+  </head><body>
 
 
 
@@ -65,7 +50,7 @@
         </button>
         <a class="navbar-brand" href="http://www.mantidproject.org"><img src="_static/Mantid_Logo_Transparent.png">
            </a>
-        <span class="navbar-text navbar-version pull-left"><b>3.12</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.0</b></span>
       </div>
 
       
@@ -140,8 +125,9 @@
 <li><a class="reference internal" href="#update-branches-for-jobs" id="id22">Update Branches For Jobs</a></li>
 <li><a class="reference internal" href="#list-all-scm-urls" id="id23">List All SCM Urls</a></li>
 <li><a class="reference internal" href="#print-all-loggers" id="id24">Print All Loggers</a></li>
-<li><a class="reference internal" href="#run-a-process" id="id25">Run a Process</a></li>
-<li><a class="reference internal" href="#update-default-values-for-job-parameters" id="id26">Update default values for job parameters</a></li>
+<li><a class="reference internal" href="#run-a-process-on-a-single-node" id="id25">Run a Process On a Single Node</a></li>
+<li><a class="reference internal" href="#run-a-process-across-all-nodes" id="id26">Run a Process Across All Nodes</a></li>
+<li><a class="reference internal" href="#update-default-values-for-job-parameters" id="id27">Update default values for job parameters</a></li>
 </ul>
 </li>
 </ul>
@@ -154,7 +140,7 @@ aims to describe the general setup of the system.</p>
 </div>
 <div class="section" id="introduction">
 <h2><a class="toc-backref" href="#id2">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
-<p>Jenkins works on a &#8216;master-&gt;slave&#8217; principle. The master node is
+<p>Jenkins works on a ‘master-&gt;slave’ principle. The master node is
 responsible for orchestrating jobs and managing the slave nodes, where the
 work is actually performed. The master node is located at
 <a class="reference external" href="http://builds.mantidproject.org">http://builds.mantidproject.org</a> and each facility is responsible for providing
@@ -171,8 +157,8 @@ Slave Connect, Job Read, View Read.</p>
 <h2><a class="toc-backref" href="#id4">Setting up a New Slave</a><a class="headerlink" href="#setting-up-a-new-slave" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="machine-setup">
 <h3><a class="toc-backref" href="#id5">Machine Setup</a><a class="headerlink" href="#machine-setup" title="Permalink to this headline">¶</a></h3>
-<p>Set up a local <code class="docutils literal"><span class="pre">builder</span></code> account that will be used by the slave.</p>
-<p>Install the <a class="reference internal" href="GettingStarted.html#gettingstarted"><span>required prerequisites</span></a> for the relevant OS.</p>
+<p>Set up a local <code class="docutils literal notranslate"><span class="pre">builder</span></code> account that will be used by the slave.</p>
+<p>Install the <a class="reference internal" href="GettingStarted.html#gettingstarted"><span class="std std-ref">required prerequisites</span></a> for the relevant OS.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">For Windows the <a class="reference external" href="http://landinghub.visualstudio.com/visual-cpp-build-tools">Command line Visual C++ build tools</a>
@@ -182,22 +168,22 @@ may be used in place of a full Visual Studio install from version 2017 onwards (
 <div class="section" id="windows">
 <h3><a class="toc-backref" href="#id6">Windows</a><a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Ensure that the location of <code class="docutils literal"><span class="pre">msbuild.exe</span></code> (<code class="docutils literal"><span class="pre">C:\Windows\Microsoft.NET\Framework64\v4.0.30319</span></code>) is on the <code class="docutils literal"><span class="pre">PATH</span></code></li>
+<li>Ensure that the location of <code class="docutils literal notranslate"><span class="pre">msbuild.exe</span></code> (<code class="docutils literal notranslate"><span class="pre">C:\Windows\Microsoft.NET\Framework64\v4.0.30319</span></code>) is on the <code class="docutils literal notranslate"><span class="pre">PATH</span></code></li>
 </ul>
 <div class="section" id="slave-connection">
 <h4><a class="toc-backref" href="#id7">Slave Connection</a><a class="headerlink" href="#slave-connection" title="Permalink to this headline">¶</a></h4>
 <p>There are following additional steps required to be able to connect a
 Windows slave using JNLP as a Windows service :</p>
 <ol class="arabic simple">
-<li>Setup the slave on the master node using &#8220;New Node&#8221; under
-<a class="reference external" href="http://builds.mantidproject.org/computer/">http://builds.mantidproject.org/computer/</a>. If &#8220;New Node&#8221; is not visible
+<li>Setup the slave on the master node using “New Node” under
+<a class="reference external" href="http://builds.mantidproject.org/computer/">http://builds.mantidproject.org/computer/</a>. If “New Node” is not visible
 then you do not have the required permissions - ask an admin for help. It is
 recommended that you copy from an existing node of a similar type.</li>
 <li>Once configured on the master, remote desktop to the slave, open a browser and connect to the webpage of the
 slave, .e.g. <a class="reference external" href="http://builds.mantidproject.org/computer/ornl-pc73896/">http://builds.mantidproject.org/computer/ornl-pc73896/</a></li>
 <li>Click on the <strong>connect</strong> button to launch the JNLP client.</li>
-<li>Once the client is launched, you can select &#8220;Install as Windows
-Service&#8221; from the clients menu. If you have a proxy then see the
+<li>Once the client is launched, you can select “Install as Windows
+Service” from the clients menu. If you have a proxy then see the
 section below for further configuration steps.</li>
 <li>Once installed change the recovery behaviour for
 the service. Do this by right-clicking on the Jenkins
@@ -206,26 +192,26 @@ failures to restart the service.</li>
 <li>Change the account that the service uses to log on by right-clicking
 on the Jenkins service-&gt;Properties-&gt;Log On and enter the details in
 the builder account</li>
-<li>Change the &#8220;Startup type:&#8221; of the service to be &#8220;Automatic (Delayed Start)&#8221;</li>
-<li>Ensure the msbuild directory is on the <code class="docutils literal"><span class="pre">PATH</span></code></li>
+<li>Change the “Startup type:” of the service to be “Automatic (Delayed Start)”</li>
+<li>Ensure the msbuild directory is on the <code class="docutils literal notranslate"><span class="pre">PATH</span></code></li>
 <li>Finally reboot the slave (this is the easiest way for the Jenkins to
 start trying to reconnect to it)</li>
 </ol>
-<p>Note that changes to <code class="docutils literal"><span class="pre">PATH</span></code> require restarting the Jenkins service in
+<p>Note that changes to <code class="docutils literal notranslate"><span class="pre">PATH</span></code> require restarting the Jenkins service in
 order to be reflected in the build environment.</p>
 </div>
 <div class="section" id="connecting-through-a-proxy-server">
 <h4><a class="toc-backref" href="#id8">Connecting Through a Proxy Server</a><a class="headerlink" href="#connecting-through-a-proxy-server" title="Permalink to this headline">¶</a></h4>
 <p>It is a little more tricky to windows slaves connected through a
 proxy.To do this you must modify the java arguments that are used to
-start the <code class="docutils literal"><span class="pre">jenkins-slave</span></code> process. Once the &#8220;Install as a Windows
-Service&#8221; has completed you should</p>
+start the <code class="docutils literal notranslate"><span class="pre">jenkins-slave</span></code> process. Once the “Install as a Windows
+Service” has completed you should</p>
 <ol class="arabic simple">
-<li>Find a directory on the machine such as <code class="docutils literal"><span class="pre">C:\Jenkins`</span></code> or whatever
+<li>Find a directory on the machine such as <code class="docutils literal notranslate"><span class="pre">C:\Jenkins`</span></code> or whatever
 was configured in the slave config.</li>
-<li>Open the <code class="docutils literal"><span class="pre">jenkins-slave.xml</span></code> file</li>
-<li>Edit the tag and add <code class="docutils literal"><span class="pre">-Dhttp.proxyHost=PROXYHOST</span></code>
-<code class="docutils literal"><span class="pre">-Dhttp.proxyPort=PROXYPORT</span></code> to the list</li>
+<li>Open the <code class="docutils literal notranslate"><span class="pre">jenkins-slave.xml</span></code> file</li>
+<li>Edit the tag and add <code class="docutils literal notranslate"><span class="pre">-Dhttp.proxyHost=PROXYHOST</span></code>
+<code class="docutils literal notranslate"><span class="pre">-Dhttp.proxyPort=PROXYPORT</span></code> to the list</li>
 <li>Save the file and restart the service (or machine)</li>
 </ol>
 </div>
@@ -233,18 +219,18 @@ was configured in the slave config.</li>
 <div class="section" id="linux">
 <h3><a class="toc-backref" href="#id9">Linux</a><a class="headerlink" href="#linux" title="Permalink to this headline">¶</a></h3>
 <p>Install an ssh server.</p>
-<p>Install <code class="docutils literal"><span class="pre">ccache</span></code>. After installing run <code class="docutils literal"><span class="pre">ccache</span> <span class="pre">--max-size=20G</span></code> from the <code class="docutils literal"><span class="pre">builder</span></code> account.</p>
-<p>Install a vnc server and from the <code class="docutils literal"><span class="pre">builder</span></code> account run <code class="docutils literal"><span class="pre">vncpasswd</span></code> to set a password on the VNC server. It
+<p>Install <code class="docutils literal notranslate"><span class="pre">ccache</span></code>. After installing run <code class="docutils literal notranslate"><span class="pre">ccache</span> <span class="pre">--max-size=20G</span></code> from the <code class="docutils literal notranslate"><span class="pre">builder</span></code> account.</p>
+<p>Install a vnc server and from the <code class="docutils literal notranslate"><span class="pre">builder</span></code> account run <code class="docutils literal notranslate"><span class="pre">vncpasswd</span></code> to set a password on the VNC server. It
 can be any password.</p>
-<p>Ensure <code class="docutils literal"><span class="pre">curl</span></code> is installed</p>
-<p>Any machines acting as performance test servers will require <code class="docutils literal"><span class="pre">mysqldb</span></code> to be installed.</p>
+<p>Ensure <code class="docutils literal notranslate"><span class="pre">curl</span></code> is installed</p>
+<p>Any machines acting as performance test servers will require <code class="docutils literal notranslate"><span class="pre">mysqldb</span></code> to be installed.</p>
 <div class="section" id="ubuntu">
 <h4><a class="toc-backref" href="#id10">Ubuntu</a><a class="headerlink" href="#ubuntu" title="Permalink to this headline">¶</a></h4>
 <p>Configure <a class="reference external" href="https://help.ubuntu.com/community/AutomaticSecurityUpdates">automatic security updates</a>.</p>
-<p>Install <code class="docutils literal"><span class="pre">gdebi-core</span></code> package to allow installing <code class="docutils literal"><span class="pre">.deb</span></code> files.</p>
-<p>The <code class="docutils literal"><span class="pre">builder</span></code> account must be setup to be able to run <code class="docutils literal"><span class="pre">gdebi</span></code> non-interactively. Use <code class="docutils literal"><span class="pre">visudo</span></code> to add the following
-exception got <code class="docutils literal"><span class="pre">builder</span></code>:</p>
-<div class="highlight-python"><div class="highlight"><pre># Allow no password for gdebi
+<p>Install <code class="docutils literal notranslate"><span class="pre">gdebi-core</span></code> package to allow installing <code class="docutils literal notranslate"><span class="pre">.deb</span></code> files.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">builder</span></code> account must be setup to be able to run <code class="docutils literal notranslate"><span class="pre">gdebi</span></code> non-interactively. Use <code class="docutils literal notranslate"><span class="pre">visudo</span></code> to add the following
+exception got <code class="docutils literal notranslate"><span class="pre">builder</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre># Allow no password for gdebi
 builder       ALL=(ALL)NOPASSWD:/usr/bin/gdebi, /usr/bin/dpkg
 ## Disable tty requirement for gdebi and dpkg command
 Defaults!/usr/bin/gdebi !requiretty
@@ -254,9 +240,9 @@ Defaults!/usr/bin/dpkg  !requiretty
 </div>
 <div class="section" id="red-hat">
 <h4><a class="toc-backref" href="#id11">Red Hat</a><a class="headerlink" href="#red-hat" title="Permalink to this headline">¶</a></h4>
-<p>The <code class="docutils literal"><span class="pre">builder</span></code> account must be setup to be able to run <code class="docutils literal"><span class="pre">yum</span></code> non-interactively. Use <code class="docutils literal"><span class="pre">visudo</span></code> to add the following
-exception got <code class="docutils literal"><span class="pre">builder</span></code>:</p>
-<div class="highlight-python"><div class="highlight"><pre>## Allow no password for yum
+<p>The <code class="docutils literal notranslate"><span class="pre">builder</span></code> account must be setup to be able to run <code class="docutils literal notranslate"><span class="pre">yum</span></code> non-interactively. Use <code class="docutils literal notranslate"><span class="pre">visudo</span></code> to add the following
+exception got <code class="docutils literal notranslate"><span class="pre">builder</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre>## Allow no password for yum
 builder       ALL = NOPASSWD: /usr/bin/yum,/bin/rpm
 ## Disable tty requirement for yum command
 Defaults!/bin/rpm       !requiretty
@@ -267,12 +253,12 @@ Defaults!/usr/bin/yum       !requiretty
 </div>
 <div class="section" id="mac-os">
 <h3><a class="toc-backref" href="#id12">Mac OS</a><a class="headerlink" href="#mac-os" title="Permalink to this headline">¶</a></h3>
-<p>Enable <a class="reference external" href="https://apple.stackexchange.com/a/73919">SSH (&#8220;Remote Login&#8221;) and VNC (&#8220;Remote Management&#8221;)</a>.  If you have
+<p>Enable <a class="reference external" href="https://apple.stackexchange.com/a/73919">SSH (“Remote Login”) and VNC (“Remote Management”)</a>.  If you have
 connection issues from a non-OS X client then try adjusting your color depth settings (True Color 32bpp works on Remmina).</p>
-<p>Install <code class="docutils literal"><span class="pre">cppcheck</span></code> from brew.</p>
-<p>The <code class="docutils literal"><span class="pre">builder</span></code> account must be setup to be able to run <code class="docutils literal"><span class="pre">gdebi</span></code> non-interactively. Use <code class="docutils literal"><span class="pre">visudo</span></code> to add the following
-exception got <code class="docutils literal"><span class="pre">builder</span></code>:</p>
-<div class="highlight-python"><div class="highlight"><pre># Allow builder to install packages without a password
+<p>Install <code class="docutils literal notranslate"><span class="pre">cppcheck</span></code> from brew.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">builder</span></code> account must be setup to be able to run <code class="docutils literal notranslate"><span class="pre">gdebi</span></code> non-interactively. Use <code class="docutils literal notranslate"><span class="pre">visudo</span></code> to add the following
+exception got <code class="docutils literal notranslate"><span class="pre">builder</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre># Allow builder to install packages without a password
 builder  ALL=(ALL)NOPASSWD:/usr/sbin/installer, /bin/rm
 # Disable tty requirement
 Defaults!/usr/sbin/installer    !requiretty
@@ -282,8 +268,8 @@ Defaults!/bin/rm        !requiretty
 <p>In order to run the MantidPlot tests, which require a connection to the windowing system, the user that is running the jenkins slave must
 have logged in. This is most easily done by VNC - connect, log in,
 then disconnect. If you see errors such as:</p>
-<div class="highlight-python"><div class="highlight"><pre>_RegisterApplication(), FAILED TO establish the default connection to the WindowServer,
-_CGSDefaultConnection() is NULL.
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="n">_RegisterApplication</span><span class="p">(),</span> <span class="n">FAILED</span> <span class="n">TO</span> <span class="n">establish</span> <span class="n">the</span> <span class="n">default</span> <span class="n">connection</span> <span class="n">to</span> <span class="n">the</span> <span class="n">WindowServer</span><span class="p">,</span>
+<span class="n">_CGSDefaultConnection</span><span class="p">()</span> <span class="ow">is</span> <span class="n">NULL</span><span class="o">.</span>
 </pre></div>
 </div>
 <p>then no one is logged in to the system.</p>
@@ -294,14 +280,14 @@ _CGSDefaultConnection() is NULL.
 script is in the <a class="reference external" href="https://github.com/mantidproject/mantid/blob/master/buildconfig/Jenkins/jenkins-slave.sh">mantid repository</a>.</p>
 <p>The comments at the top describe a typical crontab entry for the script. This needs to be manually set for each slave. Ensure the script is
 marked executable after downloading it. Also ensure the entry in the crontab
-has the correct <code class="docutils literal"><span class="pre">PATH</span></code> setting (by default cron uses a reduced <code class="docutils literal"><span class="pre">PATH</span></code> entry). On macOS <code class="docutils literal"><span class="pre">latex</span></code> and <code class="docutils literal"><span class="pre">sysctl</span></code>
+has the correct <code class="docutils literal notranslate"><span class="pre">PATH</span></code> setting (by default cron uses a reduced <code class="docutils literal notranslate"><span class="pre">PATH</span></code> entry). On macOS <code class="docutils literal notranslate"><span class="pre">latex</span></code> and <code class="docutils literal notranslate"><span class="pre">sysctl</span></code>
 should be available.</p>
 </div>
 <div class="section" id="post-connection-setup-all-systems">
 <h3><a class="toc-backref" href="#id14">Post-Connection Setup - All Systems</a><a class="headerlink" href="#post-connection-setup-all-systems" title="Permalink to this headline">¶</a></h3>
 <p>Ensure the new machine is added to the relevant <a class="reference external" href="http://builds.mantidproject.org/view/ParaView/">ParaView build job</a> and build
-ParaView. Set the <code class="docutils literal"><span class="pre">PARAVIEW_DIR</span></code> &amp; <code class="docutils literal"><span class="pre">PARAVIEW_NEXT_DIR</span></code> variables
-(it&#8217;s easiest to just look at the configuration for one of the other
+ParaView. Set the <code class="docutils literal notranslate"><span class="pre">PARAVIEW_DIR</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">PARAVIEW_NEXT_DIR</span></code> variables
+(it’s easiest to just look at the configuration for one of the other
 nodes of a similar type.</p>
 </div>
 </div>
@@ -314,7 +300,7 @@ You must have admin privileges to run them.</p>
 <p><a class="reference external" href="https://github.com/jenkinsci/jenkins-scripts/tree/master/scriptler">https://github.com/jenkinsci/jenkins-scripts/tree/master/scriptler</a> was helpful for coming up with some of these.</p>
 <div class="section" id="print-the-value-of-an-environment-variable-on-all-nodes">
 <h3><a class="toc-backref" href="#id16">Print the Value of an Environment Variable on All Nodes</a><a class="headerlink" href="#print-the-value-of-an-environment-variable-on-all-nodes" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-groovy"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">jenkins.model.*</span>
+<div class="highlight-groovy notranslate"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">jenkins.model.*</span>
 <span class="kn">import</span> <span class="nn">hudson.model.*</span>
 <span class="kn">import</span> <span class="nn">hudson.slaves.*</span>
 
@@ -343,9 +329,9 @@ You must have admin privileges to run them.</p>
 <div class="section" id="update-paraview-variables-on-nodes">
 <h3><a class="toc-backref" href="#id17">Update ParaView variables on nodes</a><a class="headerlink" href="#update-paraview-variables-on-nodes" title="Permalink to this headline">¶</a></h3>
 <p><strong>After running this script the variables look like they are updated but
-are in fact cached on the slaves so the new values don&#8217;t take effect
+are in fact cached on the slaves so the new values don’t take effect
 without disconnecting and forcing each slave to reconnect</strong></p>
-<div class="highlight-groovy"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">jenkins.model.*</span>
+<div class="highlight-groovy notranslate"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">jenkins.model.*</span>
 <span class="kn">import</span> <span class="nn">hudson.model.*</span>
 <span class="kn">import</span> <span class="nn">hudson.slaves.*</span>
 
@@ -384,7 +370,7 @@ without disconnecting and forcing each slave to reconnect</strong></p>
 </div>
 <div class="section" id="check-existence-of-paraview-builds">
 <h3><a class="toc-backref" href="#id18">Check existence of ParaView builds</a><a class="headerlink" href="#check-existence-of-paraview-builds" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-groovy"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">hudson.model.*</span>
+<div class="highlight-groovy notranslate"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">hudson.model.*</span>
 
 <span class="n">nodes</span> <span class="o">=</span> <span class="n">Jenkins</span><span class="o">.</span><span class="na">instance</span><span class="o">.</span><span class="na">slaves</span>
 
@@ -414,7 +400,7 @@ without disconnecting and forcing each slave to reconnect</strong></p>
 <p>It is advised to ensure nothing is running and pause the build queue.</p>
 <div class="section" id="master-incremental">
 <h4><a class="toc-backref" href="#id20">Master Incremental</a><a class="headerlink" href="#master-incremental" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-groovy"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">hudson.model.*</span>
+<div class="highlight-groovy notranslate"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">hudson.model.*</span>
 
 <span class="n">nodes</span> <span class="o">=</span> <span class="n">Jenkins</span><span class="o">.</span><span class="na">instance</span><span class="o">.</span><span class="na">slaves</span>
 
@@ -436,7 +422,7 @@ without disconnecting and forcing each slave to reconnect</strong></p>
 </div>
 <div class="section" id="pull-requests">
 <h4><a class="toc-backref" href="#id21">Pull Requests</a><a class="headerlink" href="#pull-requests" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-groovy"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">hudson.model.*</span>
+<div class="highlight-groovy notranslate"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">hudson.model.*</span>
 
 <span class="n">nodes</span> <span class="o">=</span> <span class="n">Jenkins</span><span class="o">.</span><span class="na">instance</span><span class="o">.</span><span class="na">slaves</span>
 
@@ -458,7 +444,7 @@ without disconnecting and forcing each slave to reconnect</strong></p>
 </div>
 <div class="section" id="update-branches-for-jobs">
 <h3><a class="toc-backref" href="#id22">Update Branches For Jobs</a><a class="headerlink" href="#update-branches-for-jobs" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-groovy"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">hudson.plugins.git.GitSCM</span>
+<div class="highlight-groovy notranslate"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">hudson.plugins.git.GitSCM</span>
 <span class="kn">import</span> <span class="nn">hudson.plugins.git.BranchSpec</span>
 <span class="kn">import</span> <span class="nn">static</span> <span class="n">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">common</span><span class="o">.</span><span class="na">collect</span><span class="o">.</span><span class="na">Lists</span><span class="o">.</span><span class="na">newArrayList</span><span class="o">;</span>
 
@@ -489,7 +475,7 @@ without disconnecting and forcing each slave to reconnect</strong></p>
 </div>
 <div class="section" id="list-all-scm-urls">
 <h3><a class="toc-backref" href="#id23">List All SCM Urls</a><a class="headerlink" href="#list-all-scm-urls" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-groovy"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">jenkins.model.*</span><span class="o">;</span>
+<div class="highlight-groovy notranslate"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">jenkins.model.*</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">hudson.model.*</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">hudson.tasks.*</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">hudson.plugins.git.*</span><span class="o">;</span>
@@ -511,7 +497,7 @@ without disconnecting and forcing each slave to reconnect</strong></p>
 </div>
 <div class="section" id="print-all-loggers">
 <h3><a class="toc-backref" href="#id24">Print All Loggers</a><a class="headerlink" href="#print-all-loggers" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-groovy"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">java.util.logging.*</span><span class="o">;</span>
+<div class="highlight-groovy notranslate"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">java.util.logging.*</span><span class="o">;</span>
 
 <span class="n">LogManager</span><span class="o">.</span><span class="na">getLogManager</span><span class="o">().</span><span class="na">getLoggerNames</span><span class="o">().</span><span class="na">each</span><span class="o">()</span> <span class="o">{</span>
   <span class="n">println</span> <span class="s2">&quot;${it}&quot;</span><span class="o">;</span>
@@ -519,9 +505,9 @@ without disconnecting and forcing each slave to reconnect</strong></p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="run-a-process">
-<h3><a class="toc-backref" href="#id25">Run a Process</a><a class="headerlink" href="#run-a-process" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-groovy"><div class="highlight"><pre><span class="n">Process</span> <span class="n">p</span> <span class="o">=</span> <span class="s2">&quot;cmd /c dir&quot;</span><span class="o">.</span><span class="na">execute</span><span class="o">()</span>
+<div class="section" id="run-a-process-on-a-single-node">
+<h3><a class="toc-backref" href="#id25">Run a Process On a Single Node</a><a class="headerlink" href="#run-a-process-on-a-single-node" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-groovy notranslate"><div class="highlight"><pre><span class="n">Process</span> <span class="n">p</span> <span class="o">=</span> <span class="s2">&quot;cmd /c dir&quot;</span><span class="o">.</span><span class="na">execute</span><span class="o">()</span>
 <span class="n">println</span> <span class="s2">&quot;${p.text}&quot;</span>
 
 <span class="c1">// kill process on windows slave</span>
@@ -530,9 +516,23 @@ without disconnecting and forcing each slave to reconnect</strong></p>
 </pre></div>
 </div>
 </div>
+<div class="section" id="run-a-process-across-all-nodes">
+<h3><a class="toc-backref" href="#id26">Run a Process Across All Nodes</a><a class="headerlink" href="#run-a-process-across-all-nodes" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-groovy notranslate"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">hudson.util.RemotingDiagnostics</span><span class="o">;</span>
+
+<span class="k">for</span> <span class="o">(</span><span class="n">slave</span> <span class="k">in</span> <span class="n">hudson</span><span class="o">.</span><span class="na">model</span><span class="o">.</span><span class="na">Hudson</span><span class="o">.</span><span class="na">instance</span><span class="o">.</span><span class="na">slaves</span><span class="o">)</span> <span class="o">{</span>
+   <span class="n">println</span> <span class="n">slave</span><span class="o">.</span><span class="na">name</span><span class="o">;</span>
+   <span class="c1">// is it connected?</span>
+   <span class="k">if</span><span class="o">(</span><span class="n">slave</span><span class="o">.</span><span class="na">getChannel</span><span class="o">())</span> <span class="o">{</span>
+    <span class="n">println</span> <span class="n">RemotingDiagnostics</span><span class="o">.</span><span class="na">executeGroovy</span><span class="o">(</span><span class="s2">&quot;println \&quot;ls\&quot;.execute().text&quot;</span><span class="o">,</span> <span class="n">slave</span><span class="o">.</span><span class="na">getChannel</span><span class="o">());</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="update-default-values-for-job-parameters">
-<h3><a class="toc-backref" href="#id26">Update default values for job parameters</a><a class="headerlink" href="#update-default-values-for-job-parameters" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-groovy"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">hudson.model.*</span>
+<h3><a class="toc-backref" href="#id27">Update default values for job parameters</a><a class="headerlink" href="#update-default-values-for-job-parameters" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-groovy notranslate"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">hudson.model.*</span>
 
 <span class="kt">def</span> <span class="n">SUFFIX_VARIABLE</span> <span class="o">=</span> <span class="s2">&quot;PACKAGE_SUFFIX&quot;</span>
 <span class="kt">def</span> <span class="n">NEW_SUFFIX</span> <span class="o">=</span> <span class="s2">&quot;nightly&quot;</span>

@@ -1,36 +1,22 @@
 <!DOCTYPE html>
 
-
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Flowchart Creation</title>
-    
-    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap.min.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap-theme.min.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
-    <link rel="stylesheet" href="_static/custom.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '3.12.20180709.1546',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="_static/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
-    <link rel="top" title="" href="index.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Visual Studio Build Impact" href="VisualStudioBuildImpact.html" />
     <link rel="prev" title="Profiling with Valgrind" href="ProfilingWithValgrind.html" />
 
@@ -46,8 +32,7 @@
 </script>
 
 
-  </head>
-  <body role="document">
+  </head><body>
 
 
 
@@ -65,7 +50,7 @@
         </button>
         <a class="navbar-brand" href="http://www.mantidproject.org"><img src="_static/Mantid_Logo_Transparent.png">
            </a>
-        <span class="navbar-text navbar-version pull-left"><b>3.12</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.0</b></span>
       </div>
 
       
@@ -106,15 +91,15 @@
       
   <div class="section" id="flowchart-creation">
 <span id="flowchartcreation"></span><h1>Flowchart Creation<a class="headerlink" href="#flowchart-creation" title="Permalink to this headline">¶</a></h1>
-<p>The flowchart diagrams are created by writing <code class="docutils literal"><span class="pre">graphviz</span></code> .dot files that describe the diagram in plain text, and placing them into <code class="docutils literal"><span class="pre">docs/source/diagrams</span></code>. These can then be rendered in documentation by using the diagram directive in an .rst file:</p>
-<div class="highlight-rest"><div class="highlight"><pre><span class="p">..</span> <span class="ow">diagram</span><span class="p">::</span> AlgorithmName-v1_wkflw.dot
+<p>The flowchart diagrams are created by writing <code class="docutils literal notranslate"><span class="pre">graphviz</span></code> .dot files that describe the diagram in plain text, and placing them into <code class="docutils literal notranslate"><span class="pre">docs/source/diagrams</span></code>. These can then be rendered in documentation by using the diagram directive in an .rst file:</p>
+<div class="highlight-rest notranslate"><div class="highlight"><pre><span class="p">..</span> <span class="ow">diagram</span><span class="p">::</span> AlgorithmName-v1_wkflw.dot
 </pre></div>
 </div>
 <p>Examples of this can be found in <a class="reference external" href="https://raw.githubusercontent.com/mantidproject/mantid/master/docs/source/algorithms/ReflectometryReductionOne-v1.rst">ReflectometryReductionOne1.rst</a> and <a class="reference external" href="https://raw.githubusercontent.com/mantidproject/mantid/master/docs/source/algorithms/ReflectometryReductionOneAuto-v1.rst">ReflectometryReductionOneAuto-v1.rst</a>.</p>
-<p>The .dot format is quite simple¸ but very powerful for describing graphs. The approach we use is to describe all the nodes (shapes) we want first, grouping them into their types, and then defining how they&#8217;re connected.</p>
-<p>To provide a uniform look to all the workflow diagrams, templated keywords are provided which are swapped out with the correct styling options when the documentation is built. They are of the form <code class="docutils literal"><span class="pre">${context}_style</span></code>. They&#8217;re defined by the <a class="reference external" href="https://raw.githubusercontent.com/mantidproject/mantid/master/docs/sphinxext/mantiddoc/directives/diagram.py">diagram directive</a>.</p>
+<p>The .dot format is quite simple¸ but very powerful for describing graphs. The approach we use is to describe all the nodes (shapes) we want first, grouping them into their types, and then defining how they’re connected.</p>
+<p>To provide a uniform look to all the workflow diagrams, templated keywords are provided which are swapped out with the correct styling options when the documentation is built. They are of the form <code class="docutils literal notranslate"><span class="pre">${context}_style</span></code>. They’re defined by the <a class="reference external" href="https://raw.githubusercontent.com/mantidproject/mantid/master/docs/sphinxext/mantiddoc/directives/diagram.py">diagram directive</a>.</p>
 <p>An algorithm that takes one input workspace and scales it by a given parameter/property if it was given, may look like this:</p>
-<div class="highlight-python"><div class="highlight"><pre>digraph DiagramName {
+<div class="highlight-default notranslate"><div class="highlight"><pre>digraph DiagramName {
 //Comments are inserted in the same way as C++
 label = &quot;MultiplyByParam Workflow Diagram&quot;
 $global_style
@@ -146,9 +131,9 @@ scale            -&gt; outputWorkspace
 }
 </pre></div>
 </div>
-<p>While creating the diagrams it&#8217;s inconvenient to recompile the documentation with each change, so you may want to render the graph manually. This can be achieved on linux or cygwin by running the following command. <em>You may need to comment out the &#8220;$foo_style&#8221; lines when manually rendering as they are not valid graphviz syntax</em> (you can do this on the fly using sed to avoid having to edit the file).</p>
-<div class="highlight-python"><div class="highlight"><pre>dot -Tpng -o output_image.png input_file.dot                       # render a graph manually
-sed &#39;s/\$/\/\/$/g&#39; input_file.dot | dot -Tpng -o output_image.png  # excludes $foo_style lines
+<p>While creating the diagrams it’s inconvenient to recompile the documentation with each change, so you may want to render the graph manually. This can be achieved on linux or cygwin by running the following command. <em>You may need to comment out the “$foo_style” lines when manually rendering as they are not valid graphviz syntax</em> (you can do this on the fly using sed to avoid having to edit the file).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="n">dot</span> <span class="o">-</span><span class="n">Tpng</span> <span class="o">-</span><span class="n">o</span> <span class="n">output_image</span><span class="o">.</span><span class="n">png</span> <span class="n">input_file</span><span class="o">.</span><span class="n">dot</span>                       <span class="c1"># render a graph manually</span>
+<span class="n">sed</span> <span class="s1">&#39;s/\$/\/\/$/g&#39;</span> <span class="n">input_file</span><span class="o">.</span><span class="n">dot</span> <span class="o">|</span> <span class="n">dot</span> <span class="o">-</span><span class="n">Tpng</span> <span class="o">-</span><span class="n">o</span> <span class="n">output_image</span><span class="o">.</span><span class="n">png</span>  <span class="c1"># excludes $foo_style lines</span>
 </pre></div>
 </div>
 <p>You can also render them in a web browser using this <a class="reference external" href="http://www.webgraphviz.com/">online graph renderer</a>.</p>

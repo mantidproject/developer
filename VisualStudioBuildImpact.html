@@ -1,36 +1,22 @@
 <!DOCTYPE html>
 
-
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Visual Studio Build Impact</title>
-    
-    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap.min.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-3.3.6/css/bootstrap-theme.min.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
-    <link rel="stylesheet" href="_static/custom.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '3.12.20180709.1546',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="_static/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
-    <link rel="top" title="" href="index.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Running the Unit Tests" href="RunningTheUnitTests.html" />
     <link rel="prev" title="Flowchart Creation" href="FlowchartCreation.html" />
 
@@ -46,8 +32,7 @@
 </script>
 
 
-  </head>
-  <body role="document">
+  </head><body>
 
 
 
@@ -65,7 +50,7 @@
         </button>
         <a class="navbar-brand" href="http://www.mantidproject.org"><img src="_static/Mantid_Logo_Transparent.png">
            </a>
-        <span class="navbar-text navbar-version pull-left"><b>3.12</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.0</b></span>
       </div>
 
       
@@ -112,7 +97,7 @@ processes at normal priority, so they compete as equals with everything
 you are doing.</p>
 <p>So you might think that you can open task manage and reduce the priority
 of all the cl.exe processes, well there can be quite a few, and no it
-won&#8217;t work for long as these processes are replaced for every file it
+won’t work for long as these processes are replaced for every file it
 compiles.</p>
 <p>What you want to do it hunt down the MSBuild.exe processes and reduce
 the priority of them, there should be the same number as you have
@@ -120,18 +105,18 @@ logical processors. The MSBuild processes spawn all of the compiler and
 linker tasks, an they inherit the priority of the MSBuild process.</p>
 <div class="section" id="script">
 <h2>Script<a class="headerlink" href="#script" title="Permalink to this headline">¶</a></h2>
-<p>Of course if you don&#8217;t want to do this yourself then you can use this
+<p>Of course if you don’t want to do this yourself then you can use this
 script.</p>
-<div class="highlight-python"><div class="highlight"><pre>Const BELOW_NORMAL = 16384
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="n">Const</span> <span class="n">BELOW_NORMAL</span> <span class="o">=</span> <span class="mi">16384</span>
 
-strComputer = &quot;.&quot;
-Set objWMIService = GetObject(&quot;winmgmts:\\&quot; &amp; strComputer &amp; &quot;\root\cimv2&quot;)
+<span class="n">strComputer</span> <span class="o">=</span> <span class="s2">&quot;.&quot;</span>
+<span class="n">Set</span> <span class="n">objWMIService</span> <span class="o">=</span> <span class="n">GetObject</span><span class="p">(</span><span class="s2">&quot;winmgmts:</span><span class="se">\\</span><span class="s2">&quot;</span> <span class="o">&amp;</span> <span class="n">strComputer</span> <span class="o">&amp;</span> <span class="s2">&quot;</span><span class="se">\r</span><span class="s2">oot\cimv2&quot;</span><span class="p">)</span>
 
-Set colProcesses = objWMIService.ExecQuery _
-    (&quot;Select * from Win32_Process Where Name = &#39;MSBuild.exe&#39;&quot;)
-For Each objProcess in colProcesses
-    objProcess.SetPriority(BELOW_NORMAL)
-Next
+<span class="n">Set</span> <span class="n">colProcesses</span> <span class="o">=</span> <span class="n">objWMIService</span><span class="o">.</span><span class="n">ExecQuery</span> <span class="n">_</span>
+    <span class="p">(</span><span class="s2">&quot;Select * from Win32_Process Where Name = &#39;MSBuild.exe&#39;&quot;</span><span class="p">)</span>
+<span class="n">For</span> <span class="n">Each</span> <span class="n">objProcess</span> <span class="ow">in</span> <span class="n">colProcesses</span>
+    <span class="n">objProcess</span><span class="o">.</span><span class="n">SetPriority</span><span class="p">(</span><span class="n">BELOW_NORMAL</span><span class="p">)</span>
+<span class="n">Next</span>
 </pre></div>
 </div>
 <p>Save it as Reduce_Build_Impact.vbs, and use when things are running like
@@ -139,20 +124,20 @@ a dog!</p>
 </div>
 <div class="section" id="monitoring-script">
 <h2>Monitoring Script<a class="headerlink" href="#monitoring-script" title="Permalink to this headline">¶</a></h2>
-<p>If you don&#8217;t want to keep running the script for each build, here&#8217;s one
+<p>If you don’t want to keep running the script for each build, here’s one
 that keeps a watch on your system every 5 seconds.</p>
-<div class="highlight-python"><div class="highlight"><pre>Const BELOW_NORMAL = 16384
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="n">Const</span> <span class="n">BELOW_NORMAL</span> <span class="o">=</span> <span class="mi">16384</span>
 
-strComputer = &quot;.&quot;
-Set objWMIService = GetObject(&quot;winmgmts:\\&quot; &amp; strComputer &amp; &quot;\root\cimv2&quot;)
-Do While true
-  Set colProcesses = objWMIService.ExecQuery _
-      (&quot;Select * from Win32_Process Where Name = &#39;MSBuild.exe&#39;&quot;)
-  For Each objProcess in colProcesses
-      objProcess.SetPriority(BELOW_NORMAL)
-  Next
-  WScript.Sleep 5000
-loop
+<span class="n">strComputer</span> <span class="o">=</span> <span class="s2">&quot;.&quot;</span>
+<span class="n">Set</span> <span class="n">objWMIService</span> <span class="o">=</span> <span class="n">GetObject</span><span class="p">(</span><span class="s2">&quot;winmgmts:</span><span class="se">\\</span><span class="s2">&quot;</span> <span class="o">&amp;</span> <span class="n">strComputer</span> <span class="o">&amp;</span> <span class="s2">&quot;</span><span class="se">\r</span><span class="s2">oot\cimv2&quot;</span><span class="p">)</span>
+<span class="n">Do</span> <span class="n">While</span> <span class="n">true</span>
+  <span class="n">Set</span> <span class="n">colProcesses</span> <span class="o">=</span> <span class="n">objWMIService</span><span class="o">.</span><span class="n">ExecQuery</span> <span class="n">_</span>
+      <span class="p">(</span><span class="s2">&quot;Select * from Win32_Process Where Name = &#39;MSBuild.exe&#39;&quot;</span><span class="p">)</span>
+  <span class="n">For</span> <span class="n">Each</span> <span class="n">objProcess</span> <span class="ow">in</span> <span class="n">colProcesses</span>
+      <span class="n">objProcess</span><span class="o">.</span><span class="n">SetPriority</span><span class="p">(</span><span class="n">BELOW_NORMAL</span><span class="p">)</span>
+  <span class="n">Next</span>
+  <span class="n">WScript</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">5000</span>
+<span class="n">loop</span>
 </pre></div>
 </div>
 </div>
