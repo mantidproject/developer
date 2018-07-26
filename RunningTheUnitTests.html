@@ -19,7 +19,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Debugging Unit Tests" href="DebuggingUnitTests.html" />
-    <link rel="prev" title="Visual Studio Build Impact" href="VisualStudioBuildImpact.html" />
+    <link rel="prev" title="Eclipse on Ubuntu" href="Eclipse.html" />
 
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -98,8 +98,9 @@
 <li><a class="reference internal" href="#cmake-ctest-command-line-using-a-makefile-generator" id="id2">CMake/CTest: Command Line using a makefile generator</a></li>
 <li><a class="reference internal" href="#useful-ctest-options" id="id3">Useful CTest Options</a></li>
 <li><a class="reference internal" href="#running-unit-tests-manually" id="id4">Running Unit Tests Manually</a></li>
-<li><a class="reference internal" href="#visual-studio-xcode-note" id="id5">Visual Studio/ XCode note</a></li>
-<li><a class="reference internal" href="#debugging-unit-tests" id="id6">Debugging unit tests</a></li>
+<li><a class="reference internal" href="#running-unit-tests-with-visual-studio-and-ctest" id="id5">Running Unit Tests With Visual Studio and ctest</a></li>
+<li><a class="reference internal" href="#running-unit-tests-with-visual-studio" id="id6">Running Unit Tests With Visual Studio</a></li>
+<li><a class="reference internal" href="#debugging-unit-tests" id="id7">Debugging unit tests</a></li>
 </ul>
 </div>
 <div class="section" id="overview">
@@ -182,29 +183,37 @@ bin/KernelTest MyTestClassName
 </li>
 </ul>
 </div>
-<div class="section" id="visual-studio-xcode-note">
-<h2><a class="toc-backref" href="#id5">Visual Studio/ XCode note</a><a class="headerlink" href="#visual-studio-xcode-note" title="Permalink to this headline">¶</a></h2>
-<p>In Visual Studio the user can alter the properties of the subset of
-tests (inside the unitTest directory (e.g. AlgorithmTest). In the
-properties box it is possible to specify a specific test to run by
-typing its name in the TargetName box. Then to execute the test, right
-click the subset of tests and select debug and then start new instance.</p>
-<p>To run the tests under one of these environments then you will need to
-open a command window and change to the build directory. Once there you
-can run the tests by selecting the configuration;</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>ctest -C Debug -j4
+<div class="section" id="running-unit-tests-with-visual-studio-and-ctest">
+<h2><a class="toc-backref" href="#id5">Running Unit Tests With Visual Studio and ctest</a><a class="headerlink" href="#running-unit-tests-with-visual-studio-and-ctest" title="Permalink to this headline">¶</a></h2>
+<p>Open the Mantid solution in Visual Studio. To run a subset of tests (for example <code class="docutils literal notranslate"><span class="pre">UnitTests/AlgorithmsTest</span></code>);</p>
+<ul>
+<li><p class="first">In the Solution Explorer, right click the project for the tests (in this case <code class="docutils literal notranslate"><span class="pre">UnitTests/AlgorithmsTest</span></code>) and select Properties.</p>
+</li>
+<li><p class="first">In the Debugging tab of Properties change the Command Arguments box to the name of the test, for example “AddNoteTest”.</p>
+</li>
+<li><p class="first">Right click the directory again and select Debug-&gt;Start new instance.</p>
+</li>
+<li><p class="first">Once the build has finished, open a file browser and navigate to the mantid build directory, run the command-prompt.bat file to open a command prompt and run</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre>ctest -C Debug -V -R AddNoteTest
 </pre></div>
 </div>
-<p>This runs all tests in Debug mode (note that this will NOT build any
-outdated libraries). To select a subset use the <code class="docutils literal notranslate"><span class="pre">-R</span></code> option:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>ctest -C Release -R Kernel -j4
-
-<span class="o">(</span>-R Kernel<span class="o">)</span>, with <span class="m">4</span> cores <span class="o">(</span>-j4<span class="o">)</span>, in Release mode <span class="o">(</span>-C Release<span class="o">)</span>.
+<p>For this example, there should be several lines of output ending with the time taken and the line</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre>100% tests passed, <span class="m">0</span> tests failed out of 1
 </pre></div>
 </div>
+<p>Omitting the <code class="docutils literal notranslate"><span class="pre">-R</span> <span class="pre">AddNoteTest</span></code> option runs all the tests, but note that any tests which were not built according to the above instructions will fail. Adding the <code class="docutils literal notranslate"><span class="pre">-V</span></code> increases the output verbosity.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="running-unit-tests-with-visual-studio">
+<h2><a class="toc-backref" href="#id6">Running Unit Tests With Visual Studio</a><a class="headerlink" href="#running-unit-tests-with-visual-studio" title="Permalink to this headline">¶</a></h2>
+<p>The unit tests can be run from within Visual Studio, following steps 1-3 above, with the addition in step 2 of;</p>
+<ul class="simple">
+<li>Add the name of the test to the Target Name field in the General tab of Properties. Then add a breakpoint somewhere in the test header file.</li>
+</ul>
 </div>
 <div class="section" id="debugging-unit-tests">
-<h2><a class="toc-backref" href="#id6">Debugging unit tests</a><a class="headerlink" href="#debugging-unit-tests" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id7">Debugging unit tests</a><a class="headerlink" href="#debugging-unit-tests" title="Permalink to this headline">¶</a></h2>
 <p>See the instructions <a class="reference external" href="DebuggingUnitTests">here</a></p>
 </div>
 </div>
@@ -222,7 +231,7 @@ outdated libraries). To select a subset use the <code class="docutils literal no
           
             
   <li>
-    <a href="VisualStudioBuildImpact.html" title="Previous Chapter: Visual Studio Build Impact"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Visual Studio...</span>
+    <a href="Eclipse.html" title="Previous Chapter: Eclipse on Ubuntu"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Eclipse on Ub...</span>
     </a>
   </li>
   <li>
