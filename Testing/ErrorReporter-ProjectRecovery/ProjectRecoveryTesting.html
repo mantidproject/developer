@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Project Recovery Testing</title>
+    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Doxygen Setup" href="../../DoxygenSetup.html" />
+    <link rel="prev" title="Error Reporter Testing" href="ErrorReporterTesting.html" />
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-59110517-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+  </head><body>
+
+
+
+
+
+  <div id="navbar" class="navbar navbar-default ">
+    <div class="container">
+      <div class="navbar-header">
+        
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://www.mantidproject.org"><img src="../../_static/Mantid_Logo_Transparent.png">
+           </a>
+        <span class="navbar-text navbar-version pull-left"><b>master</b></span>
+      </div>
+
+      
+        <div class="collapse navbar-collapse nav-collapse">
+      
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="http://download.mantidproject.org">Download</a></li>
+                <li><a href="http://www.mantidproject.org">Wiki</a></li>
+                <li><a href="http://docs.mantidproject.org">User Documentation</a></li>
+                <li><a href="http://www.mantidproject.org/Contact">Contact Us</a></li>
+            
+            
+              
+              
+            
+            
+            
+            
+          </ul>
+              
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+            </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="project-recovery-testing">
+<span id="id1"></span><h1>Project Recovery Testing<a class="headerlink" href="#project-recovery-testing" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#project-recovery-test" id="id2">Project Recovery test</a></li>
+</ul>
+</div>
+<div class="section" id="project-recovery-test">
+<h2><a class="toc-backref" href="#id2">Project Recovery test</a><a class="headerlink" href="#project-recovery-test" title="Permalink to this headline">¶</a></h2>
+<p><em>Preparation</em></p>
+<ul class="simple">
+<li>Before running these tests, set project recovery to run every 2 seconds. The instructions for this
+are on the <a class="reference external" href="http://docs.mantidproject.org/nightly/concepts/ProjectRecovery.html">Project Recovery concepts page</a>.</li>
+<li>Get the ISIS sample dataset from the <a class="reference external" href="http://download.mantidproject.org/">Downloads page</a>.</li>
+<li><cite>TOPAZ_3132_event.nxs</cite> - availabe in <code class="docutils literal notranslate"><span class="pre">/Testing/Data/SystemTest/</span></code>, get this by building the <cite>SystemTestData</cite> target. It should be in <code class="docutils literal notranslate"><span class="pre">ExternalData/Testing/Data/SystemTest/</span></code></li>
+<li>The files <cite>INTER000*</cite> are in the ISIS sample data</li>
+<li>Make sure that the directory containing the test files is in your User Directories (this can be set on the First Time Startup screen)</li>
+<li>Set up a directory to store output for comparison, referred to as <code class="docutils literal notranslate"><span class="pre">testing_directory</span></code> below</li>
+</ul>
+<p><strong>Time required 15 - 30  minutes</strong></p>
+<hr class="docutils" />
+<ol class="arabic simple">
+<li>Simple tests and Muon-esque workflow</li>
+</ol>
+<ul class="simple">
+<li>Open MantidPlot - make sure no other instances of MantidPlot are running</li>
+<li>Right-click in the Results Log and set <cite>Log level</cite> to <cite>Debug</cite></li>
+<li>The Results Log should be printing <cite>Nothing to save</cite></li>
+<li>Run the following command to create a simple workspace:</li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span class="n">CreateWorkspace</span><span class="p">(</span><span class="n">DataX</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="n">DataY</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="n">DataE</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="n">NSpec</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;NewWorkspace&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>The Results Log should now be printing <cite>Project Recovery: Saving started</cite> and <cite>Project Recovery: Saving finished</cite> on alternate lines</li>
+<li>Now run this script:</li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span class="n">testing_directory</span><span class="o">=&lt;</span><span class="n">path</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">test</span><span class="o">&gt;</span>
+<span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;INTER00013464.nxs&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;INTER1&#39;</span><span class="p">)</span>
+<span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;INTER00013469.nxs&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;INTER2&#39;</span><span class="p">)</span>
+<span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;INTER00013469.nxs&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;INTER3&#39;</span><span class="p">)</span>
+<span class="n">RenameWorkspace</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;INTER2&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;Rename2&#39;</span><span class="p">)</span>
+<span class="n">RenameWorkspace</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;INTER1&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;Rename1&#39;</span><span class="p">)</span>
+<span class="n">RenameWorkspace</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;INTER3&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;Rename3&#39;</span><span class="p">)</span>
+<span class="n">Fit</span><span class="p">(</span><span class="n">Function</span><span class="o">=</span><span class="s1">&#39;name=DynamicKuboToyabe,BinWidth=0.05,&#39;</span> <span class="s1">&#39;Asym=5.83382,Delta=5.63288,Field=447.873,Nu=8.53636e-09&#39;</span><span class="p">,</span> <span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;Rename1&#39;</span><span class="p">,</span> <span class="n">IgnoreInvalidData</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">Output</span><span class="o">=</span><span class="s1">&#39;Rename1_fit&#39;</span><span class="p">,</span> <span class="n">OutputCompositeMembers</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">ConvolveMembers</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">Fit</span><span class="p">(</span><span class="n">Function</span><span class="o">=</span><span class="s1">&#39;name=ExpDecayMuon,A=4306.05,Lambda=0.458289&#39;</span><span class="p">,</span> <span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;Rename2&#39;</span><span class="p">,</span> <span class="n">IgnoreInvalidData</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">Output</span><span class="o">=</span><span class="s1">&#39;Rename2_fit&#39;</span><span class="p">,</span> <span class="n">OutputCompositeMembers</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">ConvolveMembers</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">Fit</span><span class="p">(</span><span class="n">Function</span><span class="o">=</span><span class="s1">&#39;name=Abragam,A=-500.565,Omega=944.105,Phi=-2.97876,Sigma=230.906,Tau=5.54415e+06&#39;</span><span class="p">,</span> <span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;Rename1_fit_Workspace&#39;</span><span class="p">,</span> <span class="n">CreateOutput</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">Output</span><span class="o">=</span><span class="s1">&#39;Rename1_fit_Workspace_1&#39;</span><span class="p">,</span> <span class="n">CalcErrors</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">Fit</span><span class="p">(</span><span class="n">Function</span><span class="o">=</span><span class="s1">&#39;name=Abragam,A=343210,Omega=-91853.1,Phi=-1.51509,Sigma=11920.5,Tau=2.80013e+13&#39;</span><span class="p">,</span> <span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;Rename2_fit_Workspace&#39;</span><span class="p">,</span> <span class="n">CreateOutput</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">Output</span><span class="o">=</span><span class="s1">&#39;Rename2_fit_Workspace_1&#39;</span><span class="p">,</span> <span class="n">CalcErrors</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">GroupWorkspaces</span><span class="p">(</span><span class="n">InputWorkspaces</span><span class="o">=</span><span class="s1">&#39;Rename1_fit_Workspace_1_Workspace,Rename2_fit_Workspace_1_Workspace&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;Rename3_fit_Workspaces&#39;</span><span class="p">)</span>
+<span class="n">RenameWorkspace</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;Rename1_fit_Workspace_1_Workspace&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;Sequential1&#39;</span><span class="p">)</span>
+<span class="n">RenameWorkspace</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;Rename2_fit_Workspace_1_Workspace&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;Sequential2&#39;</span><span class="p">)</span>
+<span class="n">Fit</span><span class="p">(</span><span class="n">Function</span><span class="o">=</span><span class="s1">&#39;name=ExpDecayMuon,A=4306.05,Lambda=0.458289&#39;</span><span class="p">,</span> <span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;Rename3&#39;</span><span class="p">,</span> <span class="n">IgnoreInvalidData</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">Output</span><span class="o">=</span><span class="s1">&#39;Rename3_fit&#39;</span><span class="p">,</span> <span class="n">OutputCompositeMembers</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">ConvolveMembers</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">Fit</span><span class="p">(</span><span class="n">Function</span><span class="o">=</span><span class="s1">&#39;name=ExpDecayMuon,A=4306.05,Lambda=0.458289&#39;</span><span class="p">,</span> <span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;Rename2_fit_Workspace&#39;</span><span class="p">,</span> <span class="n">CreateOutput</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">Output</span><span class="o">=</span><span class="s1">&#39;Rename2_fit_Workspace_1&#39;</span><span class="p">,</span> <span class="n">CalcErrors</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">Fit</span><span class="p">(</span><span class="n">Function</span><span class="o">=</span><span class="s1">&#39;name=ExpDecayMuon,A=4306.05,Lambda=0.458289&#39;</span><span class="p">,</span> <span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;Rename3_fit_Workspace&#39;</span><span class="p">,</span> <span class="n">CreateOutput</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">Output</span><span class="o">=</span><span class="s1">&#39;Rename3_fit_Workspace_1&#39;</span><span class="p">,</span> <span class="n">CalcErrors</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">GroupWorkspaces</span><span class="p">(</span><span class="n">InputWorkspaces</span><span class="o">=</span><span class="s1">&#39;Rename2_fit_Workspace_1_Workspace,Rename3_fit_Workspace_1_Workspace&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;Rename3_fit_Workspaces&#39;</span><span class="p">)</span>
+<span class="n">RenameWorkspace</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;Rename3_fit_Workspace_1_Workspace&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;Sequential3&#39;</span><span class="p">)</span>
+<span class="n">RenameWorkspace</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;Rename2_fit_Workspace_1_Workspace&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;Sequential4&#39;</span><span class="p">)</span>
+<span class="n">Fit</span><span class="p">(</span><span class="n">Function</span><span class="o">=</span><span class="s1">&#39;name=ExpDecayMuon,A=4306.05,Lambda=0.458289&#39;</span><span class="p">,</span> <span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;Rename3_fit_Workspace&#39;</span><span class="p">,</span> <span class="n">CreateOutput</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">Output</span><span class="o">=</span><span class="s1">&#39;Rename3_fit_Workspace_1&#39;</span><span class="p">,</span> <span class="n">CalcErrors</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">Fit</span><span class="p">(</span><span class="n">Function</span><span class="o">=</span><span class="s1">&#39;name=ExpDecayMuon,A=4306.05,Lambda=0.458289&#39;</span><span class="p">,</span> <span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;Rename1_fit_Workspace&#39;</span><span class="p">,</span> <span class="n">CreateOutput</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">Output</span><span class="o">=</span><span class="s1">&#39;Rename1_fit_Workspace_1&#39;</span><span class="p">,</span> <span class="n">CalcErrors</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">GroupWorkspaces</span><span class="p">(</span><span class="n">InputWorkspaces</span><span class="o">=</span><span class="s1">&#39;Rename3_fit_Workspace_1_Workspace,Rename1_fit_Workspace_1_Workspace&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;Rename3_fit_Workspaces&#39;</span><span class="p">)</span>
+<span class="n">RenameWorkspace</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;Rename3_fit_Workspace_1_Workspace&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;Sequential5&#39;</span><span class="p">)</span>
+<span class="n">RenameWorkspace</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;Rename1_fit_Workspace_1_Workspace&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;Sequential6&#39;</span><span class="p">)</span>
+<span class="n">SaveCSV</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;Sequential4&#39;</span><span class="p">,</span> <span class="n">Filename</span><span class="o">=</span><span class="n">testing_directory</span> <span class="o">+</span> <span class="s1">&#39;/Sequence4.csv&#39;</span><span class="p">)</span>
+<span class="n">SaveCSV</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;Sequential5&#39;</span><span class="p">,</span> <span class="n">Filename</span><span class="o">=</span><span class="n">testing_directory</span> <span class="o">+</span> <span class="s1">&#39;/Sequence5.csv&#39;</span><span class="p">)</span>
+<span class="n">SaveCSV</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;Sequential6&#39;</span><span class="p">,</span> <span class="n">Filename</span><span class="o">=</span><span class="n">testing_directory</span> <span class="o">+</span> <span class="s1">&#39;/Sequence6.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Wait a few seconds, then provoke a crash by running <cite>Segfault</cite> from the algorithm window</li>
+<li>Re-start MantidPlot</li>
+<li>You should be presented with the Project Recovery dialog</li>
+<li>Choose <cite>Yes</cite></li>
+<li>This should re-populate your workspace dialog and pop up a recovery script in the script window</li>
+<li>Run the following script:</li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span class="n">testing_directory</span><span class="o">=&lt;</span><span class="n">path</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">test</span><span class="o">&gt;</span>
+<span class="n">SaveCSV</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;Sequential4&#39;</span><span class="p">,</span> <span class="n">Filename</span><span class="o">=</span><span class="n">testing_directory</span> <span class="o">+</span> <span class="s1">&#39;/Sequence4r.csv&#39;</span><span class="p">)</span>
+<span class="n">SaveCSV</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;Sequential5&#39;</span><span class="p">,</span> <span class="n">Filename</span><span class="o">=</span><span class="n">testing_directory</span> <span class="o">+</span> <span class="s1">&#39;/Sequence5r.csv&#39;</span><span class="p">)</span>
+<span class="n">SaveCSV</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;Sequential6&#39;</span><span class="p">,</span> <span class="n">Filename</span><span class="o">=</span><span class="n">testing_directory</span> <span class="o">+</span> <span class="s1">&#39;/Sequence6r.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Compare the contents of the <cite>SequenceX.csv</cite> and <cite>SequenceXr.csv</cite> files, they should be the same</li>
+</ul>
+<hr class="docutils" />
+<ol class="arabic simple" start="2">
+<li>Testing many workspaces</li>
+</ol>
+<ul class="simple">
+<li>Open up MantidPlot, ensure that it is the only instance running</li>
+<li>Run the following script:</li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span class="n">testing_directory</span><span class="o">=&lt;</span><span class="n">path</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">test</span><span class="o">&gt;</span>
+<span class="n">CreateWorkspace</span><span class="p">(</span><span class="n">DataX</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="n">DataY</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="n">DataE</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="n">NSpec</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;0Rebinned&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
+    <span class="n">RenameWorkspace</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">Rebinned&#39;</span><span class="o">%</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">Rebinned&#39;</span><span class="o">%</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3000</span><span class="p">):</span>
+    <span class="n">CloneWorkspace</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;100Rebinned&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">Clone&#39;</span><span class="o">%</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+<span class="n">SaveCSV</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;2999Clone&#39;</span><span class="p">,</span> <span class="n">Filename</span><span class="o">=</span><span class="n">testing_directory</span> <span class="o">+</span> <span class="s1">&#39;Clone.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Wait a few seconds, then provoke a crash by running <cite>Segfault</cite> from the algorithm window</li>
+<li>Re-start MantidPlot</li>
+<li>You should be presented with the Project Recovery dialog</li>
+<li>Choose <cite>Yes</cite></li>
+<li>This should re-populate your workspace dialog and pop up a recovery script in the script window</li>
+<li>Run the following script:</li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span class="n">testing_directory</span><span class="o">=&lt;</span><span class="n">path</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">test</span><span class="o">&gt;</span>
+<span class="n">SaveCSV</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;2999Clone&#39;</span><span class="p">,</span> <span class="n">Filename</span><span class="o">=</span><span class="n">testing_directory</span> <span class="o">+</span><span class="s1">&#39;Cloner.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Compare the contents of <cite>Clone.csv</cite> and <cite>Cloner.csv</cite>, they should be the same</li>
+</ul>
+<hr class="docutils" />
+<ol class="arabic simple" start="3">
+<li>Testing workspaces of different types</li>
+</ol>
+<ul class="simple">
+<li>Open up MantidPlot, ensure that only one instance is running</li>
+<li>Run the following script:</li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span class="n">testing_directory</span><span class="o">=&lt;</span><span class="n">path</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">test</span><span class="o">&gt;</span>
+<span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span> <span class="s1">&#39;TOPAZ_3132_event.nxs&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;TOPAZ_3132_event&#39;</span><span class="p">,</span> <span class="n">LoadMonitors</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">)</span>
+<span class="n">ConvertToMD</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;TOPAZ_3132_event&#39;</span><span class="p">,</span> <span class="n">QDimensions</span><span class="o">=</span><span class="s1">&#39;Q3D&#39;</span><span class="p">,</span> <span class="n">dEAnalysisMode</span><span class="o">=</span><span class="s1">&#39;Elastic&#39;</span><span class="p">,</span> <span class="n">Q3DFrames</span><span class="o">=</span><span class="s1">&#39;Q_sample&#39;</span><span class="p">,</span> <span class="n">LorentzCorrection</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;TOPAZ_3132_md&#39;</span><span class="p">,</span>\
+<span class="n">MinValues</span><span class="o">=</span><span class="s1">&#39;-25,-25,-25&#39;</span><span class="p">,</span> <span class="n">MaxValues</span><span class="o">=</span><span class="s1">&#39;25,25,25&#39;</span><span class="p">,</span> <span class="n">SplitInto</span><span class="o">=</span><span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="n">SplitThreshold</span><span class="o">=</span><span class="s1">&#39;50&#39;</span><span class="p">,</span> <span class="n">MaxRecursionDepth</span><span class="o">=</span><span class="s1">&#39;13&#39;</span><span class="p">,</span> <span class="n">MinRecursionDepth</span><span class="o">=</span><span class="s1">&#39;7&#39;</span><span class="p">)</span>
+<span class="n">DeleteWorkspace</span><span class="p">(</span><span class="s2">&quot;TOPAZ_3132_event&quot;</span><span class="p">)</span>
+<span class="n">multi_d</span> <span class="o">=</span> <span class="n">RenameWorkspace</span><span class="p">(</span><span class="s1">&#39;TOPAZ_3132_md&#39;</span><span class="p">)</span>
+<span class="n">peaks</span><span class="o">=</span><span class="n">FindPeaksMD</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;multi_d&#39;</span><span class="p">,</span> <span class="n">PeakDistanceThreshold</span><span class="o">=</span><span class="s1">&#39;0.37680&#39;</span><span class="p">,</span> <span class="n">MaxPeaks</span><span class="o">=</span><span class="s1">&#39;50&#39;</span><span class="p">,</span> <span class="n">DensityThresholdFactor</span><span class="o">=</span><span class="s1">&#39;100&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;TOPAZ_3132_peaks&#39;</span><span class="p">)</span>
+
+<span class="n">long1</span><span class="o">=</span><span class="n">CreateMDHistoWorkspace</span><span class="p">(</span><span class="n">Dimensionality</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">Extents</span><span class="o">=</span><span class="s1">&#39;-3,3,-10,10&#39;</span><span class="p">,</span> <span class="n">SignalInput</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10000</span><span class="p">),</span> <span class="n">ErrorInput</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10000</span><span class="p">),</span>\
+                        <span class="n">NumberOfBins</span><span class="o">=</span><span class="s1">&#39;100,100&#39;</span><span class="p">,</span> <span class="n">Names</span><span class="o">=</span><span class="s1">&#39;Dim1,Dim2&#39;</span><span class="p">,</span> <span class="n">Units</span><span class="o">=</span><span class="s1">&#39;MomentumTransfer, EnergyTransfer&#39;</span><span class="p">)</span>
+
+<span class="n">long2</span><span class="o">=</span><span class="n">CreateMDHistoWorkspace</span><span class="p">(</span><span class="n">Dimensionality</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">Extents</span><span class="o">=</span><span class="s1">&#39;-3, 3, -10, 10&#39;</span><span class="p">,</span> <span class="n">SignalInput</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10000</span><span class="p">),</span> <span class="n">ErrorInput</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10000</span><span class="p">),</span>\
+                        <span class="n">NumberOfBins</span><span class="o">=</span><span class="s1">&#39;100, 100&#39;</span><span class="p">,</span> <span class="n">Names</span><span class="o">=</span><span class="s1">&#39;Dim1, Dim2&#39;</span><span class="p">,</span> <span class="n">Units</span><span class="o">=</span><span class="s1">&#39;MomentumTransfer, EnergyTransfer&#39;</span><span class="p">)</span>
+<span class="n">long3</span><span class="o">=</span><span class="n">long1</span><span class="o">+</span><span class="n">long2</span>
+<span class="n">DeleteWorkspace</span><span class="p">(</span><span class="s2">&quot;long1&quot;</span><span class="p">)</span>
+<span class="n">DeleteWorkspace</span><span class="p">(</span><span class="s2">&quot;long2&quot;</span><span class="p">)</span>
+<span class="n">long4</span><span class="o">=</span><span class="n">long3</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>
+<span class="n">DeleteWorkspace</span><span class="p">(</span><span class="s2">&quot;long3&quot;</span><span class="p">)</span>
+<span class="n">CloneWorkspace</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;long4&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;Clone&#39;</span><span class="p">)</span>
+<span class="n">ConvertMDHistoToMatrixWorkspace</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;Clone&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;Clone_matrix&#39;</span><span class="p">)</span>
+<span class="n">SaveCSV</span><span class="p">(</span><span class="s1">&#39;Clone_matrix&#39;</span> <span class="p">,</span> <span class="n">testing_directory</span> <span class="o">+</span> <span class="s1">&#39;/method_test.csv&#39;</span><span class="p">)</span>
+
+<span class="n">DgsReduction</span><span class="p">(</span><span class="n">SampleInputFile</span><span class="o">=</span><span class="s1">&#39;MAR11001.raw&#39;</span><span class="p">,</span> <span class="n">IncidentEnergyGuess</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;ws&#39;</span><span class="p">)</span>
+<span class="n">Rebin</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;ws&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;rebin&#39;</span><span class="p">,</span> <span class="n">Params</span><span class="o">=</span><span class="s1">&#39;0.5&#39;</span><span class="p">)</span>
+<span class="n">Rebin</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;rebin&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;rebin&#39;</span><span class="p">,</span> <span class="n">Params</span><span class="o">=</span><span class="s1">&#39;0.6&#39;</span><span class="p">)</span>
+<span class="n">Rebin</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;rebin&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;rebin&#39;</span><span class="p">,</span> <span class="n">Params</span><span class="o">=</span><span class="s1">&#39;0.7&#39;</span><span class="p">)</span>
+<span class="n">Rebin</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;rebin&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;rebin&#39;</span><span class="p">,</span> <span class="n">Params</span><span class="o">=</span><span class="s1">&#39;0.8&#39;</span><span class="p">)</span>
+<span class="n">RenameWorkspace</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;rebin&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;renamed&#39;</span><span class="p">)</span>
+<span class="n">SaveCSV</span><span class="p">(</span><span class="s1">&#39;renamed&#39;</span><span class="p">,</span> <span class="n">testing_directory</span> <span class="o">+</span> <span class="s1">&#39;/rebin_test.csv&#39;</span><span class="p">)</span>
+
+
+<span class="n">long4</span> <span class="o">*=</span> <span class="mi">4</span>
+<span class="n">long4</span> <span class="o">+=</span> <span class="mf">3.00</span>
+<span class="n">ConvertMDHistoToMatrixWorkspace</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;long4&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;long4_matrix&#39;</span><span class="p">)</span>
+<span class="n">SaveCSV</span><span class="p">(</span><span class="s1">&#39;long4_matrix&#39;</span><span class="p">,</span> <span class="n">testing_directory</span> <span class="o">+</span> <span class="s1">&#39;/test_binary_operators.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Force a crash of Mantid with <cite>Segfault</cite> from the algorithm window</li>
+<li>On re-loading Mantid choose a full recovery</li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span class="n">testing_directory</span><span class="o">=&lt;</span><span class="n">path</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">test</span><span class="o">&gt;</span>
+<span class="n">SaveCSV</span><span class="p">(</span><span class="s1">&#39;Clone_matrix&#39;</span> <span class="p">,</span> <span class="n">testing_directory</span> <span class="o">+</span> <span class="s1">&#39;/method_test_r.csv&#39;</span><span class="p">)</span>
+<span class="n">SaveCSV</span><span class="p">(</span><span class="s1">&#39;long4_matrix&#39;</span><span class="p">,</span> <span class="n">testing_directory</span> <span class="o">+</span> <span class="s1">&#39;/test_binary_operators_r.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Compare the contents of <code class="docutils literal notranslate"><span class="pre">/test_binary_operators_r.csv</span></code> and <code class="docutils literal notranslate"><span class="pre">/test_binary_operators.csv</span></code>, they should be the same</li>
+<li>Compare the contents of <code class="docutils literal notranslate"><span class="pre">/method_test_r.csv</span></code> and <code class="docutils literal notranslate"><span class="pre">/method_test_r.csv</span></code>, they should be the same</li>
+</ul>
+<hr class="docutils" />
+<ol class="arabic simple" start="4">
+<li>Multiple instances of Mantid</li>
+</ol>
+<ul class="simple">
+<li>Open up MantidPlot, ensure that only one instance is running</li>
+<li>Right-click in the Results Log and set <cite>Log level</cite> to <cite>Debug</cite></li>
+<li>The Results Log should be printing <cite>Nothing to save</cite></li>
+<li>Run the following script:</li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span class="n">CreateWorkspace</span><span class="p">(</span><span class="n">DataX</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="n">DataY</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="n">DataE</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="n">NSpec</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;NewWorkspace&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>The Results Log should now be printing <cite>Project Recovery: Saving started</cite> and <cite>Project Recovery: Saving finished</cite> on alternate lines</li>
+<li>Now start a second instance of Mantid - note on OSX this has to be done from the command line, as OSX will not allow two instances of an executable to be run using the <cite>open</cite> command</li>
+<li>Set <cite>Log level</cite> to <cite>Debug</cite></li>
+<li>Watch the <cite>Results log</cite> for 30 seconds (or longer than your interval for project recovery saving, see the <cite>Preparation</cite> section)</li>
+<li>No message about saving should be printed</li>
+<li>Now, crash the first instance of Mantid with <cite>Segfault</cite> from the algorithm window</li>
+<li>Start a new instance of Mantid</li>
+<li>This should also have no messages about saving</li>
+<li>Close both instances of Mantid gracefully</li>
+<li>Start a new instance of Mantid</li>
+<li>You should be presented with the Project Recovery dialog</li>
+<li>Choose <cite>Yes</cite></li>
+<li>This should repopulate your workspace window</li>
+</ul>
+<hr class="docutils" />
+<ol class="arabic simple" start="4">
+<li>Recovering plots and windows</li>
+</ol>
+<ul class="simple">
+<li>Open MantidPlot - make sure no other instances of MantidPlot are running</li>
+<li>Run the second script from test 1</li>
+<li>In the workspace window right-click the <code class="docutils literal notranslate"><span class="pre">Sequential3</span></code> workspace and choose <cite>Plot spectrum</cite></li>
+<li>Choose <cite>Plot All</cite></li>
+<li>In the workspace window right-click the <code class="docutils literal notranslate"><span class="pre">Sequential1</span></code> workspace and choose <cite>Plot advanced</cite></li>
+<li>Choose <cite>Tiled plot</cite></li>
+<li>Drag workspace <cite>Rename2</cite> into the main window</li>
+</ul>
+<img alt="../../_images/reporter-test-4.png" src="../../_images/reporter-test-4.png" />
+<ul class="simple">
+<li>Crash Mantid with <cite>Segfault</cite> from the algorithm window</li>
+<li>Reopen Mantid</li>
+<li>You should be presented with the Project Recovery dialog</li>
+<li>Choose <cite>Yes</cite></li>
+<li>Mantid should reload the workspaces and open windows, so you should see the plots and the data in the main screen.</li>
+</ul>
+<hr class="docutils" />
+<ol class="arabic simple" start="5">
+<li>Test multiple instances of Mantid running</li>
+</ol>
+<ul class="simple">
+<li>Open MantidPlot - make sure no other instances of MantidPlot are running</li>
+<li>Run the script:</li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span class="n">CreateWorkspace</span><span class="p">(</span><span class="n">DataX</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="n">DataY</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="n">DataE</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="n">NSpec</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;NewWorkspace1&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Make sure that Log level is set to <cite>Debug</cite> in the results log</li>
+<li>Open a second instance of Mantid</li>
+<li>In the results log it should say <code class="docutils literal notranslate"><span class="pre">Another</span> <span class="pre">MantidPlot</span> <span class="pre">process</span> <span class="pre">is</span> <span class="pre">running.</span> <span class="pre">Project</span> <span class="pre">recovery</span> <span class="pre">is</span> <span class="pre">disabled.</span></code></li>
+<li>Run the script:</li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span class="n">CreateWorkspace</span><span class="p">(</span><span class="n">DataX</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="n">DataY</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="n">DataE</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="n">NSpec</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;NewWorkspace2&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Crash the first instance of Mantid with <cite>Segfault</cite>; choose <cite>Do not share information</cite> in the error dialog</li>
+<li>Do not exit the second instance of Mantid</li>
+<li>Restart Mantid</li>
+<li>In the results log it should say <code class="docutils literal notranslate"><span class="pre">Another</span> <span class="pre">MantidPlot</span> <span class="pre">process</span> <span class="pre">is</span> <span class="pre">running.</span> <span class="pre">Project</span> <span class="pre">recovery</span> <span class="pre">is</span> <span class="pre">disabled.</span></code></li>
+<li>Close both instances of Mantid</li>
+<li>Restart Mantid</li>
+<li>You should be presented with a dialog offering to attempt a recovery - choose <cite>Yes</cite></li>
+<li><cite>NewWorkspace1</cite> should appear in the workspace dialog</li>
+</ul>
+<hr class="docutils" />
+<ol class="arabic simple" start="6">
+<li>Opening script only</li>
+</ol>
+<ul class="simple">
+<li>Open MantidPlot - make sure no other instances of MantidPlot are running</li>
+<li>Run the second script from test 1</li>
+<li>In the workspace window right-click the <code class="docutils literal notranslate"><span class="pre">Sequential3</span></code> workspace and choose <cite>Plot spectrum</cite></li>
+<li>Choose <cite>Plot All</cite></li>
+<li>Crash Mantid with <cite>Segfault</cite> from the algorithm window</li>
+<li>Reopen Mantid</li>
+<li>You should be presented with the Project Recovery dialog</li>
+<li>Choose <cite>Only open in script editor</cite></li>
+<li>Mantid should open the script editor, with a script named <cite>ordered_recovery.py</cite></li>
+<li>Run this script, it should repopulate the workspaces dialog, but not open any figures</li>
+</ul>
+<hr class="docutils" />
+<ol class="arabic simple" start="7">
+<li>Not attempting recovery</li>
+</ol>
+<ul class="simple">
+<li>Open MantidPlot - make sure no other instances of MantidPlot are running</li>
+<li>Run the second script from test 1</li>
+<li>In the workspace window right-click the <code class="docutils literal notranslate"><span class="pre">Sequential3</span></code> workspace and choose <cite>Plot spectrum</cite></li>
+<li>Choose <cite>Plot All</cite></li>
+<li>Crash Mantid with <cite>Segfault</cite> from the algorithm window</li>
+<li>Reopen Mantid</li>
+<li>You should be presented with the Project Recovery dialog</li>
+<li>Choose <cite>No</cite></li>
+<li>Mantid should open as normal</li>
+<li>With the Results Log in debug level you should see the project saver starting up again</li>
+</ul>
+<hr class="docutils" />
+<ol class="arabic simple" start="8">
+<li>Check old history is purged</li>
+</ol>
+<ul class="simple">
+<li>Open MantidPlot - make sure no other instances of MantidPlot are running</li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span class="n">CreateWorkspace</span><span class="p">(</span><span class="n">DataX</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="n">DataY</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="n">DataE</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="n">NSpec</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;NewWorkspace&#39;</span><span class="p">)</span>
+<span class="n">RenameWorkspace</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;NewWorkspace&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;Rename2&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Save the workspace as a <cite>.nxs</cite> file</li>
+<li>Delete the workspace</li>
+<li>Re-open the workspace from the saved <cite>.nxs</cite> file</li>
+<li>Crash Mantid with <cite>Segfault</cite> from the algorithm window</li>
+<li>Reopen Mantid</li>
+<li>Choose <cite>Only open in script editor</cite></li>
+<li>Mantid should open the script editor, with a script named <cite>ordered_recovery.py</cite></li>
+<li>This file should contain only the <code class="docutils literal notranslate"><span class="pre">Load</span></code> command and no previous history</li>
+</ul>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+      <ul class="nav navbar-nav" style=" float: right;">
+      
+      
+          
+            
+  <li>
+    <a href="ErrorReporterTesting.html" title="Previous Chapter: Error Reporter Testing"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Error Reporte...</span>
+    </a>
+  </li>
+  <li>
+    <a href="../../DoxygenSetup.html" title="Next Chapter: Doxygen Setup"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Doxygen Setup &raquo;</span>
+    </a>
+  </li>
+          
+       
+          <li><a href="#">Back to top</a></li>
+       </ul>
+    <p>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
