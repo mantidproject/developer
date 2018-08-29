@@ -101,10 +101,12 @@
 <li><a class="reference internal" href="#binary-root" id="id6">Binary Root</a></li>
 <li><a class="reference internal" href="#using-existing-data" id="id7">Using Existing Data</a></li>
 <li><a class="reference internal" href="#adding-a-new-file-s" id="id8">Adding A New File(s)</a></li>
-<li><a class="reference internal" href="#developer-setup" id="id9">Developer Setup</a><ul>
-<li><a class="reference internal" href="#proxy-settings" id="id10">Proxy Settings</a></li>
-<li><a class="reference internal" href="#troubleshooting" id="id11">Troubleshooting</a></li>
-<li><a class="reference internal" href="#python-script-to-produce-hash-files" id="id12">Python script to produce hash files</a></li>
+<li><a class="reference internal" href="#updating-file-s" id="id9">Updating File(s)</a></li>
+<li><a class="reference internal" href="#developer-setup" id="id10">Developer Setup</a><ul>
+<li><a class="reference internal" href="#example-cmake-command" id="id11">Example cmake command:</a></li>
+<li><a class="reference internal" href="#setting-with-dropbox" id="id12">Setting With Dropbox:</a></li>
+<li><a class="reference internal" href="#proxy-settings" id="id13">Proxy Settings</a></li>
+<li><a class="reference internal" href="#troubleshooting" id="id14">Troubleshooting</a></li>
 </ul>
 </li>
 </ul>
@@ -121,12 +123,12 @@ harness and others load data from a file. Take the example of
 workspace with 10 detectors using
 <code class="docutils literal notranslate"><span class="pre">WorkspaceCreationHelper::create2DWorkspaceWithFullInstrument()</span></code>. In
 the second test, testComplex, it reads a file
-<strong>IDFs_for_UNIT_TESTING/MAPS_Definition_Reduced.xml</strong>, which contains
+<code class="docutils literal notranslate"><span class="pre">IDFs_for_UNIT_TESTING/MAPS_Definition_Reduced.xml</span></code>, which contains
 the definition of a MAPS instrument with the number of detectors reduced
 much to ensure it is read quickly but preserving the other properties of
 this instrument. However, new tests should avoid even loading of this
 nature unless there is a strong justification for doing so.</p>
-<p>Main issues:</p>
+<p><strong>Main issues:</strong></p>
 <ul class="simple">
 <li>need to store data, mainly for testing, alongside the code</li>
 <li>some data needs to be versioned</li>
@@ -134,16 +136,15 @@ nature unless there is a strong justification for doing so.</p>
 files</li>
 <li>git is bad at handling binary files</li>
 </ul>
-<p>Possible solutions:</p>
+<p><strong>Possible solutions:</strong></p>
 <ul class="simple">
+<li>CMake’s <a class="reference external" href="http://www.kitware.com/source/home/post/107">ExternalData</a></li>
 <li>don’t have any reference to data in git and force developers to
 manage the data stored on a file server</li>
 <li>extensions to git, e.g.
 <a class="reference external" href="https://github.com/jedbrown/git-fat">git-fat</a>,
 <a class="reference external" href="https://git-annex.branchable.com/">git-annex</a> to deal with large
 files</li>
-<li>CMake’s
-<a class="reference external" href="http://www.kitware.com/source/home/post/107">ExternalData</a></li>
 </ul>
 <p>We have chosen to use CMake as it is already in use as a build system
 and it doesn’t involve introducing extra work with git.</p>
@@ -154,16 +155,16 @@ and it doesn’t involve introducing extra work with git.</p>
 <img alt="Image originated at http://www.kitware.com/source/home/post/107" src="_images/ExternalDataSchematic.png" />
 <p class="caption"><span class="caption-text">Image originated at <a class="reference external" href="http://www.kitware.com/source/home/post/107">http://www.kitware.com/source/home/post/107</a></span></p>
 </div>
-<p>Terminology:</p>
+<p><strong>Terminology:</strong></p>
 <ul class="simple">
 <li>content - the real data</li>
 <li>content link - text file containing a hash (MD5) of the real content.
 The filename is the filename of the real data plus the <code class="docutils literal notranslate"><span class="pre">.md5</span></code>
 extension</li>
-<li>object - a file that stores the real data and whose name is the MD5
+<li>object - a file that stores the real data and whose name is the <code class="docutils literal notranslate"><span class="pre">MD5</span></code>
 hash of the content</li>
 </ul>
-<p>Overview:</p>
+<p><strong>Overview:</strong></p>
 <ul class="simple">
 <li>git does not store any content, it only stores content links</li>
 <li>content is stored on a remote server that can be accessed via a
@@ -191,9 +192,10 @@ CMake variable and defaults to <code class="docutils literal notranslate"><span 
 <h2><a class="toc-backref" href="#id7">Using Existing Data</a><a class="headerlink" href="#using-existing-data" title="Permalink to this headline">¶</a></h2>
 <p>There are two places files may be found:</p>
 <ul class="simple">
-<li><a class="reference external" href="https://github.com/mantidproject/mantid/tree/master/Testing/Data/UnitTest">../mantid/Testing/Data/UnitTest</a></li>
-<li><a class="reference external" href="https://github.com/mantidproject/mantid/tree/master/instrument/IDFs_for_UNIT_TESTING">../mantid/instrument/IDFs_for_UNIT_TESTING</a>
-for test <a class="reference external" href="IDF">IDF</a> files</li>
+<li><a class="reference external" href="https://github.com/mantidproject/mantid/tree/master/Testing/Data">…/Testing/Data/</a>
+for <a class="reference internal" href="RunningTheUnitTests.html#runningtheunittests"><span class="std std-ref">unit test</span></a>, <a class="reference internal" href="Standards/DocumentationGuideForDevs.html#documentationguidefordevs"><span class="std std-ref">doc test</span></a>, and <a class="reference internal" href="SystemTests.html#systemtests"><span class="std std-ref">system test</span></a> data</li>
+<li><a class="reference external" href="https://github.com/mantidproject/mantid/tree/master/instrument/IDFs_for_UNIT_TESTING">…/instrument/IDFs_for_UNIT_TESTING</a>
+for test <a class="reference external" href="http://docs.mantidproject.org/nightly/concepts/InstrumentDefinitionFile.html#instrumentdefinitionfile" title="(in MantidProject v3.13)"><span class="xref std std-ref">IDF</span></a> files</li>
 </ul>
 </div>
 <div class="section" id="adding-a-new-file-s">
@@ -209,16 +211,15 @@ called like this:</p>
 <code class="docutils literal notranslate"><span class="pre">d6948514d78db7fe251efb6cce4a9b83</span></code></li>
 <li>stores the MD5 hash in a file called
 <code class="docutils literal notranslate"><span class="pre">Testing/Data/UnitTest/INST12345.nxs.md5</span></code></li>
-<li>renames the original data file to
+<li>renames the original data file to be its md5 sum
 <code class="docutils literal notranslate"><span class="pre">Testing/Data/UnitTest/d6948514d78db7fe251efb6cce4a9b83</span></code></li>
 <li>runs <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">Testing/Data/UnitTest/INST12345.nxs.md5</span></code></li>
 <li>tells the user to upload the file(s),
-<code class="docutils literal notranslate"><span class="pre">d6948514d78db7fe251efb6cce4a9b83</span></code>, to the remote store (URL:
-<a class="reference external" href="http://198.74.56.37/ftp/external-data/upload">http://198.74.56.37/ftp/external-data/upload</a>)</li>
-<li>re-run cmake</li>
+<code class="docutils literal notranslate"><span class="pre">d6948514d78db7fe251efb6cce4a9b83</span></code>, to the <a class="reference external" href="http://198.74.56.37/ftp/external-data/upload">remote store</a></li>
 </ul>
-<p>Notes:</p>
+<p><strong>Notes:</strong></p>
 <ul class="simple">
+<li>For the change to have effect, re-run <code class="docutils literal notranslate"><span class="pre">cmake</span></code> in the build area</li>
 <li>You need to use a shell to add &amp; modify data files under Windows in
 this way. Not every shell works as described, though <a class="reference external" href="https://windows.github.com/">Github for
 Windows</a> shell would allow you to do
@@ -238,114 +239,74 @@ subdirectories (e.g. <code class="docutils literal notranslate"><span class="pre
 instrument prefix in the file name.</li>
 </ul>
 </div>
+<div class="section" id="updating-file-s">
+<h2><a class="toc-backref" href="#id9">Updating File(s)</a><a class="headerlink" href="#updating-file-s" title="Permalink to this headline">¶</a></h2>
+<p>The workflow is the same as <a class="reference internal" href="#datafilesfortesting-addinganewfile"><span class="std std-ref">adding new files</span></a> except that the developer must first put the new version of the file in the right place. For the example above, it would be <code class="docutils literal notranslate"><span class="pre">Testing/Data/UnitTest/INST12345.nxs</span></code>. Then the new <code class="docutils literal notranslate"><span class="pre">.md5</span></code> file and associated renamed file will be created. <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">diff</span></code> will show that change to the contents of <code class="docutils literal notranslate"><span class="pre">Testing/Data/UnitTest/INST12345.nxs.md5</span></code> and that there is an untracked file with the md5 sum for a name.</p>
+</div>
 <div class="section" id="developer-setup">
-<h2><a class="toc-backref" href="#id9">Developer Setup</a><a class="headerlink" href="#developer-setup" title="Permalink to this headline">¶</a></h2>
-<p><strong>You need cmake 2.8.11+</strong></p>
+<h2><a class="toc-backref" href="#id10">Developer Setup</a><a class="headerlink" href="#developer-setup" title="Permalink to this headline">¶</a></h2>
 <p>To add the <code class="docutils literal notranslate"><span class="pre">add-test-data</span></code> command alias to git run</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre>git config alias.add-test-data <span class="s1">&#39;!bash -c &quot;tools/Development/git/git-add-test-data $*&quot;&#39;</span>
 </pre></div>
 </div>
-<p>in the git bash shell. The single quotes are important so that bash
-doesn’t expand the exclamation mark as a variable.</p>
+<p>in the git bash shell
+(<a class="reference external" href="https://github.com/mantidproject/mantid/blob/master/tools/Development/git/git-add-test-data">script source</a>).
+The single quotes are important so that bash doesn’t expand the exclamation mark as a variable.</p>
 <p>It is advised that CMake is told where to put the “real” data as the
 default is <code class="docutils literal notranslate"><span class="pre">$HOME/MantidExternalData</span></code> on Linux/Mac or
 <code class="docutils literal notranslate"><span class="pre">C:/MantidExternalData</span></code> on Windows. Over time the store will grow so
 it is recommended that it be placed on a disk with a large amount of
 space. CMake uses the <code class="docutils literal notranslate"><span class="pre">MANTID_DATA_STORE</span></code> variable to define where the
 data is stored.</p>
-<p>Example cmake command:</p>
-<p>Linux/Mac:</p>
+<div class="section" id="example-cmake-command">
+<h3><a class="toc-backref" href="#id11">Example cmake command:</a><a class="headerlink" href="#example-cmake-command" title="Permalink to this headline">¶</a></h3>
+<p><strong>Linux/Mac:</strong></p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre>mkdir -p build
 cmake -DMANTID_DATA_STORE<span class="o">=</span>/home/mgigg/Data/LocalObjectStore ../Code/Mantid
 </pre></div>
 </div>
-<p>Windows:</p>
+<p><strong>Windows:</strong></p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre>mkdir build
 cmake -DMANTID_DATA_STORE<span class="o">=</span>D:/Data/LocalObjectStore ../Code/Mantid
 </pre></div>
 </div>
-<p>Setting With Dropbox:</p>
-<p>This is for people in the ORNL dropbox share and has the effect of
-reducing external network traffic. There is a
-<a class="reference external" href="http://gist.github.com/peterfpeterson/638490530e37c3d8dba5">gist</a>
-for getting dropbox running on linux.</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>mkdir build
-cmake -DMANTID_DATA_STORE<span class="o">=</span>/home/mgigg/Dropbox<span class="se">\ \(</span>ORNL<span class="se">\)</span>/MantidExternalData ../Code/Mantid
-</pre></div>
 </div>
-<p>If you don’t want to define the MANTID_DATA_STORE everytime you run
-cmake, you can link the default data store location to the Dropbox one.</p>
+<div class="section" id="setting-with-dropbox">
+<h3><a class="toc-backref" href="#id12">Setting With Dropbox:</a><a class="headerlink" href="#setting-with-dropbox" title="Permalink to this headline">¶</a></h3>
+<p>This is for people in the ORNL dropbox share and has the effect of
+reducing external network traffic. There is a <a class="reference external" href="http://gist.github.com/peterfpeterson/638490530e37c3d8dba5">gist</a> for
+getting dropbox running on linux. Instead of defining the
+<code class="docutils literal notranslate"><span class="pre">MANTID_DATA_STORE</span></code> in cmake, it is simplest to create a symbolic
+link</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre>ln -s ~/Dropbox<span class="se">\ \(</span>ORNL<span class="se">\)</span>/MantidExternalData ~
 </pre></div>
 </div>
+<p>Then everything will happen automatically using CMake’s default behavior.</p>
+</div>
 <div class="section" id="proxy-settings">
-<h3><a class="toc-backref" href="#id10">Proxy Settings</a><a class="headerlink" href="#proxy-settings" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id13">Proxy Settings</a><a class="headerlink" href="#proxy-settings" title="Permalink to this headline">¶</a></h3>
 <p>If you are sitting behind a proxy server then the shell or Visual studio
 needs to know about the proxy server. You must set the <code class="docutils literal notranslate"><span class="pre">http_proxy</span></code>
 environment variable to <code class="docutils literal notranslate"><span class="pre">http://HOSTNAME:PORT</span></code>.</p>
-<p>On Windows you go to <strong>Control Panel-&gt;System and
-Security-&gt;System-&gt;Advanced System settings-&gt;Environment Variables</strong> and
-click <strong>New…</strong> to add a variable.</p>
+<p>On Windows you go to <code class="docutils literal notranslate"><span class="pre">Control</span> <span class="pre">Panel-&gt;System</span></code> and
+<code class="docutils literal notranslate"><span class="pre">Security-&gt;System-&gt;Advanced</span> <span class="pre">System</span> <span class="pre">settings-&gt;Environment</span> <span class="pre">Variables</span></code> and
+click <code class="docutils literal notranslate"><span class="pre">New...</span></code> to add a variable.</p>
 <p>On Linux/Mac you will need to set the variable in the shell profile or
 on Linux you can set it system wide in <code class="docutils literal notranslate"><span class="pre">/etc/environment</span></code>.</p>
 </div>
 <div class="section" id="troubleshooting">
-<h3><a class="toc-backref" href="#id11">Troubleshooting</a><a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id14">Troubleshooting</a><a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h3>
 <p>If you find that your tests cannot find the data they require check the
 following gotchas:</p>
 <ul class="simple">
+<li>Check that you have re-run CMake in the build directory</li>
 <li>Check that you have uploaded the original file renamed as a hash to
 the Mantid file repository</li>
-<li>Check that you have re-run CMake in the build directory.</li>
 <li>Check that you have removed any user defined data search directories
-in ~/.mantid</li>
+in <code class="docutils literal notranslate"><span class="pre">~/.mantid</span></code></li>
 <li>Check that you have rebuilt the test executable you’re trying to run</li>
 <li>Check that you have rebuilt the SystemTestData target</li>
 </ul>
-</div>
-<div class="section" id="python-script-to-produce-hash-files">
-<h3><a class="toc-backref" href="#id12">Python script to produce hash files</a><a class="headerlink" href="#python-script-to-produce-hash-files" title="Permalink to this headline">¶</a></h3>
-<div class="code python highlight-default notranslate"><div class="highlight"><pre><span class="ch">#!/usr/bin/python</span>
-<span class="kn">import</span> <span class="nn">hashlib</span>
-<span class="kn">import</span> <span class="nn">os</span><span class="o">,</span><span class="nn">sys</span>
-
-<span class="k">def</span> <span class="nf">md5sum</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">blocksize</span><span class="o">=</span><span class="mi">65536</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Calculate md5 hash sum of a file provided &quot;&quot;&quot;</span>
-    <span class="nb">hash</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">()</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">block</span> <span class="ow">in</span> <span class="nb">iter</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">blocksize</span><span class="p">),</span> <span class="n">b</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
-            <span class="nb">hash</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">block</span><span class="p">)</span>
-    <span class="k">return</span> <span class="nb">hash</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
-
-<span class="k">def</span> <span class="nf">save_sum</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span><span class="n">md_sum</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Save hash sum into file with appropriate filename&quot;&quot;&quot;</span>
-    <span class="n">md_fname</span> <span class="o">=</span> <span class="n">filename</span><span class="o">+</span><span class="s1">&#39;.md5&#39;</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">md_fname</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">md_sum</span><span class="p">)</span>
-
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span><span class="o">&lt;</span><span class="mi">2</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
-        <span class="nb">print</span> <span class="s2">&quot;Usage: hash_file.py file_name&quot;</span>
-        <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-
-    <span class="n">filename</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-
-    <span class="n">path</span><span class="p">,</span><span class="n">fname</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
-    <span class="n">hash_sum</span> <span class="o">=</span> <span class="n">md5sum</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
-    <span class="nb">print</span> <span class="s2">&quot;MD SUM FOR FILE: {0} is {1}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span><span class="n">hash_sum</span><span class="p">)</span>
-
-   <span class="c1"># save hash sum in file with original file name and extension  .md5</span>
-    <span class="n">save_sum</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="n">fname</span><span class="p">),</span><span class="n">hash_sum</span><span class="p">)</span>
-
-   <span class="c1"># Rename hashed file into hash sum name.</span>
-    <span class="n">hash_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="n">hash_sum</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">hash_file</span><span class="p">):</span>
-        <span class="nb">print</span> <span class="s2">&quot;file: {0} already exist&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">hash_sum</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">os</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span><span class="n">hash_file</span><span class="p">)</span>
-</pre></div>
-</div>
 </div>
 </div>
 </div>
