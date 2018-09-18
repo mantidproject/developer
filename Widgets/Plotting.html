@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Plotting (Elemental Analysis)</title>
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-59110517-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+  </head><body>
+
+
+
+
+
+  <div id="navbar" class="navbar navbar-default ">
+    <div class="container">
+      <div class="navbar-header">
+        
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://www.mantidproject.org"><img src="../_static/Mantid_Logo_Transparent.png">
+           </a>
+        <span class="navbar-text navbar-version pull-left"><b>master</b></span>
+      </div>
+
+      
+        <div class="collapse navbar-collapse nav-collapse">
+      
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="http://download.mantidproject.org">Download</a></li>
+                <li><a href="http://www.mantidproject.org">Wiki</a></li>
+                <li><a href="http://docs.mantidproject.org">User Documentation</a></li>
+                <li><a href="http://www.mantidproject.org/Contact">Contact Us</a></li>
+            
+            
+              
+              
+            
+            
+            
+            
+          </ul>
+              
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+            </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="plotting-elemental-analysis">
+<h1>Plotting <em>(Elemental Analysis)</em><a class="headerlink" href="#plotting-elemental-analysis" title="Permalink to this headline">¶</a></h1>
+<dl class="docutils">
+<dt>Plotting without errors:</dt>
+<dd><img alt="../_images/plot_no_errors.png" class="first last" src="../_images/plot_no_errors.png" />
+</dd>
+<dt>Plotting with errors:</dt>
+<dd><img alt="../_images/plot_errors.png" class="first last" src="../_images/plot_errors.png" />
+</dd>
+</dl>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>The plotting submodule of <em>Elemental Analysis</em> (<code class="docutils literal notranslate"><span class="pre">/scripts/Muon/ElementalAnalysis/Plotting</span></code>) is a PyQt4/5 compatible interactive interface of up to four subplots, each with separate, changeable axes.</p>
+<p>The x and y limits of each plot (including all plots simultaneously) can be changed using the AxisChanger widgets, and errors can be plotted by using the <code class="docutils literal notranslate"><span class="pre">Errors</span></code> checkbox.
+AxisChanger input boxes are automatically updated when the selected plot changes.</p>
+<p>The design is such that the user has the ability to handle all matplotlib objects,
+whilst the plotting and axis changing is handled internally.
+For this reason, only functions that are <em>absolutely necessary</em> should be exposed, as this maintains simplicity for the user of the wrapper.</p>
+</div>
+<div class="section" id="functionality">
+<h2>Functionality<a class="headerlink" href="#functionality" title="Permalink to this headline">¶</a></h2>
+<p>The four subplot arrangements are:</p>
+<ul class="simple">
+<li>One subplot, centered</li>
+<li>Two subplots, side-by-side</li>
+<li>Three subplots, stacked on top of each other</li>
+<li>Four subplots, in a two-by-two grid</li>
+</ul>
+<p><em>This layout can be changed by modifying ``plotting_utils.py``.</em></p>
+</div>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="p">(</span><span class="n">importing</span> <span class="n">plotting</span> <span class="k">as</span> <span class="n">plotting</span><span class="p">)</span>
+<span class="n">subplot_name</span> <span class="o">=</span> <span class="s2">&quot;subplot name&quot;</span>
+<span class="n">subplot</span> <span class="o">=</span> <span class="n">plotting</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">subplot_name</span><span class="p">)</span> <span class="c1"># creates subplot (&amp; updates the grid)</span>
+<span class="c1"># this is a standard matplotlib subplot object, so has all the usual methods</span>
+<span class="c1"># alternatively</span>
+<span class="n">plotting</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">subplot_name</span><span class="p">)</span>
+<span class="c1">#later on...</span>
+<span class="n">subplot</span> <span class="o">=</span> <span class="n">plotting</span><span class="o">.</span><span class="n">get_subplot</span><span class="p">(</span><span class="n">subplot_name</span><span class="p">)</span>
+<span class="n">plotting</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">subplot_name</span><span class="p">,</span> <span class="n">mtd</span><span class="p">[</span><span class="s2">&quot;test workspace&quot;</span><span class="p">])</span> <span class="c1"># plots the workspace &quot;test workspace&quot; to subplot</span>
+<span class="n">plotting</span><span class="o">.</span><span class="n">remove_subplot</span><span class="p">(</span><span class="n">subplot_name</span><span class="p">)</span> <span class="c1"># removes the subplot (&amp; updates the grid)</span>
+
+<span class="p">(</span><span class="o">...</span> <span class="n">add</span> <span class="n">then</span> <span class="n">delete</span> <span class="n">lines</span><span class="p">,</span> <span class="ow">or</span> <span class="n">text</span><span class="o">/</span><span class="n">annotations</span> <span class="n">etc</span><span class="o">.</span> <span class="o">...</span><span class="p">)</span>
+<span class="c1"># lines can be added as normal in matplotlib</span>
+<span class="c1"># for example:</span>
+<span class="n">line</span> <span class="o">=</span> <span class="n">subplot</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x_axis</span><span class="p">,</span> <span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="c1">#or:</span>
+<span class="n">line</span> <span class="o">=</span> <span class="n">plotting</span><span class="o">.</span><span class="n">get_subplot</span><span class="p">(</span><span class="n">subplot_name</span><span class="p">)</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x_axis</span><span class="p">,</span> <span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="n">plotting</span><span class="o">.</span><span class="n">update_canvas</span><span class="p">()</span> <span class="c1"># will update the canvas (generally only required for deleting things)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="file-and-code-layout">
+<h2>File and Code Layout<a class="headerlink" href="#file-and-code-layout" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="https://github.com/mantidproject/mantid/tree/master/scripts/Muon/GUI/ElementalAnalysis/Plotting">Plotting</a> files are arranged in the following format:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="n">Plotting</span><span class="p">:</span>
+    <span class="n">AxisChanger</span><span class="o">/</span>
+        <span class="n">axis_changer_presenter</span><span class="o">.</span><span class="n">py</span>
+        <span class="n">axis_changer_view</span><span class="o">.</span><span class="n">py</span>
+    <span class="n">plotting_presenter</span><span class="o">.</span><span class="n">py</span>
+    <span class="n">plotting_view</span><span class="o">.</span><span class="n">py</span>
+    <span class="n">plotting_utils</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>Both the Plotting and AxisChanger modules are in MVP (Model, View, Presenter) format, as this benefits maintainability.</p>
+<div class="section" id="plotting-presenter">
+<h3>Plotting Presenter<a class="headerlink" href="#plotting-presenter" title="Permalink to this headline">¶</a></h3>
+<p>Exposes required functions from <code class="docutils literal notranslate"><span class="pre">plotting_view.py</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="k">def</span> <span class="nf">get_subplot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns the subplot with the given name.</span>
+
+<span class="sd">    :param name: the name of the subplot</span>
+<span class="sd">    :returns: a matplotlib subplot object</span>
+<span class="sd">    :raises KeyError: if the subplot name doesn&#39;t exist</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">get_subplot</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><em>Functions should only be exposed if they are necessary for use with the plotting interface.</em></p>
+</div>
+<div class="section" id="plotting-view">
+<h3>Plotting View<a class="headerlink" href="#plotting-view" title="Permalink to this headline">¶</a></h3>
+<p>Handles all the <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> and <code class="docutils literal notranslate"><span class="pre">Qt</span></code>. Currently, <code class="docutils literal notranslate"><span class="pre">plotting_view.py</span></code> is arguably too large (due to the requirement of isolating <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> and <code class="docutils literal notranslate"><span class="pre">Qt</span></code>), so this could be split up in a future version.</p>
+</div>
+<div class="section" id="plotting-utils">
+<h3>Plotting Utils<a class="headerlink" href="#plotting-utils" title="Permalink to this headline">¶</a></h3>
+<p>Handles the gridspec layouts: further gridspecs can be defined in <code class="docutils literal notranslate"><span class="pre">plotting_utils.py</span></code>, but <code class="docutils literal notranslate"><span class="pre">self.gridspecs</span></code> must be updated in <code class="docutils literal notranslate"><span class="pre">plotting_view.py</span></code></p>
+</div>
+</div>
+<div class="section" id="todo">
+<h2>TODO<a class="headerlink" href="#todo" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Move plotting to a more central, accessible location in the mantid codebase</li>
+<li>Options for changing line colours, fonts etc.</li>
+<li>Moveable lines with the related events (i.e. can check whether a line is moved within tolerance of a given x value)</li>
+<li>Addition of more subplots</li>
+<li>Exporting subplots as PNGs etc.</li>
+<li>Removal of individual plots from a subplot (the way plotted lines are stored would have to be changed)</li>
+</ul>
+</div>
+<div class="section" id="known-issues">
+<h2>Known Issues<a class="headerlink" href="#known-issues" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>TBC after testing</li>
+</ul>
+</div>
+<div class="section" id="related-bugs-notes">
+<h2>Related Bugs/Notes<a class="headerlink" href="#related-bugs-notes" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/matplotlib/matplotlib/issues/4786">Matplotlib Issue #4786</a>: a workaround is used in <code class="docutils literal notranslate"><span class="pre">plotting_view.py</span></code> (commented)</li>
+<li><code class="docutils literal notranslate"><span class="pre">plot.set_subplotspec(...)</span></code> is required where <code class="docutils literal notranslate"><span class="pre">plot.set_position(...)</span></code> is used with <code class="docutils literal notranslate"><span class="pre">tight_layout()</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">matplotlib.pyplot</span></code> <a class="reference external" href="https://stackoverflow.com/posts/comments/26295260">should not</a> be imported when using <code class="docutils literal notranslate"><span class="pre">FigureCanvasQTAgg</span></code></li>
+</ul>
+</div>
+<div class="section" id="axischanger">
+<h2>AxisChanger<a class="headerlink" href="#axischanger" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">AxisChanger</span></code> is a small widget comprising of two <a href="#id1"><span class="problematic" id="id2">``</span></a>QLineEdit``s in a neat format,
+with events exposed for x/y limit changing. This functionality is inherently separate
+to that of the plotting, so the AxisChanger module is separate (albeit enclosed within) the plotting.</p>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+      <ul class="nav navbar-nav" style=" float: right;">
+      
+      
+          
+            
+          
+       
+          <li><a href="#">Back to top</a></li>
+       </ul>
+    <p>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
