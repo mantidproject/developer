@@ -97,6 +97,11 @@
 <li><a class="reference internal" href="#overview" id="id1">Overview</a></li>
 <li><a class="reference internal" href="#building" id="id2">Building</a></li>
 <li><a class="reference internal" href="#packaging" id="id3">Packaging</a></li>
+<li><a class="reference internal" href="#developing-and-debugging-with-pycharm-on-windows" id="id4">Developing and debugging with PyCharm on Windows</a><ul>
+<li><a class="reference internal" href="#common-errors" id="id5">Common errors</a></li>
+<li><a class="reference internal" href="#identifying-issues-with-pycharm-configuration" id="id6">Identifying issues with PyCharm configuration</a></li>
+</ul>
+</li>
 </ul>
 </div>
 <div class="section" id="overview">
@@ -107,7 +112,7 @@ interacting with the mantid framework. The plotting is provided by
 </div>
 <div class="section" id="building">
 <h2><a class="toc-backref" href="#id2">Building</a><a class="headerlink" href="#building" title="Permalink to this headline">¶</a></h2>
-<p>The following build instructions assume you have follwed the instructions on the <a class="reference internal" href="GettingStarted.html#gettingstarted"><span class="std std-ref">Getting Started</span></a> pages and can build mantid and MantidPlot. To enable the
+<p>The following build instructions assume you have followed the instructions on the <a class="reference internal" href="GettingStarted.html#gettingstarted"><span class="std std-ref">Getting Started</span></a> pages and can build mantid and MantidPlot. To enable the
 build of the workbench simply set the cmake flag <code class="docutils literal notranslate"><span class="pre">ENABLE_WORKBENCH=ON</span></code> and
 build as normal. A <code class="docutils literal notranslate"><span class="pre">workbench</span></code> startup script (Linux/macOS) or executable (Windows) will appear in the <code class="docutils literal notranslate"><span class="pre">bin</span></code> folder. For Windows the executable will appear in the configuration subdirectory of <code class="docutils literal notranslate"><span class="pre">bin</span></code>.</p>
 </div>
@@ -115,6 +120,57 @@ build as normal. A <code class="docutils literal notranslate"><span class="pre">
 <h2><a class="toc-backref" href="#id3">Packaging</a><a class="headerlink" href="#packaging" title="Permalink to this headline">¶</a></h2>
 <p>Packaging is currently only supported on Linux platforms and must be enabled
 using the cmake flag <code class="docutils literal notranslate"><span class="pre">PACKAGE_WORKBENCH=ON</span></code>.</p>
+</div>
+<div class="section" id="developing-and-debugging-with-pycharm-on-windows">
+<h2><a class="toc-backref" href="#id4">Developing and debugging with PyCharm on Windows</a><a class="headerlink" href="#developing-and-debugging-with-pycharm-on-windows" title="Permalink to this headline">¶</a></h2>
+<p>The first thing that needs to be done is creating the PyCharm project and configuring the project settings. Please follow the instructions at <a class="reference internal" href="GettingStartedWithPyCharm.html#gettingstartedwithpycharm"><span class="std std-ref">Getting Started with PyCharm</span></a>.</p>
+<p>After the project settings have been configured, a Run/Debug configuration needs to be created. To edit the configurations go to <code class="docutils literal notranslate"><span class="pre">Run-&gt;Run...</span></code> and select <code class="docutils literal notranslate"><span class="pre">Edit</span> <span class="pre">Configurations</span></code>. Select <code class="docutils literal notranslate"><span class="pre">Templates-&gt;Python</span></code>, and hit the green <code class="docutils literal notranslate"><span class="pre">+</span></code> in the top left.
+The necessary changes to the configuration are:</p>
+<ul class="simple">
+<li>Select the Mantid Python interpreter that was added to the project in the instructions above. Do not use the default interpreter on Windows.</li>
+<li>Set up <em>Script Path</em> and <em>Working Directory</em> as follows:</li>
+</ul>
+<dl class="docutils">
+<dt>Paths for running a Debug build:</dt>
+<dd><ul class="first last simple">
+<li>Set the <em>Script Path</em> to <code class="docutils literal notranslate"><span class="pre">&lt;Mantid</span> <span class="pre">Build</span> <span class="pre">Directory&gt;/bin/Debug/workbench-script.pyw</span></code></li>
+<li>Set the <em>Working Directory</em> to <code class="docutils literal notranslate"><span class="pre">&lt;Mantid</span> <span class="pre">Build</span> <span class="pre">Directory&gt;/bin/Debug</span></code></li>
+</ul>
+</dd>
+<dt>Paths for running a Release build:</dt>
+<dd><ul class="first last simple">
+<li>Set the <em>Script Path</em> to <code class="docutils literal notranslate"><span class="pre">&lt;Mantid</span> <span class="pre">Build</span> <span class="pre">Directory&gt;/bin/Release/workbench-script.pyw</span></code></li>
+<li>Set the <em>Working Directory</em> to <code class="docutils literal notranslate"><span class="pre">&lt;Mantid</span> <span class="pre">Build</span> <span class="pre">Directory&gt;/bin/Release</span></code></li>
+</ul>
+</dd>
+</dl>
+<p>Note that the only difference here is the change from <code class="docutils literal notranslate"><span class="pre">/bin/Debug/</span></code> to <code class="docutils literal notranslate"><span class="pre">/bin/Release/</span></code>.</p>
+<p>Make sure you have finished the build you are using (Debug or Release), or there will be import errors.</p>
+<div class="section" id="common-errors">
+<h3><a class="toc-backref" href="#id5">Common errors</a><a class="headerlink" href="#common-errors" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div>qtpy.PythonQtError: No Qt bindings could be found</div></blockquote>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;Mantid</span> <span class="pre">Source</span> <span class="pre">Directory&gt;/external/src/ThirdParty/lib/qt5/bin</span></code> is missing from the <code class="docutils literal notranslate"><span class="pre">Path</span></code> environment variable.</p>
+<blockquote>
+<div>ImportError: DLL load failed: The specified module could not be found.</div></blockquote>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;Mantid</span> <span class="pre">Source</span> <span class="pre">Directory&gt;/external/src/ThirdParty/lib/qt5/lib</span></code> is missing from the <code class="docutils literal notranslate"><span class="pre">Path</span></code> environment variable.</p>
+<p>The fix for these errors is to make sure you have <strong>started</strong> PyCharm through the <code class="docutils literal notranslate"><span class="pre">&lt;Mantid</span> <span class="pre">Build</span> <span class="pre">Directory&gt;/pycharm.bat</span></code> script. This sets up the <code class="docutils literal notranslate"><span class="pre">PATH</span></code> variable for the Python imports.</p>
+<p>Additionally, check that your PyCharm Run/Debug configuration <em>does not</em> overwrite the <code class="docutils literal notranslate"><span class="pre">PATH</span></code> variable.
+To check go to <code class="docutils literal notranslate"><span class="pre">Edit</span> <span class="pre">Configurations</span> <span class="pre">-&gt;</span> <span class="pre">Environment</span> <span class="pre">Variables</span></code> and click the folder icon on the right side. In the <code class="docutils literal notranslate"><span class="pre">Name</span></code> column there should not be a <code class="docutils literal notranslate"><span class="pre">Path</span></code> variable.
+If there is one, try deleting it and running your configuration again.</p>
+</div>
+<div class="section" id="identifying-issues-with-pycharm-configuration">
+<h3><a class="toc-backref" href="#id6">Identifying issues with PyCharm configuration</a><a class="headerlink" href="#identifying-issues-with-pycharm-configuration" title="Permalink to this headline">¶</a></h3>
+<p>Follow these steps to narrow down the root of potential errors:</p>
+<ul class="simple">
+<li>Go to the Mantid Build Directory</li>
+<li>Start <code class="docutils literal notranslate"><span class="pre">command_prompt.bat</span></code>. If the <code class="docutils literal notranslate"><span class="pre">command_prompt.bat</span></code> file is missing, the build has not been fully generated from <cite>CMake</cite> or is corrupted.</li>
+<li>In the command prompt open the Python interpreter with <code class="docutils literal notranslate"><span class="pre">python</span></code>.</li>
+<li>Try to import the package where the error is happening. For example if there is an error on <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">qtpy</span></code>, <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">PyQt5</span> <span class="pre">import</span> <span class="pre">QtCore</span></code>, try running that line in the interpreter.</li>
+<li>If the import succeeds, then there is a problem with the <code class="docutils literal notranslate"><span class="pre">PATH</span></code> configuration in PyCharm.</li>
+<li>If the import fails, then it is possible that Mantid has not been fully built. If you are trying to import <code class="docutils literal notranslate"><span class="pre">PyQt4</span></code>/<code class="docutils literal notranslate"><span class="pre">PyQt5</span></code>/<code class="docutils literal notranslate"><span class="pre">qtpy</span></code>, and it fails to import from the command prompt, then the <code class="docutils literal notranslate"><span class="pre">external</span></code> dependencies might not be downloaded or are corrupted.</li>
+</ul>
+</div>
 </div>
 </div>
 
