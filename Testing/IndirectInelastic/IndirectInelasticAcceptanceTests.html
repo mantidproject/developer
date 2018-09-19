@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Indirect Inelastic Testing</title>
+    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Error Reporter Testing" href="../ErrorReporter-ProjectRecovery/ErrorReporterTesting.html" />
+    <link rel="prev" title="Muon Testing" href="../MuonInterface/MuonTesting.html" />
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-59110517-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+  </head><body>
+
+
+
+
+
+  <div id="navbar" class="navbar navbar-default ">
+    <div class="container">
+      <div class="navbar-header">
+        
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://www.mantidproject.org"><img src="../../_static/Mantid_Logo_Transparent.png">
+           </a>
+        <span class="navbar-text navbar-version pull-left"><b>master</b></span>
+      </div>
+
+      
+        <div class="collapse navbar-collapse nav-collapse">
+      
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="http://download.mantidproject.org">Download</a></li>
+                <li><a href="http://www.mantidproject.org">Wiki</a></li>
+                <li><a href="http://docs.mantidproject.org">User Documentation</a></li>
+                <li><a href="http://www.mantidproject.org/Contact">Contact Us</a></li>
+            
+            
+              
+              
+            
+            
+            
+            
+          </ul>
+              
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+            </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="indirect-inelastic-testing">
+<span id="id1"></span><h1>Indirect Inelastic Testing<a class="headerlink" href="#indirect-inelastic-testing" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#data-reduction" id="id3">Data reduction</a></li>
+<li><a class="reference internal" href="#data-analysis-elwin" id="id4">Data analysis Elwin</a></li>
+<li><a class="reference internal" href="#data-analysis-msd" id="id5">Data analysis MSD</a></li>
+<li><a class="reference internal" href="#data-analysis-conv-fit" id="id6">Data analysis Conv Fit</a></li>
+<li><a class="reference internal" href="#data-analysis-i-q-t" id="id7">Data analysis I(Q, T)</a></li>
+<li><a class="reference internal" href="#data-analysis-i-q-t-fit" id="id8">Data analysis I(Q, T) Fit</a></li>
+</ul>
+</div>
+<div class="section" id="data-reduction">
+<h2><a class="toc-backref" href="#id3">Data reduction</a><a class="headerlink" href="#data-reduction" title="Permalink to this headline">¶</a></h2>
+<p><em>Preparation</em></p>
+<ul class="simple">
+<li>Instrument <code class="docutils literal notranslate"><span class="pre">IRIS</span></code></li>
+<li>You need access to the ISIS data archive</li>
+</ul>
+<p><strong>Time required 2-5 minutes</strong></p>
+<hr class="docutils" />
+<ol class="arabic simple">
+<li>Open <code class="docutils literal notranslate"><span class="pre">Interfaces</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Indirect</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">reduction</span></code></li>
+<li>Make sure <code class="docutils literal notranslate"><span class="pre">Instrument</span></code> is set to <code class="docutils literal notranslate"><span class="pre">IRIS</span></code></li>
+<li>Go to the <code class="docutils literal notranslate"><span class="pre">ISIS</span> <span class="pre">calibration</span></code></li>
+<li>Enter <code class="docutils literal notranslate"><span class="pre">Run</span> <span class="pre">number</span></code> 26173</li>
+<li>Click <code class="docutils literal notranslate"><span class="pre">Run</span></code></li>
+<li>This should generate a workspace with <code class="docutils literal notranslate"><span class="pre">_calib</span></code> at the end, delete this workspace</li>
+<li>Change the <code class="docutils literal notranslate"><span class="pre">Scale</span> <span class="pre">by</span> <span class="pre">factor</span></code> value to 0.5</li>
+<li>Click <code class="docutils literal notranslate"><span class="pre">Run</span></code></li>
+<li>This should generate a workspace with <code class="docutils literal notranslate"><span class="pre">_calib</span></code> at the end</li>
+<li>Check the <code class="docutils literal notranslate"><span class="pre">Create</span> <span class="pre">RES</span></code> box</li>
+<li>Click <code class="docutils literal notranslate"><span class="pre">Run</span></code></li>
+<li>This should generate a workspace with <code class="docutils literal notranslate"><span class="pre">_res</span></code> at the end</li>
+<li>Click <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">result</span></code> - should produce two plots</li>
+<li>Enter <code class="docutils literal notranslate"><span class="pre">Run</span> <span class="pre">number</span></code> 55878-55879 and check <code class="docutils literal notranslate"><span class="pre">Sum</span> <span class="pre">Files</span></code></li>
+<li>Click <code class="docutils literal notranslate"><span class="pre">Run</span></code>, this should produce a <code class="docutils literal notranslate"><span class="pre">_calib</span></code> workspace</li>
+<li>Make sure that you keep the <code class="docutils literal notranslate"><span class="pre">_calib</span></code> workspace, it is needed for the next test</li>
+<li>Enter <code class="docutils literal notranslate"><span class="pre">Run</span> <span class="pre">number</span></code> 59057-59059 and check <code class="docutils literal notranslate"><span class="pre">Sum</span> <span class="pre">Files</span></code></li>
+<li>Set <code class="docutils literal notranslate"><span class="pre">Reflection</span></code> to 004</li>
+<li>This should produce a new <code class="docutils literal notranslate"><span class="pre">_calib</span></code> workspace, with <code class="docutils literal notranslate"><span class="pre">004</span></code> in the name</li>
+</ol>
+<p><strong>Time required 5-10 minutes</strong></p>
+<hr class="docutils" />
+<ol class="arabic simple">
+<li>Open <code class="docutils literal notranslate"><span class="pre">Interfaces</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Indirect</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">reduction</span></code></li>
+<li>Make sure <code class="docutils literal notranslate"><span class="pre">Instrument</span></code> is set to <code class="docutils literal notranslate"><span class="pre">IRIS</span></code></li>
+<li>Check the <code class="docutils literal notranslate"><span class="pre">Sum</span> <span class="pre">spectra</span></code> box</li>
+<li>In the <code class="docutils literal notranslate"><span class="pre">Run</span> <span class="pre">files</span></code> box enter <code class="docutils literal notranslate"><span class="pre">26184-26185</span></code></li>
+<li>Click <code class="docutils literal notranslate"><span class="pre">Run</span></code></li>
+<li>Check the <code class="docutils literal notranslate"><span class="pre">Use</span> <span class="pre">Calib</span> <span class="pre">File</span></code> box</li>
+<li>Change <code class="docutils literal notranslate"><span class="pre">File</span></code> to <code class="docutils literal notranslate"><span class="pre">Workspace</span></code> and choose the <code class="docutils literal notranslate"><span class="pre">_calib</span></code> workspace previously created (From the previous test)</li>
+<li>Click <code class="docutils literal notranslate"><span class="pre">Run</span></code></li>
+<li>In the main GUI right-click on the <code class="docutils literal notranslate"><span class="pre">iris26184_multi_graphite002_red</span></code> workspace</li>
+<li>Choose <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">spectrum</span></code>, note the number of spectra, should be 50</li>
+<li>Click <code class="docutils literal notranslate"><span class="pre">Cancel</span></code></li>
+<li>In the <code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">reduction</span></code> GUI, change the setting <code class="docutils literal notranslate"><span class="pre">Mode</span></code> to Groups</li>
+<li>Set <code class="docutils literal notranslate"><span class="pre">Groups</span></code> to 5</li>
+<li>Click <code class="docutils literal notranslate"><span class="pre">Run</span></code></li>
+<li>In the main GUI right-click on the <code class="docutils literal notranslate"><span class="pre">iris26184_multi_graphite002_red</span></code> workspace</li>
+<li>Choose <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">spectrum</span></code>, note the number of spectra, should be 6</li>
+<li>Choose <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">All</span></code>, this should result in a plot of all 6 spectra</li>
+<li>Go to the <code class="docutils literal notranslate"><span class="pre">S(Q,</span> <span class="pre">W)</span></code> tab</li>
+<li>Change <code class="docutils literal notranslate"><span class="pre">File</span></code> to <code class="docutils literal notranslate"><span class="pre">Workspace</span></code> and load the <code class="docutils literal notranslate"><span class="pre">_red</span></code> workspace just created</li>
+<li>Set <code class="docutils literal notranslate"><span class="pre">Q-Low</span></code> - <code class="docutils literal notranslate"><span class="pre">Q-width</span></code> - <code class="docutils literal notranslate"><span class="pre">Q-High</span></code> to 0.2, 0.2, 1.8</li>
+<li>Click <code class="docutils literal notranslate"><span class="pre">Run</span></code></li>
+<li>Should create a <code class="docutils literal notranslate"><span class="pre">_sqw</span></code> workspace</li>
+<li>Check <code class="docutils literal notranslate"><span class="pre">Rebin</span> <span class="pre">in</span> <span class="pre">energy</span></code></li>
+<li>Set <code class="docutils literal notranslate"><span class="pre">Q-Low</span></code> - <code class="docutils literal notranslate"><span class="pre">Q-width</span></code> - <code class="docutils literal notranslate"><span class="pre">Q-High</span></code> to -0.5, 0.01, 0.5</li>
+<li>Click <code class="docutils literal notranslate"><span class="pre">Run</span></code></li>
+<li>With <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">Output</span></code> set as Contour click <code class="docutils literal notranslate"><span class="pre">Plot</span></code>, this should result in a 2D contour plot</li>
+<li>Click <code class="docutils literal notranslate"><span class="pre">Manage</span> <span class="pre">User</span> <span class="pre">Directories</span></code> and set the default save location</li>
+<li>Click <code class="docutils literal notranslate"><span class="pre">Save</span> <span class="pre">Result</span></code></li>
+<li>Check that the <code class="docutils literal notranslate"><span class="pre">.nxs</span></code> file was created in the correct location</li>
+</ol>
+</div>
+<div class="section" id="data-analysis-elwin">
+<h2><a class="toc-backref" href="#id4">Data analysis Elwin</a><a class="headerlink" href="#data-analysis-elwin" title="Permalink to this headline">¶</a></h2>
+<p><em>Preparation</em></p>
+<ul class="simple">
+<li>ISIS Sample data set, <a class="reference external" href="http://download.mantidproject.org/">available here</a></li>
+<li>Make sure that the data set is on your list of search directories</li>
+</ul>
+<p><strong>Time required 3 - 5 minutes</strong></p>
+<hr class="docutils" />
+<ol class="arabic simple">
+<li>Go to <code class="docutils literal notranslate"><span class="pre">Interfaces</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Indirect</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Analysis</span></code></li>
+<li>Enter <code class="docutils literal notranslate"><span class="pre">irs26176_graphite002_red.nxs</span></code> in <code class="docutils literal notranslate"><span class="pre">Input</span> <span class="pre">file</span></code></li>
+<li>Click <code class="docutils literal notranslate"><span class="pre">Run</span></code> - this should produce 3 new workspaces <code class="docutils literal notranslate"><span class="pre">_elf</span></code>, <code class="docutils literal notranslate"><span class="pre">_eq</span></code> and <code class="docutils literal notranslate"><span class="pre">_eq2</span></code></li>
+<li>Now in <code class="docutils literal notranslate"><span class="pre">Input</span> <span class="pre">file</span></code> choose browse, navigate to the ISIS-Sample data and select the two files above simultaneously, by using shift key</li>
+<li>Change the integration range from -0.2 to 0.2</li>
+<li>Click <code class="docutils literal notranslate"><span class="pre">Run</span></code></li>
+<li>This should result in three new workspaces again, this time with file ranges as their name</li>
+<li>In the main GUI right-click on <code class="docutils literal notranslate"><span class="pre">irs26174-26176_graphite002_red_elwin_eq2</span></code> and choose <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">Spectrum</span></code>, choose <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">All</span></code></li>
+<li>This should plot two lines of <div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">A^{-2}</tt>)</p>
+latex exited with error
+[stdout]
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=latex)
+ restricted \write18 enabled.
+entering extended mode
+(./math.tex
+LaTeX2e &lt;2016/02/01&gt;
+Babel &lt;3.9q&gt; and hyphenation patterns for 7 language(s) loaded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo))
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+
+! LaTeX Error: File `utf8x.def' not found.
+
+Type X to quit or &lt;RETURN&gt; to proceed,
+or enter new name. (Default extension: def)
+
+Enter file name: 
+! Emergency stop.
+&lt;read *&gt; 
+         
+l.173 \endinput
+               ^^M
+No pages of output.
+Transcript written on math.log.
+</div>
+ vs <div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">Q</tt>)</p>
+latex exited with error
+[stdout]
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=latex)
+ restricted \write18 enabled.
+entering extended mode
+(./math.tex
+LaTeX2e &lt;2016/02/01&gt;
+Babel &lt;3.9q&gt; and hyphenation patterns for 7 language(s) loaded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo))
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+
+! LaTeX Error: File `utf8x.def' not found.
+
+Type X to quit or &lt;RETURN&gt; to proceed,
+or enter new name. (Default extension: def)
+
+Enter file name: 
+! Emergency stop.
+&lt;read *&gt; 
+         
+l.173 \endinput
+               ^^M
+No pages of output.
+Transcript written on math.log.
+</div>
+</li>
+<li>Right-click on the <code class="docutils literal notranslate"><span class="pre">irs26176_graphite002_elwin_eq</span></code> workspace and <code class="docutils literal notranslate"><span class="pre">Save</span> <span class="pre">Nexus</span></code>; save to a location of your choice; you will use this file in the next test</li>
+</ol>
+</div>
+<div class="section" id="data-analysis-msd">
+<h2><a class="toc-backref" href="#id5">Data analysis MSD</a><a class="headerlink" href="#data-analysis-msd" title="Permalink to this headline">¶</a></h2>
+<p><em>Preparation</em></p>
+<ul class="simple">
+<li>The <code class="docutils literal notranslate"><span class="pre">_eq.nxs</span></code> file from the previous test</li>
+</ul>
+<p><strong>Time required 3 - 5 minutes</strong></p>
+<hr class="docutils" />
+<ol class="arabic simple">
+<li>Go to <code class="docutils literal notranslate"><span class="pre">Interfaces</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Indirect</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Analysis</span></code></li>
+<li>Go to the <code class="docutils literal notranslate"><span class="pre">MSD</span> <span class="pre">fit</span></code> tab</li>
+<li>Load the file that you saved in the previous test</li>
+<li>Set <code class="docutils literal notranslate"><span class="pre">Fit</span> <span class="pre">type</span></code> to Gaussian</li>
+<li>Click <code class="docutils literal notranslate"><span class="pre">Run</span></code></li>
+<li>This should produce a plot of the fitted function in the interface</li>
+<li>Change <code class="docutils literal notranslate"><span class="pre">End</span> <span class="pre">X</span></code> to 1.0</li>
+<li>Click <code class="docutils literal notranslate"><span class="pre">Run</span></code></li>
+<li>Repeat the previous steps with <code class="docutils literal notranslate"><span class="pre">Peters</span></code> and <code class="docutils literal notranslate"><span class="pre">Yi</span></code> functions</li>
+<li>Try run fits using the different <code class="docutils literal notranslate"><span class="pre">Minimizer</span></code> options (except FABADA), each time change the <code class="docutils literal notranslate"><span class="pre">End</span> <span class="pre">X</span></code> value either + or - 0.1</li>
+</ol>
+</div>
+<div class="section" id="data-analysis-conv-fit">
+<h2><a class="toc-backref" href="#id6">Data analysis Conv Fit</a><a class="headerlink" href="#data-analysis-conv-fit" title="Permalink to this headline">¶</a></h2>
+<p><em>Preparation</em></p>
+<ul class="simple">
+<li>ISIS Sample data set, <a class="reference external" href="http://download.mantidproject.org/">available here</a></li>
+</ul>
+<p><strong>Time required 3 - 5 minutes</strong></p>
+<hr class="docutils" />
+<ol class="arabic simple">
+<li>Go to <code class="docutils literal notranslate"><span class="pre">Interfaces</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Indirect</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Analysis</span></code></li>
+<li>Go to the <code class="docutils literal notranslate"><span class="pre">Conv</span> <span class="pre">Fit</span></code> tab</li>
+<li>Load the <code class="docutils literal notranslate"><span class="pre">irs26176_graphite002_red.nxs</span></code> file from the sample data</li>
+<li>Load the resolution file <code class="docutils literal notranslate"><span class="pre">irs26173_graphite002_res.nxs</span></code> from the sample data</li>
+<li>Set <code class="docutils literal notranslate"><span class="pre">Fit</span> <span class="pre">spectra</span></code> to 0 - 5</li>
+<li>Set <code class="docutils literal notranslate"><span class="pre">Fit</span> <span class="pre">type</span></code> to Two Lorentzians</li>
+<li>Set <code class="docutils literal notranslate"><span class="pre">Max</span> <span class="pre">iterations</span></code> to 400</li>
+<li>Click <code class="docutils literal notranslate"><span class="pre">Run</span></code></li>
+<li>Three new workspaces should be created in the main GUI - <code class="docutils literal notranslate"><span class="pre">Parameters</span></code>, <code class="docutils literal notranslate"><span class="pre">Result</span></code> and <code class="docutils literal notranslate"><span class="pre">Workspaces</span></code></li>
+<li>In the <code class="docutils literal notranslate"><span class="pre">Fit</span></code> tab, change <code class="docutils literal notranslate"><span class="pre">Fit</span> <span class="pre">spectra</span></code> to String and enter 3</li>
+<li>Click <code class="docutils literal notranslate"><span class="pre">Run</span></code> the plot should update and new workspaces are created in the main Mantid GUI</li>
+<li>Set <code class="docutils literal notranslate"><span class="pre">Fit</span> <span class="pre">spectra</span></code> to String 3</li>
+<li>Click <code class="docutils literal notranslate"><span class="pre">Run</span></code>; the plot should update and new workspaces are created in the main Mantid GUI</li>
+<li>Try the various <code class="docutils literal notranslate"><span class="pre">Plot</span></code> options in the interface<ol class="loweralpha">
+<li><code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">Output</span></code> set to All and click plot - should give 4 separate plots</li>
+<li><code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">Current</span> <span class="pre">Preview</span></code> - should result in a plot with three datasets</li>
+<li>Enable the <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">Guess</span></code> checkbox - should not change anything, but should not break anything either!</li>
+</ol>
+</li>
+<li>Change the <code class="docutils literal notranslate"><span class="pre">Fit</span> <span class="pre">type</span></code> to different functions and run fits</li>
+</ol>
+</div>
+<div class="section" id="data-analysis-i-q-t">
+<h2><a class="toc-backref" href="#id7">Data analysis I(Q, T)</a><a class="headerlink" href="#data-analysis-i-q-t" title="Permalink to this headline">¶</a></h2>
+<p><em>Preparation</em></p>
+<ul class="simple">
+<li>Access to ISIS sample data</li>
+</ul>
+<p><strong>Time required 3 - 5 minutes</strong></p>
+<hr class="docutils" />
+<ol class="arabic simple">
+<li>Go to <code class="docutils literal notranslate"><span class="pre">Interfaces</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Indirect</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Analysis</span></code></li>
+<li>Go to the <code class="docutils literal notranslate"><span class="pre">I(Q,</span> <span class="pre">T)</span></code> tab</li>
+<li>Load the <code class="docutils literal notranslate"><span class="pre">irs26176_graphite002_red.nxs</span></code> file from the sample data</li>
+<li>Load the resolution file <code class="docutils literal notranslate"><span class="pre">irs26173_graphite002_res.nxs</span></code> from the sample data</li>
+<li>Click <code class="docutils literal notranslate"><span class="pre">Run</span></code></li>
+<li>A new workspace with the suffix <code class="docutils literal notranslate"><span class="pre">_iqt</span></code> should appear in the main GUI, it should be a 87 x 51 table. <strong>NB</strong> keep this workspace for the next test</li>
+<li>Click <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">Current</span> <span class="pre">View</span></code> this should plot the same data as the preview window</li>
+<li>Click <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">Result</span></code> this should give a plot with the title <em>irs26176_graphite002_iqt</em></li>
+</ol>
+</div>
+<div class="section" id="data-analysis-i-q-t-fit">
+<h2><a class="toc-backref" href="#id8">Data analysis I(Q, T) Fit</a><a class="headerlink" href="#data-analysis-i-q-t-fit" title="Permalink to this headline">¶</a></h2>
+<p><em>Preparation</em></p>
+<ul class="simple">
+<li>The <code class="docutils literal notranslate"><span class="pre">_iqt</span></code> workspace from the previous test</li>
+</ul>
+<p><strong>Time required 3 - 5 minutes</strong></p>
+<hr class="docutils" />
+<ol class="arabic simple">
+<li>Go to <code class="docutils literal notranslate"><span class="pre">Interfaces</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Indirect</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Analysis</span></code></li>
+<li>Go to the <code class="docutils literal notranslate"><span class="pre">I(Q,</span> <span class="pre">T)</span> <span class="pre">Fit</span></code> tab</li>
+<li>Load the <code class="docutils literal notranslate"><span class="pre">_iqt</span></code> workspace from the previous test</li>
+<li>Set <code class="docutils literal notranslate"><span class="pre">Exponential</span></code> to 1</li>
+<li>Set <code class="docutils literal notranslate"><span class="pre">EndX</span></code> to 0.14</li>
+<li>Click <code class="docutils literal notranslate"><span class="pre">Run</span></code></li>
+<li>This should produce a fit and a difference plot in the window</li>
+<li>Click <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">current</span> <span class="pre">preview</span></code> this should open a plot with three datasets plotted</li>
+<li>Change <code class="docutils literal notranslate"><span class="pre">Range</span></code> to 0 - 10</li>
+<li>Click <code class="docutils literal notranslate"><span class="pre">Run</span></code></li>
+<li>Select Lifetime from the <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">Output</span></code> drop-down</li>
+<li>Click <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">Result</span></code> this should open a new plot with the lifetimes plotted</li>
+</ol>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+      <ul class="nav navbar-nav" style=" float: right;">
+      
+      
+          
+            
+  <li>
+    <a href="../MuonInterface/MuonTesting.html" title="Previous Chapter: Muon Testing"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Muon Testing</span>
+    </a>
+  </li>
+  <li>
+    <a href="../ErrorReporter-ProjectRecovery/ErrorReporterTesting.html" title="Next Chapter: Error Reporter Testing"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Error Reporte... &raquo;</span>
+    </a>
+  </li>
+          
+       
+          <li><a href="#">Back to top</a></li>
+       </ul>
+    <p>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
