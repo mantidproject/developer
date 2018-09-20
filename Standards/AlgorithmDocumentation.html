@@ -112,14 +112,14 @@
 </div>
 <div class="section" id="summary">
 <h2><a class="toc-backref" href="#id1">Summary</a><a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
-<p>This page deals with the specifics of how to document an algorithm. For a more general guide to the Mantid documentation system see <a class="reference external" href="DocumentationGuideForDevs.html">Documentation Guide For Devs</a>.</p>
+<p>This page deals with the specifics of how to document an algorithm. For a more general guide to the Mantid documentation system see <a class="reference internal" href="DocumentationGuideForDevs.html#documentationguidefordevs"><span class="std std-ref">Documentation Guide For Devs</span></a>.</p>
 </div>
 <div class="section" id="how-to-document-an-algorithm">
 <h2><a class="toc-backref" href="#id2">How to Document an Algorithm</a><a class="headerlink" href="#how-to-document-an-algorithm" title="Permalink to this headline">¶</a></h2>
 <p>Algorithm documentation is stored in two places.</p>
 <ul class="simple">
 <li>The code (.cpp / .h / .py) files: For strings that are needed in the GUI for tooltips etc.</li>
-<li>The .rst file: For all other documentation, including the algorithm description and <a class="reference external" href="AlgorithmUsageExamples.html">usage examples</a>.</li>
+<li>The .rst file: For all other documentation, including the algorithm description and <a class="reference internal" href="AlgorithmUsageExamples.html#algorithmusageexamples"><span class="std std-ref">usage examples</span></a>.</li>
 </ul>
 <div class="section" id="the-code-files">
 <h3><a class="toc-backref" href="#id3">The Code Files</a><a class="headerlink" href="#the-code-files" title="Permalink to this headline">¶</a></h3>
@@ -165,7 +165,7 @@
 </div>
 <div class="section" id="workflow-algorithms">
 <h2><a class="toc-backref" href="#id5">Workflow algorithms</a><a class="headerlink" href="#workflow-algorithms" title="Permalink to this headline">¶</a></h2>
-<p>There should be a flow chart for workflow algorithms. See <a class="reference external" href="FlowchartCreation.html">here</a> on how to make one.</p>
+<p>There should be a flow chart for workflow algorithms. See <a class="reference internal" href="../FlowchartCreation.html#flowchartcreation"><span class="std std-ref">here</span></a> on how to make one.</p>
 </div>
 <div class="section" id="algorithm-directives">
 <h2><a class="toc-backref" href="#id6">Algorithm Directives</a><a class="headerlink" href="#algorithm-directives" title="Permalink to this headline">¶</a></h2>
@@ -175,7 +175,7 @@
 
 <span class="p">..</span> <span class="ow">summary</span><span class="p">::</span>
 
-<span class="p">..</span> <span class="ow">alias</span><span class="p">::</span>
+<span class="p">..</span> <span class="ow">relatedalgorithms</span><span class="p">::</span>
 
 <span class="p">..</span> <span class="ow">properties</span><span class="p">::</span>
 
@@ -215,11 +215,14 @@ A custom usage example.
 </pre></div>
 </div>
 <dl class="docutils">
-<dt><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">alias::</span></code></dt>
-<dd>This directive obtains aliases from the required <code class="docutils literal notranslate"><span class="pre">alias</span></code> method in the algorithm, for example, the following method is used in Rebin:</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">relatedalgorithms::</span></code></dt>
+<dd>This directive obtains a list of related algorithms from the <code class="docutils literal notranslate"><span class="pre">seeAlso</span></code> and <code class="docutils literal notranslate"><span class="pre">alias</span></code> methods in the algorithm, for example, the following <code class="docutils literal notranslate"><span class="pre">seeAlso</span></code> is used in Rebin:</dd>
 </dl>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span class="c1">/// Algorithm&#39;s aliases</span>
-<span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">alias</span><span class="p">()</span> <span class="k">const</span> <span class="k">override</span> <span class="p">{</span> <span class="k">return</span> <span class="s">&quot;rebin&quot;</span><span class="p">;</span> <span class="p">}</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span class="c1">/// Algorithm&#39;s seeAlso</span>
+<span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">seeAlso</span><span class="p">()</span> <span class="k">const</span> <span class="k">override</span> <span class="p">{</span>
+ <span class="k">return</span> <span class="p">{</span><span class="s">&quot;RebinToWorkspace&quot;</span><span class="p">,</span> <span class="s">&quot;Rebin2D&quot;</span><span class="p">,</span>           <span class="s">&quot;Rebunch&quot;</span><span class="p">,</span>
+         <span class="s">&quot;Regroup&quot;</span><span class="p">,</span>          <span class="s">&quot;RebinByPulseTimes&quot;</span><span class="p">,</span> <span class="s">&quot;RebinByTimeAtSample&quot;</span><span class="p">};</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <dl class="docutils">
@@ -235,7 +238,7 @@ A custom usage example.
 <p>When the HTML is generate a categories list is built that contains: Algorithms, Transforms and Rebin.</p>
 <p>It is possible to add additional categories by passing the directive arguments, for example, the following would output the above categories, and also <cite>Example</cite>:</p>
 <dl class="docutils">
-<dt><code class="docutils literal notranslate"><span class="pre">..sourcelink</span> <span class="pre">::</span></code></dt>
+<dt><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">sourcelink::</span></code></dt>
 <dd>This directive adds links to the algorithms source code.</dd>
 </dl>
 </div>
@@ -257,7 +260,7 @@ A custom usage example.
 </div>
 <div class="section" id="usage">
 <h2><a class="toc-backref" href="#id9">Usage</a><a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
-<p>This section <em>must</em> be manually entered. The usage is a ‘code’ example of the algorithm in use. The <cite>testcode</cite> directive must be used to verify the usage code you entered works correctly. See <a class="reference external" href="AlgorithmUsageExamples">here</a> for more information on how to write usage examples.</p>
+<p>This section <em>must</em> be manually entered. The usage is a ‘code’ example of the algorithm in use. The <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">testcode::</span></code> directive must be used to verify the usage code you entered works correctly. See <a class="reference internal" href="AlgorithmUsageExamples.html#algorithmusageexamples"><span class="std std-ref">here</span></a> for more information on how to write usage examples.</p>
 </div>
 <div class="section" id="building-the-documentation">
 <h2><a class="toc-backref" href="#id10">Building the Documentation</a><a class="headerlink" href="#building-the-documentation" title="Permalink to this headline">¶</a></h2>
