@@ -276,27 +276,21 @@ are on the <a class="reference external" href="http://docs.mantidproject.org/nig
 <li>Test multiple instances of Mantid running</li>
 </ol>
 <ul class="simple">
-<li>Open MantidPlot - make sure no other instances of MantidPlot are running</li>
-<li>Run the script:</li>
+<li>Launch 2 instances of mantid</li>
+<li>Run the script on the first instance:</li>
 </ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span class="n">CreateWorkspace</span><span class="p">(</span><span class="n">DataX</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="n">DataY</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="n">DataE</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="n">NSpec</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;NewWorkspace1&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span class="n">CreateWorkspace</span><span class="p">(</span><span class="n">DataX</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="n">DataY</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="n">DataE</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="n">NSpec</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;Instance 1&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <ul class="simple">
-<li>Make sure that Log level is set to <cite>Debug</cite> in the results log</li>
-<li>Open a second instance of Mantid</li>
-<li>In the results log it should say <code class="docutils literal notranslate"><span class="pre">Another</span> <span class="pre">MantidPlot</span> <span class="pre">process</span> <span class="pre">is</span> <span class="pre">running.</span> <span class="pre">Project</span> <span class="pre">recovery</span> <span class="pre">is</span> <span class="pre">disabled.</span></code></li>
-<li>Run the script:</li>
+<li>Run this script on the other instance:</li>
 </ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span class="n">CreateWorkspace</span><span class="p">(</span><span class="n">DataX</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="n">DataY</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="n">DataE</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="n">NSpec</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;NewWorkspace2&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span class="n">CreateWorkspace</span><span class="p">(</span><span class="n">DataX</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="n">DataY</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="n">DataE</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="n">NSpec</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;Instance 2&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <ul class="simple">
 <li>Crash the first instance of Mantid with <cite>Segfault</cite>; choose <cite>Do not share information</cite> in the error dialog</li>
 <li>Do not exit the second instance of Mantid</li>
-<li>Restart Mantid</li>
-<li>In the results log it should say <code class="docutils literal notranslate"><span class="pre">Another</span> <span class="pre">MantidPlot</span> <span class="pre">process</span> <span class="pre">is</span> <span class="pre">running.</span> <span class="pre">Project</span> <span class="pre">recovery</span> <span class="pre">is</span> <span class="pre">disabled.</span></code></li>
-<li>Close both instances of Mantid</li>
 <li>Restart Mantid</li>
 <li>You should be presented with a dialog offering to attempt a recovery - choose <cite>Yes</cite></li>
 <li><cite>NewWorkspace1</cite> should appear in the workspace dialog</li>
