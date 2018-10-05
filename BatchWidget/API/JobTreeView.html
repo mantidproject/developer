@@ -97,7 +97,13 @@ with a spreadsheet-like appearance for configuring and indicating the status of 
 reduction jobs. It is currently used to implement the tree component of the Batch Widget.</p>
 <p>It is written in C++ and exposed to python through SIP leading to similar APIs as shown by the
 examples below.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">mantidqtpython</span> <span class="k">import</span> <span class="n">MantidQt</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="c1"># Mantid Repository : https://github.com/mantidproject/mantid</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright &amp;copy; 2018 ISIS Rutherford Appleton Laboratory UKRI,</span>
+<span class="c1">#     NScD Oak Ridge National Laboratory, European Spallation Source</span>
+<span class="c1">#     &amp; Institut Laue - Langevin</span>
+<span class="c1"># SPDX - License - Identifier: GPL - 3.0 +</span>
+<span class="kn">from</span> <span class="nn">mantidqtpython</span> <span class="k">import</span> <span class="n">MantidQt</span>
 
 
 <span class="c1"># Inside the parent view</span>
@@ -124,7 +130,13 @@ examples below.</p>
     <span class="k">return</span> <span class="n">MantidQt</span><span class="o">.</span><span class="n">MantidWidgets</span><span class="o">.</span><span class="n">Batch</span><span class="o">.</span><span class="n">RowLocation</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span class="cp">#include</span> <span class="cpf">&quot;MantidQtWidgets/Common/Batch/JobTreeView.h&quot;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span class="c1">// Mantid Repository : https://github.com/mantidproject/mantid</span>
+<span class="c1">//</span>
+<span class="c1">// Copyright &amp;copy; 2018 ISIS Rutherford Appleton Laboratory UKRI,</span>
+<span class="c1">//     NScD Oak Ridge National Laboratory, European Spallation Source</span>
+<span class="c1">//     &amp; Institut Laue - Langevin</span>
+<span class="c1">// SPDX - License - Identifier: GPL - 3.0 +</span>
+<span class="cp">#include</span> <span class="cpf">&quot;MantidQtWidgets/Common/Batch/JobTreeView.h&quot;</span><span class="cp"></span>
 
 <span class="k">using</span> <span class="k">namespace</span> <span class="n">MantidWidgets</span><span class="o">::</span><span class="n">Common</span><span class="o">::</span><span class="n">Batch</span><span class="p">;</span>
 
@@ -198,7 +210,13 @@ view-implementation independent format.</p>
 them does not directly update the view. In order to update the cell or cells corresponding to a row,
 the methods <code class="code docutils literal notranslate"><span class="pre">setCellAt</span></code> or <code class="code docutils literal notranslate"><span class="pre">setCellsAt</span></code> should be used. This process is illustrated in
 the example code below.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">mantidqtpython</span> <span class="k">import</span> <span class="n">MantidQt</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="c1"># Mantid Repository : https://github.com/mantidproject/mantid</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright &amp;copy; 2018 ISIS Rutherford Appleton Laboratory UKRI,</span>
+<span class="c1">#     NScD Oak Ridge National Laboratory, European Spallation Source</span>
+<span class="c1">#     &amp; Institut Laue - Langevin</span>
+<span class="c1"># SPDX - License - Identifier: GPL - 3.0 +</span>
+<span class="kn">from</span> <span class="nn">mantidqtpython</span> <span class="k">import</span> <span class="n">MantidQt</span>
 
 
 <span class="c1"># Inside the parent view</span>
@@ -249,7 +267,13 @@ on the internal representation of a subtree in this API.</p>
 <h3>Notification<a class="headerlink" href="#notification" title="Permalink to this headline">¶</a></h3>
 <p><code class="code docutils literal notranslate"><span class="pre">JobTreeViewSubscriber</span></code> is the mechanism by which the JobTreeView communicates events such as
 key presses to the presenter in an MVP setup.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span class="cp">#include</span> <span class="cpf">&quot;MantidQtWidgets/Common/Batch/JobTreeView.h&quot;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span class="c1">// Mantid Repository : https://github.com/mantidproject/mantid</span>
+<span class="c1">//</span>
+<span class="c1">// Copyright &amp;copy; 2018 ISIS Rutherford Appleton Laboratory UKRI,</span>
+<span class="c1">//     NScD Oak Ridge National Laboratory, European Spallation Source</span>
+<span class="c1">//     &amp; Institut Laue - Langevin</span>
+<span class="c1">// SPDX - License - Identifier: GPL - 3.0 +</span>
+<span class="cp">#include</span> <span class="cpf">&quot;MantidQtWidgets/Common/Batch/JobTreeView.h&quot;</span><span class="cp"></span>
 
 <span class="k">using</span> <span class="k">namespace</span> <span class="n">MantidWidgets</span><span class="o">::</span><span class="n">Common</span><span class="o">::</span><span class="n">Batch</span><span class="p">;</span>
 
@@ -289,7 +313,13 @@ notification does not happen until after said event has taken place and the view
 already been updated. Therefore, if a presenter determines that said action is on-reflection invalid
 it will be required to call a method which updates the view and rolls back the action.
 This is illustrated in the example below.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">mantidqtpython</span> <span class="k">import</span> <span class="n">MantidQt</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="c1"># Mantid Repository : https://github.com/mantidproject/mantid</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright &amp;copy; 2018 ISIS Rutherford Appleton Laboratory UKRI,</span>
+<span class="c1">#     NScD Oak Ridge National Laboratory, European Spallation Source</span>
+<span class="c1">#     &amp; Institut Laue - Langevin</span>
+<span class="c1"># SPDX - License - Identifier: GPL - 3.0 +</span>
+<span class="kn">from</span> <span class="nn">mantidqtpython</span> <span class="k">import</span> <span class="n">MantidQt</span>
 
 
 <span class="k">def</span> <span class="nf">empty_cell</span><span class="p">():</span>
@@ -330,7 +360,13 @@ node in the MVP model or their corresponding cells from the view.</p>
 <p>The header <code class="code docutils literal notranslate"><span class="pre">RowPredicate.h</span></code> defines the interface which must be implemented by implementations
 of such predicates. The method <code class="code docutils literal notranslate"><span class="pre">filterRowsBy</span></code> defined in <code class="code docutils literal notranslate"><span class="pre">JobTreeView</span></code> can be used to set
 the currently active filter as demonstrated by the code below.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">mantidqtpython</span> <span class="k">import</span> <span class="n">MantidQt</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="c1"># Mantid Repository : https://github.com/mantidproject/mantid</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright &amp;copy; 2018 ISIS Rutherford Appleton Laboratory UKRI,</span>
+<span class="c1">#     NScD Oak Ridge National Laboratory, European Spallation Source</span>
+<span class="c1">#     &amp; Institut Laue - Langevin</span>
+<span class="c1"># SPDX - License - Identifier: GPL - 3.0 +</span>
+<span class="kn">from</span> <span class="nn">mantidqtpython</span> <span class="k">import</span> <span class="n">MantidQt</span>
 <span class="kn">import</span> <span class="nn">re</span>
 
 
