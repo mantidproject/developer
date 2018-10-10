@@ -117,6 +117,7 @@ For this reason, only functions that are <em>absolutely necessary</em> should be
 <li>Four subplots, in a two-by-two grid</li>
 </ul>
 <p><em>This layout can be changed by modifying ``plotting_utils.py``.</em></p>
+<p>The python toolbar is available for use. Two custom buttons have been added for adding and removing lines from a subplot.</p>
 </div>
 <div class="section" id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
@@ -148,9 +149,14 @@ For this reason, only functions that are <em>absolutely necessary</em> should be
     <span class="n">AxisChanger</span><span class="o">/</span>
         <span class="n">axis_changer_presenter</span><span class="o">.</span><span class="n">py</span>
         <span class="n">axis_changer_view</span><span class="o">.</span><span class="n">py</span>
+    <span class="n">edit_widows</span><span class="o">/</span>
+        <span class="n">remove_plot_window</span><span class="o">.</span><span class="n">py</span>
+        <span class="n">select_subplot</span><span class="o">.</span><span class="n">py</span>
     <span class="n">plotting_presenter</span><span class="o">.</span><span class="n">py</span>
     <span class="n">plotting_view</span><span class="o">.</span><span class="n">py</span>
     <span class="n">plotting_utils</span><span class="o">.</span><span class="n">py</span>
+    <span class="n">subPlot_object</span><span class="o">.</span><span class="n">py</span>
+    <span class="n">navigation_toolbar</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 </div>
 <p>Both the Plotting and AxisChanger modules are in MVP (Model, View, Presenter) format, as this benefits maintainability.</p>
@@ -183,17 +189,23 @@ For this reason, only functions that are <em>absolutely necessary</em> should be
 <h2>TODO<a class="headerlink" href="#todo" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>Move plotting to a more central, accessible location in the mantid codebase</li>
-<li>Options for changing line colours, fonts etc.</li>
 <li>Moveable lines with the related events (i.e. can check whether a line is moved within tolerance of a given x value)</li>
 <li>Addition of more subplots</li>
-<li>Exporting subplots as PNGs etc.</li>
-<li>Removal of individual plots from a subplot (the way plotted lines are stored would have to be changed)</li>
+<li>Allow any spectrum number to be plotted</li>
+</ul>
+</div>
+<div class="section" id="done">
+<h2>Done<a class="headerlink" href="#done" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Options for changing line colours, fonts etc. This is done by python toolbar.</li>
+<li>Exporting subplots as PNGs etc. This is done by python toolbar.</li>
+<li>Removal of individual plots from a subplot (the way plotted lines are stored would have to be changed). Needed some rewritting but done now.</li>
 </ul>
 </div>
 <div class="section" id="known-issues">
 <h2>Known Issues<a class="headerlink" href="#known-issues" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>TBC after testing</li>
+<li>Axis change goes blank after removing subplot.</li>
 </ul>
 </div>
 <div class="section" id="related-bugs-notes">
