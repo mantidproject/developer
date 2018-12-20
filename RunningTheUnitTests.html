@@ -163,23 +163,26 @@ failing in order to pass. Useful to try and find random failures</li>
 <ul>
 <li><p class="first">Running an entire test suite (e.g. KernelTest):</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre>ctest -j8 -R KernelTest
-bin/KernelTest
+./bin/KernelTest
 </pre></div>
 </div>
 </li>
 <li><p class="first">Running a specific test class.</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre>ctest -R MyTestClassName
-bin/KernelTest MyTestClassName
+./bin/KernelTest MyTestClassName
 </pre></div>
 </div>
 </li>
-<li><p class="first">Running a specific test.</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>bin/KernelTest MyTestClassName MySingleTestName<span class="sb">``</span>
+<li><p class="first">Running a specific test from a CxxTest test class (not possible via CTest).</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre>./bin/KernelTest MyTestClassName MySingleTestName
 </pre></div>
 </div>
-<ul class="simple">
-<li>Not possible with ctest.</li>
-</ul>
+</li>
+<li><p class="first">Running a specific test from a Python <code class="docutils literal notranslate"><span class="pre">unittest</span></code> test class (not possible
+via CTest).</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre>./bin/mantidpython /path/to/src/Framework/PythonInterface/test/python/plugins/algorithms/MeanTest.py MeanTest.test_mean
+</pre></div>
+</div>
 </li>
 </ul>
 </div>
