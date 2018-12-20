@@ -104,24 +104,12 @@ migration strategy for Mantid.</p>
 </div>
 <div class="section" id="building-against-python-3">
 <h2><a class="toc-backref" href="#id2">Building Against Python 3</a><a class="headerlink" href="#building-against-python-3" title="Permalink to this headline">¶</a></h2>
-<p>This is currently only possible on a Linux system with a pre-installed version of python 3. You need
-to install some additional packages as shown below:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>apt-get install python3-sip-dev python3-pyqt4  python3-numpy  python3-scipy  python3-sphinx <span class="se">\</span>
-  python3-sphinx-bootstrap-theme  python3-dateutil python3-matplotlib ipython3-qtconsole <span class="se">\</span>
-  python3-h5py python3-yaml
-</pre></div>
-</div>
-<p>or on fedora, with slightly different package names</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>dnf install python3-sip-devel python3-PyQt4-devel python3-numpy python3-scipy python3-sphinx <span class="se">\</span>
-  python3-sphinx-theme-bootstrap python3-dateutil python3-matplotlib python3-ipython-gui <span class="se">\</span>
-  boost-python3-devel python3-h5py python3-yaml
-</pre></div>
-</div>
-<p>then set <code class="docutils literal notranslate"><span class="pre">-DPYTHON_EXECUTABLE=/usr/bin/python3</span></code> when running cmake before building.</p>
+<p>This is currently only possible on a Linux system with a pre-installed version of python 3 and you will need to have
+the latest version of the <cite>mantid-developer</cite> package installed. Once installed run cmake as standard but with the additional option <code class="docutils literal notranslate"><span class="pre">-DPYTHON_EXECUTABLE=/usr/bin/python3</span></code>. Please note that
+reconfiguring an existing Python 2 build is not supported - a build in a fresh build directory is required.</p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">If any of these packages are installed via pip, this could cause conflicts.
-Install as described here only.</p>
+<p class="last">Do not install python packages via <code class="docutils literal notranslate"><span class="pre">pip</span></code>. Install packages only from the system repositories.</p>
 </div>
 </div>
 <div class="section" id="supporting-python-2-and-3">
