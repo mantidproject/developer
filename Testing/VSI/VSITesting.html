@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>VSI Testing</title>
+    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Doxygen Setup" href="../../DoxygenSetup.html" />
+    <link rel="prev" title="Project Recovery Testing" href="../ErrorReporter-ProjectRecovery/ProjectRecoveryTesting.html" />
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-59110517-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+  </head><body>
+
+
+
+
+
+  <div id="navbar" class="navbar navbar-default ">
+    <div class="container">
+      <div class="navbar-header">
+        
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://www.mantidproject.org"><img src="../../_static/Mantid_Logo_Transparent.png">
+           </a>
+        <span class="navbar-text navbar-version pull-left"><b>master</b></span>
+      </div>
+
+      
+        <div class="collapse navbar-collapse nav-collapse">
+      
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="http://download.mantidproject.org">Download</a></li>
+                <li><a href="http://www.mantidproject.org">Wiki</a></li>
+                <li><a href="http://docs.mantidproject.org">User Documentation</a></li>
+                <li><a href="http://www.mantidproject.org/Contact">Contact Us</a></li>
+            
+            
+              
+              
+            
+            
+            
+            
+          </ul>
+              
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+            </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="vsi-testing">
+<span id="id1"></span><h1>VSI Testing<a class="headerlink" href="#vsi-testing" title="Permalink to this headline">¶</a></h1>
+<p><em>Preparation</em></p>
+<ul class="simple">
+<li>Get the scripts from the Mantid repository <a class="reference external" href="https://github.com/mantidproject/mantid/tree/master/scripts/Vates">this directory</a>.</li>
+<li>Make sure that you have the Mantid system test data. You can do this by building a SystemTestData target of Mantid.</li>
+<li>Put the system test data directory in your Mantid user directories</li>
+</ul>
+<p><strong>Time required 20-30 minutes</strong></p>
+<hr class="docutils" />
+<ol class="arabic simple">
+<li>Load the script SXD_NaCl.py in MantidPlot. Run it.</li>
+<li>This should load a workspace called QLab. Right-click this workspace and choose ‘Show Vates simple interface’.</li>
+<li>This should open the VSI window. Like the picture below. Check that all tabs are present.</li>
+</ol>
+<div class="figure align-right">
+<img alt="alternate text" src="../../_images/vsi.png" />
+</div>
+<ol class="arabic simple">
+<li>Click the various tabs making sure that the interface does not crash.</li>
+<li>Make sure all tabs have a tool tip when you hover over them.</li>
+<li>Go into three slice mode (the star shaped tab at the top).</li>
+<li>Play with the maximum and minimum parameters at the top of the plot, make sure the colours change in the plot.</li>
+<li>Hover on each of the upper two plots and the lower left plot. While hovering over a plot use the roll bar (or equivalent), the slices in the other plots should update. The lower right plot should show all three slices. Check that the text on the plots is legible and updates appropriately.</li>
+<li>Switch to multi-slice view (just to the left of three slice view).<ol class="arabic">
+<li>In the properties tab (left of the plot) select the Display menu.</li>
+<li>Choose all options for Representation, make sure they work.</li>
+<li>Change the Styling and Lighting sliders, make sure the picture updates.</li>
+<li>Next to Data Axes Grid click edit, this should open a new dialog of settings for the plot.</li>
+<li>Change some of the properties in this dialog and click apply, the plot should update accordingly.</li>
+<li>Make sure that the sliders for the plot work. These are the triangles on the scales above and to the left of the plot. Slide them and move through the plot.</li>
+<li>On the slider scale Shift+Right-click should add another slice</li>
+<li>Select the View menu.</li>
+<li>Turn on/off the orientation axes visibility, check that the little axes icon on the plot turns on and off.</li>
+<li>Check and uncheck the parallel camera box, make sure the view switches between perspective on and off.</li>
+</ol>
+</li>
+<li>Switch to standard view (left of multi-slice)<ol class="arabic">
+<li>In the Rebin drop-down (above the plot) select Fast Rebin and click Slice - a new MDScaleWorkspace should appear in the list</li>
+<li>In the Properties tab select Properties and change the X/Y/Z scaling factors, click Apply. The plot should distort accordingly.</li>
+<li>In the properties tab click Delete and the plot alterations should be removed from the plot.</li>
+<li>Repeat the previous three steps for the different Rebin options.</li>
+</ol>
+</li>
+<li>Close the VSI interface and then reopen as before. You are now in scatter plot mode.<ol class="arabic">
+<li>Under Properties, change the Number of Points and Top Percentile settings and see that the plot changes.</li>
+<li>Drag the peaks_qLab workspace from the main GUI onto VSI. This should show the peak position in the plot as points.</li>
+<li>Drag the peaks_qLab_integrated workspace from the main GUI onto VSI. This should show the peak positions in the plot as spheres.</li>
+</ol>
+</li>
+<li>Close the VSI GUI.</li>
+</ol>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+      <ul class="nav navbar-nav" style=" float: right;">
+      
+      
+          
+            
+  <li>
+    <a href="../ErrorReporter-ProjectRecovery/ProjectRecoveryTesting.html" title="Previous Chapter: Project Recovery Testing"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Project Recov...</span>
+    </a>
+  </li>
+  <li>
+    <a href="../../DoxygenSetup.html" title="Next Chapter: Doxygen Setup"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Doxygen Setup &raquo;</span>
+    </a>
+  </li>
+          
+       
+          <li><a href="#">Back to top</a></li>
+       </ul>
+    <p>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
