@@ -101,7 +101,6 @@
 <li><a class="reference internal" href="#common-errors" id="id5">Common errors</a></li>
 <li><a class="reference internal" href="#identifying-issues-with-pycharm-configuration" id="id6">Identifying issues with PyCharm configuration</a></li>
 <li><a class="reference internal" href="#running-other-mantid-widgets-in-pycharm" id="id7">Running other Mantid widgets in PyCharm</a></li>
-<li><a class="reference internal" href="#remote-debugging-with-pycharm" id="id8">Remote Debugging with PyCharm</a></li>
 </ul>
 </li>
 </ul>
@@ -125,7 +124,7 @@ using the cmake flag <code class="docutils literal notranslate"><span class="pre
 </div>
 <div class="section" id="developing-and-debugging-with-pycharm-on-windows">
 <h2><a class="toc-backref" href="#id4">Developing and debugging with PyCharm on Windows</a><a class="headerlink" href="#developing-and-debugging-with-pycharm-on-windows" title="Permalink to this headline">¶</a></h2>
-<p>The first thing that needs to be done is creating the PyCharm project and configuring the project settings. Please follow the instructions at <a class="reference internal" href="GettingStartedWithPyCharm.html#gettingstartedwithpycharm"><span class="std std-ref">Getting Started with PyCharm</span></a>.</p>
+<p>The first thing that needs to be done is creating the PyCharm project and configuring the project settings. Please follow the instructions at <a class="reference internal" href="GettingStartedWithPyCharm.html#setting-up-pycharm-on-windows"><span class="std std-ref">Setting up PyCharm on Windows</span></a>.</p>
 <p>After the project settings have been configured, a Run/Debug configuration needs to be created. To edit the configurations go to <code class="docutils literal notranslate"><span class="pre">Run-&gt;Run...</span></code> and select <code class="docutils literal notranslate"><span class="pre">Edit</span> <span class="pre">Configurations</span></code>. Select <code class="docutils literal notranslate"><span class="pre">Templates-&gt;Python</span></code>, and hit the green <code class="docutils literal notranslate"><span class="pre">+</span></code> in the top left.
 The necessary changes to the configuration are:</p>
 <ul class="simple">
@@ -184,22 +183,6 @@ If there is one, try deleting it and running your configuration again.</p>
 <li>You might have to CHANGE back the working directory to <code class="docutils literal notranslate"><span class="pre">&lt;Mantid</span> <span class="pre">Build</span> <span class="pre">Dir&gt;/bin/Debug</span></code>.</li>
 <li>Click OK, then running the configration should start the MatrixWorkspaceDisplay.</li>
 </ol>
-</div>
-<div class="section" id="remote-debugging-with-pycharm">
-<h3><a class="toc-backref" href="#id8">Remote Debugging with PyCharm</a><a class="headerlink" href="#remote-debugging-with-pycharm" title="Permalink to this headline">¶</a></h3>
-<p>This requires a PyCharm Professional license for the Remote Debugging feature.</p>
-<p>This approach can be used to debug unit tests. However, as the required package <code class="docutils literal notranslate"><span class="pre">pydevd</span></code> is not shipped with Mantid, we need to manually add it at runtime. This can be done by appending a directory that contains the installed <code class="docutils literal notranslate"><span class="pre">pydevd</span></code> package on the <code class="docutils literal notranslate"><span class="pre">PYTHONPATH</span></code>. The following code does so at runtime:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="n">PYTHON_ROOT</span><span class="o">=</span><span class="s2">&quot;&lt;Change this to point to a Python installation that has pydevd installed&gt;&quot;</span>
-<span class="n">PYTHON_ROOT</span><span class="o">=</span><span class="s2">&quot;c:/users/qbr77747/apps/miniconda3&quot;</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">PYTHON_ROOT</span><span class="p">,</span> <span class="s2">&quot;lib/site-packages&quot;</span><span class="p">))</span>
-<span class="kn">import</span> <span class="nn">pydevd</span>
-<span class="n">pydevd</span><span class="o">.</span><span class="n">settrace</span><span class="p">(</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">44444</span><span class="p">,</span> <span class="n">stdoutToServer</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">stderrToServer</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>A Remote Debugging configration needs to be setup to use the <code class="docutils literal notranslate"><span class="pre">44444</span></code> port (can be changed, but it needs to be reflected in the code), and running before the tests are run!</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">pydevd</span></code> package does not have to be installed on Python 2. As of 12/11/2018 installing <code class="docutils literal notranslate"><span class="pre">pydevd</span></code> on a separate installation with Python 3.7, and adding the code above successfully connects.</p>
 </div>
 </div>
 </div>
