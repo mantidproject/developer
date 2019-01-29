@@ -179,6 +179,23 @@ on GitHub</li>
 </ul>
 <p>A good example is <a class="reference external" href="https://github.com/mantidproject/mantid/pull/18713">here</a>.</p>
 <p>Recommended reading: <a class="reference external" href="https://github.com/blog/1943-how-to-write-the-perfect-pull-request">How to Write the Perfect Pull Request</a></p>
+<p>For further information about the review process see <a class="reference internal" href="ReviewingAPullRequest.html#reviewingapullrequest"><span class="std std-ref">reviewing a pull request</span></a>.</p>
+<p>To check out a particular pull request for functional testing use the following commmands:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre>git fetch &lt;main-remote-name&gt;  +pull/&lt;ID&gt;/merge:pr/&lt;ID&gt;-merged
+git checkout pr/&lt;ID&gt;-merged
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">&lt;ID&gt;</span></code> is the pull request number given on GitHub and <code class="docutils literal notranslate"><span class="pre">&lt;main-remote-name&gt;</span></code> is the name
+of the remote pointing to the original <code class="docutils literal notranslate"><span class="pre">mantid</span></code> repository. If you cloned directly from <a class="reference external" href="https://github.com/mantidproject/mantid">mantid</a>
+then <code class="docutils literal notranslate"><span class="pre">main-remote-name=origin</span></code> else if you cloned from a fork then it is the name of remote that points
+back to the original repository.</p>
+<p>Note that these commands will checkout a temporary branch that has the development branch merged with master and not just
+the development branch on its own. This command can be aliased by adding the following to the <code class="docutils literal notranslate"><span class="pre">[alias]]</span></code> section of your <code class="docutils literal notranslate"><span class="pre">~/.gitconfig</span></code>
+file:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre>test-pr<span class="o">=</span>!f<span class="o">()</span> <span class="o">{</span> git fetch &lt;main-remote-name&gt; +pull/<span class="nv">$1</span>/merge:pr/<span class="nv">$1</span>-merged <span class="o">&amp;&amp;</span> git checkout pr/<span class="nv">$1</span>-merged<span class="p">;</span> <span class="o">}</span><span class="p">;</span> f
+</pre></div>
+</div>
+<p>where again <code class="docutils literal notranslate"><span class="pre">&lt;main-remote-name&gt;</span></code> has the same meaning as above</p>
 <div class="section" id="stale-pull-requests">
 <h3><a class="toc-backref" href="#id6">Stale Pull Requests</a><a class="headerlink" href="#stale-pull-requests" title="Permalink to this headline">¶</a></h3>
 <p>Pull requests that go an extended period of time without any activity
