@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Using PyCharm with Workbench</title>
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="MPI Support for Algorithms" href="../AlgorithmMPISupport.html" />
+    <link rel="prev" title="Project Save" href="ProjectSaveInterfaces.html" />
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-59110517-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+  </head><body>
+
+
+
+
+
+  <div id="navbar" class="navbar navbar-default ">
+    <div class="container">
+      <div class="navbar-header">
+        
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://www.mantidproject.org"><img src="../_static/Mantid_Logo_Transparent.png">
+           </a>
+        <span class="navbar-text navbar-version pull-left"><b>master</b></span>
+      </div>
+
+      
+        <div class="collapse navbar-collapse nav-collapse">
+      
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="http://download.mantidproject.org">Download</a></li>
+                <li><a href="http://www.mantidproject.org">Wiki</a></li>
+                <li><a href="http://docs.mantidproject.org">User Documentation</a></li>
+                <li><a href="http://www.mantidproject.org/Contact">Contact Us</a></li>
+            
+            
+              
+              
+            
+            
+            
+            
+          </ul>
+              
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+            </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="using-pycharm-with-workbench">
+<span id="usingpycharmwithworkbench"></span><h1>Using PyCharm with Workbench<a class="headerlink" href="#using-pycharm-with-workbench" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="developing-and-debugging-with-pycharm-on-windows">
+<h2>Developing and debugging with PyCharm on Windows<a class="headerlink" href="#developing-and-debugging-with-pycharm-on-windows" title="Permalink to this headline">¶</a></h2>
+<p>The first thing that needs to be done is creating the PyCharm project and configuring the project settings. Please follow the instructions at <a class="reference internal" href="../GettingStartedWithPyCharm.html#setting-up-pycharm-on-windows"><span class="std std-ref">Setting up PyCharm on Windows</span></a>.</p>
+<p>After the project settings have been configured, a Run/Debug configuration needs to be created. To edit the configurations go to <code class="docutils literal notranslate"><span class="pre">Run-&gt;Run...</span></code> and select <code class="docutils literal notranslate"><span class="pre">Edit</span> <span class="pre">Configurations</span></code>. Select <code class="docutils literal notranslate"><span class="pre">Templates-&gt;Python</span></code>, and hit the green <code class="docutils literal notranslate"><span class="pre">+</span></code> in the top left.
+The necessary changes to the configuration are:</p>
+<ul class="simple">
+<li>Select the Mantid Python interpreter that was added to the project in the instructions above. Do not use the default interpreter on Windows.</li>
+<li>Set up <em>Script Path</em> and <em>Working Directory</em> as follows:</li>
+</ul>
+<dl class="docutils">
+<dt>Paths for running a Debug build:</dt>
+<dd><ul class="first last simple">
+<li>Set the <em>Script Path</em> to <code class="docutils literal notranslate"><span class="pre">&lt;Mantid</span> <span class="pre">Build</span> <span class="pre">Directory&gt;/bin/Debug/workbench-script.pyw</span></code></li>
+<li>Set the <em>Working Directory</em> to <code class="docutils literal notranslate"><span class="pre">&lt;Mantid</span> <span class="pre">Build</span> <span class="pre">Directory&gt;/bin/Debug</span></code></li>
+</ul>
+</dd>
+<dt>Paths for running a Release build:</dt>
+<dd><ul class="first last simple">
+<li>Set the <em>Script Path</em> to <code class="docutils literal notranslate"><span class="pre">&lt;Mantid</span> <span class="pre">Build</span> <span class="pre">Directory&gt;/bin/Release/workbench-script.pyw</span></code></li>
+<li>Set the <em>Working Directory</em> to <code class="docutils literal notranslate"><span class="pre">&lt;Mantid</span> <span class="pre">Build</span> <span class="pre">Directory&gt;/bin/Release</span></code></li>
+</ul>
+</dd>
+</dl>
+<p>Note that the only difference here is the change from <code class="docutils literal notranslate"><span class="pre">/bin/Debug/</span></code> to <code class="docutils literal notranslate"><span class="pre">/bin/Release/</span></code>.</p>
+<p>Make sure you have finished the build you are using (Debug or Release), or there will be import errors.</p>
+<div class="section" id="common-errors">
+<h3>Common errors<a class="headerlink" href="#common-errors" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div>qtpy.PythonQtError: No Qt bindings could be found</div></blockquote>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;Mantid</span> <span class="pre">Source</span> <span class="pre">Directory&gt;/external/src/ThirdParty/lib/qt5/bin</span></code> is missing from the <code class="docutils literal notranslate"><span class="pre">Path</span></code> environment variable.</p>
+<blockquote>
+<div>ImportError: DLL load failed: The specified module could not be found.</div></blockquote>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;Mantid</span> <span class="pre">Source</span> <span class="pre">Directory&gt;/external/src/ThirdParty/lib/qt5/lib</span></code> is missing from the <code class="docutils literal notranslate"><span class="pre">Path</span></code> environment variable.</p>
+<p>The fix for these errors is to make sure you have <strong>started</strong> PyCharm through the <code class="docutils literal notranslate"><span class="pre">&lt;Mantid</span> <span class="pre">Build</span> <span class="pre">Directory&gt;/pycharm.bat</span></code> script. This sets up the <code class="docutils literal notranslate"><span class="pre">PATH</span></code> variable for the Python imports.</p>
+<p>Additionally, check that your PyCharm Run/Debug configuration <em>does not</em> overwrite the <code class="docutils literal notranslate"><span class="pre">PATH</span></code> variable.
+To check go to <code class="docutils literal notranslate"><span class="pre">Edit</span> <span class="pre">Configurations</span> <span class="pre">-&gt;</span> <span class="pre">Environment</span> <span class="pre">Variables</span></code> and click the folder icon on the right side. In the <code class="docutils literal notranslate"><span class="pre">Name</span></code> column there should not be a <code class="docutils literal notranslate"><span class="pre">Path</span></code> variable.
+If there is one, try deleting it and running your configuration again.</p>
+</div>
+<div class="section" id="identifying-issues-with-pycharm-configuration">
+<h3>Identifying issues with PyCharm configuration<a class="headerlink" href="#identifying-issues-with-pycharm-configuration" title="Permalink to this headline">¶</a></h3>
+<p>Follow these steps to narrow down the root of potential errors:</p>
+<ul class="simple">
+<li>Go to the Mantid Build Directory</li>
+<li>Start <code class="docutils literal notranslate"><span class="pre">command_prompt.bat</span></code>. If the <code class="docutils literal notranslate"><span class="pre">command_prompt.bat</span></code> file is missing, the build has not been fully generated from <cite>CMake</cite> or is corrupted.</li>
+<li>In the command prompt open the Python interpreter with <code class="docutils literal notranslate"><span class="pre">python</span></code>.</li>
+<li>Try to import the package where the error is happening. For example if there is an error on <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">qtpy</span></code>, <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">PyQt5</span> <span class="pre">import</span> <span class="pre">QtCore</span></code>, try running that line in the interpreter.</li>
+<li>If the import succeeds, then there is a problem with the <code class="docutils literal notranslate"><span class="pre">PATH</span></code> configuration in PyCharm.</li>
+<li>If the import fails, then it is possible that Mantid has not been fully built. If you are trying to import <code class="docutils literal notranslate"><span class="pre">PyQt4</span></code>/<code class="docutils literal notranslate"><span class="pre">PyQt5</span></code>/<code class="docutils literal notranslate"><span class="pre">qtpy</span></code>, and it fails to import from the command prompt, then the <code class="docutils literal notranslate"><span class="pre">external</span></code> dependencies might not be downloaded or are corrupted.</li>
+</ul>
+</div>
+<div class="section" id="running-other-mantid-widgets-in-pycharm">
+<h3>Running other Mantid widgets in PyCharm<a class="headerlink" href="#running-other-mantid-widgets-in-pycharm" title="Permalink to this headline">¶</a></h3>
+<p>The widgets in <code class="docutils literal notranslate"><span class="pre">mantidqt/widgets</span></code> can be run independently of the Workbench. They still need the relevant PATHs available - to load the <code class="docutils literal notranslate"><span class="pre">mantid</span></code>, <code class="docutils literal notranslate"><span class="pre">mantidqt</span></code>, and various other libraries.</p>
+<p>The easiest way to do this is to set the script path to the widget’s startup script, but leave the working directory to point at <code class="docutils literal notranslate"><span class="pre">&lt;Mantid</span> <span class="pre">Build</span> <span class="pre">Directory&gt;/bin/Debug</span></code> or <code class="docutils literal notranslate"><span class="pre">&lt;Mantid</span> <span class="pre">Build</span> <span class="pre">Directory&gt;/bin/Release</span></code></p>
+<p>For example to run the MatrixWorkspaceDisplay:</p>
+<ol class="arabic simple">
+<li>Copy your default configuration (the copy icon on the top left of the configuration window).</li>
+<li>Set the Script Path to <code class="docutils literal notranslate"><span class="pre">&lt;Mantid</span> <span class="pre">Source</span> <span class="pre">Dir&gt;/qt/python/mantidqt/widgets/matrixworkspaceviewer</span></code>. This package has a <code class="docutils literal notranslate"><span class="pre">__main__.py</span></code> file which makes it runnable.</li>
+<li>You might have to CHANGE back the working directory to <code class="docutils literal notranslate"><span class="pre">&lt;Mantid</span> <span class="pre">Build</span> <span class="pre">Dir&gt;/bin/Debug</span></code>.</li>
+<li>Click OK, then running the configration should start the MatrixWorkspaceDisplay.</li>
+</ol>
+</div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+      <ul class="nav navbar-nav" style=" float: right;">
+      
+      
+          
+            
+  <li>
+    <a href="ProjectSaveInterfaces.html" title="Previous Chapter: Project Save"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Project Save</span>
+    </a>
+  </li>
+  <li>
+    <a href="../AlgorithmMPISupport.html" title="Next Chapter: MPI Support for Algorithms"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">MPI Support f... &raquo;</span>
+    </a>
+  </li>
+          
+       
+          <li><a href="#">Back to top</a></li>
+       </ul>
+    <p>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
