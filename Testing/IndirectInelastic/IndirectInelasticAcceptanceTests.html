@@ -158,7 +158,7 @@
 <li>Click <code class="docutils literal notranslate"><span class="pre">Run</span></code></li>
 <li>Should create a <code class="docutils literal notranslate"><span class="pre">_sqw</span></code> workspace</li>
 <li>Check <code class="docutils literal notranslate"><span class="pre">Rebin</span> <span class="pre">in</span> <span class="pre">energy</span></code></li>
-<li>Set <code class="docutils literal notranslate"><span class="pre">Q-Low</span></code> - <code class="docutils literal notranslate"><span class="pre">Q-width</span></code> - <code class="docutils literal notranslate"><span class="pre">Q-High</span></code> to -0.5, 0.01, 0.5</li>
+<li>Set <code class="docutils literal notranslate"><span class="pre">E-Low</span></code> - <code class="docutils literal notranslate"><span class="pre">E-width</span></code> - <code class="docutils literal notranslate"><span class="pre">E-High</span></code> to -0.5, 0.01, 0.5</li>
 <li>Click <code class="docutils literal notranslate"><span class="pre">Run</span></code></li>
 <li>With <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">Output</span></code> set as Contour click <code class="docutils literal notranslate"><span class="pre">Plot</span></code>, this should result in a 2D contour plot</li>
 <li>Click <code class="docutils literal notranslate"><span class="pre">Manage</span> <span class="pre">User</span> <span class="pre">Directories</span></code> and set the default save location</li>
@@ -184,7 +184,65 @@
 <li>Click <code class="docutils literal notranslate"><span class="pre">Run</span></code></li>
 <li>This should result in three new workspaces again, this time with file ranges as their name</li>
 <li>In the main GUI right-click on <code class="docutils literal notranslate"><span class="pre">irs26174-26176_graphite002_red_elwin_eq2</span></code> and choose <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">Spectrum</span></code>, choose <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">All</span></code></li>
-<li>This should plot two lines of A^2 vs Q</li>
+<li>This should plot two lines of <div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">A^2</tt>)</p>
+latex exited with error
+[stdout]
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=latex)
+ restricted \write18 enabled.
+entering extended mode
+(./math.tex
+LaTeX2e &lt;2016/02/01&gt;
+Babel &lt;3.9q&gt; and hyphenation patterns for 7 language(s) loaded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo))
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+
+! LaTeX Error: File `utf8x.def' not found.
+
+Type X to quit or &lt;RETURN&gt; to proceed,
+or enter new name. (Default extension: def)
+
+Enter file name: 
+! Emergency stop.
+&lt;read *&gt; 
+         
+l.173 \endinput
+               ^^M
+No pages of output.
+Transcript written on math.log.
+</div>
+ vs <div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">Q</tt>)</p>
+latex exited with error
+[stdout]
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=latex)
+ restricted \write18 enabled.
+entering extended mode
+(./math.tex
+LaTeX2e &lt;2016/02/01&gt;
+Babel &lt;3.9q&gt; and hyphenation patterns for 7 language(s) loaded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo))
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+
+! LaTeX Error: File `utf8x.def' not found.
+
+Type X to quit or &lt;RETURN&gt; to proceed,
+or enter new name. (Default extension: def)
+
+Enter file name: 
+! Emergency stop.
+&lt;read *&gt; 
+         
+l.173 \endinput
+               ^^M
+No pages of output.
+Transcript written on math.log.
+</div>
+</li>
 <li>Right-click on the <code class="docutils literal notranslate"><span class="pre">irs26176_graphite002_elwin_eq</span></code> workspace and <code class="docutils literal notranslate"><span class="pre">Save</span> <span class="pre">Nexus</span></code>; save to a location of your choice; you will use this file in the next test</li>
 </ol>
 </div>
@@ -254,9 +312,10 @@
 <li>Load the <code class="docutils literal notranslate"><span class="pre">irs26176_graphite002_red.nxs</span></code> file from the sample data</li>
 <li>Load the resolution file <code class="docutils literal notranslate"><span class="pre">irs26173_graphite002_res.nxs</span></code> from the sample data</li>
 <li>Click <code class="docutils literal notranslate"><span class="pre">Run</span></code></li>
-<li>A new workspace with the suffix <code class="docutils literal notranslate"><span class="pre">_iqt</span></code> should appear in the main GUI, it should be a 87 x 51 table. <strong>NB</strong> keep this workspace for the next test</li>
+<li>A new workspace with the suffix <code class="docutils literal notranslate"><span class="pre">_iqt</span></code> should appear in the main GUI, it should be a 87 x 6 table. <strong>NB</strong> keep this workspace for the next test</li>
 <li>Click <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">Current</span> <span class="pre">View</span></code> this should plot the same data as the preview window</li>
-<li>Click <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">Result</span></code> this should give a plot with the title <em>irs26176_graphite002_iqt</em></li>
+<li>Click <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">Spectrum</span></code> this should give a plot with the title <em>irs26176_graphite002_iqt</em></li>
+<li>Click <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">Tiled</span></code> this should give a tiled plot of spectra between the range specified.</li>
 </ol>
 </div>
 <div class="section" id="data-analysis-i-q-t-fit">
@@ -276,10 +335,10 @@
 <li>Click <code class="docutils literal notranslate"><span class="pre">Run</span></code></li>
 <li>This should produce a fit and a difference plot in the window</li>
 <li>Click <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">current</span> <span class="pre">preview</span></code> this should open a plot with three datasets plotted</li>
-<li>Change <code class="docutils literal notranslate"><span class="pre">Range</span></code> to 0 - 10</li>
+<li>Change <code class="docutils literal notranslate"><span class="pre">Range</span></code> to 0 - 5</li>
 <li>Click <code class="docutils literal notranslate"><span class="pre">Run</span></code></li>
 <li>Select Lifetime from the <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">Output</span></code> drop-down</li>
-<li>Click <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">Result</span></code> this should open a new plot with the lifetimes plotted</li>
+<li>Click <code class="docutils literal notranslate"><span class="pre">Plot</span></code> this should open a new plot with the lifetimes plotted</li>
 </ol>
 </div>
 </div>
