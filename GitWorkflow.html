@@ -99,13 +99,14 @@
 <li><a class="reference internal" href="#description" id="id3">Description</a></li>
 <li><a class="reference internal" href="#public-and-private-branches" id="id4">Public and Private Branches</a></li>
 <li><a class="reference internal" href="#pull-requests" id="id5">Pull Requests</a><ul>
-<li><a class="reference internal" href="#stale-pull-requests" id="id6">Stale Pull Requests</a></li>
+<li><a class="reference internal" href="#checkout-a-pull-request" id="id6">Checkout a Pull Request</a></li>
+<li><a class="reference internal" href="#stale-pull-requests" id="id7">Stale Pull Requests</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#code-freeze" id="id7">Code Freeze</a><ul>
-<li><a class="reference internal" href="#new-branches" id="id8">New Branches</a></li>
-<li><a class="reference internal" href="#id1" id="id9">Pull Requests</a></li>
-<li><a class="reference internal" href="#fixing-a-pr-with-an-incorrect-base-branch" id="id10">Fixing a PR with an Incorrect Base Branch</a></li>
+<li><a class="reference internal" href="#code-freeze" id="id8">Code Freeze</a><ul>
+<li><a class="reference internal" href="#new-branches" id="id9">New Branches</a></li>
+<li><a class="reference internal" href="#id1" id="id10">Pull Requests</a></li>
+<li><a class="reference internal" href="#fixing-a-pr-with-an-incorrect-base-branch" id="id11">Fixing a PR with an Incorrect Base Branch</a></li>
 </ul>
 </li>
 </ul>
@@ -180,6 +181,8 @@ on GitHub</li>
 <p>A good example is <a class="reference external" href="https://github.com/mantidproject/mantid/pull/18713">here</a>.</p>
 <p>Recommended reading: <a class="reference external" href="https://github.com/blog/1943-how-to-write-the-perfect-pull-request">How to Write the Perfect Pull Request</a></p>
 <p>For further information about the review process see <a class="reference internal" href="ReviewingAPullRequest.html#reviewingapullrequest"><span class="std std-ref">reviewing a pull request</span></a>.</p>
+<div class="section" id="checkout-a-pull-request">
+<h3><a class="toc-backref" href="#id6">Checkout a Pull Request</a><a class="headerlink" href="#checkout-a-pull-request" title="Permalink to this headline">¶</a></h3>
 <p>To check out a particular pull request for functional testing use the following commmands:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre>git fetch &lt;main-remote-name&gt;  +pull/&lt;ID&gt;/merge:pr/&lt;ID&gt;-merged
 git checkout pr/&lt;ID&gt;-merged
@@ -190,14 +193,19 @@ of the remote pointing to the original <code class="docutils literal notranslate
 then <code class="docutils literal notranslate"><span class="pre">main-remote-name=origin</span></code> else if you cloned from a fork then it is the name of remote that points
 back to the original repository.</p>
 <p>Note that these commands will checkout a temporary branch that has the development branch merged with master and not just
-the development branch on its own. This command can be aliased by adding the following to the <code class="docutils literal notranslate"><span class="pre">[alias]]</span></code> section of your <code class="docutils literal notranslate"><span class="pre">~/.gitconfig</span></code>
+the development branch on its own. This command can be aliased by adding the following to the <code class="docutils literal notranslate"><span class="pre">[alias]</span></code> section of your <code class="docutils literal notranslate"><span class="pre">~/.gitconfig</span></code>
 file:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre>test-pr<span class="o">=</span>!f<span class="o">()</span> <span class="o">{</span> git fetch &lt;main-remote-name&gt; +pull/<span class="nv">$1</span>/merge:pr/<span class="nv">$1</span>-merged <span class="o">&amp;&amp;</span> git checkout pr/<span class="nv">$1</span>-merged<span class="p">;</span> <span class="o">}</span><span class="p">;</span> f
 </pre></div>
 </div>
-<p>where again <code class="docutils literal notranslate"><span class="pre">&lt;main-remote-name&gt;</span></code> has the same meaning as above</p>
+<p>where again <code class="docutils literal notranslate"><span class="pre">&lt;main-remote-name&gt;</span></code> has the same meaning as above. A given pull request can now be checkout with</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre>git test-pr &lt;ID&gt;
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">&lt;ID&gt;</span></code> is the pull request number given on GitHub.</p>
+</div>
 <div class="section" id="stale-pull-requests">
-<h3><a class="toc-backref" href="#id6">Stale Pull Requests</a><a class="headerlink" href="#stale-pull-requests" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id7">Stale Pull Requests</a><a class="headerlink" href="#stale-pull-requests" title="Permalink to this headline">¶</a></h3>
 <p>Pull requests that go an extended period of time without any activity
 are considered stale and will be picked up by a (partially) automated
 bot which will notify those that are required to take action in order
@@ -220,7 +228,7 @@ tests, in those two cases the age of the pull request is ignored.</p>
 </div>
 </div>
 <div class="section" id="code-freeze">
-<h2><a class="toc-backref" href="#id7">Code Freeze</a><a class="headerlink" href="#code-freeze" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id8">Code Freeze</a><a class="headerlink" href="#code-freeze" title="Permalink to this headline">¶</a></h2>
 <p>At the start of a <em>code freeze</em> before a major release there will be a
 release branch created named <code class="docutils literal notranslate"><span class="pre">release-next</span></code>. At this point
 only bugfixes should be applied to this release branch so that it can
@@ -228,7 +236,7 @@ be stabilized for the release. The release branch will be merged to
 <code class="docutils literal notranslate"><span class="pre">master</span></code> periodically so bugfixes do not need to be separately
 merged to <code class="docutils literal notranslate"><span class="pre">master</span></code>.</p>
 <div class="section" id="new-branches">
-<h3><a class="toc-backref" href="#id8">New Branches</a><a class="headerlink" href="#new-branches" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id9">New Branches</a><a class="headerlink" href="#new-branches" title="Permalink to this headline">¶</a></h3>
 <p>During the code freeze it is important to ensure that a new branch is
 created from the correct base branch depending on the scope of the
 changes:</p>
@@ -238,13 +246,13 @@ changes:</p>
 </ul>
 </div>
 <div class="section" id="id1">
-<h3><a class="toc-backref" href="#id9">Pull Requests</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id10">Pull Requests</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <p>To merge code with the release branch open a pull request as usual but instead of using the
 default merge target select <code class="docutils literal notranslate"><span class="pre">release-next</span></code>:</p>
 <img alt="_images/release-branch-new-pr.png" src="_images/release-branch-new-pr.png" />
 </div>
 <div class="section" id="fixing-a-pr-with-an-incorrect-base-branch">
-<h3><a class="toc-backref" href="#id10">Fixing a PR with an Incorrect Base Branch</a><a class="headerlink" href="#fixing-a-pr-with-an-incorrect-base-branch" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id11">Fixing a PR with an Incorrect Base Branch</a><a class="headerlink" href="#fixing-a-pr-with-an-incorrect-base-branch" title="Permalink to this headline">¶</a></h3>
 <p>The target branch on GitHub needs to match the base branch used in the
 commands above when the branch was initially created. If the compare
 view shows changes other than your own it is most likely that the base
