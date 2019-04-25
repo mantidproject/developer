@@ -195,7 +195,7 @@ back to the original repository.</p>
 <p>Note that these commands will checkout a temporary branch that has the development branch merged with master and not just
 the development branch on its own. This command can be aliased by adding the following to the <code class="docutils literal notranslate"><span class="pre">[alias]</span></code> section of your <code class="docutils literal notranslate"><span class="pre">~/.gitconfig</span></code>
 file:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>test-pr<span class="o">=</span>!f<span class="o">()</span> <span class="o">{</span> git fetch &lt;main-remote-name&gt; +pull/<span class="nv">$1</span>/merge:pr/<span class="nv">$1</span>-merged <span class="o">&amp;&amp;</span> git checkout pr/<span class="nv">$1</span>-merged<span class="p">;</span> <span class="o">}</span><span class="p">;</span> f
+<div class="highlight-sh notranslate"><div class="highlight"><pre>test-pr<span class="o">=</span><span class="s2">&quot;!f() { git fetch &lt;main-remote-name&gt; +pull/</span><span class="nv">$1</span><span class="s2">/merge:pr/</span><span class="nv">$1</span><span class="s2">-merged &amp;&amp; git checkout pr/</span><span class="nv">$1</span><span class="s2">-merged; }; f&quot;</span>
 </pre></div>
 </div>
 <p>where again <code class="docutils literal notranslate"><span class="pre">&lt;main-remote-name&gt;</span></code> has the same meaning as above. A given pull request can now be checkout with</p>
@@ -247,7 +247,7 @@ changes:</p>
 </div>
 <div class="section" id="id1">
 <h3><a class="toc-backref" href="#id10">Pull Requests</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
-<p>To merge code with the release branch open a pull request as usual but instead of using the
+<p>To merge code with the release branch, open a pull request as usual but instead of using the
 default merge target select <code class="docutils literal notranslate"><span class="pre">release-next</span></code>:</p>
 <img alt="_images/release-branch-new-pr.png" src="_images/release-branch-new-pr.png" />
 </div>
