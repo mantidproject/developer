@@ -102,10 +102,14 @@
 <li><a class="reference internal" href="#testing-mvp-components" id="id7">Testing MVP Components</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#qt-designer" id="id8">Qt Designer</a></li>
-<li><a class="reference internal" href="#reusable-widgets" id="id9">Reusable Widgets</a></li>
-<li><a class="reference internal" href="#python" id="id10">Python</a><ul>
-<li><a class="reference internal" href="#id1" id="id11">Designer</a></li>
+<li><a class="reference internal" href="#visual-design" id="id8">Visual Design</a><ul>
+<li><a class="reference internal" href="#qt-designer" id="id9">Qt Designer</a></li>
+<li><a class="reference internal" href="#reusable-widgets" id="id10">Reusable Widgets</a></li>
+<li><a class="reference internal" href="#icons" id="id11">Icons</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#python" id="id12">Python</a><ul>
+<li><a class="reference internal" href="#id1" id="id13">Designer</a></li>
 </ul>
 </li>
 </ul>
@@ -259,8 +263,10 @@ can set expectations in the unit tests for certain methods to be
 called, and with certain arguments.</p>
 </div>
 </div>
+<div class="section" id="visual-design">
+<h2><a class="toc-backref" href="#id8">Visual Design</a><a class="headerlink" href="#visual-design" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="qt-designer">
-<h2><a class="toc-backref" href="#id8">Qt Designer</a><a class="headerlink" href="#qt-designer" title="Permalink to this headline">¶</a></h2>
+<h3><a class="toc-backref" href="#id9">Qt Designer</a><a class="headerlink" href="#qt-designer" title="Permalink to this headline">¶</a></h3>
 <p>The layout of all interfaces and reusable widgets should be done by
 using the Qt’s <a class="reference external" href="http://qt-project.org/doc/qt-4.8/designer-manual.html">Designer</a> tool. This
 has several advantages:</p>
@@ -275,7 +281,7 @@ drop</li>
 discussed with a senior developer.</p>
 </div>
 <div class="section" id="reusable-widgets">
-<h2><a class="toc-backref" href="#id9">Reusable Widgets</a><a class="headerlink" href="#reusable-widgets" title="Permalink to this headline">¶</a></h2>
+<h3><a class="toc-backref" href="#id10">Reusable Widgets</a><a class="headerlink" href="#reusable-widgets" title="Permalink to this headline">¶</a></h3>
 <p>Many interfaces will require similar functionality. For example, the
 ability to enter a filename string to search for a file along with a
 ‘Browse’ button to select a file from the filesystem. This type of
@@ -373,9 +379,23 @@ type can be used from within the Qt Designer.</p>
 </tbody>
 </table>
 </div>
+<div class="section" id="icons">
+<h3><a class="toc-backref" href="#id11">Icons</a><a class="headerlink" href="#icons" title="Permalink to this headline">¶</a></h3>
+<p>Icons are a contentious subject as they can in some cases cause more
+confusion and hinder more than they help. The NHS came up with a
+good set of rules for what icons should be used and this could be
+useful to designers, check out this <a class="reference external" href="https://digital.nhs.uk/blog/transformation-blog/2019/icons-avoid-temptation-and-start-with-user-needs">article.</a>. It may fit a situation more to have a text button
+instead of an icon.</p>
+<p>Whilst having too many icons will confuse the average user there are
+cases where many cases where it would help, for example if a button does a
+similar thing to another button somewhere else in the program then
+it should have the same icon. Have a look to see if the need you has
+an icon in Mantid by look at this handy <span class="xref std std-ref">MantidUsedIconsTable</span>.</p>
+</div>
+</div>
 <div class="section" id="python">
-<h2><a class="toc-backref" href="#id10">Python</a><a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h2>
-<p>Interfaces can also be created in Python using the <a class="reference external" href="http://pyqt.sourceforge.net/Docs/PyQt4/">PyQt4</a> package. The code for the
+<h2><a class="toc-backref" href="#id12">Python</a><a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h2>
+<p>Interfaces can also be created in Python using the <a class="reference external" href="https://pypi.org/project/QtPy/">qtpy</a> package. The code for the
 interface should be placed in a Python <a class="reference external" href="https://docs.python.org/2/tutorial/modules.html#packages">package</a> under the
 <code class="docutils literal notranslate"><span class="pre">Code/Mantid/scripts</span></code> directory. It should be named after the interface
 name (without spaces). The code within the package should be
@@ -396,7 +416,7 @@ file would look like:</p>
 detailed documentation on creating GUIs in Python can be found at
 <a class="reference internal" href="QtDesignerForPython.html#qtdesignerforpython"><span class="std std-ref">Qt Designer for Python</span></a>.</p>
 <div class="section" id="id1">
-<h3><a class="toc-backref" href="#id11">Designer</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id13">Designer</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <p>As with the C++ GUI the Qt Designer should be used for layouts of all
 widgets and the main interface. It is recommended that the <code class="docutils literal notranslate"><span class="pre">.ui</span></code>
 files be placed in a <code class="docutils literal notranslate"><span class="pre">ui</span></code> subdirectory of the interface package. To
