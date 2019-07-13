@@ -110,9 +110,9 @@ main points.</p>
 <p>A different import is used for <code class="docutils literal notranslate"><span class="pre">mock</span></code>, depending on whether we’re
 using Python 2 or 3.</p>
 <p>The test class is then initialised:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span class="k">class</span> <span class="nc">presenterTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span class="k">class</span> <span class="nc">PresenterTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">view</span> <span class="o">=</span> <span class="n">mock</span><span class="o">.</span><span class="n">create_autospec</span><span class="p">(</span><span class="n">view</span><span class="o">.</span><span class="n">view</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">view</span> <span class="o">=</span> <span class="n">mock</span><span class="o">.</span><span class="n">create_autospec</span><span class="p">(</span><span class="n">view</span><span class="o">.</span><span class="n">View</span><span class="p">)</span>
 
         <span class="c1"># mock view</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">doSomethingSignal</span> <span class="o">=</span> <span class="n">mock</span><span class="o">.</span><span class="n">Mock</span><span class="p">()</span>
@@ -133,7 +133,7 @@ to <code class="docutils literal notranslate"><span class="pre">mock.Mock</span>
 </pre></div>
 </div>
 <p>We call the <code class="docutils literal notranslate"><span class="pre">handleButton</span></code> function and then use <code class="docutils literal notranslate"><span class="pre">call_count</span></code> to
-ensure that the method from the View is called the correct number of
+ensure that the method from the view is called the correct number of
 times. This is a more robust method for checking how many times a
 function is called.</p>
 <p>There is a <code class="docutils literal notranslate"><span class="pre">assert_called_once</span></code> function however this should be

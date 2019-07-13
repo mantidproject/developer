@@ -16,7 +16,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="MVP Calculator GUI Example" href="CalculatorExample/index.html" />
-    <link rel="prev" title="Model Exercise Solution" href="ModelExerciseSolution.html" />
+    <link rel="prev" title="Final Exercise" href="FinalExercise.html" />
 
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -88,173 +88,19 @@
     <div class="body col-md-12 content" role="main">
       
   <div class="section" id="complete-gui-from-exercises">
-<h1>Complete GUI from Exercises<a class="headerlink" href="#complete-gui-from-exercises" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="main-module">
-<h2>Main module<a class="headerlink" href="#main-module" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="p">(</span><span class="n">absolute_import</span><span class="p">,</span><span class="n">division</span><span class="p">,</span><span class="n">print_function</span><span class="p">)</span>
-
-<span class="kn">import</span> <span class="nn">PyQt4.QtGui</span> <span class="kn">as</span> <span class="nn">QtGui</span>
-<span class="kn">import</span> <span class="nn">PyQt4.QtCore</span> <span class="kn">as</span> <span class="nn">QtCore</span>
-
-<span class="kn">import</span> <span class="nn">sys</span>
-
-<span class="kn">import</span> <span class="nn">model</span>
-<span class="kn">import</span> <span class="nn">masterView</span>
-<span class="kn">import</span> <span class="nn">masterPresenter</span>
-
-
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">A wrapper class for setting the main window</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="k">class</span> <span class="nc">demo</span><span class="p">(</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QMainWindow</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">demo</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
-
-        <span class="n">data_model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">DataGenerator</span><span class="p">()</span>
-        <span class="n">colour_model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">ColourConvertor</span><span class="p">()</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">window</span> <span class="o">=</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QMainWindow</span><span class="p">()</span>
-
-        <span class="n">my_view</span> <span class="o">=</span> <span class="n">masterView</span><span class="o">.</span><span class="n">MasterView</span><span class="p">(</span><span class="n">parent</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">master_presenter</span> <span class="o">=</span> <span class="n">masterPresenter</span><span class="o">.</span><span class="n">MasterPresenter</span><span class="p">(</span><span class="n">my_view</span><span class="p">,</span> <span class="n">data_model</span><span class="p">,</span> <span class="n">colour_model</span><span class="p">)</span>
-
-        <span class="c1"># set the view for the main window</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">setCentralWidget</span><span class="p">(</span><span class="n">my_view</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="s2">&quot;view tutorial&quot;</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">qapp</span><span class="p">():</span>
-        <span class="k">if</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QApplication</span><span class="o">.</span><span class="n">instance</span><span class="p">():</span>
-            <span class="n">_app</span> <span class="o">=</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QApplication</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">_app</span> <span class="o">=</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QApplication</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">_app</span>
-
-<span class="n">app</span> <span class="o">=</span> <span class="n">qapp</span><span class="p">()</span>
-<span class="n">window</span> <span class="o">=</span> <span class="n">demo</span><span class="p">()</span>
-<span class="n">window</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-<span class="n">app</span><span class="o">.</span><span class="n">exec_</span><span class="p">()</span>
-</pre></div>
-</div>
-<p>which has the addition of the data and colour models being passed to
-the Presenter. This makes it easier for us to replace the Model at a
-later date.</p>
-</div>
-<div class="section" id="master-view">
-<h2>Master View<a class="headerlink" href="#master-view" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="p">(</span><span class="n">absolute_import</span><span class="p">,</span> <span class="n">division</span><span class="p">,</span> <span class="n">print_function</span><span class="p">)</span>
-<span class="kn">import</span> <span class="nn">PyQt4.QtGui</span> <span class="kn">as</span> <span class="nn">QtGui</span>
-<span class="kn">import</span> <span class="nn">PyQt4.QtCore</span> <span class="kn">as</span> <span class="nn">QtCore</span>
-
-<span class="kn">import</span> <span class="nn">view</span>
-<span class="kn">import</span> <span class="nn">plotView</span>
-
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-
-<span class="k">class</span> <span class="nc">MasterView</span><span class="p">(</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QWidget</span><span class="p">):</span>
-
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">MasterView</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
-
-        <span class="n">grid</span> <span class="o">=</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QVBoxLayout</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">plot_view</span> <span class="o">=</span> <span class="n">plotView</span><span class="o">.</span><span class="n">PlotView</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">options_view</span><span class="o">=</span><span class="n">view</span><span class="o">.</span><span class="n">view</span><span class="p">()</span>
-
-        <span class="n">grid</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">plot_view</span><span class="p">)</span>
-        <span class="n">grid</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">options_view</span><span class="p">)</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">setLayout</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">getOptionView</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">options_view</span>
-
-    <span class="k">def</span> <span class="nf">getPlotView</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">plot_view</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="master-presenter">
-<h2>Master Presenter<a class="headerlink" href="#master-presenter" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="p">(</span><span class="n">absolute_import</span><span class="p">,</span> <span class="n">division</span><span class="p">,</span> <span class="n">print_function</span><span class="p">)</span>
-
-<span class="kn">import</span> <span class="nn">model</span>
-<span class="kn">import</span> <span class="nn">presenter</span>
-<span class="kn">import</span> <span class="nn">plotPresenter</span>
-
-<span class="k">class</span> <span class="nc">MasterPresenter</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">view</span><span class="p">,</span> <span class="n">data_model</span><span class="p">,</span> <span class="n">colour_model</span><span class="p">):</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">view</span> <span class="o">=</span> <span class="n">view</span>
-
-    <span class="bp">self</span><span class="o">.</span><span class="n">data_model</span> <span class="o">=</span> <span class="n">data_model</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">colour_model</span> <span class="o">=</span> <span class="n">colour_model</span>
-
-    <span class="n">colours</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">colour_model</span><span class="o">.</span><span class="n">getColourSelection</span><span class="p">()</span>
-
-    <span class="bp">self</span><span class="o">.</span><span class="n">presenter</span> <span class="o">=</span> <span class="n">presenter</span><span class="o">.</span><span class="n">Presenter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">getOptionView</span><span class="p">(),</span> <span class="n">colours</span><span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">plot_presenter</span> <span class="o">=</span> <span class="n">plotPresenter</span><span class="o">.</span><span class="n">PlotPresenter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">getPlotView</span><span class="p">())</span>
-    <span class="c1"># connect statements</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">getOptionView</span><span class="p">()</span><span class="o">.</span><span class="n">plotSignal</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">updatePlot</span><span class="p">)</span>
-
-    <span class="c1"># handle signals</span>
-    <span class="k">def</span> <span class="nf">updatePlot</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c1"># only care about the colour if the button is pressed</span>
-        <span class="n">colour</span><span class="p">,</span> <span class="n">freq</span><span class="p">,</span><span class="n">phi</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">presenter</span><span class="o">.</span><span class="n">getPlotInfo</span><span class="p">()</span>
-        <span class="n">grid_lines</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">presenter</span><span class="o">.</span><span class="n">getGridLines</span><span class="p">()</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">data_model</span><span class="o">.</span><span class="n">genData</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span><span class="n">phi</span> <span class="p">)</span>
-        <span class="n">x_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_model</span><span class="o">.</span><span class="n">getXData</span><span class="p">()</span>
-        <span class="n">y_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_model</span><span class="o">.</span><span class="n">getYData</span><span class="p">()</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">plot_presenter</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_data</span><span class="p">,</span> <span class="n">y_data</span><span class="p">,</span> <span class="n">grid_lines</span><span class="p">,</span> <span class="n">colour</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>The signal from the View is caught here and the models are used to create the correct plot.</p>
-</div>
-<div class="section" id="plot-presenter">
-<h2>Plot Presenter<a class="headerlink" href="#plot-presenter" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="p">(</span><span class="n">absolute_import</span><span class="p">,</span> <span class="n">division</span><span class="p">,</span> <span class="n">print_function</span><span class="p">)</span>
-
-<span class="k">class</span> <span class="nc">PlotPresenter</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">view</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">view</span> <span class="o">=</span> <span class="n">view</span>
-
-    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_data</span><span class="p">,</span> <span class="n">y_data</span><span class="p">,</span> <span class="n">grid_lines</span><span class="p">,</span> <span class="n">colour_code</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">addData</span><span class="p">(</span><span class="n">x_data</span><span class="p">,</span> <span class="n">y_data</span><span class="p">,</span> <span class="n">grid_lines</span><span class="p">,</span> <span class="n">colour_code</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="plotview">
-<h2>PlotView<a class="headerlink" href="#plotview" title="Permalink to this headline">¶</a></h2>
-<p>Unchanged from <a class="reference internal" href="Matplotlib.html#matplotlib"><span class="std std-ref">Matplotlib and MVP</span></a>.</p>
-</div>
-<div class="section" id="presenter">
-<h2>Presenter<a class="headerlink" href="#presenter" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="p">(</span><span class="n">absolute_import</span><span class="p">,</span> <span class="n">division</span><span class="p">,</span> <span class="n">print_function</span><span class="p">)</span>
-
-
-<span class="k">class</span> <span class="nc">Presenter</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">view</span><span class="p">,</span> <span class="n">colours</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">view</span> <span class="o">=</span> <span class="n">view</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">setColours</span><span class="p">(</span><span class="n">colours</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">getPlotInfo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">getColour</span><span class="p">()),</span> <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">getFreq</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">getPhase</span><span class="p">()</span>
-
-    <span class="k">def</span> <span class="nf">getGridLines</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">getGridLines</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="view">
-<h2>View<a class="headerlink" href="#view" title="Permalink to this headline">¶</a></h2>
-<p>Unchanged from <a class="reference internal" href="ModelExerciseSolution.html#modelexercisesolution"><span class="std std-ref">Model Exercise Solution</span></a>.</p>
-</div>
-<div class="section" id="model">
-<h2>Model<a class="headerlink" href="#model" title="Permalink to this headline">¶</a></h2>
-<p>Unchanged from <a class="reference internal" href="ModelExerciseSolution.html#modelexercisesolution"><span class="std std-ref">Model Exercise Solution</span></a>.</p>
-</div>
+<span id="completegui"></span><h1>Complete GUI from Exercises<a class="headerlink" href="#complete-gui-from-exercises" title="Permalink to this headline">¶</a></h1>
+<p>The following files make up the complete code for the GUI we have been building over this tutorial.</p>
+<ul class="simple">
+<li><a class="reference download internal" download="" href="../_downloads/5204d58c18dcb925bb6cb091c2e65f58/main.py"><code class="xref download docutils literal notranslate"><span class="pre">main.py</span></code></a></li>
+<li><a class="reference download internal" download="" href="../_downloads/1b909151a47b792d91d691d51a5221be/master_presenter.py"><code class="xref download docutils literal notranslate"><span class="pre">master_presenter.py</span></code></a></li>
+<li><a class="reference download internal" download="" href="../_downloads/1f441538c90113ba7544614f165375f1/master_view.py"><code class="xref download docutils literal notranslate"><span class="pre">master_view.py</span></code></a></li>
+<li><a class="reference download internal" download="" href="../_downloads/ebb170e1f4a4415fbdcff6dd489e7f67/presenter.py"><code class="xref download docutils literal notranslate"><span class="pre">presenter.py</span></code></a></li>
+<li><a class="reference download internal" download="" href="../_downloads/40f80d55c03d3c9ecc90b468b8ee19ba/view.py"><code class="xref download docutils literal notranslate"><span class="pre">view.py</span></code></a></li>
+<li><a class="reference download internal" download="" href="../_downloads/cf28dadc42fd7e3b99552658f50dcd28/model_colour.py"><code class="xref download docutils literal notranslate"><span class="pre">model_colour.py</span></code></a></li>
+<li><a class="reference download internal" download="" href="../_downloads/1e6d44dbc9b0f339d72d6a0a03f05267/plot_presenter.py"><code class="xref download docutils literal notranslate"><span class="pre">plot_presenter.py</span></code></a></li>
+<li><a class="reference download internal" download="" href="../_downloads/7b0aa2886836c6e021c6a1332a00e1a9/plot_view.py"><code class="xref download docutils literal notranslate"><span class="pre">plot_view.py</span></code></a></li>
+<li><a class="reference download internal" download="" href="../_downloads/d441b0a881b55da00cfc2d506be31f04/model_data.py"><code class="xref download docutils literal notranslate"><span class="pre">model_data.py</span></code></a></li>
+</ul>
 </div>
 
 
@@ -270,7 +116,7 @@ later date.</p>
           
             
   <li>
-    <a href="ModelExerciseSolution.html" title="Previous Chapter: Model Exercise Solution"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Model Exercis...</span>
+    <a href="FinalExercise.html" title="Previous Chapter: Final Exercise"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Final Exercise</span>
     </a>
   </li>
   <li>

@@ -95,87 +95,91 @@
 become large and difficult to maintain by hand. It usually easier to
 edit such code using a drag and drop WYSIWYG (What You See Is What You
 Get) editor such as Qt Creator/Designer. However, doing so requires some
-additional actions at build time.</p>
+additional actions to implement your layout into a view script.</p>
 </div>
 <div class="section" id="implementation">
 <h2>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h2>
 <p>Qt Creator was not originally designed to work with Python, and it is
 therefore not possible to directly save or export the layout as a
 Python script. Instead you must first save the layout in a <code class="docutils literal notranslate"><span class="pre">.ui</span></code>
-file and use the <code class="docutils literal notranslate"><span class="pre">pyuic4</span></code> tool to convert it to a python script.</p>
-</div>
-<div class="section" id="integration-with-cmake">
-<h2>Integration With CMake<a class="headerlink" href="#integration-with-cmake" title="Permalink to this headline">¶</a></h2>
-<p>Running this tool manually for each ui file in the project would
-quickly become infeasible. Fortunately it is easy to integrate this
-with the cmake build using the <code class="docutils literal notranslate"><span class="pre">UiToPy</span></code> function defined in
-<code class="docutils literal notranslate"><span class="pre">buildconfig/CMake/UiToPy.cmake</span></code>. This function takes a list of ui
-files and a name to be used for a cmake target. It will produce a
-target with the specified name, which, when built runs the <code class="docutils literal notranslate"><span class="pre">pyuic4</span></code>
-command on each of the <code class="docutils literal notranslate"><span class="pre">.ui</span></code> files to generate a <code class="docutils literal notranslate"><span class="pre">.py</span></code> file with a
-<code class="docutils literal notranslate"><span class="pre">ui_</span></code> prefix in the same directory.</p>
-<p>For example the following CMakeLists.txt:</p>
-<div class="code cmake highlight-default notranslate"><div class="highlight"><pre><span class="n">include</span><span class="p">(</span><span class="n">UiToPy</span><span class="p">)</span>
-<span class="nb">set</span><span class="p">(</span><span class="n">UI_FILES</span>
-  <span class="n">sans_data_processor_window</span><span class="o">.</span><span class="n">ui</span>
-  <span class="n">settings_diagnostic_tab</span><span class="o">.</span><span class="n">ui</span>
-  <span class="n">masking_table</span><span class="o">.</span><span class="n">ui</span>
-<span class="p">)</span>
+file and use a separate package to to convert it to a python class.
+Including this at the start of your view script will import a class
+<code class="docutils literal notranslate"><span class="pre">Ui_MyWidget</span></code> that you can use with your view.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">mantid.utils.qt</span> <span class="kn">import</span> <span class="n">load_ui</span>
 
-<span class="n">UiToPy</span><span class="p">(</span><span class="n">UI_FILES</span> <span class="n">CompileUISANSDataProcessorInterface</span><span class="p">)</span>
+<span class="n">Ui_MyWidget</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">load_ui</span><span class="p">(</span><span class="n">__file__</span><span class="p">,</span> <span class="s2">&quot;my_widget.ui&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Produces a cmake target <code class="docutils literal notranslate"><span class="pre">CompileUISANSDataProcessorInterface</span></code> which
-when built runs:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="n">pyuic4</span> <span class="n">sans_data_processor_window</span><span class="o">.</span><span class="n">ui</span> <span class="o">-</span><span class="n">o</span> <span class="n">ui_sans_data_processor_window</span><span class="o">.</span><span class="n">py</span>
-<span class="n">pyuic4</span> <span class="n">settings_diagnostic_tab</span><span class="o">.</span><span class="n">ui</span> <span class="o">-</span><span class="n">o</span> <span class="n">ui_settings_diagnostic_tab</span><span class="o">.</span><span class="n">py</span>
-<span class="n">pyuic4</span> <span class="n">masking_table</span><span class="o">.</span><span class="n">ui</span> <span class="o">-</span><span class="n">o</span> <span class="n">ui_masking_table</span><span class="o">.</span><span class="n">py</span>
-</pre></div>
 </div>
-<p>The generated target also runs a script wrap_pyui.py which prepends
-<code class="docutils literal notranslate"><span class="pre">#pylint:</span> <span class="pre">skip-file</span></code> to the top of the generated file.</p>
-<p>It is worth noting that for the main Mantid repository, in most cases
-<code class="docutils literal notranslate"><span class="pre">include(UiToPy)</span></code> can be omitted since the majority of Python GUIs
-have their <code class="docutils literal notranslate"><span class="pre">.ui</span></code> files under the <code class="docutils literal notranslate"><span class="pre">scripts/Interface/ui</span></code> directory
-and so <code class="docutils literal notranslate"><span class="pre">scripts/Interface/ui/CMakeLists.txt</span></code> performs this include.</p>
-</div>
-<div class="section" id="using-the-generated-script">
-<h2>Using the Generated Script<a class="headerlink" href="#using-the-generated-script" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="using-the-generated-class">
+<h2>Using the Generated Class<a class="headerlink" href="#using-the-generated-class" title="Permalink to this headline">¶</a></h2>
 <p>When following the MVP design pattern as described at
-<a class="reference internal" href="GUIDesignGuidelines.html#guidesignguidelinesmvpintro"><span class="std std-ref">MVP (Model View Presenter)</span></a>, the generated file alone is not sufficient
-as a <a class="reference internal" href="GUIDesignGuidelines.html#guidesignguidelinesmvpview"><span class="std std-ref">View</span></a>. Directly accessing the widgets and the
-signals defined on the view from the presenter moves the view
-implementation details into the presenter, which makes it harder to
-change the names and types of widgets used to display the
-information. Instead it is best to create a separate Python file which
-imports the generated one and adds a separate view class which
-inherits from the generated one.</p>
-<div class="code python highlight-default notranslate"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">ui_add_runs_page</span> <span class="c1"># This imports the file generated by pyuic.</span>
+<a class="reference internal" href="GUIDesignGuidelines.html#guidesignguidelinesmvpintro"><span class="std std-ref">MVP (Model View Presenter)</span></a>, the generated class alone is not
+sufficient as a <a class="reference internal" href="GUIDesignGuidelines.html#guidesignguidelinesmvpview"><span class="std std-ref">View</span></a>. The generated class
+lacks any method for sending signals or changing data in its own widgets.
+Directly accessing the widgets and the signals defined on the view from
+the presenter moves the view implementation details into the presenter,
+which makes it harder to change the names and types of widgets used to
+display the information. Instead it is best to create a separate new class
+which inherits from the imported one.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">qtpy</span> <span class="kn">import</span> <span class="n">QtCore</span><span class="p">,</span> <span class="n">QtGui</span><span class="p">,</span> <span class="n">QtWidgets</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">mantidqt.utils.qt</span> <span class="kn">import</span> <span class="n">load_ui</span>
+<span class="kn">from</span> <span class="nn">matplotlib.backends.backend_qt4agg</span> <span class="kn">import</span> <span class="n">FigureCanvasQTAgg</span> <span class="k">as</span> <span class="n">FigureCanvas</span>
 
-<span class="k">class</span> <span class="nc">AddRunsPage</span><span class="p">(</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QWidget</span><span class="p">,</span> <span class="n">ui_add_runs_page</span><span class="o">.</span><span class="n">Ui_AddRunsPage</span><span class="p">):</span>
-   <span class="k">pass</span>
+<span class="n">Ui_MyWidget</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">load_ui</span><span class="p">(</span><span class="n">__file__</span><span class="p">,</span> <span class="s2">&quot;my_widget.ui&quot;</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">MyWidget</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">,</span> <span class="n">Ui_MyWidget</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">MyWidget</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>You can then add separate methods to the view for accessing and mutating
 the content of the widgets as well as add any necessary signals which
 form the interface to the view.</p>
-<div class="code python highlight-default notranslate"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">ui_add_runs_page</span> <span class="c1"># This imports the file generated by pyuic.</span>
+</div>
+<div class="section" id="integrating-into-workbench">
+<h2>Integrating into Workbench<a class="headerlink" href="#integrating-into-workbench" title="Permalink to this headline">¶</a></h2>
+<p>In order to implement a new interface into Mantid Workbench it is best to
+start with a up to date build from master. For this demo our interface does
+not need any presenter or model, those can be added later, all that is needed
+is a <code class="docutils literal notranslate"><span class="pre">.ui</span></code> file and a script that will open it as an application. Take view
+from above and use the following as your main:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="p">(</span><span class="n">absolute_import</span><span class="p">,</span><span class="n">division</span><span class="p">,</span><span class="n">print_function</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">qtpy</span> <span class="kn">import</span> <span class="n">QtWidgets</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">my_widget.view</span> <span class="kn">as</span> <span class="nn">view</span>
 
-<span class="k">class</span> <span class="nc">AddRunsPage</span><span class="p">(</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QWidget</span><span class="p">,</span> <span class="n">ui_add_runs_page</span><span class="o">.</span><span class="n">Ui_AddRunsPage</span><span class="p">):</span>
-    <span class="n">outFileChanged</span> <span class="o">=</span> <span class="n">pyqtSignal</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">AddRunsPage</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">setupUi</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_connect_signals</span><span class="p">()</span>
-
-    <span class="k">def</span> <span class="nf">_connect_signals</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">fileNameEdit</span><span class="o">.</span><span class="n">editingFinished</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">outFileChanged</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">out_file_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">fileNameEdit</span><span class="o">.</span><span class="n">text</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">demo</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMainWindow</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">demo</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">window</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMainWindow</span><span class="p">()</span>
+        <span class="n">my_view</span> <span class="o">=</span> <span class="n">view</span><span class="o">.</span><span class="n">MyWidget</span><span class="p">(</span><span class="n">parent</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setCentralWidget</span><span class="p">(</span><span class="n">my_view</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="s2">&quot;Demo Interface&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>and put them in folder called <code class="docutils literal notranslate"><span class="pre">my_widget.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">scripts</span></code> folder of your
+source directory. You will note that when we are importing view into the main
+script we are importing <code class="docutils literal notranslate"><span class="pre">my_widget.view</span></code>, this is because our interface is in
+the form of a package that will be called by another script.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="p">(</span><span class="n">absolute_import</span><span class="p">,</span> <span class="n">division</span><span class="p">,</span> <span class="n">print_function</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">my_widget.main</span> <span class="kn">import</span> <span class="n">demo</span>
+
+<span class="n">widget</span> <span class="o">=</span> <span class="n">demo</span><span class="p">()</span>
+<span class="n">widget</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>This script call this script <code class="docutils literal notranslate"><span class="pre">my_widget.py</span></code> saved in the <code class="docutils literal notranslate"><span class="pre">scripts</span></code> folder of
+your source directory.</p>
+<p>Finally we have to add <code class="docutils literal notranslate"><span class="pre">my_widget</span></code> to the list of interfaces. to do this open
+<code class="docutils literal notranslate"><span class="pre">[Mantid</span> <span class="pre">Source</span> <span class="pre">Directory]/Framework/Properties/Mandtid.properties.template</span></code>
+and find the line starting <code class="docutils literal notranslate"><span class="pre">mantidqt.python_interfaces</span> <span class="pre">=</span></code>. At the end of this
+line, add <code class="docutils literal notranslate"><span class="pre">My_widgets/my_widget.py</span></code>.</p>
+<p>Rebuild Mantid and open workbench. Your interface should be located under
+Interfaces –&gt; My Widgets –&gt; my widget.</p>
 <div class="section" id="keeping-guis-modular-using-widgets">
 <h3>Keeping GUIs modular using Widgets<a class="headerlink" href="#keeping-guis-modular-using-widgets" title="Permalink to this headline">¶</a></h3>
 </div>
@@ -199,73 +203,29 @@ result of this clean separation.</p>
 </div>
 <div class="section" id="implementation-1">
 <span id="id2"></span><h2>Implementation<a class="headerlink" href="#implementation-1" title="Permalink to this headline">¶</a></h2>
-<p>Assuming we start with QtCreator with .ui file open which contains a
-section of an interface which we wish to move to its own widget. We must
-start by creating a new .ui file</p>
-<p>1. Go to <em>File</em> &gt; <em>New File Or Project</em> and select <em>Qt Designer Form</em>
-from the list of templates.</p>
-<img alt="_images/NewForm.png" src="_images/NewForm.png" />
-<ol class="arabic simple" start="2">
-<li>Then select <em>Widget</em> from the list of form templates.</li>
-</ol>
-<img alt="_images/SelectTemplate.png" src="_images/SelectTemplate.png" />
-<p>3. Enter the name for the file and save it to the location containing
-the corresponding CMakeLists.txt</p>
-<img alt="_images/NewFileName.png" src="_images/NewFileName.png" />
-<p>4. Click <em>Next</em> and adjust any project management settings as you wish
-before clicking <em>Finish</em>.</p>
-<p>At this point you should have an empty Widget in the design area.</p>
-<img alt="_images/SelectFile.png" src="_images/SelectFile.png" />
-<p>You can switch between the two <code class="docutils literal notranslate"><span class="pre">.ui</span></code> files using the menu in the top left.</p>
-<p>5. Next, copy the components you wish to move into the new widget and
-paste them into the new file.</p>
-<img alt="_images/CopyFromMainUI.png" src="_images/CopyFromMainUI.png" />
-<img alt="_images/PasteIntoWidget.png" src="_images/PasteIntoWidget.png" />
-<p>6. Make adjustments to the layout and resize behaviour of the widget as
-you see fit.</p>
-<img alt="_images/AdjustWidgetLayout.png" src="_images/AdjustWidgetLayout.png" />
-<p>7. Add the following CMake snippet to your CMakeLists.txt, note that
-you may already have a target for generating the Python files in which
-case you can simply add your new <code class="docutils literal notranslate"><span class="pre">.ui</span></code> file to the list of existing
-<code class="docutils literal notranslate"><span class="pre">.ui</span></code> files.</p>
-<div class="code cmake highlight-default notranslate"><div class="highlight"><pre><span class="nb">set</span><span class="p">(</span><span class="n">UI_FILES</span>
-  <span class="n">my_widget</span><span class="o">.</span><span class="n">ui</span>
-<span class="p">)</span>
-
-<span class="n">UiToPy</span><span class="p">(</span><span class="n">UI_FILES</span> <span class="n">CompileUIMyWidget</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>Test that this has worked by saving your <code class="docutils literal notranslate"><span class="pre">.ui</span></code> file and re-running
-the build, the output should contain a line similar to the following:</p>
-<p><code class="docutils literal notranslate"><span class="pre">[1/1]</span> <span class="pre">Generating</span> <span class="pre">scripts/Interface/ui/sans/ui_my_widget.py</span></code></p>
-<p>8. Add a separate python file containing the <a class="reference external" href="GuiDesignGuidelinesMVPView">View</a>
-class which extends the generated one.</p>
-<div class="code python highlight-default notranslate"><div class="highlight"><pre><span class="c1"># my_widget.py</span>
-<span class="kn">import</span> <span class="nn">ui_my_widget</span>
-
-<span class="k">class</span> <span class="nc">MyWidget</span><span class="p">(</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QWidget</span><span class="p">,</span> <span class="n">ui_add_runs_page</span><span class="o">.</span><span class="n">Ui_MyWidget</span><span class="p">):</span>
-   <span class="k">pass</span>
-</pre></div>
-</div>
-<p>9. Return to the original interface file, delete the components you
-copied across and replace them with a single <em>Widget</em> component found in
-the containers section.</p>
-<img alt="_images/PreReplacedWidget.png" src="_images/PreReplacedWidget.png" />
-<img alt="_images/PostReplacedWidget.png" src="_images/PostReplacedWidget.png" />
-<p>10. Right click on the newly created widget container and select
-<em>Promote To…</em></p>
-<img alt="_images/PromoteWidget.png" src="_images/PromoteWidget.png" />
-<p>11. For the <em>Promoted Class Name</em> field enter the name of the view
-class. If you are taking the advice given above, this should be the name
-of the class which inherits from the generated
-<code class="docutils literal notranslate"><span class="pre">ui_my_widget.Ui_MyWidget</span></code> class.</p>
-<p>12. For the <em>Header File</em> field enter the fully qualified path of the
-python module which contains the class mentioned above.</p>
-<p>13. You can leave the <em>Global Include</em> box un-ticked. Finish the
-promotion by pressing <em>Add</em> and then <em>Promote</em>.</p>
-<img alt="_images/CompletePromote.png" src="_images/CompletePromote.png" />
-<p>14. Save your ui files, re-run and launch the build to see the finished
-result.</p>
+<p>Qt Creator allows us to promote widgets in a <code class="docutils literal notranslate"><span class="pre">.ui</span></code> file into more complex
+widgets from a python script. This allows for the easy reuse of widgets
+in other interfaces while keeping the same methods.</p>
+<p>Begin in Qt Creator by making a blank QWidget then right click on it and
+go to <code class="docutils literal notranslate"><span class="pre">Promote</span> <span class="pre">to..</span></code></p>
+<img alt="_images/qtcreator_promoted.png" src="_images/qtcreator_promoted.png" />
+<p>The header will need to point to the view file that you made previously.
+Make sure this widgets name is left as the default <code class="docutils literal notranslate"><span class="pre">widget</span></code> and save.
+This promoted widget will contain all the same properties as the optional
+including any methods you added to <code class="docutils literal notranslate"><span class="pre">view.py</span></code>. Replace the view used in
+the previous example with a script that generates your promoted widget
+called <code class="docutils literal notranslate"><span class="pre">view_promoted.py</span></code>. Restart Workbench and check your widget, it
+should look identical. You can experiment with adding more than one
+promoted widget.</p>
+<p>Your original view is embedded in the new widget as an object, as such
+any methods are also within that object. As such where you would have called
+a method in the original with <code class="docutils literal notranslate"><span class="pre">self.view.getColours()</span></code>, when using a
+promoted widget you call it using <code class="docutils literal notranslate"><span class="pre">self.view.widget.getColours()</span></code>. Good
+practice would be to write a method in the master view script that returns the
+sub view object like in the script for <a class="reference internal" href="MVPTutorial/CompleteGUI.html#completegui"><span class="std std-ref">the plotting widget</span></a>.</p>
+<p>It may help to get some practice with Qt Creator by recreating
+<a class="reference internal" href="MVPTutorial/CompleteGUI.html#completegui"><span class="std std-ref">the plotting widget</span></a>. you should be able to use the same
+model and presenter scripts with the <code class="docutils literal notranslate"><span class="pre">.ui</span></code> based view scripts.</p>
 </div>
 </div>
 

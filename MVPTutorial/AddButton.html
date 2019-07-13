@@ -98,15 +98,14 @@ should be noted that in practice this should be avoided and will be
 discussed in <a class="reference internal" href="ReceivingSignalFromView.html#receivingsignalfromview"><span class="std std-ref">this section</span></a>.</p>
 <p>First we need to import the relevant packages, this includes PyQt.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="p">(</span><span class="n">absolute_import</span><span class="p">,</span><span class="n">division</span><span class="p">,</span><span class="n">print_function</span><span class="p">)</span>
-<span class="kn">import</span> <span class="nn">PyQt4.QtGui</span>  <span class="kn">as</span> <span class="nn">QtGui</span>
-<span class="kn">import</span> <span class="nn">PyQt4.QtCore</span> <span class="kn">as</span> <span class="nn">QtCore</span>
+<span class="kn">from</span> <span class="nn">qtpy</span> <span class="kn">import</span> <span class="n">QtWidgets</span><span class="p">,</span> <span class="n">QtCore</span><span class="p">,</span> <span class="n">QtGui</span>
 </pre></div>
 </div>
-<p>We then create the View class as a QWidget. Each View will have a
-parent. As a result, the View will automatically be destroyed if the
-parent is destroyed (unless the View has been removed, via docking,
+<p>We then create the View class as a QWidget. Each view will have a
+parent. As a result, the view will automatically be destroyed if the
+parent is destroyed (unless the view has been removed, via docking,
 from the parent).</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span class="k">class</span> <span class="nc">view</span><span class="p">(</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QWidget</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span class="k">class</span> <span class="nc">View</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">):</span>
 
 <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="nb">super</span><span class="p">(</span><span class="n">view</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
@@ -114,7 +113,7 @@ from the parent).</p>
 </div>
 <p>Next we create a layout and add a button to it</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span class="n">grid</span> <span class="o">=</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QGridLayout</span><span class="p">()</span>
-<span class="bp">self</span><span class="o">.</span><span class="n">button</span> <span class="o">=</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QPushButton</span><span class="p">(</span><span class="s1">&#39;Hi&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">button</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QPushButton</span><span class="p">(</span><span class="s1">&#39;Hi&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
 <span class="bp">self</span><span class="o">.</span><span class="n">button</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="s2">&quot;background-color:lightgrey&quot;</span><span class="p">)</span>
 
 <span class="c1"># connect button to signal</span>
@@ -138,8 +137,7 @@ function <code class="docutils literal notranslate"><span class="pre">btn_click<
 all been saved in <code class="docutils literal notranslate"><span class="pre">view.py</span></code>, the <code class="docutils literal notranslate"><span class="pre">main.py</span></code> will contain:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="p">(</span><span class="n">absolute_import</span><span class="p">,</span><span class="n">division</span><span class="p">,</span><span class="n">print_function</span><span class="p">)</span>
 
-<span class="kn">import</span> <span class="nn">PyQt4.QtGui</span> <span class="kn">as</span> <span class="nn">QtGui</span>
-<span class="kn">import</span> <span class="nn">PyQt4.QtCore</span> <span class="kn">as</span> <span class="nn">QtCore</span>
+<span class="kn">from</span> <span class="nn">qtpy</span> <span class="kn">import</span> <span class="n">QtWidgets</span>
 
 <span class="kn">import</span> <span class="nn">sys</span>
 
@@ -148,25 +146,25 @@ all been saved in <code class="docutils literal notranslate"><span class="pre">v
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">A wrapper class for setting the main window</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="k">class</span> <span class="nc">demo</span><span class="p">(</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QMainWindow</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">Demo</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMainWindow</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">parent</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">demo</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Demo</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">window</span><span class="o">=</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QMainWindow</span><span class="p">()</span>
-        <span class="n">my_view</span> <span class="o">=</span> <span class="n">view</span><span class="o">.</span><span class="n">view</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">window</span><span class="o">=</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMainWindow</span><span class="p">()</span>
+        <span class="n">my_view</span> <span class="o">=</span> <span class="n">view</span><span class="o">.</span><span class="n">View</span><span class="p">()</span>
         <span class="c1"># set the view for the main window</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">setCentralWidget</span><span class="p">(</span><span class="n">my_view</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="s2">&quot;view tutorial&quot;</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">qapp</span><span class="p">():</span>
-    <span class="k">if</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QApplication</span><span class="o">.</span><span class="n">instance</span><span class="p">():</span>
-        <span class="n">_app</span> <span class="o">=</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QApplication</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">get_qapplication_instance</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QApplication</span><span class="o">.</span><span class="n">instance</span><span class="p">():</span>
+        <span class="n">app</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QApplication</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">_app</span> <span class="o">=</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QApplication</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">_app</span>
+        <span class="n">app</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QApplication</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">app</span>
 
-<span class="n">app</span> <span class="o">=</span> <span class="n">qapp</span><span class="p">()</span>
-<span class="n">window</span> <span class="o">=</span> <span class="n">demo</span><span class="p">()</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">get_qapplication_instance</span><span class="p">()</span>
+<span class="n">window</span> <span class="o">=</span> <span class="n">Demo</span><span class="p">()</span>
 <span class="n">window</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 <span class="n">app</span><span class="o">.</span><span class="n">exec_</span><span class="p">()</span>
 </pre></div>

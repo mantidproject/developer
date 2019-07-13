@@ -15,7 +15,7 @@
     <script type="text/javascript" src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Complete GUI from Exercises" href="CompleteGUI.html" />
+    <link rel="next" title="Matplotlib and MVP" href="Matplotlib.html" />
     <link rel="prev" title="Model (MVP) Exercise" href="ModelExercise.html" />
 
 <script>
@@ -89,28 +89,41 @@
       
   <div class="section" id="model-exercise-solution">
 <span id="modelexercisesolution"></span><h1>Model Exercise Solution<a class="headerlink" href="#model-exercise-solution" title="Permalink to this headline">¶</a></h1>
-<p>The Model should now contain the following method in the
-<code class="docutils literal notranslate"><span class="pre">ColourConvertor</span></code> class:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span class="k">def</span> <span class="nf">getColourSelection</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">colour_table</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+<p>The model should now contain the following class:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span class="k">def</span> <span class="nf">line_colours</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="n">colour_table</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="s2">&quot;black&quot;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">colour_table</span>
 </pre></div>
 </div>
-<p>The View should contain the following method:</p>
+<p>The view should contain the following method:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span class="k">def</span> <span class="nf">setColours</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">options</span><span class="p">):</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">colours</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">colours</span><span class="o">.</span><span class="n">addItems</span><span class="p">(</span><span class="n">options</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The Presenter initialisation should now be:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">view</span><span class="p">,</span> <span class="n">data_model</span><span class="p">,</span> <span class="n">colour_model</span><span class="p">):</span>
+<p>The presenter initialisation should now be:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">view</span><span class="p">,</span> <span class="n">data_model</span><span class="p">,</span> <span class="n">colour_list</span><span class="p">):</span>
    <span class="bp">self</span><span class="o">.</span><span class="n">view</span> <span class="o">=</span> <span class="n">view</span>
    <span class="bp">self</span><span class="o">.</span><span class="n">data_model</span> <span class="o">=</span> <span class="n">data_model</span>
-   <span class="bp">self</span><span class="o">.</span><span class="n">colour_model</span> <span class="o">=</span> <span class="n">colour_model</span>
 
-   <span class="n">colours</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">colour_model</span><span class="o">.</span><span class="n">getColourSelection</span><span class="p">()</span>
-   <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">setColours</span><span class="p">(</span><span class="n">colours</span><span class="p">)</span>
+   <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">setColours</span><span class="p">(</span><span class="n">colour_list</span><span class="p">)</span>
    <span class="c1"># connect statements</span>
    <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">plotSignal</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">updatePlot</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>And the Main module should now pass the two models into the presenter:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="nb">super</span><span class="p">(</span><span class="n">Demo</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">window</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMainWindow</span><span class="p">()</span>
+    <span class="n">my_view</span> <span class="o">=</span> <span class="n">view</span><span class="o">.</span><span class="n">View</span><span class="p">()</span>
+    <span class="n">data_model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">DataGenerator</span><span class="p">()</span>
+    <span class="n">colour_list</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">line_colours</span><span class="p">()</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">presenter</span> <span class="o">=</span> <span class="n">presenter</span><span class="o">.</span><span class="n">Presenter</span><span class="p">(</span><span class="n">my_view</span><span class="p">,</span> <span class="n">data_model</span><span class="p">,</span> <span class="n">colour_list</span><span class="p">)</span>
+    <span class="c1"># set the view for the main window</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">setCentralWidget</span><span class="p">(</span><span class="n">my_view</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="s2">&quot;view tutorial&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -132,7 +145,7 @@
     </a>
   </li>
   <li>
-    <a href="CompleteGUI.html" title="Next Chapter: Complete GUI from Exercises"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Complete GUI ... &raquo;</span>
+    <a href="Matplotlib.html" title="Next Chapter: Matplotlib and MVP"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Matplotlib an... &raquo;</span>
     </a>
   </li>
           

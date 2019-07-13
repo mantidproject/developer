@@ -90,39 +90,38 @@
   <div class="section" id="receiving-a-signal-from-the-view">
 <span id="receivingsignalfromview"></span><h1>Receiving a signal from the view<a class="headerlink" href="#receiving-a-signal-from-the-view" title="Permalink to this headline">¶</a></h1>
 <p>In the <a class="reference internal" href="AddButton.html#addbutton"><span class="std std-ref">Add Button</span></a> section we had the response to a button press
-within the View. In practice this is not a good implementation. If the
+within the view. In practice this is not a good implementation. If the
 response was more complicated then it would be difficult to maintain
-the View as it would become extremely long. Furthermore creating the
+the view as it would become extremely long. Furthermore creating the
 look of the GUI is fairly simple and any logic/responses should be
-contained within the Presenter.</p>
-<p>In this section we will make a simple Presenter for when a button is
-pressed. First we will start with the View:</p>
+contained within the presenter.</p>
+<p>In this section we will make a simple presenter for when a button is
+pressed. First we will start with the view:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="p">(</span><span class="n">absolute_import</span><span class="p">,</span> <span class="n">division</span><span class="p">,</span> <span class="n">print_function</span><span class="p">)</span>
-<span class="kn">import</span> <span class="nn">PyQt4.QtGui</span> <span class="kn">as</span> <span class="nn">QtGui</span>
-<span class="kn">import</span> <span class="nn">PyQt4.QtCore</span> <span class="kn">as</span> <span class="nn">QtCore</span>
+<span class="kn">from</span> <span class="nn">qtpy</span> <span class="kn">import</span> <span class="n">QtWidgets</span><span class="p">,</span> <span class="n">QtCore</span><span class="p">,</span> <span class="n">QtGui</span>
 
 
-<span class="k">class</span> <span class="nc">view</span><span class="p">(</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QWidget</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">View</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">):</span>
 
-    <span class="n">doSomethingSignal</span> <span class="o">=</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">pyqtSignal</span><span class="p">()</span>
+    <span class="n">doSomethingSignal</span> <span class="o">=</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Signal</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">view</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">button</span> <span class="o">=</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QPushButton</span><span class="p">(</span><span class="s1">&#39;Hi&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">button</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QPushButton</span><span class="p">(</span><span class="s1">&#39;Hi&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">button</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="s2">&quot;background-color:lightgrey&quot;</span><span class="p">)</span>
         <span class="c1"># connect button to signal</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">button</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">btn_click</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QLabel</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QLabel</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s2">&quot;Button&quot;</span><span class="p">)</span>
 
         <span class="c1"># add widgets to layout</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">sub_layout</span> <span class="o">=</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QHBoxLayout</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sub_layout</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QHBoxLayout</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sub_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sub_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">button</span><span class="p">)</span>
 
-        <span class="n">grid</span> <span class="o">=</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QVBoxLayout</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">grid</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QVBoxLayout</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="n">grid</span><span class="o">.</span><span class="n">addLayout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sub_layout</span><span class="p">)</span>
         <span class="c1"># set the layout for the view widget</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">setLayout</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span>
@@ -136,12 +135,12 @@ pressed. First we will start with the View:</p>
 <p>The above code has two new additions. The first is the creation of a
 custom signal on line eight. It is also possible to pass objects with
 the signals. The second addition is that <code class="docutils literal notranslate"><span class="pre">btn_click</span></code> now emits the
-custom signal and will be caught by the Presenter.</p>
-<p>The Presenter is initialised with the View and must be a member of the
-Presenter class. It is therefore possible to change the View by
+custom signal and will be caught by the presenter.</p>
+<p>The presenter is initialised with the view and must be a member of the
+Presenter class. It is therefore possible to change the view by
 passing a different one to the presenter. For example you may want to
-have the widgets in a grid or in a table. The Presenter connects the
-custom signal from the View to its own function (<code class="docutils literal notranslate"><span class="pre">handleButton</span></code>).</p>
+have the widgets in a grid or in a table. The presenter connects the
+custom signal from the view to its own function (<code class="docutils literal notranslate"><span class="pre">handleButton</span></code>).</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="p">(</span><span class="n">absolute_import</span><span class="p">,</span> <span class="n">division</span><span class="p">,</span> <span class="n">print_function</span><span class="p">)</span>
 
 <span class="k">class</span> <span class="nc">Presenter</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -159,9 +158,7 @@ custom signal from the View to its own function (<code class="docutils literal n
 </div>
 <p>The main is now:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="p">(</span><span class="n">absolute_import</span><span class="p">,</span> <span class="n">division</span><span class="p">,</span> <span class="n">print_function</span><span class="p">)</span>
-
-<span class="kn">import</span> <span class="nn">PyQt4.QtGui</span> <span class="kn">as</span> <span class="nn">QtGui</span>
-<span class="kn">import</span> <span class="nn">PyQt4.QtCore</span> <span class="kn">as</span> <span class="nn">QtCore</span>
+<span class="kn">from</span> <span class="nn">qtpy</span> <span class="kn">import</span> <span class="n">QtWidgets</span><span class="p">,</span> <span class="n">QtCore</span><span class="p">,</span> <span class="n">QtGui</span>
 
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">view</span>
@@ -171,35 +168,35 @@ custom signal from the View to its own function (<code class="docutils literal n
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">A wrapper class for setting the main window</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="k">class</span> <span class="nc">demo</span><span class="p">(</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QMainWindow</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">Demo</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMainWindow</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">demo</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Demo</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">window</span> <span class="o">=</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QMainWindow</span><span class="p">()</span>
-        <span class="n">my_view</span> <span class="o">=</span> <span class="n">view</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">window</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMainWindow</span><span class="p">()</span>
+        <span class="n">my_view</span> <span class="o">=</span> <span class="n">view</span><span class="o">.</span><span class="n">View</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">my_presenter</span> <span class="o">=</span> <span class="n">presenter</span><span class="o">.</span><span class="n">Presenter</span><span class="p">(</span><span class="n">my_view</span><span class="p">)</span>
         <span class="c1"># set the view for the main window</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">setCentralWidget</span><span class="p">(</span><span class="n">my_view</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="s2">&quot;view tutorial&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">qapp</span><span class="p">():</span>
-        <span class="k">if</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QApplication</span><span class="o">.</span><span class="n">instance</span><span class="p">():</span>
-            <span class="n">_app</span> <span class="o">=</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QApplication</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">_app</span> <span class="o">=</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QApplication</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">_app</span>
+<span class="k">def</span> <span class="nf">get_qapplication_instance</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QApplication</span><span class="o">.</span><span class="n">instance</span><span class="p">():</span>
+        <span class="n">app</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QApplication</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">app</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QApplication</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">app</span>
 
 
-<span class="n">app</span> <span class="o">=</span> <span class="n">qapp</span><span class="p">()</span>
-<span class="n">window</span> <span class="o">=</span> <span class="n">demo</span><span class="p">()</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">get_qapplication_instance</span><span class="p">()</span>
+<span class="n">window</span> <span class="o">=</span> <span class="n">Demo</span><span class="p">()</span>
 <span class="n">window</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 <span class="n">app</span><span class="o">.</span><span class="n">exec_</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>The View and Presenter are both created, but only the Presenter has to
-be a member of the demo class. The View is created to be passed to the
-Presenter and the View could easily be replaced.</p>
+<p>The view and presenter are both created, but only the presenter has to
+be a member of the Demo class. The view is created to be passed to the
+presenter and the view could easily be replaced.</p>
 </div>
 
 
