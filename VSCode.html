@@ -295,6 +295,7 @@ is not covered here.</strong></p>
 <p><strong>Linux/OSX</strong></p>
 <p>For this section the guide will show you how to use GDB debugging. Inside the launch.json
 you will want to make your file look something a little like this:</p>
+<p><em>MantidPlot</em></p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span class="p">{</span>
     <span class="s2">&quot;version&quot;</span><span class="o">:</span> <span class="s2">&quot;0.2.0&quot;</span><span class="p">,</span>
     <span class="s2">&quot;configurations&quot;</span><span class="o">:</span> <span class="p">[</span>
@@ -322,7 +323,31 @@ you will want to make your file look something a little like this:</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p><strong>Window:</strong></p>
+<p><em>Workbench</em></p>
+<p>To debug C++ and start directly into the Workbench, add this to the configuration list in <code class="docutils literal notranslate"><span class="pre">launch.json</span></code>.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span class="p">{</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;(gdb) Workbench C++ Only&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;cppdbg&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;request&quot;</span><span class="o">:</span> <span class="s2">&quot;launch&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;program&quot;</span><span class="o">:</span> <span class="s2">&quot;/usr/bin/python2.7&quot;</span><span class="p">,</span> <span class="c1">// Path to your used Python interpreter, here and below</span>
+  <span class="s2">&quot;args&quot;</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;Path/To/Build/Directory/bin/workbench&quot;</span><span class="p">,</span> <span class="s2">&quot;&amp;&amp;&quot;</span><span class="p">,</span><span class="s2">&quot;gdb&quot;</span><span class="p">,</span><span class="s2">&quot;/usr/bin/python2.7&quot;</span><span class="p">,</span><span class="s2">&quot;$!&quot;</span><span class="p">],</span> <span class="c1">// $! gets the process ID</span>
+  <span class="s2">&quot;stopAtEntry&quot;</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="s2">&quot;cwd&quot;</span><span class="o">:</span> <span class="s2">&quot;Path/To/Build/Directory/bin&quot;</span><span class="p">,</span> <span class="c1">// this should point to bin inside the build directory</span>
+  <span class="s2">&quot;environment&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;externalConsole&quot;</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="s2">&quot;MIMode&quot;</span><span class="o">:</span> <span class="s2">&quot;gdb&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;preLaunchTask&quot;</span><span class="o">:</span> <span class="s2">&quot;Build Mantid&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;setupCommands&quot;</span><span class="o">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;description&quot;</span><span class="o">:</span> <span class="s2">&quot;Enable pretty-printing for gdb&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;text&quot;</span><span class="o">:</span> <span class="s2">&quot;-enable-pretty-printing&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;ignoreFailures&quot;</span><span class="o">:</span> <span class="kc">true</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Windows:</strong></p>
 <p>For this section of the guide it will discuss use of the MSVC debugger. Please
 follow on with the <a class="reference external" href="https://code.visualstudio.com/docs/cpp/config-msvc">guide</a>.
 The launch.json should end up looking a little like this:</p>
