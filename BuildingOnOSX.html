@@ -15,7 +15,7 @@
     <script type="text/javascript" src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Building with CMake" href="BuildingWithCMake.html" />
+    <link rel="next" title="Building on Older Versions of OS X" href="BuildingOnOSXHistoric.html" />
     <link rel="prev" title="Getting Started" href="GettingStarted.html" />
 
 <script>
@@ -89,441 +89,83 @@
       
   <div class="section" id="building-on-os-x">
 <span id="buildingonosx"></span><h1>Building on OS X<a class="headerlink" href="#building-on-os-x" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><a class="reference internal" href="#os-x-10-9-using-clang-and-macports" id="id1">OS X 10.9 using clang and macports</a><ul>
-<li><a class="reference internal" href="#instruction" id="id2">Instruction</a></li>
-<li><a class="reference internal" href="#building-vates" id="id3">Building VATES</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#os-x-10-10-and-10-11-using-clang-and-xcode" id="id4">OS X 10.10 and 10.11 using clang and Xcode</a><ul>
-<li><a class="reference internal" href="#troubleshooting" id="id5">Troubleshooting</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#os-x-10-12" id="id6">OS X 10.12</a></li>
+<li><a class="reference internal" href="#instructions-for-historic-versions" id="id1">Instructions for Historic Versions</a></li>
 </ul>
 </div>
-<p>The following are instructions to build on various versions of OS X:</p>
-<div class="section" id="os-x-10-9-using-clang-and-macports">
-<h2><a class="toc-backref" href="#id1">OS X 10.9 using clang and macports</a><a class="headerlink" href="#os-x-10-9-using-clang-and-macports" title="Permalink to this headline">¶</a></h2>
-<p><em>Disclaimer</em></p>
-<p>This instruction considers that you either use macports or need them for your other development projects. It also
-considers that you need to compile Mantid by yourself. In other cases please either <a class="reference external" href="http://download.mantidproject.org/">download a Mantid dmg package</a> or follow the instructions below. Warning:
-it is not recommended to have both, homebrew and macports installed simultaneously on one mac.</p>
-<div class="section" id="instruction">
-<h3><a class="toc-backref" href="#id2">Instruction</a><a class="headerlink" href="#instruction" title="Permalink to this headline">¶</a></h3>
+<p>The minimum supported version of macOS is High Sierra (10.13).</p>
+<p>These instructions are from the assumptions of a blank newly installed version of High Sierra using Homebrew for dependency management.</p>
 <ol class="arabic simple">
-<li>Install Xcode and macports following the instructions on <a class="reference external" href="https://guide.macports.org/chunked/installing.html">https://guide.macports.org/chunked/installing.html</a> if needed.</li>
-<li>Install Mantid prerequisites via <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">port</span> <span class="pre">install</span> <span class="pre">package_name</span></code></li>
-<li>Things to take care about:</li>
-</ol>
-<ul>
-<li><p class="first">By default, POCO libraries in macports are missing libCrypto and libNetSSL. If you have the POCO libraries already installed, uninstall them: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">port</span> <span class="pre">uninstall</span> <span class="pre">poco</span></code>, then install as: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">port</span> <span class="pre">install</span> <span class="pre">poco</span> <span class="pre">+ssl</span></code>.</p>
-</li>
-<li><p class="first">Install OpenCascade libraries as: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">port</span> <span class="pre">install</span> <span class="pre">oce</span> <span class="pre">-tbb</span></code>.</p>
-</li>
-<li><p class="first">libNeXus: macports do not contain libNeXus.</p>
-<ol class="arabic">
-<li><p class="first">Download the source code from the <a class="reference external" href="http://download.nexusformat.org/kits/">NeXus developers website</a>.</p>
-</li>
-<li><p class="first">Build and install it:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre> % ./configure --prefix<span class="o">=</span>/opt/local
- % make
- % sudo make install
-
-You may need to install additional packages to be able to build libNeXus.
-</pre></div>
-</div>
-</li>
-<li><p class="first">libNeXus must be recompiled after update of the macports if it’s dependencies have been updated. Otherwise it may depend on some non-existent libraries.</p>
-</li>
-</ol>
-</li>
-<li><p class="first">jsoncpp: <code class="docutils literal notranslate"><span class="pre">mantid/Code/Mantid/Framework/DataObjects/src/NoShape.cpp</span></code> line 3 contains: <code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">&lt;jsoncpp/json/json.h&gt;</span></code> but in macports there is no <code class="docutils literal notranslate"><span class="pre">jsoncpp</span></code> folder in the <code class="docutils literal notranslate"><span class="pre">/opt/local/include</span></code>, <code class="docutils literal notranslate"><span class="pre">json.h</span></code> is located in <code class="docutils literal notranslate"><span class="pre">/opt/local/include/json</span></code>. As a temporary solution, you may create a symbolic link:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>% sudo mkdir /opt/local/include/jsoncpp
-% <span class="nb">cd</span> /opt/local/include/jsoncpp
-% sudo ln -s ../json
-</pre></div>
-</div>
-</li>
-</ul>
-<ol class="arabic simple" start="4">
-<li>Run cmake. It may be needed to specify the compiler as well as the path to include files. I use the following cmake options:</li>
-</ol>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>cmake  -DCMAKE_C_COMPILER<span class="o">=</span>/usr/bin/clang <span class="se">\</span>
-  -DCMAKE_CXX_COMPILER<span class="o">=</span>/usr/bin/clang++ -G <span class="s1">&#39;Unix Makefiles&#39;</span> <span class="se">\</span>
-  -DCMAKE_PREFIX_PATH<span class="o">=</span>/opt/local <span class="se">\</span>
-  -DCMAKE_BUILD_TYPE<span class="o">=</span>Release <span class="se">\</span>
-  -DENABLE_CPACK<span class="o">=</span>True <span class="se">\</span>
-  -DPOCO_INCLUDE_DIR<span class="o">=</span>/opt/local/include <span class="se">\</span>
-  -DQWTPLOT3D_INCLUDE_DIR<span class="o">=</span>/opt/local/include/qwtplot3d <span class="se">\</span>
-  -DJSONCPP_INCLUDE_DIR<span class="o">=</span>/opt/local/include <span class="se">\</span>
-  -DOPENCASCADE_INCLUDE_DIR<span class="o">=</span>/opt/local/include/oce <span class="se">\</span>
-  -DPYTHON_INCLUDE_DIR<span class="o">=</span>/opt/local/Library/Frameworks/Python.framework/Headers <span class="se">\</span>
-  -DSIP_INCLUDE_DIR<span class="o">=</span>/opt/local/Library/Frameworks/Python.framework/Headers <span class="se">\</span>
-  -DPYTHON_NUMPY_INCLUDE_DIR<span class="o">=</span>/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/numpy/core/include <span class="se">\</span>
-  -DPYTHON_EXECUTABLE<span class="o">=</span>/opt/local/bin/python <span class="se">\</span>
-  -DPYLINT_EXECUTABLE<span class="o">=</span>/opt/local/bin/pylint-2.7 <span class="se">\</span>
-  -DSPHINX_EXECUTABLE<span class="o">=</span>/opt/local/bin/sphinx-build-2.7 <span class="se">\</span>
-  -DPACKAGE_DOCS<span class="o">=</span>FALSE <span class="se">\</span>
-  -DDOCS_HTML<span class="o">=</span>TRUE <span class="se">\</span>
-  -DPYQT4_PATH<span class="o">=</span>/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/PyQt4 <span class="se">\</span>
-  -DSITEPACKAGES_PATH<span class="o">=</span>/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages <span class="se">\</span>
-  -DOPENSSL_ROOT_DIR<span class="o">=</span>/opt/local <span class="se">\</span>
-  -DMAKE_VATES<span class="o">=</span>FALSE <span class="se">\</span>
-  -DMACPORTS<span class="o">=</span>TRUE <span class="se">\</span>
-  -DCMAKE_INSTALL_PREFIX<span class="o">=</span>path_where_to_install_mantid  /path_to_repository/mantid/Code/Mantid
-</pre></div>
-</div>
-<ol class="arabic simple" start="5">
-<li>Pay attention that packaging of the documentation is switched off. I did not manage to build it for the moment.</li>
-<li>Build mantid running <code class="docutils literal notranslate"><span class="pre">make</span></code> or <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">-j</span> <span class="pre">number_of_threads</span></code></li>
-<li>You may create the dmg package running the <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">package</span></code> command</li>
-<li>You may also install Mantid using the <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">install</span></code> command. <em>Warning</em>: if you do not want to install Mantid in /Applications, correct the CMAKE_INSTALL_PREFIX in the <code class="docutils literal notranslate"><span class="pre">cmake_install.cmake</span></code> file in your build directory.</li>
-</ol>
-</div>
-<div class="section" id="building-vates">
-<h3><a class="toc-backref" href="#id3">Building VATES</a><a class="headerlink" href="#building-vates" title="Permalink to this headline">¶</a></h3>
-<p>Starting from Mantid 3.4, it is possible to build it with VATES support using macports.</p>
-<ol class="arabic simple">
-<li>Build Paraview using the following instruction: <a class="reference internal" href="BuildingVATES.html#buildingvates"><span class="std std-ref">Building VATES</span></a>.</li>
-<li>Set cmake option <code class="docutils literal notranslate"><span class="pre">-DMAKE_VATES=TRUE</span></code></li>
-<li>Set path to the paraview build directory: <code class="docutils literal notranslate"><span class="pre">-DParaView_DIR=/put_your_path_here</span></code></li>
-<li>Run steps 6-7(8) to build/install Mantid</li>
-</ol>
-</div>
-</div>
-<div class="section" id="os-x-10-10-and-10-11-using-clang-and-xcode">
-<h2><a class="toc-backref" href="#id4">OS X 10.10 and 10.11 using clang and Xcode</a><a class="headerlink" href="#os-x-10-10-and-10-11-using-clang-and-xcode" title="Permalink to this headline">¶</a></h2>
-<p>These instructions are from the assumptions of a blank newly installed Mac and want to use the system python. Other python distributions may work but have not been tested.</p>
-<ol class="arabic simple">
-<li>First install Xcode and then clone the mantid git repository.</li>
-</ol>
-<ul class="simple">
-<li>The last version to support OS X Mavericks is Xcode 6.2</li>
-<li>The last version to support OS X Yosemite is Xcode 7.2.1</li>
-<li>As of August 1, 2016, our OS X El Capitan build server is running Xcode 7.3.1</li>
-</ul>
-<ol class="arabic simple" start="2">
-<li>Install Apple’s Command Line tools (without this then /usr/include will not exist)</li>
+<li>Install Xcode 10.1</li>
+<li>Install Apple’s Command Line tools (required by Homebrew)</li>
 </ol>
 <div class="highlight-sh notranslate"><div class="highlight"><pre>xcode-select --install
 </pre></div>
 </div>
-<ol class="arabic simple" start="2">
-<li>Install <a class="reference external" href="http://brew.sh">Homebrew</a>. If you already have Homebrew and are upgrading the OS follow the <a class="reference external" href="http://ryantvenge.com/2014/09/ruby-homebrea-yosemite/">instructions here</a>:</li>
+<ol class="arabic simple" start="3">
+<li>Install <a class="reference external" href="http://brew.sh">Homebrew</a>.</li>
 </ol>
 <div class="highlight-sh notranslate"><div class="highlight"><pre>ruby -e <span class="s2">&quot;</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install<span class="k">)</span><span class="s2">&quot;</span>
 </pre></div>
 </div>
-<ol class="arabic simple" start="3">
+<ol class="arabic simple" start="4">
 <li>Add the necessary ‘taps’. The last 4 are to use qt4.</li>
 </ol>
 <p>In order to be able to ‘tap’ the <code class="docutils literal notranslate"><span class="pre">mantidproject/mantid</span></code> ‘tap’ we need to have a couple of packages installed</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre>brew install git
-brew install git-lfs
-
 brew tap homebrew/science
 brew tap mantidproject/mantid
 brew tap caskroom/cask
 brew tap cartr/qt4
 brew tap-pin cartr/qt4
+brew cask install xquartz
+brew cask install mactex
 </pre></div>
 </div>
 <ol class="arabic simple" start="5">
-<li>Install required dependencies (will make a mantid-developer formula soon)
-If you plan on distributing your application bundle, change <code class="docutils literal notranslate"><span class="pre">brew</span> <span class="pre">install</span></code> to <code class="docutils literal notranslate"><span class="pre">brew</span> <span class="pre">install</span> <span class="pre">--build-bottle</span></code></li>
+<li>Reset brew formula repo back to before Python 2 removal for required packages</li>
 </ol>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>brew cask install xquartz
-<span class="c1"># mactex is optional, needed for parsing equations in qthelp documentation.</span>
-brew cask install mactex
-brew install openssl
-brew install cmake
-brew install qt@4 --with-qt3support --build-bottle
-<span class="c1"># sip,pyqt and qscintilla2 bring in homebrew&#39;s python if</span>
-<span class="c1"># installed with --build-bottle. And add --build-from-source.</span>
-brew install sip --build-from-source --without-python3
-brew install pyqt@4 --build-from-source --without-python3
-brew install qscintilla2qt4 --build-from-source
-brew install qt --build-bottle
-brew install pyqt --build-from-source
-brew install qscintilla2 --build-from-source --without-python3
-brew install poco --c++11
-brew install boost --c++11
-<span class="c1"># boost-python brings in homebrew&#39;s python if installed with --build-bottle.</span>
-brew install boost-python --c++11 --build-from-source
-brew install gsl
-brew install hdf5 --c++11
-brew install libmxml
-brew install muparser
-<span class="c1">#Several unit tests fail with NeXus v4.4.2</span>
-<span class="c1">#https://github.com/mantidproject/mantid/issues/17001</span>
-brew install nexusformat --c++11
-brew install jsoncpp
-brew install tbb --c++11
-brew install opencascade --build-bottle
-brew install qwt5
-brew install qwtplot3d
-brew install google-perftools
-brew install librdkafka
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span class="nb">cd</span> /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core
+git reset --hard 8f1d612d9e179c0d91ecd09853854e42281bd313
+<span class="nb">cd</span> -
 </pre></div>
 </div>
 <ol class="arabic simple" start="6">
-<li>Uninstall homebrew Python that some of the dependencies insist on installing</li>
+<li>Disable homebrew update and install <code class="docutils literal notranslate"><span class="pre">mantid-developer</span></code> formula (this may take a while depending on your network speed)</li>
 </ol>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>brew uninstall python
-</pre></div>
-</div>
-<ol class="arabic simple" start="6">
-<li>Optional: for cmake-gui</li>
-</ol>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>brew cask install cmake
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span class="nv">HOMEBREW_NO_AUTO_UPDATE</span><span class="o">=</span><span class="m">1</span> brew install mantid-developer
 </pre></div>
 </div>
 <ol class="arabic simple" start="7">
-<li>Now to install the other python package dependencies:</li>
+<li>Homebrew can stop early for reasons that are unclear. Repeat the above command until Homebrew states: <em>Warning: mantidproject/mantid/mantid-developer ?.? is already installed and up-to-date</em>.</li>
+<li>Pin libraries that depend on Python 2 and libmxml and NeXus is not compatible with v3:</li>
 </ol>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>sudo easy_install pip
-sudo -H pip install sphinx
-<span class="c1"># https://github.com/mantidproject/mantid/issues/13481</span>
-sudo -H pip install <span class="s2">&quot;ipython[notebook]==3.2.1&quot;</span>
-<span class="c1"># qtconsole only required with ipython 4+</span>
-<span class="c1">#sudo -H pip install qtconsole</span>
-sudo -H pip install qtpy
-sudo -H pip install pygments
-sudo -H pip install pyzmq
-sudo -H pip install pycifrw
-<span class="c1"># Version matches Windows/RHEL/Ubuntu (trusty)</span>
-sudo -H pip install <span class="nv">PyYAML</span><span class="o">==</span>3.10
-<span class="c1"># Version matches Windows/RHEL/Ubuntu (trusty)</span>
-sudo -H pip install <span class="nv">mock</span><span class="o">==</span>1.0.1
-sudo -H pip install <span class="nv">requests</span><span class="o">==</span>2.9.1
+<div class="highlight-sh notranslate"><div class="highlight"><pre>brew pin libmxml
+brew pin sip
+brew pin pyqt
 </pre></div>
 </div>
-<ol class="arabic simple" start="8">
-<li>Install the theme for sphinx</li>
-</ol>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>sudo pip install sphinx_bootstrap_theme
-</pre></div>
-</div>
-<ol class="arabic simple" start="9">
-<li>Install other python dependencies</li>
-</ol>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>sudo pip install psutil
-brew install h5py
-</pre></div>
-</div>
-<ol class="arabic simple" start="9">
-<li>Add Homebrew’s site-packages to your python path.</li>
-</ol>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>mkdir -p ~/Library/Python/2.7/lib/python/site-packages
-<span class="nb">echo</span> <span class="s1">&#39;/usr/local/lib/python2.7/site-packages&#39;</span> &gt; ~/Library/Python/2.7/lib/python/site-packages/homebrew.pth
-</pre></div>
-</div>
-<ol class="arabic simple" start="10">
-<li>Now you need to patch a header in your python!</li>
-</ol>
-<ul>
-<li><p class="first">If building on the command line with make or ninja.</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span class="nb">cd</span> /usr/include/python2.7
-</pre></div>
-</div>
-<p>or</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span class="nb">cd</span> /System/Library/Frameworks/Python.framework/Headers
-</pre></div>
-</div>
-<p>then</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>sudo cp pyport.h pyport.h.original
-sudo patch pyport.h $MANTIDCHECKOUTROOT/buildconfig/pyport.patch
-</pre></div>
-</div>
+<ol class="arabic" start="9">
+<li><p class="first">Unlink <code class="docutils literal notranslate"><span class="pre">qt&#64;4</span></code> from <code class="docutils literal notranslate"><span class="pre">/usr/local</span></code> to avoid cross talk with Qt5 and ensure the webkit can be found when not linked</p>
+<p>brew unlink qt&#64;4
+ln -s /usr/local/Homebrew/Library/Taps/mantidproject/homebrew-mantid/qt.conf <a class="reference external" href="mailto:/usr/local/opt/qt&#37;&#52;&#48;4/bin/qt&#46;conf">/usr/local/opt/qt<span>&#64;</span>4/bin/qt<span>&#46;</span>conf</a>
+ln -s <a class="reference external" href="mailto:/usr/local/opt/qt-webkit&#37;&#52;&#48;2&#46;3/include/QtWebKit">/usr/local/opt/qt-webkit<span>&#64;</span>2<span>&#46;</span>3/include/QtWebKit</a> <a class="reference external" href="mailto:/usr/local/opt/qt&#37;&#52;&#48;4/include/QtWebKit">/usr/local/opt/qt<span>&#64;</span>4/include/QtWebKit</a>
+ln -s <a class="reference external" href="mailto:/usr/local/opt/qt-webkit&#37;&#52;&#48;2&#46;3/lib/QtWebKit&#46;framework">/usr/local/opt/qt-webkit<span>&#64;</span>2<span>&#46;</span>3/lib/QtWebKit<span>&#46;</span>framework</a> <a class="reference external" href="mailto:/usr/local/opt/qt&#37;&#52;&#48;4/lib/QtWebKit&#46;framework">/usr/local/opt/qt<span>&#64;</span>4/lib/QtWebKit<span>&#46;</span>framework</a></p>
 </li>
-<li><p class="first">If building with Xcode on OS X Yosemite</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span class="nb">cd</span> /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7
-</pre></div>
-</div>
-<p>then</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>sudo cp pyport.h pyport.h.original
-sudo patch pyport.h $MANTIDCHECKOUTROOT/buildconfig/pyport.patch
-</pre></div>
-</div>
-<p><strong>Note</strong>: If Xcode updates for any reason, the patch will be lost.</p>
+<li><p class="first">Check that <code class="docutils literal notranslate"><span class="pre">which</span> <span class="pre">python</span></code> returns a Python in <code class="docutils literal notranslate"><span class="pre">/usr/local</span></code> and not system Python.</p>
 </li>
-</ul>
-<ol class="arabic" start="11">
-<li><p class="first">Now run CMake and select the Xcode generator with the default native compilers.</p>
-</li>
-<li><p class="first">Now open the project in Xcode (doing this from the command line to ensure the PYTHONPATH is correctly picked up by Xcode).</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span class="nb">cd</span> /path/to/my/build/dir
-open Mantid.xcodeproj
-</pre></div>
-</div>
+<li><p class="first">Install python requirements</p>
 </li>
 </ol>
-<div class="section" id="troubleshooting">
-<h3><a class="toc-backref" href="#id5">Troubleshooting</a><a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h3>
-<ol class="arabic simple">
-<li>The main problem that can arise is due to python path issues.  This usually either arises at the CMake or Run from Xcode steps.  It is because the PYTHONPATH is not being picked up.</li>
-<li>If you have upgraded to Mavericks (OS X 10.9) from a previous version of OS X with homebrew already installed then you may encounter some issues related to the fact that the default std lib has changed.  The easiest way to avoid this is to remove and then re-install all your formulas.</li>
-<li>You may find that if you build the <code class="docutils literal notranslate"><span class="pre">MantidPlot</span></code> target then you will get errors when you run, such as <em>Can’t start python</em> and <em>Cannot load Curve Fitting Plugins</em>, this is due to the fact that the MantidPlot target does not contain all the dependencies.  You are best, if you are unsure of the hierarchy, to just use the ALL_BUILD target and then just switch to the MantidPlot target in order to run.</li>
-<li>NOTE that you might need to run <code class="docutils literal notranslate"><span class="pre">./MantidPlot.app/Contents/MacOS/MantidPlot</span></code> from the <code class="docutils literal notranslate"><span class="pre">BUILD-DIR/bin</span></code> (instead of <code class="docutils literal notranslate"><span class="pre">open</span> <span class="pre">MantidPlot.app</span></code> OR <code class="docutils literal notranslate"><span class="pre">./MantidPlot</span></code> from <code class="docutils literal notranslate"><span class="pre">BUILD-DIR/bin/MantidPlot.app/Contents/MacOS/</span></code>) to get the library paths correct. Otherwise the issues above might show up (at least on OS X 10.11 El Capitan).</li>
-<li>Upgrading HDF5 requires also rebuilding nexusformat, h5py, and ParaView.</li>
-</ol>
-</div>
-</div>
-<div class="section" id="os-x-10-12">
-<h2><a class="toc-backref" href="#id6">OS X 10.12</a><a class="headerlink" href="#os-x-10-12" title="Permalink to this headline">¶</a></h2>
-<p>The following instructions setup the build environment for mantid using clang compiler and python provided by the system, and all the other dependencies installed with brew. The drawback is that one has little control over python version and OpenMP will not be found. Make sure you have Qt Creator IDE and optionally cmake (GUI) app installed.</p>
-<ol class="arabic simple">
-<li>Install Xcode from AppStore</li>
-<li>Install Xcode command line tools</li>
-</ol>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>xcode-select --install
+<div class="highlight-sh notranslate"><div class="highlight"><pre>python -m pip install -r /usr/local/Homebrew/Library/Taps/mantidproject/homebrew-mantid/requirements.txt
 </pre></div>
 </div>
-<ol class="arabic simple" start="3">
-<li>Install home-brew package manager</li>
-</ol>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>ruby -e <span class="s2">&quot;</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install<span class="k">)</span><span class="s2">&quot;</span>
-</pre></div>
-</div>
-<ol class="arabic simple" start="4">
-<li>Add the necessary ‘taps’</li>
-</ol>
-<p>In order to be able to ‘tap’ the <cite>mantidproject/mantid</cite> ‘tap’ we need to have a couple of packages installed</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>brew install git
-brew install git-lfs
-
-brew tap mantidproject/mantid
-brew tap caskroom/cask
-brew tap cartr/qt4
-brew tap-pin cartr/qt4
-</pre></div>
-</div>
-<ol class="arabic simple" start="5">
-<li>Install the necessary dependencies. Note that some of these will bring brew python with them as dependency.</li>
-</ol>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>brew cask install xquartz
-brew cask install mactex
-brew install openssl
-brew install cmake
-brew install ninja --without-test
-brew install qt@4 --build-bottle
-brew install sip --build-from-source --without-python
-brew install pyqt@4 --build-from-source
-brew install qscintilla2qt4 --build-from-source --without-python
-brew install qt --build-bottle
-brew install pyqt --build-from-source
-brew install qscintilla2 --build-from-source --without-python
-brew install poco
-brew install boost --c++11
-brew install boost-python --c++11 --build-from-source
-brew install gsl
-brew install gcc
-brew install hdf5 --c++11
-brew install libmxml
-brew install muparser
-brew install nexusformat --c++11
-brew install jsoncpp
-brew install tbb --c++11
-brew install opencascade --build-bottle
-brew install qwt5
-brew install qwtplot3d
-brew install google-perftools
-brew install librdkafka
-</pre></div>
-</div>
-<p>If, while configuring Mantid, cmake complains that it cannot find sip, uninstall the package by <code class="docutils literal notranslate"><span class="pre">brew</span> <span class="pre">uninstall</span> <span class="pre">--ignore-dependencies</span> <span class="pre">sip</span></code>, reinstall it using the line above and follow the instructions on how to add Homebrew’s site-packages to Python <code class="docutils literal notranslate"><span class="pre">sys.path</span></code>.</p>
-<ol class="arabic simple" start="6">
-<li>Uninstall the brew python if it has been previously installed</li>
-</ol>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>brew uninstall --ignore-dependencies python3
-</pre></div>
-</div>
-<ol class="arabic simple" start="7">
-<li>Install pip python package manager</li>
-</ol>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>sudo easy_install pip
-</pre></div>
-</div>
-<ol class="arabic simple" start="8">
-<li>Install necessary python packages with pip</li>
-</ol>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>sudo -H pip install sphinx --ignore-installed
-sudo -H pip install <span class="s2">&quot;ipython[notebook]==3.2.1&quot;</span>
-sudo -H pip install qtpy
-sudo -H pip install pycifrw
-sudo -H pip install <span class="nv">PyYAML</span><span class="o">==</span>3.10
-sudo -H pip install <span class="nv">mock</span><span class="o">==</span>1.0.1
-sudo pip install sphinx_bootstrap_theme
-sudo pip install psutil
-sudo pip install <span class="s2">&quot;matplotlib&gt;=2.1.2&quot;</span>
-sudo pip install <span class="nv">requests</span><span class="o">==</span>2.9.1
-</pre></div>
-</div>
-<ol class="arabic simple" start="9">
-<li>Install h5py</li>
-</ol>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>brew install h5py
-</pre></div>
-</div>
-<ol class="arabic simple" start="10">
-<li>Add Homebrew’s site-packages to your python path.</li>
-</ol>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>mkdir -p ~/Library/Python/2.7/lib/python/site-packages
-<span class="nb">echo</span> <span class="s1">&#39;/usr/local/lib/python2.7/site-packages&#39;</span> &gt; ~/Library/Python/2.7/lib/python/site-packages/homebrew.pth
-</pre></div>
-</div>
-<ol class="arabic" start="11">
-<li><p class="first">Git clone the mantid repository</p>
-</li>
-<li><p class="first">Disable the system integrity protection (SIP). To do this</p>
-<ul>
-<li><p class="first">restart the computer</p>
-</li>
-<li><p class="first">before the apple logo appears press <cite>Command+R</cite> to enter the recovery mode</p>
-</li>
-<li><p class="first">when in recovery mode, go to <cite>Utilities&gt;Terminal</cite> and type</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>csrutil disable
-</pre></div>
-</div>
-</li>
-<li><p class="first">reboot again</p>
-</li>
-</ul>
-</li>
-<li><p class="first">Now that SIP is disabled we can do the necessary patch:</p>
-</li>
-</ol>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span class="nb">cd</span> /usr/include/python2.7
-sudo cp pyport.h pyport.h.original
-sudo patch pyport.h $MANTIDCHECKOUTROOT/buildconfig/pyport.patch
-</pre></div>
-</div>
-<ol class="arabic simple" start="14">
-<li>Enable again the system integrity protection by repeating Step 12 and typing this time:</li>
-</ol>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>csrutil <span class="nb">enable</span>
-</pre></div>
-</div>
-<ol class="arabic simple" start="15">
-<li>Open mantid project from Qt Creator, and you should be able to run cmake and build, given the right environment:</li>
-</ol>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span class="nv">CC</span><span class="o">=</span>/usr/bin/clang
-<span class="nv">CXX</span><span class="o">=</span>/usr/bin/clang++
-<span class="nv">PATH</span><span class="o">=</span>/usr/local/bin/:$PATH
-</pre></div>
-</div>
-<p>Local bin contains the symlink to the brew packages, which have to come first in path, before <cite>/usr/bin</cite>. That’s why it is important not to have python or clang (with this setup) in brew.</p>
-<ol class="arabic simple" start="16">
-<li>Add to your <cite>.profile</cite></li>
-</ol>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span class="nb">export</span> <span class="nv">PYTHONPATH</span><span class="o">=</span><span class="nv">$B</span>UILDMANTID/bin
-</pre></div>
-</div>
-<ol class="arabic simple" start="17">
-<li>You should now be able to mantid.</li>
-</ol>
+<div class="section" id="instructions-for-historic-versions">
+<h2><a class="toc-backref" href="#id1">Instructions for Historic Versions</a><a class="headerlink" href="#instructions-for-historic-versions" title="Permalink to this headline">¶</a></h2>
+<p>See <a class="reference internal" href="BuildingOnOSXHistoric.html#buildingonosxhistoric"><span class="std std-ref">Building on Older Versions of OS X</span></a> for instructions for older versions of OSX.</p>
 </div>
 </div>
 
@@ -544,7 +186,7 @@ sudo patch pyport.h $MANTIDCHECKOUTROOT/buildconfig/pyport.patch
     </a>
   </li>
   <li>
-    <a href="BuildingWithCMake.html" title="Next Chapter: Building with CMake"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Building with... &raquo;</span>
+    <a href="BuildingOnOSXHistoric.html" title="Next Chapter: Building on Older Versions of OS X"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Building on O... &raquo;</span>
     </a>
   </li>
           
