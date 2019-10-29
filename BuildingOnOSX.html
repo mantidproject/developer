@@ -148,17 +148,18 @@ brew pin sip
 brew pin pyqt
 </pre></div>
 </div>
-<ol class="arabic" start="9">
-<li><p class="first">Unlink <code class="docutils literal notranslate"><span class="pre">qt&#64;4</span></code> from <code class="docutils literal notranslate"><span class="pre">/usr/local</span></code> to avoid cross talk with Qt5 and ensure the webkit can be found when not linked</p>
-<p>brew unlink qt&#64;4
-ln -s /usr/local/Homebrew/Library/Taps/mantidproject/homebrew-mantid/qt.conf <a class="reference external" href="mailto:/usr/local/opt/qt&#37;&#52;&#48;4/bin/qt&#46;conf">/usr/local/opt/qt<span>&#64;</span>4/bin/qt<span>&#46;</span>conf</a>
-ln -s <a class="reference external" href="mailto:/usr/local/opt/qt-webkit&#37;&#52;&#48;2&#46;3/include/QtWebKit">/usr/local/opt/qt-webkit<span>&#64;</span>2<span>&#46;</span>3/include/QtWebKit</a> <a class="reference external" href="mailto:/usr/local/opt/qt&#37;&#52;&#48;4/include/QtWebKit">/usr/local/opt/qt<span>&#64;</span>4/include/QtWebKit</a>
-ln -s <a class="reference external" href="mailto:/usr/local/opt/qt-webkit&#37;&#52;&#48;2&#46;3/lib/QtWebKit&#46;framework">/usr/local/opt/qt-webkit<span>&#64;</span>2<span>&#46;</span>3/lib/QtWebKit<span>&#46;</span>framework</a> <a class="reference external" href="mailto:/usr/local/opt/qt&#37;&#52;&#48;4/lib/QtWebKit&#46;framework">/usr/local/opt/qt<span>&#64;</span>4/lib/QtWebKit<span>&#46;</span>framework</a></p>
-</li>
-<li><p class="first">Check that <code class="docutils literal notranslate"><span class="pre">which</span> <span class="pre">python</span></code> returns a Python in <code class="docutils literal notranslate"><span class="pre">/usr/local</span></code> and not system Python.</p>
-</li>
-<li><p class="first">Install python requirements</p>
-</li>
+<ol class="arabic simple" start="9">
+<li>Unlink <code class="docutils literal notranslate"><span class="pre">qt&#64;4</span></code> from <code class="docutils literal notranslate"><span class="pre">/usr/local</span></code> to avoid cross talk with Qt5 and ensure the webkit can be found when not linked</li>
+</ol>
+<div class="highlight-sh notranslate"><div class="highlight"><pre>brew unlink qt@4
+ln -s /usr/local/Homebrew/Library/Taps/mantidproject/homebrew-mantid/qt.conf /usr/local/opt/qt@4/bin/qt.conf
+ln -s /usr/local/opt/qt-webkit@2.3/include/QtWebKit /usr/local/opt/qt@4/include/QtWebKit
+ln -s /usr/local/opt/qt-webkit@2.3/lib/QtWebKit.framework /usr/local/opt/qt@4/lib/QtWebKit.framework
+</pre></div>
+</div>
+<ol class="arabic simple" start="10">
+<li>Check that <code class="docutils literal notranslate"><span class="pre">which</span> <span class="pre">python</span></code> returns a Python in <code class="docutils literal notranslate"><span class="pre">/usr/local</span></code> and not system Python.</li>
+<li>Install python requirements</li>
 </ol>
 <div class="highlight-sh notranslate"><div class="highlight"><pre>python -m pip install -r /usr/local/Homebrew/Library/Taps/mantidproject/homebrew-mantid/requirements.txt
 </pre></div>
