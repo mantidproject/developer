@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Reflectometry GUI Testing</title>
+    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-59110517-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+  </head><body>
+
+
+
+
+
+  <div id="navbar" class="navbar navbar-default ">
+    <div class="container">
+      <div class="navbar-header">
+        
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://www.mantidproject.org"><img src="../../_static/Mantid_Logo_Transparent.png">
+           </a>
+        <span class="navbar-text navbar-version pull-left"><b>master</b></span>
+      </div>
+
+      
+        <div class="collapse navbar-collapse nav-collapse">
+      
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="http://download.mantidproject.org">Download</a></li>
+                <li><a href="http://www.mantidproject.org">Wiki</a></li>
+                <li><a href="http://docs.mantidproject.org">User Documentation</a></li>
+                <li><a href="http://www.mantidproject.org/Contact">Contact Us</a></li>
+            
+            
+              
+              
+            
+            
+            
+            
+          </ul>
+              
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+            </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <div class="section" id="reflectometry-gui-testing">
+<span id="id1"></span><h1>Reflectometry GUI Testing<a class="headerlink" href="#reflectometry-gui-testing" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#introduction" id="id2">Introduction</a></li>
+<li><a class="reference internal" href="#set-up" id="id3">Set up</a></li>
+<li><a class="reference internal" href="#loading-batch-files" id="id4">Loading batch files</a></li>
+<li><a class="reference internal" href="#changing-the-default-instrument" id="id5">Changing the Default instrument</a></li>
+<li><a class="reference internal" href="#resizing-the-list-box" id="id6">Resizing the List Box</a></li>
+<li><a class="reference internal" href="#processing" id="id7">Processing</a></li>
+<li><a class="reference internal" href="#generating-plots-and-the-plot-button" id="id8">Generating Plots and the ‘plot’ button</a></li>
+<li><a class="reference internal" href="#polarisation-corrections" id="id9">Polarisation Corrections</a></li>
+<li><a class="reference internal" href="#search-for-an-rb-number" id="id10">Search for an RB Number</a></li>
+<li><a class="reference internal" href="#transfer-run-number-and-transmission-runs" id="id11">Transfer Run Number and Transmission Runs</a></li>
+<li><a class="reference internal" href="#clearing-the-table" id="id12">Clearing the table</a></li>
+<li><a class="reference internal" href="#copy-cut-and-paste" id="id13">Copy, Cut and Paste</a></li>
+<li><a class="reference internal" href="#closing-the-interface" id="id14">Closing the interface</a></li>
+<li><a class="reference internal" href="#saving" id="id15">Saving</a><ul>
+<li><a class="reference internal" href="#batch-menu" id="id16">Batch Menu</a></li>
+<li><a class="reference internal" href="#on-exit-prompt" id="id17">On Exit Prompt</a></li>
+<li><a class="reference internal" href="#export-as-ascii" id="id18">Export as ASCII</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="introduction">
+<h2><a class="toc-backref" href="#id2">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>The ISIS Reflectometry interface is a graphical front end for the main ISIS reflectometry reduction algorithm <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/ReflectometryISISLoadAndProcess-v1.html#algm-reflectometryisisloadandprocess" title="(in MantidProject v4.1)"><span class="xref std std-ref">ReflectometryISISLoadAndProcess</span></a> and post-processing algorithm <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Stitch1DMany-v1.html#algm-stitch1dmany" title="(in MantidProject v4.1)"><span class="xref std std-ref">Stitch1DMany</span></a>. The purpose of the interface is to speed up the analysis of the Reflectometry spectra by providing batch-mode execution of these algorithms on groups of runs.</p>
+<p>This documentation refers to the <a class="reference external" href="http://docs.mantidproject.org/nightly/interfaces/ISIS%20Reflectometry.html">new interface</a>. For reference, there are also instructions for testing the <a class="reference external" href="https://www.mantidproject.org/ISIS_Reflectometry_GUI">old interface here</a>.</p>
+</div>
+<div class="section" id="set-up">
+<h2><a class="toc-backref" href="#id3">Set up</a><a class="headerlink" href="#set-up" title="Permalink to this headline">¶</a></h2>
+<p>For the testing you require the ISIS reflectometry Example material:</p>
+<ul class="simple">
+<li>INTER_NR_test.json</li>
+<li>INTER00013460.nxs</li>
+<li>INTER00013462.nxs</li>
+<li>INTER00013463.nxs</li>
+<li>INTER00013464.nxs</li>
+<li>INTER00013469.nxs</li>
+<li>INTER00013470.nxs</li>
+</ul>
+<p>These can be found in the <a class="reference external" href="http://download.mantidproject.org">ISIS Sample Data</a>.</p>
+<p>These instructions assume use of MantidWorkbench or MantidPlot 3.7 or higher.</p>
+<p><strong>Set your log level to “information” for these tests before you start the interface for the first time</strong>, by right clicking the Results Log view (in MantidPlot) or Messages view (in MantidWorkbench) and selecting <code class="docutils literal notranslate"><span class="pre">Log</span> <span class="pre">Level-&gt;Information</span></code>.</p>
+</div>
+<div class="section" id="loading-batch-files">
+<h2><a class="toc-backref" href="#id4">Loading batch files</a><a class="headerlink" href="#loading-batch-files" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>To load a batch file go to <code class="docutils literal notranslate"><span class="pre">Batch-&gt;Load</span></code> from inside the interface.</li>
+<li>Browse to the file that you want to load (e.g. <code class="docutils literal notranslate"><span class="pre">INTER_NR_test.json</span></code>).</li>
+<li>The interface should now have all of the information for the runs and settings from the batch file populated in the display.</li>
+<li>Compare against a version of the batch file opened in your favourite text editor.</li>
+<li>Try to re-open the batch file again. You should be asked if you want to discard the changes.</li>
+</ul>
+</div>
+<div class="section" id="changing-the-default-instrument">
+<h2><a class="toc-backref" href="#id5">Changing the Default instrument</a><a class="headerlink" href="#changing-the-default-instrument" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>At the top-left and bottom-right of the interface is a drop-down menu called Instrument - it can switch between INTER, SURF, CRISP, POLREF, and OFFSPEC.  Make a selection from it.</li>
+<li>Check that a log was printed into the Results Log / Messages window.</li>
+<li>Check that the default instrument has actually changed by either looking at the instrument in the <code class="docutils literal notranslate"><span class="pre">Help-&gt;First</span> <span class="pre">Time</span> <span class="pre">Setup</span></code> dialog (in MantidPlot) or <code class="docutils literal notranslate"><span class="pre">File-&gt;Settings</span></code> (in MantidWorkbench) in the mantid main window or by running <code class="docutils literal notranslate"><span class="pre">print(config['default.instrument'])</span></code> or <code class="docutils literal notranslate"><span class="pre">print(config.getInstrument().name())</span></code>.</li>
+</ul>
+</div>
+<div class="section" id="resizing-the-list-box">
+<h2><a class="toc-backref" href="#id6">Resizing the List Box</a><a class="headerlink" href="#resizing-the-list-box" title="Permalink to this headline">¶</a></h2>
+<p>The division between the Search Runs and Process Runs sections is a handle. It can be used to widen or shrink the list box. Check that it works.</p>
+</div>
+<div class="section" id="processing">
+<h2><a class="toc-backref" href="#id7">Processing</a><a class="headerlink" href="#processing" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Load a batch file.</li>
+<li>If you have the nexus files make sure their location is in your managed user directories. If you don’t have the accompanying nexus files for the batch file make sure the archive enabled.</li>
+<li>Select a single row by clicking on it.</li>
+<li>Click Process. Some output workspaces should be produced and the row should turn green.</li>
+<li>The process bar along the bottom should go from empty to full.</li>
+<li>Repeat this test for multiple lines (selecting using Shift and Ctrl)</li>
+<li>Repeat this for a group.</li>
+<li>Repeat for the entire table (click off the table to deselect all rows and then Process will process everything that is left).</li>
+<li>It should be possible to plot the data using the icons at the top of the interface.</li>
+</ul>
+</div>
+<div class="section" id="generating-plots-and-the-plot-button">
+<h2><a class="toc-backref" href="#id8">Generating Plots and the ‘plot’ button</a><a class="headerlink" href="#generating-plots-and-the-plot-button" title="Permalink to this headline">¶</a></h2>
+<p>There are two plotting buttons at the top of the interface - they look like little plots.</p>
+<ul class="simple">
+<li>Select a processed group:<ul>
+<li>Plot the “unstitched” data; the left of the two plot buttons. This should produce a plot with two separate lines for the individual reduced runs.</li>
+<li>Plot the “stitched” data; the right of the two buttons. This should produce a plot with a single line for the stitched output.</li>
+</ul>
+</li>
+<li>Select a processed row:<ul>
+<li>Plot the “unstitched” data; the left of the two plot buttons. This should produce a plot with one lines for that reduced run.</li>
+<li>Plot the “stitched” data; this should do nothing for a row.</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="polarisation-corrections">
+<h2><a class="toc-backref" href="#id9">Polarisation Corrections</a><a class="headerlink" href="#polarisation-corrections" title="Permalink to this headline">¶</a></h2>
+<p>Polarisation corrections settings are under the Settings tab in the interface. These should only work with CRISP, POLREF or OFFSPEC.</p>
+<ul class="simple">
+<li>In the Runs tab choose an instrument other than CRISP, POLREF or OFFSPEC.</li>
+<li>Switch to the Experiment Settings tab - the Polarisation corrections check box should be greyed out.</li>
+<li>Switch back to Runs and set the instrument to POLREF, CRISP or OFFSPEC.</li>
+<li>Switch back to Experiment Settings - the Polarisation corrections check box should now be enabled. Tick it and try processing something<ul>
+<li>e.g. (this will require the archive) OFFSPEC run 44956, angle 0.4, transmission run 44937.</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="search-for-an-rb-number">
+<h2><a class="toc-backref" href="#id10">Search for an RB Number</a><a class="headerlink" href="#search-for-an-rb-number" title="Permalink to this headline">¶</a></h2>
+<p><em>You require a connection to the archives for this. Make sure the archive is mounted and is enabled in the Manage User Directories dialog.</em>.</p>
+<ul class="simple">
+<li>Find an experiment number e.g. INTER 1120015. There are a number of ways to find other experiment numbers:<ul>
+<li>the <a class="reference external" href="https://www.projectaten.com/jv">JournalViewer</a> provides an easy way to browse experiments</li>
+<li>alternatively, in the archives, go to the <code class="docutils literal notranslate"><span class="pre">\Instrument\logs\journal</span></code> subdirectory of one of the instrument directories (named ‘<strong>NDX{Instrument}</strong>’) and select an xml journal other than journal_main.xml. Look for a pair of <code class="docutils literal notranslate"><span class="pre">experiment_identifier</span></code> tags and note the number inside the tags. This is the RB number that the search functionality looks for.</li>
+</ul>
+</li>
+<li>On the ISIS Reflectometry interface, change to the relevant instrument and enter the RB number in the Investigation Id textbox.</li>
+<li>Hit search, and enter your ICat login details if required.</li>
+<li>The search results list will fill with all the runs from ICat with that RB number.</li>
+</ul>
+</div>
+<div class="section" id="transfer-run-number-and-transmission-runs">
+<h2><a class="toc-backref" href="#id11">Transfer Run Number and Transmission Runs</a><a class="headerlink" href="#transfer-run-number-and-transmission-runs" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Perform a valid search in order to populate the search results list.</li>
+<li>Make sure the runs table is empty. Select one or more entries in the search results list.</li>
+<li>Press the ‘Transfer’ button.</li>
+<li>The run numbers should be filled into the table.<ul>
+<li>Runs with the same title will appear in the same group.</li>
+<li>Runs in the same group with different angles will appear on different rows.</li>
+<li>Runs in the same group with the same angle will be combined into the same row with the <code class="docutils literal notranslate"><span class="pre">Run(s)</span></code> field showing as a sum of all runs for that angle, e.g. <code class="docutils literal notranslate"><span class="pre">13460+13462</span></code>.</li>
+</ul>
+</li>
+<li>Click Transfer again with the same selection. If the runs are already in the table, nothing should happen, because duplicates should not be added.</li>
+<li>Select some different runs and click Transfer. The new runs should be added to the table.</li>
+</ul>
+</div>
+<div class="section" id="clearing-the-table">
+<h2><a class="toc-backref" href="#id12">Clearing the table</a><a class="headerlink" href="#clearing-the-table" title="Permalink to this headline">¶</a></h2>
+<p>To empty the table: use <code class="docutils literal notranslate"><span class="pre">Ctrl-A</span></code> to select all rows and groups in the table and then press <code class="docutils literal notranslate"><span class="pre">Delete</span></code> to delete them.</p>
+</div>
+<div class="section" id="copy-cut-and-paste">
+<h2><a class="toc-backref" href="#id13">Copy, Cut and Paste</a><a class="headerlink" href="#copy-cut-and-paste" title="Permalink to this headline">¶</a></h2>
+<p>Copy, Cut and Paste are available from the toolbar buttons, the right-click contenx menu, or the standard Ctrl- C, X, and V shortcuts.</p>
+<ul class="simple">
+<li>Select a row, copy it, and paste it onto a different row. The values should be overwritten.</li>
+<li>Select 2 rows from one group, copy them, and paste onto 2 rows in another group. Note that you must select the same number of rows in the destination group or you will get an error.</li>
+<li>Select a group and copy it. Paste it onto another group. The group should be replaced with the one you copied.</li>
+<li>Copy a group and deselect everything in the table before you paste. It should be pasted as a new group at the end.</li>
+<li>Copy a row and try pasting with nothing selected. This should be disallowed because you can’t paste a row without a group.</li>
+<li>Copy a row and try pasting onto a group. This should be disallowed.</li>
+<li>Copy a group and try pasting onto a row. This should be disallowed.</li>
+</ul>
+</div>
+<div class="section" id="closing-the-interface">
+<h2><a class="toc-backref" href="#id14">Closing the interface</a><a class="headerlink" href="#closing-the-interface" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Open the interface and load some data.</li>
+<li>Edit or process the data.</li>
+<li>Close the interface using the <cite>x</cite> button at the top.</li>
+<li>The interface should show a ‘Save/Discard/Cancel’ dialogue.</li>
+</ul>
+<p>Note that closing the Mantid main window should work and will not give you the option to save.</p>
+</div>
+<div class="section" id="saving">
+<h2><a class="toc-backref" href="#id15">Saving</a><a class="headerlink" href="#saving" title="Permalink to this headline">¶</a></h2>
+<p>There are a few ways to save within the interface. The native save format is to a <code class="docutils literal notranslate"><span class="pre">*.json</span></code> batch file. Custom, 3-column, ANSTO and Ill cosmos are treated as export formats.</p>
+<div class="section" id="batch-menu">
+<h3><a class="toc-backref" href="#id16">Batch Menu</a><a class="headerlink" href="#batch-menu" title="Permalink to this headline">¶</a></h3>
+<p>The Save action in the Batch menu allows you to save and re-load the interface contents. It saves to <code class="docutils literal notranslate"><span class="pre">*.json</span></code> format which is not intended to be particularly human-friendly, although it should still be readable.</p>
+<ul class="simple">
+<li>Load a <code class="docutils literal notranslate"><span class="pre">*.json</span></code> file and make a modification to it within the table.</li>
+<li>Go <code class="docutils literal notranslate"><span class="pre">Batch-&gt;Save</span></code>.</li>
+<li>A Save dialog will appear. Select the location to save the file to. You should get a warning if you attempt to overwrite an existing file.</li>
+<li>Check using a plain text editor that the file has been created and contains some json data.</li>
+<li>Close and re-open the interface, don’t load anything. Type some values into the table.</li>
+<li>Go <code class="docutils literal notranslate"><span class="pre">Batch-&gt;Save</span></code>. A Save dialog will appear, select a location and provide a file name and hit ‘Cancel’.</li>
+<li>Make sure no file was saved.</li>
+</ul>
+</div>
+<div class="section" id="on-exit-prompt">
+<h3><a class="toc-backref" href="#id17">On Exit Prompt</a><a class="headerlink" href="#on-exit-prompt" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Open the interface, don’t load anything. Type some values into the table.</li>
+<li>Close the interface by hitting the close button in the title bar.</li>
+<li>You should receive a prompt with Save, Discard and Cancel (or whatever variation your OS uses), hit ‘Save’.</li>
+<li>A Save As dialog will appear, select a location and provide a file name and hit ‘Save’. The Interface will then close.</li>
+<li>Check using a plain text editor that the file has been created.</li>
+<li>Re-open the interface, and load a <code class="docutils literal notranslate"><span class="pre">*.json</span></code> file and make a modification to it within the interface and follow the same steps, this time pressing save when prompted will overwrite the loaded file.</li>
+<li>When presented with the prompt also make sure that ‘Discard’ closes the interface but doesn’t save or overwrite anything, and ‘Cancel’ returns you to the interface without closing.</li>
+<li>When in the Save As dialog, make sure that pressing cancel doesn’t close the interface and doesn’t save anything, then try and close it again. The prompt should still appear.</li>
+</ul>
+</div>
+<div class="section" id="export-as-ascii">
+<h3><a class="toc-backref" href="#id18">Export as ASCII</a><a class="headerlink" href="#export-as-ascii" title="Permalink to this headline">¶</a></h3>
+<p><em>Before doing anything else, make sure that the mantid main window has no loaded workspaces. Custom, 3-column, ANSTO and Ill cosmos are saved from existing workspaces, not from the interface’s data. By clearing Mantid’s workspaces you’re making sure that the dialog this tests isn’t getting entries from nowhere.</em></p>
+<ul class="simple">
+<li>Open the interface, don’t load anything.</li>
+<li>Go to the Save tab. The workspaces list should be empty.</li>
+<li>Close the dialog.</li>
+<li>Load a batch file and process it.</li>
+<li>Go to the Save tab. The workspaces list will contain the names of the workspaces created when you processed.</li>
+<li>Type an existing path into the Save path textbox.</li>
+<li>Type something in the prefix field you’d like to use to identify the file. <em>The files are saved in the form [prefix][workspace][ext]</em>.</li>
+<li>Double-click on a workspace name in the left list. The right list should populate with parameters.</li>
+<li>Select one or more workspaces in the left list.</li>
+<li>Select as many or as few (including none) parameters form the right list. <em>This will have no effect when saving in ANSTO format</em>.</li>
+<li>Use the checkboxes and radio buttons below the right list to set the output to include Title, Resolution and your chosen separator. <em>These will only affect the Custom 4-column format</em>.</li>
+<li>Save your selections in each format. All are text formats and can be opened in a plain text editor to check their contents. Custom and Ill Cosmos should have notes with the values of the selected parameters, Custom should have the delimiters, title and/or the Q resolution options as specified.</li>
+<li>Repeat the test, this time entering a non-existent or invalid path, the dialog won’t allow you to save as the path doesn’t exist.</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+      <ul class="nav navbar-nav" style=" float: right;">
+      
+      
+          
+            
+          
+       
+          <li><a href="#">Back to top</a></li>
+       </ul>
+    <p>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
