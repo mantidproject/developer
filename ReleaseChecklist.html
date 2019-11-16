@@ -261,21 +261,25 @@ and set the <code class="docutils literal notranslate"><span class="pre">PACKAGE
 release</a> on
 GitHub. The new tag should be created based of the release branch in
 the form <code class="docutils literal notranslate"><span class="pre">vX.Y.Z</span></code></li>
-<li>After all of the packages have been smoke tested build the
-<code class="docutils literal notranslate"><span class="pre">release_deploy</span></code> job to put the packages (not windows) on
-Sourceforge.</li>
+<li>After all of the packages have been smoke tested run the
+<a class="reference external" href="https://builds.mantidproject.org/view/Release%20Pipeline/job/release_deploy/">release_deploy</a>
+job to put the packages, with the exception of Windows, on Sourceforge.<ul>
+<li>Have someone at ISIS signs the Windows binary and upload this
+manually to Sourceforge</li>
+<li>Set the default package for each OS to the new version using the information icon
+next to the file list on Sourceforge</li>
+</ul>
+</li>
+<li>Upload packages to the GitHub release (essentially for a backup).</li>
+<li>Publish the GitHub release. This will create the tag required to generate the DOI.</li>
+<li>Update the <a class="reference external" href="http://download.mantidproject.org">download</a> page,
+following the instructions
+<a class="reference external" href="https://github.com/mantidproject/download.mantidproject.org">here</a>. Once the new
+file in the <cite>releases</cite> directory is pushed Jenkins will publish the new page.</li>
+<li>Publish the draft release on GitHub (this will create the tag too).</li>
 <li>Kick off the build for <code class="docutils literal notranslate"><span class="pre">mantidXY</span></code> on RHEL7 for SNS:
 <a class="reference external" href="http://builds.mantidproject.org/job/release_clean-rhel7/">http://builds.mantidproject.org/job/release_clean-rhel7/</a> with suffix
 <code class="docutils literal notranslate"><span class="pre">XY</span></code></li>
-<li>Make sure someone at ISIS signs the Windows binary and uploads this
-manually to Sourceforge</li>
-<li>Set the default package for each OS to the new version</li>
-<li>Upload packages to GitHub once they are ready and have been checked</li>
-<li>Publish the page</li>
-<li>Update the <a class="reference external" href="http://download.mantidproject.org">download</a> page,
-following the instructions
-<a class="reference external" href="https://github.com/mantidproject/download.mantidproject.org">here</a></li>
-<li>Publish the draft release on GitHub (this will create the tag too).</li>
 </ul>
 <div class="section" id="finalise">
 <h4><a class="toc-backref" href="#id16">Finalise</a><a class="headerlink" href="#finalise" title="Permalink to this headline">¶</a></h4>
@@ -283,7 +287,6 @@ following the instructions
 <li>Send an email, including the text of the release notes, to the
 following lists</li>
 <li><code class="docutils literal notranslate"><span class="pre">mantid-announce&#64;mantidproject.org</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">mantid-developers&#64;mantidproject.org</span></code></li>
 <li><code class="docutils literal notranslate"><span class="pre">nobugs&#64;nobugsconference.org</span></code></li>
 <li><code class="docutils literal notranslate"><span class="pre">news&#64;neutronsources.org</span></code></li>
 <li><code class="docutils literal notranslate"><span class="pre">neutron&#64;neutronsources.org</span></code></li>
@@ -309,7 +312,7 @@ release branch.</li>
 <p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">tools/DOI/doi.py</span>&#160; <span class="pre">--username=_____</span>&#160; <span class="pre">X.Y.Z</span></code></p>
 <ul class="simple">
 <li>Major/minor/patch version numbers must be supplied, as well as a
-username which can be found in the <a class="reference external" href="http://www.mantidproject.org/Protected_Information">Protected
+username which can be found in the <a class="reference external" href="https://www.mantidproject.org/Protected_Information">Protected
 Information</a>
 section. The script will prompt for the password. Note that only
 MediaWiki admins have access rights to the page.</li>
