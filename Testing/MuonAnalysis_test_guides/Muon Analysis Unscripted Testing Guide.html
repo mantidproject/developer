@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Muon Interfaces Unscripted Testing</title>
+    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Muon Analysis Unscripted Testing: Group 1 (General)" href="Muon_Analysis_test_group_1_general.html" />
+    <link rel="prev" title="Muon Analysis Test Guides" href="index.html" />
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-59110517-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+  </head><body>
+
+
+
+
+
+  <div id="navbar" class="navbar navbar-default ">
+    <div class="container">
+      <div class="navbar-header">
+        
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://www.mantidproject.org"><img src="../../_static/Mantid_Logo_Transparent.png">
+           </a>
+        <span class="navbar-text navbar-version pull-left"><b>master</b></span>
+      </div>
+
+      
+        <div class="collapse navbar-collapse nav-collapse">
+      
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="http://download.mantidproject.org">Download</a></li>
+                <li><a href="http://www.mantidproject.org">Wiki</a></li>
+                <li><a href="http://docs.mantidproject.org">User Documentation</a></li>
+                <li><a href="http://www.mantidproject.org/Contact">Contact Us</a></li>
+            
+            
+              
+              
+            
+            
+            
+            
+          </ul>
+              
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+            </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <div class="section" id="muon-interfaces-unscripted-testing">
+<span id="muon-analysis-testguide-ref"></span><h1>Muon Interfaces Unscripted Testing<a class="headerlink" href="#muon-interfaces-unscripted-testing" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="table-of-contents">
+<p class="topic-title first">Table of Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#preamble" id="id1">Preamble</a></li>
+<li><a class="reference internal" href="#common-setup" id="id2">Common setup</a></li>
+<li><a class="reference internal" href="#group-1-data-loading-and-old-new-fitting-ui" id="id3">Group 1: Data loading and old/new fitting UI</a></li>
+<li><a class="reference internal" href="#group-2-fitting-tests" id="id4">Group 2: Fitting tests</a></li>
+<li><a class="reference internal" href="#group-3-results-table-tests" id="id5">Group 3: Results table tests</a></li>
+<li><a class="reference internal" href="#group-4-frequequency-domain-analysis-tests" id="id6">Group 4: Frequequency Domain Analysis tests</a></li>
+</ul>
+</div>
+<div class="section" id="preamble">
+<h2><a class="toc-backref" href="#id1">Preamble</a><a class="headerlink" href="#preamble" title="Permalink to this headline">¶</a></h2>
+<p>This document is intended for developers to use for unscripted testing of <cite>Muon Analysis</cite> and
+<cite>Frequency Domain Analysis</cite> GUI.</p>
+<p>Testing here mostly focuses on the changes for Mantid 3.11, but includes other functionality as well.
+The tests follow real use cases provided by scientists and are intended to exercise all the interface’s functionality.
+As changes are made to the interface and features added, anything for which it is not possible to write an automated
+test should have a manual test added to this list.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The tests here are grouped into four sections. The test groups should be run in order and, within each test
+group, the individual tests should also be run in order. This is because, to avoid duplication, some tests rely on
+previous tests having been run first.</p>
+</div>
+</div>
+<div class="section" id="common-setup">
+<h2><a class="toc-backref" href="#id2">Common setup</a><a class="headerlink" href="#common-setup" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Set your facility to ISIS</li>
+<li>Ensure the files <code class="docutils literal notranslate"><span class="pre">EMU00020918-20</span></code>, <code class="docutils literal notranslate"><span class="pre">MUSR00015189</span></code> and <code class="docutils literal notranslate"><span class="pre">MUSR00062260-1</span></code> are in Mantid’s path</li>
+<li>Open <span class="menuselection">Interfaces ‣ Muon ‣ Muon Analysis</span></li>
+<li>At this point, before loading any data, the <em>Grouping Options</em> and <em>Data Analysis</em> tabs should be disabled.</li>
+</ul>
+</div>
+<div class="section" id="group-1-data-loading-and-old-new-fitting-ui">
+<h2><a class="toc-backref" href="#id3">Group 1: Data loading and old/new fitting UI</a><a class="headerlink" href="#group-1-data-loading-and-old-new-fitting-ui" title="Permalink to this headline">¶</a></h2>
+<p>Test instructions for group 1 can be found at <a class="reference internal" href="Muon_Analysis_test_group_1_general.html#muon-analysis-testguide-1-general-ref"><span class="std std-ref">Muon Analysis Unscripted Testing: Group 1 (General)</span></a>.
+These test general data loading and processing, and also switching between the old and new fitting user interfaces.</p>
+</div>
+<div class="section" id="group-2-fitting-tests">
+<h2><a class="toc-backref" href="#id4">Group 2: Fitting tests</a><a class="headerlink" href="#group-2-fitting-tests" title="Permalink to this headline">¶</a></h2>
+<p>Test instructions for group 2 can be found at <a class="reference internal" href="Muon_Analysis_test_group_2_fitting.html#muon-analysis-testguide-2-fitting-ref"><span class="std std-ref">Muon Analysis Unscripted Testing: Group 2 (Fitting)</span></a>.
+These test the different types of fits. The fit should succeed in each without a crash.
+The <em>results</em> will be tested later, in the results table test section (group 3).</p>
+</div>
+<div class="section" id="group-3-results-table-tests">
+<h2><a class="toc-backref" href="#id5">Group 3: Results table tests</a><a class="headerlink" href="#group-3-results-table-tests" title="Permalink to this headline">¶</a></h2>
+<p>Test instructions for group 3 can be found at <a class="reference internal" href="Muon_Analysis_test_group_3_results.html#muon-analysis-testguide-3-results-ref"><span class="std std-ref">Muon Analysis Unscripted Testing: Group 3 (Results Tables)</span></a>.
+These test the generation of results tables from the fits performed in the tests in group 2.</p>
+</div>
+<div class="section" id="group-4-frequequency-domain-analysis-tests">
+<h2><a class="toc-backref" href="#id6">Group 4: Frequequency Domain Analysis tests</a><a class="headerlink" href="#group-4-frequequency-domain-analysis-tests" title="Permalink to this headline">¶</a></h2>
+<p>Test instructions for group 4 can be found at <a class="reference internal" href="Muon_Analysis_test_group_4_FDAG.html#muon-analysis-testguide-4-fdag-ref"><span class="std std-ref">Muon Unscripted Testing: Group 4 (Frequency Domain Analysis)</span></a>.
+These test the Frequency Domain Analysis GUI and use data loaded from the tests in group 2.</p>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+      <ul class="nav navbar-nav" style=" float: right;">
+      
+      
+          
+            
+  <li>
+    <a href="index.html" title="Previous Chapter: Muon Analysis Test Guides"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Muon Analysis...</span>
+    </a>
+  </li>
+  <li>
+    <a href="Muon_Analysis_test_group_1_general.html" title="Next Chapter: Muon Analysis Unscripted Testing: Group 1 (General)"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Muon Analysis... &raquo;</span>
+    </a>
+  </li>
+          
+       
+          <li><a href="#">Back to top</a></li>
+       </ul>
+    <p>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

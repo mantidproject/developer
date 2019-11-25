@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Muon Analysis Unscripted Testing: Group 2 (Fitting)</title>
+    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Muon Analysis Unscripted Testing: Group 3 (Results Tables)" href="Muon_Analysis_test_group_3_results.html" />
+    <link rel="prev" title="Muon Analysis Unscripted Testing: Group 1 (General)" href="Muon_Analysis_test_group_1_general.html" />
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-59110517-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+  </head><body>
+
+
+
+
+
+  <div id="navbar" class="navbar navbar-default ">
+    <div class="container">
+      <div class="navbar-header">
+        
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://www.mantidproject.org"><img src="../../_static/Mantid_Logo_Transparent.png">
+           </a>
+        <span class="navbar-text navbar-version pull-left"><b>master</b></span>
+      </div>
+
+      
+        <div class="collapse navbar-collapse nav-collapse">
+      
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="http://download.mantidproject.org">Download</a></li>
+                <li><a href="http://www.mantidproject.org">Wiki</a></li>
+                <li><a href="http://docs.mantidproject.org">User Documentation</a></li>
+                <li><a href="http://www.mantidproject.org/Contact">Contact Us</a></li>
+            
+            
+              
+              
+            
+            
+            
+            
+          </ul>
+              
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+            </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <div class="section" id="muon-analysis-unscripted-testing-group-2-fitting">
+<span id="muon-analysis-testguide-2-fitting-ref"></span><h1>Muon Analysis Unscripted Testing: Group 2 (Fitting)<a class="headerlink" href="#muon-analysis-unscripted-testing-group-2-fitting" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="table-of-contents">
+<p class="topic-title first">Table of Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#introduction" id="id1">Introduction</a></li>
+<li><a class="reference internal" href="#tests" id="id2">Tests</a><ul>
+<li><a class="reference internal" href="#test-1-individual-fit" id="id3">Test 1: individual fit</a></li>
+<li><a class="reference internal" href="#test-2-sequential-fit" id="id4">Test 2: sequential fit</a></li>
+<li><a class="reference internal" href="#test-3-co-added-fit" id="id5">Test 3: co-added fit</a></li>
+<li><a class="reference internal" href="#test-4-simultaneous-fit-across-runs" id="id6">Test 4: simultaneous fit across runs</a></li>
+<li><a class="reference internal" href="#test-5-simultaneous-fit-across-groups" id="id7">Test 5: simultaneous fit across groups</a></li>
+<li><a class="reference internal" href="#test-6-sequential-fit-of-simultaneous-fits" id="id8">Test 6: sequential fit of simultaneous fits</a></li>
+<li><a class="reference internal" href="#test-7-simultaneous-fit-across-periods" id="id9">Test 7: simultaneous fit across periods</a></li>
+<li><a class="reference internal" href="#test-8-tf-asymmetry-fit" id="id10">Test 8: TF Asymmetry fit</a></li>
+<li><a class="reference internal" href="#test-9-multiple-tf-asymmetry-fits" id="id11">Test 9: Multiple TF Asymmetry fits</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="introduction">
+<h2><a class="toc-backref" href="#id1">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>These are unscripted tests for the <strong class="program">Muon Analysis</strong> interface.
+The tests here in group 2 are concerned with the different types of fits possible through the <em>Data Analysis</em> tab.
+In each test, the fit should succeed without a crash - the results will be tested later, in test group 3.</p>
+<p>The master testing guide is located at <a class="reference internal" href="Muon Analysis Unscripted Testing Guide.html#muon-analysis-testguide-ref"><span class="std std-ref">Muon Interfaces Unscripted Testing</span></a>.</p>
+</div>
+<div class="section" id="tests">
+<h2><a class="toc-backref" href="#id2">Tests</a><a class="headerlink" href="#tests" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="test-1-individual-fit">
+<h3><a class="toc-backref" href="#id3">Test 1: individual fit</a><a class="headerlink" href="#test-1-individual-fit" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>On the <em>Home</em> tab, select instrument EMU and load <code class="docutils literal notranslate"><span class="pre">EMU00020918.nxs</span></code>.</li>
+<li>Go to <em>Data Analysis</em> tab. Expand the window if the function browser is too small (you can drag the bar underneath it to set relative sizes of the widgets).</li>
+<li>The loaded dataset should be pre-selected: “20918” in Runs and “All Pairs” selected in the data table.</li>
+<li>“Label” box and “Co-add/Simultaneous” radio buttons should be disabled</li>
+<li>Click and drag blue lines on graph, check start/end times are updated.</li>
+<li>Check the reverse - change start/end times and blue lines should be updated on graph.</li>
+<li>Set up the interface to look like this. Note the non-default values for <code class="docutils literal notranslate"><span class="pre">f0.Omega</span></code> and <code class="docutils literal notranslate"><span class="pre">f0.Tau</span></code>:</li>
+</ul>
+<a class="reference internal image-reference" href="../../_images/fitting_test1.png"><img alt="../../_images/fitting_test1.png" class="align-center" src="../../_images/fitting_test1.png" style="height: 500px;" /></a>
+<ul class="simple">
+<li>Fit the data. Graph should be updated.</li>
+</ul>
+</div>
+<div class="section" id="test-2-sequential-fit">
+<h3><a class="toc-backref" href="#id4">Test 2: sequential fit</a><a class="headerlink" href="#test-2-sequential-fit" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>With everything set up as in the picture above, click <em>Fit/Sequential fit</em>. (Runs should still be set to “20918”, a single run).</li>
+<li>Dialog should appear. In the runs box <strong>of the new dialog that appears</strong>, type “20918-20” and hit Start.</li>
+<li>Sequential fit of runs 20918, 20919, 20920 should happen one after the other.</li>
+</ul>
+</div>
+<div class="section" id="test-3-co-added-fit">
+<h3><a class="toc-backref" href="#id5">Test 3: co-added fit</a><a class="headerlink" href="#test-3-co-added-fit" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>On the <em>Home</em> tab, load EMU 20918-20.</li>
+<li>Go to <em>Data Analysis</em> tab. Stale errors should be cleared from the function browser.</li>
+<li>In the drop-down, there should only be one workspace (<code class="docutils literal notranslate"><span class="pre">EMU00020918-20;</span> <span class="pre">Pair;</span> <span class="pre">long;</span> <span class="pre">Asym;</span> <span class="pre">#1</span></code>).</li>
+<li>Fit as before. Graph should be updated.</li>
+</ul>
+</div>
+<div class="section" id="test-4-simultaneous-fit-across-runs">
+<h3><a class="toc-backref" href="#id6">Test 4: simultaneous fit across runs</a><a class="headerlink" href="#test-4-simultaneous-fit-across-runs" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>With the same runs (20918-20) selected, select the “Simultaneous” radio button option.</li>
+<li>Drop-down list should have three workspaces in it now, for the three runs that will be fitted.</li>
+<li>The “Label” box should be enabled. By default, this will contain the run number string (“20918-20”) - add “SimFit” to the end of the string.</li>
+<li>Keep the same fit function, but use the “Global” checkboxes to mark <code class="docutils literal notranslate"><span class="pre">A</span></code>, <code class="docutils literal notranslate"><span class="pre">Omega</span></code>, <code class="docutils literal notranslate"><span class="pre">Phi</span></code> and <code class="docutils literal notranslate"><span class="pre">Sigma</span></code> as global.</li>
+<li>Fit the data. Note that plot will <em>not</em> be updated at present.
+(If you want to plot results, see the <code class="docutils literal notranslate"><span class="pre">MuonSimulFit_20918-20SimFit</span></code> workspace group).</li>
+<li>Use the <code class="docutils literal notranslate"><span class="pre">&lt;&lt;</span></code> and <code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code> buttons, or drop-down list, to see the fitted parameters for each run in the function browser.</li>
+</ul>
+</div>
+<div class="section" id="test-5-simultaneous-fit-across-groups">
+<h3><a class="toc-backref" href="#id7">Test 5: simultaneous fit across groups</a><a class="headerlink" href="#test-5-simultaneous-fit-across-groups" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Type “20918” only in the “Runs” box.</li>
+<li>The “Label” box should still read “20918-20SimFit”, change it to “20918”.</li>
+<li>Under <code class="docutils literal notranslate"><span class="pre">property</span></code> for <code class="docutils literal notranslate"><span class="pre">Groups/Pairs</span> <span class="pre">to</span> <span class="pre">fit</span></code> change from All Pairs to All Groups.</li>
+<li>Keep fit function and global parameters as before.</li>
+<li>Fit data.</li>
+<li>Now try to fit again, without changing anything. It should warn you that the label “20918” has already been used - say no to overwriting and it should automatically increment the label to “20918#2”.</li>
+</ul>
+</div>
+<div class="section" id="test-6-sequential-fit-of-simultaneous-fits">
+<h3><a class="toc-backref" href="#id8">Test 6: sequential fit of simultaneous fits</a><a class="headerlink" href="#test-6-sequential-fit-of-simultaneous-fits" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Keep the same setup as Test 5, i.e. Runs=”20918” and “All Groups” selected.</li>
+<li>Click <em>Fit/Sequential fit</em> to launch the dialog.</li>
+<li>If offered the choice, choose not to overwrite the label.</li>
+<li>Dialog should appear. In this new dialog (not the interface underneath):<ul>
+<li>Runs = “20918-20”</li>
+<li>Label = “LabelSeq”</li>
+<li>Hit “Start”</li>
+</ul>
+</li>
+<li>This should fit the <code class="docutils literal notranslate"><span class="pre">fwd</span></code> and <code class="docutils literal notranslate"><span class="pre">bwd</span></code> groups simultaneously for each run 20918, 20919, 20920 in sequence.</li>
+</ul>
+</div>
+<div class="section" id="test-7-simultaneous-fit-across-periods">
+<h3><a class="toc-backref" href="#id9">Test 7: simultaneous fit across periods</a><a class="headerlink" href="#test-7-simultaneous-fit-across-periods" title="Permalink to this headline">¶</a></h3>
+<p>The data used so far is single period, so here we will use MUSR data from the unit test data.</p>
+<ul class="simple">
+<li>Go back to the <em>Home</em> tab, set instrument to MUSR.</li>
+<li>Load run 15189 and switch to <em>Data Analysis</em> tab.</li>
+<li>(If any fit curves are still displayed, clear them with <span class="menuselection">Display ‣ Clear fit curves</span>).</li>
+<li>Two extra rows (<code class="docutils literal notranslate"><span class="pre">Selected</span> <span class="pre">Periods</span></code> and <code class="docutils literal notranslate"><span class="pre">Periods</span> <span class="pre">to</span> <span class="pre">fit</span></code> ) should have appeared in the data table.  multi-period data.</li>
+<li>Note two points:<ul>
+<li>“All Pairs” should be selected - because “long” was loaded on the <em>Home</em> tab.</li>
+<li>In the <em>label</em> box, the previous label “20918#2” has <strong>not</strong> been updated. This is because it contains a non-numeric character, so is assumed to be a user-set label (this is the intended behaviour).</li>
+</ul>
+</li>
+<li>Set label to “MUSRlabel”</li>
+<li>Set fit function to <code class="docutils literal notranslate"><span class="pre">LinearBackground</span></code> (clear any existing function).</li>
+<li>Fit - periods will be fitted simultaneously.</li>
+</ul>
+</div>
+<div class="section" id="test-8-tf-asymmetry-fit">
+<h3><a class="toc-backref" href="#id10">Test 8: TF Asymmetry fit</a><a class="headerlink" href="#test-8-tf-asymmetry-fit" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Go back to the <em>Home</em> tab and load run 62260.</li>
+<li>In the <em>Data Analysis</em> tab, set the “Groups/Pairs to fit” to “Custom”.</li>
+<li>A pop-up should appear and make sure that only “fwd” is ticked.</li>
+<li>Close the pop-up.</li>
+<li>Clear the fitting functions.</li>
+<li>Add a “GausOsc” function.</li>
+<li>Set “Frequency” to 1.3.</li>
+<li>Enable “TF Asymmetry Mode”.</li>
+<li>Run a fit.</li>
+<li>Look at the fitting parameters and notice that the “Flat Background” is non-zero (larger than the error).</li>
+<li>Disable “TF Asymmetry Mode”.</li>
+<li>Remove the fitting functions.</li>
+<li>Add a “GausOsc” function and set “Frequency” to 1.3.</li>
+<li>Then add a “Flat Background” to the fitting functions.</li>
+<li>Run a normal Fit.</li>
+<li>The “Flat Background” should now have a value less than one.</li>
+</ul>
+</div>
+<div class="section" id="test-9-multiple-tf-asymmetry-fits">
+<h3><a class="toc-backref" href="#id11">Test 9: Multiple TF Asymmetry fits</a><a class="headerlink" href="#test-9-multiple-tf-asymmetry-fits" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Go back to the <em>Home</em> tab and load run 62261.</li>
+<li>Go to the <em>Data Analysis</em> tab.</li>
+<li>Clear the fitting functions.</li>
+<li>In “Groups Pairs to fit” select “All Groups”.</li>
+<li>Add a “GausOsc” function with “Frequency” set to 1.3.</li>
+<li>Enable TF Asymmetry mode.</li>
+<li>Tick the “Global” box for “Frequency” and “Sigma”.</li>
+<li>Fit.</li>
+<li>Check that all values for the flat background are different to each other.</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+      <ul class="nav navbar-nav" style=" float: right;">
+      
+      
+          
+            
+  <li>
+    <a href="Muon_Analysis_test_group_1_general.html" title="Previous Chapter: Muon Analysis Unscripted Testing: Group 1 (General)"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Muon Analysis...</span>
+    </a>
+  </li>
+  <li>
+    <a href="Muon_Analysis_test_group_3_results.html" title="Next Chapter: Muon Analysis Unscripted Testing: Group 3 (Results Tables)"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Muon Analysis... &raquo;</span>
+    </a>
+  </li>
+          
+       
+          <li><a href="#">Back to top</a></li>
+       </ul>
+    <p>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
