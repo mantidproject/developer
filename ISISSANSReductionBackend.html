@@ -2783,17 +2783,17 @@ and the charge of the entire data set.</li>
 either a custom binning or the monitor binning is applied using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Rebin-v1.html#algm-rebin" title="(in MantidProject v4.2)"><span class="xref std std-ref">Rebin</span></a> or
 <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/RebinToWorkspace-v1.html#algm-rebintoworkspace" title="(in MantidProject v4.2)"><span class="xref std std-ref">RebinToWorkspace</span></a>, respectively.</li>
 <li>Both the data and the monitor workspace perform an initial move operation.
-The algorithm is applied twice. The first time using
-the <em>SetToZero</em> mode in case the algorithm had been loaded and moved already previously. This
-resets the instrument position of the workspace to the positions of the base instrument. The second
-time the move algorithm is operated in <em>InitialMove</em> mode.</li>
+The first step sets the instrument positions back to the IDF,
+in case the algorithm had been loaded and moved already previously.
+The second time the move algorithm is operated in <em>InitialMove</em> mode to apply
+and offset.</li>
 <li>The data workspace is masked using various modes. Note that
 using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/MoveInstrumentComponent-v1.html#algm-moveinstrumentcomponent" title="(in MantidProject v4.2)"><span class="xref std std-ref">MoveInstrumentComponent</span></a>.
 The algorithm is applied twice. The first time using the <em>SetToZero</em> mode
 to reset the components to known positions from the IDF. The second
 time the components are moved and rotated to the requested positions.
 Note that all steps up until now were performed in the time-of-flight domain.</li>
-<li>Convert the data from the time-of-flight to the wavelength domain.</li>
+<li>Convert the data from time-of-flight to wavelength.</li>
 <li>Scale the data set using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Multiply-v1.html#algm-multiply" title="(in MantidProject v4.2)"><span class="xref std std-ref">Multiply</span></a>. This will multiply the data set
 with the absolute scale and divide <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Divide-v1.html#algm-divide" title="(in MantidProject v4.2)"><span class="xref std std-ref">Divide</span></a> by the sample volume.</li>
 <li>This step creates the adjustment workspaces by <em>Create SANS Adjustment Workspaces</em>.
