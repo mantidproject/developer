@@ -94,23 +94,38 @@ and now that most third-party packages support both 2 and 3 we are starting to t
 migration strategy for Mantid.</p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><a class="reference internal" href="#building-against-python-3" id="id2">Building Against Python 3</a></li>
-<li><a class="reference internal" href="#supporting-python-2-and-3" id="id3">Supporting Python 2 and 3</a></li>
-<li><a class="reference internal" href="#migrating-from-python-2-to-3" id="id4">Migrating From Python 2 to 3</a></li>
+<li><a class="reference internal" href="#building-against-python-3" id="id2">Building Against Python 3</a><ul>
+<li><a class="reference internal" href="#ubuntu" id="id3">Ubuntu</a></li>
+<li><a class="reference internal" href="#windows" id="id4">Windows</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#supporting-python-2-and-3" id="id5">Supporting Python 2 and 3</a></li>
+<li><a class="reference internal" href="#migrating-from-python-2-to-3" id="id6">Migrating From Python 2 to 3</a></li>
 </ul>
 </div>
 <div class="section" id="building-against-python-3">
 <h2><a class="toc-backref" href="#id2">Building Against Python 3</a><a class="headerlink" href="#building-against-python-3" title="Permalink to this headline">¶</a></h2>
-<p>This is currently only possible on a Linux system with a pre-installed version of python 3 and you will need to have
-the latest version of the <cite>mantid-developer</cite> package installed. Once installed run cmake as standard but with the additional option <code class="docutils literal notranslate"><span class="pre">-DPYTHON_EXECUTABLE=/usr/bin/python3</span></code>. Please note that
-reconfiguring an existing Python 2 build is not supported - a build in a fresh build directory is required.</p>
+<p>This is currently possible on Ubuntu or Windows.
+Please note that reconfiguring an existing Python 2 build is not supported - a build in a fresh build directory is required.</p>
+<div class="section" id="ubuntu">
+<h3><a class="toc-backref" href="#id3">Ubuntu</a><a class="headerlink" href="#ubuntu" title="Permalink to this headline">¶</a></h3>
+<p>Install the latest version of the <cite>mantid-developer</cite> package. Once installed run cmake as standard but with the additional option <code class="docutils literal notranslate"><span class="pre">-DPYTHON_EXECUTABLE=/usr/bin/python3</span></code>.</p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">Do not install python packages via <code class="docutils literal notranslate"><span class="pre">pip</span></code>. Install packages only from the system repositories.</p>
 </div>
 </div>
+<div class="section" id="windows">
+<h3><a class="toc-backref" href="#id4">Windows</a><a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h3>
+<p>All of the required packages are in the third-party bundle that will be fetched for you.</p>
+<p>To build from the command line run cmake as standard but with the additional option <code class="docutils literal notranslate"><span class="pre">-DWITH_PYTHON3=ON</span></code>.</p>
+<p>To build from the GUI ensure the previous cache has been deleted, set the source and build directories as usual
+but before clicking configure click “Add Entry” and add an entry with the name <code class="docutils literal notranslate"><span class="pre">WITH_PYTHON3</span></code> of type <code class="docutils literal notranslate"><span class="pre">BOOL</span></code>
+and ensure the Value is checked. Now proceed to configure and generate as usual.</p>
+</div>
+</div>
 <div class="section" id="supporting-python-2-and-3">
-<h2><a class="toc-backref" href="#id3">Supporting Python 2 and 3</a><a class="headerlink" href="#supporting-python-2-and-3" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id5">Supporting Python 2 and 3</a><a class="headerlink" href="#supporting-python-2-and-3" title="Permalink to this headline">¶</a></h2>
 <p>Python 3 introduces many exciting new features. For a full description see the official Python 3
 changes document. For a shorter overview see
 <a class="reference external" href="https://asmeurer.github.io/python3-presentation/slides.html#1">here</a> or
@@ -133,7 +148,7 @@ automatically if the string is unicode. When running with Python 3 <code class="
 conversion automatically for unicode strings so this is in fact not a huge issue going forward.</p>
 </div>
 <div class="section" id="migrating-from-python-2-to-3">
-<h2><a class="toc-backref" href="#id4">Migrating From Python 2 to 3</a><a class="headerlink" href="#migrating-from-python-2-to-3" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id6">Migrating From Python 2 to 3</a><a class="headerlink" href="#migrating-from-python-2-to-3" title="Permalink to this headline">¶</a></h2>
 <p>One way to migrate a file from python 2 to 3 is as follows…</p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
