@@ -291,35 +291,15 @@ These include the states themselves, the parameters in a state and
 the state construction.</p>
 <div class="section" id="state-base-py">
 <h4><a class="toc-backref" href="#id8"><em>state_base.py</em></a><a class="headerlink" href="#state-base-py" title="Permalink to this headline">¶</a></h4>
-<p>The <em>state_base.py</em> module contains the essential ingredients for defining a
-state object. These are the <em>StateBase</em> class which allows for serialization
-and a set of <em>TypedParameter</em>.</p>
-<p>The <em>StateBase</em>’s <em>property_manager</em> property is responsible for serialization.
-Due to the nature of the <em>PropertyManagerProperty</em> of algorithms it serializes
-the state object to a Python dictionary and receives a Mantid <em>PropertyManager</em>
-object. This asymmetry is unfortunate, but mirrors the asymmetry of the
-algorithm inputs.</p>
-<p>States which want to fulfill the <em>StateBase</em> contract must override the
-<em>validate</em> method. This method is used to ensure internal consistency
-of the <em>TypedParameters</em> on the state. It is important to have comprehensive
-and tight checks here.</p>
-<p>The entries on the state objects are all descriptors of type <em>TypedParameter</em> which allows
-for type checking, ensuring consistency early on. It is easy to
-build custom types. The current list of types are:</p>
-<ul class="simple">
-<li><em>StringParameter</em></li>
-<li><em>BoolParameter</em></li>
-<li><em>FloatParameter</em></li>
-<li><em>PositiveFloatParameter</em></li>
-<li><em>PositiveIntegerParameter</em></li>
-<li><em>DictParameter</em></li>
-<li><em>FloatWithNoneParameter</em></li>
-<li><em>StringWithNoneParameter</em></li>
-<li><em>PositiveFloatWithNoneParameter</em></li>
-<li><em>FloatListParameter</em></li>
-<li><em>StringListParameter</em></li>
-<li><em>PositiveIntegerListParameter</em></li>
-</ul>
+<p>The <em>JsonSerializable</em> metaclass contains the essential ingredients for
+serializing a state object. Additionally it provides a decorator for any
+Enum types which need to be JSON serializable.</p>
+<p>Any classes which use the metaclass must place any attributes they intend
+to be serialized into JSON string in the instance. I.e. class level variables
+are not recommended since they may not end up in the instances internal
+dictionary.</p>
+<p>The <em>Serializer</em> is responsible for serialization using the JSON library and
+provides static methods to (de)serialize to a string or file.</p>
 </div>
 <div class="section" id="individual-states">
 <h4><a class="toc-backref" href="#id9">Individual states</a><a class="headerlink" href="#individual-states" title="Permalink to this headline">¶</a></h4>
