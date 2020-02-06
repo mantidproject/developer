@@ -249,11 +249,7 @@ require some extra setup.</p>
 <ol class="arabic simple">
 <li>Install packages:</li>
 </ol>
-<ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">autofs</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">smbfs</span></code> - Ubuntu 12.04</li>
-<li><code class="docutils literal notranslate"><span class="pre">cifs-utils</span></code> - Ubuntu 14.04</li>
-</ul>
+<p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">-y</span> <span class="pre">autofs</span> <span class="pre">cifs-utils</span> <span class="pre">keyutils</span></code></p>
 <ol class="arabic simple" start="2">
 <li>Create an <code class="docutils literal notranslate"><span class="pre">/archive.creds</span></code> file in the root directory containing this, filling in the relevant details:</li>
 </ol>
@@ -272,7 +268,7 @@ domain=CLRC
 <ol class="arabic simple" start="4">
 <li>Create <code class="docutils literal notranslate"><span class="pre">/etc/auto.archive</span></code> and add the single line:</li>
 </ol>
-<div class="highlight-text notranslate"><div class="highlight"><pre>*     -fstype=cifs,ro,credentials=/archive.creds,file_mode=0444,dir_mode=0555       ://isisdatar55/&amp;\$
+<div class="highlight-text notranslate"><div class="highlight"><pre>*     -fstype=cifs,ro,credentials=/archive.creds,file_mode=0444,dir_mode=0555,vers=3.0,noserverino,nounix    ://isis.cclrc.ac.uk/inst\$/&amp;
 </pre></div>
 </div>
 <ol class="arabic simple" start="5">
