@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Engineering Diffraction 2 Testing</title>
+    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Error Reporter Testing" href="../ErrorReporter-ProjectRecovery/ErrorReporterTesting.html" />
+    <link rel="prev" title="Indirect Inelastic Testing" href="../IndirectInelastic/IndirectInelasticAcceptanceTests.html" />
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-59110517-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+  </head><body>
+
+
+
+
+
+  <div id="navbar" class="navbar navbar-default ">
+    <div class="container">
+      <div class="navbar-header">
+        
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://www.mantidproject.org"><img src="../../_static/Mantid_Logo_Transparent.png">
+           </a>
+        <span class="navbar-text navbar-version pull-left"><b>master</b></span>
+      </div>
+
+      
+        <div class="collapse navbar-collapse nav-collapse">
+      
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="http://download.mantidproject.org">Download</a></li>
+                <li><a href="http://www.mantidproject.org">Wiki</a></li>
+                <li><a href="http://docs.mantidproject.org">User Documentation</a></li>
+                <li><a href="http://www.mantidproject.org/Contact">Contact Us</a></li>
+            
+            
+              
+              
+            
+            
+            
+            
+          </ul>
+              
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+            </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <div class="section" id="engineering-diffraction-2-testing">
+<span id="engineering-diffraction-2-testguide-ref"></span><h1>Engineering Diffraction 2 Testing<a class="headerlink" href="#engineering-diffraction-2-testing" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="table-of-contents">
+<p class="topic-title first">Table of Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#preamble" id="id1">Preamble</a></li>
+<li><a class="reference internal" href="#overview" id="id2">Overview</a></li>
+<li><a class="reference internal" href="#test-1" id="id3">Test 1</a><ul>
+<li><a class="reference internal" href="#calibration" id="id4">Calibration</a></li>
+<li><a class="reference internal" href="#focus" id="id5">Focus</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#test-2" id="id6">Test 2</a></li>
+<li><a class="reference internal" href="#test-3" id="id7">Test 3</a></li>
+<li><a class="reference internal" href="#test-4" id="id8">Test 4</a></li>
+</ul>
+</div>
+<div class="section" id="preamble">
+<h2><a class="toc-backref" href="#id1">Preamble</a><a class="headerlink" href="#preamble" title="Permalink to this headline">¶</a></h2>
+<p>This document is tailored towards developers intending to test the Engineering Diffraction
+interface 2.</p>
+<p>Runs can be loaded from the archive, however it is possible that different run numbers
+will be needed as older runs may be deleted.</p>
+</div>
+<div class="section" id="overview">
+<h2><a class="toc-backref" href="#id2">Overview</a><a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>The Engineering Diffraction 2 interface allows scientists using the EnginX instrument to interactively
+process their data. There are 3 tabs which are ordered according to the main steps performed.
+These are:</p>
+<ul class="simple">
+<li>Calibration - This is where a vanadium and cerium oxide run are entered to calibrate the subsequent data.</li>
+<li>Focus - Where are the data across multiple spectra are summed into a single spectrum for later steps.</li>
+<li>Fitting - Currently a work in progress, no testing is required</li>
+</ul>
+</div>
+<div class="section" id="test-1">
+<h2><a class="toc-backref" href="#id3">Test 1</a><a class="headerlink" href="#test-1" title="Permalink to this headline">¶</a></h2>
+<p>This test follows the simple steps for calibrating and focusing in the Engineering Diffraction 2 Gui.</p>
+<div class="section" id="calibration">
+<h3><a class="toc-backref" href="#id4">Calibration</a><a class="headerlink" href="#calibration" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Ensure you are able to access the archive.</li>
+<li>Open the Engineering Diffraction 2 gui.</li>
+<li>On opening the gui the Create New Calibration option should be selected.</li>
+<li>Open the setting dialog from the cog in the bottom left of the gui.</li>
+<li>Set the Save location to a directory of your choice.</li>
+<li>For the vanadium number enter <cite>307521</cite>, and for the Calibration Sample number enter <cite>305738</cite>.</li>
+<li>Tick the Plot Calibrated Workspace option.</li>
+<li>Click Calibrate, after completing calibration it should produce two plots.</li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/EnggDiffExpectedVanCurve.png"><img alt="../../_images/EnggDiffExpectedVanCurve.png" src="../../_images/EnggDiffExpectedVanCurve.png" style="width: 900px;" /></a>
+<a class="reference internal image-reference" href="../../_images/EnggDiffExpectedLinear.png"><img alt="../../_images/EnggDiffExpectedLinear.png" src="../../_images/EnggDiffExpectedLinear.png" style="width: 900px;" /></a>
+<ol class="arabic simple" start="9">
+<li>Check that in your save location there is a Calibration folder containing three files
+<cite>ENGINX_307521_305738</cite> with the suffixes <cite>_all_bank</cite>, <cite>_bank_North</cite>, <cite>_bank_South</cite>, and
+a Vanadium_Runs folder containing two files: <cite>307521_precalculated_vanadium_run_bank_curves</cite>
+and <cite>307521_precalculated_vanadium_run_integration</cite>.</li>
+</ol>
+</div>
+<div class="section" id="focus">
+<h3><a class="toc-backref" href="#id5">Focus</a><a class="headerlink" href="#focus" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Change to the Focus tab.</li>
+<li>For the Sample Run number use <cite>305761</cite>.</li>
+<li>Tick the Plot Focused Workspace option.</li>
+<li>Click Focus, after completing calibration it should produce a plot.</li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/EnggDiffExampleFocusOutput.png"><img alt="../../_images/EnggDiffExampleFocusOutput.png" src="../../_images/EnggDiffExampleFocusOutput.png" style="width: 900px;" /></a>
+<ol class="arabic simple" start="5">
+<li>Check that in your save location there is a Calibration folder containing six files
+<cite>ENGINX_305761_bank_1</cite> and <cite>ENGINX_305761_bank_2</cite> for each of <cite>.dat</cite>, <cite>.gss</cite>, and <cite>.nxs</cite>.</li>
+</ol>
+</div>
+</div>
+<div class="section" id="test-2">
+<h2><a class="toc-backref" href="#id6">Test 2</a><a class="headerlink" href="#test-2" title="Permalink to this headline">¶</a></h2>
+<p>This test covers the RB number.</p>
+<ol class="arabic simple">
+<li>Enter a string into the RB number box.</li>
+<li>Follow the steps of Test 1, any output files should now be located in [Save location]/user/[RB number]</li>
+</ol>
+</div>
+<div class="section" id="test-3">
+<h2><a class="toc-backref" href="#id7">Test 3</a><a class="headerlink" href="#test-3" title="Permalink to this headline">¶</a></h2>
+<p>This test covers the Force Vanadium Recalculation functionality.</p>
+<ol class="arabic simple">
+<li>With the previous setup run calibration again. It should happen much faster as it loads
+the previous calibration.</li>
+<li>In the Engineering Diffraction 2 settings tick the Force Vanadium Recalculation.</li>
+<li>Calibrate again. It should take a longer time to perform as it does the entire calibration again.</li>
+</ol>
+</div>
+<div class="section" id="test-4">
+<h2><a class="toc-backref" href="#id8">Test 4</a><a class="headerlink" href="#test-4" title="Permalink to this headline">¶</a></h2>
+<p>This test covers the Cropping ability</p>
+<ol class="arabic simple">
+<li>Change the RB Number to North.</li>
+<li>Tick the Crop Calibration option. In the select Bank/Spectra select <cite>1 (North)</cite></li>
+<li>Click calibrate.</li>
+<li>Go to focus tab and do the same with the Crop Focus.</li>
+<li>Change the RB number to custom.</li>
+<li>Repeat steps 2-4 this time using Custom Spectra <cite>1200-1400</cite></li>
+</ol>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+      <ul class="nav navbar-nav" style=" float: right;">
+      
+      
+          
+            
+  <li>
+    <a href="../IndirectInelastic/IndirectInelasticAcceptanceTests.html" title="Previous Chapter: Indirect Inelastic Testing"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Indirect Inel...</span>
+    </a>
+  </li>
+  <li>
+    <a href="../ErrorReporter-ProjectRecovery/ErrorReporterTesting.html" title="Next Chapter: Error Reporter Testing"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Error Reporte... &raquo;</span>
+    </a>
+  </li>
+          
+       
+          <li><a href="#">Back to top</a></li>
+       </ul>
+    <p>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
