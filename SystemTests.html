@@ -108,14 +108,15 @@
 <li><a class="reference internal" href="#running-tests-locally" id="id12">Running Tests Locally</a><ul>
 <li><a class="reference internal" href="#visual-studio-xcode" id="id13">Visual Studio/Xcode</a></li>
 <li><a class="reference internal" href="#makefile-like-generators" id="id14">Makefile-like Generators</a></li>
-<li><a class="reference internal" href="#selecting-tests-to-run" id="id15">Selecting Tests To Run</a></li>
-<li><a class="reference internal" href="#running-the-tests-on-multiple-cores" id="id16">Running the tests on multiple cores</a></li>
-<li><a class="reference internal" href="#reducing-the-size-of-console-output" id="id17">Reducing the size of console output</a></li>
-<li><a class="reference internal" href="#running-a-cleanup-run" id="id18">Running a cleanup run</a></li>
-<li><a class="reference internal" href="#adding-new-data-references-files" id="id19">Adding New Data &amp; References Files</a></li>
+<li><a class="reference internal" href="#selecting-tests-to-run-from-ide" id="id15">Selecting Tests to Run From IDE</a></li>
+<li><a class="reference internal" href="#selecting-tests-to-run" id="id16">Selecting Tests To Run</a></li>
+<li><a class="reference internal" href="#running-the-tests-on-multiple-cores" id="id17">Running the tests on multiple cores</a></li>
+<li><a class="reference internal" href="#reducing-the-size-of-console-output" id="id18">Reducing the size of console output</a></li>
+<li><a class="reference internal" href="#running-a-cleanup-run" id="id19">Running a cleanup run</a></li>
+<li><a class="reference internal" href="#adding-new-data-references-files" id="id20">Adding New Data &amp; References Files</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#best-practice" id="id20">Best Practice</a></li>
+<li><a class="reference internal" href="#best-practice" id="id21">Best Practice</a></li>
 </ul>
 </div>
 <div class="section" id="overview">
@@ -280,8 +281,19 @@ systemtest
 </pre></div>
 </div>
 </div>
+<div class="section" id="selecting-tests-to-run-from-ide">
+<h3><a class="toc-backref" href="#id15">Selecting Tests to Run From IDE</a><a class="headerlink" href="#selecting-tests-to-run-from-ide" title="Permalink to this headline">¶</a></h3>
+<p>System tests can be ran from the MSVC IDE using the <code class="docutils literal notranslate"><span class="pre">SystemTests</span></code> target,
+which behaves in a similar way to unit test targets. One key advantage is
+that it allows you to start Mantid in a debug environment rather than attach
+to one midway through.</p>
+<p>To select an individual test, or range of tests, go to the <code class="docutils literal notranslate"><span class="pre">SystemTests</span></code>
+properties, go to <code class="docutils literal notranslate"><span class="pre">`Command</span> <span class="pre">Arguments`</span></code> and append flags as appropriate.</p>
+<p>For example, adding <code class="docutils literal notranslate"><span class="pre">-R</span> <span class="pre">ISIS</span></code> will run any tests which match the regular
+expression <code class="docutils literal notranslate"><span class="pre">ISIS</span></code>.</p>
+</div>
 <div class="section" id="selecting-tests-to-run">
-<h3><a class="toc-backref" href="#id15">Selecting Tests To Run</a><a class="headerlink" href="#selecting-tests-to-run" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id16">Selecting Tests To Run</a><a class="headerlink" href="#selecting-tests-to-run" title="Permalink to this headline">¶</a></h3>
 <p>The most important option on the script is the <code class="docutils literal notranslate"><span class="pre">-R</span></code> option. This
 restricts the tests that will run to those that match the given regex,
 e.g.</p>
@@ -294,7 +306,7 @@ systemtest -C &lt;cfg&gt; -R SNS
 <p>would run all of the tests whose name contains SNS.</p>
 </div>
 <div class="section" id="running-the-tests-on-multiple-cores">
-<h3><a class="toc-backref" href="#id16">Running the tests on multiple cores</a><a class="headerlink" href="#running-the-tests-on-multiple-cores" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id17">Running the tests on multiple cores</a><a class="headerlink" href="#running-the-tests-on-multiple-cores" title="Permalink to this headline">¶</a></h3>
 <p>Running the System Tests can be sped up by distributing the list of
 tests across multiple cores. This is done in a similar way to <code class="docutils literal notranslate"><span class="pre">ctest</span></code>
 using the <code class="docutils literal notranslate"><span class="pre">-j</span> <span class="pre">N</span></code> option, where <code class="docutils literal notranslate"><span class="pre">N</span></code> is the number of cores you want
@@ -340,7 +352,7 @@ that has a 0 value). This aims to have all threads end calculation
 approximately at the same time.</p>
 </div>
 <div class="section" id="reducing-the-size-of-console-output">
-<h3><a class="toc-backref" href="#id17">Reducing the size of console output</a><a class="headerlink" href="#reducing-the-size-of-console-output" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id18">Reducing the size of console output</a><a class="headerlink" href="#reducing-the-size-of-console-output" title="Permalink to this headline">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">systemtests</span></code> can be run in “quiet” mode using the <code class="docutils literal notranslate"><span class="pre">-q</span></code> or
 <code class="docutils literal notranslate"><span class="pre">--quiet</span></code> option. This will print only one line per test instead of
 the full log.</p>
@@ -375,7 +387,7 @@ FrameworkManager-<span class="o">[</span>Notice<span class="o">]</span> Please c
 <p>One can recover the full log when a test fails by using the <code class="docutils literal notranslate"><span class="pre">--ouptut-on-failure</span></code> option.</p>
 </div>
 <div class="section" id="running-a-cleanup-run">
-<h3><a class="toc-backref" href="#id18">Running a cleanup run</a><a class="headerlink" href="#running-a-cleanup-run" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id19">Running a cleanup run</a><a class="headerlink" href="#running-a-cleanup-run" title="Permalink to this headline">¶</a></h3>
 <p>A cleanup run will go through all the tests and call the
 <code class="docutils literal notranslate"><span class="pre">.cleanup()</span></code> function for each test. It will not run the tests
 (i.e. call the <code class="docutils literal notranslate"><span class="pre">execute()</span></code> function) themselves. This is achieved
@@ -387,14 +399,14 @@ by using the <code class="docutils literal notranslate"><span class="pre">-c</sp
 where some tests were not cleanly exited.</p>
 </div>
 <div class="section" id="adding-new-data-references-files">
-<h3><a class="toc-backref" href="#id19">Adding New Data &amp; References Files</a><a class="headerlink" href="#adding-new-data-references-files" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id20">Adding New Data &amp; References Files</a><a class="headerlink" href="#adding-new-data-references-files" title="Permalink to this headline">¶</a></h3>
 <p>The data is managed by CMake’s external data system that is described by
 <a class="reference internal" href="DataFilesForTesting.html#datafilesfortesting"><span class="std std-ref">Data Files for Testing</span></a>. Please see <a class="reference internal" href="DataFilesForTesting.html#datafilesfortesting-addinganewfile"><span class="std std-ref">Adding A New File(s)</span></a> for how to add new
 files.</p>
 </div>
 </div>
 <div class="section" id="best-practice">
-<h2><a class="toc-backref" href="#id20">Best Practice</a><a class="headerlink" href="#best-practice" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id21">Best Practice</a><a class="headerlink" href="#best-practice" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>Always check your test works locally before making it public.</li>
 <li>User stories should come from the users themselves where possible.</li>
