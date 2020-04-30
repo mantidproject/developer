@@ -98,7 +98,7 @@
 <li><a class="reference internal" href="#running-files-in-the-debugger-without-envfile-extension" id="id5">Running Files in the Debugger without EnvFile extension</a></li>
 <li><a class="reference internal" href="#testing-using-pyqt" id="id6">Testing using PyQt</a></li>
 <li><a class="reference internal" href="#local-debugging-of-unit-tests-with-pycharm" id="id7">Local Debugging of Unit Tests with PyCharm</a></li>
-<li><a class="reference internal" href="#remote-debugging-of-unit-tests-with-pycharm" id="id8">Remote Debugging of Unit Tests with PyCharm</a></li>
+<li><a class="reference internal" href="#remote-debugging-with-pycharm" id="id8">Remote Debugging with PyCharm</a></li>
 <li><a class="reference internal" href="#setting-up-pycharm-on-linux" id="id9">Setting up PyCharm on Linux</a></li>
 <li><a class="reference internal" href="#useful-plugins" id="id10">Useful Plugins</a></li>
 <li><a class="reference internal" href="#remote-development" id="id11">Remote Development</a></li>
@@ -111,7 +111,7 @@
 <p>Go to <code class="docutils literal notranslate"><span class="pre">File-&gt;Settings</span></code>, then under <code class="docutils literal notranslate"><span class="pre">Project</span></code> you will set two sub-menus <code class="docutils literal notranslate"><span class="pre">Project</span> <span class="pre">Interpreter</span></code> and <code class="docutils literal notranslate"><span class="pre">Project</span> <span class="pre">Structure</span></code>. The interpreter defines the python executable that will be used to run your code, and the structure menu allows you to decide which folders within the project to include and index.</p>
 </li>
 <li><p class="first">In the <code class="docutils literal notranslate"><span class="pre">Project</span> <span class="pre">Interpreter</span></code> sub menu, at the top select the options button and click <code class="docutils literal notranslate"><span class="pre">Add...</span></code>, a new window should appear titled “Add Python Interpreter”. In the menu on the left, select “System Interpreter” (a version of Python with all the correct variables set already exists within Mantid). Click on the <code class="docutils literal notranslate"><span class="pre">...</span></code> to open a file browser, and navigate to;</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>&lt;Mantid Source Directory&gt;/external/src/ThirdParty/lib/python2.7/python.exe
+<div class="highlight-sh notranslate"><div class="highlight"><pre>&lt;Mantid Source Directory&gt;/external/src/ThirdParty/lib/python3.8/python.exe
 </pre></div>
 </div>
 <p>This is the interpreter, so select “Ok” and apply the changes. This should bring up a list of all the packages associated to the interpreter. There should be many packages, however you should not see PyQt (but instead QtPy).</p>
@@ -180,7 +180,7 @@
 <div><div class="highlight-sh notranslate"><div class="highlight"><pre>&lt;Mantid Build Directory&gt;<span class="se">\b</span>in<span class="se">\D</span>ebug<span class="p">;</span>
 &lt;Mantid Source Directory&gt;<span class="se">\e</span>xternal<span class="se">\s</span>rc<span class="se">\T</span>hirdParty<span class="se">\b</span>in<span class="p">;</span>
 &lt;Mantid Source Directory&gt;<span class="se">\e</span>xternal<span class="se">\s</span>rc<span class="se">\T</span>hirdParty<span class="se">\b</span>in<span class="se">\m</span>ingw<span class="p">;</span>
-&lt;Mantid Source Directory&gt;<span class="se">\e</span>xternal<span class="se">\s</span>rc<span class="se">\T</span>hirdParty<span class="se">\l</span>ib<span class="se">\p</span>ython2.7<span class="p">;</span>
+&lt;Mantid Source Directory&gt;<span class="se">\e</span>xternal<span class="se">\s</span>rc<span class="se">\T</span>hirdParty<span class="se">\l</span>ib<span class="se">\p</span>ython3.8<span class="p">;</span>
 &lt;Mantid Source Directory&gt;<span class="se">\e</span>xternal<span class="se">\s</span>rc<span class="se">\T</span>hirdParty<span class="se">\l</span>ib<span class="se">\q</span>t5<span class="se">\p</span>lugins<span class="p">;</span>
 &lt;Mantid Source Directory&gt;<span class="se">\e</span>xternal<span class="se">\s</span>rc<span class="se">\T</span>hirdParty<span class="se">\l</span>ib<span class="se">\q</span>t4<span class="se">\b</span>in<span class="p">;</span>
 &lt;Mantid Source Directory&gt;<span class="se">\e</span>xternal<span class="se">\s</span>rc<span class="se">\T</span>hirdParty<span class="se">\l</span>ib<span class="se">\q</span>t5<span class="se">\b</span>in<span class="p">;</span>
@@ -232,26 +232,44 @@
 <li>You should now be able to click the Run/Debug icons next to each unit test method or class to run/debug them.</li>
 </ol>
 </div>
-<div class="section" id="remote-debugging-of-unit-tests-with-pycharm">
-<h2><a class="toc-backref" href="#id8">Remote Debugging of Unit Tests with PyCharm</a><a class="headerlink" href="#remote-debugging-of-unit-tests-with-pycharm" title="Permalink to this headline">¶</a></h2>
-<p>This requires a PyCharm Professional license for the Remote Debugging feature.</p>
-<p>This approach can be used to debug unit tests. However, as the required package <code class="docutils literal notranslate"><span class="pre">pydevd</span></code> is not shipped with Mantid, we need to manually add it at runtime. This can be done by appending a directory that contains the installed <code class="docutils literal notranslate"><span class="pre">pydevd</span></code> package on the <code class="docutils literal notranslate"><span class="pre">PYTHONPATH</span></code>. The following code does so at runtime:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="n">PYTHON_ROOT</span><span class="o">=</span><span class="s2">&quot;&lt;Change this to point to a Python installation that has pydevd installed&gt;&quot;</span>
-<span class="c1"># PYTHON_ROOT=&quot;c:/users/&lt;username&gt;/apps/miniconda3&quot;</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">PYTHON_ROOT</span><span class="p">,</span> <span class="s2">&quot;lib/site-packages&quot;</span><span class="p">))</span>
-<span class="kn">import</span> <span class="nn">pydevd</span>
-<span class="n">pydevd</span><span class="o">.</span><span class="n">settrace</span><span class="p">(</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">44444</span><span class="p">,</span> <span class="n">stdoutToServer</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">stderrToServer</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="section" id="remote-debugging-with-pycharm">
+<h2><a class="toc-backref" href="#id8">Remote Debugging with PyCharm</a><a class="headerlink" href="#remote-debugging-with-pycharm" title="Permalink to this headline">¶</a></h2>
+<p>A PyCharm Professional license is required to use the Remote Debugging feature.</p>
+<p>This functionality is useful for debugging python code that is spawned in separate threads, such as Python algorithms and system tests.</p>
+<p>The remote debugger needs to be added as a configuration to be used easily:</p>
+<ol class="arabic simple">
+<li>Click the Add Configuration button at the top of the main window or click <code class="docutils literal notranslate"><span class="pre">Run-&gt;Edit</span> <span class="pre">Configurations...</span></code></li>
+<li>Click the + button and add “Python Remote Debug” to the list of configurations.</li>
+<li>Give it a name, and set the port number to <code class="docutils literal notranslate"><span class="pre">44444</span></code>.</li>
+<li>Leave “Suspend after connect” ticked if you would like any connections to the debugger to act as a breakpoint. It may be useful to untick this if you would like to hit a breakpoint in a loop inside an algorithm that runs many times but does not always hit that breakpoint.</li>
+<li>Click OK.</li>
+</ol>
+<p>To use the remote debugger:</p>
+<ol class="arabic">
+<li><p class="first">Select the remote debugger from the drop down list of configurations.</p>
+</li>
+<li><p class="first">Click the green bug icon to start the debugger.</p>
+</li>
+<li><p class="first">Copy and paste the two lines shown in the terminal into the code you wish to debug:</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">pydevd_pycharm</span>
+<span class="n">pydevd_pycharm</span><span class="o">.</span><span class="n">settrace</span><span class="p">(</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">44444</span><span class="p">,</span> <span class="n">stdoutToServer</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">stderrToServer</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>A Remote Debugging configration needs to be setup to use the <code class="docutils literal notranslate"><span class="pre">44444</span></code> port (can be changed, but it needs to be reflected in the code), and running before the tests are run!</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">pydevd</span></code> package does not have to be installed on Python 2. As of 12/11/2018 installing <code class="docutils literal notranslate"><span class="pre">pydevd</span></code> on a separate installation with Python 3.7, and adding the code above successfully connects.</p>
+</div></blockquote>
+</li>
+<li><p class="first">Start Mantid or the test you wish to debug.</p>
+</li>
+<li><p class="first">If “Suspend after connect” has been ticked the point at which the two lines have been pasted will act as a breakpoint. Otherwise, the code will stop at the next breakpoint <em>after</em> the pasted lines.</p>
+</li>
+<li><p class="first">You can now use the PyCharm debugger as normal.</p>
+</li>
+</ol>
 </div>
 <div class="section" id="setting-up-pycharm-on-linux">
 <h2><a class="toc-backref" href="#id9">Setting up PyCharm on Linux</a><a class="headerlink" href="#setting-up-pycharm-on-linux" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic">
-<li><p class="first">Use the native python interpreter (<code class="docutils literal notranslate"><span class="pre">/usr/bin/python2.7</span></code>) rather than from <code class="docutils literal notranslate"><span class="pre">&lt;Mantid</span> <span class="pre">Source</span> <span class="pre">Directory&gt;/external/src/ThirdParty/lib/python2.7/python.exe</span></code></p>
+<li><p class="first">Use the native python interpreter (<code class="docutils literal notranslate"><span class="pre">/usr/bin/python3</span></code>) rather than from <code class="docutils literal notranslate"><span class="pre">&lt;Mantid</span> <span class="pre">Source</span> <span class="pre">Directory&gt;/external/src/ThirdParty/lib/python3.8/python.exe</span></code></p>
 </li>
 <li><p class="first">In the <code class="docutils literal notranslate"><span class="pre">Project</span> <span class="pre">Structure</span></code> sub menu you should see your root directory with the source/build directories both visible (if not, add them). The folder structure should be present in the centre of the window allowing you to mark folders orange (excluded) or blue (source). Source directories will be searched for python code.</p>
 <p>Within the source directory add the following to your sources:</p>
