@@ -459,25 +459,22 @@ Then pass as an argument the specific test you want to be debugging. As an examp
 <div class="section" id="debugging-python">
 <h3><a class="toc-backref" href="#id17">Debugging Python</a><a class="headerlink" href="#debugging-python" title="Permalink to this headline">¶</a></h3>
 <p>Visual Studio Code can be remotely attached to any running Python targets
-using <cite>ptvsd</cite>.
+using <cite>debugpy</cite>.
 Whilst this “just works” for the majority of cases, it will not allow you to
 debug both C++ and Python at the same time. It also will not work with
 PyQt listeners, as the debugger must be attached to the main thread.</p>
-<p><strong>Setting up ptvsd</strong></p>
+<p><strong>Setting up debugpy</strong></p>
 <p><em>Linux/OSX</em></p>
-<p>Install <cite>ptvsd</cite> using pip within the terminal</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre>pip install ptvsd
-<span class="c1"># Or if using Python 3</span>
-pip3 install ptvsd
+<p>Install <cite>debugpy</cite> using pip within the terminal</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre>python3 -m pip install --user debugpy
 </pre></div>
 </div>
 <p><em>Windows</em></p>
-<p><cite>ptvsd</cite> needs to be installed into each source folder:</p>
 <ul class="simple">
 <li>Go to your source folder with Mantid (not the build folder)</li>
-<li>Go to external/src/ThirdParty/lib/python2.7</li>
+<li>Go to external/src/ThirdParty/lib/python3.8</li>
 <li>Open a command prompt here (shift + right click in empty space)</li>
-<li>Run the following: <cite>python -m pip install ptvsd</cite></li>
+<li>Run the following: <cite>python -m pip install –user debugpy</cite></li>
 </ul>
 <p><strong>Setting up VS Code</strong>
 - Ensure the Python extension is installed
@@ -495,19 +492,18 @@ pip3 install ptvsd
 <p><strong>Attaching the debugger</strong>
 - Go to the location where you would like Mantid to first trigger a breakpoint
 - Insert the following code:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">ptvsd</span>
-<span class="n">ptvsd</span><span class="o">.</span><span class="n">enable_attach</span><span class="p">(</span><span class="n">address</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;127.0.0.1&#39;</span><span class="p">,</span> <span class="mi">5678</span><span class="p">),</span> <span class="n">redirect_output</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-<span class="n">ptvsd</span><span class="o">.</span><span class="n">wait_for_attach</span><span class="p">()</span>
-<span class="n">ptvsd</span><span class="o">.</span><span class="n">break_into_debugger</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">debugpy</span>
+<span class="n">debugpy</span><span class="o">.</span><span class="n">listen</span><span class="p">((</span><span class="s1">&#39;127.0.0.1&#39;</span><span class="p">,</span> <span class="mi">5678</span><span class="p">))</span>
+<span class="n">debugpy</span><span class="o">.</span><span class="n">wait_for_client</span><span class="p">()</span>
+<span class="n">debugpy</span><span class="o">.</span><span class="n">breakpoint</span><span class="p">()</span>
 </pre></div>
 </div>
 <ul class="simple">
-<li>When Mantid appears to freeze. Open the debug tab and start the Python
-Attach Target</li>
+<li>When Mantid appears to freeze. Open the debug tab and start the “Python Attach” Target</li>
 <li>Any additional breakpoints using the IDE are added automatically
-(i.e. don’t add <cite>ptvsd.break_into_debugger()</cite></li>
+(i.e. don’t add <cite>debugpy.breakpoint()</cite></li>
 <li>If you’d like the code to not break at that location, but would like the
-debugger to attach only remove <cite>wait_for_attach()</cite></li>
+debugger to attach only remove <cite>wait_for_client()</cite></li>
 </ul>
 </div>
 <div class="section" id="keybindings">
