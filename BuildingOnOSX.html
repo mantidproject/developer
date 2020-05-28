@@ -126,29 +126,13 @@ brew cask install mactex
 </pre></div>
 </div>
 <ol class="arabic simple" start="5">
-<li>Reset brew formula repo back to before Python 2 removal for required packages</li>
+<li>Install <code class="docutils literal notranslate"><span class="pre">mantid-developer</span></code> formula (this may take a while depending on your network speed)</li>
 </ol>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span class="nb">cd</span> /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core
-git reset --hard 8f1d612d9e179c0d91ecd09853854e42281bd313
-<span class="nb">cd</span> -
+<div class="highlight-sh notranslate"><div class="highlight"><pre>brew install mantid-developer
 </pre></div>
 </div>
 <ol class="arabic simple" start="6">
-<li>Disable homebrew update and install <code class="docutils literal notranslate"><span class="pre">mantid-developer</span></code> formula (this may take a while depending on your network speed)</li>
-</ol>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span class="nv">HOMEBREW_NO_AUTO_UPDATE</span><span class="o">=</span><span class="m">1</span> brew install mantid-developer
-</pre></div>
-</div>
-<ol class="arabic simple" start="7">
 <li>Homebrew can stop early for reasons that are unclear. Repeat the above command until Homebrew states: <em>Warning: mantidproject/mantid/mantid-developer ?.? is already installed and up-to-date</em>.</li>
-<li>Pin libraries that depend on Python 2 and libmxml and NeXus is not compatible with v3:</li>
-</ol>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>brew pin libmxml
-brew pin sip
-brew pin pyqt
-</pre></div>
-</div>
-<ol class="arabic simple" start="9">
 <li>Unlink <code class="docutils literal notranslate"><span class="pre">qt&#64;4</span></code> from <code class="docutils literal notranslate"><span class="pre">/usr/local</span></code> to avoid cross talk with Qt5 and ensure the webkit can be found when not linked</li>
 </ol>
 <div class="highlight-sh notranslate"><div class="highlight"><pre>brew unlink qt@4
@@ -157,8 +141,10 @@ ln -s /usr/local/opt/qt-webkit@2.3/include/QtWebKit /usr/local/opt/qt@4/include/
 ln -s /usr/local/opt/qt-webkit@2.3/lib/QtWebKit.framework /usr/local/opt/qt@4/lib/QtWebKit.framework
 </pre></div>
 </div>
-<ol class="arabic simple" start="10">
+<ol class="arabic simple" start="8">
 <li>Check that <code class="docutils literal notranslate"><span class="pre">which</span> <span class="pre">python</span></code> returns a Python in <code class="docutils literal notranslate"><span class="pre">/usr/local</span></code> and not system Python.</li>
+</ol>
+<ol class="arabic simple" start="10">
 <li>Install python requirements</li>
 </ol>
 <div class="highlight-sh notranslate"><div class="highlight"><pre>python -m pip install -r /usr/local/Homebrew/Library/Taps/mantidproject/homebrew-mantid/requirements.txt
