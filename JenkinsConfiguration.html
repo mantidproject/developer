@@ -261,7 +261,7 @@ Defaults!/bin/cp        !requiretty
 Defaults!/bin/rm        !requiretty
 </pre></div>
 </div>
-<p>In order to run the MantidPlot tests, which require a connection to the windowing system, the user that is running the jenkins slave must
+<p>In order to run the Qt tests, which require a connection to the windowing system, the user that is running the jenkins slave must
 have logged in. This is most easily done by VNC - connect, log in,
 then disconnect. If you see errors such as:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="n">_RegisterApplication</span><span class="p">(),</span> <span class="n">FAILED</span> <span class="n">TO</span> <span class="n">establish</span> <span class="n">the</span> <span class="n">default</span> <span class="n">connection</span> <span class="n">to</span> <span class="n">the</span> <span class="n">WindowServer</span><span class="p">,</span>
@@ -269,6 +269,12 @@ then disconnect. If you see errors such as:</p>
 </pre></div>
 </div>
 <p>then no one is logged in to the system.</p>
+<p>Finally, disable saved application states that cause a dialog to be raised after a program crash
+resulting in a test hanging waiting for a user to click ok on a dialog:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="n">defaults</span> <span class="n">write</span> <span class="n">org</span><span class="o">.</span><span class="n">python</span><span class="o">.</span><span class="n">python</span> <span class="n">NSQuitAlwaysKeepsWindows</span> <span class="o">-</span><span class="nb">bool</span> <span class="n">false</span>
+<span class="n">defaults</span> <span class="n">write</span> <span class="n">org</span><span class="o">.</span><span class="n">mantidproject</span><span class="o">.</span><span class="n">MantidPlot</span> <span class="n">NSQuitAlwaysKeepsWindows</span> <span class="o">-</span><span class="nb">bool</span> <span class="n">false</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="linux-mac-connection-notes">
 <h3><a class="toc-backref" href="#id13">Linux/Mac Connection Notes</a><a class="headerlink" href="#linux-mac-connection-notes" title="Permalink to this headline">¶</a></h3>
