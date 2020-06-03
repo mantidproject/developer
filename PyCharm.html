@@ -239,10 +239,15 @@
 <p>The remote debugger needs to be added as a configuration to be used easily:</p>
 <ol class="arabic simple">
 <li>Click the Add Configuration button at the top of the main window or click <code class="docutils literal notranslate"><span class="pre">Run-&gt;Edit</span> <span class="pre">Configurations...</span></code></li>
-<li>Click the + button and add “Python Remote Debug” to the list of configurations.</li>
+<li>Click the + button and add “Python Debug Server” to the list of configurations.</li>
 <li>Give it a name, and set the port number to <code class="docutils literal notranslate"><span class="pre">44444</span></code>.</li>
 <li>Leave “Suspend after connect” ticked if you would like any connections to the debugger to act as a breakpoint. It may be useful to untick this if you would like to hit a breakpoint in a loop inside an algorithm that runs many times but does not always hit that breakpoint.</li>
 <li>Click OK.</li>
+</ol>
+<p>You will also need to install the python package <code class="docutils literal notranslate"><span class="pre">pydevd_pycharm</span></code> which can be done by:</p>
+<ol class="arabic simple">
+<li>Navigating to the directory that contains the python interpreter <code class="docutils literal notranslate"><span class="pre">&lt;Mantid</span> <span class="pre">Source</span> <span class="pre">Directory&gt;/external/src/ThirdParty/lib/python3.8/</span></code></li>
+<li>Running the following in the terminal <code class="docutils literal notranslate"><span class="pre">.\python</span> <span class="pre">-m</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">pydevd_pycharm</span></code></li>
 </ol>
 <p>To use the remote debugger:</p>
 <ol class="arabic">
@@ -258,7 +263,7 @@
 </div>
 </div></blockquote>
 </li>
-<li><p class="first">Start Mantid or the test you wish to debug.</p>
+<li><p class="first">Start Mantid or the test you wish to debug (do not stop the remote debugger).</p>
 </li>
 <li><p class="first">If “Suspend after connect” has been ticked the point at which the two lines have been pasted will act as a breakpoint. Otherwise, the code will stop at the next breakpoint <em>after</em> the pasted lines.</p>
 </li>
