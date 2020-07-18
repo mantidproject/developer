@@ -149,10 +149,22 @@ brew unlink qscintilla2qt4
 </pre></div>
 </div>
 <ol class="arabic simple" start="9">
-<li>Check that <code class="docutils literal notranslate"><span class="pre">which</span> <span class="pre">python</span></code> returns a Python in <code class="docutils literal notranslate"><span class="pre">/usr/local</span></code> and not system Python.</li>
+<li>Python is now keg-only. Add the appropriate version to <code class="docutils literal notranslate"><span class="pre">PATH</span></code> in shell profile and restart the terminal:</li>
+</ol>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span class="c1"># Assume we are using bash</span>
+<span class="nb">echo</span> <span class="s1">&#39;export PATH=&quot;/usr/local/opt/python@3.8/bin:$PATH&quot;&#39;</span> &gt;&gt; ~/.bash_profile
+</pre></div>
+</div>
+<ol class="arabic simple" start="10">
+<li>Downgrade setuptools to 48.0.0 until <a class="reference external" href="https://github.com/mantidproject/mantid/issues/29010">https://github.com/mantidproject/mantid/issues/29010</a> is fixed.</li>
+</ol>
+<div class="highlight-sh notranslate"><div class="highlight"><pre>python3 -m pip install <span class="nv">setuptools</span><span class="o">==</span>48.0.0
+</pre></div>
+</div>
+<ol class="arabic simple" start="11">
 <li>Install python requirements</li>
 </ol>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>python -m pip install -r /usr/local/Homebrew/Library/Taps/mantidproject/homebrew-mantid/requirements.txt
+<div class="highlight-sh notranslate"><div class="highlight"><pre>python3 -m pip install -r /usr/local/Homebrew/Library/Taps/mantidproject/homebrew-mantid/requirements.txt
 </pre></div>
 </div>
 <div class="section" id="instructions-for-historic-versions">
