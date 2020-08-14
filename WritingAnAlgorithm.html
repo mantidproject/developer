@@ -143,7 +143,7 @@ boilerplate C++ code (changing each occurrence of ‘MyAlg’ to your chosen alg
 
 <span class="cp">#include</span> <span class="cpf">&quot;MantidAPI/Algorithm.h&quot;</span><span class="cp"></span>
 
-<span class="k">class</span> <span class="nc">MyAlg</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Mantid</span><span class="o">::</span><span class="n">API</span><span class="o">::</span><span class="n">Algorithm</span>
+<span class="k">class</span> <span class="nc">DLLExport</span> <span class="nl">MyAlg</span> <span class="p">:</span> <span class="k">public</span> <span class="n">Mantid</span><span class="o">::</span><span class="n">API</span><span class="o">::</span><span class="n">Algorithm</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
   <span class="c1">/// (Empty) Constructor</span>
@@ -151,17 +151,19 @@ boilerplate C++ code (changing each occurrence of ‘MyAlg’ to your chosen alg
   <span class="c1">/// Virtual destructor</span>
   <span class="k">virtual</span> <span class="o">~</span><span class="n">MyAlg</span><span class="p">()</span> <span class="p">{}</span>
   <span class="c1">/// Algorithm&#39;s name</span>
-  <span class="k">virtual</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="s">&quot;MyAlg&quot;</span><span class="p">;</span> <span class="p">}</span>
+  <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span><span class="p">()</span> <span class="k">const</span> <span class="k">override</span> <span class="p">{</span> <span class="k">return</span> <span class="s">&quot;MyAlg&quot;</span><span class="p">;</span> <span class="p">}</span>
+  <span class="c1">/// Algorithm&#39;s purpose/summary</span>
+  <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">summary</span><span class="p">()</span> <span class="k">const</span> <span class="k">override</span> <span class="p">{</span> <span class="k">return</span> <span class="s">&quot;Summary&quot;</span><span class="p">;}</span>
   <span class="c1">/// Algorithm&#39;s version</span>
-  <span class="k">virtual</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">version</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="p">(</span><span class="mi">1</span><span class="p">);</span> <span class="p">}</span>
+  <span class="kt">int</span> <span class="n">version</span><span class="p">()</span> <span class="k">const</span> <span class="k">override</span> <span class="p">{</span> <span class="k">return</span> <span class="p">(</span><span class="mi">1</span><span class="p">);</span> <span class="p">}</span>
   <span class="c1">/// Algorithm&#39;s category for identification</span>
-  <span class="k">virtual</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">category</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="s">&quot;UserDefined&quot;</span><span class="p">;</span> <span class="p">}</span>
+  <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">category</span><span class="p">()</span> <span class="k">const</span> <span class="k">override</span> <span class="p">{</span> <span class="k">return</span> <span class="s">&quot;UserDefined&quot;</span><span class="p">;</span> <span class="p">}</span>
 
 <span class="k">private</span><span class="o">:</span>
   <span class="c1">/// Initialisation code</span>
-  <span class="kt">void</span> <span class="n">init</span><span class="p">();</span>
+  <span class="kt">void</span> <span class="n">init</span><span class="p">()</span> <span class="k">override</span><span class="p">;</span>
   <span class="c1">/// Execution code</span>
-  <span class="kt">void</span> <span class="nf">exec</span><span class="p">();</span>
+  <span class="kt">void</span> <span class="nf">exec</span><span class="p">()</span> <span class="k">override</span><span class="p">;</span>
 <span class="p">};</span>
 </pre></div>
 </div>
