@@ -110,6 +110,8 @@
 </div>
 <div class="section" id="summary">
 <h2><a class="toc-backref" href="#id2">Summary</a><a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>Go to the <a class="reference internal" href="GitConfig.html"><span class="doc">Mantid Git Config</span></a> page to ensure that Git is set up correctly
+before starting.</p>
 <p>This page describes the workflow used in conjunction with <a class="reference external" href="http://git-scm.com">Git</a> and <a class="reference external" href="https://www.github.com/">GitHub</a> for
 those who have push access to the repository.</p>
 <p>Go <a class="reference external" href="https://services.github.com/on-demand/downloads/github-git-cheat-sheet.pdf">here</a>
@@ -180,26 +182,20 @@ on GitHub</li>
 <p>For further information about the review process see <a class="reference internal" href="ReviewingAPullRequest.html#reviewingapullrequest"><span class="std std-ref">reviewing a pull request</span></a>.</p>
 <div class="section" id="checkout-a-pull-request">
 <h3><a class="toc-backref" href="#id6">Checkout a Pull Request</a><a class="headerlink" href="#checkout-a-pull-request" title="Permalink to this headline">¶</a></h3>
-<p>To check out a particular pull request for functional testing use the following commmands:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>git fetch &lt;main-remote-name&gt;  +pull/&lt;ID&gt;/merge:pr/&lt;ID&gt;-merged
-git checkout pr/&lt;ID&gt;-merged
+<p>To check out a particular pull request for functional testing use the <code class="docutils literal notranslate"><span class="pre">test-pr</span></code> alias that was set up in the <a class="reference internal" href="GitConfig.html"><span class="doc">Mantid Git Config</span></a> instructions.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre>git test-pr &lt;remote-name&gt; &lt;ID&gt;
 </pre></div>
 </div>
-<p>where <code class="docutils literal notranslate"><span class="pre">&lt;ID&gt;</span></code> is the pull request number given on GitHub and <code class="docutils literal notranslate"><span class="pre">&lt;main-remote-name&gt;</span></code> is the name
+<p>where <code class="docutils literal notranslate"><span class="pre">&lt;ID&gt;</span></code> is the pull request number given on GitHub and <code class="docutils literal notranslate"><span class="pre">&lt;remote-name&gt;</span></code> is the name
 of the remote pointing to the original <code class="docutils literal notranslate"><span class="pre">mantid</span></code> repository. If you cloned directly from <a class="reference external" href="https://github.com/mantidproject/mantid">mantid</a>
-then <code class="docutils literal notranslate"><span class="pre">main-remote-name=origin</span></code> else if you cloned from a fork then it is the name of remote that points
+then <code class="docutils literal notranslate"><span class="pre">remote-name=origin</span></code> else if you cloned from a fork then it is the name of remote that points
 back to the original repository.</p>
 <p>Note that these commands will checkout a temporary branch that has the development branch merged with master and not just
-the development branch on its own. This command can be aliased by adding the following to the <code class="docutils literal notranslate"><span class="pre">[alias]</span></code> section of your <code class="docutils literal notranslate"><span class="pre">~/.gitconfig</span></code>
-file:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>test-pr<span class="o">=</span><span class="s2">&quot;!f() { git fetch &lt;main-remote-name&gt; +pull/</span><span class="nv">$1</span><span class="s2">/merge:pr/</span><span class="nv">$1</span><span class="s2">-merged &amp;&amp; git checkout pr/</span><span class="nv">$1</span><span class="s2">-merged; }; f&quot;</span>
+the development branch on its own.</p>
+<p>The <a class="reference internal" href="GitConfig.html"><span class="doc">Mantid Git Config</span></a> page also provides the follow alias to delete all <code class="docutils literal notranslate"><span class="pre">pr/</span></code> prefixed branches, which is useful if you have several:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre>git test-pr-remove-all
 </pre></div>
 </div>
-<p>where again <code class="docutils literal notranslate"><span class="pre">&lt;main-remote-name&gt;</span></code> has the same meaning as above. A given pull request can now be checkout with</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>git test-pr &lt;ID&gt;
-</pre></div>
-</div>
-<p>where <code class="docutils literal notranslate"><span class="pre">&lt;ID&gt;</span></code> is the pull request number given on GitHub.</p>
 </div>
 <div class="section" id="stale-pull-requests">
 <h3><a class="toc-backref" href="#id7">Stale Pull Requests</a><a class="headerlink" href="#stale-pull-requests" title="Permalink to this headline">¶</a></h3>
