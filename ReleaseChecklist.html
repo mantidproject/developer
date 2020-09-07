@@ -197,7 +197,7 @@ Don’t leave anything in the release milestone that is not definitely for that 
 <h3><a class="toc-backref" href="#id7">Unscripted and Final Testing</a><a class="headerlink" href="#unscripted-and-final-testing" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>Ensure the
-<a class="reference external" href="http://builds.mantidproject.org/view/Master%20Builds/">master build and system
+<a class="reference external" href="https://builds.mantidproject.org/view/Master%20Pipeline/">master build and system
 test</a>
 jobs have passed for all build environments for this release.</li>
 <li>Complete any PR testing remaining from Friday</li>
@@ -217,11 +217,11 @@ Maintenance tasks may need to be paused to work on tasks for the release.</li>
 <h3><a class="toc-backref" href="#id9">Create the Release Branch (once most PR’s are merged)</a><a class="headerlink" href="#create-the-release-branch-once-most-pr-s-are-merged" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>Ensure the
-<a class="reference external" href="http://builds.mantidproject.org/view/Master%20Builds/">master build and system
+<a class="reference external" href="https://builds.mantidproject.org/view/Master%20Pipeline/">master build and system
 test</a>
 jobs have passed for all build environments for this release.</li>
 <li>Run
-<a class="reference external" href="http://builds.mantidproject.org/view/All/job/open-release-testing/">open-release-testing</a>
+<a class="reference external" href="https://builds.mantidproject.org/view/All/job/open-release-testing/">open-release-testing</a>
 to create the release branch and prepare build jobs</li>
 <li>Check state of all open pull requests for this milestone and decide which should be kept for the release,
 liase with PM on this. Move any pull requests not targeted for release out of the milestone
@@ -230,7 +230,7 @@ to update the base branches of those pull requests.</li>
 <li>Inform other developers that release-next has been created by adapting/posting the following announcement:</li>
 </ul>
 <blockquote>
-<div>The release branch for &lt;version&gt;, called release-next, has now been created: <a class="reference external" href="https://github.com/mantidproject/mantid/tree/release-next">https://github.com/mantidproject/mantid/tree/release-next</a>.  If you’ve not worked with the release/master-branch workflow before then please take a moment to familiarise yourself with the process: <a class="reference external" href="http://developer.mantidproject.org/GitWorkflow.html#code-freeze">http://developer.mantidproject.org/GitWorkflow.html#code-freeze</a>. The part about ensuring new branches have the correct parent is the most important part (although this can be corrected afterwards). All branches and PRs that were created before this release branch was created are fine, as their history is the same as master.</div></blockquote>
+<div>The release branch for &lt;version&gt;, called release-next, has now been created: <a class="reference external" href="https://github.com/mantidproject/mantid/tree/release-next">https://github.com/mantidproject/mantid/tree/release-next</a>.  If you’ve not worked with the release/master-branch workflow before then please take a moment to familiarise yourself with the process: <a class="reference external" href="https://developer.mantidproject.org/GitWorkflow.html#code-freeze">https://developer.mantidproject.org/GitWorkflow.html#code-freeze</a>. The part about ensuring new branches have the correct parent is the most important part (although this can be corrected afterwards). All branches and PRs that were created before this release branch was created are fine, as their history is the same as master.</div></blockquote>
 <ul class="simple">
 <li>Create a skeleton set of release notes on master for the next version using the <a class="reference external" href="https://github.com/mantidproject/mantid/blob/master/tools/release_generator/release.py">python helper tool</a> and open a pull request to put them on <code class="docutils literal notranslate"><span class="pre">master</span></code>.</li>
 </ul>
@@ -310,14 +310,14 @@ release development.</p>
 <li>Check the release notes and remove the “Under Construction” paragraph
 on the main index page.</li>
 <li>Disable release deploy jobs by executing
-<a class="reference external" href="http://builds.mantidproject.org/view/All/job/close-release-testing">close-release-testing</a>
+<a class="reference external" href="https://builds.mantidproject.org/view/All/job/close-release-testing">close-release-testing</a>
 job.</li>
 <li>On the <code class="docutils literal notranslate"><span class="pre">release-next</span></code> branch, update major &amp; minor versions
 accordingly in <code class="docutils literal notranslate"><span class="pre">buildconfig/CMake/VersionNumber.cmake</span></code>. Also
 uncomment <code class="docutils literal notranslate"><span class="pre">VERSION_PATCH</span></code> and set it to <code class="docutils literal notranslate"><span class="pre">0</span></code>.</li>
 <li>Merge <code class="docutils literal notranslate"><span class="pre">release-next</span></code> branch back to <code class="docutils literal notranslate"><span class="pre">master</span></code></li>
 <li>Comment out patch number on <code class="docutils literal notranslate"><span class="pre">master</span></code> branch</li>
-<li>Hit build on <a class="reference external" href="http://builds.mantidproject.org/view/Release%20Pipeline/">release kit
+<li>Hit build on <a class="reference external" href="https://builds.mantidproject.org/view/Release%20Pipeline/">release kit
 builds</a>
 and set the <code class="docutils literal notranslate"><span class="pre">PACKAGE_SUFFIX</span></code> parameter to an empty string</li>
 <li>Draft a <a class="reference external" href="https://github.com/mantidproject/mantid/releases">new
@@ -335,13 +335,13 @@ next to the file list on Sourceforge</li>
 </li>
 <li>Upload packages to the GitHub release (essentially for a backup).</li>
 <li>Publish the GitHub release. This will create the tag required to generate the DOI.</li>
-<li>Update the <a class="reference external" href="http://download.mantidproject.org">download</a> page,
+<li>Update the <a class="reference external" href="https://download.mantidproject.org">download</a> page,
 following the instructions
 <a class="reference external" href="https://github.com/mantidproject/download.mantidproject.org">here</a>. Once the new
 file in the <cite>releases</cite> directory is pushed Jenkins will publish the new page.</li>
 <li>Publish the draft release on GitHub (this will create the tag too).</li>
 <li>Kick off the build for <code class="docutils literal notranslate"><span class="pre">mantidXY</span></code> on RHEL7 for SNS:
-<a class="reference external" href="http://builds.mantidproject.org/job/release_clean-rhel7/">http://builds.mantidproject.org/job/release_clean-rhel7/</a> with suffix
+<a class="reference external" href="https://builds.mantidproject.org/job/release_clean-rhel7/">https://builds.mantidproject.org/job/release_clean-rhel7/</a> with suffix
 <code class="docutils literal notranslate"><span class="pre">XY</span></code></li>
 <li><strong>ISIS</strong>: If in cycle add a calendar reminder for when the current cycle ends for mantid to be updated on IDAaaS and cabin PCs. If out of cycle do this immediately.</li>
 </ul>
