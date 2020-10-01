@@ -112,7 +112,7 @@ are on the <a class="reference external" href="http://docs.mantidproject.org/nig
 <li>Simple tests</li>
 </ol>
 <ul class="simple">
-<li>Open MantidPlot</li>
+<li>Open MantidWorkbench</li>
 <li>Right-click in the Results Log and set <cite>Log level</cite> to <cite>Debug</cite></li>
 <li>The Results Log should be printing <cite>Nothing to save</cite></li>
 <li>Run the following command to create a simple workspace:</li>
@@ -152,7 +152,7 @@ are on the <a class="reference external" href="http://docs.mantidproject.org/nig
 </div>
 <ul class="simple">
 <li>Wait a few seconds, then provoke a crash by running <cite>Segfault</cite> from the algorithm window</li>
-<li>Re-start MantidPlot</li>
+<li>Restart MantidWorkbench</li>
 <li>You should be presented with the Project Recovery dialog</li>
 <li>Choose <cite>Yes</cite></li>
 <li>This should re-populate your workspace dialog and pop up a recovery script in the script window</li>
@@ -162,7 +162,7 @@ are on the <a class="reference external" href="http://docs.mantidproject.org/nig
 <li>Testing many workspaces</li>
 </ol>
 <ul class="simple">
-<li>Open up MantidPlot</li>
+<li>Open up MantidWorkbench</li>
 <li>Run the following script:</li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span class="n">testing_directory</span><span class="o">=&lt;</span><span class="n">path</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">test</span><span class="o">&gt;</span>   <span class="c1"># &lt;path-to-test&gt; is the location of a directory for saving workspaces for comparison later</span>
@@ -176,7 +176,7 @@ are on the <a class="reference external" href="http://docs.mantidproject.org/nig
 </div>
 <ul class="simple">
 <li>Wait a few seconds, then provoke a crash by running <cite>Segfault</cite> from the algorithm window</li>
-<li>Re-start MantidPlot</li>
+<li>Restart MantidWorkbench</li>
 <li>You should be presented with the Project Recovery dialog</li>
 <li>Choose <cite>Yes</cite></li>
 <li>This should re-populate your workspace dialog and pop up a recovery script in the script window</li>
@@ -194,7 +194,7 @@ are on the <a class="reference external" href="http://docs.mantidproject.org/nig
 <li>Testing workspaces of different types</li>
 </ol>
 <ul class="simple">
-<li>Open up MantidPlot</li>
+<li>Open up MantidWorkbench</li>
 <li>Run the following script:</li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span class="n">testing_directory</span><span class="o">=&lt;</span><span class="n">path</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">test</span><span class="o">&gt;</span>
@@ -252,7 +252,7 @@ are on the <a class="reference external" href="http://docs.mantidproject.org/nig
 <li>Recovering plots and windows</li>
 </ol>
 <ul class="simple">
-<li>Open MantidPlot - make sure no other instances of MantidPlot are running</li>
+<li>Open MantidWorkbench - make sure no other instances of MantidWorkbench are running</li>
 <li>Run the second script from test 1</li>
 <li>In the workspace window right-click the <code class="docutils literal notranslate"><span class="pre">Sequential3</span></code> workspace and choose <cite>Plot spectrum</cite></li>
 <li>Choose <cite>Plot All</cite></li>
@@ -263,7 +263,7 @@ are on the <a class="reference external" href="http://docs.mantidproject.org/nig
 <img alt="../../_images/reporter-test-4.png" src="../../_images/reporter-test-4.png" />
 <ul class="simple">
 <li>Crash Mantid with <cite>Segfault</cite> from the algorithm window</li>
-<li>Reopen Mantid</li>
+<li>Restart MantidWorkbench</li>
 <li>You should be presented with the Project Recovery dialog</li>
 <li>Choose <cite>Yes</cite></li>
 <li>Mantid should reload the workspaces and open windows, so you should see the plots and the data in the main screen.</li>
@@ -273,7 +273,7 @@ are on the <a class="reference external" href="http://docs.mantidproject.org/nig
 <li>Test multiple instances of Mantid running</li>
 </ol>
 <ul class="simple">
-<li>Launch 2 instances of mantid</li>
+<li>Launch 2 instances of MantidWorkbench</li>
 <li>Run the script on the first instance:</li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span class="n">CreateWorkspace</span><span class="p">(</span><span class="n">DataX</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="n">DataY</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="n">DataE</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="n">NSpec</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;Instance 1&#39;</span><span class="p">)</span>
@@ -288,21 +288,21 @@ are on the <a class="reference external" href="http://docs.mantidproject.org/nig
 <ul class="simple">
 <li>Crash the first instance of Mantid with <cite>Segfault</cite>; choose <cite>Do not share information</cite> in the error dialog</li>
 <li>Do not exit the second instance of Mantid</li>
-<li>Restart Mantid</li>
+<li>Restart MantidWorkbench</li>
 <li>You should be presented with a dialog offering to attempt a recovery - choose <cite>Yes</cite></li>
-<li><cite>NewWorkspace1</cite> should appear in the workspace dialog</li>
+<li><cite>Instance 1</cite> should appear in the workspace dialog</li>
 </ul>
 <hr class="docutils" />
 <ol class="arabic simple" start="6">
 <li>Opening script only</li>
 </ol>
 <ul class="simple">
-<li>Open MantidPlot</li>
+<li>Open MantidWorkbench</li>
 <li>Run the second script from test 1</li>
 <li>In the workspace window right-click the <code class="docutils literal notranslate"><span class="pre">Sequential3</span></code> workspace and choose <cite>Plot spectrum</cite></li>
 <li>Choose <cite>Plot All</cite></li>
 <li>Crash Mantid with <cite>Segfault</cite> from the algorithm window</li>
-<li>Reopen Mantid</li>
+<li>Restart MantidWorkbench</li>
 <li>You should be presented with the Project Recovery dialog</li>
 <li>Choose <cite>Only open in script editor</cite></li>
 <li>Mantid should open the script editor, with a script named <cite>ordered_recovery.py</cite></li>
@@ -313,12 +313,12 @@ are on the <a class="reference external" href="http://docs.mantidproject.org/nig
 <li>Not attempting recovery</li>
 </ol>
 <ul class="simple">
-<li>Open MantidPlot</li>
+<li>Open MantidWorkbench</li>
 <li>Run the second script from test 1</li>
 <li>In the workspace window right-click the <code class="docutils literal notranslate"><span class="pre">Sequential3</span></code> workspace and choose <cite>Plot spectrum</cite></li>
 <li>Choose <cite>Plot All</cite></li>
 <li>Crash Mantid with <cite>Segfault</cite> from the algorithm window</li>
-<li>Reopen Mantid</li>
+<li>Restart MantidWorkbench</li>
 <li>You should be presented with the Project Recovery dialog</li>
 <li>Choose <cite>Start mantid normally</cite></li>
 <li>Mantid should open as normal</li>
@@ -329,7 +329,7 @@ are on the <a class="reference external" href="http://docs.mantidproject.org/nig
 <li>Check old history is purged</li>
 </ol>
 <ul class="simple">
-<li>Open MantidPlot</li>
+<li>Open MantidWorkbench</li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span class="n">CreateWorkspace</span><span class="p">(</span><span class="n">DataX</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="n">DataY</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="n">DataE</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="n">NSpec</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;NewWorkspace&#39;</span><span class="p">)</span>
 <span class="n">RenameWorkspace</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;NewWorkspace&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;Rename2&#39;</span><span class="p">)</span>
@@ -338,11 +338,11 @@ are on the <a class="reference external" href="http://docs.mantidproject.org/nig
 <ul class="simple">
 <li>Save the workspace as a <cite>.nxs</cite> file</li>
 <li>Close Mantid normally</li>
-<li>Re-open Mantid</li>
+<li>Restart MantidWorkbench</li>
 <li>Re-open the workspace from the saved <cite>.nxs</cite> file</li>
 <li>Wait for saving</li>
 <li>Crash Mantid with <cite>Segfault</cite> from the algorithm window</li>
-<li>Reopen Mantid</li>
+<li>Restart MantidWorkbench</li>
 <li>Choose <cite>Only open in script editor</cite></li>
 <li>Mantid should open the script editor, with a script named <cite>ordered_recovery.py</cite></li>
 <li>This file should contain only the <code class="docutils literal notranslate"><span class="pre">Load</span></code> command and no previous history</li>
