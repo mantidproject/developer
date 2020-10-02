@@ -99,13 +99,14 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#running-tests" id="id6">Running Tests</a></li>
-<li><a class="reference internal" href="#advanced-details" id="id7">Advanced Details</a><ul>
-<li><a class="reference internal" href="#instrumenting-python-advanced" id="id8">Instrumenting Python (Advanced)</a></li>
+<li><a class="reference internal" href="#visual-studio-address-sanitizer" id="id7">Visual Studio Address Sanitizer</a></li>
+<li><a class="reference internal" href="#advanced-details" id="id8">Advanced Details</a><ul>
+<li><a class="reference internal" href="#instrumenting-python-advanced" id="id9">Instrumenting Python (Advanced)</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#common-problems" id="id9">Common Problems</a><ul>
-<li><a class="reference internal" href="#library-leaks-appearing" id="id10">Library Leaks Appearing</a></li>
-<li><a class="reference internal" href="#asan-was-not-the-first-library-loaded" id="id11">ASAN was not the first library loaded</a></li>
+<li><a class="reference internal" href="#common-problems" id="id10">Common Problems</a><ul>
+<li><a class="reference internal" href="#library-leaks-appearing" id="id11">Library Leaks Appearing</a></li>
+<li><a class="reference internal" href="#asan-was-not-the-first-library-loaded" id="id12">ASAN was not the first library loaded</a></li>
 </ul>
 </li>
 </ul>
@@ -117,19 +118,20 @@ related to memory, threading or undefined behaviour.</p>
 </div>
 <div class="section" id="pre-requisites">
 <h2><a class="toc-backref" href="#id2">Pre-requisites</a><a class="headerlink" href="#pre-requisites" title="Permalink to this headline">¶</a></h2>
-<p>The following tooling is required:</p>
+<p>The following tooling is required for the GCC compiler:</p>
 <ul class="simple">
 <li>GCC-8 onwards</li>
 <li>Clang 3.2 onwards</li>
 </ul>
+<p>Microsoft Visual Studio 2019 provides an (experimental) address sanitizer that applies to x64 targets in version 16.7 and later</p>
 </div>
 <div class="section" id="switching-to-sanitizer-build">
 <h2><a class="toc-backref" href="#id3">Switching to Sanitizer Build</a><a class="headerlink" href="#switching-to-sanitizer-build" title="Permalink to this headline">¶</a></h2>
 <p>The following sanitizers modes are available:</p>
 <ul class="simple">
 <li>Address</li>
-<li>Thread</li>
-<li>Undefined</li>
+<li>Thread (GCC only)</li>
+<li>Undefined (GCC only)</li>
 </ul>
 <p>It’s recommended to build in <em>RelWithDebInfo</em> mode, CMake will automatically
 switch to -O1 and append extra flags for stack traces to work correctly whilst
@@ -138,16 +140,22 @@ preserving high performance</p>
 performance penalty will be pretty severe.</p>
 <div class="section" id="command-line">
 <h3><a class="toc-backref" href="#id4">Command Line</a><a class="headerlink" href="#command-line" title="Permalink to this headline">¶</a></h3>
-<p>First, delete <em>CMakeCache.txt</em> if your system compiler is GCC 7 or below
+<p>First, delete <em>CMakeCache.txt</em> if using GCC and your system compiler is GCC 7 or below
 (you can check with <em>gcc -v</em>).</p>
 <p>To change to a sanitized build navigate to your build folder and execute the
-following:</p>
+following if you’re using a single-config generator (eg Ninja):</p>
 <blockquote>
 <div><div class="highlight-sh notranslate"><div class="highlight"><pre>cmake *path_to_src* -DUSE_SANITIZER<span class="o">=</span>*Mode* -DCMAKE_BUILD_TYPE<span class="o">=</span>RelWithDebInfo
 </pre></div>
 </div>
 </div></blockquote>
-<p>If you need to specify a different compiler too (for example if your system
+<p>…or the following with a multi-config generator (eg Visual Studio):</p>
+<blockquote>
+<div><div class="highlight-sh notranslate"><div class="highlight"><pre>cmake *path_to_src* -DUSE_SANITIZER<span class="o">=</span>*Mode*
+</pre></div>
+</div>
+</div></blockquote>
+<p>If you are using GCC and need to specify a different compiler too (for example if your system
 default is GCC-7)</p>
 <blockquote>
 <div><div class="highlight-sh notranslate"><div class="highlight"><pre><span class="nv">CC</span><span class="o">=</span>gcc-8 <span class="nv">CXX</span><span class="o">=</span>g++-8 cmake *path_to_src* -DUSE_SANITIZER<span class="o">=</span>*Mode* -DCMAKE_BUILD_TYPE<span class="o">=</span>RelWithDebInfo
@@ -164,12 +172,13 @@ default is GCC-7)</p>
 <div class="section" id="cmake-gui">
 <h3><a class="toc-backref" href="#id5">CMake GUI</a><a class="headerlink" href="#cmake-gui" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Delete the cache if your system compiler is GCC 7 or below (you can check
-with <em>gcc -v</em>). Hit configure and click specify native compilers to <em>gcc-8</em>
-and <em>g++-8</em></li>
-<li>Change <em>CMAKE_BUILD_TYPE</em> to <em>RelWithDebInfo</em> (or <em>Debug</em>)</li>
+<li>If using GCC, delete the cache if your system compiler is GCC 7 or below (you can check
+with <em>gcc -v</em>)</li>
+<li>Hit configure</li>
+<li>If using GCC, click specify native compilers to <em>gcc-8</em> and <em>g++-8</em></li>
+<li>If using a single-config generator, change <em>CMAKE_BUILD_TYPE</em> to <em>RelWithDebInfo</em> (or <em>Debug</em>)</li>
 <li>Change <em>USE_SANITIZERS</em> to any of the options in the drop down</li>
-<li>Hit generate and rebuild the project</li>
+<li>Hit configure again, then generate and rebuild the project</li>
 </ul>
 </div>
 </div>
@@ -180,8 +189,20 @@ resolve (or have been resolved but not appeared downstream).</p>
 <p>We can suppress warnings in the address sanitizer by setting environment
 variables in the console before running in each mode.</p>
 </div>
+<div class="section" id="visual-studio-address-sanitizer">
+<h2><a class="toc-backref" href="#id7">Visual Studio Address Sanitizer</a><a class="headerlink" href="#visual-studio-address-sanitizer" title="Permalink to this headline">¶</a></h2>
+<p>The Visual Studio address sanitizer raises exceptions with code 0xC0000005 as part of its normal operation.
+The exceptions are handled but they cause the debugger to stop. These exceptions need to be ignored in the Debug, Windows, Exception Settings dialog</p>
+<p>Genuine sanitizer issues cause an unhandled exception and the debugger will stop at the relevant unitline.</p>
+<p>Some parts of the Mantid code (eg H5Util.cpp) don’t compile when the address sanitizer is enabled and the /O2 optimisation flag is used (in RelWithDebInfo).
+This flag is switched to /O1 in order to improve stack trace information (see above) and this fortunately removes the compilation errors.</p>
+<p>The following path (or equivalent for your Visual Studio version) needs to be added to your path environment variable in order for Visual Studio to find some .lib files that are used by the sanitizer and also to locate a symbolizer exe that is required for useful error messages:</p>
+<p>C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\bin\Hostx64\x64</p>
+<p>Additional information is available on this web page:</p>
+<p><a class="reference external" href="https://devblogs.microsoft.com/cppblog/asan-for-windows-x64-and-debug-build-support/">https://devblogs.microsoft.com/cppblog/asan-for-windows-x64-and-debug-build-support/</a></p>
+</div>
 <div class="section" id="advanced-details">
-<h2><a class="toc-backref" href="#id7">Advanced Details</a><a class="headerlink" href="#advanced-details" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id8">Advanced Details</a><a class="headerlink" href="#advanced-details" title="Permalink to this headline">¶</a></h2>
 <p>Most developers do not need to read this, but it’s good for those who
 want to know what’s happening</p>
 <p>CMake substitutes in various flags for the address sanitizer builds to
@@ -198,7 +219,7 @@ correctly. To save developers effort the CXX_ADD_TEST macro (in
 FindCxxTest.cmake) will append these environment variables on a developers
 behalf.</p>
 <div class="section" id="instrumenting-python-advanced">
-<h3><a class="toc-backref" href="#id8">Instrumenting Python (Advanced)</a><a class="headerlink" href="#instrumenting-python-advanced" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id9">Instrumenting Python (Advanced)</a><a class="headerlink" href="#instrumenting-python-advanced" title="Permalink to this headline">¶</a></h3>
 <p>Currently any code started in Python (i.e. Python Unit Tests) will not pre-load
 ASAN instrumentation. This can be split into two categories:</p>
 <ul class="simple">
@@ -227,9 +248,9 @@ ldd bin/KernelTest <span class="p">|</span> grep <span class="s2">&quot;libasan&
 </div>
 </div>
 <div class="section" id="common-problems">
-<h2><a class="toc-backref" href="#id9">Common Problems</a><a class="headerlink" href="#common-problems" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id10">Common Problems</a><a class="headerlink" href="#common-problems" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="library-leaks-appearing">
-<h3><a class="toc-backref" href="#id10">Library Leaks Appearing</a><a class="headerlink" href="#library-leaks-appearing" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id11">Library Leaks Appearing</a><a class="headerlink" href="#library-leaks-appearing" title="Permalink to this headline">¶</a></h3>
 <p>Check that you have correctly spelt <em>suppressions</em> as there will be no warnings
 for typos. A good check is to put some random characters in the .supp files,
 which will cause all tests to fail if it’s begin read.</p>
@@ -237,7 +258,7 @@ which will cause all tests to fail if it’s begin read.</p>
 <em>Address.supp</em> (which should ideally be completely empty) to be suppressed.</p>
 </div>
 <div class="section" id="asan-was-not-the-first-library-loaded">
-<h3><a class="toc-backref" href="#id11">ASAN was not the first library loaded</a><a class="headerlink" href="#asan-was-not-the-first-library-loaded" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id12">ASAN was not the first library loaded</a><a class="headerlink" href="#asan-was-not-the-first-library-loaded" title="Permalink to this headline">¶</a></h3>
 <p>This can appear when running Python tests, as the executable is not build
 with instrumentation. To avoid this warning ensure that
 <em>verify_asan_link_order=0</em> is set in your environment and that you are
