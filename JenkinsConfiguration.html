@@ -93,140 +93,121 @@
 <ul class="simple">
 <li><a class="reference internal" href="#summary" id="id1">Summary</a></li>
 <li><a class="reference internal" href="#introduction" id="id2">Introduction</a></li>
-<li><a class="reference internal" href="#general-setup" id="id3">General Setup</a></li>
-<li><a class="reference internal" href="#setting-up-a-new-slave" id="id4">Setting up a New Slave</a><ul>
-<li><a class="reference internal" href="#machine-setup" id="id5">Machine Setup</a></li>
-<li><a class="reference internal" href="#windows" id="id6">Windows</a><ul>
-<li><a class="reference internal" href="#slave-connection" id="id7">Slave Connection</a></li>
-<li><a class="reference internal" href="#connecting-through-a-proxy-server" id="id8">Connecting Through a Proxy Server</a></li>
+<li><a class="reference internal" href="#setting-up-a-new-agent" id="id3">Setting up a New Agent</a><ul>
+<li><a class="reference internal" href="#machine-setup" id="id4">Machine Setup</a></li>
+<li><a class="reference internal" href="#windows" id="id5">Windows</a><ul>
+<li><a class="reference internal" href="#agent-connection" id="id6">Agent Connection</a></li>
+<li><a class="reference internal" href="#connecting-through-a-proxy-server" id="id7">Connecting Through a Proxy Server</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#linux" id="id9">Linux</a><ul>
-<li><a class="reference internal" href="#ubuntu" id="id10">Ubuntu</a></li>
-<li><a class="reference internal" href="#red-hat" id="id11">Red Hat</a></li>
+<li><a class="reference internal" href="#linux" id="id8">Linux</a><ul>
+<li><a class="reference internal" href="#ubuntu" id="id9">Ubuntu</a></li>
+<li><a class="reference internal" href="#red-hat" id="id10">Red Hat</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#mac-os" id="id12">Mac OS</a></li>
-<li><a class="reference internal" href="#linux-mac-connection-notes" id="id13">Linux/Mac Connection Notes</a></li>
-<li><a class="reference internal" href="#post-connection-setup-all-systems" id="id14">Post-Connection Setup - All Systems</a></li>
+<li><a class="reference internal" href="#mac-os" id="id11">Mac OS</a></li>
+<li><a class="reference internal" href="#linux-mac-connection-notes" id="id12">Linux/Mac Connection Notes</a></li>
+<li><a class="reference internal" href="#post-connection-setup-all-systems" id="id13">Post-Connection Setup - All Systems</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#misc-groovy-scripts" id="id15">Misc Groovy Scripts</a><ul>
-<li><a class="reference internal" href="#print-the-value-of-an-environment-variable-on-all-nodes" id="id16">Print the Value of an Environment Variable on All Nodes</a></li>
-<li><a class="reference internal" href="#update-paraview-variables-on-nodes" id="id17">Update ParaView variables on nodes</a></li>
-<li><a class="reference internal" href="#check-existence-of-paraview-builds" id="id18">Check existence of ParaView builds</a></li>
-<li><a class="reference internal" href="#remove-directories-across-multiple-nodes" id="id19">Remove directories across multiple nodes</a><ul>
-<li><a class="reference internal" href="#master-incremental" id="id20">Master Incremental</a></li>
-<li><a class="reference internal" href="#pull-requests" id="id21">Pull Requests</a></li>
+<li><a class="reference internal" href="#misc-groovy-scripts" id="id14">Misc Groovy Scripts</a><ul>
+<li><a class="reference internal" href="#print-the-value-of-an-environment-variable-on-all-nodes" id="id15">Print the Value of an Environment Variable on All Nodes</a></li>
+<li><a class="reference internal" href="#update-paraview-variables-on-nodes" id="id16">Update ParaView variables on nodes</a></li>
+<li><a class="reference internal" href="#check-existence-of-paraview-builds" id="id17">Check existence of ParaView builds</a></li>
+<li><a class="reference internal" href="#remove-directories-across-multiple-nodes" id="id18">Remove directories across multiple nodes</a><ul>
+<li><a class="reference internal" href="#master-incremental" id="id19">Master Incremental</a></li>
+<li><a class="reference internal" href="#pull-requests" id="id20">Pull Requests</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#update-branches-for-jobs" id="id22">Update Branches For Jobs</a></li>
-<li><a class="reference internal" href="#list-all-scm-urls" id="id23">List All SCM Urls</a></li>
-<li><a class="reference internal" href="#update-urls-on-all-jobs" id="id24">Update Urls on All Jobs</a></li>
-<li><a class="reference internal" href="#print-all-loggers" id="id25">Print All Loggers</a></li>
-<li><a class="reference internal" href="#run-a-process-on-a-single-node" id="id26">Run a Process On a Single Node</a></li>
-<li><a class="reference internal" href="#run-a-process-across-all-nodes" id="id27">Run a Process Across All Nodes</a></li>
-<li><a class="reference internal" href="#update-default-values-for-job-parameters" id="id28">Update default values for job parameters</a></li>
+<li><a class="reference internal" href="#update-branches-for-jobs" id="id21">Update Branches For Jobs</a></li>
+<li><a class="reference internal" href="#list-all-scm-urls" id="id22">List All SCM Urls</a></li>
+<li><a class="reference internal" href="#update-urls-on-all-jobs" id="id23">Update Urls on All Jobs</a></li>
+<li><a class="reference internal" href="#print-all-loggers" id="id24">Print All Loggers</a></li>
+<li><a class="reference internal" href="#run-a-process-on-a-single-node" id="id25">Run a Process On a Single Node</a></li>
+<li><a class="reference internal" href="#run-a-process-across-all-nodes" id="id26">Run a Process Across All Nodes</a></li>
+<li><a class="reference internal" href="#update-default-values-for-job-parameters" id="id27">Update default values for job parameters</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="section" id="summary">
 <h2><a class="toc-backref" href="#id1">Summary</a><a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
-<p>Mantid uses the <a class="reference external" href="https://jenkins.io/">Jenkins</a> automation server to
-support the continuous integration requirements of Mantid. This document
-aims to describe the general setup of the system.</p>
+<p>Mantid uses the <a class="reference external" href="https://jenkins.io/">Jenkins</a> automation server to support the continuous integration requirements of Mantid.
+This document aims to describe the general setup of the system.</p>
 </div>
 <div class="section" id="introduction">
 <h2><a class="toc-backref" href="#id2">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
-<p>Jenkins works on a ‘master-&gt;slave’ principle. The master node is
-responsible for orchestrating jobs and managing the slave nodes, where the
-work is actually performed. The master node is located at
-<a class="reference external" href="http://builds.mantidproject.org">http://builds.mantidproject.org</a> and each facility is responsible for providing
-hardware to act as slaves for the various required configurations.</p>
+<p>Jenkins works on a ‘master -&gt; worker’ principle.
+The master node is responsible for orchestrating jobs and managing the agents, where the work is actually performed.
+The master node is located at <a class="reference external" href="https://builds.mantidproject.org">https://builds.mantidproject.org</a> and each facility is responsible for providing hardware to act as agents for the various required configurations.</p>
 </div>
-<div class="section" id="general-setup">
-<h2><a class="toc-backref" href="#id3">General Setup</a><a class="headerlink" href="#general-setup" title="Permalink to this headline">¶</a></h2>
-<p>The master node is set to a fixed TCP port for JNLP slave agents under
-<a class="reference external" href="http://builds.mantidproject.org/configureSecurity">http://builds.mantidproject.org/configureSecurity</a>.</p>
-<p>The anonymous jenkins user has the following rights: Overall Read,
-Slave Connect, Job Read, View Read.</p>
-</div>
-<div class="section" id="setting-up-a-new-slave">
-<h2><a class="toc-backref" href="#id4">Setting up a New Slave</a><a class="headerlink" href="#setting-up-a-new-slave" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="machine-setup">
-<h3><a class="toc-backref" href="#id5">Machine Setup</a><a class="headerlink" href="#machine-setup" title="Permalink to this headline">¶</a></h3>
-<p>Set up a local <code class="docutils literal notranslate"><span class="pre">builder</span></code> account that will be used by the slave.</p>
-<p>Install the <a class="reference internal" href="GettingStarted.html#gettingstarted"><span class="std std-ref">required prerequisites</span></a> for the relevant OS. In addition, install a standalone <a class="reference external" href="https://www.python.org/downloads/windows/">Python</a> interpreter so the system tests are able to install the mantid package. Do not use the embeddable zip, use the full installer and ensure python.exe is on the <cite>PATH</cite>.</p>
+<div class="section" id="setting-up-a-new-agent">
+<h2><a class="toc-backref" href="#id3">Setting up a New Agent</a><a class="headerlink" href="#setting-up-a-new-agent" title="Permalink to this headline">¶</a></h2>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">For Windows the <a class="reference external" href="https://visualstudio.microsoft.com/downloads/">Command line Visual C++ build tools</a>
-may be used in place of a full Visual Studio install from version 2017 onwards (the 2015 tools contain a broken <cite>vcvarsall.bat</cite>). The same
-options should be used as for the full install.</p>
+<p class="last">If you are deploying a new Linux based agent, it is recommended that you use the container based approach as described <a class="reference external" href="https://github.com/mantidproject/dockerfiles/tree/master/jenkins-node">here</a>.</p>
+</div>
+<div class="section" id="machine-setup">
+<h3><a class="toc-backref" href="#id4">Machine Setup</a><a class="headerlink" href="#machine-setup" title="Permalink to this headline">¶</a></h3>
+<p>Set up a local <code class="docutils literal notranslate"><span class="pre">builder</span></code> account that will be used by the agent.</p>
+<p>Install the <a class="reference internal" href="GettingStarted.html#gettingstarted"><span class="std std-ref">required prerequisites</span></a> for the relevant OS.
+In addition, install a standalone <a class="reference external" href="https://www.python.org/downloads/windows/">Python</a> interpreter so the system tests are able to install the mantid package.
+Do not use the embeddable zip, use the full installer and ensure python.exe is on the <cite>PATH</cite>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For Windows the <a class="reference external" href="https://visualstudio.microsoft.com/downloads/">Command line Visual C++ build tools</a> may be used in place of a full Visual Studio install from version 2017 onwards (the 2015 tools contain a broken <cite>vcvarsall.bat</cite>).
+The same options should be used as for the full install.</p>
 </div>
 </div>
 <div class="section" id="windows">
-<h3><a class="toc-backref" href="#id6">Windows</a><a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li>Ensure that the location of <code class="docutils literal notranslate"><span class="pre">msbuild.exe</span></code> (<code class="docutils literal notranslate"><span class="pre">C:\Windows\Microsoft.NET\Framework64\v4.0.30319</span></code>) is on the <code class="docutils literal notranslate"><span class="pre">PATH</span></code></li>
-</ul>
-<div class="section" id="slave-connection">
-<h4><a class="toc-backref" href="#id7">Slave Connection</a><a class="headerlink" href="#slave-connection" title="Permalink to this headline">¶</a></h4>
-<p>There are following additional steps required to be able to connect a
-Windows slave using JNLP as a Windows service :</p>
+<h3><a class="toc-backref" href="#id5">Windows</a><a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h3>
+<p>Ensure that the location of <code class="docutils literal notranslate"><span class="pre">msbuild.exe</span></code> (<code class="docutils literal notranslate"><span class="pre">C:\Windows\Microsoft.NET\Framework64\v4.0.30319</span></code>) is on the <code class="docutils literal notranslate"><span class="pre">PATH</span></code>.</p>
+<div class="section" id="agent-connection">
+<h4><a class="toc-backref" href="#id6">Agent Connection</a><a class="headerlink" href="#agent-connection" title="Permalink to this headline">¶</a></h4>
+<p>There are following additional steps required to be able to connect a Windows agent using JNLP as a Windows service:</p>
 <ol class="arabic simple">
-<li>Setup the slave on the master node using “New Node” under
-<a class="reference external" href="http://builds.mantidproject.org/computer/">http://builds.mantidproject.org/computer/</a>. If “New Node” is not visible
-then you do not have the required permissions - ask an admin for help. It is
-recommended that you copy from an existing node of a similar type.</li>
-<li>Once configured on the master, remote desktop to the slave, open a browser and connect to the webpage of the
-slave, .e.g. <a class="reference external" href="http://builds.mantidproject.org/computer/ornl-pc73896/">http://builds.mantidproject.org/computer/ornl-pc73896/</a></li>
+<li>Setup the agent on the master node using “New Node” under <a class="reference external" href="https://builds.mantidproject.org/computer/">https://builds.mantidproject.org/computer/</a>.
+If “New Node” is not visible then you do not have the required permissions - ask an admin for help.
+It is recommended that you copy from an existing node of a similar type.</li>
+<li>Once configured on the master, remote desktop to the agent, open a browser and connect to the webpage of the agent, .e.g. <a class="reference external" href="https://builds.mantidproject.org/computer/ornl-pc73896/">https://builds.mantidproject.org/computer/ornl-pc73896/</a></li>
 <li>Click on the <strong>connect</strong> button to launch the JNLP client.</li>
-<li>Once the client is launched, you can select “Install as Windows
-Service” from the clients menu. If you have a proxy then see the
-section below for further configuration steps.</li>
-<li>Once installed change the recovery behaviour for
-the service. Do this by right-clicking on the Jenkins
-service-&gt;Properties-&gt;Recovery. Change the first, second, subsequent
-failures to restart the service.</li>
-<li>Change the account that the service uses to log on by right-clicking
-on the Jenkins service-&gt;Properties-&gt;Log On and enter the details in
-the builder account</li>
+<li>Once the client is launched, you can select “Install as Windows Service” from the clients menu.
+If you have a proxy then see the section below for further configuration steps.</li>
+<li>Once installed change the recovery behaviour for the service.
+Do this by right-clicking on the Jenkins service-&gt;Properties-&gt;Recovery.
+Change the first, second, subsequent failures to restart the service.</li>
+<li>Change the account that the service uses to log on by right-clicking on the Jenkins service-&gt;Properties-&gt;Log On and enter the details in the builder account</li>
 <li>Change the “Startup type:” of the service to be “Automatic (Delayed Start)”</li>
 <li>Ensure the msbuild directory is on the <code class="docutils literal notranslate"><span class="pre">PATH</span></code></li>
-<li>Finally reboot the slave (this is the easiest way for the Jenkins to
-start trying to reconnect to it)</li>
+<li>Finally reboot the agent (this is the easiest way for the Jenkins to start trying to reconnect to it)</li>
 </ol>
-<p>Note that changes to <code class="docutils literal notranslate"><span class="pre">PATH</span></code> require restarting the Jenkins service in
-order to be reflected in the build environment.</p>
+<p>Note that changes to <code class="docutils literal notranslate"><span class="pre">PATH</span></code> require restarting the Jenkins service in order to be reflected in the build environment.</p>
 </div>
 <div class="section" id="connecting-through-a-proxy-server">
-<h4><a class="toc-backref" href="#id8">Connecting Through a Proxy Server</a><a class="headerlink" href="#connecting-through-a-proxy-server" title="Permalink to this headline">¶</a></h4>
-<p>It is a little more tricky to windows slaves connected through a
-proxy.To do this you must modify the java arguments that are used to
-start the <code class="docutils literal notranslate"><span class="pre">jenkins-slave</span></code> process. Once the “Install as a Windows
-Service” has completed you should</p>
+<h4><a class="toc-backref" href="#id7">Connecting Through a Proxy Server</a><a class="headerlink" href="#connecting-through-a-proxy-server" title="Permalink to this headline">¶</a></h4>
+<p>It is a little more tricky to add Windows agents connected through a proxy.
+To do this you must modify the Java arguments that are used to start the <code class="docutils literal notranslate"><span class="pre">jenkins-slave</span></code> process.
+Once the “Install as a Windows Service” has completed you should:</p>
 <ol class="arabic simple">
-<li>Find a directory on the machine such as <code class="docutils literal notranslate"><span class="pre">C:\Jenkins`</span></code> or whatever
-was configured in the slave config.</li>
+<li>Find a directory on the machine such as <code class="docutils literal notranslate"><span class="pre">C:\Jenkins`</span></code> or whatever was configured in the agent config.</li>
 <li>Open the <code class="docutils literal notranslate"><span class="pre">jenkins-slave.xml</span></code> file</li>
-<li>Edit the tag and add <code class="docutils literal notranslate"><span class="pre">-Dhttp.proxyHost=PROXYHOST</span></code>
-<code class="docutils literal notranslate"><span class="pre">-Dhttp.proxyPort=PROXYPORT</span></code> to the list</li>
+<li>Edit the tag and add <code class="docutils literal notranslate"><span class="pre">-Dhttp.proxyHost=PROXYHOST</span> <span class="pre">-Dhttp.proxyPort=PROXYPORT</span></code> to the list</li>
 <li>Save the file and restart the service (or machine)</li>
 </ol>
 </div>
 </div>
 <div class="section" id="linux">
-<h3><a class="toc-backref" href="#id9">Linux</a><a class="headerlink" href="#linux" title="Permalink to this headline">¶</a></h3>
-<p>Install an ssh server, <code class="docutils literal notranslate"><span class="pre">ccache</span></code>, <code class="docutils literal notranslate"><span class="pre">curl</span></code> and <code class="docutils literal notranslate"><span class="pre">xvfb</span></code>.</p>
-<p>From the <code class="docutils literal notranslate"><span class="pre">builder</span></code> account run <code class="docutils literal notranslate"><span class="pre">ccache</span> <span class="pre">--max-size=20G</span></code>.</p>
-<p>Any machines acting as performance test servers will require <code class="docutils literal notranslate"><span class="pre">mysqldb</span></code> to be installed.</p>
+<h3><a class="toc-backref" href="#id8">Linux</a><a class="headerlink" href="#linux" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Install OpenSSH server, <code class="docutils literal notranslate"><span class="pre">ccache</span></code>, <code class="docutils literal notranslate"><span class="pre">curl</span></code> and <code class="docutils literal notranslate"><span class="pre">xvfb</span></code>.</li>
+<li>From the <code class="docutils literal notranslate"><span class="pre">builder</span></code> account run <code class="docutils literal notranslate"><span class="pre">ccache</span> <span class="pre">--max-size=20G</span></code>.</li>
+<li>Any machines acting as performance test servers will require <code class="docutils literal notranslate"><span class="pre">mysqldb</span></code> to be installed.</li>
+</ol>
 <div class="section" id="ubuntu">
-<h4><a class="toc-backref" href="#id10">Ubuntu</a><a class="headerlink" href="#ubuntu" title="Permalink to this headline">¶</a></h4>
-<p>Configure <a class="reference external" href="https://help.ubuntu.com/community/AutomaticSecurityUpdates">automatic security updates</a>.</p>
+<h4><a class="toc-backref" href="#id9">Ubuntu</a><a class="headerlink" href="#ubuntu" title="Permalink to this headline">¶</a></h4>
 <p>Install <code class="docutils literal notranslate"><span class="pre">gdebi-core</span></code> package to allow installing <code class="docutils literal notranslate"><span class="pre">.deb</span></code> files.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">builder</span></code> account must be setup to be able to run <code class="docutils literal notranslate"><span class="pre">gdebi</span></code> non-interactively. Use <code class="docutils literal notranslate"><span class="pre">visudo</span></code> to add the following
-exception for <code class="docutils literal notranslate"><span class="pre">builder</span></code>:</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">builder</span></code> account must be setup to be able to run <code class="docutils literal notranslate"><span class="pre">gdebi</span></code> non-interactively.
+Use <code class="docutils literal notranslate"><span class="pre">visudo</span></code> to add the following exception for <code class="docutils literal notranslate"><span class="pre">builder</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre># Allow no password for gdebi
 builder       ALL=(ALL)NOPASSWD:/usr/bin/gdebi, /usr/bin/dpkg
 ## Disable tty requirement for gdebi and dpkg command
@@ -236,9 +217,9 @@ Defaults!/usr/bin/dpkg      !requiretty
 </div>
 </div>
 <div class="section" id="red-hat">
-<h4><a class="toc-backref" href="#id11">Red Hat</a><a class="headerlink" href="#red-hat" title="Permalink to this headline">¶</a></h4>
-<p>The <code class="docutils literal notranslate"><span class="pre">builder</span></code> account must be setup to be able to run <code class="docutils literal notranslate"><span class="pre">yum</span></code> non-interactively. Use <code class="docutils literal notranslate"><span class="pre">visudo</span></code> to add the following
-exception for <code class="docutils literal notranslate"><span class="pre">builder</span></code>:</p>
+<h4><a class="toc-backref" href="#id10">Red Hat</a><a class="headerlink" href="#red-hat" title="Permalink to this headline">¶</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">builder</span></code> account must be setup to be able to run <code class="docutils literal notranslate"><span class="pre">yum</span></code> non-interactively.
+Use <code class="docutils literal notranslate"><span class="pre">visudo</span></code> to add the following exception for <code class="docutils literal notranslate"><span class="pre">builder</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre>## Allow no password for yum
 builder       ALL = NOPASSWD: /usr/bin/yum,/bin/rpm
 ## Disable tty requirement for yum command
@@ -249,11 +230,11 @@ Defaults!/usr/bin/yum       !requiretty
 </div>
 </div>
 <div class="section" id="mac-os">
-<h3><a class="toc-backref" href="#id12">Mac OS</a><a class="headerlink" href="#mac-os" title="Permalink to this headline">¶</a></h3>
-<p>Enable <a class="reference external" href="https://apple.stackexchange.com/a/73919">SSH (“Remote Login”) and VNC (“Remote Management”)</a>.  If you have
-connection issues from a non-OS X client then try adjusting your color depth settings (True Color 32bpp works on Remmina).</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">builder</span></code> account must be setup to be able to cp packages non-interactively. Use <code class="docutils literal notranslate"><span class="pre">visudo</span></code> to add the following
-exception for <code class="docutils literal notranslate"><span class="pre">builder</span></code>:</p>
+<h3><a class="toc-backref" href="#id11">Mac OS</a><a class="headerlink" href="#mac-os" title="Permalink to this headline">¶</a></h3>
+<p>Enable <a class="reference external" href="https://apple.stackexchange.com/a/73919">SSH (“Remote Login”) and VNC (“Remote Management”)</a>.
+If you have connection issues from a non-OS X client then try adjusting your color depth settings (True Color 32bpp works on Remmina).</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">builder</span></code> account must be setup to be able to cp packages non-interactively.
+Use <code class="docutils literal notranslate"><span class="pre">visudo</span></code> to add the following exception for <code class="docutils literal notranslate"><span class="pre">builder</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre># Allow builder to copy packages without a password
 builder  ALL=(ALL)NOPASSWD:/bin/cp, /bin/rm
 # Disable tty requirement
@@ -261,47 +242,42 @@ Defaults!/bin/cp        !requiretty
 Defaults!/bin/rm        !requiretty
 </pre></div>
 </div>
-<p>In order to run the Qt tests, which require a connection to the windowing system, the user that is running the jenkins slave must
-have logged in. This is most easily done by VNC - connect, log in,
-then disconnect. If you see errors such as:</p>
+<p>In order to run the Qt tests, which require a connection to the windowing system, the user that is running the Jenkins agent must have logged in.
+This is most easily done by VNC - connect, log in, then disconnect.
+If you see errors such as:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="n">_RegisterApplication</span><span class="p">(),</span> <span class="n">FAILED</span> <span class="n">TO</span> <span class="n">establish</span> <span class="n">the</span> <span class="n">default</span> <span class="n">connection</span> <span class="n">to</span> <span class="n">the</span> <span class="n">WindowServer</span><span class="p">,</span>
 <span class="n">_CGSDefaultConnection</span><span class="p">()</span> <span class="ow">is</span> <span class="n">NULL</span><span class="o">.</span>
 </pre></div>
 </div>
 <p>then no one is logged in to the system.</p>
-<p>Finally, disable saved application states that cause a dialog to be raised after a program crash
-resulting in a test hanging waiting for a user to click ok on a dialog:</p>
+<p>Finally, disable saved application states that cause a dialog to be raised after a program crash resulting in a test hanging waiting for a user to click ok on a dialog:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="n">defaults</span> <span class="n">write</span> <span class="n">org</span><span class="o">.</span><span class="n">python</span><span class="o">.</span><span class="n">python</span> <span class="n">NSQuitAlwaysKeepsWindows</span> <span class="o">-</span><span class="nb">bool</span> <span class="n">false</span>
 <span class="n">defaults</span> <span class="n">write</span> <span class="n">org</span><span class="o">.</span><span class="n">mantidproject</span><span class="o">.</span><span class="n">MantidPlot</span> <span class="n">NSQuitAlwaysKeepsWindows</span> <span class="o">-</span><span class="nb">bool</span> <span class="n">false</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="linux-mac-connection-notes">
-<h3><a class="toc-backref" href="#id13">Linux/Mac Connection Notes</a><a class="headerlink" href="#linux-mac-connection-notes" title="Permalink to this headline">¶</a></h3>
-<p>The jenkins JNLP connections are maintained by a crontab entry. The
-script is in the <a class="reference external" href="https://github.com/mantidproject/mantid/blob/master/buildconfig/Jenkins/jenkins-slave.sh">mantid repository</a>.</p>
-<p>The comments at the top describe a typical crontab entry for the script. This needs to be manually set for each slave. Ensure the script is
-marked executable after downloading it. Also ensure the entry in the crontab
-has the correct <code class="docutils literal notranslate"><span class="pre">PATH</span></code> setting (by default cron uses a reduced <code class="docutils literal notranslate"><span class="pre">PATH</span></code> entry). On macOS <code class="docutils literal notranslate"><span class="pre">latex</span></code> and <code class="docutils literal notranslate"><span class="pre">sysctl</span></code>
-should be available.</p>
+<h3><a class="toc-backref" href="#id12">Linux/Mac Connection Notes</a><a class="headerlink" href="#linux-mac-connection-notes" title="Permalink to this headline">¶</a></h3>
+<p>The Jenkins JNLP connections are maintained by a crontab entry.
+The script is in the <a class="reference external" href="https://github.com/mantidproject/mantid/blob/master/buildconfig/Jenkins/jenkins-slave.sh">mantid repository</a>.</p>
+<p>The comments at the top describe a typical crontab entry for the script.
+This needs to be manually set for each agent. Ensure the script is marked executable after downloading it.
+Also ensure the entry in the crontab has the correct <code class="docutils literal notranslate"><span class="pre">PATH</span></code> setting (by default cron uses a reduced <code class="docutils literal notranslate"><span class="pre">PATH</span></code> entry).
+On macOS <code class="docutils literal notranslate"><span class="pre">latex</span></code> and <code class="docutils literal notranslate"><span class="pre">sysctl</span></code> should be available.</p>
 </div>
 <div class="section" id="post-connection-setup-all-systems">
-<h3><a class="toc-backref" href="#id14">Post-Connection Setup - All Systems</a><a class="headerlink" href="#post-connection-setup-all-systems" title="Permalink to this headline">¶</a></h3>
-<p>Ensure the new machine is added to the relevant <a class="reference external" href="http://builds.mantidproject.org/view/ParaView/">ParaView build job</a> and build
-ParaView. Set the <code class="docutils literal notranslate"><span class="pre">PARAVIEW_DIR</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">PARAVIEW_NEXT_DIR</span></code> variables
-(it’s easiest to just look at the configuration for one of the other
-nodes of a similar type.</p>
+<h3><a class="toc-backref" href="#id13">Post-Connection Setup - All Systems</a><a class="headerlink" href="#post-connection-setup-all-systems" title="Permalink to this headline">¶</a></h3>
+<p>Ensure the new machine is added to the relevant <a class="reference external" href="https://builds.mantidproject.org/view/ParaView/">ParaView build job</a> and build ParaView.
+Set the <code class="docutils literal notranslate"><span class="pre">PARAVIEW_DIR</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">PARAVIEW_NEXT_DIR</span></code> variables (it’s easiest to just look at the configuration for one of the other nodes of a similar type.</p>
 </div>
 </div>
 <div class="section" id="misc-groovy-scripts">
-<h2><a class="toc-backref" href="#id15">Misc Groovy Scripts</a><a class="headerlink" href="#misc-groovy-scripts" title="Permalink to this headline">¶</a></h2>
-<p>The following is a collection of groovy scripts that can be run either
-at <a class="reference external" href="http://builds.mantidproject.org/script">http://builds.mantidproject.org/script</a> (for master node) or on a
-given node, e.g <a class="reference external" href="http://builds.mantidproject.org/computer/isis-mantidlx3/script">isis-mantidx3</a>.
+<h2><a class="toc-backref" href="#id14">Misc Groovy Scripts</a><a class="headerlink" href="#misc-groovy-scripts" title="Permalink to this headline">¶</a></h2>
+<p>The following is a collection of groovy scripts that can be run either at <a class="reference external" href="https://builds.mantidproject.org/script">https://builds.mantidproject.org/script</a> (for master node) or on a given node, e.g <a class="reference external" href="https://builds.mantidproject.org/computer/isis-mantidlx3/script">isis-mantidx3</a>.
 You must have admin privileges to run them.</p>
 <p><a class="reference external" href="https://github.com/jenkinsci/jenkins-scripts/tree/master/scriptler">https://github.com/jenkinsci/jenkins-scripts/tree/master/scriptler</a> was helpful for coming up with some of these.</p>
 <div class="section" id="print-the-value-of-an-environment-variable-on-all-nodes">
-<h3><a class="toc-backref" href="#id16">Print the Value of an Environment Variable on All Nodes</a><a class="headerlink" href="#print-the-value-of-an-environment-variable-on-all-nodes" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id15">Print the Value of an Environment Variable on All Nodes</a><a class="headerlink" href="#print-the-value-of-an-environment-variable-on-all-nodes" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-groovy notranslate"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">jenkins.model.*</span>
 <span class="kn">import</span> <span class="nn">hudson.model.*</span>
 <span class="kn">import</span> <span class="nn">hudson.slaves.*</span>
@@ -329,10 +305,8 @@ You must have admin privileges to run them.</p>
 </div>
 </div>
 <div class="section" id="update-paraview-variables-on-nodes">
-<h3><a class="toc-backref" href="#id17">Update ParaView variables on nodes</a><a class="headerlink" href="#update-paraview-variables-on-nodes" title="Permalink to this headline">¶</a></h3>
-<p><strong>After running this script the variables look like they are updated but
-are in fact cached on the slaves so the new values don’t take effect
-without disconnecting and forcing each slave to reconnect</strong></p>
+<h3><a class="toc-backref" href="#id16">Update ParaView variables on nodes</a><a class="headerlink" href="#update-paraview-variables-on-nodes" title="Permalink to this headline">¶</a></h3>
+<p><strong>After running this script the variables look like they are updated but are in fact cached on the agents so the new values don’t take effect without disconnecting and forcing each agent to reconnect</strong></p>
 <div class="highlight-groovy notranslate"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">jenkins.model.*</span>
 <span class="kn">import</span> <span class="nn">hudson.model.*</span>
 <span class="kn">import</span> <span class="nn">hudson.slaves.*</span>
@@ -371,7 +345,7 @@ without disconnecting and forcing each slave to reconnect</strong></p>
 </div>
 </div>
 <div class="section" id="check-existence-of-paraview-builds">
-<h3><a class="toc-backref" href="#id18">Check existence of ParaView builds</a><a class="headerlink" href="#check-existence-of-paraview-builds" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id17">Check existence of ParaView builds</a><a class="headerlink" href="#check-existence-of-paraview-builds" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-groovy notranslate"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">hudson.model.*</span>
 
 <span class="n">nodes</span> <span class="o">=</span> <span class="n">Jenkins</span><span class="o">.</span><span class="na">instance</span><span class="o">.</span><span class="na">slaves</span>
@@ -398,10 +372,10 @@ without disconnecting and forcing each slave to reconnect</strong></p>
 </div>
 </div>
 <div class="section" id="remove-directories-across-multiple-nodes">
-<h3><a class="toc-backref" href="#id19">Remove directories across multiple nodes</a><a class="headerlink" href="#remove-directories-across-multiple-nodes" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id18">Remove directories across multiple nodes</a><a class="headerlink" href="#remove-directories-across-multiple-nodes" title="Permalink to this headline">¶</a></h3>
 <p>It is advised to ensure nothing is running and pause the build queue.</p>
 <div class="section" id="master-incremental">
-<h4><a class="toc-backref" href="#id20">Master Incremental</a><a class="headerlink" href="#master-incremental" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id19">Master Incremental</a><a class="headerlink" href="#master-incremental" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-groovy notranslate"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">hudson.model.*</span>
 
 <span class="n">nodes</span> <span class="o">=</span> <span class="n">Jenkins</span><span class="o">.</span><span class="na">instance</span><span class="o">.</span><span class="na">slaves</span>
@@ -423,7 +397,7 @@ without disconnecting and forcing each slave to reconnect</strong></p>
 </div>
 </div>
 <div class="section" id="pull-requests">
-<h4><a class="toc-backref" href="#id21">Pull Requests</a><a class="headerlink" href="#pull-requests" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id20">Pull Requests</a><a class="headerlink" href="#pull-requests" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-groovy notranslate"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">hudson.model.*</span>
 
 <span class="n">nodes</span> <span class="o">=</span> <span class="n">Jenkins</span><span class="o">.</span><span class="na">instance</span><span class="o">.</span><span class="na">slaves</span>
@@ -445,7 +419,7 @@ without disconnecting and forcing each slave to reconnect</strong></p>
 </div>
 </div>
 <div class="section" id="update-branches-for-jobs">
-<h3><a class="toc-backref" href="#id22">Update Branches For Jobs</a><a class="headerlink" href="#update-branches-for-jobs" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id21">Update Branches For Jobs</a><a class="headerlink" href="#update-branches-for-jobs" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-groovy notranslate"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">hudson.plugins.git.GitSCM</span>
 <span class="kn">import</span> <span class="nn">hudson.plugins.git.BranchSpec</span>
 <span class="kn">import</span> <span class="nn">static</span> <span class="n">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">common</span><span class="o">.</span><span class="na">collect</span><span class="o">.</span><span class="na">Lists</span><span class="o">.</span><span class="na">newArrayList</span><span class="o">;</span>
@@ -476,7 +450,7 @@ without disconnecting and forcing each slave to reconnect</strong></p>
 </div>
 </div>
 <div class="section" id="list-all-scm-urls">
-<h3><a class="toc-backref" href="#id23">List All SCM Urls</a><a class="headerlink" href="#list-all-scm-urls" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id22">List All SCM Urls</a><a class="headerlink" href="#list-all-scm-urls" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-groovy notranslate"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">jenkins.model.*</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">hudson.model.*</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">hudson.tasks.*</span><span class="o">;</span>
@@ -502,7 +476,7 @@ without disconnecting and forcing each slave to reconnect</strong></p>
 </div>
 </div>
 <div class="section" id="update-urls-on-all-jobs">
-<h3><a class="toc-backref" href="#id24">Update Urls on All Jobs</a><a class="headerlink" href="#update-urls-on-all-jobs" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id23">Update Urls on All Jobs</a><a class="headerlink" href="#update-urls-on-all-jobs" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-groovy notranslate"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">jenkins.model.*</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">hudson.model.*</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">hudson.tasks.*</span><span class="o">;</span>
@@ -537,7 +511,7 @@ without disconnecting and forcing each slave to reconnect</strong></p>
 </div>
 </div>
 <div class="section" id="print-all-loggers">
-<h3><a class="toc-backref" href="#id25">Print All Loggers</a><a class="headerlink" href="#print-all-loggers" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id24">Print All Loggers</a><a class="headerlink" href="#print-all-loggers" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-groovy notranslate"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">java.util.logging.*</span><span class="o">;</span>
 
 <span class="n">LogManager</span><span class="o">.</span><span class="na">getLogManager</span><span class="o">().</span><span class="na">getLoggerNames</span><span class="o">().</span><span class="na">each</span><span class="o">()</span> <span class="o">{</span>
@@ -547,7 +521,7 @@ without disconnecting and forcing each slave to reconnect</strong></p>
 </div>
 </div>
 <div class="section" id="run-a-process-on-a-single-node">
-<h3><a class="toc-backref" href="#id26">Run a Process On a Single Node</a><a class="headerlink" href="#run-a-process-on-a-single-node" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id25">Run a Process On a Single Node</a><a class="headerlink" href="#run-a-process-on-a-single-node" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-groovy notranslate"><div class="highlight"><pre><span class="n">Process</span> <span class="n">p</span> <span class="o">=</span> <span class="s2">&quot;cmd /c dir&quot;</span><span class="o">.</span><span class="na">execute</span><span class="o">()</span>
 <span class="n">println</span> <span class="s2">&quot;${p.text}&quot;</span>
 
@@ -558,7 +532,7 @@ without disconnecting and forcing each slave to reconnect</strong></p>
 </div>
 </div>
 <div class="section" id="run-a-process-across-all-nodes">
-<h3><a class="toc-backref" href="#id27">Run a Process Across All Nodes</a><a class="headerlink" href="#run-a-process-across-all-nodes" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id26">Run a Process Across All Nodes</a><a class="headerlink" href="#run-a-process-across-all-nodes" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-groovy notranslate"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">hudson.util.RemotingDiagnostics</span><span class="o">;</span>
 
 <span class="k">for</span> <span class="o">(</span><span class="n">slave</span> <span class="k">in</span> <span class="n">hudson</span><span class="o">.</span><span class="na">model</span><span class="o">.</span><span class="na">Hudson</span><span class="o">.</span><span class="na">instance</span><span class="o">.</span><span class="na">slaves</span><span class="o">)</span> <span class="o">{</span>
@@ -572,7 +546,7 @@ without disconnecting and forcing each slave to reconnect</strong></p>
 </div>
 </div>
 <div class="section" id="update-default-values-for-job-parameters">
-<h3><a class="toc-backref" href="#id28">Update default values for job parameters</a><a class="headerlink" href="#update-default-values-for-job-parameters" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id27">Update default values for job parameters</a><a class="headerlink" href="#update-default-values-for-job-parameters" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-groovy notranslate"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">hudson.model.*</span>
 
 <span class="kt">def</span> <span class="n">SUFFIX_VARIABLE</span> <span class="o">=</span> <span class="s2">&quot;PACKAGE_SUFFIX&quot;</span>

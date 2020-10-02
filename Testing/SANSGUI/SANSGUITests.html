@@ -91,171 +91,212 @@
 <span id="id1"></span><h1>SANS GUI Testing<a class="headerlink" href="#sans-gui-testing" title="Permalink to this headline">¶</a></h1>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><a class="reference internal" href="#data-reduction" id="id2">Data reduction</a></li>
+<li><a class="reference internal" href="#data-reduction" id="id2">Data reduction</a><ul>
+<li><a class="reference internal" href="#set-up" id="id3">Set up</a></li>
+<li><a class="reference internal" href="#runs-table-editing" id="id4">Runs table editing</a></li>
+<li><a class="reference internal" href="#user-files" id="id5">User files</a></li>
+<li><a class="reference internal" href="#display-mask" id="id6">Display mask</a></li>
+<li><a class="reference internal" href="#processing" id="id7">Processing</a></li>
+<li><a class="reference internal" href="#beam-centre-finder" id="id8">Beam centre finder</a></li>
+<li><a class="reference internal" href="#sum-runs" id="id9">Sum runs</a></li>
+<li><a class="reference internal" href="#diagnostics" id="id10">Diagnostics</a></li>
+<li><a class="reference internal" href="#display" id="id11">Display</a></li>
+</ul>
+</li>
 </ul>
 </div>
 <div class="section" id="data-reduction">
 <h2><a class="toc-backref" href="#id2">Data reduction</a><a class="headerlink" href="#data-reduction" title="Permalink to this headline">¶</a></h2>
-<p><em>Preparation</em></p>
-<ul class="simple">
-<li>Get the ISIS sample data from the website</li>
-<li>Ensure that the ISIS sample data directory is in the search directories</li>
-</ul>
-<p><strong>Time required 20 - 30 minutes</strong></p>
+<p><strong>Time required: about 1 hour</strong></p>
 <hr class="docutils" />
-<ol class="arabic">
-<li><p class="first">Open <code class="docutils literal notranslate"><span class="pre">Interfaces</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">SANS</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">SANS</span> <span class="pre">v2</span></code></p>
-</li>
-<li><p class="first">Choose <code class="docutils literal notranslate"><span class="pre">Load</span> <span class="pre">User</span> <span class="pre">File</span></code>; from the ISIS sample data in the <code class="docutils literal notranslate"><span class="pre">loqdemo</span></code>
-folder, choose <code class="docutils literal notranslate"><span class="pre">Maskfile.txt</span></code></p>
-</li>
-<li><p class="first">Choose <code class="docutils literal notranslate"><span class="pre">Load</span> <span class="pre">Batch</span> <span class="pre">File</span></code>; from the ISIS sample data in the <cite>loqdemo</cite>
-folder, choose <code class="docutils literal notranslate"><span class="pre">batch_mode_reduction.csv</span></code></p>
-</li>
-<li><dl class="first docutils">
-<dt>In the <code class="docutils literal notranslate"><span class="pre">Runs</span></code> tab:</dt>
-<dd><ul class="first last simple">
-<li>Check that the <code class="docutils literal notranslate"><span class="pre">Insert</span></code>, <code class="docutils literal notranslate"><span class="pre">Delete</span></code>, <code class="docutils literal notranslate"><span class="pre">Copy</span></code>, <code class="docutils literal notranslate"><span class="pre">Paste</span></code>, <code class="docutils literal notranslate"><span class="pre">Cut</span></code> and
-<code class="docutils literal notranslate"><span class="pre">Erase</span></code> icons work as expected on table rows</li>
-<li>Create multiple rows in the table with different data e.g. one row with
-an output name, one row without</li>
-<li>Click the <code class="docutils literal notranslate"><span class="pre">Export</span> <span class="pre">Table</span></code> button and save the table as a csv file</li>
-<li>Click <code class="docutils literal notranslate"><span class="pre">Load</span> <span class="pre">Batch</span> <span class="pre">file</span></code> and select the newly saved table. All columns
-up to <code class="docutils literal notranslate"><span class="pre">Output</span> <span class="pre">Name</span></code> should have been saved and loaded</li>
-<li>Re-load the original batch file</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>In the <code class="docutils literal notranslate"><span class="pre">Settings</span></code> tab:</dt>
-<dd><ul class="first last simple">
-<li>Go to <code class="docutils literal notranslate"><span class="pre">Mask</span></code></li>
-<li>Click <code class="docutils literal notranslate"><span class="pre">Display</span> <span class="pre">Mask</span></code></li>
-<li>This should give an instrument view with a circle at the centre</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>In the <code class="docutils literal notranslate"><span class="pre">Settings</span></code> tab:</dt>
-<dd><ul class="first last simple">
-<li>Go to <code class="docutils literal notranslate"><span class="pre">Q,</span> <span class="pre">Wavelength,</span> <span class="pre">Detector</span> <span class="pre">Limits</span></code> sub-tab</li>
-<li>Change the <code class="docutils literal notranslate"><span class="pre">Phi</span> <span class="pre">Limit</span></code> from 0 to 45 and uncheck <code class="docutils literal notranslate"><span class="pre">use</span> <span class="pre">mirror</span> <span class="pre">sector</span></code></li>
-<li>Go to <code class="docutils literal notranslate"><span class="pre">Mask</span></code> sub-tab</li>
-<li>Click <code class="docutils literal notranslate"><span class="pre">Display</span> <span class="pre">Mask</span></code></li>
-<li>This should give an instrument view where only angles 0-45 are unmasked</li>
-<li>Change the settings back to -90 - 90 and reselect <code class="docutils literal notranslate"><span class="pre">use</span> <span class="pre">mirror</span> <span class="pre">sector</span></code></li>
-<li>In <code class="docutils literal notranslate"><span class="pre">General,</span> <span class="pre">Scale,</span> <span class="pre">Event</span> <span class="pre">Slice,</span> <span class="pre">Sample</span></code> sub-tab, set the
-<code class="docutils literal notranslate"><span class="pre">Reduction</span> <span class="pre">Mode</span></code> to <code class="docutils literal notranslate"><span class="pre">All</span></code></li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>In the <code class="docutils literal notranslate"><span class="pre">Runs</span></code> tab</dt>
-<dd><ul class="first last simple">
-<li>Click <code class="docutils literal notranslate"><span class="pre">Process</span> <span class="pre">All</span></code></li>
-<li>After some seconds the rows should turn green</li>
-<li>In the Main window there should be a series of new workspaces;
-4 group workspaces and 4 2D workspaces</li>
-<li>Change the first column of the first row to 74045;
-click <code class="docutils literal notranslate"><span class="pre">Process</span> <span class="pre">Selected</span></code></li>
-<li>The row should turn blue; hovering over the row should give an
-error message</li>
-<li>Change the first column of the first row back to 74044</li>
-<li>Change the <code class="docutils literal notranslate"><span class="pre">Reduction</span></code> button to 2D</li>
-<li>Check the <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">Results</span></code> box</li>
-<li>Click <code class="docutils literal notranslate"><span class="pre">Process</span> <span class="pre">All</span></code></li>
-<li>A plot window will open; initially empty, then with a line</li>
-<li>Change <code class="docutils literal notranslate"><span class="pre">Reduction</span></code> back to 1D</li>
-<li>Click <code class="docutils literal notranslate"><span class="pre">Process</span> <span class="pre">All</span></code></li>
-<li>In the plot you should end up with multiple lines plotted</li>
-<li>Check the <code class="docutils literal notranslate"><span class="pre">Multi-period</span></code> box, 6 additional columns should appear
-in the table</li>
-<li>Delete all rows and re-load the batch file as previously</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>In the <code class="docutils literal notranslate"><span class="pre">Settings</span></code> tab</dt>
-<dd><ul class="first last simple">
-<li>In the <code class="docutils literal notranslate"><span class="pre">General,</span> <span class="pre">Scale,</span> <span class="pre">Event</span> <span class="pre">Slice,</span> <span class="pre">Sample</span></code> sub-tab, set
-<code class="docutils literal notranslate"><span class="pre">Reduction</span> <span class="pre">Mode</span></code> to <code class="docutils literal notranslate"><span class="pre">Merged</span></code></li>
-<li>Return to the <code class="docutils literal notranslate"><span class="pre">Runs</span></code> tab</li>
-<li>Ensure <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">results</span></code> is checked</li>
-<li>Click <code class="docutils literal notranslate"><span class="pre">Process</span> <span class="pre">All</span></code></li>
-<li>This should result in a plot with three lines</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>In the <code class="docutils literal notranslate"><span class="pre">Beam</span> <span class="pre">centre</span></code> tab</dt>
-<dd><ul class="first last simple">
-<li>Both the <code class="docutils literal notranslate"><span class="pre">Update</span> <span class="pre">main-detector</span></code> and <code class="docutils literal notranslate"><span class="pre">Update</span> <span class="pre">Hab</span></code> checkboxes
-should be checked and enabled</li>
-<li>Click Run</li>
-<li>A plot should appear after some seconds, with 4 lines</li>
-<li>The 4 lines should gradually get closer together</li>
-<li>This will run for some time, probably minutes</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>In the <code class="docutils literal notranslate"><span class="pre">Sum</span> <span class="pre">Runs</span></code> tab</dt>
-<dd><ul class="first last simple">
-<li>Enter <code class="docutils literal notranslate"><span class="pre">74044,</span> <span class="pre">74019</span></code> in the top line</li>
-<li>Click <code class="docutils literal notranslate"><span class="pre">Add</span></code> at the side</li>
-<li>Enter <code class="docutils literal notranslate"><span class="pre">LOQ74044-add</span></code> as Output file</li>
-<li>Click <code class="docutils literal notranslate"><span class="pre">Select</span> <span class="pre">Save</span> <span class="pre">Directory</span></code> and select a directory in your
-managed paths</li>
-<li>Click <code class="docutils literal notranslate"><span class="pre">Sum</span></code> at the bottom</li>
-<li>Go back to the <code class="docutils literal notranslate"><span class="pre">Runs</span></code> tab</li>
-<li>Remove all rows</li>
-<li>Reload the batch file as before</li>
-<li>Change the first column of both rows to <code class="docutils literal notranslate"><span class="pre">LOQ74044-add</span></code></li>
-<li>Click <code class="docutils literal notranslate"><span class="pre">Process</span> <span class="pre">All</span></code></li>
-<li>This should now process as before</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>In the <code class="docutils literal notranslate"><span class="pre">Diagnostic</span> <span class="pre">Page</span></code> tab</dt>
-<dd><ul class="first last simple">
-<li>For run choose <code class="docutils literal notranslate"><span class="pre">Browse</span></code> and load the <code class="docutils literal notranslate"><span class="pre">LOQ74044.nxs</span></code> file</li>
-<li>Click each of the <code class="docutils literal notranslate"><span class="pre">Integral</span></code> buttons</li>
-<li>They should produce plots</li>
-<li>Check the <code class="docutils literal notranslate"><span class="pre">Apply</span> <span class="pre">Mask</span></code> boxes and click the buttons again</li>
-<li>They should produce new, slightly different plots</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>In the <code class="docutils literal notranslate"><span class="pre">Runs</span></code> tab</dt>
-<dd><ul class="first last simple">
-<li>Check that all table, process, and load buttons have clear tooltips by
-hovering over them</li>
-<li>Check that <code class="docutils literal notranslate"><span class="pre">Zero</span> <span class="pre">Error</span> <span class="pre">Free`,</span> <span class="pre">``Use</span> <span class="pre">Optimizations</span></code>, and
-<code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">Results</span></code> have clear tooltips</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>In all tabs</dt>
-<dd><ul class="first last simple">
-<li>Check the tooltips are still there by hovering over each box.
-Users rely on the tooltips a lot and really do notice each missing one.</li>
-</ul>
-</dd>
-</dl>
-</li>
+<div class="section" id="set-up">
+<h3><a class="toc-backref" href="#id3">Set up</a><a class="headerlink" href="#set-up" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Get the Training data from the downloads page on the Mantid Project website.</li>
+<li>Open <code class="docutils literal notranslate"><span class="pre">Interfaces</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">SANS</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">ISIS</span> <span class="pre">SANS</span></code>.</li>
+<li>Click <code class="docutils literal notranslate"><span class="pre">Manage</span> <span class="pre">Directories</span></code>. This opens Mantid’s main dialog for managing
+search paths. Ensure the Training data directory is in the search
+directories.</li>
+<li>If you haven’t set one up yet, add a folder to save test data into later.</li>
+<li>Click OK on the manage-directories dialog and ensure the <code class="docutils literal notranslate"><span class="pre">Save</span> <span class="pre">Path</span></code> on
+the SANS GUI displays the correct save path.</li>
+<li>Click <code class="docutils literal notranslate"><span class="pre">Load</span> <span class="pre">User</span> <span class="pre">File</span></code>; from the Training data in the <code class="docutils literal notranslate"><span class="pre">loqdemo</span></code> folder,
+choose <code class="docutils literal notranslate"><span class="pre">MaskFile.toml</span></code>.</li>
+<li>Click <code class="docutils literal notranslate"><span class="pre">Load</span> <span class="pre">Batch</span> <span class="pre">File</span></code>; from the Training data in the <code class="docutils literal notranslate"><span class="pre">loqdemo</span></code> folder,
+choose <code class="docutils literal notranslate"><span class="pre">batch_mode_reduction.csv</span></code>.</li>
 </ol>
+</div>
+<div class="section" id="runs-table-editing">
+<h3><a class="toc-backref" href="#id4">Runs table editing</a><a class="headerlink" href="#runs-table-editing" title="Permalink to this headline">¶</a></h3>
+<p>In the <code class="docutils literal notranslate"><span class="pre">Runs</span></code> tab:</p>
+<ol class="arabic simple">
+<li>Check that the <code class="docutils literal notranslate"><span class="pre">Insert</span></code>, <code class="docutils literal notranslate"><span class="pre">Delete</span></code>, <code class="docutils literal notranslate"><span class="pre">Copy</span></code>, <code class="docutils literal notranslate"><span class="pre">Paste</span></code>, <code class="docutils literal notranslate"><span class="pre">Cut</span></code> and
+<code class="docutils literal notranslate"><span class="pre">Erase</span></code> icons work as expected on table rows.</li>
+<li>Tick the <code class="docutils literal notranslate"><span class="pre">Sample</span> <span class="pre">Geometry</span></code> button - some extra columns should appear.</li>
+<li>Create multiple rows in the table with different data e.g. one row with
+an output name, one row without.</li>
+<li>Try changing a random setting in the settings tab and remember what you set
+it to.</li>
+<li>Make some more edits to the table. Check that the setting is still showing
+the value you changed it to, rather than the original.</li>
+<li>Click the <code class="docutils literal notranslate"><span class="pre">Export</span> <span class="pre">Table</span></code> button and save the table as a csv file. Check
+the file in an editor or Excel and ensure it looks like a sensible
+representation of the table in the format <code class="docutils literal notranslate"><span class="pre">key,value,key,value,...</span></code>. All
+columns except <code class="docutils literal notranslate"><span class="pre">Options</span></code> and <code class="docutils literal notranslate"><span class="pre">Sample</span> <span class="pre">Shape</span></code> should be included.</li>
+<li>Try unticking <code class="docutils literal notranslate"><span class="pre">Sample</span> <span class="pre">Geometry</span></code> and ticking <code class="docutils literal notranslate"><span class="pre">Multi-period</span></code>. The
+displayed columns change but the saved file should contain the same set of
+columns regardless of whether these are ticked.</li>
+<li>Click <code class="docutils literal notranslate"><span class="pre">Load</span> <span class="pre">Batch</span> <span class="pre">file</span></code> and select the newly saved table. All columns
+that were saved should be loaded.</li>
+<li>Try deleting and/or reordering some of the columns in the saved file and
+re-load it. All of the values in the file should be populated in the correct
+columns.</li>
+<li>Check again that the setting you changed is still showing the value you
+changed it to, rather than the original.</li>
+<li>Re-load the original batch file.</li>
+</ol>
+</div>
+<div class="section" id="user-files">
+<h3><a class="toc-backref" href="#id5">User files</a><a class="headerlink" href="#user-files" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Change some values on the <code class="docutils literal notranslate"><span class="pre">Settings</span></code> and <code class="docutils literal notranslate"><span class="pre">Beam</span> <span class="pre">Centre</span></code> tabs.</li>
+<li>Re-load the user file and check the values you changed - they should have
+reverted to their original values.</li>
+<li>Ensure that you can load the old style <code class="docutils literal notranslate"><span class="pre">MaskFile.txt</span></code> user file from the
+sample data.</li>
+<li>In the table on the <code class="docutils literal notranslate"><span class="pre">Runs</span></code> tab, under the <code class="docutils literal notranslate"><span class="pre">User</span> <span class="pre">File</span></code> column, enter
+<code class="docutils literal notranslate"><span class="pre">MaskFile.toml</span></code> in one row and <code class="docutils literal notranslate"><span class="pre">MaskFile.txt</span></code> in the other row. Click
+<code class="docutils literal notranslate"><span class="pre">Process</span> <span class="pre">All</span></code>. After some seconds, the rows should turn green to indicate
+that they processed successfully.</li>
+<li>Re-load the original user and batch files as per the set-up instructions.</li>
+</ol>
+</div>
+<div class="section" id="display-mask">
+<h3><a class="toc-backref" href="#id6">Display mask</a><a class="headerlink" href="#display-mask" title="Permalink to this headline">¶</a></h3>
+<p>In the <code class="docutils literal notranslate"><span class="pre">Settings</span></code> tab:</p>
+<ol class="arabic simple">
+<li>Go to <code class="docutils literal notranslate"><span class="pre">Mask</span></code>.</li>
+<li>Click <code class="docutils literal notranslate"><span class="pre">Display</span> <span class="pre">Mask</span></code>.</li>
+<li>This should give an instrument view with a circle at the centre.</li>
+<li>Go to <code class="docutils literal notranslate"><span class="pre">Q,</span> <span class="pre">Wavelength,</span> <span class="pre">Detector</span> <span class="pre">Limits</span></code> sub-tab.</li>
+<li>Change the <code class="docutils literal notranslate"><span class="pre">Phi</span> <span class="pre">Limit</span></code> from 0 to 45 and uncheck <code class="docutils literal notranslate"><span class="pre">use</span> <span class="pre">mirror</span> <span class="pre">sector</span></code>.</li>
+<li>Go to <code class="docutils literal notranslate"><span class="pre">Mask</span></code> sub-tab.</li>
+<li>Click <code class="docutils literal notranslate"><span class="pre">Display</span> <span class="pre">Mask</span></code>.</li>
+<li>This should give an instrument view where only angles 0-45 are unmasked.</li>
+<li>Change the settings back to -90 - 90 and reselect <code class="docutils literal notranslate"><span class="pre">use</span> <span class="pre">mirror</span> <span class="pre">sector</span></code>.</li>
+</ol>
+</div>
+<div class="section" id="processing">
+<h3><a class="toc-backref" href="#id7">Processing</a><a class="headerlink" href="#processing" title="Permalink to this headline">¶</a></h3>
+<p><em>1D reduction</em></p>
+<ol class="arabic simple">
+<li>In <code class="docutils literal notranslate"><span class="pre">General,</span> <span class="pre">Scale,</span> <span class="pre">Event</span> <span class="pre">Slice,</span> <span class="pre">Sample</span></code> sub-tab, ensure the <code class="docutils literal notranslate"><span class="pre">Reduction</span>
+<span class="pre">Mode</span></code> is <code class="docutils literal notranslate"><span class="pre">All</span></code>.</li>
+<li>In the <code class="docutils literal notranslate"><span class="pre">Runs</span></code> tab, under <code class="docutils literal notranslate"><span class="pre">Save</span> <span class="pre">Options</span></code>, select <code class="docutils literal notranslate"><span class="pre">Both</span></code>, and tick
+<code class="docutils literal notranslate"><span class="pre">CanSAS</span> <span class="pre">(1D)</span></code> and <code class="docutils literal notranslate"><span class="pre">NXcanSAS</span> <span class="pre">(1D/2D)</span></code>.</li>
+<li>Click <code class="docutils literal notranslate"><span class="pre">Process</span> <span class="pre">All</span></code>.</li>
+<li>After some seconds the rows should turn green.</li>
+<li>In the workspaces list, there should be a series of new workspaces; four
+group workspaces and four 1D workspaces.</li>
+<li>Check your default save directory - there should be two saved output files
+(an <code class="docutils literal notranslate"><span class="pre">.xml</span></code> and <code class="docutils literal notranslate"><span class="pre">.h5</span></code> file) for each main output as well as the
+unsubtracted can and sample workspaces, i.e. six output files for each row.</li>
+<li>Double-click the 1D workspaces and you should get a single line plot.</li>
+<li>Change the contents of the first cell in the first row to <code class="docutils literal notranslate"><span class="pre">74045</span></code> and click
+<code class="docutils literal notranslate"><span class="pre">Process</span> <span class="pre">Selected</span></code>.</li>
+<li>The row should turn blue; hovering over the row should give an error message.</li>
+<li>Change the first column of the first row back to <code class="docutils literal notranslate"><span class="pre">74044</span></code>.</li>
+</ol>
+<p><em>2D reduction</em></p>
+<ol class="arabic simple">
+<li>On the <code class="docutils literal notranslate"><span class="pre">Runs</span></code> tab, under <code class="docutils literal notranslate"><span class="pre">Reduction</span></code> select <code class="docutils literal notranslate"><span class="pre">2D</span></code>.</li>
+<li>Under <code class="docutils literal notranslate"><span class="pre">Save</span> <span class="pre">Options</span></code>, check that <code class="docutils literal notranslate"><span class="pre">NXcanSAS</span> <span class="pre">(1D/2D)</span></code> is still ticked, and
+that <code class="docutils literal notranslate"><span class="pre">CanSAS</span> <span class="pre">(1D)</span></code> is greyed out.</li>
+<li>Tick the <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">Results</span></code> box.</li>
+<li>Click <code class="docutils literal notranslate"><span class="pre">Process</span> <span class="pre">All</span></code>.</li>
+<li>A plot window will open; initially empty, then with a line.</li>
+<li>You should get four 2D workspaces instead of the previous 1D workspaces
+(they will have 100 spectra instead of 1). Double-click them and check you
+can do a colourfill plot.</li>
+<li>Check your save directory. There should now only be a <code class="docutils literal notranslate"><span class="pre">.h5</span></code> file for each
+output.</li>
+<li>Change <code class="docutils literal notranslate"><span class="pre">Reduction</span></code> back to 1D.</li>
+<li>Click <code class="docutils literal notranslate"><span class="pre">Process</span> <span class="pre">All</span></code>.</li>
+<li>A new plot window should open and you should end up with multiple lines plotted.</li>
+<li>Check the <code class="docutils literal notranslate"><span class="pre">Multi-period</span></code> box - six additional columns should appear in the table.</li>
+<li>Delete all rows and re-load the batch file.</li>
+</ol>
+<p><em>Merged reduction</em></p>
+<ol class="arabic simple">
+<li>In the <code class="docutils literal notranslate"><span class="pre">Settings</span></code> tab, <code class="docutils literal notranslate"><span class="pre">General,</span> <span class="pre">Scale,</span> <span class="pre">Event</span> <span class="pre">Slice,</span> <span class="pre">Sample</span></code> sub-tab,
+set <code class="docutils literal notranslate"><span class="pre">Reduction</span> <span class="pre">Mode</span></code> to <code class="docutils literal notranslate"><span class="pre">Merged</span></code>.</li>
+<li>Return to the <code class="docutils literal notranslate"><span class="pre">Runs</span></code> tab.</li>
+<li>Ensure <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">results</span></code> is ticked and that save outputs <code class="docutils literal notranslate"><span class="pre">CanSAS</span> <span class="pre">(1D)</span></code> and
+<code class="docutils literal notranslate"><span class="pre">NXcanSAS</span> <span class="pre">(1D/2D)</span></code> are ticked.</li>
+<li>Click <code class="docutils literal notranslate"><span class="pre">Process</span> <span class="pre">All</span></code>.</li>
+<li>This should result in a plot with six lines.</li>
+<li>The workspaces list should now contain a group named
+<code class="docutils literal notranslate"><span class="pre">LAB_and_HAB_workspaces_from_merged_reduction</span></code> that contains the <code class="docutils literal notranslate"><span class="pre">main</span></code>
+and <code class="docutils literal notranslate"><span class="pre">HAB</span></code> workspaces, which were previously ungrouped for a non-merged
+reduction.</li>
+<li>Check your save directory. As well as the previous 1D outputs, there should
+now be an additional <code class="docutils literal notranslate"><span class="pre">.xml</span></code> and <code class="docutils literal notranslate"><span class="pre">.h5</span></code> output file for the merged output
+for each row.</li>
+<li>In the <code class="docutils literal notranslate"><span class="pre">Settings</span></code> tab, <code class="docutils literal notranslate"><span class="pre">General,</span> <span class="pre">Scale,</span> <span class="pre">Event</span> <span class="pre">Slice,</span> <span class="pre">Sample</span></code> sub-tab,
+change the <code class="docutils literal notranslate"><span class="pre">Reduction</span> <span class="pre">Mode</span></code> back to <code class="docutils literal notranslate"><span class="pre">All</span></code>.</li>
+</ol>
+</div>
+<div class="section" id="beam-centre-finder">
+<h3><a class="toc-backref" href="#id8">Beam centre finder</a><a class="headerlink" href="#beam-centre-finder" title="Permalink to this headline">¶</a></h3>
+<p>In the <code class="docutils literal notranslate"><span class="pre">Beam</span> <span class="pre">centre</span></code> tab:</p>
+<ol class="arabic simple">
+<li>Both the <code class="docutils literal notranslate"><span class="pre">Update</span> <span class="pre">main-detector</span></code> and <code class="docutils literal notranslate"><span class="pre">Update</span> <span class="pre">Hab</span></code> checkboxes should be
+checked and enabled.</li>
+<li>Click Run.</li>
+<li>A plot should appear after some seconds, with four lines.</li>
+<li>The four lines should gradually get closer together.</li>
+<li>This will run for some time, probably minutes.</li>
+</ol>
+</div>
+<div class="section" id="sum-runs">
+<h3><a class="toc-backref" href="#id9">Sum runs</a><a class="headerlink" href="#sum-runs" title="Permalink to this headline">¶</a></h3>
+<p>In the <code class="docutils literal notranslate"><span class="pre">Sum</span> <span class="pre">Runs</span></code> tab:</p>
+<ol class="arabic simple">
+<li>Enter <code class="docutils literal notranslate"><span class="pre">74044,</span> <span class="pre">74019</span></code> in the top line.</li>
+<li>Click <code class="docutils literal notranslate"><span class="pre">Add</span></code> at the side.</li>
+<li>Enter <code class="docutils literal notranslate"><span class="pre">LOQ74044-add</span></code> as Output file.</li>
+<li>Click <code class="docutils literal notranslate"><span class="pre">Select</span> <span class="pre">Save</span> <span class="pre">Directory</span></code> and select a directory in your managed paths.</li>
+<li>Click <code class="docutils literal notranslate"><span class="pre">Sum</span></code> at the bottom.</li>
+<li>Go back to the <code class="docutils literal notranslate"><span class="pre">Runs</span></code> tab.</li>
+<li>Remove all rows.</li>
+<li>Reload the batch file as before.</li>
+<li>Change the first column of both rows to <code class="docutils literal notranslate"><span class="pre">LOQ74044-add</span></code>.</li>
+<li>Click <code class="docutils literal notranslate"><span class="pre">Process</span> <span class="pre">All</span></code>.</li>
+<li>This should now process as before.</li>
+</ol>
+</div>
+<div class="section" id="diagnostics">
+<h3><a class="toc-backref" href="#id10">Diagnostics</a><a class="headerlink" href="#diagnostics" title="Permalink to this headline">¶</a></h3>
+<p>In the <code class="docutils literal notranslate"><span class="pre">Diagnostic</span> <span class="pre">Page</span></code> tab:</p>
+<ol class="arabic simple">
+<li>For run choose <code class="docutils literal notranslate"><span class="pre">Browse</span></code> and load the <code class="docutils literal notranslate"><span class="pre">LOQ74044.nxs</span></code> file.</li>
+<li>Click each of the <code class="docutils literal notranslate"><span class="pre">Integral</span></code> buttons.</li>
+<li>They should produce plots.</li>
+<li>Check the <code class="docutils literal notranslate"><span class="pre">Apply</span> <span class="pre">Mask</span></code> boxes and click the buttons again.</li>
+<li>They should produce new, slightly different plots.</li>
+</ol>
+</div>
+<div class="section" id="display">
+<h3><a class="toc-backref" href="#id11">Display</a><a class="headerlink" href="#display" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>In the <code class="docutils literal notranslate"><span class="pre">Runs</span></code> tab, check that all table, process, and load buttons have
+clear tooltips by hovering over them.</li>
+<li>Check that <code class="docutils literal notranslate"><span class="pre">Zero</span> <span class="pre">Error</span> <span class="pre">Free`,</span> <span class="pre">``Use</span> <span class="pre">Optimizations</span></code>, and <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">Results</span></code>
+have clear tooltips.</li>
+<li>In all tabs, check the tooltips are still there by hovering over each box.
+Users rely on the tooltips a lot and really do notice each missing one.</li>
+</ol>
+</div>
 </div>
 </div>
 
