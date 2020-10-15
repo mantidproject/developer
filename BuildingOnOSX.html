@@ -112,15 +112,12 @@
 </pre></div>
 </div>
 <ol class="arabic simple" start="4">
-<li>Add the necessary ‘taps’. The last 4 are to use qt4.</li>
+<li>Add the necessary ‘taps’:</li>
 </ol>
 <p>In order to be able to ‘tap’ the <code class="docutils literal notranslate"><span class="pre">mantidproject/mantid</span></code> ‘tap’ we need to have a couple of packages installed</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre>brew install git
-brew tap homebrew/science
 brew tap mantidproject/mantid
-brew tap caskroom/cask
-brew tap cartr/qt4
-brew tap-pin cartr/qt4
+brew tap homebrew/cask
 brew cask install xquartz
 brew cask install mactex
 </pre></div>
@@ -133,35 +130,28 @@ brew cask install mactex
 </div>
 <ol class="arabic simple" start="6">
 <li>Homebrew can stop early for reasons that are unclear. Repeat the above command until Homebrew states: <em>Warning: mantidproject/mantid/mantid-developer ?.? is already installed and up-to-date</em>.</li>
-<li>Unlink <code class="docutils literal notranslate"><span class="pre">qt&#64;4</span></code> from <code class="docutils literal notranslate"><span class="pre">/usr/local</span></code> to avoid cross talk with Qt5 and ensure the webkit can be found when not linked</li>
+<li>Unlink <code class="docutils literal notranslate"><span class="pre">qscintilla2</span></code></li>
 </ol>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>brew unlink qt@4
-ln -s /usr/local/Homebrew/Library/Taps/mantidproject/homebrew-mantid/qt.conf /usr/local/opt/qt@4/bin/qt.conf
-ln -s /usr/local/opt/qt-webkit@2.3/include/QtWebKit /usr/local/opt/qt@4/include/QtWebKit
-ln -s /usr/local/opt/qt-webkit@2.3/lib/QtWebKit.framework /usr/local/opt/qt@4/lib/QtWebKit.framework
+<div class="highlight-sh notranslate"><div class="highlight"><pre>brew unlink qscintilla2
 </pre></div>
 </div>
 <ol class="arabic simple" start="8">
-<li>Unlink <code class="docutils literal notranslate"><span class="pre">qscintilla2</span></code> and <code class="docutils literal notranslate"><span class="pre">qscintilla2qt4</span></code></li>
-</ol>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>brew unlink qscintilla2
-brew unlink qscintilla2qt4
-</pre></div>
-</div>
-<ol class="arabic simple" start="9">
 <li>Python is now keg-only. Add the appropriate version to <code class="docutils literal notranslate"><span class="pre">PATH</span></code> in shell profile and restart the terminal:</li>
 </ol>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span class="c1"># Assume we are using bash</span>
 <span class="nb">echo</span> <span class="s1">&#39;export PATH=&quot;/usr/local/opt/python@3.8/bin:$PATH&quot;&#39;</span> &gt;&gt; ~/.bash_profile
+
+<span class="c1"># If you have enabled Zsh</span>
+<span class="nb">echo</span> <span class="s1">&#39;export PATH=&quot;/usr/local/opt/python@3.8/bin:$PATH&quot;&#39;</span> &gt;&gt; ~/.zshenv
 </pre></div>
 </div>
-<ol class="arabic simple" start="10">
+<ol class="arabic simple" start="9">
 <li>Downgrade setuptools to 48.0.0 until <a class="reference external" href="https://github.com/mantidproject/mantid/issues/29010">https://github.com/mantidproject/mantid/issues/29010</a> is fixed.</li>
 </ol>
 <div class="highlight-sh notranslate"><div class="highlight"><pre>python3 -m pip install <span class="nv">setuptools</span><span class="o">==</span>48.0.0
 </pre></div>
 </div>
-<ol class="arabic simple" start="11">
+<ol class="arabic simple" start="10">
 <li>Install python requirements</li>
 </ol>
 <div class="highlight-sh notranslate"><div class="highlight"><pre>python3 -m pip install -r /usr/local/Homebrew/Library/Taps/mantidproject/homebrew-mantid/requirements.txt
