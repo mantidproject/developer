@@ -195,7 +195,9 @@
         <span class="nv">detail</span> <span class="o">=</span> <span class="s2">&quot;%C(yellow)commit %h%Creset%C(auto)%d%Creset%n%C(yellow)Parents: %p%Creset%n%C(cyan)Author: %an &lt;%ae&gt;%Creset%n%C(cyan)        %ai (%ar)%Creset%n%C(green)Commit: %cn &lt;%ce&gt;%Creset%n%C(green)        %ci (%cr)%Creset%n%n%w(79)%s%n%n%b&quot;</span>
 
 <span class="o">[</span>alias<span class="o">]</span>
-        <span class="c1"># Check out a pull request for testing</span>
+        <span class="c1"># Check out a pull request for testing. The first argument is the name of the remote and the</span>
+        <span class="c1"># second is the the pull request number,</span>
+        <span class="c1"># e.g. git test-pr origin 12345</span>
         test-pr <span class="o">=</span> <span class="s2">&quot;!f() { git fetch </span><span class="nv">$1</span><span class="s2"> pull/</span><span class="nv">$2</span><span class="s2">/merge:pr/</span><span class="nv">$2</span><span class="s2">-merged &amp;&amp; git checkout pr/</span><span class="nv">$2</span><span class="s2">-merged; }; f&quot;</span>
         <span class="c1"># Remove all branches starting pr/</span>
         test-pr-remove-all <span class="o">=</span> <span class="s2">&quot;!f() { git branch | grep pr/ | xargs git branch -D; }; f&quot;</span>
