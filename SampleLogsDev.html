@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Sample Logs</title>
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Plotting (Elemental Analysis)" href="Widgets/Plotting.html" />
+    <link rel="prev" title="Remote Job Submission API" href="RemoteJobSubmissionAPI.html" />
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-59110517-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+  </head><body>
+
+
+
+
+
+  <div id="navbar" class="navbar navbar-default ">
+    <div class="container">
+      <div class="navbar-header">
+        
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://www.mantidproject.org"><img src="_static/Mantid_Logo_Transparent.png">
+           </a>
+        <span class="navbar-text navbar-version pull-left"><b>master</b></span>
+      </div>
+
+      
+        <div class="collapse navbar-collapse nav-collapse">
+      
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="index.html">Home</a></li>
+                <li><a href="http://download.mantidproject.org">Download</a></li>
+                <li><a href="http://www.mantidproject.org">Wiki</a></li>
+                <li><a href="http://docs.mantidproject.org">User Documentation</a></li>
+                <li><a href="http://www.mantidproject.org/Contact">Contact Us</a></li>
+            
+            
+              
+              
+            
+            
+            
+            
+          </ul>
+              
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+            </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <div class="section" id="sample-logs">
+<span id="samplelogs-dev"></span><h1>Sample Logs<a class="headerlink" href="#sample-logs" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#id1" id="id2">Sample logs</a></li>
+<li><a class="reference internal" href="#multiperiod-workspace-sample-logs" id="id3">Multiperiod workspace sample logs</a><ul>
+<li><a class="reference internal" href="#period-n" id="id4">period n</a></li>
+<li><a class="reference internal" href="#running" id="id5">running</a></li>
+<li><a class="reference internal" href="#periods" id="id6">periods</a></li>
+<li><a class="reference internal" href="#filtering" id="id7">Filtering</a></li>
+<li><a class="reference internal" href="#event-data" id="id8">Event data</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<p>The following information will be useful to you if you want to write an
+<a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/Algorithm.html#algorithm" title="(in MantidProject v5.1)"><span>Algorithm</span></a> that manipulates sample log data.</p>
+<div class="section" id="id1">
+<h2><a class="toc-backref" href="#id2">Sample logs</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>When you load a nexus file using Mantid, a set of sample logs relevant to the experimental run are loaded into the
+workspace’s run object, which can be accessed through:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span class="cp">#include</span> <span class="cpf">&quot;MantidAPI/Run.h&quot;</span><span class="cp"></span>
+
+<span class="c1">// Declare property with default settings</span>
+<span class="c1">// IndexType::WorkspaceIndex is default</span>
+<span class="n">MatrixWorkspace_sptr</span> <span class="n">workspace</span><span class="p">;</span>
+<span class="p">....</span>
+<span class="n">Run</span> <span class="o">&amp;</span><span class="n">run</span> <span class="o">=</span> <span class="n">workspace</span><span class="o">-&gt;</span><span class="n">mutableRun</span><span class="p">()</span>
+<span class="c1">// get all log data</span>
+<span class="k">auto</span> <span class="n">logData</span> <span class="o">=</span> <span class="n">run</span><span class="p">.</span><span class="n">getLogData</span><span class="p">()</span>
+<span class="c1">// access individual log</span>
+<span class="k">auto</span> <span class="n">protonCharge</span> <span class="o">=</span> <span class="n">run</span><span class="p">.</span><span class="n">getLogData</span><span class="p">(</span><span class="s">&quot;proton_charge&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Log data can be added and removed from the run object using the <cite>addLogData</cite> and <cite>removeLogData</cite> methods.</p>
+</div>
+<div class="section" id="multiperiod-workspace-sample-logs">
+<h2><a class="toc-backref" href="#id3">Multiperiod workspace sample logs</a><a class="headerlink" href="#multiperiod-workspace-sample-logs" title="Permalink to this headline">¶</a></h2>
+<p>When you load multiperiod data using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/LoadISISNexus-v2.html#algm-loadisisnexus-v2" title="(in MantidProject v5.1)"><span>LoadISISNexus v2</span></a> or <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/LoadEventNexus-v1.html#algm-loadeventnexus" title="(in MantidProject v5.1)"><span>LoadEventNexus v1</span></a> a set of
+periods logs, describing the period information for each workspace are created using the <cite>ISISRunLogs</cite> class.
+This class adds three logs, which are summarised as:</p>
+<div class="section" id="period-n">
+<h3><a class="toc-backref" href="#id4">period n</a><a class="headerlink" href="#period-n" title="Permalink to this headline">¶</a></h3>
+<p>This log contains times and boolean flags describing when a period started, but not necessarily when data collection
+for that period occurred. For example, a typical sample log entry for this log would read:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="35%" />
+<col width="33%" />
+<col width="32%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Time</th>
+<th class="head">Boolean flag value</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>2020-Oct-20 12:19:40</td>
+<td>0</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td>2020-Oct-20 12:19:41</td>
+<td>1</td>
+<td>nth period started</td>
+</tr>
+<tr class="row-even"><td>2020-Oct-20 12:19:48</td>
+<td>0</td>
+<td>nth period ended</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="running">
+<h3><a class="toc-backref" href="#id5">running</a><a class="headerlink" href="#running" title="Permalink to this headline">¶</a></h3>
+<p>This log contains a series of times and boolean describing when a data collection was occurring, for example:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="32%" />
+<col width="30%" />
+<col width="38%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Time</th>
+<th class="head">Boolean flag value</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>2020-Oct-20 12:19:40</td>
+<td>0</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td>2020-Oct-20 12:19:41</td>
+<td>1</td>
+<td>Data collection started</td>
+</tr>
+<tr class="row-even"><td>2020-Oct-20 12:19:46</td>
+<td>0</td>
+<td>Data collection ended</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="periods">
+<h3><a class="toc-backref" href="#id6">periods</a><a class="headerlink" href="#periods" title="Permalink to this headline">¶</a></h3>
+<p>This log contains times and period numbers describing when each period started, e.g.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="32%" />
+<col width="30%" />
+<col width="38%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Time</th>
+<th class="head">Period number</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>2020-Oct-20 12:19:40</td>
+<td>1</td>
+<td>Period 1 started</td>
+</tr>
+<tr class="row-odd"><td>2020-Oct-20 12:19:49</td>
+<td>2</td>
+<td>Period 2 started</td>
+</tr>
+<tr class="row-even"><td>2020-Oct-20 12:19:56</td>
+<td>3</td>
+<td>Period 3 started</td>
+</tr>
+</tbody>
+</table>
+<p>These three logs are constructed from the ICP_EVENT which tells you when various “events” of significance to the
+software happen, such as beginning or end of a run or a change of period number.</p>
+</div>
+<div class="section" id="filtering">
+<h3><a class="toc-backref" href="#id7">Filtering</a><a class="headerlink" href="#filtering" title="Permalink to this headline">¶</a></h3>
+<p>For multiperiod workspaces, time-series data, such as Theta will be filtered by combining the <cite>period n</cite> and <cite>running</cite>
+logs, to create a filter describing when data collection for each period occurred. For example, a filter for the nth
+period would be described as follows, where we note that each period is described entirely be two boolean values, the
+first describing when the data collection started for that period and the second stating when data collection ended.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="26%" />
+<col width="25%" />
+<col width="49%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Time</th>
+<th class="head">Boolean flag</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>2020-Oct-20 12:19:40</td>
+<td>0</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td>2020-Oct-20 12:19:41</td>
+<td>1</td>
+<td>Data collection for period n started</td>
+</tr>
+<tr class="row-even"><td>2020-Oct-20 12:19:46</td>
+<td>0</td>
+<td>Data collection for period n finished</td>
+</tr>
+</tbody>
+</table>
+<p>This filtering is performed by the static method <cite>ISISRunLogs::applyLogFiltering</cite>.</p>
+</div>
+<div class="section" id="event-data">
+<h3><a class="toc-backref" href="#id8">Event data</a><a class="headerlink" href="#event-data" title="Permalink to this headline">¶</a></h3>
+<p>For event data, an additional <cite>period_log</cite> is present in the workspace, which is created from the <cite>framelog/period_log</cite> entry.
+This entry contains the value of various items on a frame by frame (pulse by pulse) basis.
+So it is showing you what the neutron acquisition electronics believe the period number to be at the point that bit
+of neutron data was recorded.</p>
+<p>The <cite>framelog/period_log</cite> entry will therefore contain a list of <cite>m</cite> times and the corresponding period number
+which was active during that frame:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="32%" />
+<col width="30%" />
+<col width="38%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Time</th>
+<th class="head">Period number</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>2020-Oct-20 12:19:40</td>
+<td>1</td>
+<td>Period 1 data</td>
+</tr>
+<tr class="row-odd"><td>2020-Oct-20 12:19:41</td>
+<td>1</td>
+<td>Period 1 data</td>
+</tr>
+<tr class="row-even"><td>2020-Oct-20 12:19:44</td>
+<td>1</td>
+<td>Period 1 data</td>
+</tr>
+<tr class="row-odd"><td>2020-Oct-20 12:19:50</td>
+<td>2</td>
+<td>Period 2 data</td>
+</tr>
+<tr class="row-even"><td>2020-Oct-20 12:19:51</td>
+<td>2</td>
+<td>Period 2 data</td>
+</tr>
+<tr class="row-odd"><td>2020-Oct-20 12:19:52</td>
+<td>3</td>
+<td>Period 3 data</td>
+</tr>
+<tr class="row-even"><td>2020-Oct-20 12:20:01</td>
+<td>3</td>
+<td>Period 3 data</td>
+</tr>
+<tr class="row-odd"><td>2020-Oct-20 12:20:02</td>
+<td>3</td>
+<td>Period 3 data</td>
+</tr>
+</tbody>
+</table>
+<p>This log is therefore a combination of the <cite>period n</cite> and <cite>running logs</cite> defined above, whereby it records the times and
+periods during data collection. However, rather than recording a single value describing when
+the data collection for that period started, the <cite>framelog</cite> data contains a discrete number of time recordings
+corresponding to the period that each “bit” of neutron data was collected in.</p>
+</div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+      <ul class="nav navbar-nav" style=" float: right;">
+      
+      
+          
+            
+  <li>
+    <a href="RemoteJobSubmissionAPI.html" title="Previous Chapter: Remote Job Submission API"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Remote Job Su...</span>
+    </a>
+  </li>
+  <li>
+    <a href="Widgets/Plotting.html" title="Next Chapter: Plotting (Elemental Analysis)"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Plotting (Ele... &raquo;</span>
+    </a>
+  </li>
+          
+       
+          <li><a href="#">Back to top</a></li>
+       </ul>
+    <p>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
