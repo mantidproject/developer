@@ -93,81 +93,93 @@
 <p class="topic-title first">Table of Contents</p>
 <ul class="simple">
 <li><a class="reference internal" href="#introduction" id="id1">Introduction</a></li>
-<li><a class="reference internal" href="#tests" id="id2">Tests</a><ul>
-<li><a class="reference internal" href="#test-1-load-current-run" id="id3">Test 1: Load current run</a></li>
-<li><a class="reference internal" href="#test-2-data-loading-and-rebinning" id="id4">Test 2: Data loading and rebinning</a></li>
-<li><a class="reference internal" href="#test-3-old-style-data-analysis-gui" id="id5">Test 3: Old style data analysis GUI</a></li>
-<li><a class="reference internal" href="#test-4-fit-to-raw-data" id="id6">Test 4: Fit to raw data</a></li>
-<li><a class="reference internal" href="#test-5-new-style-data-analysis-gui" id="id7">Test 5: New style data analysis GUI</a></li>
-<li><a class="reference internal" href="#teardown" id="id8">Teardown</a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#test-1-load-current-run" id="id2">Test 1: Load Current Run</a></li>
+<li><a class="reference internal" href="#test-2-data-loading-and-rebinning" id="id3">Test 2: Data Loading and Rebinning</a></li>
+<li><a class="reference internal" href="#test-3-basic-fitting-in-the-gui" id="id4">Test 3: Basic Fitting In The GUI</a></li>
 </ul>
 </div>
 <div class="section" id="introduction">
 <h2><a class="toc-backref" href="#id1">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>These are unscripted tests for the <strong class="program">Muon Analysis</strong> interface.
-The tests here in group 1 are concerned with general data loading and processing, as well as with switching between the old and new fitting interfaces and fitting raw or binned data.
-The master testing guide is located at <a class="reference internal" href="Muon Analysis Unscripted Testing Guide.html#muon-analysis-testguide-ref"><span class="std std-ref">Muon Interfaces Unscripted Testing</span></a>.</p>
+The tests here in group 1 are concerned with general data loading and
+processing, as well as with switching between the old and new fitting
+interfaces and fitting raw or binned data. The master testing guide is
+located at <a class="reference internal" href="Muon Analysis Unscripted Testing Guide.html#muon-analysis-testguide-ref"><span class="std std-ref">Muon Interfaces Unscripted Testing</span></a>.</p>
 </div>
-<div class="section" id="tests">
-<h2><a class="toc-backref" href="#id2">Tests</a><a class="headerlink" href="#tests" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
 <div class="section" id="test-1-load-current-run">
-<h3><a class="toc-backref" href="#id3">Test 1: Load current run</a><a class="headerlink" href="#test-1-load-current-run" title="Permalink to this headline">¶</a></h3>
+<h2><a class="toc-backref" href="#id2">Test 1: Load Current Run</a><a class="headerlink" href="#test-1-load-current-run" title="Permalink to this headline">¶</a></h2>
+<p><strong>Time required 5 minutes</strong></p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">This test will only work if you are using Windows and are connected to the ISIS network. If this is not the case, go to test 2.</p>
+<p class="last">This test will only work if you are using Windows and are connected
+to the ISIS network. You should also enable search of the archive in your
+<a class="reference external" href="https://docs.mantidproject.org/nightly/interfaces/ManageUserDirectories.html#manageuserdirectories" title="(in MantidProject v5.1)"><span class="xref std std-ref">manage user directories</span></a>. If this is not the
+case, go to <a class="reference internal" href="Muon_Analysis_test_group_2_fitting.html#test-2"><span class="std std-ref">Test 2: Sequential Fit</span></a>.</p>
 </div>
 <ul class="simple">
-<li>On the <em>Home</em> tab, in the <em>Instrument</em> section, select each ISIS muon instrument in turn.</li>
-<li>For each instrument, click the <em>Load current run</em> button in the <em>Data Files</em> section.</li>
-<li>A datafile should be successfully loaded, and a plot produced, for every instrument except MUT.</li>
-<li>For MUT, a dialog should explain that current run loading is not supported for that instrument.</li>
-<li>When the current run is loaded, check that the left and right arrow buttons on the interface cycle through recent runs.</li>
+<li>Open <strong>Muon Analysis</strong> (<em>Interfaces</em> &gt; <em>Muon</em> &gt; <em>Muon Analysis</em>)</li>
+<li>On the <strong>Home</strong> tab, in the <em>Instrument</em> section, select each ISIS muon
+instrument in turn</li>
+<li>For each instrument, click the <strong>Load Current Run</strong> button in the <em>Loading</em>
+section</li>
+<li>A datafile should be successfully loaded, and a plot produced, for every
+instrument except <strong>PSI</strong></li>
+<li>When the current run is loaded, check that the <strong>&lt;</strong> and <strong>&gt;</strong> buttons
+on the interface cycle through recent runs. You shouldn’t be able to
+use the <strong>&gt;</strong> button after loading the most recent run as there should be no
+runs that exist after the current run</li>
 </ul>
+<hr class="docutils" />
 </div>
 <div class="section" id="test-2-data-loading-and-rebinning">
-<h3><a class="toc-backref" href="#id4">Test 2: Data loading and rebinning</a><a class="headerlink" href="#test-2-data-loading-and-rebinning" title="Permalink to this headline">¶</a></h3>
+<span id="test-2"></span><h2><a class="toc-backref" href="#id3">Test 2: Data Loading and Rebinning</a><a class="headerlink" href="#test-2-data-loading-and-rebinning" title="Permalink to this headline">¶</a></h2>
+<p><strong>Time required 5 minutes</strong></p>
 <ul class="simple">
-<li>On the <em>Home</em> tab, in the <em>Instrument</em> section, set the instrument to EMU.</li>
-<li>Type <em>20918</em> in the runs box and hit Enter.</li>
-<li>After data is loaded, the <em>Grouping Options</em> and <em>Data Analysis</em> tabs should be enabled.</li>
+<li>Open <strong>Muon Analysis</strong> (<em>Interfaces</em> &gt; <em>Muon</em> &gt; <em>Muon Analysis</em>)</li>
+<li>On the <strong>Home</strong> tab, in the <em>Instrument</em> section, set the instrument to
+<strong>EMU</strong></li>
+<li>Load run <code class="docutils literal notranslate"><span class="pre">20918</span></code></li>
 <li>The data should look like this:</li>
 </ul>
-<img alt="../../_images/emu20918.png" class="align-center" src="../../_images/emu20918.png" />
-<p>(settings used on <em>Settings</em> tab are: finish 10 us, autoscale on, line plot, no rebinning).</p>
+<img alt="emu20918.png" class="align-center" src="../../_images/emu20918.png" />
 <ul class="simple">
-<li>Go to <em>Settings</em> tab and, under “Rebin data”, select “Fixed” with steps of 5. Should now look like this:</li>
+<li>On the <strong>Home</strong> tab, under the <em>Rebin</em> section, change <strong>Rebin</strong> to
+<strong>Fixed</strong> with steps of <code class="docutils literal notranslate"><span class="pre">5</span></code>. Then on the Plotting Window make sure
+<strong>Plot Raw</strong> is unchecked. The data should now look like this:</li>
 </ul>
-<img alt="../../_images/emu20918_rebin.png" class="align-center" src="../../_images/emu20918_rebin.png" />
+<img alt="emu20918_rebin.png" class="align-center" src="../../_images/emu20918_rebin.png" />
 </div>
-<div class="section" id="test-3-old-style-data-analysis-gui">
-<h3><a class="toc-backref" href="#id5">Test 3: Old style data analysis GUI</a><a class="headerlink" href="#test-3-old-style-data-analysis-gui" title="Permalink to this headline">¶</a></h3>
+<hr class="docutils" />
+<div class="section" id="test-3-basic-fitting-in-the-gui">
+<h2><a class="toc-backref" href="#id4">Test 3: Basic Fitting In The GUI</a><a class="headerlink" href="#test-3-basic-fitting-in-the-gui" title="Permalink to this headline">¶</a></h2>
+<p><strong>Time required 5-10 minutes</strong></p>
+<ul>
+<li><p class="first">Start with the same data loaded and rebin settings from <a class="reference internal" href="Muon_Analysis_test_group_2_fitting.html#test-2"><span class="std std-ref">Test 2: Sequential Fit</span></a></p>
+</li>
+<li><dl class="first docutils">
+<dt>Go to the <strong>Fitting</strong> tab</dt>
+<dd><ul class="first last simple">
+<li>Right click the empty table area; Select <strong>Add Function</strong></li>
+<li>Add <strong>Abragam</strong> (<em>Muon</em> &gt; <em>MuonSpecific</em> &gt; <em>Abragam</em>)</li>
+<li>Set <code class="docutils literal notranslate"><span class="pre">Omega</span> <span class="pre">=</span> <span class="pre">8.5</span></code> and <code class="docutils literal notranslate"><span class="pre">Tau</span> <span class="pre">=</span> <span class="pre">0.5</span></code></li>
+<li>In the bottom table, check <strong>Fit To Raw Data</strong> to be <code class="docutils literal notranslate"><span class="pre">false</span></code></li>
+<li>Click <strong>Fit</strong></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">The fit should be applied to the rebinned data</p>
+</li>
+</ul>
+<img alt="emu20918_rebin_fitted.png" class="align-center" src="../../_images/emu20918_rebin_fitted.png" />
 <ul class="simple">
-<li>Still on the <em>Settings</em> tab from test 2, leave rebinning on and make sure that “Enable multiple fitting” is turned <strong>off</strong>. (It should be off by default).</li>
-<li>Go to the <em>Data Analysis</em> tab. The interface should contain a fit property browser. The <code class="docutils literal notranslate"><span class="pre">TF</span> <span class="pre">Asymmetry</span> <span class="pre">Mode</span></code> should be unticked.</li>
-<li>Set up an <code class="docutils literal notranslate"><span class="pre">Abragam</span></code> function with <code class="docutils literal notranslate"><span class="pre">Omega=8.5</span></code>, <code class="docutils literal notranslate"><span class="pre">Tau=0.5</span></code> and fit the data. The fit should be done to the rebinned data.</li>
+<li>Now set <strong>Fit To Raw Data</strong> to be <code class="docutils literal notranslate"><span class="pre">true</span></code> and click <strong>Fit</strong> again. This time
+it will fit to the raw data, but the rebinned data will still be shown in the
+plot</li>
+<li>There should now be two new workspaces in the workspace toolbox; One for
+fitted raw data and one for fitted rebinned data</li>
 </ul>
-</div>
-<div class="section" id="test-4-fit-to-raw-data">
-<h3><a class="toc-backref" href="#id6">Test 4: Fit to raw data</a><a class="headerlink" href="#test-4-fit-to-raw-data" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li>Now tick the <code class="docutils literal notranslate"><span class="pre">Fit</span> <span class="pre">to</span> <span class="pre">raw</span> <span class="pre">data</span></code> box in the bottom section and fit again. This time it will fit to the raw data, but the rebinned data will still be shown in the plot.</li>
-</ul>
-</div>
-<div class="section" id="test-5-new-style-data-analysis-gui">
-<h3><a class="toc-backref" href="#id7">Test 5: New style data analysis GUI</a><a class="headerlink" href="#test-5-new-style-data-analysis-gui" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li>On the <em>Settings</em> tab, turn “Enable multiple fitting” <strong>on</strong>.</li>
-<li>Go back to <em>Data Analysis</em>. The new UI should be there, and the fit function should have been cleared (so the Fit option is disabled until a new function is set up).</li>
-<li>Set up the Abragam function as in test 3 and fit.</li>
-<li>Try this with and without “Fit to raw data” as in test 4.</li>
-</ul>
-</div>
-<div class="section" id="teardown">
-<h3><a class="toc-backref" href="#id8">Teardown</a><a class="headerlink" href="#teardown" title="Permalink to this headline">¶</a></h3>
-<p>Before moving to group 2, go to the <em>Settings</em> tab and set rebinning back to “None”. Leave the “Enable multiple fitting” option turned on.</p>
-</div>
 </div>
 </div>
 

@@ -93,153 +93,344 @@
 <p class="topic-title first">Table of Contents</p>
 <ul class="simple">
 <li><a class="reference internal" href="#introduction" id="id1">Introduction</a></li>
-<li><a class="reference internal" href="#tests" id="id2">Tests</a><ul>
-<li><a class="reference internal" href="#test-1-individual-fit" id="id3">Test 1: individual fit</a></li>
-<li><a class="reference internal" href="#test-2-sequential-fit" id="id4">Test 2: sequential fit</a></li>
-<li><a class="reference internal" href="#test-3-co-added-fit" id="id5">Test 3: co-added fit</a></li>
-<li><a class="reference internal" href="#test-4-simultaneous-fit-across-runs" id="id6">Test 4: simultaneous fit across runs</a></li>
-<li><a class="reference internal" href="#test-5-simultaneous-fit-across-groups" id="id7">Test 5: simultaneous fit across groups</a></li>
-<li><a class="reference internal" href="#test-6-sequential-fit-of-simultaneous-fits" id="id8">Test 6: sequential fit of simultaneous fits</a></li>
-<li><a class="reference internal" href="#test-7-simultaneous-fit-across-periods" id="id9">Test 7: simultaneous fit across periods</a></li>
-<li><a class="reference internal" href="#test-8-tf-asymmetry-fit" id="id10">Test 8: TF Asymmetry fit</a></li>
-<li><a class="reference internal" href="#test-9-multiple-tf-asymmetry-fits" id="id11">Test 9: Multiple TF Asymmetry fits</a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#test-1-individual-fit" id="id2">Test 1: Individual Fit</a></li>
+<li><a class="reference internal" href="#test-2-sequential-fit" id="id3">Test 2: Sequential Fit</a></li>
+<li><a class="reference internal" href="#test-3-co-added-fit" id="id4">Test 3: Co-added Fit</a></li>
+<li><a class="reference internal" href="#test-4-simultaneous-fit-across-runs" id="id5">Test 4: Simultaneous Fit Across Runs</a></li>
+<li><a class="reference internal" href="#test-5-simultaneous-fit-across-groups" id="id6">Test 5: Simultaneous Fit Across Groups</a></li>
+<li><a class="reference internal" href="#test-6-sequential-fit-of-simultaneous-fits" id="id7">Test 6: Sequential Fit of Simultaneous Fits</a></li>
+<li><a class="reference internal" href="#test-7-simultaneous-fit-across-periods" id="id8">Test 7: Simultaneous Fit Across Periods</a></li>
+<li><a class="reference internal" href="#test-8-tf-asymmetry-fit" id="id9">Test 8: TF Asymmetry Fit</a></li>
+<li><a class="reference internal" href="#test-9-simultaneous-tf-asymmetry-fits" id="id10">Test 9: Simultaneous TF Asymmetry Fits</a></li>
+<li><a class="reference internal" href="#test-10-sequential-tf-asymmetry-fits" id="id11">Test 10: Sequential TF Asymmetry Fits</a></li>
 </ul>
 </div>
 <div class="section" id="introduction">
 <h2><a class="toc-backref" href="#id1">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>These are unscripted tests for the <strong class="program">Muon Analysis</strong> interface.
-The tests here in group 2 are concerned with the different types of fits possible through the <em>Data Analysis</em> tab.
-In each test, the fit should succeed without a crash - the results will be tested later, in test group 3.</p>
+The tests here in group 2 are concerned with the different types of fits
+possible through the <strong>Fitting</strong> and <strong>Sequential Fitting</strong> tabs. In each test,
+the fit should succeed without a crash - the results will be tested later, in
+<a class="reference internal" href="Muon_Analysis_test_group_3_results.html#muon-analysis-testguide-3-results-ref"><span class="std std-ref">Muon Analysis Unscripted Testing: Group 3 (Results Tables)</span></a>. You will be using all the results
+from these tests as inputs for <a class="reference internal" href="Muon_Analysis_test_group_3_results.html#muon-analysis-testguide-3-results-ref"><span class="std std-ref">Muon Analysis Unscripted Testing: Group 3 (Results Tables)</span></a> so
+<strong>do not</strong> clear or close the interface.</p>
 <p>The master testing guide is located at <a class="reference internal" href="Muon Analysis Unscripted Testing Guide.html#muon-analysis-testguide-ref"><span class="std std-ref">Muon Interfaces Unscripted Testing</span></a>.</p>
+<hr class="docutils" />
 </div>
-<div class="section" id="tests">
-<h2><a class="toc-backref" href="#id2">Tests</a><a class="headerlink" href="#tests" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="test-1-individual-fit">
-<h3><a class="toc-backref" href="#id3">Test 1: individual fit</a><a class="headerlink" href="#test-1-individual-fit" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li>On the <em>Home</em> tab, select instrument EMU and load <code class="docutils literal notranslate"><span class="pre">EMU00020918.nxs</span></code>.</li>
-<li>Go to <em>Data Analysis</em> tab. Expand the window if the function browser is too small (you can drag the bar underneath it to set relative sizes of the widgets).</li>
-<li>The loaded dataset should be pre-selected: “20918” in Runs and “All Pairs” selected in the data table.</li>
-<li>“Label” box and “Co-add/Simultaneous” radio buttons should be disabled</li>
-<li>Click and drag blue lines on graph, check start/end times are updated.</li>
-<li>Check the reverse - change start/end times and blue lines should be updated on graph.</li>
-<li>Set up the interface to look like this. Note the non-default values for <code class="docutils literal notranslate"><span class="pre">f0.Omega</span></code> and <code class="docutils literal notranslate"><span class="pre">f0.Tau</span></code>:</li>
+<span id="test-1"></span><h2><a class="toc-backref" href="#id2">Test 1: Individual Fit</a><a class="headerlink" href="#test-1-individual-fit" title="Permalink to this headline">¶</a></h2>
+<p><strong>Time required 5-10 minutes</strong></p>
+<ul>
+<li><p class="first">Open <strong>Muon Analysis</strong> (<em>Interfaces</em> &gt; <em>Muon</em> &gt; <em>Muon Analysis</em>)</p>
+</li>
+<li><p class="first">Go to the <strong>Home</strong> tab, select instrument <strong>EMU</strong> and load <code class="docutils literal notranslate"><span class="pre">20918</span></code></p>
+</li>
+<li><dl class="first docutils">
+<dt>Go to the <strong>Fitting</strong> tab</dt>
+<dd><ul class="first last simple">
+<li>Right click the empty table area; Select <strong>Add Function</strong></li>
+<li>Add a <strong>Flat Background</strong> (<em>Background</em> &gt; <em>Flat Background</em>)</li>
+<li>Similarly, add <strong>Abragam</strong> (<em>Muon</em> &gt; <em>MuonSpecific</em> &gt; <em>Abragam</em>)</li>
+<li>Set <code class="docutils literal notranslate"><span class="pre">Omega</span> <span class="pre">=</span> <span class="pre">8.5</span></code> and <code class="docutils literal notranslate"><span class="pre">Tau</span> <span class="pre">=</span> <span class="pre">0.4</span></code></li>
+<li>Click <strong>Fit</strong></li>
 </ul>
-<a class="reference internal image-reference" href="../../_images/fitting_test1.png"><img alt="../../_images/fitting_test1.png" class="align-center" src="../../_images/fitting_test1.png" style="height: 500px;" /></a>
-<ul class="simple">
-<li>Fit the data. Graph should be updated.</li>
+</dd>
+</dl>
+</li>
+<li><p class="first">The fit should look something like this:</p>
+</li>
 </ul>
+<img alt="fitting_test1.png" class="align-center" src="../../_images/fitting_test1.png" />
+<ul class="simple">
+<li>In the bottom table, set <code class="docutils literal notranslate"><span class="pre">Time</span> <span class="pre">Start</span> <span class="pre">=</span> <span class="pre">1</span></code> and <code class="docutils literal notranslate"><span class="pre">Time</span> <span class="pre">End</span> <span class="pre">=</span> <span class="pre">5</span></code></li>
+<li>Click <strong>Fit</strong> again</li>
+<li>The fit curve should be updated with the new time constraints and look like
+this:</li>
+</ul>
+<img alt="fitting_test1_start_end_time.png" class="align-center" src="../../_images/fitting_test1_start_end_time.png" />
+<hr class="docutils" />
 </div>
 <div class="section" id="test-2-sequential-fit">
-<h3><a class="toc-backref" href="#id4">Test 2: sequential fit</a><a class="headerlink" href="#test-2-sequential-fit" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li>With everything set up as in the picture above, click <em>Fit/Sequential fit</em>. (Runs should still be set to “20918”, a single run).</li>
-<li>Dialog should appear. In the runs box <strong>of the new dialog that appears</strong>, type “20918-20” and hit Start.</li>
-<li>Sequential fit of runs 20918, 20919, 20920 should happen one after the other.</li>
+<span id="test-2"></span><h2><a class="toc-backref" href="#id3">Test 2: Sequential Fit</a><a class="headerlink" href="#test-2-sequential-fit" title="Permalink to this headline">¶</a></h2>
+<p><strong>Time required 5 minutes</strong></p>
+<ul>
+<li><p class="first">Now load runs <code class="docutils literal notranslate"><span class="pre">20918-20</span></code></p>
+</li>
+<li><dl class="first docutils">
+<dt>Go to the <strong>Fitting</strong> tab</dt>
+<dd><ul class="first last simple">
+<li>Right click <strong>Composite Function</strong> and click <strong>Remove function</strong></li>
+<li>Right click the empty table area; Select <strong>Add Function</strong></li>
+<li>Add a <strong>Flat Background</strong> (<em>Background</em> &gt; <em>Flat Background</em>)</li>
+<li>Similarly, add <strong>Abragam</strong> (<em>Muon</em> &gt; <em>MuonSpecific</em> &gt; <em>Abragam</em>)</li>
+<li>Set <code class="docutils literal notranslate"><span class="pre">Omega</span> <span class="pre">=</span> <span class="pre">8.5</span></code> and <code class="docutils literal notranslate"><span class="pre">Tau</span> <span class="pre">=</span> <span class="pre">0.4</span></code></li>
+<li>Set <code class="docutils literal notranslate"><span class="pre">Time</span> <span class="pre">Start</span> <span class="pre">=</span> <span class="pre">0.113</span></code> and <code class="docutils literal notranslate"><span class="pre">Time</span> <span class="pre">End</span> <span class="pre">=</span> <span class="pre">15</span></code></li>
 </ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Go to the <strong>Sequential Fitting</strong> tab</dt>
+<dd><ul class="first last simple">
+<li>Click <strong>Sequentially fit all</strong>, all fits should succeed</li>
+<li>Select each row in the table and see that the plot updates corrctly</li>
+<li>Select the first row, and change <code class="docutils literal notranslate"><span class="pre">Omega</span> <span class="pre">=</span> <span class="pre">9.0</span></code> and <code class="docutils literal notranslate"><span class="pre">Tau</span> <span class="pre">=</span> <span class="pre">0.2</span></code> in the
+table</li>
+<li>Then click <strong>Fit selected</strong>. This should update the fit for run <code class="docutils literal notranslate"><span class="pre">20918</span></code>
+but the other fits should remain the same</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<hr class="docutils" />
 </div>
 <div class="section" id="test-3-co-added-fit">
-<h3><a class="toc-backref" href="#id5">Test 3: co-added fit</a><a class="headerlink" href="#test-3-co-added-fit" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li>On the <em>Home</em> tab, load EMU 20918-20.</li>
-<li>Go to <em>Data Analysis</em> tab. Stale errors should be cleared from the function browser.</li>
-<li>In the drop-down, there should only be one workspace (<code class="docutils literal notranslate"><span class="pre">EMU00020918-20;</span> <span class="pre">Pair;</span> <span class="pre">long;</span> <span class="pre">Asym;</span> <span class="pre">#1</span></code>).</li>
-<li>Fit as before. Graph should be updated.</li>
+<span id="test-3"></span><h2><a class="toc-backref" href="#id4">Test 3: Co-added Fit</a><a class="headerlink" href="#test-3-co-added-fit" title="Permalink to this headline">¶</a></h2>
+<p><strong>Time required 5 minutes</strong></p>
+<ul>
+<li><p class="first">Following <a class="reference internal" href="#test-2"><span class="std std-ref">Test 2: Sequential Fit</span></a>, in the <em>Loading</em> section, check <strong>Co-Add</strong> to load
+<code class="docutils literal notranslate"><span class="pre">20918-20</span></code> as one run</p>
+</li>
+<li><dl class="first docutils">
+<dt>Go to <strong>Fitting</strong> tab</dt>
+<dd><ul class="first last simple">
+<li>In the <strong>Select Workspace</strong> drop-down, there should only be one workspace
+; <code class="docutils literal notranslate"><span class="pre">EMU00020918-20;</span> <span class="pre">Pair</span> <span class="pre">Asym;</span> <span class="pre">long;</span> <span class="pre">MA</span></code></li>
+<li>Click <strong>Fit</strong> as before. The plot should be updated</li>
 </ul>
+</dd>
+</dl>
+</li>
+</ul>
+<img alt="fitting_test3.png" class="align-center" src="../../_images/fitting_test3.png" />
+<hr class="docutils" />
 </div>
 <div class="section" id="test-4-simultaneous-fit-across-runs">
-<h3><a class="toc-backref" href="#id6">Test 4: simultaneous fit across runs</a><a class="headerlink" href="#test-4-simultaneous-fit-across-runs" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li>With the same runs (20918-20) selected, select the “Simultaneous” radio button option.</li>
-<li>Drop-down list should have three workspaces in it now, for the three runs that will be fitted.</li>
-<li>The “Label” box should be enabled. By default, this will contain the run number string (“20918-20”) - add “SimFit” to the end of the string.</li>
-<li>Keep the same fit function, but use the “Global” checkboxes to mark <code class="docutils literal notranslate"><span class="pre">A</span></code>, <code class="docutils literal notranslate"><span class="pre">Omega</span></code>, <code class="docutils literal notranslate"><span class="pre">Phi</span></code> and <code class="docutils literal notranslate"><span class="pre">Sigma</span></code> as global.</li>
-<li>Fit the data. Note that plot will <em>not</em> be updated at present.
-(If you want to plot results, see the <code class="docutils literal notranslate"><span class="pre">MuonSimulFit_20918-20SimFit</span></code> workspace group).</li>
-<li>Use the <code class="docutils literal notranslate"><span class="pre">&lt;&lt;</span></code> and <code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code> buttons, or drop-down list, to see the fitted parameters for each run in the function browser.</li>
+<span id="test-4"></span><h2><a class="toc-backref" href="#id5">Test 4: Simultaneous Fit Across Runs</a><a class="headerlink" href="#test-4-simultaneous-fit-across-runs" title="Permalink to this headline">¶</a></h2>
+<p><strong>Time required 5 minutes</strong></p>
+<ul>
+<li><p class="first">Following <a class="reference internal" href="#test-3"><span class="std std-ref">Test 3: Co-added Fit</span></a>, uncheck <strong>Co-Add</strong></p>
+</li>
+<li><dl class="first docutils">
+<dt>Go to the <strong>Fitting</strong> tab</dt>
+<dd><ul class="first last simple">
+<li>Check the <strong>Simultaneous fit over</strong> checkbox, and change from <strong>Run</strong>
+to <strong>Group/Pair</strong></li>
+<li>The <strong>Display parameters for</strong> drop down should contain three workspaces</li>
+<li>Using the same fit function as before, check the <strong>Global</strong> checkbox for
+the parameters <strong>A</strong>, <strong>Omega</strong>, <strong>Phi</strong> and <strong>Sigma</strong></li>
+<li>Click <strong>Fit</strong></li>
+<li>Use the <strong>&lt;&lt;</strong> and <strong>&gt;&gt;</strong> buttons, or drop-down list, to see the fitted
+parameters for each run in the function browser.</li>
+<li>In the <strong>Plotting Window</strong>, check <strong>Tile plot by</strong> and change to <strong>Run</strong>
+from <strong>Group/Pair</strong></li>
+<li>The fit should look something like this:</li>
 </ul>
+</dd>
+</dl>
+</li>
+</ul>
+<img alt="fitting_test4.png" class="align-center" src="../../_images/fitting_test4.png" />
+<hr class="docutils" />
 </div>
 <div class="section" id="test-5-simultaneous-fit-across-groups">
-<h3><a class="toc-backref" href="#id7">Test 5: simultaneous fit across groups</a><a class="headerlink" href="#test-5-simultaneous-fit-across-groups" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li>Type “20918” only in the “Runs” box.</li>
-<li>The “Label” box should still read “20918-20SimFit”, change it to “20918”.</li>
-<li>Under <code class="docutils literal notranslate"><span class="pre">property</span></code> for <code class="docutils literal notranslate"><span class="pre">Groups/Pairs</span> <span class="pre">to</span> <span class="pre">fit</span></code> change from All Pairs to All Groups.</li>
-<li>Keep fit function and global parameters as before.</li>
-<li>Fit data.</li>
-<li>Now try to fit again, without changing anything. It should warn you that the label “20918” has already been used - say no to overwriting and it should automatically increment the label to “20918#2”.</li>
+<span id="test-5"></span><h2><a class="toc-backref" href="#id6">Test 5: Simultaneous Fit Across Groups</a><a class="headerlink" href="#test-5-simultaneous-fit-across-groups" title="Permalink to this headline">¶</a></h2>
+<p><strong>Time required 5 minutes</strong></p>
+<ul>
+<li><p class="first">Load run <code class="docutils literal notranslate"><span class="pre">20918</span></code>, keeping the same set up as before in <a class="reference internal" href="#test-4"><span class="std std-ref">Test 4: Simultaneous Fit Across Runs</span></a></p>
+</li>
+<li><dl class="first docutils">
+<dt>Go to the <strong>Grouping</strong> tab</dt>
+<dd><ul class="first last simple">
+<li>Uncheck <strong>Analyse (plot/fit)</strong> for the pair <strong>long</strong>, and check
+<strong>Analyse (plot/fit)</strong> for both groups; <strong>fwd</strong> and <strong>bwd</strong></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Go to the <strong>Fitting</strong> tab</dt>
+<dd><ul class="first last simple">
+<li>Keep fit function and global parameters as before</li>
+<li>Change from <strong>Group/Pair</strong> to <strong>Run</strong></li>
+<li>The <strong>Display parameters for</strong> drop down should contain two workspaces</li>
+<li>Click <strong>Fit</strong></li>
+<li>The fit won’t be very good but it shouldn’t crash</li>
+</ul>
+</dd>
+</dl>
+</li>
 </ul>
 </div>
+<hr class="docutils" />
 <div class="section" id="test-6-sequential-fit-of-simultaneous-fits">
-<h3><a class="toc-backref" href="#id8">Test 6: sequential fit of simultaneous fits</a><a class="headerlink" href="#test-6-sequential-fit-of-simultaneous-fits" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li>Keep the same setup as Test 5, i.e. Runs=”20918” and “All Groups” selected.</li>
-<li>Click <em>Fit/Sequential fit</em> to launch the dialog.</li>
-<li>If offered the choice, choose not to overwrite the label.</li>
-<li>Dialog should appear. In this new dialog (not the interface underneath):<ul>
-<li>Runs = “20918-20”</li>
-<li>Label = “LabelSeq”</li>
-<li>Hit “Start”</li>
-</ul>
+<h2><a class="toc-backref" href="#id7">Test 6: Sequential Fit of Simultaneous Fits</a><a class="headerlink" href="#test-6-sequential-fit-of-simultaneous-fits" title="Permalink to this headline">¶</a></h2>
+<p><strong>Time required 5 minutes</strong></p>
+<ul>
+<li><p class="first">Load runs <code class="docutils literal notranslate"><span class="pre">20918-20</span></code> again</p>
 </li>
-<li>This should fit the <code class="docutils literal notranslate"><span class="pre">fwd</span></code> and <code class="docutils literal notranslate"><span class="pre">bwd</span></code> groups simultaneously for each run 20918, 20919, 20920 in sequence.</li>
+<li><p class="first">Keep the same set up as <a class="reference internal" href="#test-5"><span class="std std-ref">Test 5: Simultaneous Fit Across Groups</span></a> in the <strong>Grouping</strong> and <strong>Fitting</strong>
+tab</p>
+</li>
+<li><p class="first">With <strong>Simultaneous fit over</strong> still checked, go to the
+<strong>Sequential Fitting</strong> tab</p>
+<blockquote>
+<div><ul class="simple">
+<li>Click <strong>Sequentially fit all</strong></li>
+<li>This should fit the <strong>fwd</strong> and <strong>bwd</strong> groups simultaneously for each
+run in sequence; <code class="docutils literal notranslate"><span class="pre">20918</span></code>, <code class="docutils literal notranslate"><span class="pre">20919</span></code>, <code class="docutils literal notranslate"><span class="pre">20920</span></code></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">In the workspace toolbox there should be a group workspace for each run
+that contains fitted data for both <strong>fwd</strong> and <strong>bwd</strong></p>
+</li>
 </ul>
 </div>
+<hr class="docutils" />
 <div class="section" id="test-7-simultaneous-fit-across-periods">
-<h3><a class="toc-backref" href="#id9">Test 7: simultaneous fit across periods</a><a class="headerlink" href="#test-7-simultaneous-fit-across-periods" title="Permalink to this headline">¶</a></h3>
-<p>The data used so far is single period, so here we will use MUSR data from the unit test data.</p>
-<ul class="simple">
-<li>Go back to the <em>Home</em> tab, set instrument to MUSR.</li>
-<li>Load run 15189 and switch to <em>Data Analysis</em> tab.</li>
-<li>(If any fit curves are still displayed, clear them with <span class="menuselection">Display ‣ Clear fit curves</span>).</li>
-<li>Two extra rows (<code class="docutils literal notranslate"><span class="pre">Selected</span> <span class="pre">Periods</span></code> and <code class="docutils literal notranslate"><span class="pre">Periods</span> <span class="pre">to</span> <span class="pre">fit</span></code> ) should have appeared in the data table.  multi-period data.</li>
-<li>Note two points:<ul>
-<li>“All Pairs” should be selected - because “long” was loaded on the <em>Home</em> tab.</li>
-<li>In the <em>label</em> box, the previous label “20918#2” has <strong>not</strong> been updated. This is because it contains a non-numeric character, so is assumed to be a user-set label (this is the intended behaviour).</li>
-</ul>
+<h2><a class="toc-backref" href="#id8">Test 7: Simultaneous Fit Across Periods</a><a class="headerlink" href="#test-7-simultaneous-fit-across-periods" title="Permalink to this headline">¶</a></h2>
+<p><strong>Time required 5 minutes</strong></p>
+<p>The data used so far has been single period, so here we will use MUSR data
+that has multiple periods.</p>
+<ul>
+<li><p class="first">Go back to the <strong>Home</strong> tab and set <em>Instrument</em> to <strong>MUSR</strong></p>
 </li>
-<li>Set label to “MUSRlabel”</li>
-<li>Set fit function to <code class="docutils literal notranslate"><span class="pre">LinearBackground</span></code> (clear any existing function).</li>
-<li>Fit - periods will be fitted simultaneously.</li>
+<li><p class="first">Load run <code class="docutils literal notranslate"><span class="pre">15189</span></code></p>
+</li>
+<li><dl class="first docutils">
+<dt>Go to the <strong>Grouping</strong> tab</dt>
+<dd><ul class="first last simple">
+<li>There should now be four groups, two <strong>fwd</strong> and two <strong>bwd</strong>, and two
+pairs</li>
 </ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Go to the <strong>Fitting</strong> tab</dt>
+<dd><ul class="first last simple">
+<li>Remove any existing functions (Right click <em>Composite function</em> &gt; <em>Remove function</em>)</li>
+<li>Make sure <strong>Simultaneous fit over</strong> is checked and is over <strong>Run</strong></li>
+<li>Add a <strong>Linear Background</strong> (<em>Background</em> &gt; <em>Linear Background</em>)</li>
+<li>Click <strong>Fit</strong></li>
+<li>In the <strong>Plotting Window</strong>, check <strong>Tile plot by</strong> and change to <strong>Run</strong>
+from <strong>Group/Pair</strong></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">The fit should look something like this:</p>
+</li>
+</ul>
+<img alt="fitting_test7.png" class="align-center" src="../../_images/fitting_test7.png" />
 </div>
+<hr class="docutils" />
 <div class="section" id="test-8-tf-asymmetry-fit">
-<h3><a class="toc-backref" href="#id10">Test 8: TF Asymmetry fit</a><a class="headerlink" href="#test-8-tf-asymmetry-fit" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li>Go back to the <em>Home</em> tab and load run 62260.</li>
-<li>In the <em>Data Analysis</em> tab, set the “Groups/Pairs to fit” to “Custom”.</li>
-<li>A pop-up should appear and make sure that only “fwd” is ticked.</li>
-<li>Close the pop-up.</li>
-<li>Clear the fitting functions.</li>
-<li>Add a “GausOsc” function.</li>
-<li>Set “Frequency” to 1.3.</li>
-<li>Enable “TF Asymmetry Mode”.</li>
-<li>Run a fit.</li>
-<li>Look at the fitting parameters and notice that the “Flat Background” is non-zero (larger than the error).</li>
-<li>Disable “TF Asymmetry Mode”.</li>
-<li>Remove the fitting functions.</li>
-<li>Add a “GausOsc” function and set “Frequency” to 1.3.</li>
-<li>Then add a “Flat Background” to the fitting functions.</li>
-<li>Run a normal Fit.</li>
-<li>The “Flat Background” should now have a value less than one.</li>
+<h2><a class="toc-backref" href="#id9">Test 8: TF Asymmetry Fit</a><a class="headerlink" href="#test-8-tf-asymmetry-fit" title="Permalink to this headline">¶</a></h2>
+<p><strong>Time required 5-10 minutes</strong></p>
+<ul>
+<li><p class="first">Now load run <code class="docutils literal notranslate"><span class="pre">62260</span></code></p>
+</li>
+<li><p class="first">There should be a warning to say <strong>MainFieldDirection</strong> has changed</p>
+</li>
+<li><dl class="first docutils">
+<dt>Go to the <strong>Grouping</strong> tab</dt>
+<dd><ul class="first last simple">
+<li>Click the <strong>Default</strong> button to reset the grouping and pairing tables</li>
+<li>Check <strong>Analyse (plot/fit)</strong> for the <strong>fwd</strong> group only</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Go to the <strong>Fitting</strong> tab</dt>
+<dd><ul class="first last simple">
+<li>Clear the fitting function as before, and uncheck
+<strong>Simultaneous fit over</strong></li>
+<li>Add <strong>GausOsc</strong> (<em>Muon</em> &gt; <em>MuonGeneric</em> &gt; <em>GausOsc</em>)</li>
+<li>Set <code class="docutils literal notranslate"><span class="pre">Frequency</span> <span class="pre">=</span> <span class="pre">1.3</span></code></li>
+<li>In the bottom table, enable <strong>TF Asymmetry Mode</strong></li>
+<li>Click <strong>Fit</strong></li>
+<li>Look at the fitting parameters and see <strong>Flat Background</strong> is non-zero.</li>
+<li>Instead disable <strong>TF Asymmetry Mode</strong></li>
+<li>Clear the remaining fitting functions</li>
+<li>Add <strong>GausOsc</strong> (<em>Muon</em> &gt; <em>MuonGeneric</em> &gt; <em>GausOsc</em>) and set
+<code class="docutils literal notranslate"><span class="pre">Frequency</span> <span class="pre">=</span> <span class="pre">1.3</span></code> as before</li>
+<li>Now add <strong>Flat Background</strong> (<em>Background</em> &gt; <em>Flat Background</em>)</li>
+<li>Click <strong>Fit</strong></li>
+<li>Now check the parameters for flat background, they should be closer to 0</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<hr class="docutils" />
+</div>
+<div class="section" id="test-9-simultaneous-tf-asymmetry-fits">
+<h2><a class="toc-backref" href="#id10">Test 9: Simultaneous TF Asymmetry Fits</a><a class="headerlink" href="#test-9-simultaneous-tf-asymmetry-fits" title="Permalink to this headline">¶</a></h2>
+<p><strong>Time required 5 minutes</strong></p>
+<ul>
+<li><p class="first">Load run <code class="docutils literal notranslate"><span class="pre">62261</span></code> (still using <em>Instrument</em> <strong>MUSR</strong>)</p>
+</li>
+<li><dl class="first docutils">
+<dt>Go to the <strong>Grouping</strong> tab</dt>
+<dd><ul class="first last simple">
+<li>Check  <strong>Analyse (plot/fit)</strong> for all 4 groups</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Go to the <strong>Fitting</strong> tab</dt>
+<dd><ul class="first last simple">
+<li>Check <strong>Simultaneous fit over</strong> and make sure it is over <strong>Run</strong></li>
+<li>Clear all functions</li>
+<li>Add <strong>GausOsc</strong> (<em>Muon</em> &gt; <em>MuonGeneric</em> &gt; <em>GausOsc</em>) and set
+<code class="docutils literal notranslate"><span class="pre">Frequency</span> <span class="pre">=</span> <span class="pre">1.3</span></code></li>
+<li>Tick the <strong>Global</strong> checkbox for <strong>Frequency</strong> and <strong>Sigma</strong></li>
+<li>Enable <strong>TF Asymmetry Mode</strong></li>
+<li>Click <strong>Fit</strong></li>
+<li>Check that all values for the flat background are different to each other</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">Before moving to the final test, disable <strong>TF Asymmetry Mode</strong></p>
+</li>
 </ul>
 </div>
-<div class="section" id="test-9-multiple-tf-asymmetry-fits">
-<h3><a class="toc-backref" href="#id11">Test 9: Multiple TF Asymmetry fits</a><a class="headerlink" href="#test-9-multiple-tf-asymmetry-fits" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li>Go back to the <em>Home</em> tab and load run 62261.</li>
-<li>Go to the <em>Data Analysis</em> tab.</li>
-<li>Clear the fitting functions.</li>
-<li>In “Groups Pairs to fit” select “All Groups”.</li>
-<li>Add a “GausOsc” function with “Frequency” set to 1.3.</li>
-<li>Enable TF Asymmetry mode.</li>
-<li>Tick the “Global” box for “Frequency” and “Sigma”.</li>
-<li>Fit.</li>
-<li>Check that all values for the flat background are different to each other.</li>
+<hr class="docutils" />
+<div class="section" id="test-10-sequential-tf-asymmetry-fits">
+<h2><a class="toc-backref" href="#id11">Test 10: Sequential TF Asymmetry Fits</a><a class="headerlink" href="#test-10-sequential-tf-asymmetry-fits" title="Permalink to this headline">¶</a></h2>
+<p><strong>Time required 10 minutes</strong></p>
+<ul>
+<li><p class="first">Load runs <code class="docutils literal notranslate"><span class="pre">62260-2</span></code> (still using <em>Instrument</em> <strong>MUSR</strong>)</p>
+</li>
+<li><dl class="first docutils">
+<dt>In the <strong>Fitting</strong> tab</dt>
+<dd><ul class="first last simple">
+<li>Uncheck <strong>Simultaneous fit over</strong></li>
+<li>Add <strong>GausOsc</strong> (<em>Muon</em> &gt; <em>MuonGeneric</em> &gt; <em>GausOsc</em>) and set
+<code class="docutils literal notranslate"><span class="pre">Frequency</span> <span class="pre">=</span> <span class="pre">1.3</span></code></li>
+<li>Enable <strong>TF Asymmetry Mode</strong></li>
 </ul>
-</div>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Go to the <strong>Sequential Fitting</strong> tab</dt>
+<dd><ul class="first last simple">
+<li>Click <strong>Sequentially fit all</strong></li>
+<li>In the <strong>Plotting Window</strong>, check <strong>Tile plot by</strong> and change to <strong>Run</strong>
+from <strong>Group/Pair</strong></li>
+<li>You should be able to select each row in the table to see each individual fit</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
 </div>
 </div>
 

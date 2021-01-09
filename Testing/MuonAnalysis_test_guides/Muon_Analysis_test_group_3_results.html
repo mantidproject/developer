@@ -93,95 +93,97 @@
 <p class="topic-title first">Table of Contents</p>
 <ul class="simple">
 <li><a class="reference internal" href="#introduction" id="id1">Introduction</a></li>
-<li><a class="reference internal" href="#tests" id="id2">Tests</a><ul>
-<li><a class="reference internal" href="#test-1-individual-fits" id="id3">Test 1: individual fits</a></li>
-<li><a class="reference internal" href="#test-2-sequential-fit-simple" id="id4">Test 2: Sequential fit (simple)</a></li>
-<li><a class="reference internal" href="#test-3-sequential-fit-of-simultaneous-fits" id="id5">Test 3: Sequential fit of simultaneous fits</a></li>
-<li><a class="reference internal" href="#test-4-simultaneous-fits" id="id6">Test 4: Simultaneous fits</a></li>
-<li><a class="reference internal" href="#test-5-simultaneous-fits-2" id="id7">Test 5: Simultaneous fits (2)</a></li>
-<li><a class="reference internal" href="#test-6-multiple-simultaneous-fits" id="id8">Test 6: Multiple simultaneous fits</a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#test-1-individual-and-co-added-fits" id="id2">Test 1: Individual And Co-Added Fits</a></li>
+<li><a class="reference internal" href="#test-2-sequential-fits-and-simultaneous-fits" id="id3">Test 2: Sequential Fits And Simultaneous Fits</a></li>
+<li><a class="reference internal" href="#test-3-tf-asymmetry-results" id="id4">Test 3: TF Asymmetry Results</a></li>
 </ul>
 </div>
 <div class="section" id="introduction">
 <h2><a class="toc-backref" href="#id1">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>These are unscripted tests for the <strong class="program">Muon Analysis</strong> interface.
-The tests here in group 3 are concerned with generating results tables from fits that have previously been run.
-In this case, the fits previously run are those in test group 2, so those tests need to be run before these ones.</p>
+The tests here in group 3 are concerned with generating results tables from
+fits that have previously been run. In this case, the fits previously run are
+those in <a class="reference internal" href="Muon_Analysis_test_group_2_fitting.html#muon-analysis-testguide-2-fitting-ref"><span class="std std-ref">Muon Analysis Unscripted Testing: Group 2 (Fitting)</span></a>, so those tests need to
+be run before these ones. Once you have comepleted group 2 tests, go to the
+<strong>Reults</strong> tab.</p>
 <p>The master testing guide is located at <a class="reference internal" href="Muon Analysis Unscripted Testing Guide.html#muon-analysis-testguide-ref"><span class="std std-ref">Muon Interfaces Unscripted Testing</span></a>.</p>
+<hr class="docutils" />
 </div>
-<div class="section" id="tests">
-<h2><a class="toc-backref" href="#id2">Tests</a><a class="headerlink" href="#tests" title="Permalink to this headline">¶</a></h2>
-<p>Ensure that you have first run all the tests in group 2, then go to the <em>Results Table</em> tab.</p>
-<div class="section" id="test-1-individual-fits">
-<h3><a class="toc-backref" href="#id3">Test 1: individual fits</a><a class="headerlink" href="#test-1-individual-fits" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="test-1-individual-and-co-added-fits">
+<span id="test-1"></span><h2><a class="toc-backref" href="#id2">Test 1: Individual And Co-Added Fits</a><a class="headerlink" href="#test-1-individual-and-co-added-fits" title="Permalink to this headline">¶</a></h2>
+<p><strong>Time required 5-10 minutes</strong></p>
 <ul class="simple">
-<li>Top group box: select <code class="docutils literal notranslate"><span class="pre">run_number</span></code> and <code class="docutils literal notranslate"><span class="pre">sample_temp</span></code> as logs</li>
-<li>Centre group box: keep the default, which should be the <em>Individual fits</em> radio button with both individual fits selected</li>
-<li>Create the table with the default name <code class="docutils literal notranslate"><span class="pre">ResultsTable</span></code>.</li>
-<li>Table should have two rows, one for runs 20918-20 (co-added) and one for run 20918.</li>
-<li>Sample temp should be expressed correctly as a range “180 to 200” for co-added runs</li>
-<li>Should be one pair of columns for each parameter + error, plus a final column for “cost function value”</li>
+<li>In the <strong>Results</strong> tab, in the top log values table, check <strong>run_number</strong>
+and <strong>sample_temp</strong></li>
+<li>Change <strong>Function Name</strong> to be <strong>FlatBackground,Abragam</strong> or equivalent</li>
+<li>The bottom table should have all fit workspaces that used both
+<strong>Flat Background</strong> and the <strong>Abragam</strong> functions</li>
+<li>Click <strong>Unselect All</strong> for the workspaces table</li>
+<li>Change <strong>Table Name</strong> to <code class="docutils literal notranslate"><span class="pre">IndividualFitsTable</span></code></li>
+<li>Check all boxes next to workspaces that are individual fits, including the
+co-added workspace</li>
+<li>This should look a little something like this:</li>
 </ul>
-<p>Like this:</p>
+<a class="reference internal image-reference" href="../../_images/results_test1_table.png"><img alt="results_test1_table.png" class="align-center" src="../../_images/results_test1_table.png" style="width: 600px;" /></a>
+<ul class="simple">
+<li>Click <strong>Output Results</strong></li>
+<li>In the main workbench window, in the workspace toolbox, open the results
+table</li>
+<li>The table should have four rows, one for each individual fit</li>
+<li><strong>sample_temp</strong> should be correctly expresses as an average for the co-added
+runs, in this case the average is <code class="docutils literal notranslate"><span class="pre">190</span></code> (<code class="docutils literal notranslate"><span class="pre">180+190+200/3</span></code>)</li>
+<li>There should be several pairs of columns, one for each parameter and one for
+the error of the parameter, plus a final column called
+<strong>Cost function value</strong></li>
+<li>The table should look similar to this:</li>
+</ul>
 <img alt="../../_images/results_test1.png" class="align-center" src="../../_images/results_test1.png" />
 </div>
-<div class="section" id="test-2-sequential-fit-simple">
-<h3><a class="toc-backref" href="#id4">Test 2: Sequential fit (simple)</a><a class="headerlink" href="#test-2-sequential-fit-simple" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="test-2-sequential-fits-and-simultaneous-fits">
+<h2><a class="toc-backref" href="#id3">Test 2: Sequential Fits And Simultaneous Fits</a><a class="headerlink" href="#test-2-sequential-fits-and-simultaneous-fits" title="Permalink to this headline">¶</a></h2>
+<p><em>Time required 5-10 minutes</em></p>
 <ul class="simple">
-<li>Top group box: keep same logs as before</li>
-<li>Select the <em>Sequential fits</em> radio button in the centre group box, and “Label” in the drop-down, <em>i.e.</em> the first sequential fit you did. Keep all three runs included.</li>
-<li>Create the table - check that, if you don’t change the name, it warns you about overwriting. (Say yes to create the table <code class="docutils literal notranslate"><span class="pre">ResultsTable</span></code>.)</li>
-<li>The table should have three rows, one for each run, with the correct sample log values (180, 190, 200).</li>
-<li>Again there should be one pair of columns for each parameter and error, and a cost function column at the end.</li>
+<li>For this test we will use the same <strong>Function Name</strong> as in <a class="reference internal" href="#test-1"><span class="std std-ref">Test 1: Individual And Co-Added Fits</span></a>
+(<em>FlatBackground,Abragam</em>)</li>
+<li>Change the <strong>Table Name</strong> to <code class="docutils literal notranslate"><span class="pre">SeqFitOfSimFits</span></code></li>
+<li>Click <strong>Unselect All</strong> for the workspaces table</li>
+<li>Check the three workspaces that were simultaneous fits over groups and
+sequentially fit for all runs</li>
+<li>At this point the table should look something like this:</li>
+</ul>
+<a class="reference internal image-reference" href="../../_images/results_test2_table.png"><img alt="results_test2_table.png" class="align-center" src="../../_images/results_test2_table.png" style="width: 600px;" /></a>
+<ul class="simple">
+<li>Click <strong>Output Results</strong></li>
+<li>In the main workbench window, in the workspace toolbox, open the results
+table</li>
+<li>There should be 3 rows</li>
+<li>In particular, there should be only one column for <code class="docutils literal notranslate"><span class="pre">A</span></code>, <code class="docutils literal notranslate"><span class="pre">Omega</span></code>, <code class="docutils literal notranslate"><span class="pre">Phi</span></code>
+and <code class="docutils literal notranslate"><span class="pre">Sigma</span></code> (plus one for each paramaters error) as these paramaters are
+global</li>
+<li>There should be a column for <code class="docutils literal notranslate"><span class="pre">f0.f0.A0</span></code> and <code class="docutils literal notranslate"><span class="pre">f1.f0.A0</span></code> as this was not
+a global paramater, and similarly for the <code class="docutils literal notranslate"><span class="pre">Tau</span></code> Parameter. They should all
+have their own error associated with them</li>
+<li>The table should look similar to this:</li>
 </ul>
 </div>
-<div class="section" id="test-3-sequential-fit-of-simultaneous-fits">
-<h3><a class="toc-backref" href="#id5">Test 3: Sequential fit of simultaneous fits</a><a class="headerlink" href="#test-3-sequential-fit-of-simultaneous-fits" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="test-3-tf-asymmetry-results">
+<h2><a class="toc-backref" href="#id4">Test 3: TF Asymmetry Results</a><a class="headerlink" href="#test-3-tf-asymmetry-results" title="Permalink to this headline">¶</a></h2>
+<p><em>Time required 5-10 minutes</em></p>
 <ul class="simple">
-<li>Now select “LabelSeq” in the drop-down next to <em>Sequential fits</em> (see test 2).</li>
-<li>The top box should have extra log values for <code class="docutils literal notranslate"><span class="pre">group</span></code> and <code class="docutils literal notranslate"><span class="pre">period</span></code> - select <code class="docutils literal notranslate"><span class="pre">group</span></code> (as well as <code class="docutils literal notranslate"><span class="pre">run_number</span></code>)</li>
-<li>Keep all runs selected and create table, this time with the name <code class="docutils literal notranslate"><span class="pre">ResultsTable2</span></code>.</li>
-<li>There should be six rows in all, two per run (one for fwd, one for bwd).</li>
+<li>Click <strong>Unselect All</strong> for the log values table</li>
+<li>Now Select <strong>Field_Danfysik</strong></li>
+<li>Change <strong>Function Name</strong> to be <strong>GausOsc,TFAsymmetry</strong> or equivalent</li>
+<li>There is one workspace which was fit simultaneously so will not be included
+in this results table. Deselect that worksapce</li>
+<li>Change the table name to <code class="docutils literal notranslate"><span class="pre">TFAsymmetryFits</span></code></li>
+<li>The table should look like this:</li>
 </ul>
-<p>Like this:</p>
-<img alt="../../_images/results_tests2and3.png" class="align-center" src="../../_images/results_tests2and3.png" />
-</div>
-<div class="section" id="test-4-simultaneous-fits">
-<h3><a class="toc-backref" href="#id6">Test 4: Simultaneous fits</a><a class="headerlink" href="#test-4-simultaneous-fits" title="Permalink to this headline">¶</a></h3>
+<a class="reference internal image-reference" href="../../_images/results_test3_table.png"><img alt="results_test3_table.png" class="align-center" src="../../_images/results_test3_table.png" style="width: 600px;" /></a>
 <ul class="simple">
-<li>Select the “Simultaneous fits” radio button above the centre group box.</li>
-<li>Keep the first label, “20918”, selected in the drop-down list. (This was the fit across groups in the same run)</li>
-<li>Create the table with the name <code class="docutils literal notranslate"><span class="pre">Results20918</span></code></li>
-<li>There should be one row per run</li>
-<li>For the global parameters (<code class="docutils literal notranslate"><span class="pre">f1.A</span></code>, <code class="docutils literal notranslate"><span class="pre">f1.Omega</span></code>, <code class="docutils literal notranslate"><span class="pre">f1.Phi</span></code>, <code class="docutils literal notranslate"><span class="pre">f1.Sigma</span></code>), note the error is non-zero for the first run and zero for the others as they were all fitted together.</li>
+<li>Click <strong>Output Results</strong></li>
+<li>There should be 12 rows and a column for <strong>Field_Danfysik</strong>, like this:</li>
 </ul>
-</div>
-<div class="section" id="test-5-simultaneous-fits-2">
-<h3><a class="toc-backref" href="#id7">Test 5: Simultaneous fits (2)</a><a class="headerlink" href="#test-5-simultaneous-fits-2" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li>Now in the drop-down list next to the “Simultaneous fits” radio button, select the label “20918-20”, which was the fit across runs.</li>
-<li>Create the table with the name <code class="docutils literal notranslate"><span class="pre">Results20918-20</span></code></li>
-<li>In the drop-down list, select the label “MUSRlabel”, the fit across periods for MUSR data. Have the <code class="docutils literal notranslate"><span class="pre">period</span></code> log value selected in the top box for this one, and create the table <code class="docutils literal notranslate"><span class="pre">ResultsMUSR</span></code>.</li>
-</ul>
-<p>Should look like this:</p>
-<img alt="../../_images/results_tests4and5.png" class="align-center" src="../../_images/results_tests4and5.png" />
-</div>
-<div class="section" id="test-6-multiple-simultaneous-fits">
-<h3><a class="toc-backref" href="#id8">Test 6: Multiple simultaneous fits</a><a class="headerlink" href="#test-6-multiple-simultaneous-fits" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li>Select the last radio button, “Multiple”, above the centre group box.</li>
-<li>Three simultaneous fit labels are listed: 20918, 20918#2, 20918-20 and MUSRlabel.</li>
-<li>Note that they have different colours, because the number of datasets and fit models differ. You should not be able to create a table with all of these selected.</li>
-<li>Select just the first two, i.e. “20918” and “20918#2”, log values <code class="docutils literal notranslate"><span class="pre">run_number</span></code> and <code class="docutils literal notranslate"><span class="pre">sample_temp</span></code>, and create the table.</li>
-<li>There should be columns for label, run number/sample temp (with correct ranges) and fit parameters.</li>
-<li>Non-global parameters should have a column for each dataset - so <code class="docutils literal notranslate"><span class="pre">f0.f0.A0</span></code>, <code class="docutils literal notranslate"><span class="pre">f1.f0.A0</span></code>, <code class="docutils literal notranslate"><span class="pre">f2.f0.A0</span></code></li>
-<li>Global parameters should share a column - so just <code class="docutils literal notranslate"><span class="pre">f1.A</span></code>, <code class="docutils literal notranslate"><span class="pre">f1.Omega</span></code> etc.</li>
-</ul>
-<p>Should look like this:</p>
-<img alt="../../_images/results_test6.png" class="align-center" src="../../_images/results_test6.png" />
-</div>
+<a class="reference internal image-reference" href="../../_images/results_test3.png"><img alt="results_test3.png" class="align-center" src="../../_images/results_test3.png" style="width: 600px;" /></a>
 </div>
 </div>
 
