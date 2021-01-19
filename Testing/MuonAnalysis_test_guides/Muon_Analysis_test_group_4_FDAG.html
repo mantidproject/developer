@@ -115,43 +115,45 @@ Load “MUSR00062260” into Muon analysis and plot each of the available groups
 <h3><a class="toc-backref" href="#id3">Test 1: Basic FFT</a><a class="headerlink" href="#test-1-basic-fft" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>Set the workspace to “MUSR00062260;Group;bkwd;Asym;#1”</li>
-<li>Click the calculate FFT button and a workspace should appear in the “MUSR00062260” group</li>
-<li>Then plot spectrum 2 (there should be a total of 3 spectrums)</li>
-<li>You will see a few sharp peaks.</li>
-<li>Untick the Imaginary Data and the a row should disappear</li>
+<li>Click the calculate FFT button and a 3 workspaces should appear in the “MUSR00062260 FFT FD” group</li>
+<li>The group will contain 3 workspace ending in <cite>Re</cite> (real), <cite>Im</cite> (imaginary) and <cite>mod</cite> (modulus)</li>
+<li>The plot window will show a broad peak</li>
+<li>Untick the Imaginary Data and the row beneath should disappear</li>
 <li>Click the Calculate FFT button</li>
-<li>Look at the data table and there should be 6 rows.</li>
+<li>3 new workspaces should appear in the group</li>
 </ul>
 </div>
 <div class="section" id="test-2-advanced-fft">
 <h3><a class="toc-backref" href="#id4">Test 2: Advanced FFT</a><a class="headerlink" href="#test-2-advanced-fft" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Plot spectrum 0 of the data</li>
-<li>Leave this plot open and make sure you can see it and the interface at the same time</li>
-<li>Change the “Apodization Function” to “Gaussian”</li>
-<li>Click the Calculate FFT button</li>
-<li>The plot should change, the data will be less noisy.</li>
-<li>Set the “Apodization Function” back to “None”</li>
-<li>Click the Calculate FFT Button</li>
-<li>Set the “Padding” to 0</li>
-<li>Click the Calculate FFT Button</li>
-<li>The peak should not be very clear</li>
+<li>The “Apodization Function” determines the amount of smoothing of the data</li>
+<li>Set the “Apodization Function” to <cite>None</cite> and press calculate</li>
+<li>The plot will show a large peak at 0 and then lots of noise</li>
+<li>Set the “Apodization Function” to <cite>Gaussian</cite> and press calculate</li>
+<li>There will be a clear peak near to 100 Gauss</li>
+<li>The “padding” adds zeros to the end of the time domain data set, to improve the sampling of the FFT</li>
+<li>Set the xrange for the plot to be from <cite>50</cite> to <cite>150</cite></li>
+<li>Set the “padding” to zero and press calculate</li>
+<li>The plots should be a nice peak, but it will have lots of straight lines</li>
+<li>Set the “padding” to <cite>500</cite> and press calculate</li>
+<li>The plot will now be nice and smooth</li>
 </ul>
 </div>
 <div class="section" id="test-3-phasequad">
 <h3><a class="toc-backref" href="#id5">Test 3: PhaseQuad</a><a class="headerlink" href="#test-3-phasequad" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Change the workspace to “PhaseQuad”</li>
-<li>You should not be able to select the workspace for the imaginary part, but it is possible to turn the imaginary component on and off.</li>
-<li>An extra row will appear labeled “axis”</li>
-<li>Click the Calculate FFT button</li>
-<li>A new table workspace will appear (PhaseTable) and the output added to the grouped worksapce</li>
-<li>Open PhaseTable and with it open change the axis in the GUI and make sure that generate new phase table is  unticked</li>
-<li>Click the Calculate FFT button</li>
-<li>PhaseTable should not have changed</li>
-<li>Make sure that generate new phase table is ticked</li>
-<li>Click the Calculate FFT button</li>
-<li>PhaseTable should change</li>
+<li>Go to the phase tab</li>
+<li>Click “calculate phase table”</li>
+<li>Click “calculate phasequad”</li>
+<li>When asked for a name enter <cite>pq</cite></li>
+<li>Go to the transform tab</li>
+<li>You will be able to select the real and imaginary parts of ‘pq’</li>
+<li>Select the real part</li>
+<li>Click calculate</li>
+<li>Tick the <cite>Imaginary Data</cite></li>
+<li>Select the imaginary part of the phasequad</li>
+<li>Click calculate</li>
+<li>In both cases the plot should be a nice peak</li>
 </ul>
 </div>
 <div class="section" id="test-4-maxent">
@@ -160,8 +162,17 @@ Load “MUSR00062260” into Muon analysis and plot each of the available groups
 <li>Change the drop-down menu at the top of the interface to “MaxEnt”</li>
 <li>The interface should look different</li>
 <li>Click the Calculate MaxEnt button</li>
-<li>This will be slow - a warning should be provided and the button disabled</li>
-<li>When it is complete a workspace should appear “FFTMuon” and the button should be enabled</li>
+<li>The calculate button will be disabled and cancel enabled</li>
+<li>Click the cancel button</li>
+<li>Click Calculate MaxEnt</li>
+<li>The plot should update to a mostly flat line with a peak</li>
+<li>Make sure everything in the top table is ticked</li>
+<li>Click calculate MaxEnt</li>
+<li>In the ADS expand the <cite>MUSR62260 MaxEnt FD</cite> group</li>
+<li>It will contain several workspaces</li>
+<li>The phase convergence will show a plot that tends to a single y value as x gets larger (just check a spectrum or two)</li>
+<li>Deadtimes and phase table will be table of spectrum number then some numbers</li>
+<li>The reconstructed spectra will look like the original data</li>
 </ul>
 </div>
 </div>
