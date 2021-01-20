@@ -271,7 +271,7 @@ instead i.e.</p>
 <p>To fix this situation we use the <code class="docutils literal notranslate"><span class="pre">rebase</span></code> command, providing the
 <code class="docutils literal notranslate"><span class="pre">--onto</span></code> option as follows:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre>git fetch
-git rebase --onto origin/release-next origin/master topic
+git rebase --onto origin/release-next <span class="k">$(</span>git merge-base origin/master origin/topic<span class="k">)</span> topic
 </pre></div>
 </div>
 </div>
