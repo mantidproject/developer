@@ -94,46 +94,41 @@
 <div class="contents local topic" id="contents">
 <p class="topic-title first">Contents</p>
 <ul class="simple">
-<li><a class="reference internal" href="#creating-classes-class-maker-py" id="id3">Creating classes: class_maker.py</a></li>
-<li><a class="reference internal" href="#moving-renaming-classes-move-class-py" id="id4">Moving/Renaming classes: move_class.py</a></li>
-<li><a class="reference internal" href="#deleting-a-class-delete-class-py" id="id5">Deleting a class: delete_class.py</a></li>
-<li><a class="reference internal" href="#profiling-an-algorithm" id="id6">Profiling an algorithm</a></li>
-<li><a class="reference internal" href="#leak-checking-etc" id="id7">Leak checking etc</a><ul>
-<li><a class="reference internal" href="#linux" id="id8">Linux</a></li>
-<li><a class="reference internal" href="#windows" id="id9">Windows</a></li>
+<li><a class="reference internal" href="#creating-classes-class-maker-py" id="id1">Creating classes: class_maker.py</a></li>
+<li><a class="reference internal" href="#moving-renaming-classes-move-class-py" id="id2">Moving/Renaming classes: move_class.py</a></li>
+<li><a class="reference internal" href="#deleting-a-class-delete-class-py" id="id3">Deleting a class: delete_class.py</a></li>
+<li><a class="reference internal" href="#profiling" id="id4">Profiling</a></li>
+<li><a class="reference internal" href="#leak-checking-etc" id="id5">Leak checking etc</a><ul>
+<li><a class="reference internal" href="#linux" id="id6">Linux</a></li>
+<li><a class="reference internal" href="#windows" id="id7">Windows</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#thread-checking" id="id10">Thread checking</a><ul>
-<li><a class="reference internal" href="#helgrind-or-drd" id="id11">Helgrind or  drd</a></li>
+<li><a class="reference internal" href="#thread-checking" id="id8">Thread checking</a><ul>
+<li><a class="reference internal" href="#helgrind-or-drd" id="id9">Helgrind or  drd</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#profiling" id="id12">Profiling</a><ul>
-<li><a class="reference internal" href="#linux-1" id="id13">Linux</a></li>
-<li><a class="reference internal" href="#windows-1" id="id14">Windows</a></li>
+<li><a class="reference internal" href="#iwyu" id="id10">IWYU</a></li>
+<li><a class="reference internal" href="#network-related-tools" id="id11">Network Related Tools</a><ul>
+<li><a class="reference internal" href="#wireshark" id="id12">Wireshark</a></li>
+<li><a class="reference internal" href="#wonder-shaper" id="id13">Wonder Shaper</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#iwyu" id="id15">IWYU</a></li>
-<li><a class="reference internal" href="#network-related-tools" id="id16">Network Related Tools</a><ul>
-<li><a class="reference internal" href="#wireshark" id="id17">Wireshark</a></li>
-<li><a class="reference internal" href="#wonder-shaper" id="id18">Wonder Shaper</a></li>
+<li><a class="reference internal" href="#convert-wiki-docs-to-sphinx" id="id14">Convert Wiki Docs to Sphinx</a><ul>
+<li><a class="reference internal" href="#use" id="id15">Use</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#convert-wiki-docs-to-sphinx" id="id19">Convert Wiki Docs to Sphinx</a><ul>
-<li><a class="reference internal" href="#use" id="id20">Use</a></li>
+<li><a class="reference internal" href="#clang-tidy" id="id16">Clang-tidy</a><ul>
+<li><a class="reference internal" href="#installing" id="id17">Installing</a></li>
+<li><a class="reference internal" href="#visual-studio" id="id18">Visual Studio</a></li>
+<li><a class="reference internal" href="#cmake" id="id19">Cmake</a></li>
+<li><a class="reference internal" href="#options" id="id20">Options</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#clang-tidy" id="id21">Clang-tidy</a><ul>
-<li><a class="reference internal" href="#installing" id="id22">Installing</a></li>
-<li><a class="reference internal" href="#visual-studio" id="id23">Visual Studio</a></li>
-<li><a class="reference internal" href="#cmake" id="id24">Cmake</a></li>
-<li><a class="reference internal" href="#options" id="id25">Options</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#cmake-format" id="id26">CMake-format</a></li>
+<li><a class="reference internal" href="#cmake-format" id="id21">CMake-format</a></li>
 </ul>
 </div>
 <div class="section" id="creating-classes-class-maker-py">
-<h2><a class="toc-backref" href="#id3">Creating classes: class_maker.py</a><a class="headerlink" href="#creating-classes-class-maker-py" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id1">Creating classes: class_maker.py</a><a class="headerlink" href="#creating-classes-class-maker-py" title="Permalink to this headline">¶</a></h2>
 <p><strong>To make it faster to create a new class</strong>. This is a small python
 script located in /buildconfig/. It generates the .cpp, .h and test
 files for a class along with some code stubs. It can also flesh out more
@@ -153,26 +148,26 @@ optional arguments:
 </div>
 </div>
 <div class="section" id="moving-renaming-classes-move-class-py">
-<h2><a class="toc-backref" href="#id4">Moving/Renaming classes: move_class.py</a><a class="headerlink" href="#moving-renaming-classes-move-class-py" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id2">Moving/Renaming classes: move_class.py</a><a class="headerlink" href="#moving-renaming-classes-move-class-py" title="Permalink to this headline">¶</a></h2>
 <p>This python script is located in in /buidconfig/. It will move a class
 from one subproject to another and/or rename the class. Namespaces and
 cmakelists are adjusted. For details, run:</p>
 <p><code class="docutils literal notranslate"><span class="pre">buildconfig/move_class.py</span> <span class="pre">--help</span></code></p>
 </div>
 <div class="section" id="deleting-a-class-delete-class-py">
-<h2><a class="toc-backref" href="#id5">Deleting a class: delete_class.py</a><a class="headerlink" href="#deleting-a-class-delete-class-py" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id3">Deleting a class: delete_class.py</a><a class="headerlink" href="#deleting-a-class-delete-class-py" title="Permalink to this headline">¶</a></h2>
 <p>This python script is located in in /buildconfig/. It will delete a
 class from one subproject. CMakeList.txt is adjusted. For details, run:</p>
 <p><code class="docutils literal notranslate"><span class="pre">buildconfig/delete_class.py</span> <span class="pre">--help</span></code></p>
 </div>
-<div class="section" id="profiling-an-algorithm">
-<h2><a class="toc-backref" href="#id6">Profiling an algorithm</a><a class="headerlink" href="#profiling-an-algorithm" title="Permalink to this headline">¶</a></h2>
-<p>On Linux the build can be configured to generated algorithm profiling information. See <a class="reference internal" href="AlgorithmProfiler.html"><span class="doc">AlgorithmProfiler</span></a> for more details.</p>
+<div class="section" id="profiling">
+<h2><a class="toc-backref" href="#id4">Profiling</a><a class="headerlink" href="#profiling" title="Permalink to this headline">¶</a></h2>
+<p>Profiling could mean tracking start-up, the progress of an algoirthm or performance. See <a class="reference internal" href="ProfilingOverview.html"><span class="doc">Profiling Overview</span></a> for more details.</p>
 </div>
 <div class="section" id="leak-checking-etc">
-<h2><a class="toc-backref" href="#id7">Leak checking etc</a><a class="headerlink" href="#leak-checking-etc" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id5">Leak checking etc</a><a class="headerlink" href="#leak-checking-etc" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="linux">
-<h3><a class="toc-backref" href="#id8">Linux</a><a class="headerlink" href="#linux" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id6">Linux</a><a class="headerlink" href="#linux" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="http://valgrind.org/docs/manual/mc-manual.html">Memcheck</a></p>
 <ul class="simple">
 <li>Keeps track of allocs/deallocs and reports anything missing at exit.</li>
@@ -182,7 +177,7 @@ class from one subproject. CMakeList.txt is adjusted. For details, run:</p>
 <p><code class="docutils literal notranslate"><span class="pre">valgrind</span> <span class="pre">--tool=memcheck</span> <span class="pre">--leak-check=full</span> <span class="pre">--show-reachable=yes</span> <span class="pre">--num-callers=20</span> <span class="pre">--track-fds=yes</span> <span class="pre">--track-origins=yes</span> <span class="pre">--freelist-vol=500000000</span> <span class="pre">``\</span> <span class="pre">\</span> <span class="pre">``</span> <span class="pre">[args...]</span></code></p>
 </div>
 <div class="section" id="windows">
-<h3><a class="toc-backref" href="#id9">Windows</a><a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id7">Windows</a><a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://vld.codeplex.com/releases">Visual Leak Detector</a></p>
 <ol class="arabic simple">
 <li>Setup the additional paths as defined in the readme file</li>
@@ -201,7 +196,7 @@ the test directory.</li>
 </div>
 </div>
 <div class="section" id="thread-checking">
-<h2><a class="toc-backref" href="#id10">Thread checking</a><a class="headerlink" href="#thread-checking" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id8">Thread checking</a><a class="headerlink" href="#thread-checking" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="helgrind-or-drd">
 <h3><a class="reference external" href="http://valgrind.org/docs/manual/hg-manual.html">Helgrind</a> or  <a class="reference external" href="http://valgrind.org/docs/manual/drd-manual.html">drd</a><a class="headerlink" href="#helgrind-or-drd" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
@@ -211,34 +206,8 @@ the test directory.</li>
 </ul>
 </div>
 </div>
-<div class="section" id="profiling">
-<h2><a class="toc-backref" href="#id12">Profiling</a><a class="headerlink" href="#profiling" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="linux-1">
-<span id="id1"></span><h3><a class="toc-backref" href="#id13">Linux</a><a class="headerlink" href="#linux-1" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference external" href="http://kcachegrind.sourceforge.net/cgi-bin/show.cgi/KcacheGrindIndex">Callgrind/KCachegrind</a></p>
-<ul class="simple">
-<li>KCachegrind visualizes callgrind output.</li>
-<li>See <a class="reference internal" href="ProfilingWithValgrind.html#profilingwithvalgrind"><span class="std std-ref">Profiling With Valgrind</span></a> for help on
-running callgrind</li>
-</ul>
-<p><a class="reference external" href="https://github.com/gperftools/gperftools">gperftools</a></p>
-<ul class="simple">
-<li>Takes snapshot of run and prints percentage of calls in functions</li>
-</ul>
-<p>See here for a list of other tools:
-<a class="reference external" href="http://www.pixelbeat.org/programming/profiling/">http://www.pixelbeat.org/programming/profiling/</a></p>
-</div>
-<div class="section" id="windows-1">
-<span id="id2"></span><h3><a class="toc-backref" href="#id14">Windows</a><a class="headerlink" href="#windows-1" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference external" href="http://www.codersnotes.com/sleepy/">Very Sleepy</a> (Windows):</p>
-<ul class="simple">
-<li>Start/stop recording of program using a button</li>
-<li>Not as detailed or flexible as callgrind</li>
-</ul>
-</div>
-</div>
 <div class="section" id="iwyu">
-<h2><a class="toc-backref" href="#id15">IWYU</a><a class="headerlink" href="#iwyu" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id10">IWYU</a><a class="headerlink" href="#iwyu" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://code.google.com/p/include-what-you-use/">include what you
 use</a> (iwyu) is a
 clang-based tool for determining what include statements are needed in
@@ -281,27 +250,27 @@ status code since it generates no output. The output stream also affects
 <code class="docutils literal notranslate"><span class="pre">iwyu_tool.py</span></code></p>
 </div>
 <div class="section" id="network-related-tools">
-<h2><a class="toc-backref" href="#id16">Network Related Tools</a><a class="headerlink" href="#network-related-tools" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id11">Network Related Tools</a><a class="headerlink" href="#network-related-tools" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="wireshark">
-<h3><a class="toc-backref" href="#id17">Wireshark</a><a class="headerlink" href="#wireshark" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id12">Wireshark</a><a class="headerlink" href="#wireshark" title="Permalink to this headline">¶</a></h3>
 <p>Linux distros should have this in their repositories. For other platforms download it from <a class="reference external" href="https://www.wireshark.org">https://www.wireshark.org</a>.</p>
 <p>Cross-platform tool for inspecting network packets. This is useful to troubleshoot many different types of
 network-related problems.</p>
 </div>
 <div class="section" id="wonder-shaper">
-<h3><a class="toc-backref" href="#id18">Wonder Shaper</a><a class="headerlink" href="#wonder-shaper" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id13">Wonder Shaper</a><a class="headerlink" href="#wonder-shaper" title="Permalink to this headline">¶</a></h3>
 <p>Linux only. Install it from your distro’s repository.</p>
 <p>Wonder Shaper allows the user to limit the bandwidth of one or more network adapters. This is useful for debugging
 issues when a network interface is still active but very slow. More details can be found at <a class="reference external" href="http://xmodulo.com/limit-network-bandwidth-linux.html">http://xmodulo.com/limit-network-bandwidth-linux.html</a>.</p>
 </div>
 </div>
 <div class="section" id="convert-wiki-docs-to-sphinx">
-<h2><a class="toc-backref" href="#id19">Convert Wiki Docs to Sphinx</a><a class="headerlink" href="#convert-wiki-docs-to-sphinx" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id14">Convert Wiki Docs to Sphinx</a><a class="headerlink" href="#convert-wiki-docs-to-sphinx" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">wiki2rst</span></code> reads in mediawiki formatted webpages and converts them to <code class="docutils literal notranslate"><span class="pre">.rst</span></code> files, for use
 in <code class="docutils literal notranslate"><span class="pre">Sphinx</span></code>. The code attempts to take all images and internal links and re-create the
 documentation structure in the <code class="docutils literal notranslate"><span class="pre">Sphinx</span></code> format.</p>
 <div class="section" id="use">
-<h3><a class="toc-backref" href="#id20">Use</a><a class="headerlink" href="#use" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id15">Use</a><a class="headerlink" href="#use" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>Having added <code class="docutils literal notranslate"><span class="pre">mantid</span></code> to your Python path <code class="docutils literal notranslate"><span class="pre">wiki2rst</span></code> is run by:</li>
 </ul>
@@ -329,12 +298,12 @@ documentation structure in the <code class="docutils literal notranslate"><span 
 </div>
 </div>
 <div class="section" id="clang-tidy">
-<h2><a class="toc-backref" href="#id21">Clang-tidy</a><a class="headerlink" href="#clang-tidy" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id16">Clang-tidy</a><a class="headerlink" href="#clang-tidy" title="Permalink to this headline">¶</a></h2>
 <p>Clang-tidy is a set of tools which allows a developer to detect and fix code which does not follow current best practices,
 such as unused parameters or not using range-based for loops. Primarily this is used for modernising C++ code.</p>
 <p>The full list of clang-tidy checks can be seen <a class="reference external" href="https://clang.llvm.org/extra/clang-tidy/checks/list.html">here</a>.</p>
 <div class="section" id="installing">
-<h3><a class="toc-backref" href="#id22">Installing</a><a class="headerlink" href="#installing" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id17">Installing</a><a class="headerlink" href="#installing" title="Permalink to this headline">¶</a></h3>
 <p>Mantid does not come packaged with clang-tidy; each developer must download it themselves. Windows users can utilise clang-tidy support for Visual Studio.
 For other operating systems, Mantid provides clang-tidy functionality through cmake.</p>
 <ul class="simple">
@@ -344,7 +313,7 @@ For other operating systems, Mantid provides clang-tidy functionality through cm
 <p>For non-Ubuntu systems, download the latest clang-tidy <a class="reference external" href="http://releases.llvm.org/download.html">pre-compiled binary</a>. Windows users should add to path when prompted.</p>
 </div>
 <div class="section" id="visual-studio">
-<h3><a class="toc-backref" href="#id23">Visual Studio</a><a class="headerlink" href="#visual-studio" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id18">Visual Studio</a><a class="headerlink" href="#visual-studio" title="Permalink to this headline">¶</a></h3>
 <p>Once you have installed the clang-tidy extension, Visual Studio will have additional options under <code class="docutils literal notranslate"><span class="pre">Tools</span> <span class="pre">-&gt;</span> <span class="pre">Options</span> <span class="pre">-&gt;</span> <span class="pre">Clang</span> <span class="pre">Power</span> <span class="pre">Tools</span></code>.
 Here you can select which checks to run via a checkbox or by supplying a custom check string. For example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="o">-*</span><span class="p">,</span><span class="n">modernize</span><span class="o">-*</span>
@@ -357,7 +326,7 @@ Other settings <em>should</em> not require alteration for clang-tidy to work.</p
 <p><em>Note: clang-tidy does not work on</em> <strong>ALL BUILD</strong> <em>so it is necessary to select a subtarget.</em></p>
 </div>
 <div class="section" id="cmake">
-<h3><a class="toc-backref" href="#id24">Cmake</a><a class="headerlink" href="#cmake" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id19">Cmake</a><a class="headerlink" href="#cmake" title="Permalink to this headline">¶</a></h3>
 <p>In the cmake gui, find the <code class="docutils literal notranslate"><span class="pre">CLANG_TIDY_EXE</span></code> parameter. If you are a non-Linux developer, you may have to manually point to your clang-tidy install.
 Configure, and check the cmake log for the message <cite>clang-tidy found</cite>. If the <cite>clang-tidy not found</cite> warning was posted instead then it has not worked.</p>
 <p>Once you have clang-tidy, there are several relevant parameters you will want to change:</p>
@@ -371,7 +340,7 @@ When you next build, clang-tidy will perform the selected checks on the code inc
 <p><em>Note: There is a known issue that clang-tidy is only being applied to certain directories within</em> <code class="docutils literal notranslate"><span class="pre">Framework</span></code> <em>and</em> <code class="docutils literal notranslate"><span class="pre">Mantidplot</span></code>.</p>
 </div>
 <div class="section" id="options">
-<h3><a class="toc-backref" href="#id25">Options</a><a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id20">Options</a><a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h3>
 <p>Some clang-tidy checks have optional arguments. For example, <code class="docutils literal notranslate"><span class="pre">modernize-loop-convert</span></code>, which changes loops to range-based,
 assigns a riskiness to each loop and can accept a <code class="docutils literal notranslate"><span class="pre">MinConfidence</span></code> argument to determine which risk levels to address.</p>
 <p>Adding the optional arguments is clunky and will rarely be required, so it has not been directly added to Mantid’s cmake setup.
@@ -386,7 +355,7 @@ To add optional arguments, add the following onto the end of <code class="docuti
 </div>
 </div>
 <div class="section" id="cmake-format">
-<h2><a class="toc-backref" href="#id26">CMake-format</a><a class="headerlink" href="#cmake-format" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id21">CMake-format</a><a class="headerlink" href="#cmake-format" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://github.com/cheshirekow/cmake_format/">CMake-format</a> is a tool which is used to format individual <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> to make them easier to read.
 The package can be installed using <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">cmake_format</span></code> or <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">cmake_format</span></code>.</p>
 <p>To use cmake-format on a specific <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> file in the command line run</p>
