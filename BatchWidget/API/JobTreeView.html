@@ -138,16 +138,14 @@ examples below.</p>
 <span class="k">using</span> <span class="k">namespace</span> <span class="n">MantidWidgets</span><span class="o">::</span><span class="n">Common</span><span class="o">::</span><span class="n">Batch</span><span class="p">;</span>
 
 <span class="c1">// Inside the parent view constructor</span>
-<span class="n">m_treeView</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JobTreeView</span><span class="p">(</span>
-    <span class="p">{</span><span class="s">&quot;Heading 1&quot;</span><span class="p">,</span> <span class="s">&quot;Heading 2&quot;</span><span class="p">},</span> <span class="c1">// The table column headings.</span>
-    <span class="n">Cell</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">),</span> <span class="c1">// The default style and content for the new &#39;empty&#39; cells.</span>
-    <span class="k">this</span>      <span class="c1">// The parent QObject</span>
-    <span class="p">);</span>
+<span class="n">m_treeView</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JobTreeView</span><span class="p">({</span><span class="s">&quot;Heading 1&quot;</span><span class="p">,</span> <span class="s">&quot;Heading 2&quot;</span><span class="p">},</span> <span class="c1">// The table column headings.</span>
+                             <span class="n">Cell</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">),</span>                   <span class="c1">// The default style and content for the new &#39;empty&#39; cells.</span>
+                             <span class="k">this</span>                        <span class="c1">// The parent QObject</span>
+<span class="p">);</span>
 <span class="n">m_treeViewSignals</span> <span class="o">=</span> <span class="c1">// JobTreeViewSignalAdapter is also available from C++</span>
-    <span class="c1">// Constructing a signal adapter with the view implicitly calls subscribe.</span>
+                    <span class="c1">// Constructing a signal adapter with the view implicitly calls subscribe.</span>
     <span class="k">new</span> <span class="n">JobTreeViewSignalAdapter</span><span class="p">(</span><span class="o">*</span><span class="n">m_treeView</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
-<span class="n">m_treeView</span><span class="o">-&gt;</span><span class="n">appendChildRowOf</span><span class="p">(</span><span class="n">RowLocation</span><span class="p">(),</span> <span class="p">{</span><span class="n">Cell</span><span class="p">(</span><span class="s">&quot;Value for Column A&quot;</span><span class="p">),</span>
-                                             <span class="n">Cell</span><span class="p">(</span><span class="s">&quot;Value for Column B&quot;</span><span class="p">)})</span>
+<span class="n">m_treeView</span><span class="o">-&gt;</span><span class="n">appendChildRowOf</span><span class="p">(</span><span class="n">RowLocation</span><span class="p">(),</span> <span class="p">{</span><span class="n">Cell</span><span class="p">(</span><span class="s">&quot;Value for Column A&quot;</span><span class="p">),</span> <span class="n">Cell</span><span class="p">(</span><span class="s">&quot;Value for Column B&quot;</span><span class="p">)})</span>
 </pre></div>
 </div>
 <div class="section" id="api-concepts">
@@ -281,11 +279,9 @@ key presses to the presenter in an MVP setup.</p>
                              <span class="c1">// we must remember the call to subscribe.</span>
   <span class="p">}</span>
 
-  <span class="kt">void</span> <span class="n">notifyCellChanged</span><span class="p">(</span><span class="n">RowLocation</span> <span class="k">const</span> <span class="o">&amp;</span><span class="n">itemIndex</span><span class="p">,</span> <span class="kt">int</span> <span class="n">column</span><span class="p">,</span>
-                         <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="k">const</span> <span class="o">&amp;</span><span class="n">newValue</span><span class="p">)</span> <span class="k">override</span> <span class="p">{}</span>
+  <span class="kt">void</span> <span class="n">notifyCellChanged</span><span class="p">(</span><span class="n">RowLocation</span> <span class="k">const</span> <span class="o">&amp;</span><span class="n">itemIndex</span><span class="p">,</span> <span class="kt">int</span> <span class="n">column</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="k">const</span> <span class="o">&amp;</span><span class="n">newValue</span><span class="p">)</span> <span class="k">override</span> <span class="p">{}</span>
   <span class="kt">void</span> <span class="n">notifyRowInserted</span><span class="p">(</span><span class="n">RowLocation</span> <span class="k">const</span> <span class="o">&amp;</span><span class="n">newRowLocation</span><span class="p">)</span> <span class="k">override</span> <span class="p">{}</span>
-  <span class="kt">void</span> <span class="n">notifyRemoveRowsRequested</span><span class="p">(</span>
-      <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">RowLocation</span><span class="o">&gt;</span> <span class="k">const</span> <span class="o">&amp;</span><span class="n">locationsOfRowsToRemove</span><span class="p">)</span> <span class="k">override</span> <span class="p">{}</span>
+  <span class="kt">void</span> <span class="n">notifyRemoveRowsRequested</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">RowLocation</span><span class="o">&gt;</span> <span class="k">const</span> <span class="o">&amp;</span><span class="n">locationsOfRowsToRemove</span><span class="p">)</span> <span class="k">override</span> <span class="p">{}</span>
   <span class="kt">void</span> <span class="n">notifyCopyRowsRequested</span><span class="p">()</span> <span class="k">override</span> <span class="p">{}</span>
   <span class="kt">void</span> <span class="n">notifyPasteRowsRequested</span><span class="p">()</span> <span class="k">override</span> <span class="p">{}</span>
   <span class="kt">void</span> <span class="n">notifyFilterReset</span><span class="p">()</span> <span class="k">override</span> <span class="p">{}</span>
@@ -295,11 +291,10 @@ key presses to the presenter in an MVP setup.</p>
 <span class="p">};</span>
 
 <span class="c1">// Elsewhere - Inside initialization</span>
-<span class="n">m_treeView</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JobTreeView</span><span class="p">(</span>
-    <span class="p">{</span><span class="s">&quot;Heading 1&quot;</span><span class="p">,</span> <span class="s">&quot;Heading 2&quot;</span><span class="p">},</span> <span class="c1">// The table column headings.</span>
-    <span class="n">Cell</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">),</span> <span class="c1">// The default style and content for the new &#39;empty&#39; cells.</span>
-    <span class="k">this</span>      <span class="c1">// The parent QObject</span>
-    <span class="p">);</span>
+<span class="n">m_treeView</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JobTreeView</span><span class="p">({</span><span class="s">&quot;Heading 1&quot;</span><span class="p">,</span> <span class="s">&quot;Heading 2&quot;</span><span class="p">},</span> <span class="c1">// The table column headings.</span>
+                             <span class="n">Cell</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">),</span>                   <span class="c1">// The default style and content for the new &#39;empty&#39; cells.</span>
+                             <span class="k">this</span>                        <span class="c1">// The parent QObject</span>
+<span class="p">);</span>
 <span class="n">m_childPresenter</span> <span class="o">=</span> <span class="n">SimplePresenter</span><span class="p">(</span><span class="n">m_treeView</span><span class="p">);</span>
 </pre></div>
 </div>
