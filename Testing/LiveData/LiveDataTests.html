@@ -159,7 +159,7 @@
 </div>
 <div class="section" id="adara-fake-event">
 <h3><a class="toc-backref" href="#id7">ADARA Fake Event</a><a class="headerlink" href="#adara-fake-event" title="Permalink to this headline">¶</a></h3>
-<p>This approach reads from an SNS pre-nexus file to recreate realistic event data, however It is a little more fiddly to setup.</p>
+<p>This approach reads from an SNS pre-nexus file or an event-nexus file to recreate realistic event data, however It is a little more fiddly to setup.</p>
 <ol class="arabic">
 <li><p class="first">Find the file <code class="docutils literal notranslate"><span class="pre">Mantid.user.properties</span></code>. Its location will be:</p>
 <ul class="simple">
@@ -167,11 +167,16 @@
 <li>Mac or linux: <code class="docutils literal notranslate"><span class="pre">~/.mantid</span></code> (i.e. in a <code class="docutils literal notranslate"><span class="pre">.mantid</span></code> directory under your home directory)</li>
 </ul>
 </li>
-<li><p class="first">To use the <code class="docutils literal notranslate"><span class="pre">REF_L_32035_neutron_event.dat</span></code> file (located in the <code class="docutils literal notranslate"><span class="pre">TrainingCourseData</span></code> folder), open <code class="docutils literal notranslate"><span class="pre">Mantid.user.properties</span></code> in your favorite text editor and add the following lines:</p>
+<li><p class="first">To use a pre-nexus file, use the <code class="docutils literal notranslate"><span class="pre">REF_L_32035_neutron_event.dat</span></code> file (located in the <code class="docutils literal notranslate"><span class="pre">TrainingCourseData</span></code> folder), open <code class="docutils literal notranslate"><span class="pre">Mantid.user.properties</span></code> in your favorite text editor and add the following lines:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="n">fileeventdatalistener</span><span class="o">.</span><span class="n">filename</span><span class="o">=</span><span class="n">REF_L_32035_neutron_event</span><span class="o">.</span><span class="n">dat</span>
 <span class="n">fileeventdatalistener</span><span class="o">.</span><span class="n">chunks</span><span class="o">=</span><span class="mi">300</span>
 </pre></div>
 </div>
+<p>A event nexus file can also be used instead, for example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="n">fileeventdatalistener</span><span class="o">.</span><span class="n">filename</span><span class="o">=</span><span class="n">EQSANS_6071_event</span><span class="o">.</span><span class="n">nxs</span>
+</pre></div>
+</div>
+<p>Chunking for files can be determined by using the <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/DetermineChunking-v1.html#algm-determinechunking" title="(in MantidProject v6.0)"><span class="xref std std-ref">DetermineChunking</span></a> algorithm.</p>
 </li>
 <li><p class="first">Start MantidPlot</p>
 </li>
