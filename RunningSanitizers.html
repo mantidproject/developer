@@ -12,7 +12,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="MVP Design" href="MVPDesign.html" />
@@ -145,26 +145,26 @@ performance penalty will be pretty severe.</p>
 <p>To change to a sanitized build navigate to your build folder and execute the
 following if you’re using a single-config generator (eg Ninja):</p>
 <blockquote>
-<div><div class="highlight-sh notranslate"><div class="highlight"><pre>cmake *path_to_src* -DUSE_SANITIZER<span class="o">=</span>*Mode* -DCMAKE_BUILD_TYPE<span class="o">=</span>RelWithDebInfo
+<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cmake *path_to_src* -DUSE_SANITIZER<span class="o">=</span>*Mode* -DCMAKE_BUILD_TYPE<span class="o">=</span>RelWithDebInfo
 </pre></div>
 </div>
 </div></blockquote>
 <p>…or the following with a multi-config generator (eg Visual Studio):</p>
 <blockquote>
-<div><div class="highlight-sh notranslate"><div class="highlight"><pre>cmake *path_to_src* -DUSE_SANITIZER<span class="o">=</span>*Mode*
+<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cmake *path_to_src* -DUSE_SANITIZER<span class="o">=</span>*Mode*
 </pre></div>
 </div>
 </div></blockquote>
 <p>If you are using GCC and need to specify a different compiler too (for example if your system
 default is GCC-7)</p>
 <blockquote>
-<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span class="nv">CC</span><span class="o">=</span>gcc-8 <span class="nv">CXX</span><span class="o">=</span>g++-8 cmake *path_to_src* -DUSE_SANITIZER<span class="o">=</span>*Mode* -DCMAKE_BUILD_TYPE<span class="o">=</span>RelWithDebInfo
+<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">CC</span><span class="o">=</span>gcc-8 <span class="nv">CXX</span><span class="o">=</span>g++-8 cmake *path_to_src* -DUSE_SANITIZER<span class="o">=</span>*Mode* -DCMAKE_BUILD_TYPE<span class="o">=</span>RelWithDebInfo
 </pre></div>
 </div>
 </div></blockquote>
 <p>For example, to switch to an address sanitizer build the following can be used:</p>
 <blockquote>
-<div><div class="highlight-sh notranslate"><div class="highlight"><pre>cmake *path_to_src* -DUSE_SANITIZER<span class="o">=</span>Address -DCMAKE_BUILD_TYPE<span class="o">=</span>RelWithDebInfo
+<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cmake *path_to_src* -DUSE_SANITIZER<span class="o">=</span>Address -DCMAKE_BUILD_TYPE<span class="o">=</span>RelWithDebInfo
 </pre></div>
 </div>
 </div></blockquote>
@@ -209,7 +209,7 @@ want to know what’s happening</p>
 setup suppressions etc… this is the equivalent of doing the following
 in a local shell:</p>
 <blockquote>
-<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span class="nb">export</span> <span class="nv">ASAN_OPTIONS</span><span class="o">=</span><span class="s2">&quot;verify_asan_link_order=0:detect_stack_use_after_return=true:halt_on_error=false:suppressions=*path_to_mantid*/tools/Sanitizer/Address.supp&quot;</span>
+<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">ASAN_OPTIONS</span><span class="o">=</span><span class="s2">&quot;verify_asan_link_order=0:detect_stack_use_after_return=true:halt_on_error=false:suppressions=*path_to_mantid*/tools/Sanitizer/Address.supp&quot;</span>
 <span class="nb">export</span> <span class="nv">LSAN_OPTIONS</span><span class="o">=</span><span class="s2">&quot;suppressions=*path_to_mantid*/tools/Sanitizer/Leak.supp&quot;</span>
 </pre></div>
 </div>
@@ -234,7 +234,7 @@ path.</li>
 <p>If you need / want to profile C++ components which are triggered from Python
 the following steps should setup your environment:</p>
 <blockquote>
-<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span class="c1"># Get the path to your linked ASAN</span>
+<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the path to your linked ASAN</span>
 ldd bin/KernelTest <span class="p">|</span> grep <span class="s2">&quot;libasan&quot;</span>
 <span class="nb">export</span> <span class="nv">LD_PRELOAD</span><span class="o">=</span>/usr/lib/path_to/libasan.so.x
 
@@ -280,7 +280,7 @@ using GCC 8 onwards.</p>
           
             
   <li>
-    <a href="TestingUtilities.html" title="Previous Chapter: Testing Utilities"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Testing Utili...</span>
+    <a href="TestingUtilities.html" title="Previous Chapter: Testing Utilities"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Testing Utilities</span>
     </a>
   </li>
   <li>

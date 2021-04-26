@@ -12,7 +12,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="VSCode" href="VSCode.html" />
@@ -111,14 +111,14 @@
 <p>Go to <code class="docutils literal notranslate"><span class="pre">File-&gt;Settings</span></code>, then under <code class="docutils literal notranslate"><span class="pre">Project</span></code> you will set two sub-menus <code class="docutils literal notranslate"><span class="pre">Project</span> <span class="pre">Interpreter</span></code> and <code class="docutils literal notranslate"><span class="pre">Project</span> <span class="pre">Structure</span></code>. The interpreter defines the python executable that will be used to run your code, and the structure menu allows you to decide which folders within the project to include and index.</p>
 </li>
 <li><p class="first">In the <code class="docutils literal notranslate"><span class="pre">Project</span> <span class="pre">Interpreter</span></code> sub menu, at the top select the options button and click <code class="docutils literal notranslate"><span class="pre">Add...</span></code>, a new window should appear titled “Add Python Interpreter”. In the menu on the left, select “System Interpreter” (a version of Python with all the correct variables set already exists within Mantid). Click on the <code class="docutils literal notranslate"><span class="pre">...</span></code> to open a file browser, and navigate to;</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>&lt;Mantid Source Directory&gt;/external/src/ThirdParty/lib/python3.8/python.exe
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>&lt;Mantid Source Directory&gt;/external/src/ThirdParty/lib/python3.8/python.exe
 </pre></div>
 </div>
 <p>This is the interpreter, so select “Ok” and apply the changes. This should bring up a list of all the packages associated to the interpreter. There should be many packages, however you should not see PyQt (but instead QtPy).</p>
 </li>
 <li><p class="first">In the <code class="docutils literal notranslate"><span class="pre">Project</span> <span class="pre">Structure</span></code> sub menu you should see your root directory with the source/build directories both visible (if not, add them). The folder structure should be present in the centre of the window allowing you to mark folders orange (excluded) or blue (source). Source directories will be searched for python code.</p>
 <p>Within the source directory add the following to your sources:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>&lt;Mantid Source Directory&gt;/scripts
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>&lt;Mantid Source Directory&gt;/scripts
 &lt;Mantid Source Directory&gt;/Framework/PythonInterface
 &lt;Mantid Source Directory&gt;/qt/applications/workbench
 &lt;Mantid Source Directory&gt;/qt/widgets
@@ -128,7 +128,7 @@
 </div>
 <p>If you are writing scripts in any other directories, you can also mark them as sources. This helps PyCharm give better auto-complete and import suggestions during development.</p>
 <p>Additionally, in the Mantid build directory add the following as source folders:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>&lt;Mantid Build Directory&gt;/bin/Debug
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>&lt;Mantid Build Directory&gt;/bin/Debug
 </pre></div>
 </div>
 <p>here we are setting up PyCharm for the Debug build, you would use <code class="docutils literal notranslate"><span class="pre">/bin/Release</span></code> instead if you are building mantid in release mode.</p>
@@ -177,7 +177,7 @@
 </li>
 <li><p class="first">To edit the configurations go to <code class="docutils literal notranslate"><span class="pre">Run-&gt;Run...</span></code> and select <code class="docutils literal notranslate"><span class="pre">Edit</span> <span class="pre">Configurations</span></code>. This should open up a sub window. Hit the green <code class="docutils literal notranslate"><span class="pre">+</span></code> in the top left to create a new configuration and name it. In order to tell PyCharm where to look for python modules and libraries we need to add some folders to the <code class="docutils literal notranslate"><span class="pre">PATH</span></code> environment variable. Click on the <code class="docutils literal notranslate"><span class="pre">...</span></code> next to the <em>Environment Variables</em> box, and hit the <code class="docutils literal notranslate"><span class="pre">+</span></code> icon. In the Name column enter “PATH”, in the value column enter the following;</p>
 <blockquote>
-<div><div class="highlight-sh notranslate"><div class="highlight"><pre>&lt;Mantid Build Directory&gt;<span class="se">\b</span>in<span class="se">\D</span>ebug<span class="p">;</span>
+<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>&lt;Mantid Build Directory&gt;<span class="se">\b</span>in<span class="se">\D</span>ebug<span class="p">;</span>
 &lt;Mantid Source Directory&gt;<span class="se">\e</span>xternal<span class="se">\s</span>rc<span class="se">\T</span>hirdParty<span class="se">\b</span>in<span class="p">;</span>
 &lt;Mantid Source Directory&gt;<span class="se">\e</span>xternal<span class="se">\s</span>rc<span class="se">\T</span>hirdParty<span class="se">\b</span>in<span class="se">\m</span>ingw<span class="p">;</span>
 &lt;Mantid Source Directory&gt;<span class="se">\e</span>xternal<span class="se">\s</span>rc<span class="se">\T</span>hirdParty<span class="se">\l</span>ib<span class="se">\p</span>ython3.8<span class="p">;</span>
@@ -199,20 +199,20 @@
 <div class="section" id="testing-using-pyqt">
 <h2><a class="toc-backref" href="#id6">Testing using PyQt</a><a class="headerlink" href="#testing-using-pyqt" title="Permalink to this headline">¶</a></h2>
 <p>To test that the above instructions have worked, you can simply create a new Python file with the following content (for PyQt5)</p>
-<div class="code python highlight-default notranslate"><div class="highlight"><pre><span class="c1"># Check that PyQt imports</span>
-<span class="kn">from</span> <span class="nn">qtpy</span> <span class="k">import</span> <span class="n">QtCore</span><span class="p">,</span> <span class="n">QtGui</span><span class="p">,</span> <span class="n">QtWidgets</span>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check that PyQt imports</span>
+<span class="kn">from</span> <span class="nn">qtpy</span> <span class="kn">import</span> <span class="n">QtCore</span><span class="p">,</span> <span class="n">QtGui</span><span class="p">,</span> <span class="n">QtWidgets</span>
 <span class="c1"># Check that the Mantid python API imports</span>
 <span class="kn">import</span> <span class="nn">mantid.simpleapi</span>
 
 <span class="k">class</span> <span class="nc">DummyView</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">DummyView</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">DummyView</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">grid</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QGridLayout</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="n">btn</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QPushButton</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="n">btn</span><span class="p">)</span>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="kn">import</span> <span class="nn">sys</span>
     <span class="n">app</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QApplication</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
     <span class="n">ui</span> <span class="o">=</span> <span class="n">DummyView</span><span class="p">(</span><span class="s2">&quot;Hello&quot;</span><span class="p">)</span>
@@ -257,8 +257,8 @@
 </li>
 <li><p class="first">Copy and paste the two lines shown in the terminal into the code you wish to debug:</p>
 <blockquote>
-<div><div class="highlight-python notranslate"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">pydevd_pycharm</span>
-<span class="n">pydevd_pycharm</span><span class="o">.</span><span class="n">settrace</span><span class="p">(</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">44444</span><span class="p">,</span> <span class="n">stdoutToServer</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">stderrToServer</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pydevd_pycharm</span>
+<span class="n">pydevd_pycharm</span><span class="o">.</span><span class="n">settrace</span><span class="p">(</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">44444</span><span class="p">,</span> <span class="n">stdoutToServer</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">stderrToServer</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div></blockquote>
@@ -278,7 +278,7 @@
 </li>
 <li><p class="first">In the <code class="docutils literal notranslate"><span class="pre">Project</span> <span class="pre">Structure</span></code> sub menu you should see your root directory with the source/build directories both visible (if not, add them). The folder structure should be present in the centre of the window allowing you to mark folders orange (excluded) or blue (source). Source directories will be searched for python code.</p>
 <p>Within the source directory add the following to your sources:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>&lt;Mantid Source Directory&gt;/scripts
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>&lt;Mantid Source Directory&gt;/scripts
 &lt;Mantid Source Directory&gt;/Framework/PythonInterface
 &lt;Mantid Source Directory&gt;/qt/applications/workbench
 &lt;Mantid Source Directory&gt;/qt/widgets
@@ -287,7 +287,7 @@
 </div>
 <p>If you are writing scripts in any other directories, you can also mark them as sources. This helps PyCharm give better auto-complete and import suggestions during development.</p>
 <p>Additionally, in the Mantid build directory add the following as source folders:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>&lt;Mantid Build Directory&gt;/bin/
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>&lt;Mantid Build Directory&gt;/bin/
 </pre></div>
 </div>
 <p>It is recommended that you add the whole build folder to <code class="docutils literal notranslate"><span class="pre">excluded</span></code>. This will not interfere with the <code class="docutils literal notranslate"><span class="pre">bin</span></code> directory, inside the build, being used as a source folder. It will just limit the scope that PyCharm searches for files, classes, etc.</p>

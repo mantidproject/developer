@@ -12,7 +12,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Debugging Unit Tests" href="DebuggingUnitTests.html" />
@@ -110,33 +110,33 @@ for building and running our unit tests. This wraps the underlying
 <h2><a class="toc-backref" href="#id2">CMake/CTest: Command Line</a><a class="headerlink" href="#cmake-ctest-command-line" title="Permalink to this headline">¶</a></h2>
 <p>The unit tests are currently excluded from the ‘all’ target. To build
 all of the tests, including the dependent framework code run:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>cmake --build . --target AllTests
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cmake --build . --target AllTests
 </pre></div>
 </div>
 <p>To build only one package of tests (and its dependencies):</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>cmake --build . --target KernelTest
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cmake --build . --target KernelTest
 </pre></div>
 </div>
 <p>To run all the tests:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>ctest -j8
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>ctest -j8
 </pre></div>
 </div>
 <p>To build and run all the tests in one shot:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>cmake --build . --target check
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cmake --build . --target check
 </pre></div>
 </div>
 <p>To run a specific test or set of tests (will run all those that match
 the search string):</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>ctest -R KernelTest_TimerTest
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>ctest -R KernelTest_TimerTest
 </pre></div>
 </div>
 <p>So to run all tests in a suite (using a search string):</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>ctest -j8 -R KernelTest
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>ctest -j8 -R KernelTest
 </pre></div>
 </div>
 <p>To exclude things from your tests (matches the string as with the -R
 option) - useful for those building the performance tests:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>ctest -j8 -E Performance
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>ctest -j8 -E Performance
 </pre></div>
 </div>
 </div>
@@ -158,23 +158,23 @@ failing in order to pass. Useful to try and find random failures</li>
 <p>Starting in your build folder:</p>
 <ul>
 <li><p class="first">Running an entire test suite (e.g. <cite>KernelTest</cite>):</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>./bin/KernelTest
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./bin/KernelTest
 </pre></div>
 </div>
 </li>
 <li><p class="first">Running a specific test class.</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>./bin/KernelTest MyTestClassName
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./bin/KernelTest MyTestClassName
 </pre></div>
 </div>
 </li>
 <li><p class="first">Running a specific test from a CxxTest test class (not possible via CTest).</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>./bin/KernelTest MyTestClassName MySingleTestName
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./bin/KernelTest MyTestClassName MySingleTestName
 </pre></div>
 </div>
 </li>
 <li><p class="first">Running a specific test from a Python <code class="docutils literal notranslate"><span class="pre">unittest</span></code> test class (not possible
 via CTest).</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>./bin/mantidpython /path/to/src/Framework/PythonInterface/test/python/plugins/algorithms/MeanTest.py MeanTest.test_mean
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./bin/mantidpython /path/to/src/Framework/PythonInterface/test/python/plugins/algorithms/MeanTest.py MeanTest.test_mean
 </pre></div>
 </div>
 </li>
@@ -191,11 +191,11 @@ via CTest).</p>
 <li><p class="first">Right click the directory again and select Debug-&gt;Start new instance.</p>
 </li>
 <li><p class="first">Once the build has finished, open a file browser and navigate to the mantid build directory, run the command-prompt.bat file to open a command prompt and run</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>ctest -C Debug -V -R AddNoteTest
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>ctest -C Debug -V -R AddNoteTest
 </pre></div>
 </div>
 <p>For this example, there should be several lines of output ending with the time taken and the line</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>100% tests passed, <span class="m">0</span> tests failed out of 1
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="m">100</span>% tests passed, <span class="m">0</span> tests failed out of <span class="m">1</span>
 </pre></div>
 </div>
 <p>Omitting the <code class="docutils literal notranslate"><span class="pre">-R</span> <span class="pre">AddNoteTest</span></code> option runs all the tests, but note that any tests which were not built according to the above instructions will fail. Adding the <code class="docutils literal notranslate"><span class="pre">-V</span></code> increases the output verbosity.</p>
@@ -228,11 +228,11 @@ via CTest).</p>
           
             
   <li>
-    <a href="Eclipse.html" title="Previous Chapter: Eclipse on Ubuntu"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Eclipse on Ub...</span>
+    <a href="Eclipse.html" title="Previous Chapter: Eclipse on Ubuntu"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Eclipse on Ubuntu</span>
     </a>
   </li>
   <li>
-    <a href="DebuggingUnitTests.html" title="Next Chapter: Debugging Unit Tests"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Debugging Uni... &raquo;</span>
+    <a href="DebuggingUnitTests.html" title="Next Chapter: Debugging Unit Tests"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Debugging Unit Tests &raquo;</span>
     </a>
   </li>
           

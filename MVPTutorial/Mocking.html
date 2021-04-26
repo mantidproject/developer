@@ -12,7 +12,7 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Mocking Exercise" href="MockingExercise.html" />
@@ -97,7 +97,7 @@ this is done via mocking see <a class="reference external" href="https://docs.py
 a detailed discussion. Here we will have a brief discussion of the
 main points.</p>
 <p>First are the import statements</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="p">(</span><span class="n">absolute_import</span><span class="p">,</span> <span class="n">division</span><span class="p">,</span> <span class="n">print_function</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="p">(</span><span class="n">absolute_import</span><span class="p">,</span> <span class="n">division</span><span class="p">,</span> <span class="n">print_function</span><span class="p">)</span>
 
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">presenter</span>
@@ -110,7 +110,7 @@ main points.</p>
 <p>A different import is used for <code class="docutils literal notranslate"><span class="pre">mock</span></code>, depending on whether we’re
 using Python 2 or 3.</p>
 <p>The test class is then initialised:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span class="k">class</span> <span class="nc">PresenterTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">PresenterTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">view</span> <span class="o">=</span> <span class="n">mock</span><span class="o">.</span><span class="n">create_autospec</span><span class="p">(</span><span class="n">view</span><span class="o">.</span><span class="n">View</span><span class="p">)</span>
 
@@ -127,7 +127,7 @@ then need to explicitly mock the methods using <code class="docutils literal not
 addtion, when a return value is needed, this is provided in the call
 to <code class="docutils literal notranslate"><span class="pre">mock.Mock</span></code>.</p>
 <p>A test is shown below:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span class="k">def</span> <span class="nf">test_doSomething</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_doSomething</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">presenter</span><span class="o">.</span><span class="n">handleButton</span><span class="p">()</span>
     <span class="k">assert</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">getValue</span><span class="o">.</span><span class="n">call_count</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
 </pre></div>
@@ -141,7 +141,7 @@ avoided as it can easily lead to errors. This is because it is
 expected that the function <code class="docutils literal notranslate"><span class="pre">assert_called_twice</span></code> exists but it does
 not, however when you run the test it will always pass.</p>
 <p>The last bit of code is to execute the tests:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="n">unittest</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
 </pre></div>
 </div>

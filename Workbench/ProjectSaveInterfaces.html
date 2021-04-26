@@ -12,7 +12,7 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Using PyCharm with Workbench" href="UsingPycharmWithWorkbench.html" />
@@ -112,7 +112,7 @@
 <p>The way the Encoder and Decoder factory works are different, the EncoderFactory will grab the class name of the object passed to it and check if any of it’s known Encoders have a “tag” with that name in it. The DecoderFactory will check against a “tag” which is saved in the dictionary but is dynamically grabbed from the tags list of the Encoder that encoded the interface, at the time of saving and a developer will not need to save this tag.</p>
 <p>There is a slightly more advanced version of registering an Encoder with the EncoderFactory (This isn’t required by DecoderFactory due to the implementation). Alongside adding a tag equal to the class name of the Encoded variable, you can pass a function that will return True if the encoder can encode the passed object. A good example for these is the MatrixWorkspaceDisplay and TableWorkspaceDisplay as they have a containing object which is the same. This allows seperate encoders and decoders for technically the same object, with different refferences.</p>
 <p>The basic template for an io file:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span class="k">class</span> <span class="nc">InterfaceAttributes</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">InterfaceAttributes</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="c1"># WARNING: If you delete a tag from here instead of adding a new one, it will make old project files obsolete so</span>
     <span class="c1"># just add an extra tag to the list e.g. [&quot;InstrumentWidget&quot;, &quot;IWidget&quot;]</span>
     <span class="c1"># This list must contain the name of the class that will be found at the top level of Widgets, this is usually the view</span>
@@ -120,22 +120,22 @@
     <span class="n">tags</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Interface&quot;</span><span class="p">]</span>
 
 <span class="k">class</span> <span class="nc">InterfaceEncoder</span><span class="p">(</span><span class="n">InterfaceAttributes</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">InterfaceEncoder</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">InterfaceEncoder</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">encode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">project_path</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">encode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">project_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">presenter</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">presenter</span>
         <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="n">presenter</span><span class="o">.</span><span class="n">getInfo</span><span class="p">(),</span> <span class="s2">&quot;state&quot;</span><span class="p">:</span> <span class="n">presenter</span><span class="o">.</span><span class="n">getState</span><span class="p">()}</span>
 
     <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">has_tag</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">tag</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">tag</span> <span class="ow">in</span> <span class="n">cls</span><span class="o">.</span><span class="n">tags</span>
+    <span class="k">def</span> <span class="nf">has_tag</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">tag</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">tag</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">tags</span>
 
 <span class="k">class</span> <span class="nc">InterfaceDecoder</span><span class="p">(</span><span class="n">InterfaceAttributes</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">InterfaceDecoder</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">InterfaceDecoder</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">decoder</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj_dict</span><span class="p">,</span> <span class="n">project_path</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">decoder</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj_dict</span><span class="p">,</span> <span class="n">project_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="c1"># Recreate the GUI in a base state</span>
         <span class="n">presenter</span> <span class="o">=</span> <span class="n">InterfacePresenter</span><span class="p">()</span>
 
@@ -147,12 +147,12 @@
         <span class="k">return</span> <span class="n">presenter</span><span class="o">.</span><span class="n">view</span>
 
     <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">has_tag</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">tag</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">tag</span> <span class="ow">in</span> <span class="n">cls</span><span class="o">.</span><span class="n">tags</span>
+    <span class="k">def</span> <span class="nf">has_tag</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">tag</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">tag</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">tags</span>
 </pre></div>
 </div>
 <p>Alongside the io file you will need to register the InterfaceEncoder and InterfaceDecoder with the relevant factories this should be done in the __init__.py file of the module containing the overall Interface. This can be done by getting the Encoder and Decoder factory objects and running register_encoder and register_decoder respectively on the factories and passing the class of the Encoder and Decoder. An example of this can be found in mantidqt/widgets/tableworkspacedisplay/__init__.py. Continuing with our previous example it would look like this:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">mantidqt.project.encoderfactory</span> <span class="kn">import</span> <span class="n">EncoderFactory</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mantidqt.project.encoderfactory</span> <span class="kn">import</span> <span class="n">EncoderFactory</span>
 <span class="kn">from</span> <span class="nn">mantidqt.project.decoderfactory</span> <span class="kn">import</span> <span class="n">DecoderFactory</span>
 <span class="kn">from</span> <span class="nn">mantidqt.widget.interface.io</span> <span class="kn">import</span> <span class="n">InterfaceEncoder</span><span class="p">,</span> <span class="n">InterfaceDecoder</span>
 
@@ -170,7 +170,7 @@
 <p>Before the tutorial really starts some advice about QMap, if using the [] operator and it cannot find the correct value, it will return a default constructed version of the value in the key value pair, i.e. if it can’t find the QVariant it will return an empty one, which in turn will also return a default value when converted back into a normal type, i.e. QVariant.toBool() will return false, in the given cases, always.</p>
 <p>To start with the encoding we would have a C++ called Interface with class Interface, we would create a class called InterfaceEncoder and have the method QMap&lt;QString, QVariant&gt; encode(Interface &amp;interface), this method does not need to follow any specific format but it would be good practice to follow the encode and decode naming scheme. As an example:</p>
 <p>Header File:</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span class="k">class</span> <span class="nc">EXPORT_OPT_MANTIDQT_INTERFACE</span> <span class="n">InterfaceEncoder</span> <span class="p">{</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">EXPORT_OPT_MANTIDQT_INTERFACE</span> <span class="n">InterfaceEncoder</span> <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
 <span class="n">InterfaceEncoder</span><span class="p">();</span>
 <span class="n">QMap</span><span class="o">&lt;</span><span class="n">QString</span><span class="p">,</span> <span class="n">QVariant</span><span class="o">&gt;</span> <span class="n">encode</span> <span class="p">(</span><span class="k">const</span> <span class="n">Interface</span> <span class="o">&amp;</span><span class="n">interface</span><span class="p">);</span>
@@ -182,7 +182,7 @@
 </pre></div>
 </div>
 <p>Source File:</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span class="n">InterfaceEncoder</span><span class="o">::</span><span class="n">InterfaceEncoder</span><span class="p">()</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">InterfaceEncoder</span><span class="o">::</span><span class="n">InterfaceEncoder</span><span class="p">()</span>
 
 <span class="n">QMap</span><span class="o">&lt;</span><span class="n">QString</span><span class="p">,</span> <span class="n">QVariant</span><span class="o">&gt;</span> <span class="n">InterfaceEncoder</span><span class="o">::</span><span class="n">encode</span><span class="p">(</span><span class="k">const</span> <span class="n">Interface</span> <span class="o">&amp;</span><span class="n">interface</span><span class="p">){</span>
   <span class="n">QMap</span><span class="o">&lt;</span><span class="n">QString</span><span class="p">,</span> <span class="n">QVariant</span><span class="o">&gt;</span> <span class="n">map</span><span class="p">;</span>
@@ -210,7 +210,7 @@
 </div>
 <p>With the encoder classes done it needs to be exposed to python via SIP, this can be done by adding the InterfaceEncoder to a compiling sip file, now the placement of this is not necessarily mandated, but InstrumentView had it’s own SIP file and it made sense to expand it to encompass it’s encoder and decoders.</p>
 <p>SIP File:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre>class InterfaceEncoder {
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>class InterfaceEncoder {
 %TypeHeaderCode
 #include &quot;MantidQtWidgets/Interface/InterfaceEncoder.h&quot;
 %End
@@ -245,7 +245,7 @@ public:
           
             
   <li>
-    <a href="BuildingWorkbench.html" title="Previous Chapter: Workbench Development"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Workbench Dev...</span>
+    <a href="BuildingWorkbench.html" title="Previous Chapter: Workbench Development"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Workbench Development</span>
     </a>
   </li>
   <li>

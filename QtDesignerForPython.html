@@ -12,7 +12,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Mantid Icon Table" href="MantidUsedIconsTable.html" />
@@ -105,9 +105,9 @@ Python script. Instead you must first save the layout in a <code class="docutils
 file and use a separate package to to convert it to a python class.
 Including this at the start of your view script will import a class
 <code class="docutils literal notranslate"><span class="pre">Ui_MyWidget</span></code> that you can use with your view.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">mantidqt.utils.qt</span> <span class="kn">import</span> <span class="n">load_ui</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mantidqt.utils.qt</span> <span class="kn">import</span> <span class="n">load_ui</span>
 
-<span class="n">Ui_MyWidget</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">load_ui</span><span class="p">(</span><span class="n">__file__</span><span class="p">,</span> <span class="s2">&quot;my_widget.ui&quot;</span><span class="p">)</span>
+<span class="n">Ui_MyWidget</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">load_ui</span><span class="p">(</span><span class="vm">__file__</span><span class="p">,</span> <span class="s2">&quot;my_widget.ui&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -122,17 +122,17 @@ the presenter moves the view implementation details into the presenter,
 which makes it harder to change the names and types of widgets used to
 display the information. Instead it is best to create a separate new class
 which inherits from the imported one.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">qtpy</span> <span class="kn">import</span> <span class="n">QtCore</span><span class="p">,</span> <span class="n">QtGui</span><span class="p">,</span> <span class="n">QtWidgets</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qtpy</span> <span class="kn">import</span> <span class="n">QtCore</span><span class="p">,</span> <span class="n">QtGui</span><span class="p">,</span> <span class="n">QtWidgets</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">mantidqt.utils.qt</span> <span class="kn">import</span> <span class="n">load_ui</span>
 <span class="kn">from</span> <span class="nn">matplotlib.backends.backend_qt4agg</span> <span class="kn">import</span> <span class="n">FigureCanvasQTAgg</span> <span class="k">as</span> <span class="n">FigureCanvas</span>
 
-<span class="n">Ui_MyWidget</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">load_ui</span><span class="p">(</span><span class="n">__file__</span><span class="p">,</span> <span class="s2">&quot;my_widget.ui&quot;</span><span class="p">)</span>
+<span class="n">Ui_MyWidget</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">load_ui</span><span class="p">(</span><span class="vm">__file__</span><span class="p">,</span> <span class="s2">&quot;my_widget.ui&quot;</span><span class="p">)</span>
 
 
 <span class="k">class</span> <span class="nc">MyWidget</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">,</span> <span class="n">Ui_MyWidget</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">MyWidget</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">MyWidget</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>You can then add separate methods to the view for accessing and mutating
@@ -146,15 +146,15 @@ start with a up to date build from master. For this demo our interface does
 not need any presenter or model, those can be added later, all that is needed
 is a <code class="docutils literal notranslate"><span class="pre">.ui</span></code> file and a script that will open it as an application. Take view
 from above and use the following as your main:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="p">(</span><span class="n">absolute_import</span><span class="p">,</span><span class="n">division</span><span class="p">,</span><span class="n">print_function</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="p">(</span><span class="n">absolute_import</span><span class="p">,</span><span class="n">division</span><span class="p">,</span><span class="n">print_function</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">qtpy</span> <span class="kn">import</span> <span class="n">QtWidgets</span>
 <span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">import</span> <span class="nn">my_widget.view</span> <span class="kn">as</span> <span class="nn">view</span>
+<span class="kn">import</span> <span class="nn">my_widget.view</span> <span class="k">as</span> <span class="nn">view</span>
 
 
 <span class="k">class</span> <span class="nc">demo</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMainWindow</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">demo</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">demo</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">window</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMainWindow</span><span class="p">()</span>
         <span class="n">my_view</span> <span class="o">=</span> <span class="n">view</span><span class="o">.</span><span class="n">MyWidget</span><span class="p">(</span><span class="n">parent</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">setCentralWidget</span><span class="p">(</span><span class="n">my_view</span><span class="p">)</span>
@@ -165,7 +165,7 @@ from above and use the following as your main:</p>
 source directory. You will note that when we are importing view into the main
 script we are importing <code class="docutils literal notranslate"><span class="pre">my_widget.view</span></code>, this is because our interface is in
 the form of a package that will be called by another script.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="p">(</span><span class="n">absolute_import</span><span class="p">,</span> <span class="n">division</span><span class="p">,</span> <span class="n">print_function</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="p">(</span><span class="n">absolute_import</span><span class="p">,</span> <span class="n">division</span><span class="p">,</span> <span class="n">print_function</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">my_widget.main</span> <span class="kn">import</span> <span class="n">demo</span>
 
 <span class="n">widget</span> <span class="o">=</span> <span class="n">demo</span><span class="p">()</span>
@@ -246,7 +246,7 @@ model and presenter scripts with the <code class="docutils literal notranslate">
     </a>
   </li>
   <li>
-    <a href="MantidUsedIconsTable.html" title="Next Chapter: Mantid Icon Table"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Mantid Icon T... &raquo;</span>
+    <a href="MantidUsedIconsTable.html" title="Next Chapter: Mantid Icon Table"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Mantid Icon Table &raquo;</span>
     </a>
   </li>
           

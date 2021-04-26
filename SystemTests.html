@@ -12,7 +12,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Data Files for Testing" href="DataFilesForTesting.html" />
@@ -168,7 +168,7 @@ override the validateMethod on a test with any one of three options.</p>
 <li>ValidateAscii (Benchmark workspace is stored as an ascii file)</li>
 </ul>
 <p>For example:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span class="k">def</span> <span class="nf">validateMethod</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">validateMethod</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="k">return</span> <span class="s1">&#39;WorkspaceToNeXus&#39;</span>
 </pre></div>
 </div>
@@ -177,7 +177,7 @@ override the validateMethod on a test with any one of three options.</p>
 <h3><a class="toc-backref" href="#id5">No Workspace Validation</a><a class="headerlink" href="#no-workspace-validation" title="Permalink to this headline">¶</a></h3>
 <p>If the system test does not need comparison/validation against a
 standard workpace, then this step can be skipped. Simply omitting the</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 </pre></div>
 </div>
 <p>method from the system test is sufficient.</p>
@@ -193,7 +193,7 @@ certain Python modules (e.g. for the XML validation tests).</p>
 <p>Some tests consume a large amount memory resources, and are therefore
 best executed on hardware where enough memory is available. You can set
 a minimum RAM specification by overriding requiredMemoryMB:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span class="k">def</span> <span class="nf">requiredMemoryMB</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">requiredMemoryMB</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="k">return</span> <span class="mi">2000</span>
 </pre></div>
 </div>
@@ -206,7 +206,7 @@ least 2GB of free memory.</p>
 repository. The <code class="docutils literal notranslate"><span class="pre">requiredFiles()</span></code> method returns a list of these files
 so that they test can check that they are all available. If all files
 are not available then the tests are skipped.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span class="k">def</span> <span class="nf">requiredFiles</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">requiredFiles</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;a.nxs&#39;</span><span class="p">,</span> <span class="s1">&#39;b.nxs&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -218,12 +218,12 @@ files ‘a.nxs’ &amp; ‘b.nxs’</p>
 <h3><a class="toc-backref" href="#id9">Set the Tolerance</a><a class="headerlink" href="#set-the-tolerance" title="Permalink to this headline">¶</a></h3>
 <p>You may specialise the tolerance used by <code class="docutils literal notranslate"><span class="pre">CompareWorkspace</span></code> in your
 system test.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span class="bp">self</span><span class="o">.</span><span class="n">tolerance</span> <span class="o">=</span> <span class="mf">0.00000001</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">tolerance</span> <span class="o">=</span> <span class="mf">0.00000001</span>
 </pre></div>
 </div>
 <p>By default the tolerance is absolute. It can be changed to relative by another
 flag in the <code class="xref py py-class docutils literal notranslate"><span class="pre">systemtesting.MantidSystemTest</span></code> class.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span class="bp">self</span><span class="o">.</span><span class="n">tolerance_rel_err</span> <span class="o">=</span> <span class="bp">True</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">tolerance_rel_err</span> <span class="o">=</span> <span class="kc">True</span>
 </pre></div>
 </div>
 </div>
@@ -232,7 +232,7 @@ flag in the <code class="xref py py-class docutils literal notranslate"><span cl
 <p>You may disable some checks performed by the <code class="docutils literal notranslate"><span class="pre">CompareWorkspaces</span></code>
 algorithm by appending them to the disableChecking list, which, by
 default, is empty.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span class="c1"># A list of things not to check when validating</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># A list of things not to check when validating</span>
 <span class="bp">self</span><span class="o">.</span><span class="n">disableChecking</span> <span class="o">=</span> <span class="p">[]</span>
 </pre></div>
 </div>
@@ -242,7 +242,7 @@ default, is empty.</p>
 <p>Additional assertions can be used as the basis for your own comparison
 tests. The following assertions are already implemented in the base
 class.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span class="k">def</span> <span class="nf">assertTrue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">assertTrue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
 <span class="k">def</span> <span class="nf">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">expected</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
 <span class="k">def</span> <span class="nf">assertDelta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">expected</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
 <span class="k">def</span> <span class="nf">assertLessThan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">expected</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
@@ -275,11 +275,11 @@ If using CMake these will need to be added as new string entries (value is in se
 <p>The user must first open command-prompt from, the build directory. The
 script requires the developer to select the configuration that will be
 used to execute the tests, one of: <em>Release</em>, <em>Debug</em>, <em>RelWithDebInfo</em>
-or ‘MinSizeRelease’‘. Note that the script does not build the code so
+or ‘MinSizeRelease’’. Note that the script does not build the code so
 the chosen configuration must have already been built. An example to
 execute all of the tests for the release configuration would be (in the
 command-prompt):</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>&gt; systemtest -C Release
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>&gt; systemtest -C Release
 </pre></div>
 </div>
 </div>
@@ -287,7 +287,7 @@ command-prompt):</p>
 <h3><a class="toc-backref" href="#id15">Makefile-like Generators</a><a class="headerlink" href="#makefile-like-generators" title="Permalink to this headline">¶</a></h3>
 <p>The script requires no additional arguments as the configuration is
 fixed when running CMake, e.g.</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span class="nb">cd</span> build
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> build
 systemtest
 </pre></div>
 </div>
@@ -296,7 +296,7 @@ systemtest
 <h3><a class="toc-backref" href="#id16">Systems Lacking pyqt4</a><a class="headerlink" href="#systems-lacking-pyqt4" title="Permalink to this headline">¶</a></h3>
 <p>Recent systems using Qt5 as default should set environment variable <code class="docutils literal notranslate"><span class="pre">QT_API</span></code>
 while invoking the script</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>&gt; <span class="nv">QT_API</span><span class="o">=</span>pyqt5 systemtest
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>&gt; <span class="nv">QT_API</span><span class="o">=</span>pyqt5 systemtest
 </pre></div>
 </div>
 </div>
@@ -316,7 +316,7 @@ expression <code class="docutils literal notranslate"><span class="pre">ISIS</sp
 <p>The most important option on the script is the <code class="docutils literal notranslate"><span class="pre">-R</span></code> option. This
 restricts the tests that will run to those that match the given regex,
 e.g.</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span class="nb">cd</span> build
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> build
 systemtest -R SNS
 <span class="c1"># or for msvc/xcode</span>
 systemtest -C &lt;cfg&gt; -R SNS
@@ -330,7 +330,7 @@ systemtest -C &lt;cfg&gt; -R SNS
 tests across multiple cores. This is done in a similar way to <code class="docutils literal notranslate"><span class="pre">ctest</span></code>
 using the <code class="docutils literal notranslate"><span class="pre">-j</span> <span class="pre">N</span></code> option, where <code class="docutils literal notranslate"><span class="pre">N</span></code> is the number of cores you want
 to use, e.g.</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>./systemtest -j 8
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./systemtest -j <span class="m">8</span>
 </pre></div>
 </div>
 <p>would run the tests on 8 cores.</p>
@@ -375,32 +375,32 @@ approximately at the same time.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">systemtests</span></code> can be run in “quiet” mode using the <code class="docutils literal notranslate"><span class="pre">-q</span></code> or
 <code class="docutils literal notranslate"><span class="pre">--quiet</span></code> option. This will print only one line per test instead of
 the full log.</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>./systemtest --quiet
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./systemtest --quiet
 Updating testing data...
-<span class="o">[</span>100%<span class="o">]</span> Built target StandardTestData
-<span class="o">[</span>100%<span class="o">]</span> Built target SystemTestData
+<span class="o">[</span><span class="m">100</span>%<span class="o">]</span> Built target StandardTestData
+<span class="o">[</span><span class="m">100</span>%<span class="o">]</span> Built target SystemTestData
 Running tests...
-FrameworkManager-<span class="o">[</span>Notice<span class="o">]</span> Welcome to Mantid 3.13.20180820.2132
+FrameworkManager-<span class="o">[</span>Notice<span class="o">]</span> Welcome to Mantid <span class="m">3</span>.13.20180820.2132
 FrameworkManager-<span class="o">[</span>Notice<span class="o">]</span> Please cite: http://dx.doi.org/10.1016/j.nima.2014.07.029 and this release: http://dx.doi.org/10.5286/Software/Mantid
-<span class="o">[</span>  0%<span class="o">]</span>   1/435 : DOSTest.DOSCastepTest ............................................... <span class="o">(</span>success: 0.05s<span class="o">)</span>
-<span class="o">[</span>  0%<span class="o">]</span>   2/435 : ISISIndirectBayesTest.JumpCETest .................................... <span class="o">(</span>success: 0.06s<span class="o">)</span>
-<span class="o">[</span>  0%<span class="o">]</span>   3/435 : ISISIndirectInelastic.IRISCalibration ............................... <span class="o">(</span>success: 0.03s<span class="o">)</span>
-<span class="o">[</span>  0%<span class="o">]</span>   4/435 : HFIRTransAPIv2.HFIRTrans1 ........................................... <span class="o">(</span>success: 1.30s<span class="o">)</span>
-<span class="o">[</span>  1%<span class="o">]</span>   5/435 : DOSTest.DOSIRActiveTest ............................................. <span class="o">(</span>success: 0.04s<span class="o">)</span>
-<span class="o">[</span>  1%<span class="o">]</span>   6/435 : ISISIndirectBayesTest.JumpFickTest .................................. <span class="o">(</span>success: 0.06s<span class="o">)</span>
-<span class="o">[</span>  1%<span class="o">]</span>   7/435 : AbinsTest.AbinsBinWidth ............................................. <span class="o">(</span>success: 1.65s<span class="o">)</span>
-<span class="o">[</span>  1%<span class="o">]</span>   8/435 : ISIS_PowderPearlTest.CreateCalTest .................................. <span class="o">(</span>success: 1.65s<span class="o">)</span>
-<span class="o">[</span>  2%<span class="o">]</span>   9/435 : ISISIndirectInelastic.IRISConvFit ................................... <span class="o">(</span>success: 0.56s<span class="o">)</span>
-<span class="o">[</span>  2%<span class="o">]</span>  10/435 : LiquidsReflectometryReductionWithBackgroundTest.BadDataTOFRangeTest . <span class="o">(</span>success: 2.94s<span class="o">)</span>
-<span class="o">[</span>  2%<span class="o">]</span>  11/435 : DOSTest.DOSPartialCrossSectionScaleTest ............................. <span class="o">(</span>success: 0.23s<span class="o">)</span>
-<span class="o">[</span>  2%<span class="o">]</span>  12/435 : ISISIndirectBayesTest.JumpHallRossTest .............................. <span class="o">(</span>success: 0.07s<span class="o">)</span>
-<span class="o">[</span>  2%<span class="o">]</span>  13/435 : ISISIndirectInelastic.IRISDiagnostics ............................... <span class="o">(</span>success: 0.03s<span class="o">)</span>
-<span class="o">[</span>  3%<span class="o">]</span>  14/435 : HFIRTransAPIv2.HFIRTrans2 ........................................... <span class="o">(</span>success: 0.83s<span class="o">)</span>
-<span class="o">[</span>  3%<span class="o">]</span>  15/435 : DOSTest.DOSPartialSummedContributionsCrossSectionScaleTest .......... <span class="o">(</span>success: 0.15s<span class="o">)</span>
-<span class="o">[</span>  3%<span class="o">]</span>  16/435 : ISISIndirectBayesTest.JumpTeixeiraTest .............................. <span class="o">(</span>success: 0.07s<span class="o">)</span>
-<span class="o">[</span>  3%<span class="o">]</span>  17/435 : ISISIndirectInelastic.IRISElwinAndMSDFit ............................ <span class="o">(</span>success: 0.29s<span class="o">)</span>
-<span class="o">[</span>  4%<span class="o">]</span>  18/435 : MagnetismReflectometryReductionTest.MRFilterCrossSectionsTest ....... <span class="o">(</span>success: 5.30s<span class="o">)</span>
-<span class="o">[</span>  4%<span class="o">]</span>  19/435 : DOSTest.DOSPartialSummedContributionsTest ........................... <span class="o">(</span>success: 0.16s<span class="o">)</span>
+<span class="o">[</span>  <span class="m">0</span>%<span class="o">]</span>   <span class="m">1</span>/435 : DOSTest.DOSCastepTest ............................................... <span class="o">(</span>success: <span class="m">0</span>.05s<span class="o">)</span>
+<span class="o">[</span>  <span class="m">0</span>%<span class="o">]</span>   <span class="m">2</span>/435 : ISISIndirectBayesTest.JumpCETest .................................... <span class="o">(</span>success: <span class="m">0</span>.06s<span class="o">)</span>
+<span class="o">[</span>  <span class="m">0</span>%<span class="o">]</span>   <span class="m">3</span>/435 : ISISIndirectInelastic.IRISCalibration ............................... <span class="o">(</span>success: <span class="m">0</span>.03s<span class="o">)</span>
+<span class="o">[</span>  <span class="m">0</span>%<span class="o">]</span>   <span class="m">4</span>/435 : HFIRTransAPIv2.HFIRTrans1 ........................................... <span class="o">(</span>success: <span class="m">1</span>.30s<span class="o">)</span>
+<span class="o">[</span>  <span class="m">1</span>%<span class="o">]</span>   <span class="m">5</span>/435 : DOSTest.DOSIRActiveTest ............................................. <span class="o">(</span>success: <span class="m">0</span>.04s<span class="o">)</span>
+<span class="o">[</span>  <span class="m">1</span>%<span class="o">]</span>   <span class="m">6</span>/435 : ISISIndirectBayesTest.JumpFickTest .................................. <span class="o">(</span>success: <span class="m">0</span>.06s<span class="o">)</span>
+<span class="o">[</span>  <span class="m">1</span>%<span class="o">]</span>   <span class="m">7</span>/435 : AbinsTest.AbinsBinWidth ............................................. <span class="o">(</span>success: <span class="m">1</span>.65s<span class="o">)</span>
+<span class="o">[</span>  <span class="m">1</span>%<span class="o">]</span>   <span class="m">8</span>/435 : ISIS_PowderPearlTest.CreateCalTest .................................. <span class="o">(</span>success: <span class="m">1</span>.65s<span class="o">)</span>
+<span class="o">[</span>  <span class="m">2</span>%<span class="o">]</span>   <span class="m">9</span>/435 : ISISIndirectInelastic.IRISConvFit ................................... <span class="o">(</span>success: <span class="m">0</span>.56s<span class="o">)</span>
+<span class="o">[</span>  <span class="m">2</span>%<span class="o">]</span>  <span class="m">10</span>/435 : LiquidsReflectometryReductionWithBackgroundTest.BadDataTOFRangeTest . <span class="o">(</span>success: <span class="m">2</span>.94s<span class="o">)</span>
+<span class="o">[</span>  <span class="m">2</span>%<span class="o">]</span>  <span class="m">11</span>/435 : DOSTest.DOSPartialCrossSectionScaleTest ............................. <span class="o">(</span>success: <span class="m">0</span>.23s<span class="o">)</span>
+<span class="o">[</span>  <span class="m">2</span>%<span class="o">]</span>  <span class="m">12</span>/435 : ISISIndirectBayesTest.JumpHallRossTest .............................. <span class="o">(</span>success: <span class="m">0</span>.07s<span class="o">)</span>
+<span class="o">[</span>  <span class="m">2</span>%<span class="o">]</span>  <span class="m">13</span>/435 : ISISIndirectInelastic.IRISDiagnostics ............................... <span class="o">(</span>success: <span class="m">0</span>.03s<span class="o">)</span>
+<span class="o">[</span>  <span class="m">3</span>%<span class="o">]</span>  <span class="m">14</span>/435 : HFIRTransAPIv2.HFIRTrans2 ........................................... <span class="o">(</span>success: <span class="m">0</span>.83s<span class="o">)</span>
+<span class="o">[</span>  <span class="m">3</span>%<span class="o">]</span>  <span class="m">15</span>/435 : DOSTest.DOSPartialSummedContributionsCrossSectionScaleTest .......... <span class="o">(</span>success: <span class="m">0</span>.15s<span class="o">)</span>
+<span class="o">[</span>  <span class="m">3</span>%<span class="o">]</span>  <span class="m">16</span>/435 : ISISIndirectBayesTest.JumpTeixeiraTest .............................. <span class="o">(</span>success: <span class="m">0</span>.07s<span class="o">)</span>
+<span class="o">[</span>  <span class="m">3</span>%<span class="o">]</span>  <span class="m">17</span>/435 : ISISIndirectInelastic.IRISElwinAndMSDFit ............................ <span class="o">(</span>success: <span class="m">0</span>.29s<span class="o">)</span>
+<span class="o">[</span>  <span class="m">4</span>%<span class="o">]</span>  <span class="m">18</span>/435 : MagnetismReflectometryReductionTest.MRFilterCrossSectionsTest ....... <span class="o">(</span>success: <span class="m">5</span>.30s<span class="o">)</span>
+<span class="o">[</span>  <span class="m">4</span>%<span class="o">]</span>  <span class="m">19</span>/435 : DOSTest.DOSPartialSummedContributionsTest ........................... <span class="o">(</span>success: <span class="m">0</span>.16s<span class="o">)</span>
 </pre></div>
 </div>
 <p>One can recover the full log when a test fails by using the <code class="docutils literal notranslate"><span class="pre">--ouptut-on-failure</span></code> option.</p>
@@ -411,7 +411,7 @@ FrameworkManager-<span class="o">[</span>Notice<span class="o">]</span> Please c
 <code class="docutils literal notranslate"><span class="pre">.cleanup()</span></code> function for each test. It will not run the tests
 (i.e. call the <code class="docutils literal notranslate"><span class="pre">execute()</span></code> function) themselves. This is achieved
 by using the <code class="docutils literal notranslate"><span class="pre">-c</span></code> or <code class="docutils literal notranslate"><span class="pre">--clean</span></code> option, e.g.</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>./systemtest -c
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./systemtest -c
 </pre></div>
 </div>
 <p>This is useful if some old data is left over from a previous run,

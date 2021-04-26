@@ -12,7 +12,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Load Algorithm Hook" href="LoadAlgorithmHook.html" />
@@ -262,24 +262,18 @@ this, the new implementation of the SANS data reduction uses a simple state obje
 which stores the reduction-relevant information centrally.
 This <em>SANSState</em> approach is the corner stone of the new design.</p>
 <p>The <em>SANSState</em> is:</p>
-<ul>
-<li><p class="first">self-validating</p>
-</li>
+<ul class="simple">
+<li>self-validating</li>
 <li><dl class="first docutils">
 <dt>immutable (currently this is not enforced on the object itself, but should be added in the future.</dt>
-<dd><p class="first last">The reduction code is written however such that it does not make sense to mutate the state
-while a reduction is running.)</p>
-</dd>
+<dd>The reduction code is written however such that it does not make sense to mutate the state
+while a reduction is running.)</dd>
 </dl>
 </li>
-<li><p class="first">typed</p>
-</li>
-<li><p class="first">serializable</p>
-</li>
-<li><p class="first">easy to reason about</p>
-</li>
-<li><p class="first">modular (sub-states for units of work)</p>
-</li>
+<li>typed</li>
+<li>serializable</li>
+<li>easy to reason about</li>
+<li>modular (sub-states for units of work)</li>
 </ul>
 <p>This approach allows us to identify issues with the settings before a lengthy
 data reduction has been started.</p>
@@ -2287,7 +2281,7 @@ be modified by using the <em>ISISCommandInterface</em> or the SANS GUI. Changes 
 settings will override settings specified in the user file.</p>
 <p>An example dictionary entry for the fit parameters during the transmission
 calculation for a <em>Can</em> data set could be:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span class="p">{</span><span class="n">FitId</span><span class="o">.</span><span class="n">general</span><span class="p">:</span> <span class="n">fit_general</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">FitId</span><span class="o">.</span><span class="n">general</span><span class="p">:</span> <span class="n">fit_general</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
                             <span class="n">stop</span><span class="o">=</span><span class="mf">3.0</span><span class="p">,</span>
                             <span class="n">fit_type</span><span class="o">=</span><span class="n">FitType</span><span class="o">.</span><span class="n">Polynomial</span><span class="p">,</span>
                             <span class="n">data_type</span><span class="o">=</span><span class="n">DataType</span><span class="o">.</span><span class="n">Can</span><span class="p">,</span>
@@ -2316,9 +2310,9 @@ for setting the parameters on the state object which is currently being built. V
 The name of the the setters is <em>set_PARAMTERNAME</em> for a given parameter name on the state.
 The advantage of the decorator is that we can exclude access to parameters of the state which
 are automatically set by the builder.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span class="k">class</span> <span class="nc">StateScaleBuilder</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">StateScaleBuilder</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="nd">@automatic_setters</span><span class="p">(</span><span class="n">StateScale</span><span class="p">,</span> <span class="n">exclusions</span><span class="o">=</span><span class="p">[])</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_info</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_info</span><span class="p">):</span>
       <span class="o">...</span>
 </pre></div>
 </div>
@@ -2805,7 +2799,7 @@ are provided as outputs.</li>
     </a>
   </li>
   <li>
-    <a href="LoadAlgorithmHook.html" title="Next Chapter: Load Algorithm Hook"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Load Algorith... &raquo;</span>
+    <a href="LoadAlgorithmHook.html" title="Next Chapter: Load Algorithm Hook"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Load Algorithm Hook &raquo;</span>
     </a>
   </li>
           

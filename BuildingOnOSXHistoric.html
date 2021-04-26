@@ -12,7 +12,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Building with CMake" href="BuildingWithCMake.html" />
@@ -129,7 +129,7 @@ it is not recommended to have both, homebrew and macports installed simultaneous
 <li><p class="first">Download the source code from the <a class="reference external" href="http://download.nexusformat.org/kits/">NeXus developers website</a>.</p>
 </li>
 <li><p class="first">Build and install it:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre> % ./configure --prefix<span class="o">=</span>/opt/local
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span> % ./configure --prefix<span class="o">=</span>/opt/local
  % make
  % sudo make install
 
@@ -142,7 +142,7 @@ You may need to install additional packages to be able to build libNeXus.
 </ol>
 </li>
 <li><p class="first">jsoncpp: <code class="docutils literal notranslate"><span class="pre">mantid/Code/Mantid/Framework/DataObjects/src/NoShape.cpp</span></code> line 3 contains: <code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">&lt;jsoncpp/json/json.h&gt;</span></code> but in macports there is no <code class="docutils literal notranslate"><span class="pre">jsoncpp</span></code> folder in the <code class="docutils literal notranslate"><span class="pre">/opt/local/include</span></code>, <code class="docutils literal notranslate"><span class="pre">json.h</span></code> is located in <code class="docutils literal notranslate"><span class="pre">/opt/local/include/json</span></code>. As a temporary solution, you may create a symbolic link:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>% sudo mkdir /opt/local/include/jsoncpp
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>% sudo mkdir /opt/local/include/jsoncpp
 % <span class="nb">cd</span> /opt/local/include/jsoncpp
 % sudo ln -s ../json
 </pre></div>
@@ -152,7 +152,7 @@ You may need to install additional packages to be able to build libNeXus.
 <ol class="arabic simple" start="4">
 <li>Run cmake. It may be needed to specify the compiler as well as the path to include files. I use the following cmake options:</li>
 </ol>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>cmake  -DCMAKE_C_COMPILER<span class="o">=</span>/usr/bin/clang <span class="se">\</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cmake  -DCMAKE_C_COMPILER<span class="o">=</span>/usr/bin/clang <span class="se">\</span>
   -DCMAKE_CXX_COMPILER<span class="o">=</span>/usr/bin/clang++ -G <span class="s1">&#39;Unix Makefiles&#39;</span> <span class="se">\</span>
   -DCMAKE_PREFIX_PATH<span class="o">=</span>/opt/local <span class="se">\</span>
   -DCMAKE_BUILD_TYPE<span class="o">=</span>Release <span class="se">\</span>
@@ -196,20 +196,20 @@ You may need to install additional packages to be able to build libNeXus.
 <ol class="arabic simple" start="2">
 <li>Install Apple’s Command Line tools (without this then /usr/include will not exist)</li>
 </ol>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>xcode-select --install
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>xcode-select --install
 </pre></div>
 </div>
 <ol class="arabic simple" start="2">
 <li>Install <a class="reference external" href="http://brew.sh">Homebrew</a>. If you already have Homebrew and are upgrading the OS follow the <a class="reference external" href="http://ryantvenge.com/2014/09/ruby-homebrea-yosemite/">instructions here</a>:</li>
 </ol>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>ruby -e <span class="s2">&quot;</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install<span class="k">)</span><span class="s2">&quot;</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>ruby -e <span class="s2">&quot;</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install<span class="k">)</span><span class="s2">&quot;</span>
 </pre></div>
 </div>
 <ol class="arabic simple" start="3">
 <li>Add the necessary ‘taps’. The last 4 are to use qt4.</li>
 </ol>
 <p>In order to be able to ‘tap’ the <code class="docutils literal notranslate"><span class="pre">mantidproject/mantid</span></code> ‘tap’ we need to have a couple of packages installed</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>brew install git
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>brew install git
 brew install git-lfs
 
 brew tap homebrew/science
@@ -223,7 +223,7 @@ brew tap-pin cartr/qt4
 <li>Install required dependencies (will make a mantid-developer formula soon)
 If you plan on distributing your application bundle, change <code class="docutils literal notranslate"><span class="pre">brew</span> <span class="pre">install</span></code> to <code class="docutils literal notranslate"><span class="pre">brew</span> <span class="pre">install</span> <span class="pre">--build-bottle</span></code></li>
 </ol>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>brew cask install xquartz
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>brew cask install xquartz
 <span class="c1"># mactex is optional, needed for parsing equations in qthelp documentation.</span>
 brew cask install mactex
 brew install openssl
@@ -260,19 +260,19 @@ brew install librdkafka
 <ol class="arabic simple" start="6">
 <li>Uninstall homebrew Python that some of the dependencies insist on installing</li>
 </ol>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>brew uninstall python
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>brew uninstall python
 </pre></div>
 </div>
 <ol class="arabic simple" start="6">
 <li>Optional: for cmake-gui</li>
 </ol>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>brew cask install cmake
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>brew cask install cmake
 </pre></div>
 </div>
 <ol class="arabic simple" start="7">
 <li>Now to install the other python package dependencies:</li>
 </ol>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>sudo easy_install pip
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo easy_install pip
 sudo -H pip install sphinx
 <span class="c1"># https://github.com/mantidproject/mantid/issues/13481</span>
 sudo -H pip install <span class="s2">&quot;ipython[notebook]==3.2.1&quot;</span>
@@ -283,29 +283,29 @@ sudo -H pip install pygments
 sudo -H pip install pyzmq
 sudo -H pip install pycifrw
 <span class="c1"># Version matches Windows/RHEL/Ubuntu (trusty)</span>
-sudo -H pip install <span class="nv">PyYAML</span><span class="o">==</span>3.10
+sudo -H pip install <span class="nv">PyYAML</span><span class="o">==</span><span class="m">3</span>.10
 <span class="c1"># Version matches Windows/RHEL/Ubuntu (trusty)</span>
-sudo -H pip install <span class="nv">mock</span><span class="o">==</span>1.0.1
-sudo -H pip install <span class="nv">requests</span><span class="o">==</span>2.9.1
+sudo -H pip install <span class="nv">mock</span><span class="o">==</span><span class="m">1</span>.0.1
+sudo -H pip install <span class="nv">requests</span><span class="o">==</span><span class="m">2</span>.9.1
 </pre></div>
 </div>
 <ol class="arabic simple" start="8">
 <li>Install the theme for sphinx</li>
 </ol>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>sudo pip install sphinx_bootstrap_theme
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo pip install sphinx_bootstrap_theme
 </pre></div>
 </div>
 <ol class="arabic simple" start="9">
 <li>Install other python dependencies</li>
 </ol>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>sudo pip install psutil
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo pip install psutil
 brew install h5py
 </pre></div>
 </div>
 <ol class="arabic simple" start="9">
 <li>Add Homebrew’s site-packages to your python path.</li>
 </ol>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>mkdir -p ~/Library/Python/2.7/lib/python/site-packages
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>mkdir -p ~/Library/Python/2.7/lib/python/site-packages
 <span class="nb">echo</span> <span class="s1">&#39;/usr/local/lib/python2.7/site-packages&#39;</span> &gt; ~/Library/Python/2.7/lib/python/site-packages/homebrew.pth
 </pre></div>
 </div>
@@ -314,26 +314,26 @@ brew install h5py
 </ol>
 <ul>
 <li><p class="first">If building on the command line with make or ninja.</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span class="nb">cd</span> /usr/include/python2.7
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /usr/include/python2.7
 </pre></div>
 </div>
 <p>or</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span class="nb">cd</span> /System/Library/Frameworks/Python.framework/Headers
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /System/Library/Frameworks/Python.framework/Headers
 </pre></div>
 </div>
 <p>then</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>sudo cp pyport.h pyport.h.original
-sudo patch pyport.h $MANTIDCHECKOUTROOT/buildconfig/pyport.patch
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo cp pyport.h pyport.h.original
+sudo patch pyport.h <span class="nv">$MANTIDCHECKOUTROOT</span>/buildconfig/pyport.patch
 </pre></div>
 </div>
 </li>
 <li><p class="first">If building with Xcode on OS X Yosemite</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span class="nb">cd</span> /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7
 </pre></div>
 </div>
 <p>then</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>sudo cp pyport.h pyport.h.original
-sudo patch pyport.h $MANTIDCHECKOUTROOT/buildconfig/pyport.patch
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo cp pyport.h pyport.h.original
+sudo patch pyport.h <span class="nv">$MANTIDCHECKOUTROOT</span>/buildconfig/pyport.patch
 </pre></div>
 </div>
 <p><strong>Note</strong>: If Xcode updates for any reason, the patch will be lost.</p>
@@ -343,7 +343,7 @@ sudo patch pyport.h $MANTIDCHECKOUTROOT/buildconfig/pyport.patch
 <li><p class="first">Now run CMake and select the Xcode generator with the default native compilers.</p>
 </li>
 <li><p class="first">Now open the project in Xcode (doing this from the command line to ensure the PYTHONPATH is correctly picked up by Xcode).</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span class="nb">cd</span> /path/to/my/build/dir
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /path/to/my/build/dir
 open Mantid.xcodeproj
 </pre></div>
 </div>
@@ -367,20 +367,20 @@ open Mantid.xcodeproj
 <li>Install Xcode from AppStore</li>
 <li>Install Xcode command line tools</li>
 </ol>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>xcode-select --install
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>xcode-select --install
 </pre></div>
 </div>
 <ol class="arabic simple" start="3">
 <li>Install home-brew package manager</li>
 </ol>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>ruby -e <span class="s2">&quot;</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install<span class="k">)</span><span class="s2">&quot;</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>ruby -e <span class="s2">&quot;</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install<span class="k">)</span><span class="s2">&quot;</span>
 </pre></div>
 </div>
 <ol class="arabic simple" start="4">
 <li>Add the necessary ‘taps’</li>
 </ol>
 <p>In order to be able to ‘tap’ the <cite>mantidproject/mantid</cite> ‘tap’ we need to have a couple of packages installed</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>brew install git
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>brew install git
 brew install git-lfs
 
 brew tap mantidproject/mantid
@@ -392,7 +392,7 @@ brew tap-pin cartr/qt4
 <ol class="arabic simple" start="5">
 <li>Install the necessary dependencies. Note that some of these will bring brew python with them as dependency.</li>
 </ol>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>brew cask install xquartz
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>brew cask install xquartz
 brew cask install mactex
 brew install openssl
 brew install cmake
@@ -426,40 +426,40 @@ brew install librdkafka
 <ol class="arabic simple" start="6">
 <li>Uninstall the brew python if it has been previously installed</li>
 </ol>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>brew uninstall --ignore-dependencies python3
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>brew uninstall --ignore-dependencies python3
 </pre></div>
 </div>
 <ol class="arabic simple" start="7">
 <li>Install pip python package manager</li>
 </ol>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>sudo easy_install pip
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo easy_install pip
 </pre></div>
 </div>
 <ol class="arabic simple" start="8">
 <li>Install necessary python packages with pip</li>
 </ol>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>sudo -H pip install sphinx --ignore-installed
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo -H pip install sphinx --ignore-installed
 sudo -H pip install <span class="s2">&quot;ipython[notebook]==3.2.1&quot;</span>
 sudo -H pip install qtpy
 sudo -H pip install pycifrw
-sudo -H pip install <span class="nv">PyYAML</span><span class="o">==</span>3.10
-sudo -H pip install <span class="nv">mock</span><span class="o">==</span>1.0.1
+sudo -H pip install <span class="nv">PyYAML</span><span class="o">==</span><span class="m">3</span>.10
+sudo -H pip install <span class="nv">mock</span><span class="o">==</span><span class="m">1</span>.0.1
 sudo pip install sphinx_bootstrap_theme
 sudo pip install psutil
 sudo pip install <span class="s2">&quot;matplotlib&gt;=2.1.2&quot;</span>
-sudo pip install <span class="nv">requests</span><span class="o">==</span>2.9.1
+sudo pip install <span class="nv">requests</span><span class="o">==</span><span class="m">2</span>.9.1
 </pre></div>
 </div>
 <ol class="arabic simple" start="9">
 <li>Install h5py</li>
 </ol>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>brew install h5py
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>brew install h5py
 </pre></div>
 </div>
 <ol class="arabic simple" start="10">
 <li>Add Homebrew’s site-packages to your python path.</li>
 </ol>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>mkdir -p ~/Library/Python/2.7/lib/python/site-packages
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>mkdir -p ~/Library/Python/2.7/lib/python/site-packages
 <span class="nb">echo</span> <span class="s1">&#39;/usr/local/lib/python2.7/site-packages&#39;</span> &gt; ~/Library/Python/2.7/lib/python/site-packages/homebrew.pth
 </pre></div>
 </div>
@@ -473,7 +473,7 @@ sudo pip install <span class="nv">requests</span><span class="o">==</span>2.9.1
 <li><p class="first">before the apple logo appears press <cite>Command+R</cite> to enter the recovery mode</p>
 </li>
 <li><p class="first">when in recovery mode, go to <cite>Utilities&gt;Terminal</cite> and type</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>csrutil disable
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>csrutil disable
 </pre></div>
 </div>
 </li>
@@ -484,30 +484,30 @@ sudo pip install <span class="nv">requests</span><span class="o">==</span>2.9.1
 <li><p class="first">Now that SIP is disabled we can do the necessary patch:</p>
 </li>
 </ol>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span class="nb">cd</span> /usr/include/python2.7
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /usr/include/python2.7
 sudo cp pyport.h pyport.h.original
-sudo patch pyport.h $MANTIDCHECKOUTROOT/buildconfig/pyport.patch
+sudo patch pyport.h <span class="nv">$MANTIDCHECKOUTROOT</span>/buildconfig/pyport.patch
 </pre></div>
 </div>
 <ol class="arabic simple" start="14">
 <li>Enable again the system integrity protection by repeating Step 12 and typing this time:</li>
 </ol>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>csrutil <span class="nb">enable</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>csrutil <span class="nb">enable</span>
 </pre></div>
 </div>
 <ol class="arabic simple" start="15">
 <li>Open mantid project from Qt Creator, and you should be able to run cmake and build, given the right environment:</li>
 </ol>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span class="nv">CC</span><span class="o">=</span>/usr/bin/clang
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">CC</span><span class="o">=</span>/usr/bin/clang
 <span class="nv">CXX</span><span class="o">=</span>/usr/bin/clang++
-<span class="nv">PATH</span><span class="o">=</span>/usr/local/bin/:$PATH
+<span class="nv">PATH</span><span class="o">=</span>/usr/local/bin/:<span class="nv">$PATH</span>
 </pre></div>
 </div>
 <p>Local bin contains the symlink to the brew packages, which have to come first in path, before <cite>/usr/bin</cite>. That’s why it is important not to have python or clang (with this setup) in brew.</p>
 <ol class="arabic simple" start="16">
 <li>Add to your <cite>.profile</cite></li>
 </ol>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span class="nb">export</span> <span class="nv">PYTHONPATH</span><span class="o">=</span><span class="nv">$B</span>UILDMANTID/bin
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">PYTHONPATH</span><span class="o">=</span><span class="nv">$BUILDMANTID</span>/bin
 </pre></div>
 </div>
 <ol class="arabic simple" start="17">
@@ -535,7 +535,7 @@ sudo patch pyport.h $MANTIDCHECKOUTROOT/buildconfig/pyport.patch
     </a>
   </li>
   <li>
-    <a href="BuildingWithCMake.html" title="Next Chapter: Building with CMake"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Building with... &raquo;</span>
+    <a href="BuildingWithCMake.html" title="Next Chapter: Building with CMake"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Building with CMake &raquo;</span>
     </a>
   </li>
           

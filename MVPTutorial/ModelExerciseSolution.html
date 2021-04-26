@@ -12,7 +12,7 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Matplotlib and MVP" href="Matplotlib.html" />
@@ -90,19 +90,19 @@
   <div class="section" id="model-exercise-solution">
 <span id="modelexercisesolution"></span><h1>Model Exercise Solution<a class="headerlink" href="#model-exercise-solution" title="Permalink to this headline">¶</a></h1>
 <p>The model should now contain the following class:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span class="k">def</span> <span class="nf">line_colours</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">line_colours</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="n">colour_table</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="s2">&quot;black&quot;</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">colour_table</span>
 </pre></div>
 </div>
 <p>The view should contain the following method:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span class="k">def</span> <span class="nf">setColours</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">options</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">setColours</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">options</span><span class="p">):</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">colours</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">colours</span><span class="o">.</span><span class="n">addItems</span><span class="p">(</span><span class="n">options</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>The presenter initialisation should now be:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">view</span><span class="p">,</span> <span class="n">data_model</span><span class="p">,</span> <span class="n">colour_list</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">view</span><span class="p">,</span> <span class="n">data_model</span><span class="p">,</span> <span class="n">colour_list</span><span class="p">):</span>
    <span class="bp">self</span><span class="o">.</span><span class="n">view</span> <span class="o">=</span> <span class="n">view</span>
    <span class="bp">self</span><span class="o">.</span><span class="n">data_model</span> <span class="o">=</span> <span class="n">data_model</span>
 
@@ -112,8 +112,8 @@
 </pre></div>
 </div>
 <p>And the Main module should now pass the two models into the presenter:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-    <span class="nb">super</span><span class="p">(</span><span class="n">Demo</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="nb">super</span><span class="p">(</span><span class="n">Demo</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
 
     <span class="bp">self</span><span class="o">.</span><span class="n">window</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMainWindow</span><span class="p">()</span>
     <span class="n">my_view</span> <span class="o">=</span> <span class="n">view</span><span class="o">.</span><span class="n">View</span><span class="p">()</span>
@@ -141,11 +141,11 @@
           
             
   <li>
-    <a href="ModelExercise.html" title="Previous Chapter: Model (MVP) Exercise"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Model (MVP) E...</span>
+    <a href="ModelExercise.html" title="Previous Chapter: Model (MVP) Exercise"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Model (MVP) Exercise</span>
     </a>
   </li>
   <li>
-    <a href="Matplotlib.html" title="Next Chapter: Matplotlib and MVP"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Matplotlib an... &raquo;</span>
+    <a href="Matplotlib.html" title="Next Chapter: Matplotlib and MVP"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Matplotlib and MVP &raquo;</span>
     </a>
   </li>
           

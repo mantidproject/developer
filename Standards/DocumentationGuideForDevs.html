@@ -12,7 +12,7 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Algorithm Documentation" href="AlgorithmDocumentation.html" />
@@ -159,7 +159,7 @@ Information for developers should go into doxygen/code-comments in the code or i
 <div class="section" id="directives">
 <h3><a class="toc-backref" href="#id4">Directives</a><a class="headerlink" href="#directives" title="Permalink to this headline">¶</a></h3>
 <p>Sphinx is built on the <code class="docutils literal notranslate"><span class="pre">docutils</span></code> package that allows for directives to be inserted in to reST comments. For example:</p>
-<div class="highlight-rest notranslate"><div class="highlight"><pre><span class="p">..</span> <span class="ow">warning</span><span class="p">::</span>
+<div class="highlight-rest notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">warning</span><span class="p">::</span>
    This text will show up surrounded by a coloured box.
 </pre></div>
 </div>
@@ -185,7 +185,7 @@ which explains how to document them, and which directives may be used in more de
 <dt>The title of the page</dt>
 <dd>Should be the first header of your .rst file, and generally only occur once. (This is done for you in an algorithm with the <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">algorithm::</span></code> directive)</dd>
 </dl>
-<div class="highlight-rest notranslate"><div class="highlight"><pre><span class="gh">=============================================</span>
+<div class="highlight-rest notranslate"><div class="highlight"><pre><span></span><span class="gh">=============================================</span>
 <span class="gh">Page title (e.g. Workspace) - This outputs H1</span>
 <span class="gh">=============================================</span>
 </pre></div>
@@ -194,7 +194,7 @@ which explains how to document them, and which directives may be used in more de
 <dt>Section headings</dt>
 <dd>Sections, such as the description of an algorithm, can be created with the following syntax</dd>
 </dl>
-<div class="highlight-rest notranslate"><div class="highlight"><pre><span class="gh"># Description - This outputs H2</span>
+<div class="highlight-rest notranslate"><div class="highlight"><pre><span></span><span class="gh"># Description - This outputs H2</span>
 <span class="gh">-------------------------------</span>
 </pre></div>
 </div>
@@ -202,7 +202,7 @@ which explains how to document them, and which directives may be used in more de
 <dt>Sub-sections</dt>
 <dd>The following is used to create a sub-section of the above section. This must follow after the above to be parsed correctly.</dd>
 </dl>
-<div class="highlight-rest notranslate"><div class="highlight"><pre><span class="gh">Sub-heading - This outputs h3</span>
+<div class="highlight-rest notranslate"><div class="highlight"><pre><span></span><span class="gh">Sub-heading - This outputs h3</span>
 <span class="gh">#############################</span>
 </pre></div>
 </div>
@@ -210,7 +210,7 @@ which explains how to document them, and which directives may be used in more de
 <dt>Sub-sub-sections</dt>
 <dd>The following is used to create a sub-header for the sub-heading above. This must also follow after the above header to be parsed correctly.</dd>
 </dl>
-<div class="highlight-rest notranslate"><div class="highlight"><pre><span class="gh">Sub-sub-heading - Outputs h4</span>
+<div class="highlight-rest notranslate"><div class="highlight"><pre><span></span><span class="gh">Sub-sub-heading - Outputs h4</span>
 <span class="gh">^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
 </pre></div>
 </div>
@@ -221,14 +221,12 @@ which explains how to document them, and which directives may be used in more de
 <p>If you have weird messages about sphinx warnings that happen on “Console output”,
 those are coming either from summary functions in algorithms or from parameter descriptions.
 In these</p>
-<ul>
-<li><p class="first"><em>Do not</em> use <code class="docutils literal notranslate"><span class="pre">*</span></code> in parameter names or summary. This yields “Inline emphasis start-string without end-string” warnings.</p>
-</li>
-<li><p class="first"><em>Do not</em> use things like <code class="docutils literal notranslate"><span class="pre">|Q|</span></code>. This yields sphinx error “Undefined substitution referenced”.</p>
-</li>
+<ul class="simple">
+<li><em>Do not</em> use <code class="docutils literal notranslate"><span class="pre">*</span></code> in parameter names or summary. This yields “Inline emphasis start-string without end-string” warnings.</li>
+<li><em>Do not</em> use things like <code class="docutils literal notranslate"><span class="pre">|Q|</span></code>. This yields sphinx error “Undefined substitution referenced”.</li>
 <li><dl class="first docutils">
 <dt>When using hyperlinks with a label, try to use anonymous hyperlinks (two underscores instead of one) to avoid name clashes.</dt>
-<dd><ul class="first last simple">
+<dd><ul class="first last">
 <li><code class="docutils literal notranslate"><span class="pre">`MD</span> <span class="pre">&lt;http://mysite.com/MD1.html&gt;`__</span></code> and <code class="docutils literal notranslate"><span class="pre">`MD</span> <span class="pre">&lt;http://mysite.com/MD2.html&gt;`__</span></code> instead of <code class="docutils literal notranslate"><span class="pre">`MD</span> <span class="pre">&lt;http://mysite.com/MD1.html&gt;`_</span></code> and <code class="docutils literal notranslate"><span class="pre">`MD</span> <span class="pre">&lt;http://mysite.com/MD2.html&gt;`_</span></code>. The second on will result in a warning.</li>
 </ul>
 </dd>
@@ -240,7 +238,7 @@ This section lists some more common warnings along with suggestions for fixes.</
 <div class="section" id="explicit-markup-ends-without-a-blank-line-unexpected-unindent">
 <h3><a class="toc-backref" href="#id10">Explicit markup ends without a blank line; unexpected unindent.</a><a class="headerlink" href="#explicit-markup-ends-without-a-blank-line-unexpected-unindent" title="Permalink to this headline">¶</a></h3>
 <p>This is caused by the lack of a blank line between an indented explicit markup block and more unindented text, e.g.</p>
-<div class="highlight-rest notranslate"><div class="highlight"><pre><span class="p">..</span> <span class="ow">testcode</span><span class="p">::</span> ExHist
+<div class="highlight-rest notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">testcode</span><span class="p">::</span> ExHist
 
    print &quot;This is a test&quot;
  Output:                         &lt;------------- There should be a blank line above this
@@ -253,7 +251,7 @@ This section lists some more common warnings along with suggestions for fixes.</
 <div class="section" id="inline-interpreted-text-or-phrase-reference-start-string-without-end-string">
 <h3><a class="toc-backref" href="#id11">Inline interpreted text or phrase reference start-string without end-string</a><a class="headerlink" href="#inline-interpreted-text-or-phrase-reference-start-string-without-end-string" title="Permalink to this headline">¶</a></h3>
 <p>This is caused by using one of the <a class="reference external" href="http://www.sphinx-doc.org/en/master/rest.html#inline-markup">inline markup tags</a>, where the text being wrapped splits over multiple lines. In these cases the directive variant of the inline markup should be used. One example is the <code class="docutils literal notranslate"><span class="pre">:math:</span></code> tag being spread over multiple lines. The tag <code class="docutils literal notranslate"><span class="pre">:math:</span></code> must only be used for inline markup, i.e. when there is no newline in the math string. For multi-line maths markup you must use the <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">math::</span></code> directive instead.</p>
-<div class="highlight-rest notranslate"><div class="highlight"><pre>:math:`\rm U \rm B \left(
+<div class="highlight-rest notranslate"><div class="highlight"><pre><span></span>:math:`\rm U \rm B \left(
                              \begin{array}{c}
                                h_i \\
                                k_i \\
@@ -263,7 +261,7 @@ This section lists some more common warnings along with suggestions for fixes.</
 </pre></div>
 </div>
 <p>should be written</p>
-<div class="highlight-rest notranslate"><div class="highlight"><pre><span class="p">..</span> <span class="ow">math</span><span class="p">::</span>
+<div class="highlight-rest notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">math</span><span class="p">::</span>
                                                                 &lt;------------------ intentional blank line
             \rm U \rm B \left(
                                 \begin{array}{c}

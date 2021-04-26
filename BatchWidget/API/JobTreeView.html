@@ -12,7 +12,7 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Find Subtree Roots" href="../Internals/FindSubtreeRoots.html" />
@@ -94,13 +94,13 @@ with a spreadsheet-like appearance for configuring and indicating the status of 
 reduction jobs. It is currently used to implement the tree component of the Batch Widget.</p>
 <p>It is written in C++ and exposed to python through SIP leading to similar APIs as shown by the
 examples below.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="c1"># Mantid Repository : https://github.com/mantidproject/mantid</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Mantid Repository : https://github.com/mantidproject/mantid</span>
 <span class="c1">#</span>
 <span class="c1"># Copyright &amp;copy; 2018 ISIS Rutherford Appleton Laboratory UKRI,</span>
 <span class="c1">#   NScD Oak Ridge National Laboratory, European Spallation Source,</span>
 <span class="c1">#   Institut Laue - Langevin &amp; CSNS, Institute of High Energy Physics, CAS</span>
 <span class="c1"># SPDX - License - Identifier: GPL - 3.0 +</span>
-<span class="kn">from</span> <span class="nn">mantidqtpython</span> <span class="k">import</span> <span class="n">MantidQt</span>
+<span class="kn">from</span> <span class="nn">mantidqtpython</span> <span class="kn">import</span> <span class="n">MantidQt</span>
 
 
 <span class="c1"># Inside the parent view</span>
@@ -127,7 +127,7 @@ examples below.</p>
     <span class="k">return</span> <span class="n">MantidQt</span><span class="o">.</span><span class="n">MantidWidgets</span><span class="o">.</span><span class="n">Batch</span><span class="o">.</span><span class="n">RowLocation</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span class="c1">// Mantid Repository : https://github.com/mantidproject/mantid</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Mantid Repository : https://github.com/mantidproject/mantid</span>
 <span class="c1">//</span>
 <span class="c1">// Copyright &amp;copy; 2018 ISIS Rutherford Appleton Laboratory UKRI,</span>
 <span class="c1">//   NScD Oak Ridge National Laboratory, European Spallation Source,</span>
@@ -168,7 +168,7 @@ path. An example table and corresponding tree structure are illustrated in the d
 operators have a definition based on a lexicographical comparison such that sorting a range of
 <code class="code docutils literal notranslate"><span class="pre">RowLocation</span></code>s puts them in the same order as they would appear in the table. This is
 demonstrated by the code below.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span class="k">auto</span> <span class="n">items</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">RowLocation</span><span class="o">&gt;</span><span class="p">({</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span> <span class="n">items</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">RowLocation</span><span class="o">&gt;</span><span class="p">({</span>
   <span class="n">RowLocation</span><span class="p">({</span><span class="mi">2</span><span class="p">}),</span>
   <span class="n">RowLocation</span><span class="p">({</span><span class="mi">0</span><span class="p">}),</span>
   <span class="n">RowLocation</span><span class="p">({</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">}),</span>
@@ -205,13 +205,13 @@ view-implementation independent format.</p>
 them does not directly update the view. In order to update the cell or cells corresponding to a row,
 the methods <code class="code docutils literal notranslate"><span class="pre">setCellAt</span></code> or <code class="code docutils literal notranslate"><span class="pre">setCellsAt</span></code> should be used. This process is illustrated in
 the example code below.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="c1"># Mantid Repository : https://github.com/mantidproject/mantid</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Mantid Repository : https://github.com/mantidproject/mantid</span>
 <span class="c1">#</span>
 <span class="c1"># Copyright &amp;copy; 2018 ISIS Rutherford Appleton Laboratory UKRI,</span>
 <span class="c1">#   NScD Oak Ridge National Laboratory, European Spallation Source,</span>
 <span class="c1">#   Institut Laue - Langevin &amp; CSNS, Institute of High Energy Physics, CAS</span>
 <span class="c1"># SPDX - License - Identifier: GPL - 3.0 +</span>
-<span class="kn">from</span> <span class="nn">mantidqtpython</span> <span class="k">import</span> <span class="n">MantidQt</span>
+<span class="kn">from</span> <span class="nn">mantidqtpython</span> <span class="kn">import</span> <span class="n">MantidQt</span>
 
 
 <span class="c1"># Inside the parent view</span>
@@ -262,7 +262,7 @@ on the internal representation of a subtree in this API.</p>
 <h3>Notification<a class="headerlink" href="#notification" title="Permalink to this headline">¶</a></h3>
 <p><code class="code docutils literal notranslate"><span class="pre">JobTreeViewSubscriber</span></code> is the mechanism by which the JobTreeView communicates events such as
 key presses to the presenter in an MVP setup.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span class="c1">// Mantid Repository : https://github.com/mantidproject/mantid</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Mantid Repository : https://github.com/mantidproject/mantid</span>
 <span class="c1">//</span>
 <span class="c1">// Copyright &amp;copy; 2018 ISIS Rutherford Appleton Laboratory UKRI,</span>
 <span class="c1">//   NScD Oak Ridge National Laboratory, European Spallation Source,</span>
@@ -305,13 +305,13 @@ notification does not happen until after said event has taken place and the view
 already been updated. Therefore, if a presenter determines that said action is on-reflection invalid
 it will be required to call a method which updates the view and rolls back the action.
 This is illustrated in the example below.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="c1"># Mantid Repository : https://github.com/mantidproject/mantid</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Mantid Repository : https://github.com/mantidproject/mantid</span>
 <span class="c1">#</span>
 <span class="c1"># Copyright &amp;copy; 2018 ISIS Rutherford Appleton Laboratory UKRI,</span>
 <span class="c1">#   NScD Oak Ridge National Laboratory, European Spallation Source,</span>
 <span class="c1">#   Institut Laue - Langevin &amp; CSNS, Institute of High Energy Physics, CAS</span>
 <span class="c1"># SPDX - License - Identifier: GPL - 3.0 +</span>
-<span class="kn">from</span> <span class="nn">mantidqtpython</span> <span class="k">import</span> <span class="n">MantidQt</span>
+<span class="kn">from</span> <span class="nn">mantidqtpython</span> <span class="kn">import</span> <span class="n">MantidQt</span>
 
 
 <span class="k">def</span> <span class="nf">empty_cell</span><span class="p">():</span>
@@ -353,19 +353,19 @@ node in the MVP model or their corresponding cells from the view.</p>
 <p>The header <code class="code docutils literal notranslate"><span class="pre">RowPredicate.h</span></code> defines the interface which must be implemented by implementations
 of such predicates. The method <code class="code docutils literal notranslate"><span class="pre">filterRowsBy</span></code> defined in <code class="code docutils literal notranslate"><span class="pre">JobTreeView</span></code> can be used to set
 the currently active filter as demonstrated by the code below.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="c1"># Mantid Repository : https://github.com/mantidproject/mantid</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Mantid Repository : https://github.com/mantidproject/mantid</span>
 <span class="c1">#</span>
 <span class="c1"># Copyright &amp;copy; 2018 ISIS Rutherford Appleton Laboratory UKRI,</span>
 <span class="c1">#   NScD Oak Ridge National Laboratory, European Spallation Source,</span>
 <span class="c1">#   Institut Laue - Langevin &amp; CSNS, Institute of High Energy Physics, CAS</span>
 <span class="c1"># SPDX - License - Identifier: GPL - 3.0 +</span>
-<span class="kn">from</span> <span class="nn">mantidqtpython</span> <span class="k">import</span> <span class="n">MantidQt</span>
+<span class="kn">from</span> <span class="nn">mantidqtpython</span> <span class="kn">import</span> <span class="n">MantidQt</span>
 <span class="kn">import</span> <span class="nn">re</span>
 
 
 <span class="k">class</span> <span class="nc">Predicate</span><span class="p">(</span><span class="n">MantidQt</span><span class="o">.</span><span class="n">MantidWidgets</span><span class="o">.</span><span class="n">Batch</span><span class="o">.</span><span class="n">RowPredicate</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">meetsCriteria</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">MantidQt</span><span class="o">.</span><span class="n">MantidWidgets</span><span class="o">.</span><span class="n">Batch</span><span class="o">.</span><span class="n">RowPredicate</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">meetsCriteria</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">MantidQt</span><span class="o">.</span><span class="n">MantidWidgets</span><span class="o">.</span><span class="n">Batch</span><span class="o">.</span><span class="n">RowPredicate</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">meetsCriteria</span> <span class="o">=</span> <span class="n">meetsCriteria</span>
 
     <span class="k">def</span> <span class="nf">rowMeetsCriteria</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">location</span><span class="p">):</span>
@@ -435,11 +435,11 @@ called whenever the filter is reset, even when requested explicitly.</p>
           
             
   <li>
-    <a href="../index.html" title="Previous Chapter: Batch Widget Manual"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Batch Widget ...</span>
+    <a href="../index.html" title="Previous Chapter: Batch Widget Manual"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Batch Widget Manual</span>
     </a>
   </li>
   <li>
-    <a href="../Internals/FindSubtreeRoots.html" title="Next Chapter: Find Subtree Roots"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Find Subtree ... &raquo;</span>
+    <a href="../Internals/FindSubtreeRoots.html" title="Next Chapter: Find Subtree Roots"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Find Subtree Roots &raquo;</span>
     </a>
   </li>
           

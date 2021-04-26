@@ -12,7 +12,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Multithreading in Algorithms" href="MultiThreadingInAlgorithms.html" />
@@ -118,7 +118,7 @@ matplotlib classes in the methods that they offer.</p>
 <div class="section" id="plotting-from-vector-data">
 <h3><a class="toc-backref" href="#id3">Plotting from Vector Data</a><a class="headerlink" href="#plotting-from-vector-data" title="Permalink to this headline">¶</a></h3>
 <p>As a simple example consider a widget that wishes to display a single figure with data from two vectors:</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span class="c1">// ------------- .h file ------------------</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// ------------- .h file ------------------</span>
 <span class="cp">#include</span> <span class="cpf">&quot;MantidQtWidgets/MplCpp/Line2D.h&quot;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;QVBoxLayout&gt;</span><span class="cp"></span>
 
@@ -149,7 +149,7 @@ matplotlib classes in the methods that they offer.</p>
 
 <span class="n">WidgetWithFigure</span><span class="o">::</span><span class="n">WidgetWithFigure</span><span class="p">(</span><span class="n">QWidget</span> <span class="o">*</span><span class="n">parent</span><span class="o">=</span><span class="k">nullptr</span><span class="p">)</span> <span class="o">:</span> <span class="n">QWidget</span><span class="p">(</span><span class="n">parent</span><span class="p">),</span>
   <span class="c1">/// 111 is a standard matplotlib subplot specification</span>
-  <span class="n">m_canvas</span><span class="p">{</span><span class="k">new</span> <span class="n">FigureCanvasQt</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="k">this</span><span class="p">)}</span> <span class="p">{</span>
+  <span class="n">m_canvas</span><span class="p">{</span><span class="k">new</span> <span class="nf">FigureCanvasQt</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="k">this</span><span class="p">)}</span> <span class="p">{</span>
     <span class="n">initLayout</span><span class="p">();</span>
     <span class="n">doPlot</span><span class="p">();</span>
 <span class="p">}</span>
@@ -179,7 +179,7 @@ something needs to keep the data alive while it is displayed.</p>
 <h3><a class="toc-backref" href="#id4">Plotting from Workspace Data</a><a class="headerlink" href="#plotting-from-workspace-data" title="Permalink to this headline">¶</a></h3>
 <p>A common case will be plotting data from a <code class="docutils literal notranslate"><span class="pre">MatrixWorkspace</span></code>. In this case we leverage the <code class="docutils literal notranslate"><span class="pre">mantid</span></code>
 projection in a similar manner to a <a class="reference external" href="https://docs.mantidproject.org/nightly/plotting/index.html#plotting" title="(in MantidProject v6.0)"><span class="xref std std-ref">standard script</span></a>:</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span class="c1">// ------------- .h file ------------------</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// ------------- .h file ------------------</span>
 <span class="cp">#include</span> <span class="cpf">&lt;QVBoxLayout&gt;</span><span class="cp"></span>
 
 <span class="k">namespace</span> <span class="n">MantidQt</span> <span class="p">{</span>
@@ -216,7 +216,7 @@ projection in a similar manner to a <a class="reference external" href="https://
 
 <span class="n">WidgetWithFigure</span><span class="o">::</span><span class="n">WidgetWithFigure</span><span class="p">(</span><span class="n">QWidget</span> <span class="o">*</span><span class="n">parent</span><span class="o">=</span><span class="k">nullptr</span><span class="p">)</span> <span class="o">:</span> <span class="n">QWidget</span><span class="p">(</span><span class="n">parent</span><span class="p">),</span>
   <span class="c1">/// 111 is a standard matplotlib subplot specification</span>
-  <span class="n">m_canvas</span><span class="p">{</span><span class="k">new</span> <span class="n">FigureCanvasQt</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">PROJECTION</span><span class="p">,</span> <span class="k">this</span><span class="p">)}</span> <span class="p">{</span>
+  <span class="n">m_canvas</span><span class="p">{</span><span class="k">new</span> <span class="nf">FigureCanvasQt</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">PROJECTION</span><span class="p">,</span> <span class="k">this</span><span class="p">)}</span> <span class="p">{</span>
     <span class="n">initLayout</span><span class="p">();</span>
     <span class="n">doPlot</span><span class="p">();</span>
 <span class="p">}</span>

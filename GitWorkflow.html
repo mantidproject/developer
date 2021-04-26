@@ -12,11 +12,11 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="The Automated Build Process" href="AutomatedBuildProcess.html" />
-    <link rel="prev" title="User Support" href="UserSupport.html" />
+    <link rel="prev" title="Mantid Git Config" href="GitConfig.html" />
 
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -90,7 +90,7 @@
   <div class="section" id="mantid-git-workflow">
 <span id="gitworkflow"></span><h1>Mantid Git Workflow<a class="headerlink" href="#mantid-git-workflow" title="Permalink to this headline">¶</a></h1>
 <div class="contents local topic" id="contents">
-<p class="topic-title first">Contents</p>
+<p class="topic-title">Contents</p>
 <ul class="simple">
 <li><a class="reference internal" href="#summary" id="id2">Summary</a></li>
 <li><a class="reference internal" href="#description" id="id3">Description</a></li>
@@ -178,7 +178,7 @@ on GitHub</li>
 <div class="section" id="checkout-a-pull-request">
 <h3><a class="toc-backref" href="#id6">Checkout a Pull Request</a><a class="headerlink" href="#checkout-a-pull-request" title="Permalink to this headline">¶</a></h3>
 <p>To check out a particular pull request for functional testing use the <code class="docutils literal notranslate"><span class="pre">test-pr</span></code> alias that was set up in the <a class="reference internal" href="GitConfig.html"><span class="doc">Mantid Git Config</span></a> instructions.</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>git test-pr &lt;remote-name&gt; &lt;ID&gt;
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git test-pr &lt;remote-name&gt; &lt;ID&gt;
 </pre></div>
 </div>
 <p>where <code class="docutils literal notranslate"><span class="pre">&lt;ID&gt;</span></code> is the pull request number given on GitHub and <code class="docutils literal notranslate"><span class="pre">&lt;remote-name&gt;</span></code> is the name
@@ -188,7 +188,7 @@ back to the original repository.</p>
 <p>Note that these commands will checkout a temporary branch that has the development branch merged with master and not just
 the development branch on its own.</p>
 <p>The <a class="reference internal" href="GitConfig.html"><span class="doc">Mantid Git Config</span></a> page also provides the follow alias to delete all <code class="docutils literal notranslate"><span class="pre">pr/</span></code> prefixed branches, which is useful if you have several:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre>git test-pr-remove-all
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git test-pr-remove-all
 </pre></div>
 </div>
 </div>
@@ -247,7 +247,7 @@ view shows changes other than your own it is most likely that the base
 branch is incorrect and it needs to be fixed.</p>
 <p>As an example consider the scenario where a branch named <code class="docutils literal notranslate"><span class="pre">topic</span></code> has
 been based off the <code class="docutils literal notranslate"><span class="pre">master</span></code> branch as follows:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="n">o</span><span class="o">---</span><span class="n">o</span><span class="o">---</span><span class="n">o</span><span class="o">---</span><span class="n">o</span><span class="o">---</span><span class="n">o</span>  <span class="n">master</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">o</span><span class="o">---</span><span class="n">o</span><span class="o">---</span><span class="n">o</span><span class="o">---</span><span class="n">o</span><span class="o">---</span><span class="n">o</span>  <span class="n">master</span>
    <span class="o">|</span>           \
    <span class="o">|</span>            <span class="n">o</span><span class="o">---</span><span class="n">o</span><span class="o">---</span><span class="n">o</span>  <span class="n">topic</span>
     \
@@ -256,7 +256,7 @@ been based off the <code class="docutils literal notranslate"><span class="pre">
 </div>
 <p>where we actually want the <code class="docutils literal notranslate"><span class="pre">topic</span></code> branch based off <code class="docutils literal notranslate"><span class="pre">release-next</span></code>
 instead i.e.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="n">o</span><span class="o">---</span><span class="n">o</span><span class="o">---</span><span class="n">o</span><span class="o">---</span><span class="n">o</span><span class="o">---</span><span class="n">o</span>  <span class="n">master</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">o</span><span class="o">---</span><span class="n">o</span><span class="o">---</span><span class="n">o</span><span class="o">---</span><span class="n">o</span><span class="o">---</span><span class="n">o</span>  <span class="n">master</span>
     \
      <span class="n">o</span><span class="o">---</span><span class="n">o</span><span class="o">---</span><span class="n">o</span><span class="o">---</span><span class="n">o</span><span class="o">---</span><span class="n">o</span>  <span class="n">release</span><span class="o">-</span><span class="nb">next</span>
                              \
@@ -265,7 +265,7 @@ instead i.e.</p>
 </div>
 <p>To fix this situation we use the <code class="docutils literal notranslate"><span class="pre">rebase</span></code> command, providing the
 <code class="docutils literal notranslate"><span class="pre">--onto</span></code> option as follows:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre>git fetch
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git fetch
 git rebase --onto origin/release-next <span class="k">$(</span>git merge-base origin/master origin/topic<span class="k">)</span> topic
 </pre></div>
 </div>
@@ -286,7 +286,7 @@ git rebase --onto origin/release-next <span class="k">$(</span>git merge-base or
           
             
   <li>
-    <a href="UserSupport.html" title="Previous Chapter: User Support"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; User Support</span>
+    <a href="GitConfig.html" title="Previous Chapter: Mantid Git Config"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Mantid Git Config</span>
     </a>
   </li>
   <li>

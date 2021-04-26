@@ -12,7 +12,7 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="GUI Standards" href="GUIStandards.html" />
@@ -90,7 +90,7 @@
   <div class="section" id="c-coding-standards">
 <span id="cppcodingstandards"></span><h1>C++ Coding Standards<a class="headerlink" href="#c-coding-standards" title="Permalink to this headline">¶</a></h1>
 <div class="contents local topic" id="contents">
-<p class="topic-title first">Contents</p>
+<p class="topic-title">Contents</p>
 <ul class="simple">
 <li><a class="reference internal" href="#references" id="id1">References</a></li>
 <li><a class="reference internal" href="#overview" id="id2">Overview</a></li>
@@ -210,12 +210,12 @@ header files compact and easier to read. Brief comments can
 optionally be included (as in the example below).</li>
 </ul>
 <p>Example header file function declaration</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span class="c1">/// Creates an instance of an algorithm</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Creates an instance of an algorithm</span>
 <span class="n">IAlgorithm</span><span class="o">*</span> <span class="nf">createAlgorithm</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">algName</span><span class="p">,</span> <span class="k">const</span> <span class="kt">int</span><span class="o">&amp;</span> <span class="n">version</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Example CPP file function definition</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span class="cm">/** Creates and initialises an instance of an algorithm</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cm">/** Creates and initialises an instance of an algorithm</span>
 <span class="cm"> *</span>
 <span class="cm"> * @param algName The name of the algorithm required</span>
 <span class="cm"> * @param version The version of the algorithm</span>
@@ -236,35 +236,30 @@ optionally be included (as in the example below).</li>
 <p>Names should be descriptive and meaningful, but not too long (say &lt;20
 characters). This is helped by sensible and consistent (across the
 project) use of abbreviations.</p>
-<ul>
-<li><p class="first"><strong>Constants</strong> (including static const members): All upper
-case. Internal words separated by underscore eg: <code class="docutils literal notranslate"><span class="pre">ERROR_NO_DATA</span></code></p>
-</li>
-<li><p class="first"><strong>Classes, namespaces, structs, enums (and enum values) and typedefs</strong>:
+<ul class="simple">
+<li><strong>Constants</strong> (including static const members): All upper
+case. Internal words separated by underscore eg: <code class="docutils literal notranslate"><span class="pre">ERROR_NO_DATA</span></code></li>
+<li><strong>Classes, namespaces, structs, enums (and enum values) and typedefs</strong>:
 PascalCase (First letter upper case, then lower
-case. Internal words begin with upper case letter).</p>
-</li>
-<li><p class="first"><strong>Function Names</strong>: function names will be in camelCase (starting
-with a lower case character and capital for each later word).</p>
-</li>
-<li><p class="first"><strong>Variable Names / Type Prefixes</strong>: variables will be given sensible
+case. Internal words begin with upper case letter).</li>
+<li><strong>Function Names</strong>: function names will be in camelCase (starting
+with a lower case character and capital for each later word).</li>
+<li><strong>Variable Names / Type Prefixes</strong>: variables will be given sensible
 descriptive names. Type prefixes will not be used. variable names
 in Mantid are usually camelCase (starting with a lower case
-character and capital for each later word).</p>
-</li>
+character and capital for each later word).</li>
 <li><dl class="first docutils">
 <dt><strong>Scope Prefixes</strong></dt>
-<dd><ul class="first last simple">
+<dd><ul class="first last">
 <li>Static member variables use a <code class="docutils literal notranslate"><span class="pre">g_</span></code> prefix.</li>
 <li>Non-static member variables use an <code class="docutils literal notranslate"><span class="pre">m_</span></code> prefix.</li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><p class="first"><strong>Local variables used as integer loop counters</strong> As an exception,
+<li><strong>Local variables used as integer loop counters</strong> As an exception,
 these may use very short names like <code class="docutils literal notranslate"><span class="pre">i,</span> <span class="pre">j,</span> <span class="pre">k,</span> <span class="pre">l</span></code> eg. <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">(int</span>
-<span class="pre">i</span> <span class="pre">=</span> <span class="pre">0;</span> <span class="pre">i</span> <span class="pre">&lt;</span> <span class="pre">5;</span> <span class="pre">i++)</span></code></p>
-</li>
+<span class="pre">i</span> <span class="pre">=</span> <span class="pre">0;</span> <span class="pre">i</span> <span class="pre">&lt;</span> <span class="pre">5;</span> <span class="pre">i++)</span></code></li>
 </ul>
 </div>
 <div class="section" id="preprocessor">
