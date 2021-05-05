@@ -190,7 +190,7 @@
 </div>
 </li>
 <li><p class="first">This sets the notifyee in the view, using a subscriber interface.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="n">QtEventView</span><span class="o">::</span><span class="n">subscribe</span><span class="p">(</span><span class="n">EventViewSubscriber</span> <span class="o">*</span><span class="n">notifyee</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">QtEventView::subscribe</span><span class="p">(</span><span class="n">EventViewSubscriber</span> <span class="o">*</span><span class="n">notifyee</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">m_notifyee</span> <span class="o">=</span> <span class="n">notifyee</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
@@ -200,7 +200,7 @@
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MANTIDQT_ISISREFLECTOMETRY_DLL</span> <span class="n">EventViewSubscriber</span> <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
   <span class="k">virtual</span> <span class="kt">void</span> <span class="n">notifySliceTypeChanged</span><span class="p">(</span><span class="n">SliceType</span> <span class="n">newSliceType</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">notifyUniformSliceCountChanged</span><span class="p">(</span><span class="kt">int</span> <span class="n">sliceCount</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">notifyUniformSliceCountChanged</span><span class="p">(</span><span class="kt">int</span> <span class="n">sliceCount</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
   <span class="p">...</span>
 <span class="p">};</span>
 </pre></div>
@@ -215,7 +215,7 @@
 </div>
 </li>
 <li><p class="first">It overrides the notification functions to perform the relevant actions.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="n">EventPresenter</span><span class="o">::</span><span class="n">notifyUniformSliceCountChanged</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">EventPresenter::notifyUniformSliceCountChanged</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">setUniformSlicingByNumberOfSlicesFromView</span><span class="p">();</span>
   <span class="n">m_mainPresenter</span><span class="o">-&gt;</span><span class="n">notifySettingsChanged</span><span class="p">();</span>
 <span class="p">}</span>
@@ -223,7 +223,7 @@
 </div>
 </li>
 <li><p class="first">When a user interacts with the view, all the view needs to do is send the appropriate notification. By using an interface, the view does not know anything about the concrete type that it is notifying. This helps to avoid accidentally introducing logic into the view about what should happen on an event and instead just notify that an event happened. It could also be easily extended to support multiple notifyees of different types, such as different subscribed presenters.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="n">QtEventView</span><span class="o">::</span><span class="n">onUniformEvenChanged</span><span class="p">(</span><span class="kt">int</span> <span class="n">numberOfSlices</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">QtEventView::onUniformEvenChanged</span><span class="p">(</span><span class="kt">int</span> <span class="n">numberOfSlices</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">m_notifyee</span><span class="o">-&gt;</span><span class="n">notifyUniformSliceCountChanged</span><span class="p">(</span><span class="n">numberOfSlices</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div>
@@ -246,7 +246,7 @@
 </div>
 </li>
 <li><p class="first">The <code class="code docutils literal notranslate"><span class="pre">QtMainWindowView</span></code> implements these:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="n">QtMainWindowView</span><span class="o">::</span><span class="n">giveUserCritical</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">prompt</span><span class="p">,</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">QtMainWindowView::giveUserCritical</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">prompt</span><span class="p">,</span>
                                         <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">title</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">QMessageBox</span><span class="o">::</span><span class="n">critical</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">QString</span><span class="o">::</span><span class="n">fromStdString</span><span class="p">(</span><span class="n">title</span><span class="p">),</span>
                         <span class="n">QString</span><span class="o">::</span><span class="n">fromStdString</span><span class="p">(</span><span class="n">prompt</span><span class="p">),</span> <span class="n">QMessageBox</span><span class="o">::</span><span class="n">Ok</span><span class="p">,</span>

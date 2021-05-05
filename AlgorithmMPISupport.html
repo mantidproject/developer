@@ -321,8 +321,8 @@ MPI support for an algorithm is implemented by means of a couple of virtual meth
   <span class="c1">// ...</span>
 <span class="k">protected</span><span class="o">:</span>
   <span class="k">virtual</span> <span class="kt">void</span> <span class="n">execDistributed</span><span class="p">();</span>
-  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">execMasterOnly</span><span class="p">();</span>
-  <span class="k">virtual</span> <span class="n">Parallel</span><span class="o">::</span><span class="n">ExecutionMode</span> <span class="n">getParallelExecutionMode</span><span class="p">(</span>
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">execMasterOnly</span><span class="p">();</span>
+  <span class="k">virtual</span> <span class="n">Parallel</span><span class="o">::</span><span class="n">ExecutionMode</span> <span class="nf">getParallelExecutionMode</span><span class="p">(</span>
       <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span> <span class="n">Parallel</span><span class="o">::</span><span class="n">StorageMode</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">storageModes</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
   <span class="c1">// ...</span>
 <span class="p">};</span>
@@ -332,7 +332,7 @@ MPI support for an algorithm is implemented by means of a couple of virtual meth
 For many algorithms it can be sufficient to implement <code class="docutils literal notranslate"><span class="pre">getParallelExecutionMode</span></code>.
 This is often the case if an algorithm has only a single input and a single output and treats all spectra independently.
 In that case the execution mode can simply be determined from the input workspace as follows:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Parallel</span><span class="o">::</span><span class="n">ExecutionMode</span> <span class="n">MyAlg</span><span class="o">::</span><span class="n">getParallelExecutionMode</span><span class="p">(</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Parallel</span><span class="o">::</span><span class="n">ExecutionMode</span> <span class="nf">MyAlg::getParallelExecutionMode</span><span class="p">(</span>
     <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span> <span class="n">Parallel</span><span class="o">::</span><span class="n">StorageMode</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">storageModes</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
   <span class="c1">// The map key is the property name. If there is only one input workspace it can usually be ignored.</span>
   <span class="k">return</span> <span class="n">Parallel</span><span class="o">::</span><span class="n">getCorrespondingExecutionMode</span><span class="p">(</span><span class="n">storageModes</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">second</span><span class="p">);</span>
@@ -369,7 +369,7 @@ By default this simply calls <code class="docutils literal notranslate"><span cl
 In many cases this may be perfectly fine and more convenient than reimplementing <code class="docutils literal notranslate"><span class="pre">Algorithm::execDistributed()</span></code>.</p>
 <p>The following example illustrates the difference.
 We can either check for the number of MPI ranks in the normal <code class="docutils literal notranslate"><span class="pre">exec()</span></code> method:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="n">MyAlg</span><span class="o">::</span><span class="n">exec</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">MyAlg::exec</span><span class="p">()</span> <span class="p">{</span>
   <span class="c1">//// Algorithm logics, e.g., a sum over all spectra ////</span>
   <span class="k">if</span> <span class="p">(</span><span class="n">communicator</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">//// MPI calls, e.g., a global sum ////</span>
@@ -378,11 +378,11 @@ We can either check for the number of MPI ranks in the normal <code class="docut
 </pre></div>
 </div>
 <p>Alternatively, we can implement <code class="docutils literal notranslate"><span class="pre">Algorithm::execDistributed()</span></code>:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="n">MyAlg</span><span class="o">::</span><span class="n">exec</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">MyAlg::exec</span><span class="p">()</span> <span class="p">{</span>
   <span class="c1">//// Algorithm logics ////</span>
 <span class="p">}</span>
 
-<span class="kt">void</span> <span class="n">MyAlg</span><span class="o">::</span><span class="n">execDistributed</span><span class="p">()</span> <span class="p">{</span>
+<span class="kt">void</span> <span class="nf">MyAlg::execDistributed</span><span class="p">()</span> <span class="p">{</span>
   <span class="c1">//// Algorithm logics but in a very different way ////</span>
 <span class="p">}</span>
 </pre></div>
@@ -441,7 +441,7 @@ If it cannot be avoided to add an MPI-related property to an algorithm is shall 
 This can be done by adjusting the property settings when implementing <code class="docutils literal notranslate"><span class="pre">Algorithm::init()</span></code>:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;MantidKernel/InvisibleProperty.h&quot;</span><span class="cp"></span>
 
-<span class="kt">void</span> <span class="n">MyAlg</span><span class="o">::</span><span class="n">init</span><span class="p">()</span> <span class="p">{</span>
+<span class="kt">void</span> <span class="nf">MyAlg::init</span><span class="p">()</span> <span class="p">{</span>
   <span class="c1">// ...</span>
   <span class="n">setPropertySettings</span><span class="p">(</span><span class="s">&quot;MyProperty&quot;</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">InvisibleProperty</span><span class="o">&gt;</span><span class="p">());</span>
 <span class="p">}</span>
