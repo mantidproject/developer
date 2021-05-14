@@ -98,13 +98,17 @@
 <h2><a class="toc-backref" href="#id2">Project Recovery test</a><a class="headerlink" href="#project-recovery-test" title="Permalink to this headline">¶</a></h2>
 <p><em>Preparation</em></p>
 <ul class="simple">
-<li>Before running these tests, set project recovery to run every 2 seconds. The instructions for this
-are on the <a class="reference external" href="http://docs.mantidproject.org/nightly/concepts/ProjectRecovery.html">Project Recovery concepts page</a>.</li>
-<li>Get the ISIS sample dataset from the <a class="reference external" href="http://download.mantidproject.org/">Downloads page</a>.</li>
-<li><cite>TOPAZ_3132_event.nxs</cite> - availabe in <code class="docutils literal notranslate"><span class="pre">/Testing/Data/SystemTest/</span></code>, get this by building the <cite>SystemTestData</cite> target. It should be in <code class="docutils literal notranslate"><span class="pre">ExternalData/Testing/Data/SystemTest/</span></code></li>
+<li>Before running these tests, open <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">&gt;</span> <span class="pre">Settings</span> <span class="pre">&gt;</span> <span class="pre">General</span> <span class="pre">&gt;</span> <span class="pre">Project</span> <span class="pre">Recovery</span></code> and set <code class="docutils literal notranslate"><span class="pre">Enabled</span></code> to true,
+<code class="docutils literal notranslate"><span class="pre">Time</span> <span class="pre">between</span> <span class="pre">recovery</span> <span class="pre">checkpoints</span></code> to 2 seconds and <code class="docutils literal notranslate"><span class="pre">Total</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">checkpoints</span></code> to 5.
+Further instructions can be found on the
+<a class="reference external" href="http://docs.mantidproject.org/nightly/concepts/ProjectRecovery.html">Project Recovery concepts page</a>.</li>
+<li>Download the ISIS sample dataset from the <a class="reference external" href="http://download.mantidproject.org/">Downloads page</a>.</li>
+<li><cite>TOPAZ_3132_event.nxs</cite> - available in <code class="docutils literal notranslate"><span class="pre">/Testing/Data/SystemTest/</span></code>, get this by building the <cite>SystemTestData</cite> target.
+It should be in <code class="docutils literal notranslate"><span class="pre">ExternalData/Testing/Data/SystemTest/</span></code></li>
 <li>The files <cite>INTER000*</cite> are in the ISIS sample data</li>
-<li>Make sure that the directory containing the test files is in your User Directories (this can be set on the First Time Startup screen)</li>
-<li>Set up a directory to store output for comparison, referred to as <code class="docutils literal notranslate"><span class="pre">testing_directory</span></code> below</li>
+<li>Include the directory containing the test files in your Managed User Directories.</li>
+<li>Set up a save directory to store output for comparison, referred to as <code class="docutils literal notranslate"><span class="pre">testing_directory</span></code> below</li>
+<li>Note that if you have error reporting enabled, simply select <code class="docutils literal notranslate"><span class="pre">Do</span> <span class="pre">not</span> <span class="pre">share</span> <span class="pre">information</span></code> in the Error Reporter dialog</li>
 </ul>
 <p><strong>Time required 15 - 30  minutes</strong></p>
 <hr class="docutils" />
@@ -113,15 +117,16 @@ are on the <a class="reference external" href="http://docs.mantidproject.org/nig
 </ol>
 <ul class="simple">
 <li>Open MantidWorkbench</li>
-<li>Right-click in the Results Log and set <cite>Log level</cite> to <cite>Debug</cite></li>
-<li>The Results Log should be printing <cite>Nothing to save</cite></li>
+<li>Right-click in the Messages Box and set <cite>Log level</cite> to <cite>Debug</cite></li>
+<li>Currently, all that should be printed is <cite>Nothing to save</cite></li>
 <li>Run the following command to create a simple workspace:</li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">CreateWorkspace</span><span class="p">(</span><span class="n">DataX</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="n">DataY</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="n">DataE</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="n">NSpec</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;NewWorkspace&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <ul class="simple">
-<li>The Results Log should now be printing <cite>Project Recovery: Saving started</cite> and <cite>Project Recovery: Saving finished</cite> on alternate lines</li>
+<li>The Messages box should now be printing <cite>Project Recovery: Saving started</cite> and <cite>Project Recovery: Saving finished</cite> on
+alternate lines</li>
 <li>Now run this script:</li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;INTER00013464.nxs&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;INTER1&#39;</span><span class="p">)</span>
@@ -151,7 +156,7 @@ are on the <a class="reference external" href="http://docs.mantidproject.org/nig
 </pre></div>
 </div>
 <ul class="simple">
-<li>Wait a few seconds, then provoke a crash by running <cite>Segfault</cite> from the algorithm window</li>
+<li>Wait a few seconds, then provoke a crash by executing the <cite>Segfault</cite> algorithm with <code class="docutils literal notranslate"><span class="pre">DryRun</span></code> set to False.</li>
 <li>Restart MantidWorkbench</li>
 <li>You should be presented with the Project Recovery dialog</li>
 <li>Choose <cite>Yes</cite></li>
@@ -165,7 +170,9 @@ are on the <a class="reference external" href="http://docs.mantidproject.org/nig
 <li>Open up MantidWorkbench</li>
 <li>Run the following script:</li>
 </ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">testing_directory</span><span class="o">=&lt;</span><span class="n">path</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">test</span><span class="o">&gt;</span>   <span class="c1"># &lt;path-to-test&gt; is the location of a directory for saving workspaces for comparison later</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">testing_directory</span><span class="o">=&lt;</span><span class="n">path</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">test</span><span class="o">&gt;</span>
+<span class="c1"># &lt;path-to-test&gt; is the location of a directory for saving workspaces for comparison later</span>
+<span class="c1"># e.g. C:\Users\abc1234\Desktop\test_proj_rec\</span>
 <span class="n">CreateWorkspace</span><span class="p">(</span><span class="n">DataX</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="n">DataY</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="n">DataE</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="n">NSpec</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;0Rebinned&#39;</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
     <span class="n">RenameWorkspace</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">Rebinned&#39;</span><span class="o">%</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">Rebinned&#39;</span><span class="o">%</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
@@ -175,7 +182,7 @@ are on the <a class="reference external" href="http://docs.mantidproject.org/nig
 </pre></div>
 </div>
 <ul class="simple">
-<li>Wait a few seconds, then provoke a crash by running <cite>Segfault</cite> from the algorithm window</li>
+<li>Wait a few seconds, then provoke a crash by executing the <cite>Segfault</cite> algorithm</li>
 <li>Restart MantidWorkbench</li>
 <li>You should be presented with the Project Recovery dialog</li>
 <li>Choose <cite>Yes</cite></li>
@@ -183,11 +190,11 @@ are on the <a class="reference external" href="http://docs.mantidproject.org/nig
 <li>Run the following script:</li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">testing_directory</span><span class="o">=&lt;</span><span class="n">path</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">test</span><span class="o">&gt;</span>
-<span class="n">SaveCSV</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;299Clone&#39;</span><span class="p">,</span> <span class="n">Filename</span><span class="o">=</span><span class="n">testing_directory</span> <span class="o">+</span><span class="s1">&#39;Cloner.csv&#39;</span><span class="p">)</span>
+<span class="n">SaveCSV</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;299Clone&#39;</span><span class="p">,</span> <span class="n">Filename</span><span class="o">=</span><span class="n">testing_directory</span> <span class="o">+</span><span class="s1">&#39;Clone_r.csv&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <ul class="simple">
-<li>Compare the contents of <cite>Clone.csv</cite> and <cite>Cloner.csv</cite>, they should be the same</li>
+<li>Compare the contents of <cite>Clone.csv</cite> and <cite>Clone_r.csv</cite>, they should be the same</li>
 </ul>
 <hr class="docutils" />
 <ol class="arabic simple" start="3">
@@ -235,8 +242,10 @@ are on the <a class="reference external" href="http://docs.mantidproject.org/nig
 </pre></div>
 </div>
 <ul class="simple">
-<li>Force a crash of Mantid with <cite>Segfault</cite> from the algorithm window</li>
-<li>On re-loading Mantid choose a full recovery</li>
+<li>Force a crash by executing the <cite>Segfault</cite> algorithm</li>
+<li>Restart MantidWorkbench</li>
+<li>You should be presented with the Project Recovery dialog</li>
+<li>Choose <cite>Yes</cite></li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">testing_directory</span><span class="o">=&lt;</span><span class="n">path</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">test</span><span class="o">&gt;</span>
 <span class="n">SaveCSV</span><span class="p">(</span><span class="s1">&#39;Clone_matrix&#39;</span> <span class="p">,</span> <span class="n">testing_directory</span> <span class="o">+</span> <span class="s1">&#39;/method_test_r.csv&#39;</span><span class="p">)</span>
@@ -244,8 +253,8 @@ are on the <a class="reference external" href="http://docs.mantidproject.org/nig
 </pre></div>
 </div>
 <ul class="simple">
-<li>Compare the contents of <code class="docutils literal notranslate"><span class="pre">/test_binary_operators_r.csv</span></code> and <code class="docutils literal notranslate"><span class="pre">/test_binary_operators.csv</span></code>, they should be the same</li>
-<li>Compare the contents of <code class="docutils literal notranslate"><span class="pre">/method_test_r.csv</span></code> and <code class="docutils literal notranslate"><span class="pre">/method_test_r.csv</span></code>, they should be the same</li>
+<li>Compare the contents of <code class="docutils literal notranslate"><span class="pre">/test_binary_operators.csv</span></code> and <code class="docutils literal notranslate"><span class="pre">/test_binary_operators_r.csv</span></code>, they should be the same</li>
+<li>Compare the contents of <code class="docutils literal notranslate"><span class="pre">/method_test.csv</span></code> and <code class="docutils literal notranslate"><span class="pre">/method_test_r.csv</span></code>, they should be the same</li>
 </ul>
 <hr class="docutils" />
 <ol class="arabic simple" start="4">
@@ -253,21 +262,24 @@ are on the <a class="reference external" href="http://docs.mantidproject.org/nig
 </ol>
 <ul class="simple">
 <li>Open MantidWorkbench - make sure no other instances of MantidWorkbench are running</li>
-<li>Run the second script from test 1</li>
+<li>Run the large script from test 1</li>
 <li>In the workspace window right-click the <code class="docutils literal notranslate"><span class="pre">Sequential3</span></code> workspace and choose <cite>Plot spectrum</cite></li>
 <li>Choose <cite>Plot All</cite></li>
-<li>In the workspace window right-click the <code class="docutils literal notranslate"><span class="pre">Sequential1</span></code> workspace and choose <cite>Plot advanced</cite></li>
-<li>Choose <cite>Tiled plot</cite></li>
-<li>Drag workspace <cite>Rename2</cite> into the main window</li>
+<li>In the workspace window right-click the <code class="docutils literal notranslate"><span class="pre">Sequential1</span></code> workspace and choose <cite>Plot spectrum</cite></li>
+<li>Change Plot type from individual to <cite>Tiled</cite>, and again click <cite>Plot all</cite></li>
+<li>In the workspace window right-click the <code class="docutils literal notranslate"><span class="pre">Rename2</span></code> workspace and select <cite>Show Data</cite></li>
+<li>In the top toolbar, navigate to <code class="docutils literal notranslate"><span class="pre">Interfaces</span> <span class="pre">&gt;</span> <span class="pre">Reflectometry</span></code> and open the <code class="docutils literal notranslate"><span class="pre">ISIS</span> <span class="pre">Reflectometry</span></code> interface</li>
 </ul>
 <img alt="../../_images/reporter-test-4.png" src="../../_images/reporter-test-4.png" />
 <ul class="simple">
-<li>Crash Mantid with <cite>Segfault</cite> from the algorithm window</li>
+<li>Force a crash by executing the <cite>Segfault</cite> algorithm</li>
 <li>Restart MantidWorkbench</li>
 <li>You should be presented with the Project Recovery dialog</li>
 <li>Choose <cite>Yes</cite></li>
-<li>Mantid should reload the workspaces and open windows, so you should see the plots and the data in the main screen.</li>
+<li>Mantid should reload the workspaces and reopen plots and interfaces (including the show data interface).
+You should see these all reappear in the main screen (they may have been reopened, but minimised).</li>
 </ul>
+<p><em>(Note at time of writing, only ISIS Reflectometry and Engineering Diffraction are supported by Project Save / Recovery)</em></p>
 <hr class="docutils" />
 <ol class="arabic simple" start="5">
 <li>Test multiple instances of Mantid running</li>
@@ -286,10 +298,10 @@ are on the <a class="reference external" href="http://docs.mantidproject.org/nig
 </pre></div>
 </div>
 <ul class="simple">
-<li>Crash the first instance of Mantid with <cite>Segfault</cite>; choose <cite>Do not share information</cite> in the error dialog</li>
+<li>Crash the first instance of Mantid with <cite>Segfault</cite></li>
 <li>Do not exit the second instance of Mantid</li>
 <li>Restart MantidWorkbench</li>
-<li>You should be presented with a dialog offering to attempt a recovery - choose <cite>Yes</cite></li>
+<li>You should be presented with a Project Recovery dialog, offering to attempt a recovery - choose <cite>Yes</cite></li>
 <li><cite>Instance 1</cite> should appear in the workspace dialog</li>
 </ul>
 <hr class="docutils" />
@@ -298,13 +310,13 @@ are on the <a class="reference external" href="http://docs.mantidproject.org/nig
 </ol>
 <ul class="simple">
 <li>Open MantidWorkbench</li>
-<li>Run the second script from test 1</li>
+<li>Run the large script from test 1</li>
 <li>In the workspace window right-click the <code class="docutils literal notranslate"><span class="pre">Sequential3</span></code> workspace and choose <cite>Plot spectrum</cite></li>
 <li>Choose <cite>Plot All</cite></li>
-<li>Crash Mantid with <cite>Segfault</cite> from the algorithm window</li>
+<li>Force a crash by executing the <cite>Segfault</cite> algorithm</li>
 <li>Restart MantidWorkbench</li>
 <li>You should be presented with the Project Recovery dialog</li>
-<li>Choose <cite>Only open in script editor</cite></li>
+<li>Choose <code class="docutils literal notranslate"><span class="pre">Only</span> <span class="pre">open</span> <span class="pre">in</span> <span class="pre">script</span> <span class="pre">editor</span></code></li>
 <li>Mantid should open the script editor, with a script named <cite>ordered_recovery.py</cite></li>
 <li>Run this script, it should repopulate the workspaces dialog, but not open any figures</li>
 </ul>
@@ -317,12 +329,12 @@ are on the <a class="reference external" href="http://docs.mantidproject.org/nig
 <li>Run the second script from test 1</li>
 <li>In the workspace window right-click the <code class="docutils literal notranslate"><span class="pre">Sequential3</span></code> workspace and choose <cite>Plot spectrum</cite></li>
 <li>Choose <cite>Plot All</cite></li>
-<li>Crash Mantid with <cite>Segfault</cite> from the algorithm window</li>
+<li>Force a crash by executing the <cite>Segfault</cite> algorithm</li>
 <li>Restart MantidWorkbench</li>
 <li>You should be presented with the Project Recovery dialog</li>
-<li>Choose <cite>Start mantid normally</cite></li>
+<li>Choose <code class="docutils literal notranslate"><span class="pre">Start</span> <span class="pre">mantid</span> <span class="pre">normally</span></code></li>
 <li>Mantid should open as normal</li>
-<li>With the Results Log in debug level you should see the project saver starting up again</li>
+<li>With the Messages box at Debug level you should see the project saver starting up again</li>
 </ul>
 <hr class="docutils" />
 <ol class="arabic simple" start="8">
@@ -336,17 +348,22 @@ are on the <a class="reference external" href="http://docs.mantidproject.org/nig
 </pre></div>
 </div>
 <ul class="simple">
-<li>Save the workspace as a <cite>.nxs</cite> file</li>
+<li>Save the workspace as a <cite>.nxs</cite> file, by highlighting the <code class="docutils literal notranslate"><span class="pre">Rename2</span></code> workspace and selecting
+<code class="docutils literal notranslate"><span class="pre">Save</span> <span class="pre">&gt;</span> <span class="pre">Nexus</span></code> at the top of the Workspaces toolbox.</li>
 <li>Close Mantid normally</li>
 <li>Restart MantidWorkbench</li>
 <li>Re-open the workspace from the saved <cite>.nxs</cite> file</li>
 <li>Wait for saving</li>
-<li>Crash Mantid with <cite>Segfault</cite> from the algorithm window</li>
+<li>Force a crash by executing the <cite>Segfault</cite> algorithm</li>
 <li>Restart MantidWorkbench</li>
-<li>Choose <cite>Only open in script editor</cite></li>
-<li>Mantid should open the script editor, with a script named <cite>ordered_recovery.py</cite></li>
-<li>This file should contain only the <code class="docutils literal notranslate"><span class="pre">Load</span></code> command and no previous history</li>
+<li>Choose <code class="docutils literal notranslate"><span class="pre">Only</span> <span class="pre">open</span> <span class="pre">in</span> <span class="pre">script</span> <span class="pre">editor</span></code></li>
+<li>Mantid should open a script named <code class="docutils literal notranslate"><span class="pre">ordered_recovery.py</span></code> in the script editor</li>
+<li>This should contain only the <code class="docutils literal notranslate"><span class="pre">Load</span></code> command and no previous history (to see full history, right-click on the
+workspace and select <code class="docutils literal notranslate"><span class="pre">Show</span> <span class="pre">History</span></code>)</li>
 </ul>
+<p>Finally, test out a few ideas of your own. Note that some more niche aspects of plotting are not saved, such as 3D plots,
+and Sliceviewer is also not supported by project save/recovery.</p>
+<p><strong>Complete!</strong> Thank you for testing! Make sure to <strong>raise any issues</strong> you found on Github.</p>
 </div>
 </div>
 
