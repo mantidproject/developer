@@ -159,7 +159,6 @@ this:</li>
 <li>Right click the empty table area; Select <strong>Add Function</strong></li>
 <li>Add a <strong>Flat Background</strong> (<em>Background</em> &gt; <em>Flat Background</em>)</li>
 <li>Similarly, add <strong>Abragam</strong> (<em>Muon</em> &gt; <em>MuonSpecific</em> &gt; <em>Abragam</em>)</li>
-<li>Set <code class="docutils literal notranslate"><span class="pre">Omega</span> <span class="pre">=</span> <span class="pre">8.5</span></code> and <code class="docutils literal notranslate"><span class="pre">Tau</span> <span class="pre">=</span> <span class="pre">0.4</span></code></li>
 <li>Set <code class="docutils literal notranslate"><span class="pre">Time</span> <span class="pre">Start</span> <span class="pre">=</span> <span class="pre">0.113</span></code> and <code class="docutils literal notranslate"><span class="pre">Time</span> <span class="pre">End</span> <span class="pre">=</span> <span class="pre">15</span></code></li>
 </ul>
 </dd>
@@ -170,10 +169,14 @@ this:</li>
 <dd><ul class="first last">
 <li>Click <strong>Sequentially fit all</strong>, all fits should succeed</li>
 <li>Select each row in the table and see that the plot updates corrctly</li>
-<li>Select the first row, and change <code class="docutils literal notranslate"><span class="pre">Omega</span> <span class="pre">=</span> <span class="pre">9.0</span></code> and <code class="docutils literal notranslate"><span class="pre">Tau</span> <span class="pre">=</span> <span class="pre">0.2</span></code> in the
-table</li>
+<li>Select the first row, and change <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">=</span> <span class="pre">-0.2</span></code> and <code class="docutils literal notranslate"><span class="pre">Phi</span> <span class="pre">=</span> <span class="pre">1.5</span></code> in the
+table (this just rotates the phase)</li>
 <li>Then click <strong>Fit selected</strong>. This should update the fit for run <code class="docutils literal notranslate"><span class="pre">20918</span></code>
 but the other fits should remain the same</li>
+<li>Then set the radio button to <strong>Inital parameters for each fit</strong> and click  <strong>Sequentially fit all</strong></li>
+<li>Only the first row should have negative values for <code class="docutils literal notranslate"><span class="pre">A</span></code></li>
+<li>Then set the radio button to <strong>Parameters from previous fit</strong> and click  <strong>Sequentially fit all</strong></li>
+<li>All rows should now have negative values for <code class="docutils literal notranslate"><span class="pre">A</span></code></li>
 </ul>
 </dd>
 </dl>
@@ -290,8 +293,10 @@ that has multiple periods.</p>
 <li><dl class="first docutils">
 <dt>Go to the <strong>Grouping</strong> tab</dt>
 <dd><ul class="first last">
-<li>There should now be four groups, two <strong>fwd</strong> and two <strong>bwd</strong>, and two
-pairs</li>
+<li>There should now be four groups, two <strong>fwd</strong> and two <strong>bwd</strong>, two
+pairs and one difference</li>
+<li>Pressing the <strong>Periods</strong> button will create a new window with some details on each period (e.g. name, type, frames and counts).
+There will be two rows</li>
 </ul>
 </dd>
 </dl>
@@ -323,6 +328,7 @@ from <strong>Group/Pair</strong></li>
 <li><dl class="first docutils">
 <dt>Go to the <strong>Grouping</strong> tab</dt>
 <dd><ul class="first last">
+<li>Some of the groups and pairs should be highlighted in red (anything with a number 2 in the name)</li>
 <li>Click the <strong>Default</strong> button to reset the grouping and pairing tables</li>
 <li>Check <strong>Analyse (plot/fit)</strong> for the <strong>fwd</strong> group only</li>
 </ul>
@@ -334,15 +340,14 @@ from <strong>Group/Pair</strong></li>
 <dd><ul class="first last">
 <li>Clear the fitting function as before, and uncheck
 <strong>Simultaneous fit over</strong></li>
-<li>Add <strong>GausOsc</strong> (<em>Muon</em> &gt; <em>MuonGeneric</em> &gt; <em>GausOsc</em>)</li>
-<li>Set <code class="docutils literal notranslate"><span class="pre">Frequency</span> <span class="pre">=</span> <span class="pre">1.3</span></code></li>
-<li>In the bottom table, enable <strong>TF Asymmetry Mode</strong></li>
+<li>Add <strong>GausOsc</strong> (<em>Muon</em> &gt; <em>MuonGeneric</em> &gt; <em>GausOsc</em>) and a <strong>FlatBackground</strong> (<em>Background</em> &gt; <em>Flat Background</em>)</li>
+<li>Set <code class="docutils literal notranslate"><span class="pre">Frequency</span> <span class="pre">=</span> <span class="pre">1.0</span></code></li>
 <li>Click <strong>Fit</strong></li>
-<li>Look at the fitting parameters and see <strong>Flat Background</strong> is non-zero.</li>
-<li>Instead disable <strong>TF Asymmetry Mode</strong></li>
-<li>Clear the remaining fitting functions</li>
-<li>Add <strong>GausOsc</strong> (<em>Muon</em> &gt; <em>MuonGeneric</em> &gt; <em>GausOsc</em>) and set
-<code class="docutils literal notranslate"><span class="pre">Frequency</span> <span class="pre">=</span> <span class="pre">1.3</span></code> as before</li>
+<li>Look at the fitting parameters and see <strong>Flat Background</strong> is non-zero</li>
+<li>Remove the <strong>FlatBackground</strong></li>
+<li>Change the fitting type to <strong>TF Asymmetry</strong> (at the top of the tab)</li>
+<li>Click <strong>Fit</strong></li>
+<li>Change the fitting type to <strong>Normal</strong> (at the top of the tab)</li>
 <li>Now add <strong>Flat Background</strong> (<em>Background</em> &gt; <em>Flat Background</em>)</li>
 <li>Click <strong>Fit</strong></li>
 <li>Now check the parameters for flat background, they should be closer to 0</li>
@@ -374,14 +379,13 @@ from <strong>Group/Pair</strong></li>
 <li>Add <strong>GausOsc</strong> (<em>Muon</em> &gt; <em>MuonGeneric</em> &gt; <em>GausOsc</em>) and set
 <code class="docutils literal notranslate"><span class="pre">Frequency</span> <span class="pre">=</span> <span class="pre">1.3</span></code></li>
 <li>Tick the <strong>Global</strong> checkbox for <strong>Frequency</strong> and <strong>Sigma</strong></li>
-<li>Enable <strong>TF Asymmetry Mode</strong></li>
+<li>Set the fitting mode to <strong>TF Asymmetry</strong></li>
 <li>Click <strong>Fit</strong></li>
-<li>Check that all values for the flat background are different to each other</li>
+<li>Check that all values for the <strong>norm</strong> (just below the data selector) are different to each other</li>
 </ul>
 </dd>
 </dl>
 </li>
-<li>Before moving to the final test, disable <strong>TF Asymmetry Mode</strong></li>
 </ul>
 </div>
 <hr class="docutils" />
@@ -389,14 +393,19 @@ from <strong>Group/Pair</strong></li>
 <h2><a class="toc-backref" href="#id11">Test 10: Sequential TF Asymmetry Fits</a><a class="headerlink" href="#test-10-sequential-tf-asymmetry-fits" title="Permalink to this headline">¶</a></h2>
 <p><strong>Time required 10 minutes</strong></p>
 <ul class="simple">
-<li>Load runs <code class="docutils literal notranslate"><span class="pre">62260-2</span></code> (still using <em>Instrument</em> <strong>MUSR</strong>)</li>
+<li>Load runs <code class="docutils literal notranslate"><span class="pre">62262-4</span></code> (still using <em>Instrument</em> <strong>MUSR</strong>)</li>
 <li><dl class="first docutils">
 <dt>In the <strong>Fitting</strong> tab</dt>
 <dd><ul class="first last">
-<li>Uncheck <strong>Simultaneous fit over</strong></li>
+<li><dl class="first docutils">
+<dt>Clear the fitting functions</dt>
+<dd><ul class="first last">
 <li>Add <strong>GausOsc</strong> (<em>Muon</em> &gt; <em>MuonGeneric</em> &gt; <em>GausOsc</em>) and set
 <code class="docutils literal notranslate"><span class="pre">Frequency</span> <span class="pre">=</span> <span class="pre">1.3</span></code></li>
-<li>Enable <strong>TF Asymmetry Mode</strong></li>
+</ul>
+</dd>
+</dl>
+</li>
 </ul>
 </dd>
 </dl>
@@ -404,10 +413,15 @@ from <strong>Group/Pair</strong></li>
 <li><dl class="first docutils">
 <dt>Go to the <strong>Sequential Fitting</strong> tab</dt>
 <dd><ul class="first last">
+<li>There should be 3 rows and you should have 4 <strong>N0</strong> values on each row (the normalizations)</li>
 <li>Click <strong>Sequentially fit all</strong></li>
 <li>In the <strong>Plotting Window</strong>, check <strong>Tile plot by</strong> and change to <strong>Run</strong>
 from <strong>Group/Pair</strong></li>
 <li>You should be able to select each row in the table to see each individual fit</li>
+<li>Go to the fitting tab and set the fitting mode to <strong>Normal</strong></li>
+<li>Add a <strong>Flat Background</strong> (<em>Background</em> &gt; <em>Flat Background</em>)</li>
+<li>Go to the sequential fitting tab and press <strong>Sequentially fit all</strong></li>
+<li>The background values should all be zero (small)</li>
 </ul>
 </dd>
 </dl>

@@ -15,7 +15,7 @@
     <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Muon Unscripted Testing: Group 5 (Muon Analysis 2)" href="Muon_Analysis_test_group_5_MA2.html" />
+    <link rel="next" title="Muon Unscripted Testing: Group 5 PSI" href="Muon_Analysis_test_group_5_MA2.html" />
     <link rel="prev" title="Muon Analysis Unscripted Testing: Group 3 (Results Tables)" href="Muon_Analysis_test_group_3_results.html" />
 
 <script>
@@ -94,10 +94,11 @@
 <ul class="simple">
 <li><a class="reference internal" href="#introduction" id="id1">Introduction</a></li>
 <li><a class="reference internal" href="#tests" id="id2">Tests</a><ul>
-<li><a class="reference internal" href="#test-1-basic-fft" id="id3">Test 1: Basic FFT</a></li>
-<li><a class="reference internal" href="#test-2-advanced-fft" id="id4">Test 2: Advanced FFT</a></li>
-<li><a class="reference internal" href="#test-3-phasequad" id="id5">Test 3: PhaseQuad</a></li>
-<li><a class="reference internal" href="#test-4-maxent" id="id6">Test 4: MaxEnt</a></li>
+<li><a class="reference internal" href="#setup" id="id3">Setup</a></li>
+<li><a class="reference internal" href="#test-1-basic-fft" id="id4">Test 1: Basic FFT</a></li>
+<li><a class="reference internal" href="#test-2-advanced-fft" id="id5">Test 2: Advanced FFT</a></li>
+<li><a class="reference internal" href="#test-3-phasequad" id="id6">Test 3: PhaseQuad</a></li>
+<li><a class="reference internal" href="#test-4-maxent" id="id7">Test 4: MaxEnt</a></li>
 </ul>
 </li>
 </ul>
@@ -105,26 +106,32 @@
 <div class="section" id="introduction">
 <h2><a class="toc-backref" href="#id1">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>These are unscripted tests for the <strong class="program">Frequency Domain Analysis</strong> interface.
-Load “MUSR00062260” into Muon analysis and plot each of the available groups <strong>before</strong> opening Frequency Domain Analysis.</p>
-<p>The master testing guide is located at <a class="reference internal" href="Muon Analysis Unscripted Testing Guide.html#muon-analysis-testguide-ref"><span class="std std-ref">Muon Interfaces Unscripted Testing</span></a>.</p>
+The master testing guide is located at <a class="reference internal" href="Muon Analysis Unscripted Testing Guide.html#muon-analysis-testguide-ref"><span class="std std-ref">Muon Interfaces Unscripted Testing</span></a>.</p>
 </div>
 <div class="section" id="tests">
 <h2><a class="toc-backref" href="#id2">Tests</a><a class="headerlink" href="#tests" title="Permalink to this headline">¶</a></h2>
-<p>Ensure that you have first run all the tests in group 2, then open the Frequency Domain Analysis GUI.</p>
-<div class="section" id="test-1-basic-fft">
-<h3><a class="toc-backref" href="#id3">Test 1: Basic FFT</a><a class="headerlink" href="#test-1-basic-fft" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="setup">
+<h3><a class="toc-backref" href="#id3">Setup</a><a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Set the workspace to “MUSR00062260;Group;bkwd;Asym;#1”</li>
-<li>Click the calculate FFT button and a 3 workspaces should appear in the “MUSR00062260 FFT FD” group</li>
-<li>The group will contain 3 workspace ending in <cite>Re</cite> (real), <cite>Im</cite> (imaginary) and <cite>mod</cite> (modulus)</li>
+<li>Open <cite>Frequency Domain Analysis</cite></li>
+<li>Load <cite>MUSR62260</cite></li>
+<li>Tick the <strong>Autoscale y</strong> option on the plotting window</li>
+</ul>
+</div>
+<div class="section" id="test-1-basic-fft">
+<h3><a class="toc-backref" href="#id4">Test 1: Basic FFT</a><a class="headerlink" href="#test-1-basic-fft" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Go to the <strong>Transform</strong> tab</li>
+<li>Set the workspace to “MUSR00062260; Group; bkwd; Asym; FD”</li>
+<li>Click the calculate FFT button and a plot will appear</li>
 <li>The plot window will show a broad peak</li>
+<li>In the <strong>Fitting</strong> tab it will contain 3 workspace ending in <cite>Re</cite> (real), <cite>Im</cite> (imaginary) and <cite>mod</cite> (modulus)</li>
 <li>Untick the Imaginary Data and the row beneath should disappear</li>
 <li>Click the Calculate FFT button</li>
-<li>3 new workspaces should appear in the group</li>
 </ul>
 </div>
 <div class="section" id="test-2-advanced-fft">
-<h3><a class="toc-backref" href="#id4">Test 2: Advanced FFT</a><a class="headerlink" href="#test-2-advanced-fft" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id5">Test 2: Advanced FFT</a><a class="headerlink" href="#test-2-advanced-fft" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>The “Apodization Function” determines the amount of smoothing of the data</li>
 <li>Set the “Apodization Function” to <cite>None</cite> and press calculate</li>
@@ -135,29 +142,25 @@ Load “MUSR00062260” into Muon analysis and plot each of the available groups
 <li>Set the xrange for the plot to be from <cite>50</cite> to <cite>150</cite></li>
 <li>Set the “padding” to zero and press calculate</li>
 <li>The plots should be a nice peak, but it will have lots of straight lines</li>
-<li>Set the “padding” to <cite>500</cite> and press calculate</li>
+<li>Set the “padding” to <cite>50</cite> and press calculate</li>
 <li>The plot will now be nice and smooth</li>
 </ul>
 </div>
 <div class="section" id="test-3-phasequad">
-<h3><a class="toc-backref" href="#id5">Test 3: PhaseQuad</a><a class="headerlink" href="#test-3-phasequad" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id6">Test 3: PhaseQuad</a><a class="headerlink" href="#test-3-phasequad" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>Go to the phase tab</li>
 <li>Click “calculate phase table”</li>
 <li>Click “calculate phasequad”</li>
 <li>When asked for a name enter <cite>pq</cite></li>
 <li>Go to the transform tab</li>
-<li>You will be able to select the real and imaginary parts of ‘pq’</li>
-<li>Select the real part</li>
+<li>Tick the <strong>imaginary Workspace</strong> option</li>
+<li>You select the real and imaginary parts of ‘pq’ to be the <strong>Workspace</strong> and <strong>Imaginary Workspace</strong> respectively</li>
 <li>Click calculate</li>
-<li>Tick the <cite>Imaginary Data</cite></li>
-<li>Select the imaginary part of the phasequad</li>
-<li>Click calculate</li>
-<li>In both cases the plot should be a nice peak</li>
 </ul>
 </div>
 <div class="section" id="test-4-maxent">
-<h3><a class="toc-backref" href="#id6">Test 4: MaxEnt</a><a class="headerlink" href="#test-4-maxent" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id7">Test 4: MaxEnt</a><a class="headerlink" href="#test-4-maxent" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>Change the drop-down menu at the top of the interface to “MaxEnt”</li>
 <li>The interface should look different</li>
@@ -195,7 +198,7 @@ Load “MUSR00062260” into Muon analysis and plot each of the available groups
     </a>
   </li>
   <li>
-    <a href="Muon_Analysis_test_group_5_MA2.html" title="Next Chapter: Muon Unscripted Testing: Group 5 (Muon Analysis 2)"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Muon Unscript... &raquo;</span>
+    <a href="Muon_Analysis_test_group_5_MA2.html" title="Next Chapter: Muon Unscripted Testing: Group 5 PSI"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Muon Unscript... &raquo;</span>
     </a>
   </li>
           
