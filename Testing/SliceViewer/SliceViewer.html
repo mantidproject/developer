@@ -95,11 +95,11 @@
 <li><a class="reference internal" href="#data" id="id3">Data</a></li>
 <li><a class="reference internal" href="#tests" id="id4">Tests</a><ul>
 <li><a class="reference internal" href="#viewing-data" id="id5">1. Viewing Data</a></li>
-<li><a class="reference internal" href="#select-axes" id="id6">2. Select Axes</a></li>
-<li><a class="reference internal" href="#cursor-tracking" id="id7">3. Cursor Tracking</a></li>
-<li><a class="reference internal" href="#peak-overlay" id="id8">4. Peak Overlay</a></li>
-<li><a class="reference internal" href="#toolbar-buttons-for-changing-axis-limits" id="id9">5. Toolbar buttons for changing axis limits</a></li>
-<li><a class="reference internal" href="#toggle-gridlines-on-off" id="id10">6. Toggle gridlines on/off</a></li>
+<li><a class="reference internal" href="#toggle-gridlines-on-off" id="id6">2. Toggle gridlines on/off</a></li>
+<li><a class="reference internal" href="#select-axes" id="id7">3. Select Axes</a></li>
+<li><a class="reference internal" href="#cursor-tracking" id="id8">4. Cursor Tracking</a></li>
+<li><a class="reference internal" href="#peak-overlay" id="id9">5. Peak Overlay</a></li>
+<li><a class="reference internal" href="#toolbar-buttons-for-changing-axis-limits" id="id10">6. Toolbar buttons for changing axis limits</a></li>
 <li><a class="reference internal" href="#line-subplots-and-region-of-interest-integration" id="id11">7. Line subplots and Region of Interest integration</a></li>
 <li><a class="reference internal" href="#save-image" id="id12">8. Save image</a></li>
 <li><a class="reference internal" href="#resizing" id="id13">9. Resizing</a></li>
@@ -111,20 +111,21 @@
 <div class="section" id="introduction">
 <h2><a class="toc-backref" href="#id2">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>The Sliceviewer in Workbench has the joint functionality of the SpectrumViewer and SliceViewer from MantidPlot. So while the advanced use cases for multi-dimensional diffraction data are important to test, it is also worth checking more basic uses, for example opening a Workspace2D and examining the subplots and dynamic cursor data.</p>
-<p>See here for a brief <a class="reference external" href="https://docs.mantidproject.org/nightly/release/v5.1.0/sliceviewer.html#sliceviewer-release" title="(in MantidProject v6.0)"><span class="xref std std-ref">Overview of the Sliceviewer</span></a> in Workbench.</p>
+<p>See here for a brief overview of the <a class="reference external" href="https://docs.mantidproject.org/nightly/workbench/sliceviewer.html#sliceviewer" title="(in MantidProject v6.0)"><span>Sliceviewer</span></a>.</p>
 </div>
 <div class="section" id="data">
 <h2><a class="toc-backref" href="#id3">Data</a><a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>2D data (normal MatrixWorkspace), simply load <code class="docutils literal notranslate"><span class="pre">CNCS_7860_event.nxs</span></code> from the <a class="reference external" href="https://download.mantidproject.org/">TrainingCourseData</a>.</li>
-<li>Create fake 4D data and take a 3D cut:</li>
+<li>Load 2D data (normal MatrixWorkspace), simply load <code class="docutils literal notranslate"><span class="pre">CNCS_7860_event.nxs</span></code> from the <a class="reference external" href="https://download.mantidproject.org/">TrainingCourseData</a>. We will also load in some SXD data later on, it is good to test the Sliceviewer on both MatrixWorkspaces as the CNCS data was taken in event mode and the SXD data in histogram mode.</li>
+<li>Create fake 4D data and take a 3D and 2D cut:</li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mantid.simpleapi</span> <span class="kn">import</span> <span class="o">*</span>
 
-<span class="n">md_4D</span> <span class="o">=</span> <span class="n">CreateMDWorkspace</span><span class="p">(</span><span class="n">Dimensions</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">Extents</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">],</span> <span class="n">Names</span><span class="o">=</span><span class="s2">&quot;H,K,L,E&quot;</span><span class="p">,</span> <span class="n">Units</span><span class="o">=</span><span class="s2">&quot;U,U,U,V&quot;</span><span class="p">)</span>
+<span class="n">md_4D</span> <span class="o">=</span> <span class="n">CreateMDWorkspace</span><span class="p">(</span><span class="n">Dimensions</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">Extents</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">],</span> <span class="n">Names</span><span class="o">=</span><span class="s2">&quot;H,K,L,E&quot;</span><span class="p">,</span> <span class="n">Frames</span><span class="o">=</span><span class="s1">&#39;HKL,HKL,HKL,General Frame&#39;</span><span class="p">,</span><span class="n">Units</span><span class="o">=</span><span class="s1">&#39;r.l.u.,r.l.u.,r.l.u.,meV&#39;</span><span class="p">)</span>
 <span class="n">FakeMDEventData</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">md_4D</span><span class="p">,</span> <span class="n">PeakParams</span><span class="o">=</span><span class="s1">&#39;500000,0,0,0,0,3&#39;</span><span class="p">)</span> <span class="c1"># 4D data</span>
 <span class="c1"># Create a histogrammed (binned) workspace with 100 bins in each of the H, K and L dimensions</span>
-<span class="n">histoWS_3D</span> <span class="o">=</span> <span class="n">BinMD</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">md_4D</span><span class="p">,</span> <span class="n">AlignedDim0</span><span class="o">=</span><span class="s1">&#39;H,-1,1,100&#39;</span><span class="p">,</span> <span class="n">AlignedDim1</span><span class="o">=</span><span class="s1">&#39;K,-1,1,100&#39;</span><span class="p">,</span> <span class="n">AlignedDim2</span><span class="o">=</span><span class="s1">&#39;L,-1,1,100&#39;</span><span class="p">)</span> <span class="c1"># 3D cut</span>
+<span class="n">mdHisto_3D</span> <span class="o">=</span> <span class="n">BinMD</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">md_4D</span><span class="p">,</span> <span class="n">AlignedDim0</span><span class="o">=</span><span class="s1">&#39;H,-1,1,100&#39;</span><span class="p">,</span> <span class="n">AlignedDim1</span><span class="o">=</span><span class="s1">&#39;K,-1,1,100&#39;</span><span class="p">,</span> <span class="n">AlignedDim2</span><span class="o">=</span><span class="s1">&#39;L,-1,1,100&#39;</span><span class="p">)</span> <span class="c1"># 3D cut</span>
+<span class="n">mdHisto_2D</span> <span class="o">=</span> <span class="n">BinMD</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">md_4D</span><span class="p">,</span> <span class="n">AlignedDim0</span><span class="o">=</span><span class="s1">&#39;H,-1,1,100&#39;</span><span class="p">,</span> <span class="n">AlignedDim1</span><span class="o">=</span><span class="s1">&#39;K,-1,1,100&#39;</span><span class="p">)</span> <span class="c1"># 2D cut</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -136,74 +137,90 @@
 <span class="n">SXD23767</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;SXD23767.raw&#39;</span><span class="p">,</span> <span class="n">LoadMonitors</span><span class="o">=</span><span class="s1">&#39;Exclude&#39;</span><span class="p">)</span>
 <span class="c1"># Set some UB with angles we can play with</span>
 <span class="n">SetUB</span><span class="p">(</span><span class="n">SXD23767</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">90</span><span class="p">,</span><span class="mi">90</span><span class="p">,</span><span class="mi">120</span><span class="p">)</span>
-<span class="n">md_non_ortho</span> <span class="o">=</span> <span class="n">ConvertToDiffractionMDWorkspace</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;SXD23767&#39;</span><span class="p">,</span> <span class="n">OutputDimensions</span><span class="o">=</span><span class="s1">&#39;HKL&#39;</span><span class="p">)</span>
+<span class="n">SXD_MD_nonortho</span> <span class="o">=</span> <span class="n">ConvertToDiffractionMDWorkspace</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;SXD23767&#39;</span><span class="p">,</span> <span class="n">OutputDimensions</span><span class="o">=</span><span class="s1">&#39;HKL&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="figure align-center">
 <a class="reference internal image-reference" href="../../_images/MBC_PickDemo.png"><img alt="MBC_PickDemo.png" src="../../_images/MBC_PickDemo.png" style="width: 75%;" /></a>
 </div>
 <ul class="simple">
-<li>Create a PeaksWorkspace:<ul>
+<li>Create PeaksWorkspaces for the SXD data:<ul>
 <li>Open instrument viewer by right-clicking on the workspace``SXD23767``.</li>
 <li>On the <em>Pick</em> tab, select the <img alt="PickTabAddPeakButton.png" src="../../_images/PickTabAddPeakButton.png" /> “Add a single crystal peak” button.</li>
 <li>Click on an intense bragg peak on the detectors, and then click on one or many of the intense peaks in the produced mini-plot. Repeat for a few different bragg peaks across the detectors.</li>
 <li>Notice that this has produced a <code class="docutils literal notranslate"><span class="pre">SingleCrystalPeakTable</span></code>.</li>
-<li>Rename the above workspace to <code class="docutils literal notranslate"><span class="pre">peaks</span></code> and in instrument viewer, select more peaks for a second peaksworkspace.</li>
+<li>Create another peak table which we will use to integrate (note in order to index these peaks we find the actual UB matrix which happens to be orthogonal - this is not a problem for test purposes)</li>
 </ul>
 </li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">FindSXPeaks</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;SXD23767&#39;</span><span class="p">,</span> <span class="n">PeakFindingStrategy</span><span class="o">=</span><span class="s1">&#39;AllPeaks&#39;</span><span class="p">,</span> <span class="n">AbsoluteBackground</span><span class="o">=</span><span class="mi">1500</span><span class="p">,</span> <span class="n">ResolutionStrategy</span><span class="o">=</span><span class="s1">&#39;AbsoluteResolution&#39;</span><span class="p">,</span> <span class="n">XResolution</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">PhiResolution</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">TwoThetaResolution</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;peaks&#39;</span><span class="p">)</span>
+<span class="n">FindUBUsingLatticeParameters</span><span class="p">(</span><span class="n">PeaksWorkspace</span><span class="o">=</span><span class="s1">&#39;peaks&#39;</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mf">5.65</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mf">5.65</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mf">5.65</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">FixParameters</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">IndexPeaks</span><span class="p">(</span><span class="n">PeaksWorkspace</span><span class="o">=</span><span class="s1">&#39;peaks&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
 <li>Create an Integrated PeaksWorkspace:</li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">peaks</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;peaks&#39;</span><span class="p">]</span>
-<span class="n">integrated_peaks</span> <span class="o">=</span> <span class="n">IntegratePeaksMD</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;md_non_ortho&#39;</span><span class="p">,</span> <span class="n">PeaksWorkspace</span><span class="o">=</span><span class="s1">&#39;peaks&#39;</span><span class="p">,</span>\
+<span class="n">integrated_peaks</span> <span class="o">=</span> <span class="n">IntegratePeaksMD</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;SXD_MD_nonortho&#39;</span><span class="p">,</span> <span class="n">PeaksWorkspace</span><span class="o">=</span><span class="s1">&#39;peaks&#39;</span><span class="p">,</span>\
      <span class="n">PeakRadius</span><span class="o">=</span><span class="mf">0.12</span><span class="p">,</span> <span class="n">BackgroundOuterRadius</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">BackgroundInnerRadius</span><span class="o">=</span><span class="mf">0.16</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="tests">
 <h2><a class="toc-backref" href="#id4">Tests</a><a class="headerlink" href="#tests" title="Permalink to this headline">¶</a></h2>
-<p>Remember to SliceView 2D,3D,4D and non-orthogonal data. To enable non-orthogonal axes view, select the tri-fold toolbar button.</p>
-<div class="figure align-center">
-<img alt="../../_images/wb-sliceviewer51-nonorthobutton.png" class="screenshot" src="../../_images/wb-sliceviewer51-nonorthobutton.png" />
-</div>
+<p>Remember to SliceView MatrixWorkspaces and 2D,3D,4D and non-orthogonal MD objects.</p>
 <div class="section" id="viewing-data">
 <h3><a class="toc-backref" href="#id5">1. Viewing Data</a><a class="headerlink" href="#viewing-data" title="Permalink to this headline">¶</a></h3>
 <dl class="docutils">
 <dt>For the data types above:</dt>
 <dd><ul class="first last simple">
 <li>Change the number of bins displayed</li>
-<li>Move the sliders</li>
+<li>Move the sliders (this applies only to 3D and 4D MD workspaces - i.e. <code class="docutils literal notranslate"><span class="pre">SXD_MD_nonortho</span></code>, <code class="docutils literal notranslate"><span class="pre">md_4D</span></code>, <code class="docutils literal notranslate"><span class="pre">mdHisto_3D</span></code>)</li>
 <li>Edit color limits, colormap, scale(lin/log), etc.</li>
 </ul>
 </dd>
 </dl>
 </div>
-<div class="section" id="select-axes">
-<h3><a class="toc-backref" href="#id6">2. Select Axes</a><a class="headerlink" href="#select-axes" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="toggle-gridlines-on-off">
+<h3><a class="toc-backref" href="#id6">2. Toggle gridlines on/off</a><a class="headerlink" href="#toggle-gridlines-on-off" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Change the axes that are displayed by selecting the relevant <code class="docutils literal notranslate"><span class="pre">X</span></code> and <code class="docutils literal notranslate"><span class="pre">Y</span></code> axes in the top left. This is more interesting for higher dimension data.</li>
+<li>For normal and non-orthogonal axes data</li>
 </ul>
 </div>
+<div class="section" id="select-axes">
+<h3><a class="toc-backref" href="#id7">3. Select Axes</a><a class="headerlink" href="#select-axes" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Change the axes that are displayed by selecting the relevant <code class="docutils literal notranslate"><span class="pre">X</span></code> and <code class="docutils literal notranslate"><span class="pre">Y</span></code> axes in the top left. This is more interesting for higher dimension data.</li>
+<li>For the <code class="docutils literal notranslate"><span class="pre">SXD_MD_nonortho</span></code> workspace, the non-orthogonal view button (see below) should be enabled - clicking this should also turn on grid lines. When viewing the H and K axes you should see the gridlines are no longer perpendicular to each other.</li>
+</ul>
+<div class="figure align-center">
+<img alt="../../_images/wb-sliceviewer51-nonorthobutton.png" class="screenshot" src="../../_images/wb-sliceviewer51-nonorthobutton.png" />
+</div>
+</div>
 <div class="section" id="cursor-tracking">
-<h3><a class="toc-backref" href="#id7">3. Cursor Tracking</a><a class="headerlink" href="#cursor-tracking" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id8">4. Cursor Tracking</a><a class="headerlink" href="#cursor-tracking" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>Toggle “Track Cursor” on/off and check the cursor data makes sense</li>
-<li>For a MatrixWorkspace there is much more information than for an MDWorkspace. See <a class="reference external" href="https://docs.mantidproject.org/nightly/release/v5.1.0/sliceviewer.html#sliceviewer-cursor" title="(in MantidProject v6.0)"><span class="xref std std-ref">Cursor Information Widget</span></a> for more details.</li>
+<li>For a MatrixWorkspace (e.g. <code class="docutils literal notranslate"><span class="pre">SXD23767</span></code>) there is much more information than for an MD object. See <a class="reference external" href="https://docs.mantidproject.org/nightly/workbench/sliceviewer.html#sliceviewer-cursor" title="(in MantidProject v6.0)"><span class="xref std std-ref">Cursor Information Widget</span></a> for more details.</li>
 </ul>
 </div>
 <div class="section" id="peak-overlay">
-<h3><a class="toc-backref" href="#id8">4. Peak Overlay</a><a class="headerlink" href="#peak-overlay" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id9">5. Peak Overlay</a><a class="headerlink" href="#peak-overlay" title="Permalink to this headline">¶</a></h3>
+<p>This functionality only applies only to 3D MD workspaces - specifically you should test this on the <code class="docutils literal notranslate"><span class="pre">SXD_MD_nonortho</span></code> workspace.</p>
 <div class="figure align-center">
 <img alt="../../_images/wb-sliceviewer51-peaksbutton.png" class="screenshot" src="../../_images/wb-sliceviewer51-peaksbutton.png" />
 </div>
 <ul class="simple">
-<li>Select the peak overlay button to choose which PeakWorkspace/s to overlay</li>
-<li>Click on different peaks in the peak sorting table to display them</li>
+<li>Select the peak overlay button to choose which PeakWorkspace/s to overlay.</li>
+<li>Click on different peaks in the peak sorting table to zoom in on a peak.</li>
 <li>Try overlaying multiple peaks workspaces</li>
 <li>Overlay Integrated peaks and observe the peak radius and background shell
 (see <em>Calculations</em> section of <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/IntegratePeaksMD-v2.html#algm-integratepeaksmd" title="(in MantidProject v6.0)"><span>IntegratePeaksMD v2</span></a>) as displayed in the image below.</li>
 <li>Click on a column title in the peak table to sort by that value, such as <code class="docutils literal notranslate"><span class="pre">DetID</span></code></li>
 <li>Zooming in on peaks, and check that the data and peak move together</li>
 <li>Repeat step 2. (Select Axes) with peaks shown</li>
+<li>Repeat these instructions with non-orthogonal view enabled.</li>
 <li>Peak overlay should not be shown for 2D data</li>
 </ul>
 <div class="figure align-center">
@@ -211,22 +228,16 @@
 </div>
 </div>
 <div class="section" id="toolbar-buttons-for-changing-axis-limits">
-<h3><a class="toc-backref" href="#id9">5. Toolbar buttons for changing axis limits</a><a class="headerlink" href="#toolbar-buttons-for-changing-axis-limits" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id10">6. Toolbar buttons for changing axis limits</a><a class="headerlink" href="#toolbar-buttons-for-changing-axis-limits" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>Home</li>
 <li>Pan + Stretch</li>
-<li>Zoom (dynamic rebinning to <code class="docutils literal notranslate"><span class="pre">_svrebinned</span></code> workspace) - both by selecting region with mouse and scrolling</li>
-</ul>
-</div>
-<div class="section" id="toggle-gridlines-on-off">
-<h3><a class="toc-backref" href="#id10">6. Toggle gridlines on/off</a><a class="headerlink" href="#toggle-gridlines-on-off" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li>For normal and non-orthogonal axes data</li>
+<li>Zoom (dynamic rebinning to <code class="docutils literal notranslate"><span class="pre">_svrebinned</span></code> workspace for MD workspace) - both by selecting region with mouse and scrolling</li>
 </ul>
 </div>
 <div class="section" id="line-subplots-and-region-of-interest-integration">
 <h3><a class="toc-backref" href="#id11">7. Line subplots and Region of Interest integration</a><a class="headerlink" href="#line-subplots-and-region-of-interest-integration" title="Permalink to this headline">¶</a></h3>
-<p><strong>(disabled for non-orthogonal data)</strong></p>
+<p><strong>(this functionality is disabled when non-orthogonal view is enabled)</strong></p>
 <div class="figure align-center">
 <img alt="../../_images/wb-sliceviewer51-roibutton.png" class="screenshot" src="../../_images/wb-sliceviewer51-roibutton.png" />
 </div>
@@ -273,7 +284,8 @@
 <ul class="simple">
 <li>Delete the workspace and Sliceviewer should close</li>
 <li>Rename the workspace and Sliceviewer should stay open and continue to work</li>
-<li>Change the data in the workspace by cropping or running some algorithm (e.g. double the data <code class="docutils literal notranslate"><span class="pre">md_non_ortho</span> <span class="pre">*=</span> <span class="pre">2</span></code>)</li>
+<li>Change the data in the workspace by cropping or running some algorithm (e.g. double the data <code class="docutils literal notranslate"><span class="pre">SXD_MD_nonortho</span> <span class="pre">*=</span> <span class="pre">2</span></code>)</li>
+<li>Delete rows or re-integrate a PeaksWorkspace that is overlaid.</li>
 </ul>
 </div>
 </div>
