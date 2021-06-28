@@ -93,10 +93,11 @@
 <ul class="simple">
 <li><a class="reference internal" href="#profiling-with-valgrind" id="id1">Profiling with Valgrind</a></li>
 <li><a class="reference internal" href="#profiling-with-cprofile" id="id2">Profiling with cProfile</a></li>
-<li><a class="reference internal" href="#profiling-an-algorithm" id="id3">Profiling an algorithm</a></li>
-<li><a class="reference internal" href="#other-profiling-tools" id="id4">Other Profiling Tools</a><ul>
-<li><a class="reference internal" href="#linux" id="id5">Linux</a></li>
-<li><a class="reference internal" href="#windows" id="id6">Windows</a></li>
+<li><a class="reference internal" href="#profiling-with-yappi" id="id3">Profiling with Yappi</a></li>
+<li><a class="reference internal" href="#profiling-an-algorithm" id="id4">Profiling an algorithm</a></li>
+<li><a class="reference internal" href="#other-profiling-tools" id="id5">Other Profiling Tools</a><ul>
+<li><a class="reference internal" href="#linux" id="id6">Linux</a></li>
+<li><a class="reference internal" href="#windows" id="id7">Windows</a></li>
 </ul>
 </li>
 </ul>
@@ -113,14 +114,28 @@
 <p>E.g: <code class="docutils literal notranslate"><span class="pre">path/to/install/bin/workbench</span> <span class="pre">--profile</span> <span class="pre">path/to/outputFile.prof</span></code></p>
 <p>This profile can then either be sent to the developers upon request or be analysed using the python module <a class="reference external" href="https://pypi.org/project/snakeviz/">snakeviz</a>.</p>
 </div>
+<div class="section" id="profiling-with-yappi">
+<h2><a class="toc-backref" href="#id3">Profiling with Yappi</a><a class="headerlink" href="#profiling-with-yappi" title="Permalink to this headline">¶</a></h2>
+<p>cProfile can only profile the current thread, this makes it useful for diagnosing PyQt performance issues (such as random hangs when a user does something), but poor for diagnosing workflow algorithm issues.</p>
+<p><a class="reference external" href="https://pypi.org/project/yappi/">Yappi (Yet Another Python Profiler)</a> is multithreading aware. cProfile which will show everything up to the exec, or run call. Yappi will profile the thread and show any slow points within the separate thread.</p>
+<p><em>Note: This will not with QThreads and may crash or be unable to profile inside. It is recommended you migrate workers by inheriting from IQtAsync, see async_qt_adaptor.py for details.  Using native threading enables tooling, makes testing simple and produces readable stack traces.</em></p>
+<p>To use Yappi instead of cProfile simple append <cite>–yappi</cite> to the list of arguments after profile, e.g.:</p>
+<div class="code shell highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># If you do not have yappi installed</span>
+<span class="n">python3</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">yappi</span> <span class="o">--</span><span class="n">user</span>
+<span class="c1"># Run with Yappi profiler</span>
+<span class="o">./</span><span class="n">MantidWorkbench</span> <span class="o">--</span><span class="n">profile</span> <span class="n">name_of_profile</span><span class="o">.</span><span class="n">out</span> <span class="o">--</span><span class="n">yappi</span>
+</pre></div>
+</div>
+<p>KCachegrind can be used to view profiling data, see <a class="reference internal" href="ProfilingWithValgrind.html"><span class="doc">Profiling with Valgrind</span></a> for more details on usage.</p>
+</div>
 <div class="section" id="profiling-an-algorithm">
-<h2><a class="toc-backref" href="#id3">Profiling an algorithm</a><a class="headerlink" href="#profiling-an-algorithm" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id4">Profiling an algorithm</a><a class="headerlink" href="#profiling-an-algorithm" title="Permalink to this headline">¶</a></h2>
 <p>On Linux, the build can be configured to generate algorithm profiling information. See <a class="reference internal" href="AlgorithmProfiler.html"><span class="doc">AlgorithmProfiler</span></a> for details.</p>
 </div>
 <div class="section" id="other-profiling-tools">
-<h2><a class="toc-backref" href="#id4">Other Profiling Tools</a><a class="headerlink" href="#other-profiling-tools" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id5">Other Profiling Tools</a><a class="headerlink" href="#other-profiling-tools" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="linux">
-<span id="linux-1"></span><h3><a class="toc-backref" href="#id5">Linux</a><a class="headerlink" href="#linux" title="Permalink to this headline">¶</a></h3>
+<span id="linux-1"></span><h3><a class="toc-backref" href="#id6">Linux</a><a class="headerlink" href="#linux" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="http://kcachegrind.sourceforge.net/cgi-bin/show.cgi/KcacheGrindIndex">Callgrind/KCachegrind</a></p>
 <ul class="simple">
 <li>KCachegrind visualizes callgrind output.</li>
@@ -135,7 +150,7 @@ running callgrind</li>
 <a class="reference external" href="http://www.pixelbeat.org/programming/profiling/">http://www.pixelbeat.org/programming/profiling/</a></p>
 </div>
 <div class="section" id="windows">
-<span id="windows-1"></span><h3><a class="toc-backref" href="#id6">Windows</a><a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h3>
+<span id="windows-1"></span><h3><a class="toc-backref" href="#id7">Windows</a><a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="http://www.codersnotes.com/sleepy/">Very Sleepy</a>:</p>
 <ul class="simple">
 <li>Start/stop recording of program using a button</li>
