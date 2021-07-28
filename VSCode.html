@@ -309,7 +309,7 @@ you will want to make your file look something a little like this:</p>
   <span class="s2">&quot;stopAtEntry&quot;</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
   <span class="s2">&quot;cwd&quot;</span><span class="o">:</span> <span class="s2">&quot;Path/To/Build/Directory/bin&quot;</span><span class="p">,</span> <span class="c1">// this should point to bin inside the build directory</span>
   <span class="s2">&quot;environment&quot;</span><span class="o">:</span> <span class="p">[],</span>
-  <span class="s2">&quot;externalConsole&quot;</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="s2">&quot;externalConsole&quot;</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
   <span class="s2">&quot;MIMode&quot;</span><span class="o">:</span> <span class="s2">&quot;gdb&quot;</span><span class="p">,</span>
   <span class="s2">&quot;preLaunchTask&quot;</span><span class="o">:</span> <span class="s2">&quot;Build Mantid&quot;</span><span class="p">,</span>
   <span class="s2">&quot;setupCommands&quot;</span><span class="o">:</span> <span class="p">[</span>
@@ -322,6 +322,14 @@ you will want to make your file look something a little like this:</p>
 <span class="p">}</span>
 </pre></div>
 </div>
+<p>If this fails, try adding the following environment variables:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;environment&quot;</span><span class="o">:</span> <span class="p">[</span>
+  <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="s2">&quot;LD_PRELOAD&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;/usr/lib/x86_64-linux-gnu/libjemalloc.so.1&quot;</span><span class="p">},</span>
+  <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="s2">&quot;PYTHONPATH&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;Path/To/Build/Directory/bin:${env:PYTHONPATH}&quot;</span><span class="p">}</span>
+<span class="p">],</span>
+</pre></div>
+</div>
+<p>where the correct value for the <code class="docutils literal notranslate"><span class="pre">LD_PRELOAD</span></code> environment variable can be found in Path/To/Build/Directory/bin/launch_mantidworkbench.sh.</p>
 <p><strong>Windows:</strong></p>
 <p>For this section of the guide it will discuss use of the MSVC debugger. Please
 follow on with the <a class="reference external" href="https://code.visualstudio.com/docs/cpp/config-msvc">guide</a>.
@@ -459,7 +467,7 @@ PyQt listeners, as the debugger must be attached to the main thread.</p>
     <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;Python Attach&quot;</span><span class="p">,</span>
     <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;python&quot;</span>
     <span class="s2">&quot;request&quot;</span><span class="o">:</span> <span class="s2">&quot;attach&quot;</span>
-    <span class="s2">&quot;port&quot;</span> <span class="o">:</span> <span class="mf">5678</span><span class="p">,</span>
+    <span class="s2">&quot;port&quot;</span> <span class="o">:</span> <span class="mi">5678</span><span class="p">,</span>
     <span class="s2">&quot;host&quot;</span><span class="o">:</span> <span class="s2">&quot;localhost&quot;</span>
 <span class="p">}</span>
 </pre></div>

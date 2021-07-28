@@ -255,11 +255,11 @@ For example:</p>
 <span class="n">dataWS</span> <span class="o">=</span> <span class="n">CreateWorkspace</span><span class="p">(</span><span class="n">DataX</span><span class="o">=</span><span class="n">dataX</span><span class="p">,</span> <span class="n">DataY</span><span class="o">=</span><span class="n">dataY</span><span class="p">,</span> <span class="n">DataE</span><span class="o">=</span><span class="n">dataE</span><span class="p">,</span> <span class="n">NSpec</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">UnitX</span><span class="o">=</span><span class="s2">&quot;Wavelength&quot;</span><span class="p">,</span> <span class="n">ParallelStorageMode</span><span class="o">=</span><span class="s2">&quot;Parallel::StorageMode::Distributed&quot;</span><span class="p">)</span>
 <span class="n">ws</span> <span class="o">=</span> <span class="n">Rebin</span><span class="p">(</span><span class="n">dataWS</span><span class="p">,</span> <span class="s2">&quot;1,1,7&quot;</span><span class="p">);</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Histograms: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()))</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Histograms: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()))</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;(Local) workspace index: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">readX</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">readY</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;(Local) workspace index: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">readX</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">readY</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>Run Python with <code class="docutils literal notranslate"><span class="pre">mpirun</span></code> and the desired number of MPI ranks, by using the new <code class="docutils literal notranslate"><span class="pre">-n</span></code> flag to <code class="docutils literal notranslate"><span class="pre">mantidpython</span></code>:</p>
@@ -322,7 +322,7 @@ MPI support for an algorithm is implemented by means of a couple of virtual meth
 <span class="k">protected</span><span class="o">:</span>
   <span class="k">virtual</span> <span class="kt">void</span> <span class="n">execDistributed</span><span class="p">();</span>
   <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">execMasterOnly</span><span class="p">();</span>
-  <span class="k">virtual</span> <span class="n">Parallel</span><span class="o">::</span><span class="n">ExecutionMode</span> <span class="nf">getParallelExecutionMode</span><span class="p">(</span>
+  <span class="k">virtual</span> <span class="n">Parallel</span><span class="o">::</span><span class="n">ExecutionMode</span> <span class="n">getParallelExecutionMode</span><span class="p">(</span>
       <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span> <span class="n">Parallel</span><span class="o">::</span><span class="n">StorageMode</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">storageModes</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
   <span class="c1">// ...</span>
 <span class="p">};</span>
@@ -332,7 +332,7 @@ MPI support for an algorithm is implemented by means of a couple of virtual meth
 For many algorithms it can be sufficient to implement <code class="docutils literal notranslate"><span class="pre">getParallelExecutionMode</span></code>.
 This is often the case if an algorithm has only a single input and a single output and treats all spectra independently.
 In that case the execution mode can simply be determined from the input workspace as follows:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Parallel</span><span class="o">::</span><span class="n">ExecutionMode</span> <span class="nf">MyAlg::getParallelExecutionMode</span><span class="p">(</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Parallel</span><span class="o">::</span><span class="n">ExecutionMode</span> <span class="n">MyAlg</span><span class="o">::</span><span class="n">getParallelExecutionMode</span><span class="p">(</span>
     <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span> <span class="n">Parallel</span><span class="o">::</span><span class="n">StorageMode</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">storageModes</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
   <span class="c1">// The map key is the property name. If there is only one input workspace it can usually be ignored.</span>
   <span class="k">return</span> <span class="n">Parallel</span><span class="o">::</span><span class="n">getCorrespondingExecutionMode</span><span class="p">(</span><span class="n">storageModes</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">second</span><span class="p">);</span>
@@ -369,7 +369,7 @@ By default this simply calls <code class="docutils literal notranslate"><span cl
 In many cases this may be perfectly fine and more convenient than reimplementing <code class="docutils literal notranslate"><span class="pre">Algorithm::execDistributed()</span></code>.</p>
 <p>The following example illustrates the difference.
 We can either check for the number of MPI ranks in the normal <code class="docutils literal notranslate"><span class="pre">exec()</span></code> method:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">MyAlg::exec</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="n">MyAlg</span><span class="o">::</span><span class="n">exec</span><span class="p">()</span> <span class="p">{</span>
   <span class="c1">//// Algorithm logics, e.g., a sum over all spectra ////</span>
   <span class="k">if</span> <span class="p">(</span><span class="n">communicator</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">//// MPI calls, e.g., a global sum ////</span>
@@ -378,11 +378,11 @@ We can either check for the number of MPI ranks in the normal <code class="docut
 </pre></div>
 </div>
 <p>Alternatively, we can implement <code class="docutils literal notranslate"><span class="pre">Algorithm::execDistributed()</span></code>:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">MyAlg::exec</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="n">MyAlg</span><span class="o">::</span><span class="n">exec</span><span class="p">()</span> <span class="p">{</span>
   <span class="c1">//// Algorithm logics ////</span>
 <span class="p">}</span>
 
-<span class="kt">void</span> <span class="nf">MyAlg::execDistributed</span><span class="p">()</span> <span class="p">{</span>
+<span class="kt">void</span> <span class="n">MyAlg</span><span class="o">::</span><span class="n">execDistributed</span><span class="p">()</span> <span class="p">{</span>
   <span class="c1">//// Algorithm logics but in a very different way ////</span>
 <span class="p">}</span>
 </pre></div>
@@ -441,7 +441,7 @@ If it cannot be avoided to add an MPI-related property to an algorithm is shall 
 This can be done by adjusting the property settings when implementing <code class="docutils literal notranslate"><span class="pre">Algorithm::init()</span></code>:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;MantidKernel/InvisibleProperty.h&quot;</span><span class="cp"></span>
 
-<span class="kt">void</span> <span class="nf">MyAlg::init</span><span class="p">()</span> <span class="p">{</span>
+<span class="kt">void</span> <span class="n">MyAlg</span><span class="o">::</span><span class="n">init</span><span class="p">()</span> <span class="p">{</span>
   <span class="c1">// ...</span>
   <span class="n">setPropertySettings</span><span class="p">(</span><span class="s">&quot;MyProperty&quot;</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">InvisibleProperty</span><span class="o">&gt;</span><span class="p">());</span>
 <span class="p">}</span>
@@ -454,40 +454,40 @@ This can be done by adjusting the property settings when implementing <code clas
 No modifications to the code under test a required.
 In the unit test case <code class="docutils literal notranslate"><span class="pre">ParallelRunner</span></code> from <code class="docutils literal notranslate"><span class="pre">MantidTestHelpers</span></code> is used to run the algorithm (or other code) under test as if it were part of on MPI run.
 A typical example could look as follows:</p>
-<div class="highlight-c++ notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span>
-<span class="normal">28</span>
-<span class="normal">29</span>
-<span class="normal">30</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;MantidTestHelpers/ParallelAlgorithmCreation.h&quot;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;MantidTestHelpers/ParallelAlgorithmCreation.h&quot;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&quot;MantidTestHelpers/ParallelRunner.h&quot;</span><span class="cp"></span>
 
 <span class="k">namespace</span> <span class="p">{</span>
-<span class="kt">void</span> <span class="nf">run_algorithm</span><span class="p">(</span><span class="k">const</span> <span class="n">Parallel</span><span class="o">::</span><span class="n">Communicator</span> <span class="o">&amp;</span><span class="n">comm</span><span class="p">,</span>
+<span class="kt">void</span> <span class="n">run_algorithm</span><span class="p">(</span><span class="k">const</span> <span class="n">Parallel</span><span class="o">::</span><span class="n">Communicator</span> <span class="o">&amp;</span><span class="n">comm</span><span class="p">,</span>
                    <span class="k">const</span> <span class="n">MyType1</span> <span class="o">&amp;</span><span class="n">arbitrary</span><span class="p">,</span> <span class="k">const</span> <span class="n">MyType2</span> <span class="o">&amp;</span><span class="n">arguments</span><span class="p">)</span> <span class="p">{</span>
   <span class="c1">// Creating the algorithm with this helper function is the recommended way,</span>
   <span class="c1">// otherwise the communicator has to be set by hand and the name of the</span>
