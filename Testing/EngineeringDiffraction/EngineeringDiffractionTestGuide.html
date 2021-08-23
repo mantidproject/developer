@@ -122,10 +122,14 @@ will be needed as older runs may be deleted.</p>
 process their data. There are 3 tabs which are ordered according to the main steps performed.
 These are:</p>
 <ul class="simple">
-<li>Calibration - This is where a vanadium and cerium oxide run are entered to calibrate the subsequent data.</li>
-<li>Focus - Where are the data across multiple spectra are summed into a single spectrum for later steps.</li>
-<li>Fitting - Currently a work in progress, no testing is required</li>
+<li>Calibration - This is where a cerium oxide run are entered to calibrate the subsequent data.</li>
+<li>Focus - Where are the data across multiple spectra are normalised and summed into a single spectrum for later steps.</li>
+<li>Fitting - Where peaks can be fitted on focused data</li>
 </ul>
+<p>The tests are designed to be run from a starting point where no settings relating to the Engineering Diffraction Gui
+have been saved in the Mantid Workbench ini file. This file is in <code class="docutils literal notranslate"><span class="pre">C:\Users\&lt;fed</span> <span class="pre">id&gt;\AppData\Roaming\mantidproject</span></code> on
+Windows and <code class="docutils literal notranslate"><span class="pre">~/.config/mantidproject/</span></code> on linux. To ensure there are no saved settings open up the file mantidworkbench.ini
+and delete the settings with names starting with EngineeringDiffraction2 from the CustomInterfaces section</p>
 </div>
 <div class="section" id="test-1">
 <h2><a class="toc-backref" href="#id3">Test 1</a><a class="headerlink" href="#test-1" title="Permalink to this headline">¶</a></h2>
@@ -138,31 +142,40 @@ These are:</p>
 <li>On opening the gui the Create New Calibration option should be selected.</li>
 <li>Open the settings dialog from the cog in the bottom left of the gui.</li>
 <li>Set the Save location to a directory of your choice.</li>
-<li>For the vanadium number enter <cite>307521</cite>, and for the Calibration Sample number enter <cite>305738</cite>.</li>
+<li>Check that the Full Calibration setting has a default path to a .nxs file (currently ENGINX_full_instrument_calibration_193749.nxs)</li>
+<li>Close the settings window</li>
+<li>For the Calibration Sample number enter <cite>305738</cite>.</li>
 <li>Tick the Plot Calibrated Workspace option.</li>
-<li>Click Calibrate, after completing calibration it should produce two plots.</li>
+<li>Click Calibrate, after completing calibration it should produce the following plot.</li>
 </ol>
-<a class="reference internal image-reference" href="../../_images/EnggDiffExpectedVanCurve.png"><img alt="../../_images/EnggDiffExpectedVanCurve.png" src="../../_images/EnggDiffExpectedVanCurve.png" style="width: 900px;" /></a>
 <a class="reference internal image-reference" href="../../_images/EnggDiffExpectedLinear.png"><img alt="../../_images/EnggDiffExpectedLinear.png" src="../../_images/EnggDiffExpectedLinear.png" style="width: 900px;" /></a>
-<ol class="arabic simple" start="9">
-<li>Check that in your save location there is a Calibration folder containing three files
-<cite>ENGINX_307521_305738</cite> with the suffixes <cite>_all_bank</cite>, <cite>_bank_North</cite>, <cite>_bank_South</cite>, and
-a Vanadium_Runs folder containing two files: <cite>307521_precalculated_vanadium_run_bank_curves</cite>
-and <cite>307521_precalculated_vanadium_run_integration</cite>.</li>
+<ol class="arabic simple" start="11">
+<li>Check that in your save location there is a Calibration folder containing three .prm files</li>
+</ol>
+<blockquote>
+<div><cite>ENGINX_305738</cite> with the suffixes <cite>_all_banks</cite>, <cite>_bank_1</cite>, <cite>_bank_2</cite>.</div></blockquote>
+<ol class="arabic simple" start="12">
+<li>Close down the Engineering Diffraction gui and reopen it. The Load Existing Calibration radio
+button should be checked on the Calibration tab and the path should be populated with the
+<cite>_bank_2</cite>.prm file generated earlier in this test</li>
+<li>Click Load button to reload the .prm file</li>
 </ol>
 </div>
 <div class="section" id="focus">
 <h3><a class="toc-backref" href="#id5">Focus</a><a class="headerlink" href="#focus" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
 <li>Change to the Focus tab.</li>
-<li>For the Sample Run number use <cite>305761</cite>.</li>
+<li>For the Sample Run number use <cite>305761</cite> and for the Vanadium run number enter <cite>307521</cite>.</li>
 <li>Tick the Plot Focused Workspace option.</li>
 <li>Click Focus, after completing calibration it should produce a plot.</li>
 </ol>
 <a class="reference internal image-reference" href="../../_images/EnggDiffExampleFocusOutput.png"><img alt="../../_images/EnggDiffExampleFocusOutput.png" src="../../_images/EnggDiffExampleFocusOutput.png" style="width: 900px;" /></a>
 <ol class="arabic simple" start="5">
-<li>Check that in your save location there is a Focus folder containing six files
-<cite>ENGINX_305761_bank_1</cite> and <cite>ENGINX_305761_bank_2</cite> for each of <cite>.abc</cite>, <cite>.gss</cite>, and <cite>.nxs</cite>.</li>
+<li>Check that in your save location there is a Focus folder containing the following files:<ul>
+<li>ENGINX_305761_307521_sample_logs.csv</li>
+<li><cite>ENGINX_305761_307521_bank_1_dSpacing</cite>, <cite>ENGINX_305761_307521_bank_2_dSpacing</cite>, <cite>ENGINX_305761_307521_bank_1_TOF</cite> and <cite>ENGINX_305761_307521_bank_2_TOF</cite> for each of <cite>.abc</cite>, <cite>.gss</cite>, and <cite>.nxs</cite>.</li>
+</ul>
+</li>
 </ol>
 </div>
 </div>
@@ -176,25 +189,13 @@ and <cite>307521_precalculated_vanadium_run_integration</cite>.</li>
 </div>
 <div class="section" id="test-3">
 <h2><a class="toc-backref" href="#id7">Test 3</a><a class="headerlink" href="#test-3" title="Permalink to this headline">¶</a></h2>
-<p>This test covers the Force Vanadium Recalculation functionality.</p>
-<ol class="arabic simple">
-<li>With the previous setup run calibration again. It should happen much faster as it loads
-the previous calibration.</li>
-<li>In the Engineering Diffraction settings tick the Force Vanadium Recalculation.</li>
-<li>Calibrate again. It should take a longer time to perform as it does the entire calibration again.</li>
-<li>Check that the “Last Modified” timestamp on the files in the <cite>Vanadium_Runs</cite> folder and ensure that they have
-been updated.</li>
-</ol>
-</div>
-<div class="section" id="test-4">
-<h2><a class="toc-backref" href="#id8">Test 4</a><a class="headerlink" href="#test-4" title="Permalink to this headline">¶</a></h2>
 <p>This test covers the Cropping functionality.</p>
 <ol class="arabic simple">
 <li>Change the RB Number to “North”, this is purely to separate the cropped output files into their own space.</li>
-<li>Tick the Crop Calibration option. In the select Bank/Spectra select <cite>1 (North)</cite></li>
+<li>Tick the Crop Calibration option. In the drop down “Region of Interest” select <cite>1 (North)</cite></li>
 <li>Check the “Plot Calibrated Workspace” checkbox and click calibrate.</li>
-<li>The two generated figures should be one with two vanadium plots and one with a single TOF Peaks plot.</li>
-<li>Check that only a single output file was generated.</li>
+<li>The generated figure should show a plot of TOF vs d-spacing and plot showing residuals of the quadratic fit</li>
+<li>Check that only one .prm and one .nxs output file was generated.</li>
 <li>Go to focus tab and do the same with the Crop Focus. In comparison to the previous focus test, this will only
 generate a single axis on the figure, rather than two.</li>
 <li>Change the RB number to “Custom”.</li>
@@ -202,22 +203,22 @@ generate a single axis on the figure, rather than two.</li>
 cause the algorithms to fail.</li>
 </ol>
 </div>
-<div class="section" id="test-5">
-<h2><a class="toc-backref" href="#id9">Test 5</a><a class="headerlink" href="#test-5" title="Permalink to this headline">¶</a></h2>
-<p>This test covers the loading and plotting focussed data in the fitting tab. It is advisable to have at least two focussed datasets for the subsequent tests: this could be the two banks of run 305761 already generated, but a better test would be to use focussed data for runs 305793-305795 which have different stress and strain log values.</p>
+<div class="section" id="test-4">
+<h2><a class="toc-backref" href="#id8">Test 4</a><a class="headerlink" href="#test-4" title="Permalink to this headline">¶</a></h2>
+<p>This test covers the loading and plotting focused data in the fitting tab. It is advisable to have at least two focused datasets for the subsequent tests: this could be the two banks of run 305761 already generated, but a better test would be to use focussed data for runs 305793-305795 which have different stress and strain log values.</p>
 <ol class="arabic simple">
-<li>Navigate to one or more focussed .nxs files in the <cite>Focussed Run Files</cite> box</li>
-<li>Click the <cite>Load</cite> button. A row should be added to the UI table for each focussed run.There should be a grouped workspace with the suffix <cite>_logs</cite> in the ADS with tables    corresponding to each log value specified in the settings (to open the settings use the cog in the bottom left corner of the UI). Each row in these tables should correspond to the equivalent row in the UI table. There should be an additional table called <cite>run_info</cite> that provides some of the metadata for each run.</li>
+<li>Navigate to one or more focused TOF .nxs files in the <cite>Load Focused Data</cite> section. If this test is run immediately after the previous one, the path to the focused files should be auto populated</li>
+<li>Click the <cite>Load</cite> button. A row should be added to the UI table for each focused run.There should be a grouped workspace with the suffix <cite>_logs</cite> in the ADS with tables    corresponding to each log value specified in the settings (to open the settings use the cog in the bottom left corner of the UI). Each row in these tables should correspond to the equivalent row in the UI table. There should be an additional table called <cite>run_info</cite> that provides some of the metadata for each run.</li>
 <li>The log values that are averaged can be selected in the settings (cog button in the bottom left corner of the UI). Change them and close the UI. Open a new instance of the UI to check these settings have been remembered. note that any change to the selected logs won’t take effect in the current session.</li>
 <li>Repeat steps 1-2 above but this time try checking the <cite>Add To Plot</cite> checkbox, when loading the run(s) the data should now be plotted and the checkbox in the <cite>Plot</cite> column of the UI table should be checked.</li>
-<li>Repeat steps 1-2 again but try changing the x-unit</li>
+<li>Repeat steps 1-2 again but load the d-spacing .nxs file(s) instead</li>
 <li>Plot some data and un-dock the plot in the UI by dragging or double-clicking the bar at the top of the plot labelled <cite>Fit Plot</cite>. The plot can now be re-sized.</li>
 <li>To dock it double click the <cite>Fit Plot</cite> bar (or drag to the bottom of the toolbar). You may want to un-dock it again for subsequent tests.</li>
 </ol>
 </div>
-<div class="section" id="test-6">
-<h2><a class="toc-backref" href="#id10">Test 6</a><a class="headerlink" href="#test-6" title="Permalink to this headline">¶</a></h2>
-<p>This tests the removal of focussed runs from the fitting tab.</p>
+<div class="section" id="test-5">
+<h2><a class="toc-backref" href="#id9">Test 5</a><a class="headerlink" href="#test-5" title="Permalink to this headline">¶</a></h2>
+<p>This tests the removal of focused runs from the fitting tab.</p>
 <ol class="arabic simple">
 <li>Having loaded multiple runs, select a row in the UI table and then click the <cite>Remove Selected</cite> button below the table. The row should be removed, if the run was plotted it will disappear from the plot and there should be one less row in each of the log tables with each row corresponding to the run in the same row of the UI table. The workspace of the focussed run that was removed from the UI will still exist in the ADS.</li>
 <li>Try clicking the <cite>Remove All</cite> button, the UI table should be empty and the log workspaces no longer present.</li>
@@ -225,35 +226,45 @@ cause the algorithms to fail.</li>
 <li>Try removing a workspace by deleting it in the ADS, the corresponding row in the log tables and the UI table should have been removed.</li>
 </ol>
 </div>
-<div class="section" id="test-7">
-<h2><a class="toc-backref" href="#id11">Test 7</a><a class="headerlink" href="#test-7" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="test-6">
+<h2><a class="toc-backref" href="#id10">Test 6</a><a class="headerlink" href="#test-6" title="Permalink to this headline">¶</a></h2>
 <p>This tests that the background subtraction works.</p>
 <ol class="arabic simple">
-<li>load in a run and check the <cite>Subtract BG</cite> button in the UI table. This should generate a workspace with suffix <cite>_bg</cite> and the data should look like the background is flat and roughly zero on the plot using the default parameters (other columns in the UI table).</li>
-<li>Select the row in the table for which the background has been subtracted, the <cite>Inspect Background</cite> button should now be enabled, click it to open a new figure which shows the raw data, the background and the subtracted data. Changing the values of Niter, BG, XWindow and SG (input to <code class="docutils literal notranslate"><span class="pre">EnggEstimateFocussedBackground</span></code>, hover over a cell inn the table to see a tool tip for explanation) should produce a change in the background on the external plot and in the UI plot.</li>
+<li>Load in a run - the <cite>Subtract BG</cite> box should be checked in the UI table by default. This should generate a workspace with suffix <cite>_bg</cite> and the data should look like the background is flat and roughly zero on the plot using the default parameters (other columns in the UI table).</li>
+<li>Select the row in the table and check the <cite>Inspect Background</cite> button should now be enabled regardless of whether the <cite>Subtract BG</cite> box is checked.</li>
+<li>Click  <cite>Inspect Background</cite> to open a new figure which shows the raw data, the background and the subtracted data. Changing the values of Niter, BG, XWindow and SG (input to <code class="docutils literal notranslate"><span class="pre">EnggEstimateFocussedBackground</span></code>, hover over a cell inn the table to see a tool tip for explanation) should produce a change in the background on the external plot and in the UI plot.</li>
 </ol>
 </div>
-<div class="section" id="test-8">
-<h2><a class="toc-backref" href="#id12">Test 8</a><a class="headerlink" href="#test-8" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="test-7">
+<h2><a class="toc-backref" href="#id11">Test 7</a><a class="headerlink" href="#test-7" title="Permalink to this headline">¶</a></h2>
 <p>This tests the operation of the fit browser.</p>
 <ol class="arabic simple">
 <li>Check that when no data are plotted the <cite>Fit</cite> button on the toolbar does nothing.</li>
-<li>Plot more than one focussed run with xunit of TOF and click the <cite>Fit</cite> button. A simplified version of the standard mantid fit browser should now be visible.</li>
+<li>Plot more than one focused run with xunit of TOF and click the <cite>Fit</cite> button. A simplified version of the standard mantid fit browser should now be visible.</li>
 <li>You should be able to select runs in the Settings &gt; Workspace combo box. If you remove a run the combobox should update. Try adding some peaks (for testing purposes add different types) and a background by right-clicking on the plot. If BackToBackExponential peaks are used then the A,B parameters should be fixed automatically for ENGIN-X data.</li>
 <li>Perform a fit by clicking Fit&gt;Fit in the fit browser. On completion of the fit, a group workspace with suffix <cite>_fits</cite> should have appeared in the ADS. In this group of workspaces there should be a matrix workspace for each parameter fitted (named by convention FunctionName_ParameterName), to view this right-click on the ADS and <cite>Show Data</cite>. For any runs not fit there should be a NaN value in the Y and E fields. In addition there is a workspace that has converted any peak centres from TOF in d-spacing (suffix <cite>_d</cite>). There should be an additional table called <cite>model</cite> that summarises the chisq value and the function string including the best-fit parameters.</li>
 <li>The function string including the best-fit parameters should also have been automatically saved as a custom setup in the fit browser (Setup &gt; Custom Setup). To inspect the fit for a given run, select a custom setup and the values in the fit property browser should update, now click Fit &gt; Evaluate Function.</li>
 </ol>
 </div>
-<div class="section" id="test-9">
-<h2><a class="toc-backref" href="#id13">Test 9</a><a class="headerlink" href="#test-9" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="test-8">
+<h2><a class="toc-backref" href="#id12">Test 8</a><a class="headerlink" href="#test-8" title="Permalink to this headline">¶</a></h2>
 <p>This tests the sequential fitting capability of the UI (where the result of a fit to one workspace is used as the initial guess for the next).</p>
 <ol class="arabic simple">
-<li>Load in several focussed runs (preferably some that differ by a log value, e.g. 305793-305795).</li>
+<li>Load in several focused runs (preferably some that differ by a log value, e.g. 305793-305795).</li>
 <li>Plot a single run, open the fit browser and input a valid fit function (either manually or from Setup &gt; Custom Setup).</li>
 <li>The <cite>Sequential Fit</cite> button should now be enabled. Click it and the  group of fit workspaces should appear in the ADS, each with a row for each of the runs in the table. All the runs should have been fitted.</li>
 <li>The order of the runs in the sequential fit should be obtainable from the log at notice level - check that this corresponds to the order of the average value of the primary log (which can be selected in the settings, cog in the bottom left corner of the UI).</li>
 <li>Try changing the primary log and the order (ascending/descending) in the settings (note that leaving the primary log blank will make the Sequential fit use the order of the runs in the UI table). Repeat the steps above to check that the sequential fit is operating in the expected order.</li>
 <li>Close the UI and open a new instance, it should remember the primary log and the order.</li>
+</ol>
+</div>
+<div class="section" id="test-9">
+<h2><a class="toc-backref" href="#id13">Test 9</a><a class="headerlink" href="#test-9" title="Permalink to this headline">¶</a></h2>
+<p>This tests the serial fitting capability of the UI (where all loaded workspaces are fitted from the same starting parameters).</p>
+<ol class="arabic simple">
+<li>Repeat steps 1-2 in the previous test (Test 8).</li>
+<li>The <cite>Serial Fit</cite> button should now be enabled. Click it and the  group of fit workspaces should appear in the ADS, each with a row for each of the runs in the table. All the runs should have been fitted.</li>
+<li>The order of the runs in the serial fit should be obtainable from the log at notice level - check that this corresponds to the order of the runs in the table.</li>
 </ol>
 </div>
 </div>
