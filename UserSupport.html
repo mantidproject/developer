@@ -136,28 +136,28 @@ different avenues; therefore, below is detailed our support procedures.</p>
 <li>Does the <strong>error reporter</strong> appear? Is there a useful stacktrace? [If the errorreport won’t send, the user can check with “Show Details”]</li>
 <li>Try launching from a command prompt:</li>
 </ol>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">C</span><span class="p">:</span>\<span class="n">MantidInstall</span>\<span class="nb">bin</span>\<span class="n">MantidWorkbench</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>C:<span class="se">\M</span>antidInstall<span class="se">\b</span>in<span class="se">\M</span>antidWorkbench
 </pre></div>
 </div>
 <p>If this does not work, try launching with:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">C</span><span class="p">:</span>\<span class="n">MantidInstall</span>\<span class="nb">bin</span>
-<span class="nb">set</span> <span class="n">QT_PLUGIN_PATH</span><span class="o">=%</span><span class="n">CD</span><span class="o">%</span>\<span class="o">..</span>\<span class="n">plugins</span>\<span class="n">qt5</span>
-<span class="n">export</span> <span class="n">PYTHONPATH</span><span class="o">=%</span><span class="n">CD</span><span class="o">%</span><span class="p">;</span><span class="o">%</span><span class="n">PYTHONPATH</span><span class="o">%</span>
-<span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">workbench</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">main</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> C:<span class="se">\M</span>antidInstall<span class="se">\b</span>in
+<span class="nb">set</span> <span class="nv">QT_PLUGIN_PATH</span><span class="o">=</span>%CD%<span class="se">\.</span>.<span class="se">\p</span>lugins<span class="se">\q</span>t5
+<span class="nb">export</span> <span class="nv">PYTHONPATH</span><span class="o">=</span>%CD%<span class="p">;</span>%PYTHONPATH%
+python -m workbench.app.main
 </pre></div>
 </div>
 <ol class="arabic simple" start="4">
 <li>Does <strong>Qt</strong> import correctly? In a command prompt / terminal window, run the following:</li>
 </ol>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">C</span><span class="p">:</span>\<span class="n">MantidInstall</span>\<span class="nb">bin</span>\<span class="n">mantidpython</span><span class="o">.</span><span class="n">bat</span> <span class="o">--</span><span class="n">classic</span>
-<span class="kn">import</span> <span class="nn">qtpy.QtCore</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>C:<span class="se">\M</span>antidInstall<span class="se">\b</span>in<span class="se">\m</span>antidpython.bat --classic
+import qtpy.QtCore
 </pre></div>
 </div>
 <ol class="arabic simple" start="5">
 <li>Do <strong>Mantid Algorithms</strong> import correctly?</li>
 </ol>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">C</span><span class="p">:</span>\<span class="n">MantidInstall</span>\<span class="nb">bin</span>\<span class="n">mantidpython</span><span class="o">.</span><span class="n">bat</span> <span class="o">--</span><span class="n">classic</span>
-<span class="kn">import</span> <span class="nn">mantid.simpleapi</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>C:<span class="se">\M</span>antidInstall<span class="se">\b</span>in<span class="se">\m</span>antidpython.bat --classic
+import mantid.simpleapi
 </pre></div>
 </div>
 <ol class="arabic simple" start="6">
@@ -174,12 +174,12 @@ different avenues; therefore, below is detailed our support procedures.</p>
 </li>
 <li>Try renaming <strong>Config Files</strong>:</li>
 </ol>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">%</span><span class="n">APPDATA</span><span class="o">%</span>\<span class="n">mantidproject</span>
-<span class="n">mv</span> <span class="n">mantidproject</span><span class="o">.</span><span class="n">ini</span> <span class="n">mantidproject</span><span class="o">.</span><span class="n">ini</span><span class="o">.</span><span class="n">backup</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> %APPDATA%<span class="se">\m</span>antidproject
+mv mantidproject.ini mantidproject.ini.backup
 <span class="c1"># Try again to start workbench, if that doesn&#39;t work ...</span>
 
-<span class="n">cd</span> <span class="o">%</span><span class="n">APPDATA</span><span class="o">%</span>\<span class="n">mantidproject</span>
-<span class="n">mv</span> <span class="n">mantid</span> <span class="n">mantidbackup</span>
+<span class="nb">cd</span> %APPDATA%<span class="se">\m</span>antidproject
+mv mantid mantidbackup
 <span class="c1"># Try again to start workbench</span>
 </pre></div>
 </div>
@@ -187,11 +187,11 @@ different avenues; therefore, below is detailed our support procedures.</p>
 <ol class="arabic simple" start="8">
 <li>Check the PATH for conflicts with Mantid:</li>
 </ol>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">echo</span> <span class="o">%</span><span class="n">PATH</span><span class="o">%</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> %PATH%
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">C</span><span class="p">:</span>\<span class="n">MantidInstall</span>\<span class="nb">bin</span>\
-<span class="n">python</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;import sys; import os; import pprint; pprint.pprint(sys.path); pprint.pprint(os.environ)&quot;</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> C:<span class="se">\M</span>antidInstall<span class="se">\b</span>in<span class="se">\</span>
+python -c <span class="s2">&quot;import sys; import os; import pprint; pprint.pprint(sys.path); pprint.pprint(os.environ)&quot;</span>
 </pre></div>
 </div>
 <ol class="arabic simple" start="9">
@@ -211,33 +211,33 @@ different avenues; therefore, below is detailed our support procedures.</p>
 <li>Does the <strong>error reporter</strong> appear? Is there a useful stacktrace? [If the errorreport won’t send, the user can check with “Show Details”]</li>
 <li>Try launching from the terminal:</li>
 </ol>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">Mantid</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">mantidworkbench</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>/opt/Mantid/bin/mantidworkbench
 </pre></div>
 </div>
 <ol class="arabic simple" start="4">
 <li>Does <strong>Qt</strong> import correctly? In terminal, run the following:</li>
 </ol>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">Mantid</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">mantidpython</span> <span class="o">--</span><span class="n">classic</span>
-<span class="kn">import</span> <span class="nn">qtpy.QtCore</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>/opt/Mantid/bin/mantidpython --classic
+import qtpy.QtCore
 </pre></div>
 </div>
 <ol class="arabic simple" start="5">
 <li>Do <strong>Mantid Algorithms</strong> import correctly?</li>
 </ol>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">Mantid</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">mantidpython</span> <span class="o">--</span><span class="n">classic</span>
-<span class="kn">import</span> <span class="nn">mantid.simpleapi</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>/opt/Mantid/bin/mantidpython --classic
+import mantid.simpleapi
 </pre></div>
 </div>
 <ol class="arabic simple" start="6">
 <li>Try renaming <strong>Config Files</strong>:</li>
 </ol>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>cd $HOME/.config/mantidproject
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$HOME</span>/.config/mantidproject
 mv mantidproject.ini mantidproject.ini.backup
-# Try again to start workbench, if that doesn&#39;t work ...
+<span class="c1"># Try again to start workbench, if that doesn&#39;t work ...</span>
 
-cd $HOME
+<span class="nb">cd</span> <span class="nv">$HOME</span>
 mv .mantid .mantidbackup
-# Try again to start workbench
+<span class="c1"># Try again to start workbench</span>
 </pre></div>
 </div>
 <ol class="arabic simple" start="7">
@@ -257,11 +257,11 @@ mv .mantid .mantidbackup
 <ol class="arabic simple" start="8">
 <li>Check the PATH for conflicts with Mantid: e.g. Anything relating to <code class="docutils literal notranslate"><span class="pre">.local</span></code> could be a problem.</li>
 </ol>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>echo $PATH
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> <span class="nv">$PATH</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">Mantid</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span>
-<span class="n">python</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;import sys; import os; import pprint; pprint.pprint(sys.path); pprint.pprint(os.environ)&quot;</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /opt/Mantid/bin/
+python -c <span class="s2">&quot;import sys; import os; import pprint; pprint.pprint(sys.path); pprint.pprint(os.environ)&quot;</span>
 </pre></div>
 </div>
 <ol class="arabic simple" start="9">
@@ -279,28 +279,28 @@ mv .mantid .mantidbackup
 <li>Does the <strong>error reporter</strong> appear? Is there a useful stacktrace? [If the errorreport won’t send, the user can check with “Show Details”]</li>
 <li>Try launching from terminal, by running the following:</li>
 </ol>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">Applications</span><span class="o">/</span><span class="n">MantidWorkbench</span><span class="o">.</span><span class="n">app</span><span class="o">/</span><span class="n">Contents</span><span class="o">/</span><span class="n">MacOS</span><span class="o">/</span><span class="n">MantidWorkbench</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>/Applications/MantidWorkbench.app/Contents/MacOS/MantidWorkbench
 </pre></div>
 </div>
 <p>If this does not work, try launching with:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>cd /Applications/MantidWorkbench.app/Contents/MacOS
-export QT_PLUGIN_PATH=$PWD/../PlugIns/
-export PYTHONPATH=$PWD:$PYTHONPATH
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /Applications/MantidWorkbench.app/Contents/MacOS
+<span class="nb">export</span> <span class="nv">QT_PLUGIN_PATH</span><span class="o">=</span><span class="nv">$PWD</span>/../PlugIns/
+<span class="nb">export</span> <span class="nv">PYTHONPATH</span><span class="o">=</span><span class="nv">$PWD</span>:<span class="nv">$PYTHONPATH</span>
 python3 -m workbench.app.main
 </pre></div>
 </div>
 <ol class="arabic simple" start="4">
 <li>Does <strong>Qt</strong> import correctly?</li>
 </ol>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">Applications</span><span class="o">/</span><span class="n">MantidWorkbench</span><span class="o">.</span><span class="n">app</span><span class="o">/</span><span class="n">Contents</span><span class="o">/</span><span class="n">MacOS</span><span class="o">/</span><span class="n">mantidpython</span> <span class="o">--</span><span class="n">classic</span>
-<span class="kn">import</span> <span class="nn">qtpy.QtCore</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>/Applications/MantidWorkbench.app/Contents/MacOS/mantidpython --classic
+import qtpy.QtCore
 </pre></div>
 </div>
 <ol class="arabic simple" start="5">
 <li>Do <strong>Mantid Algorithms</strong> import correctly?</li>
 </ol>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">Applications</span><span class="o">/</span><span class="n">MantidWorkbench</span><span class="o">.</span><span class="n">app</span><span class="o">/</span><span class="n">Contents</span><span class="o">/</span><span class="n">MacOS</span><span class="o">/</span><span class="n">mantidpython</span> <span class="o">--</span><span class="n">classic</span>
-<span class="kn">import</span> <span class="nn">mantid.simpleapi</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>/Applications/MantidWorkbench.app/Contents/MacOS/mantidpython --classic
+import mantid.simpleapi
 </pre></div>
 </div>
 <ol class="arabic simple" start="6">
@@ -317,24 +317,24 @@ python3 -m workbench.app.main
 </li>
 <li>Try renaming <strong>Config files</strong>:</li>
 </ol>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>cd $HOME/.config/mantidproject
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$HOME</span>/.config/mantidproject
 mv mantidproject.ini mantidproject.ini.backup
-# Try again to start workbench, if that doesn&#39;t work ...
+<span class="c1"># Try again to start workbench, if that doesn&#39;t work ...</span>
 
-cd ~
+<span class="nb">cd</span> ~
 mv .mantid .mantidbackup
-# Try again to start workbench
+<span class="c1"># Try again to start workbench</span>
 </pre></div>
 </div>
 <p>Advanced Options:</p>
 <ol class="arabic simple" start="8">
 <li>Check the PATH for conflicts with Mantid: e.g. Anything relating to <code class="docutils literal notranslate"><span class="pre">.local</span></code> could be a problem.</li>
 </ol>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>echo $PATH
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> <span class="nv">$PATH</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">/</span><span class="n">Applications</span><span class="o">/</span><span class="n">MantidWorkbench</span><span class="o">.</span><span class="n">app</span><span class="o">/</span><span class="n">Contents</span><span class="o">/</span><span class="n">MacOS</span><span class="o">/</span>
-<span class="n">python</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;import sys; import os; import pprint; pprint.pprint(sys.path); pprint.pprint(os.environ)&quot;</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /Applications/MantidWorkbench.app/Contents/MacOS/
+python -c <span class="s2">&quot;import sys; import os; import pprint; pprint.pprint(sys.path); pprint.pprint(os.environ)&quot;</span>
 </pre></div>
 </div>
 <ol class="arabic simple" start="9">
