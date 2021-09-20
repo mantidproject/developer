@@ -126,12 +126,148 @@ the advice should still be applicable to naming Mantid concepts.</p>
 both C++ and Python.</p>
 <div class="section" id="naming">
 <h3><a class="toc-backref" href="#id6">Naming</a><a class="headerlink" href="#naming" title="Permalink to this headline">¶</a></h3>
+<p>As a general purpose data process platform for global users, the names of the Mantid algorithms need
+to be as self evident as possible so that users can intuitively understand the functionality and limitations
+of the algorithms they are using.
+To this end, it is important for Mantid developers to use clear and concise names during the renaming process.
+Generally speaking, the name of a algorithm can contain up to <strong>four</strong> sections:</p>
+<div class="admonition-mantid-algorithm-naming-convention admonition">
+<p class="first admonition-title">Mantid Algorithm Naming Convention</p>
+<p class="last">[Technique] [Instrument/Facility] Action Target</p>
+</div>
+<ul>
+<li><p class="first">Technique</p>
+<p>If given algorithm is designed for a specific technique, the algorithm name should start with the abbreviation of the
+technique.
+However, this section can be omitted if the algorithm is not technique specific (such as file loading and data plotting).
+Here are some commonly used abbreviations of techniques</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="23%" />
+<col width="77%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Abbreviations</th>
+<th class="head">Full Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>CWPD</strong></td>
+<td>Constant Wavelength Powder Diffraction</td>
+</tr>
+<tr class="row-odd"><td><strong>PD</strong></td>
+<td>Powder Diffraction</td>
+</tr>
+<tr class="row-even"><td><strong>REFL</strong></td>
+<td>Reflectometry</td>
+</tr>
+<tr class="row-odd"><td><strong>SANS</strong></td>
+<td>Small Angle Neutron Scattering</td>
+</tr>
+<tr class="row-even"><td><strong>SCD</strong></td>
+<td>Single Crystal Diffraction</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The table above is a work in progress as more abbreviations will be added in the future.</p>
+</div>
+</li>
+<li><p class="first">Instrument/Facility</p>
+<p>As Mantid is a collaboration across many different institutes, it is very common to have some algorithms that are specifically
+designed for a special instrument or a facility.
+For algorithms like these, it is important to have the abbreviations of the corresponding instrument or facility clearly shown
+in the name.
+On the other hand, this section can be skipped if the algorithm is general enough that its application is no longer tied to a
+specific instrument or facility.</p>
+<ul class="simple">
+<li>Here are some commonly used abbreviations of facilities</li>
+</ul>
+<table border="1" class="docutils">
+<colgroup>
+<col width="23%" />
+<col width="77%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Abbreviations</th>
+<th class="head">Full Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>ILL</strong></td>
+<td>Institut Laue-Langevin at GRENOBLE,France</td>
+</tr>
+<tr class="row-odd"><td><strong>ISIS</strong></td>
+<td>ISIS Neutron and Muon Source at UK</td>
+</tr>
+<tr class="row-even"><td><strong>HFIR</strong></td>
+<td>High Flux Isotope Reactor at ORNL,USA</td>
+</tr>
+<tr class="row-odd"><td><strong>SNS</strong></td>
+<td>Spallation Neutron Source at ORNL,USA</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The table above is a work in progress as more abbreviations will be added in the future.</p>
+</div>
+<ul class="simple">
+<li>Here are some commonly used abbreviations of instruments</li>
+</ul>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="80%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Abbreviations</th>
+<th class="head">Full Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>CORELLI</strong></td>
+<td>Elastic Diffuse Scattering Spectrometer at BL-9, SNS</td>
+</tr>
+<tr class="row-odd"><td><strong>POWGEN</strong></td>
+<td>Powder Diffractometer at BL-11A, SNS</td>
+</tr>
+<tr class="row-even"><td><strong>TOPAZ</strong></td>
+<td>Single-Crystal Diffractometer at BL-12, SNS</td>
+</tr>
+<tr class="row-odd"><td><strong>WAND2</strong></td>
+<td>Wide-Angle Neutron Diffractometer at HB-2C, HFIR</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The table above is a work in progress as more abbreviations will be added in the future.</p>
+</div>
+</li>
+<li><p class="first">Action</p>
+<p>As data process platform, Mantid perform various action via algorithms, therefore it is crucial
+to have clear and concise description of intended action depicted in the algorithm name.</p>
+</li>
+<li><p class="first">Target</p>
+<p>Most of the time the action term above requires a specific receiving end, namely a target.
+Depending on the action, sometimes the target can be omitted if it is self evident
+(such as <code class="docutils literal notranslate"><span class="pre">LoadFiles</span></code> can be simplified into <code class="docutils literal notranslate"><span class="pre">Load</span></code>).</p>
+</li>
+</ul>
+<div class="admonition-example admonition">
+<p class="first admonition-title">Example</p>
+<p class="last"><code class="docutils literal notranslate"><span class="pre">SCDCalibratePanels</span></code> indicates this is a algorithm designed for single crystal diffraction
+technique that is not tied to a specific instrument or facility. It performs calibration of
+panel type detectors.</p>
+</div>
 <p>Algorithm names start with a capital letter and have a capital letter
 for each new word, with no underscores. Use alphabet and numeric
 characters only. Numbers are only allowed after the first character.</p>
 <p>Names should be descriptive but not too long (max 20 chars). If
 possible, avoid abbreviations unless they are common and well
-understood. To avoid a proliferation of different synonyms for
+understood (see examples above). To avoid a proliferation of different synonyms for
 algorithms that have a common goal, e.g. Create… vs Generate…, we
 standardise on a set of prefixes for common tasks:</p>
 <table border="1" class="docutils">
