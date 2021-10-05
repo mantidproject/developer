@@ -89,103 +89,31 @@
       
   <div class="section" id="indirectdataanalysis-file-structure">
 <span id="ida-structure-ref"></span><h1>IndirectDataAnalysis File Structure<a class="headerlink" href="#indirectdataanalysis-file-structure" title="Permalink to this headline">¶</a></h1>
-<p>The many levels of inheritance in the indirect data analysis codebase can be confusing.</p>
-<div class="section" id="tabs">
-<h2>Tabs<a class="headerlink" href="#tabs" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>IndirectTab<ul>
-<li>IndirectDataAnalysisTab<ul>
-<li>IndirectDataAnalysisElwinTab</li>
-<li>IndirectDataAnalysisIqtTab</li>
-<li>IndirectFitAnalysisTab<ul>
-<li>IndirectDataAnalysisConvFitTab</li>
-<li>IndirectDataAnalysisFqFitTab</li>
-<li>IndirectDataAnalysisIqtFitTab</li>
-<li>IndirectDataAnalysisMSDFitTab</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+<p>The many levels of inheritance in the indirect data analysis codebase can be confusing. it is not always clear how they
+all interact.</p>
+<p>The Elwin and I(Q,t) are the most different as their components are all contained within a single UI file. This is
+something that should be fixed to be more modular but it could be left till the fit tabs are separated out entirely.</p>
 </div>
-<div class="section" id="fitting-models">
-<h2>Fitting Models<a class="headerlink" href="#fitting-models" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>IndirectFittingModel<ul>
-<li>ConvFitModel</li>
-<li>FqFitModel</li>
-<li>IqtFitModel</li>
-<li>MSDFitModel</li>
-</ul>
-</li>
-</ul>
+<div class="section" id="fit-tab-structure">
+<h1>Fit Tab structure<a class="headerlink" href="#fit-tab-structure" title="Permalink to this headline">¶</a></h1>
+<p>The QENS fit tabs in Inelastic Data analysis have this general structure. Different tabs will feature different derived
+classes for the IndirectFitAnalysisTab, FitDataView, FunctionTemplateBrowser, and the AddWorkspaceDialog</p>
+<div class="figure">
+<a class="reference internal image-reference" href="_images/IndirectFitTabStructure.png"><img alt="_images/IndirectFitTabStructure.png" src="_images/IndirectFitTabStructure.png" style="width: 400px;" /></a>
 </div>
-<div class="section" id="fit-data-presenter">
-<h2>Fit Data Presenter<a class="headerlink" href="#fit-data-presenter" title="Permalink to this headline">¶</a></h2>
-<p>These are the single/multiple tabs for loading and selecting data</p>
-<ul class="simple">
-<li>IndirectFitDataPresenter (Used by MSDFit and IqtFit)
-- ConvFitDataPresenter
-- FqFitDataPresenter</li>
-</ul>
 </div>
-<div class="section" id="data-table-presenter">
-<h2>Data Table Presenter<a class="headerlink" href="#data-table-presenter" title="Permalink to this headline">¶</a></h2>
-<p>These control the multiple loading tables</p>
-<ul class="simple">
-<li>IndirectDataTablePresenter (Used by MSDFit and IqtFit)<ul>
-<li>ConvFitDataTablePresenter</li>
-<li>FqFitDataTablePresenter</li>
-</ul>
-</li>
-</ul>
+<div class="section" id="qens-fit-class-structure">
+<h1>QENS Fit class structure<a class="headerlink" href="#qens-fit-class-structure" title="Permalink to this headline">¶</a></h1>
+<div class="figure">
+<a class="reference internal image-reference" href="images/QENS/IndirectFitClassStructure.png"><img alt="images/QENS/IndirectFitClassStructure.png" src="images/QENS/IndirectFitClassStructure.png" style="width: 2000px;" /></a>
 </div>
-<div class="section" id="addworkspacedialog">
-<h2>AddWorkspaceDialog<a class="headerlink" href="#addworkspacedialog" title="Permalink to this headline">¶</a></h2>
-<p>This is the Dialogue for adding workspaces in multiple mode</p>
-<ul class="simple">
-<li>IAddWorkspaceDialog<ul>
-<li>ConvFitAddWorkspaceDialog</li>
-<li>FqFitAddWorkspaceDialog</li>
-<li>IndirectAddWorkspaceDialog (Used by MSDFit and IqtFit)</li>
-</ul>
-</li>
-</ul>
-</div>
-<div class="section" id="function-template-browser">
-<h2>Function Template Browser<a class="headerlink" href="#function-template-browser" title="Permalink to this headline">¶</a></h2>
-<p>These are the fit function templates for each fitting tab, switched out for the full version when <cite>show full function</cite> is checked</p>
-<ul class="simple">
-<li>FunctionTemplateBrowser<ul>
-<li>ConvTemplateBrowser</li>
-<li>IqtTemplateBrowser</li>
-<li>SingleFunctionTemplateBrowser (Used by MSDFit and FqFit)</li>
-</ul>
-</li>
-</ul>
-</div>
-<div class="section" id="function-template-model">
-<h2>Function Template Model<a class="headerlink" href="#function-template-model" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>IFunctionModel<ul>
-<li>ConvFunctionModel</li>
-<li>IqtFunctionModel</li>
-<li>FunctionModel
-- SingleFunctionTemplateModel</li>
-</ul>
-</li>
-</ul>
-</div>
-<div class="section" id="function-template-presenter">
-<h2>Function Template Presenter<a class="headerlink" href="#function-template-presenter" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>ConvTemplatePresenter</li>
-<li>IqtTemplatePresenter</li>
-<li>SingleFunctionTemplatePresenter</li>
-</ul>
-</div>
+<p>The ideal structure for the interface should include MVP for each defined section. As part of the refactor the old
+IndirectFittingModel has been broken up, the IndirectFitData and IndirectFitPlot all previously used the same instance
+of the fitting model, now communication is handled with signals through the presenters and they each have their own.
+Some objects are shared between models, but as a design rule only one object should ever make changes to it e.g. the
+IndirectFitData which is controlled by IndirectFitDataModel, but is sometimes read by IndirectFitPlot.</p>
+<p>The IndirectFitPlotModel also contains a pointer to the active fit function and the IndirectFitOutput from the
+IndirectFittingModel, again it should only ever READ FROM THESE OBJECTS only the IndirectFittingModel should control it.</p>
 </div>
 
 

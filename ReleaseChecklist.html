@@ -339,7 +339,7 @@ with the Release Manager.</p>
 <ul class="simple">
 <li>Ensure that Manual testing begins. An overview of the Manual testing to be done is
 found <a class="reference internal" href="Testing/index.html#testing"><span class="std std-ref">here</span></a>. Generate the Manual testing issues by following the instructions
-<a class="reference external" href="https://github.com/mantidproject/documents/tree/master/Project-Management/Tools/RoadmapUpdate">here</a>.</li>
+<a class="reference external" href="https://github.com/mantidproject/documents/tree/main/Project-Management/Tools/RoadmapUpdate">here</a>.</li>
 <li>Over the next week or so, read through the Manual testing issues and ensure that any
 serious problems are raised as an issue and marked against the relevant milestone.</li>
 </ul>
@@ -350,7 +350,7 @@ serious problems are raised as an issue and marked against the relevant mileston
 <li>It is likely that many changes have been made over the beta test period, therefore
 we must do some more Manual testing to ensure everything still works. This stage is
 called Smoke testing. Generate the Smoke testing issues by following the instructions
-<a class="reference external" href="https://github.com/mantidproject/documents/tree/master/Project-Management/Tools/RoadmapUpdate/SmokeTesting">here</a>.</li>
+<a class="reference external" href="https://github.com/mantidproject/documents/tree/main/Project-Management/Tools/RoadmapUpdate/SmokeTesting">here</a>.</li>
 <li>Liase with the Technical Release Manager to announce the creation of the Smoke testing
 issues and Release Candidates in the <em>#general</em> slack channel.</li>
 </ul>
@@ -493,7 +493,7 @@ to create the release branch and prepare build jobs by clicking <code class="doc
 should be kept for the release, liaise with the Release Manager on this. Move any
 pull requests not targeted for release out of the milestone, and then change the base branch
 of the remaining pull requests to <code class="docutils literal notranslate"><span class="pre">release-next</span></code>. You can use the following script
-to update the base branches of these pull requests <a class="reference external" href="https://github.com/mantidproject/mantid/blob/master/tools/scripts/update-pr-base-branch.py">update-pr-base-branch.py</a>
+to update the base branches of these pull requests <a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/tools/scripts/update-pr-base-branch.py">update-pr-base-branch.py</a>
 A quick example to show how the arguments should be provided to this script is seen below:</li>
 </ul>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python update-pr-base-branch.py <span class="o">[</span>milestone<span class="o">]</span> <span class="o">[</span>newbase<span class="o">]</span> --token <span class="o">[</span>generated_token<span class="o">]</span>
@@ -506,11 +506,11 @@ python update-pr-base-branch.py <span class="s2">&quot;Release 6.1&quot;</span> 
 following announcement:</li>
 </ul>
 <blockquote>
-<div>The release branch for &lt;version&gt;, called release-next, has now been created: <a class="reference external" href="https://github.com/mantidproject/mantid/tree/release-next">https://github.com/mantidproject/mantid/tree/release-next</a>.  If you’ve not worked with the release/master-branch workflow before then please take a moment to familiarise yourself with the process: <a class="reference external" href="https://developer.mantidproject.org/GitWorkflow.html#code-freeze">https://developer.mantidproject.org/GitWorkflow.html#code-freeze</a>. The part about ensuring new branches have the correct parent is the most important part (although this can be corrected afterwards). All branches and PRs that were created before this release branch was created are fine, as their history is the same as master.</div></blockquote>
+<div>The release branch for &lt;version&gt;, called release-next, has now been created: <a class="reference external" href="https://github.com/mantidproject/mantid/tree/release-next">https://github.com/mantidproject/mantid/tree/release-next</a>.  If you’ve not worked with the release/main/-branch workflow before then please take a moment to familiarise yourself with the process: <a class="reference external" href="https://developer.mantidproject.org/GitWorkflow.html#code-freeze">https://developer.mantidproject.org/GitWorkflow.html#code-freeze</a>. The part about ensuring new branches have the correct parent is the most important part (although this can be corrected afterwards). All branches and PRs that were created before this release branch was created are fine, as their history is the same as master.</div></blockquote>
 <p><strong>Create Release Notes Skeleton</strong></p>
 <ul class="simple">
 <li>Create a skeleton set of release notes on master for the next version using the
-<a class="reference external" href="https://github.com/mantidproject/mantid/blob/master/tools/release_generator/release.py">python helper tool</a>
+<a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/tools/release_generator/release.py">python helper tool</a>
 and open a pull request to put them on <code class="docutils literal notranslate"><span class="pre">master</span></code>. Make sure the
 <code class="docutils literal notranslate"><span class="pre">docs/source/release/index.rst</span></code> file has a link to the new release docs.</li>
 </ul>
@@ -537,7 +537,7 @@ job.</li>
 <ul class="simple">
 <li>On the <code class="docutils literal notranslate"><span class="pre">release-next</span></code> branch, create a PR to update the <a class="reference external" href="https://github.com/mantidproject/mantid/blob/343037c685c0aca9151523d6a3e105504f8cf218/scripts/ExternalInterfaces/CMakeLists.txt#L11">git SHA</a>
 for MSlice.</li>
-<li>On the <code class="docutils literal notranslate"><span class="pre">release-next</span></code> branch, create a PR to update the <a class="reference external" href="https://github.com/mantidproject/mantid/blob/master/buildconfig/CMake/VersionNumber.cmake">major &amp; minor</a>
+<li>On the <code class="docutils literal notranslate"><span class="pre">release-next</span></code> branch, create a PR to update the <a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/buildconfig/CMake/VersionNumber.cmake">major &amp; minor</a>
 versions accordingly. Also, uncomment <code class="docutils literal notranslate"><span class="pre">VERSION_PATCH</span></code> and set it to <code class="docutils literal notranslate"><span class="pre">0</span></code>.</li>
 <li>Ask a gatekeeper to: merge the <code class="docutils literal notranslate"><span class="pre">release-next</span></code> branch back to <code class="docutils literal notranslate"><span class="pre">master</span></code> locally, and then comment
 out the <code class="docutils literal notranslate"><span class="pre">VERSION_PATCH</span></code> on the <code class="docutils literal notranslate"><span class="pre">master</span></code> branch. They should then commit and push these changes
