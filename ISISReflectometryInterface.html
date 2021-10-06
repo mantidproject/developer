@@ -100,7 +100,7 @@
 <h2>Structure<a class="headerlink" href="#structure" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="gui">
 <h3><code class="code docutils literal notranslate"><span class="pre">GUI</span></code><a class="headerlink" href="#gui" title="Permalink to this headline">¶</a></h3>
-<p>This directory contains all of the GUI code for the interface. Each separate component e.g. the Experiment tab, has its own subdirectory. Each of these components has its own view and presenter. There is also a <code class="code docutils literal notranslate"><span class="pre">Common</span></code> subdirectory for GUI components/interfaces common to more than one widget (e.g. the <code class="code docutils literal notranslate"><span class="pre">IMessageHandler</span></code> interface).</p>
+<p>This directory contains all of the GUI code for the interface. Each separate component e.g. the Experiment tab, has its own subdirectory. Each of these components has its own view and presenter. There is also a <code class="code docutils literal notranslate"><span class="pre">Common</span></code> subdirectory for GUI components/interfaces common to more than one widget (e.g. the <code class="code docutils literal notranslate"><span class="pre">IReflMessageHandler</span></code> interface).</p>
 <p>Briefly the structure is as follows:</p>
 <ul class="simple">
 <li>The top level is the <code class="code docutils literal notranslate"><span class="pre">MainWindow</span></code>.</li>
@@ -233,10 +233,10 @@
 </div>
 <div class="section" id="dependency-injection">
 <h3>Dependency injection<a class="headerlink" href="#dependency-injection" title="Permalink to this headline">¶</a></h3>
-<p>A simple example of <a class="reference internal" href="#dependency-inversion">Dependency inversion</a> is in the use of an <code class="code docutils literal notranslate"><span class="pre">IMessageHandler</span></code> interface to provide a service to display messages to the user. These messages must be displayed by a Qt view. Rather than each view having to implement this, we use one object (in this case the <code class="code docutils literal notranslate"><span class="pre">QtMainWindowView</span></code>) to implement this functionality and inject it as an <code class="code docutils literal notranslate"><span class="pre">IMessageHandler</span></code> to all of the presenters that need it.</p>
+<p>A simple example of <a class="reference internal" href="#dependency-inversion">Dependency inversion</a> is in the use of an <code class="code docutils literal notranslate"><span class="pre">IReflMessageHandler</span></code> interface to provide a service to display messages to the user. These messages must be displayed by a Qt view. Rather than each view having to implement this, we use one object (in this case the <code class="code docutils literal notranslate"><span class="pre">QtMainWindowView</span></code>) to implement this functionality and inject it as an <code class="code docutils literal notranslate"><span class="pre">IReflMessageHandler</span></code> to all of the presenters that need it.</p>
 <ul>
-<li><p class="first">The <code class="code docutils literal notranslate"><span class="pre">IMessageHandler</span></code> interface defines the functions for displaying messages:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">IMessageHandler</span> <span class="p">{</span>
+<li><p class="first">The <code class="code docutils literal notranslate"><span class="pre">IReflMessageHandler</span></code> interface defines the functions for displaying messages:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">IReflMessageHandler</span> <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
   <span class="k">virtual</span> <span class="kt">void</span> <span class="n">giveUserCritical</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">prompt</span><span class="p">,</span>
                                 <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">title</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
