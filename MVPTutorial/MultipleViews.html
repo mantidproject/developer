@@ -96,17 +96,17 @@ another widget. This can be very useful for creating small versatile
 widgets that may be used in multiple GUIs.</p>
 <p>We will combine the View widget from the exercise and the PlotView widget from the
 previous section into a single view. To achieve this we will create a
-‘master’ view:</p>
+‘main’ view:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qtpy</span> <span class="kn">import</span> <span class="n">QtWidgets</span><span class="p">,</span> <span class="n">QtCore</span><span class="p">,</span> <span class="n">QtGui</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">plot_view</span>
 <span class="kn">import</span> <span class="nn">view</span>
 
-<span class="k">class</span> <span class="nc">MasterView</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">MainView</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">):</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">MasterView</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
 
         <span class="n">grid</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QVBoxLayout</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">plot_view</span> <span class="o">=</span> <span class="n">plot_view</span><span class="o">.</span><span class="n">PlotView</span><span class="p">(</span><span class="n">parent</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
@@ -118,14 +118,14 @@ previous section into a single view. To achieve this we will create a
 </pre></div>
 </div>
 <p>The important thing to note here is that when the PlotView and View
-are created the parent is set to be the MasterView.</p>
-<p>The main only needs to import the master_view:</p>
+are created the parent is set to be the MainView.</p>
+<p>The main only needs to import the main_view:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Demo</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMainWindow</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">Demo</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">window</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMainWindow</span><span class="p">()</span>
-        <span class="n">my_view</span> <span class="o">=</span> <span class="n">master_view</span><span class="o">.</span><span class="n">MasterView</span><span class="p">()</span>
+        <span class="n">my_view</span> <span class="o">=</span> <span class="n">main_view</span><span class="o">.</span><span class="n">MainView</span><span class="p">()</span>
 
         <span class="c1"># set the view for the main window</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">setCentralWidget</span><span class="p">(</span><span class="n">my_view</span><span class="p">)</span>
@@ -133,7 +133,7 @@ are created the parent is set to be the MasterView.</p>
 </pre></div>
 </div>
 <p>You may notice that this main does not incorporate the presenter.
-Now that we have embedded our two views into MasterView, Presenter
+Now that we have embedded our two views into MainView, Presenter
 should also be split in the same way.</p>
 </div>
 
