@@ -123,11 +123,13 @@
 <div class="section" id="clone-the-mantid-source-code">
 <h2>Clone the mantid source code<a class="headerlink" href="#clone-the-mantid-source-code" title="Permalink to this headline">¶</a></h2>
 <ul>
-<li><p class="first">There are 2 common ways developers have been doing this.</p>
+<li><p class="first"><strong>Important</strong>: If you have any existing non-conda mantid development environments, do not re-use the source and build directories for your conda environment. We recommend that you clone a new instance of the source and keep separate build directories to avoid any cmake configuration problems.</p>
+</li>
+<li><p class="first">Clone the mantid source code by either:</p>
 <blockquote>
 <div><ul class="simple">
 <li>Using git bash and cloning the codebase by calling <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">git&#64;github.com:mantidproject/mantid.git</span></code> in the directory you want the code to clone to. This sets you up with accessing the remote repository via SSH so make sure to setup git properly using this <a class="reference external" href="https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup">startup guide</a> and ensure your ssh key is setup using this <a class="reference external" href="https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh">guide to Github with SSH</a>.</li>
-<li>Or by using <a class="reference external" href="https://www.gitkraken.com/">GitKraken</a>.</li>
+<li>Or using <a class="reference external" href="https://www.gitkraken.com/">GitKraken</a>.</li>
 </ul>
 </div></blockquote>
 </li>
@@ -162,10 +164,11 @@
 </li>
 <li><p class="first">Run <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">mantid-developer</span></code> to activate your conda environment.</p>
 </li>
-<li><p class="first">Inside of your mantid source directory run <code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">--preset=win</span></code></p>
+<li><p class="first">Inside of your mantid source directory run either:</p>
 <blockquote>
 <div><ul class="simple">
-<li>Alternatively if you don’t want to have your build folder in your mantid source then pass the <code class="docutils literal notranslate"><span class="pre">-B</span></code> argument, overriding the preset, to cmake: <code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">{PATH_TO_SOURCE}</span> <span class="pre">--preset=win</span> <span class="pre">-B</span> <span class="pre">{BUILD_DIR}</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">--preset=win</span></code> if you want your build directory inside your source directory, or</li>
+<li><code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">--preset=win</span> <span class="pre">-B</span> <span class="pre">{BUILD_DIR}</span></code> to specify a different build directory.</li>
 </ul>
 </div></blockquote>
 </li>
