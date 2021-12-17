@@ -94,8 +94,8 @@
 <ul class="simple">
 <li><a class="reference internal" href="#summary" id="id1">Summary</a></li>
 <li><a class="reference internal" href="#mantid-build" id="id2">Mantid build</a></li>
-<li><a class="reference internal" href="#analysing-tool" id="id3">Analysing tool</a></li>
-<li><a class="reference internal" href="#windows-development" id="id4">Windows development</a></li>
+<li><a class="reference internal" href="#adding-more-detailed-information" id="id3">Adding more detailed information</a></li>
+<li><a class="reference internal" href="#analysing-tool" id="id4">Analysing tool</a></li>
 </ul>
 </div>
 <div class="section" id="summary">
@@ -111,20 +111,25 @@ Available for Linux only.</p>
 in the running directory. This file contains the time stamps for start and finish of executed algorithms with
 ~nanosecond precision in a very simple text format.</p>
 </div>
+<div class="section" id="adding-more-detailed-information">
+<h2><a class="toc-backref" href="#id3">Adding more detailed information</a><a class="headerlink" href="#adding-more-detailed-information" title="Permalink to this headline">¶</a></h2>
+<p>More detailed information can be added to individual function calls in C++ with the help of <code class="docutils literal notranslate"><span class="pre">std::chrono</span></code>.
+At the top of the fuction create a “start time”</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span> <span class="k">auto</span> <span class="n">startTime</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">high_resolution_clock</span><span class="o">::</span><span class="n">now</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Then at the bottom of the section being timed, add it to the profiling output</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">addTimer</span><span class="p">(</span><span class="s">&quot;createOutputWorkspacesSplitters&quot;</span><span class="p">,</span> <span class="n">startTime</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">high_resolution_clock</span><span class="o">::</span><span class="n">now</span><span class="p">());</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">createOutputWorkspacesSplitters</span></code> is the name that will appear, similar to a child algorithm.
+The names in the report will be suffixed with <code class="docutils literal notranslate"><span class="pre">1</span></code> because the tool thinks they are the “default version” of a child algorithm.</p>
+<p>An example of this can be found in <a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/Framework/Algorithms/src/FilterEvents.cpp">FilterEvents.cpp</a>.</p>
+</div>
 <div class="section" id="analysing-tool">
-<h2><a class="toc-backref" href="#id3">Analysing tool</a><a class="headerlink" href="#analysing-tool" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id4">Analysing tool</a><a class="headerlink" href="#analysing-tool" title="Permalink to this headline">¶</a></h2>
 <p>The project is available here: <a class="reference external" href="https://github.com/nvaytet/mantid-profiler">https://github.com/nvaytet/mantid-profiler</a>. It provides the nice graphical
 tool to interpret the information contained in the dumped file.</p>
-</div>
-<div class="section" id="windows-development">
-<h2><a class="toc-backref" href="#id4">Windows development</a><a class="headerlink" href="#windows-development" title="Permalink to this headline">¶</a></h2>
-<p>Precise timers are different for Linux and Windows (chrono is not good enough), so we need to treat them
-separately. The suggestion is either to modify files <code class="docutils literal notranslate"><span class="pre">Framework/API/inc/MantidAPI/AlgoTimeRegister.h</span></code> and
-<code class="docutils literal notranslate"><span class="pre">Framework/API/src/AlgoTimeRegister.cpp</span></code> by including <code class="docutils literal notranslate"><span class="pre">#ifdef</span> <span class="pre">__WIN32</span></code>, or create the specific files with
-the <code class="docutils literal notranslate"><span class="pre">AlgoTimeRegister</span></code> class defined for Windows.  In the second case an inclusion of OS specific files should be
-done correctly in <code class="docutils literal notranslate"><span class="pre">Framework/API/CMakeLists.txt`</span>&#160; <span class="pre">using</span> <span class="pre">``${CMAKE_SYSTEM_NAME}</span> <span class="pre">MATCHES</span> <span class="pre">&quot;Windows&quot;</span></code>,
-<code class="docutils literal notranslate"><span class="pre">Framework/API/src/AlgorithmExecuteProfile.cpp</span></code> needs to be modified or substituted according to the type of OS.
-<code class="docutils literal notranslate"><span class="pre">QueryPerformanceCounter</span></code> supposed to be used on windows, instead of <code class="docutils literal notranslate"><span class="pre">clock_gettime</span></code>.</p>
 </div>
 </div>
 
