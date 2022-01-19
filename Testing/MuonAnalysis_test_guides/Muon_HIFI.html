@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Muon Unscripted Testing: HIFI</title>
+    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Muon Testing" href="../MuonInterface/MuonTesting.html" />
+    <link rel="prev" title="Muon Unscripted Testing: FDA (Frequency Domain Analysis)" href="Muon_FDA.html" />
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-59110517-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+  </head><body>
+
+
+
+
+
+  <div id="navbar" class="navbar navbar-default ">
+    <div class="container">
+      <div class="navbar-header">
+        
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://www.mantidproject.org"><img src="../../_static/Mantid_Logo_Transparent.png">
+           </a>
+        <span class="navbar-text navbar-version pull-left"><b>master</b></span>
+      </div>
+
+      
+        <div class="collapse navbar-collapse nav-collapse">
+      
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="http://download.mantidproject.org">Download</a></li>
+                <li><a href="http://www.mantidproject.org">Wiki</a></li>
+                <li><a href="http://docs.mantidproject.org">User Documentation</a></li>
+                <li><a href="http://www.mantidproject.org/Contact">Contact Us</a></li>
+            
+            
+              
+              
+            
+            
+            
+            
+          </ul>
+              
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+            </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <div class="section" id="muon-unscripted-testing-hifi">
+<span id="muon-analysis-hifi-ref"></span><h1>Muon Unscripted Testing: HIFI<a class="headerlink" href="#muon-unscripted-testing-hifi" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#introduction" id="id4">Introduction</a></li>
+<li><a class="reference internal" href="#hifi-transverse-field-simultaneous-fitting" id="id5">HIFI Transverse Field Simultaneous Fitting</a></li>
+<li><a class="reference internal" href="#hifi-multiperiod-data" id="id6">HIFI MultiPeriod Data</a></li>
+</ul>
+</div>
+<div class="section" id="introduction">
+<h2><a class="toc-backref" href="#id4">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>These tests looks at data from the HIFI instrument.
+The first test will introduce dead time corrections.
+When a detector receives a signal, there is small period of time afterwards when it can not record a new signal.
+This is called the dead time.
+We can model and adjust the data to compensate for the dead time.
+When looking at the raw counts, which look like an exponential decay, the correction makes the biggest difference at large count values.
+The second test will use multiple periods, this is when the same data is recorded twice at slightly different time intervals.</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="hifi-transverse-field-simultaneous-fitting">
+<span id="id1"></span><h2><a class="toc-backref" href="#id5">HIFI Transverse Field Simultaneous Fitting</a><a class="headerlink" href="#hifi-transverse-field-simultaneous-fitting" title="Permalink to this headline">¶</a></h2>
+<p><strong>Time required 5 - 10 minutes</strong></p>
+<ul>
+<li><p class="first">Open <strong>Muon Analysis</strong> (<em>Interfaces</em> &gt; <em>Muon</em> &gt; <em>Muon Analysis</em>)</p>
+</li>
+<li><p class="first">Change <em>Instrument</em> to <strong>HIFI</strong>, found in the <em>Home</em> tab</p>
+</li>
+<li><p class="first">In the loading bar enter <code class="docutils literal notranslate"><span class="pre">134028-39</span></code></p>
+</li>
+<li><p class="first">Some new data will appear in the plot</p>
+</li>
+<li><p class="first">To see all of the data press the <code class="docutils literal notranslate"><span class="pre">select</span> <span class="pre">plot</span> <span class="pre">data</span></code> button and select <code class="docutils literal notranslate"><span class="pre">134028</span></code> in the pop-up</p>
+</li>
+<li><p class="first">Keep the pop-up open</p>
+</li>
+<li><dl class="first docutils">
+<dt>Go to the <strong>Corrections</strong> tab</dt>
+<dd><ul class="first last simple">
+<li>Set the plot to <code class="docutils literal notranslate"><span class="pre">Counts</span></code> (combobox above the plot), you will now see an exponential decay</li>
+<li>Change the dead time correction to <code class="docutils literal notranslate"><span class="pre">None</span></code> and notice that the counts at small times decreases</li>
+<li>Change the dead time correction back to <code class="docutils literal notranslate"><span class="pre">From</span> <span class="pre">Data</span> <span class="pre">File</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Go to the <strong>Grouping</strong> tab</dt>
+<dd><ul class="first last simple">
+<li>In the Pair table, click <strong>Guess Alpha</strong></li>
+<li>In the resulting dialog, change the run to <code class="docutils literal notranslate"><span class="pre">HIFI134034</span></code> to be used for
+the calculation</li>
+<li>A value close to <code class="docutils literal notranslate"><span class="pre">1.3</span></code> should appear</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Go to the <strong>Fitting</strong> tab</dt>
+<dd><ul class="first last simple">
+<li>Check the <strong>Simultaneous fit over</strong> checkbox, and change from <strong>Run</strong>
+to <strong>Group/Pair</strong></li>
+<li>Right click the empty table area; Select <strong>Add Function</strong></li>
+<li>Add a <strong>FlatBackground</strong> (<em>Background</em> &gt; <em>Flat Background</em>)</li>
+<li>Similarly, add <strong>ExpDecayOsc</strong> (<em>Muon</em> &gt; <em>MuonGeneric</em> &gt;
+<em>ExpDecOsc</em>)</li>
+<li>Set all parameters to <strong>Global</strong>, except <strong>Frequency</strong></li>
+<li>Click <strong>Fit</strong></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">The fit should fail with a large <strong>Chi</strong> value (<code class="docutils literal notranslate"><span class="pre">&gt;100</span></code>)</p>
+</li>
+<li><dl class="first docutils">
+<dt>Now to try the fit a different way.</dt>
+<dd><ul class="first last simple">
+<li>Click <strong>Undo Fits</strong></li>
+<li>Click the value for the <strong>Frequency</strong> parameter; A <code class="docutils literal notranslate"><span class="pre">...</span></code> should appear
+next to it, click it. A new window should appear</li>
+<li>Enter values for each run in the table as from <code class="docutils literal notranslate"><span class="pre">0.0</span></code> to <code class="docutils literal notranslate"><span class="pre">1.1</span></code> in
+steps of <code class="docutils literal notranslate"><span class="pre">0.1</span></code></li>
+<li>Click <strong>Ok</strong></li>
+<li>Click <strong>Fit</strong></li>
+<li>This time the fit should work with a significantly lower value for <a href="#id2"><span class="problematic" id="id3">**</span></a>Chi</li>
+</ul>
+</dd>
+</dl>
+<p>squared** (<code class="docutils literal notranslate"><span class="pre">&lt;10</span></code>)</p>
+</li>
+<li><p class="first">Tick <code class="docutils literal notranslate"><span class="pre">Tiled</span> <span class="pre">plot</span> <span class="pre">by</span></code> in the plotting window</p>
+</li>
+<li><p class="first">Change the combobox to <code class="docutils literal notranslate"><span class="pre">Run</span></code> and each subplot will now contain just 2 lines</p>
+</li>
+<li><p class="first">Check that the lines look similar to the results below</p>
+</li>
+</ul>
+<div class="figure">
+<img alt="HIFI-TF-Result.png" src="../../_images/HIFI-TF-Result1.png" />
+</div>
+<ul class="simple">
+<li></li>
+</ul>
+<hr class="docutils" />
+</div>
+<div class="section" id="hifi-multiperiod-data">
+<span id="hifi-multi-period"></span><h2><a class="toc-backref" href="#id6">HIFI MultiPeriod Data</a><a class="headerlink" href="#hifi-multiperiod-data" title="Permalink to this headline">¶</a></h2>
+<p><strong>Time required 5 - 10 minutes</strong></p>
+<ul class="simple">
+<li>In the loading bar enter <code class="docutils literal notranslate"><span class="pre">84447-9</span></code></li>
+<li>Go to the <strong>Grouping</strong> tab and press <code class="docutils literal notranslate"><span class="pre">Default</span></code></li>
+<li><dl class="first docutils">
+<dt>Go to the <strong>Fitting</strong> tab</dt>
+<dd><ul class="first last">
+<li>Untick <code class="docutils literal notranslate"><span class="pre">Tiled</span> <span class="pre">plot</span> <span class="pre">by</span></code> in the plotting window</li>
+<li>Untick <code class="docutils literal notranslate"><span class="pre">Simultaneous</span> <span class="pre">over</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Go to the <strong>Sequential Fitting</strong> tab</dt>
+<dd><ul class="first last">
+<li>Press <code class="docutils literal notranslate"><span class="pre">Sequentially</span> <span class="pre">fit</span> <span class="pre">all</span></code></li>
+<li>When its complete the table should update</li>
+<li>Selecting rows will show you the data and fit for those rows</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Go to the <strong>Grouping</strong> tab</dt>
+<dd><ul class="first last">
+<li>The <code class="docutils literal notranslate"><span class="pre">Period</span></code> column in the group table will show a series of numbers (1, 2, 3 or 4)</li>
+<li>Press the <code class="docutils literal notranslate"><span class="pre">Periods</span></code> button and a pop up will appear with 5 rows (one spare)</li>
+<li>Close the pop up</li>
+<li>Tick the <code class="docutils literal notranslate"><span class="pre">Analyse</span></code> box in the grouping table for “fwd1”</li>
+<li>Untick all of the <code class="docutils literal notranslate"><span class="pre">Analyse</span></code> boxes in the pair table</li>
+<li>This will leave you with 3 lines (one for each run)</li>
+<li>In the <code class="docutils literal notranslate"><span class="pre">Periods</span></code> column you can sum periods byusing a comma seperated list or a range using a dash</li>
+<li>When you change the periods summed the plot will change</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+      <ul class="nav navbar-nav" style=" float: right;">
+      
+      
+          
+            
+  <li>
+    <a href="Muon_FDA.html" title="Previous Chapter: Muon Unscripted Testing: FDA (Frequency Domain Analysis)"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Muon Unscript...</span>
+    </a>
+  </li>
+  <li>
+    <a href="../MuonInterface/MuonTesting.html" title="Next Chapter: Muon Testing"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Muon Testing &raquo;</span>
+    </a>
+  </li>
+          
+       
+          <li><a href="#">Back to top</a></li>
+       </ul>
+    <p>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
