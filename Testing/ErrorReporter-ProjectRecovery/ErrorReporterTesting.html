@@ -106,7 +106,7 @@ the <a class="reference external" href="https://sourceforge.net/projects/mantid/
 and running the <cite>NormaliseToMonitor</cite> Algorithm. If one or both of these
 methods to crash Mantid no longer works, then ask other developers for a
 suitable method and update these instructions.</li>
-<li>Make sure the location of this file is included in your search directories. Full instructions <a class="reference external" href="https://docs.mantidproject.org/nightly/tutorials/mantid_basic_course/getting_started/getting_started.html#getting-started" title="(in MantidProject v6.1)"><span class="xref std std-ref">are available online</span></a>.</li>
+<li>Make sure the location of this file is included in your search directories. Full instructions <a class="reference external" href="https://docs.mantidproject.org/nightly/tutorials/mantid_basic_course/getting_started/getting_started.html#getting-started" title="(in MantidProject v6.2)"><span class="xref std std-ref">are available online</span></a>.</li>
 <li>These tests should be run with someone who has access to the error reports database. Please contact Daniel Murphy when you are going to run these tests.</li>
 </ul>
 <p><strong>Time required 10 - 20  minutes</strong></p>
@@ -115,24 +115,31 @@ suitable method and update these instructions.</li>
 <li>Open MantidWorkbench</li>
 </ol>
 <ul class="simple">
-<li>Cause a crash by running the <cite>Segfault</cite> algorithm</li>
-<li>The error report dialog should pop up</li>
+<li>Cause a crash by running the <cite>Segfault</cite> algorithm, Workbench should close</li>
+<li>This should cause an error reporter dialog saying Mantid has thrown an unexpected exception</li>
 <li>Make sure the hyperlink to the privacy policy works</li>
+<li>Click the <cite>Show More Details</cite> button to open the Show More Details dialog. This should show user details such as OS.
+The python stacktrace should be empty as the Workbench unhandled exception occurred in C++. Close this dialog.</li>
 <li>Enter some text in the <cite>Name</cite> box; make sure the <cite>Share non-identifiable information</cite> button gets greyed out</li>
 <li>In the <cite>Name</cite> box enter <cite>Private</cite> and in the <cite>Email</cite> box enter <cite>private</cite></li>
-<li>Click the <cite>Don’t share any information</cite> box</li>
-<li>Check with the database admin</li>
+<li>Input some additional information into the main textbox. Try to include characters that need to be escaped such as <code class="docutils literal notranslate"><span class="pre">&quot;</span></code></li>
+<li>Tick the <cite>Remember Me</cite> checkbox</li>
+<li>Click the <cite>Don’t share any information</cite> button</li>
+<li>Check with the database admin that an error report was sent <strong>without</strong> a name, email or stacktrace.</li>
 </ul>
 <hr class="docutils" />
 <ol class="arabic simple" start="2">
 <li>Open MantidWorkbench</li>
 </ol>
 <ul class="simple">
-<li>Cause a crash by running the <cite>Segfault</cite> algorithm</li>
-<li>The error report dialog should pop up</li>
+<li>Cause a crash by running the <cite>Segfault</cite> algorithm, Workbench should close</li>
+<li>This should cause an error reporter dialog saying Mantid has thrown an unexpected exception</li>
+<li>The <cite>Private</cite> contact details from Test 1 should <strong>NOT</strong> be displayed and the <cite>Remember Me</cite> checkbox should <strong>NOT</strong> be ticked</li>
 <li>In the <cite>Name</cite> box enter <cite>Public</cite> and in the <cite>Email</cite> box enter <cite>public</cite></li>
-<li>Click the <cite>Yes, share information</cite> box</li>
-<li>Check with the database admin</li>
+<li>Input some additional information into the main textbox. Try to include characters that need to be escaped such as <code class="docutils literal notranslate"><span class="pre">&quot;</span></code></li>
+<li>Tick the <cite>Remember Me</cite> checkbox</li>
+<li>Click the <cite>Yes, share information</cite> button</li>
+<li>Check with the database admin that an error report was sent <strong>WITH</strong> the correct name, email and textbox.</li>
 </ul>
 <hr class="docutils" />
 <ol class="arabic simple" start="3">
@@ -141,60 +148,85 @@ suitable method and update these instructions.</li>
 <ul class="simple">
 <li>Load the file <cite>Training_Exercise3a_SNS.nxs</cite></li>
 <li>Run the <cite>NormaliseToMonitor</cite> algorithm</li>
-<li>This should cause an error box saying Mantid has thrown an unexpected exception</li>
+<li>This should cause an error reporter dialog saying Mantid has thrown an unexpected exception</li>
+<li>The <cite>Public</cite> contact details from Test 2 should be displayed and the <cite>Remember Me</cite> checkbox ticked</li>
 <li>Make sure the hyperlink to the privacy policy works</li>
 <li>Enter some text in the <cite>Name</cite> box; make sure the <cite>Share non-identifiable information</cite> button gets greyed out</li>
 <li>In the <cite>Name</cite> box enter <cite>Private2</cite> and in the <cite>Email</cite> box enter <cite>private2</cite></li>
+<li>Input some additional information into the main textbox. Try to include characters that need to be escaped such as <code class="docutils literal notranslate"><span class="pre">&quot;</span></code></li>
 <li>Make sure the <cite>Continue</cite> radio button is checked</li>
-<li>Click the <cite>Don’t share any information</cite> box</li>
+<li>Click the <cite>Don’t share any information</cite> button</li>
 <li>You should be returned to the main Mantid window</li>
-<li>Check with the database admin</li>
+<li>Check with the database admin that an error report was sent <strong>without</strong> a name, email, stacktrace or textbox.</li>
 </ul>
 <hr class="docutils" />
 <ol class="arabic simple" start="4">
-<li>Open MantidWorkbench</li>
+<li>MantidWorkbench is still open</li>
 </ol>
 <ul class="simple">
 <li>Load the file <cite>Training_Exercise3a_SNS.nxs</cite></li>
 <li>Run the <cite>NormaliseToMonitor</cite> algorithm</li>
-<li>This should cause an error box saying Mantid has thrown an unexpected exception</li>
+<li>This should cause an error reporter dialog saying Mantid has thrown an unexpected exception</li>
+<li>The <cite>Public</cite> contact details from Test 2 should be displayed and the <cite>Remember Me</cite> checkbox ticked</li>
+<li>Click the <cite>Show More Details</cite> button to open the Show More Details dialog. This should show user details such as OS.
+There should be a python stacktrace as this unhandled exception occurred in Python. Close this dialog.</li>
+<li>Input some additional information into the main textbox. Try to include characters that need to be escaped such as <code class="docutils literal notranslate"><span class="pre">&quot;</span></code></li>
+<li>This time, UNTick the <cite>Remember Me</cite> checkbox</li>
 <li>Make sure the <cite>Continue</cite> radio button is checked</li>
-<li>Click the <cite>Share non-identifiable information</cite> box</li>
+<li>Click the <cite>Share non-identifiable information</cite> button</li>
 <li>You should be returned to the main Mantid window</li>
-<li>Check with the database admin</li>
+<li>Check with the database admin that an error report was sent <strong>without</strong> a name, email or stacktrace, BUT <strong>WITH</strong> a textbox.</li>
 </ul>
 <hr class="docutils" />
 <ol class="arabic simple" start="5">
-<li>Open MantidWorkbench</li>
+<li>MantidWorkbench is still open</li>
 </ol>
 <ul class="simple">
 <li>Load the file <cite>Training_Exercise3a_SNS.nxs</cite></li>
 <li>Run the <cite>NormaliseToMonitor</cite> algorithm</li>
-<li>This should cause an error box saying Mantid has thrown an unexpected exception</li>
-<li>Make sure the hyperlink to the privacy policy works</li>
+<li>This should cause an error reporter dialog saying Mantid has thrown an unexpected exception</li>
+<li>Contact details from before should <strong>NOT</strong> be displayed and the <cite>Remember Me</cite> checkbox should <strong>NOT</strong> be ticked</li>
 <li>Enter some text in the <cite>Name</cite> box; make sure the <cite>Share non-identifiable information</cite> button gets greyed out</li>
-<li>In the <cite>Name</cite> box enter <cite>Public2</cite> and in the <cite>Email</cite> box enter <cite>public2</cite></li>
+<li>Input some additional information into the main textbox. Try to include characters that need to be escaped such as <code class="docutils literal notranslate"><span class="pre">&quot;</span></code></li>
+<li>Leave the <cite>Name</cite> box EMPTY and in the <cite>Email</cite> box enter <cite>public2</cite></li>
+<li>Tick the <cite>Remember Me</cite> checkbox</li>
 <li>Make sure the <cite>Continue</cite> radio button is checked</li>
-<li>Click the <cite>Yes, share information</cite> box</li>
+<li>Click the <cite>Yes, share information</cite> button</li>
 <li>You should be returned to the main Mantid window</li>
-<li>Check with the database admin</li>
+<li>Check with the database admin that an error report was sent <strong>WITH</strong> a name, email, stacktrace and a textbox.</li>
 </ul>
 <hr class="docutils" />
 <ol class="arabic simple" start="6">
+<li>MantidWorkbench is still open</li>
+</ol>
+<ul class="simple">
+<li>Load the file <cite>Training_Exercise3a_SNS.nxs</cite></li>
+<li>Run the <cite>NormaliseToMonitor</cite> algorithm</li>
+<li>This should cause an error reporter dialog saying Mantid has thrown an unexpected exception</li>
+<li>Only the <cite>public2</cite> email from Test 5 should be displayed in the email box and the <cite>Remember Me</cite> checkbox ticked.
+Make sure the <cite>Share non-identifiable information</cite> button is currently enabled (not greyed out)</li>
+<li>Enter some text in the <cite>Name</cite> box; make sure the <cite>Share non-identifiable information</cite> button gets greyed out</li>
+<li>In the <cite>Name</cite> box enter <cite>Public3</cite> and in the <cite>Email</cite> box enter <cite>public3</cite></li>
+<li>Input some additional information into the main textbox. Try to include characters that need to be escaped such as <code class="docutils literal notranslate"><span class="pre">&quot;</span></code></li>
+<li>Tick the <cite>Remember Me</cite> checkbox</li>
+<li>Make sure the <cite>Terminate</cite> radio button is checked</li>
+<li>Click the <cite>Yes, share information</cite> button</li>
+<li>Mantid should shut down</li>
+<li>Check with the database admin that an error report was sent <strong>WITH</strong> a name, email, stacktrace and a textbox.</li>
+</ul>
+<hr class="docutils" />
+<ol class="arabic simple" start="7">
 <li>Open MantidWorkbench</li>
 </ol>
 <ul class="simple">
 <li>Load the file <cite>Training_Exercise3a_SNS.nxs</cite></li>
 <li>Run the <cite>NormaliseToMonitor</cite> algorithm</li>
-<li>This should cause an error box saying Mantid has thrown an unexpected exception</li>
-<li>Make sure the hyperlink to the privacy policy works</li>
-<li>Enter some text in the <cite>Name</cite> box; make sure the <cite>Share non-identifiable information</cite> button gets greyed out</li>
-<li>In the <cite>Name</cite> box enter <cite>Public3</cite> and in the <cite>Email</cite> box enter <cite>public3</cite></li>
-<li>Make sure the <cite>Terminate</cite> radio button is checked</li>
-<li>Click the <cite>Yes, share information</cite> box</li>
-<li>Mantid should shut down</li>
-<li>Check with the database admin</li>
+<li>This should cause an error reporter dialog saying Mantid has thrown an unexpected exception</li>
+<li>The <cite>Public3</cite> contact details from Test 6 should be displayed and the <cite>Remember Me</cite> checkbox ticked</li>
 </ul>
+<p>Test the error reporter with any weird and wonderful ideas.
+Note any problems with Workbench or these testing instructions.</p>
+<p><strong>Thanks for testing!!!</strong></p>
 </div>
 </div>
 
