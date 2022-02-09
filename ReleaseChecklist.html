@@ -465,6 +465,8 @@ similar message at their facilities).</li>
 <p><code class="docutils literal notranslate"><span class="pre">nobugs&lt;at&gt;nobugsconference.org</span></code></p>
 <p><code class="docutils literal notranslate"><span class="pre">news&lt;at&gt;neutronsources.org</span></code></p>
 <p><code class="docutils literal notranslate"><span class="pre">neutron&lt;at&gt;neutronsources.org</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">announcements&lt;at&gt;mantidproject.org</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">ISIS</span> <span class="pre">Instrument</span> <span class="pre">Scientists</span> <span class="pre">+</span> <span class="pre">Other</span></code></p>
 </li>
 <li><p class="first">Also post the contents of the message to the <em>#announcements</em> channel on
 Slack.</p>
@@ -526,8 +528,8 @@ have been fixed. Then:</p>
 <ul class="simple">
 <li>Email <code class="docutils literal notranslate"><span class="pre">mantid-builder&#64;mantidproject.org</span></code> and ask that a new token be generated for
 the instrument updates and placed in the appropriate place in Jenkins.</li>
-<li>Check the release notes and remove the “Under Construction” paragraph on the main
-index page.</li>
+<li>Check the release notes and verify that the “Under Construction” paragraph on the main
+index page has been removed. Remove the paragraph if it still exists.</li>
 <li>Disable release deploy jobs by building the
 <a class="reference external" href="https://builds.mantidproject.org/view/All/job/close-release-testing">close-release-testing</a>
 job.</li>
@@ -535,9 +537,9 @@ job.</li>
 <p><strong>Create the Release Candidates</strong></p>
 <p>We are now ready to create the release candidates ready for Smoke testing.</p>
 <ul class="simple">
-<li>On the <code class="docutils literal notranslate"><span class="pre">release-next</span></code> branch, create a PR to update the <a class="reference external" href="https://github.com/mantidproject/mantid/blob/343037c685c0aca9151523d6a3e105504f8cf218/scripts/ExternalInterfaces/CMakeLists.txt#L11">git SHA</a>
-for MSlice.</li>
-<li>On the <code class="docutils literal notranslate"><span class="pre">release-next</span></code> branch, create a PR to update the <a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/buildconfig/CMake/VersionNumber.cmake">major &amp; minor</a>
+<li>On the <code class="docutils literal notranslate"><span class="pre">release-next</span></code> branch, check whether the <a class="reference external" href="https://github.com/mantidproject/mantid/blob/343037c685c0aca9151523d6a3e105504f8cf218/scripts/ExternalInterfaces/CMakeLists.txt#L11">git SHA</a>
+for MSlice is up to date. If not, create a PR to update it.</li>
+<li>On the <code class="docutils literal notranslate"><span class="pre">release-next</span></code> branch, create a PR to update the <a class="reference external" href="https://github.com/mantidproject/mantid/blob/release-next/buildconfig/CMake/VersionNumber.cmake">major &amp; minor</a>
 versions accordingly. Also, uncomment <code class="docutils literal notranslate"><span class="pre">VERSION_PATCH</span></code> and set it to <code class="docutils literal notranslate"><span class="pre">0</span></code>.</li>
 <li>Ask a gatekeeper to: merge the <code class="docutils literal notranslate"><span class="pre">release-next</span></code> branch back to <code class="docutils literal notranslate"><span class="pre">main</span></code> locally, and then comment
 out the <code class="docutils literal notranslate"><span class="pre">VERSION_PATCH</span></code> on the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch. They should then commit and push these changes
@@ -554,7 +556,7 @@ issues and Release Candidates in the <em>#general</em> slack channel.</li>
 have been fixed.</p>
 <ul class="simple">
 <li>Run the <a class="reference external" href="https://builds.mantidproject.org/view/Release%20Pipeline/job/release_deploy/">release_deploy</a>
-job to put the packages, with the exception of Windows, on Sourceforge.</li>
+job to put the packages, with the exception of Windows, on Sourceforge. Set <code class="docutils literal notranslate"><span class="pre">SOURCEFORGE_DIR</span></code> to &lt;major version&gt;.&lt;minor version&gt; (e.g. 6.3)</li>
 </ul>
 <blockquote>
 <div><ul class="simple">
@@ -575,8 +577,6 @@ new file in the <cite>releases</cite> directory is merged, Jenkins will publish 
 <li>Kick off the build for <code class="docutils literal notranslate"><span class="pre">mantidXY</span></code> on RHEL7 for the SNS with <code class="docutils literal notranslate"><span class="pre">PACKAGE_SUFFIX</span></code> set to
 <code class="docutils literal notranslate"><span class="pre">XY</span></code> where <code class="docutils literal notranslate"><span class="pre">X</span></code> and <code class="docutils literal notranslate"><span class="pre">Y</span></code> correspond to the Major and Minor release version numbers:
 <a class="reference external" href="https://builds.mantidproject.org/job/release_clean-rhel7/">https://builds.mantidproject.org/job/release_clean-rhel7/</a></li>
-<li><strong>ISIS</strong>: If in cycle add a calendar reminder for when the current cycle ends for
-mantid to be updated on IDAaaS and cabin PCs. If out of cycle do this immediately.</li>
 </ul>
 <p><strong>Generate DOI</strong></p>
 <p>This requires that a tag has been created for this release. This tag is created when you draft and
@@ -589,7 +589,10 @@ updates to <code class="docutils literal notranslate"><span class="pre">main</sp
 It does not matter that these are not on the release branch.</li>
 </ul>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python tools/DOI/doi.py --username<span class="o">=[</span>username<span class="o">]</span> <span class="o">[</span>X.Y.Z<span class="o">]</span>
-python tools/DOI/doi.py --username<span class="o">=</span><span class="s2">&quot;doi.username&quot;</span> <span class="m">6</span>.1.0
+</pre></div>
+</div>
+<p>for example</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python tools/DOI/doi.py --username<span class="o">=</span><span class="s2">&quot;doi.username&quot;</span> <span class="m">6</span>.1.0
 </pre></div>
 </div>
 <ul class="simple">
