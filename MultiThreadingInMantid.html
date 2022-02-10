@@ -102,13 +102,13 @@ one over the spectra in a workspace) is as follows:</p>
 <div class="code cpp highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PARALLEL_FOR_IF</span><span class="p">(</span><span class="n">Kernel</span><span class="p">::</span><span class="n">threadSafe</span><span class="p">(</span><span class="o">*</span><span class="n">inputWS</span><span class="p">,</span> <span class="o">*</span><span class="n">outputWS</span><span class="p">))</span>
 <span class="k">for</span> <span class="p">(</span><span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">numSpec</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
 <span class="p">{</span>
-  <span class="n">PARALLEL_START_INTERUPT_REGION</span>
+  <span class="n">PARALLEL_START_INTERRUPT_REGION</span>
 
   <span class="o">//</span> <span class="o">....</span> <span class="n">algorithm</span> <span class="n">code</span> <span class="o">....</span>
 
-  <span class="n">PARALLEL_END_INTERUPT_REGION</span>
+  <span class="n">PARALLEL_END_INTERRUPT_REGION</span>
 <span class="p">}</span>
-<span class="n">PARALLEL_CHECK_INTERUPT_REGION</span>
+<span class="n">PARALLEL_CHECK_INTERRUPT_REGION</span>
 </pre></div>
 </div>
 <p>The main work is in the first statement, which contains the
