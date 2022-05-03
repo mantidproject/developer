@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>VSCode</title>
-    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Eclipse on Ubuntu" href="Eclipse.html" />
@@ -87,134 +87,129 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <div class="section" id="vscode">
+  <section id="vscode">
 <span id="id1"></span><h1>VSCode<a class="headerlink" href="#vscode" title="Permalink to this headline">¶</a></h1>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><a class="reference internal" href="#introduction" id="id4">Introduction</a></li>
-<li><a class="reference internal" href="#prerequisites" id="id5">Prerequisites</a></li>
-<li><a class="reference internal" href="#how-to-get-started" id="id6">How to get Started</a></li>
-<li><a class="reference internal" href="#extensions" id="id7">Extensions</a><ul>
-<li><a class="reference internal" href="#required" id="id8">Required</a></li>
-<li><a class="reference internal" href="#recommended" id="id9">Recommended</a></li>
+<li><p><a class="reference internal" href="#introduction" id="id4">Introduction</a></p></li>
+<li><p><a class="reference internal" href="#prerequisites" id="id5">Prerequisites</a></p></li>
+<li><p><a class="reference internal" href="#how-to-get-started" id="id6">How to get Started</a></p></li>
+<li><p><a class="reference internal" href="#extensions" id="id7">Extensions</a></p>
+<ul>
+<li><p><a class="reference internal" href="#required" id="id8">Required</a></p></li>
+<li><p><a class="reference internal" href="#recommended" id="id9">Recommended</a></p></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#features" id="id10">Features</a><ul>
-<li><a class="reference internal" href="#auto-formatting" id="id11">Auto Formatting</a></li>
-<li><a class="reference internal" href="#auto-saving" id="id12">Auto Saving</a></li>
-<li><a class="reference internal" href="#building" id="id13">Building</a></li>
-<li><a class="reference internal" href="#debugging-and-launching" id="id14">Debugging and Launching</a></li>
-<li><a class="reference internal" href="#debugging-c-called-from-workbench" id="id15">Debugging C++ called from Workbench</a></li>
-<li><a class="reference internal" href="#debugging-c-tests" id="id16">Debugging C++ Tests</a></li>
-<li><a class="reference internal" href="#debugging-python" id="id17">Debugging Python</a></li>
-<li><a class="reference internal" href="#keybindings" id="id18">Keybindings</a></li>
-<li><a class="reference internal" href="#remote-development" id="id19">Remote Development</a></li>
+<li><p><a class="reference internal" href="#features" id="id10">Features</a></p>
+<ul>
+<li><p><a class="reference internal" href="#auto-formatting" id="id11">Auto Formatting</a></p></li>
+<li><p><a class="reference internal" href="#auto-saving" id="id12">Auto Saving</a></p></li>
+<li><p><a class="reference internal" href="#building" id="id13">Building</a></p></li>
+<li><p><a class="reference internal" href="#debugging-and-launching" id="id14">Debugging and Launching</a></p></li>
+<li><p><a class="reference internal" href="#debugging-c-called-from-workbench" id="id15">Debugging C++ called from Workbench</a></p></li>
+<li><p><a class="reference internal" href="#debugging-c-tests" id="id16">Debugging C++ Tests</a></p></li>
+<li><p><a class="reference internal" href="#debugging-python" id="id17">Debugging Python</a></p></li>
+<li><p><a class="reference internal" href="#keybindings" id="id18">Keybindings</a></p></li>
+<li><p><a class="reference internal" href="#remote-development" id="id19">Remote Development</a></p></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#advanced-getting-live-warnings-and-errors-with-clangd" id="id20">(Advanced) Getting Live Warnings and Errors with Clangd</a></li>
+<li><p><a class="reference internal" href="#advanced-getting-live-warnings-and-errors-with-clangd" id="id20">(Advanced) Getting Live Warnings and Errors with Clangd</a></p></li>
 </ul>
 </div>
-<div class="section" id="introduction">
+<section id="introduction">
 <h2><a class="toc-backref" href="#id4">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>This is a guide aimed at the developer who does not want a heavy complicated IDE
 for C++ development on any platform that VSCode supports</p>
-</div>
-<div class="section" id="prerequisites">
+</section>
+<section id="prerequisites">
 <h2><a class="toc-backref" href="#id5">Prerequisites</a><a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>An installed copy of VSCode - <a class="reference external" href="https://code.visualstudio.com/">download</a>.</li>
-<li>A clone of the main Mantid repo</li>
-<li>Follow the <a class="reference internal" href="GettingStarted/GettingStarted.html#gettingstarted"><span class="std std-ref">Getting Started</span></a> guide to get a:</li>
-<li>Built copy of Mantid (In “Debug” mode for any debugging option not “Release”)</li>
-<li>GDB for Linux/OSX debugging (GDB can be switched out for LLDB at any stage on OSX) or MSVC (Visual Studio) for Windows</li>
+<li><p>An installed copy of VSCode - <a class="reference external" href="https://code.visualstudio.com/">download</a>.</p></li>
+<li><p>A clone of the main Mantid repo</p></li>
+<li><p>Follow the <a class="reference internal" href="GettingStarted/GettingStarted.html#gettingstarted"><span class="std std-ref">Getting Started</span></a> guide to get a:</p></li>
+<li><p>Built copy of Mantid (In “Debug” mode for any debugging option not “Release”)</p></li>
+<li><p>GDB for Linux/OSX debugging (GDB can be switched out for LLDB at any stage on OSX) or MSVC (Visual Studio) for Windows</p></li>
 </ul>
-</div>
-<div class="section" id="how-to-get-started">
+</section>
+<section id="how-to-get-started">
 <h2><a class="toc-backref" href="#id6">How to get Started</a><a class="headerlink" href="#how-to-get-started" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Run VSCode</li>
-<li>Click File-&gt;Open Folder</li>
-<li>Navigate to your Mantid source directory and select it</li>
-<li>Install the required extensions (see below)</li>
-<li>For code editing you are good to go!</li>
+<li><p>Run VSCode</p></li>
+<li><p>Click File-&gt;Open Folder</p></li>
+<li><p>Navigate to your Mantid source directory and select it</p></li>
+<li><p>Install the required extensions (see below)</p></li>
+<li><p>For code editing you are good to go!</p></li>
 </ul>
-</div>
-<div class="section" id="extensions">
+</section>
+<section id="extensions">
 <h2><a class="toc-backref" href="#id7">Extensions</a><a class="headerlink" href="#extensions" title="Permalink to this headline">¶</a></h2>
 <p>All Extensions have been tested working on Ubuntu 18.04 and Ubuntu 19.04,
 however most, if not all, extensions should be cross-platform.</p>
 <p>Install extensions either by running the commands given on the marketplace or by
 clicking <a class="reference external" href="https://code.visualstudio.com/docs/editor/extension-gallery#_browse-for-extensions">the Extension Marketplace icon.</a></p>
-<div class="section" id="required">
+<section id="required">
 <h3><a class="toc-backref" href="#id8">Required</a><a class="headerlink" href="#required" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt><a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools">C/C++</a></dt>
-<dd><ul class="first last">
-<li>Required for C++ linting, debugging etc</li>
+<li><dl class="simple">
+<dt><a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools">C/C++</a></dt><dd><ul>
+<li><p>Required for C++ linting, debugging etc</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt><a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=ms-python.python">Python</a></dt>
-<dd><ul class="first last">
-<li>Required to run any python code, debug etc</li>
+<li><dl class="simple">
+<dt><a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=ms-python.python">Python</a></dt><dd><ul>
+<li><p>Required to run any python code, debug etc</p></li>
 </ul>
 </dd>
 </dl>
 </li>
 </ul>
-</div>
-<div class="section" id="recommended">
+</section>
+<section id="recommended">
 <h3><a class="toc-backref" href="#id9">Recommended</a><a class="headerlink" href="#recommended" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt><a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=xaver.clang-format">Clang-Format</a></dt>
-<dd><ul class="first last">
-<li>Allows auto formatting using the clang format version installed on your machine</li>
+<li><dl class="simple">
+<dt><a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=xaver.clang-format">Clang-Format</a></dt><dd><ul>
+<li><p>Allows auto formatting using the clang format version installed on your machine</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt><a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=twxs.cmake">CMake</a></dt>
-<dd><ul class="first last">
-<li>Allows language highlighting and auto fill for CMake</li>
+<li><dl class="simple">
+<dt><a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=twxs.cmake">CMake</a></dt><dd><ul>
+<li><p>Allows language highlighting and auto fill for CMake</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt><a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=cschlosser.doxdocgen">Doxygen Document Generator</a></dt>
-<dd><ul class="first last">
-<li>Once a function is written with this extension it can generate parts of the doxygen comments itself</li>
+<li><dl class="simple">
+<dt><a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=cschlosser.doxdocgen">Doxygen Document Generator</a></dt><dd><ul>
+<li><p>Once a function is written with this extension it can generate parts of the doxygen comments itself</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt><a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens">GitLens</a></dt>
-<dd><ul class="first last">
-<li>Very powerful source control assistant</li>
+<li><dl class="simple">
+<dt><a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens">GitLens</a></dt><dd><ul>
+<li><p>Very powerful source control assistant</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt><a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=VisualStudioExptTeam.vscodeintellicode">Visual Studio Intellicode</a></dt>
-<dd><ul class="first last">
-<li>This improves your code suggestions in certain languages</li>
+<li><dl class="simple">
+<dt><a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=VisualStudioExptTeam.vscodeintellicode">Visual Studio Intellicode</a></dt><dd><ul>
+<li><p>This improves your code suggestions in certain languages</p></li>
 </ul>
 </dd>
 </dl>
 </li>
 </ul>
-</div>
-</div>
-<div class="section" id="features">
+</section>
+</section>
+<section id="features">
 <h2><a class="toc-backref" href="#id10">Features</a><a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="auto-formatting">
+<section id="auto-formatting">
 <h3><a class="toc-backref" href="#id11">Auto Formatting</a><a class="headerlink" href="#auto-formatting" title="Permalink to this headline">¶</a></h3>
 <p>It is required in the mantid project to format code using clang-format, this can be done
 in multiple ways but VSCode makes it easier. With a formatter installed as an extension
@@ -224,49 +219,49 @@ when you want to format:
 - Open the File-&gt;Preferences-&gt;Settings menu
 - Search for “Format On”
 - Then tick the times at which formatting should occur. (recommend save only)</p>
-</div>
-<div class="section" id="auto-saving">
+</section>
+<section id="auto-saving">
 <h3><a class="toc-backref" href="#id12">Auto Saving</a><a class="headerlink" href="#auto-saving" title="Permalink to this headline">¶</a></h3>
 <p>This is a built in feature for VSCode much like with formatting however no extension
 is required. You can save on window change, on focus change, and on delay.
 - Open the File-&gt;Preferences-&gt;Settings menu
 - Search for “Auto Save”
 - Select the auto save type that is wanted (recommend <cite>onFocusChange</cite>)</p>
-</div>
-<div class="section" id="building">
+</section>
+<section id="building">
 <h3><a class="toc-backref" href="#id13">Building</a><a class="headerlink" href="#building" title="Permalink to this headline">¶</a></h3>
 <p>This is where VSCode comes into its own as a versatile environment for programming
 in any language, because of this it has a Tasks list. These tasks are saved in
 <code class="docutils literal notranslate"><span class="pre">tasks.json</span></code> inside the <code class="docutils literal notranslate"><span class="pre">.vscode</span></code> folder now present in any opened folder/workspace.</p>
 <ul class="simple">
-<li>To start creating a task open the command line (Ctrl+Shift+P or ⌘+Shift+P)</li>
-<li>Type “Task”</li>
-<li>Select “Task: Configure Task” by navigating using the arrow keys</li>
-<li>Select the first option that is in the menu and it should open tasks.json</li>
+<li><p>To start creating a task open the command line (Ctrl+Shift+P or ⌘+Shift+P)</p></li>
+<li><p>Type “Task”</p></li>
+<li><p>Select “Task: Configure Task” by navigating using the arrow keys</p></li>
+<li><p>Select the first option that is in the menu and it should open tasks.json</p></li>
 </ul>
 <p>The tasks.json allows the creation of Build Tasks default or otherwise. VSCode will
 attempt to make a useful task for you. However it may be better to use this example:</p>
 <p><strong>Linux/OSX:</strong>
 The commands can be switched out with the command and various args for the generator
 used to generate your CMake with.</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-    <span class="s2">&quot;version&quot;</span><span class="o">:</span> <span class="s2">&quot;2.0.0&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;tasks&quot;</span><span class="o">:</span> <span class="p">[</span>
-        <span class="p">{</span>
-            <span class="s2">&quot;label&quot;</span><span class="o">:</span> <span class="s2">&quot;Build Mantid&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;shell&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;command&quot;</span><span class="o">:</span> <span class="s2">&quot;cmake&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;args&quot;</span><span class="o">:</span> <span class="p">[</span>
-                <span class="s2">&quot;--build&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;Build/Directory/Here&quot;</span>
-            <span class="p">],</span>
-            <span class="s2">&quot;group&quot;</span><span class="o">:</span> <span class="p">{</span>
-                <span class="s2">&quot;kind&quot;</span><span class="o">:</span> <span class="s2">&quot;build&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;isDefault&quot;</span><span class="o">:</span> <span class="kc">true</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">]</span>
-<span class="p">}</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="s2">&quot;version&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2.0.0&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="s2">&quot;tasks&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="s2">&quot;label&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Build Mantid&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="s2">&quot;type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;shell&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="s2">&quot;command&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;cmake&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="s2">&quot;args&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">                </span><span class="s2">&quot;--build&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="s2">&quot;Build/Directory/Here&quot;</span><span class="w"></span>
+<span class="w">            </span><span class="p">],</span><span class="w"></span>
+<span class="w">            </span><span class="s2">&quot;group&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="s2">&quot;kind&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;build&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="s2">&quot;isDefault&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">]</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p><strong>Windows:</strong></p>
@@ -275,12 +270,12 @@ you are sure that you want VSCode it makes most sense to checkout this
 <a class="reference external" href="https://code.visualstudio.com/docs/cpp/config-msvc">guide</a>.</p>
 <p><strong>Actually Building:</strong></p>
 <ul class="simple">
-<li>Now to build with this task open the command line again</li>
-<li>Type “Task”</li>
-<li>Select “Tasks: Run Build Task”</li>
+<li><p>Now to build with this task open the command line again</p></li>
+<li><p>Type “Task”</p></li>
+<li><p>Select “Tasks: Run Build Task”</p></li>
 </ul>
-</div>
-<div class="section" id="debugging-and-launching">
+</section>
+<section id="debugging-and-launching">
 <h3><a class="toc-backref" href="#id14">Debugging and Launching</a><a class="headerlink" href="#debugging-and-launching" title="Permalink to this headline">¶</a></h3>
 <p>Debugging is similar to Building in the sense that you complete a task that has been
 defined. For Debugging and Launching all of these ‘Tasks’ are stored in the
@@ -300,33 +295,33 @@ is not covered here.</strong></p>
 you will want to make your file look something a little like this:</p>
 <p><em>Workbench</em></p>
 <p>To debug C++ and start directly into the Workbench, add this to the configuration list in <code class="docutils literal notranslate"><span class="pre">launch.json</span></code>.</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;(gdb) Workbench C++ Only&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;cppdbg&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;request&quot;</span><span class="o">:</span> <span class="s2">&quot;launch&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;program&quot;</span><span class="o">:</span> <span class="s2">&quot;/usr/bin/python3&quot;</span><span class="p">,</span> <span class="c1">// Path to your used Python interpreter, here and below</span>
-  <span class="s2">&quot;args&quot;</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;Path/To/Build/Directory/bin/workbench&quot;</span><span class="p">,</span> <span class="s2">&quot;&amp;&amp;&quot;</span><span class="p">,</span><span class="s2">&quot;gdb&quot;</span><span class="p">,</span><span class="s2">&quot;/usr/bin/python3&quot;</span><span class="p">,</span><span class="s2">&quot;$!&quot;</span><span class="p">],</span> <span class="c1">// $! gets the process ID</span>
-  <span class="s2">&quot;stopAtEntry&quot;</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-  <span class="s2">&quot;cwd&quot;</span><span class="o">:</span> <span class="s2">&quot;Path/To/Build/Directory/bin&quot;</span><span class="p">,</span> <span class="c1">// this should point to bin inside the build directory</span>
-  <span class="s2">&quot;environment&quot;</span><span class="o">:</span> <span class="p">[],</span>
-  <span class="s2">&quot;externalConsole&quot;</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-  <span class="s2">&quot;MIMode&quot;</span><span class="o">:</span> <span class="s2">&quot;gdb&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;preLaunchTask&quot;</span><span class="o">:</span> <span class="s2">&quot;Build Mantid&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;setupCommands&quot;</span><span class="o">:</span> <span class="p">[</span>
-    <span class="p">{</span>
-      <span class="s2">&quot;description&quot;</span><span class="o">:</span> <span class="s2">&quot;Enable pretty-printing for gdb&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;text&quot;</span><span class="o">:</span> <span class="s2">&quot;-enable-pretty-printing&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;ignoreFailures&quot;</span><span class="o">:</span> <span class="kc">true</span>
-    <span class="p">}</span>
-  <span class="p">]</span>
-<span class="p">}</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;(gdb) Workbench C++ Only&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="s2">&quot;type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;cppdbg&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="s2">&quot;request&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;launch&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="s2">&quot;program&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;/usr/bin/python3&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// Path to your used Python interpreter, here and below</span><span class="w"></span>
+<span class="w">  </span><span class="s2">&quot;args&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;Path/To/Build/Directory/bin/workbench&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;&amp;&amp;&quot;</span><span class="p">,</span><span class="s2">&quot;gdb&quot;</span><span class="p">,</span><span class="s2">&quot;/usr/bin/python3&quot;</span><span class="p">,</span><span class="s2">&quot;$!&quot;</span><span class="p">],</span><span class="w"> </span><span class="c1">// $! gets the process ID</span><span class="w"></span>
+<span class="w">  </span><span class="s2">&quot;stopAtEntry&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="s2">&quot;cwd&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Path/To/Build/Directory/bin&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// this should point to bin inside the build directory</span><span class="w"></span>
+<span class="w">  </span><span class="s2">&quot;environment&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[],</span><span class="w"></span>
+<span class="w">  </span><span class="s2">&quot;externalConsole&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="s2">&quot;MIMode&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;gdb&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="s2">&quot;preLaunchTask&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Build Mantid&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="s2">&quot;setupCommands&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="s2">&quot;description&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Enable pretty-printing for gdb&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="s2">&quot;text&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;-enable-pretty-printing&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="s2">&quot;ignoreFailures&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">]</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>If this fails, try adding the following environment variables:</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;environment&quot;</span><span class="o">:</span> <span class="p">[</span>
-  <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="s2">&quot;LD_PRELOAD&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;/usr/lib/x86_64-linux-gnu/libjemalloc.so.1&quot;</span><span class="p">},</span>
-  <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="s2">&quot;PYTHONPATH&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;Path/To/Build/Directory/bin:${env:PYTHONPATH}&quot;</span><span class="p">}</span>
-<span class="p">],</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;environment&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="s2">&quot;LD_PRELOAD&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;value&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;/usr/lib/x86_64-linux-gnu/libjemalloc.so.1&quot;</span><span class="p">},</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="s2">&quot;PYTHONPATH&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;value&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Path/To/Build/Directory/bin:${env:PYTHONPATH}&quot;</span><span class="p">}</span><span class="w"></span>
+<span class="p">],</span><span class="w"></span>
 </pre></div>
 </div>
 <p>where the correct value for the <code class="docutils literal notranslate"><span class="pre">LD_PRELOAD</span></code> environment variable can be found in Path/To/Build/Directory/bin/launch_mantidworkbench.sh.</p>
@@ -334,29 +329,29 @@ you will want to make your file look something a little like this:</p>
 <p>For this section of the guide it will discuss use of the MSVC debugger. Please
 follow on with the <a class="reference external" href="https://code.visualstudio.com/docs/cpp/config-msvc">guide</a>.
 The launch.json should end up looking a little like this:</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-   <span class="s2">&quot;version&quot;</span><span class="o">:</span> <span class="s2">&quot;0.2.0&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;configurations&quot;</span><span class="o">:</span> <span class="p">[</span>
-        <span class="p">{</span>
-            <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;(msvc) Launch&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;cppvsdbg&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;request&quot;</span><span class="o">:</span> <span class="s2">&quot;launch&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;program&quot;</span><span class="o">:</span> <span class="s2">&quot;Path/To/Build/Directory/bin/Debug/MantidWorkbench.exe&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;args&quot;</span><span class="o">:</span> <span class="p">[],</span>
-            <span class="s2">&quot;stopAtEntry&quot;</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-            <span class="s2">&quot;cwd&quot;</span><span class="o">:</span> <span class="s2">&quot;${workspaceFolder}&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;environment&quot;</span><span class="o">:</span> <span class="p">[],</span>
-            <span class="s2">&quot;externalConsole&quot;</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-            <span class="s2">&quot;preLaunchTask&quot;</span><span class="o">:</span> <span class="s2">&quot;Build Mantid&quot;</span> <span class="c1">// This causes the task labelled to be called before</span>
-        <span class="p">}</span>
-    <span class="p">]</span>
-<span class="p">}</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">   </span><span class="s2">&quot;version&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;0.2.0&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="s2">&quot;configurations&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;(msvc) Launch&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="s2">&quot;type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;cppvsdbg&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="s2">&quot;request&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;launch&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="s2">&quot;program&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Path/To/Build/Directory/bin/Debug/MantidWorkbench.exe&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="s2">&quot;args&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[],</span><span class="w"></span>
+<span class="w">            </span><span class="s2">&quot;stopAtEntry&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="s2">&quot;cwd&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;${workspaceFolder}&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="s2">&quot;environment&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[],</span><span class="w"></span>
+<span class="w">            </span><span class="s2">&quot;externalConsole&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="s2">&quot;preLaunchTask&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Build Mantid&quot;</span><span class="w"> </span><span class="c1">// This causes the task labelled to be called before</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">]</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>To actually start the debug session, switch to <a class="reference external" href="https://code.visualstudio.com/docs/editor/debugging#_start-debugging">the debug tab</a>
 and select “(GDB) Launch” from the drop down and click the play button.</p>
-</div>
-<div class="section" id="debugging-c-called-from-workbench">
+</section>
+<section id="debugging-c-called-from-workbench">
 <h3><a class="toc-backref" href="#id15">Debugging C++ called from Workbench</a><a class="headerlink" href="#debugging-c-called-from-workbench" title="Permalink to this headline">¶</a></h3>
 <p><strong>Linux/OSX:</strong></p>
 <p>To achieve this we will use the GDB debugger’s ability to attach itself to a
@@ -365,81 +360,81 @@ its recommended to launch workbench from PyCharm in Debug mode and grabbing the 
 from the Debug terminal window.</p>
 <p>In your launch.json we will need a new launch task for this, this new task should look
 like this:</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-    <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;(gdb) Launch Workbench&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;cppdbg&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;request&quot;</span><span class="o">:</span> <span class="s2">&quot;launch&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;program&quot;</span><span class="o">:</span> <span class="s2">&quot;/usr/bin/python3&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;args&quot;</span><span class="o">:</span> <span class="p">[</span>
-        <span class="s2">&quot;/path/to/build/dir/bin/MantidWorkbench&quot;</span>
-    <span class="p">],</span>
-    <span class="s2">&quot;MIMode&quot;</span><span class="o">:</span> <span class="s2">&quot;gdb&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;cwd&quot;</span><span class="o">:</span> <span class="s2">&quot;${fileDirname}&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;setupCommands&quot;</span><span class="o">:</span> <span class="p">[</span>
-        <span class="p">{</span>
-            <span class="s2">&quot;description&quot;</span><span class="o">:</span> <span class="s2">&quot;Enable pretty-printing for gdb&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;text&quot;</span><span class="o">:</span> <span class="s2">&quot;-enable-pretty-printing&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;ignoreFailures&quot;</span><span class="o">:</span> <span class="kc">true</span>
-        <span class="p">}</span>
-    <span class="p">]</span>
-<span class="p">}</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;(gdb) Launch Workbench&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="s2">&quot;type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;cppdbg&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="s2">&quot;request&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;launch&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="s2">&quot;program&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;/usr/bin/python3&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="s2">&quot;args&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">        </span><span class="s2">&quot;/path/to/build/dir/bin/MantidWorkbench&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="p">],</span><span class="w"></span>
+<span class="w">    </span><span class="s2">&quot;MIMode&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;gdb&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="s2">&quot;cwd&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;${fileDirname}&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="s2">&quot;setupCommands&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="s2">&quot;description&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Enable pretty-printing for gdb&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="s2">&quot;text&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;-enable-pretty-printing&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="s2">&quot;ignoreFailures&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">]</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <ul class="simple">
-<li>Place this json in the “configurations” list in launch.json</li>
-<li>Then launch the debug session like any other, note it may be slow to get started.</li>
+<li><p>Place this json in the “configurations” list in launch.json</p></li>
+<li><p>Then launch the debug session like any other, note it may be slow to get started.</p></li>
 </ul>
-</div>
-<div class="section" id="debugging-c-tests">
+</section>
+<section id="debugging-c-tests">
 <h3><a class="toc-backref" href="#id16">Debugging C++ Tests</a><a class="headerlink" href="#debugging-c-tests" title="Permalink to this headline">¶</a></h3>
 <p><strong>Linux/OSX</strong></p>
 <p>First thing to do is make sure that the test you are testing is built. You can do this
 by building via one of the test targets. An example Task for AlgorithmsTest:</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-    <span class="s2">&quot;label&quot;</span><span class="o">:</span> <span class="s2">&quot;Build Mantid AlgorithmsTest&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;shell&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;command&quot;</span><span class="o">:</span> <span class="s2">&quot;ninja&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;args&quot;</span><span class="o">:</span> <span class="p">[</span>
-        <span class="s2">&quot;-C&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;Build/Directory&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;AlgorithmsTest&quot;</span>
-    <span class="p">],</span>
-    <span class="s2">&quot;group&quot;</span><span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;kind&quot;</span><span class="o">:</span> <span class="s2">&quot;build&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;isDefault&quot;</span><span class="o">:</span> <span class="kc">true</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="s2">&quot;label&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Build Mantid AlgorithmsTest&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="s2">&quot;type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;shell&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="s2">&quot;command&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ninja&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="s2">&quot;args&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">        </span><span class="s2">&quot;-C&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="s2">&quot;Build/Directory&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="s2">&quot;AlgorithmsTest&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="p">],</span><span class="w"></span>
+<span class="w">    </span><span class="s2">&quot;group&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="s2">&quot;kind&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;build&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="s2">&quot;isDefault&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>To debug the individual tests you won’t want to be running all tests, so you will need to
 select the executable for your tests i.e. “bin/AlgorithmsTest” in your build directory.
 Then pass as an argument the specific test you want to be debugging. As an example:</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-    <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;(gdb) Launch Ctest&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;cppdbg&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;request&quot;</span><span class="o">:</span> <span class="s2">&quot;launch&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;program&quot;</span><span class="o">:</span> <span class="s2">&quot;Build/Directory/bin/AlgorithmsTest&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;args&quot;</span><span class="o">:</span> <span class="p">[</span>
-        <span class="s2">&quot;RemoveSpectraTest&quot;</span> <span class="c1">// This is the name of the test you want to Debug</span>
-    <span class="p">],</span>
-    <span class="s2">&quot;stopAtEntry&quot;</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-    <span class="s2">&quot;cwd&quot;</span><span class="o">:</span> <span class="s2">&quot;Build/Directory&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;environment&quot;</span><span class="o">:</span> <span class="p">[],</span>
-    <span class="s2">&quot;externalConsole&quot;</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-    <span class="s2">&quot;MIMode&quot;</span><span class="o">:</span> <span class="s2">&quot;gdb&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;preLaunchTask&quot;</span><span class="o">:</span> <span class="s2">&quot;Build Mantid AlgorithmTests&quot;</span><span class="p">,</span> <span class="c1">// Once again this builds the task before doing debugging</span>
-    <span class="s2">&quot;setupCommands&quot;</span><span class="o">:</span> <span class="p">[</span>
-        <span class="p">{</span>
-            <span class="s2">&quot;description&quot;</span><span class="o">:</span> <span class="s2">&quot;Enable pretty-printing for gdb&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;text&quot;</span><span class="o">:</span> <span class="s2">&quot;-enable-pretty-printing&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;ignoreFailures&quot;</span><span class="o">:</span> <span class="kc">true</span>
-        <span class="p">}</span>
-    <span class="p">]</span>
-<span class="p">}</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;(gdb) Launch Ctest&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="s2">&quot;type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;cppdbg&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="s2">&quot;request&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;launch&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="s2">&quot;program&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Build/Directory/bin/AlgorithmsTest&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="s2">&quot;args&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">        </span><span class="s2">&quot;RemoveSpectraTest&quot;</span><span class="w"> </span><span class="c1">// This is the name of the test you want to Debug</span><span class="w"></span>
+<span class="w">    </span><span class="p">],</span><span class="w"></span>
+<span class="w">    </span><span class="s2">&quot;stopAtEntry&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="s2">&quot;cwd&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Build/Directory&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="s2">&quot;environment&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[],</span><span class="w"></span>
+<span class="w">    </span><span class="s2">&quot;externalConsole&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="s2">&quot;MIMode&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;gdb&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="s2">&quot;preLaunchTask&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Build Mantid AlgorithmTests&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// Once again this builds the task before doing debugging</span><span class="w"></span>
+<span class="w">    </span><span class="s2">&quot;setupCommands&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="s2">&quot;description&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Enable pretty-printing for gdb&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="s2">&quot;text&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;-enable-pretty-printing&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="s2">&quot;ignoreFailures&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">]</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="debugging-python">
+</section>
+<section id="debugging-python">
 <h3><a class="toc-backref" href="#id17">Debugging Python</a><a class="headerlink" href="#debugging-python" title="Permalink to this headline">¶</a></h3>
 <p>Visual Studio Code can be remotely attached to any running Python targets
 using <cite>debugpy</cite>.
@@ -454,22 +449,22 @@ PyQt listeners, as the debugger must be attached to the main thread.</p>
 </div>
 <p><em>Windows</em></p>
 <ul class="simple">
-<li>Go to your source folder with Mantid (not the build folder)</li>
-<li>Go to external/src/ThirdParty/lib/python3.8</li>
-<li>Open a command prompt here (shift + right click in empty space)</li>
-<li>Run the following: <cite>python -m pip install –user debugpy</cite></li>
+<li><p>Go to your source folder with Mantid (not the build folder)</p></li>
+<li><p>Go to external/src/ThirdParty/lib/python3.8</p></li>
+<li><p>Open a command prompt here (shift + right click in empty space)</p></li>
+<li><p>Run the following: <cite>python -m pip install –user debugpy</cite></p></li>
 </ul>
 <p><strong>Setting up VS Code</strong>
 - Ensure the Python extension is installed
 - Open <cite>launch.json</cite> through either the debug tab or the file finder
 - Add the following target</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-    <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;Python Attach&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;python&quot;</span>
-    <span class="s2">&quot;request&quot;</span><span class="o">:</span> <span class="s2">&quot;attach&quot;</span>
-    <span class="s2">&quot;port&quot;</span> <span class="o">:</span> <span class="mi">5678</span><span class="p">,</span>
-    <span class="s2">&quot;host&quot;</span><span class="o">:</span> <span class="s2">&quot;localhost&quot;</span>
-<span class="p">}</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Python Attach&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="s2">&quot;type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;python&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="s2">&quot;request&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;attach&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="s2">&quot;port&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mf">5678</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="s2">&quot;host&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;localhost&quot;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p><strong>Attaching the debugger</strong>
@@ -482,69 +477,69 @@ PyQt listeners, as the debugger must be attached to the main thread.</p>
 </pre></div>
 </div>
 <ul class="simple">
-<li>When Mantid appears to freeze. Open the debug tab and start the “Python Attach” Target</li>
-<li>Any additional breakpoints using the IDE are added automatically
-(i.e. don’t add <cite>debugpy.breakpoint()</cite></li>
-<li>If you’d like the code to not break at that location, but would like the
-debugger to attach only remove <cite>wait_for_client()</cite></li>
+<li><p>When Mantid appears to freeze. Open the debug tab and start the “Python Attach” Target</p></li>
+<li><p>Any additional breakpoints using the IDE are added automatically
+(i.e. don’t add <cite>debugpy.breakpoint()</cite></p></li>
+<li><p>If you’d like the code to not break at that location, but would like the
+debugger to attach only remove <cite>wait_for_client()</cite></p></li>
 </ul>
-</div>
-<div class="section" id="keybindings">
+</section>
+<section id="keybindings">
 <h3><a class="toc-backref" href="#id18">Keybindings</a><a class="headerlink" href="#keybindings" title="Permalink to this headline">¶</a></h3>
 <p>To get a list of all of possible keybindings the open your command line
 (Ctrl+Shift+P or ⌘+Shift+P) and search for “Help: Keyboard Shortcuts
 Reference” and hit Enter.</p>
 <p><strong>Very commonly used keybindings:</strong></p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="30%" />
-<col width="23%" />
-<col width="23%" />
-<col width="23%" />
+<col style="width: 30%" />
+<col style="width: 23%" />
+<col style="width: 23%" />
+<col style="width: 23%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Function</th>
-<th class="head">Linux</th>
-<th class="head">MacOS</th>
-<th class="head">Windows</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Function</p></th>
+<th class="head"><p>Linux</p></th>
+<th class="head"><p>MacOS</p></th>
+<th class="head"><p>Windows</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td>Search in File</td>
-<td>Ctrl+F</td>
-<td>⌘+F</td>
-<td>Ctrl+F</td>
+<tbody>
+<tr class="row-even"><td><p>Search in File</p></td>
+<td><p>Ctrl+F</p></td>
+<td><p>⌘+F</p></td>
+<td><p>Ctrl+F</p></td>
 </tr>
-<tr class="row-odd"><td>Command Line</td>
-<td>Ctrl+Shift+P</td>
-<td>⌘+Shift+P</td>
-<td>Ctrl+Shift+P</td>
+<tr class="row-odd"><td><p>Command Line</p></td>
+<td><p>Ctrl+Shift+P</p></td>
+<td><p>⌘+Shift+P</p></td>
+<td><p>Ctrl+Shift+P</p></td>
 </tr>
-<tr class="row-even"><td>Fuzzy File Search</td>
-<td>Ctrl+P</td>
-<td>⌘+P</td>
-<td>Ctrl+P</td>
+<tr class="row-even"><td><p>Fuzzy File Search</p></td>
+<td><p>Ctrl+P</p></td>
+<td><p>⌘+P</p></td>
+<td><p>Ctrl+P</p></td>
 </tr>
-<tr class="row-odd"><td>Build</td>
-<td>Ctrl+Shift+B</td>
-<td>Ctrl+Shift+B</td>
-<td>Ctrl+Shift+B</td>
+<tr class="row-odd"><td><p>Build</p></td>
+<td><p>Ctrl+Shift+B</p></td>
+<td><p>Ctrl+Shift+B</p></td>
+<td><p>Ctrl+Shift+B</p></td>
 </tr>
-<tr class="row-even"><td>Launch</td>
-<td>F5</td>
-<td>F5</td>
-<td>F5</td>
+<tr class="row-even"><td><p>Launch</p></td>
+<td><p>F5</p></td>
+<td><p>F5</p></td>
+<td><p>F5</p></td>
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="remote-development">
+</section>
+<section id="remote-development">
 <h3><a class="toc-backref" href="#id19">Remote Development</a><a class="headerlink" href="#remote-development" title="Permalink to this headline">¶</a></h3>
 <p>VSCode supports the ability to open and work from directories on a remote machine using SSH.</p>
 <p>Detailed instructions on how to set this up can be found <a class="reference external" href="https://code.visualstudio.com/docs/remote/ssh">here</a>.</p>
-</div>
-</div>
-<div class="section" id="advanced-getting-live-warnings-and-errors-with-clangd">
+</section>
+</section>
+<section id="advanced-getting-live-warnings-and-errors-with-clangd">
 <h2><a class="toc-backref" href="#id20">(Advanced) Getting Live Warnings and Errors with Clangd</a><a class="headerlink" href="#advanced-getting-live-warnings-and-errors-with-clangd" title="Permalink to this headline">¶</a></h2>
 <p>(Linux only)</p>
 <p>The default C++ extension in VS Code provides limited inspection: it has
@@ -552,15 +547,15 @@ warnings disabled and will only emit errors.</p>
 <p>Clang can be used to provide live warnings and runs clang-tidy continuously. This helps detect warnings and errors live which are normally only detected whilst building.</p>
 <p><strong>Setup</strong></p>
 <ul class="simple">
-<li>Install the latest stable <a class="reference external" href="https://apt.llvm.org/">clang ppa</a></li>
-<li>Install the clangd extension</li>
-<li>Install the latest stable clangd, e.g. <cite>clang-tools-n</cite> (where n is the latest version)</li>
-<li>Go to the clangd settings in VS Code and ensure the correct binary is manually specified</li>
-<li>Restart VS Code - attempt to write: <cite>int i = (size_t) 1;</cite> and check a warning
-appears.</li>
+<li><p>Install the latest stable <a class="reference external" href="https://apt.llvm.org/">clang ppa</a></p></li>
+<li><p>Install the clangd extension</p></li>
+<li><p>Install the latest stable clangd, e.g. <cite>clang-tools-n</cite> (where n is the latest version)</p></li>
+<li><p>Go to the clangd settings in VS Code and ensure the correct binary is manually specified</p></li>
+<li><p>Restart VS Code - attempt to write: <cite>int i = (size_t) 1;</cite> and check a warning
+appears.</p></li>
 </ul>
-</div>
-</div>
+</section>
+</section>
 
 
     </div>

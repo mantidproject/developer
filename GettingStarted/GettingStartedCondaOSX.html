@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Develop with Conda on MacOS</title>
-    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Getting Started without Conda" href="GettingStartedNoneConda.html" />
@@ -87,74 +87,71 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <div class="section" id="develop-with-conda-on-macos">
+  <section id="develop-with-conda-on-macos">
 <span id="gettingstartedcondaosx"></span><h1>Develop with Conda on MacOS<a class="headerlink" href="#develop-with-conda-on-macos" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="install-git">
+<section id="install-git">
 <h2>Install <a class="reference external" href="https://git-scm.com/">Git</a><a class="headerlink" href="#install-git" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>On MacOS install using brew with the following command: <code class="docutils literal notranslate"><span class="pre">brew</span> <span class="pre">install</span> <span class="pre">git</span></code></li>
+<li><p>On MacOS install using brew with the following command: <code class="docutils literal notranslate"><span class="pre">brew</span> <span class="pre">install</span> <span class="pre">git</span></code></p></li>
 </ul>
-</div>
-<div class="section" id="clone-the-mantid-source-code">
+</section>
+<section id="clone-the-mantid-source-code">
 <h2>Clone the mantid source code<a class="headerlink" href="#clone-the-mantid-source-code" title="Permalink to this headline">¶</a></h2>
 <ul>
-<li><p class="first">There are 2 common ways developers have been doing this.</p>
+<li><p>There are 2 common ways developers have been doing this.</p>
 <blockquote>
 <div><ul class="simple">
-<li>Using git in the terminal and cloning the codebase by calling <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">git&#64;github.com:mantidproject/mantid.git</span></code> in the directory you want the code to clone to. This sets you up with accessing the remote repository via SSH so make sure to setup git properly using this <a class="reference external" href="https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup">startup guide</a> and ensure your ssh key is setup using this <a class="reference external" href="https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh">guide to Github with SSH</a>.</li>
-<li>Or by using <a class="reference external" href="https://www.gitkraken.com/">GitKraken</a>.</li>
+<li><p>Using git in the terminal and cloning the codebase by calling <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">git&#64;github.com:mantidproject/mantid.git</span></code> in the directory you want the code to clone to. This sets you up with accessing the remote repository via SSH so make sure to setup git properly using this <a class="reference external" href="https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup">startup guide</a> and ensure your ssh key is setup using this <a class="reference external" href="https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh">guide to Github with SSH</a>.</p></li>
+<li><p>Or by using <a class="reference external" href="https://www.gitkraken.com/">GitKraken</a>.</p></li>
 </ul>
 </div></blockquote>
 </li>
 </ul>
-</div>
-<div class="section" id="install-mambaforge">
+</section>
+<section id="install-mambaforge">
 <h2>Install <a class="reference external" href="https://github.com/conda-forge/miniforge/releases">Mambaforge</a><a class="headerlink" href="#install-mambaforge" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Choose the latest version of <code class="docutils literal notranslate"><span class="pre">Mambaforge-MacOSX-x86_64.sh</span></code> for intel based Macs or for the new arm versions use <code class="docutils literal notranslate"><span class="pre">Mambaforge-MacOSX-arm64.sh</span></code></li>
-<li>Run your downloaded script from the terminal using <code class="docutils literal notranslate"><span class="pre">`bash</span> <span class="pre">Mambaforge-MacOSX-x86_64.sh</span></code> or <code class="docutils literal notranslate"><span class="pre">bash</span> <span class="pre">Mambaforge-MacOSX-arm64.sh</span></code> depending on your downloaded variant. If it asks whether or not you want to initialise conda with conda init, choose to do so.</li>
-<li>Restart your terminal.</li>
+<li><p>Choose the latest version of <code class="docutils literal notranslate"><span class="pre">Mambaforge-MacOSX-x86_64.sh</span></code> for intel based Macs or for the new arm versions use <code class="docutils literal notranslate"><span class="pre">Mambaforge-MacOSX-arm64.sh</span></code></p></li>
+<li><p>Run your downloaded script from the terminal using <code class="docutils literal notranslate"><span class="pre">`bash</span> <span class="pre">Mambaforge-MacOSX-x86_64.sh</span></code> or <code class="docutils literal notranslate"><span class="pre">bash</span> <span class="pre">Mambaforge-MacOSX-arm64.sh</span></code> depending on your downloaded variant. If it asks whether or not you want to initialise conda with conda init, choose to do so.</p></li>
+<li><p>Restart your terminal.</p></li>
 </ul>
-</div>
-<div class="section" id="setup-the-mantid-conda-environment">
+</section>
+<section id="setup-the-mantid-conda-environment">
 <h2>Setup the mantid conda environment<a class="headerlink" href="#setup-the-mantid-conda-environment" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>With your restarted terminal.</li>
-<li>Create the mantid conda environment by navigating to your mantid source code directory in your terminal and running <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">env</span> <span class="pre">create</span> <span class="pre">-f</span> <span class="pre">mantid-developer-osx.yml</span></code></li>
+<li><p>With your restarted terminal.</p></li>
+<li><p>Create the mantid conda environment by navigating to your mantid source code directory in your terminal and running <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">env</span> <span class="pre">create</span> <span class="pre">-f</span> <span class="pre">mantid-developer-osx.yml</span></code></p></li>
 </ul>
-</div>
-<div class="section" id="configure-cmake-and-generate-build-files">
+</section>
+<section id="configure-cmake-and-generate-build-files">
 <h2>Configure CMake and generate build files<a class="headerlink" href="#configure-cmake-and-generate-build-files" title="Permalink to this headline">¶</a></h2>
 <ul>
-<li><p class="first">Still using the terminal.</p>
-</li>
-<li><p class="first">Run <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">mantid-developer</span></code> to activate your conda environment.</p>
-</li>
-<li><p class="first">Navigate back to your mantid source directory using <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">mantid</span></code> if you used the default name during cloning from git.</p>
-</li>
-<li><p class="first">Inside of your mantid source directory run <code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">--preset=osx</span></code></p>
+<li><p>Still using the terminal.</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">mantid-developer</span></code> to activate your conda environment.</p></li>
+<li><p>Navigate back to your mantid source directory using <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">mantid</span></code> if you used the default name during cloning from git.</p></li>
+<li><p>Inside of your mantid source directory run <code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">--preset=osx</span></code></p>
 <blockquote>
 <div><ul class="simple">
-<li>Alternatively if you don’t want to have your build folder in your mantid source then pass the <code class="docutils literal notranslate"><span class="pre">-B</span></code> argument, overriding the preset, to cmake: <code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">{PATH_TO_SOURCE}</span> <span class="pre">--preset=osx</span> <span class="pre">-B</span> <span class="pre">{BUILD_DIR}</span></code></li>
+<li><p>Alternatively if you don’t want to have your build folder in your mantid source then pass the <code class="docutils literal notranslate"><span class="pre">-B</span></code> argument, overriding the preset, to cmake: <code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">{PATH_TO_SOURCE}</span> <span class="pre">--preset=osx</span> <span class="pre">-B</span> <span class="pre">{BUILD_DIR}</span></code></p></li>
 </ul>
 </div></blockquote>
 </li>
 </ul>
-</div>
-<div class="section" id="how-to-build">
+</section>
+<section id="how-to-build">
 <h2>How to build<a class="headerlink" href="#how-to-build" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Navigate to the build directory.</li>
-<li>To build Mantid Workbench use: <code class="docutils literal notranslate"><span class="pre">ninja</span></code></li>
-<li>To build Unit Tests use: <code class="docutils literal notranslate"><span class="pre">ninja</span> <span class="pre">AllTests</span></code></li>
+<li><p>Navigate to the build directory.</p></li>
+<li><p>To build Mantid Workbench use: <code class="docutils literal notranslate"><span class="pre">ninja</span></code></p></li>
+<li><p>To build Unit Tests use: <code class="docutils literal notranslate"><span class="pre">ninja</span> <span class="pre">AllTests</span></code></p></li>
 </ul>
-</div>
-<div class="section" id="cmake-conda-variables">
+</section>
+<section id="cmake-conda-variables">
 <h2>CMake Conda variables<a class="headerlink" href="#cmake-conda-variables" title="Permalink to this headline">¶</a></h2>
 <p>There are two Conda specific CMake options <cite>CONDA_ENV</cite> and <cite>CONDA_BUILD</cite>. The former should be used whenever you are building within a Conda environment, as it ensures our finders (e.g FindNexus.cmake) look in the correct locations for libraries.
 The CONDA_BUILD parameter is used to customise our installation, which is required when we are using the conda-build tool to build and package Mantid. These options can be passed to CMake on the command line using -DCONDA_ENV=True for example.</p>
-</div>
-</div>
+</section>
+</section>
 
 
     </div>

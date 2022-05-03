@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Getting Started without Conda</title>
-    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Architecture" href="../Architecture.html" />
@@ -87,63 +87,67 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <div class="section" id="getting-started-without-conda">
+  <section id="getting-started-without-conda">
 <span id="gettingstartednoneconda"></span><h1>Getting Started without Conda<a class="headerlink" href="#getting-started-without-conda" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="environment">
+<section id="environment">
 <h2>Environment<a class="headerlink" href="#environment" title="Permalink to this headline">¶</a></h2>
 <p>Some initial setup is required before being able to build the code. This is platform
 specific and described here.</p>
-<div class="section" id="windows">
+<section id="windows">
 <h3>Windows<a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h3>
 <p>Install the following:</p>
 <ul class="simple">
-<li><a class="reference external" href="https://visualstudio.microsoft.com/downloads/">Visual Studio 2019 Community Edition</a>.<ul>
-<li>When asked about installation workloads choose <code class="docutils literal notranslate"><span class="pre">Desktop</span> <span class="pre">development</span> <span class="pre">with</span> <span class="pre">C++</span></code></li>
-<li>Under the “Installation details” section verify that the following are checked:<ul>
-<li><code class="docutils literal notranslate"><span class="pre">Windows</span> <span class="pre">Universal</span> <span class="pre">CRT</span> <span class="pre">SDK</span></code></li>
-<li>The latest Windows 10 SDK</li>
+<li><p><a class="reference external" href="https://visualstudio.microsoft.com/downloads/">Visual Studio 2019 Community Edition</a>.</p>
+<ul>
+<li><p>When asked about installation workloads choose <code class="docutils literal notranslate"><span class="pre">Desktop</span> <span class="pre">development</span> <span class="pre">with</span> <span class="pre">C++</span></code></p></li>
+<li><p>Under the “Installation details” section verify that the following are checked:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">Windows</span> <span class="pre">Universal</span> <span class="pre">CRT</span> <span class="pre">SDK</span></code></p></li>
+<li><p>The latest Windows 10 SDK</p></li>
 </ul>
 </li>
-<li>If your machine has less than 32GB of memory Mantid may not build. If you have problems change the maximum number of parallel project builds to 1 in Visual Studio in Tools -&gt; Options -&gt; Projects and Solutions -&gt; Build And Run.</li>
+<li><p>If your machine has less than 32GB of memory Mantid may not build. If you have problems change the maximum number of parallel project builds to 1 in Visual Studio in Tools -&gt; Options -&gt; Projects and Solutions -&gt; Build And Run.</p></li>
 </ul>
 </li>
-<li><a class="reference external" href="https://git-scm.com/">Git</a>.<ul>
-<li>install the latest version and ensure that Git LFS is checked to be included</li>
-<li>when the install has completed create a directory for storage of the LFS objects, e.g. <code class="docutils literal notranslate"><span class="pre">C:\GitLFSStorage</span></code></li>
-<li>open up Git Bash and run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">config</span> <span class="pre">--global</span> <span class="pre">lfs.storage</span> <span class="pre">C:/GitLFSStorage</span></code></li>
-<li>run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">lfs</span> <span class="pre">install</span></code> to initialize Git LFS. (Note that if you miss this step you may get errors due to the third party libraries not checking out properly. This can be fixed later by running <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">lfs</span> <span class="pre">fetch</span></code> and <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">lfs</span> <span class="pre">checkout</span></code> in the <code class="docutils literal notranslate"><span class="pre">external\src\ThirdParty</span></code> directory.)</li>
+<li><p><a class="reference external" href="https://git-scm.com/">Git</a>.</p>
+<ul>
+<li><p>install the latest version and ensure that Git LFS is checked to be included</p></li>
+<li><p>when the install has completed create a directory for storage of the LFS objects, e.g. <code class="docutils literal notranslate"><span class="pre">C:\GitLFSStorage</span></code></p></li>
+<li><p>open up Git Bash and run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">config</span> <span class="pre">--global</span> <span class="pre">lfs.storage</span> <span class="pre">C:/GitLFSStorage</span></code></p></li>
+<li><p>run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">lfs</span> <span class="pre">install</span></code> to initialize Git LFS. (Note that if you miss this step you may get errors due to the third party libraries not checking out properly. This can be fixed later by running <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">lfs</span> <span class="pre">fetch</span></code> and <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">lfs</span> <span class="pre">checkout</span></code> in the <code class="docutils literal notranslate"><span class="pre">external\src\ThirdParty</span></code> directory.)</p></li>
 </ul>
 </li>
-<li><a class="reference external" href="https://cmake.org/download/">CMake</a> &gt;= 3.15</li>
-<li><a class="reference external" href="https://miktex.org/download">MiKTeX</a>. Installation instructions are  <a class="reference external" href="https://miktex.org/howto/install-miktex">available here</a>. Once installed:<ul>
-<li>open the MikTeX console from the start menu</li>
-<li>switch to administrator mode</li>
-<li>settings -&gt; select “Always install missing packages on-the-fly”</li>
+<li><p><a class="reference external" href="https://cmake.org/download/">CMake</a> &gt;= 3.15</p></li>
+<li><p><a class="reference external" href="https://miktex.org/download">MiKTeX</a>. Installation instructions are  <a class="reference external" href="https://miktex.org/howto/install-miktex">available here</a>. Once installed:</p>
+<ul>
+<li><p>open the MikTeX console from the start menu</p></li>
+<li><p>switch to administrator mode</p></li>
+<li><p>settings -&gt; select “Always install missing packages on-the-fly”</p></li>
 </ul>
 </li>
-<li><a class="reference external" href="http://nsis.sourceforge.net/Download">NSIS</a> (optional). Used for building packages</li>
+<li><p><a class="reference external" href="http://nsis.sourceforge.net/Download">NSIS</a> (optional). Used for building packages</p></li>
 </ul>
 <p><a class="reference external" href="http://graphviz.org/download/">Graphviz</a> is required to generate the workflow diagrams in the documentation.
 Unfortunately CMake can’t find it out of the box and the following steps are required to make this link</p>
 <ul class="simple">
-<li>open regedit</li>
-<li>add a new key <code class="docutils literal notranslate"><span class="pre">[HKEY_LOCAL_MACHINE\\SOFTWARE\\ATT\\Graphviz]</span></code></li>
-<li>create a new string value named <code class="docutils literal notranslate"><span class="pre">InstallPath</span></code> within this key and set the value
-to point to the install directory of Graphviz.</li>
+<li><p>open regedit</p></li>
+<li><p>add a new key <code class="docutils literal notranslate"><span class="pre">[HKEY_LOCAL_MACHINE\\SOFTWARE\\ATT\\Graphviz]</span></code></p></li>
+<li><p>create a new string value named <code class="docutils literal notranslate"><span class="pre">InstallPath</span></code> within this key and set the value
+to point to the install directory of Graphviz.</p></li>
 </ul>
-<div class="section" id="windows-subsystem-for-linux-wsl2">
+<section id="windows-subsystem-for-linux-wsl2">
 <h4>Windows Subsystem for Linux (WSL2)<a class="headerlink" href="#windows-subsystem-for-linux-wsl2" title="Permalink to this headline">¶</a></h4>
 <p>It is also possible to install a Linux subsystem within Windows by following <a class="reference internal" href="../WindowsSubsystemForLinux.html#windowssubsystemforlinux"><span class="std std-ref">these</span></a> instructions. This step is optional.</p>
-</div>
-</div>
-<div class="section" id="linux">
+</section>
+</section>
+<section id="linux">
 <h3>Linux<a class="headerlink" href="#linux" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="red-hat-cent-os-fedora">
+<section id="red-hat-cent-os-fedora">
 <h4>Red Hat/Cent OS/Fedora<a class="headerlink" href="#red-hat-cent-os-fedora" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
-<li>Follow the <a class="reference external" href="https://fedoraproject.org/wiki/EPEL">instructions here</a> to enable the EPEL repository
-for RHEL7</li>
-<li>Run the following to install the mantid-developer package</li>
+<li><p>Follow the <a class="reference external" href="https://fedoraproject.org/wiki/EPEL">instructions here</a> to enable the EPEL repository
+for RHEL7</p></li>
+<li><p>Run the following to install the mantid-developer package</p></li>
 </ul>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install copr plugin</span>
 yum install yum-plugin-copr
@@ -169,17 +173,17 @@ cmake3 --build .
 </pre></div>
 </div>
 <p>See the instructions on <a class="reference internal" href="../RunningTheUnitTests.html#runningtheunittests"><span class="std std-ref">this</span></a> page to run the Mantid unit tests.</p>
-</div>
-<div class="section" id="ubuntu-18-04">
+</section>
+<section id="ubuntu-18-04">
 <h4>Ubuntu 18.04<a class="headerlink" href="#ubuntu-18-04" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
-<li>Setup the Kitware APT repository to get a recent version of CMake by
-following <a class="reference external" href="https://apt.kitware.com/">these instructions</a></li>
-<li>Follow the <a class="reference external" href="http://download.mantidproject.org/ubuntu.html">Ubuntu instructions</a>
-to add the stable release repository and mantid ppa and</li>
-<li>Download the latest
+<li><p>Setup the Kitware APT repository to get a recent version of CMake by
+following <a class="reference external" href="https://apt.kitware.com/">these instructions</a></p></li>
+<li><p>Follow the <a class="reference external" href="http://download.mantidproject.org/ubuntu.html">Ubuntu instructions</a>
+to add the stable release repository and mantid ppa and</p></li>
+<li><p>Download the latest
 <a class="reference external" href="https://sourceforge.net/projects/mantid/files/developer">mantid-developer</a>
-package and install it:</li>
+package and install it:</p></li>
 </ul>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>apt install gdebi-core
 gdebi ~/Downloads/mantid-developer.X.Y.Z.deb
@@ -199,41 +203,41 @@ cmake --build .
 </pre></div>
 </div>
 <p>See the instructions on <a class="reference internal" href="../RunningTheUnitTests.html#runningtheunittests"><span class="std std-ref">this</span></a> page to run the Mantid unit tests.</p>
-</div>
-<div class="section" id="ubuntu-20-04">
+</section>
+<section id="ubuntu-20-04">
 <h4>Ubuntu 20.04<a class="headerlink" href="#ubuntu-20-04" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
-<li>Mantid uses <cite>qtpy</cite> to talk to Python bindings of Qt.  It is recommended to have the _
-environment var <cite>QT_API=pyqt5</cite> exported to the shell before building with CMake.</li>
-<li>The header and lib shipped with Anaconda (if installed) could interfere with Mantid building _
+<li><p>Mantid uses <cite>qtpy</cite> to talk to Python bindings of Qt.  It is recommended to have the _
+environment var <cite>QT_API=pyqt5</cite> exported to the shell before building with CMake.</p></li>
+<li><p>The header and lib shipped with Anaconda (if installed) could interfere with Mantid building _
 process. It is highly recommended to remove Anaconda Python from your env prior to building _
-using <cite>conda deactivate</cite>.</li>
-<li>Mantid is not yet officially supported on Ubuntu 20.04, but mantid-developer package (see Ubuntu 18.04 instructions) has been modified to support it.</li>
-<li>Install pre-commit for use in our current developer workflow</li>
+using <cite>conda deactivate</cite>.</p></li>
+<li><p>Mantid is not yet officially supported on Ubuntu 20.04, but mantid-developer package (see Ubuntu 18.04 instructions) has been modified to support it.</p></li>
+<li><p>Install pre-commit for use in our current developer workflow</p></li>
 </ul>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pip install pre-commit --user
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="osx">
+</section>
+</section>
+<section id="osx">
 <h3>OSX<a class="headerlink" href="#osx" title="Permalink to this headline">¶</a></h3>
 <p>The build environment on OS X is described here <a class="reference internal" href="../BuildingOnOSX.html#buildingonosx"><span class="std std-ref">Building on OS X</span></a>.</p>
 <p>Install pre-commit for use in our current developer workflow</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>brew install pre-commit
 </pre></div>
 </div>
-</div>
-<div class="section" id="docker">
+</section>
+<section id="docker">
 <h3>Docker<a class="headerlink" href="#docker" title="Permalink to this headline">¶</a></h3>
 <p>On Docker supported systems you may use the <a class="reference external" href="https://github.com/mantidproject/dockerfiles/tree/master/development">mantid-development</a>
 images to develop Mantid without having to configure your system as a suitable
 build environment. This will give you an out of the box working build
 environment, Python 3 (where available) and ccache.</p>
 <p>More details and instructions can be found at the GitHub link above.</p>
-</div>
-</div>
-<div class="section" id="getting-the-mantid-code">
+</section>
+</section>
+<section id="getting-the-mantid-code">
 <h2>Getting the Mantid code<a class="headerlink" href="#getting-the-mantid-code" title="Permalink to this headline">¶</a></h2>
 <p>We use <a class="reference external" href="https://git-scm.com/">Git</a> as our version control system (VCS). The master copies of our repositories are located at <a class="reference external" href="http://github.com/mantidproject">GitHub</a>. We have a number of repositories, of which the main one (the one containing all the source code for Mantid itself) is called simply <a class="reference external" href="http://github.com/mantidproject/mantid">mantid</a>.</p>
 <p>If you are not already set up with Git, you can follow these <a class="reference external" href="https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup">instructions</a>.</p>
@@ -246,8 +250,8 @@ This requires one to supply an authentication token when pushing or re-type thei
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/mantidproject/mantid.git
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
     </div>

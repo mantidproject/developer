@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Design Document Guidelines</title>
-    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Generating Code Coverage" href="CodeCoverage.html" />
@@ -87,28 +87,30 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <div class="section" id="design-document-guidelines">
+  <section id="design-document-guidelines">
 <span id="designdocumentguidelines"></span><h1>Design Document Guidelines<a class="headerlink" href="#design-document-guidelines" title="Permalink to this headline">¶</a></h1>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><a class="reference internal" href="#when-to-write-a-design-document" id="id1">When to write a design document</a><ul>
-<li><a class="reference internal" href="#amount-of-classes" id="id2">Amount of classes</a></li>
-<li><a class="reference internal" href="#amount-of-files" id="id3">Amount of files</a></li>
-<li><a class="reference internal" href="#abstractness-fraction" id="id4">Abstractness fraction</a></li>
-<li><a class="reference internal" href="#the-layer-of-intent" id="id5">The layer of intent</a></li>
-<li><a class="reference internal" href="#number-of-developers" id="id6">Number of developers</a></li>
-<li><a class="reference internal" href="#number-of-users" id="id7">Number of users</a></li>
-<li><a class="reference internal" href="#number-of-person-months" id="id8">Number of person-months</a></li>
+<li><p><a class="reference internal" href="#when-to-write-a-design-document" id="id1">When to write a design document</a></p>
+<ul>
+<li><p><a class="reference internal" href="#amount-of-classes" id="id2">Amount of classes</a></p></li>
+<li><p><a class="reference internal" href="#amount-of-files" id="id3">Amount of files</a></p></li>
+<li><p><a class="reference internal" href="#abstractness-fraction" id="id4">Abstractness fraction</a></p></li>
+<li><p><a class="reference internal" href="#the-layer-of-intent" id="id5">The layer of intent</a></p></li>
+<li><p><a class="reference internal" href="#number-of-developers" id="id6">Number of developers</a></p></li>
+<li><p><a class="reference internal" href="#number-of-users" id="id7">Number of users</a></p></li>
+<li><p><a class="reference internal" href="#number-of-person-months" id="id8">Number of person-months</a></p></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#design-document-process" id="id9">Design document process</a></li>
-<li><a class="reference internal" href="#design-document-content" id="id10">Design document content</a><ul>
-<li><a class="reference internal" href="#motivation" id="id11">Motivation</a></li>
-<li><a class="reference internal" href="#dictionary-of-terms" id="id12">Dictionary of Terms</a></li>
-<li><a class="reference internal" href="#potential-solutions" id="id13">Potential Solutions</a></li>
-<li><a class="reference internal" href="#chosen-solution" id="id14">Chosen Solution</a></li>
-<li><a class="reference internal" href="#implementation-detail" id="id15">Implementation Detail</a></li>
-<li><a class="reference internal" href="#cheat-sheet-and-checklist" id="id16">Cheat Sheet and Checklist</a></li>
+<li><p><a class="reference internal" href="#design-document-process" id="id9">Design document process</a></p></li>
+<li><p><a class="reference internal" href="#design-document-content" id="id10">Design document content</a></p>
+<ul>
+<li><p><a class="reference internal" href="#motivation" id="id11">Motivation</a></p></li>
+<li><p><a class="reference internal" href="#dictionary-of-terms" id="id12">Dictionary of Terms</a></p></li>
+<li><p><a class="reference internal" href="#potential-solutions" id="id13">Potential Solutions</a></p></li>
+<li><p><a class="reference internal" href="#chosen-solution" id="id14">Chosen Solution</a></p></li>
+<li><p><a class="reference internal" href="#implementation-detail" id="id15">Implementation Detail</a></p></li>
+<li><p><a class="reference internal" href="#cheat-sheet-and-checklist" id="id16">Cheat Sheet and Checklist</a></p></li>
 </ul>
 </li>
 </ul>
@@ -120,7 +122,7 @@ project. Writing an effective design document can be tricky in itself, as
 they often add unnecessary complexity if not done with care. These
 guidelines are to help with when and how to generate effective and simple design
 documents.</p>
-<div class="section" id="when-to-write-a-design-document">
+<section id="when-to-write-a-design-document">
 <h2><a class="toc-backref" href="#id1">When to write a design document</a><a class="headerlink" href="#when-to-write-a-design-document" title="Permalink to this headline">¶</a></h2>
 <p>This section provides some guidelines on when to produce a design document.
 Note that, it is not about when to do a design and when not.
@@ -133,68 +135,68 @@ Having the design already approved, the reviewer will not need to do a design re
 Finally, once written, the document can also serve as (or easily be turned into) a developer documentation for future reference.</p>
 <p>Not every feature requires a design document. The benefit it adds must be gauged with the time and effort that goes into it.
 Below are the main scenarios when a design document is necessary or not.</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="42%" />
-<col width="58%" />
+<col style="width: 42%" />
+<col style="width: 58%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Design Document Needed</th>
-<th class="head">Design Document Not Needed</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Design Document Needed</p></th>
+<th class="head"><p>Design Document Not Needed</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td><ul class="first last simple">
-<li>Large-scope feature - e.g. slice viewer, instrument viewer</li>
-<li>Brand-new feature - e.g. crash reporter, plot manager</li>
-<li>Core refactors - e.g. HistogramData, DetectorInfo</li>
-<li>Abstractions, APIs - e.g. simpleapi, a new workspace type</li>
-<li>Fully fledged libraries - e.g. Crystal library in the framework</li>
+<tbody>
+<tr class="row-even"><td><ul class="simple">
+<li><p>Large-scope feature - e.g. slice viewer, instrument viewer</p></li>
+<li><p>Brand-new feature - e.g. crash reporter, plot manager</p></li>
+<li><p>Core refactors - e.g. HistogramData, DetectorInfo</p></li>
+<li><p>Abstractions, APIs - e.g. simpleapi, a new workspace type</p></li>
+<li><p>Fully fledged libraries - e.g. Crystal library in the framework</p></li>
 </ul>
 </td>
-<td><ul class="first last simple">
-<li>Bug fixes of any kind</li>
-<li>Minor extensions to the current tools - e.g. adding another button in a GUI widget</li>
-<li>New functionalities to an extant algorithm – e.g. another target of unit conversion</li>
-<li>Concrete, single-class plugins - e.g. a new algorithm or a new fit function</li>
+<td><ul class="simple">
+<li><p>Bug fixes of any kind</p></li>
+<li><p>Minor extensions to the current tools - e.g. adding another button in a GUI widget</p></li>
+<li><p>New functionalities to an extant algorithm – e.g. another target of unit conversion</p></li>
+<li><p>Concrete, single-class plugins - e.g. a new algorithm or a new fit function</p></li>
 </ul>
 </td>
 </tr>
 </tbody>
 </table>
 <p>Below are a handful of measurable quantities that could help a developer decide which category the feature belongs to.</p>
-<div class="section" id="amount-of-classes">
+<section id="amount-of-classes">
 <h3><a class="toc-backref" href="#id2">Amount of classes</a><a class="headerlink" href="#amount-of-classes" title="Permalink to this headline">¶</a></h3>
 <p>Single-class plugins, such as algorithms, do not require design documents.
 In the contrary, if the number of classes is more than a dozen, the document could be relevant in order to describe the relations between them.</p>
-</div>
-<div class="section" id="amount-of-files">
+</section>
+<section id="amount-of-files">
 <h3><a class="toc-backref" href="#id3">Amount of files</a><a class="headerlink" href="#amount-of-files" title="Permalink to this headline">¶</a></h3>
 <p>If the feature intends to touch (add or edit) a single file, design document is not needed.
 If it is more than a hundred, opposite is likely the case.</p>
-</div>
-<div class="section" id="abstractness-fraction">
+</section>
+<section id="abstractness-fraction">
 <h3><a class="toc-backref" href="#id4">Abstractness fraction</a><a class="headerlink" href="#abstractness-fraction" title="Permalink to this headline">¶</a></h3>
 <p>Stability of a piece of code must be proportional to its abstractness; abstractions and APIs are hard to change, once in.
 So whenever the feature concerns creations of new abstraction layers and APIs, a wider discussion on the design is needed, hence the necessity of the document.
 A good measure for this is the intended fraction of the abstract classes (virtual or pure virtual) in the design.</p>
-</div>
-<div class="section" id="the-layer-of-intent">
+</section>
+<section id="the-layer-of-intent">
 <h3><a class="toc-backref" href="#id5">The layer of intent</a><a class="headerlink" href="#the-layer-of-intent" title="Permalink to this headline">¶</a></h3>
 <p>If the feature is deep in the framework or workbench, it is more critical to have a document.
 Features in the core layer must be carefully thought out, as many other things will depend on them.
 In the contrary, if the feature is just a plugin in the periphery (algorithm, function, GUI, script), with low risk of side effects, a design document is less important.</p>
-</div>
-<div class="section" id="number-of-developers">
+</section>
+<section id="number-of-developers">
 <h3><a class="toc-backref" href="#id6">Number of developers</a><a class="headerlink" href="#number-of-developers" title="Permalink to this headline">¶</a></h3>
 <p>If the feature is large enough that the implementation will be done in a distributed way (i.e. more than one developer), the document will ensure that the whole team has a common vision, discussed and agreed upfront.</p>
-</div>
-<div class="section" id="number-of-users">
+</section>
+<section id="number-of-users">
 <h3><a class="toc-backref" href="#id7">Number of users</a><a class="headerlink" href="#number-of-users" title="Permalink to this headline">¶</a></h3>
 <p>If the feature is generic, it will be facing a wider audience of users, hence a document and design review will make sure that the right feature is being built in the right way.
 In the contrary, if the feature is specific to one instrument or technique at one facility, producing a document is less important.</p>
-</div>
-<div class="section" id="number-of-person-months">
+</section>
+<section id="number-of-person-months">
 <h3><a class="toc-backref" href="#id8">Number of person-months</a><a class="headerlink" href="#number-of-person-months" title="Permalink to this headline">¶</a></h3>
 <p>Another metric could be the estimated effort in person-months. If the feature is estimated to take a year to develop, it is worth spending a few weeks to iterate and improve on the design.
 If the feature is less than one month of work, it’s probably an overkill.</p>
@@ -204,22 +206,22 @@ Therefore, it is advised to combine all these metrics and make a professional ju
 Nevertheless, a good intuition on when a document is useful, and when not, comes with experience.
 That’s why, whenever in doubt, get in touch with the senior members of the team - the gatekeepers.
 A good first contact could be the local team lead at your facility, or the <em>tech-qa</em> channel on slack.</p>
-</div>
-</div>
-<div class="section" id="design-document-process">
+</section>
+</section>
+<section id="design-document-process">
 <h2><a class="toc-backref" href="#id9">Design document process</a><a class="headerlink" href="#design-document-process" title="Permalink to this headline">¶</a></h2>
 <p>Once identified that for a given feature a design document is needed, the process goes as follows:</p>
 <ol class="arabic simple">
-<li>Create an item in the technical working group roadmap <a class="reference external" href="https://github.com/mantidproject/roadmap/projects/1">here</a> under the intended release.</li>
-<li>Produce the document in <a class="reference external" href="http://en.wikipedia.org/wiki/Markdown">markdown</a> format with the md extension. Once ready for review, open a PR in <a class="reference external" href="https://github.com/mantidproject/documents/tree/main/Design">here</a> or a subdirectory therein. The pull request should also include the sources (and not just the images) of any diagrams you put in the document. The diagrams can be drawn with <a class="reference external" href="https://staruml.io/">staruml</a> or similar cross-platform or WEB solution.</li>
-<li>Once the PR is ready for review, put a message with a link in <em>tech-qa</em> channel, inviting the gatekeepers or other interested parties take a look and provide comments within one calendar week. Unlike the PR for code, the design reviews can and should have more than one assigned reviewer. The period can be extended if the scope is very large.</li>
-<li>Answer the comments under the PR and iterate as long as needed.</li>
-<li>Once the comments are incorporated, in absence of outstanding conflicts, the gatekeepers will approve and merge the PR of the design, which gives a green light to start the implementation.</li>
-<li>If there is still a debate between gatekeepers, the <a class="reference internal" href="TSC.html#tsc"><span class="std std-ref">Technical Steering Committee</span></a> will set up a dedicated meeting, where the author will be invited to present and defend the design, and all the conflicts must be settled ideally via consensus, or in the absence thereof, via majority vote.</li>
-<li>Once the implementation PR is opened, the design document must be referenced in the PR message. If the feature required a design document, high is the chance that the implementation PR will require also a developer documentation.</li>
+<li><p>Create an item in the technical working group roadmap <a class="reference external" href="https://github.com/mantidproject/roadmap/projects/1">here</a> under the intended release.</p></li>
+<li><p>Produce the document in <a class="reference external" href="http://en.wikipedia.org/wiki/Markdown">markdown</a> format with the md extension. Once ready for review, open a PR in <a class="reference external" href="https://github.com/mantidproject/documents/tree/main/Design">here</a> or a subdirectory therein. The pull request should also include the sources (and not just the images) of any diagrams you put in the document. The diagrams can be drawn with <a class="reference external" href="https://staruml.io/">staruml</a> or similar cross-platform or WEB solution.</p></li>
+<li><p>Once the PR is ready for review, put a message with a link in <em>tech-qa</em> channel, inviting the gatekeepers or other interested parties take a look and provide comments within one calendar week. Unlike the PR for code, the design reviews can and should have more than one assigned reviewer. The period can be extended if the scope is very large.</p></li>
+<li><p>Answer the comments under the PR and iterate as long as needed.</p></li>
+<li><p>Once the comments are incorporated, in absence of outstanding conflicts, the gatekeepers will approve and merge the PR of the design, which gives a green light to start the implementation.</p></li>
+<li><p>If there is still a debate between gatekeepers, the <a class="reference internal" href="TSC.html#tsc"><span class="std std-ref">Technical Steering Committee</span></a> will set up a dedicated meeting, where the author will be invited to present and defend the design, and all the conflicts must be settled ideally via consensus, or in the absence thereof, via majority vote.</p></li>
+<li><p>Once the implementation PR is opened, the design document must be referenced in the PR message. If the feature required a design document, high is the chance that the implementation PR will require also a developer documentation.</p></li>
 </ol>
-</div>
-<div class="section" id="design-document-content">
+</section>
+<section id="design-document-content">
 <h2><a class="toc-backref" href="#id10">Design document content</a><a class="headerlink" href="#design-document-content" title="Permalink to this headline">¶</a></h2>
 <p>We want to avoid a prescriptive approach to design document layout.
 Design documents are about communicating design ideas, not a box ticking
@@ -227,23 +229,23 @@ exercise, so developers are expected to use their own professional
 judgement about what goes into them. We are not providing templates for
 this reason. The following are suggestions for sections that one should normally have in a design
 document:</p>
-<div class="section" id="motivation">
+<section id="motivation">
 <h3><a class="toc-backref" href="#id11">Motivation</a><a class="headerlink" href="#motivation" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Why does this design document exist?</li>
-<li>What is the overview of the problem?</li>
-<li>What use cases exist showing the present issue?</li>
-<li>How does this solve the requirements?</li>
-<li>Note that, <em>this section should be readable to non-developers</em>.</li>
+<li><p>Why does this design document exist?</p></li>
+<li><p>What is the overview of the problem?</p></li>
+<li><p>What use cases exist showing the present issue?</p></li>
+<li><p>How does this solve the requirements?</p></li>
+<li><p>Note that, <em>this section should be readable to non-developers</em>.</p></li>
 </ul>
-</div>
-<div class="section" id="dictionary-of-terms">
+</section>
+<section id="dictionary-of-terms">
 <h3><a class="toc-backref" href="#id12">Dictionary of Terms</a><a class="headerlink" href="#dictionary-of-terms" title="Permalink to this headline">¶</a></h3>
 <p>Your opportunity to pair abbreviations to longer explanations. This is
 not always necessary in documents where there are no special terms to
 explain. If you need one, a two column table would be sufficient.</p>
-</div>
-<div class="section" id="potential-solutions">
+</section>
+<section id="potential-solutions">
 <h3><a class="toc-backref" href="#id13">Potential Solutions</a><a class="headerlink" href="#potential-solutions" title="Permalink to this headline">¶</a></h3>
 <p>It is important that you consider a wide range of possible solutions,
 and don’t just put forward your favourite. Remember that the design
@@ -251,12 +253,12 @@ document is a way of avoiding mistakes before coding, so spend some time
 considering how several possibilities could be made to work.</p>
 <p>For each potential solution, you should probably consider:</p>
 <ul class="simple">
-<li>Keep it brief and high-level at this stage</li>
-<li>What would the scope of the changes be?</li>
-<li>What are the pros/cons of this solution?</li>
+<li><p>Keep it brief and high-level at this stage</p></li>
+<li><p>What would the scope of the changes be?</p></li>
+<li><p>What are the pros/cons of this solution?</p></li>
 </ul>
-</div>
-<div class="section" id="chosen-solution">
+</section>
+<section id="chosen-solution">
 <h3><a class="toc-backref" href="#id14">Chosen Solution</a><a class="headerlink" href="#chosen-solution" title="Permalink to this headline">¶</a></h3>
 <p>You should provide logical reasons why you are choosing to adopt
 solution A over solution B, C, D … As the project grows in size, we
@@ -267,34 +269,34 @@ is itself an iterative process and documents are frequently not accepted
 first time around, so be prepared to make amendments, and don’t take it
 personally if corrections are required.</p>
 <p>Another thing to include is how can one verify the design? What are the use cases that could be used to prove the viability of the solution?</p>
-</div>
-<div class="section" id="implementation-detail">
+</section>
+<section id="implementation-detail">
 <h3><a class="toc-backref" href="#id15">Implementation Detail</a><a class="headerlink" href="#implementation-detail" title="Permalink to this headline">¶</a></h3>
 <p>You could merge this section here with the one above if you wish.</p>
 <ul class="simple">
-<li>Use feedback to correct and clarify.</li>
-<li>Add more implementation detail. Diagrams are great, but you don’t
+<li><p>Use feedback to correct and clarify.</p></li>
+<li><p>Add more implementation detail. Diagrams are great, but you don’t
 have to use strict UML, and use the appropriate UML diagrams
 depending upon the solution. Diagrams should help you and readers to
 understand the solution in a simple way, not make it more
-complicated.</li>
-<li>Could someone else follow the design and implement it based on the document without talking to you?
-You may not be the one implementing this, and it’s even more likely that you will not be the only one maintaining it.</li>
+complicated.</p></li>
+<li><p>Could someone else follow the design and implement it based on the document without talking to you?
+You may not be the one implementing this, and it’s even more likely that you will not be the only one maintaining it.</p></li>
 </ul>
-</div>
-<div class="section" id="cheat-sheet-and-checklist">
+</section>
+<section id="cheat-sheet-and-checklist">
 <h3><a class="toc-backref" href="#id16">Cheat Sheet and Checklist</a><a class="headerlink" href="#cheat-sheet-and-checklist" title="Permalink to this headline">¶</a></h3>
 <p>The guidelines above do not need to be strictly followed, but the following are necessary:</p>
 <ol class="arabic simple">
-<li>Can non-experts understand the motivation for these changes?</li>
-<li>Does your design document link from requirements through the implementation details in a traceable manner?</li>
-<li>Can someone else implement this?</li>
-<li>What use cases verify that this design works?</li>
-<li>Has the <a class="reference internal" href="TSC.html#tsc"><span class="std std-ref">Technical Steering Committee</span></a> approved it?</li>
+<li><p>Can non-experts understand the motivation for these changes?</p></li>
+<li><p>Does your design document link from requirements through the implementation details in a traceable manner?</p></li>
+<li><p>Can someone else implement this?</p></li>
+<li><p>What use cases verify that this design works?</p></li>
+<li><p>Has the <a class="reference internal" href="TSC.html#tsc"><span class="std std-ref">Technical Steering Committee</span></a> approved it?</p></li>
 </ol>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
     </div>

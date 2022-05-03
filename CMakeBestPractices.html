@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>CMake Guidelines</title>
-    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Standards" href="Standards/index.html" />
@@ -87,29 +87,29 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <div class="section" id="cmake-guidelines">
+  <section id="cmake-guidelines">
 <span id="cmakebestpractices"></span><h1>CMake Guidelines<a class="headerlink" href="#cmake-guidelines" title="Permalink to this headline">¶</a></h1>
 <p>This document outlines a few CMake guidelines which should be considered when modifying Mantid’s CMake code.
 A brief introduction to modern CMake can be found at <a class="reference external" href="https://hsf-training.github.io/hsf-training-cmake-webpage/">https://hsf-training.github.io/hsf-training-cmake-webpage/</a>.
 The official CMake tutorial series are also very good <a class="reference external" href="https://cmake.org/cmake/help/latest/guide/tutorial/index.html">https://cmake.org/cmake/help/latest/guide/tutorial/index.html</a></p>
-</div>
-<div class="section" id="creating-a-new-cmake-library">
+</section>
+<section id="creating-a-new-cmake-library">
 <h1>Creating a new CMake Library<a class="headerlink" href="#creating-a-new-cmake-library" title="Permalink to this headline">¶</a></h1>
 <p>If you are adding a new CMake library, for example to the framework, there are a couple of steps you need to take.
 Firstly, lets consider a new framework target <cite>Fitting</cite>, which is a shared library which can be created with:</p>
-<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">add_library</span><span class="p">(</span><span class="s">Fitting</span> <span class="s">fitting.cpp</span> <span class="s">fitting_1.cpp</span> <span class="s">fitting.h</span> <span class="s">fitting_1.h</span><span class="p">)</span>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">add_library</span><span class="p">(</span><span class="s">Fitting</span><span class="w"> </span><span class="s">fitting.cpp</span><span class="w"> </span><span class="s">fitting_1.cpp</span><span class="w"> </span><span class="s">fitting.h</span><span class="w"> </span><span class="s">fitting_1.h</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>While not required, it is typically good practice to include the headers in the <code class="docutils literal notranslate"><span class="pre">add_library</span></code> call as it helps IDEs such as Visual Studio find the headers associated with the library.</p>
 <p>This new target, <code class="docutils literal notranslate"><span class="pre">Fitting</span></code>, will likely have a set of dependencies, these should be included using the <code class="docutils literal notranslate"><span class="pre">target_link_libraries</span></code> function:</p>
 <div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">&lt;target&gt;</span>
-                    <span class="s">&lt;PRIVATE|PUBLIC|INTERFACE&gt;</span> <span class="s">&lt;item&gt;...</span>
-                    <span class="s">[&lt;PRIVATE|PUBLIC|INTERFACE&gt;</span> <span class="s">&lt;item&gt;...]...</span><span class="p">)</span>
+<span class="w">                    </span><span class="s">&lt;PRIVATE|PUBLIC|INTERFACE&gt;</span><span class="w"> </span><span class="s">&lt;item&gt;...</span>
+<span class="w">                    </span><span class="s">[&lt;PRIVATE|PUBLIC|INTERFACE&gt;</span><span class="w"> </span><span class="s">&lt;item&gt;...]...</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Whether or not a dependency is PUBLIC or PRIVATE primarily depends on whether the code has been included in a public header. For example, if we had used Boost’s date_time library in our header files for the Fitting target,
 we would add Boost::date_time as a PUBLIC dependency of our target.</p>
-<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">Fitting</span> <span class="s">PUBLIC</span> <span class="s">Boost::date_time</span><span class="p">)</span>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">Fitting</span><span class="w"> </span><span class="s">PUBLIC</span><span class="w"> </span><span class="s">Boost::date_time</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Otherwise, if Boost date_time was only present in the source files we could add it as a PRIVATE dependency.</p>
@@ -117,8 +117,8 @@ we would add Boost::date_time as a PUBLIC dependency of our target.</p>
 <p>If you find yourself doing something like <code class="docutils literal notranslate"><span class="pre">target_include_directories(Fitting</span> <span class="pre">PUBLIC</span> <span class="pre">${Boost_include_dirs})</span></code> you’ve probably done something wrong. This goes against the modern CMake target approach. The only thing target_include_directories is needed for is
 to tell users of your Fitting library where it can find its headers:</p>
 <div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">target_include_directories</span><span class="p">(</span>
-            <span class="s">Fitting</span> <span class="s">PUBLIC</span>
-            <span class="o">$&lt;</span><span class="nv">BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc</span><span class="o">&gt;</span>
+<span class="w">            </span><span class="s">Fitting</span><span class="w"> </span><span class="s">PUBLIC</span>
+<span class="w">            </span><span class="o">$&lt;</span><span class="nv">BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc</span><span class="o">&gt;</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -126,72 +126,72 @@ to tell users of your Fitting library where it can find its headers:</p>
 <p>Tips:</p>
 <blockquote>
 <div><ul class="simple">
-<li>Please use this target based approach. Do not link the CMake target to variables such as <code class="docutils literal notranslate"><span class="pre">${Boost_LIBRARIES}</span></code>.</li>
-<li>Consider whether the dependencies are PUBLIC or PRIVATE. If you wrongly specify things as public it adds unnecessary dependencies to users of your library.</li>
-<li>Please rethink if you are using <code class="docutils literal notranslate"><span class="pre">target_include_directories</span></code> to include headers from an external library, as the <code class="docutils literal notranslate"><span class="pre">target_link_libraries</span></code> should have already resolved those requirements.</li>
+<li><p>Please use this target based approach. Do not link the CMake target to variables such as <code class="docutils literal notranslate"><span class="pre">${Boost_LIBRARIES}</span></code>.</p></li>
+<li><p>Consider whether the dependencies are PUBLIC or PRIVATE. If you wrongly specify things as public it adds unnecessary dependencies to users of your library.</p></li>
+<li><p>Please rethink if you are using <code class="docutils literal notranslate"><span class="pre">target_include_directories</span></code> to include headers from an external library, as the <code class="docutils literal notranslate"><span class="pre">target_link_libraries</span></code> should have already resolved those requirements.</p></li>
 </ul>
 </div></blockquote>
-</div>
-<div class="section" id="finding-a-new-cmake-dependency">
+</section>
+<section id="finding-a-new-cmake-dependency">
 <h1>Finding a new CMake dependency<a class="headerlink" href="#finding-a-new-cmake-dependency" title="Permalink to this headline">¶</a></h1>
 <p>If you are adding a new CMake dependency you’ll need to find it using the find_package(…) CMake functions. This looks for the library using two mechanisms:</p>
 <ol class="arabic simple">
-<li>Uses Find(…).cmake either from the CMake inbuilt modules, or using our own ones in the buildconfig/CMake folder.</li>
-<li>Uses CMake config files which are optionally installed with the library.</li>
+<li><p>Uses Find(…).cmake either from the CMake inbuilt modules, or using our own ones in the buildconfig/CMake folder.</p></li>
+<li><p>Uses CMake config files which are optionally installed with the library.</p></li>
 </ol>
 <p>If neither are working, you’ll likely need to create your own <code class="docutils literal notranslate"><span class="pre">Find(...).cmake</span></code> file. Examples of this include our own <code class="docutils literal notranslate"><span class="pre">FindJsoncpp.cmake</span></code> and <code class="docutils literal notranslate"><span class="pre">FindPoco.cmake</span></code> files. The primary steps in this file are:</p>
 <ol class="arabic simple">
-<li>Use find_library(MY_LIBRARY NAMES name_of_my_library) to search CMake paths for <code class="docutils literal notranslate"><span class="pre">name_of_my_library</span></code></li>
-<li>Use find_path(MY_LIBRARY_INCLUDE_DIR header.h)</li>
-<li>Finally you should create CMake targets based on these libraries using the IMPORTED specifier.</li>
+<li><p>Use find_library(MY_LIBRARY NAMES name_of_my_library) to search CMake paths for <code class="docutils literal notranslate"><span class="pre">name_of_my_library</span></code></p></li>
+<li><p>Use find_path(MY_LIBRARY_INCLUDE_DIR header.h)</p></li>
+<li><p>Finally you should create CMake targets based on these libraries using the IMPORTED specifier.</p></li>
 </ol>
-<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">add_library</span><span class="p">(</span><span class="s">MyLibrary::mylibrary</span> <span class="s">UNKNOWN</span> <span class="s">IMPORTED</span><span class="p">)</span>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">add_library</span><span class="p">(</span><span class="s">MyLibrary::mylibrary</span><span class="w"> </span><span class="s">UNKNOWN</span><span class="w"> </span><span class="s">IMPORTED</span><span class="p">)</span>
 <span class="nb">set_target_properties</span><span class="p">(</span>
-  <span class="s">MyLibrary::mylibrary</span>
-  <span class="s">PROPERTIES</span> <span class="s">IMPORTED_LOCATION</span> <span class="s2">&quot;${MY_LIBRARY NAMES}&quot;</span>
-             <span class="s">INTERFACE_INCLUDE_DIRECTORIES</span> <span class="s2">&quot;${MY_LIBRARY_INCLUDE_DIR}&quot;</span>
-             <span class="s">IMPORTED_LINK_INTERFACE_LANGUAGES</span> <span class="s2">&quot;CXX&quot;</span>
+<span class="w">  </span><span class="s">MyLibrary::mylibrary</span>
+<span class="w">  </span><span class="s">PROPERTIES</span><span class="w"> </span><span class="s">IMPORTED_LOCATION</span><span class="w"> </span><span class="s2">&quot;${MY_LIBRARY NAMES}&quot;</span>
+<span class="w">             </span><span class="s">INTERFACE_INCLUDE_DIRECTORIES</span><span class="w"> </span><span class="s2">&quot;${MY_LIBRARY_INCLUDE_DIR}&quot;</span>
+<span class="w">             </span><span class="s">IMPORTED_LINK_INTERFACE_LANGUAGES</span><span class="w"> </span><span class="s2">&quot;CXX&quot;</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 <p>After you’ve created this file, you can find mylibrary and its target <code class="docutils literal notranslate"><span class="pre">MyLibrary::mylibrary</span></code> using:</p>
-<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">find_package</span><span class="p">(</span><span class="s">MyLibrary</span> <span class="s">REQUIRED</span><span class="p">)</span>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">find_package</span><span class="p">(</span><span class="s">MyLibrary</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>NOTE: The <code class="docutils literal notranslate"><span class="pre">UNKNOWN</span></code> specifier in add_library is useful on Windows as it means we aren’t required to point it to the .lib export libraries. The find_library CMake function will not find these. Usage of Unknown is common place in CMake finders because of this.</p>
-</div>
-<div class="section" id="introducing-a-new-cmake-configurable-variable">
+</section>
+<section id="introducing-a-new-cmake-configurable-variable">
 <h1>Introducing a new CMake configurable variable<a class="headerlink" href="#introducing-a-new-cmake-configurable-variable" title="Permalink to this headline">¶</a></h1>
 <p>If you are introducing a new configuration variable for CMake, e.g to conditionally add a new feature, PLEASE cache the variable. If you don’t cache it, you won’t be able to set it on the command line. Example:</p>
 <p>If you add a new feature and control it with a flag</p>
-<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="p">(</span><span class="s">MY_NEW_FEATURE</span> <span class="s">OFF</span><span class="p">)</span>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="p">(</span><span class="s">MY_NEW_FEATURE</span><span class="w"> </span><span class="s">OFF</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>The only way you can change it to ON is to edit it within CMake. If you cache the variable you can set it on the command line</p>
-<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="p">(</span><span class="s">MY_NEW_FEATURE</span> <span class="s">OFF</span> <span class="s">CACHE</span> <span class="s">BOOL</span> <span class="s2">&quot;Use my new feature&quot;</span><span class="p">)</span>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="p">(</span><span class="s">MY_NEW_FEATURE</span><span class="w"> </span><span class="s">OFF</span><span class="w"> </span><span class="s">CACHE</span><span class="w"> </span><span class="s">BOOL</span><span class="w"> </span><span class="s2">&quot;Use my new feature&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cmake .. -DMY_NEW_FEATURE<span class="o">=</span>ON
 </pre></div>
 </div>
-</div>
-<div class="section" id="cmake-framework-exports">
+</section>
+<section id="cmake-framework-exports">
 <h1>CMake framework exports<a class="headerlink" href="#cmake-framework-exports" title="Permalink to this headline">¶</a></h1>
 <p>With the move to conda, we have created a CMake export target for the Framework libraries. If you add a new Framework library, or dependency there are a couple of things you need to consider.</p>
 <ol class="arabic simple">
-<li>When you add a new Framework library, alias it using the namespace Mantid:: - This means when we link to Mantid::NewTarget it can either link to our inbuilt library, or one on our system. This ensures we can have a standalone mantidqt build.</li>
+<li><p>When you add a new Framework library, alias it using the namespace Mantid:: - This means when we link to Mantid::NewTarget it can either link to our inbuilt library, or one on our system. This ensures we can have a standalone mantidqt build.</p></li>
 </ol>
-<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">add_library</span><span class="p">(</span><span class="s">NewTarget</span> <span class="o">${</span><span class="nv">SRC_FILES</span><span class="o">}</span> <span class="o">${</span><span class="nv">INC_FILES</span><span class="o">}</span><span class="p">)</span>
-<span class="nb">add_library</span><span class="p">(</span><span class="s">Mantid::NewTarget</span> <span class="s">ALIAS</span> <span class="s">NewTarget</span><span class="p">)</span>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">add_library</span><span class="p">(</span><span class="s">NewTarget</span><span class="w"> </span><span class="o">${</span><span class="nv">SRC_FILES</span><span class="o">}</span><span class="w"> </span><span class="o">${</span><span class="nv">INC_FILES</span><span class="o">}</span><span class="p">)</span>
+<span class="nb">add_library</span><span class="p">(</span><span class="s">Mantid::NewTarget</span><span class="w"> </span><span class="s">ALIAS</span><span class="w"> </span><span class="s">NewTarget</span><span class="p">)</span>
 </pre></div>
 </div>
 <ol class="arabic simple" start="2">
-<li>Add the install commands which ensures the target is exported.</li>
+<li><p>Add the install commands which ensures the target is exported.</p></li>
 </ol>
 <ol class="arabic simple" start="3">
-<li>Add the new target to the MODULES variable in <code class="docutils literal notranslate"><span class="pre">MantidFrameworkConfig.cmake.in</span></code>. If it added new dependencies also add the relevant <code class="docutils literal notranslate"><span class="pre">find_dependency</span></code> calls.</li>
+<li><p>Add the new target to the MODULES variable in <code class="docutils literal notranslate"><span class="pre">MantidFrameworkConfig.cmake.in</span></code>. If it added new dependencies also add the relevant <code class="docutils literal notranslate"><span class="pre">find_dependency</span></code> calls.</p></li>
 </ol>
-</div>
+</section>
 
 
     </div>

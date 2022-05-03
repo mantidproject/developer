@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>ISIS SANS Reduction Back-end</title>
-    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Load Algorithm Hook" href="LoadAlgorithmHook.html" />
@@ -87,80 +87,90 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <div class="section" id="isis-sans-reduction-back-end">
+  <section id="isis-sans-reduction-back-end">
 <span id="isissansreductionbackend"></span><h1>ISIS SANS Reduction Back-end<a class="headerlink" href="#isis-sans-reduction-back-end" title="Permalink to this headline">¶</a></h1>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><a class="reference internal" href="#what-is-calculated-in-a-sans-reduction" id="id1">What is calculated in a SANS reduction?</a></li>
-<li><a class="reference internal" href="#general" id="id2">General</a><ul>
-<li><a class="reference internal" href="#introduction-and-motivation" id="id3">Introduction and Motivation</a></li>
-<li><a class="reference internal" href="#overview" id="id4">Overview</a></li>
+<li><p><a class="reference internal" href="#what-is-calculated-in-a-sans-reduction" id="id1">What is calculated in a SANS reduction?</a></p></li>
+<li><p><a class="reference internal" href="#general" id="id2">General</a></p>
+<ul>
+<li><p><a class="reference internal" href="#introduction-and-motivation" id="id3">Introduction and Motivation</a></p></li>
+<li><p><a class="reference internal" href="#overview" id="id4">Overview</a></p></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#sansstate" id="id5"><em>SANSState</em></a><ul>
-<li><a class="reference internal" href="#motivation" id="id6">Motivation</a></li>
-<li><a class="reference internal" href="#components" id="id7">Components</a><ul>
-<li><a class="reference internal" href="#state-base-py" id="id8"><em>state_base.py</em></a></li>
-<li><a class="reference internal" href="#individual-states" id="id9">Individual states</a><ul>
-<li><a class="reference internal" href="#state-py" id="id10"><em>state.py</em></a></li>
-<li><a class="reference internal" href="#data-py" id="id11"><em>data.py</em></a></li>
-<li><a class="reference internal" href="#move-py" id="id12"><em>move.py</em></a></li>
-<li><a class="reference internal" href="#reduction-mode-py" id="id13"><em>reduction_mode.py</em></a></li>
-<li><a class="reference internal" href="#slice-py" id="id14"><em>slice.py</em></a></li>
-<li><a class="reference internal" href="#mask-py" id="id15"><em>mask.py</em></a></li>
-<li><a class="reference internal" href="#wavelength-py" id="id16"><em>wavelength.py</em></a></li>
-<li><a class="reference internal" href="#save-py" id="id17"><em>save.py</em></a></li>
-<li><a class="reference internal" href="#scale-py" id="id18"><em>scale.py</em></a></li>
-<li><a class="reference internal" href="#adjustment-py" id="id19"><em>adjustment.py</em></a></li>
-<li><a class="reference internal" href="#convert-to-q-py" id="id20"><em>convert_to_q.py</em></a></li>
-<li><a class="reference internal" href="#compatibility-py" id="id21"><em>compatibility.py</em></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#state-generation" id="id22">State Generation</a><ul>
-<li><a class="reference internal" href="#user-input-dictionary" id="id23">User input dictionary</a></li>
-<li><a class="reference internal" href="#builders" id="id24">Builders</a><ul>
-<li><a class="reference internal" href="#selection-of-the-builders" id="id25">Selection of the builders</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#directors" id="id26">Directors</a><ul>
-<li><a class="reference internal" href="#state-director-py" id="id27"><em>state_director.py</em></a></li>
-<li><a class="reference internal" href="#user-file-input" id="id28">User file input</a></li>
-<li><a class="reference internal" href="#director-for-isiscommandinterface-cli" id="id29">Director for <em>ISISCommandInterface</em> (CLI)</a></li>
-<li><a class="reference internal" href="#usage-via-gui" id="id30">Usage via GUI</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#other-useful-information" id="id31">Other useful information</a><ul>
-<li><a class="reference internal" href="#enum-py" id="id32"><em>enum.py</em></a></li>
+<li><p><a class="reference internal" href="#sansstate" id="id5"><em>SANSState</em></a></p>
+<ul>
+<li><p><a class="reference internal" href="#motivation" id="id6">Motivation</a></p></li>
+<li><p><a class="reference internal" href="#components" id="id7">Components</a></p>
+<ul>
+<li><p><a class="reference internal" href="#state-base-py" id="id8"><em>state_base.py</em></a></p></li>
+<li><p><a class="reference internal" href="#individual-states" id="id9">Individual states</a></p>
+<ul>
+<li><p><a class="reference internal" href="#state-py" id="id10"><em>state.py</em></a></p></li>
+<li><p><a class="reference internal" href="#data-py" id="id11"><em>data.py</em></a></p></li>
+<li><p><a class="reference internal" href="#move-py" id="id12"><em>move.py</em></a></p></li>
+<li><p><a class="reference internal" href="#reduction-mode-py" id="id13"><em>reduction_mode.py</em></a></p></li>
+<li><p><a class="reference internal" href="#slice-py" id="id14"><em>slice.py</em></a></p></li>
+<li><p><a class="reference internal" href="#mask-py" id="id15"><em>mask.py</em></a></p></li>
+<li><p><a class="reference internal" href="#wavelength-py" id="id16"><em>wavelength.py</em></a></p></li>
+<li><p><a class="reference internal" href="#save-py" id="id17"><em>save.py</em></a></p></li>
+<li><p><a class="reference internal" href="#scale-py" id="id18"><em>scale.py</em></a></p></li>
+<li><p><a class="reference internal" href="#adjustment-py" id="id19"><em>adjustment.py</em></a></p></li>
+<li><p><a class="reference internal" href="#convert-to-q-py" id="id20"><em>convert_to_q.py</em></a></p></li>
+<li><p><a class="reference internal" href="#compatibility-py" id="id21"><em>compatibility.py</em></a></p></li>
 </ul>
 </li>
 </ul>
 </li>
+<li><p><a class="reference internal" href="#state-generation" id="id22">State Generation</a></p>
+<ul>
+<li><p><a class="reference internal" href="#user-input-dictionary" id="id23">User input dictionary</a></p></li>
+<li><p><a class="reference internal" href="#builders" id="id24">Builders</a></p>
+<ul>
+<li><p><a class="reference internal" href="#selection-of-the-builders" id="id25">Selection of the builders</a></p></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#work-flow-algorithms-for-individual-reduction-steps" id="id33">Work-flow algorithms for individual reduction steps</a><ul>
-<li><a class="reference internal" href="#calculate-sans-transmission" id="id34"><em>Calculate SANS Transmission</em></a></li>
-<li><a class="reference internal" href="#conversion-to-q" id="id35">Conversion to Q</a></li>
-<li><a class="reference internal" href="#sansconverttowavelengthandrebin" id="id36"><em>SANSConvertToWavelengthAndRebin</em></a></li>
-<li><a class="reference internal" href="#create-sans-wavelength-and-pixel-adjustment" id="id37"><em>Create SANS Wavelength and Pixel Adjustment</em></a></li>
-<li><a class="reference internal" href="#sansload" id="id38"><em>SANSLoad</em></a></li>
-<li><a class="reference internal" href="#workspace-masking" id="id39"><em>Workspace Masking</em></a></li>
-<li><a class="reference internal" href="#moveinstrumentcomponent-and-rotateinstrumentcomponent" id="id40"><em>MoveInstrumentComponent</em> and <em>RotateInstrumentComponent</em></a></li>
-<li><a class="reference internal" href="#normalize-to-sans-monitor" id="id41"><em>Normalize To SANS Monitor</em></a></li>
-<li><a class="reference internal" href="#sanssave" id="id42"><em>SANSSave</em></a></li>
-<li><a class="reference internal" href="#slice-sans-event" id="id43"><em>Slice SANS Event</em></a></li>
+<li><p><a class="reference internal" href="#directors" id="id26">Directors</a></p>
+<ul>
+<li><p><a class="reference internal" href="#state-director-py" id="id27"><em>state_director.py</em></a></p></li>
+<li><p><a class="reference internal" href="#user-file-input" id="id28">User file input</a></p></li>
+<li><p><a class="reference internal" href="#director-for-isiscommandinterface-cli" id="id29">Director for <em>ISISCommandInterface</em> (CLI)</a></p></li>
+<li><p><a class="reference internal" href="#usage-via-gui" id="id30">Usage via GUI</a></p></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#work-flow-algorithm-orchestration" id="id44">Work-flow algorithm orchestration</a><ul>
-<li><a class="reference internal" href="#sansbatchreduction" id="id45"><em>SANSBatchReduction</em></a></li>
-<li><a class="reference internal" href="#sanssinglereduction" id="id46"><em>SANSSingleReduction</em></a></li>
-<li><a class="reference internal" href="#sansreductioncore" id="id47"><em>SANSReductionCore</em></a></li>
+<li><p><a class="reference internal" href="#other-useful-information" id="id31">Other useful information</a></p>
+<ul>
+<li><p><a class="reference internal" href="#enum-py" id="id32"><em>enum.py</em></a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#work-flow-algorithms-for-individual-reduction-steps" id="id33">Work-flow algorithms for individual reduction steps</a></p>
+<ul>
+<li><p><a class="reference internal" href="#calculate-sans-transmission" id="id34"><em>Calculate SANS Transmission</em></a></p></li>
+<li><p><a class="reference internal" href="#conversion-to-q" id="id35">Conversion to Q</a></p></li>
+<li><p><a class="reference internal" href="#sansconverttowavelengthandrebin" id="id36"><em>SANSConvertToWavelengthAndRebin</em></a></p></li>
+<li><p><a class="reference internal" href="#create-sans-wavelength-and-pixel-adjustment" id="id37"><em>Create SANS Wavelength and Pixel Adjustment</em></a></p></li>
+<li><p><a class="reference internal" href="#sansload" id="id38"><em>SANSLoad</em></a></p></li>
+<li><p><a class="reference internal" href="#workspace-masking" id="id39"><em>Workspace Masking</em></a></p></li>
+<li><p><a class="reference internal" href="#moveinstrumentcomponent-and-rotateinstrumentcomponent" id="id40"><em>MoveInstrumentComponent</em> and <em>RotateInstrumentComponent</em></a></p></li>
+<li><p><a class="reference internal" href="#normalize-to-sans-monitor" id="id41"><em>Normalize To SANS Monitor</em></a></p></li>
+<li><p><a class="reference internal" href="#sanssave" id="id42"><em>SANSSave</em></a></p></li>
+<li><p><a class="reference internal" href="#slice-sans-event" id="id43"><em>Slice SANS Event</em></a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#work-flow-algorithm-orchestration" id="id44">Work-flow algorithm orchestration</a></p>
+<ul>
+<li><p><a class="reference internal" href="#sansbatchreduction" id="id45"><em>SANSBatchReduction</em></a></p></li>
+<li><p><a class="reference internal" href="#sanssinglereduction" id="id46"><em>SANSSingleReduction</em></a></p></li>
+<li><p><a class="reference internal" href="#sansreductioncore" id="id47"><em>SANSReductionCore</em></a></p></li>
 </ul>
 </li>
 </ul>
 </div>
-<div class="section" id="what-is-calculated-in-a-sans-reduction">
+<section id="what-is-calculated-in-a-sans-reduction">
 <h2><a class="toc-backref" href="#id1">What is calculated in a SANS reduction?</a><a class="headerlink" href="#what-is-calculated-in-a-sans-reduction" title="Permalink to this headline">¶</a></h2>
 <p>This section gives a summary of what is calculated during the ISIS SANS reduction
 without going into implementation details. This is done in some sections below.</p>
@@ -168,34 +178,34 @@ without going into implementation details. This is done in some sections below.<
 Richard Heenan et al, <em>J. Appl. Cryst.</em> (1997), pages 1140-1147. The coherent
 macroscopic cross-section is calculated at ISIS using :</p>
 <div class="math">
-<p><img src="_images/math/dae519eab9ad3eefede7a1c759a1bfdd5d9d8eb1.png" alt="\frac{\partial \Sigma}{\partial \Omega} (Q) = \frac{Scale}{V_{SAM}} \frac{\sum_{R,\lambda \subset Q}C(R,\lambda)}{\sum_{R,\lambda \subset Q}M(\lambda)T(\lambda)D(\lambda)F(R)\Omega (R) Cor(R,\lambda)}"/></p>
+<p><span class="math">\frac{\partial \Sigma}{\partial \Omega} (Q) = \frac{Scale}{V_{SAM}} \frac{\sum_{R,\lambda \subset Q}C(R,\lambda)}{\sum_{R,\lambda \subset Q}M(\lambda)T(\lambda)D(\lambda)F(R)\Omega (R) Cor(R,\lambda)}</span></p>
 </div><p>This equation is aiming to do the best job at returning from the measured SANS
-data the quantity of interest, the cross-section, <img class="math" src="_images/math/bb30a2c18927c478827650ff6eac16258f601631.png" alt="\frac{\partial \Sigma}{\partial \Omega}"/>,
-which is an absolute scattering probability, in units of <img class="math" src="_images/math/4dd3dca88983cf74808786e8d81efcf520af9801.png" alt="cm_{-1}"/>. The <img class="math" src="_images/math/078349089bbbbf41c36a271965a2552f9b9158e8.png" alt="Scale"/>
+data the quantity of interest, the cross-section, <span class="math">\frac{\partial \Sigma}{\partial \Omega}</span>,
+which is an absolute scattering probability, in units of <span class="math">cm_{-1}</span>. The <span class="math">Scale</span>
 factor in the equation above fine tunes the cross-section to give the correct
 value (usually based on a fit to scattering from a standard polymer sample).
-The value of <img class="math" src="_images/math/078349089bbbbf41c36a271965a2552f9b9158e8.png" alt="Scale"/>  varies with the instrument set up, and with how the
-units and normalisation for the other terms are chosen. <img class="math" src="_images/math/5e4e02f0b910b7d80c80dcb41318970eee4db207.png" alt="C(R,\lambda)"/>
-are the observed counts at radius vector <img class="math" src="_images/math/a00254b18ffa992f0ef19f6e6e095b83c8f85e94.png" alt="R"/> from the diffractometer axis
-and wavelength <img class="math" src="_images/math/76f1d8ace30435987c01a00ca53a71cba1f40e6c.png" alt="\lambda"/>. <img class="math" src="_images/math/4706e177e9d5fafae0b4611b5333fe6dcd5718a2.png" alt="V_{SAM}"/> is the volume of the sample.
-<img class="math" src="_images/math/92a3d323aea52aede95af29aec5a52c0dd51e6d0.png" alt="M(\lambda)"/> is an incident monitor spectrum. <img class="math" src="_images/math/3439ed4fa55173a43cf8bab85dc5af23da738962.png" alt="D(\lambda)"/> contains
+The value of <span class="math">Scale</span>  varies with the instrument set up, and with how the
+units and normalisation for the other terms are chosen. <span class="math">C(R,\lambda)</span>
+are the observed counts at radius vector <span class="math">R</span> from the diffractometer axis
+and wavelength <span class="math">\lambda</span>. <span class="math">V_{SAM}</span> is the volume of the sample.
+<span class="math">M(\lambda)</span> is an incident monitor spectrum. <span class="math">D(\lambda)</span> contains
 the relative efficiency of the main detector compared to the incident monitor.
-<img class="math" src="_images/math/3439ed4fa55173a43cf8bab85dc5af23da738962.png" alt="D(\lambda)"/> is initially determined experimentally, but later subjected
+<span class="math">D(\lambda)</span> is initially determined experimentally, but later subjected
 to empirical adjustments. In reality the detector efficiencies implied in
-<img class="math" src="_images/math/3439ed4fa55173a43cf8bab85dc5af23da738962.png" alt="D(\lambda)"/> are also pixel dependent. This variation is in part
-accounted for by <img class="math" src="_images/math/645f1ae6a5a27cfd61971efab2f86c4eadfe4bf4.png" alt="F(R)"/>, which is called the flat cell or flood source
-calibration file. <img class="math" src="_images/math/645f1ae6a5a27cfd61971efab2f86c4eadfe4bf4.png" alt="F(R)"/> is also determined experimentally, and aims to
+<span class="math">D(\lambda)</span> are also pixel dependent. This variation is in part
+accounted for by <span class="math">F(R)</span>, which is called the flat cell or flood source
+calibration file. <span class="math">F(R)</span> is also determined experimentally, and aims to
 contain information about the relative efficiency of individual detector pixels.
 It is normalised to values close to 1 in order not to change the overall scaling
 of the equation. The experimental flood source data are divided by detector pixel
-solid angles at their measurement set up to give <img class="math" src="_images/math/645f1ae6a5a27cfd61971efab2f86c4eadfe4bf4.png" alt="F(R)"/>.
+solid angles at their measurement set up to give <span class="math">F(R)</span>.
 Detector pixel solid angles are calculated for the instrument geometry at the
-time of the SANS experiment. <img class="math" src="_images/math/a199056a0ac0922fac272ce587166972617b1e76.png" alt="Cor(R,\lambda)"/> optionally takes into account
+time of the SANS experiment. <span class="math">Cor(R,\lambda)</span> optionally takes into account
 any corrections that cannot be described as only pixel dependent or only
 wavelength dependent. One such example is for the angle dependence of
-transmissions, <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/SANSWideAngleCorrection-v1.html#algm-sanswideanglecorrection" title="(in MantidProject v6.1)"><span class="xref std std-ref">SANSWideAngleCorrection</span></a>. <img class="math" src="_images/math/bb4243d759a34a4bbf86da287bd8544dee05de58.png" alt="T(\lambda)"/>
+transmissions, <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/SANSWideAngleCorrection-v1.html#algm-sanswideanglecorrection" title="(in MantidProject v6.3)"><span class="xref std std-ref">SANSWideAngleCorrection</span></a>. <span class="math">T(\lambda)</span>
 is the transmission, which measures the ratio of neutron counts after the sample,
-divided by the neutron counts before the sample. <img class="math" src="_images/math/bb4243d759a34a4bbf86da287bd8544dee05de58.png" alt="T(\lambda)"/> is calculated
+divided by the neutron counts before the sample. <span class="math">T(\lambda)</span> is calculated
 from a “transmission run” and a “direct run”. There are at least three ways to
 measure transmission: using a monitor that drops in after the sample position,
 a monitor on the main beam stop or by attenuating the beam, removing the beam stop,
@@ -216,10 +226,10 @@ be simply an empty beam run.) The full data reduction is performed separately fo
 plus <em>Can</em> cross-section, to obtain the cross-section for the <em>Sample</em> alone.
 (In practise there can be some excluded volume and other annoying effects where
 hydrogenous solvents are involved.)</p>
-</div>
-<div class="section" id="general">
+</section>
+<section id="general">
 <h2><a class="toc-backref" href="#id2">General</a><a class="headerlink" href="#general" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="introduction-and-motivation">
+<section id="introduction-and-motivation">
 <h3><a class="toc-backref" href="#id3">Introduction and Motivation</a><a class="headerlink" href="#introduction-and-motivation" title="Permalink to this headline">¶</a></h3>
 <p>The ISIS SANS v2 reduction back-end is a more modern and updated version of the
 original ISIS SANS reduction back-end which has been in use for almost 10 years.</p>
@@ -237,20 +247,20 @@ for extending them to other facilities.</p>
 and focusses on robustness, maintainability and performance. The main way to
 achieve this is to use a simple state object which stores the reduction-relevant
 information centrally.</p>
-</div>
-<div class="section" id="overview">
+</section>
+<section id="overview">
 <h3><a class="toc-backref" href="#id4">Overview</a><a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h3>
 <p>The reduction back-end consists of three components:</p>
 <ul class="simple">
-<li>the <em>SANSState</em> approach to centrally store the state of the reduction</li>
-<li>a set of work-flow algorithms which perform the individual reduction steps</li>
-<li>algorithms which orchestrate the work-flow algorithms.</li>
+<li><p>the <em>SANSState</em> approach to centrally store the state of the reduction</p></li>
+<li><p>a set of work-flow algorithms which perform the individual reduction steps</p></li>
+<li><p>algorithms which orchestrate the work-flow algorithms.</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="sansstate">
+</section>
+</section>
+<section id="sansstate">
 <h2><a class="toc-backref" href="#id5"><em>SANSState</em></a><a class="headerlink" href="#sansstate" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="motivation">
+<section id="motivation">
 <h3><a class="toc-backref" href="#id6">Motivation</a><a class="headerlink" href="#motivation" title="Permalink to this headline">¶</a></h3>
 <p>As mentioned above, the amount of parameters that can be set by the user makes
 the SANS reduction one of the more complex ones in the Mantid ecosystem. Previous
@@ -263,27 +273,27 @@ which stores the reduction-relevant information centrally.
 This <em>SANSState</em> approach is the corner stone of the new design.</p>
 <p>The <em>SANSState</em> is:</p>
 <ul class="simple">
-<li>self-validating</li>
-<li><dl class="first docutils">
-<dt>immutable (currently this is not enforced on the object itself, but should be added in the future.</dt>
-<dd>The reduction code is written however such that it does not make sense to mutate the state
-while a reduction is running.)</dd>
+<li><p>self-validating</p></li>
+<li><dl class="simple">
+<dt>immutable (currently this is not enforced on the object itself, but should be added in the future.</dt><dd><p>The reduction code is written however such that it does not make sense to mutate the state
+while a reduction is running.)</p>
+</dd>
 </dl>
 </li>
-<li>typed</li>
-<li>serializable</li>
-<li>easy to reason about</li>
-<li>modular (sub-states for units of work)</li>
+<li><p>typed</p></li>
+<li><p>serializable</p></li>
+<li><p>easy to reason about</p></li>
+<li><p>modular (sub-states for units of work)</p></li>
 </ul>
 <p>This approach allows us to identify issues with the settings before a lengthy
 data reduction has been started.</p>
-</div>
-<div class="section" id="components">
+</section>
+<section id="components">
 <h3><a class="toc-backref" href="#id7">Components</a><a class="headerlink" href="#components" title="Permalink to this headline">¶</a></h3>
 <p>This section describes the essential components of the state mechanism.
 These include the states themselves, the parameters in a state and
 the state construction.</p>
-<div class="section" id="state-base-py">
+<section id="state-base-py">
 <h4><a class="toc-backref" href="#id8"><em>state_base.py</em></a><a class="headerlink" href="#state-base-py" title="Permalink to this headline">¶</a></h4>
 <p>The <em>JsonSerializable</em> metaclass contains the essential ingredients for
 serializing a state object. Additionally it provides a decorator for any
@@ -294,8 +304,8 @@ are not recommended since they may not end up in the instances internal
 dictionary.</p>
 <p>The <em>Serializer</em> is responsible for serialization using the JSON library and
 provides static methods to (de)serialize to a string or file.</p>
-</div>
-<div class="section" id="individual-states">
+</section>
+<section id="individual-states">
 <h4><a class="toc-backref" href="#id9">Individual states</a><a class="headerlink" href="#individual-states" title="Permalink to this headline">¶</a></h4>
 <p>The overall state object is made of sub-state objects which carry all required
 information for a single reduction step or other unit of work.
@@ -306,385 +316,385 @@ in the state object used for monitor normalization and in the state object
 for the transmission calculation.</p>
 <p>In the following sections we list the different parameters on the currently
 implemented states.</p>
-<div class="section" id="state-py">
+<section id="state-py">
 <h5><a class="toc-backref" href="#id10"><em>state.py</em></a><a class="headerlink" href="#state-py" title="Permalink to this headline">¶</a></h5>
 <p>The <em>State</em> class is the overarching state which contains sub-states where each
 sub-state has a different responsibility (see below).</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="15%" />
-<col width="61%" />
-<col width="24%" />
+<col style="width: 15%" />
+<col style="width: 61%" />
+<col style="width: 24%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Name</th>
-<th class="head">Comment</th>
-<th class="head">State type</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Comment</p></th>
+<th class="head"><p>State type</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td>data</td>
-<td>info about runs to use (most important state)</td>
-<td><em>StateData</em></td>
+<tbody>
+<tr class="row-even"><td><p>data</p></td>
+<td><p>info about runs to use (most important state)</p></td>
+<td><p><em>StateData</em></p></td>
 </tr>
-<tr class="row-odd"><td>move</td>
-<td>info about the instrument component positions</td>
-<td><em>StateMove</em></td>
+<tr class="row-odd"><td><p>move</p></td>
+<td><p>info about the instrument component positions</p></td>
+<td><p><em>StateMove</em></p></td>
 </tr>
-<tr class="row-even"><td>reduction</td>
-<td>general reduction info</td>
-<td><em>StateReductionMode</em></td>
+<tr class="row-even"><td><p>reduction</p></td>
+<td><p>general reduction info</p></td>
+<td><p><em>StateReductionMode</em></p></td>
 </tr>
-<tr class="row-odd"><td>slice</td>
-<td>info about event slicing (when applicable)</td>
-<td><em>StateSliceEvent</em></td>
+<tr class="row-odd"><td><p>slice</p></td>
+<td><p>info about event slicing (when applicable)</p></td>
+<td><p><em>StateSliceEvent</em></p></td>
 </tr>
-<tr class="row-even"><td>mask</td>
-<td>info about masking</td>
-<td><em>StateMask</em></td>
+<tr class="row-even"><td><p>mask</p></td>
+<td><p>info about masking</p></td>
+<td><p><em>StateMask</em></p></td>
 </tr>
-<tr class="row-odd"><td>wavelength</td>
-<td>info about wavelength conversion of the scatter data</td>
-<td><em>StateWavelength</em></td>
+<tr class="row-odd"><td><p>wavelength</p></td>
+<td><p>info about wavelength conversion of the scatter data</p></td>
+<td><p><em>StateWavelength</em></p></td>
 </tr>
-<tr class="row-even"><td>save</td>
-<td>info about the save settings</td>
-<td><em>StateSave</em></td>
+<tr class="row-even"><td><p>save</p></td>
+<td><p>info about the save settings</p></td>
+<td><p><em>StateSave</em></p></td>
 </tr>
-<tr class="row-odd"><td>scale</td>
-<td>info about the absolute scale and the sample volume</td>
-<td><em>StateScale</em></td>
+<tr class="row-odd"><td><p>scale</p></td>
+<td><p>info about the absolute scale and the sample volume</p></td>
+<td><p><em>StateScale</em></p></td>
 </tr>
-<tr class="row-even"><td>adjustment</td>
-<td>info about adjustment workspaces</td>
-<td><em>StateAdjustment</em></td>
+<tr class="row-even"><td><p>adjustment</p></td>
+<td><p>info about adjustment workspaces</p></td>
+<td><p><em>StateAdjustment</em></p></td>
 </tr>
-<tr class="row-odd"><td>convert_to_q</td>
-<td>info about momentum transfer conversion</td>
-<td><em>StateConvertToQ</em></td>
+<tr class="row-odd"><td><p>convert_to_q</p></td>
+<td><p>info about momentum transfer conversion</p></td>
+<td><p><em>StateConvertToQ</em></p></td>
 </tr>
-<tr class="row-even"><td>compatibility</td>
-<td>used when reducing in compatibility mode</td>
-<td><em>StateCompatibility</em></td>
+<tr class="row-even"><td><p>compatibility</p></td>
+<td><p>used when reducing in compatibility mode</p></td>
+<td><p><em>StateCompatibility</em></p></td>
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="data-py">
+</section>
+<section id="data-py">
 <h5><a class="toc-backref" href="#id11"><em>data.py</em></a><a class="headerlink" href="#data-py" title="Permalink to this headline">¶</a></h5>
 <p>This is the most important state. Since the reduction framework has a data-driven
 approach it is not possible to build up most of the reduction without knowing what
 the actual data for the reduction will be.</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="22%" />
-<col width="33%" />
-<col width="27%" />
-<col width="7%" />
-<col width="11%" />
+<col style="width: 22%" />
+<col style="width: 33%" />
+<col style="width: 27%" />
+<col style="width: 7%" />
+<col style="width: 11%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Name</th>
-<th class="head">Comment</th>
-<th class="head">Type</th>
-<th class="head">Optional?</th>
-<th class="head">Auto-generated?</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Comment</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Optional?</p></th>
+<th class="head"><p>Auto-generated?</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td>sample_scatter</td>
-<td>The sample scatter file path</td>
-<td><em>StringParameter</em></td>
-<td>N</td>
-<td>N</td>
+<tbody>
+<tr class="row-even"><td><p>sample_scatter</p></td>
+<td><p>The sample scatter file path</p></td>
+<td><p><em>StringParameter</em></p></td>
+<td><p>N</p></td>
+<td><p>N</p></td>
 </tr>
-<tr class="row-odd"><td>sample_scatter_period</td>
-<td>The period to use for the sample scatter</td>
-<td><em>PositiveIntegerParameter</em></td>
-<td>Y</td>
-<td>N</td>
+<tr class="row-odd"><td><p>sample_scatter_period</p></td>
+<td><p>The period to use for the sample scatter</p></td>
+<td><p><em>PositiveIntegerParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
 </tr>
-<tr class="row-even"><td>sample_transmission</td>
-<td>The sample transmission file path</td>
-<td><em>StringParameter</em></td>
-<td>Y</td>
-<td>N</td>
+<tr class="row-even"><td><p>sample_transmission</p></td>
+<td><p>The sample transmission file path</p></td>
+<td><p><em>StringParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
 </tr>
-<tr class="row-odd"><td>sample_transmission_period</td>
-<td>The period to use for the sample transmission</td>
-<td><em>PositiveIntegerParameter</em></td>
-<td>Y</td>
-<td>N</td>
+<tr class="row-odd"><td><p>sample_transmission_period</p></td>
+<td><p>The period to use for the sample transmission</p></td>
+<td><p><em>PositiveIntegerParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
 </tr>
-<tr class="row-even"><td>sample_direct</td>
-<td>The sample direct file path</td>
-<td><em>StringParameter</em></td>
-<td>Y</td>
-<td>N</td>
+<tr class="row-even"><td><p>sample_direct</p></td>
+<td><p>The sample direct file path</p></td>
+<td><p><em>StringParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
 </tr>
-<tr class="row-odd"><td>sample_direct_period</td>
-<td>The period to use for the sample direct</td>
-<td><em>PositiveIntegerParameter</em></td>
-<td>Y</td>
-<td>N</td>
+<tr class="row-odd"><td><p>sample_direct_period</p></td>
+<td><p>The period to use for the sample direct</p></td>
+<td><p><em>PositiveIntegerParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
 </tr>
-<tr class="row-even"><td>can_scatter</td>
-<td>The can scatter file path</td>
-<td><em>StringParameter</em></td>
-<td>Y</td>
-<td>N</td>
+<tr class="row-even"><td><p>can_scatter</p></td>
+<td><p>The can scatter file path</p></td>
+<td><p><em>StringParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
 </tr>
-<tr class="row-odd"><td>can_scatter_period</td>
-<td>The period to use for the can scatter</td>
-<td><em>PositiveIntegerParameter</em></td>
-<td>Y</td>
-<td>N</td>
+<tr class="row-odd"><td><p>can_scatter_period</p></td>
+<td><p>The period to use for the can scatter</p></td>
+<td><p><em>PositiveIntegerParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
 </tr>
-<tr class="row-even"><td>can_transmission</td>
-<td>The can transmission file path</td>
-<td><em>StringParameter</em></td>
-<td>Y</td>
-<td>N</td>
+<tr class="row-even"><td><p>can_transmission</p></td>
+<td><p>The can transmission file path</p></td>
+<td><p><em>StringParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
 </tr>
-<tr class="row-odd"><td>can_transmission_period</td>
-<td>The period to use for the can transmission</td>
-<td><em>PositiveIntegerParameter</em></td>
-<td>Y</td>
-<td>N</td>
+<tr class="row-odd"><td><p>can_transmission_period</p></td>
+<td><p>The period to use for the can transmission</p></td>
+<td><p><em>PositiveIntegerParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
 </tr>
-<tr class="row-even"><td>can_direct</td>
-<td>The can direct file path</td>
-<td><em>StringParameter</em></td>
-<td>Y</td>
-<td>N</td>
+<tr class="row-even"><td><p>can_direct</p></td>
+<td><p>The can direct file path</p></td>
+<td><p><em>StringParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
 </tr>
-<tr class="row-odd"><td>can_direct_period</td>
-<td>The period to use for the can direct</td>
-<td><em>PositiveIntegerParameter</em></td>
-<td>Y</td>
-<td>N</td>
+<tr class="row-odd"><td><p>can_direct_period</p></td>
+<td><p>The period to use for the can direct</p></td>
+<td><p><em>PositiveIntegerParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
 </tr>
-<tr class="row-even"><td>calibration</td>
-<td>The path to the calibration file</td>
-<td><em>StringParameter</em></td>
-<td>Y</td>
-<td>N</td>
+<tr class="row-even"><td><p>calibration</p></td>
+<td><p>The path to the calibration file</p></td>
+<td><p><em>StringParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
 </tr>
-<tr class="row-odd"><td>sample_scatter_run_number</td>
-<td>Run number of the sample scatter file</td>
-<td><em>PositiveIntegerParameter</em></td>
-<td><ul class="first last simple">
+<tr class="row-odd"><td><p>sample_scatter_run_number</p></td>
+<td><p>Run number of the sample scatter file</p></td>
+<td><p><em>PositiveIntegerParameter</em></p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
-<td>Y</td>
+<td><p>Y</p></td>
 </tr>
-<tr class="row-even"><td>sample_scatter_is_multi_period</td>
-<td>If the sample scatter is multi-period</td>
-<td><em>BoolParameter</em></td>
-<td><ul class="first last simple">
+<tr class="row-even"><td><p>sample_scatter_is_multi_period</p></td>
+<td><p>If the sample scatter is multi-period</p></td>
+<td><p><em>BoolParameter</em></p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
-<td>Y</td>
+<td><p>Y</p></td>
 </tr>
-<tr class="row-odd"><td>instrument</td>
-<td>Enum for the SANS instrument</td>
-<td><em>Enum (SANSInstrument)</em></td>
-<td><ul class="first last simple">
+<tr class="row-odd"><td><p>instrument</p></td>
+<td><p>Enum for the SANS instrument</p></td>
+<td><p><em>Enum (SANSInstrument)</em></p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
-<td>Y</td>
+<td><p>Y</p></td>
 </tr>
-<tr class="row-even"><td>idf_file_path</td>
-<td>Path to the IDF file</td>
-<td><em>StringParameter</em></td>
-<td><ul class="first last simple">
+<tr class="row-even"><td><p>idf_file_path</p></td>
+<td><p>Path to the IDF file</p></td>
+<td><p><em>StringParameter</em></p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
-<td>Y</td>
+<td><p>Y</p></td>
 </tr>
-<tr class="row-odd"><td>ipf_file_path</td>
-<td>Path to the IPF file</td>
-<td><em>StringParameter</em></td>
-<td><ul class="first last simple">
+<tr class="row-odd"><td><p>ipf_file_path</p></td>
+<td><p>Path to the IPF file</p></td>
+<td><p><em>StringParameter</em></p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
-<td>Y</td>
+<td><p>Y</p></td>
 </tr>
 </tbody>
 </table>
 <p>Note that while some parameters are optional they might become mandatory if other
 optional parameters have been specified. Also note that some of the parameters
 on the state are auto-generated by the builder classes.</p>
-</div>
-<div class="section" id="move-py">
+</section>
+<section id="move-py">
 <h5><a class="toc-backref" href="#id12"><em>move.py</em></a><a class="headerlink" href="#move-py" title="Permalink to this headline">¶</a></h5>
 <p>The move state defines how instruments are moved. This is highly individual to
 the different instruments. Therefore there is most likely going to be one state
 per instrument, sometimes even more when there should be different behaviour for
 different run numbers.</p>
 <p>The fundamental class is <em>StateMove</em> which has the following parameters:</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="31%" />
-<col width="7%" />
-<col width="26%" />
-<col width="9%" />
-<col width="15%" />
-<col width="13%" />
+<col style="width: 31%" />
+<col style="width: 7%" />
+<col style="width: 26%" />
+<col style="width: 9%" />
+<col style="width: 15%" />
+<col style="width: 13%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Name</th>
-<th class="head">Comment</th>
-<th class="head">Type</th>
-<th class="head">Optional?</th>
-<th class="head">Auto-generated?</th>
-<th class="head">Default value</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Comment</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Optional?</p></th>
+<th class="head"><p>Auto-generated?</p></th>
+<th class="head"><p>Default value</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td>x_translation_correction</td>
-<td><ul class="first last simple">
+<tbody>
+<tr class="row-even"><td><p>x_translation_correction</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
-<td><em>FloatParameter</em></td>
-<td>Y</td>
-<td>N</td>
-<td>0.0</td>
+<td><p><em>FloatParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><p>0.0</p></td>
 </tr>
-<tr class="row-odd"><td>y_translation_correction</td>
-<td><ul class="first last simple">
+<tr class="row-odd"><td><p>y_translation_correction</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
-<td><em>FloatParameter</em></td>
-<td>Y</td>
-<td>N</td>
-<td>0.0</td>
+<td><p><em>FloatParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><p>0.0</p></td>
 </tr>
-<tr class="row-even"><td>z_translation_correction</td>
-<td><ul class="first last simple">
+<tr class="row-even"><td><p>z_translation_correction</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
-<td><em>FloatParameter</em></td>
-<td>Y</td>
-<td>N</td>
-<td>0.0</td>
+<td><p><em>FloatParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><p>0.0</p></td>
 </tr>
-<tr class="row-odd"><td>rotation_correction</td>
-<td><ul class="first last simple">
+<tr class="row-odd"><td><p>rotation_correction</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
-<td><em>FloatParameter</em></td>
-<td>Y</td>
-<td>N</td>
-<td>0.0</td>
+<td><p><em>FloatParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><p>0.0</p></td>
 </tr>
-<tr class="row-even"><td>side_correction</td>
-<td><ul class="first last simple">
+<tr class="row-even"><td><p>side_correction</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
-<td><em>FloatParameter</em></td>
-<td>Y</td>
-<td>N</td>
-<td>0.0</td>
+<td><p><em>FloatParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><p>0.0</p></td>
 </tr>
-<tr class="row-odd"><td>radius_correction</td>
-<td><ul class="first last simple">
+<tr class="row-odd"><td><p>radius_correction</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
-<td><em>FloatParameter</em></td>
-<td>Y</td>
-<td>N</td>
-<td>0.0</td>
+<td><p><em>FloatParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><p>0.0</p></td>
 </tr>
-<tr class="row-even"><td>x_tilt_correction</td>
-<td><ul class="first last simple">
+<tr class="row-even"><td><p>x_tilt_correction</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
-<td><em>FloatParameter</em></td>
-<td>Y</td>
-<td>N</td>
-<td>0.0</td>
+<td><p><em>FloatParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><p>0.0</p></td>
 </tr>
-<tr class="row-odd"><td>y_tilt_correction</td>
-<td><ul class="first last simple">
+<tr class="row-odd"><td><p>y_tilt_correction</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
-<td><em>FloatParameter</em></td>
-<td>Y</td>
-<td>N</td>
-<td>0.0</td>
+<td><p><em>FloatParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><p>0.0</p></td>
 </tr>
-<tr class="row-even"><td>z_tilt_correction</td>
-<td><ul class="first last simple">
+<tr class="row-even"><td><p>z_tilt_correction</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
-<td><em>FloatParameter</em></td>
-<td>Y</td>
-<td>N</td>
-<td>0.0</td>
+<td><p><em>FloatParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><p>0.0</p></td>
 </tr>
-<tr class="row-odd"><td>sample_centre_pos1</td>
-<td><ul class="first last simple">
+<tr class="row-odd"><td><p>sample_centre_pos1</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
-<td><em>FloatParameter</em></td>
-<td>Y</td>
-<td>N</td>
-<td>0.0</td>
+<td><p><em>FloatParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><p>0.0</p></td>
 </tr>
-<tr class="row-even"><td>sample_centre_pos2</td>
-<td><ul class="first last simple">
+<tr class="row-even"><td><p>sample_centre_pos2</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
-<td><em>FloatParameter</em></td>
-<td>Y</td>
-<td>N</td>
-<td>0.0</td>
+<td><p><em>FloatParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><p>0.0</p></td>
 </tr>
-<tr class="row-odd"><td>detector_name</td>
-<td><ul class="first last simple">
+<tr class="row-odd"><td><p>detector_name</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
-<td><em>StringWithNoneParameter</em></td>
-<td><ul class="first last simple">
+<td><p><em>StringWithNoneParameter</em></p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
-<td>Y</td>
-<td><ul class="first last simple">
+<td><p>Y</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
 </tr>
-<tr class="row-even"><td>detector_name_short</td>
-<td><ul class="first last simple">
+<tr class="row-even"><td><p>detector_name_short</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
-<td><em>StringWithNoneParameter</em></td>
-<td><ul class="first last simple">
+<td><p><em>StringWithNoneParameter</em></p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
-<td>Y</td>
-<td><ul class="first last simple">
+<td><p>Y</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
@@ -694,719 +704,719 @@ different run numbers.</p>
 <p>If nothing is specified, then the detector positions and movements are assumed to be 0.
 Note that each instrument contains additional parameters on their individual state classes. When adding
 a new instrument, this will be most likely one of the main areas to add new code.</p>
-</div>
-<div class="section" id="reduction-mode-py">
+</section>
+<section id="reduction-mode-py">
 <h5><a class="toc-backref" href="#id13"><em>reduction_mode.py</em></a><a class="headerlink" href="#reduction-mode-py" title="Permalink to this headline">¶</a></h5>
 <p>The <em>StateReductionMode</em> class contains general settings about the reduction, e.g. if we are dealing with a merged
 reduction. It contains the following parameters:</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="16%" />
-<col width="27%" />
-<col width="23%" />
-<col width="5%" />
-<col width="8%" />
-<col width="22%" />
+<col style="width: 16%" />
+<col style="width: 27%" />
+<col style="width: 23%" />
+<col style="width: 5%" />
+<col style="width: 8%" />
+<col style="width: 22%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Name</th>
-<th class="head">Comment</th>
-<th class="head">Type</th>
-<th class="head">Optional?</th>
-<th class="head">Auto-generated?</th>
-<th class="head">Default value</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Comment</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Optional?</p></th>
+<th class="head"><p>Auto-generated?</p></th>
+<th class="head"><p>Default value</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td>reduction_mode</td>
-<td>The type of reduction, i.e. LAB, HAB, merged or both</td>
-<td><em>Enum(ReductionMode)</em></td>
-<td>N</td>
-<td>N</td>
-<td><em>ReductionMode.LAB</em> enum value</td>
+<tbody>
+<tr class="row-even"><td><p>reduction_mode</p></td>
+<td><p>The type of reduction, i.e. LAB, HAB, merged or both</p></td>
+<td><p><em>Enum(ReductionMode)</em></p></td>
+<td><p>N</p></td>
+<td><p>N</p></td>
+<td><p><em>ReductionMode.LAB</em> enum value</p></td>
 </tr>
-<tr class="row-odd"><td>reduction_dimensionality</td>
-<td>If 1D or 2D reduction</td>
-<td><em>Enum(ReductionDimensionality)</em></td>
-<td>N</td>
-<td>N</td>
-<td><em>ReductionDimensionality.OneDim</em> enum value</td>
+<tr class="row-odd"><td><p>reduction_dimensionality</p></td>
+<td><p>If 1D or 2D reduction</p></td>
+<td><p><em>Enum(ReductionDimensionality)</em></p></td>
+<td><p>N</p></td>
+<td><p>N</p></td>
+<td><p><em>ReductionDimensionality.OneDim</em> enum value</p></td>
 </tr>
-<tr class="row-even"><td>merge_fit_mode</td>
-<td>The fit mode for merging</td>
-<td><em>Enum(FitModeForMerge)</em></td>
-<td>Y</td>
-<td>N</td>
-<td><em>FitModeForMerge.NoFit</em> enum value</td>
+<tr class="row-even"><td><p>merge_fit_mode</p></td>
+<td><p>The fit mode for merging</p></td>
+<td><p><em>Enum(FitModeForMerge)</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><p><em>FitModeForMerge.NoFit</em> enum value</p></td>
 </tr>
-<tr class="row-odd"><td>merge_shift</td>
-<td>The shift value for merging</td>
-<td><em>FloatParameter</em></td>
-<td>Y</td>
-<td>N</td>
-<td>0.0</td>
+<tr class="row-odd"><td><p>merge_shift</p></td>
+<td><p>The shift value for merging</p></td>
+<td><p><em>FloatParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><p>0.0</p></td>
 </tr>
-<tr class="row-even"><td>merge_scale</td>
-<td>The scale value for merging</td>
-<td><em>FloatParameter</em></td>
-<td>Y</td>
-<td>N</td>
-<td>1.0</td>
+<tr class="row-even"><td><p>merge_scale</p></td>
+<td><p>The scale value for merging</p></td>
+<td><p><em>FloatParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><p>1.0</p></td>
 </tr>
-<tr class="row-odd"><td>merge_range_min</td>
-<td>The min q value for merging</td>
-<td><em>FloatWithNoneParameter</em></td>
-<td>Y</td>
-<td>N</td>
-<td><em>None</em></td>
+<tr class="row-odd"><td><p>merge_range_min</p></td>
+<td><p>The min q value for merging</p></td>
+<td><p><em>FloatWithNoneParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><p><em>None</em></p></td>
 </tr>
-<tr class="row-even"><td>merge_range_max</td>
-<td>The max q value for merging</td>
-<td><em>FloatWithNoneParameter</em></td>
-<td>Y</td>
-<td>N</td>
-<td><em>None</em></td>
+<tr class="row-even"><td><p>merge_range_max</p></td>
+<td><p>The max q value for merging</p></td>
+<td><p><em>FloatWithNoneParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><p><em>None</em></p></td>
 </tr>
-<tr class="row-odd"><td>detector_names</td>
-<td>A dict from detector type to detector name</td>
-<td><em>DictParameter</em></td>
-<td>N</td>
-<td>Y</td>
-<td><ul class="first last simple">
+<tr class="row-odd"><td><p>detector_names</p></td>
+<td><p>A dict from detector type to detector name</p></td>
+<td><p><em>DictParameter</em></p></td>
+<td><p>N</p></td>
+<td><p>Y</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="slice-py">
+</section>
+<section id="slice-py">
 <h5><a class="toc-backref" href="#id14"><em>slice.py</em></a><a class="headerlink" href="#slice-py" title="Permalink to this headline">¶</a></h5>
 <p>The <em>StateSliceEvent</em> class is only relevant when we are dealing with event-type
 data and the user decides to perform an event-sliced reduction, i.e. one reduction per event slice.</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="11%" />
-<col width="39%" />
-<col width="25%" />
-<col width="9%" />
-<col width="15%" />
+<col style="width: 11%" />
+<col style="width: 39%" />
+<col style="width: 25%" />
+<col style="width: 9%" />
+<col style="width: 15%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Name</th>
-<th class="head">Comment</th>
-<th class="head">Type</th>
-<th class="head">Optional?</th>
-<th class="head">Auto-generated?</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Comment</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Optional?</p></th>
+<th class="head"><p>Auto-generated?</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td>start_time</td>
-<td>A list of start times for event slices</td>
-<td><em>FloatListParameter</em></td>
-<td>Y</td>
-<td>N</td>
+<tbody>
+<tr class="row-even"><td><p>start_time</p></td>
+<td><p>A list of start times for event slices</p></td>
+<td><p><em>FloatListParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
 </tr>
-<tr class="row-odd"><td>end_time</td>
-<td>A list of stop times for event slices</td>
-<td><em>FloatListParameter</em></td>
-<td>Y</td>
-<td>N</td>
+<tr class="row-odd"><td><p>end_time</p></td>
+<td><p>A list of stop times for event slices</p></td>
+<td><p><em>FloatListParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
 </tr>
 </tbody>
 </table>
 <p>Note that the validation ensures that the number of <em>start_time</em> and <em>end_time</em>
 entries is matched and that the end time is larger than the start time.</p>
-</div>
-<div class="section" id="mask-py">
+</section>
+<section id="mask-py">
 <h5><a class="toc-backref" href="#id15"><em>mask.py</em></a><a class="headerlink" href="#mask-py" title="Permalink to this headline">¶</a></h5>
 <p>The <em>StateMask</em> class holds information regarding time and pixel masking.
 It also contains two sub-states which contain detector-specific masking information.
 The <em>StateMask</em> contains the following parameters:</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="17%" />
-<col width="45%" />
-<col width="19%" />
-<col width="7%" />
-<col width="12%" />
+<col style="width: 17%" />
+<col style="width: 45%" />
+<col style="width: 19%" />
+<col style="width: 7%" />
+<col style="width: 12%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Name</th>
-<th class="head">Comment</th>
-<th class="head">Type</th>
-<th class="head">Optional?</th>
-<th class="head">Auto-generated?</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Comment</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Optional?</p></th>
+<th class="head"><p>Auto-generated?</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td>radius_min</td>
-<td>The min radius of a circular mask on the detector</td>
-<td><em>FloatParameter</em></td>
-<td>Y</td>
-<td>N</td>
+<tbody>
+<tr class="row-even"><td><p>radius_min</p></td>
+<td><p>The min radius of a circular mask on the detector</p></td>
+<td><p><em>FloatParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
 </tr>
-<tr class="row-odd"><td>radius_max</td>
-<td>The max radius of a circular mask on the detector</td>
-<td><em>FloatParameter</em></td>
-<td>Y</td>
-<td>N</td>
+<tr class="row-odd"><td><p>radius_max</p></td>
+<td><p>The max radius of a circular mask on the detector</p></td>
+<td><p><em>FloatParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
 </tr>
-<tr class="row-even"><td>bin_mask_general_start</td>
-<td>A list of start times for general bin masks</td>
-<td><em>FloatListParameter</em></td>
-<td>Y</td>
-<td>N</td>
+<tr class="row-even"><td><p>bin_mask_general_start</p></td>
+<td><p>A list of start times for general bin masks</p></td>
+<td><p><em>FloatListParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
 </tr>
-<tr class="row-odd"><td>bin_mask_general_stop</td>
-<td>A list of stop times for general bin masks</td>
-<td><em>FloatListParameter</em></td>
-<td>Y</td>
-<td>N</td>
+<tr class="row-odd"><td><p>bin_mask_general_stop</p></td>
+<td><p>A list of stop times for general bin masks</p></td>
+<td><p><em>FloatListParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
 </tr>
-<tr class="row-even"><td>mask_files</td>
-<td>A list of mask files</td>
-<td><em>StringListParameter</em></td>
-<td>Y</td>
-<td>N</td>
+<tr class="row-even"><td><p>mask_files</p></td>
+<td><p>A list of mask files</p></td>
+<td><p><em>StringListParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
 </tr>
-<tr class="row-odd"><td>phi_min</td>
-<td>The min angle of an angle mask</td>
-<td><em>FloatParameter</em></td>
-<td>Y</td>
-<td>N</td>
+<tr class="row-odd"><td><p>phi_min</p></td>
+<td><p>The min angle of an angle mask</p></td>
+<td><p><em>FloatParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
 </tr>
-<tr class="row-even"><td>phi_max</td>
-<td>The max angle of an angle mask</td>
-<td><em>FloatParameter</em></td>
-<td>Y</td>
-<td>N</td>
+<tr class="row-even"><td><p>phi_max</p></td>
+<td><p>The max angle of an angle mask</p></td>
+<td><p><em>FloatParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
 </tr>
-<tr class="row-odd"><td>use_mask_phi_mirror</td>
-<td>If the mirror slice should be used</td>
-<td><em>BoolParameter</em></td>
-<td>Y</td>
-<td>N</td>
+<tr class="row-odd"><td><p>use_mask_phi_mirror</p></td>
+<td><p>If the mirror slice should be used</p></td>
+<td><p><em>BoolParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
 </tr>
-<tr class="row-even"><td>beam_stop_arm_width</td>
-<td>The width of the beam stop arm</td>
-<td><em>PositiveFloatParameter</em></td>
-<td>Y</td>
-<td>N</td>
+<tr class="row-even"><td><p>beam_stop_arm_width</p></td>
+<td><p>The width of the beam stop arm</p></td>
+<td><p><em>PositiveFloatParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
 </tr>
-<tr class="row-odd"><td>beam_stop_arm_angle</td>
-<td>The angle of the beam stop arm</td>
-<td><em>FloatParameter</em></td>
-<td>Y</td>
-<td>N</td>
+<tr class="row-odd"><td><p>beam_stop_arm_angle</p></td>
+<td><p>The angle of the beam stop arm</p></td>
+<td><p><em>FloatParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
 </tr>
-<tr class="row-even"><td>beam_stop_arm_pos1</td>
-<td>The x position of the beam stop arm</td>
-<td><em>FloatParameter</em></td>
-<td>Y</td>
-<td>N</td>
+<tr class="row-even"><td><p>beam_stop_arm_pos1</p></td>
+<td><p>The x position of the beam stop arm</p></td>
+<td><p><em>FloatParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
 </tr>
-<tr class="row-odd"><td>beam_stop_arm_pos2</td>
-<td>The y position of the beam stop arm</td>
-<td><em>FloatParameter</em></td>
-<td>Y</td>
-<td>N</td>
+<tr class="row-odd"><td><p>beam_stop_arm_pos2</p></td>
+<td><p>The y position of the beam stop arm</p></td>
+<td><p><em>FloatParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
 </tr>
-<tr class="row-even"><td>clear</td>
-<td>currently not used</td>
-<td><em>BoolParameter</em></td>
-<td>Y</td>
-<td>N</td>
+<tr class="row-even"><td><p>clear</p></td>
+<td><p>currently not used</p></td>
+<td><p><em>BoolParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
 </tr>
-<tr class="row-odd"><td>clear_time</td>
-<td>currently not used</td>
-<td><em>BoolParameter</em></td>
-<td>Y</td>
-<td>N</td>
+<tr class="row-odd"><td><p>clear_time</p></td>
+<td><p>currently not used</p></td>
+<td><p><em>BoolParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
 </tr>
-<tr class="row-even"><td>detector</td>
-<td>A dict of detector type to <em>StateMaskDetectors</em> sub-states</td>
-<td><em>DictParameter</em></td>
-<td>N</td>
-<td>Y</td>
+<tr class="row-even"><td><p>detector</p></td>
+<td><p>A dict of detector type to <em>StateMaskDetectors</em> sub-states</p></td>
+<td><p><em>DictParameter</em></p></td>
+<td><p>N</p></td>
+<td><p>Y</p></td>
 </tr>
-<tr class="row-odd"><td>idf_path</td>
-<td>The path to the IDF</td>
-<td><em>StringParameter</em></td>
-<td>N</td>
-<td>Y</td>
+<tr class="row-odd"><td><p>idf_path</p></td>
+<td><p>The path to the IDF</p></td>
+<td><p><em>StringParameter</em></p></td>
+<td><p>N</p></td>
+<td><p>Y</p></td>
 </tr>
 </tbody>
 </table>
 <p>Validation is applied to some of the entries.</p>
 <p>The detector-specific settings are stored in the <em>StateMaskDetectors</em> which contains the following parameters:</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="29%" />
-<col width="13%" />
-<col width="33%" />
-<col width="9%" />
-<col width="16%" />
+<col style="width: 29%" />
+<col style="width: 13%" />
+<col style="width: 33%" />
+<col style="width: 9%" />
+<col style="width: 16%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Name</th>
-<th class="head">Comment</th>
-<th class="head">Type</th>
-<th class="head">Optional?</th>
-<th class="head">Auto-generated?</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Comment</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Optional?</p></th>
+<th class="head"><p>Auto-generated?</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td>single_vertical_strip_mask</td>
-<td><ul class="first last simple">
+<tbody>
+<tr class="row-even"><td><p>single_vertical_strip_mask</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
-<td><em>PositiveIntegerListParameter</em></td>
-<td>Y</td>
-<td>N</td>
+<td><p><em>PositiveIntegerListParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
 </tr>
-<tr class="row-odd"><td>range_vertical_strip_start</td>
-<td><ul class="first last simple">
+<tr class="row-odd"><td><p>range_vertical_strip_start</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
-<td><em>PositiveIntegerListParameter</em></td>
-<td>Y</td>
-<td>N</td>
+<td><p><em>PositiveIntegerListParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
 </tr>
-<tr class="row-even"><td>range_vertical_strip_stop</td>
-<td><ul class="first last simple">
+<tr class="row-even"><td><p>range_vertical_strip_stop</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
-<td><em>PositiveIntegerListParameter</em></td>
-<td>Y</td>
-<td>N</td>
+<td><p><em>PositiveIntegerListParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
 </tr>
-<tr class="row-odd"><td>single_horizontal_strip_mask</td>
-<td><ul class="first last simple">
+<tr class="row-odd"><td><p>single_horizontal_strip_mask</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
-<td><em>PositiveIntegerListParameter</em></td>
-<td>Y</td>
-<td>N</td>
+<td><p><em>PositiveIntegerListParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
 </tr>
-<tr class="row-even"><td>range_horizontal_strip_start</td>
-<td><ul class="first last simple">
+<tr class="row-even"><td><p>range_horizontal_strip_start</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
-<td><em>PositiveIntegerListParameter</em></td>
-<td>Y</td>
-<td>N</td>
+<td><p><em>PositiveIntegerListParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
 </tr>
-<tr class="row-odd"><td>range_horizontal_strip_stop</td>
-<td><ul class="first last simple">
+<tr class="row-odd"><td><p>range_horizontal_strip_stop</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
-<td><em>PositiveIntegerListParameter</em></td>
-<td>Y</td>
-<td>N</td>
+<td><p><em>PositiveIntegerListParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
 </tr>
-<tr class="row-even"><td>block_horizontal_start</td>
-<td><ul class="first last simple">
+<tr class="row-even"><td><p>block_horizontal_start</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
-<td><em>PositiveIntegerListParameter</em></td>
-<td>Y</td>
-<td>N</td>
+<td><p><em>PositiveIntegerListParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
 </tr>
-<tr class="row-odd"><td>block_horizontal_stop</td>
-<td><ul class="first last simple">
+<tr class="row-odd"><td><p>block_horizontal_stop</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
-<td><em>PositiveIntegerListParameter</em></td>
-<td>Y</td>
-<td>N</td>
+<td><p><em>PositiveIntegerListParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
 </tr>
-<tr class="row-even"><td>block_vertical_start</td>
-<td><ul class="first last simple">
+<tr class="row-even"><td><p>block_vertical_start</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
-<td><em>PositiveIntegerListParameter</em></td>
-<td>Y</td>
-<td>N</td>
+<td><p><em>PositiveIntegerListParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
 </tr>
-<tr class="row-odd"><td>block_vertical_stop</td>
-<td><ul class="first last simple">
+<tr class="row-odd"><td><p>block_vertical_stop</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
-<td><em>PositiveIntegerListParameter</em></td>
-<td>Y</td>
-<td>N</td>
+<td><p><em>PositiveIntegerListParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
 </tr>
-<tr class="row-even"><td>block_cross_horizontal</td>
-<td><ul class="first last simple">
+<tr class="row-even"><td><p>block_cross_horizontal</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
-<td><em>PositiveIntegerListParameter</em></td>
-<td>Y</td>
-<td>N</td>
+<td><p><em>PositiveIntegerListParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
 </tr>
-<tr class="row-odd"><td>block_cross_vertical</td>
-<td><ul class="first last simple">
+<tr class="row-odd"><td><p>block_cross_vertical</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
-<td><em>PositiveIntegerListParameter</em></td>
-<td>Y</td>
-<td>N</td>
+<td><p><em>PositiveIntegerListParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
 </tr>
-<tr class="row-even"><td>bin_mask_start</td>
-<td><ul class="first last simple">
+<tr class="row-even"><td><p>bin_mask_start</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
-<td><em>FloatListParameter</em></td>
-<td>Y</td>
-<td>N</td>
+<td><p><em>FloatListParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
 </tr>
-<tr class="row-odd"><td>bin_mask_stop</td>
-<td><ul class="first last simple">
+<tr class="row-odd"><td><p>bin_mask_stop</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
-<td><em>FloatListParameter</em></td>
-<td>Y</td>
-<td>N</td>
+<td><p><em>FloatListParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
 </tr>
-<tr class="row-even"><td>detector_name</td>
-<td><ul class="first last simple">
+<tr class="row-even"><td><p>detector_name</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
-<td><em>StringParameter</em></td>
-<td>Y</td>
-<td>N</td>
+<td><p><em>StringParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
 </tr>
-<tr class="row-odd"><td>detector_name_short</td>
-<td><ul class="first last simple">
+<tr class="row-odd"><td><p>detector_name_short</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
-<td><em>StringParameter</em></td>
-<td>Y</td>
-<td>N</td>
+<td><p><em>StringParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
 </tr>
-<tr class="row-even"><td>single_spectra</td>
-<td><ul class="first last simple">
+<tr class="row-even"><td><p>single_spectra</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
-<td><em>PositiveIntegerListParameter</em></td>
-<td>Y</td>
-<td>N</td>
+<td><p><em>PositiveIntegerListParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
 </tr>
-<tr class="row-odd"><td>spectrum_range_start</td>
-<td><ul class="first last simple">
+<tr class="row-odd"><td><p>spectrum_range_start</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
-<td><em>PositiveIntegerListParameter</em></td>
-<td>Y</td>
-<td>N</td>
+<td><p><em>PositiveIntegerListParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
 </tr>
-<tr class="row-even"><td>spectrum_range_stop</td>
-<td><ul class="first last simple">
+<tr class="row-even"><td><p>spectrum_range_stop</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
-<td><em>PositiveIntegerListParameter</em></td>
-<td>Y</td>
-<td>N</td>
+<td><p><em>PositiveIntegerListParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
 </tr>
 </tbody>
 </table>
 <p>Again the detector-specific settings contain multiple validation steps on the state.</p>
-</div>
-<div class="section" id="wavelength-py">
+</section>
+<section id="wavelength-py">
 <h5><a class="toc-backref" href="#id16"><em>wavelength.py</em></a><a class="headerlink" href="#wavelength-py" title="Permalink to this headline">¶</a></h5>
 <p>The <em>StateWavelength</em> class contains the information required to perform the conversion of the scatter data
 from time-of-flight to wavelength units. The parameters are:</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="18%" />
-<col width="31%" />
-<col width="30%" />
-<col width="8%" />
-<col width="13%" />
+<col style="width: 18%" />
+<col style="width: 31%" />
+<col style="width: 30%" />
+<col style="width: 8%" />
+<col style="width: 13%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Name</th>
-<th class="head">Comment</th>
-<th class="head">Type</th>
-<th class="head">Optional?</th>
-<th class="head">Auto-generated?</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Comment</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Optional?</p></th>
+<th class="head"><p>Auto-generated?</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td>rebin_type</td>
-<td>The type of rebinning</td>
-<td><em>Enum(RebinType)</em>      N         N</td>
-<td>&#160;</td>
-<td>&#160;</td>
+<tbody>
+<tr class="row-even"><td><p>rebin_type</p></td>
+<td><p>The type of rebinning</p></td>
+<td><p><em>Enum(RebinType)</em>      N         N</p></td>
+<td></td>
+<td></td>
 </tr>
-<tr class="row-odd"><td>wavelength_low</td>
-<td>The lower wavelength boundary</td>
-<td><em>PositiveFloatParameter</em></td>
-<td>N</td>
-<td>N</td>
+<tr class="row-odd"><td><p>wavelength_low</p></td>
+<td><p>The lower wavelength boundary</p></td>
+<td><p><em>PositiveFloatParameter</em></p></td>
+<td><p>N</p></td>
+<td><p>N</p></td>
 </tr>
-<tr class="row-even"><td>wavelength_high</td>
-<td>The upper wavelength boundary</td>
-<td><em>PositiveFloatParameter</em></td>
-<td>N</td>
-<td>N</td>
+<tr class="row-even"><td><p>wavelength_high</p></td>
+<td><p>The upper wavelength boundary</p></td>
+<td><p><em>PositiveFloatParameter</em></p></td>
+<td><p>N</p></td>
+<td><p>N</p></td>
 </tr>
-<tr class="row-odd"><td>wavelength_step</td>
-<td>The wavelength step</td>
-<td><em>PositiveFloatParameter</em></td>
-<td>N</td>
-<td>N</td>
+<tr class="row-odd"><td><p>wavelength_step</p></td>
+<td><p>The wavelength step</p></td>
+<td><p><em>PositiveFloatParameter</em></p></td>
+<td><p>N</p></td>
+<td><p>N</p></td>
 </tr>
-<tr class="row-even"><td>wavelength_step_type</td>
-<td>This is either linear or logarithmic</td>
-<td><em>Enum(RangeStepType)</em> N         N</td>
-<td>&#160;</td>
-<td>&#160;</td>
+<tr class="row-even"><td><p>wavelength_step_type</p></td>
+<td><p>This is either linear or logarithmic</p></td>
+<td><p><em>Enum(RangeStepType)</em> N         N</p></td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
 <p>The validation ensures that all entries are specified and that the lower wavelength boundary is smaller than the upper wavelength boundary.</p>
-</div>
-<div class="section" id="save-py">
+</section>
+<section id="save-py">
 <h5><a class="toc-backref" href="#id17"><em>save.py</em></a><a class="headerlink" href="#save-py" title="Permalink to this headline">¶</a></h5>
 <p>The <em>StateSave</em> class does not hold information which is directly related to the reduction but contains
 the required information about saving the reduced data. The relevant parameters are:</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="23%" />
-<col width="33%" />
-<col width="23%" />
-<col width="6%" />
-<col width="10%" />
-<col width="5%" />
+<col style="width: 23%" />
+<col style="width: 33%" />
+<col style="width: 23%" />
+<col style="width: 6%" />
+<col style="width: 10%" />
+<col style="width: 5%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Name</th>
-<th class="head">Comment</th>
-<th class="head">Type</th>
-<th class="head">Optional?</th>
-<th class="head">Auto-generated?</th>
-<th class="head">Default</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Comment</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Optional?</p></th>
+<th class="head"><p>Auto-generated?</p></th>
+<th class="head"><p>Default</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td>zero_free_correction</td>
-<td>If zero error correction (inflation) should happen</td>
-<td><em>BoolParameter</em></td>
-<td>Y</td>
-<td>N</td>
-<td>True</td>
+<tbody>
+<tr class="row-even"><td><p>zero_free_correction</p></td>
+<td><p>If zero error correction (inflation) should happen</p></td>
+<td><p><em>BoolParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><p>True</p></td>
 </tr>
-<tr class="row-odd"><td>file_format</td>
-<td>A list of file formats to save into</td>
-<td><em>EnumList(SaveType)</em>  Y         N</td>
-<td>&#160;</td>
-<td><ul class="first last simple">
+<tr class="row-odd"><td><p>file_format</p></td>
+<td><p>A list of file formats to save into</p></td>
+<td><p><em>EnumList(SaveType)</em>  Y         N</p></td>
+<td></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
-<td>&#160;</td>
+<td></td>
 </tr>
-<tr class="row-even"><td>user_specified_output_name</td>
-<td>A custom user-specified name for the saved file</td>
-<td><em>StringWithNoneParameter</em></td>
-<td>Y</td>
-<td>N</td>
-<td><ul class="first last simple">
-<li></li>
-</ul>
-</td>
-</tr>
-<tr class="row-odd"><td>user_specified_output_name_suffix</td>
-<td>A custom user-specified suffix for the saved file</td>
-<td><em>StringParameter</em></td>
-<td>Y</td>
-<td>N</td>
-<td><ul class="first last simple">
+<tr class="row-even"><td><p>user_specified_output_name</p></td>
+<td><p>A custom user-specified name for the saved file</p></td>
+<td><p><em>StringWithNoneParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
 </tr>
-<tr class="row-even"><td>use_reduction_mode_as_suffix</td>
-<td>If the reduction mode should be used as a suffix</td>
-<td><em>BoolParameter</em></td>
-<td>Y</td>
-<td>N</td>
-<td><ul class="first last simple">
+<tr class="row-odd"><td><p>user_specified_output_name_suffix</p></td>
+<td><p>A custom user-specified suffix for the saved file</p></td>
+<td><p><em>StringParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p>use_reduction_mode_as_suffix</p></td>
+<td><p>If the reduction mode should be used as a suffix</p></td>
+<td><p><em>BoolParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="scale-py">
+</section>
+<section id="scale-py">
 <h5><a class="toc-backref" href="#id18"><em>scale.py</em></a><a class="headerlink" href="#scale-py" title="Permalink to this headline">¶</a></h5>
 <p>The <em>StateScale</em> class contains the information which is required for the absolute value scaling
 and the volume information. The parameters are:</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="18%" />
-<col width="34%" />
-<col width="29%" />
-<col width="8%" />
-<col width="13%" />
+<col style="width: 18%" />
+<col style="width: 34%" />
+<col style="width: 29%" />
+<col style="width: 8%" />
+<col style="width: 13%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Name</th>
-<th class="head">Comment</th>
-<th class="head">Type</th>
-<th class="head">Optional?</th>
-<th class="head">Auto-generated?</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Comment</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Optional?</p></th>
+<th class="head"><p>Auto-generated?</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td>shape</td>
-<td>The user-specified shape of the sample</td>
-<td><em>Enum(SampleShape)</em>  N         Y</td>
-<td>&#160;</td>
-<td>&#160;</td>
+<tbody>
+<tr class="row-even"><td><p>shape</p></td>
+<td><p>The user-specified shape of the sample</p></td>
+<td><p><em>Enum(SampleShape)</em>  N         Y</p></td>
+<td></td>
+<td></td>
 </tr>
-<tr class="row-odd"><td>thickness</td>
-<td>The user-specified sample thickness</td>
-<td><em>PositiveFloatParameter</em></td>
-<td>N</td>
-<td>Y</td>
+<tr class="row-odd"><td><p>thickness</p></td>
+<td><p>The user-specified sample thickness</p></td>
+<td><p><em>PositiveFloatParameter</em></p></td>
+<td><p>N</p></td>
+<td><p>Y</p></td>
 </tr>
-<tr class="row-even"><td>width</td>
-<td>The user-specified sample width</td>
-<td><em>PositiveFloatParameter</em></td>
-<td>N</td>
-<td>Y</td>
+<tr class="row-even"><td><p>width</p></td>
+<td><p>The user-specified sample width</p></td>
+<td><p><em>PositiveFloatParameter</em></p></td>
+<td><p>N</p></td>
+<td><p>Y</p></td>
 </tr>
-<tr class="row-odd"><td>height</td>
-<td>The user-specified sample height</td>
-<td><em>PositiveFloatParameter</em></td>
-<td>N</td>
-<td>Y</td>
+<tr class="row-odd"><td><p>height</p></td>
+<td><p>The user-specified sample height</p></td>
+<td><p><em>PositiveFloatParameter</em></p></td>
+<td><p>N</p></td>
+<td><p>Y</p></td>
 </tr>
-<tr class="row-even"><td>scale</td>
-<td>The user-specified absolute scale</td>
-<td><em>PositiveFloatParameter</em></td>
-<td>N</td>
-<td>Y</td>
+<tr class="row-even"><td><p>scale</p></td>
+<td><p>The user-specified absolute scale</p></td>
+<td><p><em>PositiveFloatParameter</em></p></td>
+<td><p>N</p></td>
+<td><p>Y</p></td>
 </tr>
-<tr class="row-odd"><td>shape_from_file</td>
-<td>The file-extracted shape of the sample</td>
-<td><em>Enum(SampleShape)</em>  N         Y</td>
-<td>&#160;</td>
-<td>&#160;</td>
+<tr class="row-odd"><td><p>shape_from_file</p></td>
+<td><p>The file-extracted shape of the sample</p></td>
+<td><p><em>Enum(SampleShape)</em>  N         Y</p></td>
+<td></td>
+<td></td>
 </tr>
-<tr class="row-even"><td>thickness_from_file</td>
-<td>The file-extracted sample thickness</td>
-<td><em>PositiveFloatParameter</em></td>
-<td>N</td>
-<td>Y</td>
+<tr class="row-even"><td><p>thickness_from_file</p></td>
+<td><p>The file-extracted sample thickness</p></td>
+<td><p><em>PositiveFloatParameter</em></p></td>
+<td><p>N</p></td>
+<td><p>Y</p></td>
 </tr>
-<tr class="row-odd"><td>width_from_file</td>
-<td>The file-extracted sample width</td>
-<td><em>PositiveFloatParameter</em></td>
-<td>N</td>
-<td>Y</td>
+<tr class="row-odd"><td><p>width_from_file</p></td>
+<td><p>The file-extracted sample width</p></td>
+<td><p><em>PositiveFloatParameter</em></p></td>
+<td><p>N</p></td>
+<td><p>Y</p></td>
 </tr>
-<tr class="row-even"><td>height_from_file</td>
-<td>The file-extracted sample height</td>
-<td><em>PositiveFloatParameter</em></td>
-<td>N</td>
-<td>Y</td>
+<tr class="row-even"><td><p>height_from_file</p></td>
+<td><p>The file-extracted sample height</p></td>
+<td><p><em>PositiveFloatParameter</em></p></td>
+<td><p>N</p></td>
+<td><p>Y</p></td>
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="adjustment-py">
+</section>
+<section id="adjustment-py">
 <h5><a class="toc-backref" href="#id19"><em>adjustment.py</em></a><a class="headerlink" href="#adjustment-py" title="Permalink to this headline">¶</a></h5>
 <p>Adjustment workspaces are generated to be consumed in the momentum transfer conversion step.
 There are three types of adjustments</p>
 <ul class="simple">
-<li>Pure wavelength adjustments, i.e. adjustments which only affect the bins.</li>
-<li>Pure pixel adjustments, i.e. adjustments which only affect the spectra</li>
-<li>Pixel-and-wavelength adjustments, i.e. adjustments which affect both the bins and spectra</li>
+<li><p>Pure wavelength adjustments, i.e. adjustments which only affect the bins.</p></li>
+<li><p>Pure pixel adjustments, i.e. adjustments which only affect the spectra</p></li>
+<li><p>Pixel-and-wavelength adjustments, i.e. adjustments which affect both the bins and spectra</p></li>
 </ul>
 <p>The <em>StateAdjustment</em> class is a composite state which is made of information
 relating to the different types of adjustments</p>
 <p>The parameters are:</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="19%" />
-<col width="31%" />
-<col width="30%" />
-<col width="6%" />
-<col width="9%" />
-<col width="4%" />
+<col style="width: 19%" />
+<col style="width: 31%" />
+<col style="width: 30%" />
+<col style="width: 6%" />
+<col style="width: 9%" />
+<col style="width: 4%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Name</th>
-<th class="head">Comment</th>
-<th class="head">Type</th>
-<th class="head">Optional?</th>
-<th class="head">Auto-generated?</th>
-<th class="head">Default</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Comment</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Optional?</p></th>
+<th class="head"><p>Auto-generated?</p></th>
+<th class="head"><p>Default</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td>calculate_transmission</td>
-<td>Information for the transmission calculation</td>
-<td><em>TypedParameter(StateCalculateTransmission)</em></td>
-<td>N</td>
-<td>N</td>
-<td><ul class="first last simple">
+<tbody>
+<tr class="row-even"><td><p>calculate_transmission</p></td>
+<td><p>Information for the transmission calculation</p></td>
+<td><p><em>TypedParameter(StateCalculateTransmission)</em></p></td>
+<td><p>N</p></td>
+<td><p>N</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
 </tr>
-<tr class="row-odd"><td>normalize_to_monitor</td>
-<td>Information for the monitor normalization</td>
-<td><em>TypedParameter(StateNormalizeToMonitor)</em></td>
-<td>N</td>
-<td>N</td>
-<td><ul class="first last simple">
+<tr class="row-odd"><td><p>normalize_to_monitor</p></td>
+<td><p>Information for the monitor normalization</p></td>
+<td><p><em>TypedParameter(StateNormalizeToMonitor)</em></p></td>
+<td><p>N</p></td>
+<td><p>N</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
 </tr>
-<tr class="row-even"><td>wavelength_and_pixel_adjustment</td>
-<td>Information for combining different adjustments</td>
-<td><em>TypedParameter(StateWavelengthAndPixelAdjustment)</em></td>
-<td>N</td>
-<td>N</td>
-<td><ul class="first last simple">
+<tr class="row-even"><td><p>wavelength_and_pixel_adjustment</p></td>
+<td><p>Information for combining different adjustments</p></td>
+<td><p><em>TypedParameter(StateWavelengthAndPixelAdjustment)</em></p></td>
+<td><p>N</p></td>
+<td><p>N</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
 </tr>
-<tr class="row-odd"><td>wide_angle_correction</td>
-<td>If wide angle calculation should be performed.
+<tr class="row-odd"><td><p>wide_angle_correction</p></td>
+<td><p>If wide angle calculation should be performed.
 Note that this will produce the pixel-and-wavelength
-adjustment</td>
-<td><em>BoolParameter</em></td>
-<td>Y</td>
-<td>N</td>
-<td>False</td>
+adjustment</p></td>
+<td><p><em>BoolParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><p>False</p></td>
 </tr>
 </tbody>
 </table>
@@ -1415,268 +1425,268 @@ adjustment</td>
 This reduction step is one of the more complicated bits of the reduction and hence has a
 large variety of settings. The <em>StateCalculateTransmission</em> class contains the
 following parameters:</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="17%" />
-<col width="51%" />
-<col width="16%" />
-<col width="5%" />
-<col width="8%" />
-<col width="4%" />
+<col style="width: 17%" />
+<col style="width: 51%" />
+<col style="width: 16%" />
+<col style="width: 5%" />
+<col style="width: 8%" />
+<col style="width: 4%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Name</th>
-<th class="head">Comment</th>
-<th class="head">Type</th>
-<th class="head">Optional?</th>
-<th class="head">Auto-generated?</th>
-<th class="head">Default</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Comment</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Optional?</p></th>
+<th class="head"><p>Auto-generated?</p></th>
+<th class="head"><p>Default</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td>transmission_radius_on_detector</td>
-<td>A radius around the beam centre for transmission ROI on the bank</td>
-<td><em>PositiveFloatParameter</em></td>
-<td>Y</td>
-<td>N</td>
-<td><ul class="first last simple">
+<tbody>
+<tr class="row-even"><td><p>transmission_radius_on_detector</p></td>
+<td><p>A radius around the beam centre for transmission ROI on the bank</p></td>
+<td><p><em>PositiveFloatParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
 </tr>
-<tr class="row-odd"><td>transmission_roi_files</td>
-<td>A list of ROI files for transmission ROI on the bank</td>
-<td><em>StringListParameter</em></td>
-<td>Y</td>
-<td>N</td>
-<td><ul class="first last simple">
+<tr class="row-odd"><td><p>transmission_roi_files</p></td>
+<td><p>A list of ROI files for transmission ROI on the bank</p></td>
+<td><p><em>StringListParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
 </tr>
-<tr class="row-even"><td>transmission_mask_files</td>
-<td>A list of mask files for transmission ROI on the bank</td>
-<td><em>StringListParameter</em></td>
-<td>Y</td>
-<td>N</td>
-<td><ul class="first last simple">
+<tr class="row-even"><td><p>transmission_mask_files</p></td>
+<td><p>A list of mask files for transmission ROI on the bank</p></td>
+<td><p><em>StringListParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
 </tr>
-<tr class="row-odd"><td>default_transmission_monitor</td>
-<td>The default transmission monitor (if nothing else has been specified)</td>
-<td><em>PositiveIntegerParameter</em></td>
-<td>N</td>
-<td>Y</td>
-<td><ul class="first last simple">
+<tr class="row-odd"><td><p>default_transmission_monitor</p></td>
+<td><p>The default transmission monitor (if nothing else has been specified)</p></td>
+<td><p><em>PositiveIntegerParameter</em></p></td>
+<td><p>N</p></td>
+<td><p>Y</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
 </tr>
-<tr class="row-even"><td>transmission_monitor</td>
-<td>The relevant transmission monitor (if no ROI is being used)</td>
-<td><em>PositiveIntegerParameter</em></td>
-<td>Y</td>
-<td>N</td>
-<td><ul class="first last simple">
+<tr class="row-even"><td><p>transmission_monitor</p></td>
+<td><p>The relevant transmission monitor (if no ROI is being used)</p></td>
+<td><p><em>PositiveIntegerParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
 </tr>
-<tr class="row-odd"><td>default_incident_monitor</td>
-<td>The default incident monitor (if nothing else has been specified)</td>
-<td><em>PositiveIntegerParameter</em></td>
-<td>N</td>
-<td>Y</td>
-<td><ul class="first last simple">
+<tr class="row-odd"><td><p>default_incident_monitor</p></td>
+<td><p>The default incident monitor (if nothing else has been specified)</p></td>
+<td><p><em>PositiveIntegerParameter</em></p></td>
+<td><p>N</p></td>
+<td><p>Y</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
 </tr>
-<tr class="row-even"><td>incident_monitor</td>
-<td>The incident monitor</td>
-<td><em>PositiveIntegerParameter</em></td>
-<td>Y</td>
-<td>N</td>
-<td><ul class="first last simple">
+<tr class="row-even"><td><p>incident_monitor</p></td>
+<td><p>The incident monitor</p></td>
+<td><p><em>PositiveIntegerParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
 </tr>
-<tr class="row-odd"><td>prompt_peak_correction_min</td>
-<td>The start time of a prompt peak correction</td>
-<td><em>PositiveFloatParameter</em></td>
-<td>Y</td>
-<td>N</td>
-<td><ul class="first last simple">
+<tr class="row-odd"><td><p>prompt_peak_correction_min</p></td>
+<td><p>The start time of a prompt peak correction</p></td>
+<td><p><em>PositiveFloatParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
 </tr>
-<tr class="row-even"><td>prompt_peak_correction_max</td>
-<td>The stop time of a prompt peak correction</td>
-<td><em>PositiveFloatParameter</em></td>
-<td>Y</td>
-<td>N</td>
-<td><ul class="first last simple">
+<tr class="row-even"><td><p>prompt_peak_correction_max</p></td>
+<td><p>The stop time of a prompt peak correction</p></td>
+<td><p><em>PositiveFloatParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
 </tr>
-<tr class="row-odd"><td>prompt_peak_correction_enabled</td>
-<td>If the prompt peak correction should occur</td>
-<td><em>BoolParameter</em></td>
-<td>Y</td>
-<td>N</td>
-<td>True</td>
+<tr class="row-odd"><td><p>prompt_peak_correction_enabled</p></td>
+<td><p>If the prompt peak correction should occur</p></td>
+<td><p><em>BoolParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><p>True</p></td>
 </tr>
-<tr class="row-even"><td>rebin_type</td>
-<td>The type of wavelength rebinning, i.e. standard or interpolating</td>
-<td><em>Enum(RebinType)</em> Y         N</td>
-<td>&#160;</td>
-<td><ul class="first last simple">
+<tr class="row-even"><td><p>rebin_type</p></td>
+<td><p>The type of wavelength rebinning, i.e. standard or interpolating</p></td>
+<td><p><em>Enum(RebinType)</em> Y         N</p></td>
+<td></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
-<td>&#160;</td>
+<td></td>
 </tr>
-<tr class="row-odd"><td>wavelength_low</td>
-<td>The lower wavelength boundary</td>
-<td><em>PositiveFloatParameter</em></td>
-<td>Y</td>
-<td>N</td>
-<td><ul class="first last simple">
-<li></li>
-</ul>
-</td>
-</tr>
-<tr class="row-even"><td>wavelength_high</td>
-<td>The upper wavelength boundary</td>
-<td><em>PositiveFloatParameter</em></td>
-<td>Y</td>
-<td>N</td>
-<td><ul class="first last simple">
+<tr class="row-odd"><td><p>wavelength_low</p></td>
+<td><p>The lower wavelength boundary</p></td>
+<td><p><em>PositiveFloatParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
 </tr>
-<tr class="row-odd"><td>wavelength_step</td>
-<td>The wavelength step</td>
-<td><em>PositiveFloatParameter</em></td>
-<td>Y</td>
-<td>N</td>
-<td><ul class="first last simple">
+<tr class="row-even"><td><p>wavelength_high</p></td>
+<td><p>The upper wavelength boundary</p></td>
+<td><p><em>PositiveFloatParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
 </tr>
-<tr class="row-even"><td>wavelength_step_type</td>
-<td>The wavelength step type, i.e. lin or log</td>
-<td><em>Enum(RebinType)</em> Y         N</td>
-<td>&#160;</td>
-<td><ul class="first last simple">
-<li></li>
-</ul>
-</td>
-<td>&#160;</td>
-</tr>
-<tr class="row-odd"><td>use_full_wavelength_range</td>
-<td>If the full wavelength range of the instrument should be used</td>
-<td><em>BoolParameter</em></td>
-<td>Y</td>
-<td>N</td>
-<td><ul class="first last simple">
+<tr class="row-odd"><td><p>wavelength_step</p></td>
+<td><p>The wavelength step</p></td>
+<td><p><em>PositiveFloatParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
 </tr>
-<tr class="row-even"><td>wavelength_full_range_low</td>
-<td>The lower wavelength boundary of the full wavelength range</td>
-<td><em>PositiveFloatParameter</em></td>
-<td>Y</td>
-<td>N</td>
-<td><ul class="first last simple">
+<tr class="row-even"><td><p>wavelength_step_type</p></td>
+<td><p>The wavelength step type, i.e. lin or log</p></td>
+<td><p><em>Enum(RebinType)</em> Y         N</p></td>
+<td></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>use_full_wavelength_range</p></td>
+<td><p>If the full wavelength range of the instrument should be used</p></td>
+<td><p><em>BoolParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
 </tr>
-<tr class="row-odd"><td>wavelength_full_range_high</td>
-<td>The upper wavelength boundary of the full wavelength range</td>
-<td><em>PositiveFloatParameter</em></td>
-<td>Y</td>
-<td>N</td>
-<td><ul class="first last simple">
+<tr class="row-even"><td><p>wavelength_full_range_low</p></td>
+<td><p>The lower wavelength boundary of the full wavelength range</p></td>
+<td><p><em>PositiveFloatParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
 </tr>
-<tr class="row-even"><td>background_TOF_general_start</td>
-<td>General lower boundary for background correction</td>
-<td><em>FloatParameter</em></td>
-<td>Y</td>
-<td>N</td>
-<td><ul class="first last simple">
+<tr class="row-odd"><td><p>wavelength_full_range_high</p></td>
+<td><p>The upper wavelength boundary of the full wavelength range</p></td>
+<td><p><em>PositiveFloatParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
 </tr>
-<tr class="row-odd"><td>background_TOF_general_stop</td>
-<td>General upper boundary for background correction</td>
-<td><em>FloatParameter</em></td>
-<td>Y</td>
-<td>N</td>
-<td><ul class="first last simple">
+<tr class="row-even"><td><p>background_TOF_general_start</p></td>
+<td><p>General lower boundary for background correction</p></td>
+<td><p><em>FloatParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
 </tr>
-<tr class="row-even"><td>background_TOF_monitor_start</td>
-<td>Monitor specific lower boundary for background correction (monitor vs. start value)</td>
-<td><em>DictParameter</em></td>
-<td>Y</td>
-<td>N</td>
-<td><ul class="first last simple">
+<tr class="row-odd"><td><p>background_TOF_general_stop</p></td>
+<td><p>General upper boundary for background correction</p></td>
+<td><p><em>FloatParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
 </tr>
-<tr class="row-odd"><td>background_TOF_monitor_stop</td>
-<td>Monitor specific upper boundary for background correction (monitor vs. stop value)</td>
-<td><em>DictParameter</em></td>
-<td>Y</td>
-<td>N</td>
-<td><ul class="first last simple">
+<tr class="row-even"><td><p>background_TOF_monitor_start</p></td>
+<td><p>Monitor specific lower boundary for background correction (monitor vs. start value)</p></td>
+<td><p><em>DictParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
 </tr>
-<tr class="row-even"><td>background_TOF_roi_start</td>
-<td>Lower bound of background correction when using ROI on detector</td>
-<td><em>FloatParameter</em></td>
-<td>Y</td>
-<td>N</td>
-<td><ul class="first last simple">
+<tr class="row-odd"><td><p>background_TOF_monitor_stop</p></td>
+<td><p>Monitor specific upper boundary for background correction (monitor vs. stop value)</p></td>
+<td><p><em>DictParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
 </tr>
-<tr class="row-odd"><td>background_TOF_roi_stop</td>
-<td>Upper bound of background correction when using ROI on detector</td>
-<td><em>FloatParameter</em></td>
-<td>Y</td>
-<td>N</td>
-<td><ul class="first last simple">
+<tr class="row-even"><td><p>background_TOF_roi_start</p></td>
+<td><p>Lower bound of background correction when using ROI on detector</p></td>
+<td><p><em>FloatParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
 </tr>
-<tr class="row-even"><td>fit</td>
-<td>A dict for each data type (sample and can) to the state of fit settings (<em>StateTransmissionFit</em>)</td>
-<td><em>DictParameter</em></td>
-<td>Y</td>
-<td>N</td>
-<td><ul class="first last simple">
+<tr class="row-odd"><td><p>background_TOF_roi_stop</p></td>
+<td><p>Upper bound of background correction when using ROI on detector</p></td>
+<td><p><em>FloatParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p>fit</p></td>
+<td><p>A dict for each data type (sample and can) to the state of fit settings (<em>StateTransmissionFit</em>)</p></td>
+<td><p><em>DictParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
@@ -1692,55 +1702,55 @@ the different wavelength ranges (and potentially default prompt peak settings.)<
 <p>The above mentioned <em>StateTransmissionFit</em> class contains fit information for
 the transmission calculation. Note that each data type, can contain its separate
 fit information. The set of parameters describing this fit are:</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="10%" />
-<col width="40%" />
-<col width="20%" />
-<col width="6%" />
-<col width="9%" />
-<col width="15%" />
+<col style="width: 10%" />
+<col style="width: 40%" />
+<col style="width: 20%" />
+<col style="width: 6%" />
+<col style="width: 9%" />
+<col style="width: 15%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Name</th>
-<th class="head">Comment</th>
-<th class="head">Type</th>
-<th class="head">Optional?</th>
-<th class="head">Auto-generated?</th>
-<th class="head">Default</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Comment</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Optional?</p></th>
+<th class="head"><p>Auto-generated?</p></th>
+<th class="head"><p>Default</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td>fit_type</td>
-<td>The type of fitting, i.e. lin, log or poly</td>
-<td><em>Enum(FitType)</em>    Y         N</td>
-<td>&#160;</td>
-<td><em>FitType.Log</em></td>
-<td>enum value</td>
+<tbody>
+<tr class="row-even"><td><p>fit_type</p></td>
+<td><p>The type of fitting, i.e. lin, log or poly</p></td>
+<td><p><em>Enum(FitType)</em>    Y         N</p></td>
+<td></td>
+<td><p><em>FitType.Log</em></p></td>
+<td><p>enum value</p></td>
 </tr>
-<tr class="row-odd"><td>polynomial_order</td>
-<td>Polynomial order when poly fit type has been selected</td>
-<td><em>PositiveIntegerParameter</em></td>
-<td>Y</td>
-<td>N</td>
-<td>0</td>
+<tr class="row-odd"><td><p>polynomial_order</p></td>
+<td><p>Polynomial order when poly fit type has been selected</p></td>
+<td><p><em>PositiveIntegerParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><p>0</p></td>
 </tr>
-<tr class="row-even"><td>wavelength_low</td>
-<td>Lower wavelength bound for fitting (<em>None</em> means no lower bound)</td>
-<td><em>PositiveFloatWithNoneParameter</em></td>
-<td>Y</td>
-<td>N</td>
-<td><ul class="first last simple">
+<tr class="row-even"><td><p>wavelength_low</p></td>
+<td><p>Lower wavelength bound for fitting (<em>None</em> means no lower bound)</p></td>
+<td><p><em>PositiveFloatWithNoneParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
 </tr>
-<tr class="row-odd"><td>wavelength_high</td>
-<td>Upper wavelength bound for fitting (<em>None</em> means no upper bound)</td>
-<td><em>PositiveFloatWithNoneParameter</em></td>
-<td>Y</td>
-<td>N</td>
-<td><ul class="first last simple">
+<tr class="row-odd"><td><p>wavelength_high</p></td>
+<td><p>Upper wavelength bound for fitting (<em>None</em> means no upper bound)</p></td>
+<td><p><em>PositiveFloatWithNoneParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
@@ -1753,142 +1763,142 @@ actively set a polynomial order if polynomial fitting has been selected.</p>
 <p>The monitor normalization sets up a wavelength adjustment workspace.
 This needs to always be specified. In the <em>StateNormalizeToMonitor</em> class most parameters
 are very similar to the transmission calculation. The parameters are:</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="15%" />
-<col width="40%" />
-<col width="17%" />
-<col width="4%" />
-<col width="7%" />
-<col width="18%" />
+<col style="width: 15%" />
+<col style="width: 40%" />
+<col style="width: 17%" />
+<col style="width: 4%" />
+<col style="width: 7%" />
+<col style="width: 18%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Name</th>
-<th class="head">Comment</th>
-<th class="head">Type</th>
-<th class="head">Optional?</th>
-<th class="head">Auto-generated?</th>
-<th class="head">Default</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Comment</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Optional?</p></th>
+<th class="head"><p>Auto-generated?</p></th>
+<th class="head"><p>Default</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td>incident_monitor</td>
-<td>The incident monitor</td>
-<td><em>PositiveIntegerParameter</em></td>
-<td>Y</td>
-<td>N</td>
-<td>default which is specified in the IPF</td>
+<tbody>
+<tr class="row-even"><td><p>incident_monitor</p></td>
+<td><p>The incident monitor</p></td>
+<td><p><em>PositiveIntegerParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><p>default which is specified in the IPF</p></td>
 </tr>
-<tr class="row-odd"><td>prompt_peak_correction_min</td>
-<td>The start time of a prompt peak correction</td>
-<td><em>PositiveFloatParameter</em></td>
-<td>Y</td>
-<td>N</td>
-<td><ul class="first last simple">
+<tr class="row-odd"><td><p>prompt_peak_correction_min</p></td>
+<td><p>The start time of a prompt peak correction</p></td>
+<td><p><em>PositiveFloatParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
 </tr>
-<tr class="row-even"><td>prompt_peak_correction_max</td>
-<td>The stop time of a prompt peak correction</td>
-<td><em>PositiveFloatParameter</em></td>
-<td>Y</td>
-<td>N</td>
-<td><ul class="first last simple">
+<tr class="row-even"><td><p>prompt_peak_correction_max</p></td>
+<td><p>The stop time of a prompt peak correction</p></td>
+<td><p><em>PositiveFloatParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
 </tr>
-<tr class="row-odd"><td>prompt_peak_correction_enabled</td>
-<td>If the prompt peak correction should occur</td>
-<td><em>BoolParameter</em></td>
-<td>Y</td>
-<td>N</td>
-<td>False</td>
+<tr class="row-odd"><td><p>prompt_peak_correction_enabled</p></td>
+<td><p>If the prompt peak correction should occur</p></td>
+<td><p><em>BoolParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><p>False</p></td>
 </tr>
-<tr class="row-even"><td>rebin_type</td>
-<td>The type of wavelength rebinning, i.e. standard or interpolating</td>
-<td><em>Enum(RebinType)</em></td>
-<td>Y</td>
-<td>N</td>
-<td><em>RebinType.Rebin</em> enum value</td>
+<tr class="row-even"><td><p>rebin_type</p></td>
+<td><p>The type of wavelength rebinning, i.e. standard or interpolating</p></td>
+<td><p><em>Enum(RebinType)</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><p><em>RebinType.Rebin</em> enum value</p></td>
 </tr>
-<tr class="row-odd"><td>wavelength_low</td>
-<td>The lower wavelength boundary</td>
-<td><em>PositiveFloatParameter</em></td>
-<td>Y</td>
-<td>N</td>
-<td><ul class="first last simple">
+<tr class="row-odd"><td><p>wavelength_low</p></td>
+<td><p>The lower wavelength boundary</p></td>
+<td><p><em>PositiveFloatParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
 </tr>
-<tr class="row-even"><td>wavelength_high</td>
-<td>The upper wavelength boundary</td>
-<td><em>PositiveFloatParameter</em></td>
-<td>Y</td>
-<td>N</td>
-<td><ul class="first last simple">
+<tr class="row-even"><td><p>wavelength_high</p></td>
+<td><p>The upper wavelength boundary</p></td>
+<td><p><em>PositiveFloatParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
 </tr>
-<tr class="row-odd"><td>wavelength_step</td>
-<td>The wavelength step</td>
-<td><em>PositiveFloatParameter</em></td>
-<td>Y</td>
-<td>N</td>
-<td><ul class="first last simple">
+<tr class="row-odd"><td><p>wavelength_step</p></td>
+<td><p>The wavelength step</p></td>
+<td><p><em>PositiveFloatParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
 </tr>
-<tr class="row-even"><td>wavelength_step_type</td>
-<td>The wavelength step type, i.e. lin or log</td>
-<td><em>Enum(RangeStepType)</em></td>
-<td>Y</td>
-<td>N</td>
-<td><ul class="first last simple">
+<tr class="row-even"><td><p>wavelength_step_type</p></td>
+<td><p>The wavelength step type, i.e. lin or log</p></td>
+<td><p><em>Enum(RangeStepType)</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
 </tr>
-<tr class="row-odd"><td>background_TOF_general_start</td>
-<td>General lower boundary for background correction</td>
-<td><em>FloatParameter</em></td>
-<td>Y</td>
-<td>N</td>
-<td><ul class="first last simple">
+<tr class="row-odd"><td><p>background_TOF_general_start</p></td>
+<td><p>General lower boundary for background correction</p></td>
+<td><p><em>FloatParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
 </tr>
-<tr class="row-even"><td>background_TOF_general_stop</td>
-<td>General upper boundary for background correction</td>
-<td><em>FloatParameter</em></td>
-<td>Y</td>
-<td>N</td>
-<td><ul class="first last simple">
+<tr class="row-even"><td><p>background_TOF_general_stop</p></td>
+<td><p>General upper boundary for background correction</p></td>
+<td><p><em>FloatParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
 </tr>
-<tr class="row-odd"><td>background_TOF_monitor_start</td>
-<td>Monitor specific lower boundary for background correction (monitor vs. start value)</td>
-<td><em>DictParameter</em></td>
-<td>Y</td>
-<td>N</td>
-<td><ul class="first last simple">
+<tr class="row-odd"><td><p>background_TOF_monitor_start</p></td>
+<td><p>Monitor specific lower boundary for background correction (monitor vs. start value)</p></td>
+<td><p><em>DictParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
 </tr>
-<tr class="row-even"><td>background_TOF_monitor_stop</td>
-<td>Monitor specific upper boundary for background correction (monitor vs. stop value)</td>
-<td><em>DictParameter</em></td>
-<td>Y</td>
-<td>N</td>
-<td><ul class="first last simple">
+<tr class="row-even"><td><p>background_TOF_monitor_stop</p></td>
+<td><p>Monitor specific upper boundary for background correction (monitor vs. stop value)</p></td>
+<td><p><em>DictParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
@@ -1899,308 +1909,308 @@ are very similar to the transmission calculation. The parameters are:</p>
 <p>This stage combines wavelength workspaces generated from the transmission and the monitor
 normalization stages with workspaces loaded from files.
 The <em>StateWavelengthAndPixelAdjustment</em> class contains the following parameters:</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="14%" />
-<col width="48%" />
-<col width="23%" />
-<col width="6%" />
-<col width="10%" />
+<col style="width: 14%" />
+<col style="width: 48%" />
+<col style="width: 23%" />
+<col style="width: 6%" />
+<col style="width: 10%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Name</th>
-<th class="head">Comment</th>
-<th class="head">Type</th>
-<th class="head">Optional?</th>
-<th class="head">Auto-generated?</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Comment</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Optional?</p></th>
+<th class="head"><p>Auto-generated?</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td>wavelength_low</td>
-<td>The lower bound of the for the wavelength range</td>
-<td><em>PositiveFloatParameter</em></td>
-<td>N</td>
-<td>N</td>
+<tbody>
+<tr class="row-even"><td><p>wavelength_low</p></td>
+<td><p>The lower bound of the for the wavelength range</p></td>
+<td><p><em>PositiveFloatParameter</em></p></td>
+<td><p>N</p></td>
+<td><p>N</p></td>
 </tr>
-<tr class="row-odd"><td>wavelength_high</td>
-<td>The upper bound of the for the wavelength range</td>
-<td><em>PositiveFloatParameter</em></td>
-<td>N</td>
-<td>N</td>
+<tr class="row-odd"><td><p>wavelength_high</p></td>
+<td><p>The upper bound of the for the wavelength range</p></td>
+<td><p><em>PositiveFloatParameter</em></p></td>
+<td><p>N</p></td>
+<td><p>N</p></td>
 </tr>
-<tr class="row-even"><td>wavelength_step</td>
-<td>The wavelength step</td>
-<td><em>PositiveFloatParameter</em></td>
-<td>N</td>
-<td>N</td>
+<tr class="row-even"><td><p>wavelength_step</p></td>
+<td><p>The wavelength step</p></td>
+<td><p><em>PositiveFloatParameter</em></p></td>
+<td><p>N</p></td>
+<td><p>N</p></td>
 </tr>
-<tr class="row-odd"><td>wavelength_step_type</td>
-<td>The wavelength step type, i.e. lin or log</td>
-<td><em>Enum(RangeStepType)</em> N         N</td>
-<td>&#160;</td>
-<td>&#160;</td>
+<tr class="row-odd"><td><p>wavelength_step_type</p></td>
+<td><p>The wavelength step type, i.e. lin or log</p></td>
+<td><p><em>Enum(RangeStepType)</em> N         N</p></td>
+<td></td>
+<td></td>
 </tr>
-<tr class="row-even"><td>adjustment_files</td>
-<td>Dict to adjustment files; detector type vs <em>StateAdjustmentFiles</em> object</td>
-<td><em>DictParamter</em></td>
-<td>N</td>
-<td>Y</td>
+<tr class="row-even"><td><p>adjustment_files</p></td>
+<td><p>Dict to adjustment files; detector type vs <em>StateAdjustmentFiles</em> object</p></td>
+<td><p><em>DictParamter</em></p></td>
+<td><p>N</p></td>
+<td><p>Y</p></td>
 </tr>
-<tr class="row-odd"><td>idf_path</td>
-<td>Path to the IDF file</td>
-<td><em>StringParameter</em></td>
-<td>N</td>
-<td>Y</td>
+<tr class="row-odd"><td><p>idf_path</p></td>
+<td><p>Path to the IDF file</p></td>
+<td><p><em>StringParameter</em></p></td>
+<td><p>N</p></td>
+<td><p>Y</p></td>
 </tr>
 </tbody>
 </table>
 <p>Per detector type (i.e. LAB and HAB) there can be one pixel adjustment file and
 one wavelength file. The values are stored in the <em>StateAdjustmentFiles</em> class and its parameters are:</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="24%" />
-<col width="38%" />
-<col width="16%" />
-<col width="8%" />
-<col width="13%" />
+<col style="width: 24%" />
+<col style="width: 38%" />
+<col style="width: 16%" />
+<col style="width: 8%" />
+<col style="width: 13%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Name</th>
-<th class="head">Comment</th>
-<th class="head">Type</th>
-<th class="head">Optional?</th>
-<th class="head">Auto-generated?</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Comment</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Optional?</p></th>
+<th class="head"><p>Auto-generated?</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td>pixel_adjustment_file</td>
-<td>The name of the pixel adjustment file</td>
-<td><em>StringParameter</em></td>
-<td>Y</td>
-<td>N</td>
+<tbody>
+<tr class="row-even"><td><p>pixel_adjustment_file</p></td>
+<td><p>The name of the pixel adjustment file</p></td>
+<td><p><em>StringParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
 </tr>
-<tr class="row-odd"><td>wavelength_adjustment_file</td>
-<td>The name of the wavelength adjustment file</td>
-<td><em>StringParameter</em></td>
-<td>Y</td>
-<td>N</td>
+<tr class="row-odd"><td><p>wavelength_adjustment_file</p></td>
+<td><p>The name of the wavelength adjustment file</p></td>
+<td><p><em>StringParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="convert-to-q-py">
+</section>
+<section id="convert-to-q-py">
 <h5><a class="toc-backref" href="#id20"><em>convert_to_q.py</em></a><a class="headerlink" href="#convert-to-q-py" title="Permalink to this headline">¶</a></h5>
 <p>The <em>StateConvertToQ</em> class contains information about the conversion of the
 scatter data from wavelength units to momentum transfer units. Essentially this
 is information to operate the <em>Q1D</em> or <em>Qxy</em> algorithm.</p>
 <p>The parameters are:</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="15%" />
-<col width="21%" />
-<col width="21%" />
-<col width="15%" />
-<col width="7%" />
-<col width="20%" />
+<col style="width: 15%" />
+<col style="width: 21%" />
+<col style="width: 21%" />
+<col style="width: 15%" />
+<col style="width: 7%" />
+<col style="width: 20%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Name</th>
-<th class="head">Comment</th>
-<th class="head">Type</th>
-<th class="head">Optional?</th>
-<th class="head">Auto-generated?</th>
-<th class="head">Default</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Comment</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Optional?</p></th>
+<th class="head"><p>Auto-generated?</p></th>
+<th class="head"><p>Default</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td>reduction_dimensionality</td>
-<td>1D or 2D</td>
-<td><em>Enum(ReductionDimensionality)</em></td>
-<td>N</td>
-<td>N</td>
-<td><em>ReductionDimensionality.OneDim</em> enum value</td>
+<tbody>
+<tr class="row-even"><td><p>reduction_dimensionality</p></td>
+<td><p>1D or 2D</p></td>
+<td><p><em>Enum(ReductionDimensionality)</em></p></td>
+<td><p>N</p></td>
+<td><p>N</p></td>
+<td><p><em>ReductionDimensionality.OneDim</em> enum value</p></td>
 </tr>
-<tr class="row-odd"><td>use_gravity</td>
-<td>If gravity correction should be applied</td>
-<td><em>BoolParameter</em></td>
-<td>Y</td>
-<td>N</td>
-<td>False</td>
+<tr class="row-odd"><td><p>use_gravity</p></td>
+<td><p>If gravity correction should be applied</p></td>
+<td><p><em>BoolParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><p>False</p></td>
 </tr>
-<tr class="row-even"><td>gravity_extra_length</td>
-<td>Extra length for gravity correction</td>
-<td><em>PositiveFloatParameter</em></td>
-<td>Y</td>
-<td>N</td>
-<td>0</td>
+<tr class="row-even"><td><p>gravity_extra_length</p></td>
+<td><p>Extra length for gravity correction</p></td>
+<td><p><em>PositiveFloatParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><p>0</p></td>
 </tr>
-<tr class="row-odd"><td>radius_cuto-off</td>
-<td>Radius above which pixels are not considered</td>
-<td><em>PositiveFloatParameter</em></td>
-<td>Y</td>
-<td>N</td>
-<td>0</td>
+<tr class="row-odd"><td><p>radius_cuto-off</p></td>
+<td><p>Radius above which pixels are not considered</p></td>
+<td><p><em>PositiveFloatParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><p>0</p></td>
 </tr>
-<tr class="row-even"><td>wavelength_cuto-off</td>
-<td>Wavelength above which data is not considered</td>
-<td><em>PositiveFloatParameter</em></td>
-<td>Y</td>
-<td>N</td>
-<td>0</td>
+<tr class="row-even"><td><p>wavelength_cuto-off</p></td>
+<td><p>Wavelength above which data is not considered</p></td>
+<td><p><em>PositiveFloatParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><p>0</p></td>
 </tr>
-<tr class="row-odd"><td>q_min</td>
-<td>Min momentum transfer value for 1D reduction</td>
-<td><em>PositiveFloatParameter</em></td>
-<td>N,</td>
-<td>if 1D  N</td>
-<td><ul class="first last simple">
+<tr class="row-odd"><td><p>q_min</p></td>
+<td><p>Min momentum transfer value for 1D reduction</p></td>
+<td><p><em>PositiveFloatParameter</em></p></td>
+<td><p>N,</p></td>
+<td><p>if 1D  N</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
 </tr>
-<tr class="row-even"><td>q_max</td>
-<td>Max momentum transfer value for 1D reduction</td>
-<td><em>PositiveFloatParameter</em></td>
-<td>N,</td>
-<td>if 1D  N</td>
-<td><ul class="first last simple">
+<tr class="row-even"><td><p>q_max</p></td>
+<td><p>Max momentum transfer value for 1D reduction</p></td>
+<td><p><em>PositiveFloatParameter</em></p></td>
+<td><p>N,</p></td>
+<td><p>if 1D  N</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
 </tr>
-<tr class="row-odd"><td>q_1d_rebin_string</td>
-<td>Rebin string for Q1D</td>
-<td><em>StringParameter</em></td>
-<td>N,</td>
-<td>if 1D  N</td>
-<td><ul class="first last simple">
+<tr class="row-odd"><td><p>q_1d_rebin_string</p></td>
+<td><p>Rebin string for Q1D</p></td>
+<td><p><em>StringParameter</em></p></td>
+<td><p>N,</p></td>
+<td><p>if 1D  N</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
 </tr>
-<tr class="row-even"><td>q_xy_max</td>
-<td>Max momentum transfer value for 2D reduction</td>
-<td><em>PositiveFloatParameter</em></td>
-<td>N,</td>
-<td>if 2D  N</td>
-<td><ul class="first last simple">
+<tr class="row-even"><td><p>q_xy_max</p></td>
+<td><p>Max momentum transfer value for 2D reduction</p></td>
+<td><p><em>PositiveFloatParameter</em></p></td>
+<td><p>N,</p></td>
+<td><p>if 2D  N</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
 </tr>
-<tr class="row-odd"><td>q_xy_step</td>
-<td>Momentum transfer step for 2D reduction</td>
-<td><em>PositiveFloatParameter</em></td>
-<td>N,</td>
-<td>if 2D  N</td>
-<td><ul class="first last simple">
+<tr class="row-odd"><td><p>q_xy_step</p></td>
+<td><p>Momentum transfer step for 2D reduction</p></td>
+<td><p><em>PositiveFloatParameter</em></p></td>
+<td><p>N,</p></td>
+<td><p>if 2D  N</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
 </tr>
-<tr class="row-even"><td>q_xy_step_type</td>
-<td>The step type, i.e. lin or log</td>
-<td><em>Enum(RangeStepType)</em></td>
-<td>N,</td>
-<td>if 2D  N</td>
-<td><ul class="first last simple">
+<tr class="row-even"><td><p>q_xy_step_type</p></td>
+<td><p>The step type, i.e. lin or log</p></td>
+<td><p><em>Enum(RangeStepType)</em></p></td>
+<td><p>N,</p></td>
+<td><p>if 2D  N</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
 </tr>
-<tr class="row-odd"><td>use_q_resolution</td>
-<td>If should perform a q resolution calculation</td>
-<td><em>BoolParameter</em></td>
-<td>Y</td>
-<td>N</td>
-<td>False</td>
+<tr class="row-odd"><td><p>use_q_resolution</p></td>
+<td><p>If should perform a q resolution calculation</p></td>
+<td><p><em>BoolParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><p>False</p></td>
 </tr>
-<tr class="row-even"><td>q_resolution_collimation_length</td>
-<td>Collimation length</td>
-<td><em>PositiveFloatParameter</em></td>
-<td>N, if performing q resolution</td>
-<td>N</td>
-<td><ul class="first last simple">
+<tr class="row-even"><td><p>q_resolution_collimation_length</p></td>
+<td><p>Collimation length</p></td>
+<td><p><em>PositiveFloatParameter</em></p></td>
+<td><p>N, if performing q resolution</p></td>
+<td><p>N</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
 </tr>
-<tr class="row-odd"><td>q_resolution_delta_r</td>
-<td>Virtual ring width on the detector</td>
-<td><em>PositiveFloatParameter</em></td>
-<td>N, if performing q resolution</td>
-<td>N</td>
-<td><ul class="first last simple">
+<tr class="row-odd"><td><p>q_resolution_delta_r</p></td>
+<td><p>Virtual ring width on the detector</p></td>
+<td><p><em>PositiveFloatParameter</em></p></td>
+<td><p>N, if performing q resolution</p></td>
+<td><p>N</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
 </tr>
-<tr class="row-even"><td>moderator_file</td>
-<td>A file with moderator spread values</td>
-<td><em>StringParameter</em></td>
-<td>N, if performing q resolution</td>
-<td>N</td>
-<td><ul class="first last simple">
+<tr class="row-even"><td><p>moderator_file</p></td>
+<td><p>A file with moderator spread values</p></td>
+<td><p><em>StringParameter</em></p></td>
+<td><p>N, if performing q resolution</p></td>
+<td><p>N</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
 </tr>
-<tr class="row-odd"><td>q_resolution_a1</td>
-<td>The diameter of circular source aperture</td>
-<td><em>PositiveFloatParameter</em></td>
-<td>Y (see below)</td>
-<td>N</td>
-<td><ul class="first last simple">
+<tr class="row-odd"><td><p>q_resolution_a1</p></td>
+<td><p>The diameter of circular source aperture</p></td>
+<td><p><em>PositiveFloatParameter</em></p></td>
+<td><p>Y (see below)</p></td>
+<td><p>N</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
 </tr>
-<tr class="row-even"><td>q_resolution_a2</td>
-<td>The diameter of circular sample aperture</td>
-<td><em>PositiveFloatParameter</em></td>
-<td>Y (see below)</td>
-<td>N</td>
-<td><ul class="first last simple">
+<tr class="row-even"><td><p>q_resolution_a2</p></td>
+<td><p>The diameter of circular sample aperture</p></td>
+<td><p><em>PositiveFloatParameter</em></p></td>
+<td><p>Y (see below)</p></td>
+<td><p>N</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
 </tr>
-<tr class="row-odd"><td>q_resolution_h1</td>
-<td>The height of rectangular source aperture</td>
-<td><em>PositiveFloatParameter</em></td>
-<td>Y (see below)</td>
-<td>N</td>
-<td><ul class="first last simple">
+<tr class="row-odd"><td><p>q_resolution_h1</p></td>
+<td><p>The height of rectangular source aperture</p></td>
+<td><p><em>PositiveFloatParameter</em></p></td>
+<td><p>Y (see below)</p></td>
+<td><p>N</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
 </tr>
-<tr class="row-even"><td>q_resolution_h2</td>
-<td>The height of rectangular sample aperture</td>
-<td><em>PositiveFloatParameter</em></td>
-<td>Y (see below)</td>
-<td>N</td>
-<td><ul class="first last simple">
+<tr class="row-even"><td><p>q_resolution_h2</p></td>
+<td><p>The height of rectangular sample aperture</p></td>
+<td><p><em>PositiveFloatParameter</em></p></td>
+<td><p>Y (see below)</p></td>
+<td><p>N</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
 </tr>
-<tr class="row-odd"><td>q_resolution_w1</td>
-<td>The width of rectangular source aperture</td>
-<td><em>PositiveFloatParameter</em></td>
-<td>Y (see below)</td>
-<td>N</td>
-<td><ul class="first last simple">
+<tr class="row-odd"><td><p>q_resolution_w1</p></td>
+<td><p>The width of rectangular source aperture</p></td>
+<td><p><em>PositiveFloatParameter</em></p></td>
+<td><p>Y (see below)</p></td>
+<td><p>N</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
 </tr>
-<tr class="row-even"><td>q_resolution_w2</td>
-<td>The width of rectangular sample aperture</td>
-<td><em>PositiveFloatParameter</em></td>
-<td>Y (see below)</td>
-<td>N</td>
-<td><ul class="first last simple">
+<tr class="row-even"><td><p>q_resolution_w2</p></td>
+<td><p>The width of rectangular sample aperture</p></td>
+<td><p><em>PositiveFloatParameter</em></p></td>
+<td><p>Y (see below)</p></td>
+<td><p>N</p></td>
+<td><ul class="simple">
 <li></li>
 </ul>
 </td>
@@ -2209,8 +2219,8 @@ is information to operate the <em>Q1D</em> or <em>Qxy</em> algorithm.</p>
 </table>
 <p>Note that if <em>use_q_resolution</em> is enabled, then either the aperture information
 for the circular or the rectangular case needs to be specified.</p>
-</div>
-<div class="section" id="compatibility-py">
+</section>
+<section id="compatibility-py">
 <h5><a class="toc-backref" href="#id21"><em>compatibility.py</em></a><a class="headerlink" href="#compatibility-py" title="Permalink to this headline">¶</a></h5>
 <p>The <em>StateCompatibility</em> class is not directly part of the reduction, but it will
 convert event-mode workspaces early on to histogram-mode workspaces in order to
@@ -2218,45 +2228,45 @@ emulate the old reduction work-flow. This allows for a direct comparison between
 results of the new and old reduction framework. The name <em>compatibility</em> has
 been chosen in order to indicate that we are testing for compatibility with the
 results of the old reduction framework.</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="18%" />
-<col width="42%" />
-<col width="13%" />
-<col width="7%" />
-<col width="11%" />
-<col width="9%" />
+<col style="width: 18%" />
+<col style="width: 42%" />
+<col style="width: 13%" />
+<col style="width: 7%" />
+<col style="width: 11%" />
+<col style="width: 9%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Name</th>
-<th class="head">Comment</th>
-<th class="head">Type</th>
-<th class="head">Optional?</th>
-<th class="head">Auto-generated?</th>
-<th class="head">Default</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Comment</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Optional?</p></th>
+<th class="head"><p>Auto-generated?</p></th>
+<th class="head"><p>Default</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td>use_compatibility_mode</td>
-<td>If to perform a compatibility conversion</td>
-<td><em>BoolParameter</em></td>
-<td>Y</td>
-<td>N</td>
-<td>False</td>
+<tbody>
+<tr class="row-even"><td><p>use_compatibility_mode</p></td>
+<td><p>If to perform a compatibility conversion</p></td>
+<td><p><em>BoolParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><p>False</p></td>
 </tr>
-<tr class="row-odd"><td>time_rebin_string</td>
-<td>How to rebin the data when converting to histogram mode</td>
-<td><em>StringParameter</em></td>
-<td>Y</td>
-<td>N</td>
-<td>empty string</td>
+<tr class="row-odd"><td><p>time_rebin_string</p></td>
+<td><p>How to rebin the data when converting to histogram mode</p></td>
+<td><p><em>StringParameter</em></p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+<td><p>empty string</p></td>
 </tr>
 </tbody>
 </table>
-</div>
-</div>
-</div>
-<div class="section" id="state-generation">
+</section>
+</section>
+</section>
+<section id="state-generation">
 <h3><a class="toc-backref" href="#id22">State Generation</a><a class="headerlink" href="#state-generation" title="Permalink to this headline">¶</a></h3>
 <p>User input can come in the form of user files, the Python interface or the GUI. In
 some of these cases the order in which the parameters are set is not always in the
@@ -2264,7 +2274,7 @@ same order and sometimes a parameter can be set multiple times (e.g. via the use
 These settings are captured in an input dictionary and then processed
 by builder classes which are coordinated by a state director. These components are
 described below.</p>
-<div class="section" id="user-input-dictionary">
+<section id="user-input-dictionary">
 <h4><a class="toc-backref" href="#id23">User input dictionary</a><a class="headerlink" href="#user-input-dictionary" title="Permalink to this headline">¶</a></h4>
 <p>As mentioned above, we cannot make any assumptions about the order or multiplicity of the
 user commands. We use a simple Python dictionary to store the specified settings.
@@ -2291,8 +2301,8 @@ calculation for a <em>Can</em> data set could be:</p>
 <p>This entry is added to the general user input dictionary. Note that for some of the
 input values, enums from <em>enums.py</em> are used, e.g. <em>FitType.Polynomial</em>. This approach is
 used throughout the reduction-back-end.</p>
-</div>
-<div class="section" id="builders">
+</section>
+<section id="builders">
 <h4><a class="toc-backref" href="#id24">Builders</a><a class="headerlink" href="#builders" title="Permalink to this headline">¶</a></h4>
 <p>The state object is constructed via the builder pattern. Each state has its own builder
 which will construct the correct state or sub-state based on the input parameter. Note that
@@ -2319,7 +2329,7 @@ are automatically set by the builder.</p>
 <p>In the <em>exclusions</em> input we can specify parameters which should not receive a setter.
 Note the the first input of the decorator is the state class which is being constructed by
 the builder.</p>
-<div class="section" id="selection-of-the-builders">
+<section id="selection-of-the-builders">
 <h5><a class="toc-backref" href="#id25">Selection of the builders</a><a class="headerlink" href="#selection-of-the-builders" title="Permalink to this headline">¶</a></h5>
 <p>As stated above the builders are made available via factory methods. Currently, most
 of the factory methods just check if we are dealing with an ISIS instrument and provide
@@ -2327,15 +2337,15 @@ the appropriate builder. Unknown instruments will raise an <em>NotImplementedErr
 extending the framework to other instruments this is something that needs to be explicitly
 enabled for all states. This was done deliberately in order to ensure that the reduction state
 matches the new instrument.</p>
-</div>
-</div>
-<div class="section" id="directors">
+</section>
+</section>
+<section id="directors">
 <h4><a class="toc-backref" href="#id26">Directors</a><a class="headerlink" href="#directors" title="Permalink to this headline">¶</a></h4>
 <p>As explained above each state has its own builder which in turn is selected via a factory method.
 To coordinate the builders and feed them the information that has been made available for example
 via the user file, the GUI or the CLI, we need an entity which coordinates the builders and the access
 to the relevant information. This task is managed by state directors.</p>
-<div class="section" id="state-director-py">
+<section id="state-director-py">
 <h5><a class="toc-backref" href="#id27"><em>state_director.py</em></a><a class="headerlink" href="#state-director-py" title="Permalink to this headline">¶</a></h5>
 <p>The main director which handles the coordination of the builders and the only one which
 is actually aware of them is <em>StateDirectorISIS</em>. The director manages the user input
@@ -2347,8 +2357,8 @@ the state, but are only responsible for providing the user input. An exception t
 is the <em>StateData</em> object, since it is used indirectly to choose the correct builders
 for the other sub-states. Hence the role of the outer level directors is to provide the
 <em>StateDirectorISIS</em> object with general user input information and information about the data.</p>
-</div>
-<div class="section" id="user-file-input">
+</section>
+<section id="user-file-input">
 <h5><a class="toc-backref" href="#id28">User file input</a><a class="headerlink" href="#user-file-input" title="Permalink to this headline">¶</a></h5>
 <p>The user file is an import aspect of setting up a reduction for a SANS work-flow. Conventionally,
 most of the settings are defined in the user file and only few settings are adjusted/provided
@@ -2361,8 +2371,8 @@ interface method (<em>parse_line</em> which takes a single line to parse)
 needs to be provided.</p>
 <p>For an overview of the user file commands, please see the
 <a class="reference external" href="https://www.mantidproject.org/SANS_User_File_Commands">user file documentation</a> .</p>
-</div>
-<div class="section" id="director-for-isiscommandinterface-cli">
+</section>
+<section id="director-for-isiscommandinterface-cli">
 <h5><a class="toc-backref" href="#id29">Director for <em>ISISCommandInterface</em> (CLI)</a><a class="headerlink" href="#director-for-isiscommandinterface-cli" title="Permalink to this headline">¶</a></h5>
 <p>The <em>ISISCommandInterface</em> is used by some of the power users among the instrument scientists. It is
 an efficient way to customize reductions which require small tweaks between different reductions.
@@ -2372,35 +2382,35 @@ for the <em>ISISCommandInterface</em> for more information.</p>
 with the complication that we are only able to set up the reduction state after all information has been provided, hence
 it collects all the inputs and stores this information between CLI calls. Once processing has been requested, it
 pre-processes some of this input and passes the information via a user input dictionary to the standard state director.</p>
-</div>
-<div class="section" id="usage-via-gui">
+</section>
+<section id="usage-via-gui">
 <h5><a class="toc-backref" href="#id30">Usage via GUI</a><a class="headerlink" href="#usage-via-gui" title="Permalink to this headline">¶</a></h5>
 <p>The GUI stores the user input dictionary in the <em>StateGuiModel</em> class
 in <em>state_gui_model.py</em> which is then consumed by the <em>GuiStateDirector</em> in
 <em>gui_state_directory.py</em>. The state model contains most of the information required
 for the state generation. Some further settings, especially regarding the data
 which is to be reduced, is stored in the <em>TableModel</em> in <em>table_model.py</em>.</p>
-</div>
-</div>
-<div class="section" id="other-useful-information">
+</section>
+</section>
+<section id="other-useful-information">
 <h4><a class="toc-backref" href="#id31">Other useful information</a><a class="headerlink" href="#other-useful-information" title="Permalink to this headline">¶</a></h4>
-<div class="section" id="enum-py">
+<section id="enum-py">
 <h5><a class="toc-backref" href="#id32"><em>enum.py</em></a><a class="headerlink" href="#enum-py" title="Permalink to this headline">¶</a></h5>
 <p>This module contains many enum-like classes. Since we cannot make use of the <em>enum</em>
 features of Python 3 and don’t want to work with string comparisons, we roll out
 our own enums. Two things are noteworthy here:</p>
 <ul class="simple">
-<li>Using the <em>string_convertible</em> decorator allows the enum classes to be
+<li><p>Using the <em>string_convertible</em> decorator allows the enum classes to be
 string-convertible which is useful when they are being used in state objects
-which themselves need to be serializable.</li>
-<li>The <em>serializable_enum</em> decorator allows to correctly register the enum values.
-Note that this decorator alters the <em>__module__</em> of the nested classes.</li>
+which themselves need to be serializable.</p></li>
+<li><p>The <em>serializable_enum</em> decorator allows to correctly register the enum values.
+Note that this decorator alters the <em>__module__</em> of the nested classes.</p></li>
 </ul>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="work-flow-algorithms-for-individual-reduction-steps">
+</section>
+</section>
+</section>
+</section>
+<section id="work-flow-algorithms-for-individual-reduction-steps">
 <h2><a class="toc-backref" href="#id33">Work-flow algorithms for individual reduction steps</a><a class="headerlink" href="#work-flow-algorithms-for-individual-reduction-steps" title="Permalink to this headline">¶</a></h2>
 <p>Here we intend to discuss the functionality of the individual work-flow algorithms
 which make up the SANS reduction. The algorithms can be found in <em>Framework/PythonInterface/plugins/WorkflowAlgorithms/SANS</em>.
@@ -2408,99 +2418,103 @@ Some of the implementation is placed into <em>scripts/SANS/sans/algorithm_detail
 avoid large scripts sizes.</p>
 <p>The dedicated work-flow algorithms for the SANS reduction are:</p>
 <ul class="simple">
-<li><em>Calculate SANS Transmission</em></li>
-<li><em>Create SANS Wavelength Pixel Adjustment</em></li>
-<li><a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/CropToComponent-v1.html#algm-croptocomponent" title="(in MantidProject v6.1)"><span class="xref std std-ref">CropToComponent</span></a></li>
-<li><a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Divide-v1.html#algm-divide" title="(in MantidProject v6.1)"><span class="xref std std-ref">Divide</span></a> (by Sample Volume)</li>
-<li><a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Multiply-v1.html#algm-multiply" title="(in MantidProject v6.1)"><span class="xref std std-ref">Multiply</span></a> (by Absolute Scale)</li>
-<li><a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/MoveInstrumentComponent-v1.html#algm-moveinstrumentcomponent" title="(in MantidProject v6.1)"><span class="xref std std-ref">MoveInstrumentComponent</span></a></li>
-<li><em>Normalize To SANS Monitor</em></li>
-<li><a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Q1D-v2.html#algm-q1d" title="(in MantidProject v6.1)"><span class="xref std std-ref">Q1D</span></a> or <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Qxy-v1.html#algm-qxy" title="(in MantidProject v6.1)"><span class="xref std std-ref">Qxy</span></a></li>
-<li><a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/RotateInstrumentComponent-v1.html#algm-rotateinstrumentcomponent" title="(in MantidProject v6.1)"><span class="xref std std-ref">RotateInstrumentComponent</span></a></li>
-<li><a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/SANSConvertToWavelengthAndRebin-v1.html#algm-sansconverttowavelengthandrebin" title="(in MantidProject v6.1)"><span class="xref std std-ref">SANSConvertToWavelengthAndRebin</span></a></li>
-<li><a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/SANSLoad-v1.html#algm-sansload" title="(in MantidProject v6.1)"><span class="xref std std-ref">SANSLoad</span></a></li>
-<li><em>SANSSave</em></li>
-<li><em>Slice SANS Event</em></li>
-<li><em>Workspace Masking</em></li>
+<li><p><em>Calculate SANS Transmission</em></p></li>
+<li><p><em>Create SANS Wavelength Pixel Adjustment</em></p></li>
+<li><p><a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/CropToComponent-v1.html#algm-croptocomponent" title="(in MantidProject v6.3)"><span class="xref std std-ref">CropToComponent</span></a></p></li>
+<li><p><a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Divide-v1.html#algm-divide" title="(in MantidProject v6.3)"><span class="xref std std-ref">Divide</span></a> (by Sample Volume)</p></li>
+<li><p><a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Multiply-v1.html#algm-multiply" title="(in MantidProject v6.3)"><span class="xref std std-ref">Multiply</span></a> (by Absolute Scale)</p></li>
+<li><p><a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/MoveInstrumentComponent-v1.html#algm-moveinstrumentcomponent" title="(in MantidProject v6.3)"><span class="xref std std-ref">MoveInstrumentComponent</span></a></p></li>
+<li><p><em>Normalize To SANS Monitor</em></p></li>
+<li><p><a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Q1D-v2.html#algm-q1d" title="(in MantidProject v6.3)"><span class="xref std std-ref">Q1D</span></a> or <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Qxy-v1.html#algm-qxy" title="(in MantidProject v6.3)"><span class="xref std std-ref">Qxy</span></a></p></li>
+<li><p><a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/RotateInstrumentComponent-v1.html#algm-rotateinstrumentcomponent" title="(in MantidProject v6.3)"><span class="xref std std-ref">RotateInstrumentComponent</span></a></p></li>
+<li><p><a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/SANSConvertToWavelengthAndRebin-v1.html#algm-sansconverttowavelengthandrebin" title="(in MantidProject v6.3)"><span class="xref std std-ref">SANSConvertToWavelengthAndRebin</span></a></p></li>
+<li><p><a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/SANSLoad-v1.html#algm-sansload" title="(in MantidProject v6.3)"><span class="xref std std-ref">SANSLoad</span></a></p></li>
+<li><p><em>SANSSave</em></p></li>
+<li><p><em>Slice SANS Event</em></p></li>
+<li><p><em>Workspace Masking</em></p></li>
 </ul>
 <p>Note that algorithms prefixed with SANS take a <em>SANSState</em> object as
 an input.</p>
 <p>The individual algorithms are superficially discussed below.</p>
 <p>There are two further algorithms which coordinate these algorithms, they are <em>SANSReductionCore</em> and
 <em>SANSSingleReduction</em> which are discussed further down.</p>
-<div class="section" id="calculate-sans-transmission">
+<section id="calculate-sans-transmission">
 <h3><a class="toc-backref" href="#id34"><em>Calculate SANS Transmission</em></a><a class="headerlink" href="#calculate-sans-transmission" title="Permalink to this headline">¶</a></h3>
 <p>The following steps are performed:</p>
 <ol class="arabic simple">
-<li>Select the incident monitor. If this is not explicitly set then the default value is taken.</li>
-<li>Select the transmission detector ids. The detector ids are chosen via the following preference:<ol class="loweralpha">
-<li>If available, get detector ids from region-of-interest selection on detector</li>
-<li>Else if available get detector ids from transmission monitor setting</li>
-<li>Else get default transmission monitor</li>
+<li><p>Select the incident monitor. If this is not explicitly set then the default value is taken.</p></li>
+<li><p>Select the transmission detector ids. The detector ids are chosen via the following preference:</p>
+<ol class="loweralpha simple">
+<li><p>If available, get detector ids from region-of-interest selection on detector</p></li>
+<li><p>Else if available get detector ids from transmission monitor setting</p></li>
+<li><p>Else get default transmission monitor</p></li>
 </ol>
 </li>
-<li>Get the corrected transmission workspace. The sub-steps are:<ol class="loweralpha">
-<li>Load the transmission workspace</li>
-<li>Extract the transmission detector ids with <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/ExtractSpectra-v1.html#algm-extractspectra" title="(in MantidProject v6.1)"><span class="xref std std-ref">ExtractSpectra</span></a></li>
-<li>Perform prompt peak correction</li>
-<li>Perform flat background correction to monitors (if applicable) using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/CalculateFlatBackground-v1.html#algm-calculateflatbackground" title="(in MantidProject v6.1)"><span class="xref std std-ref">CalculateFlatBackground</span></a></li>
-<li>Perform flat background correction to other detectors (if applicable) using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/CalculateFlatBackground-v1.html#algm-calculateflatbackground" title="(in MantidProject v6.1)"><span class="xref std std-ref">CalculateFlatBackground</span></a></li>
-<li>Convert to wavelength and rebin using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/SANSConvertToWavelengthAndRebin-v1.html#algm-sansconverttowavelengthandrebin" title="(in MantidProject v6.1)"><span class="xref std std-ref">SANSConvertToWavelengthAndRebin</span></a></li>
+<li><p>Get the corrected transmission workspace. The sub-steps are:</p>
+<ol class="loweralpha simple">
+<li><p>Load the transmission workspace</p></li>
+<li><p>Extract the transmission detector ids with <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/ExtractSpectra-v1.html#algm-extractspectra" title="(in MantidProject v6.3)"><span class="xref std std-ref">ExtractSpectra</span></a></p></li>
+<li><p>Perform prompt peak correction</p></li>
+<li><p>Perform flat background correction to monitors (if applicable) using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/CalculateFlatBackground-v1.html#algm-calculateflatbackground" title="(in MantidProject v6.3)"><span class="xref std std-ref">CalculateFlatBackground</span></a></p></li>
+<li><p>Perform flat background correction to other detectors (if applicable) using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/CalculateFlatBackground-v1.html#algm-calculateflatbackground" title="(in MantidProject v6.3)"><span class="xref std std-ref">CalculateFlatBackground</span></a></p></li>
+<li><p>Convert to wavelength and rebin using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/SANSConvertToWavelengthAndRebin-v1.html#algm-sansconverttowavelengthandrebin" title="(in MantidProject v6.3)"><span class="xref std std-ref">SANSConvertToWavelengthAndRebin</span></a></p></li>
 </ol>
 </li>
-<li>Get the corrected direct workspace. The sub-steps are:<ol class="loweralpha">
-<li>Load the direct workspace</li>
-<li>Extract the transmission detector ids with <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/ExtractSpectra-v1.html#algm-extractspectra" title="(in MantidProject v6.1)"><span class="xref std std-ref">ExtractSpectra</span></a></li>
-<li>Perform prompt peak correction (if applicable) using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/RemoveBins-v1.html#algm-removebins" title="(in MantidProject v6.1)"><span class="xref std std-ref">RemoveBins</span></a></li>
-<li>Perform flat background correction to monitors (if applicable) using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/CalculateFlatBackground-v1.html#algm-calculateflatbackground" title="(in MantidProject v6.1)"><span class="xref std std-ref">CalculateFlatBackground</span></a></li>
-<li>Perform flat background correction to other detectors (if applicable) using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/CalculateFlatBackground-v1.html#algm-calculateflatbackground" title="(in MantidProject v6.1)"><span class="xref std std-ref">CalculateFlatBackground</span></a></li>
-<li>Convert to wavelength and rebin using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/SANSConvertToWavelengthAndRebin-v1.html#algm-sansconverttowavelengthandrebin" title="(in MantidProject v6.1)"><span class="xref std std-ref">SANSConvertToWavelengthAndRebin</span></a></li>
+<li><p>Get the corrected direct workspace. The sub-steps are:</p>
+<ol class="loweralpha simple">
+<li><p>Load the direct workspace</p></li>
+<li><p>Extract the transmission detector ids with <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/ExtractSpectra-v1.html#algm-extractspectra" title="(in MantidProject v6.3)"><span class="xref std std-ref">ExtractSpectra</span></a></p></li>
+<li><p>Perform prompt peak correction (if applicable) using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/RemoveBins-v1.html#algm-removebins" title="(in MantidProject v6.3)"><span class="xref std std-ref">RemoveBins</span></a></p></li>
+<li><p>Perform flat background correction to monitors (if applicable) using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/CalculateFlatBackground-v1.html#algm-calculateflatbackground" title="(in MantidProject v6.3)"><span class="xref std std-ref">CalculateFlatBackground</span></a></p></li>
+<li><p>Perform flat background correction to other detectors (if applicable) using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/CalculateFlatBackground-v1.html#algm-calculateflatbackground" title="(in MantidProject v6.3)"><span class="xref std std-ref">CalculateFlatBackground</span></a></p></li>
+<li><p>Convert to wavelength and rebin using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/SANSConvertToWavelengthAndRebin-v1.html#algm-sansconverttowavelengthandrebin" title="(in MantidProject v6.3)"><span class="xref std std-ref">SANSConvertToWavelengthAndRebin</span></a></p></li>
 </ol>
 </li>
-<li>Perform fitting for the transmission calculation. The sub-steps are:<ol class="loweralpha">
-<li>Use incident monitor, wavelength settings, transmission detector ids, fit
+<li><p>Perform fitting for the transmission calculation. The sub-steps are:</p>
+<ol class="loweralpha simple">
+<li><p>Use incident monitor, wavelength settings, transmission detector ids, fit
 settings as well as the corrected transmission (step 3) and direct (step4)
-workspaces to initialize <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/CalculateTransmission-v1.html#algm-calculatetransmission" title="(in MantidProject v6.1)"><span class="xref std std-ref">CalculateTransmission</span></a></li>
-<li>Execute <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/CalculateTransmission-v1.html#algm-calculatetransmission" title="(in MantidProject v6.1)"><span class="xref std std-ref">CalculateTransmission</span></a></li>
-<li>Get the fitted and unfitted output workspaces</li>
+workspaces to initialize <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/CalculateTransmission-v1.html#algm-calculatetransmission" title="(in MantidProject v6.3)"><span class="xref std std-ref">CalculateTransmission</span></a></p></li>
+<li><p>Execute <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/CalculateTransmission-v1.html#algm-calculatetransmission" title="(in MantidProject v6.3)"><span class="xref std std-ref">CalculateTransmission</span></a></p></li>
+<li><p>Get the fitted and unfitted output workspaces</p></li>
 </ol>
 </li>
-<li>Set the fitted and unfitted workspaces on the output of the algorithm.</li>
+<li><p>Set the fitted and unfitted workspaces on the output of the algorithm.</p></li>
 </ol>
-</div>
-<div class="section" id="conversion-to-q">
+</section>
+<section id="conversion-to-q">
 <h3><a class="toc-backref" href="#id35">Conversion to Q</a><a class="headerlink" href="#conversion-to-q" title="Permalink to this headline">¶</a></h3>
 <p>If a 1D reduction has been selected then the algorithm will perform the follow sub-steps:</p>
 <ol class="arabic simple">
-<li>Calculate the momentum transfer resolution workspace using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/TOFSANSResolutionByPixel-v1.html#algm-tofsansresolutionbypixel" title="(in MantidProject v6.1)"><span class="xref std std-ref">TOFSANSResolutionByPixel</span></a> (if applicable)</li>
-<li>Set data workspace, adjustment workspaces, momentum transfer resolution workspace
+<li><p>Calculate the momentum transfer resolution workspace using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/TOFSANSResolutionByPixel-v1.html#algm-tofsansresolutionbypixel" title="(in MantidProject v6.3)"><span class="xref std std-ref">TOFSANSResolutionByPixel</span></a> (if applicable)</p></li>
+<li><p>Set data workspace, adjustment workspaces, momentum transfer resolution workspace
 (if applicable), radius and wavelength cut-offs, momentum transfer limits
-and the gravity correction on <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Q1D-v2.html#algm-q1d" title="(in MantidProject v6.1)"><span class="xref std std-ref">Q1D</span></a></li>
-<li>Execute <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Q1D-v2.html#algm-q1d" title="(in MantidProject v6.1)"><span class="xref std std-ref">Q1D</span></a></li>
-<li>Get reduced workspace, the sum-of-counts workspace and the sum-of-norm workspaces
-and set on the output of the algorithm</li>
+and the gravity correction on <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Q1D-v2.html#algm-q1d" title="(in MantidProject v6.3)"><span class="xref std std-ref">Q1D</span></a></p></li>
+<li><p>Execute <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Q1D-v2.html#algm-q1d" title="(in MantidProject v6.3)"><span class="xref std std-ref">Q1D</span></a></p></li>
+<li><p>Get reduced workspace, the sum-of-counts workspace and the sum-of-norm workspaces
+and set on the output of the algorithm</p></li>
 </ol>
 <p>If a 2D reduction has been selected then the algorithm will perform the following sub-steps:</p>
 <ol class="arabic simple">
-<li>Set data workspace, adjustment workspaces, momentum transfer resolution workspace
+<li><p>Set data workspace, adjustment workspaces, momentum transfer resolution workspace
 (if applicable), radius and wavelength cut-offs, momentum transfer limits
-and the gravity correction on <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Qxy-v1.html#algm-qxy" title="(in MantidProject v6.1)"><span class="xref std std-ref">Qxy</span></a></li>
-<li>Execute <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Qxy-v1.html#algm-qxy" title="(in MantidProject v6.1)"><span class="xref std std-ref">Qxy</span></a></li>
-<li>Get reduced workspace, the sum-of-counts workspace and the sum-of-norm workspaces
-and set on the output of the algorithm</li>
+and the gravity correction on <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Qxy-v1.html#algm-qxy" title="(in MantidProject v6.3)"><span class="xref std std-ref">Qxy</span></a></p></li>
+<li><p>Execute <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Qxy-v1.html#algm-qxy" title="(in MantidProject v6.3)"><span class="xref std std-ref">Qxy</span></a></p></li>
+<li><p>Get reduced workspace, the sum-of-counts workspace and the sum-of-norm workspaces
+and set on the output of the algorithm</p></li>
 </ol>
-</div>
-<div class="section" id="sansconverttowavelengthandrebin">
+</section>
+<section id="sansconverttowavelengthandrebin">
 <h3><a class="toc-backref" href="#id36"><em>SANSConvertToWavelengthAndRebin</em></a><a class="headerlink" href="#sansconverttowavelengthandrebin" title="Permalink to this headline">¶</a></h3>
-<p>The <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/SANSConvertToWavelengthAndRebin-v1.html#algm-sansconverttowavelengthandrebin" title="(in MantidProject v6.1)"><span class="xref std std-ref">SANSConvertToWavelengthAndRebin</span></a>
+<p>The <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/SANSConvertToWavelengthAndRebin-v1.html#algm-sansconverttowavelengthandrebin" title="(in MantidProject v6.3)"><span class="xref std std-ref">SANSConvertToWavelengthAndRebin</span></a>
 algorithm is one of the few which does not take a <em>SANSState</em> object as an input.</p>
 <p>The algorithm performs the following steps:</p>
 <ol class="arabic simple">
-<li>Unit conversion from time-of-flight units to wavelength units using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/ConvertUnits-v1.html#algm-convertunits" title="(in MantidProject v6.1)"><span class="xref std std-ref">ConvertUnits</span></a></li>
-<li>Performs a rebin operation using either <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Rebin-v1.html#algm-rebin" title="(in MantidProject v6.1)"><span class="xref std std-ref">Rebin</span></a> or <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/InterpolatingRebin-v1.html#algm-interpolatingrebin" title="(in MantidProject v6.1)"><span class="xref std std-ref">InterpolatingRebin</span></a></li>
+<li><p>Unit conversion from time-of-flight units to wavelength units using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/ConvertUnits-v1.html#algm-convertunits" title="(in MantidProject v6.3)"><span class="xref std std-ref">ConvertUnits</span></a></p></li>
+<li><p>Performs a rebin operation using either <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Rebin-v1.html#algm-rebin" title="(in MantidProject v6.3)"><span class="xref std std-ref">Rebin</span></a> or <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/InterpolatingRebin-v1.html#algm-interpolatingrebin" title="(in MantidProject v6.3)"><span class="xref std std-ref">InterpolatingRebin</span></a></p></li>
 </ol>
-</div>
-<div class="section" id="create-sans-wavelength-and-pixel-adjustment">
+</section>
+<section id="create-sans-wavelength-and-pixel-adjustment">
 <h3><a class="toc-backref" href="#id37"><em>Create SANS Wavelength and Pixel Adjustment</em></a><a class="headerlink" href="#create-sans-wavelength-and-pixel-adjustment" title="Permalink to this headline">¶</a></h3>
 <p>This step combines the output of the <em>Calculate SANS Transmission</em> step,
 the output of the <em>Normalize To SANS Monitor</em>,
@@ -2508,150 +2522,157 @@ and flood and direct files to produce the correction workspaces which
 are required for converting to Q.</p>
 <p>The sub-steps of the algorithm are:</p>
 <ol class="arabic simple">
-<li>Create the wavelength-adjustment workspace. The sub-steps are:<ol class="loweralpha">
-<li>Get the calculate-transmission workspace from the input</li>
-<li>Get the normalization-to-monitor workspace from the input</li>
-<li>Load the wavelength-adjustment file using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/LoadRKH-v1.html#algm-loadrkh" title="(in MantidProject v6.1)"><span class="xref std std-ref">LoadRKH</span></a></li>
-<li>Provide all of the above workspaces with the same binning using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Rebin-v1.html#algm-rebin" title="(in MantidProject v6.1)"><span class="xref std std-ref">Rebin</span></a>
-and multiply them using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Multiply-v1.html#algm-multiply" title="(in MantidProject v6.1)"><span class="xref std std-ref">Multiply</span></a></li>
+<li><p>Create the wavelength-adjustment workspace. The sub-steps are:</p>
+<ol class="loweralpha simple">
+<li><p>Get the calculate-transmission workspace from the input</p></li>
+<li><p>Get the normalization-to-monitor workspace from the input</p></li>
+<li><p>Load the wavelength-adjustment file using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/LoadRKH-v1.html#algm-loadrkh" title="(in MantidProject v6.3)"><span class="xref std std-ref">LoadRKH</span></a></p></li>
+<li><p>Provide all of the above workspaces with the same binning using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Rebin-v1.html#algm-rebin" title="(in MantidProject v6.3)"><span class="xref std std-ref">Rebin</span></a>
+and multiply them using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Multiply-v1.html#algm-multiply" title="(in MantidProject v6.3)"><span class="xref std std-ref">Multiply</span></a></p></li>
 </ol>
 </li>
-<li>Create the pixel-adjustment workspace. The sub-states are:<ol class="loweralpha">
-<li>Load the pixel-adjustment file using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/LoadRKH-v1.html#algm-loadrkh" title="(in MantidProject v6.1)"><span class="xref std std-ref">LoadRKH</span></a></li>
-<li>Crop the pixel-adjustment workspace to the desired detector
-using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/CropToComponent-v1.html#algm-croptocomponent" title="(in MantidProject v6.1)"><span class="xref std std-ref">CropToComponent</span></a></li>
+<li><p>Create the pixel-adjustment workspace. The sub-states are:</p>
+<ol class="loweralpha simple">
+<li><p>Load the pixel-adjustment file using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/LoadRKH-v1.html#algm-loadrkh" title="(in MantidProject v6.3)"><span class="xref std std-ref">LoadRKH</span></a></p></li>
+<li><p>Crop the pixel-adjustment workspace to the desired detector
+using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/CropToComponent-v1.html#algm-croptocomponent" title="(in MantidProject v6.3)"><span class="xref std std-ref">CropToComponent</span></a></p></li>
 </ol>
 </li>
-<li>Set the pixel-adjustment and wavelength-adjustment workspaces on the output of the algorithm</li>
+<li><p>Set the pixel-adjustment and wavelength-adjustment workspaces on the output of the algorithm</p></li>
 </ol>
-</div>
-<div class="section" id="sansload">
+</section>
+<section id="sansload">
 <h3><a class="toc-backref" href="#id38"><em>SANSLoad</em></a><a class="headerlink" href="#sansload" title="Permalink to this headline">¶</a></h3>
-<p>The <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/SANSLoad-v1.html#algm-sansload" title="(in MantidProject v6.1)"><span class="xref std std-ref">SANSLoad</span></a> algorithm is responsible for loading data and applying the calibration
+<p>The <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/SANSLoad-v1.html#algm-sansload" title="(in MantidProject v6.3)"><span class="xref std std-ref">SANSLoad</span></a> algorithm is responsible for loading data and applying the calibration
 where required. This algorithm loads SANS data sets. The loading can handle nexus
 and raw files which can be plain or multi-period data. In addition the algorithm
 has to be able to handle added files. The SANS data sets which can be loaded
 with this algorithm are:</p>
 <ul class="simple">
-<li>sample scatter data which is the actual data under investigation. The algorithm
-loads the corresponding monitor workspace separately</li>
-<li>sample transmission data</li>
-<li>sample direct data</li>
-<li>can scatter data. The algorithm also loads the corresponding monitor workspace separately</li>
-<li>can transmission data</li>
-<li>can direct data</li>
+<li><p>sample scatter data which is the actual data under investigation. The algorithm
+loads the corresponding monitor workspace separately</p></li>
+<li><p>sample transmission data</p></li>
+<li><p>sample direct data</p></li>
+<li><p>can scatter data. The algorithm also loads the corresponding monitor workspace separately</p></li>
+<li><p>can transmission data</p></li>
+<li><p>can direct data</p></li>
 </ul>
 <p>In addition a calibration file which is applied after the data has been loaded
 can be specified. The calibration performs micro-adjustments to the detectors.</p>
 <p>The algorithm sub-steps are:</p>
 <ol class="arabic simple">
-<li>Based on the input data a loading strategy is selected.</li>
-<li>For each workspace in the <em>StateData</em> state object we load the data (with the loading strategy from step 1). The sub-states are:<ol class="loweralpha">
-<li>If optimizations are enabled check if the desired workspace already exists
-on the ADS. If so, fetch it and return it. We are done with loading this data set.</li>
-<li>Else get the correct loader strategy (e.g. for event-mode files) and load
+<li><p>Based on the input data a loading strategy is selected.</p></li>
+<li><p>For each workspace in the <em>StateData</em> state object we load the data (with the loading strategy from step 1). The sub-states are:</p>
+<ol class="loweralpha simple">
+<li><p>If optimizations are enabled check if the desired workspace already exists
+on the ADS. If so, fetch it and return it. We are done with loading this data set.</p></li>
+<li><p>Else get the correct loader strategy (e.g. for event-mode files) and load
 the data. This will load either all periods or just the specified period
 where applicable. If scatter data is loaded, then the monitor data is loaded
-into a separate workspace with the suffix “_monitors”.</li>
+into a separate workspace with the suffix “_monitors”.</p></li>
 </ol>
 </li>
-<li>Apply calibration if required. Note that the algorithm loads the calibration
+<li><p>Apply calibration if required. Note that the algorithm loads the calibration
 workspace from the ADS if it exists there when optimizations are enabled. Else
-it loads it from file and places it on the ADS.</li>
-<li>Set the loaded workspaces on the output of the algorithm.</li>
-<li>For LOQ apply transmission corrections if applicable. This will apply a different
-instrument definition for transmission runs.</li>
+it loads it from file and places it on the ADS.</p></li>
+<li><p>Set the loaded workspaces on the output of the algorithm.</p></li>
+<li><p>For LOQ apply transmission corrections if applicable. This will apply a different
+instrument definition for transmission runs.</p></li>
 </ol>
-</div>
-<div class="section" id="workspace-masking">
+</section>
+<section id="workspace-masking">
 <h3><a class="toc-backref" href="#id39"><em>Workspace Masking</em></a><a class="headerlink" href="#workspace-masking" title="Permalink to this headline">¶</a></h3>
 <p>There are several types of masking which are currently supported:</p>
 <ul class="simple">
-<li>Time/Bin masking.</li>
-<li>Radius masking.</li>
-<li>Mask files.</li>
-<li>Spectrum masking which includes individual spectra, spectra ranges, spectra
-blocks and spectra cross blocks. These masks are partially specified on a detector level (see below).</li>
-<li>Angle masking.</li>
-<li>Beam stop masking.</li>
+<li><p>Time/Bin masking.</p></li>
+<li><p>Radius masking.</p></li>
+<li><p>Mask files.</p></li>
+<li><p>Spectrum masking which includes individual spectra, spectra ranges, spectra
+blocks and spectra cross blocks. These masks are partially specified on a detector level (see below).</p></li>
+<li><p>Angle masking.</p></li>
+<li><p>Beam stop masking.</p></li>
 </ul>
 <p>Note that only those of the following steps are executed where the user has specified
 a particular masking instruction. The algorithm sub-steps are:</p>
 <ol class="arabic simple">
-<li>Select the correct masking strategy (currently only ISIS)</li>
-<li>Apply time bin masking. The sub-steps are:<ol class="loweralpha">
-<li>Apply general time bin masks using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/MaskBins-v1.html#algm-maskbins" title="(in MantidProject v6.1)"><span class="xref std std-ref">MaskBins</span></a></li>
-<li>Apply detector specific time bin masks using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/MaskBins-v1.html#algm-maskbins" title="(in MantidProject v6.1)"><span class="xref std std-ref">MaskBins</span></a></li>
+<li><p>Select the correct masking strategy (currently only ISIS)</p></li>
+<li><p>Apply time bin masking. The sub-steps are:</p>
+<ol class="loweralpha simple">
+<li><p>Apply general time bin masks using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/MaskBins-v1.html#algm-maskbins" title="(in MantidProject v6.3)"><span class="xref std std-ref">MaskBins</span></a></p></li>
+<li><p>Apply detector specific time bin masks using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/MaskBins-v1.html#algm-maskbins" title="(in MantidProject v6.3)"><span class="xref std std-ref">MaskBins</span></a></p></li>
 </ol>
 </li>
-<li>Apply cylinder masking. This generates a hollow cylinder which masks the
+<li><p>Apply cylinder masking. This generates a hollow cylinder which masks the
 beam stop (defined by an inner radius) and anything outside of an area of
-interest (defined by an outer radius). The sub-steps are:<ol class="loweralpha">
-<li>Set up the inner and the outer radius of the cylinder mask.</li>
-<li>Mask everything outside of the hollow cylinder using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/MaskDetectorsInShape-v1.html#algm-maskdetectorsinshape" title="(in MantidProject v6.1)"><span class="xref std std-ref">MaskDetectorsInShape</span></a></li>
+interest (defined by an outer radius). The sub-steps are:</p>
+<ol class="loweralpha simple">
+<li><p>Set up the inner and the outer radius of the cylinder mask.</p></li>
+<li><p>Mask everything outside of the hollow cylinder using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/MaskDetectorsInShape-v1.html#algm-maskdetectorsinshape" title="(in MantidProject v6.3)"><span class="xref std std-ref">MaskDetectorsInShape</span></a></p></li>
 </ol>
 </li>
-<li>Apply a list of mask files. For each mask file the sub-steps are:<ol class="loweralpha">
-<li>Load the mask file into a workspace using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/LoadMask-v1.html#algm-loadmask" title="(in MantidProject v6.1)"><span class="xref std std-ref">LoadMask</span></a></li>
-<li>Apply the mask workspace to the scatter workspace using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/MaskDetectors-v1.html#algm-maskdetectors" title="(in MantidProject v6.1)"><span class="xref std std-ref">MaskDetectors</span></a></li>
+<li><p>Apply a list of mask files. For each mask file the sub-steps are:</p>
+<ol class="loweralpha simple">
+<li><p>Load the mask file into a workspace using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/LoadMask-v1.html#algm-loadmask" title="(in MantidProject v6.3)"><span class="xref std std-ref">LoadMask</span></a></p></li>
+<li><p>Apply the mask workspace to the scatter workspace using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/MaskDetectors-v1.html#algm-maskdetectors" title="(in MantidProject v6.3)"><span class="xref std std-ref">MaskDetectors</span></a></p></li>
 </ol>
 </li>
-<li>Apply spectrum masks. The sub-steps are:<ol class="loweralpha">
-<li>Get the spectra masks for single spectra, spectrum ranges,
+<li><p>Apply spectrum masks. The sub-steps are:</p>
+<ol class="loweralpha simple">
+<li><p>Get the spectra masks for single spectra, spectrum ranges,
 single horizontal spectrum strips, single vertical spectrum strips,
 horizontal spectrum range (several strips next to each other),
 vertical spectrum range (several strips next to each other),
-block masks and block cross masks</li>
-<li>Mask the selected spectra using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/MaskDetectors-v1.html#algm-maskdetectors" title="(in MantidProject v6.1)"><span class="xref std std-ref">MaskDetectors</span></a></li>
+block masks and block cross masks</p></li>
+<li><p>Mask the selected spectra using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/MaskDetectors-v1.html#algm-maskdetectors" title="(in MantidProject v6.3)"><span class="xref std std-ref">MaskDetectors</span></a></p></li>
 </ol>
 </li>
-<li>Apply angle masking. This is used for pizza-slice masking and uses
-<a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/MaskDetectorsInShape-v1.html#algm-maskdetectorsinshape" title="(in MantidProject v6.1)"><span class="xref std std-ref">MaskDetectorsInShape</span></a></li>
-<li>Apply beam stop masking. The beam stop consists of a disc where the beam is located
+<li><p>Apply angle masking. This is used for pizza-slice masking and uses
+<a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/MaskDetectorsInShape-v1.html#algm-maskdetectorsinshape" title="(in MantidProject v6.3)"><span class="xref std std-ref">MaskDetectorsInShape</span></a></p></li>
+<li><p>Apply beam stop masking. The beam stop consists of a disc where the beam is located
 and a connection arm (rod) which holds the disc. The disc has at this point
 already been masked by a cylinder mask. This step masks the connection arm using
-<a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/MaskDetectorsInShape-v1.html#algm-maskdetectorsinshape" title="(in MantidProject v6.1)"><span class="xref std std-ref">MaskDetectorsInShape</span></a></li>
+<a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/MaskDetectorsInShape-v1.html#algm-maskdetectorsinshape" title="(in MantidProject v6.3)"><span class="xref std std-ref">MaskDetectorsInShape</span></a></p></li>
 </ol>
-</div>
-<div class="section" id="moveinstrumentcomponent-and-rotateinstrumentcomponent">
+</section>
+<section id="moveinstrumentcomponent-and-rotateinstrumentcomponent">
 <h3><a class="toc-backref" href="#id40"><em>MoveInstrumentComponent</em> and <em>RotateInstrumentComponent</em></a><a class="headerlink" href="#moveinstrumentcomponent-and-rotateinstrumentcomponent" title="Permalink to this headline">¶</a></h3>
-<p>The <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/MoveInstrumentComponent-v1.html#algm-moveinstrumentcomponent" title="(in MantidProject v6.1)"><span class="xref std std-ref">MoveInstrumentComponent</span></a>
-algorithm and <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/RotateInstrumentComponent-v1.html#algm-rotateinstrumentcomponent" title="(in MantidProject v6.1)"><span class="xref std std-ref">RotateInstrumentComponent</span></a>
+<p>The <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/MoveInstrumentComponent-v1.html#algm-moveinstrumentcomponent" title="(in MantidProject v6.3)"><span class="xref std std-ref">MoveInstrumentComponent</span></a>
+algorithm and <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/RotateInstrumentComponent-v1.html#algm-rotateinstrumentcomponent" title="(in MantidProject v6.3)"><span class="xref std std-ref">RotateInstrumentComponent</span></a>
 are used in one of three ways, depending on how the state
 of the script. It can be used to move an individual component, reset positions,
 or specify the beam centre.
 Note that if the beam centre is also specified in the state object, then the
 manual selection takes precedence.</p>
-</div>
-<div class="section" id="normalize-to-sans-monitor">
+</section>
+<section id="normalize-to-sans-monitor">
 <h3><a class="toc-backref" href="#id41"><em>Normalize To SANS Monitor</em></a><a class="headerlink" href="#normalize-to-sans-monitor" title="Permalink to this headline">¶</a></h3>
 <p>This step provides a monitor normalization workspace for subsequent
-wavelength correction in <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Q1D-v2.html#algm-q1d" title="(in MantidProject v6.1)"><span>Q1D v2</span></a> or <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Qxy-v1.html#algm-qxy" title="(in MantidProject v6.1)"><span>Qxy v1</span></a>.
+wavelength correction in <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Q1D-v2.html#algm-q1d" title="(in MantidProject v6.3)"><span>Q1D v2</span></a> or <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Qxy-v1.html#algm-qxy" title="(in MantidProject v6.3)"><span>Qxy v1</span></a>.
 The user can provide a <em>ScaleFactor</em> which is
 normally obtained during event slicing.</p>
 <p>The sub-steps of this step are:</p>
 <ol class="arabic simple">
-<li>Get the incident monitor spectrum number and the scale factor</li>
-<li>Extract the monitor spectrum using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/ExtractSingleSpectrum-v1.html#algm-extractsinglespectrum" title="(in MantidProject v6.1)"><span class="xref std std-ref">ExtractSingleSpectrum</span></a> into a monitor workspace</li>
-<li>Apply the scale factor to the monitor workspace using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Scale-v1.html#algm-scale" title="(in MantidProject v6.1)"><span class="xref std std-ref">Scale</span></a></li>
-<li>Perform a prompt peak correction (if applicable) using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/RemoveBins-v1.html#algm-removebins" title="(in MantidProject v6.1)"><span class="xref std std-ref">RemoveBins</span></a></li>
-<li>Perform a flat background correction (if applicable) using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/CalculateFlatBackground-v1.html#algm-calculateflatbackground" title="(in MantidProject v6.1)"><span class="xref std std-ref">CalculateFlatBackground</span></a></li>
-<li>Convert to wavelength units and rebin using
-<a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/SANSConvertToWavelengthAndRebin-v1.html#algm-sansconverttowavelengthandrebin" title="(in MantidProject v6.1)"><span class="xref std std-ref">SANSConvertToWavelengthAndRebin</span></a></li>
+<li><p>Get the incident monitor spectrum number and the scale factor</p></li>
+<li><p>Extract the monitor spectrum using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/ExtractSingleSpectrum-v1.html#algm-extractsinglespectrum" title="(in MantidProject v6.3)"><span class="xref std std-ref">ExtractSingleSpectrum</span></a> into a monitor workspace</p></li>
+<li><p>Apply the scale factor to the monitor workspace using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Scale-v1.html#algm-scale" title="(in MantidProject v6.3)"><span class="xref std std-ref">Scale</span></a></p></li>
+<li><p>Perform a prompt peak correction (if applicable) using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/RemoveBins-v1.html#algm-removebins" title="(in MantidProject v6.3)"><span class="xref std std-ref">RemoveBins</span></a></p></li>
+<li><p>Perform a flat background correction (if applicable) using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/CalculateFlatBackground-v1.html#algm-calculateflatbackground" title="(in MantidProject v6.3)"><span class="xref std std-ref">CalculateFlatBackground</span></a></p></li>
+<li><p>Convert to wavelength units and rebin using
+<a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/SANSConvertToWavelengthAndRebin-v1.html#algm-sansconverttowavelengthandrebin" title="(in MantidProject v6.3)"><span class="xref std std-ref">SANSConvertToWavelengthAndRebin</span></a></p></li>
 </ol>
-</div>
-<div class="section" id="sanssave">
+</section>
+<section id="sanssave">
 <h3><a class="toc-backref" href="#id42"><em>SANSSave</em></a><a class="headerlink" href="#sanssave" title="Permalink to this headline">¶</a></h3>
-<p>The <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/SANSSave-v1.html#algm-sanssave" title="(in MantidProject v6.1)"><span class="xref std std-ref">SANSSave</span></a>  algorithm performs two steps:</p>
+<p>The <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/SANSSave-v1.html#algm-sanssave" title="(in MantidProject v6.3)"><span class="xref std std-ref">SANSSave</span></a>  algorithm performs two steps:</p>
 <ol class="arabic simple">
-<li>Create a cloned workspace where the zero-error values are inflated (if this is requested)</li>
-<li>Save the workspace into each specified file format.</li>
+<li><p>Create a cloned workspace where the zero-error values are inflated (if this is requested)</p></li>
+<li><p>Save the workspace into each specified file format.</p></li>
 </ol>
 <p>Zero-error inflation is useful for data points where the error is 0. When performing
 any form of regression of this the zero-valued error will fix the model at this point.
 If we inflate the error at this point then it does not contribute to the regression.</p>
-</div>
-<div class="section" id="slice-sans-event">
+</section>
+<section id="slice-sans-event">
 <h3><a class="toc-backref" href="#id43"><em>Slice SANS Event</em></a><a class="headerlink" href="#slice-sans-event" title="Permalink to this headline">¶</a></h3>
 <p>This step creates a sliced workspace from an event-based
 SANS input workspace according to the settings in the state object. The algorithm
@@ -2662,16 +2683,16 @@ being sliced but scaled by the ratio of the proton charge of the sliced
 workspace to the proton charnge of the full workspace.</p>
 <p>The sub-states of this algorithm are:</p>
 <ol class="arabic simple">
-<li>Get the start time and the end time of the time slice</li>
-<li>If the data set is from a <em>Can</em> measurement, then don’t perform a slice</li>
-<li>Slice the scatter workspace using the start and end time and <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/FilterByTime-v1.html#algm-filterbytime" title="(in MantidProject v6.1)"><span class="xref std std-ref">FilterByTime</span></a></li>
-<li>Get the partial charge for the sliced data and calculate the slice factor which is <em>(partial charge) / (total charge)</em></li>
-<li>Multiply the monitor workspace with the scale factor</li>
-<li>Set the sliced scatter data, the scaled monitor data and the slice factor on the output of this algorithm</li>
+<li><p>Get the start time and the end time of the time slice</p></li>
+<li><p>If the data set is from a <em>Can</em> measurement, then don’t perform a slice</p></li>
+<li><p>Slice the scatter workspace using the start and end time and <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/FilterByTime-v1.html#algm-filterbytime" title="(in MantidProject v6.3)"><span class="xref std std-ref">FilterByTime</span></a></p></li>
+<li><p>Get the partial charge for the sliced data and calculate the slice factor which is <em>(partial charge) / (total charge)</em></p></li>
+<li><p>Multiply the monitor workspace with the scale factor</p></li>
+<li><p>Set the sliced scatter data, the scaled monitor data and the slice factor on the output of this algorithm</p></li>
 </ol>
-</div>
-</div>
-<div class="section" id="work-flow-algorithm-orchestration">
+</section>
+</section>
+<section id="work-flow-algorithm-orchestration">
 <h2><a class="toc-backref" href="#id44">Work-flow algorithm orchestration</a><a class="headerlink" href="#work-flow-algorithm-orchestration" title="Permalink to this headline">¶</a></h2>
 <p>The orchestration of the work-flow algorithms is mainly handled by the <em>SANSReductionCore</em>
 class in <em>sans_reduction_core.py</em>. It defines the sequence of work-flow algorithms and how data is
@@ -2684,20 +2705,21 @@ This algorithm will produce a fully reduced output. However it will not produce 
 e.g. correct name of the output workspaces, grouping of multi-period reduced data etc. This is achieved with
 an instance of <em>SANSBatchReduction</em> (not a work-flow algorithm!) in module <em>sans_batch.py</em>. This
 is the entry point for any reduction.</p>
-<div class="section" id="sansbatchreduction">
+<section id="sansbatchreduction">
 <h3><a class="toc-backref" href="#id45"><em>SANSBatchReduction</em></a><a class="headerlink" href="#sansbatchreduction" title="Permalink to this headline">¶</a></h3>
 <p>This class is the entry point for any reduction and is not an algorithm but rather
 a script. It takes three important inputs:</p>
 <ul class="simple">
-<li>A list of SANS state objects. Each state object defines a reduction. In fact if the state object contains
-period data with <img class="math" src="_images/math/f4170ed8938b79490d8923857962695514a8e4cb.png" alt="N"/> periods and <img class="math" src="_images/math/450a8e2c2320d77181e0d4fc68c947e9a5de8ecb.png" alt="M"/> time slices it will in fact define <img class="math" src="_images/math/c35e7eabe559f01815a0ad24e709781d27f9e064.png" alt="N \times M"/> reductions.</li>
-<li>A <em>use_optimizations</em> boolean flag. If true, the data loading mechanism will check the ADS first if
+<li><p>A list of SANS state objects. Each state object defines a reduction. In fact if the state object contains
+period data with <span class="math">N</span> periods and <span class="math">M</span> time slices it will in fact define <span class="math">N \times M</span> reductions.</p></li>
+<li><p>A <em>use_optimizations</em> boolean flag. If true, the data loading mechanism will check the ADS first if
 the required data is available from there and only load the data if it is not present. It will place newly
-loaded data into the ADS. The ADS is also checked for can reductions.</li>
-<li>An <em>output_mode</em> enum, which can be:<ul>
-<li><em>PublishToADS</em> means that the reduced data is added to the ADS</li>
-<li><em>SaveToFile</em> means that the reduced data is saved only to file</li>
-<li><em>Both</em> means that the reduced data is added to the ADS and saved to file</li>
+loaded data into the ADS. The ADS is also checked for can reductions.</p></li>
+<li><p>An <em>output_mode</em> enum, which can be:</p>
+<ul>
+<li><p><em>PublishToADS</em> means that the reduced data is added to the ADS</p></li>
+<li><p><em>SaveToFile</em> means that the reduced data is saved only to file</p></li>
+<li><p><em>Both</em> means that the reduced data is added to the ADS and saved to file</p></li>
 </ul>
 </li>
 </ul>
@@ -2706,81 +2728,81 @@ the <em>execute</em> method lends itself to parallelization via <em>MPI</em>, he
 a potential future optimization if this should be required. The sub-steps to
 handle each state object are:</p>
 <ol class="arabic simple">
-<li>Load the data which is relevant for the particular reduction (make use of optimizations if applicable)</li>
-<li>If the state object contains multi-period data with <img class="math" src="_images/math/f4170ed8938b79490d8923857962695514a8e4cb.png" alt="N"/> periods and/or <img class="math" src="_images/math/450a8e2c2320d77181e0d4fc68c947e9a5de8ecb.png" alt="M"/> time slices
-then generate <img class="math" src="_images/math/c35e7eabe559f01815a0ad24e709781d27f9e064.png" alt="N \times M"/> state objects</li>
-<li>For each state object run the <em>SANSSingleReduction</em> algorithm</li>
-<li>Group the output workspaces if required, e.g. for reduced multi-period data</li>
-<li>Provide workspaces to the selected output channel, i.e. ADS, files or both.</li>
+<li><p>Load the data which is relevant for the particular reduction (make use of optimizations if applicable)</p></li>
+<li><p>If the state object contains multi-period data with <span class="math">N</span> periods and/or <span class="math">M</span> time slices
+then generate <span class="math">N \times M</span> state objects</p></li>
+<li><p>For each state object run the <em>SANSSingleReduction</em> algorithm</p></li>
+<li><p>Group the output workspaces if required, e.g. for reduced multi-period data</p></li>
+<li><p>Provide workspaces to the selected output channel, i.e. ADS, files or both.</p></li>
 </ol>
 <p>Note that <em>SANSBatchReduction</em> also sets the name of the reduced data.</p>
 <p>The users can interact with the new SANS reduction back-end either via the GUI or
 the Python interface. Both of these methods utilize the <em>SANSBatchReduction</em>
 to perform the reduction.</p>
-</div>
-<div class="section" id="sanssinglereduction">
+</section>
+<section id="sanssinglereduction">
 <h3><a class="toc-backref" href="#id46"><em>SANSSingleReduction</em></a><a class="headerlink" href="#sanssinglereduction" title="Permalink to this headline">¶</a></h3>
 <p>The <em>SANSSingleReduction</em> algorithm defines a single complete reduction of
 a data set, i.e. it will run the reduction for the <em>Sample</em> and <em>Can</em> and perform
 the subtraction of these results if the reduction has been set up
 to do this. In particular this algorithm stitches the reduced workspaces of the
-different detectors using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/SANSStitch-v1.html#algm-sansstitch" title="(in MantidProject v6.1)"><span class="xref std std-ref">SANSStitch</span></a>,
+different detectors using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/SANSStitch-v1.html#algm-sansstitch" title="(in MantidProject v6.3)"><span class="xref std std-ref">SANSStitch</span></a>,
 again only if the reduction has been set up to do this.</p>
-</div>
-<div class="section" id="sansreductioncore">
+</section>
+<section id="sansreductioncore">
 <h3><a class="toc-backref" href="#id47"><em>SANSReductionCore</em></a><a class="headerlink" href="#sansreductioncore" title="Permalink to this headline">¶</a></h3>
 <p>This work-flow algorithm actually defines the order of the reduction steps and is the
 inner core of the orchestration mechanism. The inputs to this algorithm are</p>
 <ul class="simple">
-<li>A SANS state object</li>
-<li>Several input workspaces</li>
-<li>A detector type selection, i.e. <em>LAB</em> or <em>HAB</em></li>
-<li>A data type selection, i.e. <em>Sample</em> or <em>Can</em></li>
+<li><p>A SANS state object</p></li>
+<li><p>Several input workspaces</p></li>
+<li><p>A detector type selection, i.e. <em>LAB</em> or <em>HAB</em></p></li>
+<li><p>A data type selection, i.e. <em>Sample</em> or <em>Can</em></p></li>
 </ul>
 <p>The sub-steps of this algorithm are:</p>
 <ol class="arabic simple">
-<li>Get the cropped input <em>ScatterWorkspace</em>. The cropping is defined by the selected detector type.
-The underlying algorithm is <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/CropToComponent-v1.html#algm-croptocomponent" title="(in MantidProject v6.1)"><span class="xref std std-ref">CropToComponent</span></a>.</li>
-<li>Create an event slice of the input workspace.
+<li><p>Get the cropped input <em>ScatterWorkspace</em>. The cropping is defined by the selected detector type.
+The underlying algorithm is <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/CropToComponent-v1.html#algm-croptocomponent" title="(in MantidProject v6.3)"><span class="xref std std-ref">CropToComponent</span></a>.</p></li>
+<li><p>Create an event slice of the input workspace.
 Note that event slicing is only applied to event-mode workspaces and only when it has been
 specified by the user. During this step the scatter workspace is sliced and the associated
 monitor workspace is scaled. The scaling factor is the ratio of the charge of the sliced data set
-and the charge of the entire data set.</li>
-<li>If we are dealing with an even-mode workspace and the compatibility mode has been chosen then
-either a custom binning or the monitor binning is applied using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Rebin-v1.html#algm-rebin" title="(in MantidProject v6.1)"><span class="xref std std-ref">Rebin</span></a> or
-<a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/RebinToWorkspace-v1.html#algm-rebintoworkspace" title="(in MantidProject v6.1)"><span class="xref std std-ref">RebinToWorkspace</span></a>, respectively.</li>
-<li>Both the data and the monitor workspace perform an initial move operation.
+and the charge of the entire data set.</p></li>
+<li><p>If we are dealing with an even-mode workspace and the compatibility mode has been chosen then
+either a custom binning or the monitor binning is applied using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Rebin-v1.html#algm-rebin" title="(in MantidProject v6.3)"><span class="xref std std-ref">Rebin</span></a> or
+<a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/RebinToWorkspace-v1.html#algm-rebintoworkspace" title="(in MantidProject v6.3)"><span class="xref std std-ref">RebinToWorkspace</span></a>, respectively.</p></li>
+<li><p>Both the data and the monitor workspace perform an initial move operation.
 The first step sets the instrument positions back to the IDF,
 in case the algorithm had been loaded and moved already previously.
 The second time the move algorithm is operated in <em>InitialMove</em> mode to apply
-and offset.</li>
-<li>The data workspace is masked using various modes. Note that
-using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/MoveInstrumentComponent-v1.html#algm-moveinstrumentcomponent" title="(in MantidProject v6.1)"><span class="xref std std-ref">MoveInstrumentComponent</span></a>.
+and offset.</p></li>
+<li><p>The data workspace is masked using various modes. Note that
+using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/MoveInstrumentComponent-v1.html#algm-moveinstrumentcomponent" title="(in MantidProject v6.3)"><span class="xref std std-ref">MoveInstrumentComponent</span></a>.
 The algorithm is applied twice. The first time using the <em>SetToZero</em> mode
 to reset the components to known positions from the IDF. The second
 time the components are moved and rotated to the requested positions.
-Note that all steps up until now were performed in the time-of-flight domain.</li>
-<li>Convert the data from time-of-flight to wavelength.</li>
-<li>Scale the data set using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Multiply-v1.html#algm-multiply" title="(in MantidProject v6.1)"><span class="xref std std-ref">Multiply</span></a>. This will multiply the data set
-with the absolute scale and divide <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Divide-v1.html#algm-divide" title="(in MantidProject v6.1)"><span class="xref std std-ref">Divide</span></a> by the sample volume.</li>
-<li>This step creates the adjustment workspaces by <em>Create SANS Adjustment Workspaces</em>.
+Note that all steps up until now were performed in the time-of-flight domain.</p></li>
+<li><p>Convert the data from time-of-flight to wavelength.</p></li>
+<li><p>Scale the data set using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Multiply-v1.html#algm-multiply" title="(in MantidProject v6.3)"><span class="xref std std-ref">Multiply</span></a>. This will multiply the data set
+with the absolute scale and divide <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Divide-v1.html#algm-divide" title="(in MantidProject v6.3)"><span class="xref std std-ref">Divide</span></a> by the sample volume.</p></li>
+<li><p>This step creates the adjustment workspaces by <em>Create SANS Adjustment Workspaces</em>.
 This uses the input <em>TransmissionWorkspace</em> and <em>DirectWorkspace</em> workspaces. Note that
 the instrument’s components are moved and rotated before they are used by the adjustment
 algorithm. The outputs are a wavelength-adjustment workspace, a pixel-adjustment workspace and a wavelength-and-pixel adjustment
-workspace. Note that their creation is optional.</li>
-<li>Convert the data workspace into histogram-mode using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/RebinToWorkspace-v1.html#algm-rebintoworkspace" title="(in MantidProject v6.1)"><span class="xref std std-ref">RebinToWorkspace</span></a>.
+workspace. Note that their creation is optional.</p></li>
+<li><p>Convert the data workspace into histogram-mode using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/RebinToWorkspace-v1.html#algm-rebintoworkspace" title="(in MantidProject v6.3)"><span class="xref std std-ref">RebinToWorkspace</span></a>.
 This is only relevant for event-mode workspaces where the compatibility mode has not been used. Up until
 now the event-mode workspace could be used as an event workspace, but the momentum transfer conversion (the next step)
-requires a histogram-mode workspace.</li>
-<li>The final step, the conversion to momentum transfer units, either uses <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Q1D-v2.html#algm-q1d" title="(in MantidProject v6.1)"><span class="xref std std-ref">Q1D</span></a>
-or <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Qxy-v1.html#algm-qxy" title="(in MantidProject v6.1)"><span class="xref std std-ref">Qxy</span></a> depending on the setting of the reduction dimensionality. This step
+requires a histogram-mode workspace.</p></li>
+<li><p>The final step, the conversion to momentum transfer units, either uses <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Q1D-v2.html#algm-q1d" title="(in MantidProject v6.3)"><span class="xref std std-ref">Q1D</span></a>
+or <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Qxy-v1.html#algm-qxy" title="(in MantidProject v6.3)"><span class="xref std std-ref">Qxy</span></a> depending on the setting of the reduction dimensionality. This step
 uses the data workspace as well as all of the adjustment workspaces which have been provided earlier
 on. The resulting <em>OutputWorkspace</em> and the <em>SumOfCounts</em> as well as <em>SumOfNormFactors</em> counts
-are provided as outputs.</li>
+are provided as outputs.</p></li>
 </ol>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
     </div>

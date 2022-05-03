@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Jenkins Configuration</title>
-    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Release Checklist" href="ReleaseChecklist.html" />
@@ -87,121 +87,126 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <div class="section" id="jenkins-configuration">
+  <section id="jenkins-configuration">
 <span id="jenkinsconfiguration"></span><h1>Jenkins Configuration<a class="headerlink" href="#jenkins-configuration" title="Permalink to this headline">¶</a></h1>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><a class="reference internal" href="#summary" id="id1">Summary</a></li>
-<li><a class="reference internal" href="#introduction" id="id2">Introduction</a></li>
-<li><a class="reference internal" href="#setting-up-a-new-agent" id="id3">Setting up a New Agent</a><ul>
-<li><a class="reference internal" href="#machine-setup" id="id4">Machine Setup</a></li>
-<li><a class="reference internal" href="#windows" id="id5">Windows</a><ul>
-<li><a class="reference internal" href="#agent-connection" id="id6">Agent Connection</a></li>
-<li><a class="reference internal" href="#connecting-through-a-proxy-server" id="id7">Connecting Through a Proxy Server</a></li>
+<li><p><a class="reference internal" href="#summary" id="id1">Summary</a></p></li>
+<li><p><a class="reference internal" href="#introduction" id="id2">Introduction</a></p></li>
+<li><p><a class="reference internal" href="#setting-up-a-new-agent" id="id3">Setting up a New Agent</a></p>
+<ul>
+<li><p><a class="reference internal" href="#machine-setup" id="id4">Machine Setup</a></p></li>
+<li><p><a class="reference internal" href="#windows" id="id5">Windows</a></p>
+<ul>
+<li><p><a class="reference internal" href="#agent-connection" id="id6">Agent Connection</a></p></li>
+<li><p><a class="reference internal" href="#connecting-through-a-proxy-server" id="id7">Connecting Through a Proxy Server</a></p></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#linux" id="id8">Linux</a><ul>
-<li><a class="reference internal" href="#ubuntu" id="id9">Ubuntu</a></li>
-<li><a class="reference internal" href="#red-hat" id="id10">Red Hat</a></li>
+<li><p><a class="reference internal" href="#linux" id="id8">Linux</a></p>
+<ul>
+<li><p><a class="reference internal" href="#ubuntu" id="id9">Ubuntu</a></p></li>
+<li><p><a class="reference internal" href="#red-hat" id="id10">Red Hat</a></p></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#mac-os" id="id11">Mac OS</a></li>
-<li><a class="reference internal" href="#linux-mac-connection-notes" id="id12">Linux/Mac Connection Notes</a></li>
+<li><p><a class="reference internal" href="#mac-os" id="id11">Mac OS</a></p></li>
+<li><p><a class="reference internal" href="#linux-mac-connection-notes" id="id12">Linux/Mac Connection Notes</a></p></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#misc-groovy-scripts" id="id13">Misc Groovy Scripts</a><ul>
-<li><a class="reference internal" href="#print-the-value-of-an-environment-variable-on-all-nodes" id="id14">Print the Value of an Environment Variable on All Nodes</a></li>
-<li><a class="reference internal" href="#remove-directories-across-multiple-nodes" id="id15">Remove directories across multiple nodes</a><ul>
-<li><a class="reference internal" href="#master-incremental" id="id16">Master Incremental</a></li>
-<li><a class="reference internal" href="#pull-requests" id="id17">Pull Requests</a></li>
+<li><p><a class="reference internal" href="#misc-groovy-scripts" id="id13">Misc Groovy Scripts</a></p>
+<ul>
+<li><p><a class="reference internal" href="#print-the-value-of-an-environment-variable-on-all-nodes" id="id14">Print the Value of an Environment Variable on All Nodes</a></p></li>
+<li><p><a class="reference internal" href="#remove-directories-across-multiple-nodes" id="id15">Remove directories across multiple nodes</a></p>
+<ul>
+<li><p><a class="reference internal" href="#master-incremental" id="id16">Master Incremental</a></p></li>
+<li><p><a class="reference internal" href="#pull-requests" id="id17">Pull Requests</a></p></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#update-branches-for-jobs" id="id18">Update Branches For Jobs</a></li>
-<li><a class="reference internal" href="#list-all-scm-urls" id="id19">List All SCM Urls</a></li>
-<li><a class="reference internal" href="#update-urls-on-all-jobs" id="id20">Update Urls on All Jobs</a></li>
-<li><a class="reference internal" href="#print-all-loggers" id="id21">Print All Loggers</a></li>
-<li><a class="reference internal" href="#run-a-process-on-a-single-node" id="id22">Run a Process On a Single Node</a></li>
-<li><a class="reference internal" href="#run-a-process-across-all-nodes" id="id23">Run a Process Across All Nodes</a></li>
-<li><a class="reference internal" href="#update-default-values-for-job-parameters" id="id24">Update default values for job parameters</a></li>
+<li><p><a class="reference internal" href="#update-branches-for-jobs" id="id18">Update Branches For Jobs</a></p></li>
+<li><p><a class="reference internal" href="#list-all-scm-urls" id="id19">List All SCM Urls</a></p></li>
+<li><p><a class="reference internal" href="#update-urls-on-all-jobs" id="id20">Update Urls on All Jobs</a></p></li>
+<li><p><a class="reference internal" href="#print-all-loggers" id="id21">Print All Loggers</a></p></li>
+<li><p><a class="reference internal" href="#run-a-process-on-a-single-node" id="id22">Run a Process On a Single Node</a></p></li>
+<li><p><a class="reference internal" href="#run-a-process-across-all-nodes" id="id23">Run a Process Across All Nodes</a></p></li>
+<li><p><a class="reference internal" href="#update-default-values-for-job-parameters" id="id24">Update default values for job parameters</a></p></li>
 </ul>
 </li>
 </ul>
 </div>
-<div class="section" id="summary">
+<section id="summary">
 <h2><a class="toc-backref" href="#id1">Summary</a><a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
 <p>Mantid uses the <a class="reference external" href="https://jenkins.io/">Jenkins</a> automation server to support the continuous integration requirements of Mantid.
 This document aims to describe the general setup of the system.</p>
-</div>
-<div class="section" id="introduction">
+</section>
+<section id="introduction">
 <h2><a class="toc-backref" href="#id2">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>Jenkins works on a ‘master -&gt; worker’ principle.
 The master node is responsible for orchestrating jobs and managing the agents, where the work is actually performed.
 The master node is located at <a class="reference external" href="https://builds.mantidproject.org">https://builds.mantidproject.org</a> and each facility is responsible for providing hardware to act as agents for the various required configurations.</p>
-</div>
-<div class="section" id="setting-up-a-new-agent">
+</section>
+<section id="setting-up-a-new-agent">
 <h2><a class="toc-backref" href="#id3">Setting up a New Agent</a><a class="headerlink" href="#setting-up-a-new-agent" title="Permalink to this headline">¶</a></h2>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">If you are deploying a new Linux based agent, it is recommended that you use the container based approach as described <a class="reference external" href="https://github.com/mantidproject/dockerfiles/tree/main/jenkins-node">here</a>.</p>
+<p class="admonition-title">Note</p>
+<p>If you are deploying a new Linux based agent, it is recommended that you use the container based approach as described <a class="reference external" href="https://github.com/mantidproject/dockerfiles/tree/main/jenkins-node">here</a>.</p>
 </div>
-<div class="section" id="machine-setup">
+<section id="machine-setup">
 <h3><a class="toc-backref" href="#id4">Machine Setup</a><a class="headerlink" href="#machine-setup" title="Permalink to this headline">¶</a></h3>
 <p>Set up a local <code class="docutils literal notranslate"><span class="pre">builder</span></code> account that will be used by the agent.</p>
 <p>Install the <a class="reference internal" href="GettingStarted/GettingStarted.html#gettingstarted"><span class="std std-ref">required prerequisites</span></a> for the relevant OS.
 In addition, install a standalone <a class="reference external" href="https://www.python.org/downloads/windows/">Python</a> interpreter so the system tests are able to install the mantid package.
 Do not use the embeddable zip, use the full installer and ensure python.exe is on the <cite>PATH</cite>.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">For Windows the <a class="reference external" href="https://visualstudio.microsoft.com/downloads/">Command line Visual C++ build tools</a> may be used in place of a full Visual Studio install from version 2017 onwards (the 2015 tools contain a broken <cite>vcvarsall.bat</cite>).
+<p class="admonition-title">Note</p>
+<p>For Windows the <a class="reference external" href="https://visualstudio.microsoft.com/downloads/">Command line Visual C++ build tools</a> may be used in place of a full Visual Studio install from version 2017 onwards (the 2015 tools contain a broken <cite>vcvarsall.bat</cite>).
 The same options should be used as for the full install.</p>
 </div>
-</div>
-<div class="section" id="windows">
+</section>
+<section id="windows">
 <h3><a class="toc-backref" href="#id5">Windows</a><a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h3>
 <p>Ensure that the location of <code class="docutils literal notranslate"><span class="pre">msbuild.exe</span></code> (<code class="docutils literal notranslate"><span class="pre">C:\Windows\Microsoft.NET\Framework64\v4.0.30319</span></code>) is on the <code class="docutils literal notranslate"><span class="pre">PATH</span></code>.
 For conda-build we need to ensure that we can have long paths, on Windows 10 and up it is possible using a registry key. Change “ComputerHKEY_LOCAL_MACHINESYSTEMCurrentControlSetControlFileSystemLongPathsEnabled (Type: REG_DWORD)” to 1</p>
-<div class="section" id="agent-connection">
+<section id="agent-connection">
 <h4><a class="toc-backref" href="#id6">Agent Connection</a><a class="headerlink" href="#agent-connection" title="Permalink to this headline">¶</a></h4>
 <p>There are following additional steps required to be able to connect a Windows agent using JNLP as a Windows service:</p>
 <ol class="arabic simple">
-<li>Setup the agent on the master node using “New Node” under <a class="reference external" href="https://builds.mantidproject.org/computer/">https://builds.mantidproject.org/computer/</a>.
+<li><p>Setup the agent on the master node using “New Node” under <a class="reference external" href="https://builds.mantidproject.org/computer/">https://builds.mantidproject.org/computer/</a>.
 If “New Node” is not visible then you do not have the required permissions - ask an admin for help.
-It is recommended that you copy from an existing node of a similar type.</li>
-<li>Once configured on the master, remote desktop to the agent, open a browser and connect to the webpage of the agent, .e.g. <a class="reference external" href="https://builds.mantidproject.org/computer/ornl-pc73896/">https://builds.mantidproject.org/computer/ornl-pc73896/</a></li>
-<li>Click on the <strong>connect</strong> button to launch the JNLP client.</li>
-<li>Once the client is launched, you can select “Install as Windows Service” from the clients menu.
-If you have a proxy then see the section below for further configuration steps.</li>
-<li>Once installed change the recovery behaviour for the service.
+It is recommended that you copy from an existing node of a similar type.</p></li>
+<li><p>Once configured on the master, remote desktop to the agent, open a browser and connect to the webpage of the agent, .e.g. <a class="reference external" href="https://builds.mantidproject.org/computer/ornl-pc73896/">https://builds.mantidproject.org/computer/ornl-pc73896/</a></p></li>
+<li><p>Click on the <strong>connect</strong> button to launch the JNLP client.</p></li>
+<li><p>Once the client is launched, you can select “Install as Windows Service” from the clients menu.
+If you have a proxy then see the section below for further configuration steps.</p></li>
+<li><p>Once installed change the recovery behaviour for the service.
 Do this by right-clicking on the Jenkins service-&gt;Properties-&gt;Recovery.
-Change the first, second, subsequent failures to restart the service.</li>
-<li>Change the account that the service uses to log on by right-clicking on the Jenkins service-&gt;Properties-&gt;Log On and enter the details in the builder account</li>
-<li>Change the “Startup type:” of the service to be “Automatic (Delayed Start)”</li>
-<li>Ensure the msbuild directory is on the <code class="docutils literal notranslate"><span class="pre">PATH</span></code></li>
-<li>Finally reboot the agent (this is the easiest way for the Jenkins to start trying to reconnect to it)</li>
+Change the first, second, subsequent failures to restart the service.</p></li>
+<li><p>Change the account that the service uses to log on by right-clicking on the Jenkins service-&gt;Properties-&gt;Log On and enter the details in the builder account</p></li>
+<li><p>Change the “Startup type:” of the service to be “Automatic (Delayed Start)”</p></li>
+<li><p>Ensure the msbuild directory is on the <code class="docutils literal notranslate"><span class="pre">PATH</span></code></p></li>
+<li><p>Finally reboot the agent (this is the easiest way for the Jenkins to start trying to reconnect to it)</p></li>
 </ol>
 <p>Note that changes to <code class="docutils literal notranslate"><span class="pre">PATH</span></code> require restarting the Jenkins service in order to be reflected in the build environment.</p>
-</div>
-<div class="section" id="connecting-through-a-proxy-server">
+</section>
+<section id="connecting-through-a-proxy-server">
 <h4><a class="toc-backref" href="#id7">Connecting Through a Proxy Server</a><a class="headerlink" href="#connecting-through-a-proxy-server" title="Permalink to this headline">¶</a></h4>
 <p>It is a little more tricky to add Windows agents connected through a proxy.
 To do this you must modify the Java arguments that are used to start the <code class="docutils literal notranslate"><span class="pre">jenkins-slave</span></code> process.
 Once the “Install as a Windows Service” has completed you should:</p>
 <ol class="arabic simple">
-<li>Find a directory on the machine such as <code class="docutils literal notranslate"><span class="pre">C:\Jenkins`</span></code> or whatever was configured in the agent config.</li>
-<li>Open the <code class="docutils literal notranslate"><span class="pre">jenkins-slave.xml</span></code> file</li>
-<li>Edit the tag and add <code class="docutils literal notranslate"><span class="pre">-Dhttp.proxyHost=PROXYHOST</span> <span class="pre">-Dhttp.proxyPort=PROXYPORT</span></code> to the list</li>
-<li>Save the file and restart the service (or machine)</li>
+<li><p>Find a directory on the machine such as <code class="docutils literal notranslate"><span class="pre">C:\Jenkins`</span></code> or whatever was configured in the agent config.</p></li>
+<li><p>Open the <code class="docutils literal notranslate"><span class="pre">jenkins-slave.xml</span></code> file</p></li>
+<li><p>Edit the tag and add <code class="docutils literal notranslate"><span class="pre">-Dhttp.proxyHost=PROXYHOST</span> <span class="pre">-Dhttp.proxyPort=PROXYPORT</span></code> to the list</p></li>
+<li><p>Save the file and restart the service (or machine)</p></li>
 </ol>
-</div>
-</div>
-<div class="section" id="linux">
+</section>
+</section>
+<section id="linux">
 <h3><a class="toc-backref" href="#id8">Linux</a><a class="headerlink" href="#linux" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
-<li>Install OpenSSH server, <code class="docutils literal notranslate"><span class="pre">ccache</span></code>, <code class="docutils literal notranslate"><span class="pre">curl</span></code> and <code class="docutils literal notranslate"><span class="pre">xvfb</span></code>.</li>
-<li>From the <code class="docutils literal notranslate"><span class="pre">builder</span></code> account run <code class="docutils literal notranslate"><span class="pre">ccache</span> <span class="pre">--max-size=20G</span></code>.</li>
-<li>Any machines acting as performance test servers will require <code class="docutils literal notranslate"><span class="pre">mysqldb</span></code> to be installed.</li>
+<li><p>Install OpenSSH server, <code class="docutils literal notranslate"><span class="pre">ccache</span></code>, <code class="docutils literal notranslate"><span class="pre">curl</span></code> and <code class="docutils literal notranslate"><span class="pre">xvfb</span></code>.</p></li>
+<li><p>From the <code class="docutils literal notranslate"><span class="pre">builder</span></code> account run <code class="docutils literal notranslate"><span class="pre">ccache</span> <span class="pre">--max-size=20G</span></code>.</p></li>
+<li><p>Any machines acting as performance test servers will require <code class="docutils literal notranslate"><span class="pre">mysqldb</span></code> to be installed.</p></li>
 </ol>
-<div class="section" id="ubuntu">
+<section id="ubuntu">
 <h4><a class="toc-backref" href="#id9">Ubuntu</a><a class="headerlink" href="#ubuntu" title="Permalink to this headline">¶</a></h4>
 <p>Install <code class="docutils literal notranslate"><span class="pre">gdebi-core</span></code> package to allow installing <code class="docutils literal notranslate"><span class="pre">.deb</span></code> files.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">builder</span></code> account must be setup to be able to run <code class="docutils literal notranslate"><span class="pre">gdebi</span></code> non-interactively.
@@ -213,8 +218,8 @@ Defaults!/usr/bin/gdebi     !requiretty
 Defaults!/usr/bin/dpkg      !requiretty
 </pre></div>
 </div>
-</div>
-<div class="section" id="red-hat">
+</section>
+<section id="red-hat">
 <h4><a class="toc-backref" href="#id10">Red Hat</a><a class="headerlink" href="#red-hat" title="Permalink to this headline">¶</a></h4>
 <p>The <code class="docutils literal notranslate"><span class="pre">builder</span></code> account must be setup to be able to run <code class="docutils literal notranslate"><span class="pre">yum</span></code> non-interactively.
 Use <code class="docutils literal notranslate"><span class="pre">visudo</span></code> to add the following exception for <code class="docutils literal notranslate"><span class="pre">builder</span></code>:</p>
@@ -225,9 +230,9 @@ Defaults!/bin/rpm           !requiretty
 Defaults!/usr/bin/yum       !requiretty
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="mac-os">
+</section>
+</section>
+<section id="mac-os">
 <h3><a class="toc-backref" href="#id11">Mac OS</a><a class="headerlink" href="#mac-os" title="Permalink to this headline">¶</a></h3>
 <p>Enable <a class="reference external" href="https://apple.stackexchange.com/a/73919">SSH (“Remote Login”) and VNC (“Remote Management”)</a>.
 If you have connection issues from a non-OS X client then try adjusting your color depth settings (True Color 32bpp works on Remmina).</p>
@@ -253,8 +258,8 @@ If you see errors such as:</p>
 <span class="n">defaults</span> <span class="n">write</span> <span class="n">org</span><span class="o">.</span><span class="n">mantidproject</span><span class="o">.</span><span class="n">MantidPlot</span> <span class="n">NSQuitAlwaysKeepsWindows</span> <span class="o">-</span><span class="nb">bool</span> <span class="n">false</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="linux-mac-connection-notes">
+</section>
+<section id="linux-mac-connection-notes">
 <h3><a class="toc-backref" href="#id12">Linux/Mac Connection Notes</a><a class="headerlink" href="#linux-mac-connection-notes" title="Permalink to this headline">¶</a></h3>
 <p>The Jenkins JNLP connections are maintained by a crontab entry.
 The script is in the <a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/buildconfig/Jenkins/jenkins-slave.sh">mantid repository</a>.</p>
@@ -262,249 +267,249 @@ The script is in the <a class="reference external" href="https://github.com/mant
 This needs to be manually set for each agent. Ensure the script is marked executable after downloading it.
 Also ensure the entry in the crontab has the correct <code class="docutils literal notranslate"><span class="pre">PATH</span></code> setting (by default cron uses a reduced <code class="docutils literal notranslate"><span class="pre">PATH</span></code> entry).
 On macOS <code class="docutils literal notranslate"><span class="pre">latex</span></code> and <code class="docutils literal notranslate"><span class="pre">sysctl</span></code> should be available.</p>
-</div>
-</div>
-<div class="section" id="misc-groovy-scripts">
+</section>
+</section>
+<section id="misc-groovy-scripts">
 <h2><a class="toc-backref" href="#id13">Misc Groovy Scripts</a><a class="headerlink" href="#misc-groovy-scripts" title="Permalink to this headline">¶</a></h2>
 <p>The following is a collection of groovy scripts that can be run either at <a class="reference external" href="https://builds.mantidproject.org/script">https://builds.mantidproject.org/script</a> (for master node) or on a given node, e.g <a class="reference external" href="https://builds.mantidproject.org/computer/isis-mantidlx3/script">isis-mantidx3</a>.
 You must have admin privileges to run them.</p>
 <p><a class="reference external" href="https://github.com/jenkinsci/jenkins-scripts/tree/main/scriptler">https://github.com/jenkinsci/jenkins-scripts/tree/main/scriptler</a> was helpful for coming up with some of these.</p>
-<div class="section" id="print-the-value-of-an-environment-variable-on-all-nodes">
+<section id="print-the-value-of-an-environment-variable-on-all-nodes">
 <h3><a class="toc-backref" href="#id14">Print the Value of an Environment Variable on All Nodes</a><a class="headerlink" href="#print-the-value-of-an-environment-variable-on-all-nodes" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">jenkins.model.*</span>
-<span class="kn">import</span> <span class="nn">hudson.model.*</span>
-<span class="kn">import</span> <span class="nn">hudson.slaves.*</span>
+<div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">jenkins.model.*</span><span class="w"></span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">hudson.model.*</span><span class="w"></span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">hudson.slaves.*</span><span class="w"></span>
 
-<span class="n">VARIABLE_NAME</span> <span class="o">=</span> <span class="s2">&quot;ENV_VARIABLE_NAME&quot;</span>
+<span class="n">VARIABLE_NAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;ENV_VARIABLE_NAME&quot;</span><span class="w"></span>
 
-<span class="n">nodes</span> <span class="o">=</span> <span class="n">Jenkins</span><span class="o">.</span><span class="na">instance</span><span class="o">.</span><span class="na">getNodes</span><span class="o">()</span>
-<span class="n">println</span><span class="o">(</span><span class="s2">&quot;Displaying values of &quot;</span> <span class="o">+</span> <span class="n">VARIABLE_NAME</span> <span class="o">+</span> <span class="s2">&quot; on all nodes&quot;</span><span class="o">)</span>
-<span class="n">println</span><span class="o">()</span>
-<span class="k">for</span><span class="o">(</span><span class="n">node</span> <span class="k">in</span> <span class="n">nodes</span><span class="o">)</span> <span class="o">{</span>
-  <span class="n">node_props</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="na">nodeProperties</span><span class="o">.</span><span class="na">getAll</span><span class="o">(</span><span class="n">hudson</span><span class="o">.</span><span class="na">slaves</span><span class="o">.</span><span class="na">EnvironmentVariablesNodeProperty</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
-  <span class="k">if</span><span class="o">(</span><span class="n">node_props</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">==</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">env_vars</span> <span class="o">=</span> <span class="n">node_props</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="na">getEnvVars</span><span class="o">()</span>
-  <span class="k">if</span><span class="o">(</span><span class="n">env_vars</span><span class="o">.</span><span class="na">containsKey</span><span class="o">(</span><span class="n">VARIABLE_NAME</span><span class="o">))</span> <span class="o">{</span>
-    <span class="n">pv_dir</span> <span class="o">=</span> <span class="n">env_vars</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">VARIABLE_NAME</span><span class="o">,</span> <span class="s2">&quot;&quot;</span><span class="o">)</span>
-  <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-    <span class="n">pv_dir</span> <span class="o">=</span> <span class="n">VARIABLE_NAME</span> <span class="o">+</span> <span class="s2">&quot; not set.&quot;</span>
-  <span class="o">}</span>
-  <span class="n">println</span><span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">getDisplayName</span><span class="o">()</span> <span class="o">+</span> <span class="s2">&quot;: &quot;</span> <span class="o">+</span> <span class="n">pv_dir</span><span class="o">)</span>
-  <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-    <span class="n">pv_dir</span> <span class="o">=</span> <span class="n">VARIABLE_NAME</span> <span class="o">+</span> <span class="s2">&quot; not set.&quot;</span>
-  <span class="o">}</span>
-<span class="o">}</span>
+<span class="n">nodes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Jenkins</span><span class="o">.</span><span class="na">instance</span><span class="o">.</span><span class="na">getNodes</span><span class="o">()</span><span class="w"></span>
+<span class="n">println</span><span class="o">(</span><span class="s2">&quot;Displaying values of &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">VARIABLE_NAME</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot; on all nodes&quot;</span><span class="o">)</span><span class="w"></span>
+<span class="n">println</span><span class="o">()</span><span class="w"></span>
+<span class="k">for</span><span class="o">(</span><span class="n">node</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">nodes</span><span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">node_props</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">node</span><span class="o">.</span><span class="na">nodeProperties</span><span class="o">.</span><span class="na">getAll</span><span class="o">(</span><span class="n">hudson</span><span class="o">.</span><span class="na">slaves</span><span class="o">.</span><span class="na">EnvironmentVariablesNodeProperty</span><span class="o">.</span><span class="na">class</span><span class="o">)</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="o">(</span><span class="n">node_props</span><span class="o">.</span><span class="na">size</span><span class="o">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">env_vars</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">node_props</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="na">getEnvVars</span><span class="o">()</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="o">(</span><span class="n">env_vars</span><span class="o">.</span><span class="na">containsKey</span><span class="o">(</span><span class="n">VARIABLE_NAME</span><span class="o">))</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">pv_dir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">env_vars</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">VARIABLE_NAME</span><span class="o">,</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="o">)</span><span class="w"></span>
+<span class="w">  </span><span class="o">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">pv_dir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">VARIABLE_NAME</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot; not set.&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="o">}</span><span class="w"></span>
+<span class="w">  </span><span class="n">println</span><span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">getDisplayName</span><span class="o">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot;: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">pv_dir</span><span class="o">)</span><span class="w"></span>
+<span class="w">  </span><span class="o">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">pv_dir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">VARIABLE_NAME</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot; not set.&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="o">}</span><span class="w"></span>
+<span class="o">}</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="remove-directories-across-multiple-nodes">
+</section>
+<section id="remove-directories-across-multiple-nodes">
 <h3><a class="toc-backref" href="#id15">Remove directories across multiple nodes</a><a class="headerlink" href="#remove-directories-across-multiple-nodes" title="Permalink to this headline">¶</a></h3>
 <p>It is advised to ensure nothing is running and pause the build queue.</p>
-<div class="section" id="master-incremental">
+<section id="master-incremental">
 <h4><a class="toc-backref" href="#id16">Master Incremental</a><a class="headerlink" href="#master-incremental" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">hudson.model.*</span>
+<div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">hudson.model.*</span><span class="w"></span>
 
-<span class="n">nodes</span> <span class="o">=</span> <span class="n">Jenkins</span><span class="o">.</span><span class="na">instance</span><span class="o">.</span><span class="na">slaves</span>
+<span class="n">nodes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Jenkins</span><span class="o">.</span><span class="na">instance</span><span class="o">.</span><span class="na">slaves</span><span class="w"></span>
 
-<span class="n">JOBNAME</span> <span class="o">=</span> <span class="s2">&quot;master_incremental&quot;</span>
+<span class="n">JOBNAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;master_incremental&quot;</span><span class="w"></span>
 
 
-<span class="k">for</span> <span class="o">(</span><span class="n">node</span> <span class="k">in</span> <span class="n">nodes</span><span class="o">)</span> <span class="o">{</span>
-  <span class="n">labels</span> <span class="o">=</span> <span class="o">[</span><span class="s2">&quot;osx-10.10-build&quot;</span><span class="o">,</span> <span class="s2">&quot;rhel6-build&quot;</span><span class="o">,</span> <span class="s2">&quot;rhel7-build&quot;</span><span class="o">,</span> <span class="s2">&quot;ubuntu-14.04-build&quot;</span><span class="o">,</span> <span class="s2">&quot;ubuntu-16.04-build&quot;</span><span class="o">,</span> <span class="s2">&quot;win7&quot;</span><span class="o">];</span>
-  <span class="k">for</span> <span class="o">(</span><span class="n">nodeLabel</span> <span class="k">in</span> <span class="n">labels</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">FilePath</span> <span class="n">fp</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="na">createPath</span><span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">getRootPath</span><span class="o">().</span><span class="na">toString</span><span class="o">()</span> <span class="o">+</span> <span class="n">File</span><span class="o">.</span><span class="na">separator</span> <span class="o">+</span> <span class="s2">&quot;workspace&quot;</span> <span class="o">+</span> <span class="n">File</span><span class="o">.</span><span class="na">separator</span> <span class="o">+</span> <span class="n">JOBNAME</span> <span class="o">+</span> <span class="n">File</span><span class="o">.</span><span class="na">separator</span> <span class="o">+</span> <span class="s2">&quot;label&quot;</span> <span class="o">+</span> <span class="n">File</span><span class="o">.</span><span class="na">separator</span> <span class="o">+</span> <span class="n">nodeLabel</span> <span class="o">+</span> <span class="n">File</span><span class="o">.</span><span class="na">separator</span> <span class="o">+</span> <span class="s2">&quot;build&quot;</span><span class="o">);</span>
-    <span class="k">if</span><span class="o">(</span><span class="n">fp</span><span class="o">!=</span><span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">fp</span><span class="o">.</span><span class="na">exists</span><span class="o">())</span> <span class="o">{</span>
-      <span class="n">println</span><span class="o">(</span><span class="n">fp</span><span class="o">.</span><span class="na">toString</span><span class="o">())</span>
-      <span class="n">fp</span><span class="o">.</span><span class="na">deleteRecursive</span><span class="o">()</span>
-    <span class="o">}</span>
-  <span class="o">}</span>
-<span class="o">}</span>
+<span class="k">for</span><span class="w"> </span><span class="o">(</span><span class="n">node</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">nodes</span><span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="s2">&quot;osx-10.10-build&quot;</span><span class="o">,</span><span class="w"> </span><span class="s2">&quot;rhel6-build&quot;</span><span class="o">,</span><span class="w"> </span><span class="s2">&quot;rhel7-build&quot;</span><span class="o">,</span><span class="w"> </span><span class="s2">&quot;ubuntu-14.04-build&quot;</span><span class="o">,</span><span class="w"> </span><span class="s2">&quot;ubuntu-16.04-build&quot;</span><span class="o">,</span><span class="w"> </span><span class="s2">&quot;win7&quot;</span><span class="o">];</span><span class="w"></span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="o">(</span><span class="n">nodeLabel</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">labels</span><span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">FilePath</span><span class="w"> </span><span class="n">fp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">node</span><span class="o">.</span><span class="na">createPath</span><span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">getRootPath</span><span class="o">().</span><span class="na">toString</span><span class="o">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">File</span><span class="o">.</span><span class="na">separator</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot;workspace&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">File</span><span class="o">.</span><span class="na">separator</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">JOBNAME</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">File</span><span class="o">.</span><span class="na">separator</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot;label&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">File</span><span class="o">.</span><span class="na">separator</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">nodeLabel</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">File</span><span class="o">.</span><span class="na">separator</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot;build&quot;</span><span class="o">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="o">(</span><span class="n">fp</span><span class="o">!=</span><span class="kc">null</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">fp</span><span class="o">.</span><span class="na">exists</span><span class="o">())</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">println</span><span class="o">(</span><span class="n">fp</span><span class="o">.</span><span class="na">toString</span><span class="o">())</span><span class="w"></span>
+<span class="w">      </span><span class="n">fp</span><span class="o">.</span><span class="na">deleteRecursive</span><span class="o">()</span><span class="w"></span>
+<span class="w">    </span><span class="o">}</span><span class="w"></span>
+<span class="w">  </span><span class="o">}</span><span class="w"></span>
+<span class="o">}</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="pull-requests">
+</section>
+<section id="pull-requests">
 <h4><a class="toc-backref" href="#id17">Pull Requests</a><a class="headerlink" href="#pull-requests" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">hudson.model.*</span>
+<div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">hudson.model.*</span><span class="w"></span>
 
-<span class="n">nodes</span> <span class="o">=</span> <span class="n">Jenkins</span><span class="o">.</span><span class="na">instance</span><span class="o">.</span><span class="na">slaves</span>
+<span class="n">nodes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Jenkins</span><span class="o">.</span><span class="na">instance</span><span class="o">.</span><span class="na">slaves</span><span class="w"></span>
 
-<span class="n">JOB_PREFIX</span> <span class="o">=</span> <span class="s2">&quot;pull_requests-&quot;</span>
-<span class="n">suffixes</span> <span class="o">=</span> <span class="o">[</span><span class="s2">&quot;win7&quot;</span><span class="o">,</span> <span class="s2">&quot;osx&quot;</span><span class="o">,</span> <span class="s2">&quot;ubuntu&quot;</span><span class="o">,</span> <span class="s2">&quot;ubuntu-python3&quot;</span><span class="o">,</span> <span class="s2">&quot;rhel7&quot;</span><span class="o">];</span>
+<span class="n">JOB_PREFIX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;pull_requests-&quot;</span><span class="w"></span>
+<span class="n">suffixes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="s2">&quot;win7&quot;</span><span class="o">,</span><span class="w"> </span><span class="s2">&quot;osx&quot;</span><span class="o">,</span><span class="w"> </span><span class="s2">&quot;ubuntu&quot;</span><span class="o">,</span><span class="w"> </span><span class="s2">&quot;ubuntu-python3&quot;</span><span class="o">,</span><span class="w"> </span><span class="s2">&quot;rhel7&quot;</span><span class="o">];</span><span class="w"></span>
 
-<span class="k">for</span> <span class="o">(</span><span class="n">node</span> <span class="k">in</span> <span class="n">nodes</span><span class="o">)</span> <span class="o">{</span>
-  <span class="k">for</span> <span class="o">(</span><span class="n">suffix</span> <span class="k">in</span> <span class="n">suffixes</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">FilePath</span> <span class="n">fp</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="na">createPath</span><span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">getRootPath</span><span class="o">().</span><span class="na">toString</span><span class="o">()</span> <span class="o">+</span> <span class="n">File</span><span class="o">.</span><span class="na">separator</span> <span class="o">+</span> <span class="s2">&quot;workspace&quot;</span> <span class="o">+</span> <span class="n">File</span><span class="o">.</span><span class="na">separator</span> <span class="o">+</span> <span class="n">JOB_PREFIX</span> <span class="o">+</span> <span class="n">suffix</span> <span class="o">+</span> <span class="n">File</span><span class="o">.</span><span class="na">separator</span> <span class="o">+</span>  <span class="s2">&quot;build&quot;</span><span class="o">);</span>
-    <span class="k">if</span><span class="o">(</span><span class="n">fp</span><span class="o">!=</span><span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">fp</span><span class="o">.</span><span class="na">exists</span><span class="o">())</span> <span class="o">{</span>
-      <span class="n">println</span><span class="o">(</span><span class="n">fp</span><span class="o">.</span><span class="na">toString</span><span class="o">())</span>
-      <span class="n">fp</span><span class="o">.</span><span class="na">deleteRecursive</span><span class="o">()</span>
-    <span class="o">}</span>
-  <span class="o">}</span>
-<span class="o">}</span>
+<span class="k">for</span><span class="w"> </span><span class="o">(</span><span class="n">node</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">nodes</span><span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="o">(</span><span class="n">suffix</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">suffixes</span><span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">FilePath</span><span class="w"> </span><span class="n">fp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">node</span><span class="o">.</span><span class="na">createPath</span><span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">getRootPath</span><span class="o">().</span><span class="na">toString</span><span class="o">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">File</span><span class="o">.</span><span class="na">separator</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot;workspace&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">File</span><span class="o">.</span><span class="na">separator</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">JOB_PREFIX</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">suffix</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">File</span><span class="o">.</span><span class="na">separator</span><span class="w"> </span><span class="o">+</span><span class="w">  </span><span class="s2">&quot;build&quot;</span><span class="o">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="o">(</span><span class="n">fp</span><span class="o">!=</span><span class="kc">null</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">fp</span><span class="o">.</span><span class="na">exists</span><span class="o">())</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">println</span><span class="o">(</span><span class="n">fp</span><span class="o">.</span><span class="na">toString</span><span class="o">())</span><span class="w"></span>
+<span class="w">      </span><span class="n">fp</span><span class="o">.</span><span class="na">deleteRecursive</span><span class="o">()</span><span class="w"></span>
+<span class="w">    </span><span class="o">}</span><span class="w"></span>
+<span class="w">  </span><span class="o">}</span><span class="w"></span>
+<span class="o">}</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="update-branches-for-jobs">
+</section>
+</section>
+<section id="update-branches-for-jobs">
 <h3><a class="toc-backref" href="#id18">Update Branches For Jobs</a><a class="headerlink" href="#update-branches-for-jobs" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">hudson.plugins.git.GitSCM</span>
-<span class="kn">import</span> <span class="nn">hudson.plugins.git.BranchSpec</span>
-<span class="kn">import</span> <span class="nn">static</span> <span class="n">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">common</span><span class="o">.</span><span class="na">collect</span><span class="o">.</span><span class="na">Lists</span><span class="o">.</span><span class="na">newArrayList</span><span class="o">;</span>
+<div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">hudson.plugins.git.GitSCM</span><span class="w"></span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">hudson.plugins.git.BranchSpec</span><span class="w"></span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">static</span><span class="w"> </span><span class="n">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">common</span><span class="o">.</span><span class="na">collect</span><span class="o">.</span><span class="na">Lists</span><span class="o">.</span><span class="na">newArrayList</span><span class="o">;</span><span class="w"></span>
 
-<span class="kt">def</span> <span class="n">NEW_BRANCH</span> <span class="o">=</span> <span class="s2">&quot;*/release-next&quot;</span>
+<span class="kt">def</span><span class="w"> </span><span class="n">NEW_BRANCH</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;*/release-next&quot;</span><span class="w"></span>
 
-<span class="c1">// Access to the Hudson Singleton</span>
-<span class="kt">def</span> <span class="n">jenkins</span> <span class="o">=</span> <span class="n">jenkins</span><span class="o">.</span><span class="na">model</span><span class="o">.</span><span class="na">Jenkins</span><span class="o">.</span><span class="na">instance</span><span class="o">;</span>
+<span class="c1">// Access to the Hudson Singleton</span><span class="w"></span>
+<span class="kt">def</span><span class="w"> </span><span class="n">jenkins</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">jenkins</span><span class="o">.</span><span class="na">model</span><span class="o">.</span><span class="na">Jenkins</span><span class="o">.</span><span class="na">instance</span><span class="o">;</span><span class="w"></span>
 
-<span class="c1">// Retrieve matching jobs</span>
-<span class="kt">def</span> <span class="n">allItems</span> <span class="o">=</span> <span class="n">jenkins</span><span class="o">.</span><span class="na">items</span>
-<span class="kt">def</span> <span class="n">chosenJobs</span> <span class="o">=</span> <span class="n">allItems</span><span class="o">.</span><span class="na">findAll</span><span class="o">{</span><span class="n">job</span> <span class="o">-&gt;</span> <span class="n">job</span><span class="o">.</span><span class="na">name</span> <span class="o">=-</span> <span class="s">/release_/</span><span class="o">};</span>
+<span class="c1">// Retrieve matching jobs</span><span class="w"></span>
+<span class="kt">def</span><span class="w"> </span><span class="n">allItems</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">jenkins</span><span class="o">.</span><span class="na">items</span><span class="w"></span>
+<span class="kt">def</span><span class="w"> </span><span class="n">chosenJobs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">allItems</span><span class="o">.</span><span class="na">findAll</span><span class="o">{</span><span class="n">job</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">job</span><span class="o">.</span><span class="na">name</span><span class="w"> </span><span class="o">=-</span><span class="w"> </span><span class="s">/release_/</span><span class="o">};</span><span class="w"></span>
 
-<span class="n">println</span> <span class="s2">&quot;Updating branch for chosen jobs to $NEW_BRANCH&quot;</span>
-<span class="n">println</span> <span class="s2">&quot;&quot;</span>
-<span class="c1">// Do work</span>
-<span class="n">chosenJobs</span><span class="o">.</span><span class="na">each</span> <span class="o">{</span> <span class="n">job</span> <span class="o">-&gt;</span>
-    <span class="kt">def</span> <span class="n">scm</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="na">scm</span><span class="o">;</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">scm</span> <span class="k">instanceof</span> <span class="n">GitSCM</span> <span class="o">&amp;&amp;</span> <span class="n">job</span><span class="o">.</span><span class="na">name</span> <span class="o">!=</span> <span class="s2">&quot;release_nightly_deploy&quot;</span> <span class="o">)</span> <span class="o">{</span>
-      <span class="c1">//def newScm = scm.clone()</span>
-      <span class="n">println</span> <span class="s2">&quot;Updating branch for &quot;</span> <span class="o">+</span> <span class="n">job</span><span class="o">.</span><span class="na">name</span>
-      <span class="n">scm</span><span class="o">.</span><span class="na">branches</span> <span class="o">=</span> <span class="n">newArrayList</span><span class="o">(</span><span class="k">new</span> <span class="n">BranchSpec</span><span class="o">(</span><span class="n">NEW_BRANCH</span><span class="o">))</span>
-      <span class="n">println</span> <span class="s2">&quot;Branch for &quot;</span> <span class="o">+</span> <span class="n">job</span><span class="o">.</span><span class="na">name</span> <span class="o">+</span> <span class="s2">&quot;: &quot;</span> <span class="o">+</span> <span class="n">scm</span><span class="o">.</span><span class="na">branches</span>
-      <span class="n">println</span> <span class="s2">&quot;&quot;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
+<span class="n">println</span><span class="w"> </span><span class="s2">&quot;Updating branch for chosen jobs to $NEW_BRANCH&quot;</span><span class="w"></span>
+<span class="n">println</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="w"></span>
+<span class="c1">// Do work</span><span class="w"></span>
+<span class="n">chosenJobs</span><span class="o">.</span><span class="na">each</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="n">job</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">def</span><span class="w"> </span><span class="n">scm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">job</span><span class="o">.</span><span class="na">scm</span><span class="o">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">(</span><span class="n">scm</span><span class="w"> </span><span class="k">instanceof</span><span class="w"> </span><span class="n">GitSCM</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">job</span><span class="o">.</span><span class="na">name</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s2">&quot;release_nightly_deploy&quot;</span><span class="w"> </span><span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">      </span><span class="c1">//def newScm = scm.clone()</span><span class="w"></span>
+<span class="w">      </span><span class="n">println</span><span class="w"> </span><span class="s2">&quot;Updating branch for &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">job</span><span class="o">.</span><span class="na">name</span><span class="w"></span>
+<span class="w">      </span><span class="n">scm</span><span class="o">.</span><span class="na">branches</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">newArrayList</span><span class="o">(</span><span class="k">new</span><span class="w"> </span><span class="n">BranchSpec</span><span class="o">(</span><span class="n">NEW_BRANCH</span><span class="o">))</span><span class="w"></span>
+<span class="w">      </span><span class="n">println</span><span class="w"> </span><span class="s2">&quot;Branch for &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">job</span><span class="o">.</span><span class="na">name</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot;: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">scm</span><span class="o">.</span><span class="na">branches</span><span class="w"></span>
+<span class="w">      </span><span class="n">println</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="o">}</span><span class="w"></span>
+<span class="o">}</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="list-all-scm-urls">
+</section>
+<section id="list-all-scm-urls">
 <h3><a class="toc-backref" href="#id19">List All SCM Urls</a><a class="headerlink" href="#list-all-scm-urls" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">jenkins.model.*</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">hudson.model.*</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">hudson.tasks.*</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">hudson.plugins.git.*</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.eclipse.jgit.transport.RemoteConfig</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.eclipse.jgit.transport.URIish</span><span class="o">;</span>
+<div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">jenkins.model.*</span><span class="o">;</span><span class="w"></span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">hudson.model.*</span><span class="o">;</span><span class="w"></span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">hudson.tasks.*</span><span class="o">;</span><span class="w"></span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">hudson.plugins.git.*</span><span class="o">;</span><span class="w"></span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.eclipse.jgit.transport.RemoteConfig</span><span class="o">;</span><span class="w"></span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.eclipse.jgit.transport.URIish</span><span class="o">;</span><span class="w"></span>
 
-<span class="k">for</span><span class="o">(</span><span class="n">project</span> <span class="k">in</span> <span class="n">Hudson</span><span class="o">.</span><span class="na">instance</span><span class="o">.</span><span class="na">items</span><span class="o">)</span> <span class="o">{</span>
-  <span class="k">try</span> <span class="o">{</span>
-    <span class="n">scm</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="na">scm</span><span class="o">;</span>
-  <span class="o">}</span> <span class="k">catch</span><span class="o">(</span><span class="n">Exception</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">continue</span>
-  <span class="o">}</span>
-  <span class="k">if</span> <span class="o">(</span><span class="n">scm</span> <span class="k">instanceof</span> <span class="n">hudson</span><span class="o">.</span><span class="na">plugins</span><span class="o">.</span><span class="na">git</span><span class="o">.</span><span class="na">GitSCM</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">for</span> <span class="o">(</span><span class="n">RemoteConfig</span> <span class="n">cfg</span> <span class="o">:</span> <span class="n">scm</span><span class="o">.</span><span class="na">getRepositories</span><span class="o">())</span> <span class="o">{</span>
-      <span class="k">for</span> <span class="o">(</span><span class="n">URIish</span> <span class="n">uri</span> <span class="o">:</span> <span class="n">cfg</span><span class="o">.</span><span class="na">getURIs</span><span class="o">())</span> <span class="o">{</span>
-        <span class="n">println</span><span class="o">(</span><span class="s2">&quot;SCM &quot;</span> <span class="o">+</span> <span class="n">uri</span><span class="o">.</span><span class="na">toString</span><span class="o">()</span> <span class="o">+</span> <span class="s2">&quot; for project &quot;</span> <span class="o">+</span> <span class="n">project</span><span class="o">);</span>
-      <span class="o">}</span>
-    <span class="o">}</span>
-  <span class="o">}</span>
-<span class="o">}</span>
+<span class="k">for</span><span class="o">(</span><span class="n">project</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">Hudson</span><span class="o">.</span><span class="na">instance</span><span class="o">.</span><span class="na">items</span><span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">try</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">scm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">project</span><span class="o">.</span><span class="na">scm</span><span class="o">;</span><span class="w"></span>
+<span class="w">  </span><span class="o">}</span><span class="w"> </span><span class="k">catch</span><span class="o">(</span><span class="n">Exception</span><span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">continue</span><span class="w"></span>
+<span class="w">  </span><span class="o">}</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="o">(</span><span class="n">scm</span><span class="w"> </span><span class="k">instanceof</span><span class="w"> </span><span class="n">hudson</span><span class="o">.</span><span class="na">plugins</span><span class="o">.</span><span class="na">git</span><span class="o">.</span><span class="na">GitSCM</span><span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="o">(</span><span class="n">RemoteConfig</span><span class="w"> </span><span class="n">cfg</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">scm</span><span class="o">.</span><span class="na">getRepositories</span><span class="o">())</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">      </span><span class="k">for</span><span class="w"> </span><span class="o">(</span><span class="n">URIish</span><span class="w"> </span><span class="n">uri</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">cfg</span><span class="o">.</span><span class="na">getURIs</span><span class="o">())</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">println</span><span class="o">(</span><span class="s2">&quot;SCM &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">uri</span><span class="o">.</span><span class="na">toString</span><span class="o">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot; for project &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">project</span><span class="o">);</span><span class="w"></span>
+<span class="w">      </span><span class="o">}</span><span class="w"></span>
+<span class="w">    </span><span class="o">}</span><span class="w"></span>
+<span class="w">  </span><span class="o">}</span><span class="w"></span>
+<span class="o">}</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="update-urls-on-all-jobs">
+</section>
+<section id="update-urls-on-all-jobs">
 <h3><a class="toc-backref" href="#id20">Update Urls on All Jobs</a><a class="headerlink" href="#update-urls-on-all-jobs" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">jenkins.model.*</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">hudson.model.*</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">hudson.tasks.*</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">hudson.plugins.git.*</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.eclipse.jgit.transport.RemoteConfig</span><span class="o">;</span>
+<div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">jenkins.model.*</span><span class="o">;</span><span class="w"></span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">hudson.model.*</span><span class="o">;</span><span class="w"></span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">hudson.tasks.*</span><span class="o">;</span><span class="w"></span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">hudson.plugins.git.*</span><span class="o">;</span><span class="w"></span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.eclipse.jgit.transport.RemoteConfig</span><span class="o">;</span><span class="w"></span>
 
-<span class="kt">def</span> <span class="nf">modifyGitUrl</span><span class="o">(</span><span class="n">url</span><span class="o">)</span> <span class="o">{</span>
-  <span class="k">if</span><span class="o">(</span><span class="n">url</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s1">&#39;git://&#39;</span><span class="o">))</span> <span class="o">{</span>
-    <span class="k">return</span> <span class="s2">&quot;https://&quot;</span> <span class="o">+</span> <span class="n">url</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">6</span><span class="o">);</span>
-  <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-    <span class="k">return</span> <span class="n">url</span><span class="o">;</span>
-  <span class="o">}</span>
-<span class="o">}</span>
+<span class="kt">def</span><span class="w"> </span><span class="nf">modifyGitUrl</span><span class="o">(</span><span class="n">url</span><span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="o">(</span><span class="n">url</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s1">&#39;git://&#39;</span><span class="o">))</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s2">&quot;https://&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">url</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">6</span><span class="o">);</span><span class="w"></span>
+<span class="w">  </span><span class="o">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">url</span><span class="o">;</span><span class="w"></span>
+<span class="w">  </span><span class="o">}</span><span class="w"></span>
+<span class="o">}</span><span class="w"></span>
 
-<span class="k">for</span><span class="o">(</span><span class="n">project</span> <span class="k">in</span> <span class="n">Hudson</span><span class="o">.</span><span class="na">instance</span><span class="o">.</span><span class="na">items</span><span class="o">)</span> <span class="o">{</span>
-  <span class="k">try</span><span class="o">{</span>
-    <span class="n">oldScm</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="na">scm</span><span class="o">;</span>
-  <span class="o">}</span> <span class="k">catch</span><span class="o">(</span><span class="n">Exception</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">continue</span>
-  <span class="o">}</span>
-  <span class="k">if</span> <span class="o">(</span><span class="n">oldScm</span> <span class="k">instanceof</span> <span class="n">hudson</span><span class="o">.</span><span class="na">plugins</span><span class="o">.</span><span class="na">git</span><span class="o">.</span><span class="na">GitSCM</span><span class="o">)</span> <span class="o">{</span>
-    <span class="kt">def</span> <span class="n">newUserRemoteConfigs</span> <span class="o">=</span> <span class="n">oldScm</span><span class="o">.</span><span class="na">userRemoteConfigs</span><span class="o">.</span><span class="na">collect</span> <span class="o">{</span>
-      <span class="k">new</span> <span class="nf">UserRemoteConfig</span><span class="o">(</span><span class="n">modifyGitUrl</span><span class="o">(</span><span class="n">it</span><span class="o">.</span><span class="na">url</span><span class="o">),</span> <span class="n">it</span><span class="o">.</span><span class="na">name</span><span class="o">,</span> <span class="n">it</span><span class="o">.</span><span class="na">refspec</span><span class="o">,</span> <span class="n">it</span><span class="o">.</span><span class="na">credentialsId</span><span class="o">)</span>
-    <span class="o">}</span>
-    <span class="kt">def</span> <span class="n">newScm</span> <span class="o">=</span> <span class="k">new</span> <span class="n">GitSCM</span><span class="o">(</span><span class="n">newUserRemoteConfigs</span><span class="o">,</span> <span class="n">oldScm</span><span class="o">.</span><span class="na">branches</span><span class="o">,</span> <span class="n">oldScm</span><span class="o">.</span><span class="na">doGenerateSubmoduleConfigurations</span><span class="o">,</span>
-                            <span class="n">oldScm</span><span class="o">.</span><span class="na">submoduleCfg</span><span class="o">,</span> <span class="n">oldScm</span><span class="o">.</span><span class="na">browser</span><span class="o">,</span> <span class="n">oldScm</span><span class="o">.</span><span class="na">gitTool</span><span class="o">,</span> <span class="n">oldScm</span><span class="o">.</span><span class="na">extensions</span><span class="o">)</span>
-    <span class="n">project</span><span class="o">.</span><span class="na">scm</span> <span class="o">=</span> <span class="n">newScm</span><span class="o">;</span>
-    <span class="n">project</span><span class="o">.</span><span class="na">save</span><span class="o">();</span>
-  <span class="o">}</span>
-<span class="o">}</span>
+<span class="k">for</span><span class="o">(</span><span class="n">project</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">Hudson</span><span class="o">.</span><span class="na">instance</span><span class="o">.</span><span class="na">items</span><span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">try</span><span class="o">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">oldScm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">project</span><span class="o">.</span><span class="na">scm</span><span class="o">;</span><span class="w"></span>
+<span class="w">  </span><span class="o">}</span><span class="w"> </span><span class="k">catch</span><span class="o">(</span><span class="n">Exception</span><span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">continue</span><span class="w"></span>
+<span class="w">  </span><span class="o">}</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="o">(</span><span class="n">oldScm</span><span class="w"> </span><span class="k">instanceof</span><span class="w"> </span><span class="n">hudson</span><span class="o">.</span><span class="na">plugins</span><span class="o">.</span><span class="na">git</span><span class="o">.</span><span class="na">GitSCM</span><span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">    </span><span class="kt">def</span><span class="w"> </span><span class="n">newUserRemoteConfigs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">oldScm</span><span class="o">.</span><span class="na">userRemoteConfigs</span><span class="o">.</span><span class="na">collect</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">      </span><span class="k">new</span><span class="w"> </span><span class="n">UserRemoteConfig</span><span class="o">(</span><span class="n">modifyGitUrl</span><span class="o">(</span><span class="n">it</span><span class="o">.</span><span class="na">url</span><span class="o">),</span><span class="w"> </span><span class="n">it</span><span class="o">.</span><span class="na">name</span><span class="o">,</span><span class="w"> </span><span class="n">it</span><span class="o">.</span><span class="na">refspec</span><span class="o">,</span><span class="w"> </span><span class="n">it</span><span class="o">.</span><span class="na">credentialsId</span><span class="o">)</span><span class="w"></span>
+<span class="w">    </span><span class="o">}</span><span class="w"></span>
+<span class="w">    </span><span class="kt">def</span><span class="w"> </span><span class="n">newScm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">GitSCM</span><span class="o">(</span><span class="n">newUserRemoteConfigs</span><span class="o">,</span><span class="w"> </span><span class="n">oldScm</span><span class="o">.</span><span class="na">branches</span><span class="o">,</span><span class="w"> </span><span class="n">oldScm</span><span class="o">.</span><span class="na">doGenerateSubmoduleConfigurations</span><span class="o">,</span><span class="w"></span>
+<span class="w">                            </span><span class="n">oldScm</span><span class="o">.</span><span class="na">submoduleCfg</span><span class="o">,</span><span class="w"> </span><span class="n">oldScm</span><span class="o">.</span><span class="na">browser</span><span class="o">,</span><span class="w"> </span><span class="n">oldScm</span><span class="o">.</span><span class="na">gitTool</span><span class="o">,</span><span class="w"> </span><span class="n">oldScm</span><span class="o">.</span><span class="na">extensions</span><span class="o">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">project</span><span class="o">.</span><span class="na">scm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">newScm</span><span class="o">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">project</span><span class="o">.</span><span class="na">save</span><span class="o">();</span><span class="w"></span>
+<span class="w">  </span><span class="o">}</span><span class="w"></span>
+<span class="o">}</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="print-all-loggers">
+</section>
+<section id="print-all-loggers">
 <h3><a class="toc-backref" href="#id21">Print All Loggers</a><a class="headerlink" href="#print-all-loggers" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">java.util.logging.*</span><span class="o">;</span>
+<div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.logging.*</span><span class="o">;</span><span class="w"></span>
 
-<span class="n">LogManager</span><span class="o">.</span><span class="na">getLogManager</span><span class="o">().</span><span class="na">getLoggerNames</span><span class="o">().</span><span class="na">each</span><span class="o">()</span> <span class="o">{</span>
-  <span class="n">println</span> <span class="s2">&quot;${it}&quot;</span><span class="o">;</span>
-<span class="o">}</span>
+<span class="n">LogManager</span><span class="o">.</span><span class="na">getLogManager</span><span class="o">().</span><span class="na">getLoggerNames</span><span class="o">().</span><span class="na">each</span><span class="o">()</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">println</span><span class="w"> </span><span class="s2">&quot;${it}&quot;</span><span class="o">;</span><span class="w"></span>
+<span class="o">}</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="run-a-process-on-a-single-node">
+</section>
+<section id="run-a-process-on-a-single-node">
 <h3><a class="toc-backref" href="#id22">Run a Process On a Single Node</a><a class="headerlink" href="#run-a-process-on-a-single-node" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="n">Process</span> <span class="n">p</span> <span class="o">=</span> <span class="s2">&quot;cmd /c dir&quot;</span><span class="o">.</span><span class="na">execute</span><span class="o">()</span>
-<span class="n">println</span> <span class="s2">&quot;${p.text}&quot;</span>
+<div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="n">Process</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;cmd /c dir&quot;</span><span class="o">.</span><span class="na">execute</span><span class="o">()</span><span class="w"></span>
+<span class="n">println</span><span class="w"> </span><span class="s2">&quot;${p.text}&quot;</span><span class="w"></span>
 
-<span class="c1">// kill process on windows slave</span>
-<span class="n">Process</span> <span class="n">p</span> <span class="o">=</span> <span class="s2">&quot;cmd /c Taskkill /F /IM MantidPlot.exe&quot;</span><span class="o">.</span><span class="na">execute</span><span class="o">()</span>
-<span class="n">println</span> <span class="s2">&quot;${p.text}&quot;</span>
+<span class="c1">// kill process on windows slave</span><span class="w"></span>
+<span class="n">Process</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;cmd /c Taskkill /F /IM MantidPlot.exe&quot;</span><span class="o">.</span><span class="na">execute</span><span class="o">()</span><span class="w"></span>
+<span class="n">println</span><span class="w"> </span><span class="s2">&quot;${p.text}&quot;</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="run-a-process-across-all-nodes">
+</section>
+<section id="run-a-process-across-all-nodes">
 <h3><a class="toc-backref" href="#id23">Run a Process Across All Nodes</a><a class="headerlink" href="#run-a-process-across-all-nodes" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">hudson.util.RemotingDiagnostics</span><span class="o">;</span>
+<div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">hudson.util.RemotingDiagnostics</span><span class="o">;</span><span class="w"></span>
 
-<span class="k">for</span> <span class="o">(</span><span class="n">slave</span> <span class="k">in</span> <span class="n">hudson</span><span class="o">.</span><span class="na">model</span><span class="o">.</span><span class="na">Hudson</span><span class="o">.</span><span class="na">instance</span><span class="o">.</span><span class="na">slaves</span><span class="o">)</span> <span class="o">{</span>
-   <span class="n">println</span> <span class="n">slave</span><span class="o">.</span><span class="na">name</span><span class="o">;</span>
-   <span class="c1">// is it connected?</span>
-   <span class="k">if</span><span class="o">(</span><span class="n">slave</span><span class="o">.</span><span class="na">getChannel</span><span class="o">())</span> <span class="o">{</span>
-    <span class="n">println</span> <span class="n">RemotingDiagnostics</span><span class="o">.</span><span class="na">executeGroovy</span><span class="o">(</span><span class="s2">&quot;println \&quot;ls\&quot;.execute().text&quot;</span><span class="o">,</span> <span class="n">slave</span><span class="o">.</span><span class="na">getChannel</span><span class="o">());</span>
-  <span class="o">}</span>
-<span class="o">}</span>
+<span class="k">for</span><span class="w"> </span><span class="o">(</span><span class="n">slave</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">hudson</span><span class="o">.</span><span class="na">model</span><span class="o">.</span><span class="na">Hudson</span><span class="o">.</span><span class="na">instance</span><span class="o">.</span><span class="na">slaves</span><span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">   </span><span class="n">println</span><span class="w"> </span><span class="n">slave</span><span class="o">.</span><span class="na">name</span><span class="o">;</span><span class="w"></span>
+<span class="w">   </span><span class="c1">// is it connected?</span><span class="w"></span>
+<span class="w">   </span><span class="k">if</span><span class="o">(</span><span class="n">slave</span><span class="o">.</span><span class="na">getChannel</span><span class="o">())</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">println</span><span class="w"> </span><span class="n">RemotingDiagnostics</span><span class="o">.</span><span class="na">executeGroovy</span><span class="o">(</span><span class="s2">&quot;println \&quot;ls\&quot;.execute().text&quot;</span><span class="o">,</span><span class="w"> </span><span class="n">slave</span><span class="o">.</span><span class="na">getChannel</span><span class="o">());</span><span class="w"></span>
+<span class="w">  </span><span class="o">}</span><span class="w"></span>
+<span class="o">}</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="update-default-values-for-job-parameters">
+</section>
+<section id="update-default-values-for-job-parameters">
 <h3><a class="toc-backref" href="#id24">Update default values for job parameters</a><a class="headerlink" href="#update-default-values-for-job-parameters" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">hudson.model.*</span>
+<div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">hudson.model.*</span><span class="w"></span>
 
-<span class="kt">def</span> <span class="n">SUFFIX_VARIABLE</span> <span class="o">=</span> <span class="s2">&quot;PACKAGE_SUFFIX&quot;</span>
-<span class="kt">def</span> <span class="n">NEW_SUFFIX</span> <span class="o">=</span> <span class="s2">&quot;nightly&quot;</span>
+<span class="kt">def</span><span class="w"> </span><span class="n">SUFFIX_VARIABLE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;PACKAGE_SUFFIX&quot;</span><span class="w"></span>
+<span class="kt">def</span><span class="w"> </span><span class="n">NEW_SUFFIX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;nightly&quot;</span><span class="w"></span>
 
-<span class="c1">// Access to the Hudson Singleton</span>
-<span class="kt">def</span> <span class="n">jenkins</span> <span class="o">=</span> <span class="n">jenkins</span><span class="o">.</span><span class="na">model</span><span class="o">.</span><span class="na">Jenkins</span><span class="o">.</span><span class="na">instance</span><span class="o">;</span>
+<span class="c1">// Access to the Hudson Singleton</span><span class="w"></span>
+<span class="kt">def</span><span class="w"> </span><span class="n">jenkins</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">jenkins</span><span class="o">.</span><span class="na">model</span><span class="o">.</span><span class="na">Jenkins</span><span class="o">.</span><span class="na">instance</span><span class="o">;</span><span class="w"></span>
 
-<span class="c1">// Retrieve matching jobs</span>
-<span class="kt">def</span> <span class="n">chosenJobs</span> <span class="o">=</span> <span class="o">[</span><span class="s2">&quot;release_clean-rhel7&quot;</span><span class="o">]</span> <span class="c1">//, &quot;release_clean-ubuntu-16.04&quot;, &quot;release_clean-ubuntu&quot;]</span>
+<span class="c1">// Retrieve matching jobs</span><span class="w"></span>
+<span class="kt">def</span><span class="w"> </span><span class="n">chosenJobs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="s2">&quot;release_clean-rhel7&quot;</span><span class="o">]</span><span class="w"> </span><span class="c1">//, &quot;release_clean-ubuntu-16.04&quot;, &quot;release_clean-ubuntu&quot;]</span><span class="w"></span>
 
-<span class="n">println</span> <span class="s2">&quot;Updating default package suffix for chosen jobs to ${NEW_SUFFIX}&quot;</span>
-<span class="n">println</span> <span class="s2">&quot;&quot;</span>
-<span class="c1">// Do work</span>
-<span class="n">chosenJobs</span><span class="o">.</span><span class="na">each</span> <span class="o">{</span> <span class="n">jobName</span> <span class="o">-&gt;</span>
-  <span class="n">job</span> <span class="o">=</span> <span class="n">jenkins</span><span class="o">.</span><span class="na">getItem</span><span class="o">(</span><span class="n">jobName</span><span class="o">)</span>
-  <span class="n">println</span><span class="o">(</span><span class="n">job</span><span class="o">)</span>
-  <span class="n">paramsDef</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="na">getAction</span><span class="o">(</span><span class="n">ParametersDefinitionProperty</span><span class="o">)</span>
-  <span class="n">params</span> <span class="o">=</span> <span class="n">paramsDef</span><span class="o">.</span><span class="na">getParameterDefinitions</span><span class="o">()</span>
-  <span class="n">params</span><span class="o">.</span><span class="na">each</span> <span class="o">{</span> <span class="n">it</span> <span class="o">-&gt;</span>
-    <span class="k">if</span><span class="o">(</span><span class="n">it</span><span class="o">.</span><span class="na">getName</span><span class="o">()</span> <span class="o">==</span> <span class="n">SUFFIX_VARIABLE</span><span class="o">)</span> <span class="o">{</span>
-      <span class="n">println</span><span class="o">(</span><span class="s2">&quot;Updating default value of &#39;${SUFFIX_VARIABLE}&#39; variable to &#39;${NEW_SUFFIX}&#39;&quot;</span><span class="o">)</span>
-      <span class="n">it</span><span class="o">.</span><span class="na">setDefaultValue</span><span class="o">(</span><span class="n">NEW_SUFFIX</span><span class="o">)</span>
-    <span class="o">}</span>
-  <span class="o">}</span>
+<span class="n">println</span><span class="w"> </span><span class="s2">&quot;Updating default package suffix for chosen jobs to ${NEW_SUFFIX}&quot;</span><span class="w"></span>
+<span class="n">println</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="w"></span>
+<span class="c1">// Do work</span><span class="w"></span>
+<span class="n">chosenJobs</span><span class="o">.</span><span class="na">each</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="n">jobName</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="n">job</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">jenkins</span><span class="o">.</span><span class="na">getItem</span><span class="o">(</span><span class="n">jobName</span><span class="o">)</span><span class="w"></span>
+<span class="w">  </span><span class="n">println</span><span class="o">(</span><span class="n">job</span><span class="o">)</span><span class="w"></span>
+<span class="w">  </span><span class="n">paramsDef</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">job</span><span class="o">.</span><span class="na">getAction</span><span class="o">(</span><span class="n">ParametersDefinitionProperty</span><span class="o">)</span><span class="w"></span>
+<span class="w">  </span><span class="n">params</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">paramsDef</span><span class="o">.</span><span class="na">getParameterDefinitions</span><span class="o">()</span><span class="w"></span>
+<span class="w">  </span><span class="n">params</span><span class="o">.</span><span class="na">each</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="o">(</span><span class="n">it</span><span class="o">.</span><span class="na">getName</span><span class="o">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">SUFFIX_VARIABLE</span><span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">println</span><span class="o">(</span><span class="s2">&quot;Updating default value of &#39;${SUFFIX_VARIABLE}&#39; variable to &#39;${NEW_SUFFIX}&#39;&quot;</span><span class="o">)</span><span class="w"></span>
+<span class="w">      </span><span class="n">it</span><span class="o">.</span><span class="na">setDefaultValue</span><span class="o">(</span><span class="n">NEW_SUFFIX</span><span class="o">)</span><span class="w"></span>
+<span class="w">    </span><span class="o">}</span><span class="w"></span>
+<span class="w">  </span><span class="o">}</span><span class="w"></span>
 
-<span class="o">}</span>
+<span class="o">}</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
     </div>

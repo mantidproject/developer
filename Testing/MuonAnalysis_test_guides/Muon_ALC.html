@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Muon Unscripted Testing: ALC</title>
-    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Muon Unscripted Testing: ARGUS" href="Muon_ARGUS.html" />
-    <link rel="prev" title="Muon Interfaces Unscripted Testing" href="Muon Analysis Unscripted Testing Guide.html" />
+    <link rel="prev" title="Muon Interfaces Unscripted Testing" href="Muon%20Analysis%20Unscripted%20Testing%20Guide.html" />
 
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -87,88 +87,88 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <div class="section" id="muon-unscripted-testing-alc">
+  <section id="muon-unscripted-testing-alc">
 <span id="muon-alc-ref"></span><h1>Muon Unscripted Testing: ALC<a class="headerlink" href="#muon-unscripted-testing-alc" title="Permalink to this headline">¶</a></h1>
 <div class="contents local topic" id="table-of-contents">
 <p class="topic-title">Table of Contents</p>
 <ul class="simple">
-<li><a class="reference internal" href="#introduction" id="id1">Introduction</a></li>
-<li><a class="reference internal" href="#alc-peak-fitting" id="id2">ALC peak fitting</a></li>
-<li><a class="reference internal" href="#alc-multiperiod-data" id="id3">ALC MultiPeriod Data</a></li>
-<li><a class="reference internal" href="#alc-single-period-data" id="id4">ALC Single Period Data</a></li>
+<li><p><a class="reference internal" href="#introduction" id="id1">Introduction</a></p></li>
+<li><p><a class="reference internal" href="#alc-peak-fitting" id="id2">ALC peak fitting</a></p></li>
+<li><p><a class="reference internal" href="#alc-multiperiod-data" id="id3">ALC MultiPeriod Data</a></p></li>
+<li><p><a class="reference internal" href="#alc-single-period-data" id="id4">ALC Single Period Data</a></p></li>
 </ul>
 </div>
-<div class="section" id="introduction">
+<section id="introduction">
 <h2><a class="toc-backref" href="#id1">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>These tests looks at the ALC interface.
 This interface loads a series of runs and automatically calculate the asymmetry.
 The asymmetry calculation is determined by the settings on the load page and are for a pair.
 It is often used to find peaks in the asymmetry as a function of a sample log (e.g. temperature).</p>
 <hr class="docutils" />
-</div>
-<div class="section" id="alc-peak-fitting">
+</section>
+<section id="alc-peak-fitting">
 <span id="alc-basic"></span><h2><a class="toc-backref" href="#id2">ALC peak fitting</a><a class="headerlink" href="#alc-peak-fitting" title="Permalink to this headline">¶</a></h2>
 <p><strong>Time required 10 - 15 minutes</strong></p>
 <ul class="simple">
-<li>Open <strong>ALC</strong> (<em>Interfaces</em> &gt; <em>Muon</em> &gt; <em>ALC</em>)</li>
-<li>Change <em>Instrument</em> to <strong>EMU</strong></li>
-<li>In the loading bar enter <code class="docutils literal notranslate"><span class="pre">81061-142</span></code></li>
-<li>The text undearneath will change colour while it searches for the data (orange)</li>
-<li>Once it has found the data the text will turn green</li>
-<li>Select <code class="docutils literal notranslate"><span class="pre">field_danfysik</span></code> for the sample log</li>
-<li>Set the calculation max to <code class="docutils literal notranslate"><span class="pre">16</span></code></li>
-<li>Press the <code class="docutils literal notranslate"><span class="pre">Load</span></code> button, this can be slow</li>
-<li>Once it is complete a plot will appear showing one dominant peak</li>
-<li>Press the <code class="docutils literal notranslate"><span class="pre">Baseline</span> <span class="pre">modelling</span></code> button at the bottom of the interface</li>
-<li>Add a <code class="docutils literal notranslate"><span class="pre">LinearBackground</span></code> fitting function</li>
-<li>Add a marker, drag the upper bound to be just before the start of the main peak</li>
-<li>Add a second marker, type into the <code class="docutils literal notranslate"><span class="pre">Start</span> <span class="pre">X</span></code> box to place it after the main peak</li>
-<li>Press fit</li>
-<li>Click the <code class="docutils literal notranslate"><span class="pre">Corrected</span> <span class="pre">data</span></code> tab and the baseline should be about zero</li>
-<li>Press the <code class="docutils literal notranslate"><span class="pre">Peak</span> <span class="pre">fitting</span></code> button at the bottom of the interface</li>
-<li>Add a <code class="docutils literal notranslate"><span class="pre">Gaussian</span></code> fitting function, set the parameters to give a decent guess (use plot guess to check)</li>
-<li>Press fit, you should then have a nice fit to the data</li>
+<li><p>Open <strong>ALC</strong> (<em>Interfaces</em> &gt; <em>Muon</em> &gt; <em>ALC</em>)</p></li>
+<li><p>Change <em>Instrument</em> to <strong>EMU</strong></p></li>
+<li><p>In the loading bar enter <code class="docutils literal notranslate"><span class="pre">81061-142</span></code></p></li>
+<li><p>The text undearneath will change colour while it searches for the data (orange)</p></li>
+<li><p>Once it has found the data the text will turn green</p></li>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">field_danfysik</span></code> for the sample log</p></li>
+<li><p>Set the calculation max to <code class="docutils literal notranslate"><span class="pre">16</span></code></p></li>
+<li><p>Press the <code class="docutils literal notranslate"><span class="pre">Load</span></code> button, this can be slow</p></li>
+<li><p>Once it is complete a plot will appear showing one dominant peak</p></li>
+<li><p>Press the <code class="docutils literal notranslate"><span class="pre">Baseline</span> <span class="pre">modelling</span></code> button at the bottom of the interface</p></li>
+<li><p>Add a <code class="docutils literal notranslate"><span class="pre">LinearBackground</span></code> fitting function</p></li>
+<li><p>Add a marker, drag the upper bound to be just before the start of the main peak</p></li>
+<li><p>Add a second marker, type into the <code class="docutils literal notranslate"><span class="pre">Start</span> <span class="pre">X</span></code> box to place it after the main peak</p></li>
+<li><p>Press fit</p></li>
+<li><p>Click the <code class="docutils literal notranslate"><span class="pre">Corrected</span> <span class="pre">data</span></code> tab and the baseline should be about zero</p></li>
+<li><p>Press the <code class="docutils literal notranslate"><span class="pre">Peak</span> <span class="pre">fitting</span></code> button at the bottom of the interface</p></li>
+<li><p>Add a <code class="docutils literal notranslate"><span class="pre">Gaussian</span></code> fitting function, set the parameters to give a decent guess (use plot guess to check)</p></li>
+<li><p>Press fit, you should then have a nice fit to the data</p></li>
 </ul>
 <hr class="docutils" />
-</div>
-<div class="section" id="alc-multiperiod-data">
+</section>
+<section id="alc-multiperiod-data">
 <span id="alc-multi-period"></span><h2><a class="toc-backref" href="#id3">ALC MultiPeriod Data</a><a class="headerlink" href="#alc-multiperiod-data" title="Permalink to this headline">¶</a></h2>
 <p><strong>Time required 5 minutes</strong></p>
 <ul class="simple">
-<li>In the loading bar enter <code class="docutils literal notranslate"><span class="pre">81070-81095,81120-40</span></code></li>
-<li>Select <code class="docutils literal notranslate"><span class="pre">field_danfysik</span></code> for the sample log</li>
-<li>Press the <code class="docutils literal notranslate"><span class="pre">Period</span> <span class="pre">info</span></code> button and pop up will appear with 2 rows</li>
-<li>Untick <code class="docutils literal notranslate"><span class="pre">subtract</span></code> in the periods section</li>
-<li>Set the calculation max to <code class="docutils literal notranslate"><span class="pre">5</span></code></li>
-<li>Press the <code class="docutils literal notranslate"><span class="pre">Load</span></code> button, this can be slow</li>
-<li>The new data will look a mess</li>
-<li>Press the <code class="docutils literal notranslate"><span class="pre">External</span> <span class="pre">Plot</span></code> button at the bottom, a new plot will appear</li>
+<li><p>In the loading bar enter <code class="docutils literal notranslate"><span class="pre">81070-81095,81120-40</span></code></p></li>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">field_danfysik</span></code> for the sample log</p></li>
+<li><p>Press the <code class="docutils literal notranslate"><span class="pre">Period</span> <span class="pre">info</span></code> button and pop up will appear with 2 rows</p></li>
+<li><p>Untick <code class="docutils literal notranslate"><span class="pre">subtract</span></code> in the periods section</p></li>
+<li><p>Set the calculation max to <code class="docutils literal notranslate"><span class="pre">5</span></code></p></li>
+<li><p>Press the <code class="docutils literal notranslate"><span class="pre">Load</span></code> button, this can be slow</p></li>
+<li><p>The new data will look a mess</p></li>
+<li><p>Press the <code class="docutils literal notranslate"><span class="pre">External</span> <span class="pre">Plot</span></code> button at the bottom, a new plot will appear</p></li>
 </ul>
 <hr class="docutils" />
-</div>
-<div class="section" id="alc-single-period-data">
+</section>
+<section id="alc-single-period-data">
 <span id="alc-single-period"></span><h2><a class="toc-backref" href="#id4">ALC Single Period Data</a><a class="headerlink" href="#alc-single-period-data" title="Permalink to this headline">¶</a></h2>
 <p><strong>Time required 5 minutes</strong></p>
 <ul class="simple">
-<li>Change <em>Instrument</em> to <strong>HIFI</strong></li>
-<li>In the loading bar enter <code class="docutils literal notranslate"><span class="pre">134028-39</span></code></li>
-<li>Select <code class="docutils literal notranslate"><span class="pre">run_number</span></code> for the sample log</li>
-<li>Press the <code class="docutils literal notranslate"><span class="pre">Period</span> <span class="pre">info</span></code> button and pop up will appear with 1 row</li>
-<li>Change the dead time correction to be <code class="docutils literal notranslate"><span class="pre">From</span> <span class="pre">Data</span> <span class="pre">File</span></code></li>
-<li>The <code class="docutils literal notranslate"><span class="pre">subtract</span></code> checkbox should be disabled</li>
-<li>Set the calculation max to <code class="docutils literal notranslate"><span class="pre">15</span></code></li>
-<li>Press the <code class="docutils literal notranslate"><span class="pre">Load</span></code> button, this can be slow</li>
-<li>The new data will look like a decay, with a max value just below <code class="docutils literal notranslate"><span class="pre">0.2</span></code></li>
-<li>In the <code class="docutils literal notranslate"><span class="pre">Grouping</span></code> section change the <code class="docutils literal notranslate"><span class="pre">Alpha</span></code> to be <code class="docutils literal notranslate"><span class="pre">1.3</span></code></li>
-<li>Press the <code class="docutils literal notranslate"><span class="pre">Load</span></code> button</li>
-<li>The new data will look like a decay, with a max value just below <code class="docutils literal notranslate"><span class="pre">0.07</span></code></li>
-<li>In the <code class="docutils literal notranslate"><span class="pre">Grouping</span></code> section change it to <code class="docutils literal notranslate"><span class="pre">Custom</span></code></li>
-<li>For <code class="docutils literal notranslate"><span class="pre">Forward</span></code> and <code class="docutils literal notranslate"><span class="pre">Backward</span></code> give some valid detectors (e.g. 1, 64)</li>
-<li>Press Load and the data will change</li>
-<li>Check that invalid detector values (i.e. letters, decimals) result in a warning when pressing <code class="docutils literal notranslate"><span class="pre">Load</span></code></li>
+<li><p>Change <em>Instrument</em> to <strong>HIFI</strong></p></li>
+<li><p>In the loading bar enter <code class="docutils literal notranslate"><span class="pre">134028-39</span></code></p></li>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">run_number</span></code> for the sample log</p></li>
+<li><p>Press the <code class="docutils literal notranslate"><span class="pre">Period</span> <span class="pre">info</span></code> button and pop up will appear with 1 row</p></li>
+<li><p>Change the dead time correction to be <code class="docutils literal notranslate"><span class="pre">From</span> <span class="pre">Data</span> <span class="pre">File</span></code></p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">subtract</span></code> checkbox should be disabled</p></li>
+<li><p>Set the calculation max to <code class="docutils literal notranslate"><span class="pre">15</span></code></p></li>
+<li><p>Press the <code class="docutils literal notranslate"><span class="pre">Load</span></code> button, this can be slow</p></li>
+<li><p>The new data will look like a decay, with a max value just below <code class="docutils literal notranslate"><span class="pre">0.2</span></code></p></li>
+<li><p>In the <code class="docutils literal notranslate"><span class="pre">Grouping</span></code> section change the <code class="docutils literal notranslate"><span class="pre">Alpha</span></code> to be <code class="docutils literal notranslate"><span class="pre">1.3</span></code></p></li>
+<li><p>Press the <code class="docutils literal notranslate"><span class="pre">Load</span></code> button</p></li>
+<li><p>The new data will look like a decay, with a max value just below <code class="docutils literal notranslate"><span class="pre">0.07</span></code></p></li>
+<li><p>In the <code class="docutils literal notranslate"><span class="pre">Grouping</span></code> section change it to <code class="docutils literal notranslate"><span class="pre">Custom</span></code></p></li>
+<li><p>For <code class="docutils literal notranslate"><span class="pre">Forward</span></code> and <code class="docutils literal notranslate"><span class="pre">Backward</span></code> give some valid detectors (e.g. 1, 64)</p></li>
+<li><p>Press Load and the data will change</p></li>
+<li><p>Check that invalid detector values (i.e. letters, decimals) result in a warning when pressing <code class="docutils literal notranslate"><span class="pre">Load</span></code></p></li>
 </ul>
-</div>
-</div>
+</section>
+</section>
 
 
     </div>
@@ -183,7 +183,7 @@ It is often used to find peaks in the asymmetry as a function of a sample log (e
           
             
   <li>
-    <a href="Muon Analysis Unscripted Testing Guide.html" title="Previous Chapter: Muon Interfaces Unscripted Testing"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Muon Interfac...</span>
+    <a href="Muon%20Analysis%20Unscripted%20Testing%20Guide.html" title="Previous Chapter: Muon Interfaces Unscripted Testing"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Muon Interfac...</span>
     </a>
   </li>
   <li>

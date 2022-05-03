@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Additional Python code</title>
-    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Testing" href="../Testing/index.html" />
@@ -87,20 +87,21 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <div class="section" id="additional-python-code">
+  <section id="additional-python-code">
 <span id="additionalpythoncode"></span><h1>Additional Python code<a class="headerlink" href="#additional-python-code" title="Permalink to this headline">¶</a></h1>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><a class="reference internal" href="#overview" id="id1">Overview</a></li>
-<li><a class="reference internal" href="#the-scripts-directory" id="id2">The <code class="docutils literal notranslate"><span class="pre">scripts</span></code> directory</a><ul>
-<li><a class="reference internal" href="#documentation" id="id3">Documentation</a></li>
-<li><a class="reference internal" href="#unit-testing" id="id4">Unit testing</a></li>
+<li><p><a class="reference internal" href="#overview" id="id1">Overview</a></p></li>
+<li><p><a class="reference internal" href="#the-scripts-directory" id="id2">The <code class="docutils literal notranslate"><span class="pre">scripts</span></code> directory</a></p>
+<ul>
+<li><p><a class="reference internal" href="#documentation" id="id3">Documentation</a></p></li>
+<li><p><a class="reference internal" href="#unit-testing" id="id4">Unit testing</a></p></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#the-qt-directory" id="id5">The <code class="docutils literal notranslate"><span class="pre">qt</span></code> directory</a></li>
+<li><p><a class="reference internal" href="#the-qt-directory" id="id5">The <code class="docutils literal notranslate"><span class="pre">qt</span></code> directory</a></p></li>
 </ul>
 </div>
-<div class="section" id="overview">
+<section id="overview">
 <h2><a class="toc-backref" href="#id1">Overview</a><a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
 <p>Python code that is not part of ‘core’ Mantid, e.g. is not an algorithm, not
 related to the Python exports (<code class="docutils literal notranslate"><span class="pre">mantid.*</span></code> modules) nor an integral part of
@@ -114,32 +115,32 @@ avoid breakages due to changes in Mantid’s core parts. Although some reduction
 interface code lives in <code class="docutils literal notranslate"><span class="pre">scripts</span></code>, adding more GUI related code there is
 discouraged.</p>
 <p>Python interfaces should go to the <code class="docutils literal notranslate"><span class="pre">qt</span></code> directory.</p>
-</div>
-<div class="section" id="the-scripts-directory">
+</section>
+<section id="the-scripts-directory">
 <h2><a class="toc-backref" href="#id2">The <code class="docutils literal notranslate"><span class="pre">scripts</span></code> directory</a><a class="headerlink" href="#the-scripts-directory" title="Permalink to this headline">¶</a></h2>
 <p>Python code should be written as proper <a class="reference external" href="https://docs.python.org/3/tutorial/modules.html">modules</a>. For example, the code of
 a module called <code class="docutils literal notranslate"><span class="pre">spam</span></code> should go into <code class="docutils literal notranslate"><span class="pre">scripts/spam</span></code> and contain a file
 named <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> at minimum. Then the module can be imported into Mantid
 simply by <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">spam</span></code>.</p>
-<div class="section" id="documentation">
+<section id="documentation">
 <h3><a class="toc-backref" href="#id3">Documentation</a><a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h3>
 <p>Documentation can be added to Mantid’s Python API docs in <code class="docutils literal notranslate"><span class="pre">docs/source/api</span></code>
 and linked to <code class="docutils literal notranslate"><span class="pre">docs/source/api/index.rst</span></code>. Note, that it is possible to
 import Python’s docstrings in <code class="docutils literal notranslate"><span class="pre">.rst</span></code> files using directives such as <code class="docutils literal notranslate"><span class="pre">..</span>
 <span class="pre">automodule::</span></code> or <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">autoclass::</span></code>, see <a class="reference external" href="http://www.sphinx-doc.org/es/stable/ext/autodoc.html">here</a>.</p>
-</div>
-<div class="section" id="unit-testing">
+</section>
+<section id="unit-testing">
 <h3><a class="toc-backref" href="#id4">Unit testing</a><a class="headerlink" href="#unit-testing" title="Permalink to this headline">¶</a></h3>
 <p>Unit tests for each module should be added to <code class="docutils literal notranslate"><span class="pre">scripts/test/modulename</span></code>. The
 tests follow the <a class="reference internal" href="../UnitTestGoodPractice.html#unittestgoodpractice"><span class="std std-ref">standard Mantid unit testing practices</span></a>.</p>
-</div>
-</div>
-<div class="section" id="the-qt-directory">
+</section>
+</section>
+<section id="the-qt-directory">
 <h2><a class="toc-backref" href="#id5">The <code class="docutils literal notranslate"><span class="pre">qt</span></code> directory</a><a class="headerlink" href="#the-qt-directory" title="Permalink to this headline">¶</a></h2>
 <p>There are no official rules for <code class="docutils literal notranslate"><span class="pre">qt</span></code> yet. Follow the structure of already
 existing code there.</p>
-</div>
-</div>
+</section>
+</section>
 
 
     </div>

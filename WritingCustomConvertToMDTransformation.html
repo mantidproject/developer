@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Writing a Custom ConvertToMD Transformation</title>
-    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="prev" title="Writing An Algorithm" href="WritingAnAlgorithm.html" />
@@ -86,34 +86,35 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <div class="section" id="writing-a-custom-converttomd-transformation">
+  <section id="writing-a-custom-converttomd-transformation">
 <span id="writingcustomconverttomdtransformation"></span><h1>Writing a Custom ConvertToMD Transformation<a class="headerlink" href="#writing-a-custom-converttomd-transformation" title="Permalink to this headline">¶</a></h1>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><a class="reference internal" href="#introduction" id="id1">Introduction</a></li>
-<li><a class="reference internal" href="#writing-a-simple-custom-plugin" id="id2">Writing a simple custom plugin</a><ul>
-<li><a class="reference internal" href="#summary" id="id3">Summary</a></li>
-<li><a class="reference internal" href="#workflow" id="id4">Workflow</a></li>
-<li><a class="reference internal" href="#defining-the-target-workspace" id="id5">Defining the target workspace</a></li>
-<li><a class="reference internal" href="#doing-the-transformation" id="id6">Doing the transformation</a></li>
-<li><a class="reference internal" href="#preprocessdetectorstomd-with-custom-plugins" id="id7">PreprocessDetectorsToMD with custom plugins</a></li>
+<li><p><a class="reference internal" href="#introduction" id="id1">Introduction</a></p></li>
+<li><p><a class="reference internal" href="#writing-a-simple-custom-plugin" id="id2">Writing a simple custom plugin</a></p>
+<ul>
+<li><p><a class="reference internal" href="#summary" id="id3">Summary</a></p></li>
+<li><p><a class="reference internal" href="#workflow" id="id4">Workflow</a></p></li>
+<li><p><a class="reference internal" href="#defining-the-target-workspace" id="id5">Defining the target workspace</a></p></li>
+<li><p><a class="reference internal" href="#doing-the-transformation" id="id6">Doing the transformation</a></p></li>
+<li><p><a class="reference internal" href="#preprocessdetectorstomd-with-custom-plugins" id="id7">PreprocessDetectorsToMD with custom plugins</a></p></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#complex-transformations" id="id8">Complex Transformations</a></li>
+<li><p><a class="reference internal" href="#complex-transformations" id="id8">Complex Transformations</a></p></li>
 </ul>
 </div>
-<div class="section" id="introduction">
+<section id="introduction">
 <h2><a class="toc-backref" href="#id1">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>This information is intended for a developer who needs to write a customized
-<a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/ConvertToMD-v1.html#algm-converttomd-v1" title="(in MantidProject v6.1)"><span class="xref std std-ref">ConvertToMD class</span></a> (plugin). The
+<a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/ConvertToMD-v1.html#algm-converttomd-v1" title="(in MantidProject v6.3)"><span class="xref std std-ref">ConvertToMD class</span></a> (plugin). The
 plugin then becomes automatically available to use in the
-<a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/ConvertToMD-v1.html#algm-converttomd-v1" title="(in MantidProject v6.1)"><span class="xref std std-ref">ConvertToMD</span></a> algorithm and via the
+<a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/ConvertToMD-v1.html#algm-converttomd-v1" title="(in MantidProject v6.3)"><span class="xref std std-ref">ConvertToMD</span></a> algorithm and via the
 <a class="reference external" href="http://www.mantidproject.org/Create_MD_Workspace_GUI">Create MD workspaces</a>
 interface to produce multidimensional workspace for further visualization and analysis.</p>
-<p>As the MD transformation factory is similar to the <a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/DynamicFactory.html#dynamic-factory" title="(in MantidProject v6.1)"><span class="xref std std-ref">Dynamic Factory</span></a>
-used for converting <a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/UnitFactory.html#unit-factory" title="(in MantidProject v6.1)"><span class="xref std std-ref">units</span></a>, the
+<p>As the MD transformation factory is similar to the <a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/DynamicFactory.html#dynamic-factory" title="(in MantidProject v6.3)"><span class="xref std std-ref">Dynamic Factory</span></a>
+used for converting <a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/UnitFactory.html#unit-factory" title="(in MantidProject v6.3)"><span class="xref std std-ref">units</span></a>, the
 procedure of writing a custom <code class="docutils literal notranslate"><span class="pre">ConvertToMD</span></code> transformation is very similar to adding a new unit to use
-with <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/ConvertUnits-v1.html#algm-convertunits-v1" title="(in MantidProject v6.1)"><span class="xref std std-ref">ConvertUnits</span></a> algorithm
+with <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/ConvertUnits-v1.html#algm-convertunits-v1" title="(in MantidProject v6.3)"><span class="xref std std-ref">ConvertUnits</span></a> algorithm
 or writing a new algorithm to use with Mantid.</p>
 <p>The plugin interface deals with the task of converting a generic n-dimensional point of a <code class="docutils literal notranslate"><span class="pre">MatrixWorkspace</span></code>
 into a generic m-dimensional point of an <code class="docutils literal notranslate"><span class="pre">MDWorkspace</span></code> using the necessary parameters.</p>
@@ -122,10 +123,10 @@ at specific time of flight plus log values for temperature and pressure (<strong
 space</strong>: 4 numbers + information about the detector) into 6-D point in the <strong>Physical space
 qx,qy,qz,dE,T,P</strong> (qx,qy,qz – the components of momentum transfer) or into 3-D point in
 <strong>Physical space |Q|,dE,Fugacity</strong> (|Q| - modulus of momentum transfer).</p>
-</div>
-<div class="section" id="writing-a-simple-custom-plugin">
+</section>
+<section id="writing-a-simple-custom-plugin">
 <h2><a class="toc-backref" href="#id2">Writing a simple custom plugin</a><a class="headerlink" href="#writing-a-simple-custom-plugin" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="summary">
+<section id="summary">
 <h3><a class="toc-backref" href="#id3">Summary</a><a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h3>
 <p>If a single point of a <code class="docutils literal notranslate"><span class="pre">MatrixWorkspace</span></code> together with correspondent log files can be converted into a single
 <code class="docutils literal notranslate"><span class="pre">MDEvent</span></code> (multidimensional point of MD workspace), a simple custom plugin can be written to do this transformation.
@@ -138,29 +139,29 @@ register the class with the factory is similar to the macro used to register an 
 Mantid or a <code class="docutils literal notranslate"><span class="pre">Unit</span></code> class with the Unit conversion factory. The macro is located in <code class="docutils literal notranslate"><span class="pre">MDTransfFactory.h</span></code>.</p>
 <p>The class inheriting from <code class="docutils literal notranslate"><span class="pre">MDTransfInterface</span></code> performs two tasks:</p>
 <ul class="simple">
-<li>Define the target <code class="docutils literal notranslate"><span class="pre">MDWorkspace</span></code> and its dimensions (both the number of dimensions and the dimension units).</li>
-<li>Initialize the transformation and define a formula to transform a single point of input data into output data.</li>
+<li><p>Define the target <code class="docutils literal notranslate"><span class="pre">MDWorkspace</span></code> and its dimensions (both the number of dimensions and the dimension units).</p></li>
+<li><p>Initialize the transformation and define a formula to transform a single point of input data into output data.</p></li>
 </ul>
 <p>These two tasks are mainly independent, but implemented within a single class to be handled by the single dynamic factory.
 <strong>Note that the functions which define the target MDWorkspace are called before the MDTransfFactory initialize function.</strong>
 The <code class="docutils literal notranslate"><span class="pre">initialize</span></code> function accepts the <code class="docutils literal notranslate"><span class="pre">MDWorkspace</span></code> description and is expected to fully define all class variables used during
 the transformation from a point of a <code class="docutils literal notranslate"><span class="pre">MatrixWorkspace</span></code> into an MD point of a target <code class="docutils literal notranslate"><span class="pre">MDWorkspace</span></code>.</p>
-</div>
-<div class="section" id="workflow">
+</section>
+<section id="workflow">
 <h3><a class="toc-backref" href="#id4">Workflow</a><a class="headerlink" href="#workflow" title="Permalink to this headline">¶</a></h3>
 <p>This workflow is implemented in the <code class="docutils literal notranslate"><span class="pre">ConvertToMD</span></code> algorithm’s <code class="docutils literal notranslate"><span class="pre">exec()</span></code> function.</p>
 <ol class="arabic simple">
-<li>Select a conversion and obtain additional algorithm parameters from the algorithm interface.</li>
-<li>Build <code class="docutils literal notranslate"><span class="pre">MDWorkspace</span></code> description (call <code class="docutils literal notranslate"><span class="pre">MDTransfFactory</span></code> and ask for the conversion plugin parameters).</li>
-<li>Build new <code class="docutils literal notranslate"><span class="pre">MDWorkspace</span></code> on the basis of its description (if new workspace is requested or check if existing workspace is suitable).</li>
-<li>Initialize the conversion plugin (using <code class="docutils literal notranslate"><span class="pre">MDWSDescription</span></code>).</li>
-<li>Run the conversion itself by looping over detectors and their values (use <code class="docutils literal notranslate"><span class="pre">MDTransfFactory</span></code> and selected conversion plugin to convert
-each input point into output MD point).</li>
+<li><p>Select a conversion and obtain additional algorithm parameters from the algorithm interface.</p></li>
+<li><p>Build <code class="docutils literal notranslate"><span class="pre">MDWorkspace</span></code> description (call <code class="docutils literal notranslate"><span class="pre">MDTransfFactory</span></code> and ask for the conversion plugin parameters).</p></li>
+<li><p>Build new <code class="docutils literal notranslate"><span class="pre">MDWorkspace</span></code> on the basis of its description (if new workspace is requested or check if existing workspace is suitable).</p></li>
+<li><p>Initialize the conversion plugin (using <code class="docutils literal notranslate"><span class="pre">MDWSDescription</span></code>).</p></li>
+<li><p>Run the conversion itself by looping over detectors and their values (use <code class="docutils literal notranslate"><span class="pre">MDTransfFactory</span></code> and selected conversion plugin to convert
+each input point into output MD point).</p></li>
 </ol>
 <p>The <code class="docutils literal notranslate"><span class="pre">MDTransformationFactory</span></code> is deployed twice during the conversion. The methods used during each conversion stage are clearly
 specified in <code class="docutils literal notranslate"><span class="pre">MDTransformationInterface.h</span></code>.</p>
-</div>
-<div class="section" id="defining-the-target-workspace">
+</section>
+<section id="defining-the-target-workspace">
 <h3><a class="toc-backref" href="#id5">Defining the target workspace</a><a class="headerlink" href="#defining-the-target-workspace" title="Permalink to this headline">¶</a></h3>
 <p>This describes steps 1-3 of the workflow.</p>
 <p>The input data at this stage are the name of the plugin and the outputs – the information necessary for the transformation to work
@@ -172,8 +173,8 @@ Any data users want to transfer to the custom plugin can be added to this class,
 excessive memory usage or overhead.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">MDWSDescription</span></code> class is copy constructable and assignable and if these operators fail due to the changes
 to the class, custom copy constructor and assignment operators have to be defined.</p>
-</div>
-<div class="section" id="doing-the-transformation">
+</section>
+<section id="doing-the-transformation">
 <h3><a class="toc-backref" href="#id6">Doing the transformation</a><a class="headerlink" href="#doing-the-transformation" title="Permalink to this headline">¶</a></h3>
 <p>This describes steps 4-5 of the workflow.</p>
 <p>The input data at this stage are points of the “Experimental Space”, e.g. coordinates of points in the input workspace and
@@ -185,66 +186,66 @@ target workspace, places these coordinates into an MD vector of coordinates and 
 (e.g. Lorentz corrections). This stage can be best described by the pseudo-code below. It describes performing the conversion
 over the whole workspace:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cm">/** initialize all internal variables used for transformation of workspace into MD workspace</span>
-<span class="cm">  WorkspaceDescription -- the workspace description obtained on the first stage of the transformation */</span>
-<span class="n">plugin</span><span class="o">-&gt;</span><span class="n">initialize</span><span class="p">(</span><span class="n">WorkspaceDescription</span><span class="p">);</span>
+<span class="cm">  WorkspaceDescription -- the workspace description obtained on the first stage of the transformation */</span><span class="w"></span>
+<span class="n">plugin</span><span class="o">-&gt;</span><span class="n">initialize</span><span class="p">(</span><span class="n">WorkspaceDescription</span><span class="p">);</span><span class="w"></span>
 <span class="cm">/** calculate generic variables, which are usually placed in logs and do not depend on detectors positions</span>
-<span class="cm">   or neutron counts (e.g. temperature) and place these values into proper position in the coordinates vector. */</span>
-<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">plugin</span><span class="o">-&gt;</span><span class="n">calcGenericVariables</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">coord_t</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">Coord</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">N_Dimensions</span><span class="p">))</span>
-    <span class="k">return</span><span class="p">;</span> <span class="c1">// finish if these data are out of range requested</span>
+<span class="cm">   or neutron counts (e.g. temperature) and place these values into proper position in the coordinates vector. */</span><span class="w"></span>
+<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">plugin</span><span class="o">-&gt;</span><span class="n">calcGenericVariables</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">coord_t</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Coord</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">N_Dimensions</span><span class="p">))</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="p">;</span><span class="w"> </span><span class="c1">// finish if these data are out of range requested</span>
 
-<span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="n">array</span> <span class="n">of</span> <span class="n">detectors</span><span class="p">)</span>
-<span class="p">{</span>
-     <span class="cm">/** Here we calculate all MD coordinates which depend on detectors position only. The plugin also</span>
-<span class="cm">     changes the internal plugin values which depend on detector&#39;s position e.g. sets up the unit conversion */</span>
-     <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">plugin</span><span class="o">-&gt;</span><span class="n">calcYDepCoordinates</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">coord_t</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">Coord</span><span class="p">,</span><span class="kt">size_t</span> <span class="n">i</span><span class="p">))</span>
-         <span class="k">continue</span><span class="p">;</span>  <span class="c1">// skip detector if these data are out of range requested</span>
+<span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">array</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">detectors</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">     </span><span class="cm">/** Here we calculate all MD coordinates which depend on detectors position only. The plugin also</span>
+<span class="cm">     changes the internal plugin values which depend on detector&#39;s position e.g. sets up the unit conversion */</span><span class="w"></span>
+<span class="w">     </span><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">plugin</span><span class="o">-&gt;</span><span class="n">calcYDepCoordinates</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">coord_t</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Coord</span><span class="p">,</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="p">))</span><span class="w"></span>
+<span class="w">         </span><span class="k">continue</span><span class="p">;</span><span class="w">  </span><span class="c1">// skip detector if these data are out of range requested</span>
 
-     <span class="cm">/** obtain signal and error, array, corresponding to the i-th detector */</span>
-     <span class="n">spectra</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">InputWorkspace</span><span class="o">-&gt;</span><span class="n">getSpectraCorrespondingToTheDetector</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span><span class="p">);</span>
+<span class="w">     </span><span class="cm">/** obtain signal and error, array, corresponding to the i-th detector */</span><span class="w"></span>
+<span class="w">     </span><span class="n">spectra</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">InputWorkspace</span><span class="o">-&gt;</span><span class="n">getSpectraCorrespondingToTheDetector</span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="p">);</span><span class="w"></span>
 
-     <span class="cm">/**Convert units into the units, requested by the plugin */</span>
-     <span class="n">MantidVector</span> <span class="n">X</span> <span class="o">=</span> <span class="n">convertUnits</span><span class="p">(</span><span class="n">spectra</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">X_coordinates</span><span class="p">);</span>
-     <span class="k">for</span><span class="p">(</span><span class="n">j</span> <span class="n">in</span> <span class="n">spectra</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-     <span class="p">{</span>
-        <span class="n">Signal</span> <span class="o">=</span> <span class="n">spectra</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">Signal</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
-        <span class="n">Error</span>  <span class="o">=</span> <span class="n">spectra</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">Error</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
-        <span class="cm">/**Calculate remaining MD coordinates and put them into vector of coordinates.</span>
-<span class="cm">           Modify Signal and error if the signal and error depends on Coord */</span>
-        <span class="n">plugin</span><span class="o">-&gt;</span><span class="n">calcMatrixCoordinates</span><span class="p">(</span><span class="k">const</span> <span class="n">MantidVec</span><span class="o">&amp;</span> <span class="n">X</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">i</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">j</span><span class="p">,</span>
-                                      <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">coord_t</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">Coord</span><span class="p">,</span> <span class="n">Signal</span><span class="p">,</span> <span class="n">Error</span><span class="p">);</span>
+<span class="w">     </span><span class="cm">/**Convert units into the units, requested by the plugin */</span><span class="w"></span>
+<span class="w">     </span><span class="n">MantidVector</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">convertUnits</span><span class="p">(</span><span class="n">spectra</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">X_coordinates</span><span class="p">);</span><span class="w"></span>
+<span class="w">     </span><span class="k">for</span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">spectra</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="w"></span>
+<span class="w">     </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">Signal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">spectra</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">Signal</span><span class="p">[</span><span class="n">j</span><span class="p">];</span><span class="w"></span>
+<span class="w">        </span><span class="n">Error</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">spectra</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">Error</span><span class="p">[</span><span class="n">j</span><span class="p">];</span><span class="w"></span>
+<span class="w">        </span><span class="cm">/**Calculate remaining MD coordinates and put them into vector of coordinates.</span>
+<span class="cm">           Modify Signal and error if the signal and error depends on Coord */</span><span class="w"></span>
+<span class="w">        </span><span class="n">plugin</span><span class="o">-&gt;</span><span class="n">calcMatrixCoordinates</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">MantidVec</span><span class="o">&amp;</span><span class="w"> </span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">j</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                      </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">coord_t</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Coord</span><span class="p">,</span><span class="w"> </span><span class="n">Signal</span><span class="p">,</span><span class="w"> </span><span class="n">Error</span><span class="p">);</span><span class="w"></span>
 
-        <span class="cm">/**Convert Coord signal and error to MD event with coordinate Coord and add the MDEvent to MD workspace*/</span>
-        <span class="n">AddPointToMDWorkspace</span><span class="p">(</span><span class="n">Coord</span><span class="p">,</span><span class="n">Signal</span><span class="p">,</span><span class="n">Error</span><span class="p">);</span>
-     <span class="p">}</span>
-<span class="p">}</span>
+<span class="w">        </span><span class="cm">/**Convert Coord signal and error to MD event with coordinate Coord and add the MDEvent to MD workspace*/</span><span class="w"></span>
+<span class="w">        </span><span class="n">AddPointToMDWorkspace</span><span class="p">(</span><span class="n">Coord</span><span class="p">,</span><span class="n">Signal</span><span class="p">,</span><span class="n">Error</span><span class="p">);</span><span class="w"></span>
+<span class="w">     </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="preprocessdetectorstomd-with-custom-plugins">
+</section>
+<section id="preprocessdetectorstomd-with-custom-plugins">
 <h3><a class="toc-backref" href="#id7">PreprocessDetectorsToMD with custom plugins</a><a class="headerlink" href="#preprocessdetectorstomd-with-custom-plugins" title="Permalink to this headline">¶</a></h3>
 <p>Unit conversion uses the angular positions and sample-detector distances.
 This information is usually expensive to calculate so it is calculated separately by the
-<a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/PreprocessDetectorsToMD-v1.html#algm-preprocessdetectorstomd-v1" title="(in MantidProject v6.1)"><span class="xref std std-ref">PreprocessDetectorsToMD</span></a> algorithm.
+<a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/PreprocessDetectorsToMD-v1.html#algm-preprocessdetectorstomd-v1" title="(in MantidProject v6.3)"><span class="xref std std-ref">PreprocessDetectorsToMD</span></a> algorithm.
 The detector information can be extracted directly from the input workspace, but consider checking the table workspace
-returned by <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/PreprocessDetectorsToMD-v1.html#algm-preprocessdetectorstomd-v1" title="(in MantidProject v6.1)"><span class="xref std std-ref">PreprocessDetectorsToMD</span></a>
+returned by <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/PreprocessDetectorsToMD-v1.html#algm-preprocessdetectorstomd-v1" title="(in MantidProject v6.3)"><span class="xref std std-ref">PreprocessDetectorsToMD</span></a>
 and check if the information is already provided there.</p>
-<p><a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/PreprocessDetectorsToMD-v1.html#algm-preprocessdetectorstomd-v1" title="(in MantidProject v6.1)"><span class="xref std std-ref">PreprocessDetectorsToMD</span></a> can also
+<p><a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/PreprocessDetectorsToMD-v1.html#algm-preprocessdetectorstomd-v1" title="(in MantidProject v6.3)"><span class="xref std std-ref">PreprocessDetectorsToMD</span></a> can also
 be modified to add some additional detector information. This information can then be added to the resulting table workspace
 and used in the custom plugin.
 All currently existing plugins use the information about the detector’s positions calculated by
-<a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/PreprocessDetectorsToMD-v1.html#algm-preprocessdetectorstomd-v1" title="(in MantidProject v6.1)"><span class="xref std std-ref">PreprocessDetectorsToMD</span></a>.</p>
-</div>
-</div>
-<div class="section" id="complex-transformations">
+<a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/PreprocessDetectorsToMD-v1.html#algm-preprocessdetectorstomd-v1" title="(in MantidProject v6.3)"><span class="xref std std-ref">PreprocessDetectorsToMD</span></a>.</p>
+</section>
+</section>
+<section id="complex-transformations">
 <h2><a class="toc-backref" href="#id8">Complex Transformations</a><a class="headerlink" href="#complex-transformations" title="Permalink to this headline">¶</a></h2>
 <p>It is possible that the approach of converting a single point of a <code class="docutils literal notranslate"><span class="pre">MatrixWorkspace</span></code> into a single <code class="docutils literal notranslate"><span class="pre">MDEvent</span></code> is
 incorrect or inefficient for what is required. In this situation, more complex changes to the conversion framework
 have to be implemented.
 To make the changes one needs to understand the interaction between different classes involved in the conversion.</p>
 <p>The class diagram with all main classes involved in the conversion is presented below:</p>
-<div class="figure">
+<figure class="align-default">
 <img alt="ConvertToMDClassDiagram.gif" src="_images/ConvertToMDClassDiagram.gif" />
-</div>
+</figure>
 <p>Two factories are involved into the conversion. <code class="docutils literal notranslate"><span class="pre">MDTransfFactory</span></code> deals with different formulae to
 transform a single matrix point into an MD point. The other factory (<code class="docutils literal notranslate"><span class="pre">ConvToMDSelector</span></code> and the algorithm inheriting
 from <code class="docutils literal notranslate"><span class="pre">ConvToMDBase</span></code>) deal with different kinds of workspaces. There are currently two workspaces that can be transformed
@@ -263,8 +264,8 @@ of dimensions and the purpose of <code class="docutils literal notranslate"><spa
 number of workspace dimensions calculated during the run. It uses <code class="docutils literal notranslate"><span class="pre">MDEventWorkspace</span></code> methods for which the
 <code class="docutils literal notranslate"><span class="pre">IMDWorkspace</span></code> interface to the <code class="docutils literal notranslate"><span class="pre">MDEventWorkspace</span></code> is not efficient. You do not usually need to modify this class unless
 you are modifying <code class="docutils literal notranslate"><span class="pre">MDEventWorkspace</span></code> code.</p>
-</div>
-</div>
+</section>
+</section>
 
 
     </div>

@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>SliceViewer Testing</title>
-    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Muon Analysis Test Guides" href="../MuonAnalysis_test_guides/index.html" />
@@ -87,164 +87,157 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <div class="section" id="sliceviewer-testing">
+  <section id="sliceviewer-testing">
 <span id="id1"></span><h1>SliceViewer Testing<a class="headerlink" href="#sliceviewer-testing" title="Permalink to this headline">¶</a></h1>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><a class="reference internal" href="#introduction" id="id2">Introduction</a></li>
-<li><a class="reference internal" href="#basic-usage" id="id3">Basic Usage</a><ul>
-<li><a class="reference internal" href="#matrixworkspace" id="id4">MatrixWorkspace</a></li>
-<li><a class="reference internal" href="#md-workspaces" id="id5">MD Workspaces</a><ul>
-<li><a class="reference internal" href="#mdworkspace-with-events" id="id6">MDWorkspace (with events)</a></li>
-<li><a class="reference internal" href="#mdhistoworkspace" id="id7">MDHistoWorkspace</a></li>
+<li><p><a class="reference internal" href="#introduction" id="id2">Introduction</a></p></li>
+<li><p><a class="reference internal" href="#basic-usage" id="id3">Basic Usage</a></p>
+<ul>
+<li><p><a class="reference internal" href="#matrixworkspace" id="id4">MatrixWorkspace</a></p></li>
+<li><p><a class="reference internal" href="#md-workspaces" id="id5">MD Workspaces</a></p>
+<ul>
+<li><p><a class="reference internal" href="#mdworkspace-with-events" id="id6">MDWorkspace (with events)</a></p></li>
+<li><p><a class="reference internal" href="#mdhistoworkspace" id="id7">MDHistoWorkspace</a></p></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a class="reference internal" href="#specific-tests" id="id8">Specific Tests</a><ul>
-<li><a class="reference internal" href="#representation-of-integrated-peaks" id="id9">1. Representation of integrated peaks</a></li>
-<li><a class="reference internal" href="#ads-observer-for-peak-overlay" id="id10">2. ADS observer for peak overlay</a></li>
-<li><a class="reference internal" href="#ads-observer-for-workspace" id="id11">3. ADS observer for workspace</a></li>
-<li><a class="reference internal" href="#ads-observer-for-support-for-nonorthogonal-view" id="id12">4. ADS observer for support for nonorthogonal view</a></li>
-<li><a class="reference internal" href="#check-binmd-called-with-normalizebasisvectors-false-for-hkl-data" id="id13">5. Check BinMD called with NormalizeBasisVectors=False for HKL data</a></li>
-<li><a class="reference internal" href="#check-gets-the-correct-basis-vectors-for-mdhisto-workspaces" id="id14">6. Check gets the correct basis vectors for MDHisto workspaces</a></li>
-<li><a class="reference internal" href="#check-non-orthogonal-view-is-disabled-for-non-q-axes" id="id15">7. Check non-orthogonal view is disabled for non-Q axes</a></li>
+<li><p><a class="reference internal" href="#specific-tests" id="id8">Specific Tests</a></p>
+<ul>
+<li><p><a class="reference internal" href="#representation-of-integrated-peaks" id="id9">1. Representation of integrated peaks</a></p></li>
+<li><p><a class="reference internal" href="#ads-observer-for-peak-overlay" id="id10">2. ADS observer for peak overlay</a></p></li>
+<li><p><a class="reference internal" href="#ads-observer-for-workspace" id="id11">3. ADS observer for workspace</a></p></li>
+<li><p><a class="reference internal" href="#ads-observer-for-support-for-nonorthogonal-view" id="id12">4. ADS observer for support for nonorthogonal view</a></p></li>
+<li><p><a class="reference internal" href="#check-binmd-called-with-normalizebasisvectors-false-for-hkl-data" id="id13">5. Check BinMD called with NormalizeBasisVectors=False for HKL data</a></p></li>
+<li><p><a class="reference internal" href="#check-gets-the-correct-basis-vectors-for-mdhisto-workspaces" id="id14">6. Check gets the correct basis vectors for MDHisto workspaces</a></p></li>
+<li><p><a class="reference internal" href="#check-non-orthogonal-view-is-disabled-for-non-q-axes" id="id15">7. Check non-orthogonal view is disabled for non-Q axes</a></p></li>
 </ul>
 </li>
 </ul>
 </div>
-<div class="section" id="introduction">
+<section id="introduction">
 <h2><a class="toc-backref" href="#id2">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>The Sliceviewer in Workbench has the joint functionality of the SpectrumViewer and SliceViewer from MantidPlot. So while the advanced use cases for multi-dimensional diffraction data are important to test, it is also worth checking more basic uses, for example opening a Workspace2D and examining the subplots and dynamic cursor data.</p>
-<p>See here for a brief overview of the <a class="reference external" href="https://docs.mantidproject.org/nightly/workbench/sliceviewer.html#sliceviewer" title="(in MantidProject v6.2)"><span>Sliceviewer</span></a>.</p>
-</div>
-<div class="section" id="basic-usage">
+<p>See here for a brief overview of the <a class="reference external" href="https://docs.mantidproject.org/nightly/workbench/sliceviewer.html#sliceviewer" title="(in MantidProject v6.3)"><span>Sliceviewer</span></a>.</p>
+</section>
+<section id="basic-usage">
 <h2><a class="toc-backref" href="#id3">Basic Usage</a><a class="headerlink" href="#basic-usage" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="matrixworkspace">
+<section id="matrixworkspace">
 <span id="toolbar-checklist"></span><h3><a class="toc-backref" href="#id4">MatrixWorkspace</a><a class="headerlink" href="#matrixworkspace" title="Permalink to this headline">¶</a></h3>
 <p>Do the following tests with an EventWorkspace (e.g. <code class="docutils literal notranslate"><span class="pre">CNCS_7860_event.nxs</span></code>) and a Workspace2D (e.g. <code class="docutils literal notranslate"><span class="pre">MAR11060.raw</span></code>) from the <a class="reference external" href="https://download.mantidproject.org/">TrainingCourseData</a>.</p>
 <ol class="arabic">
-<li><p class="first">Load the workspace and open in sliceviewer (right-click on the workspace in the ADS &gt; Show Slice Viewer).</p>
-</li>
-<li><p class="first">Confirm that for MatrixWorkspaces the <span class="xref std std-ref">Peak overlay</span> and <span class="xref std std-ref">Nonorthogonal view</span> buttons should be disabled (greyed out).</p>
-</li>
-<li><p class="first">Check the other toolbar buttons.</p>
+<li><p>Load the workspace and open in sliceviewer (right-click on the workspace in the ADS &gt; Show Slice Viewer).</p></li>
+<li><p>Confirm that for MatrixWorkspaces the <a class="reference external" href="https://docs.mantidproject.org/nightly/workbench/sliceviewer.html#sliceviewer-roi" title="(in MantidProject v6.3)"><span class="xref std std-ref">Peak overlay</span></a> and <a class="reference external" href="https://docs.mantidproject.org/nightly/workbench/sliceviewer.html#sliceviewer-nonortho" title="(in MantidProject v6.3)"><span class="xref std std-ref">Nonorthogonal view</span></a> buttons should be disabled (greyed out).</p></li>
+<li><p>Check the other toolbar buttons.</p>
 <blockquote>
 <div><ol class="loweralpha">
-<li><p class="first">Pan and Zoom (use mouse scroll and magnifying glass tool) and Home</p>
+<li><p>Pan and Zoom (use mouse scroll and magnifying glass tool) and Home</p>
 <blockquote>
 <div><ul class="simple">
-<li>As you zoom check the color scale changes if autoscale checked in checkbox below colorbar).</li>
+<li><p>As you zoom check the color scale changes if autoscale checked in checkbox below colorbar).</p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p class="first">Toggle grid lines on/off</p>
-</li>
-<li><p class="first">Enable line plots</p>
+<li><p>Toggle grid lines on/off</p></li>
+<li><p>Enable line plots</p>
 <blockquote>
 <div><ul class="simple">
-<li>Confirm the curves update with the cursor position correctly</li>
+<li><p>Confirm the curves update with the cursor position correctly</p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p class="first">Export cuts to workspaces in ADS using keys <cite>x</cite>, <cite>y</cite>, <cite>c</cite></p>
+<li><p>Export cuts to workspaces in ADS using keys <cite>x</cite>, <cite>y</cite>, <cite>c</cite></p>
 <blockquote>
 <div><ul class="simple">
-<li>This should produce workspaces in the ADS with suffix <cite>_cut_x</cite> and <cite>_cut_y</cite></li>
-<li>Plot these in workbench check they agree with sliceviewer plots</li>
+<li><p>This should produce workspaces in the ADS with suffix <cite>_cut_x</cite> and <cite>_cut_y</cite></p></li>
+<li><p>Plot these in workbench check they agree with sliceviewer plots</p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p class="first">Disable line plots and Enable <span class="xref std std-ref">ROI tool</span></p>
-</li>
+<li><p>Disable line plots and Enable <a class="reference external" href="https://docs.mantidproject.org/nightly/workbench/sliceviewer.html#sliceviewer-roi" title="(in MantidProject v6.3)"><span class="xref std std-ref">ROI tool</span></a></p></li>
 </ol>
-<div class="figure align-center">
+<figure class="align-center">
 <a class="screenshot reference internal image-reference" href="../../_images/wb-sliceviewer51-roibutton.png"><img alt="../../_images/wb-sliceviewer51-roibutton.png" class="screenshot" src="../../_images/wb-sliceviewer51-roibutton.png" style="width: 50%;" /></a>
-</div>
+</figure>
 <ol class="loweralpha" start="6">
-<li><p class="first">Draw, move and resize the rectangle</p>
+<li><p>Draw, move and resize the rectangle</p>
 <blockquote>
 <div><ul>
-<li><p class="first">Move it off the axes (it should just clip itself to be contained within the axes).</p>
-</li>
-<li><p class="first">Export the cuts with keys <cite>x</cite>, <cite>y</cite>, <cite>c</cite></p>
-</li>
-<li><p class="first">In addition the ROI can be exported by pressing <cite>r</cite></p>
+<li><p>Move it off the axes (it should just clip itself to be contained within the axes).</p></li>
+<li><p>Export the cuts with keys <cite>x</cite>, <cite>y</cite>, <cite>c</cite></p></li>
+<li><p>In addition the ROI can be exported by pressing <cite>r</cite></p>
 <blockquote>
 <div><ul class="simple">
-<li>This should produce another workspace with suffix <cite>_roi</cite></li>
-<li>Open it in sliceviewer and check the data and limits agree with the ROI drawn.</li>
+<li><p>This should produce another workspace with suffix <cite>_roi</cite></p></li>
+<li><p>Open it in sliceviewer and check the data and limits agree with the ROI drawn.</p></li>
 </ul>
 </div></blockquote>
 </li>
 </ul>
 </div></blockquote>
 </li>
-<li><p class="first">Disable the ROI tool</p>
+<li><p>Disable the ROI tool</p>
 <ul class="simple">
-<li>The line plot tool should remain enabled.</li>
+<li><p>The line plot tool should remain enabled.</p></li>
 </ul>
 </li>
 </ol>
 </div></blockquote>
 </li>
-<li><p class="first">Try saving the figure (with and without ROI/lineplots).</p>
-</li>
-<li><p class="first">Test the colorbar and colorscale</p>
+<li><p>Try saving the figure (with and without ROI/lineplots).</p></li>
+<li><p>Test the colorbar and colorscale</p>
 <blockquote>
 <div><ol class="loweralpha">
-<li><p class="first">Change normalisation</p>
+<li><p>Change normalisation</p>
 <blockquote>
 <div><ul class="simple">
-<li>The color limits should only change if autoscale is enabled.</li>
+<li><p>The color limits should only change if autoscale is enabled.</p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p class="first">Change the scale type to e.g. Log</p>
+<li><p>Change the scale type to e.g. Log</p>
 <blockquote>
 <div><ul class="simple">
-<li>In Log scale bins with 0 counts should appear white</li>
-<li>When you zoom in to a region comprising only of bins with 0 counts it will set the color axis limits to (0,0) and force the scale to be linear</li>
-<li>Zoom in to a region outside the extent of the data, check the Log colorscale option is disabled.</li>
+<li><p>In Log scale bins with 0 counts should appear white</p></li>
+<li><p>When you zoom in to a region comprising only of bins with 0 counts it will set the color axis limits to (0,0) and force the scale to be linear</p></li>
+<li><p>Zoom in to a region outside the extent of the data, check the Log colorscale option is disabled.</p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p class="first">Change colormap</p>
-</li>
-<li><p class="first">Reverse colormap</p>
-</li>
+<li><p>Change colormap</p></li>
+<li><p>Reverse colormap</p></li>
 </ol>
 </div></blockquote>
 </li>
-<li><p class="first">Test the <a class="reference external" href="https://docs.mantidproject.org/nightly/workbench/sliceviewer.html#sliceviewer-cursor" title="(in MantidProject v6.2)"><span class="xref std std-ref">Cursor Information Widget</span></a> (table at top of sliceviewer window with TOF, spectrum, DetID etc.)</p>
+<li><p>Test the <a class="reference external" href="https://docs.mantidproject.org/nightly/workbench/sliceviewer.html#sliceviewer-cursor" title="(in MantidProject v6.3)"><span class="xref std std-ref">Cursor Information Widget</span></a> (table at top of sliceviewer window with TOF, spectrum, DetID etc.)</p>
 <blockquote>
 <div><ol class="loweralpha simple">
-<li>Confirm it tracks with the cursor when Track Cursor is unchecked</li>
-<li>Uncheck the track cursor and confirm it updates when the cursor is clicked.</li>
+<li><p>Confirm it tracks with the cursor when Track Cursor is unchecked</p></li>
+<li><p>Uncheck the track cursor and confirm it updates when the cursor is clicked.</p></li>
 </ol>
 </div></blockquote>
 </li>
-<li><p class="first">Test transposing axes</p>
+<li><p>Test transposing axes</p>
 <blockquote>
 <div><ol class="loweralpha simple">
-<li>Click the Y button to the right of the Time-of-flight label (top left corner) - the image should be transposed and the axes labels updated.</li>
-<li>Repeat the test for the cursor info table.</li>
+<li><p>Click the Y button to the right of the Time-of-flight label (top left corner) - the image should be transposed and the axes labels updated.</p></li>
+<li><p>Repeat the test for the cursor info table.</p></li>
 </ol>
 </div></blockquote>
 </li>
-<li><p class="first">Resize the sliceviewer window, check the widgets, buttons etc. are still visible and clear for reasonable aspect ratios.</p>
-</li>
+<li><p>Resize the sliceviewer window, check the widgets, buttons etc. are still visible and clear for reasonable aspect ratios.</p></li>
 </ol>
-</div>
-<div class="section" id="md-workspaces">
+</section>
+<section id="md-workspaces">
 <h3><a class="toc-backref" href="#id5">MD Workspaces</a><a class="headerlink" href="#md-workspaces" title="Permalink to this headline">¶</a></h3>
-<p>MD workspaces hold multi-dimensional data (typically 2-4D) and come in two forms: <a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/MDWorkspace.html#mdworkspace" title="(in MantidProject v6.2)"><span class="xref std std-ref">MDEventWorkspace</span></a>, <a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/MDHistoWorkspace.html#mdhistoworkspace" title="(in MantidProject v6.2)"><span class="xref std std-ref">MDHistoWorkspace</span></a>.
+<p>MD workspaces hold multi-dimensional data (typically 2-4D) and come in two forms: <a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/MDWorkspace.html#mdworkspace" title="(in MantidProject v6.3)"><span class="xref std std-ref">MDEventWorkspace</span></a>, <a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/MDHistoWorkspace.html#mdhistoworkspace" title="(in MantidProject v6.3)"><span class="xref std std-ref">MDHistoWorkspace</span></a>.
 In terms of sliceviewer functionality, the key difference is that MDHistoWorkspace have binned the events onto a regular grid and cannot be dynamically rebinned unless the original MDWorkspace
 (that holds the events) exists in the ADS (and the MDHistoWorkspace has not been altered by a binary operation e.g. <code class="docutils literal notranslate"><span class="pre">MinusMD</span></code>).</p>
-<div class="section" id="mdworkspace-with-events">
+<section id="mdworkspace-with-events">
 <h4><a class="toc-backref" href="#id6">MDWorkspace (with events)</a><a class="headerlink" href="#mdworkspace-with-events" title="Permalink to this headline">¶</a></h4>
 <ol class="arabic simple">
-<li>Create a 3D and 4D MDWorkspaces with some data - repeat the following tests with both <code class="docutils literal notranslate"><span class="pre">md_4D</span></code> and <code class="docutils literal notranslate"><span class="pre">md_3D</span></code></li>
+<li><p>Create a 3D and 4D MDWorkspaces with some data - repeat the following tests with both <code class="docutils literal notranslate"><span class="pre">md_4D</span></code> and <code class="docutils literal notranslate"><span class="pre">md_3D</span></code></p></li>
 </ol>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mantid.simpleapi</span> <span class="kn">import</span> <span class="o">*</span>
 
@@ -265,77 +258,74 @@ In terms of sliceviewer functionality, the key difference is that MDHistoWorkspa
 
 <span class="c1"># Create a peaks workspace and fake data in 3D MD</span>
 <span class="n">CreatePeaksWorkspace</span><span class="p">(</span><span class="n">InstrumentWorkspace</span><span class="o">=</span><span class="s1">&#39;md_3D&#39;</span><span class="p">,</span> <span class="n">NumberOfPeaks</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;peaks&#39;</span><span class="p">)</span>
-<span class="n">CopySample</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;md_3D&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;peaks&#39;</span><span class="p">,</span> <span class="n">CopyName</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">CopyMaterial</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">CopyEnvironment</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">CopyShape</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">CopySample</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;md_3D&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;peaks&#39;</span><span class="p">,</span> <span class="n">CopyName</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">CopyMaterial</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">CopyEnvironment</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">CopyShape</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">AddPeakHKL</span><span class="p">(</span><span class="n">Workspace</span><span class="o">=</span><span class="s1">&#39;peaks&#39;</span><span class="p">,</span> <span class="n">HKL</span><span class="o">=</span><span class="s1">&#39;1,0,1&#39;</span><span class="p">)</span>
 <span class="n">AddPeakHKL</span><span class="p">(</span><span class="n">Workspace</span><span class="o">=</span><span class="s1">&#39;peaks&#39;</span><span class="p">,</span> <span class="n">HKL</span><span class="o">=</span><span class="s1">&#39;1,0,0&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <ol class="arabic" start="2">
-<li><p class="first">Test the toolbar buttons pan, zoom, line plots, ROI as in step 3 of the <a class="reference internal" href="#toolbar-checklist"><span class="std std-ref">MatrixWorkspace</span></a> instructions.</p>
+<li><p>Test the toolbar buttons pan, zoom, line plots, ROI as in step 3 of the <a class="reference internal" href="#toolbar-checklist"><span class="std std-ref">MatrixWorkspace</span></a> instructions.</p>
 <blockquote>
 <div><ul class="simple">
-<li>This workspace should be dynamically rebinned - i.e. the number of bins within the view limits along each axis should be preserved when zooming.</li>
+<li><p>This workspace should be dynamically rebinned - i.e. the number of bins within the view limits along each axis should be preserved when zooming.</p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p class="first">Change the number of bins along one of the viewing axes (easier to pick a small number e.g. 2)</p>
-</li>
-<li><p class="first">Change the integration-width/slice-thickness (spinbox to the left of the word <cite>thick</cite>) along the non-viewed axes.</p>
+<li><p>Change the number of bins along one of the viewing axes (easier to pick a small number e.g. 2)</p></li>
+<li><p>Change the integration-width/slice-thickness (spinbox to the left of the word <cite>thick</cite>) along the non-viewed axes.</p>
 <blockquote>
 <div><ul class="simple">
-<li>Increasing the width should improve the stats on the uniform background and the color limit should increase (event counts are summed not averaged).</li>
+<li><p>Increasing the width should improve the stats on the uniform background and the color limit should increase (event counts are summed not averaged).</p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p class="first">Change the slicepoint along one of the non-viewed axes</p>
+<li><p>Change the slicepoint along one of the non-viewed axes</p>
 <blockquote>
 <div><ol class="loweralpha simple">
-<li>Confirm the slider moves when the spinbox value is updated.</li>
-<li>Confirm moving the slider updates the spinbox.</li>
+<li><p>Confirm the slider moves when the spinbox value is updated.</p></li>
+<li><p>Confirm moving the slider updates the spinbox.</p></li>
 </ol>
 </div></blockquote>
 </li>
 </ol>
-<p>Test the <span class="xref std std-ref">Nonorthogonal view</span></p>
-<div class="figure align-center">
+<p>Test the <a class="reference external" href="https://docs.mantidproject.org/nightly/workbench/sliceviewer.html#sliceviewer-nonortho" title="(in MantidProject v6.3)"><span class="xref std std-ref">Nonorthogonal view</span></a></p>
+<figure class="align-center">
 <img alt="../../_images/wb-sliceviewer51-nonorthobutton.png" class="screenshot" src="../../_images/wb-sliceviewer51-nonorthobutton.png" />
-</div>
+</figure>
 <ol class="arabic">
-<li><p class="first">Click the nonorthogonal view button in the toolbar</p>
+<li><p>Click the nonorthogonal view button in the toolbar</p>
 <blockquote>
 <div><ul class="simple">
-<li>This should disable ROI and lineplot buttons in the toolbar</li>
-<li>This should automatically turn on gridlines</li>
-<li>When H and K are the viewing axes the gridlines should not be perpendicular to each other</li>
-<li>The features in the data should align with the grid lines</li>
+<li><p>This should disable ROI and lineplot buttons in the toolbar</p></li>
+<li><p>This should automatically turn on gridlines</p></li>
+<li><p>When H and K are the viewing axes the gridlines should not be perpendicular to each other</p></li>
+<li><p>The features in the data should align with the grid lines</p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p class="first">Zoom and pan</p>
+<li><p>Zoom and pan</p>
 <blockquote>
 <div><ul class="simple">
-<li>Confirm the autoscaling of the colorbar works in non-orthogonal view</li>
+<li><p>Confirm the autoscaling of the colorbar works in non-orthogonal view</p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p class="first">Change one of the viewing axes to be <cite>L</cite> (e.g. click <cite>X</cite> button next to L in top left of window)</p>
+<li><p>Change one of the viewing axes to be <cite>L</cite> (e.g. click <cite>X</cite> button next to L in top left of window)</p>
 <blockquote>
 <div><ul class="simple">
-<li>Gridlines should now appear to be orthogonal</li>
+<li><p>Gridlines should now appear to be orthogonal</p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p class="first">For <code class="docutils literal notranslate"><span class="pre">md_4D</span></code> only change one of the viewing axes to be <cite>E</cite> (e.g. click <cite>Y</cite> button next to <cite>E</cite> in top left of window)</p>
+<li><p>For <code class="docutils literal notranslate"><span class="pre">md_4D</span></code> only change one of the viewing axes to be <cite>E</cite> (e.g. click <cite>Y</cite> button next to <cite>E</cite> in top left of window)</p>
 <blockquote>
 <div><ul>
-<li><p class="first">Nonorthogonal view should be disabled (only enabled for momentum axes)</p>
-</li>
-<li><p class="first">Line plots and ROI should be enabled</p>
-</li>
-<li><p class="first">Change the viewing axis presently selected as <cite>E</cite> to be a momentum axis (e.g. <cite>H</cite>)</p>
+<li><p>Nonorthogonal view should be disabled (only enabled for momentum axes)</p></li>
+<li><p>Line plots and ROI should be enabled</p></li>
+<li><p>Change the viewing axis presently selected as <cite>E</cite> to be a momentum axis (e.g. <cite>H</cite>)</p>
 <blockquote>
 <div><ul class="simple">
-<li>The nonorthogonal view should be automatically re-enabled.</li>
+<li><p>The nonorthogonal view should be automatically re-enabled.</p></li>
 </ul>
 </div></blockquote>
 </li>
@@ -343,262 +333,244 @@ In terms of sliceviewer functionality, the key difference is that MDHistoWorkspa
 </div></blockquote>
 </li>
 </ol>
-<p>Test the <a class="reference external" href="https://docs.mantidproject.org/nightly/workbench/sliceviewer.html#sliceviewer-peaks-overlay" title="(in MantidProject v6.2)"><span class="xref std std-ref">Peak Overlay</span></a></p>
-<div class="figure align-center">
+<p>Test the <a class="reference external" href="https://docs.mantidproject.org/nightly/workbench/sliceviewer.html#sliceviewer-peaks-overlay" title="(in MantidProject v6.3)"><span class="xref std std-ref">Peak Overlay</span></a></p>
+<figure class="align-center">
 <img alt="../../_images/wb-sliceviewer51-peaksbutton.png" class="screenshot" src="../../_images/wb-sliceviewer51-peaksbutton.png" />
-</div>
+</figure>
 <ol class="arabic">
-<li><p class="first">Click to peak overlay button in the toolbar</p>
-</li>
-<li><p class="first">Check the <cite>Overlay?</cite> box next to <code class="docutils literal notranslate"><span class="pre">peaks</span></code></p>
+<li><p>Click to peak overlay button in the toolbar</p></li>
+<li><p>Check the <cite>Overlay?</cite> box next to <code class="docutils literal notranslate"><span class="pre">peaks</span></code></p>
 <blockquote>
 <div><ul class="simple">
-<li>This should open a table (peak viewer) on the RHS of the sliceviewer window - it should have two rows corresponding to peaks at HKL = (1,0,1) and (1,0,0).</li>
+<li><p>This should open a table (peak viewer) on the RHS of the sliceviewer window - it should have two rows corresponding to peaks at HKL = (1,0,1) and (1,0,0).</p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p class="first">Double click a row</p>
+<li><p>Double click a row</p>
 <blockquote>
 <div><ul class="simple">
-<li>It should change the slicepoint along the integrated momentum axis and zoom into the peak - e.g. in (X,Y) = (H,K) then the slicepoint along L will be set to 1 and there will be a cross at (0,0).</li>
-<li>Note for <code class="docutils literal notranslate"><span class="pre">md_4D</span></code> the cross should be plotted at all E (obviously a Bragg peak will only be on the elastic line but the peak object has no elastic/inelastic logic and the sliceviewer only knows that <cite>E</cite> is not a momentum axis, it could be temperature etc.).</li>
+<li><p>It should change the slicepoint along the integrated momentum axis and zoom into the peak - e.g. in (X,Y) = (H,K) then the slicepoint along L will be set to 1 and there will be a cross at (0,0).</p></li>
+<li><p>Note for <code class="docutils literal notranslate"><span class="pre">md_4D</span></code> the cross should be plotted at all E (obviously a Bragg peak will only be on the elastic line but the peak object has no elastic/inelastic logic and the sliceviewer only knows that <cite>E</cite> is not a momentum axis, it could be temperature etc.).</p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p class="first">Click Add Peaks in the Peak Actions section at the top of the peak viewer</p>
-</li>
-<li><p class="first">Click somewhere in the colorfill plot</p>
+<li><p>Click Add Peaks in the Peak Actions section at the top of the peak viewer</p></li>
+<li><p>Click somewhere in the colorfill plot</p>
 <blockquote>
 <div><ul class="simple">
-<li>Confirm a peak has been added to the table at the position you clicked</li>
+<li><p>Confirm a peak has been added to the table at the position you clicked</p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p class="first">Click Remove Peaks</p>
-</li>
-<li><p class="first">Click on the cross corresponding to the peak you just added</p>
+<li><p>Click Remove Peaks</p></li>
+<li><p>Click on the cross corresponding to the peak you just added</p>
 <blockquote>
 <div><ul class="simple">
-<li>Confirm the correct row has been removed from the table</li>
-<li>The cross should be removed from the plot</li>
+<li><p>Confirm the correct row has been removed from the table</p></li>
+<li><p>The cross should be removed from the plot</p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p class="first">Repeat the above steps 1-7 in non-orthogonal view.</p>
-</li>
+<li><p>Repeat the above steps 1-7 in non-orthogonal view.</p></li>
 </ol>
-</div>
-<div class="section" id="mdhistoworkspace">
+</section>
+<section id="mdhistoworkspace">
 <h4><a class="toc-backref" href="#id7">MDHistoWorkspace</a><a class="headerlink" href="#mdhistoworkspace" title="Permalink to this headline">¶</a></h4>
 <ol class="arabic simple">
-<li>Make a 3D MDHistoWorkspace</li>
+<li><p>Make a 3D MDHistoWorkspace</p></li>
 </ol>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">md_3D_histo</span> <span class="o">=</span> <span class="n">BinMD</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;md_4D&#39;</span><span class="p">,</span> <span class="n">AlignedDim0</span><span class="o">=</span><span class="s1">&#39;H,-2,2,100&#39;</span><span class="p">,</span> <span class="n">AlignedDim1</span><span class="o">=</span><span class="s1">&#39;K,-1,1,100&#39;</span><span class="p">,</span> <span class="n">AlignedDim2</span><span class="o">=</span><span class="s1">&#39;L,-1.5,1.5,100&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <ol class="arabic" start="2">
-<li><p class="first">Open <code class="docutils literal notranslate"><span class="pre">md_3D_histo</span></code> in sliceviewer it should not support dynamic rebinning (can’t change number of bins).</p>
-</li>
-<li><p class="first">Test the toolbar buttons pan, zoom, line plots, ROI as in step 3 of the <a class="reference internal" href="#toolbar-checklist"><span class="std std-ref">MatrixWorkspace</span></a> instructions.</p>
-</li>
-<li><p class="first">Test changing/swapping viewing axes</p>
-</li>
-<li><p class="first">Test the <span class="xref std std-ref">Nonorthogonal view</span> as above</p>
-</li>
-<li><p class="first">Open <code class="docutils literal notranslate"><span class="pre">md_4D_svrebinned</span></code> in sliceviewer (should be in the ADS after preceding tests).</p>
+<li><p>Open <code class="docutils literal notranslate"><span class="pre">md_3D_histo</span></code> in sliceviewer it should not support dynamic rebinning (can’t change number of bins).</p></li>
+<li><p>Test the toolbar buttons pan, zoom, line plots, ROI as in step 3 of the <a class="reference internal" href="#toolbar-checklist"><span class="std std-ref">MatrixWorkspace</span></a> instructions.</p></li>
+<li><p>Test changing/swapping viewing axes</p></li>
+<li><p>Test the <a class="reference external" href="https://docs.mantidproject.org/nightly/workbench/sliceviewer.html#sliceviewer-nonortho" title="(in MantidProject v6.3)"><span class="xref std std-ref">Nonorthogonal view</span></a> as above</p></li>
+<li><p>Open <code class="docutils literal notranslate"><span class="pre">md_4D_svrebinned</span></code> in sliceviewer (should be in the ADS after preceding tests).</p>
 <blockquote>
 <div><ul class="simple">
-<li>It should support dynamic rebinning (i.e. will be able to change number of bins along each axis).</li>
+<li><p>It should support dynamic rebinning (i.e. will be able to change number of bins along each axis).</p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p class="first">With <code class="docutils literal notranslate"><span class="pre">md_4D_svrebinned</span></code> open in the sliceviewer, delete <code class="docutils literal notranslate"><span class="pre">md_4D</span></code> in the ADS.</p>
+<li><p>With <code class="docutils literal notranslate"><span class="pre">md_4D_svrebinned</span></code> open in the sliceviewer, delete <code class="docutils literal notranslate"><span class="pre">md_4D</span></code> in the ADS.</p>
 <blockquote>
 <div><ul class="simple">
-<li>It should close sliceviewer because the support for dynamic rebinning has changed</li>
+<li><p>It should close sliceviewer because the support for dynamic rebinning has changed</p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p class="first">Open <code class="docutils literal notranslate"><span class="pre">md_4D_svrebinned</span></code> in sliceviewer again</p>
+<li><p>Open <code class="docutils literal notranslate"><span class="pre">md_4D_svrebinned</span></code> in sliceviewer again</p>
 <blockquote>
 <div><ul class="simple">
-<li>It should no longer support dynamic rebinning</li>
-<li>Confirm transposing axes works</li>
+<li><p>It should no longer support dynamic rebinning</p></li>
+<li><p>Confirm transposing axes works</p></li>
 </ul>
 </div></blockquote>
 </li>
 </ol>
-</div>
-</div>
-</div>
-<div class="section" id="specific-tests">
+</section>
+</section>
+</section>
+<section id="specific-tests">
 <h2><a class="toc-backref" href="#id8">Specific Tests</a><a class="headerlink" href="#specific-tests" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="representation-of-integrated-peaks">
+<section id="representation-of-integrated-peaks">
 <h3><a class="toc-backref" href="#id9">1. Representation of integrated peaks</a><a class="headerlink" href="#representation-of-integrated-peaks" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
-<li>Run the code below to generate fake data and integrate peaks in the 3D MDWorkspace <code class="docutils literal notranslate"><span class="pre">md_3D</span></code></li>
+<li><p>Run the code below to generate fake data and integrate peaks in the 3D MDWorkspace <code class="docutils literal notranslate"><span class="pre">md_3D</span></code></p></li>
 </ol>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fake data in 3D MD and integrate</span>
 <span class="n">FakeMDEventData</span><span class="p">(</span><span class="n">md_3D</span><span class="p">,</span> <span class="n">EllipsoidParams</span><span class="o">=</span><span class="s1">&#39;1e4,1,0,1,1,0,0,0,1,0,0,0,1,0.005,0.005,0.015,0&#39;</span><span class="p">,</span> <span class="n">RandomSeed</span><span class="o">=</span><span class="s1">&#39;3873875&#39;</span><span class="p">)</span> <span class="c1"># ellipsoid</span>
 <span class="n">FakeMDEventData</span><span class="p">(</span><span class="n">md_3D</span><span class="p">,</span> <span class="n">EllipsoidParams</span><span class="o">=</span><span class="s1">&#39;1e4,1,0,0,1,0,0,0,1,0,0,0,1,0.005,0.005,0.005,0&#39;</span><span class="p">,</span> <span class="n">RandomSeed</span><span class="o">=</span><span class="s1">&#39;3873875&#39;</span><span class="p">)</span>  <span class="c1"># spherical</span>
-<span class="n">IntegratePeaksMD</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;md_3D&#39;</span><span class="p">,</span> <span class="n">PeakRadius</span><span class="o">=</span><span class="s1">&#39;0.25&#39;</span><span class="p">,</span> <span class="n">BackgroundInnerRadius</span><span class="o">=</span><span class="s1">&#39;0.25&#39;</span><span class="p">,</span> <span class="n">BackgroundOuterRadius</span><span class="o">=</span><span class="s1">&#39;0.32&#39;</span><span class="p">,</span> <span class="n">PeaksWorkspace</span><span class="o">=</span><span class="s1">&#39;peaks&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;peaks_int_ellip&#39;</span><span class="p">,</span> <span class="n">IntegrateIfOnEdge</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">Ellipsoid</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">UseOnePercentBackgroundCorrection</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
-<span class="n">IntegratePeaksMD</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;md_3D&#39;</span><span class="p">,</span> <span class="n">PeakRadius</span><span class="o">=</span><span class="s1">&#39;0.25&#39;</span><span class="p">,</span> <span class="n">BackgroundInnerRadius</span><span class="o">=</span><span class="s1">&#39;0.25&#39;</span><span class="p">,</span> <span class="n">BackgroundOuterRadius</span><span class="o">=</span><span class="s1">&#39;0.32&#39;</span><span class="p">,</span> <span class="n">PeaksWorkspace</span><span class="o">=</span><span class="s1">&#39;peaks&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;peaks_int_sphere&#39;</span><span class="p">,</span> <span class="n">IntegrateIfOnEdge</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">Ellipsoid</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">UseOnePercentBackgroundCorrection</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
-<span class="n">IntegratePeaksMD</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;md_3D&#39;</span><span class="p">,</span> <span class="n">PeakRadius</span><span class="o">=</span><span class="s1">&#39;0.25&#39;</span><span class="p">,</span> <span class="n">BackgroundInnerRadius</span><span class="o">=</span><span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="n">BackgroundOuterRadius</span><span class="o">=</span><span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="n">PeaksWorkspace</span><span class="o">=</span><span class="s1">&#39;peaks&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;peaks_int_no_bg&#39;</span><span class="p">,</span> <span class="n">IntegrateIfOnEdge</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">Ellipsoid</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">UseOnePercentBackgroundCorrection</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">IntegratePeaksMD</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;md_3D&#39;</span><span class="p">,</span> <span class="n">PeakRadius</span><span class="o">=</span><span class="s1">&#39;0.25&#39;</span><span class="p">,</span> <span class="n">BackgroundInnerRadius</span><span class="o">=</span><span class="s1">&#39;0.25&#39;</span><span class="p">,</span> <span class="n">BackgroundOuterRadius</span><span class="o">=</span><span class="s1">&#39;0.32&#39;</span><span class="p">,</span> <span class="n">PeaksWorkspace</span><span class="o">=</span><span class="s1">&#39;peaks&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;peaks_int_ellip&#39;</span><span class="p">,</span> <span class="n">IntegrateIfOnEdge</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">Ellipsoid</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">UseOnePercentBackgroundCorrection</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">IntegratePeaksMD</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;md_3D&#39;</span><span class="p">,</span> <span class="n">PeakRadius</span><span class="o">=</span><span class="s1">&#39;0.25&#39;</span><span class="p">,</span> <span class="n">BackgroundInnerRadius</span><span class="o">=</span><span class="s1">&#39;0.25&#39;</span><span class="p">,</span> <span class="n">BackgroundOuterRadius</span><span class="o">=</span><span class="s1">&#39;0.32&#39;</span><span class="p">,</span> <span class="n">PeaksWorkspace</span><span class="o">=</span><span class="s1">&#39;peaks&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;peaks_int_sphere&#39;</span><span class="p">,</span> <span class="n">IntegrateIfOnEdge</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">Ellipsoid</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">UseOnePercentBackgroundCorrection</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">IntegratePeaksMD</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;md_3D&#39;</span><span class="p">,</span> <span class="n">PeakRadius</span><span class="o">=</span><span class="s1">&#39;0.25&#39;</span><span class="p">,</span> <span class="n">BackgroundInnerRadius</span><span class="o">=</span><span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="n">BackgroundOuterRadius</span><span class="o">=</span><span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="n">PeaksWorkspace</span><span class="o">=</span><span class="s1">&#39;peaks&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;peaks_int_no_bg&#39;</span><span class="p">,</span> <span class="n">IntegrateIfOnEdge</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">Ellipsoid</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">UseOnePercentBackgroundCorrection</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="c1"># IntegratePeaksMD will throw an error</span>
 <span class="c1">#   Error in execution of algorithm MaskBTP:...</span>
 <span class="c1"># This is because the simulated ws don&#39;t have a real instrument but the integration will be executed</span>
 </pre></div>
 </div>
 <ol class="arabic" start="2">
-<li><p class="first">Open <code class="docutils literal notranslate"><span class="pre">md_3D</span></code> in sliceviewer</p>
-</li>
-<li><p class="first">Click the peak overlay button in the toolbar</p>
-</li>
-<li><p class="first">Overlay <code class="docutils literal notranslate"><span class="pre">peaks_int_ellip</span></code> and <code class="docutils literal notranslate"><span class="pre">peaks_int_sphere</span></code></p>
-</li>
-<li><p class="first">Click the first row in the first table</p>
+<li><p>Open <code class="docutils literal notranslate"><span class="pre">md_3D</span></code> in sliceviewer</p></li>
+<li><p>Click the peak overlay button in the toolbar</p></li>
+<li><p>Overlay <code class="docutils literal notranslate"><span class="pre">peaks_int_ellip</span></code> and <code class="docutils literal notranslate"><span class="pre">peaks_int_sphere</span></code></p></li>
+<li><p>Click the first row in the first table</p>
 <blockquote>
 <div><ul class="simple">
-<li>It should zoom to a peak.</li>
-<li>There should be an ellipse and a circle drawn with dashed lines with different colors (the color should match the color of the workspace name in the peak viewer table).</li>
-<li>There should be a transparent shell indicating the background for each peak.</li>
-<li>The ellipse should be smaller than the circle.</li>
+<li><p>It should zoom to a peak.</p></li>
+<li><p>There should be an ellipse and a circle drawn with dashed lines with different colors (the color should match the color of the workspace name in the peak viewer table).</p></li>
+<li><p>There should be a transparent shell indicating the background for each peak.</p></li>
+<li><p>The ellipse should be smaller than the circle.</p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p class="first">Alter the slice point by moving the slider along the integrated dimension</p>
+<li><p>Alter the slice point by moving the slider along the integrated dimension</p>
 <blockquote>
 <div><ul class="simple">
-<li>The circle and ellipse should shrink</li>
-<li>There should be no gap between the background shell and the dashed line.</li>
+<li><p>The circle and ellipse should shrink</p></li>
+<li><p>There should be no gap between the background shell and the dashed line.</p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p class="first">Click on the second row on the second table.</p>
+<li><p>Click on the second row on the second table.</p>
 <blockquote>
 <div><ul class="simple">
-<li>It should zoom in on a different peak.</li>
-<li>The ellipse and circle should be very similar (not quite same as the covariance matrix was evaluated numerically for randomly generated data).</li>
+<li><p>It should zoom in on a different peak.</p></li>
+<li><p>The ellipse and circle should be very similar (not quite same as the covariance matrix was evaluated numerically for randomly generated data).</p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p class="first">Click the nonorthogonal view button</p>
-</li>
-<li><p class="first">The ellipse and circle should still agree with each other and the shape of the generated data.</p>
-</li>
-<li><p class="first">Click the Peak overlay button in the toolbar</p>
-</li>
-<li><p class="first">Overlay the <code class="docutils literal notranslate"><span class="pre">peaks_int_no_bg</span></code> workspace and remove <code class="docutils literal notranslate"><span class="pre">peaks_int_sphere</span></code></p>
-</li>
-<li><p class="first">Zoom in on a peak (click a row in the table)</p>
+<li><p>Click the nonorthogonal view button</p></li>
+<li><p>The ellipse and circle should still agree with each other and the shape of the generated data.</p></li>
+<li><p>Click the Peak overlay button in the toolbar</p></li>
+<li><p>Overlay the <code class="docutils literal notranslate"><span class="pre">peaks_int_no_bg</span></code> workspace and remove <code class="docutils literal notranslate"><span class="pre">peaks_int_sphere</span></code></p></li>
+<li><p>Zoom in on a peak (click a row in the table)</p>
 <ul class="simple">
-<li>There should be a dashed line but no background shell for peaks in <code class="docutils literal notranslate"><span class="pre">peaks_int_no_bg</span></code></li>
+<li><p>There should be a dashed line but no background shell for peaks in <code class="docutils literal notranslate"><span class="pre">peaks_int_no_bg</span></code></p></li>
 </ul>
 </li>
 </ol>
 <p>Keep the three peak workspaces overlain for the next test.</p>
-</div>
-<div class="section" id="ads-observer-for-peak-overlay">
+</section>
+<section id="ads-observer-for-peak-overlay">
 <h3><a class="toc-backref" href="#id10">2. ADS observer for peak overlay</a><a class="headerlink" href="#ads-observer-for-peak-overlay" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic">
-<li><p class="first">Rename <code class="docutils literal notranslate"><span class="pre">peaks_int_ellip</span></code> in the ADS to e.g. <code class="docutils literal notranslate"><span class="pre">peaks_int_ellipse</span></code></p>
+<li><p>Rename <code class="docutils literal notranslate"><span class="pre">peaks_int_ellip</span></code> in the ADS to e.g. <code class="docutils literal notranslate"><span class="pre">peaks_int_ellipse</span></code></p>
 <blockquote>
 <div><ol class="loweralpha simple">
-<li>Confirm the name changes in the peak viewer table</li>
-<li>Click on a peak, the ellipse should still be drawn on the colofill plot</li>
+<li><p>Confirm the name changes in the peak viewer table</p></li>
+<li><p>Click on a peak, the ellipse should still be drawn on the colofill plot</p></li>
 </ol>
 </div></blockquote>
 </li>
-<li><p class="first">Remove a row from <code class="docutils literal notranslate"><span class="pre">peaks_int_no_bg</span></code> table (open table from ADS &gt; Right-click on a row &gt; Delete)</p>
+<li><p>Remove a row from <code class="docutils literal notranslate"><span class="pre">peaks_int_no_bg</span></code> table (open table from ADS &gt; Right-click on a row &gt; Delete)</p>
 <blockquote>
 <div><ol class="loweralpha">
-<li><p class="first">Confirm the correct row is removed from the corresponding row in the peak viewer table</p>
-</li>
-<li><p class="first">Click on the peak in the <code class="docutils literal notranslate"><span class="pre">peaks_int_ellipse</span></code> table that has been removed from <code class="docutils literal notranslate"><span class="pre">peaks_int_no_bg</span></code></p>
+<li><p>Confirm the correct row is removed from the corresponding row in the peak viewer table</p></li>
+<li><p>Click on the peak in the <code class="docutils literal notranslate"><span class="pre">peaks_int_ellipse</span></code> table that has been removed from <code class="docutils literal notranslate"><span class="pre">peaks_int_no_bg</span></code></p>
 <blockquote>
 <div><ul class="simple">
-<li>Only the ellipse should be plotted.</li>
+<li><p>Only the ellipse should be plotted.</p></li>
 </ul>
 </div></blockquote>
 </li>
 </ol>
 </div></blockquote>
 </li>
-<li><p class="first">Delete <code class="docutils literal notranslate"><span class="pre">peaks_int_no_bg</span></code> from the ADS</p>
+<li><p>Delete <code class="docutils literal notranslate"><span class="pre">peaks_int_no_bg</span></code> from the ADS</p>
 <blockquote>
 <div><ul class="simple">
-<li>The table should be removed from the peaks viewer</li>
-<li>Confirm the Peak actions combo box is updated to only contain <code class="docutils literal notranslate"><span class="pre">peaks_int_ellipse</span></code></li>
+<li><p>The table should be removed from the peaks viewer</p></li>
+<li><p>Confirm the Peak actions combo box is updated to only contain <code class="docutils literal notranslate"><span class="pre">peaks_int_ellipse</span></code></p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p class="first">Delete <code class="docutils literal notranslate"><span class="pre">peaks_int_ellipse</span></code> from the ADS</p>
+<li><p>Delete <code class="docutils literal notranslate"><span class="pre">peaks_int_ellipse</span></code> from the ADS</p>
 <blockquote>
 <div><ul class="simple">
-<li>The peak overlay should be turned off and the table hidden</li>
+<li><p>The peak overlay should be turned off and the table hidden</p></li>
 </ul>
 </div></blockquote>
 </li>
 </ol>
-</div>
-<div class="section" id="ads-observer-for-workspace">
+</section>
+<section id="ads-observer-for-workspace">
 <h3><a class="toc-backref" href="#id11">3. ADS observer for workspace</a><a class="headerlink" href="#ads-observer-for-workspace" title="Permalink to this headline">¶</a></h3>
 <p>With <code class="docutils literal notranslate"><span class="pre">md_3D</span></code> open in sliceviewer</p>
 <ol class="arabic">
-<li><p class="first">Rename <code class="docutils literal notranslate"><span class="pre">md_3D</span></code> to e.g. <code class="docutils literal notranslate"><span class="pre">md_3Dim</span></code></p>
+<li><p>Rename <code class="docutils literal notranslate"><span class="pre">md_3D</span></code> to e.g. <code class="docutils literal notranslate"><span class="pre">md_3Dim</span></code></p>
 <blockquote>
 <div><ul class="simple">
-<li>The workspace name in the  title of the sliceviewer window should have updated</li>
-<li>Zoom to check dynamic rebinning still works</li>
+<li><p>The workspace name in the  title of the sliceviewer window should have updated</p></li>
+<li><p>Zoom to check dynamic rebinning still works</p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p class="first">Take a note of the colorbar limits and execute this command in the ipython terminal</p>
+<li><p>Take a note of the colorbar limits and execute this command in the ipython terminal</p>
 <blockquote>
 <div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;md_3Dim&#39;</span><span class="p">]</span> <span class="o">*=</span> <span class="mi">2</span>
 </pre></div>
 </div>
 <ul class="simple">
-<li>The colorbar max should be doubled.</li>
-<li>Zoom to check dynamic rebinning still works</li>
+<li><p>The colorbar max should be doubled.</p></li>
+<li><p>Zoom to check dynamic rebinning still works</p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p class="first">Clone the workspace for future tests</p>
-</li>
+<li><p>Clone the workspace for future tests</p></li>
 </ol>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">CloneWorkspace</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;md_3Dim&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;md_3D&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <ol class="arabic" start="4">
-<li><p class="first">Delete <code class="docutils literal notranslate"><span class="pre">md_3Dim</span></code> in the ADS</p>
+<li><p>Delete <code class="docutils literal notranslate"><span class="pre">md_3Dim</span></code> in the ADS</p>
 <blockquote>
 <div><ul class="simple">
-<li>The sliceviewer window should close</li>
+<li><p>The sliceviewer window should close</p></li>
 </ul>
 </div></blockquote>
 </li>
 </ol>
-</div>
-<div class="section" id="ads-observer-for-support-for-nonorthogonal-view">
+</section>
+<section id="ads-observer-for-support-for-nonorthogonal-view">
 <h3><a class="toc-backref" href="#id12">4. ADS observer for support for nonorthogonal view</a><a class="headerlink" href="#ads-observer-for-support-for-nonorthogonal-view" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic">
-<li><p class="first">Open <code class="docutils literal notranslate"><span class="pre">md_3D</span></code> in sliceviewer</p>
-</li>
-<li><p class="first">Run <code class="docutils literal notranslate"><span class="pre">ClearUB</span></code> algorithm on <code class="docutils literal notranslate"><span class="pre">md_3D</span></code></p>
+<li><p>Open <code class="docutils literal notranslate"><span class="pre">md_3D</span></code> in sliceviewer</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">ClearUB</span></code> algorithm on <code class="docutils literal notranslate"><span class="pre">md_3D</span></code></p>
 <blockquote>
 <div><ul class="simple">
-<li>Sliceviewer window should close with message</li>
+<li><p>Sliceviewer window should close with message</p></li>
 </ul>
 <p><code class="docutils literal notranslate"><span class="pre">Closing</span> <span class="pre">Sliceviewer</span> <span class="pre">as</span> <span class="pre">the</span> <span class="pre">underlying</span> <span class="pre">workspace</span> <span class="pre">was</span> <span class="pre">changed:</span> <span class="pre">The</span> <span class="pre">property</span> <span class="pre">supports_nonorthogonal_axes</span> <span class="pre">is</span> <span class="pre">different</span> <span class="pre">on</span> <span class="pre">the</span> <span class="pre">new</span> <span class="pre">workspace.</span></code></p>
 </div></blockquote>
 </li>
 </ol>
-</div>
-<div class="section" id="check-binmd-called-with-normalizebasisvectors-false-for-hkl-data">
+</section>
+<section id="check-binmd-called-with-normalizebasisvectors-false-for-hkl-data">
 <h3><a class="toc-backref" href="#id13">5. Check BinMD called with NormalizeBasisVectors=False for HKL data</a><a class="headerlink" href="#check-binmd-called-with-normalizebasisvectors-false-for-hkl-data" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
-<li>Create a workspace with peaks at integer HKL and take a non axis-aligned cut</li>
+<li><p>Create a workspace with peaks at integer HKL and take a non axis-aligned cut</p></li>
 </ol>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">CreateMDWorkspace</span><span class="p">(</span><span class="n">Dimensions</span><span class="o">=</span><span class="s1">&#39;3&#39;</span><span class="p">,</span> <span class="n">Extents</span><span class="o">=</span><span class="s1">&#39;-3,3,-3,3,-3,3&#39;</span><span class="p">,</span>
                        <span class="n">Names</span><span class="o">=</span><span class="s1">&#39;H,K,L&#39;</span><span class="p">,</span> <span class="n">Units</span><span class="o">=</span><span class="s1">&#39;r.l.u.,r.l.u.,r.l.u.&#39;</span><span class="p">,</span>
@@ -612,36 +584,36 @@ In terms of sliceviewer functionality, the key difference is that MDHistoWorkspa
             <span class="n">hkl</span> <span class="o">=</span> <span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="n">h</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">l</span><span class="p">]])</span>
             <span class="n">FakeMDEventData</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">PeakParams</span><span class="o">=</span><span class="s1">&#39;1e+02,&#39;</span> <span class="o">+</span> <span class="n">hkl</span> <span class="o">+</span> <span class="s1">&#39;,0.02&#39;</span><span class="p">,</span> <span class="n">RandomSeed</span><span class="o">=</span><span class="s1">&#39;3873875&#39;</span><span class="p">)</span>
 
-<span class="n">BinMD</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">AxisAligned</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+<span class="n">BinMD</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">AxisAligned</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="n">BasisVector0</span><span class="o">=</span><span class="s1">&#39;[00L],U,0,0,1&#39;</span><span class="p">,</span>
     <span class="n">BasisVector1</span><span class="o">=</span><span class="s1">&#39;[HH0],U,1,1,0&#39;</span><span class="p">,</span>
     <span class="n">BasisVector2</span><span class="o">=</span><span class="s1">&#39;[-HH0],U,-1,1,0&#39;</span><span class="p">,</span>
     <span class="n">OutputExtents</span><span class="o">=</span><span class="s1">&#39;-4,4,-4,4,-0.25,0.25&#39;</span><span class="p">,</span>
-    <span class="n">OutputBins</span><span class="o">=</span><span class="s1">&#39;101,101,1&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;BinMD_out&#39;</span><span class="p">,</span> <span class="n">NormalizeBasisVectors</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">OutputBins</span><span class="o">=</span><span class="s1">&#39;101,101,1&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;BinMD_out&#39;</span><span class="p">,</span> <span class="n">NormalizeBasisVectors</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 <ol class="arabic" start="2">
-<li><p class="first">Open <code class="docutils literal notranslate"><span class="pre">BinMD_out</span></code> in sliceviewer.</p>
+<li><p>Open <code class="docutils literal notranslate"><span class="pre">BinMD_out</span></code> in sliceviewer.</p>
 <blockquote>
 <div><ul class="simple">
-<li>There should be peaks at integer HKL</li>
+<li><p>There should be peaks at integer HKL</p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p class="first">Zoom in (so that the data are rebinned)</p>
+<li><p>Zoom in (so that the data are rebinned)</p>
 <blockquote>
 <div><ul class="simple">
-<li>The peaks should still be at integer HKL (rather than multiples of <span class="math">\sqrt{2}</span>)</li>
+<li><p>The peaks should still be at integer HKL (rather than multiples of <span class="math">\sqrt{2}</span>)</p></li>
 </ul>
 </div></blockquote>
 </li>
 </ol>
-</div>
-<div class="section" id="check-gets-the-correct-basis-vectors-for-mdhisto-workspaces">
+</section>
+<section id="check-gets-the-correct-basis-vectors-for-mdhisto-workspaces">
 <h3><a class="toc-backref" href="#id14">6. Check gets the correct basis vectors for MDHisto workspaces</a><a class="headerlink" href="#check-gets-the-correct-basis-vectors-for-mdhisto-workspaces" title="Permalink to this headline">¶</a></h3>
 <p>This tests that the sliceviewer gets the correct basis vectors for an <code class="docutils literal notranslate"><span class="pre">MDHisto</span></code> object from a non-axis aligned cut.</p>
 <ol class="arabic simple">
-<li>Create the workspace</li>
+<li><p>Create the workspace</p></li>
 </ol>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">CreateMDWorkspace</span><span class="p">(</span><span class="n">Dimensions</span><span class="o">=</span><span class="s1">&#39;3&#39;</span><span class="p">,</span> <span class="n">Extents</span><span class="o">=</span><span class="s1">&#39;-3,3,-3,3,-3,3&#39;</span><span class="p">,</span>
                    <span class="n">Names</span><span class="o">=</span><span class="s1">&#39;H,K,L&#39;</span><span class="p">,</span> <span class="n">Units</span><span class="o">=</span><span class="s1">&#39;r.l.u.,r.l.u.,r.l.u.&#39;</span><span class="p">,</span>
@@ -650,36 +622,36 @@ In terms of sliceviewer functionality, the key difference is that MDHistoWorkspa
 <span class="n">expt_info</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">()</span>
 <span class="n">ws</span><span class="o">.</span><span class="n">addExperimentInfo</span><span class="p">(</span><span class="n">expt_info</span><span class="p">)</span>
 <span class="n">SetUB</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">90</span><span class="p">,</span><span class="mi">90</span><span class="p">,</span><span class="mi">120</span><span class="p">)</span>
-<span class="n">BinMD</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">AxisAligned</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+<span class="n">BinMD</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">AxisAligned</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="n">BasisVector0</span><span class="o">=</span><span class="s1">&#39;[00L],r.l.u.,0,0,1&#39;</span><span class="p">,</span>
     <span class="n">BasisVector1</span><span class="o">=</span><span class="s1">&#39;[HH0],r.l.u.,1,1,0&#39;</span><span class="p">,</span>
     <span class="n">BasisVector2</span><span class="o">=</span><span class="s1">&#39;[-HH0],r.l.u.,-1,1,0&#39;</span><span class="p">,</span>
     <span class="n">OutputExtents</span><span class="o">=</span><span class="s1">&#39;-4,4,-4,4,-0.25,0.25&#39;</span><span class="p">,</span>
-    <span class="n">OutputBins</span><span class="o">=</span><span class="s1">&#39;101,101,1&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;ws_slice&#39;</span><span class="p">,</span> <span class="n">NormalizeBasisVectors</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">OutputBins</span><span class="o">=</span><span class="s1">&#39;101,101,1&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;ws_slice&#39;</span><span class="p">,</span> <span class="n">NormalizeBasisVectors</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 <ol class="arabic" start="2">
-<li><p class="first">Open <code class="docutils literal notranslate"><span class="pre">ws_slice</span></code> in the sliceviewer.</p>
+<li><p>Open <code class="docutils literal notranslate"><span class="pre">ws_slice</span></code> in the sliceviewer.</p>
 <blockquote>
 <div><ul class="simple">
-<li>The non-orthogonal view should be enabled (not greyed out).</li>
+<li><p>The non-orthogonal view should be enabled (not greyed out).</p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p class="first">Click the non-orthogonal view button</p>
+<li><p>Click the non-orthogonal view button</p>
 <blockquote>
 <div><ul class="simple">
-<li>Rectangular gridlines should appear (as in this case 110 is orthogonal to 001).</li>
+<li><p>Rectangular gridlines should appear (as in this case 110 is orthogonal to 001).</p></li>
 </ul>
 </div></blockquote>
 </li>
 </ol>
-</div>
-<div class="section" id="check-non-orthogonal-view-is-disabled-for-non-q-axes">
+</section>
+<section id="check-non-orthogonal-view-is-disabled-for-non-q-axes">
 <h3><a class="toc-backref" href="#id15">7. Check non-orthogonal view is disabled for non-Q axes</a><a class="headerlink" href="#check-non-orthogonal-view-is-disabled-for-non-q-axes" title="Permalink to this headline">¶</a></h3>
 <p>Check that the non-orthogonal view is disabled for non-Q axes such as energy</p>
 <ol class="arabic simple">
-<li>Create a workspace with energy as the first axis.</li>
+<li><p>Create a workspace with energy as the first axis.</p></li>
 </ol>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws_4D</span> <span class="o">=</span> <span class="n">CreateMDWorkspace</span><span class="p">(</span><span class="n">Dimensions</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">Extents</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">Names</span><span class="o">=</span><span class="s2">&quot;E,H,K,L&quot;</span><span class="p">,</span>
                               <span class="n">Frames</span><span class="o">=</span><span class="s1">&#39;General Frame,HKL,HKL,HKL&#39;</span><span class="p">,</span> <span class="n">Units</span><span class="o">=</span><span class="s1">&#39;meV,r.l.u.,r.l.u.,r.l.u.&#39;</span><span class="p">)</span>
@@ -689,13 +661,13 @@ In terms of sliceviewer functionality, the key difference is that MDHistoWorkspa
 </pre></div>
 </div>
 <ol class="arabic simple" start="2">
-<li>Open `` ws_4D`` in sliceviewer.</li>
-<li>Confirm that when the Energy axis is viewed (as X or Y) the non-orthogonal view is disabled.</li>
-<li>The button should be re-enabled when you view two Q-axes e.g. H and K.</li>
+<li><p>Open `` ws_4D`` in sliceviewer.</p></li>
+<li><p>Confirm that when the Energy axis is viewed (as X or Y) the non-orthogonal view is disabled.</p></li>
+<li><p>The button should be re-enabled when you view two Q-axes e.g. H and K.</p></li>
 </ol>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
     </div>

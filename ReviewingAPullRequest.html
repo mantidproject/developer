@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Reviewing a Pull Request</title>
-    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Writing Performance Tests" href="WritingPerformanceTests.html" />
@@ -87,52 +87,54 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <div class="section" id="reviewing-a-pull-request">
+  <section id="reviewing-a-pull-request">
 <span id="reviewingapullrequest"></span><h1>Reviewing a Pull Request<a class="headerlink" href="#reviewing-a-pull-request" title="Permalink to this headline">¶</a></h1>
 <p>An important step in our <a class="reference internal" href="GitWorkflow.html#gitworkflow"><span class="std std-ref">development workflow</span></a> is the testing of individual issues/tickets after the development on them is complete, and before the code is merges into the main branch. Developers pick one from <a class="reference external" href="https://github.com/mantidproject/mantid/pulls">the list</a> of completed issues and perform a number of verification steps on it. The mechanics of testing a pull request (e.g. the git commands to use) are described <a class="reference internal" href="GitWorkflow.html#gitworkflow"><span class="std std-ref">here</span></a>. This page is concerned with the aspects that should be considered in deciding whether a pull request should be recommended to merge or sent back to the developer for further work. <em>There should be very little reluctance to reopen a ticket even for minor issues.</em></p>
-<div class="section" id="code-review">
+<section id="code-review">
 <h2>Code Review<a class="headerlink" href="#code-review" title="Permalink to this headline">¶</a></h2>
 <p>The code changes should be manually reviewed (the github compare view is ideal for this). A couple of pieces on the value of code review can be found at <a class="reference external" href="http://scientopia.org/blogs/goodmath/2011/07/06/things-everyone-should-do-code-review">scientopia</a> and <a class="reference external" href="http://www.codinghorror.com/blog/2006/01/code-reviews-just-do-it.html">codinghorror</a>.</p>
 <ul class="simple">
-<li>The primary aim is to find bugs that the developer and tests so far have not spotted.</li>
-<li>But also consider whether the code is ‘clean’, well-structured and easy to read/maintain.</li>
-<li>Part of this is that:<ul>
-<li>There should be are no compiler (or doxygen) warnings coming from any modified classes</li>
-<li>The code conforms to our <a class="reference internal" href="Standards/MantidStandards.html#mantidstandards"><span class="std std-ref">coding standards</span></a>.</li>
+<li><p>The primary aim is to find bugs that the developer and tests so far have not spotted.</p></li>
+<li><p>But also consider whether the code is ‘clean’, well-structured and easy to read/maintain.</p></li>
+<li><p>Part of this is that:</p>
+<ul>
+<li><p>There should be are no compiler (or doxygen) warnings coming from any modified classes</p></li>
+<li><p>The code conforms to our <a class="reference internal" href="Standards/MantidStandards.html#mantidstandards"><span class="std std-ref">coding standards</span></a>.</p></li>
 </ul>
 </li>
-<li>Unit tests (or system tests if more appropriate) should be checked that they:<ul>
-<li>Exist and give adequate coverage (see <a class="reference internal" href="UnitTestGoodPractice.html#unittestgoodpractice"><span class="std std-ref">unit testing practices</span></a>).</li>
-<li>If the ticket is fixing a bug there should be a test that makes sure we don’t have to fix the same bug again!</li>
-<li>Do not load real data (data loading algorithms get a free pass on this one).</li>
-<li>Leave the system in the same state that they found it (i.e. clean up).</li>
-<li>Have a performance test, if appropriate.</li>
+<li><p>Unit tests (or system tests if more appropriate) should be checked that they:</p>
+<ul>
+<li><p>Exist and give adequate coverage (see <a class="reference internal" href="UnitTestGoodPractice.html#unittestgoodpractice"><span class="std std-ref">unit testing practices</span></a>).</p></li>
+<li><p>If the ticket is fixing a bug there should be a test that makes sure we don’t have to fix the same bug again!</p></li>
+<li><p>Do not load real data (data loading algorithms get a free pass on this one).</p></li>
+<li><p>Leave the system in the same state that they found it (i.e. clean up).</p></li>
+<li><p>Have a performance test, if appropriate.</p></li>
 </ul>
 </li>
-<li>Check that any user documentation is adequate and that there are release notes.  In the case of new algorithms, there should be an accompanying <code class="docutils literal notranslate"><span class="pre">*.rst</span></code> file that has been added, containing an explanation of what exactly the algorithm does along with Python usage examples.</li>
+<li><p>Check that any user documentation is adequate and that there are release notes.  In the case of new algorithms, there should be an accompanying <code class="docutils literal notranslate"><span class="pre">*.rst</span></code> file that has been added, containing an explanation of what exactly the algorithm does along with Python usage examples.</p></li>
 </ul>
-</div>
-<div class="section" id="functional-testing">
+</section>
+<section id="functional-testing">
 <h2>Functional Testing<a class="headerlink" href="#functional-testing" title="Permalink to this headline">¶</a></h2>
 <p>The first thing to note is that this should <strong>not</strong> just be a quick check of whatever the ticket says it does. Testing should be as much, if not more, about making sure the code <em>does not do what it’s not supposed to do</em> as that it <em>does do what it’s supposed to</em>.</p>
 <ul class="simple">
-<li>All of the builds pass</li>
-<li>The developer should have included instructions in the ticket of how to test things work.</li>
-<li>But, as noted above, don’t just do that – also try to break it: click random buttons on GUIs, give unexpected/invalid inputs, etc.</li>
-<li>Note down what you did in the ticket, and the platform you did it on.</li>
+<li><p>All of the builds pass</p></li>
+<li><p>The developer should have included instructions in the ticket of how to test things work.</p></li>
+<li><p>But, as noted above, don’t just do that – also try to break it: click random buttons on GUIs, give unexpected/invalid inputs, etc.</p></li>
+<li><p>Note down what you did in the ticket, and the platform you did it on.</p></li>
 </ul>
 <p>If all the requirements have been met and documented approve the PR using <a class="reference external" href="https://help.github.com/articles/about-pull-request-reviews/">GitHub’s review mechanism</a>.</p>
-</div>
-<div class="section" id="gatekeeper">
+</section>
+<section id="gatekeeper">
 <h2>Gatekeeper<a class="headerlink" href="#gatekeeper" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">&#64;mantidproject/gatekeepers</span></code> group is who is meant to merge pull requests into master. This is done by social contract. A gatekeeper can <code class="docutils literal notranslate"><span class="pre">merge</span></code> code if:</p>
 <ul class="simple">
-<li>Green tick on the last build indicating all automated testing has succeeded</li>
-<li>Adequate tests, both success and failure cases have been performed</li>
-<li>There is comment on the code being reviewed</li>
+<li><p>Green tick on the last build indicating all automated testing has succeeded</p></li>
+<li><p>Adequate tests, both success and failure cases have been performed</p></li>
+<li><p>There is comment on the code being reviewed</p></li>
 </ul>
-</div>
-</div>
+</section>
+</section>
 
 
     </div>

@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Receiving a signal from the view</title>
-    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Extracting Information from the View" href="ExtractInfoFromView.html" />
@@ -87,7 +87,7 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <div class="section" id="receiving-a-signal-from-the-view">
+  <section id="receiving-a-signal-from-the-view">
 <span id="receivingsignalfromview"></span><h1>Receiving a signal from the view<a class="headerlink" href="#receiving-a-signal-from-the-view" title="Permalink to this headline">¶</a></h1>
 <p>In the <a class="reference internal" href="AddButton.html#addbutton"><span class="std std-ref">Add Button</span></a> section we had the response to a button press
 within the view. In practice this is not a good implementation. If the
@@ -104,7 +104,7 @@ pressed. First we will start with the view:</p>
 
     <span class="n">doSomethingSignal</span> <span class="o">=</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Signal</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">button</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QPushButton</span><span class="p">(</span><span class="s1">&#39;Hi&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
@@ -127,7 +127,7 @@ pressed. First we will start with the view:</p>
 
     <span class="c1">#send signals</span>
     <span class="k">def</span> <span class="nf">btn_click</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">print</span> <span class="p">(</span><span class="s2">&quot;hellow from view&quot;</span><span class="p">)</span>
+        <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;hellow from view&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">doSomethingSignal</span><span class="o">.</span><span class="n">emit</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -150,7 +150,7 @@ custom signal from the view to its own function (<code class="docutils literal n
 
     <span class="c1"># handle signals</span>
     <span class="k">def</span> <span class="nf">handleButton</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;hello world, from the presenter&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;hello world, from the presenter&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>The main is now:</p>
@@ -165,7 +165,7 @@ custom signal from the view to its own function (<code class="docutils literal n
 <span class="sd">A wrapper class for setting the main window</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="k">class</span> <span class="nc">Demo</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMainWindow</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">window</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMainWindow</span><span class="p">()</span>
@@ -193,7 +193,7 @@ custom signal from the view to its own function (<code class="docutils literal n
 <p>The view and presenter are both created, but only the presenter has to
 be a member of the Demo class. The view is created to be passed to the
 presenter and the view could easily be replaced.</p>
-</div>
+</section>
 
 
     </div>

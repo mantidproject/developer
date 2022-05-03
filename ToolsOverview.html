@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Tools Overview</title>
-    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Work flows algorithm profiling" href="AlgorithmProfiler.html" />
@@ -87,46 +87,51 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <div class="section" id="tools-overview">
+  <section id="tools-overview">
 <span id="toolsoverview"></span><h1>Tools Overview<a class="headerlink" href="#tools-overview" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 </div>
 <div class="contents local topic" id="contents">
 <p class="topic-title">Contents</p>
 <ul class="simple">
-<li><a class="reference internal" href="#creating-classes-class-maker-py" id="id1">Creating classes: class_maker.py</a></li>
-<li><a class="reference internal" href="#moving-renaming-classes-move-class-py" id="id2">Moving/Renaming classes: move_class.py</a></li>
-<li><a class="reference internal" href="#deleting-a-class-delete-class-py" id="id3">Deleting a class: delete_class.py</a></li>
-<li><a class="reference internal" href="#profiling" id="id4">Profiling</a></li>
-<li><a class="reference internal" href="#leak-checking-etc" id="id5">Leak checking etc</a><ul>
-<li><a class="reference internal" href="#linux" id="id6">Linux</a></li>
-<li><a class="reference internal" href="#windows" id="id7">Windows</a></li>
+<li><p><a class="reference internal" href="#creating-classes-class-maker-py" id="id1">Creating classes: class_maker.py</a></p></li>
+<li><p><a class="reference internal" href="#moving-renaming-classes-move-class-py" id="id2">Moving/Renaming classes: move_class.py</a></p></li>
+<li><p><a class="reference internal" href="#deleting-a-class-delete-class-py" id="id3">Deleting a class: delete_class.py</a></p></li>
+<li><p><a class="reference internal" href="#profiling" id="id4">Profiling</a></p></li>
+<li><p><a class="reference internal" href="#leak-checking-etc" id="id5">Leak checking etc</a></p>
+<ul>
+<li><p><a class="reference internal" href="#linux" id="id6">Linux</a></p></li>
+<li><p><a class="reference internal" href="#windows" id="id7">Windows</a></p></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#thread-checking" id="id8">Thread checking</a><ul>
-<li><a class="reference internal" href="#helgrind-or-drd" id="id9">Helgrind or  drd</a></li>
+<li><p><a class="reference internal" href="#thread-checking" id="id8">Thread checking</a></p>
+<ul>
+<li><p><a class="reference internal" href="#helgrind-or-drd" id="id9">Helgrind or  drd</a></p></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#iwyu" id="id10">IWYU</a></li>
-<li><a class="reference internal" href="#network-related-tools" id="id11">Network Related Tools</a><ul>
-<li><a class="reference internal" href="#wireshark" id="id12">Wireshark</a></li>
-<li><a class="reference internal" href="#wonder-shaper" id="id13">Wonder Shaper</a></li>
+<li><p><a class="reference internal" href="#iwyu" id="id10">IWYU</a></p></li>
+<li><p><a class="reference internal" href="#network-related-tools" id="id11">Network Related Tools</a></p>
+<ul>
+<li><p><a class="reference internal" href="#wireshark" id="id12">Wireshark</a></p></li>
+<li><p><a class="reference internal" href="#wonder-shaper" id="id13">Wonder Shaper</a></p></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#convert-wiki-docs-to-sphinx" id="id14">Convert Wiki Docs to Sphinx</a><ul>
-<li><a class="reference internal" href="#use" id="id15">Use</a></li>
+<li><p><a class="reference internal" href="#convert-wiki-docs-to-sphinx" id="id14">Convert Wiki Docs to Sphinx</a></p>
+<ul>
+<li><p><a class="reference internal" href="#use" id="id15">Use</a></p></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#clang-tidy" id="id16">Clang-tidy</a><ul>
-<li><a class="reference internal" href="#installing" id="id17">Installing</a></li>
-<li><a class="reference internal" href="#visual-studio" id="id18">Visual Studio</a></li>
-<li><a class="reference internal" href="#cmake" id="id19">Cmake</a></li>
-<li><a class="reference internal" href="#options" id="id20">Options</a></li>
+<li><p><a class="reference internal" href="#clang-tidy" id="id16">Clang-tidy</a></p>
+<ul>
+<li><p><a class="reference internal" href="#installing" id="id17">Installing</a></p></li>
+<li><p><a class="reference internal" href="#visual-studio" id="id18">Visual Studio</a></p></li>
+<li><p><a class="reference internal" href="#cmake" id="id19">Cmake</a></p></li>
+<li><p><a class="reference internal" href="#options" id="id20">Options</a></p></li>
 </ul>
 </li>
 </ul>
 </div>
-<div class="section" id="creating-classes-class-maker-py">
+<section id="creating-classes-class-maker-py">
 <h2><a class="toc-backref" href="#id1">Creating classes: class_maker.py</a><a class="headerlink" href="#creating-classes-class-maker-py" title="Permalink to this headline">¶</a></h2>
 <p><strong>To make it faster to create a new class</strong>. This is a small python
 script located in /buildconfig/. It generates the .cpp, .h and test
@@ -145,68 +150,68 @@ optional arguments:
              algorithms.
 </pre></div>
 </div>
-</div>
-<div class="section" id="moving-renaming-classes-move-class-py">
+</section>
+<section id="moving-renaming-classes-move-class-py">
 <h2><a class="toc-backref" href="#id2">Moving/Renaming classes: move_class.py</a><a class="headerlink" href="#moving-renaming-classes-move-class-py" title="Permalink to this headline">¶</a></h2>
 <p>This python script is located in in /buidconfig/. It will move a class
 from one subproject to another and/or rename the class. Namespaces and
 cmakelists are adjusted. For details, run:</p>
 <p><code class="docutils literal notranslate"><span class="pre">buildconfig/move_class.py</span> <span class="pre">--help</span></code></p>
-</div>
-<div class="section" id="deleting-a-class-delete-class-py">
+</section>
+<section id="deleting-a-class-delete-class-py">
 <h2><a class="toc-backref" href="#id3">Deleting a class: delete_class.py</a><a class="headerlink" href="#deleting-a-class-delete-class-py" title="Permalink to this headline">¶</a></h2>
 <p>This python script is located in in /buildconfig/. It will delete a
 class from one subproject. CMakeList.txt is adjusted. For details, run:</p>
 <p><code class="docutils literal notranslate"><span class="pre">buildconfig/delete_class.py</span> <span class="pre">--help</span></code></p>
-</div>
-<div class="section" id="profiling">
+</section>
+<section id="profiling">
 <h2><a class="toc-backref" href="#id4">Profiling</a><a class="headerlink" href="#profiling" title="Permalink to this headline">¶</a></h2>
 <p>Profiling could mean tracking start-up, the progress of an algoirthm or performance. See <a class="reference internal" href="ProfilingOverview.html"><span class="doc">Profiling Overview</span></a> for more details.</p>
-</div>
-<div class="section" id="leak-checking-etc">
+</section>
+<section id="leak-checking-etc">
 <h2><a class="toc-backref" href="#id5">Leak checking etc</a><a class="headerlink" href="#leak-checking-etc" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="linux">
+<section id="linux">
 <h3><a class="toc-backref" href="#id6">Linux</a><a class="headerlink" href="#linux" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="http://valgrind.org/docs/manual/mc-manual.html">Memcheck</a></p>
 <ul class="simple">
-<li>Keeps track of allocs/deallocs and reports anything missing at exit.</li>
-<li>Slow but thorough</li>
-<li>Useful options to run with</li>
-<li>See <a class="reference internal" href="ProfilingWithValgrind.html"><span class="doc">valgrind</span></a> for details on how to install</li>
+<li><p>Keeps track of allocs/deallocs and reports anything missing at exit.</p></li>
+<li><p>Slow but thorough</p></li>
+<li><p>Useful options to run with</p></li>
+<li><p>See <a class="reference internal" href="ProfilingWithValgrind.html"><span class="doc">valgrind</span></a> for details on how to install</p></li>
 </ul>
 <p><code class="docutils literal notranslate"><span class="pre">valgrind</span> <span class="pre">--tool=memcheck</span> <span class="pre">--leak-check=full</span> <span class="pre">--show-reachable=yes</span> <span class="pre">--num-callers=20</span> <span class="pre">--track-fds=yes</span> <span class="pre">--track-origins=yes</span> <span class="pre">--freelist-vol=500000000</span> <span class="pre">``\</span> <span class="pre">\</span> <span class="pre">``</span> <span class="pre">[args...]</span></code></p>
-</div>
-<div class="section" id="windows">
+</section>
+<section id="windows">
 <h3><a class="toc-backref" href="#id7">Windows</a><a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://vld.codeplex.com/releases">Visual Leak Detector</a></p>
 <ol class="arabic simple">
-<li>Setup the additional paths as defined in the readme file</li>
-<li>Adjust the configuration file, “C:Program FilesVisual Leak
+<li><p>Setup the additional paths as defined in the readme file</p></li>
+<li><p>Adjust the configuration file, “C:Program FilesVisual Leak
 Detectorvld.ini” to output to both File and debugger by changing the
-<code class="docutils literal notranslate"><span class="pre">ReportTo</span></code> to</li>
+<code class="docutils literal notranslate"><span class="pre">ReportTo</span></code> to</p></li>
 </ol>
 <p><code class="docutils literal notranslate"><span class="pre">ReportTo</span> <span class="pre">=</span> <span class="pre">both</span></code></p>
 <ol class="arabic simple">
-<li>Add #include &lt;vld.h&gt; to the system.h file in Kernel</li>
-<li>Compile everything in debug</li>
-<li>Running unit tests should now create a file memory_leak_report.txt in
-the test directory.</li>
-<li>IMPORTANT remove the #include &lt;vld.ini&gt; before checking in.</li>
+<li><p>Add #include &lt;vld.h&gt; to the system.h file in Kernel</p></li>
+<li><p>Compile everything in debug</p></li>
+<li><p>Running unit tests should now create a file memory_leak_report.txt in
+the test directory.</p></li>
+<li><p>IMPORTANT remove the #include &lt;vld.ini&gt; before checking in.</p></li>
 </ol>
-</div>
-</div>
-<div class="section" id="thread-checking">
+</section>
+</section>
+<section id="thread-checking">
 <h2><a class="toc-backref" href="#id8">Thread checking</a><a class="headerlink" href="#thread-checking" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="helgrind-or-drd">
+<section id="helgrind-or-drd">
 <h3><a class="reference external" href="http://valgrind.org/docs/manual/hg-manual.html">Helgrind</a> or  <a class="reference external" href="http://valgrind.org/docs/manual/drd-manual.html">drd</a><a class="headerlink" href="#helgrind-or-drd" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Identifies race conditions &amp; dead-locks</li>
-<li>Slow but accurate</li>
-<li>A pain to get working with OpenMP. GCC must be recompiled to use a different call to create OMP threads or helgrind/drd cannot “see” the thread calls. Use this <a class="reference external" href="https://github.com/UCSCSlang/Adversarial-Helgrind/raw/master/drd/scripts/download-and-build-gcc">script</a> to recompile the same version off gcc that is onyour system. The script will need editing to change the appropriate variables.</li>
+<li><p>Identifies race conditions &amp; dead-locks</p></li>
+<li><p>Slow but accurate</p></li>
+<li><p>A pain to get working with OpenMP. GCC must be recompiled to use a different call to create OMP threads or helgrind/drd cannot “see” the thread calls. Use this <a class="reference external" href="https://github.com/UCSCSlang/Adversarial-Helgrind/raw/master/drd/scripts/download-and-build-gcc">script</a> to recompile the same version off gcc that is onyour system. The script will need editing to change the appropriate variables.</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="iwyu">
+</section>
+</section>
+<section id="iwyu">
 <h2><a class="toc-backref" href="#id10">IWYU</a><a class="headerlink" href="#iwyu" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://code.google.com/p/include-what-you-use/">include what you
 use</a> (iwyu) is a
@@ -215,103 +220,102 @@ C/C++ files. Below are instructions for getting it to run with mantid on
 linux which is a filled in version of <a class="reference external" href="https://code.google.com/p/include-what-you-use/issues/detail?id=164">this
 bug</a>.</p>
 <ol class="arabic simple">
-<li>Install the software. The version available from system installs
-should be fine (e.g. yum or apt-get).</li>
-<li>Get a copy of
+<li><p>Install the software. The version available from system installs
+should be fine (e.g. yum or apt-get).</p></li>
+<li><p>Get a copy of
 <a class="reference external" href="https://code.google.com/p/include-what-you-use/source/browse/trunk/iwyu_tool.py">iwyu_tool.py</a>
 which is in the project’s repository, but may not be installed if you
-got it from your operating system locations (e.g. yum).</li>
-<li>Run <code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">-DCMAKE_EXPORT_COMPILE_COMMANDS=TRUE</span></code>. This will
+got it from your operating system locations (e.g. yum).</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">-DCMAKE_EXPORT_COMPILE_COMMANDS=TRUE</span></code>. This will
 generate an extra file, <code class="docutils literal notranslate"><span class="pre">compile_commands.json</span></code>, in your build area
-which has instructions on compiling every file in mantid.</li>
-<li>Run <code class="docutils literal notranslate"><span class="pre">iwyu_tool.py</span> <span class="pre">-p</span> <span class="pre">`pwd</span></code> 2&gt; iwyu.log` to generate the
+which has instructions on compiling every file in mantid.</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">iwyu_tool.py</span> <span class="pre">-p</span> <span class="pre">`pwd</span></code> 2&gt; iwyu.log` to generate the
 report of changes redirecting into the file <code class="docutils literal notranslate"><span class="pre">iwyu.log</span></code>. This will
 take a long time since it is going through the whole repository. If
 you want it for a single file, then supply that as an additional
-argument with full path. Only one file can be supplied at a time.</li>
-<li>Run <code class="docutils literal notranslate"><span class="pre">fix_includes</span> <span class="pre">&lt;</span> <span class="pre">iwyu.log</span></code> and compile the results. Depending on
+argument with full path. Only one file can be supplied at a time.</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">fix_includes</span> <span class="pre">&lt;</span> <span class="pre">iwyu.log</span></code> and compile the results. Depending on
 how you installed iwyu, the program may be called
 <code class="docutils literal notranslate"><span class="pre">fix_includes.py</span></code>. If it doesn’t compile, the most likely suspect
 is that iwyu included a private header. See <a class="reference external" href="https://code.google.com/p/include-what-you-use/wiki/InstructionsForUsers#How_to_Run">iwyu instructions for
 users</a>
 for ways to handle this. Generally, they suggest deleting the
-offending lines.</li>
-<li>Check that your build path didn’t make it into source files. Since
+offending lines.</p></li>
+<li><p>Check that your build path didn’t make it into source files. Since
 <code class="docutils literal notranslate"><span class="pre">compile_commands.json</span></code> has full paths, iwyu will put full paths in
 the include statements. This will not produce an error on your
 system, but it will on the build servers. The easiest way to check is
 to use <a class="reference external" href="https://github.com/ggreer/the_silver_searcher">the silver
 searcher</a> to check
-for your username in your source tree.</li>
-<li>Enjoy your success.</li>
+for your username in your source tree.</p></li>
+<li><p>Enjoy your success.</p></li>
 </ol>
 <p><strong>Note:</strong> <code class="docutils literal notranslate"><span class="pre">iwyu</span></code> outputs to <code class="docutils literal notranslate"><span class="pre">stderr</span></code> and always returns a failure
 status code since it generates no output. The output stream also affects
 <code class="docutils literal notranslate"><span class="pre">iwyu_tool.py</span></code></p>
-</div>
-<div class="section" id="network-related-tools">
+</section>
+<section id="network-related-tools">
 <h2><a class="toc-backref" href="#id11">Network Related Tools</a><a class="headerlink" href="#network-related-tools" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="wireshark">
+<section id="wireshark">
 <h3><a class="toc-backref" href="#id12">Wireshark</a><a class="headerlink" href="#wireshark" title="Permalink to this headline">¶</a></h3>
 <p>Linux distros should have this in their repositories. For other platforms download it from <a class="reference external" href="https://www.wireshark.org">https://www.wireshark.org</a>.</p>
 <p>Cross-platform tool for inspecting network packets. This is useful to troubleshoot many different types of
 network-related problems.</p>
-</div>
-<div class="section" id="wonder-shaper">
+</section>
+<section id="wonder-shaper">
 <h3><a class="toc-backref" href="#id13">Wonder Shaper</a><a class="headerlink" href="#wonder-shaper" title="Permalink to this headline">¶</a></h3>
 <p>Linux only. Install it from your distro’s repository.</p>
 <p>Wonder Shaper allows the user to limit the bandwidth of one or more network adapters. This is useful for debugging
 issues when a network interface is still active but very slow. More details can be found at <a class="reference external" href="http://xmodulo.com/limit-network-bandwidth-linux.html">http://xmodulo.com/limit-network-bandwidth-linux.html</a>.</p>
-</div>
-</div>
-<div class="section" id="convert-wiki-docs-to-sphinx">
+</section>
+</section>
+<section id="convert-wiki-docs-to-sphinx">
 <h2><a class="toc-backref" href="#id14">Convert Wiki Docs to Sphinx</a><a class="headerlink" href="#convert-wiki-docs-to-sphinx" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">wiki2rst</span></code> reads in mediawiki formatted webpages and converts them to <code class="docutils literal notranslate"><span class="pre">.rst</span></code> files, for use
 in <code class="docutils literal notranslate"><span class="pre">Sphinx</span></code>. The code attempts to take all images and internal links and re-create the
 documentation structure in the <code class="docutils literal notranslate"><span class="pre">Sphinx</span></code> format.</p>
-<div class="section" id="use">
+<section id="use">
 <h3><a class="toc-backref" href="#id15">Use</a><a class="headerlink" href="#use" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Having added <code class="docutils literal notranslate"><span class="pre">mantid</span></code> to your Python path <code class="docutils literal notranslate"><span class="pre">wiki2rst</span></code> is run by:</li>
+<li><p>Having added <code class="docutils literal notranslate"><span class="pre">mantid</span></code> to your Python path <code class="docutils literal notranslate"><span class="pre">wiki2rst</span></code> is run by:</p></li>
 </ul>
-<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">wiki2rst</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">o</span> <span class="o">&lt;</span><span class="n">output_file</span><span class="o">.</span><span class="n">rst</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">url_extension</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">wiki2rst</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">o</span> <span class="o">&lt;</span><span class="n">output_file</span><span class="o">.</span><span class="n">rst</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">url_extension</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <ul class="simple">
-<li>The <code class="docutils literal notranslate"><span class="pre">&lt;url_extension&gt;</span></code> is the part of the url after the main address (<code class="docutils literal notranslate"><span class="pre">https://www.mantidproject.org/</span></code>).</li>
-<li><dl class="first docutils">
-<dt>There are several additional options:</dt>
-<dd><ul class="first last">
-<li><code class="docutils literal notranslate"><span class="pre">--index_url</span></code> change the name of the main url address</li>
-<li><code class="docutils literal notranslate"><span class="pre">--images-dir</span></code> set a relative location for the images directory</li>
-<li><code class="docutils literal notranslate"><span class="pre">--ref-link</span></code> give a reference link</li>
-<li><code class="docutils literal notranslate"><span class="pre">--ref-link-prefix</span></code> give a link prefix</li>
-<li><code class="docutils literal notranslate"><span class="pre">--add_handle</span></code> add a handle for linking to the page</li>
-<li><code class="docutils literal notranslate"><span class="pre">--page_handle</span></code> the page handle to use [default page name]</li>
-<li><code class="docutils literal notranslate"><span class="pre">--add_heading</span></code> add a heading to the page (uses the page name)</li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">&lt;url_extension&gt;</span></code> is the part of the url after the main address (<code class="docutils literal notranslate"><span class="pre">https://www.mantidproject.org/</span></code>).</p></li>
+<li><dl class="simple">
+<dt>There are several additional options:</dt><dd><ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">--index_url</span></code> change the name of the main url address</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--images-dir</span></code> set a relative location for the images directory</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--ref-link</span></code> give a reference link</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--ref-link-prefix</span></code> give a link prefix</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--add_handle</span></code> add a handle for linking to the page</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--page_handle</span></code> the page handle to use [default page name]</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--add_heading</span></code> add a heading to the page (uses the page name)</p></li>
 </ul>
 </dd>
 </dl>
 </li>
 </ul>
-</div>
-</div>
-<div class="section" id="clang-tidy">
+</section>
+</section>
+<section id="clang-tidy">
 <h2><a class="toc-backref" href="#id16">Clang-tidy</a><a class="headerlink" href="#clang-tidy" title="Permalink to this headline">¶</a></h2>
 <p>Clang-tidy is a set of tools which allows a developer to detect and fix code which does not follow current best practices,
 such as unused parameters or not using range-based for loops. Primarily this is used for modernising C++ code.</p>
 <p>The full list of clang-tidy checks can be seen <a class="reference external" href="https://clang.llvm.org/extra/clang-tidy/checks/list.html">here</a>.</p>
-<div class="section" id="installing">
+<section id="installing">
 <h3><a class="toc-backref" href="#id17">Installing</a><a class="headerlink" href="#installing" title="Permalink to this headline">¶</a></h3>
 <p>Mantid does not come packaged with clang-tidy; each developer must download it themselves. Windows users can utilise clang-tidy support for Visual Studio.
 For other operating systems, Mantid provides clang-tidy functionality through cmake.</p>
 <ul class="simple">
-<li><strong>Ubuntu</strong>: Run <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">clang-tidy</span></code> in the command line.</li>
-<li><strong>Windows</strong>: Download the <a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=caphyon.ClangPowerTools">Visual Studio extension</a>. Windows can operate clang-tidy from Visual Studio alone and so do not need to touch cmake.</li>
+<li><p><strong>Ubuntu</strong>: Run <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">clang-tidy</span></code> in the command line.</p></li>
+<li><p><strong>Windows</strong>: Download the <a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=caphyon.ClangPowerTools">Visual Studio extension</a>. Windows can operate clang-tidy from Visual Studio alone and so do not need to touch cmake.</p></li>
 </ul>
 <p>For non-Ubuntu systems, download the latest clang-tidy <a class="reference external" href="http://releases.llvm.org/download.html">pre-compiled binary</a>. Windows users should add to path when prompted.</p>
-</div>
-<div class="section" id="visual-studio">
+</section>
+<section id="visual-studio">
 <h3><a class="toc-backref" href="#id18">Visual Studio</a><a class="headerlink" href="#visual-studio" title="Permalink to this headline">¶</a></h3>
 <p>Once you have installed the clang-tidy extension, Visual Studio will have additional options under <code class="docutils literal notranslate"><span class="pre">Tools</span> <span class="pre">-&gt;</span> <span class="pre">Options</span> <span class="pre">-&gt;</span> <span class="pre">Clang</span> <span class="pre">Power</span> <span class="pre">Tools</span></code>.
 Here you can select which checks to run via a checkbox or by supplying a custom check string. For example:</p>
@@ -323,22 +327,22 @@ Other settings <em>should</em> not require alteration for clang-tidy to work.</p
 <p>To run clang-tidy, right click on a target and highlight <code class="docutils literal notranslate"><span class="pre">Clang</span> <span class="pre">Power</span> <span class="pre">Tools</span></code>. You will have a number of options. <code class="docutils literal notranslate"><span class="pre">Tidy</span></code> will highlight code which fails one of the checks, whereas
 <code class="docutils literal notranslate"><span class="pre">Tidy</span> <span class="pre">fix</span></code> will automatically change your code.</p>
 <p><em>Note: clang-tidy does not work on</em> <strong>ALL BUILD</strong> <em>so it is necessary to select a subtarget.</em></p>
-</div>
-<div class="section" id="cmake">
+</section>
+<section id="cmake">
 <h3><a class="toc-backref" href="#id19">Cmake</a><a class="headerlink" href="#cmake" title="Permalink to this headline">¶</a></h3>
 <p>In the cmake gui, find the <code class="docutils literal notranslate"><span class="pre">CLANG_TIDY_EXE</span></code> parameter. If you are a non-Linux developer, you may have to manually point to your clang-tidy install.
 Configure, and check the cmake log for the message <cite>clang-tidy found</cite>. If the <cite>clang-tidy not found</cite> warning was posted instead then it has not worked.</p>
 <p>Once you have clang-tidy, there are several relevant parameters you will want to change:</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">ENABLE_CLANG_TIDY</span></code> will turn on clang-tidy support.</li>
-<li><code class="docutils literal notranslate"><span class="pre">CLANG_TIDY_CHECKS</span></code> is a semi-colon separated list of checks for clang-tidy to carry out. This defaults to all <code class="docutils literal notranslate"><span class="pre">modernize-</span></code> checks.</li>
-<li><code class="docutils literal notranslate"><span class="pre">APPLY_CLANG_TIDY_FIX</span></code> will automatically change the code whenever a check has returned a result. The behaviour of <code class="docutils literal notranslate"><span class="pre">ENABLE_CLANG_TIDY</span></code> without this checked is to highlight issues only.</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ENABLE_CLANG_TIDY</span></code> will turn on clang-tidy support.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CLANG_TIDY_CHECKS</span></code> is a semi-colon separated list of checks for clang-tidy to carry out. This defaults to all <code class="docutils literal notranslate"><span class="pre">modernize-</span></code> checks.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">APPLY_CLANG_TIDY_FIX</span></code> will automatically change the code whenever a check has returned a result. The behaviour of <code class="docutils literal notranslate"><span class="pre">ENABLE_CLANG_TIDY</span></code> without this checked is to highlight issues only.</p></li>
 </ul>
 <p>Configure the build to check that your selected options are reflected in <code class="docutils literal notranslate"><span class="pre">CMAKE_CXX_CLANG_TIDY</span></code>, and then generate.
 When you next build, clang-tidy will perform the selected checks on the code included in the target.</p>
 <p><em>Note: There is a known issue that clang-tidy is only being applied to certain directories within</em> <code class="docutils literal notranslate"><span class="pre">Framework</span></code> <em>and</em> <code class="docutils literal notranslate"><span class="pre">Mantidplot</span></code>.</p>
-</div>
-<div class="section" id="options">
+</section>
+<section id="options">
 <h3><a class="toc-backref" href="#id20">Options</a><a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h3>
 <p>Some clang-tidy checks have optional arguments. For example, <code class="docutils literal notranslate"><span class="pre">modernize-loop-convert</span></code>, which changes loops to range-based,
 assigns a riskiness to each loop and can accept a <code class="docutils literal notranslate"><span class="pre">MinConfidence</span></code> argument to determine which risk levels to address.</p>
@@ -351,9 +355,9 @@ To add optional arguments, add the following onto the end of <code class="docuti
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">;</span><span class="o">-</span><span class="n">config</span><span class="o">=</span><span class="p">{</span><span class="n">CheckOptions</span><span class="p">:</span> <span class="p">[</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">modernize</span><span class="o">-</span><span class="n">loop</span><span class="o">-</span><span class="n">convert</span><span class="o">.</span><span class="n">MinConfidence</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">risky</span><span class="p">}</span> <span class="p">]}</span>
 </pre></div>
 </div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
     </div>

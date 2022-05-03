@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Profiling Overview</title>
-    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Profiling with Valgrind" href="ProfilingWithValgrind.html" />
@@ -87,78 +87,79 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <div class="section" id="profiling-overview">
+  <section id="profiling-overview">
 <span id="profilingoverview"></span><h1>Profiling Overview<a class="headerlink" href="#profiling-overview" title="Permalink to this headline">¶</a></h1>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><a class="reference internal" href="#profiling-with-valgrind" id="id1">Profiling with Valgrind</a></li>
-<li><a class="reference internal" href="#profiling-with-cprofile" id="id2">Profiling with cProfile</a></li>
-<li><a class="reference internal" href="#profiling-with-yappi" id="id3">Profiling with Yappi</a></li>
-<li><a class="reference internal" href="#profiling-an-algorithm" id="id4">Profiling an algorithm</a></li>
-<li><a class="reference internal" href="#other-profiling-tools" id="id5">Other Profiling Tools</a><ul>
-<li><a class="reference internal" href="#linux" id="id6">Linux</a></li>
-<li><a class="reference internal" href="#windows" id="id7">Windows</a></li>
+<li><p><a class="reference internal" href="#profiling-with-valgrind" id="id1">Profiling with Valgrind</a></p></li>
+<li><p><a class="reference internal" href="#profiling-with-cprofile" id="id2">Profiling with cProfile</a></p></li>
+<li><p><a class="reference internal" href="#profiling-with-yappi" id="id3">Profiling with Yappi</a></p></li>
+<li><p><a class="reference internal" href="#profiling-an-algorithm" id="id4">Profiling an algorithm</a></p></li>
+<li><p><a class="reference internal" href="#other-profiling-tools" id="id5">Other Profiling Tools</a></p>
+<ul>
+<li><p><a class="reference internal" href="#linux" id="id6">Linux</a></p></li>
+<li><p><a class="reference internal" href="#windows" id="id7">Windows</a></p></li>
 </ul>
 </li>
 </ul>
 </div>
 <p>Profiling can mean a few different things, so here are the current ways!</p>
-<div class="section" id="profiling-with-valgrind">
+<section id="profiling-with-valgrind">
 <h2><a class="toc-backref" href="#id1">Profiling with Valgrind</a><a class="headerlink" href="#profiling-with-valgrind" title="Permalink to this headline">¶</a></h2>
 <p>This option is Linux only. See <a class="reference internal" href="ProfilingWithValgrind.html"><span class="doc">Profiling with Valgrind</span></a> for details.</p>
-</div>
-<div class="section" id="profiling-with-cprofile">
+</section>
+<section id="profiling-with-cprofile">
 <h2><a class="toc-backref" href="#id2">Profiling with cProfile</a><a class="headerlink" href="#profiling-with-cprofile" title="Permalink to this headline">¶</a></h2>
 <p>Mantid supports profiling of its underlying code using the <a class="reference external" href="https://docs.python.org/3/library/profile.html">cProfile</a> module from python.</p>
 <p>Launch Mantid Workbench from the command line using the script in the installation folder, adding the <code class="docutils literal notranslate"><span class="pre">--profile</span></code> modifier with a path to the output file.</p>
 <p>E.g: <code class="docutils literal notranslate"><span class="pre">path/to/install/bin/workbench</span> <span class="pre">--profile</span> <span class="pre">path/to/outputFile.prof</span></code></p>
 <p>This profile can then either be sent to the developers upon request or be analysed using the python module <a class="reference external" href="https://pypi.org/project/snakeviz/">snakeviz</a>.</p>
-</div>
-<div class="section" id="profiling-with-yappi">
+</section>
+<section id="profiling-with-yappi">
 <h2><a class="toc-backref" href="#id3">Profiling with Yappi</a><a class="headerlink" href="#profiling-with-yappi" title="Permalink to this headline">¶</a></h2>
 <p>cProfile can only profile the current thread, this makes it useful for diagnosing PyQt performance issues (such as random hangs when a user does something), but poor for diagnosing workflow algorithm issues.</p>
 <p><a class="reference external" href="https://pypi.org/project/yappi/">Yappi (Yet Another Python Profiler)</a> is multithreading aware. cProfile which will show everything up to the exec, or run call. Yappi will profile the thread and show any slow points within the separate thread.</p>
 <p><em>Note: This will not with QThreads and may crash or be unable to profile inside. It is recommended you migrate workers by inheriting from IQtAsync, see async_qt_adaptor.py for details.  Using native threading enables tooling, makes testing simple and produces readable stack traces.</em></p>
 <p>To use Yappi instead of cProfile simple append <cite>–yappi</cite> to the list of arguments after profile, e.g.:</p>
-<div class="code shell highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># If you do not have yappi installed</span>
-<span class="n">python3</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">yappi</span> <span class="o">--</span><span class="n">user</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># If you do not have yappi installed</span>
+python3 -m pip install yappi --user
 <span class="c1"># Run with Yappi profiler</span>
-<span class="o">./</span><span class="n">MantidWorkbench</span> <span class="o">--</span><span class="n">profile</span> <span class="n">name_of_profile</span><span class="o">.</span><span class="n">out</span> <span class="o">--</span><span class="n">yappi</span>
+./MantidWorkbench --profile name_of_profile.out --yappi
 </pre></div>
 </div>
 <p>KCachegrind can be used to view profiling data, see <a class="reference internal" href="ProfilingWithValgrind.html"><span class="doc">Profiling with Valgrind</span></a> for more details on usage.</p>
-</div>
-<div class="section" id="profiling-an-algorithm">
+</section>
+<section id="profiling-an-algorithm">
 <h2><a class="toc-backref" href="#id4">Profiling an algorithm</a><a class="headerlink" href="#profiling-an-algorithm" title="Permalink to this headline">¶</a></h2>
 <p>On Linux, the build can be configured to generate algorithm profiling information. See <a class="reference internal" href="AlgorithmProfiler.html"><span class="doc">AlgorithmProfiler</span></a> for details.</p>
-</div>
-<div class="section" id="other-profiling-tools">
+</section>
+<section id="other-profiling-tools">
 <h2><a class="toc-backref" href="#id5">Other Profiling Tools</a><a class="headerlink" href="#other-profiling-tools" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="linux">
+<section id="linux">
 <span id="linux-1"></span><h3><a class="toc-backref" href="#id6">Linux</a><a class="headerlink" href="#linux" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="http://kcachegrind.sourceforge.net/cgi-bin/show.cgi/KcacheGrindIndex">Callgrind/KCachegrind</a></p>
 <ul class="simple">
-<li>KCachegrind visualizes callgrind output.</li>
-<li>See <a class="reference internal" href="ProfilingWithValgrind.html#profilingwithvalgrind"><span class="std std-ref">Profiling With Valgrind</span></a> for help on
-running callgrind</li>
+<li><p>KCachegrind visualizes callgrind output.</p></li>
+<li><p>See <a class="reference internal" href="ProfilingWithValgrind.html#profilingwithvalgrind"><span class="std std-ref">Profiling With Valgrind</span></a> for help on
+running callgrind</p></li>
 </ul>
 <p><a class="reference external" href="https://github.com/gperftools/gperftools">gperftools</a></p>
 <ul class="simple">
-<li>Takes snapshot of run and prints percentage of calls in functions</li>
+<li><p>Takes snapshot of run and prints percentage of calls in functions</p></li>
 </ul>
 <p>See here for a list of other tools:
 <a class="reference external" href="http://www.pixelbeat.org/programming/profiling/">http://www.pixelbeat.org/programming/profiling/</a></p>
-</div>
-<div class="section" id="windows">
+</section>
+<section id="windows">
 <span id="windows-1"></span><h3><a class="toc-backref" href="#id7">Windows</a><a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="http://www.codersnotes.com/sleepy/">Very Sleepy</a>:</p>
 <ul class="simple">
-<li>Start/stop recording of program using a button</li>
-<li>Not as detailed or flexible as callgrind</li>
+<li><p>Start/stop recording of program using a button</p></li>
+<li><p>Not as detailed or flexible as callgrind</p></li>
 </ul>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
     </div>

@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Multithreading in Mantid</title>
-    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
 
@@ -85,9 +85,9 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <div class="section" id="multithreading-in-mantid">
+  <section id="multithreading-in-mantid">
 <h1>Multithreading in Mantid<a class="headerlink" href="#multithreading-in-mantid" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="c">
+<section id="c">
 <h2>C++<a class="headerlink" href="#c" title="Permalink to this headline">¶</a></h2>
 <p>Mantid uses <a class="reference external" href="http://openmp.org/wp/about-openmp/">OpenMP</a> in C++ to improve
 performance by parallelizing <code class="docutils literal notranslate"><span class="pre">for</span></code> loops. A tutorial devoted to the technology can be found
@@ -99,16 +99,16 @@ compilers that don’t have OpenMP available, as well as providing
 protection against multithreading when non-thread-safe workspaces are in use.</p>
 <p>The recommended way to use OpenMP in an algorithm loop (typically
 one over the spectra in a workspace) is as follows:</p>
-<div class="code cpp highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PARALLEL_FOR_IF</span><span class="p">(</span><span class="n">Kernel</span><span class="p">::</span><span class="n">threadSafe</span><span class="p">(</span><span class="o">*</span><span class="n">inputWS</span><span class="p">,</span> <span class="o">*</span><span class="n">outputWS</span><span class="p">))</span>
-<span class="k">for</span> <span class="p">(</span><span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">numSpec</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="n">PARALLEL_START_INTERRUPT_REGION</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">PARALLEL_FOR_IF</span><span class="p">(</span><span class="n">Kernel</span><span class="o">::</span><span class="n">threadSafe</span><span class="p">(</span><span class="o">*</span><span class="n">inputWS</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">outputWS</span><span class="p">))</span><span class="w"></span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">numSpec</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">PARALLEL_START_INTERRUPT_REGION</span><span class="w"></span>
 
-  <span class="o">//</span> <span class="o">....</span> <span class="n">algorithm</span> <span class="n">code</span> <span class="o">....</span>
+<span class="w">  </span><span class="c1">// .... algorithm code ....</span>
 
-  <span class="n">PARALLEL_END_INTERRUPT_REGION</span>
-<span class="p">}</span>
-<span class="n">PARALLEL_CHECK_INTERRUPT_REGION</span>
+<span class="w">  </span><span class="n">PARALLEL_END_INTERRUPT_REGION</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="n">PARALLEL_CHECK_INTERRUPT_REGION</span><span class="w"></span>
 </pre></div>
 </div>
 <p>The main work is in the first statement, which contains the
@@ -123,38 +123,38 @@ algorithm cancellation.</p>
 <a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/Framework/Kernel/inc/MantidKernel/MultiThreaded.h">MultiThreaded.h</a>
 , you can make use of the general purpose <code class="docutils literal notranslate"><span class="pre">PRAGMA_OMP</span></code> macro. This is essentially the same as using <code class="docutils literal notranslate"><span class="pre">#pragma</span> <span class="pre">omp</span></code>
 directly. Ideally, this should only be used if what you want to do is not already covered by the other macros.</p>
-<div class="code cpp highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Dynamic</span> <span class="n">scheduling</span> <span class="n">allows</span> <span class="n">x</span> <span class="n">to</span> <span class="n">be</span> <span class="n">split</span> <span class="n">into</span> <span class="n">chunks</span> <span class="n">of</span> <span class="n">size</span> <span class="mi">1</span> <span class="n">processed</span> <span class="n">by</span> <span class="n">each</span> <span class="n">thread</span><span class="p">,</span>
-<span class="o">//</span> <span class="n">but</span> <span class="n">assigned</span> <span class="n">to</span> <span class="n">threads</span> <span class="ow">in</span> <span class="n">no</span> <span class="n">particular</span> <span class="n">order</span><span class="o">.</span>
-<span class="n">PRAGMA_OMP</span><span class="p">(</span><span class="n">parallel</span> <span class="k">for</span> <span class="n">schedule</span><span class="p">(</span><span class="n">dynamic</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
-<span class="k">for</span> <span class="p">(</span><span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">doThing</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-<span class="p">}</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Dynamic scheduling allows x to be split into chunks of size 1 processed by each thread,</span>
+<span class="c1">// but assigned to threads in no particular order.</span>
+<span class="n">PRAGMA_OMP</span><span class="p">(</span><span class="n">parallel</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">schedule</span><span class="p">(</span><span class="n">dynamic</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span><span class="w"></span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">doThing</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Note: The set of <code class="docutils literal notranslate"><span class="pre">INTERRUPT</span></code> macros can only be used in Mantid algorithms. The rest can be used anywhere.</p>
-<div class="section" id="ensuring-thread-safety">
+<section id="ensuring-thread-safety">
 <h3>Ensuring thread-safety<a class="headerlink" href="#ensuring-thread-safety" title="Permalink to this headline">¶</a></h3>
 <p>The first rule is this: <strong>Don’t write to shared variables.</strong> Or, if you
 do, protect the write with PARALLEL_CRITICAL or PARALLEL_ATOMIC calls.</p>
-<div class="code cpp highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Can</span> <span class="n">only</span> <span class="n">be</span> <span class="n">used</span> <span class="n">on</span> <span class="n">simple</span> <span class="n">operations</span><span class="p">,</span> <span class="n">uses</span> <span class="n">atomic</span> <span class="n">access</span> <span class="kn">from</span> <span class="nn">machine</span> <span class="n">hardware</span><span class="o">.</span>
-<span class="n">PARALLEL_ATOMIC</span>
-<span class="n">a</span><span class="o">++</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Can only be used on simple operations, uses atomic access from machine hardware.</span>
+<span class="n">PARALLEL_ATOMIC</span><span class="w"></span>
+<span class="n">a</span><span class="o">++</span><span class="w"></span>
 
-<span class="o">//</span> <span class="n">Can</span> <span class="n">be</span> <span class="n">used</span> <span class="n">anywhere</span><span class="p">,</span> <span class="n">but</span> <span class="n">has</span> <span class="n">a</span> <span class="n">higher</span> <span class="n">overhead</span><span class="o">.</span>
-<span class="o">//</span> <span class="n">Can</span> <span class="n">be</span> <span class="n">named</span> <span class="k">if</span> <span class="n">two</span> <span class="n">critical</span> <span class="n">sections</span> <span class="n">can</span> <span class="n">be</span> <span class="n">accessed</span> <span class="n">simultaneously</span><span class="o">.</span>
-<span class="n">PARALLEL_CRITICAL</span><span class="p">(</span><span class="s2">&quot;C1&quot;</span><span class="p">)</span>
-<span class="k">if</span><span class="p">(</span><span class="n">a</span> <span class="o">&gt;</span> <span class="mi">4</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">b</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
-<span class="p">}</span>
+<span class="c1">// Can be used anywhere, but has a higher overhead.</span>
+<span class="c1">// Can be named if two critical sections can be accessed simultaneously.</span>
+<span class="n">PARALLEL_CRITICAL</span><span class="p">(</span><span class="s">&quot;C1&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">b</span><span class="p">.</span><span class="n">update</span><span class="p">()</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Note that a write to a workspace data spectrum selected by the loop
 index is not typically a shared write (though see below).</p>
 <p>One gotcha comes from the use of copy-on-write pointers to store the
 workspace data. Here’s an example:</p>
-<div class="code cpp highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Get</span> <span class="n">references</span> <span class="n">to</span> <span class="n">the</span> <span class="n">x</span> <span class="n">data</span>
-<span class="n">const</span> <span class="n">auto</span><span class="o">&amp;</span> <span class="n">xIn</span> <span class="o">=</span> <span class="n">inputWS</span><span class="o">-&gt;</span><span class="n">x</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
-<span class="n">auto</span><span class="o">&amp;</span> <span class="n">xOut</span> <span class="o">=</span> <span class="n">outputWS</span><span class="o">-&gt;</span><span class="n">mutableX</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Get references to the x data</span>
+<span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">xIn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">inputWS</span><span class="o">-&gt;</span><span class="n">x</span><span class="p">(</span><span class="n">i</span><span class="p">);</span><span class="w"></span>
+<span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">xOut</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">outputWS</span><span class="o">-&gt;</span><span class="n">mutableX</span><span class="p">(</span><span class="n">i</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 <p>This can cause problems in the case where the input and output
@@ -165,14 +165,14 @@ call will cause the array to be copied, which will invalidate the
 reference obtained to the input data in the previous line. The solution
 is to make sure the non-const calls come before the const ones (in this
 case by reversing the two lines).</p>
-</div>
-</div>
-<div class="section" id="python">
+</section>
+</section>
+<section id="python">
 <h2>Python<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h2>
 <p>Tasks in python can be run outside of the main GUI thread by using the classes and functions defined in
 <a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/qt/python/mantidqt/mantidqt/utils/asynchronous.py">asynchronous.py</a></p>
 <p>The simplest and most commonly used one is <code class="docutils literal notranslate"><span class="pre">AsyncTask</span></code>:</p>
-<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">worker</span> <span class="o">=</span> <span class="n">AsyncTask</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">to_be_run</span><span class="p">,</span> <span class="p">(</span><span class="n">param_1</span><span class="p">,</span> <span class="n">param_2</span><span class="p">),</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">worker</span> <span class="o">=</span> <span class="n">AsyncTask</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">to_be_run</span><span class="p">,</span> <span class="p">(</span><span class="n">param_1</span><span class="p">,</span> <span class="n">param_2</span><span class="p">),</span>
                         <span class="n">error_cb</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_on_worker_error</span><span class="p">,</span>
                         <span class="n">finished_cb</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_on_worker_success</span><span class="p">)</span>
 <span class="bp">self</span><span class="o">.</span><span class="n">worker</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
@@ -182,8 +182,8 @@ case by reversing the two lines).</p>
 <a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/qt/python/mantidqt/mantidqt/utils/async_qt_adaptor.py">async_qt_adaptor.py</a></p>
 <p>The methods you wish to run asynchronously must be inside a class that inherits from <code class="docutils literal notranslate"><span class="pre">IQtAsync</span></code>.
 You can then overwrite any of the relevant callbacks and annotate async methods with the <code class="docutils literal notranslate"><span class="pre">&#64;qt_async_task</span></code> decorator.</p>
-<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">DoesAsyncThings</span><span class="p">(</span><span class="n">IQtAsync</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">DoesAsyncThings</span><span class="p">(</span><span class="n">IQtAsync</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">finished_cb_slot</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -197,8 +197,8 @@ You can then overwrite any of the relevant callbacks and annotate async methods 
 <p>Note: These methods are only useful for stopping mantid from hanging while something else is processing.
 Due to the nature of the Global Interpreter Lock (GIL), it is not possible to run concurrent threads in python.
 For heavy lifting that would require multithreading you should use C++ instead.</p>
-</div>
-</div>
+</section>
+</section>
 
 
     </div>

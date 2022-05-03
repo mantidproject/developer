@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Job Tree View</title>
-    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Find Subtree Roots" href="../Internals/FindSubtreeRoots.html" />
@@ -87,7 +87,7 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <div class="section" id="job-tree-view">
+  <section id="job-tree-view">
 <span id="jobtreeview"></span><h1>Job Tree View<a class="headerlink" href="#job-tree-view" title="Permalink to this headline">¶</a></h1>
 <p>The <code class="code docutils literal notranslate"><span class="pre">JobTreeView</span></code> component provides an MVP style view interface for a hierarchical table
 with a spreadsheet-like appearance for configuring and indicating the status of multiple (batch)
@@ -100,7 +100,7 @@ examples below.</p>
 <span class="c1">#   NScD Oak Ridge National Laboratory, European Spallation Source,</span>
 <span class="c1">#   Institut Laue - Langevin &amp; CSNS, Institute of High Energy Physics, CAS</span>
 <span class="c1"># SPDX - License - Identifier: GPL - 3.0 +</span>
-<span class="kn">from</span> <span class="nn">mantidqtpython</span> <span class="k">import</span> <span class="n">MantidQt</span>
+<span class="kn">from</span> <span class="nn">mantidqtpython</span> <span class="kn">import</span> <span class="n">MantidQt</span>
 
 
 <span class="c1"># Inside the parent view</span>
@@ -133,24 +133,24 @@ examples below.</p>
 <span class="c1">//   NScD Oak Ridge National Laboratory, European Spallation Source,</span>
 <span class="c1">//   Institut Laue - Langevin &amp; CSNS, Institute of High Energy Physics, CAS</span>
 <span class="c1">// SPDX - License - Identifier: GPL - 3.0 +</span>
-<span class="cp">#include</span> <span class="cpf">&quot;MantidQtWidgets/Common/Batch/JobTreeView.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;MantidQtWidgets/Common/Batch/JobTreeView.h&quot;</span><span class="cp"></span>
 
-<span class="k">using</span> <span class="k">namespace</span> <span class="n">MantidWidgets</span><span class="o">::</span><span class="n">Common</span><span class="o">::</span><span class="n">Batch</span><span class="p">;</span>
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">MantidWidgets</span><span class="o">::</span><span class="nn">Common</span><span class="o">::</span><span class="nn">Batch</span><span class="p">;</span><span class="w"></span>
 
 <span class="c1">// Inside the parent view constructor</span>
-<span class="n">m_treeView</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JobTreeView</span><span class="p">({</span><span class="s">&quot;Heading 1&quot;</span><span class="p">,</span> <span class="s">&quot;Heading 2&quot;</span><span class="p">},</span> <span class="c1">// The table column headings.</span>
-                             <span class="n">Cell</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">),</span>                   <span class="c1">// The default style and content for the new &#39;empty&#39; cells.</span>
-                             <span class="k">this</span>                        <span class="c1">// The parent QObject</span>
-<span class="p">);</span>
-<span class="n">m_treeViewSignals</span> <span class="o">=</span> <span class="c1">// JobTreeViewSignalAdapter is also available from C++</span>
-                    <span class="c1">// Constructing a signal adapter with the view implicitly calls subscribe.</span>
-    <span class="k">new</span> <span class="n">JobTreeViewSignalAdapter</span><span class="p">(</span><span class="o">*</span><span class="n">m_treeView</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
-<span class="n">m_treeView</span><span class="o">-&gt;</span><span class="n">appendChildRowOf</span><span class="p">(</span><span class="n">RowLocation</span><span class="p">(),</span> <span class="p">{</span><span class="n">Cell</span><span class="p">(</span><span class="s">&quot;Value for Column A&quot;</span><span class="p">),</span> <span class="n">Cell</span><span class="p">(</span><span class="s">&quot;Value for Column B&quot;</span><span class="p">)})</span>
+<span class="n">m_treeView</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JobTreeView</span><span class="p">({</span><span class="s">&quot;Heading 1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Heading 2&quot;</span><span class="p">},</span><span class="w"> </span><span class="c1">// The table column headings.</span>
+<span class="w">                             </span><span class="n">Cell</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">),</span><span class="w">                   </span><span class="c1">// The default style and content for the new &#39;empty&#39; cells.</span>
+<span class="w">                             </span><span class="k">this</span><span class="w">                        </span><span class="c1">// The parent QObject</span>
+<span class="p">);</span><span class="w"></span>
+<span class="n">m_treeViewSignals</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="c1">// JobTreeViewSignalAdapter is also available from C++</span>
+<span class="w">                    </span><span class="c1">// Constructing a signal adapter with the view implicitly calls subscribe.</span>
+<span class="w">    </span><span class="k">new</span><span class="w"> </span><span class="n">JobTreeViewSignalAdapter</span><span class="p">(</span><span class="o">*</span><span class="n">m_treeView</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">);</span><span class="w"></span>
+<span class="n">m_treeView</span><span class="o">-&gt;</span><span class="n">appendChildRowOf</span><span class="p">(</span><span class="n">RowLocation</span><span class="p">(),</span><span class="w"> </span><span class="p">{</span><span class="n">Cell</span><span class="p">(</span><span class="s">&quot;Value for Column A&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">Cell</span><span class="p">(</span><span class="s">&quot;Value for Column B&quot;</span><span class="p">)})</span><span class="w"></span>
 </pre></div>
 </div>
-<div class="section" id="api-concepts">
+<section id="api-concepts">
 <h2>API Concepts<a class="headerlink" href="#api-concepts" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="row-location">
+<section id="row-location">
 <h3>Row Location<a class="headerlink" href="#row-location" title="Permalink to this headline">¶</a></h3>
 <p>A row location is the notion of an individual row’s position within the table. Since the
 table is hierarchical, unlike a traditional spreadsheet, the table is more like a
@@ -162,39 +162,38 @@ this is actualised in the <code class="code docutils literal notranslate"><span 
 each element represents the index of the next node in the path relative to it’s predecessor in the
 path. An example table and corresponding tree structure are illustrated in the diagram below
 (complete with their paths).</p>
-<a class="reference internal image-reference" href="../../_images/row_location_path.svg"><div align="center" class="align-center"><img alt="../../_images/row_location_path.svg" src="../../_images/row_location_path.svg" width="800px" /></div>
-</a>
+<a class="reference internal image-reference" href="../../_images/row_location_path.svg"><img alt="../../_images/row_location_path.svg" class="align-center" src="../../_images/row_location_path.svg" width="800px" /></a>
 <p>Equality over <code class="code docutils literal notranslate"><span class="pre">RowLocation</span></code> objects is based on the equality of their paths. The other relational
 operators have a definition based on a lexicographical comparison such that sorting a range of
 <code class="code docutils literal notranslate"><span class="pre">RowLocation</span></code>s puts them in the same order as they would appear in the table. This is
 demonstrated by the code below.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span> <span class="n">items</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">RowLocation</span><span class="o">&gt;</span><span class="p">({</span>
-  <span class="n">RowLocation</span><span class="p">({</span><span class="mi">2</span><span class="p">}),</span>
-  <span class="n">RowLocation</span><span class="p">({</span><span class="mi">0</span><span class="p">}),</span>
-  <span class="n">RowLocation</span><span class="p">({</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">}),</span>
-  <span class="n">RowLocation</span><span class="p">({</span><span class="mi">1</span><span class="p">})</span>
-<span class="p">});</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span><span class="w"> </span><span class="n">items</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">RowLocation</span><span class="o">&gt;</span><span class="p">({</span><span class="w"></span>
+<span class="w">  </span><span class="n">RowLocation</span><span class="p">({</span><span class="mi">2</span><span class="p">}),</span><span class="w"></span>
+<span class="w">  </span><span class="n">RowLocation</span><span class="p">({</span><span class="mi">0</span><span class="p">}),</span><span class="w"></span>
+<span class="w">  </span><span class="n">RowLocation</span><span class="p">({</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">}),</span><span class="w"></span>
+<span class="w">  </span><span class="n">RowLocation</span><span class="p">({</span><span class="mi">1</span><span class="p">})</span><span class="w"></span>
+<span class="p">});</span><span class="w"></span>
 
-<span class="n">std</span><span class="o">::</span><span class="n">sort</span><span class="p">(</span><span class="n">items</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">items</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+<span class="n">std</span><span class="o">::</span><span class="n">sort</span><span class="p">(</span><span class="n">items</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">items</span><span class="p">.</span><span class="n">end</span><span class="p">());</span><span class="w"></span>
 
-<span class="k">auto</span> <span class="n">expectedItems</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">RowLocation</span><span class="o">&gt;</span><span class="p">({</span>
-  <span class="n">RowLocation</span><span class="p">({</span><span class="mi">0</span><span class="p">}),</span>
-  <span class="n">RowLocation</span><span class="p">({</span><span class="mi">1</span><span class="p">}),</span>
-  <span class="n">RowLocation</span><span class="p">({</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">}),</span>
-  <span class="n">RowLocation</span><span class="p">({</span><span class="mi">2</span><span class="p">})</span>
-<span class="p">});</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">expectedItems</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">RowLocation</span><span class="o">&gt;</span><span class="p">({</span><span class="w"></span>
+<span class="w">  </span><span class="n">RowLocation</span><span class="p">({</span><span class="mi">0</span><span class="p">}),</span><span class="w"></span>
+<span class="w">  </span><span class="n">RowLocation</span><span class="p">({</span><span class="mi">1</span><span class="p">}),</span><span class="w"></span>
+<span class="w">  </span><span class="n">RowLocation</span><span class="p">({</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">}),</span><span class="w"></span>
+<span class="w">  </span><span class="n">RowLocation</span><span class="p">({</span><span class="mi">2</span><span class="p">})</span><span class="w"></span>
+<span class="p">});</span><span class="w"></span>
 
-<span class="n">assert</span><span class="p">(</span><span class="n">expectedItems</span> <span class="o">==</span> <span class="n">items</span><span class="p">);</span>
+<span class="n">assert</span><span class="p">(</span><span class="n">expectedItems</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">items</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
-<div class="section" id="dealing-with-cells">
+<section id="dealing-with-cells">
 <h4>Dealing With Cells<a class="headerlink" href="#dealing-with-cells" title="Permalink to this headline">¶</a></h4>
 <p>Each row in the table can have 0-N cells. When interacting with the <code class="code docutils literal notranslate"><span class="pre">JobTreeView</span></code> we
 sometimes need to be able to address and change the properties of an individual cell. To do this
 we use both a <code class="code docutils literal notranslate"><span class="pre">RowLocation</span></code> and a column index.</p>
-</div>
-</div>
-<div class="section" id="cells">
+</section>
+</section>
+<section id="cells">
 <h3>Cells<a class="headerlink" href="#cells" title="Permalink to this headline">¶</a></h3>
 <p>In order to retrieve the view properties for one or more specific cells, the methods <code class="code docutils literal notranslate"><span class="pre">cellAt</span></code>
 and <code class="code docutils literal notranslate"><span class="pre">cellsAt</span></code> can be used to retrieve <code class="code docutils literal notranslate"><span class="pre">Cell</span></code> objects for the cell at a row and column
@@ -211,7 +210,7 @@ the example code below.</p>
 <span class="c1">#   NScD Oak Ridge National Laboratory, European Spallation Source,</span>
 <span class="c1">#   Institut Laue - Langevin &amp; CSNS, Institute of High Energy Physics, CAS</span>
 <span class="c1"># SPDX - License - Identifier: GPL - 3.0 +</span>
-<span class="kn">from</span> <span class="nn">mantidqtpython</span> <span class="k">import</span> <span class="n">MantidQt</span>
+<span class="kn">from</span> <span class="nn">mantidqtpython</span> <span class="kn">import</span> <span class="n">MantidQt</span>
 
 
 <span class="c1"># Inside the parent view</span>
@@ -240,8 +239,8 @@ the example code below.</p>
     <span class="k">return</span> <span class="n">MantidQt</span><span class="o">.</span><span class="n">MantidWidgets</span><span class="o">.</span><span class="n">Batch</span><span class="o">.</span><span class="n">RowLocation</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="subtrees">
+</section>
+<section id="subtrees">
 <h3>Subtrees<a class="headerlink" href="#subtrees" title="Permalink to this headline">¶</a></h3>
 <p>As previously illustrated the conceptual model for the API is a tree of tables. Initially, this
 model presents some challenges when you think about how to represent a user’s selection while
@@ -252,13 +251,12 @@ paste.</p>
 a size greater than one, each node is directly connected to at least one other node in the set.
 An example of a set of nodes which meets this constraint and a set of nodes which do not are
 outlined in blue in the diagram below.</p>
-<a class="reference internal image-reference" href="../../_images/subtree.svg"><div align="center" class="align-center"><img alt="../../_images/subtree.svg" src="../../_images/subtree.svg" width="800px" /></div>
-</a>
+<a class="reference internal image-reference" href="../../_images/subtree.svg"><img alt="../../_images/subtree.svg" class="align-center" src="../../_images/subtree.svg" width="800px" /></a>
 <p>The <code class="code docutils literal notranslate"><span class="pre">Subtree</span></code> type used to represent this concept in the API is defined in the header
 <code class="code docutils literal notranslate"><span class="pre">Row.h</span></code>. Refer to the documentation for the component <a class="reference internal" href="../Internals/ExtractSubtrees.html"><span class="doc">Extract Subtrees</span></a> for more detail
 on the internal representation of a subtree in this API.</p>
-</div>
-<div class="section" id="notification">
+</section>
+<section id="notification">
 <h3>Notification<a class="headerlink" href="#notification" title="Permalink to this headline">¶</a></h3>
 <p><code class="code docutils literal notranslate"><span class="pre">JobTreeViewSubscriber</span></code> is the mechanism by which the JobTreeView communicates events such as
 key presses to the presenter in an MVP setup.</p>
@@ -268,34 +266,34 @@ key presses to the presenter in an MVP setup.</p>
 <span class="c1">//   NScD Oak Ridge National Laboratory, European Spallation Source,</span>
 <span class="c1">//   Institut Laue - Langevin &amp; CSNS, Institute of High Energy Physics, CAS</span>
 <span class="c1">// SPDX - License - Identifier: GPL - 3.0 +</span>
-<span class="cp">#include</span> <span class="cpf">&quot;MantidQtWidgets/Common/Batch/JobTreeView.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;MantidQtWidgets/Common/Batch/JobTreeView.h&quot;</span><span class="cp"></span>
 
-<span class="k">using</span> <span class="k">namespace</span> <span class="n">MantidWidgets</span><span class="o">::</span><span class="n">Common</span><span class="o">::</span><span class="n">Batch</span><span class="p">;</span>
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">MantidWidgets</span><span class="o">::</span><span class="nn">Common</span><span class="o">::</span><span class="nn">Batch</span><span class="p">;</span><span class="w"></span>
 
-<span class="k">class</span> <span class="nc">SimplePresenter</span> <span class="o">:</span> <span class="k">public</span> <span class="n">JobTreeViewSubscriber</span> <span class="p">{</span>
-<span class="k">public</span><span class="o">:</span>
-  <span class="n">SimplePresenter</span><span class="p">(</span><span class="n">JobTreeView</span> <span class="o">*</span><span class="n">view</span><span class="p">)</span> <span class="o">:</span> <span class="n">m_view</span><span class="p">(</span><span class="n">view</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">m_view</span><span class="o">-&gt;</span><span class="n">subscribe</span><span class="p">(</span><span class="k">this</span><span class="p">);</span> <span class="c1">// Since we aren&#39;t using signal adapter</span>
-                             <span class="c1">// we must remember the call to subscribe.</span>
-  <span class="p">}</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">SimplePresenter</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">JobTreeViewSubscriber</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="k">public</span><span class="o">:</span><span class="w"></span>
+<span class="w">  </span><span class="n">SimplePresenter</span><span class="p">(</span><span class="n">JobTreeView</span><span class="w"> </span><span class="o">*</span><span class="n">view</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">m_view</span><span class="p">(</span><span class="n">view</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">m_view</span><span class="o">-&gt;</span><span class="n">subscribe</span><span class="p">(</span><span class="k">this</span><span class="p">);</span><span class="w"> </span><span class="c1">// Since we aren&#39;t using signal adapter</span>
+<span class="w">                             </span><span class="c1">// we must remember the call to subscribe.</span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
 
-  <span class="kt">void</span> <span class="n">notifyCellChanged</span><span class="p">(</span><span class="n">RowLocation</span> <span class="k">const</span> <span class="o">&amp;</span><span class="n">itemIndex</span><span class="p">,</span> <span class="kt">int</span> <span class="n">column</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="k">const</span> <span class="o">&amp;</span><span class="n">newValue</span><span class="p">)</span> <span class="k">override</span> <span class="p">{}</span>
-  <span class="kt">void</span> <span class="n">notifyRowInserted</span><span class="p">(</span><span class="n">RowLocation</span> <span class="k">const</span> <span class="o">&amp;</span><span class="n">newRowLocation</span><span class="p">)</span> <span class="k">override</span> <span class="p">{}</span>
-  <span class="kt">void</span> <span class="n">notifyRemoveRowsRequested</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">RowLocation</span><span class="o">&gt;</span> <span class="k">const</span> <span class="o">&amp;</span><span class="n">locationsOfRowsToRemove</span><span class="p">)</span> <span class="k">override</span> <span class="p">{}</span>
-  <span class="kt">void</span> <span class="n">notifyCopyRowsRequested</span><span class="p">()</span> <span class="k">override</span> <span class="p">{}</span>
-  <span class="kt">void</span> <span class="n">notifyPasteRowsRequested</span><span class="p">()</span> <span class="k">override</span> <span class="p">{}</span>
-  <span class="kt">void</span> <span class="n">notifyFilterReset</span><span class="p">()</span> <span class="k">override</span> <span class="p">{}</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">notifyCellChanged</span><span class="p">(</span><span class="n">RowLocation</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">&amp;</span><span class="n">itemIndex</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">column</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">&amp;</span><span class="n">newValue</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">notifyRowInserted</span><span class="p">(</span><span class="n">RowLocation</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">&amp;</span><span class="n">newRowLocation</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">notifyRemoveRowsRequested</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">RowLocation</span><span class="o">&gt;</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">&amp;</span><span class="n">locationsOfRowsToRemove</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">notifyCopyRowsRequested</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">notifyPasteRowsRequested</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">notifyFilterReset</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
 
-<span class="k">private</span><span class="o">:</span>
-  <span class="n">JobTreeView</span> <span class="o">*</span><span class="n">m_view</span><span class="p">;</span>
-<span class="p">};</span>
+<span class="k">private</span><span class="o">:</span><span class="w"></span>
+<span class="w">  </span><span class="n">JobTreeView</span><span class="w"> </span><span class="o">*</span><span class="n">m_view</span><span class="p">;</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
 
 <span class="c1">// Elsewhere - Inside initialization</span>
-<span class="n">m_treeView</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JobTreeView</span><span class="p">({</span><span class="s">&quot;Heading 1&quot;</span><span class="p">,</span> <span class="s">&quot;Heading 2&quot;</span><span class="p">},</span> <span class="c1">// The table column headings.</span>
-                             <span class="n">Cell</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">),</span>                   <span class="c1">// The default style and content for the new &#39;empty&#39; cells.</span>
-                             <span class="k">this</span>                        <span class="c1">// The parent QObject</span>
-<span class="p">);</span>
-<span class="n">m_childPresenter</span> <span class="o">=</span> <span class="n">SimplePresenter</span><span class="p">(</span><span class="n">m_treeView</span><span class="p">);</span>
+<span class="n">m_treeView</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JobTreeView</span><span class="p">({</span><span class="s">&quot;Heading 1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Heading 2&quot;</span><span class="p">},</span><span class="w"> </span><span class="c1">// The table column headings.</span>
+<span class="w">                             </span><span class="n">Cell</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">),</span><span class="w">                   </span><span class="c1">// The default style and content for the new &#39;empty&#39; cells.</span>
+<span class="w">                             </span><span class="k">this</span><span class="w">                        </span><span class="c1">// The parent QObject</span>
+<span class="p">);</span><span class="w"></span>
+<span class="n">m_childPresenter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SimplePresenter</span><span class="p">(</span><span class="n">m_treeView</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 <p>This interface is also implemented by <code class="code docutils literal notranslate"><span class="pre">JobTreeViewSignalAdapter</span></code> which makes it easy to use
@@ -311,7 +309,7 @@ This is illustrated in the example below.</p>
 <span class="c1">#   NScD Oak Ridge National Laboratory, European Spallation Source,</span>
 <span class="c1">#   Institut Laue - Langevin &amp; CSNS, Institute of High Energy Physics, CAS</span>
 <span class="c1"># SPDX - License - Identifier: GPL - 3.0 +</span>
-<span class="kn">from</span> <span class="nn">mantidqtpython</span> <span class="k">import</span> <span class="n">MantidQt</span>
+<span class="kn">from</span> <span class="nn">mantidqtpython</span> <span class="kn">import</span> <span class="n">MantidQt</span>
 
 
 <span class="k">def</span> <span class="nf">empty_cell</span><span class="p">():</span>
@@ -340,12 +338,12 @@ This is illustrated in the example below.</p>
 <p>Other events (those who’s notification method name ends with <code class="code docutils literal notranslate"><span class="pre">Requested</span></code>) require the presenter
 to update the view and/or model and so the notification happens before the view has been updated.</p>
 <div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">After creating a <code class="code docutils literal notranslate"><span class="pre">JobTreeView</span></code> it is important to call the <code class="code docutils literal notranslate"><span class="pre">subscribe</span></code> method passing in
+<p class="admonition-title">Warning</p>
+<p>After creating a <code class="code docutils literal notranslate"><span class="pre">JobTreeView</span></code> it is important to call the <code class="code docutils literal notranslate"><span class="pre">subscribe</span></code> method passing in
 the subscriber prior to calling any other methods, failure to do so may result in undefined behavior.</p>
 </div>
-</div>
-<div class="section" id="filtering">
+</section>
+<section id="filtering">
 <h3>Filtering<a class="headerlink" href="#filtering" title="Permalink to this headline">¶</a></h3>
 <p>Is is possible to make the JobTreeView only show a subset of the nodes in the tree based on an
 arbitrary predicate over row locations. These can be translated to their corresponding
@@ -359,12 +357,12 @@ the currently active filter as demonstrated by the code below.</p>
 <span class="c1">#   NScD Oak Ridge National Laboratory, European Spallation Source,</span>
 <span class="c1">#   Institut Laue - Langevin &amp; CSNS, Institute of High Energy Physics, CAS</span>
 <span class="c1"># SPDX - License - Identifier: GPL - 3.0 +</span>
-<span class="kn">from</span> <span class="nn">mantidqtpython</span> <span class="k">import</span> <span class="n">MantidQt</span>
+<span class="kn">from</span> <span class="nn">mantidqtpython</span> <span class="kn">import</span> <span class="n">MantidQt</span>
 <span class="kn">import</span> <span class="nn">re</span>
 
 
 <span class="k">class</span> <span class="nc">Predicate</span><span class="p">(</span><span class="n">MantidQt</span><span class="o">.</span><span class="n">MantidWidgets</span><span class="o">.</span><span class="n">Batch</span><span class="o">.</span><span class="n">RowPredicate</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">meetsCriteria</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">meetsCriteria</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">MantidQt</span><span class="o">.</span><span class="n">MantidWidgets</span><span class="o">.</span><span class="n">Batch</span><span class="o">.</span><span class="n">RowPredicate</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">meetsCriteria</span> <span class="o">=</span> <span class="n">meetsCriteria</span>
 
@@ -418,9 +416,9 @@ the <code class="code docutils literal notranslate"><span class="pre">hasFilter<
 <p>Some actions performed on the <code class="code docutils literal notranslate"><span class="pre">JobTreeView</span></code> can trigger the filter to be reset automatically.
 This necessitates the <code class="code docutils literal notranslate"><span class="pre">notifyFilterReset</span></code> method in <code class="code docutils literal notranslate"><span class="pre">JobTreeViewSubscriber</span></code> which is
 called whenever the filter is reset, even when requested explicitly.</p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
     </div>

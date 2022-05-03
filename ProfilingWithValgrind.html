@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Profiling with Valgrind</title>
-    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Flowchart Creation" href="FlowchartCreation.html" />
@@ -87,34 +87,34 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <div class="section" id="profiling-with-valgrind">
+  <section id="profiling-with-valgrind">
 <span id="profilingwithvalgrind"></span><h1>Profiling with Valgrind<a class="headerlink" href="#profiling-with-valgrind" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="summary">
+<section id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
 <p>Describes how to use the
 <a class="reference external" href="http://valgrind.org/docs/manual/cl-manual.html">callgrind</a> plugin to
 the <a class="reference external" href="http://valgrind.org/">valgrind</a> tool set to profile your code.</p>
 <p><em>Note: Valgrind is a Linux only tool</em></p>
-</div>
-<div class="section" id="installation">
+</section>
+<section id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
 <p>You will need to install both <em>valgrind</em> &amp; the visualizer tool
 <em>kcachegrind</em> - both of which should be available in your distribution’s
 repositories.</p>
-<div class="section" id="ubuntu">
+<section id="ubuntu">
 <h3>Ubuntu<a class="headerlink" href="#ubuntu" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">valgrind</span> <span class="n">kcachegrind</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="red-hat-fedora">
+</section>
+<section id="red-hat-fedora">
 <h3>Red Hat/Fedora<a class="headerlink" href="#red-hat-fedora" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">yum</span> <span class="n">install</span> <span class="n">valgrind</span> <span class="n">kcachegrind</span>
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="preparation">
+</section>
+</section>
+<section id="preparation">
 <h2>Preparation<a class="headerlink" href="#preparation" title="Permalink to this headline">¶</a></h2>
 <p>To be most effective valgrind requires that debugging information be
 present in the binaries that are being instrumented, although a full
@@ -122,8 +122,8 @@ debug build is not required. On gcc this means compiling with the <em>-g</em>
 flag. For Mantid the recommended setup is to use a separate build with
 the <em>CMAKE_BUILD_TYPE</em> set to <em>RelWithDebInfo</em>. This provides a good
 balance between performance and availability of debugging information.</p>
-</div>
-<div class="section" id="running-the-profiler">
+</section>
+<section id="running-the-profiler">
 <h2>Running the Profiler<a class="headerlink" href="#running-the-profiler" title="Permalink to this headline">¶</a></h2>
 <p>The profiler can instrument the code in a number of different ways. Some
 of these will be described here. For more detail information see the
@@ -136,15 +136,15 @@ be found more easily in the future.</p>
 <p><strong>Beware</strong>: The code will execute many times (factors of 10) slower than
 when not profiling - this is just a consequence of how valgrind
 instruments the code.</p>
-<div class="section" id="profile-a-whole-program-run">
+<section id="profile-a-whole-program-run">
 <h3>Profile a Whole Program Run<a class="headerlink" href="#profile-a-whole-program-run" title="Permalink to this headline">¶</a></h3>
 <p>This is the simplest mode of operation. Simply pass the program
 executable, along with any arguments to the valgrind executable:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">valgrind</span> <span class="o">--</span><span class="n">tool</span><span class="o">=</span><span class="n">callgrind</span> <span class="o">--</span><span class="n">dump</span><span class="o">-</span><span class="n">instr</span><span class="o">=</span><span class="n">yes</span> <span class="o">--</span><span class="n">simulate</span><span class="o">-</span><span class="n">cache</span><span class="o">=</span><span class="n">yes</span> <span class="o">--</span><span class="n">collect</span><span class="o">-</span><span class="n">jumps</span><span class="o">=</span><span class="n">yes</span> <span class="o">&lt;</span><span class="n">executable</span><span class="o">&gt;</span> <span class="p">[</span><span class="n">args</span><span class="o">...</span><span class="p">]</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="profile-selected-portions-of-the-code">
+</section>
+<section id="profile-selected-portions-of-the-code">
 <h3>Profile Selected Portions of the Code<a class="headerlink" href="#profile-selected-portions-of-the-code" title="Permalink to this headline">¶</a></h3>
 <p>For larger pieces of code it can be quite likely that you wish to
 profile only a selected portion of it. This is possible if you have a
@@ -156,30 +156,30 @@ to instruct the profiler what to do when it hits certain points of the
 code.</p>
 <p>As an example take a simple main function composed of several function
 calls:</p>
-<div class="code cpp highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span> <span class="n">main</span><span class="p">()</span>
-<span class="p">{</span>
-  <span class="n">foo1</span><span class="p">();</span>
-  <span class="n">bar1</span><span class="p">();</span>
-  <span class="n">foo2</span><span class="p">();</span>
-  <span class="n">foo3</span><span class="p">();</span>
-<span class="p">}</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">foo1</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">bar1</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">foo2</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">foo3</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>To profile only the call to <code class="docutils literal notranslate"><span class="pre">bar1()</span></code> then you would do the following
 to the code:</p>
-<div class="code cpp highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#include &lt;valgrind/callgrind.h&gt;</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;valgrind/callgrind.h&gt;</span><span class="cp"></span>
 
-<span class="nb">int</span> <span class="n">main</span><span class="p">()</span>
-<span class="p">{</span>
-  <span class="n">foo1</span><span class="p">();</span>
-  <span class="n">CALLGRIND_START_INSTRUMENTATION</span><span class="p">;</span>
-  <span class="n">CALLGRIND_TOGGLE_COLLECT</span><span class="p">;</span>
-  <span class="n">bar1</span><span class="p">();</span>
-  <span class="n">CALLGRIND_TOGGLE_COLLECT</span><span class="p">;</span>
-  <span class="n">CALLGRIND_STOP_INSTRUMENTATION</span><span class="p">;</span>
-  <span class="n">foo2</span><span class="p">();</span>
-  <span class="n">foo3</span><span class="p">();</span>
-<span class="p">}</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">foo1</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">CALLGRIND_START_INSTRUMENTATION</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">CALLGRIND_TOGGLE_COLLECT</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">bar1</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">CALLGRIND_TOGGLE_COLLECT</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">CALLGRIND_STOP_INSTRUMENTATION</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">foo2</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">foo3</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>After recompiling the code you would then run the profiler again but
@@ -193,9 +193,9 @@ up the code up until the profiling point at the cost of the less
 accuracy about the cache usage. See
 <a class="reference external" href="http://valgrind.org/docs/manual/cl-manual.html#opt.instr-atstart">here</a>
 more details.</p>
-</div>
-</div>
-<div class="section" id="visualisation">
+</section>
+</section>
+<section id="visualisation">
 <h2>Visualisation<a class="headerlink" href="#visualisation" title="Permalink to this headline">¶</a></h2>
 <p>Callgrind produces a large amount of data about the program’s execution.
 It is most easily understood using the <em>kcachegrind</em> GUI tool. This
@@ -203,37 +203,39 @@ reads the information produced by callgrind and creates a list of
 function calls along with information on timings of each of the calls
 during the profiled run. If the source code is available it can also
 show the lines of code that relate to the functions being inspected.</p>
-<div class="figure" id="id1">
+<figure class="align-default" id="id1">
 <img alt="Example of KCachegrind display a profile of MantidPlot starting up and closing down" src="_images/KCachegrind_MantidPlot.png" />
-<p class="caption"><span class="caption-text">Example of KCachegrind display a profile of MantidPlot starting up
-and closing down</span></p>
-</div>
+<figcaption>
+<p><span class="caption-text">Example of KCachegrind display a profile of MantidPlot starting up
+and closing down</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <p>By default KCachegrind shows the number of instructions fetched within
 its displays. This can be changed using the drop-down box at the top
 right of the screen. The <em>Instruction Fetch</em> and <em>Cycle Estimation</em> are
 generally the most widely used and roughly correlate to the amount of
 time spent performing the displayed functions.</p>
 <p>Some of the key features display are:</p>
-<div class="section" id="flat-profile-view">
+<section id="flat-profile-view">
 <h3>Flat Profile View<a class="headerlink" href="#flat-profile-view" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Incl. - Sum of itself + all child calls as a percentage of the whole.
+<li><p>Incl. - Sum of itself + all child calls as a percentage of the whole.
 Programs with little static allocation should have main() at 100%.
-Units are those selected by the to-right drop-down</li>
-<li>Self - Exclusive count spent in the selected function. Units are
-those selected by the to-right drop-down</li>
-<li>Called - Number of times the function was called.</li>
+Units are those selected by the to-right drop-down</p></li>
+<li><p>Self - Exclusive count spent in the selected function. Units are
+those selected by the to-right drop-down</p></li>
+<li><p>Called - Number of times the function was called.</p></li>
 </ul>
-</div>
-<div class="section" id="function-call-detail">
+</section>
+<section id="function-call-detail">
 <h3>Function Call Detail<a class="headerlink" href="#function-call-detail" title="Permalink to this headline">¶</a></h3>
 <p>Click on function in flat view to get more detail on the right.</p>
 <p>Displays details about the selected function call plus details about all
 child calls it made. The <em>call graph</em> tab at the bottom gives a nice
 graphical overview of the relative function cost.</p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
     </div>

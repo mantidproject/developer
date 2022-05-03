@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Develop with Conda on Windows</title>
-    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Develop with Conda on Linux" href="GettingStartedCondaLinux.html" />
@@ -87,107 +87,101 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <div class="section" id="develop-with-conda-on-windows">
+  <section id="develop-with-conda-on-windows">
 <span id="gettingstartedcondawindows"></span><h1>Develop with Conda on Windows<a class="headerlink" href="#develop-with-conda-on-windows" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="install-visual-studio-2019-community-edition">
+<section id="install-visual-studio-2019-community-edition">
 <h2>Install <a class="reference external" href="https://visualstudio.microsoft.com/downloads/">Visual Studio 2019 Community Edition</a><a class="headerlink" href="#install-visual-studio-2019-community-edition" title="Permalink to this headline">¶</a></h2>
 <ul>
-<li><p class="first">When asked about installation workloads choose <code class="docutils literal notranslate"><span class="pre">Desktop</span> <span class="pre">development</span> <span class="pre">with</span> <span class="pre">C++</span></code></p>
-</li>
-<li><p class="first">Under the “Installation details” section verify that the following are checked:</p>
+<li><p>When asked about installation workloads choose <code class="docutils literal notranslate"><span class="pre">Desktop</span> <span class="pre">development</span> <span class="pre">with</span> <span class="pre">C++</span></code></p></li>
+<li><p>Under the “Installation details” section verify that the following are checked:</p>
 <blockquote>
 <div><ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">Windows</span> <span class="pre">Universal</span> <span class="pre">CRT</span> <span class="pre">SDK</span></code></li>
-<li>The latest <code class="docutils literal notranslate"><span class="pre">Windows</span> <span class="pre">10</span> <span class="pre">SDK</span></code></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Windows</span> <span class="pre">Universal</span> <span class="pre">CRT</span> <span class="pre">SDK</span></code></p></li>
+<li><p>The latest <code class="docutils literal notranslate"><span class="pre">Windows</span> <span class="pre">10</span> <span class="pre">SDK</span></code></p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p class="first">If your machine has less than 32GB of memory Mantid may not build. If you have problems change the maximum number of parallel project builds to 1 in Visual Studio in Tools -&gt; Options -&gt; Projects and Solutions -&gt; Build And Run.</p>
-</li>
+<li><p>If your machine has less than 32GB of memory Mantid may not build. If you have problems change the maximum number of parallel project builds to 1 in Visual Studio in Tools -&gt; Options -&gt; Projects and Solutions -&gt; Build And Run.</p></li>
 </ul>
-</div>
-<div class="section" id="install-git">
+</section>
+<section id="install-git">
 <h2>Install <a class="reference external" href="https://git-scm.com/">Git</a><a class="headerlink" href="#install-git" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Install the latest version of Git, and ensure git bash was installed and the git executable location was added to your PATH, if you didn’t do this as part of your installation you can do this <a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/office/developer/sharepoint-2010/ee537574(v=office.14)#to-add-a-path-to-the-path-environment-variable">manually</a>.</li>
-<li>We no longer need Git LFS as conda handles the dependencies that used to be in the third party directory.</li>
+<li><p>Install the latest version of Git, and ensure git bash was installed and the git executable location was added to your PATH, if you didn’t do this as part of your installation you can do this <a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/office/developer/sharepoint-2010/ee537574(v=office.14)#to-add-a-path-to-the-path-environment-variable">manually</a>.</p></li>
+<li><p>We no longer need Git LFS as conda handles the dependencies that used to be in the third party directory.</p></li>
 </ul>
-</div>
-<div class="section" id="turn-off-python-association-in-windows">
+</section>
+<section id="turn-off-python-association-in-windows">
 <h2>Turn off Python association in Windows<a class="headerlink" href="#turn-off-python-association-in-windows" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Because of the way Windows associates Python files with it’s Windows Store version of python we need to turn off this association. If you don’t turn this off you will have issues when running the pre-commit framework.</li>
-<li>Navigate to your Settings -&gt; Manage App Execution Aliases, and turn off all Python Aliases.</li>
+<li><p>Because of the way Windows associates Python files with it’s Windows Store version of python we need to turn off this association. If you don’t turn this off you will have issues when running the pre-commit framework.</p></li>
+<li><p>Navigate to your Settings -&gt; Manage App Execution Aliases, and turn off all Python Aliases.</p></li>
 </ul>
-</div>
-<div class="section" id="clone-the-mantid-source-code">
+</section>
+<section id="clone-the-mantid-source-code">
 <h2>Clone the mantid source code<a class="headerlink" href="#clone-the-mantid-source-code" title="Permalink to this headline">¶</a></h2>
 <ul>
-<li><p class="first"><strong>Important</strong>: If you have any existing non-conda mantid development environments, do not re-use the source and build directories for your conda environment. We recommend that you clone a new instance of the source and keep separate build directories to avoid any cmake configuration problems.</p>
-</li>
-<li><p class="first">Clone the mantid source code by either:</p>
+<li><p><strong>Important</strong>: If you have any existing non-conda mantid development environments, do not re-use the source and build directories for your conda environment. We recommend that you clone a new instance of the source and keep separate build directories to avoid any cmake configuration problems.</p></li>
+<li><p>Clone the mantid source code by either:</p>
 <blockquote>
 <div><ul class="simple">
-<li>Using git bash and cloning the codebase by calling <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">git&#64;github.com:mantidproject/mantid.git</span></code> in the directory you want the code to clone to. This sets you up with accessing the remote repository via SSH so make sure to setup git properly using this <a class="reference external" href="https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup">startup guide</a> and ensure your ssh key is setup using this <a class="reference external" href="https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh">guide to Github with SSH</a>.</li>
-<li>Or using <a class="reference external" href="https://www.gitkraken.com/">GitKraken</a>.</li>
+<li><p>Using git bash and cloning the codebase by calling <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">git&#64;github.com:mantidproject/mantid.git</span></code> in the directory you want the code to clone to. This sets you up with accessing the remote repository via SSH so make sure to setup git properly using this <a class="reference external" href="https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup">startup guide</a> and ensure your ssh key is setup using this <a class="reference external" href="https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh">guide to Github with SSH</a>.</p></li>
+<li><p>Or using <a class="reference external" href="https://www.gitkraken.com/">GitKraken</a>.</p></li>
 </ul>
 </div></blockquote>
 </li>
 </ul>
-</div>
-<div class="section" id="install-mambaforge">
+</section>
+<section id="install-mambaforge">
 <h2>Install <a class="reference external" href="https://github.com/conda-forge/miniforge/releases">Mambaforge</a><a class="headerlink" href="#install-mambaforge" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Choose the latest version of <code class="docutils literal notranslate"><span class="pre">Mambaforge-Windows-x86_64.exe</span></code></li>
-<li>Run your downloaded <code class="docutils literal notranslate"><span class="pre">Mambaforge-Windows-x86_64.exe</span></code> and work through the installer until it finishes. In order to make it easier later on, check the box that adds Conda to your path.</li>
+<li><p>Choose the latest version of <code class="docutils literal notranslate"><span class="pre">Mambaforge-Windows-x86_64.exe</span></code></p></li>
+<li><p>Run your downloaded <code class="docutils literal notranslate"><span class="pre">Mambaforge-Windows-x86_64.exe</span></code> and work through the installer until it finishes. In order to make it easier later on, check the box that adds Conda to your path.</p></li>
 </ul>
-</div>
-<div class="section" id="setup-the-mantid-conda-environment">
+</section>
+<section id="setup-the-mantid-conda-environment">
 <h2>Setup the mantid conda environment<a class="headerlink" href="#setup-the-mantid-conda-environment" title="Permalink to this headline">¶</a></h2>
 <ul>
-<li><p class="first">Open a terminal or powershell with conda enabled there are two ways to do this:</p>
+<li><p>Open a terminal or powershell with conda enabled there are two ways to do this:</p>
 <blockquote>
 <div><ul class="simple">
-<li>Open an Anaconda prompt (Mambaforge).</li>
-<li>Add the path of your Mambaforge installation to your system path, if you didn’t do it during installation (Follow the answers in the <a class="reference external" href="https://docs.anaconda.com/anaconda/user-guide/faq/#installing-anaconda">FAQ</a>). Then you can use conda from the Command Prompt and Powershell.</li>
+<li><p>Open an Anaconda prompt (Mambaforge).</p></li>
+<li><p>Add the path of your Mambaforge installation to your system path, if you didn’t do it during installation (Follow the answers in the <a class="reference external" href="https://docs.anaconda.com/anaconda/user-guide/faq/#installing-anaconda">FAQ</a>). Then you can use conda from the Command Prompt and Powershell.</p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p class="first">Create the mantid conda environment by navigating to your mantid source code directory in your terminal and running <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">env</span> <span class="pre">create</span> <span class="pre">-f</span> <span class="pre">mantid-developer-win.yml</span></code></p>
-</li>
+<li><p>Create the mantid conda environment by navigating to your mantid source code directory in your terminal and running <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">env</span> <span class="pre">create</span> <span class="pre">-f</span> <span class="pre">mantid-developer-win.yml</span></code></p></li>
 </ul>
-</div>
-<div class="section" id="configure-cmake-and-generate-build-files">
+</section>
+<section id="configure-cmake-and-generate-build-files">
 <h2>Configure CMake and generate build files<a class="headerlink" href="#configure-cmake-and-generate-build-files" title="Permalink to this headline">¶</a></h2>
 <ul>
-<li><p class="first">Still using the terminal or powershell prompt from the last step and in your mantid source directory.</p>
-</li>
-<li><p class="first">Run <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">mantid-developer</span></code> to activate your conda environment.</p>
-</li>
-<li><p class="first">Inside of your mantid source directory run either:</p>
+<li><p>Still using the terminal or powershell prompt from the last step and in your mantid source directory.</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">mantid-developer</span></code> to activate your conda environment.</p></li>
+<li><p>Inside of your mantid source directory run either:</p>
 <blockquote>
 <div><ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">--preset=win</span></code> if you want your build directory inside your source directory, or</li>
-<li><code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">--preset=win</span> <span class="pre">-B</span> <span class="pre">{BUILD_DIR}</span></code> to specify a different build directory.</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">--preset=win</span></code> if you want your build directory inside your source directory, or</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">--preset=win</span> <span class="pre">-B</span> <span class="pre">{BUILD_DIR}</span></code> to specify a different build directory.</p></li>
 </ul>
 </div></blockquote>
 </li>
 </ul>
-</div>
-<div class="section" id="compile-and-build-using-visual-studio">
+</section>
+<section id="compile-and-build-using-visual-studio">
 <h2>Compile and Build using Visual Studio<a class="headerlink" href="#compile-and-build-using-visual-studio" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Open visual studio with <code class="docutils literal notranslate"><span class="pre">visualstudio.bat</span></code> then click build.</li>
-<li>It’s not possible to compile in Debug on Windows with conda libraries, however Release, and RelWithDebInfo for Debugging will compile fine.</li>
-<li>Once in visual studio, the correct target to use as a startup project in visual studio is <code class="docutils literal notranslate"><span class="pre">workbench</span></code>, not <code class="docutils literal notranslate"><span class="pre">MantidWorkbench</span></code>. You can then press F5 to start workbench.</li>
+<li><p>Open visual studio with <code class="docutils literal notranslate"><span class="pre">visualstudio.bat</span></code> then click build.</p></li>
+<li><p>It’s not possible to compile in Debug on Windows with conda libraries, however Release, and RelWithDebInfo for Debugging will compile fine.</p></li>
+<li><p>Once in visual studio, the correct target to use as a startup project in visual studio is <code class="docutils literal notranslate"><span class="pre">workbench</span></code>, not <code class="docutils literal notranslate"><span class="pre">MantidWorkbench</span></code>. You can then press F5 to start workbench.</p></li>
 </ul>
-</div>
-<div class="section" id="cmake-conda-variables">
+</section>
+<section id="cmake-conda-variables">
 <h2>CMake Conda variables<a class="headerlink" href="#cmake-conda-variables" title="Permalink to this headline">¶</a></h2>
 <p>There are two Conda specific CMake options <cite>CONDA_ENV</cite> and <cite>CONDA_BUILD</cite>. The former should be used whenever you are building within a Conda environment, as it ensures our finders (e.g FindNexus.cmake) look in the correct locations for libraries.
 The CONDA_BUILD parameter is used to customise our installation, which is required when we are using the conda-build tool to build and package Mantid. These options can be passed to CMake on the command line using -DCONDA_ENV=True for example.</p>
-</div>
-</div>
+</section>
+</section>
 
 
     </div>

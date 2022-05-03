@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Model Indices in Job Tree View</title>
-    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="QtStandardItemTreeModelAdapter" href="QtStandardItemTreeModelAdapter.html" />
@@ -87,33 +87,33 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <div class="section" id="model-indices-in-job-tree-view">
+  <section id="model-indices-in-job-tree-view">
 <span id="strictmodelindexing"></span><h1>Model Indices in Job Tree View<a class="headerlink" href="#model-indices-in-job-tree-view" title="Permalink to this headline">¶</a></h1>
 <p>The <a class="reference internal" href="../API/JobTreeView.html"><span class="doc">Job Tree View</span></a> uses <code class="code docutils literal notranslate"><span class="pre">RowLocation</span></code> objects in it’s API as an abstraction over
 <code class="code docutils literal notranslate"><span class="pre">QModelIndex</span></code>s, which are used internally to access <code class="code docutils literal notranslate"><span class="pre">QStandardItem</span></code>s from the ‘models’
 provided by Qt. As such, code which simply uses the <code class="code docutils literal notranslate"><span class="pre">JobTreeView</span></code> does not need to know anything
 about <code class="code docutils literal notranslate"><span class="pre">QModelIndex</span></code>s.</p>
-<div class="section" id="mvc-models">
+<section id="mvc-models">
 <h2>MVC Models<a class="headerlink" href="#mvc-models" title="Permalink to this headline">¶</a></h2>
 <p>Sections of Qt such as <code class="code docutils literal notranslate"><span class="pre">QTreeView</span></code> are designed as an MVC framework rather than an MVP
 framework, so working with some sections of it’s API becomes difficult when using MVP. Models in
 MVC are directly accessible from the view which is free to read the data directly from it. In MVP
 however, data access is marshalled through the presenter, and both models and presenters are not
 supposed to be coupled to any particular view implementation.</p>
-<div class="section" id="the-main-model">
+<section id="the-main-model">
 <h3>The Main Model<a class="headerlink" href="#the-main-model" title="Permalink to this headline">¶</a></h3>
 <p>The <code class="code docutils literal notranslate"><span class="pre">JobTreeView</span></code> solves this problem by keeping an internal instance of
 <code class="code docutils literal notranslate"><span class="pre">QStandardItemModel</span></code>, a Qt ‘model’ which fulfils Qt’s requirements for a ‘model’ and acts
 as the view state. We refer to this instance as the ‘main model’.</p>
-</div>
-<div class="section" id="filtered-model">
+</section>
+<section id="filtered-model">
 <h3>Filtered Model<a class="headerlink" href="#filtered-model" title="Permalink to this headline">¶</a></h3>
 <p>To take advantage of the filtering functionality offered by the <code class="code docutils literal notranslate"><span class="pre">QTreeView</span></code>, the
 <code class="code docutils literal notranslate"><span class="pre">JobTreeView</span></code> also manages an instance of <code class="code docutils literal notranslate"><span class="pre">FilteredTreeModel</span></code>. This is a class derived from
 <code class="code docutils literal notranslate"><span class="pre">QSortFilterProxyModel</span></code> - a filtered version of the ‘main model’.</p>
-</div>
-</div>
-<div class="section" id="strongly-typed-indexes">
+</section>
+</section>
+<section id="strongly-typed-indexes">
 <h2>Strongly Typed Indexes<a class="headerlink" href="#strongly-typed-indexes" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="code docutils literal notranslate"><span class="pre">QModelIndex</span></code>s for the filtered model cannot be used to directly access items in the
 main model. Likewise, the <code class="code docutils literal notranslate"><span class="pre">QModelIndex</span></code>s for the main model cannot be used to directly
@@ -122,14 +122,14 @@ access items in the filtered model. Indexes must be explicitly converted between
 <code class="code docutils literal notranslate"><span class="pre">QModelIndexForMainModel</span></code> and <code class="code docutils literal notranslate"><span class="pre">QModelIndexForFilteredModel</span></code>. Functions which wish to
 constrain the indices they accept and/or return can now make that explicit and use the type system
 to catch errors.</p>
-<div class="section" id="converting-between-index-spaces">
+<section id="converting-between-index-spaces">
 <h3>Converting Between Index Spaces<a class="headerlink" href="#converting-between-index-spaces" title="Permalink to this headline">¶</a></h3>
 <p>The filtered model holds a subset of the items in the main model, therefore:</p>
 <ul class="simple">
-<li>Conversion from an index for the filtered model to an index for the main model should
-always be successful.</li>
-<li>Conversion from an index for the main model to a valid index for the main model could be
-unsuccessful.</li>
+<li><p>Conversion from an index for the filtered model to an index for the main model should
+always be successful.</p></li>
+<li><p>Conversion from an index for the main model to a valid index for the main model could be
+unsuccessful.</p></li>
 </ul>
 <p>Given a <code class="code docutils literal notranslate"><span class="pre">QModelIndex</span></code>, in order to convert to a strongly typed variant you must know whether
 it originated from the filtered model or the main model. Conversion to the appropriate
@@ -147,16 +147,16 @@ model.</p>
 from one space into the other. This is performed using the functions <code class="code docutils literal notranslate"><span class="pre">mapToMainModel</span></code> and
 <code class="code docutils literal notranslate"><span class="pre">mapToFilteredModel</span></code> defined in <code class="code docutils literal notranslate"><span class="pre">JobTreeView</span></code> which internally call methods of the
 filtered model.</p>
-</div>
-<div class="section" id="type-erasure">
+</section>
+<section id="type-erasure">
 <h3>Type Erasure<a class="headerlink" href="#type-erasure" title="Permalink to this headline">¶</a></h3>
 <p>Some functions are ambivalent to which model an index belongs to, a good example might be those in
 <code class="code docutils literal notranslate"><span class="pre">QtBasicNavigation.h</span></code> - in order to still be able to use these functions without requiring them
 all to be templates, the strict versions have a member function <code class="code docutils literal notranslate"><span class="pre">.untyped()</span></code> which returns the
 internal plain old <code class="code docutils literal notranslate"><span class="pre">QModelIndex</span></code>.</p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
     </div>

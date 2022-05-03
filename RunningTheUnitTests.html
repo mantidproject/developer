@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Running the Unit Tests</title>
-    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Debugging Unit Tests" href="DebuggingUnitTests.html" />
@@ -87,26 +87,26 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <div class="section" id="running-the-unit-tests">
+  <section id="running-the-unit-tests">
 <span id="runningtheunittests"></span><h1>Running the Unit Tests<a class="headerlink" href="#running-the-unit-tests" title="Permalink to this headline">¶</a></h1>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><a class="reference internal" href="#overview" id="id1">Overview</a></li>
-<li><a class="reference internal" href="#cmake-ctest-command-line" id="id2">CMake/CTest: Command Line</a></li>
-<li><a class="reference internal" href="#useful-ctest-options" id="id3">Useful CTest Options</a></li>
-<li><a class="reference internal" href="#running-unit-tests-directly" id="id4">Running Unit Tests Directly</a></li>
-<li><a class="reference internal" href="#running-unit-tests-with-visual-studio-and-ctest" id="id5">Running Unit Tests With Visual Studio and ctest</a></li>
-<li><a class="reference internal" href="#running-unit-tests-with-visual-studio" id="id6">Running Unit Tests With Visual Studio</a></li>
-<li><a class="reference internal" href="#debugging-unit-tests" id="id7">Debugging unit tests</a></li>
+<li><p><a class="reference internal" href="#overview" id="id1">Overview</a></p></li>
+<li><p><a class="reference internal" href="#cmake-ctest-command-line" id="id2">CMake/CTest: Command Line</a></p></li>
+<li><p><a class="reference internal" href="#useful-ctest-options" id="id3">Useful CTest Options</a></p></li>
+<li><p><a class="reference internal" href="#running-unit-tests-directly" id="id4">Running Unit Tests Directly</a></p></li>
+<li><p><a class="reference internal" href="#running-unit-tests-with-visual-studio-and-ctest" id="id5">Running Unit Tests With Visual Studio and ctest</a></p></li>
+<li><p><a class="reference internal" href="#running-unit-tests-with-visual-studio" id="id6">Running Unit Tests With Visual Studio</a></p></li>
+<li><p><a class="reference internal" href="#debugging-unit-tests" id="id7">Debugging unit tests</a></p></li>
 </ul>
 </div>
-<div class="section" id="overview">
+<section id="overview">
 <h2><a class="toc-backref" href="#id1">Overview</a><a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
 <p>We use <a class="reference external" href="https://cmake.org/cmake/help/latest/manual/ctest.1.html">CTest</a>
 for building and running our unit tests. This wraps the underlying
 <a class="reference external" href="cxxtest">cxxtest</a> or other (e.g. pyunit) test code.</p>
-</div>
-<div class="section" id="cmake-ctest-command-line">
+</section>
+<section id="cmake-ctest-command-line">
 <h2><a class="toc-backref" href="#id2">CMake/CTest: Command Line</a><a class="headerlink" href="#cmake-ctest-command-line" title="Permalink to this headline">¶</a></h2>
 <p>The unit tests are currently excluded from the ‘all’ target. To build
 all of the tests, including the dependent framework code run:</p>
@@ -139,58 +139,55 @@ option) - useful for those building the performance tests:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>ctest -j8 -E Performance
 </pre></div>
 </div>
-</div>
-<div class="section" id="useful-ctest-options">
+</section>
+<section id="useful-ctest-options">
 <h2><a class="toc-backref" href="#id3">Useful CTest Options</a><a class="headerlink" href="#useful-ctest-options" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">ctest</span> <span class="pre">-h</span></code> gives the full list of command line arguments. Some useful
 ones to note are:</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">--output-on-failure</span></code>: displays the log and any stderr output that
-is otherwise hidden by CTest.</li>
-<li><code class="docutils literal notranslate"><span class="pre">--schedule-random</span></code>: run the tests in a random order. Useful to
-weed out accidental dependencies</li>
-<li><code class="docutils literal notranslate"><span class="pre">--repeat-until-fail</span></code>: require each test to run times without
-failing in order to pass. Useful to try and find random failures</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--output-on-failure</span></code>: displays the log and any stderr output that
+is otherwise hidden by CTest.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--schedule-random</span></code>: run the tests in a random order. Useful to
+weed out accidental dependencies</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--repeat-until-fail</span></code>: require each test to run times without
+failing in order to pass. Useful to try and find random failures</p></li>
 </ul>
-</div>
-<div class="section" id="running-unit-tests-directly">
+</section>
+<section id="running-unit-tests-directly">
 <h2><a class="toc-backref" href="#id4">Running Unit Tests Directly</a><a class="headerlink" href="#running-unit-tests-directly" title="Permalink to this headline">¶</a></h2>
 <p>Starting in your build folder:</p>
 <ul>
-<li><p class="first">Running an entire test suite (e.g. <cite>KernelTest</cite>):</p>
+<li><p>Running an entire test suite (e.g. <cite>KernelTest</cite>):</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./bin/KernelTest
 </pre></div>
 </div>
 </li>
-<li><p class="first">Running a specific test class.</p>
+<li><p>Running a specific test class.</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./bin/KernelTest MyTestClassName
 </pre></div>
 </div>
 </li>
-<li><p class="first">Running a specific test from a CxxTest test class (not possible via CTest).</p>
+<li><p>Running a specific test from a CxxTest test class (not possible via CTest).</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./bin/KernelTest MyTestClassName MySingleTestName
 </pre></div>
 </div>
 </li>
-<li><p class="first">Running a specific test from a Python <code class="docutils literal notranslate"><span class="pre">unittest</span></code> test class (not possible
+<li><p>Running a specific test from a Python <code class="docutils literal notranslate"><span class="pre">unittest</span></code> test class (not possible
 via CTest).</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./bin/mantidpython /path/to/src/Framework/PythonInterface/test/python/plugins/algorithms/MeanTest.py MeanTest.test_mean
 </pre></div>
 </div>
 </li>
 </ul>
-</div>
-<div class="section" id="running-unit-tests-with-visual-studio-and-ctest">
+</section>
+<section id="running-unit-tests-with-visual-studio-and-ctest">
 <h2><a class="toc-backref" href="#id5">Running Unit Tests With Visual Studio and ctest</a><a class="headerlink" href="#running-unit-tests-with-visual-studio-and-ctest" title="Permalink to this headline">¶</a></h2>
 <p>Open the Mantid solution in Visual Studio. To run a subset of tests (for example <code class="docutils literal notranslate"><span class="pre">UnitTests/AlgorithmsTest</span></code>);</p>
 <ul>
-<li><p class="first">In the Solution Explorer, right click the project for the tests (in this case <code class="docutils literal notranslate"><span class="pre">UnitTests/AlgorithmsTest</span></code>) and select Properties.</p>
-</li>
-<li><p class="first">In the Debugging tab of Properties change the Command Arguments box to the name of the test, for example “AddNoteTest”.</p>
-</li>
-<li><p class="first">Right click the directory again and select Debug-&gt;Start new instance.</p>
-</li>
-<li><p class="first">Once the build has finished, open a file browser and navigate to the mantid build directory, run the command-prompt.bat file to open a command prompt and run</p>
+<li><p>In the Solution Explorer, right click the project for the tests (in this case <code class="docutils literal notranslate"><span class="pre">UnitTests/AlgorithmsTest</span></code>) and select Properties.</p></li>
+<li><p>In the Debugging tab of Properties change the Command Arguments box to the name of the test, for example “AddNoteTest”.</p></li>
+<li><p>Right click the directory again and select Debug-&gt;Start new instance.</p></li>
+<li><p>Once the build has finished, open a file browser and navigate to the mantid build directory, run the command-prompt.bat file to open a command prompt and run</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>ctest -C Debug -V -R AddNoteTest
 </pre></div>
 </div>
@@ -201,19 +198,19 @@ via CTest).</p>
 <p>Omitting the <code class="docutils literal notranslate"><span class="pre">-R</span> <span class="pre">AddNoteTest</span></code> option runs all the tests, but note that any tests which were not built according to the above instructions will fail. Adding the <code class="docutils literal notranslate"><span class="pre">-V</span></code> increases the output verbosity.</p>
 </li>
 </ul>
-</div>
-<div class="section" id="running-unit-tests-with-visual-studio">
+</section>
+<section id="running-unit-tests-with-visual-studio">
 <h2><a class="toc-backref" href="#id6">Running Unit Tests With Visual Studio</a><a class="headerlink" href="#running-unit-tests-with-visual-studio" title="Permalink to this headline">¶</a></h2>
 <p>The unit tests can be run from within Visual Studio, following steps 1-3 above, with the addition in step 2 of;</p>
 <ul class="simple">
-<li>Add the name of the test to the Target Name field in the General tab of Properties. Then add a breakpoint somewhere in the test header file.</li>
+<li><p>Add the name of the test to the Target Name field in the General tab of Properties. Then add a breakpoint somewhere in the test header file.</p></li>
 </ul>
-</div>
-<div class="section" id="debugging-unit-tests">
+</section>
+<section id="debugging-unit-tests">
 <h2><a class="toc-backref" href="#id7">Debugging unit tests</a><a class="headerlink" href="#debugging-unit-tests" title="Permalink to this headline">¶</a></h2>
 <p>See the instructions <a class="reference external" href="DebuggingUnitTests">here</a></p>
-</div>
-</div>
+</section>
+</section>
 
 
     </div>
