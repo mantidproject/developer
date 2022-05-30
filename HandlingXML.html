@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Handling XML</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
@@ -12,6 +12,7 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -88,15 +89,15 @@
     <div class="body col-md-12 content" role="main">
       
   <section id="handling-xml">
-<h1>Handling XML<a class="headerlink" href="#handling-xml" title="Permalink to this headline">¶</a></h1>
+<h1>Handling XML<a class="headerlink" href="#handling-xml" title="Permalink to this heading">¶</a></h1>
 <p>This page provides an introduction into reading/writing XML effectively
 within Mantid. In Mantid, we use Poco to handling XML serialisation. A
 useful introductory presentation can be found <a class="reference external" href="http://pocoproject.org/slides/170-XML.pdf">here.</a></p>
 <p><strong>This page is a work in progress.</strong></p>
 <section id="examples">
-<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
 <section id="parsing">
-<h3>Parsing<a class="headerlink" href="#parsing" title="Permalink to this headline">¶</a></h3>
+<h3>Parsing<a class="headerlink" href="#parsing" title="Permalink to this heading">¶</a></h3>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Poco/DOM/Document.h&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Poco/DOM/DOMParser.h&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Poco/DOM/Element.h&gt;</span><span class="cp"></span>
@@ -114,7 +115,7 @@ useful introductory presentation can be found <a class="reference external" href
 </div>
 </section>
 <section id="iterating-over-an-element-s-children">
-<h3>Iterating over an element’s children<a class="headerlink" href="#iterating-over-an-element-s-children" title="Permalink to this headline">¶</a></h3>
+<h3>Iterating over an element’s children<a class="headerlink" href="#iterating-over-an-element-s-children" title="Permalink to this heading">¶</a></h3>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">Poco</span><span class="o">::</span><span class="n">XML</span><span class="o">::</span><span class="n">Element</span><span class="w"> </span><span class="o">*</span><span class="n">pRootElem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pDoc</span><span class="o">-&gt;</span><span class="n">documentElement</span><span class="p">();</span><span class="w"></span>
 <span class="c1">//Iterate over every child node (non-recursively)</span>
 <span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">Node</span><span class="w"> </span><span class="o">*</span><span class="n">pNode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pRootElem</span><span class="o">-&gt;</span><span class="n">firstChild</span><span class="p">();</span><span class="w"> </span><span class="n">pNode</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">pNode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pNode</span><span class="o">-&gt;</span><span class="n">nextSibling</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
@@ -127,7 +128,7 @@ useful introductory presentation can be found <a class="reference external" href
 </div>
 </section>
 <section id="inspecting-an-element">
-<h3>Inspecting an element<a class="headerlink" href="#inspecting-an-element" title="Permalink to this headline">¶</a></h3>
+<h3>Inspecting an element<a class="headerlink" href="#inspecting-an-element" title="Permalink to this heading">¶</a></h3>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">Poco</span><span class="o">::</span><span class="n">XML</span><span class="o">::</span><span class="n">Element</span><span class="w"> </span><span class="o">*</span><span class="n">pElem</span><span class="p">;</span><span class="w"></span>
 
 <span class="c1">//Reasonably quick operations</span>
@@ -141,7 +142,7 @@ useful introductory presentation can be found <a class="reference external" href
 </section>
 </section>
 <section id="avoid-nodelist">
-<h2>Avoid NodeList<a class="headerlink" href="#avoid-nodelist" title="Permalink to this headline">¶</a></h2>
+<h2>Avoid NodeList<a class="headerlink" href="#avoid-nodelist" title="Permalink to this heading">¶</a></h2>
 <p>There are numerous functions that return a <code class="docutils literal notranslate"><span class="pre">Poco::XML::NodeList</span></code>. You
 should avoid using them and the list they return as best you can.</p>
 <p>NodeList is a very inefficient container. Its <code class="docutils literal notranslate"><span class="pre">item</span></code> method has a cost

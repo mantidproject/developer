@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Cell Based View Properties</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
@@ -12,6 +12,7 @@
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -88,12 +89,12 @@
     <div class="body col-md-12 content" role="main">
       
   <section id="cell-based-view-properties">
-<span id="cellbasedviewproperties"></span><h1>Cell Based View Properties<a class="headerlink" href="#cell-based-view-properties" title="Permalink to this headline">¶</a></h1>
+<span id="cellbasedviewproperties"></span><h1>Cell Based View Properties<a class="headerlink" href="#cell-based-view-properties" title="Permalink to this heading">¶</a></h1>
 <p>As described in <a class="reference internal" href="../API/JobTreeView.html"><span class="doc">Job Tree View</span></a>, per-cell view properties can be retrieved as an
 instance of the <code class="code docutils literal notranslate"><span class="pre">Cell</span></code> class. The mechanics behind this are implemented in
 <code class="code docutils literal notranslate"><span class="pre">CellStandardItem.h</span></code>.</p>
 <section id="implementation">
-<h2>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h2>
+<h2>Implementation<a class="headerlink" href="#implementation" title="Permalink to this heading">¶</a></h2>
 <p>This header contains an enumeration of the per-cell attributes which are not members of
 <code class="code docutils literal notranslate"><span class="pre">QStandardItem</span></code>. This enumeration starts at <code class="code docutils literal notranslate"><span class="pre">Qt::UserRole</span> <span class="pre">+</span> <span class="pre">1</span></code>. Qt has a built in
 mechanism for extending the per-item view attributes which we use here.</p>
@@ -102,7 +103,7 @@ mechanism for extending the per-item view attributes which we use here.</p>
 <code class="code docutils literal notranslate"><span class="pre">Cell</span></code> instance onto the <code class="code docutils literal notranslate"><span class="pre">QStandardItem</span></code> and later retrieve them.</p>
 </section>
 <section id="a-note-on-adding-new-properties">
-<h2>A note on adding new properties<a class="headerlink" href="#a-note-on-adding-new-properties" title="Permalink to this headline">¶</a></h2>
+<h2>A note on adding new properties<a class="headerlink" href="#a-note-on-adding-new-properties" title="Permalink to this heading">¶</a></h2>
 <p>When adding new properties to the <code class="code docutils literal notranslate"><span class="pre">Cell</span></code> class and by extension the <code class="code docutils literal notranslate"><span class="pre">CellUserRoles</span></code>
 enumeration it is important to consider if the new property is indeed a <strong>view</strong> property or whether it
 should instead be part of your model. The <code class="code docutils literal notranslate"><span class="pre">JobTreeView</span></code> is designed with this use case in mind

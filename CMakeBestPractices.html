@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>CMake Guidelines</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
@@ -12,6 +12,7 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -88,13 +89,13 @@
     <div class="body col-md-12 content" role="main">
       
   <section id="cmake-guidelines">
-<span id="cmakebestpractices"></span><h1>CMake Guidelines<a class="headerlink" href="#cmake-guidelines" title="Permalink to this headline">¶</a></h1>
+<span id="cmakebestpractices"></span><h1>CMake Guidelines<a class="headerlink" href="#cmake-guidelines" title="Permalink to this heading">¶</a></h1>
 <p>This document outlines a few CMake guidelines which should be considered when modifying Mantid’s CMake code.
 A brief introduction to modern CMake can be found at <a class="reference external" href="https://hsf-training.github.io/hsf-training-cmake-webpage/">https://hsf-training.github.io/hsf-training-cmake-webpage/</a>.
 The official CMake tutorial series are also very good <a class="reference external" href="https://cmake.org/cmake/help/latest/guide/tutorial/index.html">https://cmake.org/cmake/help/latest/guide/tutorial/index.html</a></p>
 </section>
 <section id="creating-a-new-cmake-library">
-<h1>Creating a new CMake Library<a class="headerlink" href="#creating-a-new-cmake-library" title="Permalink to this headline">¶</a></h1>
+<h1>Creating a new CMake Library<a class="headerlink" href="#creating-a-new-cmake-library" title="Permalink to this heading">¶</a></h1>
 <p>If you are adding a new CMake library, for example to the framework, there are a couple of steps you need to take.
 Firstly, lets consider a new framework target <cite>Fitting</cite>, which is a shared library which can be created with:</p>
 <div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">add_library</span><span class="p">(</span><span class="s">Fitting</span><span class="w"> </span><span class="s">fitting.cpp</span><span class="w"> </span><span class="s">fitting_1.cpp</span><span class="w"> </span><span class="s">fitting.h</span><span class="w"> </span><span class="s">fitting_1.h</span><span class="p">)</span>
@@ -133,7 +134,7 @@ to tell users of your Fitting library where it can find its headers:</p>
 </div></blockquote>
 </section>
 <section id="finding-a-new-cmake-dependency">
-<h1>Finding a new CMake dependency<a class="headerlink" href="#finding-a-new-cmake-dependency" title="Permalink to this headline">¶</a></h1>
+<h1>Finding a new CMake dependency<a class="headerlink" href="#finding-a-new-cmake-dependency" title="Permalink to this heading">¶</a></h1>
 <p>If you are adding a new CMake dependency you’ll need to find it using the find_package(…) CMake functions. This looks for the library using two mechanisms:</p>
 <ol class="arabic simple">
 <li><p>Uses Find(…).cmake either from the CMake inbuilt modules, or using our own ones in the buildconfig/CMake folder.</p></li>
@@ -161,7 +162,7 @@ to tell users of your Fitting library where it can find its headers:</p>
 <p>NOTE: The <code class="docutils literal notranslate"><span class="pre">UNKNOWN</span></code> specifier in add_library is useful on Windows as it means we aren’t required to point it to the .lib export libraries. The find_library CMake function will not find these. Usage of Unknown is common place in CMake finders because of this.</p>
 </section>
 <section id="introducing-a-new-cmake-configurable-variable">
-<h1>Introducing a new CMake configurable variable<a class="headerlink" href="#introducing-a-new-cmake-configurable-variable" title="Permalink to this headline">¶</a></h1>
+<h1>Introducing a new CMake configurable variable<a class="headerlink" href="#introducing-a-new-cmake-configurable-variable" title="Permalink to this heading">¶</a></h1>
 <p>If you are introducing a new configuration variable for CMake, e.g to conditionally add a new feature, PLEASE cache the variable. If you don’t cache it, you won’t be able to set it on the command line. Example:</p>
 <p>If you add a new feature and control it with a flag</p>
 <div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="p">(</span><span class="s">MY_NEW_FEATURE</span><span class="w"> </span><span class="s">OFF</span><span class="p">)</span>
@@ -176,7 +177,7 @@ to tell users of your Fitting library where it can find its headers:</p>
 </div>
 </section>
 <section id="cmake-framework-exports">
-<h1>CMake framework exports<a class="headerlink" href="#cmake-framework-exports" title="Permalink to this headline">¶</a></h1>
+<h1>CMake framework exports<a class="headerlink" href="#cmake-framework-exports" title="Permalink to this heading">¶</a></h1>
 <p>With the move to conda, we have created a CMake export target for the Framework libraries. If you add a new Framework library, or dependency there are a couple of things you need to consider.</p>
 <ol class="arabic simple">
 <li><p>When you add a new Framework library, alias it using the namespace Mantid:: - This means when we link to Mantid::NewTarget it can either link to our inbuilt library, or one on our system. This ensures we can have a standalone mantidqt build.</p></li>

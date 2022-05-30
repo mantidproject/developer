@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>MPI Support for Algorithms</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
@@ -12,6 +12,7 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -88,8 +89,8 @@
     <div class="body col-md-12 content" role="main">
       
   <section id="mpi-support-for-algorithms">
-<span id="algorithmmpisupport"></span><h1>MPI Support for Algorithms<a class="headerlink" href="#mpi-support-for-algorithms" title="Permalink to this headline">¶</a></h1>
-<div class="contents local topic" id="contents">
+<span id="algorithmmpisupport"></span><h1>MPI Support for Algorithms<a class="headerlink" href="#mpi-support-for-algorithms" title="Permalink to this heading">¶</a></h1>
+<nav class="contents local" id="contents">
 <ul class="simple">
 <li><p><a class="reference internal" href="#concept" id="id12">Concept</a></p>
 <ul>
@@ -125,18 +126,18 @@
 </li>
 <li><p><a class="reference internal" href="#supported-algorithms" id="id35">Supported Algorithms</a></p></li>
 </ul>
-</div>
+</nav>
 <section id="concept">
-<h2><a class="toc-backref" href="#id12">Concept</a><a class="headerlink" href="#concept" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id12" role="doc-backlink">Concept</a><a class="headerlink" href="#concept" title="Permalink to this heading">¶</a></h2>
 <section id="introduction">
-<h3><a class="toc-backref" href="#id13">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h3>
 <p>MPI support in Mantid is based on processing a subset of spectra on each MPI rank.
 Many algorithms process each spectrum independently so this is an efficient way of splitting the computational effort and data volume.</p>
 <p>Note that the multi-dimensional workspaces <code class="docutils literal notranslate"><span class="pre">MDHistoWorkspace</span></code> and <code class="docutils literal notranslate"><span class="pre">MDEventWorkspace</span></code> handle data differently and thus cannot be dealt with in this way.
 MPI support for these multi-dimensional workspaces is beyond the scope of this document.</p>
 </section>
 <section id="spectrum-and-detector">
-<h3><a class="toc-backref" href="#id14">Spectrum and Detector</a><a class="headerlink" href="#spectrum-and-detector" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">Spectrum and Detector</a><a class="headerlink" href="#spectrum-and-detector" title="Permalink to this heading">¶</a></h3>
 <p>In Mantid the terms spectrum and detector are used interchangeably at times, leading to confusion.
 In particular, it is sometimes assumed that there is a 1:1 correspondence between spectra and detectors.
 It is important to clearly distinguish between a spectrum and a detector, especially in the context of MPI support.
@@ -153,11 +154,11 @@ We may define the terms as follows:</p>
 <li><p>If the detectors are moveable, a spectrum would correspond to a region of space given by the position a specific detector had in a certain time interval.</p></li>
 <li><p>There can be detectors without a corresponding spectrum, and Mantid is thus not handling data of those detectors.</p></li>
 </ul>
-<p>For the purpose of MPI support, Mantid always stores the complete instrument including <strong>all detectors</strong> on <strong>every MPI rank</strong>. <a class="footnote-reference brackets" href="#split-instrument" id="id1">1</a>
+<p>For the purpose of MPI support, Mantid always stores the complete instrument including <strong>all detectors</strong> on <strong>every MPI rank</strong>. <a class="footnote-reference brackets" href="#split-instrument" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>
 Only a subset of all spectra is stored on the local MPI rank, so a detector may be locally without corresponding spectrum but have a spectrum associated to it on another MPI rank.</p>
 </section>
 <section id="storage-mode">
-<h3><a class="toc-backref" href="#id15">Storage Mode</a><a class="headerlink" href="#storage-mode" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id15" role="doc-backlink">Storage Mode</a><a class="headerlink" href="#storage-mode" title="Permalink to this heading">¶</a></h3>
 <figure class="align-right" id="id4" style="width: 25%">
 <img alt="_images/MPI-storage-modes.png" src="_images/MPI-storage-modes.png" />
 <figcaption>
@@ -184,7 +185,7 @@ For all other data, such as a scalar value provided as an input to an algorithm 
 </ul>
 </section>
 <section id="execution-mode">
-<h3><a class="toc-backref" href="#id16">Execution Mode</a><a class="headerlink" href="#execution-mode" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id16" role="doc-backlink">Execution Mode</a><a class="headerlink" href="#execution-mode" title="Permalink to this heading">¶</a></h3>
 <figure class="align-right" id="id5" style="width: 25%">
 <img alt="_images/MPI-execution-mode-identical.png" src="_images/MPI-execution-mode-identical.png" />
 <figcaption>
@@ -242,14 +243,14 @@ Examples are given in the series of figures on the right.</p>
 </section>
 </section>
 <section id="building-and-running-mantid-with-mpi-support">
-<h2><a class="toc-backref" href="#id17">Building and Running Mantid with MPI Support</a><a class="headerlink" href="#building-and-running-mantid-with-mpi-support" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id17" role="doc-backlink">Building and Running Mantid with MPI Support</a><a class="headerlink" href="#building-and-running-mantid-with-mpi-support" title="Permalink to this heading">¶</a></h2>
 <section id="build-with-mpi-support">
-<h3><a class="toc-backref" href="#id18">Build with MPI support</a><a class="headerlink" href="#build-with-mpi-support" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id18" role="doc-backlink">Build with MPI support</a><a class="headerlink" href="#build-with-mpi-support" title="Permalink to this heading">¶</a></h3>
 <p>To build Mantid with MPI support as described in this document run <code class="docutils literal notranslate"><span class="pre">cmake</span></code> with the additional option <code class="docutils literal notranslate"><span class="pre">-DMPI_EXPERIMENTAL=ON</span></code>.
 This requires <code class="docutils literal notranslate"><span class="pre">boost-mpi</span></code> and a working MPI installation.</p>
 </section>
 <section id="configuration">
-<h3><a class="toc-backref" href="#id19">Configuration</a><a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id19" role="doc-backlink">Configuration</a><a class="headerlink" href="#configuration" title="Permalink to this heading">¶</a></h3>
 <p>To avoid unintentional DDOSing or potential other issues, there is no MPI support for <code class="docutils literal notranslate"><span class="pre">DownloadInstrument</span></code> and <code class="docutils literal notranslate"><span class="pre">CheckMantidVersion</span></code>.
 Error messages can be avoided by disabling these startup checks in the configuration.
 Furthermore, to avoid pollution of usage reports, usage reporting should be disabled:</p>
@@ -260,7 +261,7 @@ usagereports.enabled <span class="o">=</span> <span class="m">0</span>
 </div>
 </section>
 <section id="writing-and-running-python-scripts">
-<h3><a class="toc-backref" href="#id20">Writing and running Python scripts</a><a class="headerlink" href="#writing-and-running-python-scripts" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id20" role="doc-backlink">Writing and running Python scripts</a><a class="headerlink" href="#writing-and-running-python-scripts" title="Permalink to this heading">¶</a></h3>
 <p>In principle Python scripts that use only algorithms that support MPI can be run with MPI <strong>without changes</strong>.
 For example:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mantid.simpleapi</span> <span class="kn">import</span> <span class="o">*</span>
@@ -312,7 +313,7 @@ Histograms: <span class="m">1</span>
 This is probably not a problem in practice.</p>
 </section>
 <section id="logging-output">
-<h3><a class="toc-backref" href="#id21">Logging output</a><a class="headerlink" href="#logging-output" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id21" role="doc-backlink">Logging output</a><a class="headerlink" href="#logging-output" title="Permalink to this heading">¶</a></h3>
 <p>With many MPI ranks it is common to get spammed by logging output.
 Since there is not control of output order for multi-line log messages it also tends to become hard to read since output from different ranks get interleaved.</p>
 <p>The current solution to this is a logging offset for all but the master rank.
@@ -326,14 +327,14 @@ If that is an issue the logging offset can simply be set to 0.</p>
 </section>
 </section>
 <section id="implementing-mpi-support-for-an-algorithm">
-<h2><a class="toc-backref" href="#id22">Implementing MPI Support for an Algorithm</a><a class="headerlink" href="#implementing-mpi-support-for-an-algorithm" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id22" role="doc-backlink">Implementing MPI Support for an Algorithm</a><a class="headerlink" href="#implementing-mpi-support-for-an-algorithm" title="Permalink to this heading">¶</a></h2>
 <section id="supported-workspace-types">
-<h3><a class="toc-backref" href="#id23">Supported workspace types</a><a class="headerlink" href="#supported-workspace-types" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id23" role="doc-backlink">Supported workspace types</a><a class="headerlink" href="#supported-workspace-types" title="Permalink to this heading">¶</a></h3>
 <p>Only <code class="docutils literal notranslate"><span class="pre">MatrixWorkspace</span></code> and its subclasses support <code class="docutils literal notranslate"><span class="pre">StorageMode::Distributed</span></code>.
 All other workspace types, in particular <code class="docutils literal notranslate"><span class="pre">TableWorkspace</span></code> and <code class="docutils literal notranslate"><span class="pre">MDWorkspace</span></code> are restricted to <code class="docutils literal notranslate"><span class="pre">StorageMode::MasterOnly</span></code> and <code class="docutils literal notranslate"><span class="pre">StorageMode::Cloned</span></code>.</p>
 </section>
 <section id="mechanism">
-<h3><a class="toc-backref" href="#id24">Mechanism</a><a class="headerlink" href="#mechanism" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id24" role="doc-backlink">Mechanism</a><a class="headerlink" href="#mechanism" title="Permalink to this heading">¶</a></h3>
 <p>By default an algorithm does not support MPI and any attempt to execute it in an MPI run will throw an exception.
 MPI support for an algorithm is implemented by means of a couple of virtual methods in the <code class="docutils literal notranslate"><span class="pre">Algorithm</span></code> base class:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Algorithm</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
@@ -376,13 +377,13 @@ The exception are non-master ranks if the execution mode is <code class="docutil
 This is discussed in more detail in the subsections below.</p>
 </section>
 <section id="identical-execution">
-<h3><a class="toc-backref" href="#id25">Identical execution</a><a class="headerlink" href="#identical-execution" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id25" role="doc-backlink">Identical execution</a><a class="headerlink" href="#identical-execution" title="Permalink to this heading">¶</a></h3>
 <p>Identical execution with execution mode <code class="docutils literal notranslate"><span class="pre">ExecutionMode::Identical</span></code> is usually done for data with storage mode <code class="docutils literal notranslate"><span class="pre">StorageMode::Cloned</span></code>.
 Execution is handled by simply calling <code class="docutils literal notranslate"><span class="pre">Algorithm::exec()</span></code> on all MPI ranks.</p>
 <p>A notable exception that has to be kept in mind are algorithms that are saving workspaces or write to other resources, since the file names will be in conflict.</p>
 </section>
 <section id="distributed-execution">
-<h3><a class="toc-backref" href="#id26">Distributed execution</a><a class="headerlink" href="#distributed-execution" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id26" role="doc-backlink">Distributed execution</a><a class="headerlink" href="#distributed-execution" title="Permalink to this heading">¶</a></h3>
 <p>Distributed execution is handled by <code class="docutils literal notranslate"><span class="pre">Algorithm::execDistributed()</span></code>.
 By default this simply calls <code class="docutils literal notranslate"><span class="pre">Algorithm::exec()</span></code>.
 In many cases this may be perfectly fine and more convenient than reimplementing <code class="docutils literal notranslate"><span class="pre">Algorithm::execDistributed()</span></code>.</p>
@@ -409,7 +410,7 @@ We can either check for the number of MPI ranks in the normal <code class="docut
 <p>Many algorithms in Mantid will require very little modification for MPI support and thus the first option is likely to be the first choice.</p>
 </section>
 <section id="master-only-execution">
-<h3><a class="toc-backref" href="#id27">Master-only execution</a><a class="headerlink" href="#master-only-execution" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id27" role="doc-backlink">Master-only execution</a><a class="headerlink" href="#master-only-execution" title="Permalink to this heading">¶</a></h3>
 <p>Master-only execution is handled by <code class="docutils literal notranslate"><span class="pre">Algorithm::execMasterOnly()</span></code>.
 By default this simply calls <code class="docutils literal notranslate"><span class="pre">Algorithm::exec()</span></code> on rank 0 and does nothing on all other ranks.</p>
 <p>To support running existing Python scripts without significant modification, and to be able to automatically determine execution modes based on input workspaces, workspaces with storage mode <code class="docutils literal notranslate"><span class="pre">StorageMode::MasterOnly</span></code> also exist on the non-master ranks.</p>
@@ -420,17 +421,17 @@ This implies:
 - Algorithms that transform a workspace into a workspace with <code class="docutils literal notranslate"><span class="pre">StorageMode::MasterOnly</span></code> such as <code class="docutils literal notranslate"><span class="pre">DiffractionFocussing2</span></code> should delete the input workspace when using in-place operation.</p>
 </section>
 <section id="setting-spectrum-numbers">
-<h3><a class="toc-backref" href="#id28">Setting spectrum numbers</a><a class="headerlink" href="#setting-spectrum-numbers" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id28" role="doc-backlink">Setting spectrum numbers</a><a class="headerlink" href="#setting-spectrum-numbers" title="Permalink to this heading">¶</a></h3>
 <p>Setting spectrum numbers via the legacy interface <code class="docutils literal notranslate"><span class="pre">MatrixWorkspace::getSpectrum(size_t)::setSpectrumNo(specnum_t)</span></code> is not supported in MPI runs and will throw an exception.
 The reason is that spectrum numbers are used to globally identify a spectrum and thus changing a spectrum number must be done globally, i.e., on all MPI ranks.
 Spectrum numbers should be set by using <code class="docutils literal notranslate"><span class="pre">Indexing::IndexInfo</span></code> and <code class="docutils literal notranslate"><span class="pre">MatrixWorkspace::setIndexInfo()</span></code>, or rather by passing the <code class="docutils literal notranslate"><span class="pre">IndexInfo</span></code> to one of the workspace factory functions from <code class="docutils literal notranslate"><span class="pre">DataObjects/WorkspaceCreation.h</span></code>.</p>
 </section>
 <section id="workspace-indices">
-<h3><a class="toc-backref" href="#id29">Workspace indices</a><a class="headerlink" href="#workspace-indices" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id29" role="doc-backlink">Workspace indices</a><a class="headerlink" href="#workspace-indices" title="Permalink to this heading">¶</a></h3>
 <p>If a workspace is distributed, i.e., has storage mode <code class="docutils literal notranslate"><span class="pre">StorageMode::Distributed</span></code> workspaces indices lose their meaning.
 In particular, <code class="docutils literal notranslate"><span class="pre">MatrixWorkspace::getNumberHistograms()</span></code> will return the local number of spectra and not the global size of the workspace.
 For purposes of interaction with the user interface and for internal consistency a global equivalent of the ‘workspace index’ concept has been introduced.
-This index is represented by <code class="docutils literal notranslate"><span class="pre">Indexing::GlobalSpectrumIndex</span></code>. <a class="footnote-reference brackets" href="#spectrum-index" id="id2">2</a></p>
+This index is represented by <code class="docutils literal notranslate"><span class="pre">Indexing::GlobalSpectrumIndex</span></code>. <a class="footnote-reference brackets" href="#spectrum-index" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a></p>
 <p>The consequences are as follows:</p>
 <ul class="simple">
 <li><p>Workspace indices should not be logged or written into output of other types such as tables. Instead spectrum numbers (<code class="docutils literal notranslate"><span class="pre">Indexing::SpectrumNumber</span></code>) or global spectrum indices (<code class="docutils literal notranslate"><span class="pre">Indexing::GlobalSpectrumIndex</span></code>) must be used.</p></li>
@@ -445,7 +446,7 @@ Indices provided by a user may never be interpreted as local indices, since a lo
 </ul>
 </section>
 <section id="instrument-and-detectors">
-<h3><a class="toc-backref" href="#id30">Instrument and detectors</a><a class="headerlink" href="#instrument-and-detectors" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id30" role="doc-backlink">Instrument and detectors</a><a class="headerlink" href="#instrument-and-detectors" title="Permalink to this heading">¶</a></h3>
 <p>As described above, the full set of detectors is held on each MPI rank.
 Thus, algorithms that modify detectors must do so <strong>in an identical</strong> manner on all MPI ranks.
 That is, if for example detector positions would be modified in an Algorithm it is <strong>not</strong> sufficient to do so for all detectors that have a corresponding spectrum on the MPI rank.
@@ -454,7 +455,7 @@ Instead such a modification must be done for all detectors.</p>
 It is however essential to think of this when providing MPI support for an algorithm.</p>
 </section>
 <section id="gui">
-<h3><a class="toc-backref" href="#id31">GUI</a><a class="headerlink" href="#gui" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id31" role="doc-backlink">GUI</a><a class="headerlink" href="#gui" title="Permalink to this heading">¶</a></h3>
 <p>Running the Mantid GUI with MPI support, such as a client GUI with a MPI-based backend, is currently not possible.
 If it cannot be avoided to add an MPI-related property to an algorithm is shall be made invisible in the GUI.
 This can be done by adjusting the property settings when implementing <code class="docutils literal notranslate"><span class="pre">Algorithm::init()</span></code>:</p>
@@ -468,7 +469,7 @@ This can be done by adjusting the property settings when implementing <code clas
 </div>
 </section>
 <section id="units-tests">
-<h3><a class="toc-backref" href="#id32">Units Tests</a><a class="headerlink" href="#units-tests" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id32" role="doc-backlink">Units Tests</a><a class="headerlink" href="#units-tests" title="Permalink to this heading">¶</a></h3>
 <p>For unit testing the MPI support of an algorithm a fake backend that can be run without MPI is provided.
 No modifications to the code under test a required.
 In the unit test case <code class="docutils literal notranslate"><span class="pre">ParallelRunner</span></code> from <code class="docutils literal notranslate"><span class="pre">MantidTestHelpers</span></code> is used to run the algorithm (or other code) under test as if it were part of on MPI run.
@@ -509,12 +510,12 @@ A typical example could look as follows:</p>
 <code class="docutils literal notranslate"><span class="pre">MantidTestHelpers/ParallelRunner.h</span></code> provides <code class="docutils literal notranslate"><span class="pre">ParallelTestHelpers::runParallel</span></code>, which uses <code class="docutils literal notranslate"><span class="pre">ParallelRunner</span></code> with a reasonable default choice for the number of ranks.</p>
 </section>
 <section id="documentation">
-<h3><a class="toc-backref" href="#id33">Documentation</a><a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id33" role="doc-backlink">Documentation</a><a class="headerlink" href="#documentation" title="Permalink to this heading">¶</a></h3>
 <p>When adding MPI support for an algorithm, add it to the table at the end of this document.
 Potential limitations must be described in the comments.</p>
 </section>
 <section id="porting-python-reduction-scripts-in-practice">
-<h3><a class="toc-backref" href="#id34">Porting Python reduction scripts in practice</a><a class="headerlink" href="#porting-python-reduction-scripts-in-practice" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id34" role="doc-backlink">Porting Python reduction scripts in practice</a><a class="headerlink" href="#porting-python-reduction-scripts-in-practice" title="Permalink to this heading">¶</a></h3>
 <p>The mechanism of execution modes and storage modes allows for “guided” porting of algorithms as follows:</p>
 <ol class="arabic simple">
 <li><p>Run Python script such as a system test with two (or more) MPI ranks.</p></li>
@@ -536,13 +537,8 @@ MyAlg-[Error] .
 </section>
 </section>
 <section id="supported-algorithms">
-<h2><a class="toc-backref" href="#id35">Supported Algorithms</a><a class="headerlink" href="#supported-algorithms" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id35" role="doc-backlink">Supported Algorithms</a><a class="headerlink" href="#supported-algorithms" title="Permalink to this heading">¶</a></h2>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 13%" />
-<col style="width: 8%" />
-<col style="width: 78%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Algorithm</p></th>
 <th class="head"><p>Supported modes</p></th>
@@ -1126,16 +1122,16 @@ MyAlg-[Error] .
 </table>
 <p>Currently none of the above algorithms works with <code class="docutils literal notranslate"><span class="pre">StorageMode::Distributed</span></code> in case there are zero spectra on any rank.</p>
 <p class="rubric">Footnotes</p>
-<dl class="footnote brackets">
-<dt class="label" id="split-instrument"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>The complexity and overhead of splitting the instrument, in particular given the overhead ensuing from handling all cases exemplified above, led to the decision split only the neutron data based on spectra, but not detectors.</p>
-</dd>
-<dt class="label" id="spectrum-index"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
-<dd><p>Some will argue that this should be <code class="docutils literal notranslate"><span class="pre">GlobalWorkspaceIndex</span></code>.
+<aside class="footnote brackets" id="split-instrument" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>The complexity and overhead of splitting the instrument, in particular given the overhead ensuing from handling all cases exemplified above, led to the decision split only the neutron data based on spectra, but not detectors.</p>
+</aside>
+<aside class="footnote brackets" id="spectrum-index" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
+<p>Some will argue that this should be <code class="docutils literal notranslate"><span class="pre">GlobalWorkspaceIndex</span></code>.
 However it is not an index of a workspace so the term <code class="docutils literal notranslate"><span class="pre">GlobalSpectrumIndex</span></code> has been chosen for clarity.
 On the user interface side this will still be named ‘workspace index’, dropping the ‘global’ since the distinction between global and local indices is irrelevant for users.</p>
-</dd>
-</dl>
+</aside>
 </section>
 </section>
 

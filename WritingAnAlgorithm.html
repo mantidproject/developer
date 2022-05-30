@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Writing An Algorithm</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
@@ -12,6 +12,7 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -88,8 +89,8 @@
     <div class="body col-md-12 content" role="main">
       
   <section id="writing-an-algorithm">
-<span id="writinganalgorithm"></span><h1>Writing An Algorithm<a class="headerlink" href="#writing-an-algorithm" title="Permalink to this headline">¶</a></h1>
-<div class="contents local topic" id="contents">
+<span id="writinganalgorithm"></span><h1>Writing An Algorithm<a class="headerlink" href="#writing-an-algorithm" title="Permalink to this heading">¶</a></h1>
+<nav class="contents local" id="contents">
 <ul class="simple">
 <li><p><a class="reference internal" href="#introduction" id="id1">Introduction</a></p></li>
 <li><p><a class="reference internal" href="#getting-started" id="id2">Getting Started</a></p></li>
@@ -115,9 +116,9 @@
 </ul>
 </li>
 </ul>
-</div>
+</nav>
 <section id="introduction">
-<h2><a class="toc-backref" href="#id1">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
 <p>Mantid’s <a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/Plugin.html#plugin" title="(in MantidProject v6.3)"><span class="xref std std-ref">plugin</span></a> architecture has been engineered so that it is easy for a user
 to write their own algorithm. This page is a primer for the user about to write their first algorithm and assumes no
 great knowledge of C++.
@@ -133,7 +134,7 @@ from a base <code class="docutils literal notranslate"><span class="pre">Algorit
 algorithm and greatly simplifies the process of writing a new one.</p>
 </section>
 <section id="getting-started">
-<h2><a class="toc-backref" href="#id2">Getting Started</a><a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Getting Started</a><a class="headerlink" href="#getting-started" title="Permalink to this heading">¶</a></h2>
 <p>The first step is to create a new directory, with any name of your choice, under your MantidInstall directory
 (on Windows, probably located at <code class="docutils literal notranslate"><span class="pre">C:\\MantidInstall</span></code>). Alternatively, you can just do everything in the
 UserAlgorithms directory. The UserAlgorithms directory contains a simple Python script called <code class="docutils literal notranslate"><span class="pre">createAlg.py</span></code>.
@@ -191,7 +192,7 @@ If you then start MantidPlot your algorithm will appear in the list of available
 But, of course, it won’t do anything of interest until you have written some algorithm code…</p>
 </section>
 <section id="coding-the-algorithm">
-<h2><a class="toc-backref" href="#id3">Coding the Algorithm</a><a class="headerlink" href="#coding-the-algorithm" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Coding the Algorithm</a><a class="headerlink" href="#coding-the-algorithm" title="Permalink to this heading">¶</a></h2>
 <p>You will see that the algorithm skeletons set up in the last section contain two methods/functions/subroutines
 called <code class="docutils literal notranslate"><span class="pre">init</span></code> and <code class="docutils literal notranslate"><span class="pre">exec</span></code>. It will be no surprise to discover that these will, respectively, contain the code to
 initialise and execute the algorithm, which goes in the <code class="docutils literal notranslate"><span class="pre">.cpp</span></code> file between the curly brackets of each method.
@@ -199,7 +200,7 @@ Note that these are private methods (i.e. cannot be called directly); an algorit
 class’s <code class="docutils literal notranslate"><span class="pre">initialize()</span></code> and <code class="docutils literal notranslate"><span class="pre">execute()</span></code> methods, which provide additional services such as the validation of properties,
 fetching workspaces from the <code class="docutils literal notranslate"><span class="pre">AnalysisDataService</span></code>, handling errors and filling the workspace histories.</p>
 <section id="initialization">
-<h3><a class="toc-backref" href="#id4">Initialization</a><a class="headerlink" href="#initialization" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id4" role="doc-backlink">Initialization</a><a class="headerlink" href="#initialization" title="Permalink to this heading">¶</a></h3>
 <p>The initialization (init) method is executed by the <code class="docutils literal notranslate"><span class="pre">FrameworkManager</span></code> when an algorithm is requested and must
 contain the declaration of the properties required by the algorithm. Atypically, it can also contain other
 initialization code such as the calculation of constants used by the algorithm, so long as this does not
@@ -221,9 +222,9 @@ example algorithms in <a class="reference external" href="https://www.mantidproj
 </section>
 </section>
 <section id="execution">
-<h2><a class="toc-backref" href="#id5">Execution</a><a class="headerlink" href="#execution" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Execution</a><a class="headerlink" href="#execution" title="Permalink to this heading">¶</a></h2>
 <section id="fetching-properties">
-<h3><a class="toc-backref" href="#id6">Fetching properties</a><a class="headerlink" href="#fetching-properties" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">Fetching properties</a><a class="headerlink" href="#fetching-properties" title="Permalink to this heading">¶</a></h3>
 <p>Before the data can be processed, the first task is likely to be to fetch the values of the input properties.
 This uses the <code class="docutils literal notranslate"><span class="pre">getProperty</span></code> method as follows:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TYPE</span> <span class="n">myProperty</span> <span class="o">=</span> <span class="n">getProperty</span><span class="p">(</span><span class="s2">&quot;PropertyName&quot;</span><span class="p">);</span>
@@ -241,7 +242,7 @@ The latter should be used for input workspaces that will not need to be changed 
 <code class="docutils literal notranslate"><span class="pre">isDefault()</span></code> method).</p>
 </section>
 <section id="creating-the-output-workspace">
-<h3><a class="toc-backref" href="#id7">Creating the output workspace</a><a class="headerlink" href="#creating-the-output-workspace" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">Creating the output workspace</a><a class="headerlink" href="#creating-the-output-workspace" title="Permalink to this heading">¶</a></h3>
 <p>Usually, the result of an algorithm will be stored in another new workspace and the algorithm
 will need to create that new workspace through a call to the <code class="docutils literal notranslate"><span class="pre">WorkspaceFactory</span></code>. For the (common)
 example where the output workspace should be of the same type and size as the input one, the code
@@ -258,7 +259,7 @@ This is achieved through a call to the <code class="docutils literal notranslate
 <p>where <code class="docutils literal notranslate"><span class="pre">outputWorkspace</span></code> is a shared pointer to the created output workspace.</p>
 </section>
 <section id="using-workspaces">
-<h3><a class="toc-backref" href="#id8">Using workspaces</a><a class="headerlink" href="#using-workspaces" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">Using workspaces</a><a class="headerlink" href="#using-workspaces" title="Permalink to this heading">¶</a></h3>
 <p>The bulk of most algorithms will involve the manipulation of the data contained in workspaces
 and information on how to interact with these is given <a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/WorkingWithWorspaces.html#workingwithworkspaces" title="(in MantidProject v6.3)"><span class="xref std std-ref">here</span></a>.
 The more advanced user may also want to refer to the full
@@ -268,12 +269,12 @@ more manageable and readable sections.</p>
 </section>
 </section>
 <section id="further-features">
-<h2><a class="toc-backref" href="#id9">Further Features</a><a class="headerlink" href="#further-features" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">Further Features</a><a class="headerlink" href="#further-features" title="Permalink to this heading">¶</a></h2>
 <p>The advanced user is referred to the <a class="reference external" href="http://doxygen.mantidproject.org/nightly/d3/de9/classMantid_1_1API_1_1Workspace.html">full documentation page</a>
 for the <code class="docutils literal notranslate"><span class="pre">Algorithm</span></code> base class to explore the full range of methods available for use within an algorithm.
 A few aspects are highlighted below.</p>
 <section id="child-algorithms">
-<h3><a class="toc-backref" href="#id10">Child Algorithms</a><a class="headerlink" href="#child-algorithms" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">Child Algorithms</a><a class="headerlink" href="#child-algorithms" title="Permalink to this heading">¶</a></h3>
 <p>Algorithms may wish to make use of the functionality of other algorithms as part of their execution.
 For example, if a units change is required the <code class="docutils literal notranslate"><span class="pre">ConvertUnits</span></code> algorithm could be used. Mantid therefore
 has the concept of a child algorithm and this is accessed through a call to the
@@ -289,12 +290,12 @@ has the concept of a child algorithm and this is accessed through a call to the
 </div>
 </section>
 <section id="logging">
-<h3><a class="toc-backref" href="#id11">Logging</a><a class="headerlink" href="#logging" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">Logging</a><a class="headerlink" href="#logging" title="Permalink to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">g_log</span></code> object enables access to the <a class="reference internal" href="Logging.html#logging"><span class="std std-ref">logging</span></a> facilities of Mantid, and is an invaluable
 tool in understanding the running of your algorithms.</p>
 </section>
 <section id="enhancing-asynchronous-running">
-<h3><a class="toc-backref" href="#id12">Enhancing asynchronous running</a><a class="headerlink" href="#enhancing-asynchronous-running" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">Enhancing asynchronous running</a><a class="headerlink" href="#enhancing-asynchronous-running" title="Permalink to this heading">¶</a></h3>
 <p>Any algorithm can be run asynchronously (e.g. by MantidPlot) without modification. However, some features
 are only enabled if code is added within the <code class="docutils literal notranslate"><span class="pre">exec()</span></code> method. <code class="docutils literal notranslate"><span class="pre">Algorithm::interruption_point()</span></code> should
 be called at appropriate intervals so that the algorithm’s execution can be interrupted.
@@ -302,12 +303,12 @@ be called at appropriate intervals so that the algorithm’s execution can be in
 0 (start) and 1 (finish).</p>
 </section>
 <section id="exceptions">
-<h3><a class="toc-backref" href="#id13">Exceptions</a><a class="headerlink" href="#exceptions" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">Exceptions</a><a class="headerlink" href="#exceptions" title="Permalink to this heading">¶</a></h3>
 <p>It is fine to throw exceptions in your algorithms in the event of an unrecoverable failure.
 These will be caught in the base Algorithm class, which will report the failure of the algorithm.</p>
 </section>
 <section id="validation-of-inputs">
-<h3><a class="toc-backref" href="#id14">Validation of inputs</a><a class="headerlink" href="#validation-of-inputs" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">Validation of inputs</a><a class="headerlink" href="#validation-of-inputs" title="Permalink to this heading">¶</a></h3>
 <p><a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/Properties.html#properties-validators" title="(in MantidProject v6.3)"><span class="xref std std-ref">Validators</span></a> allow you to give feedback
 to the user if the input of a property is incorrect (for example, typing non-numeric characters
 in a number field).</p>

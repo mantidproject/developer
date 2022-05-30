@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Event Workspace Development</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
@@ -12,6 +12,7 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -88,8 +89,8 @@
     <div class="body col-md-12 content" role="main">
       
   <section id="event-workspace-development">
-<span id="event-workspace-dev"></span><h1>Event Workspace Development<a class="headerlink" href="#event-workspace-development" title="Permalink to this headline">¶</a></h1>
-<div class="contents local topic" id="contents">
+<span id="event-workspace-dev"></span><h1>Event Workspace Development<a class="headerlink" href="#event-workspace-development" title="Permalink to this heading">¶</a></h1>
+<nav class="contents local" id="contents">
 <ul class="simple">
 <li><p><a class="reference internal" href="#individual-neutron-event-data-tofevent" id="id1">Individual Neutron Event Data (TofEvent)</a></p></li>
 <li><p><a class="reference internal" href="#lists-of-events-eventlist" id="id2">Lists of Events (EventList)</a></p></li>
@@ -98,11 +99,11 @@
 <li><p><a class="reference internal" href="#workspace2d-compatibility" id="id5">Workspace2D compatibility</a></p></li>
 <li><p><a class="reference internal" href="#a-note-about-thread-safety" id="id6">A Note about Thread Safety</a></p></li>
 </ul>
-</div>
+</nav>
 <p>The following information will be useful to you if you want to write an
 <a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/Algorithm.html#algorithm" title="(in MantidProject v6.3)"><span>Algorithm</span></a> that is <a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/EventWorkspace.html#eventworkspace" title="(in MantidProject v6.3)"><span class="xref std std-ref">Event Workspace</span></a> aware.</p>
 <section id="individual-neutron-event-data-tofevent">
-<h2><a class="toc-backref" href="#id1">Individual Neutron Event Data (TofEvent)</a><a class="headerlink" href="#individual-neutron-event-data-tofevent" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Individual Neutron Event Data (TofEvent)</a><a class="headerlink" href="#individual-neutron-event-data-tofevent" title="Permalink to this heading">¶</a></h2>
 <p>The <a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/Framework/Types/inc/MantidTypes/Event/TofEvent.h">TofEvent</a> class holds information for each neutron detection event
 data:</p>
 <ul class="simple">
@@ -119,7 +120,7 @@ Note that this field can be converted to other units, e.g. d-spacing.</p></li>
 </div>
 </section>
 <section id="lists-of-events-eventlist">
-<h2><a class="toc-backref" href="#id2">Lists of Events (EventList)</a><a class="headerlink" href="#lists-of-events-eventlist" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Lists of Events (EventList)</a><a class="headerlink" href="#lists-of-events-eventlist" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>The EventList class consists of a list of TofEvent’s. The order of
 this list is not significant, since various algorithms will resort by
@@ -137,13 +138,13 @@ EventWorkpspace-&gt;makeSpectraMap to generate the spectra map (map between
 spectrum # and detector IDs) by using the info in each EventList.</p>
 </section>
 <section id="most-recently-used-list-mrulist">
-<h2><a class="toc-backref" href="#id3">Most Recently Used List (MRUList)</a><a class="headerlink" href="#most-recently-used-list-mrulist" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Most Recently Used List (MRUList)</a><a class="headerlink" href="#most-recently-used-list-mrulist" title="Permalink to this heading">¶</a></h2>
 <p>An Event Workspace contains a list of the 100 most-recently used
 histograms, a MRUList. This MRU caches the last histogram
 data generated for fastest display.</p>
 </section>
 <section id="a-note-about-workspace-index-spectrum-number-detector-id">
-<h2><a class="toc-backref" href="#id4">A note about workspace index / spectrum number / detector ID</a><a class="headerlink" href="#a-note-about-workspace-index-spectrum-number-detector-id" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">A note about workspace index / spectrum number / detector ID</a><a class="headerlink" href="#a-note-about-workspace-index-spectrum-number-detector-id" title="Permalink to this heading">¶</a></h2>
 <p>For event workspaces there is no benefit, and only a drawback to grouping detectors in hardware, therefore most of the loading algorithms for event data <strong>match</strong> the workspace index and spectrum number
 in the Event Workspace. Therefore, in an Event Workspace, the two numbers
 will often be the same, and your workspace’s Axis[1] is a simple 1:1 map. As
@@ -151,7 +152,7 @@ mentioned above, the detectorID is saved in EventList, but the
 makeSpectraMap() method generates the usual SpectraDetectorMap object.</p>
 </section>
 <section id="workspace2d-compatibility">
-<h2><a class="toc-backref" href="#id5">Workspace2D compatibility</a><a class="headerlink" href="#workspace2d-compatibility" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Workspace2D compatibility</a><a class="headerlink" href="#workspace2d-compatibility" title="Permalink to this heading">¶</a></h2>
 <p>Event Workspace is designed to be able to be read (but not written to)
 like a <a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/MatrixWorkspace.html#matrixworkspace" title="(in MantidProject v6.3)"><span class="xref std std-ref">MatrixWorkspace</span></a>. By default, if an algorithm
 performs an operation and outputs a new workspace, the
@@ -160,7 +161,7 @@ of your Event Workspace’s histogram representation. If you attempt to
 change an Event Workspace’s Y or E data in place, you will get an <code class="docutils literal notranslate"><span class="pre">NotImplementedError</span></code> raised, since that is not possible.</p>
 </section>
 <section id="a-note-about-thread-safety">
-<h2><a class="toc-backref" href="#id6">A Note about Thread Safety</a><a class="headerlink" href="#a-note-about-thread-safety" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">A Note about Thread Safety</a><a class="headerlink" href="#a-note-about-thread-safety" title="Permalink to this heading">¶</a></h2>
 <p>Thread safety can be surprising when using an Event Workspace:</p>
 <p>If two threads <em>read</em> a Y histogram at the same time, this <em>can</em> cause
 problems. This is because the histogramming code will try to sort the

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Multithreading in Mantid</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
@@ -12,6 +12,7 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -86,9 +87,9 @@
     <div class="body col-md-12 content" role="main">
       
   <section id="multithreading-in-mantid">
-<h1>Multithreading in Mantid<a class="headerlink" href="#multithreading-in-mantid" title="Permalink to this headline">¶</a></h1>
+<h1>Multithreading in Mantid<a class="headerlink" href="#multithreading-in-mantid" title="Permalink to this heading">¶</a></h1>
 <section id="c">
-<h2>C++<a class="headerlink" href="#c" title="Permalink to this headline">¶</a></h2>
+<h2>C++<a class="headerlink" href="#c" title="Permalink to this heading">¶</a></h2>
 <p>Mantid uses <a class="reference external" href="http://openmp.org/wp/about-openmp/">OpenMP</a> in C++ to improve
 performance by parallelizing <code class="docutils literal notranslate"><span class="pre">for</span></code> loops. A tutorial devoted to the technology can be found
 <a class="reference external" href="https://hpc-tutorials.llnl.gov/openmp/">here</a>.</p>
@@ -133,7 +134,7 @@ directly. Ideally, this should only be used if what you want to do is not alread
 </div>
 <p>Note: The set of <code class="docutils literal notranslate"><span class="pre">INTERRUPT</span></code> macros can only be used in Mantid algorithms. The rest can be used anywhere.</p>
 <section id="ensuring-thread-safety">
-<h3>Ensuring thread-safety<a class="headerlink" href="#ensuring-thread-safety" title="Permalink to this headline">¶</a></h3>
+<h3>Ensuring thread-safety<a class="headerlink" href="#ensuring-thread-safety" title="Permalink to this heading">¶</a></h3>
 <p>The first rule is this: <strong>Don’t write to shared variables.</strong> Or, if you
 do, protect the write with PARALLEL_CRITICAL or PARALLEL_ATOMIC calls.</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Can only be used on simple operations, uses atomic access from machine hardware.</span>
@@ -168,7 +169,7 @@ case by reversing the two lines).</p>
 </section>
 </section>
 <section id="python">
-<h2>Python<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h2>
+<h2>Python<a class="headerlink" href="#python" title="Permalink to this heading">¶</a></h2>
 <p>Tasks in python can be run outside of the main GUI thread by using the classes and functions defined in
 <a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/qt/python/mantidqt/mantidqt/utils/asynchronous.py">asynchronous.py</a></p>
 <p>The simplest and most commonly used one is <code class="docutils literal notranslate"><span class="pre">AsyncTask</span></code>:</p>

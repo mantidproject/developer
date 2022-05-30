@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Writing Performance Tests</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
@@ -12,6 +12,7 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -88,8 +89,8 @@
     <div class="body col-md-12 content" role="main">
       
   <section id="writing-performance-tests">
-<span id="writingperformancetests"></span><h1>Writing Performance Tests<a class="headerlink" href="#writing-performance-tests" title="Permalink to this headline">¶</a></h1>
-<div class="contents local topic" id="contents">
+<span id="writingperformancetests"></span><h1>Writing Performance Tests<a class="headerlink" href="#writing-performance-tests" title="Permalink to this heading">¶</a></h1>
+<nav class="contents local" id="contents">
 <ul class="simple">
 <li><p><a class="reference internal" href="#overview" id="id1">Overview</a></p></li>
 <li><p><a class="reference internal" href="#how-to-write-c-performance-tests" id="id2">How to Write C++ Performance Tests</a></p></li>
@@ -102,9 +103,9 @@
 <li><p><a class="reference internal" href="#avoiding-compiler-optimizations" id="id6">Avoiding Compiler Optimizations</a></p></li>
 <li><p><a class="reference internal" href="#jobs-that-monitor-performance" id="id7">Jobs that monitor performance</a></p></li>
 </ul>
-</div>
+</nav>
 <section id="overview">
-<h2><a class="toc-backref" href="#id1">Overview</a><a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Overview</a><a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h2>
 <p>The point of Performance Tests is to track the performance of a piece of
 code through time, so that it will be easy to pinpoint any change that
 reduced the performance of a particular bit of code. Performance Tests
@@ -115,7 +116,7 @@ than a threshold percentage (currently 25%), relative to the average of
 a few previous tests.</p>
 </section>
 <section id="how-to-write-c-performance-tests">
-<h2><a class="toc-backref" href="#id2">How to Write C++ Performance Tests</a><a class="headerlink" href="#how-to-write-c-performance-tests" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">How to Write C++ Performance Tests</a><a class="headerlink" href="#how-to-write-c-performance-tests" title="Permalink to this heading">¶</a></h2>
 <p>An ideal performance test is neither too fast, nor too slow. The
 precision of timing will be insufficient if the test runs in much less
 than a second; tests that run for several minutes should also be
@@ -157,7 +158,7 @@ for performance, not function. Avoid adding so many assert’s that it
 would slow down your test.</p>
 </section>
 <section id="running-performance-tests">
-<h2><a class="toc-backref" href="#id3">Running Performance Tests</a><a class="headerlink" href="#running-performance-tests" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Running Performance Tests</a><a class="headerlink" href="#running-performance-tests" title="Permalink to this heading">¶</a></h2>
 <p>Performance tests targets are not added by default when running
 cmake/make. To add them as ctest targets, enable them with the flag:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cmake -DCXXTEST_ADD_PERFORMANCE<span class="o">=</span>TRUE
@@ -178,7 +179,7 @@ test portion without setUp/tearDown time).</p>
 <p>Note that newly added performance tests will not be registered with
 ctest until cmake has been re-run.</p>
 <section id="running-tests-without-ctest">
-<h3><a class="toc-backref" href="#id4">Running tests without ctest</a><a class="headerlink" href="#running-tests-without-ctest" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id4" role="doc-backlink">Running tests without ctest</a><a class="headerlink" href="#running-tests-without-ctest" title="Permalink to this heading">¶</a></h3>
 <p>The tests are still built into every test executable, even if you have
 not set the flag. For example,</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>AlgorithmsTest --help-tests
@@ -196,7 +197,7 @@ the specific test suite you want to run, e.g,</p>
 </section>
 </section>
 <section id="best-practice-advice">
-<h2><a class="toc-backref" href="#id5">Best Practice Advice</a><a class="headerlink" href="#best-practice-advice" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Best Practice Advice</a><a class="headerlink" href="#best-practice-advice" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>Performance tests are not System Tests. They should test the code at
 the same granularity as the unit test suite.</p></li>
@@ -211,7 +212,7 @@ timings will only relate to the target code you wish to measure.</p></li>
 </ul>
 </section>
 <section id="avoiding-compiler-optimizations">
-<h2><a class="toc-backref" href="#id6">Avoiding Compiler Optimizations</a><a class="headerlink" href="#avoiding-compiler-optimizations" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Avoiding Compiler Optimizations</a><a class="headerlink" href="#avoiding-compiler-optimizations" title="Permalink to this heading">¶</a></h2>
 <p>A common issue with performance tests is when you want to compute some
 value over a large number of iterations but ultimately you don’t want
 to actually use it in the end. We have included some handy utility functions
@@ -238,7 +239,7 @@ that <code class="docutils literal notranslate"><span class="pre">value</span></
 and the benchmark will become useless.</p>
 </section>
 <section id="jobs-that-monitor-performance">
-<h2><a class="toc-backref" href="#id7">Jobs that monitor performance</a><a class="headerlink" href="#jobs-that-monitor-performance" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Jobs that monitor performance</a><a class="headerlink" href="#jobs-that-monitor-performance" title="Permalink to this heading">¶</a></h2>
 <p>There is a job in Jenkins (our continuous integration system) that runs
 the performance test suite and generates output that enables us to
 easily monitor timings. The job runs a set of <a class="reference external" href="http://builds.mantidproject.org/job/main_performancetests2/">performance tests on the

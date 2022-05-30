@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Job Tree View</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
@@ -12,6 +12,7 @@
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -88,7 +89,7 @@
     <div class="body col-md-12 content" role="main">
       
   <section id="job-tree-view">
-<span id="jobtreeview"></span><h1>Job Tree View<a class="headerlink" href="#job-tree-view" title="Permalink to this headline">¶</a></h1>
+<span id="jobtreeview"></span><h1>Job Tree View<a class="headerlink" href="#job-tree-view" title="Permalink to this heading">¶</a></h1>
 <p>The <code class="code docutils literal notranslate"><span class="pre">JobTreeView</span></code> component provides an MVP style view interface for a hierarchical table
 with a spreadsheet-like appearance for configuring and indicating the status of multiple (batch)
 reduction jobs. It is currently used to implement the tree component of the Batch Widget.</p>
@@ -149,9 +150,9 @@ examples below.</p>
 </pre></div>
 </div>
 <section id="api-concepts">
-<h2>API Concepts<a class="headerlink" href="#api-concepts" title="Permalink to this headline">¶</a></h2>
+<h2>API Concepts<a class="headerlink" href="#api-concepts" title="Permalink to this heading">¶</a></h2>
 <section id="row-location">
-<h3>Row Location<a class="headerlink" href="#row-location" title="Permalink to this headline">¶</a></h3>
+<h3>Row Location<a class="headerlink" href="#row-location" title="Permalink to this heading">¶</a></h3>
 <p>A row location is the notion of an individual row’s position within the table. Since the
 table is hierarchical, unlike a traditional spreadsheet, the table is more like a
 tree of rows where all non-leaf nodes can have any number of children.</p>
@@ -187,14 +188,14 @@ demonstrated by the code below.</p>
 </pre></div>
 </div>
 <section id="dealing-with-cells">
-<h4>Dealing With Cells<a class="headerlink" href="#dealing-with-cells" title="Permalink to this headline">¶</a></h4>
+<h4>Dealing With Cells<a class="headerlink" href="#dealing-with-cells" title="Permalink to this heading">¶</a></h4>
 <p>Each row in the table can have 0-N cells. When interacting with the <code class="code docutils literal notranslate"><span class="pre">JobTreeView</span></code> we
 sometimes need to be able to address and change the properties of an individual cell. To do this
 we use both a <code class="code docutils literal notranslate"><span class="pre">RowLocation</span></code> and a column index.</p>
 </section>
 </section>
 <section id="cells">
-<h3>Cells<a class="headerlink" href="#cells" title="Permalink to this headline">¶</a></h3>
+<h3>Cells<a class="headerlink" href="#cells" title="Permalink to this heading">¶</a></h3>
 <p>In order to retrieve the view properties for one or more specific cells, the methods <code class="code docutils literal notranslate"><span class="pre">cellAt</span></code>
 and <code class="code docutils literal notranslate"><span class="pre">cellsAt</span></code> can be used to retrieve <code class="code docutils literal notranslate"><span class="pre">Cell</span></code> objects for the cell at a row and column
 index or all the cells for a particular row respectively.</p>
@@ -241,7 +242,7 @@ the example code below.</p>
 </div>
 </section>
 <section id="subtrees">
-<h3>Subtrees<a class="headerlink" href="#subtrees" title="Permalink to this headline">¶</a></h3>
+<h3>Subtrees<a class="headerlink" href="#subtrees" title="Permalink to this heading">¶</a></h3>
 <p>As previously illustrated the conceptual model for the API is a tree of tables. Initially, this
 model presents some challenges when you think about how to represent a user’s selection while
 preserving the tree structure. This is however necessary in order to support presenters which wish
@@ -257,7 +258,7 @@ outlined in blue in the diagram below.</p>
 on the internal representation of a subtree in this API.</p>
 </section>
 <section id="notification">
-<h3>Notification<a class="headerlink" href="#notification" title="Permalink to this headline">¶</a></h3>
+<h3>Notification<a class="headerlink" href="#notification" title="Permalink to this heading">¶</a></h3>
 <p><code class="code docutils literal notranslate"><span class="pre">JobTreeViewSubscriber</span></code> is the mechanism by which the JobTreeView communicates events such as
 key presses to the presenter in an MVP setup.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Mantid Repository : https://github.com/mantidproject/mantid</span>
@@ -344,7 +345,7 @@ the subscriber prior to calling any other methods, failure to do so may result i
 </div>
 </section>
 <section id="filtering">
-<h3>Filtering<a class="headerlink" href="#filtering" title="Permalink to this headline">¶</a></h3>
+<h3>Filtering<a class="headerlink" href="#filtering" title="Permalink to this heading">¶</a></h3>
 <p>Is is possible to make the JobTreeView only show a subset of the nodes in the tree based on an
 arbitrary predicate over row locations. These can be translated to their corresponding
 node in the MVP model or their corresponding cells from the view.</p>

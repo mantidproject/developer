@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Work flows algorithm profiling</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
@@ -12,6 +12,7 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -88,8 +89,8 @@
     <div class="body col-md-12 content" role="main">
       
   <section id="work-flows-algorithm-profiling">
-<h1>Work flows algorithm profiling<a class="headerlink" href="#work-flows-algorithm-profiling" title="Permalink to this headline">¶</a></h1>
-<div class="contents local topic" id="contents">
+<h1>Work flows algorithm profiling<a class="headerlink" href="#work-flows-algorithm-profiling" title="Permalink to this heading">¶</a></h1>
+<nav class="contents local" id="contents">
 <p class="topic-title">Contents</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="#summary" id="id1">Summary</a></p></li>
@@ -97,22 +98,22 @@
 <li><p><a class="reference internal" href="#adding-more-detailed-information" id="id3">Adding more detailed information</a></p></li>
 <li><p><a class="reference internal" href="#analysing-tool" id="id4">Analysing tool</a></p></li>
 </ul>
-</div>
+</nav>
 <section id="summary">
-<h2><a class="toc-backref" href="#id1">Summary</a><a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Summary</a><a class="headerlink" href="#summary" title="Permalink to this heading">¶</a></h2>
 <p>Due to the need of investigation of algorithms performance issues, the proper method
 is introduced. It consists two to parts: special mantid build and analytical tool.
 Available for Linux only.</p>
 </section>
 <section id="mantid-build">
-<h2><a class="toc-backref" href="#id2">Mantid build</a><a class="headerlink" href="#mantid-build" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Mantid build</a><a class="headerlink" href="#mantid-build" title="Permalink to this heading">¶</a></h2>
 <p>To build mantid version with profiling functionality enabled run <code class="docutils literal notranslate"><span class="pre">cmake</span></code> with the additional option
 <code class="docutils literal notranslate"><span class="pre">-DPROFILE_ALGORITHM_LINUX=ON</span></code>. Built in such a way mantid creates a dump file <code class="docutils literal notranslate"><span class="pre">algotimeregister.out</span></code>
 in the running directory. This file contains the time stamps for start and finish of executed algorithms with
 ~nanosecond precision in a very simple text format.</p>
 </section>
 <section id="adding-more-detailed-information">
-<h2><a class="toc-backref" href="#id3">Adding more detailed information</a><a class="headerlink" href="#adding-more-detailed-information" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Adding more detailed information</a><a class="headerlink" href="#adding-more-detailed-information" title="Permalink to this heading">¶</a></h2>
 <p>More detailed information can be added to individual function calls in C++ with the help of <code class="docutils literal notranslate"><span class="pre">std::chrono</span></code>.
 At the top of the fuction create a “start time”</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">startTime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">high_resolution_clock</span><span class="o">::</span><span class="n">now</span><span class="p">();</span><span class="w"></span>
@@ -127,7 +128,7 @@ The names in the report will be suffixed with <code class="docutils literal notr
 <p>An example of this can be found in <a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/Framework/Algorithms/src/FilterEvents.cpp">FilterEvents.cpp</a>.</p>
 </section>
 <section id="analysing-tool">
-<h2><a class="toc-backref" href="#id4">Analysing tool</a><a class="headerlink" href="#analysing-tool" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Analysing tool</a><a class="headerlink" href="#analysing-tool" title="Permalink to this heading">¶</a></h2>
 <p>The project is available here: <a class="reference external" href="https://github.com/nvaytet/mantid-profiler">https://github.com/nvaytet/mantid-profiler</a>. It provides the nice graphical
 tool to interpret the information contained in the dumped file.</p>
 </section>

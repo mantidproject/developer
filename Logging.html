@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Logging</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
@@ -12,6 +12,7 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -88,8 +89,8 @@
     <div class="body col-md-12 content" role="main">
       
   <section id="logging">
-<span id="id1"></span><h1>Logging<a class="headerlink" href="#logging" title="Permalink to this headline">¶</a></h1>
-<div class="contents local topic" id="contents">
+<span id="id1"></span><h1>Logging<a class="headerlink" href="#logging" title="Permalink to this heading">¶</a></h1>
+<nav class="contents local" id="contents">
 <ul class="simple">
 <li><p><a class="reference internal" href="#overview" id="id2">Overview</a></p></li>
 <li><p><a class="reference internal" href="#logging-levels" id="id3">Logging Levels</a></p></li>
@@ -99,22 +100,18 @@
 <li><p><a class="reference internal" href="#using-logging-in-python" id="id7">Using <code class="code docutils literal notranslate"><span class="pre">logging</span></code> in Python</a></p></li>
 <li><p><a class="reference internal" href="#tips" id="id8">Tips</a></p></li>
 </ul>
-</div>
+</nav>
 <section id="overview">
-<h2><a class="toc-backref" href="#id2">Overview</a><a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Overview</a><a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h2>
 <p>The Mantid logging system is a useful tool for garnering more information about the operation of the program.
 It is used to output messages from the framework to a channel, for example a file or the screen.
 Including calls to the logging system in your code can greatly aid in assessing its running - successful or otherwise.
 Logging is provided by the <a class="reference external" href="http://doxygen.mantidproject.org/nightly/d2/d78/classMantid_1_1Kernel_1_1Logger.html">Mantid::Kernel::Logger</a> class, which is a thin wrapper around the <a class="reference external" href="https://pocoproject.org/docs/Poco.Logger.html">Poco::Logger</a>.</p>
 </section>
 <section id="logging-levels">
-<h2><a class="toc-backref" href="#id3">Logging Levels</a><a class="headerlink" href="#logging-levels" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Logging Levels</a><a class="headerlink" href="#logging-levels" title="Permalink to this heading">¶</a></h2>
 <p>There are 7 log levels supported with increasing priority and decreasing verboseness:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 14%" />
-<col style="width: 86%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Level</p></th>
 <th class="head"><p>Description on what to log</p></th>
@@ -149,7 +146,7 @@ Algorithms log at this level when starting/finishing. This is the default loggin
 </table>
 </section>
 <section id="configuring-the-log-level">
-<h2><a class="toc-backref" href="#id4">Configuring the Log Level</a><a class="headerlink" href="#configuring-the-log-level" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Configuring the Log Level</a><a class="headerlink" href="#configuring-the-log-level" title="Permalink to this heading">¶</a></h2>
 <p>For the logging to work you will need to have configured the logging service. This will occur when you do either of the following:</p>
 <ul class="simple">
 <li><p>Call <code class="code docutils literal notranslate"><span class="pre">FrameworkManager.initialise()</span></code></p></li>
@@ -185,7 +182,7 @@ For example, in <code class="code docutils literal notranslate"><span class="pre
 <p>Note, that this affects the current session only; to change the level permanently, one needs to save the configuration to the file.</p>
 </section>
 <section id="usage-example-in-c">
-<h2><a class="toc-backref" href="#id5">Usage Example in C++</a><a class="headerlink" href="#usage-example-in-c" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Usage Example in C++</a><a class="headerlink" href="#usage-example-in-c" title="Permalink to this heading">¶</a></h2>
 <p>In the .h:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Logger.h&quot;</span><span class="cp"></span>
 
@@ -208,7 +205,7 @@ For example, in <code class="code docutils literal notranslate"><span class="pre
 </div>
 </section>
 <section id="usage-example-in-python">
-<h2><a class="toc-backref" href="#id6">Usage Example in Python</a><a class="headerlink" href="#usage-example-in-python" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Usage Example in Python</a><a class="headerlink" href="#usage-example-in-python" title="Permalink to this heading">¶</a></h2>
 <p>Inside the algorithms:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">()</span><span class="o">.</span><span class="n">information</span><span class="p">(</span><span class="s1">&#39;Number of scan steps is something&#39;</span><span class="p">)</span>
 </pre></div>
@@ -220,7 +217,7 @@ For example, in <code class="code docutils literal notranslate"><span class="pre
 </div>
 </section>
 <section id="using-logging-in-python">
-<h2><a class="toc-backref" href="#id7">Using <code class="code docutils literal notranslate"><span class="pre">logging</span></code> in Python</a><a class="headerlink" href="#using-logging-in-python" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Using <code class="code docutils literal notranslate"><span class="pre">logging</span></code> in Python</a><a class="headerlink" href="#using-logging-in-python" title="Permalink to this heading">¶</a></h2>
 <p>It is possible to forward Mantid’s log messages to Python’s <code class="code docutils literal notranslate"><span class="pre">logging</span></code> framework.
 The simplest way to configure the logger is:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
@@ -237,7 +234,7 @@ The simplest way to configure the logger is:</p>
 If you need more control, you can use <code class="code docutils literal notranslate"><span class="pre">'PythonLoggingChannel'</span></code> as a channel class in the config as described above.</p>
 </section>
 <section id="tips">
-<h2><a class="toc-backref" href="#id8">Tips</a><a class="headerlink" href="#tips" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">Tips</a><a class="headerlink" href="#tips" title="Permalink to this heading">¶</a></h2>
 <ul>
 <li><p>If logging data that takes significant resources to generate the message, use the <code class="code docutils literal notranslate"><span class="pre">is(priority)</span></code> function of the logger to check if the message would actually be output:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">g_log</span><span class="p">.</span><span class="n">is</span><span class="p">(</span><span class="n">Logger</span><span class="o">::</span><span class="n">PRIO_DEBUG</span><span class="p">))</span><span class="w"></span>
