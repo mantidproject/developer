@@ -96,205 +96,174 @@
 <li><p><a class="reference internal" href="#set-up" id="id3">Set up</a></p></li>
 <li><p><a class="reference internal" href="#loading-batch-files" id="id4">Loading batch files</a></p></li>
 <li><p><a class="reference internal" href="#changing-the-default-instrument" id="id5">Changing the Default instrument</a></p></li>
-<li><p><a class="reference internal" href="#resizing-the-list-box" id="id6">Resizing the List Box</a></p></li>
-<li><p><a class="reference internal" href="#processing" id="id7">Processing</a></p></li>
-<li><p><a class="reference internal" href="#generating-plots-and-the-plot-button" id="id8">Generating Plots and the ‘plot’ button</a></p></li>
+<li><p><a class="reference internal" href="#processing-rows" id="id6">Processing Rows</a></p></li>
+<li><p><a class="reference internal" href="#processing-groups" id="id7">Processing Groups</a></p></li>
+<li><p><a class="reference internal" href="#generating-plots" id="id8">Generating Plots</a></p></li>
 <li><p><a class="reference internal" href="#polarisation-corrections" id="id9">Polarisation Corrections</a></p></li>
-<li><p><a class="reference internal" href="#search-for-an-rb-number" id="id10">Search for an RB Number</a></p></li>
-<li><p><a class="reference internal" href="#transfer-run-number-and-transmission-runs" id="id11">Transfer Run Number and Transmission Runs</a></p></li>
-<li><p><a class="reference internal" href="#clearing-the-table" id="id12">Clearing the table</a></p></li>
-<li><p><a class="reference internal" href="#copy-cut-and-paste" id="id13">Copy, Cut and Paste</a></p></li>
-<li><p><a class="reference internal" href="#closing-the-interface" id="id14">Closing the interface</a></p></li>
-<li><p><a class="reference internal" href="#saving" id="id15">Saving</a></p>
-<ul>
-<li><p><a class="reference internal" href="#batch-menu" id="id16">Batch Menu</a></p></li>
-<li><p><a class="reference internal" href="#on-exit-prompt" id="id17">On Exit Prompt</a></p></li>
-<li><p><a class="reference internal" href="#export-as-ascii" id="id18">Export as ASCII</a></p></li>
-</ul>
-</li>
+<li><p><a class="reference internal" href="#search-by-experiment" id="id10">Search by experiment</a></p></li>
+<li><p><a class="reference internal" href="#copy-cut-and-paste" id="id11">Copy, Cut and Paste</a></p></li>
+<li><p><a class="reference internal" href="#discarding-changes" id="id12">Discarding changes</a></p></li>
+<li><p><a class="reference internal" href="#saving-a-batch" id="id13">Saving a batch</a></p></li>
+<li><p><a class="reference internal" href="#export-as-ascii" id="id14">Export as ASCII</a></p></li>
 </ul>
 </nav>
 <section id="introduction">
 <h2><a class="toc-backref" href="#id2" role="doc-backlink">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
 <p>The ISIS Reflectometry interface is a graphical front end for the main ISIS reflectometry reduction algorithm <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/ReflectometryISISLoadAndProcess-v1.html#algm-reflectometryisisloadandprocess" title="(in MantidProject v6.3)"><span class="xref std std-ref">ReflectometryISISLoadAndProcess</span></a> and post-processing algorithm <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Stitch1DMany-v1.html#algm-stitch1dmany" title="(in MantidProject v6.3)"><span class="xref std std-ref">Stitch1DMany</span></a>. The purpose of the interface is to speed up the analysis of the Reflectometry spectra by providing batch-mode execution of these algorithms on groups of runs.</p>
-<p>This documentation refers to the <a class="reference external" href="http://docs.mantidproject.org/nightly/interfaces/ISIS%20Reflectometry.html">new interface</a>. For reference, there are also instructions for testing the <a class="reference external" href="https://www.mantidproject.org/ISIS_Reflectometry_GUI">old interface here</a>.</p>
 </section>
 <section id="set-up">
 <h2><a class="toc-backref" href="#id3" role="doc-backlink">Set up</a><a class="headerlink" href="#set-up" title="Permalink to this heading">¶</a></h2>
-<p>For the testing you require the ISIS reflectometry Example material:</p>
 <ul class="simple">
-<li><p>INTER_NR_test.json</p></li>
-<li><p>INTER00013460.nxs</p></li>
-<li><p>INTER00013462.nxs</p></li>
-<li><p>INTER00013463.nxs</p></li>
-<li><p>INTER00013464.nxs</p></li>
-<li><p>INTER00013469.nxs</p></li>
-<li><p>INTER00013470.nxs</p></li>
+<li><p>These instructions assume use of MantidWorkbench or MantidPlot 3.7 or higher.</p></li>
+<li><p>Ensure you have the <a class="reference external" href="http://download.mantidproject.org">ISIS Sample Data</a> in your Mantid user directories.</p></li>
+<li><p>Ensure you have the ISIS archive enabled.</p></li>
+<li><p>Open the ISIS Reflectometry interface.</p></li>
+<li><p>Go to the menu <code class="docutils literal notranslate"><span class="pre">Tools-&gt;Options</span></code> and ensure all of the warnings are ticked. On the Rounding tab, set the precision to 2 decimal places.</p></li>
 </ul>
-<p>These can be found in the <a class="reference external" href="http://download.mantidproject.org">ISIS Sample Data</a>.</p>
-<p>These instructions assume use of MantidWorkbench or MantidPlot 3.7 or higher.</p>
-<p><strong>Set your log level to “information” for these tests before you start the interface for the first time</strong>, by right clicking the Results Log view (in MantidPlot) or Messages view (in MantidWorkbench) and selecting <code class="docutils literal notranslate"><span class="pre">Log</span> <span class="pre">Level-&gt;Information</span></code>.</p>
 </section>
 <section id="loading-batch-files">
 <h2><a class="toc-backref" href="#id4" role="doc-backlink">Loading batch files</a><a class="headerlink" href="#loading-batch-files" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
-<li><p>To load a batch file go to <code class="docutils literal notranslate"><span class="pre">Batch-&gt;Load</span></code> from inside the interface.</p></li>
-<li><p>Browse to the file that you want to load (e.g. <code class="docutils literal notranslate"><span class="pre">INTER_NR_test.json</span></code>).</p></li>
-<li><p>The interface should now have all of the information for the runs and settings from the batch file populated in the display.</p></li>
-<li><p>Compare against a version of the batch file opened in your favourite text editor.</p></li>
-<li><p>Try to re-open the batch file again. You should not be asked if you want to discard the changes (unless you changed anything).</p></li>
+<li><p>Go to the menu <code class="docutils literal notranslate"><span class="pre">Batch-&gt;Load</span></code>.</p></li>
+<li><p>Browse to the sample data and select file <code class="docutils literal notranslate"><span class="pre">INTER_NR_test.json</span></code>.</p></li>
+<li><p>The interface should be populated with some information, including some content in the runs table.</p></li>
+<li><p>Click the <code class="docutils literal notranslate"><span class="pre">Expand</span> <span class="pre">All</span> <span class="pre">Rows</span></code> button on the toolbar to expand the groups in the table.</p></li>
+<li><p>The decimal values should be shown to 2 decimal places as per the Options that we set.</p></li>
+<li><p>Re-open the same batch file. You should not be prompted with any warnings (unless you changed anything).</p></li>
 </ul>
 </section>
 <section id="changing-the-default-instrument">
 <h2><a class="toc-backref" href="#id5" role="doc-backlink">Changing the Default instrument</a><a class="headerlink" href="#changing-the-default-instrument" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
-<li><p>At the top-left and bottom-right of the interface is a drop-down menu called Instrument - it can switch between INTER, SURF, CRISP, POLREF, and OFFSPEC.  Make a selection from it.</p></li>
-<li><p>Check that a log was printed into the Results Log / Messages window.</p></li>
-<li><p>Check that the default instrument has actually changed by either looking at the instrument in the <code class="docutils literal notranslate"><span class="pre">Help-&gt;First</span> <span class="pre">Time</span> <span class="pre">Setup</span></code> dialog (in MantidPlot) or <code class="docutils literal notranslate"><span class="pre">File-&gt;Settings</span></code> (in MantidWorkbench) in the mantid main window or by running <code class="docutils literal notranslate"><span class="pre">print(config['default.instrument'])</span></code> or <code class="docutils literal notranslate"><span class="pre">print(config.getInstrument().name())</span></code>.</p></li>
+<li><p>At the top-left and bottom-right of the interface is a drop-down menu called <code class="docutils literal notranslate"><span class="pre">Instrument</span></code> - it can switch between INTER, SURF, CRISP, POLREF, and OFFSPEC. Try changing it.</p></li>
+<li><p>This should change the instrument for the whole of Mantid - check it by going to <code class="docutils literal notranslate"><span class="pre">File-&gt;Settings</span></code> in the MantidWorkbench main menu.</p></li>
+<li><p>Reload the batch file. This should change the instrument back to <code class="docutils literal notranslate"><span class="pre">INTER</span></code>.</p></li>
 </ul>
 </section>
-<section id="resizing-the-list-box">
-<h2><a class="toc-backref" href="#id6" role="doc-backlink">Resizing the List Box</a><a class="headerlink" href="#resizing-the-list-box" title="Permalink to this heading">¶</a></h2>
-<p>The division between the Search Runs and Process Runs sections is a handle. It can be used to widen or shrink the list box. Check that it works.</p>
-</section>
-<section id="processing">
-<h2><a class="toc-backref" href="#id7" role="doc-backlink">Processing</a><a class="headerlink" href="#processing" title="Permalink to this heading">¶</a></h2>
+<section id="processing-rows">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Processing Rows</a><a class="headerlink" href="#processing-rows" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
-<li><p>Make sure the sample data directory is in your managed user directories.</p></li>
-<li><p>Load the batch file from the sample data. This should populate the main table with two groups, each containing two rows (you may need to click the little triangle next to the group name to expand the group).</p></li>
-<li><p>Select a single row within a group by clicking on it.</p></li>
-<li><p>Click Process. Some output workspaces should be produced and the row should turn green.</p></li>
+<li><p>Re-load the batch file to reset the state.</p></li>
+<li><p>Select a single row within a group with the mouse.</p></li>
+<li><p>Click Process. Some output workspaces should be produced and the row should turn green. (You need to click off the row to see the green highlighting.)</p></li>
 <li><p>The process bar along the bottom should go from empty to full.</p></li>
-<li><p>Repeat this test for multiple lines (selecting using Shift and Ctrl)</p></li>
-<li><p>Repeat this for a group by selecting the group header line and clicking Process.</p></li>
-<li><p>Repeat for the entire table (click off the table to deselect all rows and then Process will process everything that is left).</p></li>
+<li><p>Repeat this test for multiple rows (selecting using Shift and Ctrl while clicking with the mouse - a bit like in Excel)</p></li>
+<li><p>Once you have processed all rows inside a group, the group header will turn pale green (paler than the rows to indicate the contents are complete but post-processing has not been done).</p></li>
 </ul>
 </section>
-<section id="generating-plots-and-the-plot-button">
-<h2><a class="toc-backref" href="#id8" role="doc-backlink">Generating Plots and the ‘plot’ button</a><a class="headerlink" href="#generating-plots-and-the-plot-button" title="Permalink to this heading">¶</a></h2>
-<p>There are two plotting buttons at the top of the interface - they look like little plots.</p>
+<section id="processing-groups">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Processing Groups</a><a class="headerlink" href="#processing-groups" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
-<li><p>Select a processed group:</p>
+<li><p>Re-load the batch file to clear the state and expand the groups.</p></li>
+<li><p>Click on a group header line and clicking Process. This will process all rows in the group as well as post-processing the group itself.</p></li>
+<li><p>The group header will turn green (the same shade as the rows).</p></li>
+<li><p>Now click off the table to deselect everything, then click Process.</p></li>
+<li><p>You will get a warning about processing the whole table - click ok.</p></li>
+<li><p>This will now process anything that was left unprocessed.</p></li>
+</ul>
+</section>
+<section id="generating-plots">
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">Generating Plots</a><a class="headerlink" href="#generating-plots" title="Permalink to this heading">¶</a></h2>
+<p>There are two plotting buttons on the toolbar - they look like little plots. The first one plots the individual rows (the reduced output) and the second one plots the post-processed (stitched) output for groups.</p>
+<p>Assuming the whole table is processed:</p>
+<ul class="simple">
+<li><p>Select a group header:</p>
 <ul>
-<li><p>Plot the “unstitched” data; the left of the two plot buttons. This should produce a plot with two separate lines for the individual reduced runs.</p></li>
-<li><p>Plot the “stitched” data; the right of the two buttons. This should produce a plot with a single line for the stitched output.</p></li>
+<li><p>Plot the reduced data (first plot button) - this plots two lines for the individual reduced rows.</p></li>
+<li><p>Plot the stitched data (second plot button) - this plots a single line for the stitched output.</p></li>
 </ul>
 </li>
 <li><p>Select a processed row:</p>
 <ul>
-<li><p>Plot the “unstitched” data; the left of the two plot buttons. This should produce a plot with one lines for that reduced run.</p></li>
-<li><p>Plot the “stitched” data; this should do nothing for a row.</p></li>
+<li><p>Plot the reduced data - this plots one line for that reduced row.</p></li>
+<li><p>Plot the stitched data - this does nothing for a row.</p></li>
+</ul>
+</li>
+<li><p>We can also over-plot outputs from different groups. Select the whole table with <code class="docutils literal notranslate"><span class="pre">Ctrl-A</span></code>:</p>
+<ul>
+<li><p>Plot the reduced data - this plots 4 lines (reduced output for all rows).</p></li>
+<li><p>Plot the stitched data - this plots 2 lines (stitched output for both groups).</p></li>
 </ul>
 </li>
 </ul>
 </section>
 <section id="polarisation-corrections">
 <h2><a class="toc-backref" href="#id9" role="doc-backlink">Polarisation Corrections</a><a class="headerlink" href="#polarisation-corrections" title="Permalink to this heading">¶</a></h2>
-<p>Polarisation corrections settings are under the Settings tab in the interface. These should only work with CRISP, POLREF or OFFSPEC.</p>
+<p>Polarisation corrections settings are under the <code class="docutils literal notranslate"><span class="pre">Experiment</span> <span class="pre">Settings</span></code> tab in the interface. These should only work with CRISP, POLREF or OFFSPEC.</p>
 <ul class="simple">
-<li><p>In the Runs tab choose an instrument other than CRISP, POLREF or OFFSPEC.</p></li>
-<li><p>Switch to the Experiment Settings tab - the Polarisation corrections check box should be greyed out.</p></li>
-<li><p>Switch back to Runs and set the instrument to POLREF, CRISP or OFFSPEC.</p></li>
-<li><p>Switch back to Experiment Settings - the Polarisation corrections check box should now be enabled. Tick it and try processing something</p>
+<li><p>In the Runs tab set the instrument to <code class="docutils literal notranslate"><span class="pre">INTER</span></code>.</p></li>
+<li><p>On the <code class="docutils literal notranslate"><span class="pre">Experiment</span> <span class="pre">Settings</span></code> tab, the Polarisation corrections check box should be greyed out.</p></li>
+<li><p>Change the instrument to <code class="docutils literal notranslate"><span class="pre">OFFSPEC</span></code> and it should now be enabled. Tick it.</p></li>
+<li><p>Back on the <code class="docutils literal notranslate"><span class="pre">Runs</span></code> tab, delete all rows in the table (this can be done by pressing <code class="docutils literal notranslate"><span class="pre">Ctrl-A</span></code> and then <code class="docutils literal notranslate"><span class="pre">Delete</span></code>).</p></li>
+<li><p>Note that this will leave an empty row. In that row enter run number <code class="docutils literal notranslate"><span class="pre">44956</span></code> and angle <code class="docutils literal notranslate"><span class="pre">0.4</span></code>.</p></li>
+<li><p>Check you can process the row and it turns green.</p></li>
+</ul>
+</section>
+<section id="search-by-experiment">
+<h2><a class="toc-backref" href="#id10" role="doc-backlink">Search by experiment</a><a class="headerlink" href="#search-by-experiment" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Clear all rows in the Runs table and set the instrument to INTER.</p></li>
+<li><p>In the Search box on the left, enter Investigation Id <code class="docutils literal notranslate"><span class="pre">1120015</span></code> and Cycle <code class="docutils literal notranslate"><span class="pre">11_3</span></code>.</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Search</span></code> and the results list will fill with all the runs for that experiment.</p></li>
+<li><p>Try selecting some of the results and clicking the <code class="docutils literal notranslate"><span class="pre">Transfer</span></code> button.</p></li>
+<li><p>The run numbers should be filled into the main Runs table following these rules:</p>
 <ul>
-<li><p>e.g. (this will require the archive) OFFSPEC run 44956, angle 0.4, transmission run 44937.</p></li>
+<li><p>Runs with the <strong>same title</strong> will appear in the <strong>same group</strong>.</p></li>
+<li><p>Runs in the same group with <strong>different angles</strong> will appear on <strong>separate rows</strong>.</p></li>
+<li><p>Runs in the same group with the <strong>same angle</strong> will be combined into the <strong>same row</strong>, and shown as a sum e.g. <code class="docutils literal notranslate"><span class="pre">13460+13462</span></code>.</p></li>
+<li><p>Runs that are highlighted blue are invalid and will not be transferred. Hover over them to see a message explaining why.</p></li>
+<li><p>If the runs are already in the table, they will not be transferred again (i.e. no duplicates).</p></li>
 </ul>
 </li>
 </ul>
-</section>
-<section id="search-for-an-rb-number">
-<h2><a class="toc-backref" href="#id10" role="doc-backlink">Search for an RB Number</a><a class="headerlink" href="#search-for-an-rb-number" title="Permalink to this heading">¶</a></h2>
-<p><em>You require a connection to the archives for this. Make sure the archive is mounted and is enabled in the Manage User Directories dialog.</em>.</p>
-<ul class="simple">
-<li><p>Find an experiment number e.g. INTER 1120015. There are a number of ways to find other experiment numbers:</p>
-<ul>
-<li><p>the <a class="reference external" href="https://www.projectaten.com/jv">JournalViewer</a> provides an easy way to browse experiments</p></li>
-<li><p>alternatively, in the archives, go to the <code class="docutils literal notranslate"><span class="pre">\Instrument\logs\journal</span></code> subdirectory of one of the instrument directories (named ‘<strong>NDX{Instrument}</strong>’) and select an xml journal other than journal_main.xml. Look for a pair of <code class="docutils literal notranslate"><span class="pre">experiment_identifier</span></code> tags and note the number inside the tags. This is the RB number that the search functionality looks for.</p></li>
-</ul>
-</li>
-<li><p>On the ISIS Reflectometry interface, change to the relevant instrument and enter the RB number in the Investigation Id textbox.</p></li>
-<li><p>Hit search, and enter your ICat login details if required.</p></li>
-<li><p>The search results list will fill with all the runs from ICat with that RB number.</p></li>
-</ul>
-</section>
-<section id="transfer-run-number-and-transmission-runs">
-<h2><a class="toc-backref" href="#id11" role="doc-backlink">Transfer Run Number and Transmission Runs</a><a class="headerlink" href="#transfer-run-number-and-transmission-runs" title="Permalink to this heading">¶</a></h2>
-<ul class="simple">
-<li><p>Perform a valid search in order to populate the search results list.</p></li>
-<li><p>Make sure the runs table is empty. Select one or more entries in the search results list.</p></li>
-<li><p>Press the ‘Transfer’ button.</p></li>
-<li><p>The run numbers should be filled into the table.</p>
-<ul>
-<li><p>Runs with the same title will appear in the same group.</p></li>
-<li><p>Runs in the same group with different angles will appear on different rows.</p></li>
-<li><p>Runs in the same group with the same angle will be combined into the same row with the <code class="docutils literal notranslate"><span class="pre">Run(s)</span></code> field showing as a sum of all runs for that angle, e.g. <code class="docutils literal notranslate"><span class="pre">13460+13462</span></code>.</p></li>
-</ul>
-</li>
-<li><p>Click Transfer again with the same selection. If the runs are already in the table, nothing should happen, because duplicates should not be added.</p></li>
-<li><p>Select some different runs and click Transfer. The new runs should be added to the table.</p></li>
-</ul>
-</section>
-<section id="clearing-the-table">
-<h2><a class="toc-backref" href="#id12" role="doc-backlink">Clearing the table</a><a class="headerlink" href="#clearing-the-table" title="Permalink to this heading">¶</a></h2>
-<p>To empty the table: use <code class="docutils literal notranslate"><span class="pre">Ctrl-A</span></code> to select all rows and groups in the table and then press <code class="docutils literal notranslate"><span class="pre">Delete</span></code> to delete them.</p>
 </section>
 <section id="copy-cut-and-paste">
-<h2><a class="toc-backref" href="#id13" role="doc-backlink">Copy, Cut and Paste</a><a class="headerlink" href="#copy-cut-and-paste" title="Permalink to this heading">¶</a></h2>
-<p>Copy, Cut and Paste are available from the toolbar buttons, the right-click contenx menu, or the standard Ctrl- C, X, and V shortcuts.</p>
+<h2><a class="toc-backref" href="#id11" role="doc-backlink">Copy, Cut and Paste</a><a class="headerlink" href="#copy-cut-and-paste" title="Permalink to this heading">¶</a></h2>
+<p>Copy, Cut and Paste are available from the toolbar buttons, the right-click content menu, or the standard Ctrl- C, X, and V shortcuts.</p>
+<p>Note that it is very picky about pasting onto the correct destination (i.e. group onto group, row onto row etc.) and gives a confusing error message about “depth and size” if you get it wrong - this just indicates that the operation is not possible.</p>
+<p>These operations should work:</p>
 <ul class="simple">
-<li><p>Select a row, copy it, and paste it onto a different row. The values should be overwritten.</p></li>
-<li><p>Select 2 rows from one group, copy them, and paste onto 2 rows in another group. Note that you must select the same number of rows in the destination group or you will get an error.</p></li>
-<li><p>Select a group and copy it. Paste it onto another group. The group should be replaced with the one you copied.</p></li>
-<li><p>Copy a group and deselect everything in the table before you paste. It should be pasted as a new group at the end.</p></li>
-<li><p>Copy a row and try pasting with nothing selected. This should be disallowed because you can’t paste a row without a group.</p></li>
-<li><p>Copy a row and try pasting onto a group. This should be disallowed.</p></li>
-<li><p>Copy a group and try pasting onto a row. This should be disallowed.</p></li>
+<li><p>Select a row, copy it, and paste it onto a different row.</p></li>
+<li><p>Select 2 rows from one group, copy them, and paste onto 2 rows in another group.</p></li>
+<li><p>Select a group and copy it. Paste it onto another group.</p></li>
+<li><p>Copy a group. Deselect everything in the table before you paste. It should be pasted as a new group at the end.</p></li>
+</ul>
+<p>These operations give an error:</p>
+<ul class="simple">
+<li><p>Copy a row. Deselect everything and paste. This fails because we don’t know which group to paste into.</p></li>
+<li><p>Copy a row and try pasting onto a group. This could in theory append the row into the group but is currently not implemented.</p></li>
+<li><p>Copy a group and try pasting onto a row. This is not possible.</p></li>
 </ul>
 </section>
-<section id="closing-the-interface">
-<h2><a class="toc-backref" href="#id14" role="doc-backlink">Closing the interface</a><a class="headerlink" href="#closing-the-interface" title="Permalink to this heading">¶</a></h2>
+<section id="discarding-changes">
+<h2><a class="toc-backref" href="#id12" role="doc-backlink">Discarding changes</a><a class="headerlink" href="#discarding-changes" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
-<li><p>Open the interface and load some data.</p></li>
-<li><p>Go to the Tools menu and select Options. Ensure the warnings are all enabled.</p></li>
-<li><p>Edit the data (note that processing does not count as an edit even though it changes the state displayed).</p></li>
+<li><p>Re-load the test batch file.</p></li>
+<li><p>Edit the data in the table e.g. change an angle.</p></li>
 <li><p>Close the interface using the <cite>x</cite> button at the top.</p></li>
-<li><p>The interface should show a ‘Save/Discard/Cancel’ dialogue.</p></li>
+<li><p>You should be warned that unsaved changes will be lost. Click Cancel and nothing should be lost.</p></li>
+<li><p>Try again and click OK. The interface should close and discard your changes.</p></li>
+<li><p>Repeat the test but instead of closing the interface, now attempt to re-load the batch file.</p></li>
+<li><p>You should be warned that this will discard your unsaved changes. Again, the OK and Cancel options should work as expected.</p></li>
 </ul>
 </section>
-<section id="saving">
-<h2><a class="toc-backref" href="#id15" role="doc-backlink">Saving</a><a class="headerlink" href="#saving" title="Permalink to this heading">¶</a></h2>
-<p>There are a few ways to save within the interface. The native save format is to a <code class="docutils literal notranslate"><span class="pre">*.json</span></code> batch file. Custom, 3-column, ANSTO and Ill cosmos are treated as export formats.</p>
-<section id="batch-menu">
-<h3><a class="toc-backref" href="#id16" role="doc-backlink">Batch Menu</a><a class="headerlink" href="#batch-menu" title="Permalink to this heading">¶</a></h3>
-<p>The Save action in the Batch menu allows you to save and re-load the interface contents. It saves to <code class="docutils literal notranslate"><span class="pre">*.json</span></code> format which is not intended to be particularly human-friendly, although it should still be readable.</p>
+<section id="saving-a-batch">
+<h2><a class="toc-backref" href="#id13" role="doc-backlink">Saving a batch</a><a class="headerlink" href="#saving-a-batch" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
-<li><p>Load a <code class="docutils literal notranslate"><span class="pre">*.json</span></code> file and make a modification to it within the table.</p></li>
-<li><p>Go <code class="docutils literal notranslate"><span class="pre">Batch-&gt;Save</span></code>.</p></li>
-<li><p>A Save dialog will appear. Select the location to save the file to. You should get a warning if you attempt to overwrite an existing file.</p></li>
-<li><p>Check using a plain text editor that the file has been created and contains some json data.</p></li>
-<li><p>Close and re-open the interface, don’t load anything. Type some values into the table.</p></li>
-<li><p>Go <code class="docutils literal notranslate"><span class="pre">Batch-&gt;Save</span></code>. A Save dialog will appear, select a location and provide a file name and hit ‘Cancel’.</p></li>
-<li><p>Make sure no file was saved.</p></li>
-</ul>
-</section>
-<section id="on-exit-prompt">
-<h3><a class="toc-backref" href="#id17" role="doc-backlink">On Exit Prompt</a><a class="headerlink" href="#on-exit-prompt" title="Permalink to this heading">¶</a></h3>
-<ul class="simple">
-<li><p>Open the interface, don’t load anything. Type some values into the table.</p></li>
-<li><p>Close the interface by hitting the close button in the title bar.</p></li>
-<li><p>You should receive a prompt with OK and Cancel (or whatever variation your OS uses).</p></li>
-<li><p>Make sure that ‘Cancel’ returns you to the interface without closing it. Try again and make sure that ‘OK’ closes the interface.</p></li>
+<li><p>Load the test batch file.</p></li>
+<li><p>Make some changes to the table or settings that you can easily remember.</p></li>
+<li><p>Go <code class="docutils literal notranslate"><span class="pre">Batch-&gt;Save</span></code>. A Save dialog will appear. Select a file to save to and OK it.</p></li>
+<li><p>Close and re-open the interface. Note that you should <em>not</em> be prompted about discarding unsaved changes.</p></li>
+<li><p>Load your saved batch file and check that the items you changed are restored.</p></li>
 </ul>
 </section>
 <section id="export-as-ascii">
-<h3><a class="toc-backref" href="#id18" role="doc-backlink">Export as ASCII</a><a class="headerlink" href="#export-as-ascii" title="Permalink to this heading">¶</a></h3>
-<p><em>Before doing anything else, make sure that the mantid main window has no loaded workspaces. Custom, 3-column, ANSTO and Ill cosmos are saved from existing workspaces, not from the interface’s data. By clearing Mantid’s workspaces you’re making sure that the dialog this tests isn’t getting entries from nowhere.</em></p>
+<h2><a class="toc-backref" href="#id14" role="doc-backlink">Export as ASCII</a><a class="headerlink" href="#export-as-ascii" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
-<li><p>Open the interface, don’t load anything.</p></li>
-<li><p>Go to the Save tab. The workspaces list should be empty.</p></li>
-<li><p>Load a batch file and process it.</p></li>
-<li><p>Go to the Save tab and hit Refresh. The workspaces list will contain the names of the workspaces created when you processed.</p></li>
-<li><p>Type an existing path into the Save path textbox.</p></li>
+<li><p>Load a batch file and process it, if you have not already.</p></li>
+<li><p>Go to the Save tab and hit Refresh. The workspaces list will contain all of the workspaces in the ADS.</p></li>
+<li><p>Select a workspace in the list that starts with <code class="docutils literal notranslate"><span class="pre">IvsQ</span></code>.</p></li>
+<li><p>Type a valid path into the Save path textbox.</p></li>
 <li><p>Type something in the prefix field you’d like to use to identify the file. <em>The files are saved in the form [prefix][workspace][ext]</em>.</p></li>
 <li><p>In the File Format section, select <code class="docutils literal notranslate"><span class="pre">Custom</span> <span class="pre">format</span> <span class="pre">(*.dat)</span></code>, untick <code class="docutils literal notranslate"><span class="pre">Header</span></code> and <code class="docutils literal notranslate"><span class="pre">Q</span> <span class="pre">resolution</span></code> and set the separator to <code class="docutils literal notranslate"><span class="pre">Comma</span></code>.</p></li>
 <li><p>Click <code class="docutils literal notranslate"><span class="pre">Save</span></code> and open the file that should have been saved to the save directory you specified. It should contain 3 columns of numbers, separated by commas.</p></li>
@@ -312,7 +281,6 @@
 <li><p>Change the dropdown to <code class="docutils literal notranslate"><span class="pre">ILL</span> <span class="pre">Cosmos</span> <span class="pre">(*.mft)</span></code>. The settings remain greyed out apart from the parameters which should now be enabled. Click save and you should get 3 columns of numbers padded by spaces (including leading spaces). There should be a header starting <code class="docutils literal notranslate"><span class="pre">MFT</span></code> which includes any parameters you selected, the same as the Custom format.</p></li>
 <li><p>Try entering a non-existent or invalid save path and then try to Save. You should get an error saying that the path is invalid.</p></li>
 </ul>
-</section>
 </section>
 </section>
 

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Obtaining a Benchmark for Mantid Fitting</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Running the Unit Tests" href="RunningTheUnitTests.html" />
+    <link rel="prev" title="Windows Subsystem for Linux (WSL2)" href="WindowsSubsystemForLinux.html" />
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-59110517-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+  </head><body>
+
+
+
+
+
+  <div id="navbar" class="navbar navbar-default ">
+    <div class="container">
+      <div class="navbar-header">
+        
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://www.mantidproject.org"><img src="_static/Mantid_Logo_Transparent.png">
+           </a>
+        <span class="navbar-text navbar-version pull-left"><b>master</b></span>
+      </div>
+
+      
+        <div class="collapse navbar-collapse nav-collapse">
+      
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="index.html">Home</a></li>
+                <li><a href="http://download.mantidproject.org">Download</a></li>
+                <li><a href="http://www.mantidproject.org">Wiki</a></li>
+                <li><a href="http://docs.mantidproject.org">User Documentation</a></li>
+                <li><a href="http://www.mantidproject.org/Contact">Contact Us</a></li>
+            
+            
+              
+              
+            
+            
+            
+            
+          </ul>
+              
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+            </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <section id="obtaining-a-benchmark-for-mantid-fitting">
+<span id="obtainingabenchmarkformantidfitting"></span><h1>Obtaining a Benchmark for Mantid Fitting<a class="headerlink" href="#obtaining-a-benchmark-for-mantid-fitting" title="Permalink to this heading">¶</a></h1>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#initial-setup" id="id4">Initial Setup</a></p></li>
+<li><p><a class="reference internal" href="#creating-your-benchmarking-environment" id="id5">Creating your Benchmarking Environment</a></p></li>
+<li><p><a class="reference internal" href="#running-a-benchmark" id="id6">Running a Benchmark</a></p></li>
+<li><p><a class="reference internal" href="#tips" id="id7">Tips</a></p></li>
+</ul>
+</nav>
+<p>There are several scenarios in which obtaining a benchmark for the accuracy and runtime of Mantid minimizers might be useful:</p>
+<ul class="simple">
+<li><p>From the perspective of a <strong>Scientist</strong>, who wants to know the best Mantid minimizer to use for fitting their model to their data.</p></li>
+<li><p>From the perspective of a <strong>Software Developer</strong>, who wants to optimize their code to improve its accuracy and runtime.</p></li>
+</ul>
+<p>This page will explain how to set up a python virtual environment that can be used to benchmark the accuracy and runtime of different fitting minimizers in Mantid for different fitting problems. To do this, we will use a package called <a class="reference external" href="https://fitbenchmarking.readthedocs.io/en/stable/">FitBenchmarking</a> which is a cross-platform open source tool for comparing different minimizers and fitting frameworks.</p>
+<section id="initial-setup">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Initial Setup</a><a class="headerlink" href="#initial-setup" title="Permalink to this heading">¶</a></h2>
+<p>Some initial setup is required on your system before we can start setting up an environment for benchmarking Mantid minimizers. Before you start this process, make sure you have a recent version of python installed, and access to git bash (which is the recommended terminal to use).</p>
+<ol class="arabic simple">
+<li><p>Download and install the desired version of Mantid from the <a class="reference external" href="https://download.mantidproject.org/">downloads</a> page (if not already installed). Note its installation path, hereby denoted as <code class="docutils literal notranslate"><span class="pre">[INSTALL_PATH]</span></code>.</p></li>
+<li><p>Open a git bash terminal and cd to the desired location.</p></li>
+<li><p>Pip install the virtual environment package as described in the ‘Installing virtualenv’ section found <a class="reference external" href="https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/#installing-virtualenv">here</a>.</p></li>
+</ol>
+</section>
+<section id="creating-your-benchmarking-environment">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Creating your Benchmarking Environment</a><a class="headerlink" href="#creating-your-benchmarking-environment" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p>From the same git bash terminal, run the following command:</p></li>
+</ol>
+<p>If using Windows:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>py -m virtualenv -p<span class="o">=[</span>INSTALL_PATH<span class="o">]</span><span class="se">\b</span>in<span class="se">\p</span>ython.exe benchmark-env
+</pre></div>
+</div>
+<p>This will create a virtual environment based on the python executable provided with your Mantid installation. For Windows, the location of this executable is <code class="docutils literal notranslate"><span class="pre">C:\MantidInstall\bin\python.exe</span></code>.</p>
+<p>If using Ubuntu:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>virtualenv --python<span class="o">=</span>python3 benchmark-env
+</pre></div>
+</div>
+<p>In this example, <code class="docutils literal notranslate"><span class="pre">benchmark-env</span></code> is the name given to your virtual environment.</p>
+<ol class="arabic simple" start="2">
+<li><p>Activate your environment. This is explained in the ‘Activating a virtual environment’ section found <a class="reference external" href="https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/#activating-a-virtual-environment">here</a>.</p></li>
+<li><p>It might be necessary to upgrade and install a few packages before installing FitBenchmarking if working from a Linux system:</p></li>
+</ol>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>python3 -m pip install --upgrade pip
+python3 -m pip install --upgrade pillow
+sudo apt-get install libglu1-mesa
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Install the FitBenchmarking package by following the instructions found <a class="reference external" href="https://fitbenchmarking.readthedocs.io/en/stable/users/install_instructions/fitbenchmarking.html">here</a>. Note that installing FitBenchmarking from source using the editable flag <code class="docutils literal notranslate"><span class="pre">-e</span></code> proved to be the most stable installation prior to the release of FitBenchmarking v0.2.</p></li>
+<li><p>It is also recommended you pip install the following packages to avoid needless warning messages:</p></li>
+</ol>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pip install <span class="s1">&#39;h5py&gt;=2.10.0,&lt;3&#39;</span> <span class="o">&amp;&amp;</span> pip install <span class="s1">&#39;pyyaml&gt;=5.4.1&#39;</span>
+</pre></div>
+</div>
+<p>Your environment should now be ready for performing a benchmark of Mantid minimizers.</p>
+</section>
+<section id="running-a-benchmark">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Running a Benchmark</a><a class="headerlink" href="#running-a-benchmark" title="Permalink to this heading">¶</a></h2>
+<p>The process for how to run a benchmark is explained extensively in the <a class="reference external" href="https://fitbenchmarking.readthedocs.io/en/stable/users/index.html">FitBenchmarking documentation</a>, and so I recommend you give it a read. This section will give a basic example of how to perform a simple benchmark of three Mantid minimizers.</p>
+<ol class="arabic simple">
+<li><p>Create a file called <code class="docutils literal notranslate"><span class="pre">fitting_options.ini</span></code> with the following contents</p></li>
+</ol>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[FITTING]
+
+software: mantid
+
+num_runs: 1
+
+[MINIMIZERS]
+
+mantid: Levenberg-Marquardt
+        Levenberg-MarquardtMD
+        Simplex
+
+[PLOTTING]
+
+make_plots: yes
+
+[LOGGING]
+
+external_output: log_only
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Download the examples folder from the <a class="reference external" href="https://github.com/fitbenchmarking/fitbenchmarking">FitBenchmarking github repo</a>. Alternatively, you can define your own fitting problems.</p></li>
+<li><p>From your activated virtual environment, run the following command. This will run the Muon fitting problems assuming you have the same directory structure as seen on the Fitbenchmarking repo.</p></li>
+</ol>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>fitbenchmarking -o fitting_options.ini -p examples/benchmark_problems/Muon
+</pre></div>
+</div>
+<p>When the benchmark is complete, it should open a browser which contains the results. You should read the FitBenchmarking documentation if you need help with how to interpret these results. The results will also be stored in your current folder location.</p>
+</section>
+<section id="tips">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Tips</a><a class="headerlink" href="#tips" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Make sure your git bash terminal is open in the correct location and has the virtual environment activated when running your benchmark.</p></li>
+<li><p>Each time your run the benchmark, the old results will be overwritten unless you change the directory you run the <code class="docutils literal notranslate"><span class="pre">fitbenchmarking</span></code> command from. In later versions of FitBenchmarking (&gt;v1.5) there will be an option to specify the results directory on the command line or via the <code class="docutils literal notranslate"><span class="pre">.ini</span></code> file.</p></li>
+<li><p>To do a benchmark of the changes made in a Pull Request, you can create an unstable build by following the instructions <a class="reference external" href="https://developer.mantidproject.org/BuildingWithCMake.html">here</a>. When creating your benchmark environment, you would then use the python.exe found in the Mantid unstable install directory.</p></li>
+<li><p>Be aware that an ‘Unexpected Exception’ can sometimes occur when running the fitbenchmarking command after installing it from source without the editable flag <code class="docutils literal notranslate"><span class="pre">-e</span></code>.</p></li>
+</ul>
+</section>
+</section>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+      <ul class="nav navbar-nav" style=" float: right;">
+      
+      
+          
+            
+  <li>
+    <a href="WindowsSubsystemForLinux.html" title="Previous Chapter: Windows Subsystem for Linux (WSL2)"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Windows Subsy...</span>
+    </a>
+  </li>
+  <li>
+    <a href="RunningTheUnitTests.html" title="Next Chapter: Running the Unit Tests"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Running the U... &raquo;</span>
+    </a>
+  </li>
+          
+       
+          <li><a href="#">Back to top</a></li>
+       </ul>
+    <p>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
