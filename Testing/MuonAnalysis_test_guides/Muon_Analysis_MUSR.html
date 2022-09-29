@@ -3,7 +3,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
     <title>Muon Unscripted Testing: MUSR</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
@@ -94,241 +94,23 @@
 <nav class="contents local" id="table-of-contents">
 <p class="topic-title">Table of Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#introduction" id="id2">Introduction</a></p></li>
-<li><p><a class="reference internal" href="#loading-data-test" id="id3">Loading Data Test</a></p></li>
-<li><p><a class="reference internal" href="#transverse-field-asymmetry-test" id="id4">Transverse Field Asymmetry Test</a></p></li>
-<li><p><a class="reference internal" href="#rebin-and-fitting" id="id5">Rebin and Fitting</a></p></li>
+<li><p><a class="reference internal" href="#introduction" id="id1">Introduction</a></p></li>
+<li><p><a class="reference internal" href="#loading-data-test" id="id2">Loading Data Test</a></p></li>
+<li><p><a class="reference internal" href="#transverse-field-asymmetry-test" id="id3">Transverse Field Asymmetry Test</a></p></li>
+<li><p><a class="reference internal" href="#rebin-and-fitting" id="id4">Rebin and Fitting</a></p></li>
 </ul>
 </nav>
 <section id="introduction">
-<h2><a class="toc-backref" href="#id2" role="doc-backlink">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
 <p>Muon data is collected using 100’s of detectors.
 The detectors are positioned into a series of groups.
 The data from all of the detectors in a group are combined into a data set.
 These data sets are referred to as groups and are one of the primary ways to represent data.
 The other way to represent data is called a pair.
-A pair takes the ratio between the forward group, <aside class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">F</span>)</p>
-<p>latex exited with error
-[stdout]
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013)
- restricted \write18 enabled.
-entering extended mode
-(./math.tex
-LaTeX2e &lt;2011/06/27&gt;
-Babel &lt;v3.8m&gt; and hyphenation patterns for english, dumylang, nohyphenation, lo
-aded.
-(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
-Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
-(/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo))
-(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
-(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def
-(/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.dfu)
-(/usr/share/texlive/texmf-dist/tex/latex/base/ot1enc.dfu)
-(/usr/share/texlive/texmf-dist/tex/latex/base/omsenc.dfu)))
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
-For additional information on amsmath, use the `?' option.
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/amscls/amsthm.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
-
-! LaTeX Error: File `anyfontsize.sty' not found.
-
-Type X to quit or &lt;RETURN&gt; to proceed,
-or enter new name. (Default extension: sty)
-
-Enter file name: 
-! Emergency stop.
-&lt;read *&gt; 
-         
-l.8 \usepackage
-               {bm}^^M
-No pages of output.
-Transcript written on math.log.
-</p>
-</aside>
-, and the backwards group, <aside class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">B</span>)</p>
-<p>latex exited with error
-[stdout]
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013)
- restricted \write18 enabled.
-entering extended mode
-(./math.tex
-LaTeX2e &lt;2011/06/27&gt;
-Babel &lt;v3.8m&gt; and hyphenation patterns for english, dumylang, nohyphenation, lo
-aded.
-(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
-Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
-(/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo))
-(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
-(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def
-(/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.dfu)
-(/usr/share/texlive/texmf-dist/tex/latex/base/ot1enc.dfu)
-(/usr/share/texlive/texmf-dist/tex/latex/base/omsenc.dfu)))
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
-For additional information on amsmath, use the `?' option.
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/amscls/amsthm.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
-
-! LaTeX Error: File `anyfontsize.sty' not found.
-
-Type X to quit or &lt;RETURN&gt; to proceed,
-or enter new name. (Default extension: sty)
-
-Enter file name: 
-! Emergency stop.
-&lt;read *&gt; 
-         
-l.8 \usepackage
-               {bm}^^M
-No pages of output.
-Transcript written on math.log.
-</p>
-</aside>
-, and is given by</p>
-<aside class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">A = \frac{F-\alpha B}{F+\alpha B},</span>)</p>
-<p>latex exited with error
-[stdout]
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013)
- restricted \write18 enabled.
-entering extended mode
-(./math.tex
-LaTeX2e &lt;2011/06/27&gt;
-Babel &lt;v3.8m&gt; and hyphenation patterns for english, dumylang, nohyphenation, lo
-aded.
-(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
-Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
-(/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo))
-(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
-(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def
-(/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.dfu)
-(/usr/share/texlive/texmf-dist/tex/latex/base/ot1enc.dfu)
-(/usr/share/texlive/texmf-dist/tex/latex/base/omsenc.dfu)))
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
-For additional information on amsmath, use the `?' option.
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/amscls/amsthm.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
-
-! LaTeX Error: File `anyfontsize.sty' not found.
-
-Type X to quit or &lt;RETURN&gt; to proceed,
-or enter new name. (Default extension: sty)
-
-Enter file name: 
-! Emergency stop.
-&lt;read *&gt; 
-         
-l.8 \usepackage
-               {bm}^^M
-No pages of output.
-Transcript written on math.log.
-</p>
-</aside>
-<p>where <aside class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">\alpha</span>)</p>
-<p>latex exited with error
-[stdout]
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013)
- restricted \write18 enabled.
-entering extended mode
-(./math.tex
-LaTeX2e &lt;2011/06/27&gt;
-Babel &lt;v3.8m&gt; and hyphenation patterns for english, dumylang, nohyphenation, lo
-aded.
-(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
-Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
-(/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo))
-(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
-(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def
-(/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.dfu)
-(/usr/share/texlive/texmf-dist/tex/latex/base/ot1enc.dfu)
-(/usr/share/texlive/texmf-dist/tex/latex/base/omsenc.dfu)))
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
-For additional information on amsmath, use the `?' option.
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/amscls/amsthm.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
-
-! LaTeX Error: File `anyfontsize.sty' not found.
-
-Type X to quit or &lt;RETURN&gt; to proceed,
-or enter new name. (Default extension: sty)
-
-Enter file name: 
-! Emergency stop.
-&lt;read *&gt; 
-         
-l.8 \usepackage
-               {bm}^^M
-No pages of output.
-Transcript written on math.log.
-</p>
-</aside>
- is the balance parameter and <aside class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">A</span>)</p>
-<p>latex exited with error
-[stdout]
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013)
- restricted \write18 enabled.
-entering extended mode
-(./math.tex
-LaTeX2e &lt;2011/06/27&gt;
-Babel &lt;v3.8m&gt; and hyphenation patterns for english, dumylang, nohyphenation, lo
-aded.
-(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
-Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
-(/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo))
-(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
-(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def
-(/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.dfu)
-(/usr/share/texlive/texmf-dist/tex/latex/base/ot1enc.dfu)
-(/usr/share/texlive/texmf-dist/tex/latex/base/omsenc.dfu)))
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
-For additional information on amsmath, use the `?' option.
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/amscls/amsthm.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
-
-! LaTeX Error: File `anyfontsize.sty' not found.
-
-Type X to quit or &lt;RETURN&gt; to proceed,
-or enter new name. (Default extension: sty)
-
-Enter file name: 
-! Emergency stop.
-&lt;read *&gt; 
-         
-l.8 \usepackage
-               {bm}^^M
-No pages of output.
-Transcript written on math.log.
-</p>
-</aside>
- is the asymmetry.
+A pair takes the ratio between the forward group, <img class="math" src="../../_images/math/df00656702b70b4b6f7ffbf6a9aa9a334bab1914.png" alt="F"/>, and the backwards group, <img class="math" src="../../_images/math/4bc3e94a67870b41b7c20179693e889251e2c136.png" alt="B"/>, and is given by</p>
+<div class="math">
+<p><img src="../../_images/math/0c980a5b33da987ce39cd5dcea650aaadae2a2d7.png" alt="A = \frac{F-\alpha B}{F+\alpha B},"/></p>
+</div><p>where <img class="math" src="../../_images/math/2f5aa019312e1bbc969deab8dca8b00f76025404.png" alt="\alpha"/> is the balance parameter and <img class="math" src="../../_images/math/211284f68205c3e66773eaf026f32a0acdd3dfb3.png" alt="A"/> is the asymmetry.
 The forwards and backwards groups are normally positioned opposite each other.
 As the cone of muon decay emissions rotates the signal will move from one group to the other.
 This setup is called a longitudinal field.</p>
@@ -337,7 +119,7 @@ This has four detector groups, arranged to form edges of a square.</p>
 <hr class="docutils" />
 </section>
 <section id="loading-data-test">
-<span id="loading-test"></span><h2><a class="toc-backref" href="#id3" role="doc-backlink">Loading Data Test</a><a class="headerlink" href="#loading-data-test" title="Permalink to this heading">¶</a></h2>
+<span id="loading-test"></span><h2><a class="toc-backref" href="#id2" role="doc-backlink">Loading Data Test</a><a class="headerlink" href="#loading-data-test" title="Permalink to this heading">¶</a></h2>
 <p><strong>Time required 15 - 20 minutes</strong></p>
 <ul class="simple">
 <li><p>Open <strong>Muon Analysis</strong> (<em>Interfaces</em> &gt; <em>Muon</em> &gt; <em>Muon Analysis</em>)</p></li>
@@ -388,10 +170,10 @@ This has four detector groups, arranged to form edges of a square.</p>
 <li><p>In the load bar enter <code class="docutils literal notranslate"><span class="pre">62250</span></code></p></li>
 <li><p>Press the <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> in the loading area and the next run will be loaded</p></li>
 </ul>
-<hr class="docutils" />
 </section>
+<hr class="docutils" />
 <section id="transverse-field-asymmetry-test">
-<span id="id1"></span><h2><a class="toc-backref" href="#id4" role="doc-backlink">Transverse Field Asymmetry Test</a><a class="headerlink" href="#transverse-field-asymmetry-test" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Transverse Field Asymmetry Test</a><a class="headerlink" href="#transverse-field-asymmetry-test" title="Permalink to this heading">¶</a></h2>
 <p><strong>Time required 15 minutes</strong></p>
 <p>This test will look at transverse field data.</p>
 <ul class="simple">
@@ -430,7 +212,7 @@ This has four detector groups, arranged to form edges of a square.</p>
 </ul>
 </section>
 <section id="rebin-and-fitting">
-<h2><a class="toc-backref" href="#id5" role="doc-backlink">Rebin and Fitting</a><a class="headerlink" href="#rebin-and-fitting" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Rebin and Fitting</a><a class="headerlink" href="#rebin-and-fitting" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>In the load bar enter <code class="docutils literal notranslate"><span class="pre">62260</span></code></p></li>
 <li><p>On the <strong>home tab</strong> set <code class="docutils literal notranslate"><span class="pre">Rebin</span></code> to <code class="docutils literal notranslate"><span class="pre">Fixed</span></code> and enter a value of <code class="docutils literal notranslate"><span class="pre">10</span></code></p></li>

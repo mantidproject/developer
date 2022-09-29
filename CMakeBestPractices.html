@@ -3,7 +3,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
     <title>CMake Guidelines</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
@@ -190,6 +190,10 @@ to tell users of your Fitting library where it can find its headers:</p>
 <ol class="arabic simple" start="2">
 <li><p>Add the install commands which ensures the target is exported.</p></li>
 </ol>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="p">(</span><span class="s">TARGET_EXPORT_NAME</span><span class="w"> </span><span class="s2">&quot;MantidNewTargetTargets&quot;</span><span class="p">)</span>
+<span class="nb">mtd_install_framework_lib</span><span class="p">(</span><span class="s">TARGETS</span><span class="w"> </span><span class="s">NewTarget</span><span class="w"> </span><span class="s">EXPORT_NAME</span><span class="w"> </span><span class="o">${</span><span class="nv">TARGET_EXPORT_NAME</span><span class="o">}</span><span class="p">)</span>
+</pre></div>
+</div>
 <ol class="arabic simple" start="3">
 <li><p>Add the new target to the MODULES variable in <code class="docutils literal notranslate"><span class="pre">MantidFrameworkConfig.cmake.in</span></code>. If it added new dependencies also add the relevant <code class="docutils literal notranslate"><span class="pre">find_dependency</span></code> calls.</p></li>
 </ol>

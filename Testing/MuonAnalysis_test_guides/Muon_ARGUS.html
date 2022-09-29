@@ -3,7 +3,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
     <title>Muon Unscripted Testing: ARGUS</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
@@ -94,198 +94,24 @@
 <nav class="contents local" id="table-of-contents">
 <p class="topic-title">Table of Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#introduction" id="id3">Introduction</a></p></li>
-<li><p><a class="reference internal" href="#single-pulse-test" id="id4">Single Pulse Test</a></p></li>
-<li><p><a class="reference internal" href="#double-pulse-test" id="id5">Double Pulse Test</a></p></li>
+<li><p><a class="reference internal" href="#introduction" id="id1">Introduction</a></p></li>
+<li><p><a class="reference internal" href="#single-pulse-test" id="id2">Single Pulse Test</a></p></li>
+<li><p><a class="reference internal" href="#double-pulse-test" id="id3">Double Pulse Test</a></p></li>
 </ul>
 </nav>
 <section id="introduction">
-<h2><a class="toc-backref" href="#id3" role="doc-backlink">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
 <p>These tests will look at double pulse data.
 This is when the same sample is exposed to two sequential pulses.
 It is possible to fit to both pulses simultaneously.
-The fitting function, <aside class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">f</span>)</p>
-<p>latex exited with error
-[stdout]
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013)
- restricted \write18 enabled.
-entering extended mode
-(./math.tex
-LaTeX2e &lt;2011/06/27&gt;
-Babel &lt;v3.8m&gt; and hyphenation patterns for english, dumylang, nohyphenation, lo
-aded.
-(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
-Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
-(/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo))
-(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
-(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def
-(/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.dfu)
-(/usr/share/texlive/texmf-dist/tex/latex/base/ot1enc.dfu)
-(/usr/share/texlive/texmf-dist/tex/latex/base/omsenc.dfu)))
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
-For additional information on amsmath, use the `?' option.
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/amscls/amsthm.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
-
-! LaTeX Error: File `anyfontsize.sty' not found.
-
-Type X to quit or &lt;RETURN&gt; to proceed,
-or enter new name. (Default extension: sty)
-
-Enter file name: 
-! Emergency stop.
-&lt;read *&gt; 
-         
-l.8 \usepackage
-               {bm}^^M
-No pages of output.
-Transcript written on math.log.
-</p>
-</aside>
-, as a function of time, <aside class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">t</span>)</p>
-<p>latex exited with error
-[stdout]
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013)
- restricted \write18 enabled.
-entering extended mode
-(./math.tex
-LaTeX2e &lt;2011/06/27&gt;
-Babel &lt;v3.8m&gt; and hyphenation patterns for english, dumylang, nohyphenation, lo
-aded.
-(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
-Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
-(/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo))
-(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
-(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def
-(/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.dfu)
-(/usr/share/texlive/texmf-dist/tex/latex/base/ot1enc.dfu)
-(/usr/share/texlive/texmf-dist/tex/latex/base/omsenc.dfu)))
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
-For additional information on amsmath, use the `?' option.
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/amscls/amsthm.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
-
-! LaTeX Error: File `anyfontsize.sty' not found.
-
-Type X to quit or &lt;RETURN&gt; to proceed,
-or enter new name. (Default extension: sty)
-
-Enter file name: 
-! Emergency stop.
-&lt;read *&gt; 
-         
-l.8 \usepackage
-               {bm}^^M
-No pages of output.
-Transcript written on math.log.
-</p>
-</aside>
-, obeys</p>
-<aside class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">f(t) = f(t+\Delta),</span>)</p>
-<p>latex exited with error
-[stdout]
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013)
- restricted \write18 enabled.
-entering extended mode
-(./math.tex
-LaTeX2e &lt;2011/06/27&gt;
-Babel &lt;v3.8m&gt; and hyphenation patterns for english, dumylang, nohyphenation, lo
-aded.
-(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
-Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
-(/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo))
-(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
-(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def
-(/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.dfu)
-(/usr/share/texlive/texmf-dist/tex/latex/base/ot1enc.dfu)
-(/usr/share/texlive/texmf-dist/tex/latex/base/omsenc.dfu)))
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
-For additional information on amsmath, use the `?' option.
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/amscls/amsthm.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
-
-! LaTeX Error: File `anyfontsize.sty' not found.
-
-Type X to quit or &lt;RETURN&gt; to proceed,
-or enter new name. (Default extension: sty)
-
-Enter file name: 
-! Emergency stop.
-&lt;read *&gt; 
-         
-l.8 \usepackage
-               {bm}^^M
-No pages of output.
-Transcript written on math.log.
-</p>
-</aside>
-<p>where <aside class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">\Delta</span>)</p>
-<p>latex exited with error
-[stdout]
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013)
- restricted \write18 enabled.
-entering extended mode
-(./math.tex
-LaTeX2e &lt;2011/06/27&gt;
-Babel &lt;v3.8m&gt; and hyphenation patterns for english, dumylang, nohyphenation, lo
-aded.
-(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
-Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
-(/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo))
-(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
-(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def
-(/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.dfu)
-(/usr/share/texlive/texmf-dist/tex/latex/base/ot1enc.dfu)
-(/usr/share/texlive/texmf-dist/tex/latex/base/omsenc.dfu)))
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
-For additional information on amsmath, use the `?' option.
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/amscls/amsthm.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
-
-! LaTeX Error: File `anyfontsize.sty' not found.
-
-Type X to quit or &lt;RETURN&gt; to proceed,
-or enter new name. (Default extension: sty)
-
-Enter file name: 
-! Emergency stop.
-&lt;read *&gt; 
-         
-l.8 \usepackage
-               {bm}^^M
-No pages of output.
-Transcript written on math.log.
-</p>
-</aside>
- is the time between the first and second pulse.</p>
-<hr class="docutils" />
+The fitting function, <img class="math" src="../../_images/math/5b7752c757e0b691a80ab8227eadb8a8389dc58a.png" alt="f"/>, as a function of time, <img class="math" src="../../_images/math/907a4add6d5db5b7f197f7924f1371b8ac404fe6.png" alt="t"/>, obeys</p>
+<div class="math">
+<p><img src="../../_images/math/79b2c3c4a42aaba5002dcc34cf23e2ffc159ae60.png" alt="f(t) = f(t+\Delta),"/></p>
+</div><p>where <img class="math" src="../../_images/math/6450616b75212cb568e905db49efd0c3dd584648.png" alt="\Delta"/> is the time between the first and second pulse.</p>
 </section>
+<hr class="docutils" />
 <section id="single-pulse-test">
-<span id="id1"></span><h2><a class="toc-backref" href="#id4" role="doc-backlink">Single Pulse Test</a><a class="headerlink" href="#single-pulse-test" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Single Pulse Test</a><a class="headerlink" href="#single-pulse-test" title="Permalink to this heading">¶</a></h2>
 <p><strong>Time required 5 minutes</strong></p>
 <ul class="simple">
 <li><p>Open <strong>Muon Analysis</strong> (<em>Interfaces</em> &gt; <em>Muon</em> &gt; <em>Muon Analysis</em>)</p></li>
@@ -318,10 +144,10 @@ Transcript written on math.log.
 </dl>
 </li>
 </ul>
-<hr class="docutils" />
 </section>
+<hr class="docutils" />
 <section id="double-pulse-test">
-<span id="id2"></span><h2><a class="toc-backref" href="#id5" role="doc-backlink">Double Pulse Test</a><a class="headerlink" href="#double-pulse-test" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Double Pulse Test</a><a class="headerlink" href="#double-pulse-test" title="Permalink to this heading">¶</a></h2>
 <p><strong>Time required 5 minutes</strong>
 This users the same sample as the single pulse test</p>
 <ul class="simple">

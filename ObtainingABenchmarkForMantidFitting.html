@@ -3,7 +3,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
     <title>Obtaining a Benchmark for Mantid Fitting</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
@@ -93,10 +93,10 @@
 <span id="obtainingabenchmarkformantidfitting"></span><h1>Obtaining a Benchmark for Mantid Fitting<a class="headerlink" href="#obtaining-a-benchmark-for-mantid-fitting" title="Permalink to this heading">¶</a></h1>
 <nav class="contents local" id="contents">
 <ul class="simple">
-<li><p><a class="reference internal" href="#initial-setup" id="id4">Initial Setup</a></p></li>
-<li><p><a class="reference internal" href="#creating-your-benchmarking-environment" id="id5">Creating your Benchmarking Environment</a></p></li>
-<li><p><a class="reference internal" href="#running-a-benchmark" id="id6">Running a Benchmark</a></p></li>
-<li><p><a class="reference internal" href="#tips" id="id7">Tips</a></p></li>
+<li><p><a class="reference internal" href="#initial-setup" id="id1">Initial Setup</a></p></li>
+<li><p><a class="reference internal" href="#creating-your-benchmarking-environment" id="id2">Creating your Benchmarking Environment</a></p></li>
+<li><p><a class="reference internal" href="#running-a-benchmark" id="id3">Running a Benchmark</a></p></li>
+<li><p><a class="reference internal" href="#tips" id="id4">Tips</a></p></li>
 </ul>
 </nav>
 <p>There are several scenarios in which obtaining a benchmark for the accuracy and runtime of Mantid minimizers might be useful:</p>
@@ -106,7 +106,7 @@
 </ul>
 <p>This page will explain how to set up a python virtual environment that can be used to benchmark the accuracy and runtime of different fitting minimizers in Mantid for different fitting problems. To do this, we will use a package called <a class="reference external" href="https://fitbenchmarking.readthedocs.io/en/stable/">FitBenchmarking</a> which is a cross-platform open source tool for comparing different minimizers and fitting frameworks.</p>
 <section id="initial-setup">
-<h2><a class="toc-backref" href="#id4" role="doc-backlink">Initial Setup</a><a class="headerlink" href="#initial-setup" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Initial Setup</a><a class="headerlink" href="#initial-setup" title="Permalink to this heading">¶</a></h2>
 <p>Some initial setup is required on your system before we can start setting up an environment for benchmarking Mantid minimizers. Before you start this process, make sure you have a recent version of python installed, and access to git bash (which is the recommended terminal to use).</p>
 <ol class="arabic simple">
 <li><p>Download and install the desired version of Mantid from the <a class="reference external" href="https://download.mantidproject.org/">downloads</a> page (if not already installed). Note its installation path, hereby denoted as <code class="docutils literal notranslate"><span class="pre">[INSTALL_PATH]</span></code>.</p></li>
@@ -115,7 +115,7 @@
 </ol>
 </section>
 <section id="creating-your-benchmarking-environment">
-<h2><a class="toc-backref" href="#id5" role="doc-backlink">Creating your Benchmarking Environment</a><a class="headerlink" href="#creating-your-benchmarking-environment" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Creating your Benchmarking Environment</a><a class="headerlink" href="#creating-your-benchmarking-environment" title="Permalink to this heading">¶</a></h2>
 <ol class="arabic simple">
 <li><p>From the same git bash terminal, run the following command:</p></li>
 </ol>
@@ -148,7 +148,7 @@ sudo apt-get install libglu1-mesa
 <p>Your environment should now be ready for performing a benchmark of Mantid minimizers.</p>
 </section>
 <section id="running-a-benchmark">
-<h2><a class="toc-backref" href="#id6" role="doc-backlink">Running a Benchmark</a><a class="headerlink" href="#running-a-benchmark" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Running a Benchmark</a><a class="headerlink" href="#running-a-benchmark" title="Permalink to this heading">¶</a></h2>
 <p>The process for how to run a benchmark is explained extensively in the <a class="reference external" href="https://fitbenchmarking.readthedocs.io/en/stable/users/index.html">FitBenchmarking documentation</a>, and so I recommend you give it a read. This section will give a basic example of how to perform a simple benchmark of three Mantid minimizers.</p>
 <ol class="arabic simple">
 <li><p>Create a file called <code class="docutils literal notranslate"><span class="pre">fitting_options.ini</span></code> with the following contents</p></li>
@@ -184,7 +184,7 @@ external_output: log_only
 <p>When the benchmark is complete, it should open a browser which contains the results. You should read the FitBenchmarking documentation if you need help with how to interpret these results. The results will also be stored in your current folder location.</p>
 </section>
 <section id="tips">
-<h2><a class="toc-backref" href="#id7" role="doc-backlink">Tips</a><a class="headerlink" href="#tips" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Tips</a><a class="headerlink" href="#tips" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>Make sure your git bash terminal is open in the correct location and has the virtual environment activated when running your benchmark.</p></li>
 <li><p>Each time your run the benchmark, the old results will be overwritten unless you change the directory you run the <code class="docutils literal notranslate"><span class="pre">fitbenchmarking</span></code> command from. In later versions of FitBenchmarking (&gt;v1.5) there will be an option to specify the results directory on the command line or via the <code class="docutils literal notranslate"><span class="pre">.ini</span></code> file.</p></li>
