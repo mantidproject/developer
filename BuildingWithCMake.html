@@ -18,7 +18,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="CMake Guidelines" href="CMakeBestPractices.html" />
-    <link rel="prev" title="Building on Older Versions of OS X" href="BuildingOnOSXHistoric.html" />
+    <link rel="prev" title="Building on OS X" href="BuildingOnOSX.html" />
 
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -83,6 +83,20 @@
 </form>
             </div>
     </div>
+    <p>
+<div class="related" role="navigation" aria-label="related navigation">
+  <h3>Navigation</h3>
+  <ul>
+    <li class="nav-item nav-item-0"><a href="index.html">Documentation</a> &#187;</li>
+    
+    
+    
+    
+    <li class="nav-item nav-item-this"><a href="">Building with CMake</a></li>
+    
+    
+  </ul>
+</div> </p>
   </div>
 
 <div class="container">
@@ -124,27 +138,14 @@ For a “how is it used version” of this guide, look at the scripts used on th
 </section>
 <section id="ccache">
 <h2><a class="toc-backref" href="#id4" role="doc-backlink">CCache</a><a class="headerlink" href="#ccache" title="Permalink to this heading">¶</a></h2>
-<p>Mantid’s cmake is configure to use the <a class="reference external" href="https://ccache.samba.org/">ccache</a> tool if it is available.
-It is highly recommended that this be used on Linux/macOS systems.
-Once ccache is installed, cmake is configured to automatically configure builds to use it.</p>
-<p>For Linux either run either</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo yum install ccache
-</pre></div>
-</div>
-<p>on Red Hat, or</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo apt-get install ccache
-</pre></div>
-</div>
-<p>on Ubuntu.</p>
-<p>For macOS run:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>brew install ccache
-</pre></div>
-</div>
-<p>After it is installed run <code class="docutils literal notranslate"><span class="pre">ccache</span> <span class="pre">--max-size=20G</span></code> to increase the size of the cache.</p>
+<p>Mantid is configured to use the <a class="reference external" href="https://ccache.samba.org/">ccache</a> tool if it is available.
+It is highly recommended that this be used on Linux/macOS systems, and Windows when using a Ninja generator.
+CCache is installed within your conda environment, and CMake is configured to automatically use it when building.</p>
+<p>With your conda environment activated, run <code class="docutils literal notranslate"><span class="pre">ccache</span> <span class="pre">--max-size=20G</span></code> to increase the size of the cache.</p>
 <p>If you’re build with <code class="docutils literal notranslate"><span class="pre">ccache</span></code> exhibits warnings that are not usually present then try setting the <code class="docutils literal notranslate"><span class="pre">ccache</span> <span class="pre">--set-config=run_second_cpp=&quot;true&quot;</span></code> config option (or set <code class="docutils literal notranslate"><span class="pre">CCACHE_CPP2=yes</span></code> environment variable on older versions).</p>
 <section id="network-drives">
 <h3><a class="toc-backref" href="#id5" role="doc-backlink">Network Drives</a><a class="headerlink" href="#network-drives" title="Permalink to this heading">¶</a></h3>
-<p>The default location for the cache directory is <code class="docutils literal notranslate"><span class="pre">$HOME/.ccache</span></code>. If you’re home directory is on a network-mounted drive then the location of this cache be moved to provide the best performance. On newer versions of <code class="docutils literal notranslate"><span class="pre">ccache</span></code> run <code class="docutils literal notranslate"><span class="pre">ccache</span> <span class="pre">--set-config=cache_dir=PATH_TO_CACHE</span></code>. Older versions (&lt;3.2) do not allow this and must fall back to setting the <code class="docutils literal notranslate"><span class="pre">CCACHE_DIR</span></code> environment variable in your shell profile.</p>
+<p>The default location for the cache directory is <code class="docutils literal notranslate"><span class="pre">$HOME/.ccache</span></code> on Linux/macOS, and <code class="docutils literal notranslate"><span class="pre">$HOME/AppData/Roaming/ccache</span></code> on Windows. If you’re home directory is on a network-mounted drive then the location of this cache be moved to provide the best performance. On newer versions of <code class="docutils literal notranslate"><span class="pre">ccache</span></code> run <code class="docutils literal notranslate"><span class="pre">ccache</span> <span class="pre">--set-config=cache_dir=PATH_TO_CACHE</span></code>. Older versions (&lt;3.2) do not allow this and must fall back to setting the <code class="docutils literal notranslate"><span class="pre">CCACHE_DIR</span></code> environment variable in your shell profile.</p>
 </section>
 </section>
 <section id="configuring-your-build">
@@ -279,7 +280,7 @@ This will enable the framework to be found using <cite>find_package(MantidFramew
           
             
   <li>
-    <a href="BuildingOnOSXHistoric.html" title="Previous Chapter: Building on Older Versions of OS X"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Building on O...</span>
+    <a href="BuildingOnOSX.html" title="Previous Chapter: Building on OS X"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Building on OS X</span>
     </a>
   </li>
   <li>
