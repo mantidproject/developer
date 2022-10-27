@@ -83,22 +83,6 @@
 </form>
             </div>
     </div>
-    <p>
-<div class="related" role="navigation" aria-label="related navigation">
-  <h3>Navigation</h3>
-  <ul>
-    <li class="nav-item nav-item-0"><a href="../index.html">Documentation</a> &#187;</li>
-    
-    <li class="nav-item nav-item-1"><a href="GettingStarted.html" accesskey="U">Getting Started</a> &#187;</li>
-    
-    
-    
-    
-    <li class="nav-item nav-item-this"><a href="">Develop with Conda on Windows</a></li>
-    
-    
-  </ul>
-</div> </p>
   </div>
 
 <div class="container">
@@ -174,53 +158,25 @@
 <section id="configure-cmake-and-generate-build-files">
 <h2>Configure CMake and generate build files<a class="headerlink" href="#configure-cmake-and-generate-build-files" title="Permalink to this heading">¶</a></h2>
 <ul>
-<li><dl class="simple">
-<dt>You can configure CMake using an MSVC or Ninja generator. Choose one of the following:</dt><dd><ul class="simple">
-<li><p>For MSVC, use the terminal or powershell prompt from the last step.</p></li>
-<li><p>For Ninja, open the <code class="docutils literal notranslate"><span class="pre">x64</span> <span class="pre">Native</span> <span class="pre">Tools</span> <span class="pre">Command</span> <span class="pre">Prompt</span> <span class="pre">for</span> <span class="pre">VS</span> <span class="pre">2019</span></code> from your search bar.</p></li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><p>Navigate to your mantid source directory.</p></li>
+<li><p>Still using the terminal or powershell prompt from the last step and in your mantid source directory.</p></li>
 <li><p>Run <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">mantid-developer</span></code> to activate your conda environment.</p></li>
-<li><p>If you want your build directory inside your source directory, run either:</p>
+<li><p>Inside of your mantid source directory run either:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">--preset=win-msvc</span></code> for configuring with MSVC, or</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">--preset=win-ninja</span></code> for configuring with Ninja.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">--preset=win</span></code> if you want your build directory inside your source directory, or</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">--preset=win</span> <span class="pre">-B</span> <span class="pre">{BUILD_DIR}</span></code> to specify a different build directory.</p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><dl class="simple">
-<dt>Alternatively, if you want to specify a different build directory, run either:</dt><dd><ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">--preset=win-msvc</span> <span class="pre">-B</span> <span class="pre">{BUILD_DIR}</span></code>, or</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">--preset=win-ninja</span> <span class="pre">-B</span> <span class="pre">{BUILD_DIR}</span></code></p></li>
-</ul>
-</dd>
-</dl>
-</li>
 </ul>
 </section>
-<section id="compile-and-build-using-msvc">
-<h2>Compile and Build using MSVC<a class="headerlink" href="#compile-and-build-using-msvc" title="Permalink to this heading">¶</a></h2>
+<section id="compile-and-build-using-visual-studio">
+<h2>Compile and Build using Visual Studio<a class="headerlink" href="#compile-and-build-using-visual-studio" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>Open visual studio with <code class="docutils literal notranslate"><span class="pre">visualstudio.bat</span></code> then click build.</p></li>
-<li><p>It’s not possible to compile in Debug on Windows with conda libraries, however Release, RelWithDebInfo, and DebugWithRelRuntime for Debugging will compile fine.</p></li>
+<li><p>It’s not possible to compile in Debug on Windows with conda libraries, however Release, and RelWithDebInfo for Debugging will compile fine.</p></li>
 <li><p>Once in visual studio, the correct target to use as a startup project in visual studio is <code class="docutils literal notranslate"><span class="pre">workbench</span></code>, not <code class="docutils literal notranslate"><span class="pre">MantidWorkbench</span></code>. You can then press F5 to start workbench.</p></li>
 </ul>
-</section>
-<section id="compile-and-build-using-ninja">
-<h2>Compile and Build using Ninja<a class="headerlink" href="#compile-and-build-using-ninja" title="Permalink to this heading">¶</a></h2>
-<ul class="simple">
-<li><p>Navigate to the build directory using the <code class="docutils literal notranslate"><span class="pre">x64</span> <span class="pre">Native</span> <span class="pre">Tools</span> <span class="pre">Command</span> <span class="pre">Prompt</span> <span class="pre">for</span> <span class="pre">VS</span> <span class="pre">2019</span></code> from the previous step.</p></li>
-<li><p>To build Mantid Workbench use: <code class="docutils literal notranslate"><span class="pre">ninja</span></code></p></li>
-<li><p>To build the unit tests use: <code class="docutils literal notranslate"><span class="pre">ninja</span> <span class="pre">AllTests</span></code></p></li>
-</ul>
-</section>
-<section id="building-and-debugging-with-clion">
-<h2>Building and debugging with CLion<a class="headerlink" href="#building-and-debugging-with-clion" title="Permalink to this heading">¶</a></h2>
-<p>Please follow the Windows related instructions on <a class="reference internal" href="../CLion.html#clion-ref"><span class="std std-ref">this page</span></a>.</p>
 </section>
 <section id="cmake-conda-variables">
 <h2>CMake Conda variables<a class="headerlink" href="#cmake-conda-variables" title="Permalink to this heading">¶</a></h2>
