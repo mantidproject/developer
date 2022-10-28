@@ -83,22 +83,6 @@
 </form>
             </div>
     </div>
-    <p>
-<div class="related" role="navigation" aria-label="related navigation">
-  <h3>Navigation</h3>
-  <ul>
-    <li class="nav-item nav-item-0"><a href="../index.html">Documentation</a> &#187;</li>
-    
-    <li class="nav-item nav-item-1"><a href="GettingStarted.html" accesskey="U">Getting Started</a> &#187;</li>
-    
-    
-    
-    
-    <li class="nav-item nav-item-this"><a href="">Develop with Conda on Linux</a></li>
-    
-    
-  </ul>
-</div> </p>
   </div>
 
 <div class="container">
@@ -179,7 +163,34 @@
 </section>
 <section id="building-and-debugging-with-clion">
 <h2>Building and debugging with CLion<a class="headerlink" href="#building-and-debugging-with-clion" title="Permalink to this heading">¶</a></h2>
-<p>Please follow the Linux related instructions on <a class="reference internal" href="../CLion.html#clion-ref"><span class="std std-ref">this page</span></a>.</p>
+<p>CLion will fail to find the build targets if the conda environment is not enabled:</p>
+<ul class="simple">
+<li><p>Navigate to <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">&gt;</span> <span class="pre">Settings</span> <span class="pre">&gt;</span> <span class="pre">Build,Execution,Deployment</span> <span class="pre">&gt;</span> <span class="pre">Toolchains</span></code></p></li>
+<li><p>Edit the CMake and Build Tool settings to point to your conda installed <code class="docutils literal notranslate"><span class="pre">cmake</span></code> and <code class="docutils literal notranslate"><span class="pre">ninja</span></code> respectively, e.g. <code class="docutils literal notranslate"><span class="pre">/home/&lt;user&gt;/mambaforge/envs/mantid-developer/bin/cmake</span></code></p></li>
+<li><p>Navigate to <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">&gt;</span> <span class="pre">Settings</span> <span class="pre">&gt;</span> <span class="pre">Build,Execution,Deployment</span> <span class="pre">&gt;</span> <span class="pre">CMake</span></code> and change the generator to <code class="docutils literal notranslate"><span class="pre">Ninja</span></code> and the CMake options to <code class="docutils literal notranslate"><span class="pre">--preset=linux</span></code>. Change the build directory to <code class="docutils literal notranslate"><span class="pre">build</span></code> (or your own build directory if not the default; you’ll need to use the full path if outside the source directory).</p></li>
+<li><p>The configurations drop-down at the top should show all of the build targets. If not, the CMake project is probably not loaded; open the root <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> file in a tab and there should be a <code class="docutils literal notranslate"><span class="pre">Load</span> <span class="pre">CMake</span> <span class="pre">Project</span></code> option at the top right. Click it and the configurations should be populated.</p></li>
+<li><p>To test a build, navigate to <code class="docutils literal notranslate"><span class="pre">Build</span> <span class="pre">&gt;</span> <span class="pre">Build</span> <span class="pre">All</span> <span class="pre">in</span> <span class="pre">'Debug'</span></code>. Check that the build command displayed in the Messages window is running the correct cmake executable from your conda installation.</p></li>
+<li><p>Note that you can build a specific target by selecting it in the configurations drop-down menu and clicking the hammer icon next to it.</p></li>
+<li><p>To debug workbench, you’ll need to edit the <code class="docutils literal notranslate"><span class="pre">workbench</span></code> CMake Application configuration. Set the executable to <code class="docutils literal notranslate"><span class="pre">python</span></code> in your conda installation, and program arguments to <code class="docutils literal notranslate"><span class="pre">workbench</span> <span class="pre">--single-process</span></code>. Set the working directory to the full path to your <code class="docutils literal notranslate"><span class="pre">build/bin</span></code> directory</p></li>
+</ul>
+<p>If this fails you may need to open CLion from a terminal with conda activated, although I have not found this necessary:</p>
+<ul class="simple">
+<li><p>Open a terminal and run <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">mantid-developer</span></code></p></li>
+<li><p>Launch CLion through that terminal (<code class="docutils literal notranslate"><span class="pre">&lt;CLION_INSTALL&gt;/bin/clion.sh</span></code>)</p></li>
+</ul>
+<p>It is also useful to have your terminals in CLion also run with this environment:</p>
+<ul class="simple">
+<li><p>In your <code class="docutils literal notranslate"><span class="pre">home</span></code> directory create a file named <code class="docutils literal notranslate"><span class="pre">.clionrc</span></code> and open in your favourite text editor, adding these lines:</p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>source ~/.bashrc
+source ~/mambaforge/bin/activate mantid-developer
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Start CLion using the above steps</p></li>
+<li><p>Navigate to <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">&gt;</span> <span class="pre">Settings</span> <span class="pre">&gt;</span> <span class="pre">Tools</span> <span class="pre">&gt;</span> <span class="pre">Terminal</span></code>.</p></li>
+<li><p>To the end of the <code class="docutils literal notranslate"><span class="pre">Shell</span> <span class="pre">path</span></code> option, add: <code class="docutils literal notranslate"><span class="pre">--rcfile</span> <span class="pre">~/.clionrc</span></code>.</p></li>
+</ul>
 </section>
 <section id="cmake-conda-variables">
 <h2>CMake Conda variables<a class="headerlink" href="#cmake-conda-variables" title="Permalink to this heading">¶</a></h2>
