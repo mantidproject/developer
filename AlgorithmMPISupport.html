@@ -259,6 +259,7 @@ Examples are given in the series of figures on the right.</p>
 </section>
 <section id="building-and-running-mantid-with-mpi-support">
 <h2><a class="toc-backref" href="#id17" role="doc-backlink">Building and Running Mantid with MPI Support</a><a class="headerlink" href="#building-and-running-mantid-with-mpi-support" title="Permalink to this heading">¶</a></h2>
+<p>Firstly, you may also need to check out <a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/PythonNotebook.html#pythonnotebook" title="(in MantidProject v6.5)"><span>Access Mantid in Python and Notebook</span></a>.</p>
 <section id="build-with-mpi-support">
 <h3><a class="toc-backref" href="#id18" role="doc-backlink">Build with MPI support</a><a class="headerlink" href="#build-with-mpi-support" title="Permalink to this heading">¶</a></h3>
 <p>To build Mantid with MPI support as described in this document run <code class="docutils literal notranslate"><span class="pre">cmake</span></code> with the additional option <code class="docutils literal notranslate"><span class="pre">-DMPI_EXPERIMENTAL=ON</span></code>.
@@ -297,8 +298,8 @@ For example:</p>
     <span class="nb">print</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">readY</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
 </pre></div>
 </div>
-<p>Run Python with <code class="docutils literal notranslate"><span class="pre">mpirun</span></code> and the desired number of MPI ranks, by using the new <code class="docutils literal notranslate"><span class="pre">-n</span></code> flag to <code class="docutils literal notranslate"><span class="pre">mantidpython</span></code>:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>mantidpython -n <span class="m">3</span> test.py
+<p>Run Python with <code class="docutils literal notranslate"><span class="pre">mpirun</span></code> and the desired number of MPI ranks, by using the <code class="docutils literal notranslate"><span class="pre">-np</span></code> flag to <code class="docutils literal notranslate"><span class="pre">python</span></code>:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>mpirun -np <span class="m">3</span> python test.py
 </pre></div>
 </div>
 <p>Possible output:</p>

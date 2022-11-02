@@ -228,23 +228,21 @@ ninja <span class="c1"># or make</span>
 <li><p>Make a note of the directory or test file you’d like coverage information from. Pytest will search recursively from a given directory.</p></li>
 <li><p>cd to build directory and run your test with coverage as follows</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Where &lt;path&gt; is the directory or file to run</span>
-bin/mantidpython --classic -m coverage run -m pytest &lt;path&gt;
+<span class="nv">PYTHONPATH</span><span class="o">=</span>/path/to/build/bin python3 -m coverage run -m pytest &lt;path&gt;
 </pre></div>
 </div>
 </li>
 <li><p>To limit coverage information to only project files add the <cite>–source</cite> flag:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Where /path/to/src/ contains Mantid source code</span>
 <span class="c1"># Note this cannot use the home dir, i.e. ~/path/to/src</span>
-bin/mantidpython --classic -m coverage run --source<span class="o">=</span>&lt;/path/to/src/&gt; -m pytest &lt;path&gt;
+<span class="nv">PYTHONPATH</span><span class="o">=</span>/path/to/build/bin python3 -m coverage run --source<span class="o">=</span>&lt;/path/to/src/&gt; -m pytest &lt;path&gt;
 </pre></div>
 </div>
 </li>
 <li><p>Example: To run coverage for the entire project</p>
-<blockquote>
-<div><div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>bin/mantidpython --classic -m coverage run --source /mantid_src -m pytest /mantid_src
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">PYTHONPATH</span><span class="o">=</span>/path/to/build/bin python3 -m coverage run --source /mantid_src -m pytest /mantid_src
 </pre></div>
 </div>
-</div></blockquote>
 </li>
 <li><p>Generate out a html report in the directory you ran tests from:</p>
 <blockquote>
