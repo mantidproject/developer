@@ -234,9 +234,11 @@ will run.</p>
 <section id="mac-os">
 <h3><a class="toc-backref" href="#id9" role="doc-backlink">Mac OS</a><a class="headerlink" href="#mac-os" title="Permalink to this heading">¶</a></h3>
 <p>Enable <a class="reference external" href="https://apple.stackexchange.com/a/73919">SSH (“Remote Login”) and VNC (“Remote Management”)</a>.
-If you have connection issues from a non-OS X client then try adjusting your color depth settings (True Color 32bpp works on Remmina).</p>
+If you have connection issues from a non-OS X client then try adjusting your color
+depth settings (True Color 32bpp works on Remmina).</p>
 <p>In order to run the Qt tests, which require a connection to the windowing system,
-the user that is running the Jenkins agent must have logged in.
+the user that is running the Jenkins agent must be left logged in and the
+automatic screen lock must be disabled.
 This is most easily done by VNC - connect, log in, then disconnect.
 If you see errors such as:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">_RegisterApplication</span><span class="p">(),</span> <span class="n">FAILED</span> <span class="n">TO</span> <span class="n">establish</span> <span class="n">the</span> <span class="n">default</span> <span class="n">connection</span> <span class="n">to</span> <span class="n">the</span> <span class="n">WindowServer</span><span class="p">,</span>
@@ -244,19 +246,22 @@ If you see errors such as:</p>
 </pre></div>
 </div>
 <p>then no one is logged in to the system.</p>
-<p>Finally, disable saved application states that cause a dialog to be raised after a program crash resulting in a test hanging waiting for a user to click ok on a dialog:</p>
+<p>Disable saved application states that cause a dialog to be raised after a
+program crash resulting in a test hanging waiting for a user to click ok on a dialog:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">defaults</span> <span class="n">write</span> <span class="n">org</span><span class="o">.</span><span class="n">python</span><span class="o">.</span><span class="n">python</span> <span class="n">NSQuitAlwaysKeepsWindows</span> <span class="o">-</span><span class="nb">bool</span> <span class="n">false</span>
 <span class="n">defaults</span> <span class="n">write</span> <span class="n">org</span><span class="o">.</span><span class="n">mantidproject</span><span class="o">.</span><span class="n">MantidPlot</span> <span class="n">NSQuitAlwaysKeepsWindows</span> <span class="o">-</span><span class="nb">bool</span> <span class="n">false</span>
 </pre></div>
 </div>
+<p>Finally, install Java 11 JRE from <a class="reference external" href="https://adoptium.net/temurin/releases/">https://adoptium.net/temurin/releases/</a> by selecting
+<code class="docutils literal notranslate"><span class="pre">macOS</span></code>, <code class="docutils literal notranslate"><span class="pre">x64</span></code>, <code class="docutils literal notranslate"><span class="pre">JRE</span></code> and <code class="docutils literal notranslate"><span class="pre">11</span></code> for the respective options.
+Download the <code class="docutils literal notranslate"><span class="pre">.pkg</span></code> and install following the instructions.</p>
+<p>Restart the machine and ensure you leave the jenkins-agent user logged in as
+per the instructions above.</p>
 <section id="id1">
 <h4><a class="toc-backref" href="#id10" role="doc-backlink">Agent Connection</a><a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h4>
 <p>The Jenkins JNLP connections are maintained by a crontab entry.
-The script is in the <a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/buildconfig/Jenkins/jenkins-slave.sh">mantid repository</a>.</p>
-<p>The comments at the top describe a typical crontab entry for the script.
-This needs to be manually set for each agent. Ensure the script is marked executable after downloading it.
-Also ensure the entry in the crontab has the correct <code class="docutils literal notranslate"><span class="pre">PATH</span></code> setting (by default cron uses a reduced <code class="docutils literal notranslate"><span class="pre">PATH</span></code> entry).
-On macOS <code class="docutils literal notranslate"><span class="pre">latex</span></code> and <code class="docutils literal notranslate"><span class="pre">sysctl</span></code> should be available.</p>
+The script is in the <a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/buildconfig/Jenkins/jenkins-slave.sh">mantid repository</a>.
+The comments at the top describe a how to customize the script for a new agent.</p>
 </section>
 </section>
 </section>
