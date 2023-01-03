@@ -10,9 +10,6 @@
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -48,7 +45,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="http://www.mantidproject.org"><img src="../_static/Mantid_Logo_Transparent.png">
+        <a class="navbar-brand" href="http://www.mantidproject.org">
            </a>
         <span class="navbar-text navbar-version pull-left"><b>master</b></span>
       </div>
@@ -147,10 +144,10 @@
 </dl>
 <p>In C++: (This example uses the .h file, you could of course implement it in the .cpp file)</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Algorithm&#39;s name for identification overriding a virtual method</span>
-<span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">name</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Rebin&quot;</span><span class="p">;}</span><span class="w"></span>
+<span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">name</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Rebin&quot;</span><span class="p">;}</span>
 
 <span class="c1">///Summary of algorithms purpose</span>
-<span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">summary</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Rebins data with new X bin boundaries.&quot;</span><span class="p">;}</span><span class="w"></span>
+<span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">summary</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Rebins data with new X bin boundaries.&quot;</span><span class="p">;}</span>
 </pre></div>
 </div>
 </section>
@@ -162,20 +159,20 @@
 <p>The tooltip may only show the description up to the first dot. Be sure that the first sentence in the description gives enough information to understand the purpose of the property.</p>
 </div>
 <p>For example:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">declareProperty</span><span class="p">(</span><span class="w"></span>
-<span class="k">new</span><span class="w"> </span><span class="n">WorkspaceProperty</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="s">&quot;InputWorkspace&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Direction</span><span class="o">::</span><span class="n">Input</span><span class="p">),</span><span class="w"></span>
-<span class="w">  </span><span class="s">&quot;Workspace containing the input data&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="n">declareProperty</span><span class="p">(</span><span class="w"></span>
-<span class="k">new</span><span class="w"> </span><span class="n">WorkspaceProperty</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="s">&quot;OutputWorkspace&quot;</span><span class="p">,</span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="n">Direction</span><span class="o">::</span><span class="n">Output</span><span class="p">),</span><span class="w"></span>
-<span class="w">  </span><span class="s">&quot;The name to give the output workspace&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="n">declareProperty</span><span class="p">(</span><span class="w"></span>
-<span class="k">new</span><span class="w"> </span><span class="n">ArrayProperty</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;Params&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">RebinParamsValidator</span><span class="o">&gt;</span><span class="p">()),</span><span class="w"></span>
-<span class="w">  </span><span class="s">&quot;A comma separated list of first bin boundary, width, last bin boundary. Optionally &quot;</span><span class="w"></span>
-<span class="w">  </span><span class="s">&quot;this can be followed by a comma and more widths and last boundary pairs. &quot;</span><span class="w"></span>
-<span class="w">  </span><span class="s">&quot;Optionally this can also be a single number, which is the bin width. &quot;</span><span class="w"></span>
-<span class="w">  </span><span class="s">&quot;In this case, the boundary of binning will be determined by minimum and maximum TOF &quot;</span><span class="w"></span>
-<span class="w">  </span><span class="s">&quot;values among all events, or previous binning boundary, in case of event Workspace, or &quot;</span><span class="w"></span>
-<span class="w">  </span><span class="s">&quot;non-event Workspace, respectively. Negative width values indicate logarithmic binning. &quot;</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">declareProperty</span><span class="p">(</span>
+<span class="k">new</span><span class="w"> </span><span class="n">WorkspaceProperty</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="s">&quot;InputWorkspace&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Direction</span><span class="o">::</span><span class="n">Input</span><span class="p">),</span>
+<span class="w">  </span><span class="s">&quot;Workspace containing the input data&quot;</span><span class="p">);</span>
+<span class="n">declareProperty</span><span class="p">(</span>
+<span class="k">new</span><span class="w"> </span><span class="n">WorkspaceProperty</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="s">&quot;OutputWorkspace&quot;</span><span class="p">,</span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="n">Direction</span><span class="o">::</span><span class="n">Output</span><span class="p">),</span>
+<span class="w">  </span><span class="s">&quot;The name to give the output workspace&quot;</span><span class="p">);</span>
+<span class="n">declareProperty</span><span class="p">(</span>
+<span class="k">new</span><span class="w"> </span><span class="n">ArrayProperty</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;Params&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">RebinParamsValidator</span><span class="o">&gt;</span><span class="p">()),</span>
+<span class="w">  </span><span class="s">&quot;A comma separated list of first bin boundary, width, last bin boundary. Optionally &quot;</span>
+<span class="w">  </span><span class="s">&quot;this can be followed by a comma and more widths and last boundary pairs. &quot;</span>
+<span class="w">  </span><span class="s">&quot;Optionally this can also be a single number, which is the bin width. &quot;</span>
+<span class="w">  </span><span class="s">&quot;In this case, the boundary of binning will be determined by minimum and maximum TOF &quot;</span>
+<span class="w">  </span><span class="s">&quot;values among all events, or previous binning boundary, in case of event Workspace, or &quot;</span>
+<span class="w">  </span><span class="s">&quot;non-event Workspace, respectively. Negative width values indicate logarithmic binning. &quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 </section>
@@ -226,9 +223,9 @@ A custom usage example.
 </dd>
 </dl>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Summary of algorithms purpose</span>
-<span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">summary</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">   </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Rebins data with new X bin boundaries. For EventWorkspaces, you can very quickly rebin in-place by keeping the same output name and PreserveEvents=true.&quot;</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">summary</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Rebins data with new X bin boundaries. For EventWorkspaces, you can very quickly rebin in-place by keeping the same output name and PreserveEvents=true.&quot;</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <dl class="simple">
@@ -236,10 +233,10 @@ A custom usage example.
 </dd>
 </dl>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Algorithm&#39;s seeAlso</span>
-<span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">seeAlso</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;RebinToWorkspace&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Rebin2D&quot;</span><span class="p">,</span><span class="w">           </span><span class="s">&quot;Rebunch&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">         </span><span class="s">&quot;Regroup&quot;</span><span class="p">,</span><span class="w">          </span><span class="s">&quot;RebinByPulseTimes&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;RebinByTimeAtSample&quot;</span><span class="p">};</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">seeAlso</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;RebinToWorkspace&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Rebin2D&quot;</span><span class="p">,</span><span class="w">           </span><span class="s">&quot;Rebunch&quot;</span><span class="p">,</span>
+<span class="w">         </span><span class="s">&quot;Regroup&quot;</span><span class="p">,</span><span class="w">          </span><span class="s">&quot;RebinByPulseTimes&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;RebinByTimeAtSample&quot;</span><span class="p">};</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <dl class="simple">
@@ -249,7 +246,7 @@ A custom usage example.
 </dd>
 </dl>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Algorithm&#39;s category for identification</span>
-<span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">category</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Transforms</span><span class="se">\\</span><span class="s">Rebin&quot;</span><span class="p">;}</span><span class="w"></span>
+<span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">category</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Transforms</span><span class="se">\\</span><span class="s">Rebin&quot;</span><span class="p">;}</span>
 </pre></div>
 </div>
 <p>When the HTML is generate a categories list is built that contains: Algorithms, Transforms and Rebin.</p>

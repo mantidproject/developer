@@ -10,9 +10,6 @@
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -48,7 +45,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="http://www.mantidproject.org"><img src="_static/Mantid_Logo_Transparent.png">
+        <a class="navbar-brand" href="http://www.mantidproject.org">
            </a>
         <span class="navbar-text navbar-version pull-left"><b>master</b></span>
       </div>
@@ -366,7 +363,7 @@ language, layout, and collecting images.</p>
 <li><p>Create a new branch using the <a class="reference external" href="https://developer.mantidproject.org/GitWorkflow.html#new-branches">Mantid Git Workflow guidance</a>.</p></li>
 <li><p>Navigate to your Mantid ‘build’ directory and open <code class="docutils literal notranslate"><span class="pre">command-prompt.bat</span></code>.</p></li>
 <li><p>In the new command prompt, navigate to the <a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/tools/ReleaseNotes/release_editor.py">release_editor.py script</a> and run, parsing the correct version number. The script copies all of the separate release notes under the correct heading of their upper level file, e.g. <code class="docutils literal notranslate"><span class="pre">framework.rst</span></code>, and moves the original release notes into a ‘Used’ directory.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python release_editor.py --release <span class="m">6</span>.5.0
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>release_editor.py<span class="w"> </span>--release<span class="w"> </span><span class="m">6</span>.5.0
 </pre></div>
 </div>
 </li>
@@ -384,7 +381,7 @@ language, layout, and collecting images.</p>
 <li><p>As the release sprint goes on, new release note files will be created (existing outside of the ‘Used’ directories). The text from these will need to be copped into the main release note pages (<code class="docutils literal notranslate"><span class="pre">diffraction.rst</span></code>, <code class="docutils literal notranslate"><span class="pre">mantidworkbench.rst</span></code> etc.) and the file itself moved to it’s corresponding ‘Used’ directory.</p></li>
 <li><p>It is best to wait until several of these have built up before making a new branch / pr.</p></li>
 <li><p>To help with finding the new release notes, use the <a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/tools/ReleaseNotes/unused_release_note_finder.py">unused_release_note_finder.py script</a> which will print the location of release notes not within a ‘Used’ directory.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python unused_release_note_finder.py --release <span class="m">6</span>.5.0
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>unused_release_note_finder.py<span class="w"> </span>--release<span class="w"> </span><span class="m">6</span>.5.0
 </pre></div>
 </div>
 </li>
@@ -551,8 +548,8 @@ manually change the base branch in GitHub or use the <a class="reference externa
 script to update the base branches of these pull requests.
 A quick example to show how the arguments should be provided to this script is seen below:</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python update-pr-base-branch.py <span class="o">[</span>milestone<span class="o">]</span> <span class="o">[</span>newbase<span class="o">]</span> --token <span class="o">[</span>generated_token<span class="o">]</span>
-python update-pr-base-branch.py <span class="s2">&quot;Release 6.1&quot;</span> <span class="s2">&quot;release-next&quot;</span> --token fake123gener8ed456token
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>update-pr-base-branch.py<span class="w"> </span><span class="o">[</span>milestone<span class="o">]</span><span class="w"> </span><span class="o">[</span>newbase<span class="o">]</span><span class="w"> </span>--token<span class="w"> </span><span class="o">[</span>generated_token<span class="o">]</span>
+python<span class="w"> </span>update-pr-base-branch.py<span class="w"> </span><span class="s2">&quot;Release 6.1&quot;</span><span class="w"> </span><span class="s2">&quot;release-next&quot;</span><span class="w"> </span>--token<span class="w"> </span>fake123gener8ed456token
 </pre></div>
 </div>
 <ul class="simple">
@@ -577,8 +574,8 @@ before this release branch was created are fine, as their history is the same as
 and open a pull request to put them on <code class="docutils literal notranslate"><span class="pre">main</span></code>. Make sure the
 <code class="docutils literal notranslate"><span class="pre">docs/source/release/index.rst</span></code> file has a link to the new release docs.</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python release.py --release <span class="o">[</span>X.Y.Z<span class="o">]</span> --milestone <span class="o">[</span>milestone<span class="o">]</span>
-python release.py --release <span class="m">6</span>.1.0 --milestone <span class="s2">&quot;Release 6.1&quot;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>release.py<span class="w"> </span>--release<span class="w"> </span><span class="o">[</span>X.Y.Z<span class="o">]</span><span class="w"> </span>--milestone<span class="w"> </span><span class="o">[</span>milestone<span class="o">]</span>
+python<span class="w"> </span>release.py<span class="w"> </span>--release<span class="w"> </span><span class="m">6</span>.1.0<span class="w"> </span>--milestone<span class="w"> </span><span class="s2">&quot;Release 6.1&quot;</span>
 </pre></div>
 </div>
 </section>
@@ -662,11 +659,11 @@ publish a new <a class="reference external" href="https://github.com/mantidproje
 updates to <code class="docutils literal notranslate"><span class="pre">main</span></code>. Look for <code class="docutils literal notranslate"><span class="pre">authors.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">tools/DOI</span></code> directory.
 It does not matter that these are not on the release branch.</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python tools/DOI/doi.py --username<span class="o">=[</span>username<span class="o">]</span> <span class="o">[</span>X.Y.Z<span class="o">]</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>tools/DOI/doi.py<span class="w"> </span>--username<span class="o">=[</span>username<span class="o">]</span><span class="w"> </span><span class="o">[</span>X.Y.Z<span class="o">]</span>
 </pre></div>
 </div>
 <p>for example</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python tools/DOI/doi.py --username<span class="o">=</span><span class="s2">&quot;doi.username&quot;</span> <span class="m">6</span>.1.0
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>tools/DOI/doi.py<span class="w"> </span>--username<span class="o">=</span><span class="s2">&quot;doi.username&quot;</span><span class="w"> </span><span class="m">6</span>.1.0
 </pre></div>
 </div>
 <ul class="simple">

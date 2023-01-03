@@ -10,9 +10,6 @@
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -48,7 +45,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="http://www.mantidproject.org"><img src="../_static/Mantid_Logo_Transparent.png">
+        <a class="navbar-brand" href="http://www.mantidproject.org">
            </a>
         <span class="navbar-text navbar-version pull-left"><b>master</b></span>
       </div>
@@ -130,14 +127,14 @@ to use another algorithm. The signal is implemented via “deprecation”.</p>
 <p>Here are the relevant lines for deprecating algorithm <code class="docutils literal notranslate"><span class="pre">MyOldAlg</span></code> on Christmas day in 2020 and informing that
 <code class="docutils literal notranslate"><span class="pre">MyNewAlg</span></code> should be used</p>
 <blockquote>
-<div><div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;MantidAPI/DeprecatedAlgorithm.h&quot;</span><span class="cp"></span>
+<div><div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;MantidAPI/DeprecatedAlgorithm.h&quot;</span>
 
-<span class="k">class</span><span class="w"> </span><span class="nc">MANTID_ALGORITHMS_DLL</span><span class="w"> </span><span class="n">MyOldAlg</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">API</span><span class="o">::</span><span class="n">Algorithm</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">API</span><span class="o">::</span><span class="n">DeprecatedAlgorithm</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="k">public</span><span class="o">:</span><span class="w"></span>
-<span class="n">MyOldAlg</span><span class="o">::</span><span class="n">MyOldAlg</span><span class="p">()</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">m_someMember</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">useAlgorithm</span><span class="p">(</span><span class="s">&quot;MyNewAlg&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="n">deprecatedDate</span><span class="p">(</span><span class="s">&quot;2020-12-25&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="k">class</span><span class="w"> </span><span class="nc">MANTID_ALGORITHMS_DLL</span><span class="w"> </span><span class="n">MyOldAlg</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">API</span><span class="o">::</span><span class="n">Algorithm</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">API</span><span class="o">::</span><span class="n">DeprecatedAlgorithm</span><span class="w"> </span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="n">MyOldAlg</span><span class="o">::</span><span class="n">MyOldAlg</span><span class="p">()</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">m_someMember</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">useAlgorithm</span><span class="p">(</span><span class="s">&quot;MyNewAlg&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="n">deprecatedDate</span><span class="p">(</span><span class="s">&quot;2020-12-25&quot;</span><span class="p">);</span>
+<span class="w"> </span><span class="p">}</span>
 </pre></div>
 </div>
 </div></blockquote>
@@ -165,7 +162,7 @@ passed, e.g <code class="docutils literal notranslate"><span class="pre">&#64;de
 level. For instance, when using algorithm <cite>MyOldAlg</cite> (deprecated on Christmas day in 2020) in place of
 the new algorithm <cite>MyNewAlg</cite>, the following error message is printed:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Algorithm <span class="s2">&quot;MyOldAlg&quot;</span> is deprecated since <span class="m">2020</span>-12-25. Use <span class="s2">&quot;MyNewAlg&quot;</span> instead
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Algorithm<span class="w"> </span><span class="s2">&quot;MyOldAlg&quot;</span><span class="w"> </span>is<span class="w"> </span>deprecated<span class="w"> </span>since<span class="w"> </span><span class="m">2020</span>-12-25.<span class="w"> </span>Use<span class="w"> </span><span class="s2">&quot;MyNewAlg&quot;</span><span class="w"> </span>instead
 </pre></div>
 </div>
 </div></blockquote>
@@ -180,8 +177,8 @@ the new algorithm <cite>MyNewAlg</cite>, the following error message is printed:
 </div></blockquote>
 <p>Coming to our previous example, an error message is printed</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Error <span class="k">in</span> execution of algorithm MyOldAlg
-Configuration <span class="s2">&quot;algorithms.deprecated&quot;</span> <span class="nb">set</span> to raise upon use of any deprecated algorithm
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Error<span class="w"> </span><span class="k">in</span><span class="w"> </span>execution<span class="w"> </span>of<span class="w"> </span>algorithm<span class="w"> </span>MyOldAlg
+Configuration<span class="w"> </span><span class="s2">&quot;algorithms.deprecated&quot;</span><span class="w"> </span><span class="nb">set</span><span class="w"> </span>to<span class="w"> </span>raise<span class="w"> </span>upon<span class="w"> </span>use<span class="w"> </span>of<span class="w"> </span>any<span class="w"> </span>deprecated<span class="w"> </span>algorithm
 </pre></div>
 </div>
 </div></blockquote>

@@ -10,9 +10,6 @@
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -48,7 +45,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="http://www.mantidproject.org"><img src="_static/Mantid_Logo_Transparent.png">
+        <a class="navbar-brand" href="http://www.mantidproject.org">
            </a>
         <span class="navbar-text navbar-version pull-left"><b>master</b></span>
       </div>
@@ -299,7 +296,7 @@ or ‘MinSizeRelease’’. Note that the script does not build the code so
 the chosen configuration must have already been built. An example to
 execute all of the tests for the release configuration would be (in the
 command-prompt):</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>&gt; systemtest -C Release
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>&gt;<span class="w"> </span>systemtest<span class="w"> </span>-C<span class="w"> </span>Release
 </pre></div>
 </div>
 </section>
@@ -307,7 +304,7 @@ command-prompt):</p>
 <h3><a class="toc-backref" href="#id15" role="doc-backlink">Makefile-like Generators</a><a class="headerlink" href="#makefile-like-generators" title="Permalink to this heading">¶</a></h3>
 <p>The script requires no additional arguments as the configuration is
 fixed when running CMake, e.g.</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> build
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>build
 systemtest
 </pre></div>
 </div>
@@ -316,7 +313,7 @@ systemtest
 <h3><a class="toc-backref" href="#id16" role="doc-backlink">Systems Lacking pyqt4</a><a class="headerlink" href="#systems-lacking-pyqt4" title="Permalink to this heading">¶</a></h3>
 <p>Recent systems using Qt5 as default should set environment variable <code class="docutils literal notranslate"><span class="pre">QT_API</span></code>
 while invoking the script</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>&gt; <span class="nv">QT_API</span><span class="o">=</span>pyqt5 systemtest
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>&gt;<span class="w"> </span><span class="nv">QT_API</span><span class="o">=</span>pyqt5<span class="w"> </span>systemtest
 </pre></div>
 </div>
 </section>
@@ -357,10 +354,10 @@ flag as when using the <code class="docutils literal notranslate"><span class="p
 <p>The most important option on the script is the <code class="docutils literal notranslate"><span class="pre">-R</span></code> option. This
 restricts the tests that will run to those that match the given regex,
 e.g.</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> build
-systemtest -R SNS
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>build
+systemtest<span class="w"> </span>-R<span class="w"> </span>SNS
 <span class="c1"># or for msvc/xcode</span>
-systemtest -C &lt;cfg&gt; -R SNS
+systemtest<span class="w"> </span>-C<span class="w"> </span>&lt;cfg&gt;<span class="w"> </span>-R<span class="w"> </span>SNS
 </pre></div>
 </div>
 <p>would run all of the tests whose name contains SNS.</p>
@@ -371,7 +368,7 @@ systemtest -C &lt;cfg&gt; -R SNS
 tests across multiple cores. This is done in a similar way to <code class="docutils literal notranslate"><span class="pre">ctest</span></code>
 using the <code class="docutils literal notranslate"><span class="pre">-j</span> <span class="pre">N</span></code> option, where <code class="docutils literal notranslate"><span class="pre">N</span></code> is the number of cores you want
 to use, e.g.</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./systemtest -j <span class="m">8</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./systemtest<span class="w"> </span>-j<span class="w"> </span><span class="m">8</span>
 </pre></div>
 </div>
 <p>would run the tests on 8 cores.</p>
@@ -416,32 +413,32 @@ approximately at the same time.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">systemtests</span></code> can be run in “quiet” mode using the <code class="docutils literal notranslate"><span class="pre">-q</span></code> or
 <code class="docutils literal notranslate"><span class="pre">--quiet</span></code> option. This will print only one line per test instead of
 the full log.</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./systemtest --quiet
-Updating testing data...
-<span class="o">[</span><span class="m">100</span>%<span class="o">]</span> Built target StandardTestData
-<span class="o">[</span><span class="m">100</span>%<span class="o">]</span> Built target SystemTestData
-Running tests...
-FrameworkManager-<span class="o">[</span>Notice<span class="o">]</span> Welcome to Mantid <span class="m">3</span>.13.20180820.2132
-FrameworkManager-<span class="o">[</span>Notice<span class="o">]</span> Please cite: http://dx.doi.org/10.1016/j.nima.2014.07.029 and this release: http://dx.doi.org/10.5286/Software/Mantid
-<span class="o">[</span>  <span class="m">0</span>%<span class="o">]</span>   <span class="m">1</span>/435 : DOSTest.DOSCastepTest ............................................... <span class="o">(</span>success: <span class="m">0</span>.05s<span class="o">)</span>
-<span class="o">[</span>  <span class="m">0</span>%<span class="o">]</span>   <span class="m">2</span>/435 : ISISIndirectBayesTest.JumpCETest .................................... <span class="o">(</span>success: <span class="m">0</span>.06s<span class="o">)</span>
-<span class="o">[</span>  <span class="m">0</span>%<span class="o">]</span>   <span class="m">3</span>/435 : ISISIndirectInelastic.IRISCalibration ............................... <span class="o">(</span>success: <span class="m">0</span>.03s<span class="o">)</span>
-<span class="o">[</span>  <span class="m">0</span>%<span class="o">]</span>   <span class="m">4</span>/435 : HFIRTransAPIv2.HFIRTrans1 ........................................... <span class="o">(</span>success: <span class="m">1</span>.30s<span class="o">)</span>
-<span class="o">[</span>  <span class="m">1</span>%<span class="o">]</span>   <span class="m">5</span>/435 : DOSTest.DOSIRActiveTest ............................................. <span class="o">(</span>success: <span class="m">0</span>.04s<span class="o">)</span>
-<span class="o">[</span>  <span class="m">1</span>%<span class="o">]</span>   <span class="m">6</span>/435 : ISISIndirectBayesTest.JumpFickTest .................................. <span class="o">(</span>success: <span class="m">0</span>.06s<span class="o">)</span>
-<span class="o">[</span>  <span class="m">1</span>%<span class="o">]</span>   <span class="m">7</span>/435 : AbinsTest.AbinsBinWidth ............................................. <span class="o">(</span>success: <span class="m">1</span>.65s<span class="o">)</span>
-<span class="o">[</span>  <span class="m">1</span>%<span class="o">]</span>   <span class="m">8</span>/435 : ISIS_PowderPearlTest.CreateCalTest .................................. <span class="o">(</span>success: <span class="m">1</span>.65s<span class="o">)</span>
-<span class="o">[</span>  <span class="m">2</span>%<span class="o">]</span>   <span class="m">9</span>/435 : ISISIndirectInelastic.IRISConvFit ................................... <span class="o">(</span>success: <span class="m">0</span>.56s<span class="o">)</span>
-<span class="o">[</span>  <span class="m">2</span>%<span class="o">]</span>  <span class="m">10</span>/435 : LiquidsReflectometryReductionWithBackgroundTest.BadDataTOFRangeTest . <span class="o">(</span>success: <span class="m">2</span>.94s<span class="o">)</span>
-<span class="o">[</span>  <span class="m">2</span>%<span class="o">]</span>  <span class="m">11</span>/435 : DOSTest.DOSPartialCrossSectionScaleTest ............................. <span class="o">(</span>success: <span class="m">0</span>.23s<span class="o">)</span>
-<span class="o">[</span>  <span class="m">2</span>%<span class="o">]</span>  <span class="m">12</span>/435 : ISISIndirectBayesTest.JumpHallRossTest .............................. <span class="o">(</span>success: <span class="m">0</span>.07s<span class="o">)</span>
-<span class="o">[</span>  <span class="m">2</span>%<span class="o">]</span>  <span class="m">13</span>/435 : ISISIndirectInelastic.IRISDiagnostics ............................... <span class="o">(</span>success: <span class="m">0</span>.03s<span class="o">)</span>
-<span class="o">[</span>  <span class="m">3</span>%<span class="o">]</span>  <span class="m">14</span>/435 : HFIRTransAPIv2.HFIRTrans2 ........................................... <span class="o">(</span>success: <span class="m">0</span>.83s<span class="o">)</span>
-<span class="o">[</span>  <span class="m">3</span>%<span class="o">]</span>  <span class="m">15</span>/435 : DOSTest.DOSPartialSummedContributionsCrossSectionScaleTest .......... <span class="o">(</span>success: <span class="m">0</span>.15s<span class="o">)</span>
-<span class="o">[</span>  <span class="m">3</span>%<span class="o">]</span>  <span class="m">16</span>/435 : ISISIndirectBayesTest.JumpTeixeiraTest .............................. <span class="o">(</span>success: <span class="m">0</span>.07s<span class="o">)</span>
-<span class="o">[</span>  <span class="m">3</span>%<span class="o">]</span>  <span class="m">17</span>/435 : ISISIndirectInelastic.IRISElwinAndMSDFit ............................ <span class="o">(</span>success: <span class="m">0</span>.29s<span class="o">)</span>
-<span class="o">[</span>  <span class="m">4</span>%<span class="o">]</span>  <span class="m">18</span>/435 : MagnetismReflectometryReductionTest.MRFilterCrossSectionsTest ....... <span class="o">(</span>success: <span class="m">5</span>.30s<span class="o">)</span>
-<span class="o">[</span>  <span class="m">4</span>%<span class="o">]</span>  <span class="m">19</span>/435 : DOSTest.DOSPartialSummedContributionsTest ........................... <span class="o">(</span>success: <span class="m">0</span>.16s<span class="o">)</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./systemtest<span class="w"> </span>--quiet
+Updating<span class="w"> </span>testing<span class="w"> </span>data...
+<span class="o">[</span><span class="m">100</span>%<span class="o">]</span><span class="w"> </span>Built<span class="w"> </span>target<span class="w"> </span>StandardTestData
+<span class="o">[</span><span class="m">100</span>%<span class="o">]</span><span class="w"> </span>Built<span class="w"> </span>target<span class="w"> </span>SystemTestData
+Running<span class="w"> </span>tests...
+FrameworkManager-<span class="o">[</span>Notice<span class="o">]</span><span class="w"> </span>Welcome<span class="w"> </span>to<span class="w"> </span>Mantid<span class="w"> </span><span class="m">3</span>.13.20180820.2132
+FrameworkManager-<span class="o">[</span>Notice<span class="o">]</span><span class="w"> </span>Please<span class="w"> </span>cite:<span class="w"> </span>http://dx.doi.org/10.1016/j.nima.2014.07.029<span class="w"> </span>and<span class="w"> </span>this<span class="w"> </span>release:<span class="w"> </span>http://dx.doi.org/10.5286/Software/Mantid
+<span class="o">[</span><span class="w">  </span><span class="m">0</span>%<span class="o">]</span><span class="w">   </span><span class="m">1</span>/435<span class="w"> </span>:<span class="w"> </span>DOSTest.DOSCastepTest<span class="w"> </span>...............................................<span class="w"> </span><span class="o">(</span>success:<span class="w"> </span><span class="m">0</span>.05s<span class="o">)</span>
+<span class="o">[</span><span class="w">  </span><span class="m">0</span>%<span class="o">]</span><span class="w">   </span><span class="m">2</span>/435<span class="w"> </span>:<span class="w"> </span>ISISIndirectBayesTest.JumpCETest<span class="w"> </span>....................................<span class="w"> </span><span class="o">(</span>success:<span class="w"> </span><span class="m">0</span>.06s<span class="o">)</span>
+<span class="o">[</span><span class="w">  </span><span class="m">0</span>%<span class="o">]</span><span class="w">   </span><span class="m">3</span>/435<span class="w"> </span>:<span class="w"> </span>ISISIndirectInelastic.IRISCalibration<span class="w"> </span>...............................<span class="w"> </span><span class="o">(</span>success:<span class="w"> </span><span class="m">0</span>.03s<span class="o">)</span>
+<span class="o">[</span><span class="w">  </span><span class="m">0</span>%<span class="o">]</span><span class="w">   </span><span class="m">4</span>/435<span class="w"> </span>:<span class="w"> </span>HFIRTransAPIv2.HFIRTrans1<span class="w"> </span>...........................................<span class="w"> </span><span class="o">(</span>success:<span class="w"> </span><span class="m">1</span>.30s<span class="o">)</span>
+<span class="o">[</span><span class="w">  </span><span class="m">1</span>%<span class="o">]</span><span class="w">   </span><span class="m">5</span>/435<span class="w"> </span>:<span class="w"> </span>DOSTest.DOSIRActiveTest<span class="w"> </span>.............................................<span class="w"> </span><span class="o">(</span>success:<span class="w"> </span><span class="m">0</span>.04s<span class="o">)</span>
+<span class="o">[</span><span class="w">  </span><span class="m">1</span>%<span class="o">]</span><span class="w">   </span><span class="m">6</span>/435<span class="w"> </span>:<span class="w"> </span>ISISIndirectBayesTest.JumpFickTest<span class="w"> </span>..................................<span class="w"> </span><span class="o">(</span>success:<span class="w"> </span><span class="m">0</span>.06s<span class="o">)</span>
+<span class="o">[</span><span class="w">  </span><span class="m">1</span>%<span class="o">]</span><span class="w">   </span><span class="m">7</span>/435<span class="w"> </span>:<span class="w"> </span>AbinsTest.AbinsBinWidth<span class="w"> </span>.............................................<span class="w"> </span><span class="o">(</span>success:<span class="w"> </span><span class="m">1</span>.65s<span class="o">)</span>
+<span class="o">[</span><span class="w">  </span><span class="m">1</span>%<span class="o">]</span><span class="w">   </span><span class="m">8</span>/435<span class="w"> </span>:<span class="w"> </span>ISIS_PowderPearlTest.CreateCalTest<span class="w"> </span>..................................<span class="w"> </span><span class="o">(</span>success:<span class="w"> </span><span class="m">1</span>.65s<span class="o">)</span>
+<span class="o">[</span><span class="w">  </span><span class="m">2</span>%<span class="o">]</span><span class="w">   </span><span class="m">9</span>/435<span class="w"> </span>:<span class="w"> </span>ISISIndirectInelastic.IRISConvFit<span class="w"> </span>...................................<span class="w"> </span><span class="o">(</span>success:<span class="w"> </span><span class="m">0</span>.56s<span class="o">)</span>
+<span class="o">[</span><span class="w">  </span><span class="m">2</span>%<span class="o">]</span><span class="w">  </span><span class="m">10</span>/435<span class="w"> </span>:<span class="w"> </span>LiquidsReflectometryReductionWithBackgroundTest.BadDataTOFRangeTest<span class="w"> </span>.<span class="w"> </span><span class="o">(</span>success:<span class="w"> </span><span class="m">2</span>.94s<span class="o">)</span>
+<span class="o">[</span><span class="w">  </span><span class="m">2</span>%<span class="o">]</span><span class="w">  </span><span class="m">11</span>/435<span class="w"> </span>:<span class="w"> </span>DOSTest.DOSPartialCrossSectionScaleTest<span class="w"> </span>.............................<span class="w"> </span><span class="o">(</span>success:<span class="w"> </span><span class="m">0</span>.23s<span class="o">)</span>
+<span class="o">[</span><span class="w">  </span><span class="m">2</span>%<span class="o">]</span><span class="w">  </span><span class="m">12</span>/435<span class="w"> </span>:<span class="w"> </span>ISISIndirectBayesTest.JumpHallRossTest<span class="w"> </span>..............................<span class="w"> </span><span class="o">(</span>success:<span class="w"> </span><span class="m">0</span>.07s<span class="o">)</span>
+<span class="o">[</span><span class="w">  </span><span class="m">2</span>%<span class="o">]</span><span class="w">  </span><span class="m">13</span>/435<span class="w"> </span>:<span class="w"> </span>ISISIndirectInelastic.IRISDiagnostics<span class="w"> </span>...............................<span class="w"> </span><span class="o">(</span>success:<span class="w"> </span><span class="m">0</span>.03s<span class="o">)</span>
+<span class="o">[</span><span class="w">  </span><span class="m">3</span>%<span class="o">]</span><span class="w">  </span><span class="m">14</span>/435<span class="w"> </span>:<span class="w"> </span>HFIRTransAPIv2.HFIRTrans2<span class="w"> </span>...........................................<span class="w"> </span><span class="o">(</span>success:<span class="w"> </span><span class="m">0</span>.83s<span class="o">)</span>
+<span class="o">[</span><span class="w">  </span><span class="m">3</span>%<span class="o">]</span><span class="w">  </span><span class="m">15</span>/435<span class="w"> </span>:<span class="w"> </span>DOSTest.DOSPartialSummedContributionsCrossSectionScaleTest<span class="w"> </span>..........<span class="w"> </span><span class="o">(</span>success:<span class="w"> </span><span class="m">0</span>.15s<span class="o">)</span>
+<span class="o">[</span><span class="w">  </span><span class="m">3</span>%<span class="o">]</span><span class="w">  </span><span class="m">16</span>/435<span class="w"> </span>:<span class="w"> </span>ISISIndirectBayesTest.JumpTeixeiraTest<span class="w"> </span>..............................<span class="w"> </span><span class="o">(</span>success:<span class="w"> </span><span class="m">0</span>.07s<span class="o">)</span>
+<span class="o">[</span><span class="w">  </span><span class="m">3</span>%<span class="o">]</span><span class="w">  </span><span class="m">17</span>/435<span class="w"> </span>:<span class="w"> </span>ISISIndirectInelastic.IRISElwinAndMSDFit<span class="w"> </span>............................<span class="w"> </span><span class="o">(</span>success:<span class="w"> </span><span class="m">0</span>.29s<span class="o">)</span>
+<span class="o">[</span><span class="w">  </span><span class="m">4</span>%<span class="o">]</span><span class="w">  </span><span class="m">18</span>/435<span class="w"> </span>:<span class="w"> </span>MagnetismReflectometryReductionTest.MRFilterCrossSectionsTest<span class="w"> </span>.......<span class="w"> </span><span class="o">(</span>success:<span class="w"> </span><span class="m">5</span>.30s<span class="o">)</span>
+<span class="o">[</span><span class="w">  </span><span class="m">4</span>%<span class="o">]</span><span class="w">  </span><span class="m">19</span>/435<span class="w"> </span>:<span class="w"> </span>DOSTest.DOSPartialSummedContributionsTest<span class="w"> </span>...........................<span class="w"> </span><span class="o">(</span>success:<span class="w"> </span><span class="m">0</span>.16s<span class="o">)</span>
 </pre></div>
 </div>
 <p>One can recover the full log when a test fails by using the <code class="docutils literal notranslate"><span class="pre">--ouptut-on-failure</span></code> option.</p>
@@ -452,7 +449,7 @@ FrameworkManager-<span class="o">[</span>Notice<span class="o">]</span> Please c
 <code class="docutils literal notranslate"><span class="pre">.cleanup()</span></code> function for each test. It will not run the tests
 (i.e. call the <code class="docutils literal notranslate"><span class="pre">execute()</span></code> function) themselves. This is achieved
 by using the <code class="docutils literal notranslate"><span class="pre">-c</span></code> or <code class="docutils literal notranslate"><span class="pre">--clean</span></code> option, e.g.</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./systemtest -c
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./systemtest<span class="w"> </span>-c
 </pre></div>
 </div>
 <p>This is useful if some old data is left over from a previous run,

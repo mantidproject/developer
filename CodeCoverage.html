@@ -10,9 +10,6 @@
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -48,7 +45,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="http://www.mantidproject.org"><img src="_static/Mantid_Logo_Transparent.png">
+        <a class="navbar-brand" href="http://www.mantidproject.org">
            </a>
         <span class="navbar-text navbar-version pull-left"><b>master</b></span>
       </div>
@@ -144,13 +141,13 @@
 <h3><a class="toc-backref" href="#id4" role="doc-backlink">Setup</a><a class="headerlink" href="#setup" title="Permalink to this heading">¶</a></h3>
 <ul>
 <li><p>Enable coverage in CMake through the GUI or using</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cmake /path/to/src -DCOVERAGE<span class="o">=</span>ON
-ninja <span class="c1"># or make</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cmake<span class="w"> </span>/path/to/src<span class="w"> </span>-DCOVERAGE<span class="o">=</span>ON
+ninja<span class="w"> </span><span class="c1"># or make</span>
 </pre></div>
 </div>
 </li>
 <li><p>Install gcovr</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip3 install gcovr
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip3<span class="w"> </span>install<span class="w"> </span>gcovr
 </pre></div>
 </div>
 </li>
@@ -173,7 +170,7 @@ ninja <span class="c1"># or make</span>
 <ul>
 <li><p>Create a folder for the html files, for example <cite>html</cite></p></li>
 <li><p>From your build folder generate a HTML report for the coverage as follows:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>gcovr -r &lt;src_dir&gt; -j &lt;n_threads&gt; --exclude-throw-branches --html --html-details -o html/&lt;output&gt;.html .
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>gcovr<span class="w"> </span>-r<span class="w"> </span>&lt;src_dir&gt;<span class="w"> </span>-j<span class="w"> </span>&lt;n_threads&gt;<span class="w"> </span>--exclude-throw-branches<span class="w"> </span>--html<span class="w"> </span>--html-details<span class="w"> </span>-o<span class="w"> </span>html/&lt;output&gt;.html<span class="w"> </span>.
 </pre></div>
 </div>
 <p>Where:</p>
@@ -193,15 +190,15 @@ ninja <span class="c1"># or make</span>
 <section id="examples">
 <h4><a class="toc-backref" href="#id8" role="doc-backlink">Examples:</a><a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h4>
 <p>To only include, say, the scientific interfaces, it would be the relative path of the source files:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>gcovr -f qt/scientific_interfaces -j &lt;n_threads&gt; --exclude-throw-branches --html --html-details -o html/&lt;output&gt;.html .
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>gcovr<span class="w"> </span>-f<span class="w"> </span>qt/scientific_interfaces<span class="w"> </span>-j<span class="w"> </span>&lt;n_threads&gt;<span class="w"> </span>--exclude-throw-branches<span class="w"> </span>--html<span class="w"> </span>--html-details<span class="w"> </span>-o<span class="w"> </span>html/&lt;output&gt;.html<span class="w"> </span>.
 </pre></div>
 </div>
 <p>To include only API and Kernel sources:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>gcovr -f Framework/Kernel -f Framework/API -j &lt;n_threads&gt; --exclude-throw-branches --html --html-details -o html/&lt;output&gt;.html .
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>gcovr<span class="w"> </span>-f<span class="w"> </span>Framework/Kernel<span class="w"> </span>-f<span class="w"> </span>Framework/API<span class="w"> </span>-j<span class="w"> </span>&lt;n_threads&gt;<span class="w"> </span>--exclude-throw-branches<span class="w"> </span>--html<span class="w"> </span>--html-details<span class="w"> </span>-o<span class="w"> </span>html/&lt;output&gt;.html<span class="w"> </span>.
 </pre></div>
 </div>
 <p>Additionally, folders can be excluded using the -e flag, this is useful to filter out test coverage. Tests will typically have 100% coverage so tend to add noise.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>gcovr -r /path/to/src -e Framework/KernelTest -j &lt;n_threads&gt; --exclude-throw-branches --html --html-details -o html/&lt;output&gt;.html .
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>gcovr<span class="w"> </span>-r<span class="w"> </span>/path/to/src<span class="w"> </span>-e<span class="w"> </span>Framework/KernelTest<span class="w"> </span>-j<span class="w"> </span>&lt;n_threads&gt;<span class="w"> </span>--exclude-throw-branches<span class="w"> </span>--html<span class="w"> </span>--html-details<span class="w"> </span>-o<span class="w"> </span>html/&lt;output&gt;.html<span class="w"> </span>.
 </pre></div>
 </div>
 </section>
@@ -221,33 +218,33 @@ ninja <span class="c1"># or make</span>
 <p>(Advanced)</p>
 <ul>
 <li><p>Install Coverage:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip3 install coverage
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip3<span class="w"> </span>install<span class="w"> </span>coverage
 </pre></div>
 </div>
 </li>
 <li><p>Make a note of the directory or test file you’d like coverage information from. Pytest will search recursively from a given directory.</p></li>
 <li><p>cd to build directory and run your test with coverage as follows</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Where &lt;path&gt; is the directory or file to run</span>
-<span class="nv">PYTHONPATH</span><span class="o">=</span>/path/to/build/bin python3 -m coverage run -m pytest &lt;path&gt;
+<span class="nv">PYTHONPATH</span><span class="o">=</span>/path/to/build/bin<span class="w"> </span>python3<span class="w"> </span>-m<span class="w"> </span>coverage<span class="w"> </span>run<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> </span>&lt;path&gt;
 </pre></div>
 </div>
 </li>
 <li><p>To limit coverage information to only project files add the <cite>–source</cite> flag:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Where /path/to/src/ contains Mantid source code</span>
 <span class="c1"># Note this cannot use the home dir, i.e. ~/path/to/src</span>
-<span class="nv">PYTHONPATH</span><span class="o">=</span>/path/to/build/bin python3 -m coverage run --source<span class="o">=</span>&lt;/path/to/src/&gt; -m pytest &lt;path&gt;
+<span class="nv">PYTHONPATH</span><span class="o">=</span>/path/to/build/bin<span class="w"> </span>python3<span class="w"> </span>-m<span class="w"> </span>coverage<span class="w"> </span>run<span class="w"> </span>--source<span class="o">=</span>&lt;/path/to/src/&gt;<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> </span>&lt;path&gt;
 </pre></div>
 </div>
 </li>
 <li><p>Example: To run coverage for the entire project</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">PYTHONPATH</span><span class="o">=</span>/path/to/build/bin python3 -m coverage run --source /mantid_src -m pytest /mantid_src
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">PYTHONPATH</span><span class="o">=</span>/path/to/build/bin<span class="w"> </span>python3<span class="w"> </span>-m<span class="w"> </span>coverage<span class="w"> </span>run<span class="w"> </span>--source<span class="w"> </span>/mantid_src<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> </span>/mantid_src
 </pre></div>
 </div>
 </li>
 <li><p>Generate out a html report in the directory you ran tests from:</p>
 <blockquote>
 <div><div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># This will generate htmlcov/index.html</span>
-coverage html
+coverage<span class="w"> </span>html
 </pre></div>
 </div>
 </div></blockquote>

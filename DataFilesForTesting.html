@@ -10,9 +10,6 @@
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -48,7 +45,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="http://www.mantidproject.org"><img src="_static/Mantid_Logo_Transparent.png">
+        <a class="navbar-brand" href="http://www.mantidproject.org">
            </a>
         <span class="navbar-text navbar-version pull-left"><b>master</b></span>
       </div>
@@ -241,7 +238,7 @@ the preferred location for storing testing data.</p>
 <span id="datafilesfortesting-addinganewfile"></span><h2><a class="toc-backref" href="#id8" role="doc-backlink">Adding A New File(s)</a><a class="headerlink" href="#adding-a-new-file-s" title="Permalink to this heading">¶</a></h2>
 <p>A helper git command is defined called <code class="docutils literal notranslate"><span class="pre">add-test-data</span></code>. It would be
 called like this:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git add-test-data Testing/Data/UnitTest/INST12345.nxs
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add-test-data<span class="w"> </span>Testing/Data/UnitTest/INST12345.nxs
 </pre></div>
 </div>
 <p>This does the following:</p>
@@ -285,7 +282,7 @@ instrument prefix in the file name.</p></li>
 <section id="developer-setup">
 <h2><a class="toc-backref" href="#id10" role="doc-backlink">Developer Setup</a><a class="headerlink" href="#developer-setup" title="Permalink to this heading">¶</a></h2>
 <p>To add the <code class="docutils literal notranslate"><span class="pre">add-test-data</span></code> command alias to git run</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git config alias.add-test-data <span class="s1">&#39;!bash -c &quot;tools/Development/git/git-add-test-data $*&quot;&#39;</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>config<span class="w"> </span>alias.add-test-data<span class="w"> </span><span class="s1">&#39;!bash -c &quot;tools/Development/git/git-add-test-data $*&quot;&#39;</span>
 </pre></div>
 </div>
 <p>in the git bash shell
@@ -300,13 +297,13 @@ data is stored.</p>
 <section id="example-cmake-command">
 <h3><a class="toc-backref" href="#id11" role="doc-backlink">Example cmake command:</a><a class="headerlink" href="#example-cmake-command" title="Permalink to this heading">¶</a></h3>
 <p><strong>Linux/Mac:</strong></p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>mkdir -p build
-cmake -DMANTID_DATA_STORE<span class="o">=</span>/home/mgigg/Data/LocalObjectStore ../Code/Mantid
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>build
+cmake<span class="w"> </span>-DMANTID_DATA_STORE<span class="o">=</span>/home/mgigg/Data/LocalObjectStore<span class="w"> </span>../Code/Mantid
 </pre></div>
 </div>
 <p><strong>Windows:</strong></p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>mkdir build
-cmake -DMANTID_DATA_STORE<span class="o">=</span>D:/Data/LocalObjectStore ../Code/Mantid
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>build
+cmake<span class="w"> </span>-DMANTID_DATA_STORE<span class="o">=</span>D:/Data/LocalObjectStore<span class="w"> </span>../Code/Mantid
 </pre></div>
 </div>
 </section>
@@ -317,7 +314,7 @@ reducing external network traffic. There is a <a class="reference external" href
 getting dropbox running on linux. Instead of defining the
 <code class="docutils literal notranslate"><span class="pre">MANTID_DATA_STORE</span></code> in cmake, it is simplest to create a symbolic
 link</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>ln -s ~/Dropbox<span class="se">\ \(</span>ORNL<span class="se">\)</span>/MantidExternalData ~
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>ln<span class="w"> </span>-s<span class="w"> </span>~/Dropbox<span class="se">\ \(</span>ORNL<span class="se">\)</span>/MantidExternalData<span class="w"> </span>~
 </pre></div>
 </div>
 <p>Then everything will happen automatically using CMake’s default behavior.</p>

@@ -10,9 +10,6 @@
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -48,7 +45,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="http://www.mantidproject.org"><img src="_static/Mantid_Logo_Transparent.png">
+        <a class="navbar-brand" href="http://www.mantidproject.org">
            </a>
         <span class="navbar-text navbar-version pull-left"><b>master</b></span>
       </div>
@@ -199,50 +196,50 @@
 <p>Let’s take the <code class="code docutils literal notranslate"><span class="pre">Event</span></code> component as an example.</p>
 <ul>
 <li><p>The view is constructed first and is passed to the presenter. The presenter then immediately subscribes to the view.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">EventPresenter</span><span class="o">::</span><span class="n">EventPresenter</span><span class="p">(</span><span class="n">IEventView</span><span class="w"> </span><span class="o">*</span><span class="n">view</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="n">m_view</span><span class="p">(</span><span class="n">view</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">m_view</span><span class="o">-&gt;</span><span class="n">subscribe</span><span class="p">(</span><span class="k">this</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">EventPresenter</span><span class="o">::</span><span class="n">EventPresenter</span><span class="p">(</span><span class="n">IEventView</span><span class="w"> </span><span class="o">*</span><span class="n">view</span><span class="p">)</span>
+<span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="n">m_view</span><span class="p">(</span><span class="n">view</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">m_view</span><span class="o">-&gt;</span><span class="n">subscribe</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </li>
 <li><p>This sets the notifyee in the view, using a subscriber interface.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">QtEventView::subscribe</span><span class="p">(</span><span class="n">EventViewSubscriber</span><span class="w"> </span><span class="o">*</span><span class="n">notifyee</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">m_notifyee</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">notifyee</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">QtEventView::subscribe</span><span class="p">(</span><span class="n">EventViewSubscriber</span><span class="w"> </span><span class="o">*</span><span class="n">notifyee</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">m_notifyee</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">notifyee</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </li>
 <li><p>The subscriber interface defines the set of notifications that the view needs to send.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">MANTIDQT_ISISREFLECTOMETRY_DLL</span><span class="w"> </span><span class="n">EventViewSubscriber</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="k">public</span><span class="o">:</span><span class="w"></span>
-<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">notifySliceTypeChanged</span><span class="p">(</span><span class="n">SliceType</span><span class="w"> </span><span class="n">newSliceType</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">notifyUniformSliceCountChanged</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">sliceCount</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="p">...</span><span class="w"></span>
-<span class="p">};</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">MANTIDQT_ISISREFLECTOMETRY_DLL</span><span class="w"> </span><span class="n">EventViewSubscriber</span><span class="w"> </span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">notifySliceTypeChanged</span><span class="p">(</span><span class="n">SliceType</span><span class="w"> </span><span class="n">newSliceType</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">notifyUniformSliceCountChanged</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">sliceCount</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="p">...</span>
+<span class="p">};</span>
 </pre></div>
 </div>
 <p>Note that <code class="code docutils literal notranslate"><span class="pre">MANTIDQT_ISISREFLECTOMETRY_DLL</span></code> is used to expose classes/functions so they can be used in different modules. In this case, it is needed in order for this class to be used in the tests, because the tests are not part of the ISISReflectometry library. If you get linker errors, this is one thing to check.</p>
 </li>
 <li><p>The presenter implements the subscriber interface.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">MANTIDQT_ISISREFLECTOMETRY_DLL</span><span class="w"> </span><span class="n">EventPresenter</span><span class="w"></span>
-<span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">IEventPresenter</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="k">public</span><span class="w"> </span><span class="n">EventViewSubscriber</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">MANTIDQT_ISISREFLECTOMETRY_DLL</span><span class="w"> </span><span class="n">EventPresenter</span>
+<span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">IEventPresenter</span><span class="p">,</span>
+<span class="w">      </span><span class="k">public</span><span class="w"> </span><span class="n">EventViewSubscriber</span>
 </pre></div>
 </div>
 </li>
 <li><p>It overrides the notification functions to perform the relevant actions.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">EventPresenter::notifyUniformSliceCountChanged</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">setUniformSlicingByNumberOfSlicesFromView</span><span class="p">();</span><span class="w"></span>
-<span class="w">  </span><span class="n">m_mainPresenter</span><span class="o">-&gt;</span><span class="n">notifySettingsChanged</span><span class="p">();</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">EventPresenter::notifyUniformSliceCountChanged</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">setUniformSlicingByNumberOfSlicesFromView</span><span class="p">();</span>
+<span class="w">  </span><span class="n">m_mainPresenter</span><span class="o">-&gt;</span><span class="n">notifySettingsChanged</span><span class="p">();</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </li>
 <li><p>When a user interacts with the view, all the view needs to do is send the appropriate notification. By using an interface, the view does not know anything about the concrete type that it is notifying. This helps to avoid accidentally introducing logic into the view about what should happen on an event and instead just notify that an event happened. It could also be easily extended to support multiple notifyees of different types, such as different subscribed presenters.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">QtEventView::onUniformEvenChanged</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">numberOfSlices</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">m_notifyee</span><span class="o">-&gt;</span><span class="n">notifyUniformSliceCountChanged</span><span class="p">(</span><span class="n">numberOfSlices</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">QtEventView::onUniformEvenChanged</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">numberOfSlices</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">m_notifyee</span><span class="o">-&gt;</span><span class="n">notifyUniformSliceCountChanged</span><span class="p">(</span><span class="n">numberOfSlices</span><span class="p">);</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </li>
@@ -253,44 +250,44 @@
 <p>A simple example of <a class="reference internal" href="#dependency-inversion">Dependency inversion</a> is in the use of an <code class="code docutils literal notranslate"><span class="pre">IReflMessageHandler</span></code> interface to provide a service to display messages to the user. These messages must be displayed by a Qt view. Rather than each view having to implement this, we use one object (in this case the <code class="code docutils literal notranslate"><span class="pre">QtMainWindowView</span></code>) to implement this functionality and inject it as an <code class="code docutils literal notranslate"><span class="pre">IReflMessageHandler</span></code> to all of the presenters that need it.</p>
 <ul>
 <li><p>The <code class="code docutils literal notranslate"><span class="pre">IReflMessageHandler</span></code> interface defines the functions for displaying messages:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">IReflMessageHandler</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="k">public</span><span class="o">:</span><span class="w"></span>
-<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">giveUserCritical</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">prompt</span><span class="p">,</span><span class="w"></span>
-<span class="w">                                </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">title</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="p">...</span><span class="w"></span>
-<span class="p">};</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">IReflMessageHandler</span><span class="w"> </span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">giveUserCritical</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">prompt</span><span class="p">,</span>
+<span class="w">                                </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">title</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="p">...</span>
+<span class="p">};</span>
 </pre></div>
 </div>
 </li>
 <li><p>The <code class="code docutils literal notranslate"><span class="pre">QtMainWindowView</span></code> implements these:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">QtMainWindowView::giveUserCritical</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">prompt</span><span class="p">,</span><span class="w"></span>
-<span class="w">                                        </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">title</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">QMessageBox</span><span class="o">::</span><span class="n">critical</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">QString</span><span class="o">::</span><span class="n">fromStdString</span><span class="p">(</span><span class="n">title</span><span class="p">),</span><span class="w"></span>
-<span class="w">                        </span><span class="n">QString</span><span class="o">::</span><span class="n">fromStdString</span><span class="p">(</span><span class="n">prompt</span><span class="p">),</span><span class="w"> </span><span class="n">QMessageBox</span><span class="o">::</span><span class="n">Ok</span><span class="p">,</span><span class="w"></span>
-<span class="w">                        </span><span class="n">QMessageBox</span><span class="o">::</span><span class="n">Ok</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">QtMainWindowView::giveUserCritical</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">prompt</span><span class="p">,</span>
+<span class="w">                                        </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">title</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">QMessageBox</span><span class="o">::</span><span class="n">critical</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">QString</span><span class="o">::</span><span class="n">fromStdString</span><span class="p">(</span><span class="n">title</span><span class="p">),</span>
+<span class="w">                        </span><span class="n">QString</span><span class="o">::</span><span class="n">fromStdString</span><span class="p">(</span><span class="n">prompt</span><span class="p">),</span><span class="w"> </span><span class="n">QMessageBox</span><span class="o">::</span><span class="n">Ok</span><span class="p">,</span>
+<span class="w">                        </span><span class="n">QMessageBox</span><span class="o">::</span><span class="n">Ok</span><span class="p">);</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </li>
 <li><p>The <code class="code docutils literal notranslate"><span class="pre">QtMainWindowView</span></code> creates a concrete instance of the interface (actually just a pointer to itself) and passes it in the construction of anything that needs it, e.g. the <code class="code docutils literal notranslate"><span class="pre">RunsPresenter</span></code> (in this case using a factory to perform the construction - more about the <a class="reference internal" href="#factory-pattern">Factory pattern</a> below):</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span><span class="w"> </span><span class="n">messageHandler</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">;</span><span class="w"></span>
-<span class="k">auto</span><span class="w"> </span><span class="n">makeRunsPresenter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RunsPresenterFactory</span><span class="p">(...,</span><span class="w"> </span><span class="n">messageHandler</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span><span class="w"> </span><span class="n">messageHandler</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">;</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">makeRunsPresenter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RunsPresenterFactory</span><span class="p">(...,</span><span class="w"> </span><span class="n">messageHandler</span><span class="p">);</span>
 </pre></div>
 </div>
 </li>
 <li><p>The <code class="code docutils literal notranslate"><span class="pre">RunsPresenter</span></code> then has a simple service it can use to display messages without needing to know anything about the <code class="code docutils literal notranslate"><span class="pre">QtMainWindowView</span></code>:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">m_messageHandler</span><span class="o">-&gt;</span><span class="n">giveUserCritical</span><span class="p">(</span><span class="s">&quot;Catalog login failed&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Error&quot;</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">m_messageHandler</span><span class="o">-&gt;</span><span class="n">giveUserCritical</span><span class="p">(</span><span class="s">&quot;Catalog login failed&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Error&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 </li>
 <li><p>Our unit tests can then ensure that a notification is sent to Qt in a known critical situation, e.g. in <code class="code docutils literal notranslate"><span class="pre">RunsPresenterTest</span></code>:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">testSearchCatalogLoginFails</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="p">...</span><span class="w"></span>
-<span class="w">  </span><span class="n">EXPECT_CALL</span><span class="p">(</span><span class="n">m_messageHandler</span><span class="p">,</span><span class="w"></span>
-<span class="w">              </span><span class="n">giveUserCritical</span><span class="p">(</span><span class="s">&quot;Catalog login failed&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Error&quot;</span><span class="p">))</span><span class="w"></span>
-<span class="w">  </span><span class="p">.</span><span class="n">Times</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="p">...</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">testSearchCatalogLoginFails</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="p">...</span>
+<span class="w">  </span><span class="n">EXPECT_CALL</span><span class="p">(</span><span class="n">m_messageHandler</span><span class="p">,</span>
+<span class="w">              </span><span class="n">giveUserCritical</span><span class="p">(</span><span class="s">&quot;Catalog login failed&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Error&quot;</span><span class="p">))</span>
+<span class="w">  </span><span class="p">.</span><span class="n">Times</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">  </span><span class="p">...</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </li>
@@ -331,50 +328,50 @@
 <p>Let’s look at the presenter-view interactions in the <code class="code docutils literal notranslate"><span class="pre">Event</span></code> component as an example.</p>
 <ul>
 <li><p>The <code class="code docutils literal notranslate"><span class="pre">EventPresenterTest</span></code> class sets up a mock view to use for testing:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">NiceMock</span><span class="o">&lt;</span><span class="n">MockEventView</span><span class="o">&gt;</span><span class="w"> </span><span class="n">m_view</span><span class="p">;</span><span class="w"></span>
-<span class="n">EventPresenter</span><span class="w"> </span><span class="nf">makePresenter</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">presenter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EventPresenter</span><span class="p">(</span><span class="o">&amp;</span><span class="n">m_view</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="p">...</span><span class="w"></span>
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">presenter</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">NiceMock</span><span class="o">&lt;</span><span class="n">MockEventView</span><span class="o">&gt;</span><span class="w"> </span><span class="n">m_view</span><span class="p">;</span>
+<span class="n">EventPresenter</span><span class="w"> </span><span class="nf">makePresenter</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">presenter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EventPresenter</span><span class="p">(</span><span class="o">&amp;</span><span class="n">m_view</span><span class="p">);</span>
+<span class="w">  </span><span class="p">...</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">presenter</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </li>
 <li><p>The mock view mocks any methods we’re interested in testing, e.g. it mocks the subscribe method so that we can check that the presenter subscribes to the view:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">MockEventView</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">IEventView</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="k">public</span><span class="o">:</span><span class="w"></span>
-<span class="w">  </span><span class="n">MOCK_METHOD1</span><span class="p">(</span><span class="n">subscribe</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="p">(</span><span class="n">EventViewSubscriber</span><span class="w"> </span><span class="o">*</span><span class="p">));</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">MockEventView</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">IEventView</span><span class="w"> </span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">  </span><span class="n">MOCK_METHOD1</span><span class="p">(</span><span class="n">subscribe</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="p">(</span><span class="n">EventViewSubscriber</span><span class="w"> </span><span class="o">*</span><span class="p">));</span>
 </pre></div>
 </div>
 </li>
 <li><p>The presenter then uses <code class="code docutils literal notranslate"><span class="pre">EXPECT_CALL</span></code> to check that the method was called. Note that for <code class="code docutils literal notranslate"><span class="pre">subscribe</span></code> it is difficult to check that the correct presenter pointer is passed because of the two-way dependency in the construction, so we just check that it is called with any argument; for other methods we typically want to check the exact arguments.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">testPresenterSubscribesToView</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">EXPECT_CALL</span><span class="p">(</span><span class="n">m_view</span><span class="p">,</span><span class="w"> </span><span class="n">subscribe</span><span class="p">(</span><span class="n">_</span><span class="p">)).</span><span class="n">Times</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">presenter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">makePresenter</span><span class="p">();</span><span class="w"></span>
-<span class="w">  </span><span class="n">verifyAndClear</span><span class="p">();</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">testPresenterSubscribesToView</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">EXPECT_CALL</span><span class="p">(</span><span class="n">m_view</span><span class="p">,</span><span class="w"> </span><span class="n">subscribe</span><span class="p">(</span><span class="n">_</span><span class="p">)).</span><span class="n">Times</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">presenter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">makePresenter</span><span class="p">();</span>
+<span class="w">  </span><span class="n">verifyAndClear</span><span class="p">();</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </li>
 <li><p>We know that the only notifications we can get from the view are the set of methods in the subscriber interface. Our presenter tests should test each of these. We may also have functions in the presenter that are initiated from different callers than the view, e.g. the parent presenter, so we must test these too. Generally, we want to test all functions in the public interface to the presenter class - and exercise all possible code paths that can result.</p></li>
 <li><p>Note that it’s likely we need multiple tests for each notification, for example <code class="code docutils literal notranslate"><span class="pre">notifyUniformSliceCountChanged</span></code> has a test to check that the model is updated as well as one to check that the main presenter is notified:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">testChangingSliceCountUpdatesModel</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="p">...</span><span class="w"></span>
-<span class="w">  </span><span class="n">presenter</span><span class="p">.</span><span class="n">notifyUniformSliceCountChanged</span><span class="p">(</span><span class="n">expectedSliceCount</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">&amp;</span><span class="n">sliceValues</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
-<span class="w">      </span><span class="n">boost</span><span class="o">::</span><span class="n">get</span><span class="o">&lt;</span><span class="n">UniformSlicingByNumberOfSlices</span><span class="o">&gt;</span><span class="p">(</span><span class="n">presenter</span><span class="p">.</span><span class="n">slicing</span><span class="p">());</span><span class="w"></span>
-<span class="w">  </span><span class="n">TS_ASSERT</span><span class="p">(</span><span class="n">sliceValues</span><span class="w"> </span><span class="o">==</span><span class="w"></span>
-<span class="w">            </span><span class="n">UniformSlicingByNumberOfSlices</span><span class="p">(</span><span class="n">expectedSliceCount</span><span class="p">));</span><span class="w"></span>
-<span class="w">  </span><span class="n">verifyAndClear</span><span class="p">();</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">testChangingSliceCountUpdatesModel</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="p">...</span>
+<span class="w">  </span><span class="n">presenter</span><span class="p">.</span><span class="n">notifyUniformSliceCountChanged</span><span class="p">(</span><span class="n">expectedSliceCount</span><span class="p">);</span>
+<span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">&amp;</span><span class="n">sliceValues</span><span class="w"> </span><span class="o">=</span>
+<span class="w">      </span><span class="n">boost</span><span class="o">::</span><span class="n">get</span><span class="o">&lt;</span><span class="n">UniformSlicingByNumberOfSlices</span><span class="o">&gt;</span><span class="p">(</span><span class="n">presenter</span><span class="p">.</span><span class="n">slicing</span><span class="p">());</span>
+<span class="w">  </span><span class="n">TS_ASSERT</span><span class="p">(</span><span class="n">sliceValues</span><span class="w"> </span><span class="o">==</span>
+<span class="w">            </span><span class="n">UniformSlicingByNumberOfSlices</span><span class="p">(</span><span class="n">expectedSliceCount</span><span class="p">));</span>
+<span class="w">  </span><span class="n">verifyAndClear</span><span class="p">();</span>
+<span class="p">}</span>
 </pre></div>
 </div>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">testChangingSliceCountNotifiesMainPresenter</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">presenter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">makePresenter</span><span class="p">();</span><span class="w"></span>
-<span class="w">  </span><span class="n">EXPECT_CALL</span><span class="p">(</span><span class="n">m_mainPresenter</span><span class="p">,</span><span class="w"> </span><span class="n">notifySettingsChanged</span><span class="p">()).</span><span class="n">Times</span><span class="p">(</span><span class="n">AtLeast</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span><span class="w"></span>
-<span class="w">  </span><span class="n">presenter</span><span class="p">.</span><span class="n">notifyUniformSliceCountChanged</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="n">verifyAndClear</span><span class="p">();</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">testChangingSliceCountNotifiesMainPresenter</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">presenter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">makePresenter</span><span class="p">();</span>
+<span class="w">  </span><span class="n">EXPECT_CALL</span><span class="p">(</span><span class="n">m_mainPresenter</span><span class="p">,</span><span class="w"> </span><span class="n">notifySettingsChanged</span><span class="p">()).</span><span class="n">Times</span><span class="p">(</span><span class="n">AtLeast</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
+<span class="w">  </span><span class="n">presenter</span><span class="p">.</span><span class="n">notifyUniformSliceCountChanged</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">  </span><span class="n">verifyAndClear</span><span class="p">();</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </li>

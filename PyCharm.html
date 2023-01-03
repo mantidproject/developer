@@ -10,9 +10,6 @@
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -48,7 +45,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="http://www.mantidproject.org"><img src="_static/Mantid_Logo_Transparent.png">
+        <a class="navbar-brand" href="http://www.mantidproject.org">
            </a>
         <span class="navbar-text navbar-version pull-left"><b>master</b></span>
       </div>
@@ -244,24 +241,24 @@ We use <code class="docutils literal notranslate"><span class="pre">DebugWithRel
 <p>Go to <code class="docutils literal notranslate"><span class="pre">File-&gt;Settings</span></code>, then under <code class="docutils literal notranslate"><span class="pre">Project</span></code> you will set two sub-menus <code class="docutils literal notranslate"><span class="pre">Project</span> <span class="pre">Interpreter</span></code> and <code class="docutils literal notranslate"><span class="pre">Project</span> <span class="pre">Structure</span></code>. The interpreter defines the Python executable that will be used to run your code, and the structure menu allows you to decide which folders within the project to include and index.</p>
 </li>
 <li><p>In the <code class="docutils literal notranslate"><span class="pre">Project</span> <span class="pre">Interpreter</span></code> sub menu, at the top select the options button and click <code class="docutils literal notranslate"><span class="pre">Add...</span></code>, a new window should appear titled “Add Python Interpreter”. In the menu on the left, if you are using Conda select “Conda Environment”, if you haven’t set up Conda follow the Getting Started guidance for it, select existing environment and if not present already put in the path to your Python interpreter, and your conda executable. Alternatively select “System Interpreter” (a version of Python with all the correct variables set already exists within Mantid, if you are not using Conda). Click on the <code class="docutils literal notranslate"><span class="pre">...</span></code> to open a file browser, and navigate to;</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>&lt;Mantid Source Directory&gt;/external/src/ThirdParty/lib/Python3.8/Python.exe
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>&lt;Mantid<span class="w"> </span>Source<span class="w"> </span>Directory&gt;/external/src/ThirdParty/lib/Python3.8/Python.exe
 </pre></div>
 </div>
 <p>This is the interpreter, so select “Ok” and apply the changes. This should bring up a list of all the packages associated to the interpreter. There should be many packages, however you should not see PyQt (but instead QtPy).</p>
 </li>
 <li><p>In the <code class="docutils literal notranslate"><span class="pre">Project</span> <span class="pre">Structure</span></code> sub menu you should see your root directory with the source/build directories both visible (if not, add them). The folder structure should be present in the centre of the window allowing you to mark folders orange (excluded) or blue (source). Source directories will be searched for Python code.</p>
 <p>Within the source directory add the following to your sources:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>&lt;Mantid Source Directory&gt;/scripts
-&lt;Mantid Source Directory&gt;/Framework/PythonInterface
-&lt;Mantid Source Directory&gt;/qt/applications/workbench
-&lt;Mantid Source Directory&gt;/qt/widgets
-&lt;Mantid Source Directory&gt;/qt/Python
-&lt;Mantid Source Directory&gt;/external/src/ThirdParty/lib
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>&lt;Mantid<span class="w"> </span>Source<span class="w"> </span>Directory&gt;/scripts
+&lt;Mantid<span class="w"> </span>Source<span class="w"> </span>Directory&gt;/Framework/PythonInterface
+&lt;Mantid<span class="w"> </span>Source<span class="w"> </span>Directory&gt;/qt/applications/workbench
+&lt;Mantid<span class="w"> </span>Source<span class="w"> </span>Directory&gt;/qt/widgets
+&lt;Mantid<span class="w"> </span>Source<span class="w"> </span>Directory&gt;/qt/Python
+&lt;Mantid<span class="w"> </span>Source<span class="w"> </span>Directory&gt;/external/src/ThirdParty/lib
 </pre></div>
 </div>
 <p>If you are writing scripts in any other directories, you can also mark them as sources. This helps PyCharm give better auto-complete and import suggestions during development.</p>
 <p>Additionally, in the Mantid build directory add the following as source folders:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>&lt;Mantid Build Directory&gt;/bin/Debug
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>&lt;Mantid<span class="w"> </span>Build<span class="w"> </span>Directory&gt;/bin/Debug
 </pre></div>
 </div>
 <p>here we are setting up PyCharm for the Debug build, you would use <code class="docutils literal notranslate"><span class="pre">/bin/Release</span></code> instead if you are building mantid in release mode.</p>
@@ -312,13 +309,13 @@ We use <code class="docutils literal notranslate"><span class="pre">DebugWithRel
 </li>
 <li><p>To edit the configurations go to <code class="docutils literal notranslate"><span class="pre">Run-&gt;Run...</span></code> and select <code class="docutils literal notranslate"><span class="pre">Edit</span> <span class="pre">Configurations</span></code>. This should open up a sub window. Hit the green <code class="docutils literal notranslate"><span class="pre">+</span></code> in the top left to create a new configuration and name it. In order to tell PyCharm where to look for Python modules and libraries we need to add some folders to the <code class="docutils literal notranslate"><span class="pre">PATH</span></code> environment variable. Click on the <code class="docutils literal notranslate"><span class="pre">...</span></code> next to the <em>Environment Variables</em> box, and hit the <code class="docutils literal notranslate"><span class="pre">+</span></code> icon. In the Name column enter “PATH”, in the value column enter the following;</p>
 <blockquote>
-<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>&lt;Mantid Build Directory&gt;<span class="se">\b</span>in<span class="se">\D</span>ebug<span class="p">;</span>
-&lt;Mantid Source Directory&gt;<span class="se">\e</span>xternal<span class="se">\s</span>rc<span class="se">\T</span>hirdParty<span class="se">\b</span>in<span class="p">;</span>
-&lt;Mantid Source Directory&gt;<span class="se">\e</span>xternal<span class="se">\s</span>rc<span class="se">\T</span>hirdParty<span class="se">\b</span>in<span class="se">\m</span>ingw<span class="p">;</span>
-&lt;Mantid Source Directory&gt;<span class="se">\e</span>xternal<span class="se">\s</span>rc<span class="se">\T</span>hirdParty<span class="se">\l</span>ib<span class="se">\P</span>ython3.8<span class="p">;</span>
-&lt;Mantid Source Directory&gt;<span class="se">\e</span>xternal<span class="se">\s</span>rc<span class="se">\T</span>hirdParty<span class="se">\l</span>ib<span class="se">\q</span>t5<span class="se">\p</span>lugins<span class="p">;</span>
-&lt;Mantid Source Directory&gt;<span class="se">\e</span>xternal<span class="se">\s</span>rc<span class="se">\T</span>hirdParty<span class="se">\l</span>ib<span class="se">\q</span>t5<span class="se">\b</span>in<span class="p">;</span>
-&lt;Mantid Source Directory&gt;<span class="se">\e</span>xternal<span class="se">\s</span>rc<span class="se">\T</span>hirdParty<span class="se">\l</span>ib<span class="se">\q</span>t5<span class="se">\l</span>ib<span class="p">;</span>
+<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>&lt;Mantid<span class="w"> </span>Build<span class="w"> </span>Directory&gt;<span class="se">\b</span>in<span class="se">\D</span>ebug<span class="p">;</span>
+&lt;Mantid<span class="w"> </span>Source<span class="w"> </span>Directory&gt;<span class="se">\e</span>xternal<span class="se">\s</span>rc<span class="se">\T</span>hirdParty<span class="se">\b</span>in<span class="p">;</span>
+&lt;Mantid<span class="w"> </span>Source<span class="w"> </span>Directory&gt;<span class="se">\e</span>xternal<span class="se">\s</span>rc<span class="se">\T</span>hirdParty<span class="se">\b</span>in<span class="se">\m</span>ingw<span class="p">;</span>
+&lt;Mantid<span class="w"> </span>Source<span class="w"> </span>Directory&gt;<span class="se">\e</span>xternal<span class="se">\s</span>rc<span class="se">\T</span>hirdParty<span class="se">\l</span>ib<span class="se">\P</span>ython3.8<span class="p">;</span>
+&lt;Mantid<span class="w"> </span>Source<span class="w"> </span>Directory&gt;<span class="se">\e</span>xternal<span class="se">\s</span>rc<span class="se">\T</span>hirdParty<span class="se">\l</span>ib<span class="se">\q</span>t5<span class="se">\p</span>lugins<span class="p">;</span>
+&lt;Mantid<span class="w"> </span>Source<span class="w"> </span>Directory&gt;<span class="se">\e</span>xternal<span class="se">\s</span>rc<span class="se">\T</span>hirdParty<span class="se">\l</span>ib<span class="se">\q</span>t5<span class="se">\b</span>in<span class="p">;</span>
+&lt;Mantid<span class="w"> </span>Source<span class="w"> </span>Directory&gt;<span class="se">\e</span>xternal<span class="se">\s</span>rc<span class="se">\T</span>hirdParty<span class="se">\l</span>ib<span class="se">\q</span>t5<span class="se">\l</span>ib<span class="p">;</span>
 %PATH%
 </pre></div>
 </div>
@@ -371,16 +368,16 @@ We use <code class="docutils literal notranslate"><span class="pre">DebugWithRel
 <li><p>Use the native Python interpreter (<code class="docutils literal notranslate"><span class="pre">/usr/bin/Python3</span></code>) rather than from <code class="docutils literal notranslate"><span class="pre">&lt;Mantid</span> <span class="pre">Source</span> <span class="pre">Directory&gt;/external/src/ThirdParty/lib/Python3.8/Python.exe</span></code></p></li>
 <li><p>In the <code class="docutils literal notranslate"><span class="pre">Project</span> <span class="pre">Structure</span></code> sub menu you should see your root directory with the source/build directories both visible (if not, add them). The folder structure should be present in the centre of the window allowing you to mark folders orange (excluded) or blue (source). Source directories will be searched for Python code.</p>
 <p>Within the source directory add the following to your sources:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>&lt;Mantid Source Directory&gt;/scripts
-&lt;Mantid Source Directory&gt;/Framework/PythonInterface
-&lt;Mantid Source Directory&gt;/qt/applications/workbench
-&lt;Mantid Source Directory&gt;/qt/widgets
-&lt;Mantid Source Directory&gt;/qt/Python
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>&lt;Mantid<span class="w"> </span>Source<span class="w"> </span>Directory&gt;/scripts
+&lt;Mantid<span class="w"> </span>Source<span class="w"> </span>Directory&gt;/Framework/PythonInterface
+&lt;Mantid<span class="w"> </span>Source<span class="w"> </span>Directory&gt;/qt/applications/workbench
+&lt;Mantid<span class="w"> </span>Source<span class="w"> </span>Directory&gt;/qt/widgets
+&lt;Mantid<span class="w"> </span>Source<span class="w"> </span>Directory&gt;/qt/Python
 </pre></div>
 </div>
 <p>If you are writing scripts in any other directories, you can also mark them as sources. This helps PyCharm give better auto-complete and import suggestions during development.</p>
 <p>Additionally, in the Mantid build directory add the following as source folders:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>&lt;Mantid Build Directory&gt;/bin/
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>&lt;Mantid<span class="w"> </span>Build<span class="w"> </span>Directory&gt;/bin/
 </pre></div>
 </div>
 <p>It is recommended that you add the whole build folder to <code class="docutils literal notranslate"><span class="pre">excluded</span></code>. This will not interfere with the <code class="docutils literal notranslate"><span class="pre">bin</span></code> directory, inside the build, being used as a source folder. It will just limit the scope that PyCharm searches for files, classes, etc.</p>

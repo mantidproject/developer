@@ -10,9 +10,6 @@
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -48,7 +45,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="http://www.mantidproject.org"><img src="_static/Mantid_Logo_Transparent.png">
+        <a class="navbar-brand" href="http://www.mantidproject.org">
            </a>
         <span class="navbar-text navbar-version pull-left"><b>master</b></span>
       </div>
@@ -125,34 +122,34 @@ Install the JRE by running sudo apt-get install default-jre</p>
 <p>1.
 Install Ubuntu-Make</p>
 <p>run the following in terminal</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo add-apt-repository ppa:ubuntu-desktop/ubuntu-make
-sudo apt update
-sudo apt install ubuntu-make
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>add-apt-repository<span class="w"> </span>ppa:ubuntu-desktop/ubuntu-make
+sudo<span class="w"> </span>apt<span class="w"> </span>update
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>ubuntu-make
 </pre></div>
 </div>
 <p>This will add the umake repository to the list of repositories then install umake</p>
 <p>2.
 Install eclipse using Umake</p>
 <p>run the following in terminal</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>umake ide eclipse-cpp
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>umake<span class="w"> </span>ide<span class="w"> </span>eclipse-cpp
 </pre></div>
 </div>
 <p>leave the installation path to the default</p>
 <p>3.
 add eclipse to the path so it can be run from command line</p>
 <p>run the following in terminal</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>gedit .bashrc
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>gedit<span class="w"> </span>.bashrc
 </pre></div>
 </div>
 <p>then scroll to the bottom of the file and add</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/path/to/eclipse-cpp-folder/
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/path/to/eclipse-cpp-folder/
 </pre></div>
 </div>
 <p>then save and exit gedit, and restart terminal.</p>
 <p>type eclipse into command line, it should open.</p>
 <p>4.
 Install gdb by running</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo apt install gdb
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>gdb
 </pre></div>
 </div>
 </section>
@@ -162,11 +159,11 @@ Install gdb by running</p>
 from the pre-requisites section, you should already have installed/setup everything to the point where you are ready to run CMake, create two
 folders, one for debugging in eclipse “eclipseDebug” and one for quick test runs EclipseTest</p>
 <p>Enter eclipseDebug and run</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cmake -G<span class="s2">&quot;Eclipse CDT4 - Ninja&quot;</span> -DCMAKE_BUILD_TYPE<span class="o">=</span>Debug -DCMAKE_ECLIPSE_GENERATE_SOURCE_PROJECT<span class="o">=</span>TRUE -DCXXTEST_ADD_PERFORMANCE<span class="o">=</span>TRUE -DENABLE_WORKBENCH<span class="o">=</span>TRUE /path/to/mantidrepository
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cmake<span class="w"> </span>-G<span class="s2">&quot;Eclipse CDT4 - Ninja&quot;</span><span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Debug<span class="w"> </span>-DCMAKE_ECLIPSE_GENERATE_SOURCE_PROJECT<span class="o">=</span>TRUE<span class="w"> </span>-DCXXTEST_ADD_PERFORMANCE<span class="o">=</span>TRUE<span class="w"> </span>-DENABLE_WORKBENCH<span class="o">=</span>TRUE<span class="w"> </span>/path/to/mantidrepository
 </pre></div>
 </div>
 <p>then enter eclipseTest and run</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cmake -G<span class="s2">&quot;Ninja&quot;</span> -DCMAKE_BUILD_TYPE<span class="o">=</span>Release  -DCXXTEST_ADD_PERFORMANCE<span class="o">=</span>TRUE -DENABLE_WORKBENCH<span class="o">=</span>TRUE /path/to/mantidrepository
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cmake<span class="w"> </span>-G<span class="s2">&quot;Ninja&quot;</span><span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Release<span class="w">  </span>-DCXXTEST_ADD_PERFORMANCE<span class="o">=</span>TRUE<span class="w"> </span>-DENABLE_WORKBENCH<span class="o">=</span>TRUE<span class="w"> </span>/path/to/mantidrepository
 </pre></div>
 </div>
 <p>2.

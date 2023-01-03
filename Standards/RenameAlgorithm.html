@@ -10,9 +10,6 @@
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -48,7 +45,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="http://www.mantidproject.org"><img src="../_static/Mantid_Logo_Transparent.png">
+        <a class="navbar-brand" href="http://www.mantidproject.org">
            </a>
         <span class="navbar-text navbar-version pull-left"><b>master</b></span>
       </div>
@@ -131,13 +128,13 @@ breaking changes for the general users.</p>
 <ul class="simple">
 <li><p>Rename the header and set the original name as alias</p></li>
 </ul>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;MantidAPI/DeprecatedAlias.h&quot;</span><span class="cp"></span>
-<span class="p">...</span><span class="w"></span>
-<span class="k">class</span><span class="w"> </span><span class="nc">DLLExport</span><span class="w"> </span><span class="n">NewAlgName</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">API</span><span class="o">::</span><span class="n">Algorithm</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">API</span><span class="o">::</span><span class="n">DeprecatedAlias</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="p">...</span><span class="w"></span>
-<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">alias</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;OriginalAlgName&quot;</span><span class="p">;</span><span class="w"> </span><span class="p">};</span><span class="w"></span>
-<span class="w">    </span><span class="p">...</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;MantidAPI/DeprecatedAlias.h&quot;</span>
+<span class="p">...</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">DLLExport</span><span class="w"> </span><span class="n">NewAlgName</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">API</span><span class="o">::</span><span class="n">Algorithm</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">API</span><span class="o">::</span><span class="n">DeprecatedAlias</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">...</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">alias</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;OriginalAlgName&quot;</span><span class="p">;</span><span class="w"> </span><span class="p">};</span>
+<span class="w">    </span><span class="p">...</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -145,10 +142,10 @@ breaking changes for the general users.</p>
 </ul>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">//-----------------------------------------------------------------------------------</span>
 <span class="cm">/** Constructor</span>
-<span class="cm">*/</span><span class="w"></span>
-<span class="n">NewAlgName</span><span class="o">::</span><span class="n">NewAlgName</span><span class="p">(){</span><span class="w"></span>
+<span class="cm">*/</span>
+<span class="n">NewAlgName</span><span class="o">::</span><span class="n">NewAlgName</span><span class="p">(){</span>
 <span class="w">    </span><span class="n">setDeprecationDate</span><span class="p">(</span><span class="s">&quot;2021-09-14&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// date string formatted like the example here</span>
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <ul>
@@ -171,7 +168,7 @@ to search and replace the class name manually.</p>
 <p>Assumming our algorithm <code class="docutils literal notranslate"><span class="pre">OldAlgName</span></code> resides in the <code class="docutils literal notranslate"><span class="pre">DataHandling</span></code> namespace,
 we would write:</p>
 </div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python2.7 move_class.py DataHandling OldAlgName DataHandling NewAlgName
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python2.7<span class="w"> </span>move_class.py<span class="w"> </span>DataHandling<span class="w"> </span>OldAlgName<span class="w"> </span>DataHandling<span class="w"> </span>NewAlgName
 </pre></div>
 </div>
 </li>
@@ -186,7 +183,7 @@ become a deprecated alias of <cite>AlgNewName</cite>.</p>
 </ul>
 <p>Replace all occurrences of <cite>AlgOldName</cite> with <cite>AlgNewName</cite> in all files. In Linux or Mac:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>grep -rl AlgOldName . <span class="p">|</span> xargs sed -i <span class="s1">&#39;s/AlgOldName/AlgNewName/g&#39;</span>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>grep<span class="w"> </span>-rl<span class="w"> </span>AlgOldName<span class="w"> </span>.<span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="w"> </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/AlgOldName/AlgNewName/g&#39;</span>
 </pre></div>
 </div>
 </div></blockquote>
@@ -210,7 +207,7 @@ become a deprecated alias of <cite>AlgNewName</cite>.</p>
 <span class="k">class</span> <span class="nc">AlgNewName</span><span class="p">(</span><span class="n">PythonAlgorithm</span><span class="p">):</span>
 
     <span class="k">def</span> <span class="nf">alias</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Alternative name to this algorithm&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Alternative name to this algorithm&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="s1">&#39;algOldName&#39;</span>
 </pre></div>
 </div>
@@ -221,7 +218,7 @@ become a deprecated alias of <cite>AlgNewName</cite>.</p>
 level. For instance, when using deprecated alias <cite>algOldName</cite> in place of the algorithm’s name <cite>algNewName</cite>,
 the following error message is printed:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Algorithm <span class="nb">alias</span> algOldName is deprecated. Use algNewName instead
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Algorithm<span class="w"> </span><span class="nb">alias</span><span class="w"> </span>algOldName<span class="w"> </span>is<span class="w"> </span>deprecated.<span class="w"> </span>Use<span class="w"> </span>algNewName<span class="w"> </span>instead
 </pre></div>
 </div>
 </div></blockquote>
@@ -236,11 +233,11 @@ the following error message is printed:</p>
 </div></blockquote>
 <p>Coming to our previous example, a <code class="docutils literal notranslate"><span class="pre">RuntimeError</span></code> is printed:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>RuntimeError: Use of algorithm <span class="nb">alias</span> algOldName not allowed. Use algNewName instead
-File <span class="s2">&quot;/home/username/my_script.py&quot;</span>, line <span class="m">9</span>, <span class="k">in</span> &lt;module&gt;
-    def alias<span class="o">(</span>self<span class="o">)</span>:
-File <span class="s2">&quot;/path/to/mantid/Framework/PythonInterface/mantid/simpleapi.py&quot;</span>, line <span class="m">1032</span>, <span class="k">in</span> __call__
-    raise RuntimeError<span class="o">(</span>f<span class="s1">&#39;Use of algorithm alias {self._alias.name} not allowed. Use {name} instead&#39;</span><span class="o">)</span>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>RuntimeError:<span class="w"> </span>Use<span class="w"> </span>of<span class="w"> </span>algorithm<span class="w"> </span><span class="nb">alias</span><span class="w"> </span>algOldName<span class="w"> </span>not<span class="w"> </span>allowed.<span class="w"> </span>Use<span class="w"> </span>algNewName<span class="w"> </span>instead
+File<span class="w"> </span><span class="s2">&quot;/home/username/my_script.py&quot;</span>,<span class="w"> </span>line<span class="w"> </span><span class="m">9</span>,<span class="w"> </span><span class="k">in</span><span class="w"> </span>&lt;module&gt;
+<span class="w">    </span>def<span class="w"> </span>alias<span class="o">(</span>self<span class="o">)</span>:
+File<span class="w"> </span><span class="s2">&quot;/path/to/mantid/Framework/PythonInterface/mantid/simpleapi.py&quot;</span>,<span class="w"> </span>line<span class="w"> </span><span class="m">1032</span>,<span class="w"> </span><span class="k">in</span><span class="w"> </span>__call__
+<span class="w">    </span>raise<span class="w"> </span>RuntimeError<span class="o">(</span>f<span class="s1">&#39;Use of algorithm alias {self._alias.name} not allowed. Use {name} instead&#39;</span><span class="o">)</span>
 </pre></div>
 </div>
 </div></blockquote>

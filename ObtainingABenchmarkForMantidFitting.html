@@ -10,9 +10,6 @@
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -48,7 +45,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="http://www.mantidproject.org"><img src="_static/Mantid_Logo_Transparent.png">
+        <a class="navbar-brand" href="http://www.mantidproject.org">
            </a>
         <span class="navbar-text navbar-version pull-left"><b>master</b></span>
       </div>
@@ -134,12 +131,12 @@
 <li><p>From the same git bash terminal, run the following command:</p></li>
 </ol>
 <p>If using Windows:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>py -m virtualenv -p<span class="o">=[</span>INSTALL_PATH<span class="o">]</span><span class="se">\b</span>in<span class="se">\p</span>ython.exe benchmark-env
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>py<span class="w"> </span>-m<span class="w"> </span>virtualenv<span class="w"> </span>-p<span class="o">=[</span>INSTALL_PATH<span class="o">]</span><span class="se">\b</span>in<span class="se">\p</span>ython.exe<span class="w"> </span>benchmark-env
 </pre></div>
 </div>
 <p>This will create a virtual environment based on the python executable provided with your Mantid installation. For Windows, the location of this executable is <code class="docutils literal notranslate"><span class="pre">C:\MantidInstall\bin\python.exe</span></code>.</p>
 <p>If using Ubuntu:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>virtualenv --python<span class="o">=</span>python3 benchmark-env
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>virtualenv<span class="w"> </span>--python<span class="o">=</span>python3<span class="w"> </span>benchmark-env
 </pre></div>
 </div>
 <p>In this example, <code class="docutils literal notranslate"><span class="pre">benchmark-env</span></code> is the name given to your virtual environment.</p>
@@ -147,16 +144,16 @@
 <li><p>Activate your environment. This is explained in the <a class="reference external" href="https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/#activating-a-virtual-environment">‘Activating a virtual environment’ section</a>.</p></li>
 <li><p>It might be necessary to upgrade and install a few packages before installing FitBenchmarking if working from a Linux system:</p></li>
 </ol>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>python3 -m pip install --upgrade pip
-python3 -m pip install --upgrade pillow
-sudo apt-get install libglu1-mesa
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip
+python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pillow
+sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>libglu1-mesa
 </pre></div>
 </div>
 <ol class="arabic simple" start="4">
 <li><p>Install the FitBenchmarking package by following the <a class="reference external" href="https://fitbenchmarking.readthedocs.io/en/stable/users/install_instructions/fitbenchmarking.html">FitBenchmarking installation instructions</a>. Note that installing FitBenchmarking from source using the editable flag <code class="docutils literal notranslate"><span class="pre">-e</span></code> proved to be the most stable installation prior to the release of FitBenchmarking v0.2.</p></li>
 <li><p>It is also recommended you pip install the following packages to avoid needless warning messages:</p></li>
 </ol>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pip install <span class="s1">&#39;h5py&gt;=2.10.0,&lt;3&#39;</span> <span class="o">&amp;&amp;</span> pip install <span class="s1">&#39;pyyaml&gt;=5.4.1&#39;</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span><span class="s1">&#39;h5py&gt;=2.10.0,&lt;3&#39;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span><span class="s1">&#39;pyyaml&gt;=5.4.1&#39;</span>
 </pre></div>
 </div>
 <p>Your environment should now be ready for performing a benchmark of Mantid minimizers.</p>
@@ -192,7 +189,7 @@ external_output: log_only
 <li><p>Download the examples folder from the <a class="reference external" href="https://github.com/fitbenchmarking/fitbenchmarking">FitBenchmarking github repo</a>. Alternatively, you can define your own fitting problems.</p></li>
 <li><p>From your activated virtual environment, run the following command. This will run the Muon fitting problems assuming you have the same directory structure as seen on the Fitbenchmarking repo.</p></li>
 </ol>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>fitbenchmarking -o fitting_options.ini -p examples/benchmark_problems/Muon
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>fitbenchmarking<span class="w"> </span>-o<span class="w"> </span>fitting_options.ini<span class="w"> </span>-p<span class="w"> </span>examples/benchmark_problems/Muon
 </pre></div>
 </div>
 <p>When the benchmark is complete, it should open a browser which contains the results. You should read the FitBenchmarking documentation if you need help with how to interpret these results. The results will also be stored in your current folder location.</p>

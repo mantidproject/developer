@@ -10,9 +10,6 @@
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -47,7 +44,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="http://www.mantidproject.org"><img src="_static/Mantid_Logo_Transparent.png">
+        <a class="navbar-brand" href="http://www.mantidproject.org">
            </a>
         <span class="navbar-text navbar-version pull-left"><b>master</b></span>
       </div>
@@ -202,38 +199,38 @@ target workspace, places these coordinates into an MD vector of coordinates and 
 (e.g. Lorentz corrections). This stage can be best described by the pseudo-code below. It describes performing the conversion
 over the whole workspace:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cm">/** initialize all internal variables used for transformation of workspace into MD workspace</span>
-<span class="cm">  WorkspaceDescription -- the workspace description obtained on the first stage of the transformation */</span><span class="w"></span>
-<span class="n">plugin</span><span class="o">-&gt;</span><span class="n">initialize</span><span class="p">(</span><span class="n">WorkspaceDescription</span><span class="p">);</span><span class="w"></span>
+<span class="cm">  WorkspaceDescription -- the workspace description obtained on the first stage of the transformation */</span>
+<span class="n">plugin</span><span class="o">-&gt;</span><span class="n">initialize</span><span class="p">(</span><span class="n">WorkspaceDescription</span><span class="p">);</span>
 <span class="cm">/** calculate generic variables, which are usually placed in logs and do not depend on detectors positions</span>
-<span class="cm">   or neutron counts (e.g. temperature) and place these values into proper position in the coordinates vector. */</span><span class="w"></span>
-<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">plugin</span><span class="o">-&gt;</span><span class="n">calcGenericVariables</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">coord_t</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Coord</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">N_Dimensions</span><span class="p">))</span><span class="w"></span>
+<span class="cm">   or neutron counts (e.g. temperature) and place these values into proper position in the coordinates vector. */</span>
+<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">plugin</span><span class="o">-&gt;</span><span class="n">calcGenericVariables</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">coord_t</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Coord</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">N_Dimensions</span><span class="p">))</span>
 <span class="w">    </span><span class="k">return</span><span class="p">;</span><span class="w"> </span><span class="c1">// finish if these data are out of range requested</span>
 
-<span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">array</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">detectors</span><span class="p">)</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
+<span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">array</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">detectors</span><span class="p">)</span>
+<span class="p">{</span>
 <span class="w">     </span><span class="cm">/** Here we calculate all MD coordinates which depend on detectors position only. The plugin also</span>
-<span class="cm">     changes the internal plugin values which depend on detector&#39;s position e.g. sets up the unit conversion */</span><span class="w"></span>
-<span class="w">     </span><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">plugin</span><span class="o">-&gt;</span><span class="n">calcYDepCoordinates</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">coord_t</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Coord</span><span class="p">,</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="p">))</span><span class="w"></span>
+<span class="cm">     changes the internal plugin values which depend on detector&#39;s position e.g. sets up the unit conversion */</span>
+<span class="w">     </span><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">plugin</span><span class="o">-&gt;</span><span class="n">calcYDepCoordinates</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">coord_t</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Coord</span><span class="p">,</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="p">))</span>
 <span class="w">         </span><span class="k">continue</span><span class="p">;</span><span class="w">  </span><span class="c1">// skip detector if these data are out of range requested</span>
 
-<span class="w">     </span><span class="cm">/** obtain signal and error, array, corresponding to the i-th detector */</span><span class="w"></span>
-<span class="w">     </span><span class="n">spectra</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">InputWorkspace</span><span class="o">-&gt;</span><span class="n">getSpectraCorrespondingToTheDetector</span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="p">);</span><span class="w"></span>
+<span class="w">     </span><span class="cm">/** obtain signal and error, array, corresponding to the i-th detector */</span>
+<span class="w">     </span><span class="n">spectra</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">InputWorkspace</span><span class="o">-&gt;</span><span class="n">getSpectraCorrespondingToTheDetector</span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="p">);</span>
 
-<span class="w">     </span><span class="cm">/**Convert units into the units, requested by the plugin */</span><span class="w"></span>
-<span class="w">     </span><span class="n">MantidVector</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">convertUnits</span><span class="p">(</span><span class="n">spectra</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">X_coordinates</span><span class="p">);</span><span class="w"></span>
-<span class="w">     </span><span class="k">for</span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">spectra</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="w"></span>
-<span class="w">     </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">Signal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">spectra</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">Signal</span><span class="p">[</span><span class="n">j</span><span class="p">];</span><span class="w"></span>
-<span class="w">        </span><span class="n">Error</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">spectra</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">Error</span><span class="p">[</span><span class="n">j</span><span class="p">];</span><span class="w"></span>
+<span class="w">     </span><span class="cm">/**Convert units into the units, requested by the plugin */</span>
+<span class="w">     </span><span class="n">MantidVector</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">convertUnits</span><span class="p">(</span><span class="n">spectra</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">X_coordinates</span><span class="p">);</span>
+<span class="w">     </span><span class="k">for</span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">spectra</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="w">     </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Signal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">spectra</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">Signal</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+<span class="w">        </span><span class="n">Error</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">spectra</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">Error</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
 <span class="w">        </span><span class="cm">/**Calculate remaining MD coordinates and put them into vector of coordinates.</span>
-<span class="cm">           Modify Signal and error if the signal and error depends on Coord */</span><span class="w"></span>
-<span class="w">        </span><span class="n">plugin</span><span class="o">-&gt;</span><span class="n">calcMatrixCoordinates</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">MantidVec</span><span class="o">&amp;</span><span class="w"> </span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">j</span><span class="p">,</span><span class="w"></span>
-<span class="w">                                      </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">coord_t</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Coord</span><span class="p">,</span><span class="w"> </span><span class="n">Signal</span><span class="p">,</span><span class="w"> </span><span class="n">Error</span><span class="p">);</span><span class="w"></span>
+<span class="cm">           Modify Signal and error if the signal and error depends on Coord */</span>
+<span class="w">        </span><span class="n">plugin</span><span class="o">-&gt;</span><span class="n">calcMatrixCoordinates</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">MantidVec</span><span class="o">&amp;</span><span class="w"> </span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">j</span><span class="p">,</span>
+<span class="w">                                      </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">coord_t</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Coord</span><span class="p">,</span><span class="w"> </span><span class="n">Signal</span><span class="p">,</span><span class="w"> </span><span class="n">Error</span><span class="p">);</span>
 
-<span class="w">        </span><span class="cm">/**Convert Coord signal and error to MD event with coordinate Coord and add the MDEvent to MD workspace*/</span><span class="w"></span>
-<span class="w">        </span><span class="n">AddPointToMDWorkspace</span><span class="p">(</span><span class="n">Coord</span><span class="p">,</span><span class="n">Signal</span><span class="p">,</span><span class="n">Error</span><span class="p">);</span><span class="w"></span>
-<span class="w">     </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="cm">/**Convert Coord signal and error to MD event with coordinate Coord and add the MDEvent to MD workspace*/</span>
+<span class="w">        </span><span class="n">AddPointToMDWorkspace</span><span class="p">(</span><span class="n">Coord</span><span class="p">,</span><span class="n">Signal</span><span class="p">,</span><span class="n">Error</span><span class="p">);</span>
+<span class="w">     </span><span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </section>

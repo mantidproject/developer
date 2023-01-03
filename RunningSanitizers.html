@@ -10,9 +10,6 @@
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -48,7 +45,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="http://www.mantidproject.org"><img src="_static/Mantid_Logo_Transparent.png">
+        <a class="navbar-brand" href="http://www.mantidproject.org">
            </a>
         <span class="navbar-text navbar-version pull-left"><b>master</b></span>
       </div>
@@ -164,26 +161,26 @@ performance penalty will be pretty severe.</p>
 <p>To change to a sanitized build navigate to your build folder and execute the
 following if you’re using a single-config generator (eg Ninja):</p>
 <blockquote>
-<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cmake *path_to_src* -DUSE_SANITIZER<span class="o">=</span>*Mode* -DCMAKE_BUILD_TYPE<span class="o">=</span>RelWithDebInfo
+<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cmake<span class="w"> </span>*path_to_src*<span class="w"> </span>-DUSE_SANITIZER<span class="o">=</span>*Mode*<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>RelWithDebInfo
 </pre></div>
 </div>
 </div></blockquote>
 <p>…or the following with a multi-config generator (eg Visual Studio):</p>
 <blockquote>
-<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cmake *path_to_src* -DUSE_SANITIZER<span class="o">=</span>*Mode*
+<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cmake<span class="w"> </span>*path_to_src*<span class="w"> </span>-DUSE_SANITIZER<span class="o">=</span>*Mode*
 </pre></div>
 </div>
 </div></blockquote>
 <p>If you are using GCC and need to specify a different compiler too (for example if your system
 default is GCC-7)</p>
 <blockquote>
-<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">CC</span><span class="o">=</span>gcc-8 <span class="nv">CXX</span><span class="o">=</span>g++-8 cmake *path_to_src* -DUSE_SANITIZER<span class="o">=</span>*Mode* -DCMAKE_BUILD_TYPE<span class="o">=</span>RelWithDebInfo
+<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">CC</span><span class="o">=</span>gcc-8<span class="w"> </span><span class="nv">CXX</span><span class="o">=</span>g++-8<span class="w"> </span>cmake<span class="w"> </span>*path_to_src*<span class="w"> </span>-DUSE_SANITIZER<span class="o">=</span>*Mode*<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>RelWithDebInfo
 </pre></div>
 </div>
 </div></blockquote>
 <p>For example, to switch to an address sanitizer build the following can be used:</p>
 <blockquote>
-<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cmake *path_to_src* -DUSE_SANITIZER<span class="o">=</span>Address -DCMAKE_BUILD_TYPE<span class="o">=</span>RelWithDebInfo
+<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cmake<span class="w"> </span>*path_to_src*<span class="w"> </span>-DUSE_SANITIZER<span class="o">=</span>Address<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>RelWithDebInfo
 </pre></div>
 </div>
 </div></blockquote>
@@ -228,8 +225,8 @@ want to know what’s happening</p>
 setup suppressions etc… this is the equivalent of doing the following
 in a local shell:</p>
 <blockquote>
-<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">ASAN_OPTIONS</span><span class="o">=</span><span class="s2">&quot;verify_asan_link_order=0:detect_stack_use_after_return=true:halt_on_error=false:suppressions=*path_to_mantid*/tools/Sanitizer/Address.supp&quot;</span>
-<span class="nb">export</span> <span class="nv">LSAN_OPTIONS</span><span class="o">=</span><span class="s2">&quot;suppressions=*path_to_mantid*/tools/Sanitizer/Leak.supp&quot;</span>
+<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">ASAN_OPTIONS</span><span class="o">=</span><span class="s2">&quot;verify_asan_link_order=0:detect_stack_use_after_return=true:halt_on_error=false:suppressions=*path_to_mantid*/tools/Sanitizer/Address.supp&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">LSAN_OPTIONS</span><span class="o">=</span><span class="s2">&quot;suppressions=*path_to_mantid*/tools/Sanitizer/Leak.supp&quot;</span>
 </pre></div>
 </div>
 </div></blockquote>
@@ -254,13 +251,13 @@ path.</p></li>
 the following steps should setup your environment:</p>
 <blockquote>
 <div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the path to your linked ASAN</span>
-ldd bin/KernelTest <span class="p">|</span> grep <span class="s2">&quot;libasan&quot;</span>
-<span class="nb">export</span> <span class="nv">LD_PRELOAD</span><span class="o">=</span>/usr/lib/path_to/libasan.so.x
+ldd<span class="w"> </span>bin/KernelTest<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;libasan&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">LD_PRELOAD</span><span class="o">=</span>/usr/lib/path_to/libasan.so.x
 
 <span class="c1"># You may want to re-run the ASAN_OPTIONS export dropping</span>
 <span class="c1"># the verify to make sure that the C++ component is being instrumented:</span>
 
-<span class="nb">export</span> <span class="nv">ASAN_OPTIONS</span><span class="o">=</span><span class="s2">&quot;detect_stack_use_after_return=true:halt_on_error=false:suppressions=*path_to_mantid*/buildconfig/Sanitizer/Address.supp&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">ASAN_OPTIONS</span><span class="o">=</span><span class="s2">&quot;detect_stack_use_after_return=true:halt_on_error=false:suppressions=*path_to_mantid*/buildconfig/Sanitizer/Address.supp&quot;</span>
 </pre></div>
 </div>
 </div></blockquote>

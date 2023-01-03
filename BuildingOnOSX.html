@@ -10,9 +10,6 @@
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -48,7 +45,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="http://www.mantidproject.org"><img src="_static/Mantid_Logo_Transparent.png">
+        <a class="navbar-brand" href="http://www.mantidproject.org">
            </a>
         <span class="navbar-text navbar-version pull-left"><b>master</b></span>
       </div>
@@ -111,59 +108,59 @@
 <li><p>Install Xcode 10.1</p></li>
 <li><p>Install Apple’s Command Line tools (required by Homebrew)</p></li>
 </ol>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>xcode-select --install
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>xcode-select<span class="w"> </span>--install
 </pre></div>
 </div>
 <ol class="arabic simple" start="3">
 <li><p>Install <a class="reference external" href="http://brew.sh">Homebrew</a>.</p></li>
 </ol>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>ruby -e <span class="s2">&quot;</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install<span class="k">)</span><span class="s2">&quot;</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>ruby<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://raw.githubusercontent.com/Homebrew/install/master/install<span class="k">)</span><span class="s2">&quot;</span>
 </pre></div>
 </div>
 <ol class="arabic simple" start="4">
 <li><p>Add the necessary ‘taps’:</p></li>
 </ol>
 <p>In order to be able to ‘tap’ the <code class="docutils literal notranslate"><span class="pre">mantidproject/mantid</span></code> ‘tap’ we need to have a couple of packages installed</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>brew install git
-brew tap mantidproject/mantid
-brew tap homebrew/cask
-brew cask install xquartz
-brew cask install mactex
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>brew<span class="w"> </span>install<span class="w"> </span>git
+brew<span class="w"> </span>tap<span class="w"> </span>mantidproject/mantid
+brew<span class="w"> </span>tap<span class="w"> </span>homebrew/cask
+brew<span class="w"> </span>cask<span class="w"> </span>install<span class="w"> </span>xquartz
+brew<span class="w"> </span>cask<span class="w"> </span>install<span class="w"> </span>mactex
 </pre></div>
 </div>
 <ol class="arabic simple" start="5">
 <li><p>Install <code class="docutils literal notranslate"><span class="pre">mantid-developer</span></code> formula (this may take a while depending on your network speed)</p></li>
 </ol>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>brew install mantid-developer
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>brew<span class="w"> </span>install<span class="w"> </span>mantid-developer
 </pre></div>
 </div>
 <ol class="arabic simple" start="6">
 <li><p>Homebrew can stop early for reasons that are unclear. Repeat the above command until Homebrew states: <em>Warning: mantidproject/mantid/mantid-developer ?.? is already installed and up-to-date</em>.</p></li>
 <li><p>Unlink <code class="docutils literal notranslate"><span class="pre">qscintilla2</span></code></p></li>
 </ol>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>brew unlink qscintilla2
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>brew<span class="w"> </span>unlink<span class="w"> </span>qscintilla2
 </pre></div>
 </div>
 <ol class="arabic simple" start="8">
 <li><p>Python is now keg-only. Add the appropriate version to <code class="docutils literal notranslate"><span class="pre">PATH</span></code> in shell profile and restart the terminal:</p></li>
 </ol>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># Assume we are using bash</span>
-<span class="nb">echo</span> <span class="s1">&#39;export PATH=&quot;/usr/local/opt/python@3.8/bin:$PATH&quot;&#39;</span> &gt;&gt; ~/.bash_profile
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;export PATH=&quot;/usr/local/opt/python@3.8/bin:$PATH&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bash_profile
 
 <span class="c1"># If you have enabled Zsh</span>
-<span class="nb">echo</span> <span class="s1">&#39;export PATH=&quot;/usr/local/opt/python@3.8/bin:$PATH&quot;&#39;</span> &gt;&gt; ~/.zshenv
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;export PATH=&quot;/usr/local/opt/python@3.8/bin:$PATH&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.zshenv
 </pre></div>
 </div>
 <ol class="arabic simple" start="9">
 <li><p>Downgrade setuptools to 48.0.0 until <a class="reference external" href="https://github.com/mantidproject/mantid/issues/29010">https://github.com/mantidproject/mantid/issues/29010</a> is fixed.</p></li>
 </ol>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>python3 -m pip install <span class="nv">setuptools</span><span class="o">==</span><span class="m">48</span>.0.0
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span><span class="nv">setuptools</span><span class="o">==</span><span class="m">48</span>.0.0
 </pre></div>
 </div>
 <ol class="arabic simple" start="10">
 <li><p>Install python requirements</p></li>
 </ol>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>python3 -m pip install -r /usr/local/Homebrew/Library/Taps/mantidproject/homebrew-mantid/requirements.txt
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>/usr/local/Homebrew/Library/Taps/mantidproject/homebrew-mantid/requirements.txt
 </pre></div>
 </div>
 </section>
