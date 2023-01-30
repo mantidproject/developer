@@ -57,10 +57,9 @@
             <li class="divider-vertical"></li>
             
                 <li><a href="index.html">Home</a></li>
-                <li><a href="http://download.mantidproject.org">Download</a></li>
-                <li><a href="http://www.mantidproject.org">Wiki</a></li>
-                <li><a href="http://docs.mantidproject.org">User Documentation</a></li>
-                <li><a href="http://www.mantidproject.org/Contact">Contact Us</a></li>
+                <li><a href="https://download.mantidproject.org">Download</a></li>
+                <li><a href="https://docs.mantidproject.org">User Documentation</a></li>
+                <li><a href="http://www.mantidproject.org/contact">Contact Us</a></li>
             
             
               
@@ -156,9 +155,9 @@
 <p>The following design principles should be adhered to when developing the GUI. If the current design does not seem appropriate for additional feature requests, do consult with a senior developer to work out the best way forward rather than proceeding in a non-optimal way.</p>
 <section id="adhere-to-mvp">
 <h3>Adhere to MVP<a class="headerlink" href="#adhere-to-mvp" title="Permalink to this heading">¶</a></h3>
-<p>To ensure the GUI can be easily tested we follow the MVP design pattern. There is general guidance on this <a class="reference external" href="https://developer.mantidproject.org/MVPDesign.html">here</a>.</p>
+<p>To ensure the GUI can be easily tested we follow the MVP design pattern. There is general guidance on this <a class="reference internal" href="MVPDesign.html#mvpdesign"><span class="std std-ref">here</span></a>.</p>
 <p>The view cannot easily be tested, so the aim of MVP is to keep the view as simple as possible so that testing it is not necessary. Typically any user action on the view results in a notification to the presenter and is handled from there (even if that is just an update back to the view). Even simple things like which buttons are enabled on startup are controlled via the presenter rather than setting defaults in the view itself.</p>
-<p>It can be tempting to add one line to toggle or update something in the view without wiring up the presenter. But these quick fixes can quickly introduce bugs as they accumulate. The first question to ask yourself before making any change is: how will I unit test it? In fact, we recommend you follow <a class="reference external" href="https://www.mantidproject.org/TDD">test driven development</a> and write the unit tests first.</p>
+<p>It can be tempting to add one line to toggle or update something in the view without wiring up the presenter. But these quick fixes can quickly introduce bugs as they accumulate. The first question to ask yourself before making any change is: how will I unit test it? In fact, we recommend you follow <a class="reference external" href="https://en.wikipedia.org/wiki/Test-driven_development">test driven development</a> and write the unit tests first.</p>
 <p>Note that the views should not have a direct pointer to their presenters, so the notification is done via a subscriber interface (see <a class="reference internal" href="#subscriber-pattern">Subscriber pattern</a> for an example). The only exception is the <code class="code docutils literal notranslate"><span class="pre">QtMainWindowView</span></code> (see <a class="reference internal" href="#dependency-inversion">Dependency inversion</a>), but notifications should still be done via the subscriber interface. This helps to avoid accidentally introducing logic into the view about what should happen on an event and instead just notify that an event happened. It could also be easily extended to support multiple notifyees of different types, such as different subscribed presenters.</p>
 </section>
 <section id="dependency-inversion">
