@@ -143,7 +143,7 @@
 <p>Do the following tests with an EventWorkspace (e.g. <code class="docutils literal notranslate"><span class="pre">CNCS_7860_event.nxs</span></code>) and a Workspace2D (e.g. <code class="docutils literal notranslate"><span class="pre">MAR11060.raw</span></code>) from the <a class="reference external" href="https://download.mantidproject.org/">TrainingCourseData</a>.</p>
 <ol class="arabic">
 <li><p>Load the workspace and open in sliceviewer (right-click on the workspace in the ADS &gt; Show Slice Viewer).</p></li>
-<li><p>Confirm that for MatrixWorkspaces the <a class="reference external" href="https://docs.mantidproject.org/nightly/workbench/sliceviewer.html#sliceviewer-roi" title="(in MantidProject v6.5)"><span class="xref std std-ref">Peak overlay</span></a> and <a class="reference external" href="https://docs.mantidproject.org/nightly/workbench/sliceviewer.html#sliceviewer-nonortho" title="(in MantidProject v6.5)"><span class="xref std std-ref">Nonorthogonal view</span></a> buttons should be disabled (greyed out).</p></li>
+<li><p>Confirm that for MatrixWorkspaces the <a class="reference external" href="https://docs.mantidproject.org/nightly/workbench/sliceviewer.html#sliceviewer-roi" title="(in MantidProject v6.5)"><span class="xref std std-ref">Peak overlay</span></a>, <a class="reference external" href="https://docs.mantidproject.org/nightly/workbench/sliceviewer.html#sliceviewer-nonortho" title="(in MantidProject v6.5)"><span class="xref std std-ref">Nonorthogonal view</span></a> and <a class="reference external" href="https://docs.mantidproject.org/nightly/workbench/sliceviewer.html#sliceviewer-nonaxiscuts" title="(in MantidProject v6.5)"><span class="xref std std-ref">Non-axis aligned cutting tool</span></a> buttons should be disabled (greyed out).</p></li>
 <li><p>Check the other toolbar buttons.</p>
 <blockquote>
 <div><ol class="loweralpha">
@@ -219,7 +219,7 @@
 <blockquote>
 <div><ul class="simple">
 <li><p>In Log scale bins with 0 counts should appear white</p></li>
-<li><p>When you zoom in to a region comprising only of bins with 0 counts it will set the color axis limits to (0,0) and force the scale to be linear</p></li>
+<li><p>When you zoom in to a region comprising only of bins with 0 counts it will set the color axis limits to (0.1,1) and force the scale to be linear</p></li>
 <li><p>Zoom in to a region outside the extent of the data, check the Log colorscale option is disabled.</p></li>
 </ul>
 </div></blockquote>
@@ -229,19 +229,13 @@
 </ol>
 </div></blockquote>
 </li>
+<li><p>Test transposing axes: click the Y button to the right of the Time-of-flight label (top left corner) - the image should be transposed and the axes labels updated.</p></li>
 <li><p>Test the <a class="reference external" href="https://docs.mantidproject.org/nightly/workbench/sliceviewer.html#sliceviewer-cursor" title="(in MantidProject v6.5)"><span class="xref std std-ref">Cursor Information Widget</span></a> (table at top of sliceviewer window with TOF, spectrum, DetID etc.)</p>
 <blockquote>
 <div><ol class="loweralpha simple">
-<li><p>Confirm it tracks with the cursor when Track Cursor is unchecked</p></li>
+<li><p>Confirm it tracks with the cursor when Track Cursor is checked</p></li>
 <li><p>Uncheck the track cursor and confirm it updates when the cursor is clicked.</p></li>
-</ol>
-</div></blockquote>
-</li>
-<li><p>Test transposing axes</p>
-<blockquote>
-<div><ol class="loweralpha simple">
-<li><p>Click the Y button to the right of the Time-of-flight label (top left corner) - the image should be transposed and the axes labels updated.</p></li>
-<li><p>Repeat the test for the cursor info table.</p></li>
+<li><p>Transpose the axes (as in step 6) and confirm the cursor position displayed is still correct.</p></li>
 </ol>
 </div></blockquote>
 </li>
@@ -256,16 +250,13 @@ In terms of sliceviewer functionality, the key difference is that MDHistoWorkspa
 <section id="mdworkspace-with-events">
 <h4><a class="toc-backref" href="#id6" role="doc-backlink">MDWorkspace (with events)</a><a class="headerlink" href="#mdworkspace-with-events" title="Permalink to this heading">¶</a></h4>
 <ol class="arabic simple">
-<li><p>Create a 3D and 4D MDWorkspaces with some data - repeat the following tests with both <code class="docutils literal notranslate"><span class="pre">md_4D</span></code> and <code class="docutils literal notranslate"><span class="pre">md_3D</span></code></p></li>
+<li><p>Create a 3D and 4D MDWorkspaces with some data - repeat the following tests with both <code class="docutils literal notranslate"><span class="pre">md_4D</span></code> and <code class="docutils literal notranslate"><span class="pre">md_3D</span></code>. Note this will throw a warning relating to the <code class="docutils literal notranslate"><span class="pre">SlicingAlgorithm</span></code>.</p></li>
 </ol>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mantid.simpleapi</span> <span class="kn">import</span> <span class="o">*</span>
 
 <span class="n">md_4D</span> <span class="o">=</span> <span class="n">CreateMDWorkspace</span><span class="p">(</span><span class="n">Dimensions</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">Extents</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mf">1.5</span><span class="p">,</span><span class="o">-</span><span class="mf">0.25</span><span class="p">,</span><span class="mf">0.25</span><span class="p">],</span> <span class="n">Names</span><span class="o">=</span><span class="s2">&quot;H,K,L,E&quot;</span><span class="p">,</span> <span class="n">Frames</span><span class="o">=</span><span class="s1">&#39;HKL,HKL,HKL,General Frame&#39;</span><span class="p">,</span><span class="n">Units</span><span class="o">=</span><span class="s1">&#39;r.l.u.,r.l.u.,r.l.u.,meV&#39;</span><span class="p">)</span>
 <span class="n">FakeMDEventData</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">md_4D</span><span class="p">,</span> <span class="n">UniformParams</span><span class="o">=</span><span class="s1">&#39;5e5&#39;</span><span class="p">)</span> <span class="c1"># 4D data</span>
-<span class="n">tmp</span> <span class="o">=</span> <span class="n">CreateMDWorkspace</span><span class="p">(</span><span class="n">Dimensions</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">Extents</span><span class="o">=</span><span class="p">[</span><span class="mf">0.25</span><span class="p">,</span><span class="mf">0.75</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.25</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">Names</span><span class="o">=</span><span class="s2">&quot;H,K,L,E&quot;</span><span class="p">,</span> <span class="n">Frames</span><span class="o">=</span><span class="s1">&#39;HKL,HKL,HKL,General Frame&#39;</span><span class="p">,</span><span class="n">Units</span><span class="o">=</span><span class="s1">&#39;r.l.u.,r.l.u.,r.l.u.,meV&#39;</span><span class="p">)</span>
-<span class="n">FakeMDEventData</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">tmp</span><span class="p">,</span> <span class="n">UniformParams</span><span class="o">=</span><span class="s1">&#39;1e5&#39;</span><span class="p">)</span> <span class="c1"># 4D data</span>
-<span class="n">md_4D</span> <span class="o">+=</span> <span class="n">tmp</span>
-<span class="n">DeleteWorkspace</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
+<span class="n">FakeMDEventData</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">md_4D</span><span class="p">,</span> <span class="n">UniformParams</span><span class="o">=</span><span class="s1">&#39;1e5,0.5,1.5,-0.5,0.5,-0.75,0.75,-0.1,0.1&#39;</span><span class="p">)</span> <span class="c1"># 4D data</span>
 
 <span class="c1"># Add a non-orthogonal UB</span>
 <span class="n">expt_info</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">()</span>
@@ -287,6 +278,7 @@ In terms of sliceviewer functionality, the key difference is that MDHistoWorkspa
 <blockquote>
 <div><ul class="simple">
 <li><p>This workspace should be dynamically rebinned - i.e. the number of bins within the view limits along each axis should be preserved when zooming.</p></li>
+<li><p>The cursor info table should also display the HKL of the cursor</p></li>
 </ul>
 </div></blockquote>
 </li>
@@ -303,6 +295,7 @@ In terms of sliceviewer functionality, the key difference is that MDHistoWorkspa
 <div><ol class="loweralpha simple">
 <li><p>Confirm the slider moves when the spinbox value is updated.</p></li>
 <li><p>Confirm moving the slider updates the spinbox.</p></li>
+<li><p>Check the slicepoint is updated in the cursor info table.</p></li>
 </ol>
 </div></blockquote>
 </li>
@@ -392,6 +385,7 @@ In terms of sliceviewer functionality, the key difference is that MDHistoWorkspa
 </div></blockquote>
 </li>
 <li><p>Repeat the above steps 1-7 in non-orthogonal view.</p></li>
+<li><p>Check the <code class="docutils literal notranslate"><span class="pre">Concise</span> <span class="pre">View</span></code> checkbox above one of the peak tables on the right hand side - this should hide some columns.</p></li>
 </ol>
 </section>
 <section id="mdhistoworkspace">
@@ -435,7 +429,7 @@ In terms of sliceviewer functionality, the key difference is that MDHistoWorkspa
 </section>
 <section id="cutviewer-tool">
 <h2><a class="toc-backref" href="#id8" role="doc-backlink">CutViewer Tool</a><a class="headerlink" href="#cutviewer-tool" title="Permalink to this heading">¶</a></h2>
-<p>1. Check the cutting tool button is only enabled for 3D MD workspaces where all dimensions are Q by opening the following workspaces in sliceviewer.
+<p>1. Check the <a class="reference external" href="https://docs.mantidproject.org/nightly/workbench/sliceviewer.html#sliceviewer-nonaxiscuts" title="(in MantidProject v6.5)"><span class="xref std std-ref">Non-axis aligned cutting tool</span></a> button is only enabled for 3D MD workspaces where all dimensions are Q by opening the following workspaces in sliceviewer.
 It should only be enabled for the <cite>ws_3D</cite> and <cite>ws_3D_QLab</cite> workspaces (see comment for details) - the first 3 column headers for the vectors should be a*,b*,c* and Qx,Qy,Qz for the two workspaces respectively.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;CNCS_7860_event.nxs&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;CNCS_7860_event&#39;</span><span class="p">)</span>  <span class="c1"># disabled (MatrixWorkspace)</span>
 
@@ -475,13 +469,12 @@ It should only be enabled for the <cite>ws_3D</cite> and <cite>ws_3D_QLab</cite>
 </pre></div>
 </div>
 <ol class="arabic" start="4">
-<li><p>Click on non-ortho view of H and K axes - this should disable the cutting tool button</p></li>
-<li><p>Turn off non-ortho view and check that opening the cut tool:</p>
+<li><p>Open the cut tool and check that:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>Disables non-ortho view</p></li>
-<li><p>Disables ROI tool</p></li>
-<li><p>Disables line plots</p></li>
+<li><p>Disabled non-ortho view</p></li>
+<li><p>Disabled ROI tool</p></li>
+<li><p>Disabled line plots</p></li>
 <li><p>Sliceviewer should look like</p></li>
 </ul>
 </div></blockquote>
@@ -521,11 +514,11 @@ It should only be enabled for the <cite>ws_3D</cite> and <cite>ws_3D_QLab</cite>
 <li><p>Set the step of u2 = 2 in the table, check that it sets (start,stop) = (-1,1)</p></li>
 <li><p>Drag the top white marker of the cut representation up to L~2</p>
 <ul class="simple">
-<li><p>u1 ~ [0,0,-1]  and u2 ~ [0,-1,0]</p></li>
-<li><p>There should be a peak in the 1D plot at x~-1</p></li>
+<li><p>u1 ~ [0,0,1]  and u2 ~ [0,1,0]</p></li>
+<li><p>There should be a peak in the 1D plot at x~1</p></li>
 </ul>
 </li>
-<li><p>For u1 change c* = -1 and b* = 0 - check that u2 = [0,-1,0]</p></li>
+<li><p>For u1 change c* = -1 and b* = 0 - check that u2 = [0,-1,0] and there is a peak at x~-1</p></li>
 <li><p>To change the centre of the cut move the central white marker of the cut representation to (K,L) ~ (2,0),</p>
 <ul class="simple">
 <li><p>The entire cut representation should move</p></li>
@@ -543,6 +536,12 @@ It should only be enabled for the <cite>ws_3D</cite> and <cite>ws_3D_QLab</cite>
 <li><p>Check u2 = [0,-1,0]</p></li>
 </ul>
 </li>
+<li><p>Turn on non-orthogonal view and play around with the cut tool representation</p>
+<ul class="simple">
+<li><p>Check that the table values are updated correctly (use the HKL in the cursor info table to help determine this)</p></li>
+</ul>
+</li>
+<li><p>Produce a non-axis aligned cut where the peak is not in the center of the x-range. Take the x-value at the peak maximum and plug it into the axis label - it should produce the HKL of the peak (0,0,1).</p></li>
 </ol>
 </section>
 <section id="specific-tests">
