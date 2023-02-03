@@ -108,7 +108,8 @@
 <li><p><a class="reference internal" href="#install-a-centos7-subsystem" id="id3">Install a Centos7 Subsystem</a></p></li>
 <li><p><a class="reference internal" href="#running-a-linux-subsystem" id="id4">Running a Linux Subsystem</a></p></li>
 <li><p><a class="reference internal" href="#cloning-mantid" id="id5">Cloning Mantid</a></p></li>
-<li><p><a class="reference internal" href="#tips" id="id6">Tips</a></p></li>
+<li><p><a class="reference internal" href="#using-graphical-user-interfaces-gui" id="id6">Using Graphical User Interfaces (GUI)</a></p></li>
+<li><p><a class="reference internal" href="#tips" id="id7">Tips</a></p></li>
 </ul>
 </nav>
 <p>The Windows Subsystem for Linux lets developers run a Linux environment directly on Windows, unmodified, without the overhead of a traditional virtual machine or dualboot setup.</p>
@@ -169,8 +170,31 @@ docker<span class="w"> </span><span class="nb">export</span><span class="w"> </s
 <p>The Mantid code can then be retrieved in the usual way using <cite>git clone</cite> from the Ubuntu or Centos7 terminal. The first time you do this you might need to set up an <a class="reference external" href="https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh">ssh key</a> for authentication.</p>
 <p>You are now ready to CMake and build the Mantid code. Follow the Ubuntu 18.04 or Centos 7 build instructions <a class="reference external" href="https://developer.mantidproject.org/GettingStarted.html#linux">here</a>.</p>
 </section>
+<section id="using-graphical-user-interfaces-gui">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Using Graphical User Interfaces (GUI)</a><a class="headerlink" href="#using-graphical-user-interfaces-gui" title="Permalink to this heading">¶</a></h2>
+<p>WSL does not currently support GUIs. In order to display a GUI from an application running in WSL you will need to use an XServer. Failure to do so will result in a crash upon launching <cite>workbench</cite>.</p>
+<p>To use an XServer:</p>
+<ol class="arabic simple">
+<li><p>Download a compatible XServer onto the host Windows machine. <a class="reference external" href="https://mobaxterm.mobatek.net/">MobaXterm</a> is recommended and has been confirmed to work with Mantid Workbench.</p></li>
+<li><p>Install <cite>MobaXterm</cite> and open the MobaXterm app upon completion. Using the <cite>Settings</cite> drop down menu select <cite>Configure</cite>. On the <cite>X11</cite> tab ensure that <cite>X11 server display mode</cite> is set to
+<cite>Multiwindow mode</cite> and that <cite>X11 remote access</cite> is set to <cite>full</cite>.</p></li>
+<li><p>The XServer should be running by default - this can be checked by clicking the <cite>X server</cite> icon in the top right hand corner of the <cite>MobaXterm</cite> interface.</p></li>
+<li><p>Configure the <cite>DISPLAY</cite> variable on WSL. The manner in which this is done differs between WSL1 and WSL2. To check which version you have use the command <cite>wsl -l -v</cite> in the command prompt on the host machine.
+If you have WSL1, it is recommended to upgrade to <a class="reference external" href="https://learn.microsoft.com/en-us/windows/wsl/install">WSL2</a>.</p></li>
+</ol>
+<blockquote>
+<div><ol class="arabic">
+<li><p>On WSL, use <cite>cd</cite> to navigate to your home directory containing the <cite>.bashrc</cite> file.</p></li>
+<li><p>Using <cite>vi .bashrc</cite> append the following to the file contents:</p>
+<p><cite>export DISPLAY=$(route.exe print | grep 0.0.0.0 | head -1 | awk ‘{print $4}’):0.0</cite>.</p>
+</li>
+<li><p>Exit and re-enter WSL via the command prompt.</p></li>
+<li><p>Echo the <cite>DISPLAY</cite> variable, you should see the value <cite>&lt;host machine IP Address&gt;:0.0</cite>. You can compare this output IP address to that output when running <cite>ipconfig /all</cite> through the command line on the host machine.</p></li>
+</ol>
+</div></blockquote>
+</section>
 <section id="tips">
-<h2><a class="toc-backref" href="#id6" role="doc-backlink">Tips</a><a class="headerlink" href="#tips" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Tips</a><a class="headerlink" href="#tips" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>Make sure you install <a class="reference external" href="https://developer.mantidproject.org/BuildingWithCMake.html#from-the-command-line">devtoolset-7</a> for Centos 7 as described in the provided link before CMake and build.</p></li>
 <li><p>It might also be necessary to install some addition packages for Ubuntu 18.04, including <cite>libnexus0-dev</cite>.</p></li>
