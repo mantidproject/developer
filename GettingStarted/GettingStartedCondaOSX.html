@@ -115,7 +115,8 @@
 <li><p>There are 2 common ways developers have been doing this.</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>Using git in the terminal and cloning the codebase by calling <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">git&#64;github.com:mantidproject/mantid.git</span></code> in the directory you want the code to clone to. This sets you up with accessing the remote repository via SSH so make sure to setup git properly using this <a class="reference external" href="https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup">startup guide</a> and ensure your ssh key is setup using this <a class="reference external" href="https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh">guide to Github with SSH</a>.</p></li>
+<li><p>Using git in the terminal and cloning the codebase by calling <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">git&#64;github.com:mantidproject/mantid.git</span></code> in the directory you want the code to clone to.
+This sets you up with accessing the remote repository via SSH so make sure to setup git properly using this <a class="reference external" href="https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup">startup guide</a> and ensure your ssh key is setup using this <a class="reference external" href="https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh">guide to Github with SSH</a>.</p></li>
 <li><p>Or by using <a class="reference external" href="https://www.gitkraken.com/">GitKraken</a>.</p></li>
 </ul>
 </div></blockquote>
@@ -126,7 +127,8 @@
 <h2>Install <a class="reference external" href="https://github.com/conda-forge/miniforge/releases">Mambaforge</a><a class="headerlink" href="#install-mambaforge" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>Choose the latest version of <code class="docutils literal notranslate"><span class="pre">Mambaforge-MacOSX-x86_64.sh</span></code> for intel based Macs or for the new arm versions use <code class="docutils literal notranslate"><span class="pre">Mambaforge-MacOSX-arm64.sh</span></code></p></li>
-<li><p>Run your downloaded script from the terminal using <code class="docutils literal notranslate"><span class="pre">`bash</span> <span class="pre">Mambaforge-MacOSX-x86_64.sh</span></code> or <code class="docutils literal notranslate"><span class="pre">bash</span> <span class="pre">Mambaforge-MacOSX-arm64.sh</span></code> depending on your downloaded variant. If it asks whether or not you want to initialise conda with conda init, choose to do so.</p></li>
+<li><p>Run your downloaded script from the terminal using <code class="docutils literal notranslate"><span class="pre">bash</span> <span class="pre">Mambaforge-MacOSX-x86_64.sh</span></code> or <code class="docutils literal notranslate"><span class="pre">bash</span> <span class="pre">Mambaforge-MacOSX-arm64.sh</span></code> depending on your downloaded variant.</p></li>
+<li><p>If it asks whether or not you want to initialise conda with conda init, choose to do so.</p></li>
 <li><p>Restart your terminal.</p></li>
 </ul>
 </section>
@@ -162,8 +164,28 @@
 </section>
 <section id="cmake-conda-variables">
 <h2>CMake Conda variables<a class="headerlink" href="#cmake-conda-variables" title="Permalink to this heading">¶</a></h2>
-<p>There are two Conda specific CMake options <cite>CONDA_ENV</cite> and <cite>CONDA_BUILD</cite>. The former should be used whenever you are building within a Conda environment, as it ensures our finders (e.g FindNexus.cmake) look in the correct locations for libraries.
-The CONDA_BUILD parameter is used to customise our installation, which is required when we are using the conda-build tool to build and package Mantid. These options can be passed to CMake on the command line using -DCONDA_ENV=True for example.</p>
+<p>There are two Conda specific CMake options <cite>CONDA_ENV</cite> and <cite>CONDA_BUILD</cite>.
+The former should be used whenever you are building within a Conda environment, as it ensures our finders (e.g FindNexus.cmake) look in the correct locations for libraries.
+The <code class="docutils literal notranslate"><span class="pre">CONDA_BUILD</span></code> parameter is used to customise our installation, which is required when we are using the conda-build tool to build and package Mantid.
+These options can be passed to CMake on the command line using <code class="docutils literal notranslate"><span class="pre">-DCONDA_ENV=True</span></code> for example.</p>
+</section>
+<section id="running-workbench">
+<h2>Running Workbench<a class="headerlink" href="#running-workbench" title="Permalink to this heading">¶</a></h2>
+<p>To run workbench from the commandline, ensure you conda environment is activated and from the build directory:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>bin
+python<span class="w"> </span>workbench
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>macOS developers will see the warning from Qt in the terminal:</p>
+<p><code class="docutils literal notranslate"><span class="pre">An</span> <span class="pre">OpenGL</span> <span class="pre">surfcace</span> <span class="pre">format</span> <span class="pre">was</span> <span class="pre">requested</span> <span class="pre">that</span> <span class="pre">is</span> <span class="pre">either</span> <span class="pre">not</span> <span class="pre">version</span> <span class="pre">3.2</span> <span class="pre">or</span> <span class="pre">higher</span> <span class="pre">or</span> <span class="pre">a</span> <span class="pre">not</span> <span class="pre">Core</span> <span class="pre">Profile.</span></code>
+<code class="docutils literal notranslate"><span class="pre">Chromium</span> <span class="pre">on</span> <span class="pre">macOS</span> <span class="pre">will</span> <span class="pre">fall</span> <span class="pre">back</span> <span class="pre">to</span> <span class="pre">software</span> <span class="pre">rendering</span> <span class="pre">in</span> <span class="pre">this</span> <span class="pre">case.</span></code>
+<code class="docutils literal notranslate"><span class="pre">Hardware</span> <span class="pre">acceleration</span> <span class="pre">and</span> <span class="pre">features</span> <span class="pre">such</span> <span class="pre">as</span> <span class="pre">WebGL</span> <span class="pre">will</span> <span class="pre">not</span> <span class="pre">be</span> <span class="pre">available.</span></code></p>
+<p>It can be safely ignored but is present as a reminder of some deprecated OpenGL
+functionality being used.
+It is only visible to developers and the spelling mistake is real.</p>
+</div>
 </section>
 </section>
 
