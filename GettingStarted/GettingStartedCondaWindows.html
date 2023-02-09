@@ -103,8 +103,8 @@
       
   <section id="develop-with-conda-on-windows">
 <span id="gettingstartedcondawindows"></span><h1>Develop with Conda on Windows<a class="headerlink" href="#develop-with-conda-on-windows" title="Permalink to this heading">¶</a></h1>
-<section id="install-visual-studio-2019-community-edition">
-<h2>Install <a class="reference external" href="https://visualstudio.microsoft.com/downloads/">Visual Studio 2019 Community Edition</a><a class="headerlink" href="#install-visual-studio-2019-community-edition" title="Permalink to this heading">¶</a></h2>
+<section id="install-visual-studio-2022-community-edition">
+<h2>Install <a class="reference external" href="https://visualstudio.microsoft.com/downloads/">Visual Studio 2022 Community Edition</a><a class="headerlink" href="#install-visual-studio-2022-community-edition" title="Permalink to this heading">¶</a></h2>
 <ul>
 <li><p>When asked about installation workloads choose <code class="docutils literal notranslate"><span class="pre">Desktop</span> <span class="pre">development</span> <span class="pre">with</span> <span class="pre">C++</span></code></p></li>
 <li><p>Under the “Installation details” section verify that the following are checked:</p>
@@ -112,6 +112,7 @@
 <div><ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">Windows</span> <span class="pre">Universal</span> <span class="pre">CRT</span> <span class="pre">SDK</span></code></p></li>
 <li><p>The latest <code class="docutils literal notranslate"><span class="pre">Windows</span> <span class="pre">10</span> <span class="pre">SDK</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MSVC</span> <span class="pre">v142</span> <span class="pre">-</span> <span class="pre">VS</span> <span class="pre">2019</span> <span class="pre">C++</span> <span class="pre">x64/x86</span> <span class="pre">build</span> <span class="pre">tools</span></code></p></li>
 </ul>
 </div></blockquote>
 </li>
@@ -171,9 +172,9 @@
 <h2>Configure CMake and generate build files<a class="headerlink" href="#configure-cmake-and-generate-build-files" title="Permalink to this heading">¶</a></h2>
 <ul>
 <li><dl class="simple">
-<dt>You can configure CMake using an MSVC or Ninja generator. Choose one of the following:</dt><dd><ul class="simple">
-<li><p>For MSVC, use the terminal or powershell prompt from the last step.</p></li>
-<li><p>For Ninja, open the <code class="docutils literal notranslate"><span class="pre">x64</span> <span class="pre">Native</span> <span class="pre">Tools</span> <span class="pre">Command</span> <span class="pre">Prompt</span> <span class="pre">for</span> <span class="pre">VS</span> <span class="pre">2019</span></code> from your search bar.</p></li>
+<dt>You can configure CMake using an MS Visual Studio or Ninja generator. Choose one of the following:</dt><dd><ul class="simple">
+<li><p>For MS Visual Studio, use the terminal or powershell prompt from the last step.</p></li>
+<li><p>For Ninja, open the <code class="docutils literal notranslate"><span class="pre">x64</span> <span class="pre">Native</span> <span class="pre">Tools</span> <span class="pre">Command</span> <span class="pre">Prompt</span> <span class="pre">for</span> <span class="pre">VS</span> <span class="pre">2019</span></code> or <code class="docutils literal notranslate"><span class="pre">x64</span> <span class="pre">Native</span> <span class="pre">Tools</span> <span class="pre">Command</span> <span class="pre">Prompt</span> <span class="pre">for</span> <span class="pre">VS</span> <span class="pre">2022</span></code> from your search bar.</p></li>
 </ul>
 </dd>
 </dl>
@@ -183,14 +184,16 @@
 <li><p>If you want your build directory inside your source directory, run either:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">--preset=win-msvc</span></code> for configuring with MSVC, or</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">--preset=win-vs</span></code> for configuring with Visual Studio 2022, or</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">--preset=win-vs-2019</span></code> for configuring with Visual Studio 2019, or</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">--preset=win-ninja</span></code> for configuring with Ninja.</p></li>
 </ul>
 </div></blockquote>
 </li>
 <li><dl class="simple">
 <dt>Alternatively, if you want to specify a different build directory, run either:</dt><dd><ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">--preset=win-msvc</span> <span class="pre">-B</span> <span class="pre">{BUILD_DIR}</span></code>, or</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">--preset=win-vs</span> <span class="pre">-B</span> <span class="pre">{BUILD_DIR}</span></code>, or</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">--preset=win-vs-2019</span>&#160; <span class="pre">-B</span> <span class="pre">{BUILD_DIR}</span></code>, or</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">--preset=win-ninja</span> <span class="pre">-B</span> <span class="pre">{BUILD_DIR}</span></code></p></li>
 </ul>
 </dd>
@@ -198,10 +201,10 @@
 </li>
 </ul>
 </section>
-<section id="compile-and-build-using-msvc">
-<h2>Compile and Build using MSVC<a class="headerlink" href="#compile-and-build-using-msvc" title="Permalink to this heading">¶</a></h2>
+<section id="compile-and-build-using-ms-visual-studio">
+<h2>Compile and Build using MS Visual Studio<a class="headerlink" href="#compile-and-build-using-ms-visual-studio" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
-<li><p>Open visual studio with <code class="docutils literal notranslate"><span class="pre">visualstudio.bat</span></code> then click build.</p></li>
+<li><p>Open visual studio with <code class="docutils literal notranslate"><span class="pre">visual-studio.bat</span></code>, which is found in the build folder, and then click build.</p></li>
 <li><p>It’s not possible to compile in Debug on Windows with conda libraries, however Release, RelWithDebInfo, and DebugWithRelRuntime for Debugging will compile fine.</p></li>
 <li><p>Once in visual studio, the correct target to use as a startup project in visual studio is <code class="docutils literal notranslate"><span class="pre">workbench</span></code>, not <code class="docutils literal notranslate"><span class="pre">MantidWorkbench</span></code>. You can then press F5 to start workbench.</p></li>
 </ul>
@@ -209,9 +212,25 @@
 <section id="compile-and-build-using-ninja">
 <h2>Compile and Build using Ninja<a class="headerlink" href="#compile-and-build-using-ninja" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
-<li><p>Navigate to the build directory using the <code class="docutils literal notranslate"><span class="pre">x64</span> <span class="pre">Native</span> <span class="pre">Tools</span> <span class="pre">Command</span> <span class="pre">Prompt</span> <span class="pre">for</span> <span class="pre">VS</span> <span class="pre">2019</span></code> from the previous step.</p></li>
+<li><dl class="simple">
+<dt>From the command line:</dt><dd><ul>
+<li><p>Navigate to the build directory using the <code class="docutils literal notranslate"><span class="pre">x64</span> <span class="pre">Native</span> <span class="pre">Tools</span> <span class="pre">Command</span> <span class="pre">Prompt</span> <span class="pre">for</span> <span class="pre">VS</span> <span class="pre">2019</span></code> or <code class="docutils literal notranslate"><span class="pre">x64</span> <span class="pre">Native</span> <span class="pre">Tools</span> <span class="pre">Command</span> <span class="pre">Prompt</span> <span class="pre">for</span> <span class="pre">VS</span> <span class="pre">2022</span></code> from the previous step.</p></li>
 <li><p>To build Mantid Workbench use: <code class="docutils literal notranslate"><span class="pre">ninja</span></code></p></li>
 <li><p>To build the unit tests use: <code class="docutils literal notranslate"><span class="pre">ninja</span> <span class="pre">AllTests</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>In Visual Studio:</dt><dd><ul>
+<li><p>Open Visual Studio with <code class="docutils literal notranslate"><span class="pre">visual-studio_ninja.bat</span></code>, which is found in the build folder</p></li>
+<li><p>Select “win-ninja” from the Configuration dropdown at the top of the screen</p></li>
+<li><p>Select “Switch between solutions and available views” in the Solution Explorer and click on “CMake Targets View”</p></li>
+<li><p>It is recommmended that the “When cache is out of date” option is set to “Never run configure step automatically” in Tools-&gt;Options-&gt;CMake</p></li>
+</ul>
+</dd>
+</dl>
+</li>
 </ul>
 </section>
 <section id="building-and-debugging-with-clion">
