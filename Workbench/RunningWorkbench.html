@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Workbench Index</title>
+    <title>Running Workbench</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
@@ -14,8 +14,8 @@
     <script src="../_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Workbench Development" href="BuildingWorkbench.html" />
-    <link rel="prev" title="ISIS Reflectometry Interface" href="../ISISReflectometryInterface.html" />
+    <link rel="next" title="Project Save" href="ProjectSaveInterfaces.html" />
+    <link rel="prev" title="Workbench Development" href="BuildingWorkbench.html" />
 
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -85,10 +85,12 @@
   <ul>
     <li class="nav-item nav-item-0"><a href="../index.html">Documentation</a> &#187;</li>
     
+    <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Workbench Index</a> &#187;</li>
     
     
     
-    <li class="nav-item nav-item-this"><a href="">Workbench Index</a></li>
+    
+    <li class="nav-item nav-item-this"><a href="">Running Workbench</a></li>
     
     
   </ul>
@@ -99,24 +101,32 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <section id="workbench-index">
-<span id="workbenchindex"></span><h1>Workbench Index<a class="headerlink" href="#workbench-index" title="Permalink to this heading">¶</a></h1>
-<section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h2>
-<p>The workbench is the new PyQt-based GUI that will be the primary interface for
-interacting with the mantid framework. The plotting is provided by
-<a class="reference external" href="https://matplotlib.org/">matplotlib</a>. It has replaced MantidPlot.</p>
-<div class="toctree-wrapper compound">
+  <section id="running-workbench">
+<span id="runningworkbench"></span><h1>Running Workbench<a class="headerlink" href="#running-workbench" title="Permalink to this heading">¶</a></h1>
+<section id="how-does-workbench-get-run">
+<h2>How does Workbench get run<a class="headerlink" href="#how-does-workbench-get-run" title="Permalink to this heading">¶</a></h2>
+<p>Mantid Workbench is run on two separate Processes. The first process, known as the parent process, creates a second process using the
+<a class="reference external" href="https://docs.python.org/3/library/multiprocessing.html">multiprocessing python package</a>, known as the child process. The responsibilities
+of the two processes are roughly as follows:</p>
+<ul class="simple">
+<li><p>The child process is the process on which the Workbench is opened. If there is a terminating fault that occurs when using the Workbench,</p></li>
+</ul>
+<p>such as a segmentation fault, this process will exit. Alternatively, a close event triggered by a user will also cause this process to exit.</p>
+<ul class="simple">
+<li><p>The responsibility of the parent process is to wait for the child process to exit. When the child process exits, a decision is made whether</p></li>
+</ul>
+<p>an ErrorReporter window needs to be opened depending on the exit code of the Workbench.</p>
+</section>
+<section id="a-note-on-debugging">
+<h2>A note on debugging<a class="headerlink" href="#a-note-on-debugging" title="Permalink to this heading">¶</a></h2>
+<p>The default behaviour of Workbench is to start as a parent and child process as described above. For debugging, we want to attach to the main process that users see (i.e. the child process). If we attach to the parent process, your breakpoints will not be hit. To ensure we attach to the correct process, we can run the Workbench with the <code class="docutils literal notranslate"><span class="pre">--single-process</span></code> flag.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>workbench<span class="w"> </span>--single-process
+</pre></div>
 </div>
-<dl class="simple">
-<dt><a class="reference internal" href="BuildingWorkbench.html"><span class="doc">Build Workbench</span></a></dt><dd><p>A document detailing how to build and package the workbench.</p>
-</dd>
-<dt><a class="reference internal" href="RunningWorkbench.html"><span class="doc">Running Workbench</span></a></dt><dd><p>A document detailing the two processes used to run the workbench.</p>
-</dd>
-<dt><a class="reference internal" href="ProjectSaveInterfaces.html"><span class="doc">Project Save</span></a></dt><dd><p>This document details Project Save on workbench and gives details on how to allow the saving and loading of interfaces in workbench.</p>
-</dd>
-</dl>
-<p><a class="reference internal" href="../PyCharm.html#debug-workbench-in-pycharm-ref"><span class="std std-ref">Debugging workbench with Pycharm</span></a>.</p>
+<p>For a developer environment you might also want to specify the <code class="docutils literal notranslate"><span class="pre">PYTHONPATH</span></code> where <code class="docutils literal notranslate"><span class="pre">&lt;config&gt;</span></code> is only required when using the VS generator on Windows.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">PYTHONPATH</span><span class="o">=</span>/path/to/build/bin/&lt;config&gt;<span class="w"> </span>workbench<span class="w"> </span>--single-process
+</pre></div>
+</div>
 </section>
 </section>
 
@@ -133,11 +143,11 @@ interacting with the mantid framework. The plotting is provided by
           
             
   <li>
-    <a href="../ISISReflectometryInterface.html" title="Previous Chapter: ISIS Reflectometry Interface"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; ISIS Reflecto...</span>
+    <a href="BuildingWorkbench.html" title="Previous Chapter: Workbench Development"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Workbench Development</span>
     </a>
   </li>
   <li>
-    <a href="BuildingWorkbench.html" title="Next Chapter: Workbench Development"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Workbench Development &raquo;</span>
+    <a href="ProjectSaveInterfaces.html" title="Next Chapter: Project Save"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Project Save &raquo;</span>
     </a>
   </li>
           
