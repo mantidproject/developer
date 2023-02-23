@@ -237,6 +237,21 @@ Make sure the <cite>Share non-identifiable information</cite> button is currentl
 <li><p>Run the <cite>NormaliseToMonitor</cite> algorithm</p></li>
 <li><p>This should cause an error reporter dialog saying Mantid has thrown an unexpected exception</p></li>
 <li><p>The <cite>Public3</cite> contact details from Test 6 should be displayed and the <cite>Remember Me</cite> checkbox ticked</p></li>
+<li><p>Close the error reporter and MantidWorkbench</p></li>
+</ul>
+<hr class="docutils" />
+<ol class="arabic simple" start="8">
+<li><p>Open your <code class="docutils literal notranslate"><span class="pre">Mantid.user.properties</span></code> file</p></li>
+</ol>
+<ul class="simple">
+<li><p>Add the incorrect rooturl <code class="docutils literal notranslate"><span class="pre">errorreports.rooturl</span> <span class="pre">=</span> <span class="pre">https://error.mantidproject.org</span></code> anywhere in the file (correct url is <code class="docutils literal notranslate"><span class="pre">https://errorreports.mantidproject.org</span></code>)</p></li>
+<li><p>This will cause the error reporter to fail to send the report</p></li>
+<li><p>Open MantidWorkbench</p></li>
+<li><p>Cause a crash using either of the previous methods</p></li>
+<li><p>Click the <code class="docutils literal notranslate"><span class="pre">Yes,</span> <span class="pre">share</span> <span class="pre">information</span></code> button to send the report</p></li>
+<li><p>A message box should appear informing you that the error report has failed to send</p></li>
+<li><p>Close the message box and the error reporter should stay open</p></li>
+<li><p>Check you can still access the additional information</p></li>
 </ul>
 <p>Test the error reporter with any weird and wonderful ideas.
 Note any problems with Workbench or these testing instructions.</p>
