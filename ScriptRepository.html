@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Script Repository</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Plotting (Elemental Analysis)" href="Widgets/Plotting.html" />
+    <link rel="prev" title="Sample Logs" href="SampleLogsDev.html" />
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-59110517-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+  </head><body>
+
+
+
+
+
+  <div id="navbar" class="navbar navbar-default ">
+    <div class="container">
+      <div class="navbar-header">
+        
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://www.mantidproject.org">
+           </a>
+        <span class="navbar-text navbar-version pull-left"><b>master</b></span>
+      </div>
+
+      
+        <div class="collapse navbar-collapse nav-collapse">
+      
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="index.html">Home</a></li>
+                <li><a href="https://download.mantidproject.org">Download</a></li>
+                <li><a href="https://docs.mantidproject.org">User Documentation</a></li>
+                <li><a href="http://www.mantidproject.org/contact">Contact Us</a></li>
+            
+            
+              
+              
+            
+            
+            
+            
+          </ul>
+              
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+            </div>
+    </div>
+    <p>
+<div class="related" role="navigation" aria-label="related navigation">
+  <h3>Navigation</h3>
+  <ul>
+    <li class="nav-item nav-item-0"><a href="index.html">Documentation</a> &#187;</li>
+    
+    
+    
+    
+    <li class="nav-item nav-item-this"><a href="">Script Repository</a></li>
+    
+    
+  </ul>
+</div> </p>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <section id="script-repository">
+<span id="scriptrepository"></span><h1>Script Repository<a class="headerlink" href="#script-repository" title="Permalink to this heading">¶</a></h1>
+<p>This page describes the implementation of the <a class="reference external" href="https://docs.mantidproject.org/nightly/workbench/scriptrepository.html#workbenchscriptrepository" title="(in MantidProject v6.5)"><span class="xref std std-ref">script repository</span></a>
+from a developer perspective.</p>
+<section id="purpose">
+<h2>Purpose<a class="headerlink" href="#purpose" title="Permalink to this heading">¶</a></h2>
+<p>The script repository was designed to enable users to easily share scripts with
+other users in the Mantid community without requiring knowledge
+or use of an additional system.</p>
+<p>The design criteria from the user perspective were:</p>
+<ul class="simple">
+<li><p>ability to list available content without having to download the whole repository</p></li>
+<li><p>ability to download just the content selected by the user</p></li>
+<li><p>ability to publish content, along with identifying information:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">Author</span> <span class="pre">Name</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Author</span> <span class="pre">Email</span></code></p></li>
+</ul>
+</li>
+<li><p>ability to delete content authored by the user</p></li>
+</ul>
+</section>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h2>
+<p>The script repository implementation is split into three parts as illustrated below:</p>
+<figure class="align-default">
+<img alt="_images/scriptrepository-architecture.png" src="_images/scriptrepository-architecture.png" />
+</figure>
+<ol class="arabic simple">
+<li><p><strong>Frontend</strong> - the GUI accessed by users through Workbench and described in <a class="reference external" href="https://docs.mantidproject.org/nightly/workbench/scriptrepository.html#workbenchscriptrepository" title="(in MantidProject v6.5)"><span class="xref std std-ref">script repository</span></a>.</p></li>
+<li><p><strong>Backend</strong> - the server component that acts as an intermediary to the Git repository</p></li>
+<li><p><strong>GitHub repository</strong> - final storage location of the uploaded content.
+This is currently a <a class="reference external" href="https://github.com/mantidproject/scriptrepository">GitHub repository</a>.
+It can be used with standard git commands and the front/backend will respond as
+expected.</p></li>
+</ol>
+</section>
+<section id="frontend">
+<h2>Frontend<a class="headerlink" href="#frontend" title="Permalink to this heading">¶</a></h2>
+<p>The frontend seen by users is implemented by the
+<a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/qt/widgets/common/inc/MantidQtWidgets/Common/ScriptRepositoryView.h">ScriptRepositoryView</a>.
+It implements a Qt-table-based view, with accompanying models, of the content within the <a class="reference external" href="https://github.com/mantidproject/scriptrepository">GitHub repository</a>.
+Please see the <a class="reference external" href="https://docs.mantidproject.org/nightly/workbench/scriptrepository.html#workbenchscriptrepository" title="(in MantidProject v6.5)"><span class="xref std std-ref">script repository</span></a> for a description of the features.</p>
+</section>
+<section id="backend">
+<h2>Backend<a class="headerlink" href="#backend" title="Permalink to this heading">¶</a></h2>
+<p>The backend is a Python application that receives requests from the frontend and
+processes them accordingly, interacting with the final GitHub repository store
+when necessary. The source code is available <a class="reference external" href="https://github.com/mantidproject/scriptrepository-backend">here</a>.</p>
+<p>It provides capabilities to:</p>
+<ul class="simple">
+<li><p>download an index of the repository without fetching the content itself (see below)</p></li>
+<li><p>fetch requested content from the repository</p></li>
+<li><p>upload/delete requested content from the repository</p></li>
+</ul>
+<p>The backend requires a clone of the repository in order to push/pull content.
+The cloned repository connected to the backend must be configured with an
+appropriate SSH key to allow it to publish to GitHub. For the production
+setup please see the <a class="reference external" href="https://github.com/mantidproject/ansible-linode">Ansible configuration</a>
+(access is limited to those with server access.)</p>
+</section>
+<section id="github-repository">
+<h2>GitHub Repository<a class="headerlink" href="#github-repository" title="Permalink to this heading">¶</a></h2>
+<p>This is the ultimate store of the script content that is uploaded.
+It is a standard Git repository hosted on <a class="reference external" href="https://github.com/mantidproject/scriptrepository">GitHub</a> and as
+such any Git client can interact with the repository as normal. All changes will
+be reflected by the backend and ultimately the frontend.</p>
+<p>The repository index is created and maintained within repository as a <a class="reference external" href="https://github.com/mantidproject/scriptrepository/blob/master/repository.json">JSON file</a>.
+A <a class="reference external" href="https://github.com/mantidproject/scriptrepository/blob/master/.github/workflows/indexing.yml">GitHub Action</a> ensures that the index is updated each time
+a push to the default branch occurs.</p>
+</section>
+</section>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+      <ul class="nav navbar-nav" style=" float: right;">
+      
+      
+          
+            
+  <li>
+    <a href="SampleLogsDev.html" title="Previous Chapter: Sample Logs"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Sample Logs</span>
+    </a>
+  </li>
+  <li>
+    <a href="Widgets/Plotting.html" title="Next Chapter: Plotting (Elemental Analysis)"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Plotting (Ele... &raquo;</span>
+    </a>
+  </li>
+          
+       
+          <li><a href="#">Back to top</a></li>
+       </ul>
+    <p>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
