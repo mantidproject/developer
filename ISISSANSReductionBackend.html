@@ -12,6 +12,7 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/sphinx_highlight.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Load Algorithm Hook" href="LoadAlgorithmHook.html" />
@@ -189,35 +190,35 @@ without going into implementation details. This is done in some sections below.<
 <p>The starting point is equation 5 in the article by
 Richard Heenan et al, <em>J. Appl. Cryst.</em> (1997), pages 1140-1147. The coherent
 macroscopic cross-section is calculated at ISIS using :</p>
-<div class="math">
-<p><img src="_images/math/47c14c8645072d5040028fd8122f00e08fc4e630.png" alt="\frac{\partial \Sigma}{\partial \Omega} (Q) = \frac{Scale}{V_{SAM}} \frac{\sum_{R,\lambda \subset Q}C(R,\lambda)}{\sum_{R,\lambda \subset Q}M(\lambda)T(\lambda)D(\lambda)F(R)\Omega (R) Cor(R,\lambda)}"/></p>
-</div><p>This equation is aiming to do the best job at returning from the measured SANS
-data the quantity of interest, the cross-section, <img class="math" src="_images/math/13669b728367e9304f1f5a45dfd0931cc7fdc5f7.png" alt="\frac{\partial \Sigma}{\partial \Omega}"/>,
-which is an absolute scattering probability, in units of <img class="math" src="_images/math/45af463bd029ed92cad9f550900df19cc363ca8d.png" alt="cm_{-1}"/>. The <img class="math" src="_images/math/a812e4b0f30b8061004e5e679d548b82a416356c.png" alt="Scale"/>
+<div class="math notranslate nohighlight">
+\[\frac{\partial \Sigma}{\partial \Omega} (Q) = \frac{Scale}{V_{SAM}} \frac{\sum_{R,\lambda \subset Q}C(R,\lambda)}{\sum_{R,\lambda \subset Q}M(\lambda)T(\lambda)D(\lambda)F(R)\Omega (R) Cor(R,\lambda)}\]</div>
+<p>This equation is aiming to do the best job at returning from the measured SANS
+data the quantity of interest, the cross-section, <span class="math notranslate nohighlight">\(\frac{\partial \Sigma}{\partial \Omega}\)</span>,
+which is an absolute scattering probability, in units of <span class="math notranslate nohighlight">\(cm_{-1}\)</span>. The <span class="math notranslate nohighlight">\(Scale\)</span>
 factor in the equation above fine tunes the cross-section to give the correct
 value (usually based on a fit to scattering from a standard polymer sample).
-The value of <img class="math" src="_images/math/a812e4b0f30b8061004e5e679d548b82a416356c.png" alt="Scale"/>  varies with the instrument set up, and with how the
-units and normalisation for the other terms are chosen. <img class="math" src="_images/math/70956034d93b70a8ea3663dec79cc9ada51dc2df.png" alt="C(R,\lambda)"/>
-are the observed counts at radius vector <img class="math" src="_images/math/1ebe654cc7b8f2a0d8100aa5825cf2b9021adbbc.png" alt="R"/> from the diffractometer axis
-and wavelength <img class="math" src="_images/math/cefc603e5658facb747581f9567192993f21c7ab.png" alt="\lambda"/>. <img class="math" src="_images/math/b45aac6d68a0ac8beec41a45a42a3e8d4bdc9e5e.png" alt="V_{SAM}"/> is the volume of the sample.
-<img class="math" src="_images/math/f5ae98862e68a2a27c30b55f8045092a9a3bcf22.png" alt="M(\lambda)"/> is an incident monitor spectrum. <img class="math" src="_images/math/51fddc4efb4cfa360401c3b435ee9a67f53cb4d9.png" alt="D(\lambda)"/> contains
+The value of <span class="math notranslate nohighlight">\(Scale\)</span>  varies with the instrument set up, and with how the
+units and normalisation for the other terms are chosen. <span class="math notranslate nohighlight">\(C(R,\lambda)\)</span>
+are the observed counts at radius vector <span class="math notranslate nohighlight">\(R\)</span> from the diffractometer axis
+and wavelength <span class="math notranslate nohighlight">\(\lambda\)</span>. <span class="math notranslate nohighlight">\(V_{SAM}\)</span> is the volume of the sample.
+<span class="math notranslate nohighlight">\(M(\lambda)\)</span> is an incident monitor spectrum. <span class="math notranslate nohighlight">\(D(\lambda)\)</span> contains
 the relative efficiency of the main detector compared to the incident monitor.
-<img class="math" src="_images/math/51fddc4efb4cfa360401c3b435ee9a67f53cb4d9.png" alt="D(\lambda)"/> is initially determined experimentally, but later subjected
+<span class="math notranslate nohighlight">\(D(\lambda)\)</span> is initially determined experimentally, but later subjected
 to empirical adjustments. In reality the detector efficiencies implied in
-<img class="math" src="_images/math/51fddc4efb4cfa360401c3b435ee9a67f53cb4d9.png" alt="D(\lambda)"/> are also pixel dependent. This variation is in part
-accounted for by <img class="math" src="_images/math/96e45cdc757adb966bfd9d14ec098ffad0eefaac.png" alt="F(R)"/>, which is called the flat cell or flood source
-calibration file. <img class="math" src="_images/math/96e45cdc757adb966bfd9d14ec098ffad0eefaac.png" alt="F(R)"/> is also determined experimentally, and aims to
+<span class="math notranslate nohighlight">\(D(\lambda)\)</span> are also pixel dependent. This variation is in part
+accounted for by <span class="math notranslate nohighlight">\(F(R)\)</span>, which is called the flat cell or flood source
+calibration file. <span class="math notranslate nohighlight">\(F(R)\)</span> is also determined experimentally, and aims to
 contain information about the relative efficiency of individual detector pixels.
 It is normalised to values close to 1 in order not to change the overall scaling
 of the equation. The experimental flood source data are divided by detector pixel
-solid angles at their measurement set up to give <img class="math" src="_images/math/96e45cdc757adb966bfd9d14ec098ffad0eefaac.png" alt="F(R)"/>.
+solid angles at their measurement set up to give <span class="math notranslate nohighlight">\(F(R)\)</span>.
 Detector pixel solid angles are calculated for the instrument geometry at the
-time of the SANS experiment. <img class="math" src="_images/math/166959ff51cefd788925c43d33a954d9a6eaefb7.png" alt="Cor(R,\lambda)"/> optionally takes into account
+time of the SANS experiment. <span class="math notranslate nohighlight">\(Cor(R,\lambda)\)</span> optionally takes into account
 any corrections that cannot be described as only pixel dependent or only
 wavelength dependent. One such example is for the angle dependence of
-transmissions, <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/SANSWideAngleCorrection-v1.html#algm-sanswideanglecorrection" title="(in MantidProject v6.5)"><span class="xref std std-ref">SANSWideAngleCorrection</span></a>. <img class="math" src="_images/math/e7c4394cb414f3007128951c37b440bf60e83a51.png" alt="T(\lambda)"/>
+transmissions, <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/SANSWideAngleCorrection-v1.html#algm-sanswideanglecorrection" title="(in MantidProject v6.5)"><span class="xref std std-ref">SANSWideAngleCorrection</span></a>. <span class="math notranslate nohighlight">\(T(\lambda)\)</span>
 is the transmission, which measures the ratio of neutron counts after the sample,
-divided by the neutron counts before the sample. <img class="math" src="_images/math/e7c4394cb414f3007128951c37b440bf60e83a51.png" alt="T(\lambda)"/> is calculated
+divided by the neutron counts before the sample. <span class="math notranslate nohighlight">\(T(\lambda)\)</span> is calculated
 from a “transmission run” and a “direct run”. There are at least three ways to
 measure transmission: using a monitor that drops in after the sample position,
 a monitor on the main beam stop or by attenuating the beam, removing the beam stop,
@@ -2580,7 +2581,7 @@ is the entry point for any reduction.</p>
 a script. It takes three important inputs:</p>
 <ul class="simple">
 <li><p>A list of SANS state objects. Each state object defines a reduction. In fact if the state object contains
-period data with <img class="math" src="_images/math/3bfb3a64189a14b2704f4610827762d5e3145114.png" alt="N"/> periods and <img class="math" src="_images/math/4abba779877abb276b98ccb2b4ba9bf2e41947ab.png" alt="M"/> time slices it will in fact define <img class="math" src="_images/math/bd9a997260eaded292b1f2ed08968eebaa880953.png" alt="N \times M"/> reductions.</p></li>
+period data with <span class="math notranslate nohighlight">\(N\)</span> periods and <span class="math notranslate nohighlight">\(M\)</span> time slices it will in fact define <span class="math notranslate nohighlight">\(N \times M\)</span> reductions.</p></li>
 <li><p>A <em>use_optimizations</em> boolean flag. If true, the data loading mechanism will check the ADS first if
 the required data is available from there and only load the data if it is not present. It will place newly
 loaded data into the ADS. The ADS is also checked for can reductions.</p></li>
@@ -2598,8 +2599,8 @@ a potential future optimization if this should be required. The sub-steps to
 handle each state object are:</p>
 <ol class="arabic simple">
 <li><p>Load the data which is relevant for the particular reduction (make use of optimizations if applicable)</p></li>
-<li><p>If the state object contains multi-period data with <img class="math" src="_images/math/3bfb3a64189a14b2704f4610827762d5e3145114.png" alt="N"/> periods and/or <img class="math" src="_images/math/4abba779877abb276b98ccb2b4ba9bf2e41947ab.png" alt="M"/> time slices
-then generate <img class="math" src="_images/math/bd9a997260eaded292b1f2ed08968eebaa880953.png" alt="N \times M"/> state objects</p></li>
+<li><p>If the state object contains multi-period data with <span class="math notranslate nohighlight">\(N\)</span> periods and/or <span class="math notranslate nohighlight">\(M\)</span> time slices
+then generate <span class="math notranslate nohighlight">\(N \times M\)</span> state objects</p></li>
 <li><p>For each state object run the <em>SANSSingleReduction</em> algorithm</p></li>
 <li><p>Group the output workspaces if required, e.g. for reduced multi-period data</p></li>
 <li><p>Provide workspaces to the selected output channel, i.e. ADS, files or both.</p></li>

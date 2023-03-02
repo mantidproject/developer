@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Packaging</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Architecture" href="Architecture.html" />
+    <link rel="prev" title="Getting Started without Conda" href="GettingStarted/GettingStartedNoneConda.html" />
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-59110517-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+  </head><body>
+
+
+
+
+
+  <div id="navbar" class="navbar navbar-default ">
+    <div class="container">
+      <div class="navbar-header">
+        
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://www.mantidproject.org">
+           </a>
+        <span class="navbar-text navbar-version pull-left"><b>master</b></span>
+      </div>
+
+      
+        <div class="collapse navbar-collapse nav-collapse">
+      
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="index.html">Home</a></li>
+                <li><a href="https://download.mantidproject.org">Download</a></li>
+                <li><a href="https://docs.mantidproject.org">User Documentation</a></li>
+                <li><a href="http://www.mantidproject.org/contact">Contact Us</a></li>
+            
+            
+              
+              
+            
+            
+            
+            
+          </ul>
+              
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+            </div>
+    </div>
+    <p>
+<div class="related" role="navigation" aria-label="related navigation">
+  <h3>Navigation</h3>
+  <ul>
+    <li class="nav-item nav-item-0"><a href="index.html">Documentation</a> &#187;</li>
+    
+    
+    
+    
+    <li class="nav-item nav-item-this"><a href="">Packaging</a></li>
+    
+    
+  </ul>
+</div> </p>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <section id="packaging">
+<h1>Packaging<a class="headerlink" href="#packaging" title="Permalink to this heading">¶</a></h1>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#conda" id="id4">Conda</a></p>
+<ul>
+<li><p><a class="reference internal" href="#building-conda-packages" id="id5">Building Conda Packages</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#standalone" id="id6">Standalone</a></p>
+<ul>
+<li><p><a class="reference internal" href="#building-standalone-installers" id="id7">Building Standalone Installers</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<p>This page gives an overview of the different packaging mechansims used to deliver
+Mantid to users.</p>
+<section id="conda">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Conda</a><a class="headerlink" href="#conda" title="Permalink to this heading">¶</a></h2>
+<p>Mantid provides packages to be consumed by the <a class="reference external" href="https://conda.io">Conda</a> package manager.
+This is separate to the <code class="docutils literal notranslate"><span class="pre">mantid-developer</span></code> environment files that setup a local
+development environment. See <a class="reference internal" href="GettingStarted/GettingStarted.html#gettingstarted"><span class="std std-ref">Getting Started</span></a> for more detail on how to setup a development environment.
+The packages described here are those deployed for users to install.</p>
+<p>Even though it is a single codebase the repository is split across 4 conda
+packages:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">mantid</span></code>: Provides Python access to the non-GUI elements of mantid and allows
+users to import mantid as a Python library for use in other programs.
+This package is the base package that can be installed on its own without the requirement
+for any other packages to be installed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mantidqt</span></code>: Provides Python access to Qt-widgets library customized for use
+with the mantid framework, e.g. instrumentview, sliceviewer, file finder widget etc.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mantiddocs</span></code>: Provides the built-in help pages for the Qt Help viewer in
+workbench.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mantidworkbench</span></code>: The graphical application produced by the Mantid project that
+brings together all of the above packages.</p></li>
+</ul>
+<p>Each package is built separately for <code class="docutils literal notranslate"><span class="pre">x64</span></code> Windows, Linux and macOS with the
+exception of <code class="docutils literal notranslate"><span class="pre">mantiddocs</span></code> where a single, <code class="docutils literal notranslate"><span class="pre">noarch</span></code> package is created for all
+operating systems as it only contains static HTML.</p>
+<p>All mantid-conda packages are available to users through Mantid’s
+<a class="reference external" href="https://anaconda.org/mantid">Conda organization</a>.</p>
+<section id="building-conda-packages">
+<span id="id1"></span><h3><a class="toc-backref" href="#id5" role="doc-backlink">Building Conda Packages</a><a class="headerlink" href="#building-conda-packages" title="Permalink to this heading">¶</a></h3>
+<p>Conda requires <a class="reference external" href="https://docs.conda.io/projects/conda-build/en/stable/concepts/recipe.html">recipes</a> as input for producing packages.
+The recipes are stored in the <a class="reference external" href="https://github.com/mantidproject/mantid/tree/main/conda">main codebase</a> so that
+they can evolve as the code develops. The packages are built as part of the
+<a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/buildconfig/Jenkins/Conda/nightly_build_and_deploy.jenkinsfile">CI pipeline</a> using a <a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/buildconfig/Jenkins/Conda/package-conda">script</a> to encapsulate
+the steps.</p>
+<p>To build the packages locally it is recommended that you use a separate
+clone of the repository as the build copies the repository content to a temporary
+working directory and any additional build directories can interfere with the
+packaging. The following steps should produce a set of conda packages in a <code class="docutils literal notranslate"><span class="pre">conda-bld</span></code>
+directory relative to the current working directory
+(on Windows run this from Git bash):</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/mantidproject/mantid.git<span class="w"> </span>mantid-conda-build
+mantid-conda-build/buildconfig/Jenkins/Conda/package-conda<span class="w"> </span><span class="nv">$PWD</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--build-mantid<span class="w"> </span>--build-qt<span class="w"> </span>--build-docs<span class="w"> </span>--build-workbench<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tee<span class="w"> </span>package.log
+<span class="c1"># wait quite a while ...</span>
+<span class="c1"># packages will appear in a conda-bld directory</span>
+</pre></div>
+</div>
+<p>To create a new test environment with packages from the local build:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>mamba<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>local-package-test<span class="w"> </span>-c<span class="w"> </span><span class="nv">$PWD</span>/conda-bld<span class="w"> </span>mantidworkbench
+mamba<span class="w"> </span>activate<span class="w"> </span>local-package-test
+workbench
+</pre></div>
+</div>
+</section>
+</section>
+<section id="standalone">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Standalone</a><a class="headerlink" href="#standalone" title="Permalink to this heading">¶</a></h2>
+<p>Mantid also provides a set of bundled packages that provide a complete install of
+<code class="docutils literal notranslate"><span class="pre">MantidWorkbench</span></code> and all of its dependencies without a user having to
+first setup conda and then install the relevant conda packages.
+The standalone packages are available to users through Mantid’s <a class="reference external" href="https://download.mantidproject.org">download page</a>.</p>
+<p>Each installer is simply a conda environment, with <code class="docutils literal notranslate"><span class="pre">mantidworkbench</span></code> installed within
+it followed by the appropriate installer technology wrapped around it.
+Installers are provided for:</p>
+<ul class="simple">
+<li><p><cite>Windows</cite>: A <a class="reference external" href="https://sourceforge.net/projects/nsis/">NSIS</a> installer package providing a wizard-style interface
+for installing/uninstalling MantidWorkbench.</p></li>
+<li><p><cite>macOS</cite>: A <a class="reference external" href="https://en.wikipedia.org/wiki/Apple_Disk_Image">disk image</a> providing a facility to drag-and-drop MantidWorkbench
+to the <cite>/Applications</cite> folder</p></li>
+<li><p><cite>Linux</cite>: An <code class="docutils literal notranslate"><span class="pre">xz</span></code>-compressed tarball of the package files and directories that
+can be extracted to any location.</p></li>
+</ul>
+<section id="building-standalone-installers">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">Building Standalone Installers</a><a class="headerlink" href="#building-standalone-installers" title="Permalink to this heading">¶</a></h3>
+<p>The installers are built as part of the <a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/buildconfig/Jenkins/Conda/nightly_build_and_deploy.jenkinsfile">CI pipeline</a> using a
+<a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/buildconfig/Jenkins/Conda/package-standalone">script</a> to encapsulate the build steps.</p>
+<p>To build an installer locally first build a set of conda packages using the
+<a class="reference internal" href="#building-conda-packages"><span class="std std-ref">instructions above</span></a>. Once you have the <code class="docutils literal notranslate"><span class="pre">conda-bld</span></code>
+directory run the following from the same working directory:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>mantid-conda-build/buildconfig/Jenkins/Conda/package-standalone<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="nv">$PWD</span><span class="w"> </span>--package-suffix<span class="w"> </span>Unstable<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tee<span class="w"> </span>standalone-package.log
+<span class="c1"># wait some time and the installer will appear in the working directory</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">--package-suffix</span></code> argument is an optional string to append to the name
+of the final package. We generally pick <code class="docutils literal notranslate"><span class="pre">Unstable</span></code> for installers not built
+by the CI pipeline to indicate it has been built outside of the standard process.</p>
+</section>
+</section>
+</section>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+      <ul class="nav navbar-nav" style=" float: right;">
+      
+      
+          
+            
+  <li>
+    <a href="GettingStarted/GettingStartedNoneConda.html" title="Previous Chapter: Getting Started without Conda"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Getting Start...</span>
+    </a>
+  </li>
+  <li>
+    <a href="Architecture.html" title="Next Chapter: Architecture"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Architecture &raquo;</span>
+    </a>
+  </li>
+          
+       
+          <li><a href="#">Back to top</a></li>
+       </ul>
+    <p>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
