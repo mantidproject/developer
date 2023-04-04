@@ -109,13 +109,11 @@
 <a class="reference external" href="https://docs.python.org/3/library/multiprocessing.html">multiprocessing python package</a>, known as the child process. The responsibilities
 of the two processes are roughly as follows:</p>
 <ul class="simple">
-<li><p>The child process is the process on which the Workbench is opened. If there is a terminating fault that occurs when using the Workbench,</p></li>
+<li><p>The child process is the process on which the Workbench is opened. If there is a terminating fault that occurs when using the Workbench,
+such as a segmentation fault, this process will exit. Alternatively, a close event triggered by a user will also cause this process to exit.</p></li>
+<li><p>The responsibility of the parent process is to wait for the child process to exit. When the child process exits, a decision is made whether
+an ErrorReporter window needs to be opened depending on the exit code of the Workbench.</p></li>
 </ul>
-<p>such as a segmentation fault, this process will exit. Alternatively, a close event triggered by a user will also cause this process to exit.</p>
-<ul class="simple">
-<li><p>The responsibility of the parent process is to wait for the child process to exit. When the child process exits, a decision is made whether</p></li>
-</ul>
-<p>an ErrorReporter window needs to be opened depending on the exit code of the Workbench.</p>
 </section>
 <section id="a-note-on-debugging">
 <h2>A note on debugging<a class="headerlink" href="#a-note-on-debugging" title="Permalink to this heading">¶</a></h2>
