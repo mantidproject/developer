@@ -159,30 +159,22 @@ performance penalty will be pretty severe.</p>
 (you can check with <em>gcc -v</em>).</p>
 <p>To change to a sanitized build navigate to your build folder and execute the
 following if you’re using a single-config generator (eg Ninja):</p>
-<blockquote>
-<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cmake<span class="w"> </span>*path_to_src*<span class="w"> </span>-DUSE_SANITIZER<span class="o">=</span>*Mode*<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>RelWithDebInfo
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cmake<span class="w"> </span>*path_to_src*<span class="w"> </span>-DUSE_SANITIZER<span class="o">=</span>*Mode*<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>RelWithDebInfo
 </pre></div>
 </div>
-</div></blockquote>
 <p>…or the following with a multi-config generator (eg Visual Studio):</p>
-<blockquote>
-<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cmake<span class="w"> </span>*path_to_src*<span class="w"> </span>-DUSE_SANITIZER<span class="o">=</span>*Mode*
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cmake<span class="w"> </span>*path_to_src*<span class="w"> </span>-DUSE_SANITIZER<span class="o">=</span>*Mode*
 </pre></div>
 </div>
-</div></blockquote>
 <p>If you are using GCC and need to specify a different compiler too (for example if your system
 default is GCC-7)</p>
-<blockquote>
-<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">CC</span><span class="o">=</span>gcc-8<span class="w"> </span><span class="nv">CXX</span><span class="o">=</span>g++-8<span class="w"> </span>cmake<span class="w"> </span>*path_to_src*<span class="w"> </span>-DUSE_SANITIZER<span class="o">=</span>*Mode*<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>RelWithDebInfo
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">CC</span><span class="o">=</span>gcc-8<span class="w"> </span><span class="nv">CXX</span><span class="o">=</span>g++-8<span class="w"> </span>cmake<span class="w"> </span>*path_to_src*<span class="w"> </span>-DUSE_SANITIZER<span class="o">=</span>*Mode*<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>RelWithDebInfo
 </pre></div>
 </div>
-</div></blockquote>
 <p>For example, to switch to an address sanitizer build the following can be used:</p>
-<blockquote>
-<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cmake<span class="w"> </span>*path_to_src*<span class="w"> </span>-DUSE_SANITIZER<span class="o">=</span>Address<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>RelWithDebInfo
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cmake<span class="w"> </span>*path_to_src*<span class="w"> </span>-DUSE_SANITIZER<span class="o">=</span>Address<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>RelWithDebInfo
 </pre></div>
 </div>
-</div></blockquote>
 </section>
 <section id="cmake-gui">
 <h3><a class="toc-backref" href="#id5" role="doc-backlink">CMake GUI</a><a class="headerlink" href="#cmake-gui" title="Permalink to this heading">¶</a></h3>
@@ -212,9 +204,10 @@ The exceptions are handled but they cause the debugger to stop. These exceptions
 <p>Some parts of the Mantid code (eg H5Util.cpp) don’t compile when the address sanitizer is enabled and the /O2 optimisation flag is used (in RelWithDebInfo).
 This flag is switched to /O1 in order to improve stack trace information (see above) and this fortunately removes the compilation errors.</p>
 <p>The following path (or equivalent for your Visual Studio version) needs to be added to your path environment variable in order for Visual Studio to find some .lib files that are used by the sanitizer and also to locate a symbolizer exe that is required for useful error messages:</p>
-<p>C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\bin\Hostx64\x64</p>
-<p>Additional information is available on this web page:</p>
-<p><a class="reference external" href="https://devblogs.microsoft.com/cppblog/asan-for-windows-x64-and-debug-build-support/">https://devblogs.microsoft.com/cppblog/asan-for-windows-x64-and-debug-build-support/</a></p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>C:<span class="se">\\</span>Program<span class="w"> </span>Files<span class="w"> </span><span class="o">(</span>x86<span class="o">)</span><span class="se">\\</span>Microsoft<span class="w"> </span>Visual<span class="w"> </span>Studio<span class="se">\\</span><span class="m">2019</span><span class="se">\\</span>Community<span class="se">\\</span>VC<span class="se">\\</span>Tools<span class="se">\\</span>MSVC<span class="se">\\</span><span class="m">14</span>.27.29110<span class="se">\\</span>bin<span class="se">\\</span>Hostx64<span class="se">\\</span>x64
+</pre></div>
+</div>
+<p>Additional information is available on this <a class="reference external" href="https://devblogs.microsoft.com/cppblog/asan-for-windows-x64-and-debug-build-support/">web page</a>.</p>
 </section>
 <section id="advanced-details">
 <h2><a class="toc-backref" href="#id8" role="doc-backlink">Advanced Details</a><a class="headerlink" href="#advanced-details" title="Permalink to this heading">¶</a></h2>
@@ -223,12 +216,10 @@ want to know what’s happening</p>
 <p>CMake substitutes in various flags for the address sanitizer builds to
 setup suppressions etc… this is the equivalent of doing the following
 in a local shell:</p>
-<blockquote>
-<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">ASAN_OPTIONS</span><span class="o">=</span><span class="s2">&quot;verify_asan_link_order=0:detect_stack_use_after_return=true:halt_on_error=false:suppressions=*path_to_mantid*/tools/Sanitizer/Address.supp&quot;</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">ASAN_OPTIONS</span><span class="o">=</span><span class="s2">&quot;verify_asan_link_order=0:detect_stack_use_after_return=true:halt_on_error=false:suppressions=*path_to_mantid*/tools/Sanitizer/Address.supp&quot;</span>
 <span class="nb">export</span><span class="w"> </span><span class="nv">LSAN_OPTIONS</span><span class="o">=</span><span class="s2">&quot;suppressions=*path_to_mantid*/tools/Sanitizer/Leak.supp&quot;</span>
 </pre></div>
 </div>
-</div></blockquote>
 <p>All code executed which is executed in that shell will now be sanitized
 correctly. To save developers effort the CXX_ADD_TEST macro (in
 FindCxxTest.cmake) will append these environment variables on a developers
@@ -248,18 +239,20 @@ path.</p></li>
 </ul>
 <p>If you need / want to profile C++ components which are triggered from Python
 the following steps should setup your environment:</p>
-<blockquote>
-<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the path to your linked ASAN</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the path to your linked ASAN</span>
 ldd<span class="w"> </span>bin/KernelTest<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;libasan&quot;</span>
 <span class="nb">export</span><span class="w"> </span><span class="nv">LD_PRELOAD</span><span class="o">=</span>/usr/lib/path_to/libasan.so.x
 
+<span class="c1"># leak detection should only show the largest 25 leaks</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">LSAN_OPTIONS</span><span class="o">=</span><span class="s2">&quot;max_leaks=25&quot;</span>
+
 <span class="c1"># You may want to re-run the ASAN_OPTIONS export dropping</span>
 <span class="c1"># the verify to make sure that the C++ component is being instrumented:</span>
+<span class="c1"># log_path is the prefix for the file the results are written to</span>
 
-<span class="nb">export</span><span class="w"> </span><span class="nv">ASAN_OPTIONS</span><span class="o">=</span><span class="s2">&quot;detect_stack_use_after_return=true:halt_on_error=false:suppressions=*path_to_mantid*/buildconfig/Sanitizer/Address.supp&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">ASAN_OPTIONS</span><span class="o">=</span><span class="s2">&quot;detect_stack_use_after_return=true:halt_on_error=false:log_path=asan:suppressions=*path_to_mantid*/tools/Sanitizer/Address.supp&quot;</span>
 </pre></div>
 </div>
-</div></blockquote>
 </section>
 </section>
 <section id="common-problems">
