@@ -107,235 +107,352 @@
 <li><p><a class="reference internal" href="#getting-started" id="id2">Getting Started</a></p></li>
 <li><p><a class="reference internal" href="#coding-the-algorithm" id="id3">Coding the Algorithm</a></p>
 <ul>
-<li><p><a class="reference internal" href="#initialization" id="id4">Initialization</a></p></li>
+<li><p><a class="reference internal" href="#logging" id="id4">Logging</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#execution" id="id5">Execution</a></p>
+<li><p><a class="reference internal" href="#initialization" id="id5">Initialization</a></p>
 <ul>
-<li><p><a class="reference internal" href="#fetching-properties" id="id6">Fetching properties</a></p></li>
-<li><p><a class="reference internal" href="#creating-the-output-workspace" id="id7">Creating the output workspace</a></p></li>
-<li><p><a class="reference internal" href="#using-workspaces" id="id8">Using workspaces</a></p></li>
+<li><p><a class="reference internal" href="#validation-of-inputs" id="id6">Validation of inputs</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#further-features" id="id9">Further Features</a></p>
+<li><p><a class="reference internal" href="#execution" id="id7">Execution</a></p>
 <ul>
-<li><p><a class="reference internal" href="#child-algorithms" id="id10">Child Algorithms</a></p></li>
-<li><p><a class="reference internal" href="#logging" id="id11">Logging</a></p></li>
-<li><p><a class="reference internal" href="#enhancing-asynchronous-running" id="id12">Enhancing asynchronous running</a></p></li>
-<li><p><a class="reference internal" href="#exceptions" id="id13">Exceptions</a></p></li>
-<li><p><a class="reference internal" href="#validation-of-inputs" id="id14">Validation of inputs</a></p></li>
+<li><p><a class="reference internal" href="#fetching-properties" id="id8">Fetching properties</a></p></li>
+<li><p><a class="reference internal" href="#creating-the-output-workspace" id="id9">Creating the output workspace</a></p></li>
+<li><p><a class="reference internal" href="#using-workspaces" id="id10">Using workspaces</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#further-features" id="id11">Further Features</a></p>
+<ul>
+<li><p><a class="reference internal" href="#child-algorithms" id="id12">Child Algorithms</a></p></li>
+<li><p><a class="reference internal" href="#enhancing-asynchronous-running" id="id13">Enhancing asynchronous running</a></p></li>
+<li><p><a class="reference internal" href="#exceptions" id="id14">Exceptions</a></p></li>
 </ul>
 </li>
 </ul>
 </nav>
 <section id="introduction">
 <h2><a class="toc-backref" href="#id1" role="doc-backlink">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
-<p>Mantid’s <a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/Plugin.html#plugin" title="(in MantidProject v6.7)"><span class="xref std std-ref">plugin</span></a> architecture has been engineered so that it is easy for a user
-to write their own algorithm. This page is a primer for the user about to write their first algorithm and assumes no
-great knowledge of C++.
+<p>Mantid’s <a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/Plugin.html#plugin" title="(in MantidProject v6.7)"><span class="xref std std-ref">plugin</span></a> architecture has been engineered so that it is easy for a developer, or intrepid user, to write an algorithm.
+This page is a primer for the user about to write their first algorithm and assumes no great knowledge of C++.
 It covers the basics, with links to more advanced options where appropriate.
 There is special description for the case when you are looking to add a custom <a class="reference internal" href="WritingCustomConvertToMDTransformation.html#writingcustomconverttomdtransformation"><span class="std std-ref">MD conversion plugin</span></a>.</p>
 <p>Alternatively, you can implement your algorithm in <a class="reference external" href="https://docs.mantidproject.org/nightly/tutorials/extending_mantid_with_python/index.html#emwp-intro" title="(in MantidProject v6.7)"><span class="xref std std-ref">Python</span></a>.
-See <a class="reference internal" href="PythonVSCppAlgorithms.html#pythonvscppalgorithms"><span class="std std-ref">Python Vs C++ Algorithms</span></a> for a comparison of Mantid’s
-two programming languages.</p>
-<p>All <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/index.html#algorithms-list" title="(in MantidProject v6.7)"><span class="xref std std-ref">algorithms</span></a> in Mantid <a class="reference external" href="http://en.wikipedia.org/wiki/Inheritance_(computer_science)">inherit</a>
-from a base <code class="docutils literal notranslate"><span class="pre">Algorithm</span></code> class, which provides the support and services required for running a specific
-algorithm and greatly simplifies the process of writing a new one.</p>
+See <a class="reference internal" href="PythonVSCppAlgorithms.html#pythonvscppalgorithms"><span class="std std-ref">Python Vs C++ Algorithms</span></a> for a comparison of Mantid’s two programming languages.</p>
+<p>All <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/index.html#algorithms-list" title="(in MantidProject v6.7)"><span class="xref std std-ref">algorithms</span></a> in Mantid <a class="reference external" href="http://en.wikipedia.org/wiki/Inheritance_(computer_science)">inherit</a> from a base <code class="docutils literal notranslate"><span class="pre">Algorithm</span></code> class,
+which provides the support and services required for running a specific algorithm and greatly simplifies the process of writing a new one.</p>
 </section>
 <section id="getting-started">
 <h2><a class="toc-backref" href="#id2" role="doc-backlink">Getting Started</a><a class="headerlink" href="#getting-started" title="Permalink to this heading">¶</a></h2>
-<p>The first step is to create a new directory, with any name of your choice, under your MantidInstall directory
-(on Windows, probably located at <code class="docutils literal notranslate"><span class="pre">C:\\MantidInstall</span></code>). Alternatively, you can just do everything in the
-UserAlgorithms directory. The UserAlgorithms directory contains a simple Python script called <code class="docutils literal notranslate"><span class="pre">createAlg.py</span></code>.
-This can be used to create a new ‘empty’ algorithm - to create one called ‘MyAlg’ you should type <code class="docutils literal notranslate"><span class="pre">python</span>
-<span class="pre">createAlg.py</span> <span class="pre">myAlg</span> <span class="pre">category</span></code>, where category is an optional argument to set the algorithm’s category.
-To do the same thing ‘by hand’, create files called <code class="docutils literal notranslate"><span class="pre">MyAlg.h</span></code> and <code class="docutils literal notranslate"><span class="pre">MyAlg.cpp</span></code> and paste in the following
-boilerplate C++ code (changing each occurrence of ‘MyAlg’ to your chosen algorithm name):</p>
-<p><strong>Header file (MyAlg.h)</strong>:</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#pragma once</span>
-
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;MantidAPI/Algorithm.h&quot;</span>
-
-<span class="k">class</span><span class="w"> </span><span class="nc">DLLExport</span><span class="w"> </span><span class="n">MyAlg</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Mantid</span><span class="o">::</span><span class="n">API</span><span class="o">::</span><span class="n">Algorithm</span>
-<span class="p">{</span>
-<span class="k">public</span><span class="o">:</span>
-<span class="w">  </span><span class="c1">/// (Empty) Constructor</span>
-<span class="w">  </span><span class="n">MyAlg</span><span class="p">()</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Mantid</span><span class="o">::</span><span class="n">API</span><span class="o">::</span><span class="n">Algorithm</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
-<span class="w">  </span><span class="c1">/// Virtual destructor</span>
-<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">MyAlg</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span><span class="p">;</span>
-<span class="w">  </span><span class="c1">/// Algorithm&#39;s name</span>
-<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">name</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;MyAlg&quot;</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
-<span class="w">  </span><span class="c1">/// Algorithm&#39;s purpose/summary</span>
-<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">summary</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Summary&quot;</span><span class="p">;}</span>
-<span class="w">  </span><span class="c1">/// Algorithm&#39;s version</span>
-<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="nf">version</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
-<span class="w">  </span><span class="c1">/// Algorithm&#39;s category for identification</span>
-<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">category</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;UserDefined&quot;</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
-
-<span class="k">private</span><span class="o">:</span>
-<span class="w">  </span><span class="c1">/// Initialisation code</span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">init</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
-<span class="w">  </span><span class="c1">/// Execution code</span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">exec</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
-<span class="p">};</span>
+<p>Creating a new algorithm is simplified using <a class="reference internal" href="ToolsOverview.html#class-maker-py"><span class="std std-ref">class_maker.py</span></a></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>python<span class="w"> </span>buildconfig/class_maker.py<span class="w"> </span>--alg<span class="w"> </span>Algorithms<span class="w"> </span>MyAlg
 </pre></div>
 </div>
-<p><strong>Source file (MyAlg.cpp)</strong>:</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;MyAlg.h&quot;</span>
-
-<span class="c1">// Register the algorithm into the AlgorithmFactory</span>
-<span class="n">DECLARE_ALGORITHM</span><span class="p">(</span><span class="n">MyAlg</span><span class="p">);</span>
-
-<span class="kt">void</span><span class="w"> </span><span class="nf">MyAlg::init</span><span class="p">()</span>
-<span class="p">{</span>
-<span class="p">}</span>
-
-<span class="kt">void</span><span class="w"> </span><span class="nf">MyAlg::exec</span><span class="p">()</span>
-<span class="p">{</span>
-<span class="p">}</span>
+<p>which will give an amount of information about all that it did.
+The intentionally failing unit test, <code class="docutils literal notranslate"><span class="pre">MyAlgTest.h</span></code>, and user docs, <code class="docutils literal notranslate"><span class="pre">MyAlg-v1.rst</span></code>, will not be described here, but need to be updated before contributing.
+The excerpts below are the files created and formatted using the <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> hooks configured for c++ files.
+The exact contents of the generated code may change, the methods required do not.</p>
+<p><strong>Header file</strong> <a class="reference download internal" download="" href="_downloads/a9fd095f1c23924a169b2df1ceda0a1d/MyAlg_initial.h"><code class="xref download docutils literal notranslate"><span class="pre">MyAlg_initial.h</span></code></a> from <code class="docutils literal notranslate"><span class="pre">class_maker.py</span></code></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">#pragma once</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;MantidAPI/Algorithm.h&quot;</span>
+<span class="linenos"> 4</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;MantidAlgorithms/DllConfig.h&quot;</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="k">namespace</span><span class="w"> </span><span class="nn">Mantid</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 7</span><span class="k">namespace</span><span class="w"> </span><span class="nn">Algorithms</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span><span class="cm">/** MyAlg : TODO: DESCRIPTION</span>
+<span class="linenos">10</span><span class="cm"> */</span>
+<span class="linenos">11</span><span class="k">class</span><span class="w"> </span><span class="nc">MANTID_ALGORITHMS_DLL</span><span class="w"> </span><span class="n">MyAlg</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">API</span><span class="o">::</span><span class="n">Algorithm</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">12</span><span class="k">public</span><span class="o">:</span>
+<span class="linenos">13</span><span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">name</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+<span class="linenos">14</span><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="nf">version</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+<span class="linenos">15</span><span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">category</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+<span class="linenos">16</span><span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">summary</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+<span class="linenos">17</span>
+<span class="linenos">18</span><span class="k">private</span><span class="o">:</span>
+<span class="linenos">19</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">init</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+<span class="linenos">20</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">exec</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+<span class="linenos">21</span><span class="p">};</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span><span class="p">}</span><span class="w"> </span><span class="c1">// namespace Algorithms</span>
+<span class="linenos">24</span><span class="p">}</span><span class="w"> </span><span class="c1">// namespace Mantid</span>
 </pre></div>
 </div>
-<p>At this point you will already have something that will compile and run. To do so (on Windows), copy the files
-<code class="docutils literal notranslate"><span class="pre">build.bat</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">SConstruct</span></code> from <code class="docutils literal notranslate"><span class="pre">UserAlgorithms</span></code> into the directory containing your code and execute <code class="docutils literal notranslate"><span class="pre">build.bat</span></code>.
+<p><strong>Source file</strong> <a class="reference download internal" download="" href="_downloads/f7122a6b15263092b9a93a440568f3ba/MyAlg_initial.cpp"><code class="xref download docutils literal notranslate"><span class="pre">MyAlg_initial.cpp</span></code></a> from <code class="docutils literal notranslate"><span class="pre">class_maker.py</span></code></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 8</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;MantidAlgorithms/MyAlg.h&quot;</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span><span class="k">namespace</span><span class="w"> </span><span class="nn">Mantid</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">11</span><span class="k">namespace</span><span class="w"> </span><span class="nn">Algorithms</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">12</span><span class="k">using</span><span class="w"> </span><span class="n">Mantid</span><span class="o">::</span><span class="n">API</span><span class="o">::</span><span class="n">WorkspaceProperty</span><span class="p">;</span>
+<span class="linenos">13</span><span class="k">using</span><span class="w"> </span><span class="n">Mantid</span><span class="o">::</span><span class="n">Kernel</span><span class="o">::</span><span class="n">Direction</span><span class="p">;</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span><span class="c1">// Register the algorithm into the AlgorithmFactory</span>
+<span class="linenos">16</span><span class="n">DECLARE_ALGORITHM</span><span class="p">(</span><span class="n">MyAlg</span><span class="p">)</span>
+<span class="linenos">17</span>
+<span class="linenos">18</span><span class="c1">//----------------------------------------------------------------------------------------------</span>
+<span class="linenos">19</span>
+<span class="linenos">20</span><span class="c1">/// Algorithms name for identification. @see Algorithm::name</span>
+<span class="linenos">21</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">MyAlg</span><span class="o">::</span><span class="n">name</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;MyAlg&quot;</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span><span class="c1">/// Algorithm&#39;s version for identification. @see Algorithm::version</span>
+<span class="linenos">24</span><span class="kt">int</span><span class="w"> </span><span class="n">MyAlg</span><span class="o">::</span><span class="n">version</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="linenos">25</span>
+<span class="linenos">26</span><span class="c1">/// Algorithm&#39;s category for identification. @see Algorithm::category</span>
+<span class="linenos">27</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">MyAlg</span><span class="o">::</span><span class="n">category</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;TODO: FILL IN A CATEGORY&quot;</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="linenos">28</span>
+<span class="linenos">29</span><span class="c1">/// Algorithm&#39;s summary for use in the GUI and help. @see Algorithm::summary</span>
+<span class="linenos">30</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">MyAlg</span><span class="o">::</span><span class="n">summary</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;TODO: FILL IN A SUMMARY&quot;</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="linenos">31</span>
+<span class="linenos">32</span><span class="c1">//----------------------------------------------------------------------------------------------</span>
+<span class="linenos">33</span><span class="cm">/** Initialize the algorithm&#39;s properties.</span>
+<span class="linenos">34</span><span class="cm"> */</span>
+<span class="linenos">35</span><span class="kt">void</span><span class="w"> </span><span class="n">MyAlg</span><span class="o">::</span><span class="n">init</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">36</span><span class="w">  </span><span class="n">declareProperty</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">WorkspaceProperty</span><span class="o">&lt;</span><span class="n">API</span><span class="o">::</span><span class="n">Workspace</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="s">&quot;InputWorkspace&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Direction</span><span class="o">::</span><span class="n">Input</span><span class="p">),</span>
+<span class="linenos">37</span><span class="w">                  </span><span class="s">&quot;An input workspace.&quot;</span><span class="p">);</span>
+<span class="linenos">38</span><span class="w">  </span><span class="n">declareProperty</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">WorkspaceProperty</span><span class="o">&lt;</span><span class="n">API</span><span class="o">::</span><span class="n">Workspace</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="s">&quot;OutputWorkspace&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Direction</span><span class="o">::</span><span class="n">Output</span><span class="p">),</span>
+<span class="linenos">39</span><span class="w">                  </span><span class="s">&quot;An output workspace.&quot;</span><span class="p">);</span>
+<span class="linenos">40</span><span class="p">}</span>
+<span class="linenos">41</span>
+<span class="linenos">42</span><span class="c1">//----------------------------------------------------------------------------------------------</span>
+<span class="linenos">43</span><span class="cm">/** Execute the algorithm.</span>
+<span class="linenos">44</span><span class="cm"> */</span>
+<span class="linenos">45</span><span class="kt">void</span><span class="w"> </span><span class="n">MyAlg</span><span class="o">::</span><span class="n">exec</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">46</span><span class="w">  </span><span class="c1">// TODO Auto-generated execute stub</span>
+<span class="linenos">47</span><span class="p">}</span>
+<span class="linenos">48</span>
+<span class="linenos">49</span><span class="p">}</span><span class="w"> </span><span class="c1">// namespace Algorithms</span>
+<span class="linenos">50</span><span class="p">}</span><span class="w"> </span><span class="c1">// namespace Mantid</span>
+</pre></div>
+</div>
+<p>At this point you will already have something that will compile and run.
 If you then start MantidWorkbench your algorithm will appear in the list of available algorithms and could be run.
-But, of course, it won’t do anything of interest until you have written some algorithm code…</p>
+Of course, it won’t do anything of interest until you have written some algorithm code.</p>
 </section>
 <section id="coding-the-algorithm">
 <h2><a class="toc-backref" href="#id3" role="doc-backlink">Coding the Algorithm</a><a class="headerlink" href="#coding-the-algorithm" title="Permalink to this heading">¶</a></h2>
-<p>You will see that the algorithm skeletons set up in the last section contain two methods/functions/subroutines
-called <code class="docutils literal notranslate"><span class="pre">init</span></code> and <code class="docutils literal notranslate"><span class="pre">exec</span></code>. It will be no surprise to discover that these will, respectively, contain the code to
-initialise and execute the algorithm, which goes in the <code class="docutils literal notranslate"><span class="pre">.cpp</span></code> file between the curly brackets of each method.
-Note that these are private methods (i.e. cannot be called directly); an algorithm is run by calling the base
-class’s <code class="docutils literal notranslate"><span class="pre">initialize()</span></code> and <code class="docutils literal notranslate"><span class="pre">execute()</span></code> methods, which provide additional services such as the validation of properties,
-fetching workspaces from the <code class="docutils literal notranslate"><span class="pre">AnalysisDataService</span></code>, handling errors and filling the workspace histories.</p>
-<section id="initialization">
-<h3><a class="toc-backref" href="#id4" role="doc-backlink">Initialization</a><a class="headerlink" href="#initialization" title="Permalink to this heading">¶</a></h3>
-<p>The initialization (init) method is executed by the <code class="docutils literal notranslate"><span class="pre">FrameworkManager</span></code> when an algorithm is requested and must
-contain the declaration of the properties required by the algorithm. Atypically, it can also contain other
-initialization code such as the calculation of constants used by the algorithm, so long as this does not
-rely on the values of any of the properties.</p>
-<p>Calls to the <code class="docutils literal notranslate"><span class="pre">declareProperty</span></code> method are used to add a property to this algorithm. See the properties page
-for more information on the types of properties supported and the example algorithms in <code class="docutils literal notranslate"><span class="pre">UserAlgorithms</span></code>
-(especially <a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/Framework/Examples/PropertyAlgorithm.cpp">PropertyAlgorithm</a>
-and <a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/Framework/Examples/WorkspaceAlgorithm.cpp">WorkspaceAlgorithm</a>)
-for further guidance on how to use them.</p>
-<p>For the simple types (integer, double or string), the basic syntax is:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">declareProperty</span><span class="p">(</span><span class="s2">&quot;UniquePropertyName&quot;</span><span class="p">,</span><span class="n">value</span><span class="p">);</span>
+<p>You will see that the algorithm has a variety of methods that need to be filled in.
+The example linked here is used throughout the majority of this document.
+The first few do not normally change very often</p>
+<p>The full files described below are <a class="reference download internal" download="" href="_downloads/24fa3dc42bde5b52bdab6565e2b45f23/MyAlg.h"><code class="xref download docutils literal notranslate"><span class="pre">MyAlg.h</span></code></a> and <a class="reference download internal" download="" href="_downloads/627c11e75c9e793bc87cb9ee2edd80ed/MyAlg.cpp"><code class="xref download docutils literal notranslate"><span class="pre">MyAlg.cpp</span></code></a>.
+Only <code class="docutils literal notranslate"><span class="pre">MyAlg.cpp</span></code> will be shown in detail, but both are functional code that can be viewed as “simple” examples.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">28</span><span class="c1">/// Algorithms name for identification. @see Algorithm::name</span>
+<span class="linenos">29</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">MyAlg::name</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;MyAlg&quot;</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="linenos">30</span>
+<span class="linenos">31</span><span class="c1">/// Algorithm&#39;s version for identification. @see Algorithm::version</span>
+<span class="linenos">32</span><span class="kt">int</span><span class="w"> </span><span class="nf">MyAlg::version</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="linenos">33</span>
+<span class="linenos">34</span><span class="c1">/// Algorithm&#39;s category for identification. @see Algorithm::category</span>
+<span class="linenos">35</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">MyAlg::category</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Examples&quot;</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="linenos">36</span>
+<span class="linenos">37</span><span class="c1">/// Algorithm&#39;s summary for use in the GUI and help. @see Algorithm::summary</span>
+<span class="linenos">38</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">MyAlg::summary</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Multiplies a workspace by a constant. There are some modes&quot;</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
 </pre></div>
 </div>
-<p>An optional <a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/Properties.html#properties-validators" title="(in MantidProject v6.7)"><span class="xref std std-ref">validator</span></a> or
-<a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/Properties.html#properties-directions" title="(in MantidProject v6.7)"><span class="xref std std-ref">directional argument</span></a> (input, output or both)
-can also be appended. The syntax for other property types (<code class="docutils literal notranslate"><span class="pre">WorkspaceProperty</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">ArrayProperty</span></code>) is more
-complex - see the <a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/Properties.html#properties" title="(in MantidProject v6.7)"><span class="xref std std-ref">properties</span></a> page.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">name()</span></code> method should not be verified.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">version()</span></code> method normally returns <code class="docutils literal notranslate"><span class="pre">1</span></code>.
+Mantid allows for having multiple versions of an algorithm registered which is facilitated by this method.
+The most common use cases for multiple versions are when the signature or underly assumptions are radically changed.
+Overall, few algorithms have more than one “version.”</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">category()</span></code> method aids users in finding the algorithm.
+The return can be a semilcolon (<code class="docutils literal notranslate"><span class="pre">;</span></code>) delimited string of categors/subcategories.
+You are highly encouraged to stay to the list of <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/index.html#algorithms-list" title="(in MantidProject v6.7)"><span class="xref std std-ref">existing categories</span></a>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">summary()</span></code> method is a brief description of the algorithms functionality.
+It is automatically re-used in the python docstring, and the generated help.
+The first sentence of the summary (up to the first period, <code class="docutils literal notranslate"><span class="pre">.</span></code>) is what appears in the generated gui for the algorithm.</p>
+<p>You will see that the algorithm skeletons set up in the last section contain two larger methods called <code class="docutils literal notranslate"><span class="pre">init</span></code> and <code class="docutils literal notranslate"><span class="pre">exec</span></code>.
+These are described in sections below.</p>
+<section id="logging">
+<h3><a class="toc-backref" href="#id4" role="doc-backlink">Logging</a><a class="headerlink" href="#logging" title="Permalink to this heading">¶</a></h3>
+<p>The algorithm base class defines an object, <code class="docutils literal notranslate"><span class="pre">g_log</span></code>.
+The <code class="docutils literal notranslate"><span class="pre">g_log</span></code> object enables access to the <a class="reference internal" href="Logging.html#logging"><span class="std std-ref">logging</span></a> facilities of Mantid,
+and is an invaluable tool in understanding the running of your algorithms.
+When writing information to the logs, be aware of the various levels available and that the default level for users is set to <code class="docutils literal notranslate"><span class="pre">notice</span></code>.</p>
+<p>The logging framework does have facility for flushing logs.
+However, logging <code class="docutils literal notranslate"><span class="pre">std::endl</span></code> will force the framework to flush at that time and developers should prever <code class="docutils literal notranslate"><span class="pre">&quot;\n&quot;</span></code> instead to not interfere with the framework.</p>
+</section>
+</section>
+<section id="initialization">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Initialization</a><a class="headerlink" href="#initialization" title="Permalink to this heading">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">init()</span></code> method written in your algorithm is called as part of the larger algorithm lifecycle.
+It is a private method that cannot be called directly, but one can call an algorithm’s inherited <code class="docutils literal notranslate"><span class="pre">initialize()</span></code> method for the desired effect.
+For details, look at the source of the <a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/Framework/API/src/Algorithm.cpp#L281">API::Algorithm::initialize()</a> .</p>
+<p>The initialization (init) method is executed by the <code class="docutils literal notranslate"><span class="pre">FrameworkManager</span></code> when an algorithm is requested and must contain the declaration of the properties required by the algorithm.
+Atypically, it can also contain other initialization code such as the calculation of constants used by the algorithm, so long as this does not rely on the values of any of the properties.</p>
+<p>Calls to the inherited <code class="docutils literal notranslate"><span class="pre">declareProperty()</span></code> method are used to add a property to this algorithm.
+See the properties page for more information on the types of properties supported and the example algorithms in <code class="docutils literal notranslate"><span class="pre">UserAlgorithms</span></code> (especially <a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/Framework/Examples/PropertyAlgorithm.cpp">PropertyAlgorithm</a>
+and <a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/Framework/Examples/WorkspaceAlgorithm.cpp">WorkspaceAlgorithm</a>)
+for further guidance on how to use them.
+There are many overloaded signatures for <code class="docutils literal notranslate"><span class="pre">declareProperty()</span></code> which are intended to make things easier, but can often be confusing due to the many options available.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">43</span><span class="kt">void</span><span class="w"> </span><span class="nf">MyAlg::init</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">44</span><span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">instrumentValidator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">CompositeValidator</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="linenos">45</span><span class="w">  </span><span class="n">instrumentValidator</span><span class="o">-&gt;</span><span class="n">add</span><span class="o">&lt;</span><span class="n">InstrumentValidator</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="linenos">46</span><span class="w">  </span><span class="n">declareProperty</span><span class="p">(</span>
+<span class="linenos">47</span><span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">WorkspaceProperty</span><span class="o">&lt;</span><span class="n">MatrixWorkspace</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="s">&quot;InputWorkspace&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Direction</span><span class="o">::</span><span class="n">Input</span><span class="p">,</span><span class="w"> </span><span class="n">instrumentValidator</span><span class="p">),</span>
+<span class="linenos">48</span><span class="w">      </span><span class="s">&quot;An input workspace.&quot;</span><span class="p">);</span>
+<span class="linenos">49</span><span class="w">  </span><span class="n">declareProperty</span><span class="p">(</span><span class="s">&quot;NumberToApply&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">EMPTY_DBL</span><span class="p">(),</span><span class="w"> </span><span class="s">&quot;Value to apply to workspace. This is extra information&quot;</span><span class="p">);</span>
+<span class="linenos">50</span>
+<span class="linenos">51</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">propOptions</span><span class="p">{</span><span class="s">&quot;X&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Y&quot;</span><span class="p">};</span>
+<span class="linenos">52</span><span class="w">  </span><span class="n">declareProperty</span><span class="p">(</span><span class="s">&quot;WayToApply&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">propOptions</span><span class="p">.</span><span class="n">back</span><span class="p">(),</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">StringListValidator</span><span class="o">&gt;</span><span class="p">(</span><span class="n">propOptions</span><span class="p">),</span>
+<span class="linenos">53</span><span class="w">                  </span><span class="s">&quot;Which axis to apply values to&quot;</span><span class="p">);</span>
+<span class="linenos">54</span>
+<span class="linenos">55</span><span class="w">  </span><span class="n">declareProperty</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">WorkspaceProperty</span><span class="o">&lt;</span><span class="n">MatrixWorkspace</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="s">&quot;OutputWorkspace&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Direction</span><span class="o">::</span><span class="n">Output</span><span class="p">),</span>
+<span class="linenos">56</span><span class="w">                  </span><span class="s">&quot;An output workspace.&quot;</span><span class="p">);</span>
+<span class="linenos">57</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>This example shows a couple of different ways of declaring properites.
+They all have a couple of features in common:</p>
+<ul class="simple">
+<li><p>Every property has a name. Here they are <code class="docutils literal notranslate"><span class="pre">InputWorkspace</span></code>, <code class="docutils literal notranslate"><span class="pre">NumberToApply</span></code>, <code class="docutils literal notranslate"><span class="pre">WayToApply</span></code>, and <code class="docutils literal notranslate"><span class="pre">OutputWorkspace</span></code></p></li>
+<li><p>Every property has a default value, many of which are effectively empty.
+Here they are empty workspace name, <code class="docutils literal notranslate"><span class="pre">EMPTY_DBL()</span></code> (special float value), <code class="docutils literal notranslate"><span class="pre">&quot;Y&quot;</span></code>, and empty name.
+It is extremely unusual to specify a default workspace name</p></li>
+<li><p>Every property has documentation.
+Most of the ones here are very uniformative, but the document on <code class="docutils literal notranslate"><span class="pre">NumberToApply</span></code> was written to demonstrate a particular point.
+Everything up to the first period (<code class="docutils literal notranslate"><span class="pre">.</span></code>) appears in the mouseover in the generated algorithm dialogs.
+The whole string appears in the user docs and python help.</p></li>
+</ul>
+<p>An optional <a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/Properties.html#properties-validators" title="(in MantidProject v6.7)"><span class="xref std std-ref">validator</span></a> or <a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/Properties.html#properties-directions" title="(in MantidProject v6.7)"><span class="xref std std-ref">directional argument</span></a> (input, output or both) can also be appended.
+The syntax for other property types (<code class="docutils literal notranslate"><span class="pre">WorkspaceProperty</span></code> and <code class="docutils literal notranslate"><span class="pre">ArrayProperty</span></code>) is more complex - see the <a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/Properties.html#properties" title="(in MantidProject v6.7)"><span class="xref std std-ref">properties</span></a> page.</p>
+<section id="validation-of-inputs">
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">Validation of inputs</a><a class="headerlink" href="#validation-of-inputs" title="Permalink to this heading">¶</a></h3>
+<p>While not part of the initialization, the optional <code class="docutils literal notranslate"><span class="pre">validateInputs()</span></code> method allows for cross-checking parameters.
+This particular example shows how one would ban a particular value, but normally a validator would be placed on the property itself for this behavior
+For more advanced validation, override the <code class="docutils literal notranslate"><span class="pre">Algorithm::validateInputs()</span></code> method.
+This is a method that returns a map where:</p>
+<ul class="simple">
+<li><p>The key is the name of the property that is in error.</p></li>
+<li><p>The value is a string describing the error.</p></li>
+</ul>
+<p>This method allows you to provide validation that depends on several property values at once (something that cannot be done with <code class="docutils literal notranslate"><span class="pre">IValidator</span></code>).
+Its default implementation returns an empty map, signifying no errors.</p>
+<p>It will be called in dialogs <strong>after</strong> parsing all inputs and setting the properties,
+but <strong>before</strong> executing.
+It is also called again in the <code class="docutils literal notranslate"><span class="pre">execute()</span></code> call, which will throw if this returns something.</p>
+<p>This will set a “star” <code class="docutils literal notranslate"><span class="pre">*</span></code> label next to each property that is reporting an error.
+This makes it easier for users to find where they went wrong.</p>
+<p>If your <code class="docutils literal notranslate"><span class="pre">validateInputs()</span></code> method validates an input workspace property,
+bear in mind that the user could provide a <code class="docutils literal notranslate"><span class="pre">WorkspaceGroup</span></code> (or an unexpected type of workspace) - when retrieving the property,
+check that casting it to its intended type succeeded before attempting to use it.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">58</span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">MyAlg</span><span class="o">::</span><span class="n">validateInputs</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">59</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">issues</span><span class="p">;</span>
+<span class="linenos">60</span>
+<span class="linenos">61</span><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">isDefault</span><span class="p">(</span><span class="s">&quot;NumberToApply&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">62</span><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getProperty</span><span class="p">(</span><span class="s">&quot;NumberToApply&quot;</span><span class="p">);</span>
+<span class="linenos">63</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mf">42.</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">64</span><span class="w">      </span><span class="n">issues</span><span class="p">[</span><span class="s">&quot;NumberToApply&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;We do cannot answer that question&quot;</span><span class="p">;</span>
+<span class="linenos">65</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">66</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">67</span>
+<span class="linenos">68</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">issues</span><span class="p">;</span>
+<span class="linenos">69</span><span class="p">}</span>
+</pre></div>
+</div>
 </section>
 </section>
 <section id="execution">
-<h2><a class="toc-backref" href="#id5" role="doc-backlink">Execution</a><a class="headerlink" href="#execution" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Execution</a><a class="headerlink" href="#execution" title="Permalink to this heading">¶</a></h2>
+<p>Like initialization, the <code class="docutils literal notranslate"><span class="pre">exec()</span></code> method you write is not directly, but can be indirectly called via the <code class="docutils literal notranslate"><span class="pre">execute()</span></code> method of the algorith
+There are other methods that will do the same thing in different modes.
+All of them eventually call the <a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/Framework/API/src/Algorithm.cpp#L509">API::Algorithm::executeInternal()</a> which does the following</p>
+<ul class="simple">
+<li><p>log a warning message if the algorithm is marked as deprecated</p></li>
+<li><p>validate all of the input parameters individually against what they are set to checking for type and any validators that were defined</p></li>
+<li><p>run the <code class="docutils literal notranslate"><span class="pre">validateInputs()</span></code> method</p></li>
+<li><p>run the <code class="docutils literal notranslate"><span class="pre">exec()</span></code> method</p></li>
+<li><p>add history to the Workspace annotating the parameters that the algorithm was called with</p></li>
+</ul>
+<p>Additionally, the algorithm framework also handles things like sync/async calling, exception handling, and interaction with <a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/AnalysisDataService.html#analysis-data-service" title="(in MantidProject v6.7)"><span class="xref std std-ref">AnalysisDataService</span></a>.</p>
 <section id="fetching-properties">
-<h3><a class="toc-backref" href="#id6" role="doc-backlink">Fetching properties</a><a class="headerlink" href="#fetching-properties" title="Permalink to this heading">¶</a></h3>
-<p>Before the data can be processed, the first task is likely to be to fetch the values of the input properties.
-This uses the <code class="docutils literal notranslate"><span class="pre">getProperty</span></code> method as follows:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TYPE</span> <span class="n">myProperty</span> <span class="o">=</span> <span class="n">getProperty</span><span class="p">(</span><span class="s2">&quot;PropertyName&quot;</span><span class="p">);</span>
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">Fetching properties</a><a class="headerlink" href="#fetching-properties" title="Permalink to this heading">¶</a></h3>
+<p>Before the data can be processed,
+the first task is likely to be to fetch the values of the input properties.
+This uses the <code class="docutils literal notranslate"><span class="pre">getProperty()</span></code> method as follows</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">76</span><span class="w">  </span><span class="n">API</span><span class="o">::</span><span class="n">MatrixWorkspace_sptr</span><span class="w"> </span><span class="n">inputWS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getProperty</span><span class="p">(</span><span class="s">&quot;InputWorkspace&quot;</span><span class="p">);</span>
+<span class="linenos">77</span><span class="w">  </span><span class="n">API</span><span class="o">::</span><span class="n">MatrixWorkspace_sptr</span><span class="w"> </span><span class="n">outputWS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getProperty</span><span class="p">(</span><span class="s">&quot;OutputWorkspace&quot;</span><span class="p">);</span>
+<span class="linenos">78</span><span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getProperty</span><span class="p">(</span><span class="s">&quot;NumberToApply&quot;</span><span class="p">);</span>
+<span class="linenos">79</span><span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">axisToApply</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getPropertyValue</span><span class="p">(</span><span class="s">&quot;WayToApply&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>where <code class="docutils literal notranslate"><span class="pre">TYPE</span></code> is the type of the property (<code class="docutils literal notranslate"><span class="pre">int</span></code>, <code class="docutils literal notranslate"><span class="pre">double</span></code>, <code class="docutils literal notranslate"><span class="pre">std::string</span></code>, <code class="docutils literal notranslate"><span class="pre">std::vector</span></code>…). Note that the
-value of a <code class="docutils literal notranslate"><span class="pre">WorkspaceProperty</span></code> is a <a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/SharedPointer.html#shared-pointer" title="(in MantidProject v6.7)"><span class="xref std std-ref">shared pointer</span></a>
-to the workspace, which is referred to as <code class="docutils literal notranslate"><span class="pre">Mantid::API::Workspace_sptr</span></code> or <code class="docutils literal notranslate"><span class="pre">Mantid::API::Workspace_const_sptr</span></code>.
-The latter should be used for input workspaces that will not need to be changed in the course of the algorithm.</p>
+<p>where the type in the left hand side is the type of the property (<code class="docutils literal notranslate"><span class="pre">int</span></code>, <code class="docutils literal notranslate"><span class="pre">double</span></code>, <code class="docutils literal notranslate"><span class="pre">std::string</span></code>, <code class="docutils literal notranslate"><span class="pre">std::vector</span></code>…) and must match what was defined in the <code class="docutils literal notranslate"><span class="pre">init()</span></code>.
+Note that the value of a <code class="docutils literal notranslate"><span class="pre">WorkspaceProperty</span></code> is a <a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/SharedPointer.html#shared-pointer" title="(in MantidProject v6.7)"><span class="xref std std-ref">shared pointer</span></a> to the workspace,
+which is referred to as <code class="docutils literal notranslate"><span class="pre">Mantid::API::Workspace_sptr</span></code> or <code class="docutils literal notranslate"><span class="pre">Mantid::API::Workspace_const_sptr</span></code>.
+The latter should be used for input workspaces that will not need to be changed in the course of the algorithm.
+The output workspace is retrieved here to be used to detect if the algorithm is being performed in-place which will be discussed further down in this document.
+This example also uses the <code class="docutils literal notranslate"><span class="pre">getPropertyValue()</span></code> method which returns a string representation of the requested property (e.g. the name of the workspace).</p>
 <p>If a handle is required on the property itself, rather than just its value, then the same method is used as follows:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Mantid</span><span class="p">::</span><span class="n">Kernel</span><span class="p">::</span><span class="n">Property</span><span class="o">*</span> <span class="n">myProperty</span> <span class="o">=</span> <span class="n">getProperty</span><span class="p">(</span><span class="s2">&quot;PropertyName&quot;</span><span class="p">);</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">Mantid</span><span class="o">::</span><span class="n">Kernel</span><span class="o">::</span><span class="n">Property</span><span class="o">*</span><span class="w"> </span><span class="n">myProperty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getProperty</span><span class="p">(</span><span class="s">&quot;PropertyName&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>This is useful, for example, for checking whether or not an optional property has been set (using Property’s
-<code class="docutils literal notranslate"><span class="pre">isDefault()</span></code> method).</p>
+<p>This is useful, for example, for checking whether or not an optional property has been set (using Property’s <code class="docutils literal notranslate"><span class="pre">isDefault()</span></code> method).
+However, the algorithm has a convenience method <code class="docutils literal notranslate"><span class="pre">isDefault(const</span> <span class="pre">std::string</span> <span class="pre">&amp;)</span></code> as well.</p>
 </section>
 <section id="creating-the-output-workspace">
-<h3><a class="toc-backref" href="#id7" role="doc-backlink">Creating the output workspace</a><a class="headerlink" href="#creating-the-output-workspace" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">Creating the output workspace</a><a class="headerlink" href="#creating-the-output-workspace" title="Permalink to this heading">¶</a></h3>
 <p>Usually, the result of an algorithm will be stored in another new workspace and the algorithm
-will need to create that new workspace through a call to the <code class="docutils literal notranslate"><span class="pre">WorkspaceFactory</span></code>. For the (common)
-example where the output workspace should be of the same type and size as the input one, the code
-would read as follows:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Mantid</span><span class="p">::</span><span class="n">API</span><span class="p">::</span><span class="n">Workspace_sptr</span> <span class="n">outputWorkspace</span> <span class="o">=</span> <span class="n">Mantid</span><span class="p">::</span><span class="n">API</span><span class="p">::</span><span class="n">WorkspaceFactory</span><span class="p">::</span><span class="n">Instance</span><span class="p">()</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">inputWorkspace</span><span class="p">);</span>
+will need to create that new workspace through a call to the <code class="docutils literal notranslate"><span class="pre">WorkspaceFactory</span></code>.
+For the (common) example where the output workspace should be of the same type and size as the input one, the code would read as follows:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">outputWS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Mantid</span><span class="o">::</span><span class="n">API</span><span class="o">::</span><span class="n">WorkspaceFactory</span><span class="o">::</span><span class="n">Instance</span><span class="p">().</span><span class="n">create</span><span class="p">(</span><span class="n">inputWS</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>where <code class="docutils literal notranslate"><span class="pre">inputWorkspace</span></code> is a shared pointer to the input workspace.</p>
+<p>where <code class="docutils literal notranslate"><span class="pre">inputWS</span></code> is a shared pointer to the input workspace.
+However, in many instances, one can simply clone the input workspace and work on the clone directly.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">81</span><span class="w">  </span><span class="c1">// set up the output</span>
+<span class="linenos">82</span><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">outputWS</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">inputWS</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">83</span><span class="w">    </span><span class="n">outputWS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">inputWS</span><span class="o">-&gt;</span><span class="n">clone</span><span class="p">();</span>
+<span class="linenos">84</span><span class="w">  </span><span class="p">}</span>
+</pre></div>
+</div>
 <p>It is also important to, at some point, set the output workspace property to point at this workspace.
 This is achieved through a call to the <code class="docutils literal notranslate"><span class="pre">setProperty</span></code> method as follows:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">setProperty</span><span class="p">(</span><span class="s2">&quot;OutputWorkspacePropertyName&quot;</span><span class="p">,</span><span class="n">outputWorkspace</span><span class="p">);</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">109</span><span class="w">  </span><span class="c1">// pass back the output workspace</span>
+<span class="linenos">110</span><span class="w">  </span><span class="n">setProperty</span><span class="p">(</span><span class="s">&quot;OutputWorkspace&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">outputWS</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>where <code class="docutils literal notranslate"><span class="pre">outputWorkspace</span></code> is a shared pointer to the created output workspace.</p>
 </section>
 <section id="using-workspaces">
-<h3><a class="toc-backref" href="#id8" role="doc-backlink">Using workspaces</a><a class="headerlink" href="#using-workspaces" title="Permalink to this heading">¶</a></h3>
-<p>The bulk of most algorithms will involve the manipulation of the data contained in workspaces
-and information on how to interact with these is given <a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/WorkingWithWorspaces.html#workingwithworkspaces" title="(in MantidProject v6.7)"><span class="xref std std-ref">here</span></a>.
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">Using workspaces</a><a class="headerlink" href="#using-workspaces" title="Permalink to this heading">¶</a></h3>
+<p>The bulk of most algorithms will involve the manipulation of the data contained in workspaces and information on how to interact with these is given <a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/WorkingWithWorspaces.html#workingwithworkspaces" title="(in MantidProject v6.7)"><span class="xref std std-ref">here</span></a>.
 The more advanced user may also want to refer to the full
 <a class="reference external" href="http://doxygen.mantidproject.org/nightly/d3/de9/classMantid_1_1API_1_1Workspace.html">workspace documentation</a>.</p>
-<p>Those familiar with C++ should make use of private methods and data members to break up the execution code into
-more manageable and readable sections.</p>
+<p>Those familiar with C++ should make use of private methods and data members to break up the execution code into more manageable and readable sections.</p>
 </section>
 </section>
 <section id="further-features">
-<h2><a class="toc-backref" href="#id9" role="doc-backlink">Further Features</a><a class="headerlink" href="#further-features" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id11" role="doc-backlink">Further Features</a><a class="headerlink" href="#further-features" title="Permalink to this heading">¶</a></h2>
 <p>The advanced user is referred to the <a class="reference external" href="http://doxygen.mantidproject.org/nightly/d3/de9/classMantid_1_1API_1_1Workspace.html">full documentation page</a>
 for the <code class="docutils literal notranslate"><span class="pre">Algorithm</span></code> base class to explore the full range of methods available for use within an algorithm.
 A few aspects are highlighted below.</p>
 <section id="child-algorithms">
-<h3><a class="toc-backref" href="#id10" role="doc-backlink">Child Algorithms</a><a class="headerlink" href="#child-algorithms" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">Child Algorithms</a><a class="headerlink" href="#child-algorithms" title="Permalink to this heading">¶</a></h3>
 <p>Algorithms may wish to make use of the functionality of other algorithms as part of their execution.
-For example, if a units change is required the <code class="docutils literal notranslate"><span class="pre">ConvertUnits</span></code> algorithm could be used. Mantid therefore
-has the concept of a child algorithm and this is accessed through a call to the
+For example, if a units change is required the <code class="docutils literal notranslate"><span class="pre">ConvertUnits</span></code> algorithm could be used. Mantid therefore has the concept of a child algorithm and this is accessed through a call to the
 <code class="docutils literal notranslate"><span class="pre">createChildAlgorithm</span></code> method as follows:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Mantid</span><span class="p">::</span><span class="n">API</span><span class="p">::</span><span class="n">Algorithm_sptr</span> <span class="n">childAlg</span> <span class="o">=</span> <span class="n">createChildAlgorithm</span><span class="p">(</span><span class="s2">&quot;AlgorithmName&quot;</span><span class="p">);</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">Mantid</span><span class="o">::</span><span class="n">API</span><span class="o">::</span><span class="n">Algorithm_sptr</span><span class="w"> </span><span class="n">childAlg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">createChildAlgorithm</span><span class="p">(</span><span class="s">&quot;AlgorithmName&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>This call will also initialise the algorithm, so the algorithm’s properties can then be set and it can be executed:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">childAlg</span><span class="o">-&gt;</span><span class="n">setPropertyValue</span><span class="p">(</span><span class="s2">&quot;number&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-<span class="n">childAlg</span><span class="o">-&gt;</span><span class="n">setProperty</span><span class="o">&lt;</span><span class="n">Workspace_sptr</span><span class="o">&gt;</span><span class="p">(</span><span class="s2">&quot;Workspace&quot;</span><span class="p">,</span><span class="n">workspacePointer</span><span class="p">);</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">childAlg</span><span class="o">-&gt;</span><span class="n">setPropertyValue</span><span class="p">(</span><span class="s">&quot;number&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="n">childAlg</span><span class="o">-&gt;</span><span class="n">setProperty</span><span class="o">&lt;</span><span class="n">Workspace_sptr</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;Workspace&quot;</span><span class="p">,</span><span class="n">workspacePointer</span><span class="p">);</span>
 <span class="n">childAlg</span><span class="o">-&gt;</span><span class="n">execute</span><span class="p">();</span>
 </pre></div>
 </div>
-</section>
-<section id="logging">
-<h3><a class="toc-backref" href="#id11" role="doc-backlink">Logging</a><a class="headerlink" href="#logging" title="Permalink to this heading">¶</a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">g_log</span></code> object enables access to the <a class="reference internal" href="Logging.html#logging"><span class="std std-ref">logging</span></a> facilities of Mantid, and is an invaluable
-tool in understanding the running of your algorithms.</p>
+<p>Because <code class="docutils literal notranslate"><span class="pre">Property</span></code> is generic to input <strong>and</strong> output, the workspace pointers cannot be <code class="docutils literal notranslate"><span class="pre">const</span></code> when shared with a child algorithm.</p>
 </section>
 <section id="enhancing-asynchronous-running">
-<h3><a class="toc-backref" href="#id12" role="doc-backlink">Enhancing asynchronous running</a><a class="headerlink" href="#enhancing-asynchronous-running" title="Permalink to this heading">¶</a></h3>
-<p>Any algorithm can be run asynchronously without modification. However, some features
-are only enabled if code is added within the <code class="docutils literal notranslate"><span class="pre">exec()</span></code> method. <code class="docutils literal notranslate"><span class="pre">Algorithm::interruption_point()</span></code> should
-be called at appropriate intervals so that the algorithm’s execution can be interrupted.
-<code class="docutils literal notranslate"><span class="pre">Algorithm::progress(double</span> <span class="pre">p)</span></code> reports the progress of the algorithm. <code class="docutils literal notranslate"><span class="pre">p</span></code> must be between
-0 (start) and 1 (finish).</p>
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">Enhancing asynchronous running</a><a class="headerlink" href="#enhancing-asynchronous-running" title="Permalink to this heading">¶</a></h3>
+<p>Any algorithm can be run asynchronously without modification.
+However, some features are only enabled if code is added within the <code class="docutils literal notranslate"><span class="pre">exec()</span></code> method.
+<code class="docutils literal notranslate"><span class="pre">Algorithm::interruption_point()</span></code> should be called at appropriate intervals so that the algorithm’s execution can be interrupted.
+<code class="docutils literal notranslate"><span class="pre">Algorithm::progress(double</span> <span class="pre">p)</span></code> reports the progress of the algorithm.
+<code class="docutils literal notranslate"><span class="pre">p</span></code> must be between 0 (start) and 1 (finish).</p>
 </section>
 <section id="exceptions">
-<h3><a class="toc-backref" href="#id13" role="doc-backlink">Exceptions</a><a class="headerlink" href="#exceptions" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">Exceptions</a><a class="headerlink" href="#exceptions" title="Permalink to this heading">¶</a></h3>
 <p>It is fine to throw exceptions in your algorithms in the event of an unrecoverable failure.
 These will be caught in the base Algorithm class, which will report the failure of the algorithm.</p>
-</section>
-<section id="validation-of-inputs">
-<h3><a class="toc-backref" href="#id14" role="doc-backlink">Validation of inputs</a><a class="headerlink" href="#validation-of-inputs" title="Permalink to this heading">¶</a></h3>
-<p><a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/Properties.html#properties-validators" title="(in MantidProject v6.7)"><span class="xref std std-ref">Validators</span></a> allow you to give feedback
-to the user if the input of a property is incorrect (for example, typing non-numeric characters
-in a number field).</p>
-<p>For more advanced validation, override the <code class="docutils literal notranslate"><span class="pre">Algorithm::validateInputs()</span></code> method. This is a
-method that returns a map where:</p>
-<ul class="simple">
-<li><p>The key is the name of the property that is in error.</p></li>
-<li><p>The value is a string describing the error.</p></li>
-</ul>
-<p>This method allows you to provide validation that depends on several property values at once
-(something that cannot be done with <code class="docutils literal notranslate"><span class="pre">IValidator</span></code>). Its default implementation returns an empty map,
-signifying no errors.</p>
-<p>It will be called in dialogs <strong>after</strong> parsing all inputs and setting the properties, but <strong>before</strong> executing.
-It is also called again in the <code class="docutils literal notranslate"><span class="pre">execute()</span></code> call, which will throw if this returns something.</p>
-<p>This will set a “star” <code class="docutils literal notranslate"><span class="pre">*</span></code> label next to each property that is reporting an error.
-This makes it easier for users to find where they went wrong.</p>
-<p>If your <code class="docutils literal notranslate"><span class="pre">validateInputs()</span></code> method validates an input workspace property, bear in mind that the user
-could provide a <code class="docutils literal notranslate"><span class="pre">WorkspaceGroup</span></code> (or an unexpected type of workspace) - when retrieving the property,
-check that casting it to its intended type succeeded before attempting to use it.</p>
 </section>
 </section>
 </section>

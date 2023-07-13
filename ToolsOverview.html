@@ -144,22 +144,37 @@
 </ul>
 </nav>
 <section id="creating-classes-class-maker-py">
-<h2><a class="toc-backref" href="#id1" role="doc-backlink">Creating classes: class_maker.py</a><a class="headerlink" href="#creating-classes-class-maker-py" title="Permalink to this heading">¶</a></h2>
-<p><strong>To make it faster to create a new class</strong>. This is a small python
-script located in /buildconfig/. It generates the .cpp, .h and test
-files for a class along with some code stubs. It can also flesh out more
-methods for new Algorithms, using the “–alg” option.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>usage: class_maker.py [-h] [--force] [--test] [--alg] SUBPROJECT CLASSNAME
-Utility to create Mantid class files: header, source and test.
+<span id="class-maker-py"></span><h2><a class="toc-backref" href="#id1" role="doc-backlink">Creating classes: class_maker.py</a><a class="headerlink" href="#creating-classes-class-maker-py" title="Permalink to this heading">¶</a></h2>
+<p>To make it faster to create a new cpp class.
+This is a small python script located in <a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/buildconfig/class_maker.py">buildconfig/class_maker.py</a>.
+It generates the <code class="docutils literal notranslate"><span class="pre">.cpp</span></code>, <code class="docutils literal notranslate"><span class="pre">.h</span></code>, and test files for a class along with some code stubs.
+It can also flesh out more methods for new Algorithms, using the <code class="docutils literal notranslate"><span class="pre">--alg</span></code> option which also creates a stub user documentation page <code class="docutils literal notranslate"><span class="pre">.rst</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>usage: class_maker.py [-h] [--force] [--no-header] [--no-test] [--no-cpp]
+                      [--no-rst] [--no-cmake] [--alg] [--subfolder SUBFOLDER]
+                      [--project PROJECT]
+                      SUBPROJECT CLASSNAME
+
+Utility to create Mantid class files: header, source and test. version 1.0
+
 positional arguments:
- SUBPROJECT  The subproject under Framework/; e.g. Kernel
- CLASSNAME   Name of the class to create
+  SUBPROJECT            The subproject under Framework/; e.g. Kernel
+  CLASSNAME             Name of the class to create
+
 optional arguments:
- -h, --help  show this help message and exit
- --force     Force overwriting existing files. Use with caution!
- --test      Create only the test file.
- --alg       Create an Algorithm stub. This adds some methods common to
-             algorithms.
+  -h, --help            show this help message and exit
+  --force               Force overwriting existing files. Use with caution!
+  --no-header           Don&#39;t create the header file
+  --no-test             Don&#39;t create the test file
+  --no-cpp              Don&#39;t create the cpp file
+  --no-rst              Don&#39;t create the rst file
+  --no-cmake            Don&#39;t modify cmake files
+  --alg                 Create an Algorithm stub. This adds some methods
+                        common to algorithms.
+  --subfolder SUBFOLDER
+                        Put the source under a subfolder below the main part
+                        of the project, e.g. Geometry/Instrument.
+  --project PROJECT     The project in which this goes. Default: Framework.
+                        Can be MantidQt
 </pre></div>
 </div>
 </section>
