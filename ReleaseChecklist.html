@@ -746,6 +746,21 @@ password with you if you do not already have access to it.</p></li>
 <p>Open a PR updating the software <code class="docutils literal notranslate"><span class="pre">doi</span></code>, <code class="docutils literal notranslate"><span class="pre">date-released</span></code> and <code class="docutils literal notranslate"><span class="pre">version</span></code> in the <code class="docutils literal notranslate"><span class="pre">CITATION.cff</span></code> file
 at the root of the repository.</p>
 <p>Notify the Release Manager when you complete all your tasks.</p>
+<p><strong>Deploy Versioned Documentation</strong></p>
+<p>Versioned documentation is accessible at <a class="reference external" href="https://docs.mantidproject.org/vX.Y.Z/">https://docs.mantidproject.org/vX.Y.Z/</a>.
+This documentation is hosted at <a class="reference external" href="https://mantidproject.github.io/docs-versioned/vX.Y.Z/">https://mantidproject.github.io/docs-versioned/vX.Y.Z/</a>.
+Documentation is deployed to GitHub via an action on the <a class="reference external" href="https://github.com/mantidproject/docs-versioned">docs-versioned</a> repository.
+This action runs on a push to the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch of the repository.</p>
+<p>To do this:</p>
+<ul class="simple">
+<li><p>On a clone of the mantid repository, check out the commit tagged as the relevant release number: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">tags/&lt;vX.Y.Z&gt;</span> <span class="pre">-b</span> <span class="pre">&lt;new</span> <span class="pre">branch</span> <span class="pre">name&gt;</span></code>.</p></li>
+<li><p>On this branch, build the <code class="docutils literal notranslate"><span class="pre">docs-html</span></code> target (this target is produced by <code class="docutils literal notranslate"><span class="pre">CMake</span></code>).</p></li>
+<li><p>Clone the repository: <a class="reference external" href="https://github.com/mantidproject/docs-versioned">https://github.com/mantidproject/docs-versioned</a>.</p></li>
+<li><p>Remaining on the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch, create a directory for the relevant release in the form <code class="docutils literal notranslate"><span class="pre">vX.Y.Z</span></code>.</p></li>
+<li><p>Copy the built documentation into this new directory. The built documentation will be in your mantid build directory at <code class="docutils literal notranslate"><span class="pre">&lt;build</span> <span class="pre">directory&gt;/docs/html</span></code>.</p></li>
+<li><p>Stage the newly created directory and commit it to your branch.</p></li>
+<li><p>After double-checking that these instructions have been followed correctly, push your branch to the main repository to deploy.</p></li>
+</ul>
 </section>
 </section>
 </section>
