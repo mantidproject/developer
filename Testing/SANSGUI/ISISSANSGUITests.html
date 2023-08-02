@@ -277,6 +277,23 @@ for each row.</p></li>
 <li><p>In the <code class="docutils literal notranslate"><span class="pre">Settings</span></code> tab, <code class="docutils literal notranslate"><span class="pre">General,</span> <span class="pre">Scale,</span> <span class="pre">Event</span> <span class="pre">Slice,</span> <span class="pre">Sample</span></code> sub-tab,
 change the <code class="docutils literal notranslate"><span class="pre">Reduction</span> <span class="pre">Mode</span></code> back to <code class="docutils literal notranslate"><span class="pre">All</span></code>.</p></li>
 </ol>
+<p><em>Scaled Background Subtracted Reduction</em></p>
+<ol class="arabic simple">
+<li><p>In the <code class="docutils literal notranslate"><span class="pre">Settings</span></code> tab, <code class="docutils literal notranslate"><span class="pre">General,</span> <span class="pre">Scale,</span> <span class="pre">Event</span> <span class="pre">Slice,</span> <span class="pre">Sample</span></code> sub-tab, set <code class="docutils literal notranslate"><span class="pre">Reduction</span> <span class="pre">Mode</span></code> to <code class="docutils literal notranslate"><span class="pre">Merged</span></code>.</p></li>
+<li><p>Return to the <code class="docutils literal notranslate"><span class="pre">Runs</span></code> tab.</p></li>
+<li><p>Set the <code class="docutils literal notranslate"><span class="pre">Save</span> <span class="pre">Options</span></code> to <code class="docutils literal notranslate"><span class="pre">Memory</span></code>.</p></li>
+<li><p>Select one of the rows and click <code class="docutils literal notranslate"><span class="pre">Process</span> <span class="pre">Selected</span></code></p></li>
+<li><p>Take note of the name of the reduced workspace with <code class="docutils literal notranslate"><span class="pre">merged</span></code> in the title.</p></li>
+<li><p>Make a copy of the row you just processed using the <code class="docutils literal notranslate"><span class="pre">Copy</span></code> and <code class="docutils literal notranslate"><span class="pre">Paste</span></code> buttons above the runs table.</p></li>
+<li><p>Change the <code class="docutils literal notranslate"><span class="pre">Output</span> <span class="pre">Name</span></code> of the new row to something like <code class="docutils literal notranslate"><span class="pre">bgsub_test</span></code>.</p></li>
+<li><p>In the <code class="docutils literal notranslate"><span class="pre">Options</span></code> column, enter <code class="docutils literal notranslate"><span class="pre">BackgroundWorkspace=&lt;WS_NAME&gt;,</span> <span class="pre">ScaleFactor=0.9</span></code> (replacing &lt;WS_NAME&gt; with the
+name of the merged workspace you took note of before).</p></li>
+<li><p>Select this new row and click <code class="docutils literal notranslate"><span class="pre">Process</span> <span class="pre">Selected</span></code>.</p></li>
+<li><p>When it completes, two output files should have been created with <code class="docutils literal notranslate"><span class="pre">bgsub_test</span></code> in the name. One, which is the
+normal output data. Another with the scaled subtraction, which should have <code class="docutils literal notranslate"><span class="pre">_bgsub</span></code> appended to the name.</p></li>
+<li><p>Right click on each of these and select <code class="docutils literal notranslate"><span class="pre">Show</span> <span class="pre">Data</span></code>. The subtracted workspace’s values should be 10% of the of the
+unsubtracted workspace’s values.</p></li>
+</ol>
 </section>
 <section id="beam-centre-finder">
 <h3><a class="toc-backref" href="#id9" role="doc-backlink">Beam centre finder</a><a class="headerlink" href="#beam-centre-finder" title="Permalink to this heading">¶</a></h3>
