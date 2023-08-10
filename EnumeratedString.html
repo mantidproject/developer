@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>EnumeratedString</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css?v=fadd4351" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=77160d70" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=48f0e2ba"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Event Workspace Development" href="EventWorkspaceDev.html" />
+    <link rel="prev" title="Cell Based View Properties" href="BatchWidget/Internals/CellBasedViewProperties.html" />
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-59110517-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+  </head><body>
+
+
+
+
+
+  <div id="navbar" class="navbar navbar-default ">
+    <div class="container">
+      <div class="navbar-header">
+        
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://www.mantidproject.org">
+           </a>
+        <span class="navbar-text navbar-version pull-left"><b>master</b></span>
+      </div>
+
+      
+        <div class="collapse navbar-collapse nav-collapse">
+      
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="index.html">Home</a></li>
+                <li><a href="https://download.mantidproject.org">Download</a></li>
+                <li><a href="https://docs.mantidproject.org">User Documentation</a></li>
+                <li><a href="http://www.mantidproject.org/contact">Contact Us</a></li>
+            
+            
+              
+              
+            
+            
+            
+            
+          </ul>
+              
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+            </div>
+    </div>
+    <p>
+<div class="related" role="navigation" aria-label="related navigation">
+  <h3>Navigation</h3>
+  <ul>
+    <li class="nav-item nav-item-0"><a href="index.html">Documentation</a> &#187;</li>
+    
+    
+    
+    
+    <li class="nav-item nav-item-this"><a href="">EnumeratedString</a></li>
+    
+    
+  </ul>
+</div> </p>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <section id="enumeratedstring">
+<span id="id1"></span><h1>EnumeratedString<a class="headerlink" href="#enumeratedstring" title="Permalink to this heading">¶</a></h1>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#why-enumeratedstring" id="id2">Why EnumeratedString?</a></p></li>
+<li><p><a class="reference internal" href="#how-to-use-the-enumeratedstring" id="id3">How to use the EnumeratedString</a></p></li>
+<li><p><a class="reference internal" href="#example-use-of-enumeratedstring" id="id4">Example Use of EnumeratedString</a></p></li>
+</ul>
+</nav>
+<section id="why-enumeratedstring">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Why EnumeratedString?</a><a class="headerlink" href="#why-enumeratedstring" title="Permalink to this heading">¶</a></h2>
+<p>It is common for a property to be a string, the value of which must be one of several enumerated values.  Programmatically,
+this is representing an <code class="docutils literal notranslate"><span class="pre">enum</span></code> object in C++, but based on a set of strings instead of integer-types.  What would be ideal
+would be something like the following:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">enum</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">StringPropertyOptions</span><span class="o">:</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="p">{</span><span class="n">option1</span><span class="o">=</span><span class="s">&quot;OptionOne&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">};</span>
+</pre></div>
+</div>
+<p>However, this is not allowed under C++.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">EnumeratedString</span></code> objects allow for binding an <code class="docutils literal notranslate"><span class="pre">enum</span> <span class="pre">class</span></code> to a C-style static array of strings, allowing for much
+of the same behavior.  This allows for easy-to-read <code class="docutils literal notranslate"><span class="pre">if</span></code> and <code class="docutils literal notranslate"><span class="pre">switch</span></code> statements, as well as easy conversions and assignments
+with strings from the allowed set.  This further adds an additional layer of validation for string properties, in additon to the
+<code class="docutils literal notranslate"><span class="pre">StringListValidator</span></code> used in the property declaration.</p>
+</section>
+<section id="how-to-use-the-enumeratedstring">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">How to use the EnumeratedString</a><a class="headerlink" href="#how-to-use-the-enumeratedstring" title="Permalink to this heading">¶</a></h2>
+<p>First include the <code class="docutils literal notranslate"><span class="pre">EnumeratedString.h</span></code> header file.</p>
+<p>This is a template class, and its two template parameters are the name of an <code class="docutils literal notranslate"><span class="pre">enum</span></code> type, and a <em>pointer</em> to static vector of
+<code class="docutils literal notranslate"><span class="pre">std::string</span></code> objects.</p>
+<p>Below is an example.  Consider the mantid algorithm <code class="code docutils literal notranslate"><span class="pre">BakeCake</span></code>, which has a string property,
+<code class="docutils literal notranslate"><span class="pre">CakeType</span></code>.  This algorithm only knows how to bake a few types of cakes.  The allowed types of cake the user can set for
+this property are limited to “Lemon”, “Bundt”, and “Pound”.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">EnumeratedString</span></code> should be setup as follows:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;MantidKernel/EnumeratedString.h&quot;</span>
+
+<span class="k">namespace</span><span class="w"> </span><span class="nn">Mantid</span><span class="w"> </span><span class="p">{</span>
+
+<span class="k">namespace</span><span class="w"> </span><span class="p">{</span>
+<span class="k">enum</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">CakeTypeEnum</span><span class="w"> </span><span class="p">{</span><span class="n">LEMON</span><span class="p">,</span><span class="w"> </span><span class="n">BUNDT</span><span class="p">,</span><span class="w"> </span><span class="n">POUND</span><span class="p">,</span><span class="w"> </span><span class="n">enum_count</span><span class="p">};</span>
+<span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">cakeTypeNames</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;Lemon&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Bundt&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Pound&quot;</span><span class="p">};</span>
+<span class="c1">// optional typedef</span>
+<span class="k">typedef</span><span class="w"> </span><span class="n">EnumeratedString</span><span class="o">&lt;</span><span class="n">CakeEnumType</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">cakeTypeNames</span><span class="o">&gt;</span><span class="w"> </span><span class="n">CAKETYPE</span><span class="p">;</span>
+<span class="p">}</span><span class="w"> </span><span class="c1">// namespace</span>
+
+<span class="c1">// ...</span>
+
+<span class="c1">// initialize an object</span>
+<span class="n">EnumeratedString</span><span class="o">&lt;</span><span class="n">CakeTypeEnum</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">cakeTypeNames</span><span class="o">&gt;</span><span class="w"> </span><span class="n">cake1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CakeTypeEnum</span><span class="o">::</span><span class="n">LEMON</span><span class="p">;</span>
+<span class="n">EnumeratedString</span><span class="o">&lt;</span><span class="n">CakeTypeEnum</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">cakeTypeNames</span><span class="o">&gt;</span><span class="w"> </span><span class="n">cake2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Lemon&quot;</span><span class="p">;</span>
+
+<span class="c1">//init from the typedef</span>
+<span class="n">CAKETYPE</span><span class="w"> </span><span class="n">cake3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Pound&quot;</span><span class="p">;</span>
+
+<span class="kt">bool</span><span class="w"> </span><span class="n">sameCake</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">cake1</span><span class="o">==</span><span class="n">cake2</span><span class="p">);</span><span class="w"> </span><span class="c1">//sameCake = true, a Lemon cake is a Lemon cake</span>
+<span class="kt">bool</span><span class="w"> </span><span class="n">notSameCake</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">cake1</span><span class="o">!=</span><span class="n">cake3</span><span class="p">);</span><span class="w"> </span><span class="c1">//notSameCake = true, a Lemon cake is not a Pound cake</span>
+</pre></div>
+</div>
+<p>Notice that the final element of the <code class="docutils literal notranslate"><span class="pre">enum</span></code> is called <code class="code docutils literal notranslate"><span class="pre">enum_count</span></code>.  This is mandatory.  This element indicates the
+number of elements inside the <code class="docutils literal notranslate"><span class="pre">enum</span></code>, and used for verifying compatibility with the vector of strings.  A compiler error
+will be triggered if this is not included.</p>
+<p>Notice the use of the reference operator, <code class="code docutils literal notranslate"><span class="pre">&amp;cakeTypeNames</span></code>, and <em>not</em> <code class="code docutils literal notranslate"><span class="pre">cakeTypeNames</span></code>.</p>
+<p>In the above code, a <code class="code docutils literal notranslate"><span class="pre">CAKETYPE</span></code> object can be created either from a <code class="code docutils literal notranslate"><span class="pre">CakeTypeEnum</span></code>, or from one of the strings
+in the <code class="code docutils literal notranslate"><span class="pre">cakeTypeNames</span></code> array (either by the literal, or by accessig it in the array), or from another <code class="code docutils literal notranslate"><span class="pre">CAKETYPE</span></code>
+object.  The only assignment/comparison not directly possible is from <code class="code docutils literal notranslate"><span class="pre">CakeTypeEnum</span></code> to one of the strings.  Otherwise
+free conversion and comparison from <code class="code docutils literal notranslate"><span class="pre">CAKETYPE</span></code>, <code class="code docutils literal notranslate"><span class="pre">CakeTypeEnum</span></code>, and strings from <code class="code docutils literal notranslate"><span class="pre">cakeTypeNames</span></code> is possible.</p>
+</section>
+<section id="example-use-of-enumeratedstring">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Example Use of EnumeratedString</a><a class="headerlink" href="#example-use-of-enumeratedstring" title="Permalink to this heading">¶</a></h2>
+<p>An example of where this might be used inside an algorithm is shown below:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;MantidAlgorithms/BakeCake.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;MantidKernel/EnumeratedString.h&quot;</span>
+
+<span class="k">namespace</span><span class="w"> </span><span class="nn">Mantid</span><span class="w"> </span><span class="p">{</span>
+
+<span class="k">namespace</span><span class="w"> </span><span class="p">{</span>
+<span class="k">enum</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">CakeTypeEnum</span><span class="w"> </span><span class="p">{</span><span class="n">LEMON</span><span class="p">,</span><span class="w"> </span><span class="n">BUNDT</span><span class="p">,</span><span class="w"> </span><span class="n">POUND</span><span class="p">,</span><span class="w"> </span><span class="n">enum_count</span><span class="p">};</span>
+<span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">cakeTypeNames</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;Lemon&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Bundt&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Pound&quot;</span><span class="p">};</span>
+<span class="k">typedef</span><span class="w"> </span><span class="n">EnumeratedString</span><span class="o">&lt;</span><span class="n">CakeEnumType</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">cakeTypeNames</span><span class="o">&gt;</span><span class="w"> </span><span class="n">CAKETYPE</span><span class="p">;</span>
+<span class="p">}</span><span class="w"> </span><span class="c1">// namespace</span>
+
+<span class="k">namespace</span><span class="w"> </span><span class="nn">Algorithms</span><span class="w"> </span><span class="p">{</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">BakeCake::init</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="c1">// the StringListValidator is optional, but fails faster; the CAKETYPE cannot be set with string not in list</span>
+<span class="w">   </span><span class="n">declareProperty</span><span class="p">(</span><span class="s">&quot;CakeType&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Bundt&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Mantid</span><span class="o">::</span><span class="n">Kernel</span><span class="o">::</span><span class="n">StringListValidator</span><span class="o">&gt;</span><span class="p">(</span><span class="n">cakeTypeNames</span><span class="p">),</span>
+<span class="w">      </span><span class="s">&quot;Mandatory.  The kind of cake for algorithm to bake.&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">BakeCake::exec</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="c1">// this will assign cakeType from the string property</span>
+<span class="w">   </span><span class="n">CAKETYPE</span><span class="w"> </span><span class="n">cakeType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getProperty</span><span class="p">(</span><span class="s">&quot;CakeType&quot;</span><span class="p">);</span>
+
+<span class="w">   </span><span class="c1">// logic can branch on cakeType comparing to the enum</span>
+<span class="w">   </span><span class="k">switch</span><span class="p">(</span><span class="n">cakeType</span><span class="p">){</span>
+<span class="w">   </span><span class="k">case</span><span class="w"> </span><span class="no">CakeTypeEnum</span><span class="o">::</span><span class="no">LEMON</span><span class="p">:</span>
+<span class="w">      </span><span class="n">bakeLemonCake</span><span class="p">();</span>
+<span class="w">      </span><span class="k">break</span><span class="p">;</span>
+<span class="w">   </span><span class="k">case</span><span class="w"> </span><span class="no">CakeTypeEnum</span><span class="o">::</span><span class="no">BUNDT</span><span class="p">:</span>
+<span class="w">      </span><span class="n">bakeBundtCake</span><span class="p">();</span>
+<span class="w">      </span><span class="k">break</span><span class="p">;</span>
+<span class="w">   </span><span class="k">case</span><span class="w"> </span><span class="no">CakeTypeEnum</span><span class="o">::</span><span class="no">POUND</span><span class="p">:</span>
+<span class="w">      </span><span class="n">bakePoundCake</span><span class="p">();</span>
+<span class="w">      </span><span class="k">break</span><span class="p">;</span>
+<span class="w">   </span><span class="p">}</span>
+
+<span class="w">   </span><span class="n">getLemonsForCake</span><span class="p">(</span><span class="s">&quot;Bundt&quot;</span><span class="p">);</span>
+<span class="w">   </span><span class="n">getIngredientsForCake</span><span class="p">(</span><span class="n">cakeType</span><span class="p">);</span>
+
+<span class="w">   </span><span class="c1">// other ways to compare</span>
+<span class="w">   </span><span class="k">if</span><span class="p">(</span><span class="n">cakeType</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;Lemon&quot;</span><span class="p">){</span>
+<span class="w">      </span><span class="n">g_log</span><span class="p">.</span><span class="n">information</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Baking a lemon cake</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">   </span><span class="p">}</span>
+<span class="w">   </span><span class="k">if</span><span class="p">(</span><span class="n">cakeType</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">CakeTypeEnum</span><span class="o">::</span><span class="n">BUNDT</span><span class="p">){</span>
+<span class="w">      </span><span class="n">g_log</span><span class="p">.</span><span class="n">information</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Baking a bundt cake</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">   </span><span class="p">}</span>
+<span class="w">   </span><span class="n">CAKETYPE</span><span class="w"> </span><span class="n">poundCake</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CakeTypeEnum</span><span class="o">::</span><span class="n">POUND</span><span class="p">;</span>
+<span class="w">   </span><span class="k">if</span><span class="p">(</span><span class="n">cakeType</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">poundCake</span><span class="p">){</span>
+<span class="w">      </span><span class="n">g_log</span><span class="p">.</span><span class="n">information</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Baking a pound cake</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">   </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">BakeCake::getLemonsForCake</span><span class="p">(</span><span class="n">CAKETYPE</span><span class="w"> </span><span class="n">cakeType</span><span class="p">){</span>
+<span class="w">   </span><span class="k">if</span><span class="p">(</span><span class="n">cakeType</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">CakeTypeEnum</span><span class="o">::</span><span class="n">LEMON</span><span class="p">){</span>
+<span class="w">      </span><span class="n">g_log</span><span class="p">.</span><span class="n">information</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Getting some lemons!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">   </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">g_log</span><span class="p">.</span><span class="n">information</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;I have no need for lemons.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">   </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">BakeCake::getIngredientsForCake</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">cakeType</span><span class="p">){</span>
+<span class="w">   </span><span class="n">g_log</span><span class="p">.</span><span class="n">information</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Retrieving ingredients for a &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">cakeType</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; cake!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">}</span><span class="c1">// namespace Algorithms</span>
+<span class="p">}</span><span class="c1">// namespace Mantid</span>
+</pre></div>
+</div>
+<p>This will easily handle branching logic on the basis of a set number of possible string values, using an <code class="docutils literal notranslate"><span class="pre">enum</span></code> to base the set of strings.</p>
+</section>
+</section>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+      <ul class="nav navbar-nav" style=" float: right;">
+      
+      
+          
+            
+  <li>
+    <a href="BatchWidget/Internals/CellBasedViewProperties.html" title="Previous Chapter: Cell Based View Properties"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Cell Based Vi...</span>
+    </a>
+  </li>
+  <li>
+    <a href="EventWorkspaceDev.html" title="Next Chapter: Event Workspace Development"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Event Workspa... &raquo;</span>
+    </a>
+  </li>
+          
+       
+          <li><a href="#">Back to top</a></li>
+       </ul>
+    <p>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
