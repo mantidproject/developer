@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="./">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,9 +9,9 @@
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css?v=fadd4351" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=77160d70" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=48f0e2ba"></script>
+    <script src="_static/documentation_options.js?v=30d551ce"></script>
     <script src="_static/doctools.js?v=888ff710"></script>
-    <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="MVP Tutorial" href="MVPTutorial/index.html" />
@@ -100,7 +100,7 @@
     <div class="body col-md-12 content" role="main">
       
   <section id="mvp-design">
-<span id="mvpdesign"></span><h1>MVP Design<a class="headerlink" href="#mvp-design" title="Permalink to this heading">¶</a></h1>
+<span id="mvpdesign"></span><h1>MVP Design<a class="headerlink" href="#mvp-design" title="Link to this heading">¶</a></h1>
 <nav class="contents local" id="contents">
 <ul class="simple">
 <li><p><a class="reference internal" href="#summary" id="id2">Summary</a></p></li>
@@ -127,13 +127,13 @@
 </ul>
 </nav>
 <section id="summary">
-<h2><a class="toc-backref" href="#id2" role="doc-backlink">Summary</a><a class="headerlink" href="#summary" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Summary</a><a class="headerlink" href="#summary" title="Link to this heading">¶</a></h2>
 <p>This page describes guidelines that should be followed when
 implementing an interface in MantidWorkbench. The aim is to encourage a
 consistent approach to developing interfaces.</p>
 </section>
 <section id="mvp-model-view-presenter">
-<span id="mvpdesignintro"></span><h2><a class="toc-backref" href="#id3" role="doc-backlink">MVP (Model View Presenter)</a><a class="headerlink" href="#mvp-model-view-presenter" title="Permalink to this heading">¶</a></h2>
+<span id="mvpdesignintro"></span><h2><a class="toc-backref" href="#id3" role="doc-backlink">MVP (Model View Presenter)</a><a class="headerlink" href="#mvp-model-view-presenter" title="Link to this heading">¶</a></h2>
 <p>GUIs in Mantid aim to use the MVP pattern. The MVP pattern is a
 generic concept for how to structure GUI code. MVP allows components
 of the GUI to be tested separately and automatically. It also allows
@@ -153,7 +153,7 @@ FFTPresenter), and each component should be a class in its own
 right. Within the MVP pattern the model and view never exchange any
 information directly.</p>
 <section id="model">
-<h3><a class="toc-backref" href="#id4" role="doc-backlink">Model</a><a class="headerlink" href="#model" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id4" role="doc-backlink">Model</a><a class="headerlink" href="#model" title="Link to this heading">¶</a></h3>
 <p>The model is where the ‘hard sums’ take place within GUI. Any Mantid
 algorithms should be run in the model, as well any other calculations
 that may need to be performed.</p>
@@ -167,7 +167,7 @@ maintenance easier.</p>
 should be received from the presenter (more of which below).</p>
 </section>
 <section id="view">
-<span id="mvpdesignview"></span><h3><a class="toc-backref" href="#id5" role="doc-backlink">View</a><a class="headerlink" href="#view" title="Permalink to this heading">¶</a></h3>
+<span id="mvpdesignview"></span><h3><a class="toc-backref" href="#id5" role="doc-backlink">View</a><a class="headerlink" href="#view" title="Link to this heading">¶</a></h3>
 <p>The view determines the look of the GUI. In passive-view MVP, there
 will generally be very little logic in the view. A view should define
 the following sections:</p>
@@ -193,7 +193,7 @@ the children of the main window would be the tabs, and the children of
 the tabs would be the widgets contained within the tabs.</p>
 </section>
 <section id="presenter">
-<h3><a class="toc-backref" href="#id6" role="doc-backlink">Presenter</a><a class="headerlink" href="#presenter" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">Presenter</a><a class="headerlink" href="#presenter" title="Link to this heading">¶</a></h3>
 <p>The presenter acts as a ‘go-between’. It receives data from the view,
 passes it to the model for processing, receives it back from the model
 and passes it to the view to be displayed to the user. The presenter
@@ -250,7 +250,7 @@ done. In passive-view MVP the presenter, in handling this, gets any
 data it needs from the view using the view’s <strong>get</strong> methods.</p>
 </section>
 <section id="testing-mvp-components">
-<h3><a class="toc-backref" href="#id7" role="doc-backlink">Testing MVP Components</a><a class="headerlink" href="#testing-mvp-components" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">Testing MVP Components</a><a class="headerlink" href="#testing-mvp-components" title="Link to this heading">¶</a></h3>
 <p>MVP allows us to write automated tests for a large amount of the
 GUI. We can write independent tests for the presenter and model, but
 usually not the view (for this reason, the view should be as simple as
@@ -277,9 +277,9 @@ called, and with certain arguments.</p>
 </section>
 </section>
 <section id="visual-design">
-<h2><a class="toc-backref" href="#id8" role="doc-backlink">Visual Design</a><a class="headerlink" href="#visual-design" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">Visual Design</a><a class="headerlink" href="#visual-design" title="Link to this heading">¶</a></h2>
 <section id="qt-designer">
-<h3><a class="toc-backref" href="#id9" role="doc-backlink">Qt Designer</a><a class="headerlink" href="#qt-designer" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">Qt Designer</a><a class="headerlink" href="#qt-designer" title="Link to this heading">¶</a></h3>
 <p>The layout of all interfaces and reusable widgets should be done by
 using the Qt’s <a class="reference external" href="http://qt-project.org/doc/qt-4.8/designer-manual.html">Designer</a> tool. This
 has several advantages:</p>
@@ -294,7 +294,7 @@ drop</p></li>
 discussed with a senior developer.</p>
 </section>
 <section id="reusable-widgets">
-<h3><a class="toc-backref" href="#id10" role="doc-backlink">Reusable Widgets</a><a class="headerlink" href="#reusable-widgets" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">Reusable Widgets</a><a class="headerlink" href="#reusable-widgets" title="Link to this heading">¶</a></h3>
 <p>Many interfaces will require similar functionality. For example, the
 ability to enter a filename string to search for a file along with a
 ‘Browse’ button to select a file from the filesystem. This type of
@@ -388,7 +388,7 @@ type can be used from within the Qt Designer.</p>
 </table>
 </section>
 <section id="icons">
-<h3><a class="toc-backref" href="#id11" role="doc-backlink">Icons</a><a class="headerlink" href="#icons" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">Icons</a><a class="headerlink" href="#icons" title="Link to this heading">¶</a></h3>
 <p>Icons are a contentious subject as they can in some cases cause more
 confusion and hinder more than they help. The NHS came up with a
 good set of rules for what icons should be used and this could be
@@ -402,7 +402,7 @@ an icon in Mantid by look at this handy <a class="reference internal" href="Mant
 </section>
 </section>
 <section id="python">
-<h2><a class="toc-backref" href="#id12" role="doc-backlink">Python</a><a class="headerlink" href="#python" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id12" role="doc-backlink">Python</a><a class="headerlink" href="#python" title="Link to this heading">¶</a></h2>
 <p>Interfaces can also be created in Python using the <a class="reference external" href="https://pypi.org/project/QtPy/">qtpy</a> package. The code for the
 interface should be placed in a Python <a class="reference external" href="https://docs.python.org/2/tutorial/modules.html#packages">package</a> under the
 <code class="docutils literal notranslate"><span class="pre">Code/Mantid/scripts</span></code> directory. It should be named after the interface
@@ -424,7 +424,7 @@ file would look like:</p>
 detailed documentation on creating GUIs in Python can be found at
 <a class="reference internal" href="QtDesignerForPython.html#qtdesignerforpython"><span class="std std-ref">Qt Designer for Python</span></a>.</p>
 <section id="id1">
-<h3><a class="toc-backref" href="#id13" role="doc-backlink">Designer</a><a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">Designer</a><a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
 <p>As with the C++ GUI the Qt Designer should be used for layouts of all
 widgets and the main interface. It is recommended that the <code class="docutils literal notranslate"><span class="pre">.ui</span></code>
 files be placed in a <code class="docutils literal notranslate"><span class="pre">ui</span></code> subdirectory of the interface package. To

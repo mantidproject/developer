@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="./">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,9 +9,9 @@
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css?v=fadd4351" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=77160d70" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=48f0e2ba"></script>
+    <script src="_static/documentation_options.js?v=30d551ce"></script>
     <script src="_static/doctools.js?v=888ff710"></script>
-    <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Workbench Index" href="Workbench/index.html" />
@@ -100,18 +100,18 @@
     <div class="body col-md-12 content" role="main">
       
   <section id="isis-reflectometry-interface">
-<span id="isisreflectometryinterface"></span><h1>ISIS Reflectometry Interface<a class="headerlink" href="#isis-reflectometry-interface" title="Permalink to this heading">¶</a></h1>
+<span id="isisreflectometryinterface"></span><h1>ISIS Reflectometry Interface<a class="headerlink" href="#isis-reflectometry-interface" title="Link to this heading">¶</a></h1>
 <p>This document gives a brief overview of the <a class="reference external" href="https://docs.mantidproject.org/nightly/interfaces/ISIS%20Reflectometry.html">ISIS Reflectometry Interface</a> design and things that you should be aware of when working on this interface. If you need to work on this interface, please make sure you are familiar with the <a class="reference internal" href="#development-guidelines">Development guidelines</a> below as a minimum.</p>
 <section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h2>
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
 <p>The <a class="reference external" href="https://docs.mantidproject.org/nightly/interfaces/ISIS%20Reflectometry.html">ISIS Reflectometry Interface</a> provides a way for users to easily run a reduction on a <em>batch</em> of runs. A batch of runs is entered into a table, which is actually a tree structure with two levels - this allows sets of runs to be grouped so that their outputs are post-processed (stitched) together. Various default settings can be specified on the tabs. A tab is also provided to make exporting the results for a set of workspaces easy.</p>
 <p>The reduction for each row is done via <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/ReflectometryISISLoadAndProcess-v1.html#algm-reflectometryisisloadandprocess" title="(in MantidProject v6.7)"><span>ReflectometryISISLoadAndProcess v1</span></a> (which includes any pre-processing). Post-processing for a group is done via <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Stitch1DMany-v1.html#algm-stitch1dmany" title="(in MantidProject v6.7)"><span>Stitch1DMany v1</span></a>.</p>
 <p>The GUI provides a lot of other functionality as well. Because it is quite complex, it is important to keep to the established guidelines, in particular sticking to the MVP design pattern, to avoid the code becoming difficult to work with.</p>
 </section>
 <section id="structure">
-<h2>Structure<a class="headerlink" href="#structure" title="Permalink to this heading">¶</a></h2>
+<h2>Structure<a class="headerlink" href="#structure" title="Link to this heading">¶</a></h2>
 <section id="gui">
-<h3><code class="code docutils literal notranslate"><span class="pre">GUI</span></code><a class="headerlink" href="#gui" title="Permalink to this heading">¶</a></h3>
+<h3><code class="code docutils literal notranslate"><span class="pre">GUI</span></code><a class="headerlink" href="#gui" title="Link to this heading">¶</a></h3>
 <p>This directory contains all of the GUI code for the interface. Each separate component e.g. the Experiment tab, has its own subdirectory. Each of these components has its own view and presenter. There is also a <code class="code docutils literal notranslate"><span class="pre">Common</span></code> subdirectory for GUI components/interfaces common to more than one widget (e.g. the <code class="code docutils literal notranslate"><span class="pre">IReflMessageHandler</span></code> interface).</p>
 <p>Briefly the structure is as follows:</p>
 <ul class="simple">
@@ -131,67 +131,67 @@
 </figure>
 </section>
 <section id="reduction">
-<h3><code class="code docutils literal notranslate"><span class="pre">Reduction</span></code><a class="headerlink" href="#reduction" title="Permalink to this heading">¶</a></h3>
+<h3><code class="code docutils literal notranslate"><span class="pre">Reduction</span></code><a class="headerlink" href="#reduction" title="Link to this heading">¶</a></h3>
 <p>This directory contains models which centre around the <em>reduction configuration</em>. This is a representation of all of the runs and settings that have been entered in a particular Batch tab in the GUI. The top level <code class="code docutils literal notranslate"><span class="pre">Batch</span></code> model therefore provides everything needed to perform a reduction for a particular set of runs.</p>
 <p>Additionally, these models also contain state information, e.g. the <code class="code docutils literal notranslate"><span class="pre">Row</span></code> and <code class="code docutils literal notranslate"><span class="pre">Group</span></code> contain information about whether processing has been performed and what the output workspaces are.</p>
 </section>
 <section id="common">
-<h3><code class="code docutils literal notranslate"><span class="pre">Common</span></code><a class="headerlink" href="#common" title="Permalink to this heading">¶</a></h3>
+<h3><code class="code docutils literal notranslate"><span class="pre">Common</span></code><a class="headerlink" href="#common" title="Link to this heading">¶</a></h3>
 <p>This directory contains non-GUI-specific utility files useful in more than one component of the reflectometry interface but that are still specific to this interface, e.g. <code class="code docutils literal notranslate"><span class="pre">Parse.h</span></code> contains parsing utility functions that are specific for parsing reflectometry input strings such as lists of run numbers. More generic utilities should be put elsewhere, e.g. generic string handling functions might go in <code class="code docutils literal notranslate"><span class="pre">Framework/Kernel</span></code>.</p>
 </section>
 <section id="testhelpers">
-<h3><code class="code docutils literal notranslate"><span class="pre">TestHelpers</span></code><a class="headerlink" href="#testhelpers" title="Permalink to this heading">¶</a></h3>
+<h3><code class="code docutils literal notranslate"><span class="pre">TestHelpers</span></code><a class="headerlink" href="#testhelpers" title="Link to this heading">¶</a></h3>
 <p>This directory contains components specific for unit testing. The actual tests are in <code class="code docutils literal notranslate"><span class="pre">../test/ISISReflectometry/</span></code>.</p>
 </section>
 </section>
 <section id="reduction-back-end">
-<h2>Reduction back-end<a class="headerlink" href="#reduction-back-end" title="Permalink to this heading">¶</a></h2>
+<h2>Reduction back-end<a class="headerlink" href="#reduction-back-end" title="Link to this heading">¶</a></h2>
 <p>The back-end is primarily a set of algorithms, with the entry points from the GUI being <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/ReflectometryISISLoadAndProcess-v1.html#algm-reflectometryisisloadandprocess" title="(in MantidProject v6.7)"><span>ReflectometryISISLoadAndProcess v1</span></a> (for reducing a row) and <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Stitch1DMany-v1.html#algm-stitch1dmany" title="(in MantidProject v6.7)"><span>Stitch1DMany v1</span></a> (for post-processing a group). Any additional processing should be added to these algorithms, or a new wrapper algorithm could be added if appropriate (this might be necessary in future if post-processing will involve more than just stitching).</p>
 <p>The <code class="code docutils literal notranslate"><span class="pre">BatchPresenter</span></code> is the main coordinator for executing a reduction. It uses the <code class="code docutils literal notranslate"><span class="pre">BatchJobManager</span></code>, which converts the reduction configuration to a format appropriate for the algorithms. The conversion functions are in files called <code class="code docutils literal notranslate"><span class="pre">RowProcessingAlgorithm</span></code> and <code class="code docutils literal notranslate"><span class="pre">GroupProcessingAlgorithm</span></code>, and any algorithm-specific code should be kept to these files.</p>
 <p>Unfortunately the whole batch cannot be farmed off to a single algorithm because we need to update the GUI after each row completes, and we must be able to interrupt processing so that we can cancel a large batch operation. We also need to know whether rows completed successfully before we can set up the group post-processing algorithms. Some queue management is therefore done by the <code class="code docutils literal notranslate"><span class="pre">BatchPresenter</span></code>, with the help of the <code class="code docutils literal notranslate"><span class="pre">BatchAlgorithmRunner</span></code>.</p>
 </section>
 <section id="development-guidelines">
-<h2>Development guidelines<a class="headerlink" href="#development-guidelines" title="Permalink to this heading">¶</a></h2>
+<h2>Development guidelines<a class="headerlink" href="#development-guidelines" title="Link to this heading">¶</a></h2>
 <p>The following design principles should be adhered to when developing the GUI. If the current design does not seem appropriate for additional feature requests, do consult with a senior developer to work out the best way forward rather than proceeding in a non-optimal way.</p>
 <section id="adhere-to-mvp">
-<h3>Adhere to MVP<a class="headerlink" href="#adhere-to-mvp" title="Permalink to this heading">¶</a></h3>
+<h3>Adhere to MVP<a class="headerlink" href="#adhere-to-mvp" title="Link to this heading">¶</a></h3>
 <p>To ensure the GUI can be easily tested we follow the MVP design pattern. There is general guidance on this <a class="reference internal" href="MVPDesign.html#mvpdesign"><span class="std std-ref">here</span></a>.</p>
 <p>The view cannot easily be tested, so the aim of MVP is to keep the view as simple as possible so that testing it is not necessary. Typically any user action on the view results in a notification to the presenter and is handled from there (even if that is just an update back to the view). Even simple things like which buttons are enabled on startup are controlled via the presenter rather than setting defaults in the view itself.</p>
 <p>It can be tempting to add one line to toggle or update something in the view without wiring up the presenter. But these quick fixes can quickly introduce bugs as they accumulate. The first question to ask yourself before making any change is: how will I unit test it? In fact, we recommend you follow <a class="reference external" href="https://en.wikipedia.org/wiki/Test-driven_development">test driven development</a> and write the unit tests first.</p>
 <p>Note that the views should not have a direct pointer to their presenters, so the notification is done via a subscriber interface (see <a class="reference internal" href="#subscriber-pattern">Subscriber pattern</a> for an example). The only exception is the <code class="code docutils literal notranslate"><span class="pre">QtMainWindowView</span></code> (see <a class="reference internal" href="#dependency-inversion">Dependency inversion</a>), but notifications should still be done via the subscriber interface. This helps to avoid accidentally introducing logic into the view about what should happen on an event and instead just notify that an event happened. It could also be easily extended to support multiple notifyees of different types, such as different subscribed presenters.</p>
 </section>
 <section id="dependency-inversion">
-<h3>Dependency inversion<a class="headerlink" href="#dependency-inversion" title="Permalink to this heading">¶</a></h3>
+<h3>Dependency inversion<a class="headerlink" href="#dependency-inversion" title="Link to this heading">¶</a></h3>
 <p>Dependency inversion has been introduced in an effort to simplify some aspects of the design and to make the code more modular. Objects that a class depends on are “injected”, rather than being created directly within the class that requires them. This makes testing easier, because the real objects can easily be replaced with mocks. Most injection is currently performed using constructors and takes place at the ‘entry-point’ for the Reflectometry GUI, in <code class="code docutils literal notranslate"><span class="pre">QtMainWindowView</span></code>. See the <a class="reference internal" href="#dependency-injection">Dependency injection</a> example below.</p>
 <p>It is not normal in MVP for a view to have ownership of its presenter. However since the whole of mantid does not use Dependency Injection, and due to the way interfaces get instantiated this is currently necessary for <code class="code docutils literal notranslate"><span class="pre">QtMainWindowView</span></code>. This pointer should only be used for ownership and all other usage should be avoided, so ensure you use the <code class="code docutils literal notranslate"><span class="pre">MainWindowSubscriber</span></code> interface to send notifications to the presenter - i.e. use <code class="code docutils literal notranslate"><span class="pre">m_notifyee</span></code> instead of <code class="code docutils literal notranslate"><span class="pre">m_presenter</span></code>.</p>
 </section>
 <section id="coordinate-via-presenters">
-<h3>Coordinate via presenters<a class="headerlink" href="#coordinate-via-presenters" title="Permalink to this heading">¶</a></h3>
+<h3>Coordinate via presenters<a class="headerlink" href="#coordinate-via-presenters" title="Link to this heading">¶</a></h3>
 <p>Although the components are largely self-contained, there are occasions where communication between them is required. For example, when processing is running, we do not want the user to be able to edit any settings, because this would change the model that the reduction is running on. We therefore disable all inputs that would affect the reduction when processing is running, and re-enable them when it stops.</p>
 <p>Although enabling/disabling inputs in this example affects the views, coordination between components is done via the presenters. This is to ensure that all of these interactions can be unit tested. Each presenter owns its child presenters, and also has a pointer to its parent presenter (which is set by its parent calling <code class="code docutils literal notranslate"><span class="pre">acceptMainPresenter</span></code> on the child and passing a pointer to itself).</p>
 <p>In the example mentioned, processing is initiated from e.g. the button on the <code class="code docutils literal notranslate"><span class="pre">RunsView</span></code>. This sends a notification to the <code class="code docutils literal notranslate"><span class="pre">RunsPresenter</span></code> via the subscriber interface. However, the <code class="code docutils literal notranslate"><span class="pre">RunsPresenter</span></code> cannot initiate processing because information is needed from the other tabs, and the other tabs need to be updated after it starts. Processing therefore needs to be coordinated at the Batch level. The <code class="code docutils literal notranslate"><span class="pre">RunsPresenter</span></code> therefore simply notifies its parent <code class="code docutils literal notranslate"><span class="pre">BatchPresenter</span></code> that the user requested to start processing. The <code class="code docutils literal notranslate"><span class="pre">BatchPresenter</span></code> then does the work to initiate processing. Once it has started (assuming it started successfully) it then notifies all of its child presenters (including the <code class="code docutils literal notranslate"><span class="pre">RunsPresenter</span></code>) that processing is in progress.</p>
 <p>Communication between different Batch components is also occasionally required. For example, for usability reasons, only one autoprocessing operation is allowed to be running at any one time. This means that when autoprocessing is running, we need to disable the <code class="code docutils literal notranslate"><span class="pre">AutoProcess</span></code> button on all of the other Batch tabs as well. This must be coordinated via the MainWindow component, which is the only component that has access to all of the Batch tabs. The user initiates autoprocessing using the <code class="code docutils literal notranslate"><span class="pre">AutoProcess</span></code> button on the <code class="code docutils literal notranslate"><span class="pre">BatchView</span></code>, which notifies the <code class="code docutils literal notranslate"><span class="pre">BatchPresenter</span></code> via the subscriber interface. Since the <code class="code docutils literal notranslate"><span class="pre">BatchPresenter</span></code> knows everything it needs to start autoprocessing for that batch, it does the work to initiate autoprocessing itself. It then simply notifies its parent <code class="code docutils literal notranslate"><span class="pre">MainWindowPresneter</span></code> that autoprocessing is in progress (again, assuming that it started successfully). The <code class="code docutils literal notranslate"><span class="pre">MainWindowPresenter</span></code> then notifies all of its child presenters that autoprocessing is in progress so that they can enable/disable any buttons/widgets as required.</p>
 </section>
 <section id="avoid-use-of-qt-types-outside-of-qt-classes">
-<h3>Avoid use of Qt types outside of Qt classes<a class="headerlink" href="#avoid-use-of-qt-types-outside-of-qt-classes" title="Permalink to this heading">¶</a></h3>
+<h3>Avoid use of Qt types outside of Qt classes<a class="headerlink" href="#avoid-use-of-qt-types-outside-of-qt-classes" title="Link to this heading">¶</a></h3>
 <p>Qt-specific types such as <code class="code docutils literal notranslate"><span class="pre">QString</span></code>, <code class="code docutils literal notranslate"><span class="pre">QColor</span></code> and subclasses of <code class="code docutils literal notranslate"><span class="pre">QWidget</span></code> should be kept out of the presenters and models. This avoids confusion over which types should be used and a potentially messy situation where we are always having to convert back and forth between Qt types and <code class="code docutils literal notranslate"><span class="pre">std</span></code> types. It also avoids an over-reliance on Qt, so that the view could be swapped out in future to one using a different framework, with little or no changes to the presenters and models.</p>
 <p>To help make it clear where Qt is used, all classes that use Qt (namely the views, along with a few supporting classes which wrap or subclass <code class="code docutils literal notranslate"><span class="pre">QObject</span></code>) are named with a <code class="code docutils literal notranslate"><span class="pre">Qt</span></code> prefix in their file and class names. Conversion from types like <code class="code docutils literal notranslate"><span class="pre">QString</span></code> to <code class="code docutils literal notranslate"><span class="pre">std::string</span></code> is performed within the views, and no Qt types are present in their interfaces.</p>
 </section>
 <section id="keep-the-reduction-configuration-up-to-date">
-<h3>Keep the reduction configuration up to date<a class="headerlink" href="#keep-the-reduction-configuration-up-to-date" title="Permalink to this heading">¶</a></h3>
+<h3>Keep the reduction configuration up to date<a class="headerlink" href="#keep-the-reduction-configuration-up-to-date" title="Link to this heading">¶</a></h3>
 <p>Any change on the GUI’s views results in a notification to the relevant presenter, which typically then updates a relevant model in the <code class="code docutils literal notranslate"><span class="pre">Reduction</span></code> directory. The model should always be an up-to-date representation of the view.</p>
 <p>Model state (i.e. processed state for rows/groups and output workspace names) should also be kept up to date. For example, if a row’s output workspace has been deleted, then its state is reset. If settings have changed that would affect the reduction output, then the state is also reset.</p>
 </section>
 <section id="perform-all-processing-in-algorithms">
-<h3>Perform all processing in algorithms<a class="headerlink" href="#perform-all-processing-in-algorithms" title="Permalink to this heading">¶</a></h3>
+<h3>Perform all processing in algorithms<a class="headerlink" href="#perform-all-processing-in-algorithms" title="Link to this heading">¶</a></h3>
 <p>When adding new functionality, where possible this should be done by extending the algorithms rather than by adding logic to the GUI. The aim is that there is a single algorithm that will be run for each entry in the table (albeit a different algorithm for Rows and Groups).</p>
 <p>Consider adding new wrapper algorithms if appropriate. <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/ReflectometryISISLoadAndProcess-v1.html#algm-reflectometryisisloadandprocess" title="(in MantidProject v6.7)"><span>ReflectometryISISLoadAndProcess v1</span></a> is an algorithm that has been added specifically for this purpose and can usually be extended or modified quite easily because it is designed for use with this GUI. The post-processing algorithm, <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Stitch1DMany-v1.html#algm-stitch1dmany" title="(in MantidProject v6.7)"><span>Stitch1DMany v1</span></a>, is more generic so it is likely in future that we would want to add a wrapper for this algorithm rather than changing it directly.</p>
 </section>
 </section>
 <section id="design-pattern-examples">
-<h2>Design pattern examples<a class="headerlink" href="#design-pattern-examples" title="Permalink to this heading">¶</a></h2>
+<h2>Design pattern examples<a class="headerlink" href="#design-pattern-examples" title="Link to this heading">¶</a></h2>
 <section id="subscriber-pattern">
-<h3>Subscriber pattern<a class="headerlink" href="#subscriber-pattern" title="Permalink to this heading">¶</a></h3>
+<h3>Subscriber pattern<a class="headerlink" href="#subscriber-pattern" title="Link to this heading">¶</a></h3>
 <p>Let’s take the <code class="code docutils literal notranslate"><span class="pre">Event</span></code> component as an example.</p>
 <ul>
 <li><p>The view is constructed first and is passed to the presenter. The presenter then immediately subscribes to the view.</p>
@@ -245,7 +245,7 @@
 </ul>
 </section>
 <section id="dependency-injection">
-<h3>Dependency injection<a class="headerlink" href="#dependency-injection" title="Permalink to this heading">¶</a></h3>
+<h3>Dependency injection<a class="headerlink" href="#dependency-injection" title="Link to this heading">¶</a></h3>
 <p>A simple example of <a class="reference internal" href="#dependency-inversion">Dependency inversion</a> is in the use of an <code class="code docutils literal notranslate"><span class="pre">IReflMessageHandler</span></code> interface to provide a service to display messages to the user. These messages must be displayed by a Qt view. Rather than each view having to implement this, we use one object (in this case the <code class="code docutils literal notranslate"><span class="pre">QtMainWindowView</span></code>) to implement this functionality and inject it as an <code class="code docutils literal notranslate"><span class="pre">IReflMessageHandler</span></code> to all of the presenters that need it.</p>
 <ul>
 <li><p>The <code class="code docutils literal notranslate"><span class="pre">IReflMessageHandler</span></code> interface defines the functions for displaying messages:</p>
@@ -293,7 +293,7 @@
 </ul>
 </section>
 <section id="factory-pattern">
-<h3>Factory pattern<a class="headerlink" href="#factory-pattern" title="Permalink to this heading">¶</a></h3>
+<h3>Factory pattern<a class="headerlink" href="#factory-pattern" title="Link to this heading">¶</a></h3>
 <p>The <code class="code docutils literal notranslate"><span class="pre">MainWindowPresenter</span></code> constructs the child Batch presenters on demand. This prevents us injecting them in its constructor. In order to follow <a class="reference internal" href="#dependency-inversion">Dependency inversion</a>, we therefore need to use factories to create the child presenters. Let’s use the <code class="code docutils literal notranslate"><span class="pre">MainWindow</span></code> -&gt; <code class="code docutils literal notranslate"><span class="pre">Batch</span></code> -&gt; <code class="code docutils literal notranslate"><span class="pre">Event</span></code> components as an example.</p>
 <ul class="simple">
 <li><p>As mentioned, the <code class="code docutils literal notranslate"><span class="pre">QtMainWindowView</span></code> is our entry point. This creates (and owns) the <code class="code docutils literal notranslate"><span class="pre">MainWindowPresenter</span></code>. It:</p>
@@ -323,7 +323,7 @@
 </section>
 </section>
 <section id="testing">
-<h2>Testing<a class="headerlink" href="#testing" title="Permalink to this heading">¶</a></h2>
+<h2>Testing<a class="headerlink" href="#testing" title="Link to this heading">¶</a></h2>
 <p>Let’s look at the presenter-view interactions in the <code class="code docutils literal notranslate"><span class="pre">Event</span></code> component as an example.</p>
 <ul>
 <li><p>The <code class="code docutils literal notranslate"><span class="pre">EventPresenterTest</span></code> class sets up a mock view to use for testing:</p>

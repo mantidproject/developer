@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="./">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,9 +9,9 @@
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css?v=fadd4351" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=77160d70" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=48f0e2ba"></script>
+    <script src="_static/documentation_options.js?v=30d551ce"></script>
     <script src="_static/doctools.js?v=888ff710"></script>
-    <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="CMake Guidelines" href="CMakeBestPractices.html" />
@@ -100,7 +100,7 @@
     <div class="body col-md-12 content" role="main">
       
   <section id="building-with-cmake">
-<span id="buildingwithcmake"></span><h1>Building with CMake<a class="headerlink" href="#building-with-cmake" title="Permalink to this heading">¶</a></h1>
+<span id="buildingwithcmake"></span><h1>Building with CMake<a class="headerlink" href="#building-with-cmake" title="Link to this heading">¶</a></h1>
 <nav class="contents local" id="contents">
 <ul class="simple">
 <li><p><a class="reference internal" href="#environment" id="id3">Environment</a></p></li>
@@ -127,34 +127,34 @@
 <p>CMake is the build system for the entirety of Mantid (Framework, MantidQt and MantidWorkbench). It is used to generate native build files for your platform, which can be Makefiles (for use with make, nmake or jom) for command line builds or project/solution files for an IDE (e.g. Visual Studio, Eclipse, Qt Creator, XCode).
 For a “how is it used version” of this guide, look at the scripts used on the builservers for <a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/buildconfig/Jenkins/buildscript.bat">windows</a> or <a class="reference external" href="https://github.com/mantidproject/mantid/blob/master/buildconfig/Jenkins/buildscript">linux/osx</a>.</p>
 <section id="environment">
-<h2><a class="toc-backref" href="#id3" role="doc-backlink">Environment</a><a class="headerlink" href="#environment" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Environment</a><a class="headerlink" href="#environment" title="Link to this heading">¶</a></h2>
 <p>The <a class="reference internal" href="GettingStarted/GettingStarted.html#gettingstarted"><span class="std std-ref">getting started</span></a> page describes how to set up your environment to build Mantid. Follow those instructions and install the Mantid dependencies first.</p>
 <p>Also, if you use the <a class="reference external" href="https://ninja-build.org/">Ninja</a> generator then the executable is called <code class="docutils literal notranslate"><span class="pre">ninja-build</span></code> on many systems (e.g. RHEL) rather than <code class="docutils literal notranslate"><span class="pre">ninja</span></code>.</p>
 </section>
 <section id="ccache">
-<h2><a class="toc-backref" href="#id4" role="doc-backlink">CCache</a><a class="headerlink" href="#ccache" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">CCache</a><a class="headerlink" href="#ccache" title="Link to this heading">¶</a></h2>
 <p>Mantid is configured to use the <a class="reference external" href="https://ccache.samba.org/">ccache</a> tool if it is available.
 It is highly recommended that this be used on Linux/macOS systems, and Windows when using a Ninja generator.
 CCache is installed within your conda environment, and CMake is configured to automatically use it when building.</p>
 <p>With your conda environment activated, run <code class="docutils literal notranslate"><span class="pre">ccache</span> <span class="pre">--max-size=20G</span></code> to increase the size of the cache.</p>
 <p>If you’re build with <code class="docutils literal notranslate"><span class="pre">ccache</span></code> exhibits warnings that are not usually present then try setting the <code class="docutils literal notranslate"><span class="pre">ccache</span> <span class="pre">--set-config=run_second_cpp=&quot;true&quot;</span></code> config option (or set <code class="docutils literal notranslate"><span class="pre">CCACHE_CPP2=yes</span></code> environment variable on older versions).</p>
 <section id="network-drives">
-<h3><a class="toc-backref" href="#id5" role="doc-backlink">Network Drives</a><a class="headerlink" href="#network-drives" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">Network Drives</a><a class="headerlink" href="#network-drives" title="Link to this heading">¶</a></h3>
 <p>The default location for the cache directory is <code class="docutils literal notranslate"><span class="pre">$HOME/.ccache</span></code> on Linux/macOS, and <code class="docutils literal notranslate"><span class="pre">$HOME/AppData/Roaming/ccache</span></code> on Windows. If you’re home directory is on a network-mounted drive then the location of this cache be moved to provide the best performance. On newer versions of <code class="docutils literal notranslate"><span class="pre">ccache</span></code> run <code class="docutils literal notranslate"><span class="pre">ccache</span> <span class="pre">--set-config=cache_dir=PATH_TO_CACHE</span></code>. Older versions (&lt;3.2) do not allow this and must fall back to setting the <code class="docutils literal notranslate"><span class="pre">CCACHE_DIR</span></code> environment variable in your shell profile.</p>
 </section>
 </section>
 <section id="configuring-your-build">
-<h2><a class="toc-backref" href="#id6" role="doc-backlink">Configuring your build</a><a class="headerlink" href="#configuring-your-build" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Configuring your build</a><a class="headerlink" href="#configuring-your-build" title="Link to this heading">¶</a></h2>
 <p>CMake encourages the use of ‘out of source’ builds. This means that all generated files are placed in a separate directory structure to the source files. This separation makes a full clean easier (you just delete everything) and means that you can have different types of build (Release, Debug, different compiler versions, ….) in separate places (N.B. For Visual Studio &amp; XCode, you can still select the type of build from within the IDE).</p>
 <section id="cmake-generators">
-<h3><a class="toc-backref" href="#id7" role="doc-backlink">CMake generators</a><a class="headerlink" href="#cmake-generators" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">CMake generators</a><a class="headerlink" href="#cmake-generators" title="Link to this heading">¶</a></h3>
 <p>CMake has a <a class="reference external" href="https://cmake.org/cmake/help/latest/manual/cmake-generators.7.html">variety of generators available</a>.
 It is suggested that one select the generator that is most appropriate for the IDE/toolchain being used.
 On linux, there is a large benefit to selecting the <code class="docutils literal notranslate"><span class="pre">-GNinja</span></code> generator as it is faster at evaluating what targets to rebuild.
 Using an <a class="reference external" href="https://cmake.org/cmake/help/latest/manual/cmake-generators.7.html#extra-generators">extra generator</a> will, for example, configure qtcreator files with <a class="reference external" href="https://ninja-build.org/">ninja</a> as the underlying build tool.</p>
 </section>
 <section id="from-the-command-line">
-<h3><a class="toc-backref" href="#id8" role="doc-backlink">From the command line</a><a class="headerlink" href="#from-the-command-line" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">From the command line</a><a class="headerlink" href="#from-the-command-line" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>If wanting an out of source build, create the directory you want to build in and <code class="docutils literal notranslate"><span class="pre">cd</span></code> into it.</p></li>
 <li><p>On Windows, you may need to be in a Visual Studio Command Prompt.</p></li>
@@ -166,7 +166,7 @@ Using an <a class="reference external" href="https://cmake.org/cmake/help/latest
 </ul>
 </section>
 <section id="from-the-cmake-gui">
-<h3><a class="toc-backref" href="#id9" role="doc-backlink">From the CMake gui</a><a class="headerlink" href="#from-the-cmake-gui" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">From the CMake gui</a><a class="headerlink" href="#from-the-cmake-gui" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>The cmake gui is available from, e.g., the Windows Program menu or the command line executable <code class="docutils literal notranslate"><span class="pre">cmake-gui</span></code>.</p></li>
 <li><p>Start it and click the “Browse Source” button to point to <code class="docutils literal notranslate"><span class="pre">/path/to/Mantid</span></code>.</p></li>
@@ -185,17 +185,17 @@ Using an <a class="reference external" href="https://cmake.org/cmake/help/latest
 </ul>
 </section>
 <section id="data-files-location">
-<h3><a class="toc-backref" href="#id10" role="doc-backlink">Data Files Location</a><a class="headerlink" href="#data-files-location" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">Data Files Location</a><a class="headerlink" href="#data-files-location" title="Link to this heading">¶</a></h3>
 <p>Mantid used the CMake ExternalData system for managing testing data. See <a class="reference internal" href="DataFilesForTesting.html#datafilesfortesting"><span class="std std-ref">Data Files for Testing</span></a> for further instructions.</p>
 </section>
 <section id="with-qt-creator">
-<h3><a class="toc-backref" href="#id11" role="doc-backlink">With Qt Creator</a><a class="headerlink" href="#with-qt-creator" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">With Qt Creator</a><a class="headerlink" href="#with-qt-creator" title="Link to this heading">¶</a></h3>
 <p><a class="reference external" href="http://qt.nokia.com/products/developer-tools/">Qt Creator</a> has some really nice features (it’s cross-platform, you can directly open Qt Designer within it, you can highlight a Qt type and go directly to it’s help page, it knows about Qt types when debugging….).
 The nice feature in this context is that it has CMake support built in. So you can just open the project by pointing to the main CMakeLists file and then run CMake all within the IDE itself.</p>
 </section>
 </section>
 <section id="building-and-working-with-cmake">
-<h2><a class="toc-backref" href="#id12" role="doc-backlink">Building and working with CMake</a><a class="headerlink" href="#building-and-working-with-cmake" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id12" role="doc-backlink">Building and working with CMake</a><a class="headerlink" href="#building-and-working-with-cmake" title="Link to this heading">¶</a></h2>
 <p>Building from IDE:</p>
 <ul class="simple">
 <li><p>Windows using Visual studio: Use the <code class="docutils literal notranslate"><span class="pre">visual-studio.bat</span></code> generated in the build directory to start the IDE. This sets up the environment correctly.</p></li>
@@ -213,21 +213,21 @@ The nice feature in this context is that it has CMake support built in. So you c
 </ul>
 </section>
 <section id="caveats-and-known-issues">
-<h2><a class="toc-backref" href="#id13" role="doc-backlink">Caveats and Known Issues</a><a class="headerlink" href="#caveats-and-known-issues" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id13" role="doc-backlink">Caveats and Known Issues</a><a class="headerlink" href="#caveats-and-known-issues" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>For Visual Studio &amp; XCode, the libraries and executable are put into <code class="docutils literal notranslate"><span class="pre">Mantid/bin/Release</span></code>, <code class="docutils literal notranslate"><span class="pre">Debug</span></code>, etc.</p></li>
 <li><p>There is a known issue with using source control with Eclipse on an out of source build. Set the cache variable <code class="docutils literal notranslate"><span class="pre">ECLIPSE_CDT4_GENERATE_SOURCE_PROJECT</span></code> to true and CMake will generate a set of ‘dummy’ project files within the source tree so that you can import that project and use it for source control actions.</p></li>
 </ul>
 </section>
 <section id="tips">
-<h2><a class="toc-backref" href="#id14" role="doc-backlink">Tips</a><a class="headerlink" href="#tips" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id14" role="doc-backlink">Tips</a><a class="headerlink" href="#tips" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>Running unit test executables directly with the CMake-generated <code class="docutils literal notranslate"><span class="pre">Mantid.properties</span></code> file will lead to a bunch of logging output to the console. You are encouraged to use CTest instead, which suppresses this output automatically. Otherwise, adding the line <code class="docutils literal notranslate"><span class="pre">logging.channels.consoleChannel.class</span> <span class="pre">=</span> <span class="pre">NullChannel</span></code> to your Mantid.user.properties file will turn if off.</p></li>
 <li><p>If you have more than one gcc and want to build with a version other than the default (e.g. on RedHat), setting CC &amp; CXX environment variables is one way to make it so.</p></li>
 </ul>
 </section>
 <section id="build-system-customisation-using-cmake-variables">
-<h2><a class="toc-backref" href="#id15" role="doc-backlink">Build system customisation using CMake variables</a><a class="headerlink" href="#build-system-customisation-using-cmake-variables" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id15" role="doc-backlink">Build system customisation using CMake variables</a><a class="headerlink" href="#build-system-customisation-using-cmake-variables" title="Link to this heading">¶</a></h2>
 <p>The Mantid CMake build can be configured using several ENABLE_XXX variables, for instance ENABLE_DOCS, ENABLE_WORKBENCH and ENABLE_OPENGL
 A full list of these variables, with a description, can be viewed in the CMake GUI after the project has been configured.</p>
 <p>Component builds of mantid can be performed using the <cite>MANTID_FRAMEWORK_LIB</cite>, <cite>MANTID_QT_LIB</cite> and <cite>ENABLE_WORKBENCH</cite> cmake variables.

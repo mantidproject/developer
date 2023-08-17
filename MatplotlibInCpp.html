@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="./">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,9 +9,9 @@
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css?v=fadd4351" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=77160d70" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=48f0e2ba"></script>
+    <script src="_static/documentation_options.js?v=30d551ce"></script>
     <script src="_static/doctools.js?v=888ff710"></script>
-    <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Multithreading in Mantid" href="MultiThreadingInMantid.html" />
@@ -100,7 +100,7 @@
     <div class="body col-md-12 content" role="main">
       
   <section id="matplotlib-in-c">
-<span id="mpl-in-cpp"></span><h1>Matplotlib in C++<a class="headerlink" href="#matplotlib-in-c" title="Permalink to this heading">¶</a></h1>
+<span id="mpl-in-cpp"></span><h1>Matplotlib in C++<a class="headerlink" href="#matplotlib-in-c" title="Link to this heading">¶</a></h1>
 <nav class="contents local" id="contents">
 <ul class="simple">
 <li><p><a class="reference internal" href="#overview" id="id1">Overview</a></p></li>
@@ -113,11 +113,11 @@
 </ul>
 </nav>
 <section id="overview">
-<h2><a class="toc-backref" href="#id1" role="doc-backlink">Overview</a><a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Overview</a><a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
 <p>This document describes the functionality with the C++ layer for interacting with matplotlib plotting.</p>
 </section>
 <section id="embedding-figures">
-<h2><a class="toc-backref" href="#id2" role="doc-backlink">Embedding Figures</a><a class="headerlink" href="#embedding-figures" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Embedding Figures</a><a class="headerlink" href="#embedding-figures" title="Link to this heading">¶</a></h2>
 <p>Matplotlib is designed such that figures can be embedded within other Qt widgets and not just created as separate
 figure windows.
 An example of how this can be achieved is described in the matplotlib
@@ -129,7 +129,7 @@ concerned with the Python/C++ translation.</p>
 <p>The main work is done by the <code class="docutils literal notranslate"><span class="pre">FigureCanvasQt</span></code> class and the <code class="docutils literal notranslate"><span class="pre">Axes</span></code> class. These are designed to closely mimic the
 matplotlib classes in the methods that they offer.</p>
 <section id="plotting-from-vector-data">
-<h3><a class="toc-backref" href="#id3" role="doc-backlink">Plotting from Vector Data</a><a class="headerlink" href="#plotting-from-vector-data" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id3" role="doc-backlink">Plotting from Vector Data</a><a class="headerlink" href="#plotting-from-vector-data" title="Link to this heading">¶</a></h3>
 <p>As a simple example consider a widget that wishes to display a single figure with data from two vectors:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// ------------- .h file ------------------</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;MantidQtWidgets/MplCpp/Line2D.h&quot;</span>
@@ -189,7 +189,7 @@ In this basic mode with vectors the library avoids copying the data vectors but 
 something needs to keep the data alive while it is displayed.</p>
 </section>
 <section id="plotting-from-workspace-data">
-<h3><a class="toc-backref" href="#id4" role="doc-backlink">Plotting from Workspace Data</a><a class="headerlink" href="#plotting-from-workspace-data" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id4" role="doc-backlink">Plotting from Workspace Data</a><a class="headerlink" href="#plotting-from-workspace-data" title="Link to this heading">¶</a></h3>
 <p>A common case will be plotting data from a <code class="docutils literal notranslate"><span class="pre">MatrixWorkspace</span></code>. In this case we leverage the <code class="docutils literal notranslate"><span class="pre">mantid</span></code>
 projection in a similar manner to a <a class="reference external" href="https://docs.mantidproject.org/nightly/plotting/index.html#plotting" title="(in MantidProject v6.7)"><span class="xref std std-ref">standard script</span></a>:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// ------------- .h file ------------------</span>

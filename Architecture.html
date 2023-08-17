@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="./">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,9 +9,9 @@
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css?v=fadd4351" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=77160d70" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=48f0e2ba"></script>
+    <script src="_static/documentation_options.js?v=30d551ce"></script>
     <script src="_static/doctools.js?v=888ff710"></script>
-    <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Building on OS X" href="BuildingOnOSX.html" />
@@ -100,7 +100,7 @@
     <div class="body col-md-12 content" role="main">
       
   <section id="architecture">
-<h1>Architecture<a class="headerlink" href="#architecture" title="Permalink to this heading">¶</a></h1>
+<h1>Architecture<a class="headerlink" href="#architecture" title="Link to this heading">¶</a></h1>
 <nav class="contents local" id="contents">
 <ul class="simple">
 <li><p><a class="reference internal" href="#summary" id="id6">Summary</a></p></li>
@@ -116,19 +116,19 @@
 </ul>
 </nav>
 <section id="summary">
-<h2><a class="toc-backref" href="#id6" role="doc-backlink">Summary</a><a class="headerlink" href="#summary" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Summary</a><a class="headerlink" href="#summary" title="Link to this heading">¶</a></h2>
 <p>Mantid is used for reduction, analysis &amp; visualization of neutron and muon data.
 This document describes the architecture of the mantid software in terms
 of the <a class="reference external" href="https://www.infoq.com/articles/C4-architecture-model/">C4 model</a>.</p>
 </section>
 <section id="context">
-<h2><a class="toc-backref" href="#id7" role="doc-backlink">Context</a><a class="headerlink" href="#context" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Context</a><a class="headerlink" href="#context" title="Link to this heading">¶</a></h2>
 <p>People and other systems interact with the Mantid software package
 as decribed by the following context diagram.</p>
 <figure class="align-center" id="id1">
 <img alt="Context diagram of mantid software system" src="_images/architecture-context.png" />
 <figcaption>
-<p><span class="caption-text">Context diagram for mantid software</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Context diagram for mantid software</span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>Experimental users at neutron/muon facilities use the software
@@ -142,7 +142,7 @@ automated reduction systems.</p></li>
 </ul>
 </section>
 <section id="container">
-<h2><a class="toc-backref" href="#id8" role="doc-backlink">Container</a><a class="headerlink" href="#container" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">Container</a><a class="headerlink" href="#container" title="Link to this heading">¶</a></h2>
 <p><em>Please note that container here does not mean container in the
 deployment (Docker, Singularity) sense of the word, rather the generic
 definition of enclosing something.</em></p>
@@ -155,7 +155,7 @@ in the following diagram.</p>
 <figure class="align-center" id="id2">
 <a class="reference internal image-reference" href="_images/architecture-container.png"><img alt="Container diagram of mantid software system" src="_images/architecture-container.png" style="width: 918.9px; height: 720.9px;" /></a>
 <figcaption>
-<p><span class="caption-text">Container diagram for mantid software</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Container diagram for mantid software</span><a class="headerlink" href="#id2" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>The <code class="docutils literal notranslate"><span class="pre">workbench</span></code> application is written in Python/Qt that provides access
@@ -174,11 +174,11 @@ cannot contain dependencies on those later, e.g.</p>
 </ul>
 </section>
 <section id="components">
-<h2><a class="toc-backref" href="#id9" role="doc-backlink">Components</a><a class="headerlink" href="#components" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">Components</a><a class="headerlink" href="#components" title="Link to this heading">¶</a></h2>
 <p>The following subsections describe each of the containers within the system
 in more detail.</p>
 <section id="framework">
-<h3><a class="toc-backref" href="#id10" role="doc-backlink">Framework</a><a class="headerlink" href="#framework" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">Framework</a><a class="headerlink" href="#framework" title="Link to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">Framework</span></code> refers to the data structures, algorithms
 and supporting modules that live within the <code class="docutils literal notranslate"><span class="pre">Framework</span></code> directory
 of the source tree - commonly referred to as “framework code”.
@@ -189,7 +189,7 @@ component diagram.</p>
 <figure class="align-center" id="id3">
 <a class="reference internal image-reference" href="_images/architecture-framework.png"><img alt="Component diagram of framework container" src="_images/architecture-framework.png" style="width: 1114.35px; height: 672.35px;" /></a>
 <figcaption>
-<p><span class="caption-text">Container diagram for mantid framework</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Container diagram for mantid framework</span><a class="headerlink" href="#id3" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>The framework is separated into a base set of libraries that provide that
@@ -211,11 +211,11 @@ not a supported method of interaction and API stability of the C++
 layer is not guaranteed.</p>
 </section>
 <section id="mantidqt">
-<h3><a class="toc-backref" href="#id11" role="doc-backlink">mantidqt</a><a class="headerlink" href="#mantidqt" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">mantidqt</a><a class="headerlink" href="#mantidqt" title="Link to this heading">¶</a></h3>
 <figure class="align-center" id="id4">
 <a class="reference internal image-reference" href="_images/architecture-mantidqt.png"><img alt="Component diagram of mantidqt container" src="_images/architecture-mantidqt.png" style="width: 893.35px; height: 553.35px;" /></a>
 <figcaption>
-<p><span class="caption-text">Container diagram for mantidqt Python package</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Container diagram for mantidqt Python package</span><a class="headerlink" href="#id4" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 <p><code class="docutils literal notranslate"><span class="pre">mantidqt</span></code> is a Python package defined to house a collection of Qt widgets
@@ -247,11 +247,11 @@ without impacting users in the future.
 Clients of <code class="docutils literal notranslate"><span class="pre">mantidqt</span></code> should never import an underscored module directly.</p>
 </section>
 <section id="workbench">
-<h3><a class="toc-backref" href="#id12" role="doc-backlink">workbench</a><a class="headerlink" href="#workbench" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">workbench</a><a class="headerlink" href="#workbench" title="Link to this heading">¶</a></h3>
 <figure class="align-center" id="id5">
 <a class="reference internal image-reference" href="_images/architecture-workbench.png"><img alt="Component diagram of workbench container" src="_images/architecture-workbench.png" style="width: 638.35px; height: 459.84999999999997px;" /></a>
 <figcaption>
-<p><span class="caption-text">Container diagram for workbench application</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Container diagram for workbench application</span><a class="headerlink" href="#id5" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 <p><code class="docutils literal notranslate"><span class="pre">workbench</span></code> is an application written in pure Python in the <code class="docutils literal notranslate"><span class="pre">qt/applications/workbench</span></code>

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="./">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,9 +9,9 @@
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css?v=fadd4351" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=77160d70" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=48f0e2ba"></script>
+    <script src="_static/documentation_options.js?v=30d551ce"></script>
     <script src="_static/doctools.js?v=888ff710"></script>
-    <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="MVP Design" href="MVPDesign.html" />
@@ -100,7 +100,7 @@
     <div class="body col-md-12 content" role="main">
       
   <section id="running-sanitizers">
-<span id="runningsanitizers"></span><h1>Running Sanitizers<a class="headerlink" href="#running-sanitizers" title="Permalink to this heading">¶</a></h1>
+<span id="runningsanitizers"></span><h1>Running Sanitizers<a class="headerlink" href="#running-sanitizers" title="Link to this heading">¶</a></h1>
 <nav class="contents local" id="contents">
 <ul class="simple">
 <li><p><a class="reference internal" href="#overview" id="id1">Overview</a></p></li>
@@ -127,12 +127,12 @@
 </ul>
 </nav>
 <section id="overview">
-<h2><a class="toc-backref" href="#id1" role="doc-backlink">Overview</a><a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Overview</a><a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
 <p>Sanitizers allow developers to find any issues with their code at runtime
 related to memory, threading or undefined behaviour.</p>
 </section>
 <section id="pre-requisites">
-<h2><a class="toc-backref" href="#id2" role="doc-backlink">Pre-requisites</a><a class="headerlink" href="#pre-requisites" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Pre-requisites</a><a class="headerlink" href="#pre-requisites" title="Link to this heading">¶</a></h2>
 <p>The following tooling is required for the GCC compiler:</p>
 <ul class="simple">
 <li><p>GCC-8 onwards</p></li>
@@ -141,7 +141,7 @@ related to memory, threading or undefined behaviour.</p>
 <p>Microsoft Visual Studio 2019 provides an (experimental) address sanitizer that applies to x64 targets in version 16.7 and later</p>
 </section>
 <section id="switching-to-sanitizer-build">
-<h2><a class="toc-backref" href="#id3" role="doc-backlink">Switching to Sanitizer Build</a><a class="headerlink" href="#switching-to-sanitizer-build" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Switching to Sanitizer Build</a><a class="headerlink" href="#switching-to-sanitizer-build" title="Link to this heading">¶</a></h2>
 <p>The following sanitizers modes are available:</p>
 <ul class="simple">
 <li><p>Address</p></li>
@@ -154,7 +154,7 @@ preserving high performance</p>
 <p>If required, a build can be completed in debug mode too, however the
 performance penalty will be pretty severe.</p>
 <section id="command-line">
-<h3><a class="toc-backref" href="#id4" role="doc-backlink">Command Line</a><a class="headerlink" href="#command-line" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id4" role="doc-backlink">Command Line</a><a class="headerlink" href="#command-line" title="Link to this heading">¶</a></h3>
 <p>First, delete <em>CMakeCache.txt</em> if using GCC and your system compiler is GCC 7 or below
 (you can check with <em>gcc -v</em>).</p>
 <p>To change to a sanitized build navigate to your build folder and execute the
@@ -177,7 +177,7 @@ default is GCC-7)</p>
 </div>
 </section>
 <section id="cmake-gui">
-<h3><a class="toc-backref" href="#id5" role="doc-backlink">CMake GUI</a><a class="headerlink" href="#cmake-gui" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">CMake GUI</a><a class="headerlink" href="#cmake-gui" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>If using GCC, delete the cache if your system compiler is GCC 7 or below (you can check
 with <em>gcc -v</em>)</p></li>
@@ -190,14 +190,14 @@ with <em>gcc -v</em>)</p></li>
 </section>
 </section>
 <section id="running-tests">
-<h2><a class="toc-backref" href="#id6" role="doc-backlink">Running Tests</a><a class="headerlink" href="#running-tests" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Running Tests</a><a class="headerlink" href="#running-tests" title="Link to this heading">¶</a></h2>
 <p>Several upstream linked libraries currently contain leaks which we cannot
 resolve (or have been resolved but not appeared downstream).</p>
 <p>We can suppress warnings in the address sanitizer by setting environment
 variables in the console before running in each mode.</p>
 </section>
 <section id="visual-studio-address-sanitizer">
-<h2><a class="toc-backref" href="#id7" role="doc-backlink">Visual Studio Address Sanitizer</a><a class="headerlink" href="#visual-studio-address-sanitizer" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Visual Studio Address Sanitizer</a><a class="headerlink" href="#visual-studio-address-sanitizer" title="Link to this heading">¶</a></h2>
 <p>The Visual Studio address sanitizer raises exceptions with code 0xC0000005 as part of its normal operation.
 The exceptions are handled but they cause the debugger to stop. These exceptions need to be ignored in the Debug, Windows, Exception Settings dialog</p>
 <p>Genuine sanitizer issues cause an unhandled exception and the debugger will stop at the relevant unitline.</p>
@@ -210,7 +210,7 @@ This flag is switched to /O1 in order to improve stack trace information (see ab
 <p>Additional information is available on this <a class="reference external" href="https://devblogs.microsoft.com/cppblog/asan-for-windows-x64-and-debug-build-support/">web page</a>.</p>
 </section>
 <section id="advanced-details">
-<h2><a class="toc-backref" href="#id8" role="doc-backlink">Advanced Details</a><a class="headerlink" href="#advanced-details" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">Advanced Details</a><a class="headerlink" href="#advanced-details" title="Link to this heading">¶</a></h2>
 <p>Most developers do not need to read this, but it’s good for those who
 want to know what’s happening</p>
 <p>CMake substitutes in various flags for the address sanitizer builds to
@@ -225,7 +225,7 @@ correctly. To save developers effort the CXX_ADD_TEST macro (in
 FindCxxTest.cmake) will append these environment variables on a developers
 behalf.</p>
 <section id="instrumenting-python-advanced">
-<h3><a class="toc-backref" href="#id9" role="doc-backlink">Instrumenting Python (Advanced)</a><a class="headerlink" href="#instrumenting-python-advanced" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">Instrumenting Python (Advanced)</a><a class="headerlink" href="#instrumenting-python-advanced" title="Link to this heading">¶</a></h3>
 <p>Currently any code started in Python (i.e. Python Unit Tests) will not pre-load
 ASAN instrumentation. This can be split into two categories:</p>
 <ul class="simple">
@@ -256,9 +256,9 @@ ldd<span class="w"> </span>bin/KernelTest<span class="w"> </span><span class="p"
 </section>
 </section>
 <section id="common-problems">
-<h2><a class="toc-backref" href="#id10" role="doc-backlink">Common Problems</a><a class="headerlink" href="#common-problems" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id10" role="doc-backlink">Common Problems</a><a class="headerlink" href="#common-problems" title="Link to this heading">¶</a></h2>
 <section id="library-leaks-appearing">
-<h3><a class="toc-backref" href="#id11" role="doc-backlink">Library Leaks Appearing</a><a class="headerlink" href="#library-leaks-appearing" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">Library Leaks Appearing</a><a class="headerlink" href="#library-leaks-appearing" title="Link to this heading">¶</a></h3>
 <p>Check that you have correctly spelt <em>suppressions</em> as there will be no warnings
 for typos. A good check is to put some random characters in the .supp files,
 which will cause all tests to fail if it’s begin read.</p>
@@ -266,7 +266,7 @@ which will cause all tests to fail if it’s begin read.</p>
 <em>Address.supp</em> (which should ideally be completely empty) to be suppressed.</p>
 </section>
 <section id="asan-was-not-the-first-library-loaded">
-<h3><a class="toc-backref" href="#id12" role="doc-backlink">ASAN was not the first library loaded</a><a class="headerlink" href="#asan-was-not-the-first-library-loaded" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">ASAN was not the first library loaded</a><a class="headerlink" href="#asan-was-not-the-first-library-loaded" title="Link to this heading">¶</a></h3>
 <p>This can appear when running Python tests, as the executable is not build
 with instrumentation. To avoid this warning ensure that
 <em>verify_asan_link_order=0</em> is set in your environment and that you are

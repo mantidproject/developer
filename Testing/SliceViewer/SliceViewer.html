@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,9 +9,9 @@
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css?v=fadd4351" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=77160d70" />
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=48f0e2ba"></script>
+    <script src="../../_static/documentation_options.js?v=30d551ce"></script>
     <script src="../../_static/doctools.js?v=888ff710"></script>
-    <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -103,7 +103,7 @@
     <div class="body col-md-12 content" role="main">
       
   <section id="sliceviewer-testing">
-<span id="id1"></span><h1>SliceViewer Testing<a class="headerlink" href="#sliceviewer-testing" title="Permalink to this heading">¶</a></h1>
+<span id="id1"></span><h1>SliceViewer Testing<a class="headerlink" href="#sliceviewer-testing" title="Link to this heading">¶</a></h1>
 <nav class="contents local" id="contents">
 <ul class="simple">
 <li><p><a class="reference internal" href="#introduction" id="id2">Introduction</a></p></li>
@@ -133,14 +133,14 @@
 </ul>
 </nav>
 <section id="introduction">
-<h2><a class="toc-backref" href="#id2" role="doc-backlink">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Introduction</a><a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h2>
 <p>The Sliceviewer in Workbench has the joint functionality of the SpectrumViewer and SliceViewer from MantidPlot. So while the advanced use cases for multi-dimensional diffraction data are important to test, it is also worth checking more basic uses, for example opening a Workspace2D and examining the subplots and dynamic cursor data.</p>
 <p>See here for a brief overview of the <a class="reference external" href="https://docs.mantidproject.org/nightly/workbench/sliceviewer.html#sliceviewer" title="(in MantidProject v6.7)"><span>Sliceviewer</span></a>.</p>
 </section>
 <section id="basic-usage">
-<h2><a class="toc-backref" href="#id3" role="doc-backlink">Basic Usage</a><a class="headerlink" href="#basic-usage" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Basic Usage</a><a class="headerlink" href="#basic-usage" title="Link to this heading">¶</a></h2>
 <section id="matrixworkspace">
-<span id="toolbar-checklist"></span><h3><a class="toc-backref" href="#id4" role="doc-backlink">MatrixWorkspace</a><a class="headerlink" href="#matrixworkspace" title="Permalink to this heading">¶</a></h3>
+<span id="toolbar-checklist"></span><h3><a class="toc-backref" href="#id4" role="doc-backlink">MatrixWorkspace</a><a class="headerlink" href="#matrixworkspace" title="Link to this heading">¶</a></h3>
 <p>Do the following tests with an EventWorkspace (e.g. <code class="docutils literal notranslate"><span class="pre">CNCS_7860_event.nxs</span></code>) and a Workspace2D (e.g. <code class="docutils literal notranslate"><span class="pre">MAR11060.raw</span></code>) from the <a class="reference external" href="https://download.mantidproject.org/">TrainingCourseData</a>.</p>
 <ol class="arabic">
 <li><p>Load the workspace and open in sliceviewer (right-click on the workspace in the ADS &gt; Show Slice Viewer).</p></li>
@@ -244,12 +244,12 @@
 </ol>
 </section>
 <section id="md-workspaces">
-<h3><a class="toc-backref" href="#id5" role="doc-backlink">MD Workspaces</a><a class="headerlink" href="#md-workspaces" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">MD Workspaces</a><a class="headerlink" href="#md-workspaces" title="Link to this heading">¶</a></h3>
 <p>MD workspaces hold multi-dimensional data (typically 2-4D) and come in two forms: <a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/MDWorkspace.html#mdworkspace" title="(in MantidProject v6.7)"><span class="xref std std-ref">MDEventWorkspace</span></a>, <a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/MDHistoWorkspace.html#mdhistoworkspace" title="(in MantidProject v6.7)"><span class="xref std std-ref">MDHistoWorkspace</span></a>.
 In terms of sliceviewer functionality, the key difference is that MDHistoWorkspace have binned the events onto a regular grid and cannot be dynamically rebinned unless the original MDWorkspace
 (that holds the events) exists in the ADS (and the MDHistoWorkspace has not been altered by a binary operation e.g. <code class="docutils literal notranslate"><span class="pre">MinusMD</span></code>).</p>
 <section id="mdworkspace-with-events">
-<h4><a class="toc-backref" href="#id6" role="doc-backlink">MDWorkspace (with events)</a><a class="headerlink" href="#mdworkspace-with-events" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id6" role="doc-backlink">MDWorkspace (with events)</a><a class="headerlink" href="#mdworkspace-with-events" title="Link to this heading">¶</a></h4>
 <ol class="arabic simple">
 <li><p>Create a 3D and 4D MDWorkspaces with some data - repeat the following tests with both <code class="docutils literal notranslate"><span class="pre">md_4D</span></code> and <code class="docutils literal notranslate"><span class="pre">md_3D</span></code>. Note this will throw a warning relating to the <code class="docutils literal notranslate"><span class="pre">SlicingAlgorithm</span></code>.</p></li>
 </ol>
@@ -390,7 +390,7 @@ In terms of sliceviewer functionality, the key difference is that MDHistoWorkspa
 </ol>
 </section>
 <section id="mdhistoworkspace">
-<h4><a class="toc-backref" href="#id7" role="doc-backlink">MDHistoWorkspace</a><a class="headerlink" href="#mdhistoworkspace" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id7" role="doc-backlink">MDHistoWorkspace</a><a class="headerlink" href="#mdhistoworkspace" title="Link to this heading">¶</a></h4>
 <ol class="arabic simple">
 <li><p>Make a 3D MDHistoWorkspace</p></li>
 </ol>
@@ -429,7 +429,7 @@ In terms of sliceviewer functionality, the key difference is that MDHistoWorkspa
 </section>
 </section>
 <section id="cutviewer-tool">
-<h2><a class="toc-backref" href="#id8" role="doc-backlink">CutViewer Tool</a><a class="headerlink" href="#cutviewer-tool" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">CutViewer Tool</a><a class="headerlink" href="#cutviewer-tool" title="Link to this heading">¶</a></h2>
 <p>1. Check the <a class="reference external" href="https://docs.mantidproject.org/nightly/workbench/sliceviewer.html#sliceviewer-nonaxiscuts" title="(in MantidProject v6.7)"><span class="xref std std-ref">Non-axis aligned cutting tool</span></a> button is only enabled for 3D MD workspaces where all dimensions are Q by opening the following workspaces in sliceviewer.
 It should only be enabled for the <cite>ws_3D</cite> and <cite>ws_3D_QLab</cite> workspaces (see comment for details) - the first 3 column headers for the vectors should be a*,b*,c* and Qx,Qy,Qz for the two workspaces respectively.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;CNCS_7860_event.nxs&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;CNCS_7860_event&#39;</span><span class="p">)</span>  <span class="c1"># disabled (MatrixWorkspace)</span>
@@ -546,9 +546,9 @@ It should only be enabled for the <cite>ws_3D</cite> and <cite>ws_3D_QLab</cite>
 </ol>
 </section>
 <section id="specific-tests">
-<h2><a class="toc-backref" href="#id9" role="doc-backlink">Specific Tests</a><a class="headerlink" href="#specific-tests" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">Specific Tests</a><a class="headerlink" href="#specific-tests" title="Link to this heading">¶</a></h2>
 <section id="representation-of-integrated-peaks">
-<h3><a class="toc-backref" href="#id10" role="doc-backlink">1. Representation of integrated peaks</a><a class="headerlink" href="#representation-of-integrated-peaks" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">1. Representation of integrated peaks</a><a class="headerlink" href="#representation-of-integrated-peaks" title="Link to this heading">¶</a></h3>
 <ol class="arabic simple">
 <li><p>Run the code below to generate fake data and integrate peaks in the 3D MDWorkspace <code class="docutils literal notranslate"><span class="pre">md_3D</span></code></p></li>
 </ol>
@@ -606,7 +606,7 @@ It should only be enabled for the <cite>ws_3D</cite> and <cite>ws_3D_QLab</cite>
 <p>Keep the three peak workspaces overlain for the next test.</p>
 </section>
 <section id="ads-observer-for-peak-overlay">
-<h3><a class="toc-backref" href="#id11" role="doc-backlink">2. ADS observer for peak overlay</a><a class="headerlink" href="#ads-observer-for-peak-overlay" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">2. ADS observer for peak overlay</a><a class="headerlink" href="#ads-observer-for-peak-overlay" title="Link to this heading">¶</a></h3>
 <ol class="arabic">
 <li><p>Rename <code class="docutils literal notranslate"><span class="pre">peaks_int_ellip</span></code> in the ADS to e.g. <code class="docutils literal notranslate"><span class="pre">peaks_int_ellipse</span></code></p>
 <blockquote>
@@ -648,7 +648,7 @@ It should only be enabled for the <cite>ws_3D</cite> and <cite>ws_3D_QLab</cite>
 </ol>
 </section>
 <section id="ads-observer-for-workspace">
-<h3><a class="toc-backref" href="#id12" role="doc-backlink">3. ADS observer for workspace</a><a class="headerlink" href="#ads-observer-for-workspace" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">3. ADS observer for workspace</a><a class="headerlink" href="#ads-observer-for-workspace" title="Link to this heading">¶</a></h3>
 <p>With <code class="docutils literal notranslate"><span class="pre">md_3D</span></code> open in sliceviewer</p>
 <ol class="arabic">
 <li><p>Rename <code class="docutils literal notranslate"><span class="pre">md_3D</span></code> to e.g. <code class="docutils literal notranslate"><span class="pre">md_3Dim</span></code></p>
@@ -687,7 +687,7 @@ It should only be enabled for the <cite>ws_3D</cite> and <cite>ws_3D_QLab</cite>
 </ol>
 </section>
 <section id="ads-observer-for-support-for-nonorthogonal-view">
-<h3><a class="toc-backref" href="#id13" role="doc-backlink">4. ADS observer for support for nonorthogonal view</a><a class="headerlink" href="#ads-observer-for-support-for-nonorthogonal-view" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">4. ADS observer for support for nonorthogonal view</a><a class="headerlink" href="#ads-observer-for-support-for-nonorthogonal-view" title="Link to this heading">¶</a></h3>
 <ol class="arabic">
 <li><p>Open <code class="docutils literal notranslate"><span class="pre">md_3D</span></code> in sliceviewer</p></li>
 <li><p>Run <code class="docutils literal notranslate"><span class="pre">ClearUB</span></code> algorithm on <code class="docutils literal notranslate"><span class="pre">md_3D</span></code></p>
@@ -700,7 +700,7 @@ It should only be enabled for the <cite>ws_3D</cite> and <cite>ws_3D_QLab</cite>
 </ol>
 </section>
 <section id="check-binmd-called-with-normalizebasisvectors-false-for-hkl-data">
-<h3><a class="toc-backref" href="#id14" role="doc-backlink">5. Check BinMD called with NormalizeBasisVectors=False for HKL data</a><a class="headerlink" href="#check-binmd-called-with-normalizebasisvectors-false-for-hkl-data" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">5. Check BinMD called with NormalizeBasisVectors=False for HKL data</a><a class="headerlink" href="#check-binmd-called-with-normalizebasisvectors-false-for-hkl-data" title="Link to this heading">¶</a></h3>
 <ol class="arabic simple">
 <li><p>Create a workspace with peaks at integer HKL and take a non axis-aligned cut</p></li>
 </ol>
@@ -742,7 +742,7 @@ It should only be enabled for the <cite>ws_3D</cite> and <cite>ws_3D_QLab</cite>
 </ol>
 </section>
 <section id="check-gets-the-correct-basis-vectors-for-mdhisto-workspaces">
-<h3><a class="toc-backref" href="#id15" role="doc-backlink">6. Check gets the correct basis vectors for MDHisto workspaces</a><a class="headerlink" href="#check-gets-the-correct-basis-vectors-for-mdhisto-workspaces" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id15" role="doc-backlink">6. Check gets the correct basis vectors for MDHisto workspaces</a><a class="headerlink" href="#check-gets-the-correct-basis-vectors-for-mdhisto-workspaces" title="Link to this heading">¶</a></h3>
 <p>This tests that the sliceviewer gets the correct basis vectors for an <code class="docutils literal notranslate"><span class="pre">MDHisto</span></code> object from a non-axis aligned cut.</p>
 <ol class="arabic simple">
 <li><p>Create the workspace</p></li>
@@ -780,7 +780,7 @@ It should only be enabled for the <cite>ws_3D</cite> and <cite>ws_3D_QLab</cite>
 </ol>
 </section>
 <section id="check-non-orthogonal-view-is-disabled-for-non-q-axes">
-<h3><a class="toc-backref" href="#id16" role="doc-backlink">7. Check non-orthogonal view is disabled for non-Q axes</a><a class="headerlink" href="#check-non-orthogonal-view-is-disabled-for-non-q-axes" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id16" role="doc-backlink">7. Check non-orthogonal view is disabled for non-Q axes</a><a class="headerlink" href="#check-non-orthogonal-view-is-disabled-for-non-q-axes" title="Link to this heading">¶</a></h3>
 <p>Check that the non-orthogonal view is disabled for non-Q axes such as energy</p>
 <ol class="arabic simple">
 <li><p>Create a workspace with energy as the first axis.</p></li>

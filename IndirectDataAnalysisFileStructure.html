@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="./">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,9 +9,9 @@
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css?v=fadd4351" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=77160d70" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=48f0e2ba"></script>
+    <script src="_static/documentation_options.js?v=30d551ce"></script>
     <script src="_static/doctools.js?v=888ff710"></script>
-    <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Inelastic Data Manipulation Class Structure" href="InelasticDataManipulationFileStructure.html" />
@@ -100,14 +100,14 @@
     <div class="body col-md-12 content" role="main">
       
   <section id="indirectdataanalysis-file-structure">
-<span id="ida-structure-ref"></span><h1>IndirectDataAnalysis File Structure<a class="headerlink" href="#indirectdataanalysis-file-structure" title="Permalink to this heading">¶</a></h1>
+<span id="ida-structure-ref"></span><h1>IndirectDataAnalysis File Structure<a class="headerlink" href="#indirectdataanalysis-file-structure" title="Link to this heading">¶</a></h1>
 <p>The many levels of inheritance in the indirect data analysis codebase can be confusing. it is not always clear how they
 all interact.</p>
 <p>The Elwin and I(Q,t) are the most different as their components are all contained within a single UI file. This is
 something that should be fixed to be more modular but it could be left till the fit tabs are separated out entirely.</p>
 </section>
 <section id="fit-tab-structure">
-<h1>Fit Tab structure<a class="headerlink" href="#fit-tab-structure" title="Permalink to this heading">¶</a></h1>
+<h1>Fit Tab structure<a class="headerlink" href="#fit-tab-structure" title="Link to this heading">¶</a></h1>
 <p>The QENS fit tabs in Inelastic Data analysis have this general structure. Different tabs will feature different derived
 classes for the IndirectFitAnalysisTab, FitDataView, FunctionTemplateBrowser, and the AddWorkspaceDialog</p>
 <figure class="align-default">
@@ -115,7 +115,7 @@ classes for the IndirectFitAnalysisTab, FitDataView, FunctionTemplateBrowser, an
 </figure>
 </section>
 <section id="qens-fit-class-structure">
-<h1>QENS Fit class structure<a class="headerlink" href="#qens-fit-class-structure" title="Permalink to this heading">¶</a></h1>
+<h1>QENS Fit class structure<a class="headerlink" href="#qens-fit-class-structure" title="Link to this heading">¶</a></h1>
 <figure class="align-default">
 <a class="reference internal image-reference" href="_images/IndirectFitClassStructure.png"><img alt="_images/IndirectFitClassStructure.png" src="_images/IndirectFitClassStructure.png" style="width: 2000px;" /></a>
 </figure>
@@ -127,7 +127,7 @@ IndirectFitData is controlled by IndirectFitDataModel, but is sometimes read by 
 <p>The IndirectFitPlotModel also contains a pointer to the active fit function and the IndirectFitOutput from the
 IndirectFittingModel, again should only ever READ FROM THESE OBJECTS only the IndirectFittingModel should control it.</p>
 <section id="indirectfitanalysistab">
-<h2>IndirectFitAnalysisTab<a class="headerlink" href="#indirectfitanalysistab" title="Permalink to this heading">¶</a></h2>
+<h2>IndirectFitAnalysisTab<a class="headerlink" href="#indirectfitanalysistab" title="Link to this heading">¶</a></h2>
 <p>The IndirectFitAnalysisTab is the master container for each IDA tab (Fit Tab), contained in this are the individual
 tabs IndirectFittingModel and View, as well as the sub widgets that make up the interface. Each Tab contains:
 - an IndirectFitDataInterface that manages the input of data to the tab
@@ -136,14 +136,14 @@ tabs IndirectFittingModel and View, as well as the sub widgets that make up the 
 - an IndirectFitOutputOptions that contains methods of producing plots of fitted data.</p>
 </section>
 <section id="indirectfittingmodel">
-<h2>IndirectFittingModel<a class="headerlink" href="#indirectfittingmodel" title="Permalink to this heading">¶</a></h2>
+<h2>IndirectFittingModel<a class="headerlink" href="#indirectfittingmodel" title="Link to this heading">¶</a></h2>
 <p>The fitting function for the interface is run from the IndirectFittingModel, the fitting model controls an
 IndirectFitOutput, this object contains data from fits run through the model so that the results can then be read by the
 IndirectFitPlotModel to be used in the mini-plot. The IndirectFittingModel also contains specifics for the functions that
 can be utilized by the IndirectFitPropertyBrowser, listing the available functions and their ties.</p>
 </section>
 <section id="indirectfitdatainterface">
-<h2>IndirectFitDataInterface<a class="headerlink" href="#indirectfitdatainterface" title="Permalink to this heading">¶</a></h2>
+<h2>IndirectFitDataInterface<a class="headerlink" href="#indirectfitdatainterface" title="Link to this heading">¶</a></h2>
 <p>The IndirectFitDataInterface is the container that controls data input for the tab, it contains a table of spectra added
 through the AddWorkspaceDialog, some tabs require different inputs, for example, the ConvFitTab requires each data entry
 to have both a sample and resolution workspace. Because of this, some tabs have their version of this widget that
@@ -164,33 +164,33 @@ WorkspaceID (the position of a workspace in m_fittingData) and WorkspaceIndex (t
 the workspace)</p>
 </section>
 <section id="indirectfitplot">
-<h2>IndirectFitPlot<a class="headerlink" href="#indirectfitplot" title="Permalink to this heading">¶</a></h2>
+<h2>IndirectFitPlot<a class="headerlink" href="#indirectfitplot" title="Link to this heading">¶</a></h2>
 <p>The IndirectFitPlot is the container that controls the miniplots within the tab, this consists of two miniplot frames.
 One to contains the selected spectra, the guess for the fit function if selected, and the fitted function if ran. and
 the second to contain the fit difference once the tab has been run. this widget also contains the controls for which
 spectra should be plotted.</p>
 </section>
 <section id="indirectfitpropertybrowser">
-<h2>IndirectFitPropertyBrowser<a class="headerlink" href="#indirectfitpropertybrowser" title="Permalink to this heading">¶</a></h2>
+<h2>IndirectFitPropertyBrowser<a class="headerlink" href="#indirectfitpropertybrowser" title="Link to this heading">¶</a></h2>
 <p>The IndirectFitPropertyBrowser is the container that controls the fitting function to be used within the tab. These each
 has their own sets of functions that are stored within the TemplateBrowser, the TemplateBrowser is a simplified version
 of the normal Mantid fit property browser that contains only the factors relevant to the processes used in the tab. the
 contents of this Browser are given to the FittingModel to be processed.</p>
 </section>
 <section id="indirectfitoutputoptions">
-<h2>IndirectFitOutputOptions<a class="headerlink" href="#indirectfitoutputoptions" title="Permalink to this heading">¶</a></h2>
+<h2>IndirectFitOutputOptions<a class="headerlink" href="#indirectfitoutputoptions" title="Link to this heading">¶</a></h2>
 <p>The IndirectFitOutputOptions contains a set of controls that allow for the output of fits from the interface to be plotted
 separately, including plotting fit parameters from simultaneous or sequential fits.</p>
 </section>
 <section id="indirectfitdata">
-<h2>IndirectFitData<a class="headerlink" href="#indirectfitdata" title="Permalink to this heading">¶</a></h2>
+<h2>IndirectFitData<a class="headerlink" href="#indirectfitdata" title="Link to this heading">¶</a></h2>
 <p>The IndirectFitData container serves as a storage container for the data contained within the IndirectFitDataInterface,
 it allows for data to be communicated between the plot and the data input without extraneous signals. By design, the only
 thing that should manipulate to contents of IndirectFitData is the IndirectFitDataInterface. IndirectFitPlot should only
 ever read the contents of IndirectFitData.</p>
 </section>
 <section id="indirectfitoutput">
-<h2>IndirectFitOutput<a class="headerlink" href="#indirectfitoutput" title="Permalink to this heading">¶</a></h2>
+<h2>IndirectFitOutput<a class="headerlink" href="#indirectfitoutput" title="Link to this heading">¶</a></h2>
 <p>The IndirectFitData container serves as a storage container for the output of fits from the tabs, it allows for data to
 be communicated between the plot and the FittingModel without extraneous signals. By design, the only
 thing that should manipulate to contents of IndirectFitOutput is the IndirectFittingModel. IndirectFitPlot should only

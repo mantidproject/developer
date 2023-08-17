@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="./">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,9 +9,9 @@
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css?v=fadd4351" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=77160d70" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=48f0e2ba"></script>
+    <script src="_static/documentation_options.js?v=30d551ce"></script>
     <script src="_static/doctools.js?v=888ff710"></script>
-    <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Flowchart Creation" href="FlowchartCreation.html" />
@@ -100,34 +100,34 @@
     <div class="body col-md-12 content" role="main">
       
   <section id="profiling-with-valgrind">
-<span id="profilingwithvalgrind"></span><h1>Profiling with Valgrind<a class="headerlink" href="#profiling-with-valgrind" title="Permalink to this heading">¶</a></h1>
+<span id="profilingwithvalgrind"></span><h1>Profiling with Valgrind<a class="headerlink" href="#profiling-with-valgrind" title="Link to this heading">¶</a></h1>
 <section id="summary">
-<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">¶</a></h2>
+<h2>Summary<a class="headerlink" href="#summary" title="Link to this heading">¶</a></h2>
 <p>Describes how to use the
 <a class="reference external" href="http://valgrind.org/docs/manual/cl-manual.html">callgrind</a> plugin to
 the <a class="reference external" href="http://valgrind.org/">valgrind</a> tool set to profile your code.</p>
 <p><em>Note: Valgrind is a Linux only tool</em></p>
 </section>
 <section id="installation">
-<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">¶</a></h2>
+<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading">¶</a></h2>
 <p>You will need to install both <em>valgrind</em> &amp; the visualizer tool
 <em>kcachegrind</em> - both of which should be available in your distribution’s
 repositories.</p>
 <section id="ubuntu">
-<h3>Ubuntu<a class="headerlink" href="#ubuntu" title="Permalink to this heading">¶</a></h3>
+<h3>Ubuntu<a class="headerlink" href="#ubuntu" title="Link to this heading">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">valgrind</span> <span class="n">kcachegrind</span>
 </pre></div>
 </div>
 </section>
 <section id="red-hat-fedora">
-<h3>Red Hat/Fedora<a class="headerlink" href="#red-hat-fedora" title="Permalink to this heading">¶</a></h3>
+<h3>Red Hat/Fedora<a class="headerlink" href="#red-hat-fedora" title="Link to this heading">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">yum</span> <span class="n">install</span> <span class="n">valgrind</span> <span class="n">kcachegrind</span>
 </pre></div>
 </div>
 </section>
 </section>
 <section id="preparation">
-<h2>Preparation<a class="headerlink" href="#preparation" title="Permalink to this heading">¶</a></h2>
+<h2>Preparation<a class="headerlink" href="#preparation" title="Link to this heading">¶</a></h2>
 <p>To be most effective valgrind requires that debugging information be
 present in the binaries that are being instrumented, although a full
 debug build is not required. On gcc this means compiling with the <em>-g</em>
@@ -136,7 +136,7 @@ the <em>CMAKE_BUILD_TYPE</em> set to <em>RelWithDebInfo</em>. This provides a go
 balance between performance and availability of debugging information.</p>
 </section>
 <section id="running-the-profiler">
-<h2>Running the Profiler<a class="headerlink" href="#running-the-profiler" title="Permalink to this heading">¶</a></h2>
+<h2>Running the Profiler<a class="headerlink" href="#running-the-profiler" title="Link to this heading">¶</a></h2>
 <p>The profiler can instrument the code in a number of different ways. Some
 of these will be described here. For more detail information see the
 <a class="reference external" href="http://valgrind.org/docs/manual/cl-manual.html">callgrind manual</a>.</p>
@@ -149,7 +149,7 @@ be found more easily in the future.</p>
 when not profiling - this is just a consequence of how valgrind
 instruments the code.</p>
 <section id="profile-a-whole-program-run">
-<h3>Profile a Whole Program Run<a class="headerlink" href="#profile-a-whole-program-run" title="Permalink to this heading">¶</a></h3>
+<h3>Profile a Whole Program Run<a class="headerlink" href="#profile-a-whole-program-run" title="Link to this heading">¶</a></h3>
 <p>This is the simplest mode of operation. Simply pass the program
 executable, along with any arguments to the valgrind executable:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">valgrind</span> <span class="o">--</span><span class="n">tool</span><span class="o">=</span><span class="n">callgrind</span> <span class="o">--</span><span class="n">dump</span><span class="o">-</span><span class="n">instr</span><span class="o">=</span><span class="n">yes</span> <span class="o">--</span><span class="n">simulate</span><span class="o">-</span><span class="n">cache</span><span class="o">=</span><span class="n">yes</span> <span class="o">--</span><span class="n">collect</span><span class="o">-</span><span class="n">jumps</span><span class="o">=</span><span class="n">yes</span> <span class="o">&lt;</span><span class="n">executable</span><span class="o">&gt;</span> <span class="p">[</span><span class="n">args</span><span class="o">...</span><span class="p">]</span>
@@ -157,7 +157,7 @@ executable, along with any arguments to the valgrind executable:</p>
 </div>
 </section>
 <section id="profile-selected-portions-of-the-code">
-<h3>Profile Selected Portions of the Code<a class="headerlink" href="#profile-selected-portions-of-the-code" title="Permalink to this heading">¶</a></h3>
+<h3>Profile Selected Portions of the Code<a class="headerlink" href="#profile-selected-portions-of-the-code" title="Link to this heading">¶</a></h3>
 <p>For larger pieces of code it can be quite likely that you wish to
 profile only a selected portion of it. This is possible if you have a
 access to recompile the source code of the binaries to be instrumented
@@ -208,7 +208,7 @@ more details.</p>
 </section>
 </section>
 <section id="visualisation">
-<h2>Visualisation<a class="headerlink" href="#visualisation" title="Permalink to this heading">¶</a></h2>
+<h2>Visualisation<a class="headerlink" href="#visualisation" title="Link to this heading">¶</a></h2>
 <p>Callgrind produces a large amount of data about the program’s execution.
 It is most easily understood using the <em>kcachegrind</em> GUI tool. This
 reads the information produced by callgrind and creates a list of
@@ -219,7 +219,7 @@ show the lines of code that relate to the functions being inspected.</p>
 <img alt="Example of KCachegrind display a profile of MantidPlot starting up and closing down" src="_images/KCachegrind_MantidPlot.png" />
 <figcaption>
 <p><span class="caption-text">Example of KCachegrind display a profile of MantidPlot starting up
-and closing down</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+and closing down</span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>By default KCachegrind shows the number of instructions fetched within
@@ -229,7 +229,7 @@ generally the most widely used and roughly correlate to the amount of
 time spent performing the displayed functions.</p>
 <p>Some of the key features display are:</p>
 <section id="flat-profile-view">
-<h3>Flat Profile View<a class="headerlink" href="#flat-profile-view" title="Permalink to this heading">¶</a></h3>
+<h3>Flat Profile View<a class="headerlink" href="#flat-profile-view" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Incl. - Sum of itself + all child calls as a percentage of the whole.
 Programs with little static allocation should have main() at 100%.
@@ -240,7 +240,7 @@ those selected by the to-right drop-down</p></li>
 </ul>
 </section>
 <section id="function-call-detail">
-<h3>Function Call Detail<a class="headerlink" href="#function-call-detail" title="Permalink to this heading">¶</a></h3>
+<h3>Function Call Detail<a class="headerlink" href="#function-call-detail" title="Link to this heading">¶</a></h3>
 <p>Click on function in flat view to get more detail on the right.</p>
 <p>Displays details about the selected function call plus details about all
 child calls it made. The <em>call graph</em> tab at the bottom gives a nice
