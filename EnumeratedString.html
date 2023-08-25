@@ -125,8 +125,10 @@ with strings from the allowed set.  This further adds an additional layer of val
 <section id="how-to-use-the-enumeratedstring">
 <h2><a class="toc-backref" href="#id3" role="doc-backlink">How to use the EnumeratedString</a><a class="headerlink" href="#how-to-use-the-enumeratedstring" title="Link to this heading">¶</a></h2>
 <p>First include the <code class="docutils literal notranslate"><span class="pre">EnumeratedString.h</span></code> header file.</p>
-<p>This is a template class, and its two template parameters are the name of an <code class="docutils literal notranslate"><span class="pre">enum</span></code> type, and a <em>pointer</em> to static vector of
-<code class="docutils literal notranslate"><span class="pre">std::string</span></code> objects.</p>
+<p>This is a template class, and its three template parameters are the name of an <code class="docutils literal notranslate"><span class="pre">enum</span></code> type, a <em>pointer</em> to static vector of
+<code class="docutils literal notranslate"><span class="pre">std::string</span></code> objects, and an optional <em>pointer</em> to a statically defined <code class="docutils literal notranslate"><span class="pre">std::function</span></code> for comparing <code class="docutils literal notranslate"><span class="pre">std::string</span></code> objects. The last
+template parameter is defaulted to <code class="docutils literal notranslate"><span class="pre">compareStrings</span></code> which implements a case-sensitive string comparison. A predefined function for case-insensitive
+string comparison, <code class="docutils literal notranslate"><span class="pre">compareStringsCaseInsensitive</span></code>, is also provided as an option.</p>
 <p>Below is an example.  Consider the mantid algorithm <code class="code docutils literal notranslate"><span class="pre">BakeCake</span></code>, which has a string property,
 <code class="docutils literal notranslate"><span class="pre">CakeType</span></code>.  This algorithm only knows how to bake a few types of cakes.  The allowed types of cake the user can set for
 this property are limited to “Lemon”, “Bundt”, and “Pound”.</p>
@@ -236,6 +238,35 @@ free conversion and comparison from <code class="code docutils literal notransla
 </pre></div>
 </div>
 <p>This will easily handle branching logic on the basis of a set number of possible string values, using an <code class="docutils literal notranslate"><span class="pre">enum</span></code> to base the set of strings.</p>
+<p>In the code examples above, if you don’t want to distinguish between names like “Lemon” and “LEMON”, you can define your <code class="docutils literal notranslate"><span class="pre">CAKETYPE</span></code> as case-insensitive:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;MantidKernel/EnumeratedString.h&quot;</span>
+
+<span class="k">namespace</span><span class="w"> </span><span class="nn">Mantid</span><span class="w"> </span><span class="p">{</span>
+
+<span class="k">namespace</span><span class="w"> </span><span class="p">{</span>
+<span class="k">enum</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">CakeTypeEnum</span><span class="w"> </span><span class="p">{</span><span class="n">LEMON</span><span class="p">,</span><span class="w"> </span><span class="n">BUNDT</span><span class="p">,</span><span class="w"> </span><span class="n">POUND</span><span class="p">,</span><span class="w"> </span><span class="n">enum_count</span><span class="p">};</span>
+<span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">cakeTypeNames</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;Lemon&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Bundt&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Pound&quot;</span><span class="p">};</span>
+<span class="c1">// optional typedef</span>
+<span class="k">typedef</span><span class="w"> </span><span class="n">EnumeratedString</span><span class="o">&lt;</span><span class="n">CakeEnumType</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">cakeTypeNames</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">compareStringsCaseInsensitive</span><span class="o">&gt;</span><span class="w"> </span><span class="n">CAKETYPE</span><span class="p">;</span>
+<span class="p">}</span><span class="w"> </span><span class="c1">// namespace</span>
+</pre></div>
+</div>
+<p>You can also provide your own string comparator like <code class="docutils literal notranslate"><span class="pre">firstLetterComparator</span></code> shown below:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;MantidKernel/EnumeratedString.h&quot;</span>
+
+<span class="k">namespace</span><span class="w"> </span><span class="nn">Mantid</span><span class="w"> </span><span class="p">{</span>
+
+<span class="k">namespace</span><span class="w"> </span><span class="p">{</span>
+<span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">bool</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="p">)</span><span class="o">&gt;</span><span class="w"> </span><span class="n">firstLetterComparator</span><span class="w"> </span><span class="o">=</span>
+<span class="w">  </span><span class="p">[](</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span><span class="w"> </span><span class="p">};</span>
+<span class="k">enum</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">CakeTypeEnum</span><span class="w"> </span><span class="p">{</span><span class="n">L</span><span class="p">,</span><span class="w"> </span><span class="n">B</span><span class="p">,</span><span class="w"> </span><span class="n">P</span><span class="p">,</span><span class="w"> </span><span class="n">enum_count</span><span class="p">};</span>
+<span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">cakeTypeFirstLetters</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;L&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;B&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;P&quot;</span><span class="p">};</span>
+<span class="c1">// optional typedef</span>
+<span class="k">typedef</span><span class="w"> </span><span class="n">EnumeratedString</span><span class="o">&lt;</span><span class="n">CakeEnumType</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">cakeTypeFirstLetters</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">firstLetterComparator</span><span class="o">&gt;</span><span class="w"> </span><span class="n">CAKETYPE</span><span class="p">;</span>
+<span class="p">}</span><span class="w"> </span><span class="c1">// namespace</span>
+</pre></div>
+</div>
+<p>in which case a “Lemon” cake will get the same <code class="docutils literal notranslate"><span class="pre">enum</span></code> value as a “Lime” cake.</p>
 </section>
 </section>
 
