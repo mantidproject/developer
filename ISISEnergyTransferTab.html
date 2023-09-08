@@ -14,6 +14,7 @@
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Writing a Custom ConvertToMD Transformation" href="WritingCustomConvertToMDTransformation.html" />
 
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -104,42 +105,41 @@ from a single class structure to an MVP pattern, aimed at enhancing modularity, 
 The user interface (UI) components are divided into three distinct classes: a view, a model, and a presenter.
 This documentation will provide insights into the design choices made for each class and suggest potential areas for future improvements.
 The <a class="reference internal" href="Standards/GUIStandards.html#guistandards"><span class="std std-ref">GUI Standards</span></a> documentation is used as a guideline for writing the code.</p>
-</section>
 <section id="isis-energy-transfer-data">
-<h1>ISIS Energy Transfer Data<a class="headerlink" href="#isis-energy-transfer-data" title="Link to this heading">¶</a></h1>
+<h2>ISIS Energy Transfer Data<a class="headerlink" href="#isis-energy-transfer-data" title="Link to this heading">¶</a></h2>
 <p><code class="code docutils literal notranslate"><span class="pre">ISISEnergyTransferData</span></code> contains immutable data classes and constants that facilitate communication among the view, presenter, and
 model components for the ISIS Energy Transfer tab. The classes only provide getters to prevent data modification,
 ensuring the stability and integrity of the communication process.</p>
 </section>
 <section id="isis-energy-transfer-view">
-<h1>ISIS Energy Transfer view<a class="headerlink" href="#isis-energy-transfer-view" title="Link to this heading">¶</a></h1>
+<h2>ISIS Energy Transfer view<a class="headerlink" href="#isis-energy-transfer-view" title="Link to this heading">¶</a></h2>
 <p>The ISIS Energy Transfer View <code class="code docutils literal notranslate"><span class="pre">ISISEnergyTransferView</span></code> follows the <a class="reference internal" href="Standards/GUIStandards.html#guistandards"><span class="std std-ref">GUI Standards</span></a> by being a simplistic component with minimal business logic.
 Its functions define the interface for interacting with UI elements. Key functionalities done by the view include:</p>
 <section id="ui-data-getters">
-<h2>UI Data Getters<a class="headerlink" href="#ui-data-getters" title="Link to this heading">¶</a></h2>
+<h3>UI Data Getters<a class="headerlink" href="#ui-data-getters" title="Link to this heading">¶</a></h3>
 <p>These functions are used to fetch data from the view. For example, <code class="code docutils literal notranslate"><span class="pre">getRunData</span></code> returns <code class="code docutils literal notranslate"><span class="pre">IETRunData</span></code>
 object that contains the values of algorithm parameters. These functions should be constant and their responsibility
 is get the values of the UI elements.</p>
 </section>
 <section id="ui-data-setters">
-<h2>UI data setters<a class="headerlink" href="#ui-data-setters" title="Link to this heading">¶</a></h2>
+<h3>UI data setters<a class="headerlink" href="#ui-data-setters" title="Link to this heading">¶</a></h3>
 <p>The responsibility of these functions is to edit the values of different UI elements. Ideally, these functions perform value assignment only,
 avoiding any logical operations. An example is setDetailedBalance, which assigns the detailed balance value in the UI.</p>
 </section>
 <section id="ui-validators">
-<h2>UI validators<a class="headerlink" href="#ui-validators" title="Link to this heading">¶</a></h2>
+<h3>UI validators<a class="headerlink" href="#ui-validators" title="Link to this heading">¶</a></h3>
 <p>Data validation ideally should be done in the model. However, there are several cases where the validation cannot be done in the model.
 Functions like <code class="code docutils literal notranslate"><span class="pre">isRunFilesValid</span></code>, <code class="code docutils literal notranslate"><span class="pre">validateCalibrationFileType</span></code>, and <code class="code docutils literal notranslate"><span class="pre">validateRebinString</span></code> are used to validate for such purposes.</p>
 </section>
 <section id="communication-with-the-presenter">
-<h2>Communication with the Presenter<a class="headerlink" href="#communication-with-the-presenter" title="Link to this heading">¶</a></h2>
+<h3>Communication with the Presenter<a class="headerlink" href="#communication-with-the-presenter" title="Link to this heading">¶</a></h3>
 <p>Communication between the view and presenter follows an observer pattern to ensure decoupling from QT dependencies.
 The observer pattern implementation relies on the IETViewSubscriber interface, serving as a common subscriber interface.
 The view maintains a subscriber, typically the presenter. In future iterations, multiple subscribers might be notified concurrently.
 Subscribed functions are invoked through view slots. For instance, the slot <code class="code docutils literal notranslate"><span class="pre">pbRunFinished</span></code> triggers the <code class="code docutils literal notranslate"><span class="pre">notifyRunFinished</span></code> function in the subscriber.</p>
 </section>
 <section id="future-improvements">
-<h2>Future improvements<a class="headerlink" href="#future-improvements" title="Link to this heading">¶</a></h2>
+<h3>Future improvements<a class="headerlink" href="#future-improvements" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Where feasible, shift validation functions to the model.</p></li>
 <li><p>Refactor <code class="code docutils literal notranslate"><span class="pre">setDefaultInstrument</span></code> and <code class="code docutils literal notranslate"><span class="pre">includeExtraGroupingOption</span></code> because there are doing some logic.</p></li>
@@ -147,23 +147,23 @@ Subscribed functions are invoked through view slots. For instance, the slot <cod
 </section>
 </section>
 <section id="isis-energy-transfer-presenter">
-<h1>ISIS Energy Transfer Presenter<a class="headerlink" href="#isis-energy-transfer-presenter" title="Link to this heading">¶</a></h1>
+<h2>ISIS Energy Transfer Presenter<a class="headerlink" href="#isis-energy-transfer-presenter" title="Link to this heading">¶</a></h2>
 <p>The ISIS Energy Transfer Presenter <code class="code docutils literal notranslate"><span class="pre">IETPresenter</span></code> orchestrates communication between the view and model.
 This class implements the <code class="code docutils literal notranslate"><span class="pre">IETViewSubscriber</span></code> interface to manage events coming from the view.
 The presenter constructs both the view and model. The presenter undertakes the following responsibilities:</p>
 <section id="isis-energy-transfer-algorithm">
-<h2>ISIS Energy Transfer algorithm<a class="headerlink" href="#isis-energy-transfer-algorithm" title="Link to this heading">¶</a></h2>
+<h3>ISIS Energy Transfer algorithm<a class="headerlink" href="#isis-energy-transfer-algorithm" title="Link to this heading">¶</a></h3>
 <p>The presenter is involved in executing the core algorithm of the tab <code class="code docutils literal notranslate"><span class="pre">ISISIndirectEnergyTransferWrapper</span></code>.
 Functions such as <code class="code docutils literal notranslate"><span class="pre">validate</span></code> ensure the algorithm parameters are valid. <code class="code docutils literal notranslate"><span class="pre">notifyRunClicked</span></code> serves as the event handler for algorithm execution
 when a run click event happens. In addition, <code class="code docutils literal notranslate"><span class="pre">algorithmComplete</span></code> does post-algorithm processing operations.</p>
 </section>
 <section id="plotting">
-<h2>Plotting<a class="headerlink" href="#plotting" title="Link to this heading">¶</a></h2>
+<h3>Plotting<a class="headerlink" href="#plotting" title="Link to this heading">¶</a></h3>
 <p>Similar to the algorithm execution, the presenter manages data plotting.
 The function <code class="code docutils literal notranslate"><span class="pre">notifyPlotRawClicked</span></code> responds to the plot button click, while <code class="code docutils literal notranslate"><span class="pre">plotRawComplete</span></code> manages post-plotting tasks.</p>
 </section>
 <section id="dependency-on-indirectdatareductiontab">
-<h2>Dependency on <code class="code docutils literal notranslate"><span class="pre">IndirectDataReductionTab</span></code><a class="headerlink" href="#dependency-on-indirectdatareductiontab" title="Link to this heading">¶</a></h2>
+<h3>Dependency on <code class="code docutils literal notranslate"><span class="pre">IndirectDataReductionTab</span></code><a class="headerlink" href="#dependency-on-indirectdatareductiontab" title="Link to this heading">¶</a></h3>
 <p>Currently, <code class="code docutils literal notranslate"><span class="pre">IETPresenter</span></code> implements <code class="code docutils literal notranslate"><span class="pre">IndirectDataReductionTab</span></code> which does some UI
 logic, additionally coupled to QT. The presenter should not have a dependency
 on QT but the current presenter is using this interface to adapt with the legacy code.
@@ -171,7 +171,7 @@ This is the first tab to be refactored in the window. After refactoring all the 
 the common interface <code class="code docutils literal notranslate"><span class="pre">IndirectDataReductionTab</span></code> should be refactored.</p>
 </section>
 <section id="id1">
-<h2>Future improvements<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h2>
+<h3>Future improvements<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>UI validation in <code class="code docutils literal notranslate"><span class="pre">validate</span></code> could be moved to the model where possible.</p></li>
 <li><p>Add unit tests for the presenter</p></li>
@@ -179,47 +179,48 @@ the common interface <code class="code docutils literal notranslate"><span class
 </section>
 </section>
 <section id="isis-energy-transfer-model">
-<h1>ISIS Energy Transfer Model<a class="headerlink" href="#isis-energy-transfer-model" title="Link to this heading">¶</a></h1>
+<h2>ISIS Energy Transfer Model<a class="headerlink" href="#isis-energy-transfer-model" title="Link to this heading">¶</a></h2>
 <p>The model is the place where the logic should be implemented. It defines the interface to work with algorithms and other operations.
 The model doesn’t have a reference to the view and should be independent of the UI framework. In the current implementation, <code class="code docutils literal notranslate"><span class="pre">IETMdoel</span></code>
 is the model of the tab.</p>
 <section id="isis-indirect-energy-transfer-wrapper">
-<h2>ISIS Indirect Energy Transfer Wrapper<a class="headerlink" href="#isis-indirect-energy-transfer-wrapper" title="Link to this heading">¶</a></h2>
+<h3>ISIS Indirect Energy Transfer Wrapper<a class="headerlink" href="#isis-indirect-energy-transfer-wrapper" title="Link to this heading">¶</a></h3>
 <p><code class="code docutils literal notranslate"><span class="pre">ISISIndirectEnergyTransferWrapper</span></code> is the main algorithm in the tab. Various functions manage operations related to algorithm execution.
 A series of setters configure algorithm parameters. <code class="code docutils literal notranslate"><span class="pre">validateRunData</span></code> employs <code class="code docutils literal notranslate"><span class="pre">IETDataValidator</span></code> to validate algorithm parameters.
 Execution of the algorithm takes place within <code class="code docutils literal notranslate"><span class="pre">runIETAlgorithm</span></code> post validation and parameters configuration.</p>
 </section>
 <section id="id2">
-<h2>Plotting<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
+<h3>Plotting<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
 <p>In addition, the second responsibility for the model is to plot the data. <code class="code docutils literal notranslate"><span class="pre">validatePlotData</span></code> uses <code class="code docutils literal notranslate"><span class="pre">IETDataValidator</span></code> to validate the parameters of the plotting.
 The plotting occurs in <code class="code docutils literal notranslate"><span class="pre">plotRawFile</span></code> which validates and then plots the data.</p>
 </section>
 <section id="saving">
-<h2>Saving<a class="headerlink" href="#saving" title="Link to this heading">¶</a></h2>
+<h3>Saving<a class="headerlink" href="#saving" title="Link to this heading">¶</a></h3>
 <p>Saving the files is also handled in the model. The <code class="code docutils literal notranslate"><span class="pre">saveWorkspace</span></code> function calls different save operation
 depending on the file format type (e.g. Nexus file).</p>
 </section>
 <section id="grouping">
-<h2>Grouping<a class="headerlink" href="#grouping" title="Link to this heading">¶</a></h2>
+<h3>Grouping<a class="headerlink" href="#grouping" title="Link to this heading">¶</a></h3>
 <p>Grouping is also done in the model. <code class="code docutils literal notranslate"><span class="pre">groupWorkspaces</span></code> groups the workspace based on the
 selected type of grouping.</p>
 </section>
 <section id="model-utils-files">
-<h2>Model utils files<a class="headerlink" href="#model-utils-files" title="Link to this heading">¶</a></h2>
+<h3>Model utils files<a class="headerlink" href="#model-utils-files" title="Link to this heading">¶</a></h3>
 <p>The <code class="code docutils literal notranslate"><span class="pre">ISISEnergyTransferModelUtils</span></code> file contains several utility functions assisting the model,
 including loading sample logs and constructing grouping strings.</p>
 </section>
 <section id="model-tests">
-<h2>Model tests<a class="headerlink" href="#model-tests" title="Link to this heading">¶</a></h2>
+<h3>Model tests<a class="headerlink" href="#model-tests" title="Link to this heading">¶</a></h3>
 <p>Model unit tests are defined in <code class="code docutils literal notranslate"><span class="pre">ISISEnergyTransferModelTests</span></code>. Currently, the unit tests cover
 many functions in the model but ideally it should cover all of the functions.</p>
 </section>
 <section id="id3">
-<h2>Future improvements<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h2>
+<h3>Future improvements<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p><code class="code docutils literal notranslate"><span class="pre">plotRawFile</span></code> should be refactored. Currently, it is a big functions that run a lot of algorithms.</p></li>
 <li><p>Add unit tests for <code class="code docutils literal notranslate"><span class="pre">plotRawFile</span></code>, <cite>save</cite>, and <code class="code docutils literal notranslate"><span class="pre">groupWorkspaces</span></code> functions.</p></li>
 </ul>
+</section>
 </section>
 </section>
 
@@ -235,6 +236,10 @@ many functions in the model but ideally it should cover all of the functions.</p
       
           
             
+  <li>
+    <a href="WritingCustomConvertToMDTransformation.html" title="Previous Chapter: Writing a Custom ConvertToMD Transformation"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Writing a Cus...</span>
+    </a>
+  </li>
           
        
           <li><a href="#">Back to top</a></li>
