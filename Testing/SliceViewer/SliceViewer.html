@@ -227,6 +227,7 @@
 </li>
 <li><p>Change colormap</p></li>
 <li><p>Reverse colormap</p></li>
+<li><p>Change auto-scale option from default <cite>Min/Max</cite>  to another e.g. <cite>3-sigma</cite></p></li>
 </ol>
 </div></blockquote>
 </li>
@@ -249,7 +250,7 @@
 In terms of sliceviewer functionality, the key difference is that MDHistoWorkspace have binned the events onto a regular grid and cannot be dynamically rebinned unless the original MDWorkspace
 (that holds the events) exists in the ADS (and the MDHistoWorkspace has not been altered by a binary operation e.g. <code class="docutils literal notranslate"><span class="pre">MinusMD</span></code>).</p>
 <section id="mdworkspace-with-events">
-<h4><a class="toc-backref" href="#id6" role="doc-backlink">MDWorkspace (with events)</a><a class="headerlink" href="#mdworkspace-with-events" title="Link to this heading">¶</a></h4>
+<span id="md-event-tests"></span><h4><a class="toc-backref" href="#id6" role="doc-backlink">MDWorkspace (with events)</a><a class="headerlink" href="#mdworkspace-with-events" title="Link to this heading">¶</a></h4>
 <ol class="arabic simple">
 <li><p>Create a 3D and 4D MDWorkspaces with some data - repeat the following tests with both <code class="docutils literal notranslate"><span class="pre">md_4D</span></code> and <code class="docutils literal notranslate"><span class="pre">md_3D</span></code>. Note this will throw a warning relating to the <code class="docutils literal notranslate"><span class="pre">SlicingAlgorithm</span></code>.</p></li>
 </ol>
@@ -363,11 +364,11 @@ In terms of sliceviewer functionality, the key difference is that MDHistoWorkspa
 <blockquote>
 <div><ul class="simple">
 <li><p>It should change the slicepoint along the integrated momentum axis and zoom into the peak - e.g. in (X,Y) = (H,K) then the slicepoint along L will be set to 1 and there will be a cross at (0,0).</p></li>
-<li><p>Note for <code class="docutils literal notranslate"><span class="pre">md_4D</span></code> the cross should be plotted at all E (obviously a Bragg peak will only be on the elastic line but the peak object has no elastic/inelastic logic and the sliceviewer only knows that <cite>E</cite> is not a momentum axis, it could be temperature etc.).</p></li>
+<li><p>Note for <code class="docutils literal notranslate"><span class="pre">md_4D</span></code> a peak will not be plotted if a non-Q axis is viewed, if both axes are Q-dimensions then the cross should be plotted at all E (obviously a Bragg peak will only be on the elastic line but the peak object has no elastic/inelastic logic and the sliceviewer only knows that <cite>E</cite> is not a momentum axis, it could be temperature etc.).</p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p>Click Add Peaks in the Peak Actions section at the top of the peak viewer</p></li>
+<li><p>Click Add Peaks in the Peak Actions section at the top of the peak viewer (note for 4D workspaces the peak overlay won’t work for non_Q dimensions).</p></li>
 <li><p>Click somewhere in the colorfill plot</p>
 <blockquote>
 <div><ul class="simple">
@@ -473,7 +474,6 @@ It should only be enabled for the <cite>ws_3D</cite> and <cite>ws_3D_QLab</cite>
 <li><p>Open the cut tool and check that:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>Disabled non-ortho view</p></li>
 <li><p>Disabled ROI tool</p></li>
 <li><p>Disabled line plots</p></li>
 <li><p>Sliceviewer should look like</p></li>
@@ -508,7 +508,7 @@ It should only be enabled for the <cite>ws_3D</cite> and <cite>ws_3D_QLab</cite>
 <li><p>Try to change the a* column of the u1 to 1 (this would take u1 out of the plane of the slice, i.e. not orthogonal to u3) - it should reset to 0 - i.e. u1 = [0,1,0].</p></li>
 <li><p>Click and hold down on one of the red markers with white face on the colorfill plot and drag, release at ~K=1.</p>
 <ul class="simple">
-<li><p>This should reset the vectors int he table such that the cut is along u1 = [0,0,1] - i.e. u1 &lt;-&gt; u2</p></li>
+<li><p>This should reset the vectors in the table such that the cut is along u1 = [0,0,1] - i.e. u1 and u2 are swapped</p></li>
 <li><p>The thickness along u2 should be adjusted to ~2</p></li>
 </ul>
 </li>
@@ -519,7 +519,7 @@ It should only be enabled for the <cite>ws_3D</cite> and <cite>ws_3D_QLab</cite>
 <li><p>There should be a peak in the 1D plot at x~1</p></li>
 </ul>
 </li>
-<li><p>For u1 change c* = -1 and b* = 0 - check that u2 = [0,-1,0] and there is a peak at x~-1</p></li>
+<li><p>For u1 set b*=0 and c* = -1 and start=-2 - check that u2 = [0,-1,0] and there is a peak at x~-1</p></li>
 <li><p>To change the centre of the cut move the central white marker of the cut representation to (K,L) ~ (2,0),</p>
 <ul class="simple">
 <li><p>The entire cut representation should move</p></li>
@@ -550,7 +550,7 @@ It should only be enabled for the <cite>ws_3D</cite> and <cite>ws_3D_QLab</cite>
 <section id="representation-of-integrated-peaks">
 <h3><a class="toc-backref" href="#id10" role="doc-backlink">1. Representation of integrated peaks</a><a class="headerlink" href="#representation-of-integrated-peaks" title="Link to this heading">¶</a></h3>
 <ol class="arabic simple">
-<li><p>Run the code below to generate fake data and integrate peaks in the 3D MDWorkspace <code class="docutils literal notranslate"><span class="pre">md_3D</span></code></p></li>
+<li><p>Run the code below to generate fake data and integrate peaks in the 3D MDWorkspace <code class="docutils literal notranslate"><span class="pre">md_3D</span></code> from <a class="reference internal" href="#md-event-tests"><span class="std std-ref">MDWorkspace (with events)</span></a></p></li>
 </ol>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fake data in 3D MD and integrate</span>
 <span class="n">FakeMDEventData</span><span class="p">(</span><span class="n">md_3D</span><span class="p">,</span> <span class="n">EllipsoidParams</span><span class="o">=</span><span class="s1">&#39;1e4,1,0,1,1,0,0,0,1,0,0,0,1,0.005,0.005,0.015,0&#39;</span><span class="p">,</span> <span class="n">RandomSeed</span><span class="o">=</span><span class="s1">&#39;3873875&#39;</span><span class="p">)</span> <span class="c1"># ellipsoid</span>
