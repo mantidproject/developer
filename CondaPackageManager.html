@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Conda Package Manager</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css?v=fadd4351" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=77160d70" />
+    <script src="_static/documentation_options.js?v=30d551ce"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Running the Unit Tests" href="RunningTheUnitTests.html" />
+    <link rel="prev" title="Obtaining a Benchmark for Mantid Fitting" href="ObtainingABenchmarkForMantidFitting.html" />
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-59110517-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+  </head><body>
+
+
+
+
+
+  <div id="navbar" class="navbar navbar-default ">
+    <div class="container">
+      <div class="navbar-header">
+        
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://www.mantidproject.org">
+           </a>
+        <span class="navbar-text navbar-version pull-left"><b>master</b></span>
+      </div>
+
+      
+        <div class="collapse navbar-collapse nav-collapse">
+      
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="index.html">Home</a></li>
+                <li><a href="https://download.mantidproject.org">Download</a></li>
+                <li><a href="https://docs.mantidproject.org">User Documentation</a></li>
+                <li><a href="http://www.mantidproject.org/contact">Contact Us</a></li>
+            
+            
+              
+              
+            
+            
+            
+            
+          </ul>
+              
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+            </div>
+    </div>
+    <p>
+<div class="related" role="navigation" aria-label="related navigation">
+  <h3>Navigation</h3>
+  <ul>
+    <li class="nav-item nav-item-0"><a href="index.html">Documentation</a> &#187;</li>
+    
+    
+    
+    
+    <li class="nav-item nav-item-this"><a href="">Conda Package Manager</a></li>
+    
+    
+  </ul>
+</div> </p>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <section id="conda-package-manager">
+<span id="condapackagemanager"></span><h1>Conda Package Manager<a class="headerlink" href="#conda-package-manager" title="Link to this heading">¶</a></h1>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#creating-environments" id="id1">Creating Environments</a></p></li>
+<li><p><a class="reference internal" href="#finding-a-broken-dependency" id="id2">Finding a broken dependency</a></p></li>
+<li><p><a class="reference internal" href="#fixing-a-broken-dependency" id="id3">Fixing a broken dependency</a></p></li>
+<li><p><a class="reference internal" href="#pip-package-policy" id="id4">Pip package policy</a></p></li>
+</ul>
+</nav>
+<p>Mantid uses <a class="reference external" href="https://docs.conda.io/en/latest/">Conda</a> as its package management system. This document gives a
+developer overview on how we use the Conda package manager, including tips on how to debug dependency issues, and
+our policy towards using <code class="docutils literal notranslate"><span class="pre">pip</span></code> packages (it is strongly discouraged).</p>
+<section id="creating-environments">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Creating Environments</a><a class="headerlink" href="#creating-environments" title="Link to this heading">¶</a></h2>
+<p>Creating an empty environment called <code class="docutils literal notranslate"><span class="pre">myenv</span></code>:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>myenv
+</pre></div>
+</div>
+<p>Creating a Python environment:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>myenv<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.10
+</pre></div>
+</div>
+<p>Creating an environment from file:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>myenv<span class="w"> </span>-f<span class="w"> </span>mantid-developer-&lt;OS&gt;.yml
+</pre></div>
+</div>
+<p>Creating an environment from package:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>myenv<span class="w"> </span>-c<span class="w"> </span>mantid<span class="w"> </span>mantidworkbench
+</pre></div>
+</div>
+<p>Creating an in-place environment:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>create<span class="w"> </span>--prefix<span class="w"> </span><span class="nv">$PWD</span>/myenv<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.10
+</pre></div>
+</div>
+</section>
+<section id="finding-a-broken-dependency">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Finding a broken dependency</a><a class="headerlink" href="#finding-a-broken-dependency" title="Link to this heading">¶</a></h2>
+<p>The nightly pipelines can sometimes fail for obscure reasons, seemingly unrelated to the changes made within
+Mantid. In this case, it is probable that a Conda dependency has updated, and the new update is “Broken”
+(if it is a minor or patch update) or no longer compatible with Mantid (if it is a major update).</p>
+<p>To find the dependency which has changed, you can run the <code class="docutils literal notranslate"><span class="pre">tools/Jenkins/dependency_spotter.py</span></code> script. This
+script takes two Jenkins build numbers, and optionally the OS label, the pipeline name, and the name of the file to
+compare. It will then output the changes in Conda package versions used in the two builds, if there are any. A
+few examples on how to use it:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>dependency_spotter.py<span class="w"> </span>-f<span class="w"> </span><span class="m">593</span><span class="w"> </span>-s<span class="w"> </span><span class="m">598</span>
+python<span class="w"> </span>dependency_spotter.py<span class="w"> </span>-f<span class="w"> </span><span class="m">593</span><span class="w"> </span>-s<span class="w"> </span><span class="m">598</span><span class="w"> </span>-os<span class="w"> </span>win-64
+python<span class="w"> </span>dependency_spotter.py<span class="w"> </span>-f<span class="w"> </span><span class="m">593</span><span class="w"> </span>-s<span class="w"> </span><span class="m">598</span><span class="w"> </span>--pipeline<span class="w"> </span>main_nightly_deployment_prototype
+</pre></div>
+</div>
+<p>Another useful command for investigating the dependencies of specific packages is <a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/commands/search.html">conda search</a>. To find the dependencies of a package:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>search<span class="w"> </span>-i<span class="w"> </span>&lt;package_name&gt;
+</pre></div>
+</div>
+</section>
+<section id="fixing-a-broken-dependency">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Fixing a broken dependency</a><a class="headerlink" href="#fixing-a-broken-dependency" title="Link to this heading">¶</a></h2>
+<p>After identifying the Conda dependency and version which is causing the unwanted behaviour, there are several
+options we can take to fix the issue. The following options are in order of preference:</p>
+<ol class="arabic simple">
+<li><p>Raise an issue in the dependencies <a class="reference external" href="https://conda-forge.org/docs/maintainer/adding_pkgs.html#feedstock-repository-structure">feedstock</a>
+repository with a minimum reproducible example. If appropriate, request that they mark the package version as
+“Broken”. See <a class="reference external" href="https://conda-forge.org/docs/maintainer/updating_pkgs.html#maint-fix-broken-packages">Removing broken packages</a> to understand this procedure.</p></li>
+<li><p>If we need a fix urgently, you can consider pinning the package in question. This is not an ideal solution,
+and so you should also open an issue to un-pin the package in future. When pinning a package, consider
+using the not-equals-to operator <code class="docutils literal notranslate"><span class="pre">!=x.y.z</span></code> because this allows the package to upgrade automatically when
+a new version arrives (which is hopefully a working version).</p></li>
+</ol>
+</section>
+<section id="pip-package-policy">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Pip package policy</a><a class="headerlink" href="#pip-package-policy" title="Link to this heading">¶</a></h2>
+<p>We have a strict policy with regards to using PyPi packages within Mantid. This policy can be summarised as
+follows:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>We strongly encourage PyPi dependencies be built into Conda packages and uploaded to conda-forge. PyPi packages
+will not be automatically installed into our Mantid Conda environments, and should instead be installed by
+users of the software, if required.
+</pre></div>
+</div>
+<p>We do not want to include pip packages as dependencies in our Conda recipes because there is no guarantee of
+compatibility between the two package managers. In the past, attempting to resolve compatibile package versions
+when two package managers are involved have caused broken Mantid installations. Furthermore, the original
+motivation for moving towards Conda was so that we had a unified package manager rather than using several
+different systems or mechanisms. Including pip packages in our dependencies would be a backwards step.</p>
+<p>The other solution we considered was installing our pip dependencies downstream within our DAaaS workspace
+configuration repository. We decided against this because it feels like bad practise to have a formalised
+way of installing dependencies of a software in a way which is completely detached. The prevailing message is
+this: please only use Conda packages. We provide <a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/PipInstall.html#pip-install-ref" title="(in MantidProject v6.8)"><span class="xref std std-ref">pip install instructions</span></a> for users if
+they would like to take the risk.</p>
+</section>
+</section>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+      <ul class="nav navbar-nav" style=" float: right;">
+      
+      
+          
+            
+  <li>
+    <a href="ObtainingABenchmarkForMantidFitting.html" title="Previous Chapter: Obtaining a Benchmark for Mantid Fitting"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Obtaining a B...</span>
+    </a>
+  </li>
+  <li>
+    <a href="RunningTheUnitTests.html" title="Next Chapter: Running the Unit Tests"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Running the U... &raquo;</span>
+    </a>
+  </li>
+          
+       
+          <li><a href="#">Back to top</a></li>
+       </ul>
+    <p>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
