@@ -133,13 +133,13 @@
 </nav>
 <section id="introduction">
 <h2><a class="toc-backref" href="#id1" role="doc-backlink">Introduction</a><a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h2>
-<p>Mantid’s <a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/Plugin.html#plugin" title="(in MantidProject v6.7)"><span class="xref std std-ref">plugin</span></a> architecture has been engineered so that it is easy for a developer, or intrepid user, to write an algorithm.
+<p>Mantid’s <a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/Plugin.html#plugin" title="(in MantidProject v6.8)"><span class="xref std std-ref">plugin</span></a> architecture has been engineered so that it is easy for a developer, or intrepid user, to write an algorithm.
 This page is a primer for the user about to write their first algorithm and assumes no great knowledge of C++.
 It covers the basics, with links to more advanced options where appropriate.
 There is special description for the case when you are looking to add a custom <a class="reference internal" href="WritingCustomConvertToMDTransformation.html#writingcustomconverttomdtransformation"><span class="std std-ref">MD conversion plugin</span></a>.</p>
-<p>Alternatively, you can implement your algorithm in <a class="reference external" href="https://docs.mantidproject.org/nightly/tutorials/extending_mantid_with_python/index.html#emwp-intro" title="(in MantidProject v6.7)"><span class="xref std std-ref">Python</span></a>.
+<p>Alternatively, you can implement your algorithm in <a class="reference external" href="https://docs.mantidproject.org/nightly/tutorials/extending_mantid_with_python/index.html#emwp-intro" title="(in MantidProject v6.8)"><span class="xref std std-ref">Python</span></a>.
 See <a class="reference internal" href="PythonVSCppAlgorithms.html#pythonvscppalgorithms"><span class="std std-ref">Python Vs C++ Algorithms</span></a> for a comparison of Mantid’s two programming languages.</p>
-<p>All <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/index.html#algorithms-list" title="(in MantidProject v6.7)"><span class="xref std std-ref">algorithms</span></a> in Mantid <a class="reference external" href="http://en.wikipedia.org/wiki/Inheritance_(computer_science)">inherit</a> from a base <code class="docutils literal notranslate"><span class="pre">Algorithm</span></code> class,
+<p>All <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/index.html#algorithms-list" title="(in MantidProject v6.8)"><span class="xref std std-ref">algorithms</span></a> in Mantid <a class="reference external" href="http://en.wikipedia.org/wiki/Inheritance_(computer_science)">inherit</a> from a base <code class="docutils literal notranslate"><span class="pre">Algorithm</span></code> class,
 which provides the support and services required for running a specific algorithm and greatly simplifies the process of writing a new one.</p>
 </section>
 <section id="getting-started">
@@ -256,7 +256,7 @@ The most common use cases for multiple versions are when the signature or underl
 Overall, few algorithms have more than one “version.”</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">category()</span></code> method aids users in finding the algorithm.
 The return can be a semilcolon (<code class="docutils literal notranslate"><span class="pre">;</span></code>) delimited string of categors/subcategories.
-You are highly encouraged to stay to the list of <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/index.html#algorithms-list" title="(in MantidProject v6.7)"><span class="xref std std-ref">existing categories</span></a>.</p>
+You are highly encouraged to stay to the list of <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/index.html#algorithms-list" title="(in MantidProject v6.8)"><span class="xref std std-ref">existing categories</span></a>.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">summary()</span></code> method is a brief description of the algorithms functionality.
 It is automatically re-used in the python docstring, and the generated help.
 The first sentence of the summary (up to the first period, <code class="docutils literal notranslate"><span class="pre">.</span></code>) is what appears in the generated gui for the algorithm.</p>
@@ -313,8 +313,8 @@ Most of the ones here are very uniformative, but the document on <code class="do
 Everything up to the first period (<code class="docutils literal notranslate"><span class="pre">.</span></code>) appears in the mouseover in the generated algorithm dialogs.
 The whole string appears in the user docs and python help.</p></li>
 </ul>
-<p>An optional <a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/Properties.html#properties-validators" title="(in MantidProject v6.7)"><span class="xref std std-ref">validator</span></a> or <a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/Properties.html#properties-directions" title="(in MantidProject v6.7)"><span class="xref std std-ref">directional argument</span></a> (input, output or both) can also be appended.
-The syntax for other property types (<code class="docutils literal notranslate"><span class="pre">WorkspaceProperty</span></code> and <code class="docutils literal notranslate"><span class="pre">ArrayProperty</span></code>) is more complex - see the <a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/Properties.html#properties" title="(in MantidProject v6.7)"><span class="xref std std-ref">properties</span></a> page.</p>
+<p>An optional <a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/Properties.html#properties-validators" title="(in MantidProject v6.8)"><span class="xref std std-ref">validator</span></a> or <a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/Properties.html#properties-directions" title="(in MantidProject v6.8)"><span class="xref std std-ref">directional argument</span></a> (input, output or both) can also be appended.
+The syntax for other property types (<code class="docutils literal notranslate"><span class="pre">WorkspaceProperty</span></code> and <code class="docutils literal notranslate"><span class="pre">ArrayProperty</span></code>) is more complex - see the <a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/Properties.html#properties" title="(in MantidProject v6.8)"><span class="xref std std-ref">properties</span></a> page.</p>
 <section id="validation-of-inputs">
 <h3><a class="toc-backref" href="#id6" role="doc-backlink">Validation of inputs</a><a class="headerlink" href="#validation-of-inputs" title="Link to this heading">¶</a></h3>
 <p>While not part of the initialization, the optional <code class="docutils literal notranslate"><span class="pre">validateInputs()</span></code> method allows for cross-checking parameters.
@@ -363,7 +363,7 @@ All of them eventually call the <a class="reference external" href="https://gith
 <li><p>run the <code class="docutils literal notranslate"><span class="pre">exec()</span></code> method</p></li>
 <li><p>add history to the Workspace annotating the parameters that the algorithm was called with</p></li>
 </ul>
-<p>Additionally, the algorithm framework also handles things like sync/async calling, exception handling, and interaction with <a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/AnalysisDataService.html#analysis-data-service" title="(in MantidProject v6.7)"><span class="xref std std-ref">AnalysisDataService</span></a>.</p>
+<p>Additionally, the algorithm framework also handles things like sync/async calling, exception handling, and interaction with <a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/AnalysisDataService.html#analysis-data-service" title="(in MantidProject v6.8)"><span class="xref std std-ref">AnalysisDataService</span></a>.</p>
 <section id="fetching-properties">
 <h3><a class="toc-backref" href="#id8" role="doc-backlink">Fetching properties</a><a class="headerlink" href="#fetching-properties" title="Link to this heading">¶</a></h3>
 <p>Before the data can be processed,
@@ -376,7 +376,7 @@ This uses the <code class="docutils literal notranslate"><span class="pre">getPr
 </pre></div>
 </div>
 <p>where the type in the left hand side is the type of the property (<code class="docutils literal notranslate"><span class="pre">int</span></code>, <code class="docutils literal notranslate"><span class="pre">double</span></code>, <code class="docutils literal notranslate"><span class="pre">std::string</span></code>, <code class="docutils literal notranslate"><span class="pre">std::vector</span></code>…) and must match what was defined in the <code class="docutils literal notranslate"><span class="pre">init()</span></code>.
-Note that the value of a <code class="docutils literal notranslate"><span class="pre">WorkspaceProperty</span></code> is a <a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/SharedPointer.html#shared-pointer" title="(in MantidProject v6.7)"><span class="xref std std-ref">shared pointer</span></a> to the workspace,
+Note that the value of a <code class="docutils literal notranslate"><span class="pre">WorkspaceProperty</span></code> is a <a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/SharedPointer.html#shared-pointer" title="(in MantidProject v6.8)"><span class="xref std std-ref">shared pointer</span></a> to the workspace,
 which is referred to as <code class="docutils literal notranslate"><span class="pre">Mantid::API::Workspace_sptr</span></code> or <code class="docutils literal notranslate"><span class="pre">Mantid::API::Workspace_const_sptr</span></code>.
 The latter should be used for input workspaces that will not need to be changed in the course of the algorithm.
 The output workspace is retrieved here to be used to detect if the algorithm is being performed in-place which will be discussed further down in this document.
@@ -414,7 +414,7 @@ This is achieved through a call to the <code class="docutils literal notranslate
 </section>
 <section id="using-workspaces">
 <h3><a class="toc-backref" href="#id10" role="doc-backlink">Using workspaces</a><a class="headerlink" href="#using-workspaces" title="Link to this heading">¶</a></h3>
-<p>The bulk of most algorithms will involve the manipulation of the data contained in workspaces and information on how to interact with these is given <a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/WorkingWithWorspaces.html#workingwithworkspaces" title="(in MantidProject v6.7)"><span class="xref std std-ref">here</span></a>.
+<p>The bulk of most algorithms will involve the manipulation of the data contained in workspaces and information on how to interact with these is given <a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/WorkingWithWorspaces.html#workingwithworkspaces" title="(in MantidProject v6.8)"><span class="xref std std-ref">here</span></a>.
 The more advanced user may also want to refer to the full
 <a class="reference external" href="http://doxygen.mantidproject.org/nightly/d3/de9/classMantid_1_1API_1_1Workspace.html">workspace documentation</a>.</p>
 <p>Those familiar with C++ should make use of private methods and data members to break up the execution code into more manageable and readable sections.</p>
