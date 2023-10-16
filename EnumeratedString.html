@@ -117,7 +117,7 @@ would be something like the following:</p>
 </pre></div>
 </div>
 <p>However, this is not allowed under C++.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">EnumeratedString</span></code> objects allow for binding an <code class="docutils literal notranslate"><span class="pre">enum</span> <span class="pre">class</span></code> to a C-style static array of strings, allowing for much
+<p>The <code class="docutils literal notranslate"><span class="pre">EnumeratedString</span></code> objects allow for binding an <code class="docutils literal notranslate"><span class="pre">enum</span></code> or <code class="docutils literal notranslate"><span class="pre">enum</span> <span class="pre">class</span></code> to a vector of strings, allowing for much
 of the same behavior.  This allows for easy-to-read <code class="docutils literal notranslate"><span class="pre">if</span></code> and <code class="docutils literal notranslate"><span class="pre">switch</span></code> statements, as well as easy conversions and assignments
 with strings from the allowed set.  This further adds an additional layer of validation for string properties, in additon to the
 <code class="docutils literal notranslate"><span class="pre">StringListValidator</span></code> used in the property declaration.</p>
@@ -160,6 +160,12 @@ this property are limited to “Lemon”, “Bundt”, and “Pound”.</p>
 <p>Notice that the final element of the <code class="docutils literal notranslate"><span class="pre">enum</span></code> is called <code class="code docutils literal notranslate"><span class="pre">enum_count</span></code>.  This is mandatory.  This element indicates the
 number of elements inside the <code class="docutils literal notranslate"><span class="pre">enum</span></code>, and used for verifying compatibility with the vector of strings.  A compiler error
 will be triggered if this is not included.</p>
+<p>Further, the <code class="docutils literal notranslate"><span class="pre">enum</span></code> <em>must</em> have elements in order from 0 to <code class="code docutils literal notranslate"><span class="pre">enum_count</span></code>.  That is, you <em>CANNOT</em> set them like so:
+.. code-block:: cpp</p>
+<blockquote>
+<div><p>enum class CakeTypeEnum : char {LEMON=’l’, BUNDT=’b’, POUND=’p’, enum_count=3}; // NOT ALLOWED</p>
+</div></blockquote>
+<p>as this will break validation features inside the class.</p>
 <p>Notice the use of the reference operator, <code class="code docutils literal notranslate"><span class="pre">&amp;cakeTypeNames</span></code>, and <em>not</em> <code class="code docutils literal notranslate"><span class="pre">cakeTypeNames</span></code>.</p>
 <p>In the above code, a <code class="code docutils literal notranslate"><span class="pre">CAKETYPE</span></code> object can be created either from a <code class="code docutils literal notranslate"><span class="pre">CakeTypeEnum</span></code>, or from one of the strings
 in the <code class="code docutils literal notranslate"><span class="pre">cakeTypeNames</span></code> array (either by the literal, or by accessig it in the array), or from another <code class="code docutils literal notranslate"><span class="pre">CAKETYPE</span></code>
@@ -190,7 +196,7 @@ free conversion and comparison from <code class="code docutils literal notransla
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">BakeCake::exec</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">   </span><span class="c1">// this will assign cakeType from the string property</span>
-<span class="w">   </span><span class="n">CAKETYPE</span><span class="w"> </span><span class="n">cakeType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getProperty</span><span class="p">(</span><span class="s">&quot;CakeType&quot;</span><span class="p">);</span>
+<span class="w">   </span><span class="n">CAKETYPE</span><span class="w"> </span><span class="n">cakeType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getPropertyValue</span><span class="p">(</span><span class="s">&quot;CakeType&quot;</span><span class="p">);</span>
 
 <span class="w">   </span><span class="c1">// logic can branch on cakeType comparing to the enum</span>
 <span class="w">   </span><span class="k">switch</span><span class="p">(</span><span class="n">cakeType</span><span class="p">){</span>
