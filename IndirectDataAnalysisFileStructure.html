@@ -109,7 +109,7 @@ something that should be fixed to be more modular but it could be left till the 
 <section id="fit-tab-structure">
 <h1>Fit Tab structure<a class="headerlink" href="#fit-tab-structure" title="Link to this heading">¶</a></h1>
 <p>The QENS fit tabs in Inelastic Data analysis have this general structure. Different tabs will feature different derived
-classes for the IndirectFitAnalysisTab, FitDataView, FunctionTemplateBrowser, and the AddWorkspaceDialog</p>
+classes for the IndirectDataAnalysisTab, FitDataView, FunctionTemplateBrowser, and the AddWorkspaceDialog</p>
 <figure class="align-default">
 <a class="reference internal image-reference" href="_images/IndirectFitTabStructure.png"><img alt="_images/IndirectFitTabStructure.png" src="_images/IndirectFitTabStructure.png" style="width: 400px;" /></a>
 </figure>
@@ -126,9 +126,9 @@ Some objects are shared between models, but as a design rule only one object sho
 IndirectFitData is controlled by IndirectFitDataModel, but is sometimes read by IndirectFitPlot.</p>
 <p>The IndirectFitPlotModel also contains a pointer to the active fit function and the IndirectFitOutput from the
 IndirectFittingModel, again should only ever READ FROM THESE OBJECTS only the IndirectFittingModel should control it.</p>
-<section id="indirectfitanalysistab">
-<h2>IndirectFitAnalysisTab<a class="headerlink" href="#indirectfitanalysistab" title="Link to this heading">¶</a></h2>
-<p>The IndirectFitAnalysisTab is the master container for each IDA tab (Fit Tab), contained in this are the individual
+<section id="indirectdataanalysistab">
+<h2>IndirectDataAnalysisTab<a class="headerlink" href="#indirectdataanalysistab" title="Link to this heading">¶</a></h2>
+<p>The IndirectDataAnalysisTab is the master container for each IDA tab, contained in this are the individual
 tabs IndirectFittingModel and View, as well as the sub widgets that make up the interface. Each Tab contains:
 - an IndirectFitDataInterface that manages the input of data to the tab
 - an IndirectFitPlot that contains two mini-plots: one for the data, and one for the fit difference.
