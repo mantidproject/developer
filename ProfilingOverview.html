@@ -14,7 +14,7 @@
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Profiling with perf" href="ProfilingWithPerf.html" />
+    <link rel="next" title="Mantid Timers" href="Timers.html" />
     <link rel="prev" title="Work flows algorithm profiling" href="AlgorithmProfiler.html" />
 
 <script>
@@ -112,13 +112,13 @@
 <li><p><a class="reference internal" href="#profiling-in-c" id="id4">Profiling in C++</a></p>
 <ul>
 <li><p><a class="reference internal" href="#mantid-s-algorithm-profiler" id="id5">Mantid’s Algorithm Profiler</a></p></li>
-<li><p><a class="reference internal" href="#mantid-s-timer-class" id="id6">Mantid’s Timer class</a></p></li>
-<li><p><a class="reference internal" href="#other-profiling-tools" id="id7">Other Profiling Tools</a></p>
+<li><p><a class="reference internal" href="#other-profiling-tools" id="id6">Other Profiling Tools</a></p>
 <ul>
-<li><p><a class="reference internal" href="#linux" id="id8">Linux</a></p></li>
-<li><p><a class="reference internal" href="#windows" id="id9">Windows</a></p></li>
+<li><p><a class="reference internal" href="#linux" id="id7">Linux</a></p></li>
+<li><p><a class="reference internal" href="#windows" id="id8">Windows</a></p></li>
 </ul>
 </li>
+<li><p><a class="reference internal" href="#timing-in-c" id="id9">Timing in C++</a></p></li>
 </ul>
 </li>
 </ul>
@@ -158,26 +158,10 @@ python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </s
 <h3><a class="toc-backref" href="#id5" role="doc-backlink">Mantid’s Algorithm Profiler</a><a class="headerlink" href="#mantid-s-algorithm-profiler" title="Link to this heading">¶</a></h3>
 <p>On Linux, the build can be configured to generate algorithm profiling information. See <a class="reference internal" href="AlgorithmProfiler.html"><span class="doc">AlgorithmProfiler</span></a> for details.</p>
 </section>
-<section id="mantid-s-timer-class">
-<h3><a class="toc-backref" href="#id6" role="doc-backlink">Mantid’s Timer class</a><a class="headerlink" href="#mantid-s-timer-class" title="Link to this heading">¶</a></h3>
-<p><a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/Framework/Kernel/inc/MantidKernel/Timer.h">MantidKernel/Timer</a> allows for very quick measurements of time of suspect code.
-It works on every operating system and does not require special compile flags.</p>
-<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="n">Mantid</span><span class="o">::</span><span class="n">Kernel</span><span class="o">::</span><span class="n">Timer</span><span class="w"> </span><span class="nf">timer</span><span class="p">();</span>
-<span class="c1">// do something expensive</span>
-<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;did step 1 in &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">timer</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
-<span class="c1">// do something else expensive - the timer still accumulates</span>
-<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;did step 2 after &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">timer</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; from start</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
-
-<span class="n">timer</span><span class="p">.</span><span class="n">reset</span><span class="p">();</span><span class="w"> </span><span class="c1">// reset the timer to zero</span>
-<span class="c1">// do something else</span>
-<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;step 3 took &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">timer</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
-</pre></div>
-</div>
-</section>
 <section id="other-profiling-tools">
-<h3><a class="toc-backref" href="#id7" role="doc-backlink">Other Profiling Tools</a><a class="headerlink" href="#other-profiling-tools" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">Other Profiling Tools</a><a class="headerlink" href="#other-profiling-tools" title="Link to this heading">¶</a></h3>
 <section id="linux">
-<span id="linux-1"></span><h4><a class="toc-backref" href="#id8" role="doc-backlink">Linux</a><a class="headerlink" href="#linux" title="Link to this heading">¶</a></h4>
+<span id="linux-1"></span><h4><a class="toc-backref" href="#id7" role="doc-backlink">Linux</a><a class="headerlink" href="#linux" title="Link to this heading">¶</a></h4>
 <p><a class="reference internal" href="ProfilingWithPerf.html"><span class="doc">Profiling with perf</span></a> for details on perf and intel’s vtune</p>
 <p><a class="reference internal" href="ProfilingWithValgrind.html"><span class="doc">Profiling with Valgrind</span></a> for details on using this tool</p>
 <p><a class="reference external" href="http://kcachegrind.sourceforge.net/cgi-bin/show.cgi/KcacheGrindIndex">Callgrind/KCachegrind</a></p>
@@ -194,13 +178,17 @@ running callgrind</p></li>
 <a class="reference external" href="http://www.pixelbeat.org/programming/profiling/">http://www.pixelbeat.org/programming/profiling/</a></p>
 </section>
 <section id="windows">
-<span id="windows-1"></span><h4><a class="toc-backref" href="#id9" role="doc-backlink">Windows</a><a class="headerlink" href="#windows" title="Link to this heading">¶</a></h4>
+<span id="windows-1"></span><h4><a class="toc-backref" href="#id8" role="doc-backlink">Windows</a><a class="headerlink" href="#windows" title="Link to this heading">¶</a></h4>
 <p><a class="reference external" href="http://www.codersnotes.com/sleepy/">Very Sleepy</a>:</p>
 <ul class="simple">
 <li><p>Start/stop recording of program using a button</p></li>
 <li><p>Not as detailed or flexible as callgrind</p></li>
 </ul>
 </section>
+</section>
+<section id="timing-in-c">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">Timing in C++</a><a class="headerlink" href="#timing-in-c" title="Link to this heading">¶</a></h3>
+<p>Please refer to <a class="reference internal" href="Timers.html"><span class="doc">Mantid Timers</span></a> for an introduction to measuring execution time of the Mantid C++ code.</p>
 </section>
 </section>
 </section>
@@ -222,7 +210,7 @@ running callgrind</p></li>
     </a>
   </li>
   <li>
-    <a href="ProfilingWithPerf.html" title="Next Chapter: Profiling with perf"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Profiling with perf &raquo;</span>
+    <a href="Timers.html" title="Next Chapter: Mantid Timers"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Mantid Timers &raquo;</span>
     </a>
   </li>
           

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Mantid Timers</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css?v=fadd4351" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=77160d70" />
+    <script src="_static/documentation_options.js?v=30d551ce"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Profiling with perf" href="ProfilingWithPerf.html" />
+    <link rel="prev" title="Profiling Overview" href="ProfilingOverview.html" />
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-59110517-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+  </head><body>
+
+
+
+
+
+  <div id="navbar" class="navbar navbar-default ">
+    <div class="container">
+      <div class="navbar-header">
+        
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://www.mantidproject.org">
+           </a>
+        <span class="navbar-text navbar-version pull-left"><b>master</b></span>
+      </div>
+
+      
+        <div class="collapse navbar-collapse nav-collapse">
+      
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="index.html">Home</a></li>
+                <li><a href="https://download.mantidproject.org">Download</a></li>
+                <li><a href="https://docs.mantidproject.org">User Documentation</a></li>
+                <li><a href="http://www.mantidproject.org/contact">Contact Us</a></li>
+            
+            
+              
+              
+            
+            
+            
+            
+          </ul>
+              
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+            </div>
+    </div>
+    <p>
+<div class="related" role="navigation" aria-label="related navigation">
+  <h3>Navigation</h3>
+  <ul>
+    <li class="nav-item nav-item-0"><a href="index.html">Documentation</a> &#187;</li>
+    
+    
+    
+    
+    <li class="nav-item nav-item-this"><a href="">Mantid Timers</a></li>
+    
+    
+  </ul>
+</div> </p>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <section id="mantid-timers">
+<h1>Mantid Timers<a class="headerlink" href="#mantid-timers" title="Link to this heading">¶</a></h1>
+<p>This page provides an introduction to measuring execution time of the Mantid C++ code.</p>
+<nav class="contents local" id="context">
+<p class="topic-title">Context</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#wall-clock-timers" id="id1">Wall-clock timers</a></p>
+<ul>
+<li><p><a class="reference internal" href="#class-timer" id="id2">Class Timer</a></p></li>
+<li><p><a class="reference internal" href="#class-codeblocktimer" id="id3">Class CodeBlockTimer</a></p></li>
+<li><p><a class="reference internal" href="#class-codeblockmultipletimer" id="id4">Class CodeBlockMultipleTimer</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#cpu-timers" id="id5">CPU timers</a></p>
+<ul>
+<li><p><a class="reference internal" href="#class-cputimer" id="id6">Class CPUTimer</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="wall-clock-timers">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Wall-clock timers</a><a class="headerlink" href="#wall-clock-timers" title="Link to this heading">¶</a></h2>
+<p>Wall-clock time is the <cite>total</cite> time elapsed during execution of code instructions. Mantid wall-clock timer classes
+are based on the <a class="reference external" href="https://en.cppreference.com/w/cpp/chrono/high_resolution_clock">std::chrono::high_resolution_clock</a> class.</p>
+<section id="class-timer">
+<span id="timer"></span><h3><a class="toc-backref" href="#id2" role="doc-backlink">Class Timer</a><a class="headerlink" href="#class-timer" title="Link to this heading">¶</a></h3>
+<p><a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/Framework/Kernel/inc/MantidKernel/Timer.h">MantidKernel/Timer</a>
+works like a stop-watch. You need to instantiate it before the code being profiled begins and then output its elapsed time right
+after the code ends. You can also reset the timer between time measurements, if necessary. An example is given below.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">Mantid</span><span class="o">::</span><span class="n">Kernel</span><span class="o">::</span><span class="n">Timer</span><span class="w"> </span><span class="n">timer</span><span class="p">;</span>
+<span class="c1">// do something that takes 5 sec</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;did step 1 in &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">timer</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="c1">// do something else that takes 55 sec - the timer still accumulates</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;did step 2 after &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">timer</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; from start</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="n">timer</span><span class="p">.</span><span class="n">reset</span><span class="p">();</span><span class="w"> </span><span class="c1">// reset the timer to zero</span>
+<span class="c1">// do something else that takes 5 sec</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;step 3 took &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">timer</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+
+<span class="nl">Output</span><span class="p">:</span>
+<span class="n">did</span><span class="w"> </span><span class="n">step</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="n">sec</span>
+<span class="n">did</span><span class="w"> </span><span class="n">step</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="n">after</span><span class="w"> </span><span class="mi">60</span><span class="w"> </span><span class="n">sec</span>
+<span class="n">step</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="n">took</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="n">sec</span>
+</pre></div>
+</div>
+</section>
+<section id="class-codeblocktimer">
+<span id="codeblocktimer"></span><h3><a class="toc-backref" href="#id3" role="doc-backlink">Class CodeBlockTimer</a><a class="headerlink" href="#class-codeblocktimer" title="Link to this heading">¶</a></h3>
+<p><a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/Framework/Kernel/inc/MantidKernel/Timer.h">MantidKernel/CodeBlockTimer</a> is
+designed for timing a block of C++ code inside curly braces, i.e. inside a scope. You just need to instantiate
+a timer object on the stack at the start of the scope and provide an output stream. When the timer goes out of scope,
+it automatically outputs the elapsed time to the stream. An example is given below.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Timer.h&quot;</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">MyAlgorithm::doSomething</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="c1">// Instantiate a timer object on the stack. Specify the name and output stream.</span>
+<span class="w">    </span><span class="n">Mantid</span><span class="o">::</span><span class="n">Kernel</span><span class="o">::</span><span class="n">CodeBlockTimer</span><span class="w"> </span><span class="n">timer</span><span class="p">(</span><span class="s">&quot;MyAlgorithm::doSomething&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// Do something that takes 5 sec</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="c1">// When the timer goes out of scope, it will output the results</span>
+<span class="p">}</span>
+
+<span class="nl">Output</span><span class="p">:</span><span class="w"> </span><span class="n">Elapsed</span><span class="w"> </span><span class="n">time</span><span class="w"> </span><span class="p">(</span><span class="n">sec</span><span class="p">)</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="s">&quot;MyAlgorithm::doSomething&quot;</span><span class="o">:</span><span class="w"> </span><span class="mi">5</span>
+</pre></div>
+</div>
+<p>The above example shows how to time a whole function. You can, however, break a function into smaller blocks of code using curly
+braces and time each code block separately. Note, when a code block is executed multiple times, <cite>CodeBlockTimer</cite> will output the elapsed
+time for each execution. If you don’t want to have multiple lines of output and are interested in the total elapsed time, use <a class="reference internal" href="#codeblockmultipletimer"><span class="std std-ref">CodeBlockMultipleTimer</span></a>.</p>
+</section>
+<section id="class-codeblockmultipletimer">
+<span id="codeblockmultipletimer"></span><h3><a class="toc-backref" href="#id4" role="doc-backlink">Class CodeBlockMultipleTimer</a><a class="headerlink" href="#class-codeblockmultipletimer" title="Link to this heading">¶</a></h3>
+<p><a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/Framework/Kernel/inc/MantidKernel/Timer.h">MantidKernel/CodeBlockMultipleTimer</a> is designed
+for timing a block of code that is called multiple times. Similar to <a class="reference internal" href="#codeblocktimer"><span class="std std-ref">CodeBlockTimer</span></a>, it needs to be instantiated on the stack at the
+start of the scope. The constructor takes in a <a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/Framework/Kernel/inc/MantidKernel/Timer.h">MantidKernel/CodeBlockMultipleTimer::TimeAccumulator</a>
+object. Unlike the timer, which gets destroyed at the end of the scope, the time accumulator has to be persistent. One possibility is to declare it
+with a static linkage in the same compilation unit and provide an accessor function. Every time the timer goes out of scope, it automatically updates the time accumulator.
+The time accumulator can later be accessed to report the total elapsed time. In the example below Algorithm B calls a method on Algorithm A several times and outputs the total time elapsed in that method.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// File MyAlgorithm_A.cpp</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Timer.h&quot;</span>
+<span class="c1">// Declare a time accumulator with a static linkage</span>
+<span class="k">static</span><span class="w"> </span><span class="n">Mantid</span><span class="o">::</span><span class="n">Kernel</span><span class="o">::</span><span class="n">CodeBlockMultipleTimer</span><span class="o">::</span><span class="n">TimeAccumulator</span><span class="w"> </span><span class="n">s_timeAccumulator</span><span class="p">(</span><span class="s">&quot;MyAlgorithm_A::doSomething&quot;</span><span class="p">);</span>
+<span class="c1">// Provide an accessor function</span>
+<span class="n">MANTID_KERNEL_DLL</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Mantid</span><span class="o">::</span><span class="n">Kernel</span><span class="o">::</span><span class="n">CodeBlockMultipleTimer</span><span class="o">::</span><span class="n">TimeAccumulator</span><span class="o">&amp;</span><span class="w"> </span><span class="n">myAlgorithm_A_TimeAccumulator</span><span class="p">(){</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">s_timeAccumulator</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">// ...</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">MyAlgorithm_A</span><span class="o">::</span><span class="n">doSomething</span><span class="p">(){</span>
+<span class="w">    </span><span class="c1">// Declare a timer object on the stack. Specify the time accumulator.</span>
+<span class="w">    </span><span class="n">Mantid</span><span class="o">::</span><span class="n">Kernel</span><span class="o">::</span><span class="n">CodeBlockMultipleTimer</span><span class="w"> </span><span class="nf">timer</span><span class="p">(</span><span class="n">s_timeAccumulator</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// Do something that takes 5 sec</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="c1">// When the timer goes out of scope, it will update the time accumulator</span>
+<span class="p">}</span>
+
+<span class="c1">// File MyAlgorithm_B.cpp</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Timer.h&quot;</span>
+<span class="c1">// Let the linker know that the accessor function for the time accumulator is defined in another compilation unit</span>
+<span class="k">extern</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Mantid</span><span class="o">::</span><span class="n">Kernel</span><span class="o">::</span><span class="n">CodeBlockMultipleTimer</span><span class="o">::</span><span class="n">TimeAccumulator</span><span class="o">&amp;</span><span class="w"> </span><span class="n">myAlgorithm_A_TimeAccumulator</span><span class="p">();</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">MyAlgorithm_B::doSomething</span><span class="p">(){</span>
+<span class="w">    </span><span class="c1">// Call MyAlgorithm_A::doSomething() 3 times</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="c1">// Output the results</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">myAlgorithm_A_TimeAccumulator</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nl">Output</span><span class="p">:</span><span class="w"> </span><span class="n">Elapsed</span><span class="w"> </span><span class="n">time</span><span class="w"> </span><span class="p">(</span><span class="n">sec</span><span class="p">)</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="s">&quot;MyAlgorithm_A::doSomething&quot;</span><span class="o">:</span><span class="w"> </span><span class="mi">15</span><span class="p">;</span><span class="w"> </span><span class="n">Number</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">entrances</span><span class="o">:</span><span class="w"> </span><span class="mi">3</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="cpu-timers">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">CPU timers</a><a class="headerlink" href="#cpu-timers" title="Link to this heading">¶</a></h2>
+<p>CPU time is the time spent by the CPU while processing code instructions. Unlike wall-clock time, CPU time does not include
+time spent waiting for disk, network or other resources, e.g. I/O operations.</p>
+<section id="class-cputimer">
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">Class CPUTimer</a><a class="headerlink" href="#class-cputimer" title="Link to this heading">¶</a></h3>
+<p><a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/Framework/Kernel/inc/MantidKernel/CPUTimer.h">MantidKernel/CPUTimer</a>
+measures both CPU time and wall-clock time. The CPU time measurement utilizes
+<a class="reference external" href="https://en.cppreference.com/w/cpp/chrono/c/clock">std::clock()</a> function. The wall-clock time measurement uses <a class="reference internal" href="#timer"><span class="std std-ref">Timer</span></a> class.
+The output includes the wall-clock time and the ratio of the CPU time to the wall-clock time. Note, since CPU time and wall-clock time are measured
+with different accuracy, it is possible to have a ratio greater than 1.
+A code example is given below.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">Mantid</span><span class="o">::</span><span class="n">Kernel</span><span class="o">::</span><span class="n">CPUTimer</span><span class="w"> </span><span class="n">timer</span><span class="p">;</span>
+<span class="c1">// do something that takes 5 sec</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;did step 1 in &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">timer</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="c1">// do something else that takes 55 sec - the timer still accumulates</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;did step 2 after &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">timer</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; from start</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="n">timer</span><span class="p">.</span><span class="n">reset</span><span class="p">();</span><span class="w"> </span><span class="c1">// reset the timer to zero</span>
+<span class="c1">// do something else that takes 5 sec</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;step 3 took &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">timer</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+
+<span class="nl">Output</span><span class="p">:</span>
+<span class="n">did</span><span class="w"> </span><span class="n">step</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">in</span><span class="w">  </span><span class="mf">5.0000</span><span class="w"> </span><span class="n">sec</span><span class="p">,</span><span class="w"> </span><span class="n">CPU</span><span class="w"> </span><span class="n">Fraction</span><span class="w"> </span><span class="mf">1.00</span>
+<span class="n">did</span><span class="w"> </span><span class="n">step</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="n">after</span><span class="w"> </span><span class="mf">60.0000</span><span class="w"> </span><span class="n">sec</span><span class="p">,</span><span class="w"> </span><span class="n">CPU</span><span class="w"> </span><span class="n">Fraction</span><span class="w"> </span><span class="mf">0.99</span>
+<span class="n">step</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="n">took</span><span class="w">  </span><span class="mf">5.0000</span><span class="w"> </span><span class="n">sec</span><span class="p">,</span><span class="w"> </span><span class="n">CPU</span><span class="w"> </span><span class="n">Fraction</span><span class="w"> </span><span class="mf">1.00</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+      <ul class="nav navbar-nav" style=" float: right;">
+      
+      
+          
+            
+  <li>
+    <a href="ProfilingOverview.html" title="Previous Chapter: Profiling Overview"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Profiling Overview</span>
+    </a>
+  </li>
+  <li>
+    <a href="ProfilingWithPerf.html" title="Next Chapter: Profiling with perf"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Profiling with perf &raquo;</span>
+    </a>
+  </li>
+          
+       
+          <li><a href="#">Back to top</a></li>
+       </ul>
+    <p>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
