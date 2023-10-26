@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Gatekeeping a Pull Request</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css?v=fadd4351" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=77160d70" />
+    <script src="_static/documentation_options.js?v=30d551ce"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Writing Performance Tests" href="WritingPerformanceTests.html" />
+    <link rel="prev" title="Reviewing a Pull Request" href="ReviewingAPullRequest.html" />
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-59110517-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+  </head><body>
+
+
+
+
+
+  <div id="navbar" class="navbar navbar-default ">
+    <div class="container">
+      <div class="navbar-header">
+        
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://www.mantidproject.org">
+           </a>
+        <span class="navbar-text navbar-version pull-left"><b>master</b></span>
+      </div>
+
+      
+        <div class="collapse navbar-collapse nav-collapse">
+      
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="index.html">Home</a></li>
+                <li><a href="https://download.mantidproject.org">Download</a></li>
+                <li><a href="https://docs.mantidproject.org">User Documentation</a></li>
+                <li><a href="http://www.mantidproject.org/contact">Contact Us</a></li>
+            
+            
+              
+              
+            
+            
+            
+            
+          </ul>
+              
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+            </div>
+    </div>
+    <p>
+<div class="related" role="navigation" aria-label="related navigation">
+  <h3>Navigation</h3>
+  <ul>
+    <li class="nav-item nav-item-0"><a href="index.html">Documentation</a> &#187;</li>
+    
+    
+    
+    
+    <li class="nav-item nav-item-this"><a href="">Gatekeeping a Pull Request</a></li>
+    
+    
+  </ul>
+</div> </p>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <section id="gatekeeping-a-pull-request">
+<span id="gatekeeping"></span><h1>Gatekeeping a Pull Request<a class="headerlink" href="#gatekeeping-a-pull-request" title="Link to this heading">¶</a></h1>
+<p>The final step in our <a class="reference internal" href="GitWorkflow.html#gitworkflow"><span class="std std-ref">development workflow</span></a> after a <a class="reference internal" href="ReviewingAPullRequest.html#reviewingapullrequest"><span class="std std-ref">pull request has been reviewed</span></a> is gatekeeping. This is second review stage where a senior developer / code owner does a final check of the work before merging it to the <code class="docutils literal notranslate"><span class="pre">main</span></code> or <code class="docutils literal notranslate"><span class="pre">release-next</span></code> branch.</p>
+<section id="purpose">
+<h2>Purpose<a class="headerlink" href="#purpose" title="Link to this heading">¶</a></h2>
+<p>This document offers some guidance for gatekeepers as to what to look for and some quirks of Mantid to be aware of that the first reviewer may have missed. There are 3 main purposes to gatekeeping:</p>
+<ul class="simple">
+<li><p><strong>Audit:</strong> A detailed code review is generally not required as long as the first stage reviewer has done a thorough job - one of the main purposes of the gatekeeping role is to ensure that this is the case, i.e. that the review process has been followed correctly and all of the appropriate checks have been made.</p></li>
+<li><p><strong>Code quality:</strong> The other main purpose is to ensure all code changes have been seen by an experienced developer. We very much encourage new/junior team members to take part in first-stage reviews, so having this second stage ensures we have a chance to catch things that a newer team member may not be aware of.</p></li>
+<li><p><strong>Knowledge sharing:</strong> An additional benefit of the process is the opportunity for more experienced developers to offer advice and spot learning and development opportunities for individuals and/or things the whole team could benefit from. Depending on your capacity and interest in this do feel free to offer tips and/or feed into team processes or training materials as you think appropriate.</p></li>
+</ul>
+</section>
+<section id="with-great-power-comes-great-responsibility">
+<h2>With great power comes great responsibility<a class="headerlink" href="#with-great-power-comes-great-responsibility" title="Link to this heading">¶</a></h2>
+<p><em>Be very careful not to push to</em> <code class="docutils literal notranslate"><span class="pre">main</span></code> or <code class="docutils literal notranslate"><span class="pre">release-next</span></code></p>
+<ul class="simple">
+<li><p>When you are made a gatekeeper on the project you will be given <strong>full, unprotected access to the</strong> <code class="docutils literal notranslate"><span class="pre">main</span></code> <strong>branch</strong>. This means you lose the normal protection that stops you being able to push directly to the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch - you therefore need to be careful at all times that you do not accidentally push to <code class="docutils literal notranslate"><span class="pre">main</span></code>, e.g. when you are using Git in your terminal or Git GUI.</p></li>
+<li><p>You should be enough of a Git expert to know the implications of directly pushing to a branch, including being able to overwrite a branch completely with the history of another branch, which of course would be pretty catastrophic if done to <code class="docutils literal notranslate"><span class="pre">main</span></code>. You should have solid working practices with Git that ensure you are never likely to do this. Working on a fork is recommended, and some of the <a class="reference internal" href="GitConfig.html#gitconfig"><span class="std std-ref">recommended config</span></a> regarding default behaviour for <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code> will also help (although recent versions of Git are much safer by default in this regard so in reality you are unlikely to have problems).</p></li>
+<li><p>Of course, you should never deliberately make any changes directly on <code class="docutils literal notranslate"><span class="pre">main</span></code>, either via Github or a direct push to <code class="docutils literal notranslate"><span class="pre">main</span></code> - always raise a pull request regardless of how minor the change is otherwise you run a high risk of it not passing the CI tests and breaking the build for all developers.</p></li>
+</ul>
+</section>
+<section id="performing-a-merge-on-github">
+<h2>Performing a merge on Github<a class="headerlink" href="#performing-a-merge-on-github" title="Link to this heading">¶</a></h2>
+<p><em>The</em> <code class="docutils literal notranslate"><span class="pre">Merge</span> <span class="pre">pull</span> <span class="pre">request</span></code> <em>button</em></p>
+<ul class="simple">
+<li><p>Generally we perform the default merge which is to create a merge commit, so you can just click <code class="docutils literal notranslate"><span class="pre">Merge</span> <span class="pre">pull</span> <span class="pre">request</span></code>.</p></li>
+<li><p>This button should be green if all checks have passed and there is an approved review. The button will be red if this is not the case but you have the power to override it and merge anyway - it is not recommended to do this but very occasionally may be needed if e.g. it is urgent and being held up by an unreliable test you are certain is unrelated. If you do need to do this, make sure you add a clear comment describing why.</p></li>
+<li><p>Occasionally you might want to use <code class="docutils literal notranslate"><span class="pre">Squash</span> <span class="pre">and</span> <span class="pre">merge</span></code> from the drop-down menu, but typically this is only done if the developer specifically asked for it (although feel free to ask the developer if you can squash if you think that’s more appropriate).</p></li>
+<li><p>When you click the button you will get the chance to edit the commit message before committing. Typically we leave the commit title as per the default text so it is clear it is a merge, and paste the PR title into the body of the commit message. (Any other useful information can also be added here.)</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Confirm</span> <span class="pre">merge</span></code> to merge the commit to the destination branch.</p></li>
+<li><p>If a PR is approved but still finishing its CI checks then the button will read <code class="docutils literal notranslate"><span class="pre">Enable</span> <span class="pre">auto</span> <span class="pre">merge</span></code>. Feel free to use this if you are happy for the PR to be automatically merged once it passes all the CI checks.</p></li>
+</ul>
+</section>
+<section id="don-t-panic">
+<h2>Don’t panic<a class="headerlink" href="#don-t-panic" title="Link to this heading">¶</a></h2>
+<p>There is a lot here to consider but bear in mind that you are not expected to catch everything. Things will always slip through and we have good processes in place to catch them, and we can always revert changes if necessary. You have been invited to be a gatekeeper because you have valuable knowledge that we think the rest of the team can benefit from, so please share what you can :)</p>
+</section>
+<section id="things-to-check">
+<h2>Things to check<a class="headerlink" href="#things-to-check" title="Link to this heading">¶</a></h2>
+<section id="tips">
+<h3>Tips<a class="headerlink" href="#tips" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Generally I will start with a quick scan to the bottom of the comments to check the reviewers final comment - often this can inform what else to look for and save time (and it is good to encourage developers to write a concise summary of everything considered in the review in a final comment to make the gatekeeping process quicker).</p></li>
+<li><p>Have a quick scan to see what files are changed - this informs how widespread the change is. Use tools to help - Github has a side bar that displays a file hierarchy; Octotree is a useful plugin that also shows the number of lines changed in each file, and the Pro version has some nice functionality to show which files you’ve marked as viewed.</p></li>
+<li><p>Be aware that other gatekeepers may be looking at PRs at the same time as you, so if you think you will be spending any significant time doing your review, assign yourself as a reviewer and/or put a comment on it so that other gatekeepers know not to look at it (particularly if you think you might need to ask for changes, because another gatekeeper might merge it in the meantime!).</p></li>
+</ul>
+</section>
+<section id="destination-branch">
+<h3>Destination branch<a class="headerlink" href="#destination-branch" title="Link to this heading">¶</a></h3>
+<p><em>Be aware of where we are in the development/release cycle</em></p>
+<ul class="simple">
+<li><p>Check that the destination branch is correct. During development sprints, the destination branch should be <code class="docutils literal notranslate"><span class="pre">main</span></code>. During the release period, it may be <code class="docutils literal notranslate"><span class="pre">main</span></code> or <code class="docutils literal notranslate"><span class="pre">release-next</span></code> - ensure you are familiar with the release process and know the differences.</p></li>
+<li><p>Be more picky in the run up to release freeze - if large or risky changes are being made very close to release, question whether they can wait till the next release.</p></li>
+<li><p>The milestone should be set appropriately for the destination branch. If either doesn’t look correct, query it.</p></li>
+<li><p>Use extra caution when merging into <code class="docutils literal notranslate"><span class="pre">release-next</span></code>, particularly after release freeze when we should only be merging things that are critical and are considered “safe” fixes. The later we get into the release sprint, the more picky we need to be. If a PR can wait till the next release, get the developer to change the destination branch to <code class="docutils literal notranslate"><span class="pre">main</span></code>.</p></li>
+<li><p>If we are on very close to releasing, further merges to <code class="docutils literal notranslate"><span class="pre">release-next</span></code> may miss the build and be lost entirely. Check with the release manager.</p></li>
+</ul>
+</section>
+<section id="general-checks">
+<h3>General checks<a class="headerlink" href="#general-checks" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Check that the PR description and testing instructions are clear.</p></li>
+<li><p>Check that the reviewer seems to have done a thorough job on the functional testing and code review - feel free to ask if not clear.</p></li>
+<li><p>Check that everything has been added/updated if applicable, e.g. release notes, unit tests, system tests, documentation, developer documentation, unscripted testing documentation.</p></li>
+<li><p>Check that all reviewer comments have been addressed - in particular if there are additional comments from someone who is not the approver, because these can easily get missed after one person approves. Also check if any additional reviewers have been requested who have not commented.</p></li>
+<li><p>If a PR makes changes that look like they need scientific validation it might be worth querying what has been done or what plans are in place for this.</p></li>
+<li><p>Check the list of changed files looks sensible - sometimes developers mistakenly <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code> things by mistake e.g. local file changes, temp files etc. Query anything that looks out of place.</p></li>
+</ul>
+</section>
+<section id="testing">
+<h3>Testing<a class="headerlink" href="#testing" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Check that all functional code changes are covered by unit tests (this might be existing tests or new tests might be required with the change).</p></li>
+<li><p>Check that functional testing has been included in the PR description and is clear and is sufficient. Developers will often state that it just needs to pass the automated tests, or that just code review is required. However, any change that affects functional code should have some way of manually testing it so I would normally expect to see something here unless there is a good reason otherwise.</p></li>
+</ul>
+</section>
+<section id="code-quality">
+<h3>Code quality<a class="headerlink" href="#code-quality" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Have a brief scan of some of the changes to check that they adhere to standards.</p></li>
+<li><p>Consider any design decisions that have been made and if these are appropriate and not breaking any obvious design patters, e.g. it is common to see MVP being broken where logic is added to the view and is not testable; the lack of tests can be an indicator here. Is there any pollution of e.g. Qt in a non-Qt class; again this may make testing more difficult/complicated.</p></li>
+<li><p>Have a brief check that any tests look to be of good quality; unit tests should be clear and test things in isolation. Check for appropriate use of mocks.</p></li>
+<li><p>Keep an eye out for any other code smells - unclear tests, files/classes too long, long comments etc.</p></li>
+</ul>
+</section>
+<section id="deeper-checks">
+<h3>Deeper checks<a class="headerlink" href="#deeper-checks" title="Link to this heading">¶</a></h3>
+<p>A more thorough code review may be required in some situations, e.g.:</p>
+<ul class="simple">
+<li><p>the change is to core components or a wide range of components;</p></li>
+<li><p>the <code class="docutils literal notranslate"><span class="pre">Needs</span> <span class="pre">attention</span></code> label has been applied;</p></li>
+<li><p>the reviewer is more junior or unfamiliar with the area of code;</p></li>
+<li><p>the change involves considerable design changes/additions.</p></li>
+</ul>
+<p>A quick scan of the files changed can indicate whether the change is confined to a particular component or more widespread.</p>
+</section>
+<section id="version-control">
+<h3>Version control<a class="headerlink" href="#version-control" title="Link to this heading">¶</a></h3>
+<p>While not vital and often not something I’d ask for changes on, it is good to keep an eye on how clean and informative developers are keeping their Git commit history and offer tips, particularly to new developers, to help them improve their processes. This is sometimes the only chance to help some sole developers realise they could be working in a much more efficient manner. Things you might want to look for and offer advice on are:</p>
+<ul class="simple">
+<li><p>Nice clean history, in particular avoiding merge commits from <code class="docutils literal notranslate"><span class="pre">main</span></code> or the remote feature branch into the local feature branch - recommend rebase instead, and setting up config so this is done automatically.</p></li>
+<li><p>Clear commit messages, with a short title and more detailed message body if appropriate.</p></li>
+<li><p>Commit messages that clearly describe the actual changes - try to discourage comments to reference the review such as “add changes from review” and encourage describing the actual changes instead.</p></li>
+<li><p>Commits that nicely encapsulate increments of work - if developers are making multiple subsequent commits that should logically be part of a previous commit encourage use of <code class="docutils literal notranslate"><span class="pre">amend</span></code> and <code class="docutils literal notranslate"><span class="pre">fixup</span></code>.</p></li>
+<li><p>Using <code class="docutils literal notranslate"><span class="pre">#re</span></code> or <code class="docutils literal notranslate"><span class="pre">#refs</span></code> in the comment where appropriate (either title or body; we have a mix of styles but a developer should pick one and be consistent).</p></li>
+</ul>
+</section>
+</section>
+<section id="specific-quirks-of-mantid">
+<h2>Specific quirks of Mantid<a class="headerlink" href="#specific-quirks-of-mantid" title="Link to this heading">¶</a></h2>
+<p>There are often multiple and/or confusing ways to do things in Mantid and it is not always clear which is the right approach, particularly when there is a lot of legacy code following old outdated approaches. This section attempts to point out some of the common areas where there can be pitfalls. There is no direct advice here, but if you see changes that include these things and don’t look ideal then it might be worth digging deeper.</p>
+<section id="algorithms">
+<h3>Algorithms<a class="headerlink" href="#algorithms" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Workflow algorithms should only modify workspaces via calls to child algorithms; if you see one directly manipulating data in a workspace it is probably breaking the intention here and could have implications where the workspace history will be incomplete. There are already examples of this in Mantid so developers might follow the same pattern not realising that this is not the intended way of using workflow algorithms.</p></li>
+<li><p>If algorithm outputs change it may be worth checking if the algorithm should be versioned if users will still require the old results to be reproducible.</p></li>
+</ul>
+</section>
+<section id="workspaces">
+<h3>Workspaces<a class="headerlink" href="#workspaces" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Use of the ADS can be inconsistent. A lot of code uses it unnecessarily and workspaces are passed around by name assuming they will be in the ADS when actually this might be unnecessary and cause problems with algorithm history if a workspace doesn’t exist. Some algorithms have hacky code that dumps interim outputs into the ADS directly rather than using input/output properties, which again can cause problems with the history.</p></li>
+<li><p>Workspace history is often overlooked in testing and can be easily messed up by mis-use of workflow algorithms and mis-use of ADS and input/output workspace properties. Note however that history doesn’t always work reliably anyway though.</p></li>
+</ul>
+</section>
+<section id="workspace-groups">
+<h3>Workspace Groups<a class="headerlink" href="#workspace-groups" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Workspace groups are not handled particularly well in various parts of the code. In particular developers often forget to test with them and the workspace history can be confusing/incorrect.</p></li>
+</ul>
+</section>
+<section id="idfs-and-ipfs">
+<h3>IDFs and IPFs<a class="headerlink" href="#idfs-and-ipfs" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>These changes take effect as soon as they are merged to <code class="docutils literal notranslate"><span class="pre">main</span></code> - ensure the developer and their user(s) are aware of this. They may want to decouple these changes from code changes, and ensure backwards compatibility. Release notes may or may not be helpful (the changes are not tied to a release so in that case could be confusing, but some people prefer to add them because at least then the changes do get higlighted to users; it depends somewhat on the change and the audience).</p></li>
+</ul>
+</section>
+<section id="unit-tests">
+<h3>Unit tests<a class="headerlink" href="#unit-tests" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>The main thing to look out for is that unit tests are small and test a minimal piece of functionality. Often newer developers might add tests that do a full reduction on real data and just checks some output numbers, which can be unclear what a correct output looks like. These might be better as system tests and/or it might be better for them to create dummy data and make the tests smaller and clearer.</p></li>
+<li><p>Unit tests should be very quick, ideally under 1 second; push back if the developer is adding slower-running tests without a clear justification.</p></li>
+<li><p>Calling algorithms in tests requires initialising framework. This is sometimes necessary but often it is better to use mocks.</p></li>
+<li><p>Calling Python algorithms from C++ tests is not possible - either mock or create Python tests (calling C++ algorithms from Python works).</p></li>
+<li><p>Creating Qt objects in tests can often cause problems - ideally MVP should mean we can mock out view components and not need Qt at all in unit tests, although sometimes it is hard to avoid without a big refactor. Some creation of Qt components also needs testing but this is often better done as system/integration type tests.</p></li>
+</ul>
+</section>
+</section>
+<section id="how-do-people-become-gatekeepers">
+<h2>How do people become gatekeepers?<a class="headerlink" href="#how-do-people-become-gatekeepers" title="Link to this heading">¶</a></h2>
+<p>Gatekeepers are selected by the technical working group and/or local team leaders. We aim to have a good balance of gatekeepers from each contributing facility where possible.</p>
+</section>
+</section>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+      <ul class="nav navbar-nav" style=" float: right;">
+      
+      
+          
+            
+  <li>
+    <a href="ReviewingAPullRequest.html" title="Previous Chapter: Reviewing a Pull Request"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Reviewing a P...</span>
+    </a>
+  </li>
+  <li>
+    <a href="WritingPerformanceTests.html" title="Next Chapter: Writing Performance Tests"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Writing Perfo... &raquo;</span>
+    </a>
+  </li>
+          
+       
+          <li><a href="#">Back to top</a></li>
+       </ul>
+    <p>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
