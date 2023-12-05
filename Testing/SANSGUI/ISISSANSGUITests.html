@@ -192,8 +192,12 @@ reverted to their original values.</p></li>
 <li><p>Change some values on the <code class="docutils literal notranslate"><span class="pre">Beam</span> <span class="pre">Centre</span></code> tab. Re-load the user file. The inputs in the <code class="docutils literal notranslate"><span class="pre">Centre</span> <span class="pre">Position</span></code>
 section should revert to their original values, apart from the <code class="docutils literal notranslate"><span class="pre">Detector</span></code> combobox.
 The inputs in the <code class="docutils literal notranslate"><span class="pre">Options</span></code> section (such as the radius limits) should not revert.</p></li>
-<li><p>Ensure that you can load the old style <code class="docutils literal notranslate"><span class="pre">MaskFile.txt</span></code> user file from the
-sample data.</p></li>
+<li><p>Ensure that you can load the old style <code class="docutils literal notranslate"><span class="pre">MaskFile.txt</span></code> user file from the sample data.</p>
+<ul class="simple">
+<li><p><strong>Note:</strong> In order to see this file, you may need to change the settings in the file browser window to look for
+<code class="docutils literal notranslate"><span class="pre">.txt</span></code> files instead of <code class="docutils literal notranslate"><span class="pre">.TOML</span></code> files.</p></li>
+</ul>
+</li>
 <li><p>In the table on the <code class="docutils literal notranslate"><span class="pre">Runs</span></code> tab, under the <code class="docutils literal notranslate"><span class="pre">User</span> <span class="pre">File</span></code> column, enter
 <code class="docutils literal notranslate"><span class="pre">MaskFile.toml</span></code> in one row and <code class="docutils literal notranslate"><span class="pre">MaskFile.txt</span></code> in the other row. Click
 <code class="docutils literal notranslate"><span class="pre">Process</span> <span class="pre">All</span></code>. After some seconds, the rows should turn green to indicate
@@ -230,7 +234,7 @@ that they processed successfully.</p></li>
 <li><p>In the workspaces list, there should be a series of new workspaces; four
 group workspaces and four 1D workspaces.</p></li>
 <li><p>Check your default save directory. For each reduction two banks (HAB/main) should
-be saved. In total there should be 8 workspaces (4 .xml and 4 .nxs) saved.</p></li>
+be saved. In total there should be 8 workspaces (4 CanSAS <code class="docutils literal notranslate"><span class="pre">.xml</span></code> and 4 NXcanSAS <code class="docutils literal notranslate"><span class="pre">.h5</span></code>) saved.</p></li>
 <li><p>Double-click the 1D workspaces and you should get a single line plot.</p></li>
 <li><p>Clear the newly created files and workspaces to make the next test easier</p></li>
 <li><p>Change the contents of the first cell in the first row to <code class="docutils literal notranslate"><span class="pre">74045</span></code> and click
@@ -291,11 +295,14 @@ change the <code class="docutils literal notranslate"><span class="pre">Reductio
 <li><p>Check the <code class="docutils literal notranslate"><span class="pre">Scaled</span> <span class="pre">Background</span> <span class="pre">Subtraction</span></code> checkbox.</p></li>
 <li><p>In the <code class="docutils literal notranslate"><span class="pre">BackgroundWorkspace</span></code> column, enter the name of the merged workspace you took note of before.</p></li>
 <li><p>In the <code class="docutils literal notranslate"><span class="pre">ScaleFactor</span></code> column, enter <code class="docutils literal notranslate"><span class="pre">0.9</span></code>.</p></li>
+<li><p>Ensure that save outputs <code class="docutils literal notranslate"><span class="pre">CanSAS</span> <span class="pre">(1D)</span></code> and <code class="docutils literal notranslate"><span class="pre">NXcanSAS</span> <span class="pre">(1D/2D)</span></code> are ticked.</p></li>
 <li><p>Select this new row and click <code class="docutils literal notranslate"><span class="pre">Process</span> <span class="pre">Selected</span></code>.</p></li>
 <li><p>When it completes, two output files should have been created with <code class="docutils literal notranslate"><span class="pre">bgsub_test</span></code> in the name. One, which is the
 normal output data. Another with the scaled subtraction, which should have <code class="docutils literal notranslate"><span class="pre">_bgsub</span></code> appended to the name.</p></li>
 <li><p>Right click on each of these and select <code class="docutils literal notranslate"><span class="pre">Show</span> <span class="pre">Data</span></code>. The subtracted workspace’s values should be 10% of the of the
 unsubtracted workspace’s values.</p></li>
+<li><p>Check that your save location contains files for both the background subtracted workspace and the normal reduction
+output.</p></li>
 </ol>
 </section>
 <section id="beam-centre-finder">
