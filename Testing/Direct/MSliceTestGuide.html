@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>MSlice Testing</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css?v=fadd4351" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=77160d70" />
+    <script src="../../_static/documentation_options.js?v=30d551ce"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="SliceViewer Testing" href="../SliceViewer/SliceViewer.html" />
+    <link rel="prev" title="ALFView GUI Testing" href="ALFViewTests.html" />
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-59110517-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+  </head><body>
+
+
+
+
+
+  <div id="navbar" class="navbar navbar-default ">
+    <div class="container">
+      <div class="navbar-header">
+        
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://www.mantidproject.org">
+           </a>
+        <span class="navbar-text navbar-version pull-left"><b>master</b></span>
+      </div>
+
+      
+        <div class="collapse navbar-collapse nav-collapse">
+      
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="https://download.mantidproject.org">Download</a></li>
+                <li><a href="https://docs.mantidproject.org">User Documentation</a></li>
+                <li><a href="http://www.mantidproject.org/contact">Contact Us</a></li>
+            
+            
+              
+              
+            
+            
+            
+            
+          </ul>
+              
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+            </div>
+    </div>
+    <p>
+<div class="related" role="navigation" aria-label="related navigation">
+  <h3>Navigation</h3>
+  <ul>
+    <li class="nav-item nav-item-0"><a href="../../index.html">Documentation</a> &#187;</li>
+    
+    <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Testing</a> &#187;</li>
+    
+    
+    
+    
+    <li class="nav-item nav-item-this"><a href="">MSlice Testing</a></li>
+    
+    
+  </ul>
+</div> </p>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <p id="mslice-testing"><span class="math notranslate nohighlight">\(\renewcommand\AA{\mathring{A}}\)</span></p>
+<section id="id1">
+<h1>MSlice Testing<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h1>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#introduction" id="id3">Introduction</a></p></li>
+<li><p><a class="reference internal" href="#set-up" id="id4">Set Up</a></p></li>
+<li><p><a class="reference internal" href="#default-settings" id="id5">Default Settings</a></p></li>
+<li><p><a class="reference internal" href="#taking-slices" id="id6">Taking Slices</a></p>
+<ul>
+<li><p><a class="reference internal" href="#plotting-a-slice" id="id7">1. Plotting a Slice</a></p></li>
+<li><p><a class="reference internal" href="#modifying-a-slice" id="id8">2. Modifying a Slice</a></p></li>
+<li><p><a class="reference internal" href="#the-plots-tab" id="id9">3. The Plots Tab</a></p></li>
+<li><p><a class="reference internal" href="#overplot-recoil-lines-and-bragg-peaks" id="id10">4. Overplot Recoil Lines and Bragg Peaks</a></p></li>
+<li><p><a class="reference internal" href="#the-plot-toolbar" id="id11">5. The Plot Toolbar</a></p></li>
+<li><p><a class="reference internal" href="#generate-a-script" id="id12">6. Generate a Script</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#taking-cuts" id="id13">Taking Cuts</a></p>
+<ul>
+<li><p><a class="reference internal" href="#plotting-a-cut" id="id14">1. Plotting a Cut</a></p></li>
+<li><p><a class="reference internal" href="#changing-the-intensity-of-a-cut" id="id15">2. Changing the intensity of a Cut</a></p></li>
+<li><p><a class="reference internal" href="#modifying-a-cut" id="id16">3. Modifying a Cut</a></p></li>
+<li><p><a class="reference internal" href="#interactive-cuts" id="id17">4. Interactive Cuts</a></p></li>
+<li><p><a class="reference internal" href="#overplot-bragg-peaks" id="id18">5. Overplot Bragg Peaks</a></p></li>
+<li><p><a class="reference internal" href="#id2" id="id19">6. Generate a Script</a></p></li>
+<li><p><a class="reference internal" href="#waterfall-plots" id="id20">7. Waterfall Plots</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#the-command-line-interface" id="id21">The Command Line Interface</a></p>
+<ul>
+<li><p><a class="reference internal" href="#use-the-mantid-editor" id="id22">1. Use the Mantid Editor</a></p></li>
+<li><p><a class="reference internal" href="#run-an-example-script" id="id23">2. Run an Example Script</a></p></li>
+<li><p><a class="reference internal" href="#use-the-jupyter-qtconsole" id="id24">3. Use the Jupyter QtConsole</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#the-workspace-manager" id="id25">The Workspace Manager</a></p>
+<ul>
+<li><p><a class="reference internal" href="#check-scale-and-subtract" id="id26">1. Check Scale and Subtract</a></p></li>
+<li><p><a class="reference internal" href="#check-delete-and-sum" id="id27">2. Check Delete and Sum</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="introduction">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Introduction</a><a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h2>
+<p>MSlice is a tool for visualizing cuts and slices of inelastic neutron scattering data. This version uses Mantid to process the data and plots it using matplotlib. It includes both a GUI and a commandline interface with a script generator.</p>
+<p>See here for the current MSlice documentation: <a class="reference external" href="http://mantidproject.github.io/mslice">http://mantidproject.github.io/mslice</a></p>
+</section>
+<section id="set-up">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Set Up</a><a class="headerlink" href="#set-up" title="Link to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Ensure you have the <a class="reference external" href="http://download.mantidproject.org">ISIS Sample Data</a> available on your machine.</p></li>
+<li><p>Open <code class="docutils literal notranslate"><span class="pre">Interfaces</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Direct</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">MSlice</span></code></p></li>
+<li><p>Go to the <code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Loading</span></code> tab and select <code class="docutils literal notranslate"><span class="pre">MAR21335_Ei60meV.nxs</span></code> from the sample data.</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Load</span> <span class="pre">Data</span></code></p></li>
+<li><p>This should open the <code class="docutils literal notranslate"><span class="pre">Workspace</span> <span class="pre">Manager</span></code> tab with a workspace called <code class="docutils literal notranslate"><span class="pre">MAR21335_Ei60meV</span></code></p></li>
+</ol>
+</section>
+<section id="default-settings">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Default Settings</a><a class="headerlink" href="#default-settings" title="Link to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p>In the <code class="docutils literal notranslate"><span class="pre">Options</span></code> menu, change <code class="docutils literal notranslate"><span class="pre">Default</span> <span class="pre">Energy</span> <span class="pre">Units</span></code> from <code class="docutils literal notranslate"><span class="pre">meV</span></code> to <code class="docutils literal notranslate"><span class="pre">cm-1</span></code> and <code class="docutils literal notranslate"><span class="pre">Cut</span> <span class="pre">algorithm</span> <span class="pre">default</span></code> from <code class="docutils literal notranslate"><span class="pre">Rebin</span> <span class="pre">(Averages</span> <span class="pre">Counts)</span></code> to <code class="docutils literal notranslate"><span class="pre">Integration</span> <span class="pre">(Sum</span> <span class="pre">Counts)</span></code>.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">en</span></code> setting on the <code class="docutils literal notranslate"><span class="pre">Slice</span></code> tab changes from <code class="docutils literal notranslate"><span class="pre">meV</span></code> to <code class="docutils literal notranslate"><span class="pre">cm-1</span></code> and the values in the row labelled <code class="docutils literal notranslate"><span class="pre">y</span></code> change.</p></li>
+<li><p>Navigate to the <code class="docutils literal notranslate"><span class="pre">Cut</span></code> tab</p></li>
+<li><p>Verify that <code class="docutils literal notranslate"><span class="pre">en</span></code> is set to <code class="docutils literal notranslate"><span class="pre">cm-1</span></code> and <code class="docutils literal notranslate"><span class="pre">Cut</span> <span class="pre">Algorithm</span></code> to <code class="docutils literal notranslate"><span class="pre">Integration</span> <span class="pre">(Sum</span> <span class="pre">Counts)</span></code></p></li>
+<li><p>Change both settings back to their original values, <code class="docutils literal notranslate"><span class="pre">Default</span> <span class="pre">Energy</span> <span class="pre">Units</span></code> to <code class="docutils literal notranslate"><span class="pre">meV</span></code> and <code class="docutils literal notranslate"><span class="pre">Cut</span> <span class="pre">algorithm</span> <span class="pre">default</span></code> to <code class="docutils literal notranslate"><span class="pre">Rebin</span> <span class="pre">(Averages</span> <span class="pre">Counts)</span></code>.</p></li>
+</ol>
+</section>
+<section id="taking-slices">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Taking Slices</a><a class="headerlink" href="#taking-slices" title="Link to this heading">¶</a></h2>
+<section id="plotting-a-slice">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">1. Plotting a Slice</a><a class="headerlink" href="#plotting-a-slice" title="Link to this heading">¶</a></h3>
+<ol class="arabic simple">
+<li><p>In the <code class="docutils literal notranslate"><span class="pre">Workspace</span> <span class="pre">Manager</span></code> tab select the workspace <code class="docutils literal notranslate"><span class="pre">MAR21335_Ei60meV</span></code></p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Display</span></code> in the <code class="docutils literal notranslate"><span class="pre">Slice</span></code> tab without changing the default values</p></li>
+<li><p>On the slice plot, click <code class="docutils literal notranslate"><span class="pre">Keep</span></code></p></li>
+</ol>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../../_images/slice_plot.png"><img alt="slice_plot.png" src="../../_images/slice_plot.png" style="width: 80%;" /></a>
+</figure>
+</section>
+<section id="modifying-a-slice">
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">2. Modifying a Slice</a><a class="headerlink" href="#modifying-a-slice" title="Link to this heading">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Modify the slice settings in the <code class="docutils literal notranslate"><span class="pre">Slice</span></code> tab, for instance the values for x for <code class="docutils literal notranslate"><span class="pre">from</span></code> to <code class="docutils literal notranslate"><span class="pre">1.5</span></code> and <code class="docutils literal notranslate"><span class="pre">to</span></code> to <code class="docutils literal notranslate"><span class="pre">5.5</span></code> , and click <code class="docutils literal notranslate"><span class="pre">Display</span></code></p></li>
+<li><p>A second slice plot should open with a plot reflecting your changes in the settings</p></li>
+<li><p>The original slice plot should remain unchanged</p></li>
+</ol>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../../_images/modified_slice_plot.png"><img alt="modified_slice_plot.png" src="../../_images/modified_slice_plot.png" style="width: 80%;" /></a>
+</figure>
+</section>
+<section id="the-plots-tab">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">3. The Plots Tab</a><a class="headerlink" href="#the-plots-tab" title="Link to this heading">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Navigate to the <code class="docutils literal notranslate"><span class="pre">Plots</span></code> tab of MSlice and check that there are entries for two plots</p></li>
+<li><p>Open the <code class="docutils literal notranslate"><span class="pre">Plots</span></code> tab of Mantid and check that there are no entries for plots</p></li>
+<li><p>Select one of the plots in the <code class="docutils literal notranslate"><span class="pre">Plots</span></code> tab of MSlice and click on <code class="docutils literal notranslate"><span class="pre">Hide</span></code>, the corresponding plot should disappear</p></li>
+<li><p>Now click on <code class="docutils literal notranslate"><span class="pre">Show</span></code> for this plot and it should re-appear again</p></li>
+<li><p>Double-click on elements of the original slice plot and modify settings, for instance the plot itself and the colorbar axes</p></li>
+<li><p>Change the plot title and the y axis label to LaTeX, for instance <code class="docutils literal notranslate"><span class="pre">$\mathrm{\AA}^{-1}$</span></code>, and ensure the text is displayed correctly (for <code class="docutils literal notranslate"><span class="pre">$\mathrm{\AA}^{-1}$</span></code> it should be <span class="math notranslate nohighlight">\(\mathrm{\AA}^{-1}\)</span>)</p></li>
+<li><p>Ensure that the slice plot changes accordingly</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Make</span> <span class="pre">Current</span></code> on the original slice plot</p></li>
+<li><p>Modify the slice settings in the <code class="docutils literal notranslate"><span class="pre">Slice</span></code> tab again and click <code class="docutils literal notranslate"><span class="pre">Display</span></code></p></li>
+<li><p>This time the new slice plot overwrites the original slice plot</p></li>
+</ol>
+</section>
+<section id="overplot-recoil-lines-and-bragg-peaks">
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">4. Overplot Recoil Lines and Bragg Peaks</a><a class="headerlink" href="#overplot-recoil-lines-and-bragg-peaks" title="Link to this heading">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Navigate to the <code class="docutils literal notranslate"><span class="pre">Information</span></code> menu on the slice plot</p></li>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">Hydrogen</span></code> from the submenu for <code class="docutils literal notranslate"><span class="pre">Recoil</span> <span class="pre">lines</span></code>. A blue line should appear on the slice plot.</p></li>
+<li><p>Select two or three materials from the submenu for <code class="docutils literal notranslate"><span class="pre">Bragg</span> <span class="pre">peaks</span></code> and ensure that Bragg peaks in different colours per material are plotted on the slice plot.</p></li>
+<li><p>Make sure that when deselecting one of the materials only the respective Bragg peaks are removed from the slice plot but the ones still selected remain.</p></li>
+</ol>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../../_images/recoil_line_bragg_peaks.png"><img alt="recoil_line_bragg_peaks.png" src="../../_images/recoil_line_bragg_peaks.png" style="width: 80%;" /></a>
+</figure>
+</section>
+<section id="the-plot-toolbar">
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">5. The Plot Toolbar</a><a class="headerlink" href="#the-plot-toolbar" title="Link to this heading">¶</a></h3>
+<ol class="arabic simple">
+<li><p>In the plot window, check that the following buttons are working as expected: Zoom in, Zoom out, <code class="docutils literal notranslate"><span class="pre">Legends</span></code> (add a recoil line to display a legend first), Save, Copy, Print and Plot Options. Modify plot options and make sure that the plot changes accordingly.</p></li>
+</ol>
+</section>
+<section id="generate-a-script">
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">6. Generate a Script</a><a class="headerlink" href="#generate-a-script" title="Link to this heading">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Navigate to the <code class="docutils literal notranslate"><span class="pre">File</span></code> menu on the slice plot</p></li>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">Generate</span> <span class="pre">Script</span> <span class="pre">to</span> <span class="pre">Clipboard</span></code> and paste the script into the Mantid editor. Please note that on Linux <code class="docutils literal notranslate"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">V</span></code> might not work as expected. Use <code class="docutils literal notranslate"><span class="pre">shift</span> <span class="pre">insert</span></code> instead in this case.</p></li>
+<li><p>Run the script and check that the same slice plot is displayed</p></li>
+</ol>
+</section>
+</section>
+<section id="taking-cuts">
+<h2><a class="toc-backref" href="#id13" role="doc-backlink">Taking Cuts</a><a class="headerlink" href="#taking-cuts" title="Link to this heading">¶</a></h2>
+<section id="plotting-a-cut">
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">1. Plotting a Cut</a><a class="headerlink" href="#plotting-a-cut" title="Link to this heading">¶</a></h3>
+<ol class="arabic simple">
+<li><p>In the <code class="docutils literal notranslate"><span class="pre">Workspace</span> <span class="pre">Manager</span></code> tab select the workspace <code class="docutils literal notranslate"><span class="pre">MAR21335_Ei60meV</span></code></p></li>
+<li><p>Navigate to the <code class="docutils literal notranslate"><span class="pre">Cut</span></code> tab</p></li>
+<li><p>In the row labelled <code class="docutils literal notranslate"><span class="pre">along</span></code>, set the <code class="docutils literal notranslate"><span class="pre">from</span></code> value to <code class="docutils literal notranslate"><span class="pre">0</span></code> and the <code class="docutils literal notranslate"><span class="pre">to</span></code> value to <code class="docutils literal notranslate"><span class="pre">10</span></code></p></li>
+<li><p>In the row labelled <code class="docutils literal notranslate"><span class="pre">over</span></code>, set the <code class="docutils literal notranslate"><span class="pre">from</span></code> value to <code class="docutils literal notranslate"><span class="pre">-5</span></code> and the <code class="docutils literal notranslate"><span class="pre">to</span></code> value to <code class="docutils literal notranslate"><span class="pre">5</span></code></p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Plot</span></code>. A new window with a cut plot should open.</p></li>
+</ol>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../../_images/cut_q.png"><img alt="cut_q.png" src="../../_images/cut_q.png" style="width: 80%;" /></a>
+</figure>
+</section>
+<section id="changing-the-intensity-of-a-cut">
+<h3><a class="toc-backref" href="#id15" role="doc-backlink">2. Changing the intensity of a Cut</a><a class="headerlink" href="#changing-the-intensity-of-a-cut" title="Link to this heading">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Navigate to the <code class="docutils literal notranslate"><span class="pre">Intensity</span></code> menu on the cut plot</p></li>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">Chi''(Q,E)</span></code> and set a value of <code class="docutils literal notranslate"><span class="pre">100</span></code></p></li>
+<li><p>The y axis of the cut plot should change to a higher maximal value</p></li>
+</ol>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../../_images/cut_q_chi.png"><img alt="cut_q_chi.png" src="../../_images/cut_q_chi.png" style="width: 80%;" /></a>
+</figure>
+</section>
+<section id="modifying-a-cut">
+<h3><a class="toc-backref" href="#id16" role="doc-backlink">3. Modifying a Cut</a><a class="headerlink" href="#modifying-a-cut" title="Link to this heading">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Check that the menu item <code class="docutils literal notranslate"><span class="pre">Recoil</span> <span class="pre">lines</span></code> is disabled within the menu item <code class="docutils literal notranslate"><span class="pre">Information</span></code>.</p></li>
+<li><p>Modify the step size on the <code class="docutils literal notranslate"><span class="pre">Cut</span></code> tab to <code class="docutils literal notranslate"><span class="pre">0.02</span></code> and click <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">Over</span></code>. A second cut should appear on the cut plot in a different colour.</p></li>
+<li><p>Click on Plot Options on the cut plot and modify settings</p></li>
+<li><p>Ensure that the cut plot changes accordingly</p></li>
+<li><p>Click on Save to Workbench on the <code class="docutils literal notranslate"><span class="pre">Cut</span></code> tab and check that in Mantid a workspace with the name <code class="docutils literal notranslate"><span class="pre">MAR21335_Ei60meV_cut(-5.000,5.000)</span></code> appears</p></li>
+<li><p>In the row labelled <code class="docutils literal notranslate"><span class="pre">over</span></code>, set the <code class="docutils literal notranslate"><span class="pre">from</span></code> value to <code class="docutils literal notranslate"><span class="pre">-1</span></code> and the <code class="docutils literal notranslate"><span class="pre">to</span></code> value to <code class="docutils literal notranslate"><span class="pre">1</span></code> and click <code class="docutils literal notranslate"><span class="pre">Plot</span></code></p></li>
+<li><p>Navigate to the tab <code class="docutils literal notranslate"><span class="pre">MD</span> <span class="pre">Histo</span></code> tab and check that there are at least two entries, <code class="docutils literal notranslate"><span class="pre">MAR21335_Ei60meV_cut(-5.000,5.000)</span></code> and <code class="docutils literal notranslate"><span class="pre">MAR21335_Ei60meV_cut(-1.000,1.000)</span></code>. Please note that there might be more entries from the previous tests.</p></li>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">MAR21335_Ei60meV_cut(-1.000,1.000)</span></code> and click <code class="docutils literal notranslate"><span class="pre">Save</span> <span class="pre">to</span> <span class="pre">Workbench</span></code></p></li>
+<li><p>Check that in Mantid a workspace with the name <code class="docutils literal notranslate"><span class="pre">MAR21335_Ei60meV_cut(-1.000,1.000)</span></code> appears</p></li>
+<li><p>Navigate to the <code class="docutils literal notranslate"><span class="pre">Cut</span></code> tab</p></li>
+<li><p>In the row labelled <code class="docutils literal notranslate"><span class="pre">along</span></code>, select <code class="docutils literal notranslate"><span class="pre">DeltaE</span></code></p></li>
+<li><p>In the row labelled <code class="docutils literal notranslate"><span class="pre">over</span></code>, select <code class="docutils literal notranslate"><span class="pre">2Theta</span></code></p></li>
+<li><p>In the row labelled <code class="docutils literal notranslate"><span class="pre">along</span></code>, set the <code class="docutils literal notranslate"><span class="pre">from</span></code> value to <code class="docutils literal notranslate"><span class="pre">-5</span></code> and the <code class="docutils literal notranslate"><span class="pre">to</span></code> value to <code class="docutils literal notranslate"><span class="pre">5</span></code></p></li>
+<li><p>In the row labelled <code class="docutils literal notranslate"><span class="pre">over</span></code>, set the <code class="docutils literal notranslate"><span class="pre">from</span></code> value to <code class="docutils literal notranslate"><span class="pre">30</span></code> and the <code class="docutils literal notranslate"><span class="pre">to</span></code> value to <code class="docutils literal notranslate"><span class="pre">60</span></code></p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Plot</span></code></p></li>
+</ol>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../../_images/cut_plot.png"><img alt="cut_plot.png" src="../../_images/cut_plot.png" style="width: 80%;" /></a>
+</figure>
+</section>
+<section id="interactive-cuts">
+<h3><a class="toc-backref" href="#id17" role="doc-backlink">4. Interactive Cuts</a><a class="headerlink" href="#interactive-cuts" title="Link to this heading">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Navigate to the <code class="docutils literal notranslate"><span class="pre">Slice</span></code> tab of the <code class="docutils literal notranslate"><span class="pre">Workspace</span> <span class="pre">Manager</span></code> tab</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Display</span></code> in the <code class="docutils literal notranslate"><span class="pre">Slice</span></code> tab without changing the default values</p></li>
+<li><p>On the slice plot, select <code class="docutils literal notranslate"><span class="pre">Interactive</span> <span class="pre">Cuts</span></code></p></li>
+<li><p>Use the cursor to select a rectangular region in the slice plot. A second window with a cut plot should open.</p></li>
+<li><p>Check that the menu item <code class="docutils literal notranslate"><span class="pre">Intensity</span></code> is disabled as well as the item <code class="docutils literal notranslate"><span class="pre">Recoil</span> <span class="pre">lines</span></code> within the menu item <code class="docutils literal notranslate"><span class="pre">Information</span></code> in the new plot window</p></li>
+<li><p>Check that the <code class="docutils literal notranslate"><span class="pre">File</span></code> menu only has one menu item, <code class="docutils literal notranslate"><span class="pre">Close</span></code></p></li>
+<li><p>Change the rectangle by changing its size or dragging it to a different area of the slice plot. The cut plot should update accordingly.</p></li>
+<li><p>Click on <code class="docutils literal notranslate"><span class="pre">Save</span> <span class="pre">Cut</span> <span class="pre">to</span> <span class="pre">Workspace</span></code> and check the <code class="docutils literal notranslate"><span class="pre">MD</span> <span class="pre">Histo</span></code> tab of the Workspace Manager to verify that the new workspace was added</p></li>
+<li><p>Click on Flip Integration Axis. The y axis label changes from <code class="docutils literal notranslate"><span class="pre">Energy</span> <span class="pre">Transfer</span> <span class="pre">(meV)</span></code> to <span class="math notranslate nohighlight">\(|Q| (\mathrm{\AA}^{-1})\)</span> or vice versa, depending on the initial label.</p></li>
+</ol>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../../_images/flip_integration_axis.png"><img alt="flip_integration_axis.png" src="../../_images/flip_integration_axis.png" style="width: 10%;" /></a>
+</figure>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../../_images/interactive_cuts.png"><img alt="interactive_cuts.png" src="../../_images/interactive_cuts.png" style="width: 80%;" /></a>
+</figure>
+</section>
+<section id="overplot-bragg-peaks">
+<h3><a class="toc-backref" href="#id18" role="doc-backlink">5. Overplot Bragg Peaks</a><a class="headerlink" href="#overplot-bragg-peaks" title="Link to this heading">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Navigate to the <code class="docutils literal notranslate"><span class="pre">Information</span></code> menu on the cut plot</p></li>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">Aluminium</span></code> from the submenu for <code class="docutils literal notranslate"><span class="pre">Bragg</span> <span class="pre">peaks</span></code>. Green lines should appear on the cut plot with a respective legend entry.</p></li>
+<li><p>Deselect <code class="docutils literal notranslate"><span class="pre">Aluminium</span></code> form the submenu for <code class="docutils literal notranslate"><span class="pre">Bragg</span> <span class="pre">peaks</span></code>. Both green lines and the respective legend entry should disappear.</p></li>
+</ol>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../../_images/cut_with_bragg_peaks.png"><img alt="cut_with_bragg_peaks.png" src="../../_images/cut_with_bragg_peaks.png" style="width: 80%;" /></a>
+</figure>
+</section>
+<section id="id2">
+<h3><a class="toc-backref" href="#id19" role="doc-backlink">6. Generate a Script</a><a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Navigate to the <code class="docutils literal notranslate"><span class="pre">Cut</span></code> tab</p></li>
+<li><p>In the row labelled <code class="docutils literal notranslate"><span class="pre">along</span></code>, select <code class="docutils literal notranslate"><span class="pre">|Q|</span></code> and set the <code class="docutils literal notranslate"><span class="pre">from</span></code> value to <code class="docutils literal notranslate"><span class="pre">0</span></code> and the <code class="docutils literal notranslate"><span class="pre">to</span></code> value to <code class="docutils literal notranslate"><span class="pre">10</span></code></p></li>
+<li><p>In the row labelled <code class="docutils literal notranslate"><span class="pre">over</span></code>, set the <code class="docutils literal notranslate"><span class="pre">from</span></code> value to <code class="docutils literal notranslate"><span class="pre">-5</span></code> and the <code class="docutils literal notranslate"><span class="pre">to</span></code> value to <code class="docutils literal notranslate"><span class="pre">5</span></code></p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Plot</span></code>. A new window with a cut plot should open.</p></li>
+<li><p>Navigate to the <code class="docutils literal notranslate"><span class="pre">Information</span></code> menu on the cut plot</p></li>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">Aluminium</span></code> from the submenu for <code class="docutils literal notranslate"><span class="pre">Bragg</span> <span class="pre">peaks</span></code>. Green lines should appear on the cut plot with a respective legend entry.</p></li>
+<li><p>Navigate to the <code class="docutils literal notranslate"><span class="pre">File</span></code> menu on a cut plot. Please note that this needs to be a cut plot created via the <code class="docutils literal notranslate"><span class="pre">Cut</span></code> tab and not an interactive cut.</p></li>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">Generate</span> <span class="pre">Script</span> <span class="pre">to</span> <span class="pre">Clipboard</span></code> and paste the script into the Mantid editor. Please note that on Linux <code class="docutils literal notranslate"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">V</span></code> might not work as expected. Use <code class="docutils literal notranslate"><span class="pre">shift</span> <span class="pre">insert</span></code> instead in this case.</p></li>
+<li><p>Run the script and check that the same cut plot is displayed</p></li>
+</ol>
+</section>
+<section id="waterfall-plots">
+<h3><a class="toc-backref" href="#id20" role="doc-backlink">7. Waterfall Plots</a><a class="headerlink" href="#waterfall-plots" title="Link to this heading">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Navigate to the <code class="docutils literal notranslate"><span class="pre">Cut</span></code> tab</p></li>
+<li><p>In the row labelled <code class="docutils literal notranslate"><span class="pre">along</span></code>, set the <code class="docutils literal notranslate"><span class="pre">from</span></code> value to <code class="docutils literal notranslate"><span class="pre">0</span></code> and the <code class="docutils literal notranslate"><span class="pre">to</span></code> value to <code class="docutils literal notranslate"><span class="pre">10</span></code></p></li>
+<li><p>In the row labelled <code class="docutils literal notranslate"><span class="pre">over</span></code>, set the <code class="docutils literal notranslate"><span class="pre">from</span></code> value to <code class="docutils literal notranslate"><span class="pre">-5</span></code> and the <code class="docutils literal notranslate"><span class="pre">to</span></code> value to <code class="docutils literal notranslate"><span class="pre">5</span></code> as well as the <code class="docutils literal notranslate"><span class="pre">width</span></code> value to <code class="docutils literal notranslate"><span class="pre">2</span></code></p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Plot</span></code>. A new window with a cut plot should open.</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Waterfall</span></code> and set the <code class="docutils literal notranslate"><span class="pre">x</span></code> value to <code class="docutils literal notranslate"><span class="pre">0.5</span></code>, then hit enter. The cuts are now plotted with a <code class="docutils literal notranslate"><span class="pre">0.5</span></code> offset in direction of the x axis.</p></li>
+<li><p>Set the <code class="docutils literal notranslate"><span class="pre">y</span></code> value to <code class="docutils literal notranslate"><span class="pre">2</span></code> and hit enter. The cuts are now plotted with an additional offset (<code class="docutils literal notranslate"><span class="pre">2</span></code>) in direction of the y axis.</p></li>
+</ol>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../../_images/waterfall_cut_plot.png"><img alt="waterfall_cut_plot.png" src="../../_images/waterfall_cut_plot.png" style="width: 80%;" /></a>
+</figure>
+</section>
+</section>
+<section id="the-command-line-interface">
+<h2><a class="toc-backref" href="#id21" role="doc-backlink">The Command Line Interface</a><a class="headerlink" href="#the-command-line-interface" title="Link to this heading">¶</a></h2>
+<section id="use-the-mantid-editor">
+<h3><a class="toc-backref" href="#id22" role="doc-backlink">1. Use the Mantid Editor</a><a class="headerlink" href="#use-the-mantid-editor" title="Link to this heading">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Close all plots currently open but not the MSlice interface</p></li>
+<li><p>Copy the following code into the Mantid editor. You might have to modify the file path for the Load command to the correct location of <code class="docutils literal notranslate"><span class="pre">MAR21335_Ei60meV.nxs</span></code>.</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">mslice.cli</span> <span class="k">as</span> <span class="nn">mc</span>
+
+<span class="n">ws</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">Load</span><span class="p">(</span><span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">MAR21335_Ei60meV.nxs&#39;</span><span class="p">)</span>
+<span class="n">wsq</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">Cut</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="s1">&#39;|Q|&#39;</span><span class="p">,</span> <span class="s1">&#39;DeltaE, -1, 1&#39;</span><span class="p">)</span>
+<span class="n">mc</span><span class="o">.</span><span class="n">PlotCut</span><span class="p">(</span><span class="n">wsq</span><span class="p">)</span>
+
+<span class="n">ws2d</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">Slice</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="s1">&#39;|Q|, 0, 10, 0.01&#39;</span><span class="p">,</span> <span class="s1">&#39;DeltaE, -5, 55, 0.5&#39;</span><span class="p">)</span>
+<span class="n">mc</span><span class="o">.</span><span class="n">PlotSlice</span><span class="p">(</span><span class="n">ws2d</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="run-an-example-script">
+<h3><a class="toc-backref" href="#id23" role="doc-backlink">2. Run an Example Script</a><a class="headerlink" href="#run-an-example-script" title="Link to this heading">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Run the script.</p></li>
+<li><p>There should be two new windows with a slice plot and a cut plot</p></li>
+</ol>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../../_images/output_mslice_script.png"><img alt="output_mslice_script.png" src="../../_images/output_mslice_script.png" style="width: 80%;" /></a>
+</figure>
+</section>
+<section id="use-the-jupyter-qtconsole">
+<h3><a class="toc-backref" href="#id24" role="doc-backlink">3. Use the Jupyter QtConsole</a><a class="headerlink" href="#use-the-jupyter-qtconsole" title="Link to this heading">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Repeat the same test by copying the script into the Jupyter QtConsole of the MSlice interface</p></li>
+</ol>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../../_images/mslice_jupyter_qtconsole.png"><img alt="mslice_jupyter_qtconsole.png" src="../../_images/mslice_jupyter_qtconsole.png" style="width: 80%;" /></a>
+</figure>
+</section>
+</section>
+<section id="the-workspace-manager">
+<h2><a class="toc-backref" href="#id25" role="doc-backlink">The Workspace Manager</a><a class="headerlink" href="#the-workspace-manager" title="Link to this heading">¶</a></h2>
+<section id="check-scale-and-subtract">
+<h3><a class="toc-backref" href="#id26" role="doc-backlink">1. Check Scale and Subtract</a><a class="headerlink" href="#check-scale-and-subtract" title="Link to this heading">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Select the <code class="docutils literal notranslate"><span class="pre">MAR21335_Ei60meV</span></code> workspace in the <code class="docutils literal notranslate"><span class="pre">Workspace</span> <span class="pre">Manager</span></code>, click on <code class="docutils literal notranslate"><span class="pre">Save</span></code> and select <code class="docutils literal notranslate"><span class="pre">ASCII</span></code></p></li>
+<li><p>A file dialog opens and allows entering a name for saving the file</p></li>
+<li><p>Verify that a txt file with the selected name has been created and contains ASCII data (the first line should be <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">X</span> <span class="pre">,</span> <span class="pre">Y</span> <span class="pre">,</span> <span class="pre">E</span></code>)</p></li>
+<li><p>Select the <code class="docutils literal notranslate"><span class="pre">MAR21335_Ei60meV</span></code> workspace again, click on <code class="docutils literal notranslate"><span class="pre">Rename</span></code> and rename the workspace</p></li>
+<li><p>In the <code class="docutils literal notranslate"><span class="pre">Slice</span></code> tab of the renamed workspace click on <code class="docutils literal notranslate"><span class="pre">Display</span></code> and verify that the original slice plot is displayed</p></li>
+<li><p>Select the renamed workspace and click on <code class="docutils literal notranslate"><span class="pre">Delete</span></code></p></li>
+<li><p>The renamed workspace should disappear and the <code class="docutils literal notranslate"><span class="pre">Workspace</span> <span class="pre">Manager</span></code> should be empty</p></li>
+<li><p>Go to the <code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Loading</span></code> tab and select <code class="docutils literal notranslate"><span class="pre">MAR21335_Ei60meV.nxs</span></code> from the sample data.</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Load</span> <span class="pre">Data</span></code></p></li>
+<li><p>Select the <code class="docutils literal notranslate"><span class="pre">MAR21335_Ei60meV</span></code> workspace again, click on <code class="docutils literal notranslate"><span class="pre">Compose</span></code>, select <code class="docutils literal notranslate"><span class="pre">Scale</span></code> and enter a scale factor of 2, then click <code class="docutils literal notranslate"><span class="pre">Ok</span></code></p></li>
+<li><p>A new workspace with the name <code class="docutils literal notranslate"><span class="pre">MAR21335_Ei60meV_scaled</span></code> appears</p></li>
+<li><p>Select the <code class="docutils literal notranslate"><span class="pre">MAR21335_Ei60meV_scaled</span></code> workspace and click on <code class="docutils literal notranslate"><span class="pre">Subtract</span></code>. Select <code class="docutils literal notranslate"><span class="pre">MAR21335_Ei60meV</span></code> in the dialog that opens and click <code class="docutils literal notranslate"><span class="pre">Ok</span></code>.</p></li>
+<li><p>A new workspace with the name <code class="docutils literal notranslate"><span class="pre">MAR21335_Ei60meV_scaled_subtracted</span></code> appears</p></li>
+<li><p>In the <code class="docutils literal notranslate"><span class="pre">Workspace</span> <span class="pre">Manager</span></code> tab select the workspace <code class="docutils literal notranslate"><span class="pre">MAR21335_Ei60meV</span></code></p></li>
+<li><p>Navigate to the <code class="docutils literal notranslate"><span class="pre">Cut</span></code> tab</p></li>
+<li><p>In the row labelled <code class="docutils literal notranslate"><span class="pre">along</span></code>, set the <code class="docutils literal notranslate"><span class="pre">from</span></code> value to <code class="docutils literal notranslate"><span class="pre">0</span></code> and the <code class="docutils literal notranslate"><span class="pre">to</span></code> value to <code class="docutils literal notranslate"><span class="pre">10</span></code></p></li>
+<li><p>In the row labelled <code class="docutils literal notranslate"><span class="pre">over</span></code>, set the <code class="docutils literal notranslate"><span class="pre">from</span></code> value to <code class="docutils literal notranslate"><span class="pre">-5</span></code> and the <code class="docutils literal notranslate"><span class="pre">to</span></code> value to <code class="docutils literal notranslate"><span class="pre">5</span></code></p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Plot</span></code>.</p></li>
+<li><p>Follow the same steps for the workspaces <code class="docutils literal notranslate"><span class="pre">MAR21335_Ei60meV_scaled</span></code> and <code class="docutils literal notranslate"><span class="pre">MAR21335_Ei60meV_scaled_subtracted</span></code> but click <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">Over</span></code> for these two</p></li>
+<li><p>The cut plot window should now contain three differently coloured lines with corresponding legends. The line for <code class="docutils literal notranslate"><span class="pre">MAR21335_Ei60meV</span></code> will be exactly covered by the line for <code class="docutils literal notranslate"><span class="pre">MAR21335_Ei60meV_scaled_subtracted</span></code>. The line for <code class="docutils literal notranslate"><span class="pre">MAR21335_Ei60meV_scaled</span></code> will be scaled by factor <code class="docutils literal notranslate"><span class="pre">2.0</span></code>.</p></li>
+</ol>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../../_images/compare_mslice_ws.png"><img alt="compare_mslice_ws.png" src="../../_images/compare_mslice_ws.png" style="width: 80%;" /></a>
+</figure>
+</section>
+<section id="check-delete-and-sum">
+<h3><a class="toc-backref" href="#id27" role="doc-backlink">2. Check Delete and Sum</a><a class="headerlink" href="#check-delete-and-sum" title="Link to this heading">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Delete all workspaces apart from the <code class="docutils literal notranslate"><span class="pre">MAR21335_Ei60meV</span></code> workspace</p></li>
+<li><p>Scale the <code class="docutils literal notranslate"><span class="pre">MAR21335_Ei60meV</span></code> workspace with a factor of <code class="docutils literal notranslate"><span class="pre">1.0</span></code></p></li>
+<li><p>A new workspace with the name <code class="docutils literal notranslate"><span class="pre">MAR21335_Ei60meV_scaled</span></code> appears</p></li>
+<li><p>Select the <code class="docutils literal notranslate"><span class="pre">MAR21335_Ei60meV</span></code> workspace again, click on <code class="docutils literal notranslate"><span class="pre">Add</span></code> and select <code class="docutils literal notranslate"><span class="pre">MAR21335_Ei60meV_scaled</span></code>, then click <code class="docutils literal notranslate"><span class="pre">Ok</span></code></p></li>
+<li><p>A new workspace with the name <code class="docutils literal notranslate"><span class="pre">MAR21335_Ei60meV_sum</span></code> appears</p></li>
+<li><p>Delete the workspace with the name <code class="docutils literal notranslate"><span class="pre">MAR21335_Ei60meV_scaled</span></code></p></li>
+<li><p>Scale the <code class="docutils literal notranslate"><span class="pre">MAR21335_Ei60meV</span></code> workspace with a factor of <code class="docutils literal notranslate"><span class="pre">2.0</span></code></p></li>
+<li><p>A new workspace with the name <code class="docutils literal notranslate"><span class="pre">MAR21335_Ei60meV_scaled</span></code> appears</p></li>
+<li><p>In the <code class="docutils literal notranslate"><span class="pre">Workspace</span> <span class="pre">Manager</span></code> tab select the workspace <code class="docutils literal notranslate"><span class="pre">MAR21335_Ei60meV_scaled</span></code></p></li>
+<li><p>Navigate to the <code class="docutils literal notranslate"><span class="pre">Cut</span></code> tab</p></li>
+<li><p>In the row labelled <code class="docutils literal notranslate"><span class="pre">along</span></code>, set the <code class="docutils literal notranslate"><span class="pre">from</span></code> value to <code class="docutils literal notranslate"><span class="pre">0</span></code> and the <code class="docutils literal notranslate"><span class="pre">to</span></code> value to <code class="docutils literal notranslate"><span class="pre">10</span></code></p></li>
+<li><p>In the row labelled <code class="docutils literal notranslate"><span class="pre">over</span></code>, set the <code class="docutils literal notranslate"><span class="pre">from</span></code> value to <code class="docutils literal notranslate"><span class="pre">-5</span></code> and the <code class="docutils literal notranslate"><span class="pre">to</span></code> value to <code class="docutils literal notranslate"><span class="pre">5</span></code></p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Plot</span></code>.</p></li>
+<li><p>Follow the same steps for the workspace <code class="docutils literal notranslate"><span class="pre">MAR21335_Ei60meV_sum</span></code> but click <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">Over</span></code></p></li>
+<li><p>There should be two differently coloured lines with corresponding legends that match exactly</p></li>
+</ol>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../../_images/compare_mslice_ws_2.png"><img alt="compare_mslice_ws_2.png" src="../../_images/compare_mslice_ws_2.png" style="width: 80%;" /></a>
+</figure>
+</section>
+</section>
+</section>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+      <ul class="nav navbar-nav" style=" float: right;">
+      
+      
+          
+            
+  <li>
+    <a href="ALFViewTests.html" title="Previous Chapter: ALFView GUI Testing"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; ALFView GUI Testing</span>
+    </a>
+  </li>
+  <li>
+    <a href="../SliceViewer/SliceViewer.html" title="Next Chapter: SliceViewer Testing"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">SliceViewer Testing &raquo;</span>
+    </a>
+  </li>
+          
+       
+          <li><a href="#">Back to top</a></li>
+       </ul>
+    <p>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

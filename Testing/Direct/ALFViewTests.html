@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>ALFView GUI Testing</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css?v=fadd4351" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=77160d70" />
+    <script src="../../_static/documentation_options.js?v=30d551ce"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="MSlice Testing" href="MSliceTestGuide.html" />
+    <link rel="prev" title="Core Testing" href="../Core/Core.html" />
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-59110517-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+  </head><body>
+
+
+
+
+
+  <div id="navbar" class="navbar navbar-default ">
+    <div class="container">
+      <div class="navbar-header">
+        
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://www.mantidproject.org">
+           </a>
+        <span class="navbar-text navbar-version pull-left"><b>master</b></span>
+      </div>
+
+      
+        <div class="collapse navbar-collapse nav-collapse">
+      
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="https://download.mantidproject.org">Download</a></li>
+                <li><a href="https://docs.mantidproject.org">User Documentation</a></li>
+                <li><a href="http://www.mantidproject.org/contact">Contact Us</a></li>
+            
+            
+              
+              
+            
+            
+            
+            
+          </ul>
+              
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+            </div>
+    </div>
+    <p>
+<div class="related" role="navigation" aria-label="related navigation">
+  <h3>Navigation</h3>
+  <ul>
+    <li class="nav-item nav-item-0"><a href="../../index.html">Documentation</a> &#187;</li>
+    
+    <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Testing</a> &#187;</li>
+    
+    
+    
+    
+    <li class="nav-item nav-item-this"><a href="">ALFView GUI Testing</a></li>
+    
+    
+  </ul>
+</div> </p>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <section id="alfview-gui-testing">
+<span id="alfview-testing"></span><h1>ALFView GUI Testing<a class="headerlink" href="#alfview-gui-testing" title="Link to this heading">¶</a></h1>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#introduction" id="id1">Introduction</a></p></li>
+<li><p><a class="reference internal" href="#set-up" id="id2">Set up</a></p></li>
+<li><p><a class="reference internal" href="#loading-runs" id="id3">Loading Runs</a></p></li>
+<li><p><a class="reference internal" href="#rebinning-the-data" id="id4">Rebinning the Data</a></p></li>
+<li><p><a class="reference internal" href="#selecting-tubes" id="id5">Selecting tubes</a></p></li>
+<li><p><a class="reference internal" href="#calculating-the-rotation-angle" id="id6">Calculating the Rotation angle</a></p></li>
+<li><p><a class="reference internal" href="#clear-when-new-load-happens" id="id7">Clear when new load happens</a></p></li>
+<li><p><a class="reference internal" href="#check-vanadium-run-is-saved-between-sessions" id="id8">Check Vanadium run is saved between sessions</a></p></li>
+</ul>
+</nav>
+<section id="introduction">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Introduction</a><a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h2>
+<p>The ALFView interface is a graphical front end used by the ISIS Excitations group for crystal alignment. The ALF instrument requires frequent manual adjustments after each (&lt; 1 minute) run to realign the single crystal(s). The purpose of this interface is to calculate the rotation angle required for this adjustment.</p>
+</section>
+<section id="set-up">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Set up</a><a class="headerlink" href="#set-up" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>These instructions assume use of MantidWorkbench 6.6 or higher.</p></li>
+<li><p>Ensure you have the ISIS facility and ALF instrument selected in your settings.</p></li>
+<li><p>Ensure you have the ISIS archive enabled.</p></li>
+<li><p>Open the <code class="docutils literal notranslate"><span class="pre">Direct-&gt;ALFView</span></code> interface.</p></li>
+</ul>
+</section>
+<section id="loading-runs">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Loading Runs</a><a class="headerlink" href="#loading-runs" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Type 82301 in the Sample box, press the enter key and wait for it to load.</p></li>
+<li><p>The instrument view embedded in the interface should be populated with data.</p></li>
+<li><p>Type 82301 (the same run) into the Vanadium box, press the enter key and wait for it to load.</p></li>
+<li><p>The instrument view should have a flat color because we have normalised (divided) by the same dataset.</p></li>
+<li><p>Remove the Vanadium run number.</p></li>
+<li><p>The instrument view should look how it did before loading the Vanadium Run.</p></li>
+</ul>
+</section>
+<section id="rebinning-the-data">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Rebinning the Data</a><a class="headerlink" href="#rebinning-the-data" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Click on the Pick tab.</p></li>
+<li><p>Expand the Rebin section.</p></li>
+<li><p>Type 5.5,0.01,6 into the box. Then click Run.</p></li>
+<li><p>The instrument view data should change to a darker color.</p></li>
+</ul>
+</section>
+<section id="selecting-tubes">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Selecting tubes</a><a class="headerlink" href="#selecting-tubes" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Click on the Pick tab.</p></li>
+<li><p>Press the Select whole tube tool button.</p></li>
+<li><p>Left click on the central tube (the one with the yellow square) in the instrument view.</p></li>
+<li><p>The entire tube should be surrounded by a rectangle, indicating it is selected.</p></li>
+<li><p>The plot on the right-hand side should update to show the selected data.</p></li>
+<li><p>The Two theta value on the right-hand side should also update.</p></li>
+<li><p>Press the Draw a rectangle tool button.</p></li>
+<li><p>Left click and drag your mouse on the instrument view to select some more tubes.</p></li>
+<li><p>This tool should select all tubes that it overlaps with, even if its the smallest of overlaps.</p></li>
+<li><p>After using this tool once, the Edit a shape tool should be selected automatically.</p></li>
+<li><p>Select one of your tubes and press the Delete key to delete it.</p></li>
+<li><p>The plot on the right-hand side should change each time the selected tubes change.</p></li>
+</ul>
+</section>
+<section id="calculating-the-rotation-angle">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Calculating the Rotation angle</a><a class="headerlink" href="#calculating-the-rotation-angle" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Ensure that only the central two tubes on the instrument view are selected (the tube with the bright yellow square, and the one to its left).</p></li>
+<li><p>The number of tubes on the right-hand side should reflect the number of selected tubes i.e. 2 tubes.</p></li>
+<li><p>The Two theta value should read 40.4584.</p></li>
+<li><p>Click the Fit button.</p></li>
+<li><p>The peak centre should read approximately 0.877078.</p></li>
+<li><p>A red line labelled Fitted Data should appear on the plot above.</p></li>
+<li><p>The rotation angle should read 1.26828.</p></li>
+</ul>
+</section>
+<section id="clear-when-new-load-happens">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Clear when new load happens</a><a class="headerlink" href="#clear-when-new-load-happens" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Type 82301 into the Vanadium box, press the enter key and wait for it to load.</p></li>
+<li><p>The Two theta value should stay the same 40.4584.</p></li>
+<li><p>The Rotation angle should be cleared.</p></li>
+<li><p>The red line labelled Fitted Data should disappear.</p></li>
+<li><p>The black line labelled Extracted Data should be a flat line due to us normalising by the same dataset.</p></li>
+</ul>
+</section>
+<section id="check-vanadium-run-is-saved-between-sessions">
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">Check Vanadium run is saved between sessions</a><a class="headerlink" href="#check-vanadium-run-is-saved-between-sessions" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Ensure the Vanadium run is still 82301.</p></li>
+<li><p>Close the ALFView interface.</p></li>
+<li><p>Close Mantid.</p></li>
+<li><p>Re-open Mantid.</p></li>
+<li><p>Re-open the ALFView interface.</p></li>
+<li><p>The Vanadium run should be automatically populated in the GUI.</p></li>
+</ul>
+</section>
+</section>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+      <ul class="nav navbar-nav" style=" float: right;">
+      
+      
+          
+            
+  <li>
+    <a href="../Core/Core.html" title="Previous Chapter: Core Testing"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Core Testing</span>
+    </a>
+  </li>
+  <li>
+    <a href="MSliceTestGuide.html" title="Next Chapter: MSlice Testing"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">MSlice Testing &raquo;</span>
+    </a>
+  </li>
+          
+       
+          <li><a href="#">Back to top</a></li>
+       </ul>
+    <p>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
