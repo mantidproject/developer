@@ -105,7 +105,7 @@
 list of available ones can seem daunting at first but it can be done by following some steps.</p>
 <section id="fqfit">
 <h2>FqFit<a class="headerlink" href="#fqfit" title="Link to this heading">¶</a></h2>
-<p>In the <cite>FQFitConstants.h</cite> file, there are sets of maps of {“Fit function class name”, “Fit function class initialization string”}, e.g.
+<p>In the <cite>FitTabConstants.h</cite> file, there are sets of maps of {“Fit function class name”, “Fit function class initialization string”}, e.g.
 <cite>{std::string(“TeixeiraWater”), std::string(“name=TeixeiraWater, Tau=1, L=1.5, constraints=(Tau&gt;0, L&gt;0)”)}</cite>. To add
 a new fit function to FqFit you simply need to add it to this list of available functions. Currently, we divide up the
 functions into Width, EISF, and All with the intent that the list of functions would change depending on what data is
@@ -113,14 +113,12 @@ loaded into the tab, however as it is not yet implemented for the workspace inpu
 </section>
 <section id="msdfit">
 <h2>MSDFit<a class="headerlink" href="#msdfit" title="Link to this heading">¶</a></h2>
-<p>The fit function strings in MSDFit are stored in the <cite>IndirectDataAnalysisMSDFitTab.cpp</cite> file in <cite>msdFunctionStrings</cite>,
-To add a function you just need to add it to this map and add the function to the others in <cite>createParameterEstimation</cite>
-e.e. <cite>parameterEstimation.addParameterEstimationFunction(MSDGAUSSFUNC, estimateMsd);</cite></p>
+<p>The fit function strings for MSDFit are also stored in the <cite>FitTabConstants.h</cite> file.</p>
 </section>
 <section id="iqtfit">
 <h2>IqtFit<a class="headerlink" href="#iqtfit" title="Link to this heading">¶</a></h2>
-<p>The fitting functions in IqtFit are hard coded into the template browser because it is not expected for other functions to be
-added to it.</p>
+<p>The fitting functions in IqtFit are hard coded into the template browser. These should be moved into the <cite>FitTabConstants.h</cite> file to
+allow us to add more functions easily in the future.</p>
 </section>
 <section id="convfit">
 <h2>ConvFit<a class="headerlink" href="#convfit" title="Link to this heading">¶</a></h2>
@@ -154,13 +152,11 @@ if it is a background function add it between the range from FLAT_BG_A0 to LINEA
 <cite>{FitType, {“Function name displayed in tab”, “Function class name”, {ParamID::first, ParamID::last}}}</cite> this allows the template
 to construct a function out of the related parameters. There are several places where this can be added, those being FitType,
 LorentzianType, and BackgroundType. ConvFit can run fits with one of each Fit, Lorentzian, and Background but only one of each.</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">FitType</span><span class="o">::</span><span class="n">TeixeiraWater</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;Teixeira Water&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;TeixeiraWaterSQE&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="n">ParamID</span><span class="o">::</span><span class="n">TW_HEIGHT</span><span class="p">,</span><span class="w"> </span><span class="n">ParamID</span><span class="o">::</span><span class="n">TW_CENTRE</span><span class="p">}}},</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">FitType</span><span class="o">::</span><span class="n">TeixeiraWater</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;Teixeira Water SQE&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;TeixeiraWaterSQE&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="n">ParamID</span><span class="o">::</span><span class="n">TW_HEIGHT</span><span class="p">,</span><span class="w"> </span><span class="n">ParamID</span><span class="o">::</span><span class="n">TW_CENTRE</span><span class="p">}}},</span>
 </pre></div>
 </div>
-<p>Finally, in IndirectDataAnalysisConvFitTab in setupFitTab add to m_fitStrings with the fit function name and shortened key, this key will be used in the output workspace from the fit.</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">m_fitStrings</span><span class="p">[</span><span class="s">&quot;TeixeiraWaterSQE&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;TxWater&quot;</span><span class="p">;</span>
-</pre></div>
-</div>
+<p>Finally, in <cite>FitTabConstants.h</cite> add the fit function name and shortened key to the <cite>FUNCTION_STRINGS</cite> variable. This key will be used in the output
+workspace from the fit.</p>
 <p>In ConvFunctionModel add the build function string function</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">ConvFunctionModel::buildTeixeiraFunctionString</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;name=TeixeiraWaterSQE, Height=1, DiffCoeff=2.3, Tau=1.25, Centre=0, &quot;</span>
