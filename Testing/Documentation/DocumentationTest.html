@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Documentation Testing</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css?v=fadd4351" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=77160d70" />
+    <script src="../../_static/documentation_options.js?v=30d551ce"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Doxygen Setup" href="../../DoxygenSetup.html" />
+    <link rel="prev" title="Filter Events Interface Testing" href="../Utility/FilterEventsInterfaceTest.html" />
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-59110517-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+  </head><body>
+
+
+
+
+
+  <div id="navbar" class="navbar navbar-default ">
+    <div class="container">
+      <div class="navbar-header">
+        
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://www.mantidproject.org">
+           </a>
+        <span class="navbar-text navbar-version pull-left"><b>master</b></span>
+      </div>
+
+      
+        <div class="collapse navbar-collapse nav-collapse">
+      
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="https://download.mantidproject.org">Download</a></li>
+                <li><a href="https://docs.mantidproject.org">User Documentation</a></li>
+                <li><a href="http://www.mantidproject.org/contact">Contact Us</a></li>
+            
+            
+              
+              
+            
+            
+            
+            
+          </ul>
+              
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+            </div>
+    </div>
+    <p>
+<div class="related" role="navigation" aria-label="related navigation">
+  <h3>Navigation</h3>
+  <ul>
+    <li class="nav-item nav-item-0"><a href="../../index.html">Documentation</a> &#187;</li>
+    
+    <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Testing</a> &#187;</li>
+    
+    
+    
+    
+    <li class="nav-item nav-item-this"><a href="">Documentation Testing</a></li>
+    
+    
+  </ul>
+</div> </p>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <section id="documentation-testing">
+<span id="id1"></span><h1>Documentation Testing<a class="headerlink" href="#documentation-testing" title="Link to this heading">¶</a></h1>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#documentation-test" id="id2">Documentation Test</a></p>
+<ul>
+<li><p><a class="reference internal" href="#test-1-offline-documentation-test-on-the-workbench" id="id3">Test 1: Offline documentation test on the workbench.</a></p></li>
+<li><p><a class="reference internal" href="#test-2-online-documentation-test" id="id4">Test 2: Online documentation test.</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<p><em>Prerequisites</em></p>
+<ul class="simple">
+<li><p>For test 2, you may need to install <em>BeautifulSoup</em> on your conda environment if you haven’t yet: <code class="docutils literal notranslate"><span class="pre">mamba</span> <span class="pre">install</span> <span class="pre">conda-forge::beaufitulsoup4</span></code></p></li>
+</ul>
+<section id="documentation-test">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Documentation Test</a><a class="headerlink" href="#documentation-test" title="Link to this heading">¶</a></h2>
+<p>There are many pages in the documentation, although this test doesn’t inspect them all, try to open and check as many as possible.
+On the first part of the tests, you will be guided through the Qt-help window on Mantid Workbench, to perform a number of actions in different
+documentation pages.</p>
+<p>On general, to inspect a given documentation page you need to make sure that the following items are displayed correctly, either online or offline:</p>
+<ul class="simple">
+<li><p>Pages are generated without any malformatted text, sections, numbered and bullet point lists.</p></li>
+<li><p>Snapshots for algorithms or interfaces as well as figure plots are rendered and framed correctly.</p></li>
+<li><p>Math formulae are rendered correctly.</p></li>
+<li><p>Code snippets are framed and formatted correctly.</p></li>
+<li><p>Workflow diagrams are rendered correctly.</p></li>
+<li><p>Links and hyperlinks are directing to the corresponding sections or pages.</p></li>
+</ul>
+<section id="test-1-offline-documentation-test-on-the-workbench">
+<h3><a class="toc-backref" href="#id3" role="doc-backlink">Test 1: Offline documentation test on the workbench.</a><a class="headerlink" href="#test-1-offline-documentation-test-on-the-workbench" title="Link to this heading">¶</a></h3>
+<p><strong>Time required: 10-15 minutes</strong></p>
+<hr class="docutils" />
+<ol class="arabic simple">
+<li><p>Go to <code class="docutils literal notranslate"><span class="pre">Help</span> <span class="pre">-&gt;</span> <span class="pre">Mantid</span> <span class="pre">Help</span></code> on the navigation bar of <strong>Mantid Workbench</strong>. A <strong>Qt-Help</strong> window should appear with the documentation.
+Close the window.</p></li>
+<li><p>Check that both clicking on <code class="docutils literal notranslate"><span class="pre">Help</span> <span class="pre">-&gt;</span> <span class="pre">Mantid</span> <span class="pre">Concepts</span></code> and <code class="docutils literal notranslate"><span class="pre">Help</span> <span class="pre">-&gt;</span> <span class="pre">Algorithm</span> <span class="pre">Descriptions</span></code> opens the documentation again, redirecting to the
+appropiate sections of it.</p></li>
+<li><p>Check that clicking on <code class="docutils literal notranslate"><span class="pre">Help</span> <span class="pre">-&gt;</span> <span class="pre">Mantid</span> <span class="pre">Homepage</span></code> and <code class="docutils literal notranslate"><span class="pre">Help</span> <span class="pre">-&gt;</span> <span class="pre">Mantid</span> <span class="pre">Forum</span></code> prompts a new web browser window linking to the respective sites.</p></li>
+<li><p>Check that clicking on <code class="docutils literal notranslate"><span class="pre">Help</span> <span class="pre">-&gt;</span> <span class="pre">About</span> <span class="pre">Mantid</span> <span class="pre">Workbench</span></code> prompts the startup Mantid splash screen.</p></li>
+<li><p>On <strong>Mantid Workbench</strong>, press F1 key, same help window as before should appear. Rest of the test will continue on the <strong>Mantid - Help</strong> window.</p></li>
+<li><p>On the <code class="docutils literal notranslate"><span class="pre">Index</span></code> tab, scroll down until the end of the list. Double-click on <code class="docutils literal notranslate"><span class="pre">ZFMuonium</span></code> and <code class="docutils literal notranslate"><span class="pre">ZFdipole</span></code> and check that both pages are displayed.</p></li>
+<li><p>Go to the <code class="docutils literal notranslate"><span class="pre">Search</span></code> tab, and search for <code class="docutils literal notranslate"><span class="pre">ZFMuonium</span></code>, first result should link to <code class="docutils literal notranslate"><span class="pre">ZFMuonium</span></code> page of the documentation.</p></li>
+<li><p>Click on <code class="docutils literal notranslate"><span class="pre">Print...</span></code> button. It should prompt the print dialog window. Close it.</p></li>
+<li><p>Click on the <code class="docutils literal notranslate"><span class="pre">Previous</span></code> button (just right of <code class="docutils literal notranslate"><span class="pre">Print...</span></code> button) continuosly until you return to the <strong>Home</strong> page of the documentation.</p></li>
+<li><p>On the <strong>Home</strong> page of the documentation. Click on <code class="docutils literal notranslate"><span class="pre">MantidWorkbench</span></code> hyperlink. Within <code class="docutils literal notranslate"><span class="pre">MantidWorkbench</span></code>, try and open
+some of the documentation pages.</p></li>
+<li><p>Click on <code class="docutils literal notranslate"><span class="pre">Home</span></code> button to return to the main documentation page.</p></li>
+<li><p>The documentation page has three sections: <strong>Getting Started , Reference Documentation</strong> and <strong>Other Help and Documentation</strong>.</p></li>
+<li><p>On <strong>Getting started</strong>:</p>
+<ul class="simple">
+<li><p>Check that each hyperlink works. Additionally, <code class="docutils literal notranslate"><span class="pre">Mantid</span> <span class="pre">Matplotlib</span> <span class="pre">Plot</span> <span class="pre">Gallery</span> <span class="pre">and</span> <span class="pre">Examples</span></code> correctly displays the figures and code snippets.</p></li>
+</ul>
+</li>
+<li><p>On <strong>Reference Documentation</strong>:</p>
+<ul class="simple">
+<li><p>Open and check each hyperlink, from <code class="docutils literal notranslate"><span class="pre">Algorithms</span></code> to <code class="docutils literal notranslate"><span class="pre">Release</span> <span class="pre">notes</span></code>.</p></li>
+<li><p>On Algorithms: Scroll down to <code class="docutils literal notranslate"><span class="pre">Algorithm</span> <span class="pre">Index</span></code> at the end of the page and click on it. Check that a few algorithms are displayed as intended. Also, clicking on the link to the <code class="docutils literal notranslate"><span class="pre">Source</span></code>
+file at the end of the algorithm pages links to the corresponding git-hub page.</p></li>
+<li><p>Check a few pages on <code class="docutils literal notranslate"><span class="pre">Concepts</span></code>, <code class="docutils literal notranslate"><span class="pre">Interfaces</span></code>, <code class="docutils literal notranslate"><span class="pre">Techniques</span></code> and <code class="docutils literal notranslate"><span class="pre">Fitting</span> <span class="pre">Overview</span></code>.</p></li>
+<li><p>Check that the <code class="docutils literal notranslate"><span class="pre">Release</span> <span class="pre">Notes</span></code> are properly formatted and updated to the latest release.</p></li>
+</ul>
+</li>
+<li><p>On <strong>Other Help and Documentation</strong>:</p>
+<ul class="simple">
+<li><p>Check that the links to the Mantid Forum and the Developer Documentation are working.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="test-2-online-documentation-test">
+<h3><a class="toc-backref" href="#id4" role="doc-backlink">Test 2: Online documentation test.</a><a class="headerlink" href="#test-2-online-documentation-test" title="Link to this heading">¶</a></h3>
+<p><strong>Time required: 10-20 minutes (depending on how many pages you check)</strong></p>
+<hr class="docutils" />
+<p>On this test, you better use the <code class="docutils literal notranslate"><span class="pre">OpenMostDocumentationForTesting.py</span></code> script. This script will open a large number of documentation pages
+on the web browser.</p>
+<p>This script can be found in the Mantid source folder at <code class="docutils literal notranslate"><span class="pre">/tools/scripts/OpenMostDocumentationForTesting.py</span></code>.</p>
+<p>There are two optional input arguments to the script: <code class="docutils literal notranslate"><span class="pre">-d</span></code> controls the delay in opening pages, and <code class="docutils literal notranslate"><span class="pre">-k</span></code> allows to open a random subset of <em>k</em> pages per documentation section (if you don’t want to open all documentation pages).</p>
+<ol class="arabic simple">
+<li><p>It’s recommended that you check most documentation pages, open the script by using default arguments: <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">OpenMostDocumentationForTesting.py</span></code>. It would open approximately 397 tabs with documentation pages in your default browser.</p></li>
+<li><p>Check that the documentation pages are displayed correctly. <em>Tip</em>: For faster browsing, use <code class="docutils literal notranslate"><span class="pre">Ctrl+Tab</span></code> for moving between tabs.</p></li>
+</ol>
+</section>
+</section>
+</section>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+      <ul class="nav navbar-nav" style=" float: right;">
+      
+      
+          
+            
+  <li>
+    <a href="../Utility/FilterEventsInterfaceTest.html" title="Previous Chapter: Filter Events Interface Testing"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Filter Events...</span>
+    </a>
+  </li>
+  <li>
+    <a href="../../DoxygenSetup.html" title="Next Chapter: Doxygen Setup"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Doxygen Setup &raquo;</span>
+    </a>
+  </li>
+          
+       
+          <li><a href="#">Back to top</a></li>
+       </ul>
+    <p>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
