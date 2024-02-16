@@ -651,17 +651,13 @@ have been fixed. Then:</p>
 <li><p>Check the release notes and verify that the “Under Construction” paragraph on the main
 index page has been removed. Remove the paragraph if it still exists.</p></li>
 <li><p>Ensure that all changes, including release notes, have been merged into the <code class="docutils literal notranslate"><span class="pre">release-next</span></code> branch.</p></li>
-<li><p>On the <code class="docutils literal notranslate"><span class="pre">release-next</span></code> branch, check whether the <a class="reference external" href="https://github.com/mantidproject/mantid/blob/343037c685c0aca9151523d6a3e105504f8cf218/scripts/ExternalInterfaces/CMakeLists.txt#L11">git SHA</a>
+<li><p>On the <code class="docutils literal notranslate"><span class="pre">release-next</span></code> branch, check whether the <a class="reference external" href="https://github.com/mantidproject/mantid/blob/release-next/scripts/ExternalInterfaces/CMakeLists.txt">git SHA</a>
 for MSlice is up to date. If not, create a PR to update it and ask a gatekeeper to merge it.</p></li>
-<li><p>Make sure the <code class="docutils literal notranslate"><span class="pre">release-next</span></code> branch is fully merged into <code class="docutils literal notranslate"><span class="pre">main</span></code>. If required, manually trigger the <a class="reference external" href="https://builds.mantidproject.org/job/merge_release-next_into_main/">Jenkins job</a> to merge the changes.</p></li>
-<li><p>Run the <a class="reference external" href="https://builds.mantidproject.org/view/All/job/close-release-testing">close-release-testing</a>
-job, which will do the following:</p>
-<ul>
-<li><p>Disable the job that periodically merges <code class="docutils literal notranslate"><span class="pre">release-next</span></code> into <code class="docutils literal notranslate"><span class="pre">main</span></code>.</p></li>
-<li><p>Set the value of the Jenkins global property <code class="docutils literal notranslate"><span class="pre">BRANCH_TO_PUBLISH</span></code> to <code class="docutils literal notranslate"><span class="pre">main</span></code>. This will re-enable
-package publishing for the <code class="docutils literal notranslate"><span class="pre">main</span></code> nightly pipeline.</p></li>
-</ul>
-</li>
+<li><p>Make sure the <code class="docutils literal notranslate"><span class="pre">release-next</span></code> branch is fully merged into <code class="docutils literal notranslate"><span class="pre">main</span></code>. If required, manually run the <a class="reference external" href="https://github.com/mantidproject/mantid/actions/workflows/automerge.yml/">GitHub workflow</a> using the <code class="docutils literal notranslate"><span class="pre">release-next</span></code> branch to
+merge the changes.</p></li>
+<li><p>Run the <a class="reference external" href="https://builds.mantidproject.org/view/All/job/close-release-testing">close-release-testing</a> Jenkins job.
+This will set the value of the Jenkins global property <code class="docutils literal notranslate"><span class="pre">BRANCH_TO_PUBLISH</span></code> to <code class="docutils literal notranslate"><span class="pre">main</span></code>, which will re-enable package
+publishing for the <code class="docutils literal notranslate"><span class="pre">main</span></code> nightly pipeline.</p></li>
 </ul>
 <p><strong>Create the Release Candidates For Smoke Testing</strong></p>
 <p>We are now ready to create the release candidates for Smoke testing.</p>
@@ -672,7 +668,8 @@ with the following parameters (most are already defaulted to the correct values)
 <li><p>set <code class="docutils literal notranslate"><span class="pre">BUILD_DEVEL</span></code> to <code class="docutils literal notranslate"><span class="pre">all</span></code></p></li>
 <li><p>set <code class="docutils literal notranslate"><span class="pre">BUILD_PACKAGE</span></code> to <code class="docutils literal notranslate"><span class="pre">all</span></code></p></li>
 <li><p>set <code class="docutils literal notranslate"><span class="pre">PACKAGE_SUFFIX</span></code> to an <strong>empty string</strong></p></li>
-<li><p>tick the <code class="docutils literal notranslate"><span class="pre">PUBLISH_PACKAGES</span></code> checkbox</p></li>
+<li><p>tick the <code class="docutils literal notranslate"><span class="pre">PUBLISH_TO_ANACONDA</span></code> checkbox</p></li>
+<li><p>tick the <code class="docutils literal notranslate"><span class="pre">PUBLISH_TO_GITHUB</span></code> checkbox</p></li>
 <li><p>set the <code class="docutils literal notranslate"><span class="pre">ANACONDA_CHANNEL</span></code> to <code class="docutils literal notranslate"><span class="pre">mantid</span></code></p></li>
 <li><p>set the <code class="docutils literal notranslate"><span class="pre">ANACONDA_CHANNEL_LABEL</span></code> to <code class="docutils literal notranslate"><span class="pre">vX.Y.ZrcN</span></code> where <code class="docutils literal notranslate"><span class="pre">X.Y.Z</span></code> is the release number,
 and <code class="docutils literal notranslate"><span class="pre">N</span></code> is an incremental build number for release candidates, starting at <code class="docutils literal notranslate"><span class="pre">1</span></code> (e.g. <code class="docutils literal notranslate"><span class="pre">v6.7.0rc1</span></code>)</p></li>
@@ -696,7 +693,8 @@ with the following parameters (most are already defaulted to the correct values)
 <li><p>set <code class="docutils literal notranslate"><span class="pre">BUILD_DEVEL</span></code> to <code class="docutils literal notranslate"><span class="pre">all</span></code></p></li>
 <li><p>set <code class="docutils literal notranslate"><span class="pre">BUILD_PACKAGE</span></code> to <code class="docutils literal notranslate"><span class="pre">all</span></code></p></li>
 <li><p>set <code class="docutils literal notranslate"><span class="pre">PACKAGE_SUFFIX</span></code> to an <strong>empty string</strong></p></li>
-<li><p>tick the <code class="docutils literal notranslate"><span class="pre">PUBLISH_PACKAGES</span></code> checkbox</p></li>
+<li><p>tick the <code class="docutils literal notranslate"><span class="pre">PUBLISH_TO_ANACONDA</span></code> checkbox</p></li>
+<li><p>tick the <code class="docutils literal notranslate"><span class="pre">PUBLISH_TO_GITHUB</span></code> checkbox</p></li>
 <li><p>set the <code class="docutils literal notranslate"><span class="pre">ANACONDA_CHANNEL</span></code> to <code class="docutils literal notranslate"><span class="pre">mantid</span></code></p></li>
 <li><p>set the <code class="docutils literal notranslate"><span class="pre">ANACONDA_CHANNEL_LABEL</span></code> to <code class="docutils literal notranslate"><span class="pre">draft-vX.Y.Z</span></code> where <code class="docutils literal notranslate"><span class="pre">X.Y.Z</span></code> is the release number</p></li>
 <li><p>set <code class="docutils literal notranslate"><span class="pre">GITHUB_RELEASES_REPO</span></code> to <code class="docutils literal notranslate"><span class="pre">mantidproject/mantid</span></code></p></li>
