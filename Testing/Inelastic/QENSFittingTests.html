@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Inelastic QENS Fitting Testing</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css?v=fadd4351" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=77160d70" />
+    <script src="../../_static/documentation_options.js?v=30d551ce"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Engineering Diffraction Testing" href="../EngineeringDiffraction/EngineeringDiffractionTestGuide.html" />
+    <link rel="prev" title="Inelastic Data Manipulation Testing" href="DataManipulationTests.html" />
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-59110517-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+  </head><body>
+
+
+
+
+
+  <div id="navbar" class="navbar navbar-default ">
+    <div class="container">
+      <div class="navbar-header">
+        
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://www.mantidproject.org">
+           </a>
+        <span class="navbar-text navbar-version pull-left"><b>master</b></span>
+      </div>
+
+      
+        <div class="collapse navbar-collapse nav-collapse">
+      
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="https://download.mantidproject.org">Download</a></li>
+                <li><a href="https://docs.mantidproject.org">User Documentation</a></li>
+                <li><a href="http://www.mantidproject.org/contact">Contact Us</a></li>
+            
+            
+              
+              
+            
+            
+            
+            
+          </ul>
+              
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+            </div>
+    </div>
+    <p>
+<div class="related" role="navigation" aria-label="related navigation">
+  <h3>Navigation</h3>
+  <ul>
+    <li class="nav-item nav-item-0"><a href="../../index.html">Documentation</a> &#187;</li>
+    
+    <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Testing</a> &#187;</li>
+    
+    
+    
+    
+    <li class="nav-item nav-item-this"><a href="">Inelastic QENS Fitting Testing</a></li>
+    
+    
+  </ul>
+</div> </p>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <section id="inelastic-qens-fitting-testing">
+<span id="id1"></span><h1>Inelastic QENS Fitting Testing<a class="headerlink" href="#inelastic-qens-fitting-testing" title="Link to this heading">¶</a></h1>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#msd-fit-tab" id="id3">MSD Fit tab</a></p></li>
+<li><p><a class="reference internal" href="#i-q-t-fit-tab" id="id4">I(Q, T) Fit tab</a></p></li>
+<li><p><a class="reference internal" href="#conv-fit-tab" id="id5">Conv Fit tab</a></p></li>
+<li><p><a class="reference internal" href="#f-q-fit-tab" id="id6">F(Q) Fit tab</a></p></li>
+</ul>
+</nav>
+<p><em>Prerequisites</em></p>
+<ul class="simple">
+<li><p>Download the <a class="reference external" href="http://download.mantidproject.org">ISIS Sample Data</a></p></li>
+<li><p>Make sure that the data set is on your list of search directories</p></li>
+</ul>
+<section id="msd-fit-tab">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">MSD Fit tab</a><a class="headerlink" href="#msd-fit-tab" title="Link to this heading">¶</a></h2>
+<p><em>Preparation</em></p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">_eq.nxs</span></code> file from the <a class="reference internal" href="DataManipulationTests.html#elwin-inelastic-test"><span class="std std-ref">Elwin Indirect Inelastic</span></a> test</p></li>
+</ul>
+<p><strong>Time required 3 - 5 minutes</strong></p>
+<hr class="docutils" />
+<ol class="arabic simple">
+<li><p>Go to <code class="docutils literal notranslate"><span class="pre">Interfaces</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Inelastic</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">QENS</span> <span class="pre">fitting</span></code></p></li>
+<li><p>Go to the <code class="docutils literal notranslate"><span class="pre">MSD</span> <span class="pre">fit</span></code> tab</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">Workspace</span></code></p></li>
+<li><p>With the combo box set to <code class="docutils literal notranslate"><span class="pre">File</span></code> click browse and select the file that you saved in the previous test</p></li>
+<li><p>Check <code class="docutils literal notranslate"><span class="pre">All</span> <span class="pre">Spectra</span></code></p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Add</span></code> and close the dialogue.</p></li>
+<li><p>Set <code class="docutils literal notranslate"><span class="pre">Fit</span> <span class="pre">type</span></code> to Gaussian</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Run</span></code></p></li>
+<li><p>This should produce a plot of the fitted function in the interface</p></li>
+<li><p>Change <code class="docutils literal notranslate"><span class="pre">End</span> <span class="pre">X</span></code> to 1.0</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Run</span></code></p></li>
+<li><p>Repeat the previous steps with <code class="docutils literal notranslate"><span class="pre">Peters</span></code> and <code class="docutils literal notranslate"><span class="pre">Yi</span></code> functions</p></li>
+<li><p>Try run fits using the different <code class="docutils literal notranslate"><span class="pre">Minimizer</span></code> options (except FABADA), each time change the <code class="docutils literal notranslate"><span class="pre">End</span> <span class="pre">X</span></code> value either + or - 0.1</p></li>
+</ol>
+</section>
+<section id="i-q-t-fit-tab">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">I(Q, T) Fit tab</a><a class="headerlink" href="#i-q-t-fit-tab" title="Link to this heading">¶</a></h2>
+<p><em>Preparation</em></p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">_iqt</span></code> workspace from the <a class="reference internal" href="DataManipulationTests.html#iqt-inelastic-test"><span class="std std-ref">I(Q, T) Indirect Inelastic</span></a> test</p></li>
+</ul>
+<p><strong>Time required 3 - 5 minutes</strong></p>
+<hr class="docutils" />
+<ol class="arabic simple">
+<li><p>Go to <code class="docutils literal notranslate"><span class="pre">Interfaces</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Inelastic</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">QENS</span> <span class="pre">fitting</span></code></p></li>
+<li><p>Go to the <code class="docutils literal notranslate"><span class="pre">I(Q,</span> <span class="pre">T)</span> <span class="pre">Fit</span></code> tab</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">Workspace</span></code></p></li>
+<li><p>With the combo box set to <code class="docutils literal notranslate"><span class="pre">Workspace</span></code> select the <code class="docutils literal notranslate"><span class="pre">_iqt</span></code> workspace from the previous test</p></li>
+<li><p>Check <code class="docutils literal notranslate"><span class="pre">All</span> <span class="pre">Spectra</span></code></p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Add</span></code> and close the dialogue.</p></li>
+<li><p>Set <code class="docutils literal notranslate"><span class="pre">Exponential</span></code> to 1</p></li>
+<li><p>In the data table set <code class="docutils literal notranslate"><span class="pre">EndX</span></code> for WS Index 0 to 0.14</p></li>
+<li><p>Using shift select the <code class="docutils literal notranslate"><span class="pre">EndX</span></code> for all spectra and click unify range, this should set the <code class="docutils literal notranslate"><span class="pre">EndX</span></code> for all spectra to 0.14</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Run</span></code></p></li>
+<li><p>This should produce a fit and a difference plot in the window</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">current</span> <span class="pre">preview</span></code> this should open a plot with three datasets plotted</p></li>
+<li><p>Select the runs 6 - 50 and click <code class="docutils literal notranslate"><span class="pre">Remove</span></code></p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Run</span></code></p></li>
+<li><p>Select Lifetime from the <code class="docutils literal notranslate"><span class="pre">Output</span></code> drop-down</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Plot</span></code> this should open a new plot with the lifetimes plotted</p></li>
+</ol>
+</section>
+<section id="conv-fit-tab">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Conv Fit tab</a><a class="headerlink" href="#conv-fit-tab" title="Link to this heading">¶</a></h2>
+<p><em>Preparation</em></p>
+<ul class="simple">
+<li><p>ISIS Sample data set, <a class="reference external" href="http://download.mantidproject.org/">available here</a></p></li>
+</ul>
+<p><strong>Time required 3 - 5 minutes</strong></p>
+<hr class="docutils" />
+<ol class="arabic simple">
+<li><p>Go to <code class="docutils literal notranslate"><span class="pre">Interfaces</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Inelastic</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">QENS</span> <span class="pre">fitting</span></code></p></li>
+<li><p>Go to the <code class="docutils literal notranslate"><span class="pre">Conv</span> <span class="pre">Fit</span></code> tab</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">Workspace</span></code></p></li>
+<li><p>With the combo box’s set to <code class="docutils literal notranslate"><span class="pre">File</span></code></p></li>
+<li><p>Click browse and load the <code class="docutils literal notranslate"><span class="pre">irs26176_graphite002_red.nxs</span></code> file from the sample data</p></li>
+<li><p>Click browse and load the resolution file <code class="docutils literal notranslate"><span class="pre">irs26173_graphite002_res.nxs</span></code> from the sample data</p></li>
+<li><p>In Workspace Indices enter <code class="docutils literal notranslate"><span class="pre">0-5</span></code></p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Add</span></code> and close the dialogue.</p></li>
+<li><p>Set <code class="docutils literal notranslate"><span class="pre">Lorentzians</span></code> to 2</p></li>
+<li><p>Set <code class="docutils literal notranslate"><span class="pre">Max</span> <span class="pre">iterations</span></code> to 400</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Run</span></code></p></li>
+<li><p>Three new workspaces should be created in the main GUI - <code class="docutils literal notranslate"><span class="pre">Parameters</span></code>, <code class="docutils literal notranslate"><span class="pre">Result</span></code> and <code class="docutils literal notranslate"><span class="pre">Workspaces</span></code></p></li>
+<li><p>In the <code class="docutils literal notranslate"><span class="pre">Mini</span> <span class="pre">plots</span></code> widget, change <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">Spectrum</span></code> to 3</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Fit</span> <span class="pre">Single</span> <span class="pre">Spectrum</span></code> the plot should update and new workspaces are created in the main Mantid GUI</p></li>
+<li><p>Remove spectra 0-2, then remove spectra 5. do these as separate removals.</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Run</span></code>; the plot should update and new workspaces are created in the main Mantid GUI</p></li>
+<li><p>Try the various <code class="docutils literal notranslate"><span class="pre">Plot</span></code> options in the interface</p>
+<ol class="loweralpha simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Output</span></code> drop-down set to All and click <code class="docutils literal notranslate"><span class="pre">Plot</span></code> - should give 5 separate plots</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">Current</span> <span class="pre">Preview</span></code> - should result in a plot with three datasets</p></li>
+<li><p>Enable the <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">Guess</span></code> checkbox - should not change anything, but should not break anything either!</p></li>
+</ol>
+</li>
+<li><p>Change the <code class="docutils literal notranslate"><span class="pre">Fit</span> <span class="pre">type</span></code> to different functions and run fits</p></li>
+</ol>
+</section>
+<section id="f-q-fit-tab">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">F(Q) Fit tab</a><a class="headerlink" href="#f-q-fit-tab" title="Link to this heading">¶</a></h2>
+<p><em>Preparation</em></p>
+<ul class="simple">
+<li><p>ISIS Sample data set, <a class="reference external" href="http://download.mantidproject.org/">available here</a></p></li>
+</ul>
+<p><strong>Time required 3 - 5 minutes</strong></p>
+<hr class="docutils" />
+<ol class="arabic simple">
+<li><p>Go to <code class="docutils literal notranslate"><span class="pre">Interfaces</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Inelastic</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">QENS</span> <span class="pre">fitting</span></code></p></li>
+<li><p>Go to the <code class="docutils literal notranslate"><span class="pre">F(Q)</span> <span class="pre">Fit</span></code> tab</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">Workspace</span></code></p></li>
+<li><p>With the combo box set to <code class="docutils literal notranslate"><span class="pre">Workspace</span></code> select the <code class="docutils literal notranslate"><span class="pre">0-5__Result</span></code> workspace from the previous test</p></li>
+<li><p>In Parameter Name select <code class="docutils literal notranslate"><span class="pre">f1.f0.FWHM</span></code></p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Add</span></code> and close the dialogue.</p></li>
+<li><p>Under <code class="docutils literal notranslate"><span class="pre">Fit</span> <span class="pre">Type</span></code> select <code class="docutils literal notranslate"><span class="pre">TeixeiraWater</span></code></p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Run</span></code></p></li>
+<li><p>Three new workspaces should be created in the main GUI - <code class="docutils literal notranslate"><span class="pre">Parameters</span></code>, <code class="docutils literal notranslate"><span class="pre">Result</span></code> and <code class="docutils literal notranslate"><span class="pre">Workspaces</span></code></p></li>
+<li><p>Change the <code class="docutils literal notranslate"><span class="pre">Fit</span> <span class="pre">type</span></code> to different functions and run fits</p></li>
+</ol>
+</section>
+</section>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+      <ul class="nav navbar-nav" style=" float: right;">
+      
+      
+          
+            
+  <li>
+    <a href="DataManipulationTests.html" title="Previous Chapter: Inelastic Data Manipulation Testing"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Inelastic Dat...</span>
+    </a>
+  </li>
+  <li>
+    <a href="../EngineeringDiffraction/EngineeringDiffractionTestGuide.html" title="Next Chapter: Engineering Diffraction Testing"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Engineering D... &raquo;</span>
+    </a>
+  </li>
+          
+       
+          <li><a href="#">Back to top</a></li>
+       </ul>
+    <p>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
