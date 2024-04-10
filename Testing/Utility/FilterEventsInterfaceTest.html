@@ -112,8 +112,6 @@
 <ul class="simple">
 <li><p>Download the <cite>Usage Examples &lt;https://www.mantidproject.org/installation/index#sample-data&gt;</cite></p></li>
 </ul>
-<p><em>Note: At the time of writing this test, there’s an issue pending with data validation on this interface(#36073); if this issue hasn’t been
-corrected yet, please remind the team about it, else update documentation and remove this note.</em></p>
 <section id="filter-events">
 <h2><a class="toc-backref" href="#id1" role="doc-backlink">Filter Events</a><a class="headerlink" href="#filter-events" title="Link to this heading">¶</a></h2>
 <p><strong>Time required: 10-15 minutes</strong></p>
@@ -124,13 +122,14 @@ corrected yet, please remind the team about it, else update documentation and re
 <li><p>Click <code class="docutils literal notranslate"><span class="pre">Load</span></code>. After a few seconds, plot should be updated with a graph of summed up Counts vs.Time.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">_Summed_..</span></code> workspace should be generated on the ADS, as well as <code class="docutils literal notranslate"><span class="pre">CNCS_7860_Event</span></code> workspace.</p></li>
 <li><p>Clicking on the <code class="docutils literal notranslate"><span class="pre">Refresh</span></code> button should update the drop-down list with the name of the loaded workspace.</p></li>
-<li><p>Check Vertical Range Sliders work properly. You can’t overlap the sliders or cross the sliders.</p></li>
-<li><p>Check Horizontal Range Sliders work properly. You can’t overlap or cross the sliders.</p></li>
+<li><p>Check Vertical Range Sliders work properly. You can’t cross the sliders.</p></li>
+<li><p>Check Horizontal Range Sliders work properly. You can’t cross the sliders.</p></li>
 <li><p>Check that the Text Edits for <code class="docutils literal notranslate"><span class="pre">Starting</span> <span class="pre">Time</span></code> and <code class="docutils literal notranslate"><span class="pre">Stopping</span> <span class="pre">Time</span></code> work correctly:</p>
 <ul class="simple">
-<li><p>Position of vertical bars on the plot are updated appropiately when changing the numerical value of the edits and clicking <code class="docutils literal notranslate"><span class="pre">Set</span></code>.</p></li>
+<li><p>Position of vertical bars on the plot are updated appropriately when changing the numerical value of the edits and pressing <cite>Enter</cite>.</p></li>
 <li><p>Setting a value on <code class="docutils literal notranslate"><span class="pre">Starting</span> <span class="pre">Time</span></code> larger than the current value on <code class="docutils literal notranslate"><span class="pre">Stopping</span> <span class="pre">Time</span></code> is not allowed, and viceversa.</p></li>
-<li><p>Data Validation is working, you can’t set non-numeric characters on the edits (except for <cite>-</cite> sign, see note).</p></li>
+<li><p>Data Validation is working, you can’t set non-numeric characters on the edits.</p></li>
+<li><p>A red label with information is displayed on top of the plot whenever the input validation is wrong.</p></li>
 </ul>
 </li>
 <li><p>Clicking anywhere on the plot raises a dialog with the <cite>(x,y)</cite> position clicked on the graph.</p></li>
@@ -144,7 +143,7 @@ event workspace named <code class="docutils literal notranslate"><span class="pr
 the same as selected with the sliders in the interface.</p></li>
 <li><p>Back to the filter events interface, click on the <code class="docutils literal notranslate"><span class="pre">Refresh</span></code> button. The drop-down list should refresh with the available event workspaces on the ADS (<code class="docutils literal notranslate"><span class="pre">CNCS_7860_Event</span></code> and <code class="docutils literal notranslate"><span class="pre">FilteredTemp_0</span></code>).</p></li>
 <li><p>Select <code class="docutils literal notranslate"><span class="pre">FilteredTemp_0</span></code> and click on <code class="docutils literal notranslate"><span class="pre">Use</span></code> button. Plot should update accordingly.</p></li>
-<li><p>On output name write <cite>FilteredTime</cite>, on <code class="docutils literal notranslate"><span class="pre">Starting</span> <span class="pre">Time</span></code> text edit write <code class="docutils literal notranslate"><span class="pre">80</span></code> and then click <code class="docutils literal notranslate"><span class="pre">Set</span></code>. On <code class="docutils literal notranslate"><span class="pre">Stopping</span> <span class="pre">Time</span></code> text edit write <code class="docutils literal notranslate"><span class="pre">100</span></code> and then click <code class="docutils literal notranslate"><span class="pre">Set</span></code>.</p></li>
+<li><p>On output name write <cite>FilteredTime</cite>, on <code class="docutils literal notranslate"><span class="pre">Starting</span> <span class="pre">Time</span></code> text edit write <code class="docutils literal notranslate"><span class="pre">80</span></code> and then press <code class="docutils literal notranslate"><span class="pre">Enter</span></code>. On <code class="docutils literal notranslate"><span class="pre">Stopping</span> <span class="pre">Time</span></code> text edit write <code class="docutils literal notranslate"><span class="pre">100</span></code> and press <code class="docutils literal notranslate"><span class="pre">Enter</span></code>.</p></li>
 <li><p>Select <code class="docutils literal notranslate"><span class="pre">Filtered</span> <span class="pre">by</span> <span class="pre">Time</span></code> tab and on <code class="docutils literal notranslate"><span class="pre">Time</span> <span class="pre">Interval</span></code> text edit write <code class="docutils literal notranslate"><span class="pre">10</span></code>. Then click on <code class="docutils literal notranslate"><span class="pre">Filter</span></code> button. Two table workspaces ending with <code class="docutils literal notranslate"><span class="pre">_info</span></code>, <code class="docutils literal notranslate"><span class="pre">_splitters</span></code> and a group workspace named <code class="docutils literal notranslate"><span class="pre">FilteredTime</span></code> containing two
 event workspaces named <code class="docutils literal notranslate"><span class="pre">FilteredTime_0</span></code> and <code class="docutils literal notranslate"><span class="pre">FilteredTime_1</span></code> appear on ADS.</p></li>
 <li><p>Double-click on <code class="docutils literal notranslate"><span class="pre">FilteredTemp_0_info</span></code> table workspace. The table should contain two rows, indicating two time intervals of approximately 10 seconds each, and the corresponding workspace group index.</p></li>
