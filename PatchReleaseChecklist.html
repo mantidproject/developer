@@ -103,33 +103,31 @@
 <span id="patchreleasechecklist"></span><h1>Patch Release Checklist<a class="headerlink" href="#patch-release-checklist" title="Link to this heading">¶</a></h1>
 <nav class="contents local" id="contents">
 <ul class="simple">
-<li><p><a class="reference internal" href="#request" id="id4">Request</a></p></li>
-<li><p><a class="reference internal" href="#authorisation" id="id5">Authorisation</a></p></li>
-<li><p><a class="reference internal" href="#development" id="id6">Development</a></p></li>
-<li><p><a class="reference internal" href="#release-branch" id="id7">Release Branch</a></p>
+<li><p><a class="reference internal" href="#request" id="id1">Request</a></p></li>
+<li><p><a class="reference internal" href="#authorisation" id="id2">Authorisation</a></p></li>
+<li><p><a class="reference internal" href="#development" id="id3">Development</a></p>
 <ul>
-<li><p><a class="reference internal" href="#release-notes" id="id8">Release Notes</a></p></li>
-<li><p><a class="reference internal" href="#cherry-picking-code-review" id="id9">Cherry Picking &amp; Code Review</a></p></li>
+<li><p><a class="reference internal" href="#release-notes" id="id4">Release Notes</a></p></li>
+<li><p><a class="reference internal" href="#cherry-picking-code-review" id="id5">Cherry Picking &amp; Code Review</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#nightly-builds" id="id10">Nightly Builds</a></p></li>
-<li><p><a class="reference internal" href="#release-day" id="id11">Release Day</a></p></li>
+<li><p><a class="reference internal" href="#nightly-builds" id="id6">Nightly Builds</a></p></li>
+<li><p><a class="reference internal" href="#release-procedure" id="id7">Release Procedure</a></p></li>
 </ul>
 </nav>
 <p>These are the steps involved in performing a Mantid patch release. To
-perform a full release look see <a class="reference internal" href="ReleaseChecklist.html#releasechecklist"><span class="std std-ref">Release Checklist</span></a>.</p>
+perform a full release see <a class="reference internal" href="ReleaseChecklist.html#releasechecklist"><span class="std std-ref">Release Checklist</span></a>.</p>
 <section id="request">
-<h2><a class="toc-backref" href="#id4" role="doc-backlink">Request</a><a class="headerlink" href="#request" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Request</a><a class="headerlink" href="#request" title="Link to this heading">¶</a></h2>
 <ul class="simple">
-<li><p>Anyone may request a patch release, but that request must be intially
+<li><p>Anyone may request a patch release, but that request must be initially
 approved by one of the local PMs.</p></li>
 </ul>
 </section>
 <section id="authorisation">
-<h2><a class="toc-backref" href="#id5" role="doc-backlink">Authorisation</a><a class="headerlink" href="#authorisation" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Authorisation</a><a class="headerlink" href="#authorisation" title="Link to this heading">¶</a></h2>
 <ul class="simple">
-<li><p>The Project Management Team must meet to authorise the patch
-release.</p></li>
+<li><p>The Technical Working Group must meet to authorise the patch release.</p></li>
 <li><p>During the meeting other high value, low impact changes may be
 considered for inclusion for the release. Any that are to be included
 must be added to the patch release notes.</p></li>
@@ -140,33 +138,47 @@ the patch.</p></li>
 </ul>
 </section>
 <section id="development">
-<h2><a class="toc-backref" href="#id6" role="doc-backlink">Development</a><a class="headerlink" href="#development" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Development</a><a class="headerlink" href="#development" title="Link to this heading">¶</a></h2>
 <p>The patch release will be prepared based off the tag used to mark
 the last minor release. A branch called <code class="docutils literal notranslate"><span class="pre">release-next</span></code> will be created from this tag.
-Changes for the patch should be made using the standard GitHub
-workflow for merging code with <code class="docutils literal notranslate"><span class="pre">main</span></code>. The issue and pull request should then have the <code class="docutils literal notranslate"><span class="pre">PatchCandidate</span></code> label applied to them. These
-commits will then be cherry picked from <code class="docutils literal notranslate"><span class="pre">main</span></code> on to the release branch.</p>
-</section>
-<section id="release-branch">
-<h2><a class="toc-backref" href="#id7" role="doc-backlink">Release Branch</a><a class="headerlink" href="#release-branch" title="Link to this heading">¶</a></h2>
-<p>The release branch will currently have its version fixed to exact
-version of the last major/patch release. It is not a requirement but
-advised to unfix the patch number while the patch is being compiled.
-This prevents the nightly builds from generating a collection of packages that have
-exactly the same version. The patch number can be unfixed by commenting the line in
-<a class="reference external" href="https://www.github.com/mantidproject/mantid/blob/release-next/buildconfig/CMake/VersionNumber.cmake#L9">https://www.github.com/mantidproject/mantid/blob/release-next/buildconfig/CMake/VersionNumber.cmake#L9</a>.</p>
+Normally, the <code class="docutils literal notranslate"><span class="pre">release-next</span></code> branch will already be pointing to the correct commit.
+Verify that this is the case, and if not, update the branch so that it is.
+Changes for the patch should be incorporated into the release branch by either of the following methods:</p>
+<ul class="simple">
+<li><p>If changes have already been merged into <code class="docutils literal notranslate"><span class="pre">main</span></code>, the commits should be cherry-picked into the release
+branch (see <a class="reference internal" href="#cherry-picking"><span class="std std-ref">Cherry Picking</span></a>)</p></li>
+<li><p>Any changes that have not yet been merged into <code class="docutils literal notranslate"><span class="pre">main</span></code> can be rebased so that the pull request targets
+<code class="docutils literal notranslate"><span class="pre">release-next</span></code>. When they are merged, the changes will be automatically merged into <code class="docutils literal notranslate"><span class="pre">main</span></code>.</p></li>
+</ul>
+<p>Issues and pull requests should then have the <code class="docutils literal notranslate"><span class="pre">PatchCandidate</span></code> label applied to them.</p>
 <section id="release-notes">
-<h3><a class="toc-backref" href="#id8" role="doc-backlink">Release Notes</a><a class="headerlink" href="#release-notes" title="Link to this heading">¶</a></h3>
-<p>Once the patch version has been unfixed the main reviewer should
-create a skeleton set of patch release notes on the release branch
-using the <a class="reference external" href="https://www.github.com/mantidproject/mantid/blob/main/tools/release_generator/patch.py">python helper tool</a>.</p>
+<h3><a class="toc-backref" href="#id4" role="doc-backlink">Release Notes</a><a class="headerlink" href="#release-notes" title="Link to this heading">¶</a></h3>
+<p>The main reviewer should create a skeleton set of patch release notes on the release branch
+using the <a class="reference external" href="https://www.github.com/mantidproject/mantid/blob/main/tools/release_generator/patch.py">python helper tool</a>.
+For example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>release_generator/patch.py<span class="w"> </span>--release<span class="w"> </span><span class="m">6</span>.9.1<span class="w"> </span>-p<span class="w"> </span><span class="m">37033</span><span class="w"> </span><span class="m">37047</span><span class="w"> </span><span class="m">37014</span><span class="w"> </span><span class="m">37016</span><span class="w"> </span><span class="m">36935</span>
+</pre></div>
+</div>
+<p>where the numbers after the <code class="docutils literal notranslate"><span class="pre">-p</span></code> argument are a list of existing pull requests to be included in the patch release.
+Any future pull requests will need to be manually added to the release notes.
+You will need to move the generated file to a <a class="reference external" href="https://github.com/mantidproject/mantid/tree/main/docs/source/release">new vX.Y.Z directory</a>
+and add it to the <a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/docs/source/release/index.rst">release notes index</a>.
+Note that the <a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/.github/workflows/automerge.yml">automerge</a> GitHub
+action will probably fail with a conflict in the main index file. This will need to be resolved manually.</p>
 </section>
 <section id="cherry-picking-code-review">
-<h3><a class="toc-backref" href="#id9" role="doc-backlink">Cherry Picking &amp; Code Review</a><a class="headerlink" href="#cherry-picking-code-review" title="Link to this heading">¶</a></h3>
+<span id="cherry-picking"></span><h3><a class="toc-backref" href="#id5" role="doc-backlink">Cherry Picking &amp; Code Review</a><a class="headerlink" href="#cherry-picking-code-review" title="Link to this heading">¶</a></h3>
 <p>It is the job of the main reviewer of the release to review each
-issue/pull request marked <code class="docutils literal notranslate"><span class="pre">PatchCandiate</span></code> and decide if the risks of
+issue/pull request marked <code class="docutils literal notranslate"><span class="pre">PatchCandidate</span></code> and decide if the risks of
 the changes are low enough to include in a release that will not
-undergo full beta testing by scientists. If it is acceptable then on the release branch for each pull request:</p>
+undergo full beta testing by scientists. New pull requests that target
+<code class="docutils literal notranslate"><span class="pre">release-next</span></code> can simply be merged provided that they add the appropriate
+release notes. Existing pull requests that have already been merged into <code class="docutils literal notranslate"><span class="pre">main</span></code>
+should have their commits cherry-picked into the <code class="docutils literal notranslate"><span class="pre">release-next</span></code> branch,
+either directly or via a new pull request branch. One advantage of creating
+a new pull request branch is that you can ask the commit authors to verify
+that all of the relevant commits have been added. For each of the <code class="docutils literal notranslate"><span class="pre">PatchCandidate</span></code>
+pull requests that were not merged directly into <code class="docutils literal notranslate"><span class="pre">release-next</span></code>:</p>
 <ul class="simple">
 <li><p>find the list of commit <code class="docutils literal notranslate"><span class="pre">SHA1</span></code> values in that pull request</p></li>
 <li><p>check if any of these commits has altered the release notes for the
@@ -188,66 +200,30 @@ commit <code class="docutils literal notranslate"><span class="pre">git</span> <
 </ul>
 </li>
 <li><p>finally add a commit that updates the patch release notes with this
-pull request link and description in the table.</p></li>
+pull request link and summary description.</p></li>
 </ul>
 <p>Once cherry picked the milestone of the original pull request should be
 updated to the patch milestone.</p>
 </section>
 </section>
 <section id="nightly-builds">
-<h2><a class="toc-backref" href="#id10" role="doc-backlink">Nightly Builds</a><a class="headerlink" href="#nightly-builds" title="Link to this heading">¶</a></h2>
-<p>The <a class="reference external" href="release-pipeline">release pipeline</a> contains jobs
-that check for changes on the current release branch each night (00:00 GMT).
-Any detected changes will cause a clean build of the code followed by a run
-of the system tests. The Linux clean builds should have the <cite>PACKAGE_SUFFIX</cite> set
-to <cite>nightly</cite> while testing the patch.</p>
-<p>These jobs should be checked each morning to confirm that everything is green.</p>
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Nightly Builds</a><a class="headerlink" href="#nightly-builds" title="Link to this heading">¶</a></h2>
+<p>The <a class="reference external" href="https://builds.mantidproject.org/view/Nightly%20Pipelines/job/release-next_nightly_deployment">release-next nightly pipeline</a>
+job checks for changes on the current release branch each night (00:00 GMT) and should
+be monitored during the patch release period to check for any failures.</p>
 </section>
-<section id="release-day">
-<h2><a class="toc-backref" href="#id11" role="doc-backlink">Release Day</a><a class="headerlink" href="#release-day" title="Link to this heading">¶</a></h2>
-<p>On the day of release a few steps are required:</p>
+<section id="release-procedure">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Release Procedure</a><a class="headerlink" href="#release-procedure" title="Link to this heading">¶</a></h2>
+<p>Once all the changes have been merged into <code class="docutils literal notranslate"><span class="pre">release-next</span></code>, and the release notes
+are complete, it is time to release the patch by performing the following tasks:</p>
 <ul class="simple">
-<li><p>update the patch version:</p></li>
-<li><p>navigate to
-<a class="reference external" href="https://www.github.com/mantidproject/mantid/blob/release-next/buildconfig/CMake/VersionNumber.cmake">https://www.github.com/mantidproject/mantid/blob/release-next/buildconfig/CMake/VersionNumber.cmake</a></p></li>
-<li><p>edit the <code class="docutils literal notranslate"><span class="pre">VERSION_PATCH</span></code> to the required number for the patch and
-commit the result</p></li>
-<li><p>run a manual build of all of the OS jobs under {{
-site.mantidreleasebuilds }} and when asked for a suffix use an empty
-string</p></li>
-<li><p>wait for the builds to finish (will take more than 1 cup of
-tea/coffee/beverage of choice)</p></li>
-</ul>
-<p>While waiting for the builds create a new release on GitHub, using a tag
-of the form <code class="docutils literal notranslate"><span class="pre">v.X.Y.Z</span></code> and populate with information from the release
-notes (see a previous version of the format).</p>
-<p>Once the builds complete have the development team run unscripted
-testing on the packages generated by the clean release builds. In
-particular the issues intended to be fixed should be tested.</p>
-<p>Once the testing has passed:</p>
-<ul class="simple">
-<li><p>Use the manual deploy job at <a class="reference external" href="release-pipeline">release pipeline</a> to deploy
-packages and documentation to the public web.</p></li>
-<li><p>The windows binary will <strong>not</strong> be deployed and must be signed by
-someone at ISIS and uploaded to sourceforge manually</p></li>
-<li><p>Put packages on GitHub</p></li>
-<li><p>RHEL 7 only: Build the suffix-package <code class="docutils literal notranslate"><span class="pre">mantidXY</span></code> by running another
-clean RHEL 7 build from the <a class="reference external" href="release-pipeline">release pipeline</a> but use the
-suffix XY, where <code class="docutils literal notranslate"><span class="pre">X</span></code> is the major version and <code class="docutils literal notranslate"><span class="pre">Y</span></code> is the minor
-version (currently used at SNS)</p></li>
-<li><p>Create new DOI using the scripts in the codebase and instructions on
-<a class="reference internal" href="ReleaseChecklist.html#releasechecklist"><span class="std std-ref">release checklist</span></a>.</p></li>
-<li><p>Open a PR to update the relevant metadata in the <code class="docutils literal notranslate"><span class="pre">CITATION.cff</span></code> file as
-explained in the <a class="reference internal" href="ReleaseChecklist.html#releasechecklist"><span class="std std-ref">release checklist</span></a>.</p></li>
-<li><p>Send an email, including the text of the release notes, to the
-following lists</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">nobugs&#64;nobugsconference.org</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">news&#64;neutronsources.org</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">neutron&#64;neutronsources.org</span></code></p></li>
-<li><p>Also post the contents of the message on Announcements on Slack</p></li>
-<li><p>Add topic to the news page on the <a class="reference external" href="http://forum.mantidproject.org/">forum</a></p></li>
-<li><p>Close the release milestone in github</p></li>
-<li><p>Remove the patch candidate tag from pull requests (if not already done)</p></li>
+<li><p>Build the release candidates by following the instructions to <a class="reference internal" href="ReleaseChecklist.html#technical-release-manager-release-candidates"><span class="std std-ref">Create Final Release Candidates</span></a>.</p></li>
+<li><p>After the release candidates have built successfully, ask the development team perform unscripted testing,
+with a focus on the areas that were modified for the patch release.</p></li>
+<li><p>When you are happy with the quality of the release candidates, follow all of the
+<a class="reference internal" href="ReleaseChecklist.html#technical-release-manager-release-day"><span class="std std-ref">Release Day</span></a> instructions to publish the packages.</p></li>
+<li><p>Once packages are published, the Project Manager must announce the patch release by following the
+<a class="reference internal" href="ReleaseChecklist.html#release-manager-announcements"><span class="std std-ref">Release Day</span></a> instructions.</p></li>
 </ul>
 </section>
 </section>
