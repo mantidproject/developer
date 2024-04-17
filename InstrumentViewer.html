@@ -10,7 +10,7 @@
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css?v=fadd4351" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=77160d70" />
     <script src="_static/documentation_options.js?v=30d551ce"></script>
-    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -97,7 +97,39 @@
 
 <div class="container">
   <div class="row">
-    <div class="body col-md-12 content" role="main">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">Instrument Viewer Widget</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#implementation">Implementation</a></li>
+<li><a class="reference internal" href="#detector-picking">Detector Picking</a></li>
+<li><a class="reference internal" href="#geometry-handlers-and-renderers">Geometry Handlers and Renderers</a></li>
+</ul>
+</li>
+</ul>
+
+  <li>
+    <a href="InelasticDataManipulationFileStructure.html" title="Previous Chapter: Inelastic Data Manipulation Class Structure"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Inelastic Dat...</span>
+    </a>
+  </li>
+  <li>
+    <a href="ISISSANSReductionBackend.html" title="Next Chapter: ISIS SANS Reduction Back-end"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">ISIS SANS Red... &raquo;</span>
+    </a>
+  </li>
+<div id="sourcelink">
+  <a href="_sources/InstrumentViewer.rst.txt"
+     rel="nofollow">Source</a>
+</div>
+<form action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
       
   <section id="instrument-viewer-widget">
 <span id="instrumentviewer"></span><h1>Instrument Viewer Widget<a class="headerlink" href="#instrument-viewer-widget" title="Link to this heading">¶</a></h1>
@@ -117,7 +149,8 @@ The detectors are coloured according to the data in the corresponding spectra of
 The user can select individual detectors by clicking on them and request to see the data recorded by this detector as a table or a graph.
 The instrument view also allows users to see close-ups of any component.</p>
 <figure class="align-center">
-<a class="reference internal image-reference" href="_images/InstrumentWidget.jpg"><img alt="_images/InstrumentWidget.jpg" src="_images/InstrumentWidget.jpg" style="width: 635px;" /></a>
+<a class="reference internal image-reference" href="_images/InstrumentWidget.jpg"><img alt="_images/InstrumentWidget.jpg" src="_images/InstrumentWidget.jpg" style="width: 635px;" />
+</a>
 </figure>
 </section>
 <section id="implementation">
@@ -125,7 +158,8 @@ The instrument view also allows users to see close-ups of any component.</p>
 <p>Mantid uses <code class="code docutils literal notranslate"><span class="pre">OpenGL</span></code> to plot the geometry. <code class="code docutils literal notranslate"><span class="pre">Instrument3DWidget</span></code> represents the view window and controls the viewport and the scene.
 The base class for a visual element is <code class="code docutils literal notranslate"><span class="pre">GLObject</span></code>. <code class="code docutils literal notranslate"><span class="pre">Actors</span></code> and <code class="code docutils literal notranslate"><span class="pre">MantidObject</span></code> inherit from it. <code class="code docutils literal notranslate"><span class="pre">Actors</span></code> represent the instrument components.</p>
 <figure class="align-center">
-<a class="reference internal image-reference" href="_images/InstrumentViewClassDiagram.jpg"><img alt="_images/InstrumentViewClassDiagram.jpg" src="_images/InstrumentViewClassDiagram.jpg" style="width: 752px;" /></a>
+<a class="reference internal image-reference" href="_images/InstrumentViewClassDiagram.jpg"><img alt="_images/InstrumentViewClassDiagram.jpg" src="_images/InstrumentViewClassDiagram.jpg" style="width: 752px;" />
+</a>
 </figure>
 </section>
 <section id="detector-picking">
@@ -142,7 +176,8 @@ Handlers have different methods of creating meshes.
 For example, <code class="code docutils literal notranslate"><span class="pre">GluGeometryHandler</span></code> can create simple shapes such as spheres and cylinders, <code class="code docutils literal notranslate"><span class="pre">OCGeometryHandler</span></code> creates more complex geometries combining simple shapes together.
 <code class="code docutils literal notranslate"><span class="pre">CacheGeometryHandler</span></code> reads previously saved geometries from a file.</p>
 <figure class="align-center">
-<a class="reference internal image-reference" href="_images/GeometryHandlers.jpg"><img alt="_images/GeometryHandlers.jpg" src="_images/GeometryHandlers.jpg" style="width: 793px;" /></a>
+<a class="reference internal image-reference" href="_images/GeometryHandlers.jpg"><img alt="_images/GeometryHandlers.jpg" src="_images/GeometryHandlers.jpg" style="width: 793px;" />
+</a>
 </figure>
 </section>
 </section>
