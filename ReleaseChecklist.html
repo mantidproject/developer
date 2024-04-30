@@ -592,16 +592,20 @@ tags, configuring build servers, and ensuring problems on the Release Pipeline g
 <li><p>Ensure the latest <a class="reference external" href="https://builds.mantidproject.org/view/Nightly%20Pipelines/job/main_nightly_deployment/">main nightly deployment pipeline</a>
 has passed for all build environments. If it fails, decide if a fix is needed before moving on to
 the next steps.</p></li>
-<li><p>Click <code class="docutils literal notranslate"><span class="pre">Build</span> <span class="pre">Now</span></code> on <a class="reference external" href="https://builds.mantidproject.org/view/All/job/open-release-testing/">open-release-testing</a>,
-which will perform the following actions:</p>
-<ul>
-<li><p>Create or update the <code class="docutils literal notranslate"><span class="pre">release-next</span></code> branch.</p></li>
-<li><p>Enable the job to periodically merge <code class="docutils literal notranslate"><span class="pre">release-next</span></code> into <code class="docutils literal notranslate"><span class="pre">main</span></code>.</p></li>
-<li><p>Set the value of the Jenkins global property <code class="docutils literal notranslate"><span class="pre">BRANCH_TO_PUBLISH</span></code> to <code class="docutils literal notranslate"><span class="pre">release-next</span></code>.
-This will turn off publishing for the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch pipeline and switch it on for the
-<code class="docutils literal notranslate"><span class="pre">release-next</span></code> pipeline.</p></li>
+<li><p>Ask a mantid gatekeeper or administrator to update the <code class="docutils literal notranslate"><span class="pre">release-next</span></code> branch so that it’s up to
+date with the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch, pushing the changes directly to GitHub:</p></li>
 </ul>
-</li>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>release-next
+git<span class="w"> </span>fetch<span class="w"> </span>origin<span class="w"> </span>main
+git<span class="w"> </span>reset<span class="w"> </span>--hard<span class="w"> </span>origin/main
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>release-next<span class="w"> </span>--force
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Verify that the latest commit on <code class="docutils literal notranslate"><span class="pre">release-next</span></code> is correct before moving to the next step.</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Build</span> <span class="pre">Now</span></code> on <a class="reference external" href="https://builds.mantidproject.org/view/All/job/open-release-testing/">open-release-testing</a>. This will
+set the value of the Jenkins global property <code class="docutils literal notranslate"><span class="pre">BRANCH_TO_PUBLISH</span></code> to <code class="docutils literal notranslate"><span class="pre">release-next</span></code>,
+which will re-enable package publishing for the <code class="docutils literal notranslate"><span class="pre">release-next</span></code> nightly pipeline.</p></li>
 <li><p>Check the state of all open pull requests for this milestone and decide which
 should be kept for the release, liaise with the Release Manager on this. Move any
 pull requests not targeted for this release out of the milestone, and then change
