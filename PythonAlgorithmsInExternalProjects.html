@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Python Algorithms in External Projects</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css?v=fadd4351" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=77160d70" />
+    <script src="_static/documentation_options.js?v=30d551ce"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Development and Release Cycle" href="DevelopmentAndReleaseCycle.html" />
+    <link rel="prev" title="New Starter Python" href="NewStarterPython.html" />
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-59110517-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+  </head><body>
+
+
+
+
+
+  <div id="navbar" class="navbar navbar-default ">
+    <div class="container">
+      <div class="navbar-header">
+        
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://www.mantidproject.org">
+           </a>
+        <span class="navbar-text navbar-version pull-left"><b>master</b></span>
+      </div>
+
+      
+        <div class="collapse navbar-collapse nav-collapse">
+      
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="index.html">Home</a></li>
+                <li><a href="https://download.mantidproject.org">Download</a></li>
+                <li><a href="https://docs.mantidproject.org">User Documentation</a></li>
+                <li><a href="http://www.mantidproject.org/contact">Contact Us</a></li>
+            
+            
+              
+              
+            
+            
+            
+            
+          </ul>
+              
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+            </div>
+    </div>
+    <p>
+<div class="related" role="navigation" aria-label="related navigation">
+  <h3>Navigation</h3>
+  <ul>
+    <li class="nav-item nav-item-0"><a href="index.html">Documentation</a> &#187;</li>
+    
+    
+    
+    
+    <li class="nav-item nav-item-this"><a href="">Python Algorithms in External Projects</a></li>
+    
+    
+  </ul>
+</div> </p>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <section id="python-algorithms-in-external-projects">
+<span id="pythonalgorithmsinexternalprojects"></span><h1>Python Algorithms in External Projects<a class="headerlink" href="#python-algorithms-in-external-projects" title="Link to this heading">¶</a></h1>
+<p>It can be useful to create mantid algorithms that are kept in an external project.
+This is especially the case for processing that is specific to a single instrument or novel technique.
+To use algorithms distributed this way, one needs to register them with the <a class="reference external" href="https://docs.mantidproject.org/nightly/api/python/mantid/api/AlgorithmFactoryImpl.html#mantid.api.AlgorithmFactoryImpl" title="(in MantidProject v6.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">mantid.api.AlgorithmFactory</span></code></a> and create wrappers so they can be called as python functions.
+There are two techniques to accomplish this</p>
+<section id="modify-mantid-user-properties">
+<h2>Modify Mantid.user.properties<a class="headerlink" href="#modify-mantid-user-properties" title="Link to this heading">¶</a></h2>
+<p>Inside the user’s <a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/PropertiesFile.html#properties-file" title="(in MantidProject v6.9)"><span class="xref std std-ref">properties file</span></a>, one can set a
+<a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/PropertiesFile.html#directory-properties" title="(in MantidProject v6.9)"><span class="xref std std-ref">directory property</span></a> to add the location of the additional python algorithms to the <code class="docutils literal notranslate"><span class="pre">framework.plugins.directory</span></code> variable.
+During initialization of the mantid framework, all files that are within this directory or a subdirectory will be parsed and algorithms will be added to the <code class="docutils literal notranslate"><span class="pre">AlgorithmFactory</span></code>.
+<em>This is the preferred method.</em></p>
+</section>
+<section id="create-function-wrapper-at-runtime">
+<h2>Create function wrapper at runtime<a class="headerlink" href="#create-function-wrapper-at-runtime" title="Link to this heading">¶</a></h2>
+<p>An alternative method is to create the function wrappers within the extension code itself after the mantid framework has been initialized.
+The example below is modified from the <a class="reference external" href="https://github.com/neutrons/Shiver/blob/23b651e3e57965c32f545a4f8718fc80ead63663/src/shiver/models/makeslices.py#L264-L269">shiver project</a>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mantid.api</span> <span class="kn">import</span> <span class="n">AlgorithmFactory</span>
+<span class="kn">from</span> <span class="nn">mantid.simpleapi</span> <span class="kn">import</span> <span class="n">_create_algorithm_function</span>
+
+<span class="c1"># ALGORITHM IMPLEMENTATION</span>
+
+<span class="n">AlgorithmFactory</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">MakeSFCorrectedSlices</span><span class="p">)</span>
+<span class="c1"># Puts function in simpleapi globals</span>
+<span class="n">makeslices</span> <span class="o">=</span> <span class="n">MakeSFCorrectedSlices</span><span class="p">()</span>
+<span class="n">makeslices</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span>
+<span class="n">_create_algorithm_function</span><span class="p">(</span><span class="s2">&quot;MakeSFCorrectedSlices&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">makeslices</span><span class="p">)</span>
+<span class="k">del</span> <span class="n">makeslices</span><span class="p">,</span> <span class="n">_create_algorithm_function</span>
+</pre></div>
+</div>
+<p>This creates the function wrapper in the <code class="docutils literal notranslate"><span class="pre">mantid.simpleapi</span></code> namespace when the file containing these lines is parsed.
+Unlike the method of instructing mantid to parse the files, this requires actively importing the file containing the extra instructions before the algorithm is available.</p>
+</section>
+</section>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+      <ul class="nav navbar-nav" style=" float: right;">
+      
+      
+          
+            
+  <li>
+    <a href="NewStarterPython.html" title="Previous Chapter: New Starter Python"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; New Starter Python</span>
+    </a>
+  </li>
+  <li>
+    <a href="DevelopmentAndReleaseCycle.html" title="Next Chapter: Development and Release Cycle"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Development a... &raquo;</span>
+    </a>
+  </li>
+          
+       
+          <li><a href="#">Back to top</a></li>
+       </ul>
+    <p>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
