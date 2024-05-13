@@ -113,6 +113,12 @@
 <li><p><a class="reference internal" href="#building-standalone-installers" id="id7">Building Standalone Installers</a></p></li>
 </ul>
 </li>
+<li><p><a class="reference internal" href="#build-packages-from-branch-using-jenkins" id="id8">Build packages from branch using Jenkins</a></p>
+<ul>
+<li><p><a class="reference internal" href="#options" id="id9">Options</a></p></li>
+<li><p><a class="reference internal" href="#example" id="id10">Example</a></p></li>
+</ul>
+</li>
 </ul>
 </nav>
 <p>This page gives an overview of the different packaging mechansims used to deliver
@@ -207,6 +213,57 @@ directory run the following from the same working directory:</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">--package-suffix</span></code> argument is an optional string to append to the name
 of the final package. We generally pick <code class="docutils literal notranslate"><span class="pre">Unstable</span></code> for installers not built
 by the CI pipeline to indicate it has been built outside of the standard process.</p>
+</section>
+</section>
+<section id="build-packages-from-branch-using-jenkins">
+<span id="build-packages-from-branch"></span><h2><a class="toc-backref" href="#id8" role="doc-backlink">Build packages from branch using Jenkins</a><a class="headerlink" href="#build-packages-from-branch-using-jenkins" title="Link to this heading">¶</a></h2>
+<p>Developers can build packages to test branches using the <code class="docutils literal notranslate"><span class="pre">build_packages_from_branch</span></code> <a class="reference external" href="https://builds.mantidproject.org/job/build_packages_from_branch/">Jenkins job</a>. This job provides the ability to,</p>
+<ul class="simple">
+<li><p>Run system tests on Windows, Mac, Linux, or all three.</p></li>
+<li><p>Build a packages on Windows, Mac, Linux, or all three.</p></li>
+<li><p>Publish the package(s) to a given Anaconda channel and label.</p></li>
+<li><p>Publish the package(s) to a given Github repository under a specified tag.</p></li>
+</ul>
+<p>for a given branch of mantid. The branch can be from the main mantid repo or from a remote.</p>
+<section id="options">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">Options</a><a class="headerlink" href="#options" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">BUILD_DEVEL</span></code> [<code class="docutils literal notranslate"><span class="pre">none</span></code>, <code class="docutils literal notranslate"><span class="pre">all</span></code>, <code class="docutils literal notranslate"><span class="pre">linux-64</span></code>, <code class="docutils literal notranslate"><span class="pre">win-64</span></code>, <code class="docutils literal notranslate"><span class="pre">osx-64</span></code>]: Run the system tests for this OS.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BUILD_PACKAGE</span></code> [<code class="docutils literal notranslate"><span class="pre">none</span></code>, <code class="docutils literal notranslate"><span class="pre">all</span></code>, <code class="docutils literal notranslate"><span class="pre">linux-64</span></code>, <code class="docutils literal notranslate"><span class="pre">win-64</span></code>, <code class="docutils literal notranslate"><span class="pre">osx-64</span></code>]: Build a package on this OS.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PACKAGE_SUFFIX</span></code>: String to append onto the standalone package name, useful for distinguishing builds. By default this is <code class="docutils literal notranslate"><span class="pre">Unstable</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PUBLISH_TO_ANACONDA</span></code>: Set true to publish to the given Anaconda channel and label.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PUBLISH_TO_GITHUB</span></code>: Set true to publish to the Github repository using the specified tag.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ANACONDA_CHANNEL</span></code>: Anaconda channel to upload the package to. By default this is <code class="docutils literal notranslate"><span class="pre">mantid</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ANACONDA_CHANNEL_LABEL</span></code>: Label attached to the uploaded package. By default this is <code class="docutils literal notranslate"><span class="pre">unstable</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GITHUB_RELEASES_REPO</span></code>: Repository to store the release. By Default this is <code class="docutils literal notranslate"><span class="pre">mantidproject/mantid</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GITHUB_RELEASES_TAG</span></code>: Name of the tag for the release; only to be used for release candidate builds.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ANACONDA_TOKEN_CREDENTIAL_ID</span></code> [<code class="docutils literal notranslate"><span class="pre">anaconda-cloud-token</span></code>, <code class="docutils literal notranslate"><span class="pre">anaconda-token-ornl</span></code>]: One of two credentials to use for publishing to Anaconda.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GH_ORGANIZATION_OR_USERNAME</span></code>: Name of the organisation or Github user name who owns the repository with the code to build. By default this is <code class="docutils literal notranslate"><span class="pre">mantidproject</span></code>, if you are building from a fork this will need to change to your username.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BRANCH_NAME</span></code>: Name of the branch to build the packages from.</p></li>
+</ul>
+</section>
+<section id="example">
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">Example</a><a class="headerlink" href="#example" title="Link to this heading">¶</a></h3>
+<p>Say I’ve implemented a new file searching method on a branch <code class="docutils literal notranslate"><span class="pre">1234_new_file_search</span></code> and I want to test this on IDAaaS, one of the easiest ways to do this would be to build the packages and upload them to Anaconda using the pipeline. These are the steps I’d take to do this.</p>
+<ol class="arabic simple">
+<li><p>Go to the <code class="docutils literal notranslate"><span class="pre">build_packages_from_branch</span></code> <a class="reference external" href="https://builds.mantidproject.org/job/build_packages_from_branch/">Jenkins job</a>.</p></li>
+<li><p>If needed click <code class="docutils literal notranslate"><span class="pre">login</span></code> in the top right of the window.</p></li>
+<li><p>Go to <code class="docutils literal notranslate"><span class="pre">Build</span> <span class="pre">with</span> <span class="pre">parameters</span></code> in the side bar.</p></li>
+<li><p>Fill out the following options:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">BUILD_DEVEL</span></code> = <code class="docutils literal notranslate"><span class="pre">none</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BUILD_PACKAGE</span></code> = <code class="docutils literal notranslate"><span class="pre">linux-64</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PUBLISH_TO_ANACONDA</span></code> = true</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ANACONDA_CHANNEL_LABEL</span></code> = <code class="docutils literal notranslate"><span class="pre">new_file_system_test</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ANACONDA_TOKEN_CREDENTIAL_ID</span></code> = <code class="docutils literal notranslate"><span class="pre">anaconda-cloud-token</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BRANCH_NAME</span></code> = <code class="docutils literal notranslate"><span class="pre">1234_new_file_search</span></code></p></li>
+</ul>
+</li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Build</span></code>. This will take you back to the main job page, the build just set off will be the most recent (highest number) build on the left hand side. It is a good idea to make note of the build number / copy the link somewhere safe. If the build is for testing a pr, make sure to add the link to the testing instructions.</p></li>
+<li><p>Once the job has successfully completed, check <a class="reference external" href="https://anaconda.org/mantid">the Mantid Anaconda page</a> to make sure it has uploaded.</p></li>
+<li><p>Head to IDAaaS (or any linux system) and run <code class="docutils literal notranslate"><span class="pre">mamba</span> <span class="pre">install</span> <span class="pre">-c</span> <span class="pre">mantid/label/new_file_system_test</span> <span class="pre">mantidworkbench</span></code> in a new environment to install the test package.</p></li>
+</ol>
+<p>Most often, you won’t need to upload the packages to Anaconda, this is most useful in cases where installing standalone packages is inconvenient. Standalone package builds created by the jenkins job can be found under the jenkins job build artifacts, this is near the top of the page. Say you built a package for Windows using the jenkins job, you should find a <code class="docutils literal notranslate"><span class="pre">mantidworkbench</span></code> exe file in the build artifacts.</p>
 </section>
 </section>
 </section>
