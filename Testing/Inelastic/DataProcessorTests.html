@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Inelastic Data Processor Testing</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css?v=fadd4351" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=77160d70" />
+    <script src="../../_static/documentation_options.js?v=a8da1a53"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Inelastic QENS Fitting Testing" href="QENSFittingTests.html" />
+    <link rel="prev" title="Indirect Data Reduction Testing" href="../Indirect/DataReductionTests.html" />
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-59110517-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+  </head><body>
+
+
+
+
+
+  <div id="navbar" class="navbar navbar-default ">
+    <div class="container">
+      <div class="navbar-header">
+        
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://www.mantidproject.org">
+           </a>
+        <span class="navbar-text navbar-version pull-left"><b>main</b></span>
+      </div>
+
+      
+        <div class="collapse navbar-collapse nav-collapse">
+      
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="https://download.mantidproject.org">Download</a></li>
+                <li><a href="https://docs.mantidproject.org">User Documentation</a></li>
+                <li><a href="http://www.mantidproject.org/contact">Contact Us</a></li>
+            
+            
+              
+              
+            
+            
+            
+            
+          </ul>
+              
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+            </div>
+    </div>
+    <p>
+<div class="related" role="navigation" aria-label="related navigation">
+  <h3>Navigation</h3>
+  <ul>
+    <li class="nav-item nav-item-0"><a href="../../index.html">Documentation</a> &#187;</li>
+    
+    <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Testing</a> &#187;</li>
+    
+    
+    
+    
+    <li class="nav-item nav-item-this"><a href="">Inelastic Data Processor Testing</a></li>
+    
+    
+  </ul>
+</div> </p>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <section id="inelastic-data-processor-testing">
+<h1>Inelastic Data Processor Testing<a class="headerlink" href="#inelastic-data-processor-testing" title="Link to this heading">¶</a></h1>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#elwin-tab" id="id3">Elwin tab</a></p>
+<ul>
+<li><p><a class="reference internal" href="#direct-data" id="id4">1. Direct data</a></p></li>
+<li><p><a class="reference internal" href="#indirect-data" id="id5">2. Indirect data</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#i-q-t-tab" id="id6">I(Q, T) tab</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id1" id="id7">1. Direct data</a></p></li>
+<li><p><a class="reference internal" href="#iqt-inelastic-test" id="id8">2. Indirect data</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<p><em>Prerequisites</em></p>
+<ul class="simple">
+<li><p>Download the <a class="reference external" href="http://download.mantidproject.org">ISIS Sample Data</a></p></li>
+<li><p>Make sure that the data set is on your list of search directories</p></li>
+</ul>
+<section id="elwin-tab">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Elwin tab</a><a class="headerlink" href="#elwin-tab" title="Link to this heading">¶</a></h2>
+<p><strong>Time required 3 - 5 minutes for each</strong></p>
+<hr class="docutils" />
+<section id="direct-data">
+<h3><a class="toc-backref" href="#id4" role="doc-backlink">1. Direct data</a><a class="headerlink" href="#direct-data" title="Link to this heading">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Go to <code class="docutils literal notranslate"><span class="pre">Interfaces</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Inelastic</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Processor</span></code></p></li>
+<li><p>Go to the <code class="docutils literal notranslate"><span class="pre">Elwin</span></code> tab</p></li>
+<li><p>Click on <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">Workspaces</span></code>, a dialog window should prompt.</p></li>
+<li><p>Enter <code class="docutils literal notranslate"><span class="pre">MAR27691_red.nxs</span></code> in <code class="docutils literal notranslate"><span class="pre">Input</span> <span class="pre">file</span></code>. The table of the dialog should be populated with the <code class="docutils literal notranslate"><span class="pre">MAR2791_red</span></code> workspace.</p></li>
+<li><p>Select the workspace from the table and click on <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">Data</span></code>. Close the dialog.</p></li>
+<li><p>Back on <code class="docutils literal notranslate"><span class="pre">Elwin</span></code> tab, click <code class="docutils literal notranslate"><span class="pre">Run</span></code> - this should produce 3 new workspaces <code class="docutils literal notranslate"><span class="pre">_elf</span></code>, <code class="docutils literal notranslate"><span class="pre">_eq</span></code> and <code class="docutils literal notranslate"><span class="pre">_eq2</span></code></p></li>
+<li><p>Open the <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">Workspaces</span></code> dialog again, and in <code class="docutils literal notranslate"><span class="pre">Input</span> <span class="pre">file</span></code> choose <code class="docutils literal notranslate"><span class="pre">browse</span></code>. Navigate to the ISIS-Sample data and select the two files, <code class="docutils literal notranslate"><span class="pre">MAR27691_red.nxs</span></code> and <code class="docutils literal notranslate"><span class="pre">MAR27698_red.nxs</span></code> using shift key.</p></li>
+<li><p>Add the loaded workspaces</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Run</span></code></p></li>
+<li><p>This should result in three new workspaces again, this time with file ranges as their name</p></li>
+<li><p>In the main GUI right-click on <code class="docutils literal notranslate"><span class="pre">MAR27691-27698_red_elwin_eq2</span></code> and choose <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">Spectrum</span></code>, choose <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">All</span></code></p></li>
+<li><p>This should plot two lines of <span class="math notranslate nohighlight">\(ln(Counts(microAmp.hour))^{-1}\)</span> vs <span class="math notranslate nohighlight">\(Q2\)</span></p></li>
+</ol>
+</section>
+<section id="indirect-data">
+<span id="elwin-inelastic-test"></span><h3><a class="toc-backref" href="#id5" role="doc-backlink">2. Indirect data</a><a class="headerlink" href="#indirect-data" title="Link to this heading">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Go to <code class="docutils literal notranslate"><span class="pre">Interfaces</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Inelastic</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Processor</span></code></p></li>
+<li><p>Click on <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">Workspaces</span></code>, a dialog window should prompt</p></li>
+<li><p>Enter <code class="docutils literal notranslate"><span class="pre">irs26176_graphite002_red.nxs</span></code> in <code class="docutils literal notranslate"><span class="pre">Input</span> <span class="pre">file</span></code>. The table of the dialog should be populated with the <code class="docutils literal notranslate"><span class="pre">irs26176_graphite002_red</span></code> workspace.</p></li>
+<li><p>Select the workspace from the table and click on <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">Data</span></code>. Close the dialog.</p></li>
+<li><p>Back on <code class="docutils literal notranslate"><span class="pre">Elwin</span></code> tab, click <code class="docutils literal notranslate"><span class="pre">Run</span></code> - this should produce 3 new workspaces <code class="docutils literal notranslate"><span class="pre">_elf</span></code>, <code class="docutils literal notranslate"><span class="pre">_eq</span></code> and <code class="docutils literal notranslate"><span class="pre">_eq2</span></code></p></li>
+<li><p>Open the <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">Workspaces</span></code> dialog again, and in <code class="docutils literal notranslate"><span class="pre">Input</span> <span class="pre">file</span></code> choose <code class="docutils literal notranslate"><span class="pre">browse</span></code>. Navigate to the ISIS-Sample data and select the two files, <code class="docutils literal notranslate"><span class="pre">irs26174_graphite002_red.nxs</span></code> and <code class="docutils literal notranslate"><span class="pre">irs26176_graphite002_red.nxs</span></code> using shift key.</p></li>
+<li><p>Add the loaded workspaces</p></li>
+<li><p>Change the integration range from -0.2 to 0.2</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Run</span></code></p></li>
+<li><p>This should result in three new workspaces again, this time with file ranges as their name</p></li>
+<li><p>In the main GUI right-click on <code class="docutils literal notranslate"><span class="pre">irs26174-26176_graphite002_red_elwin_eq2</span></code> and choose <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">Spectrum</span></code>, choose <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">All</span></code></p></li>
+<li><p>This should plot two lines of <span class="math notranslate nohighlight">\(ln((meV))^{-1}\)</span> vs <span class="math notranslate nohighlight">\(Q2\)</span></p></li>
+<li><p>Right-click on the <code class="docutils literal notranslate"><span class="pre">irs26176_graphite002_elwin_eq</span></code> workspace and <code class="docutils literal notranslate"><span class="pre">Save</span> <span class="pre">Nexus</span></code>; save to a location of your choice; you will use this file in the next test</p></li>
+</ol>
+</section>
+</section>
+<section id="i-q-t-tab">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">I(Q, T) tab</a><a class="headerlink" href="#i-q-t-tab" title="Link to this heading">¶</a></h2>
+<p><strong>Time required 3 - 5 minutes for each</strong></p>
+<hr class="docutils" />
+<section id="id1">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">1. Direct data</a><a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Go to <code class="docutils literal notranslate"><span class="pre">Interfaces</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Inelastic</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Processor</span></code></p></li>
+<li><p>Go to the <code class="docutils literal notranslate"><span class="pre">Iqt</span></code> tab</p></li>
+<li><p>Load the <code class="docutils literal notranslate"><span class="pre">MARI27691_sqw.nxs</span></code> file from the sample data</p></li>
+<li><p>Load the resolution file <code class="docutils literal notranslate"><span class="pre">MARI27698_sqw.nxs</span></code> from the sample data</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Run</span></code></p></li>
+<li><p>A new workspace with the suffix <code class="docutils literal notranslate"><span class="pre">_iqt</span></code> should appear in the main GUI, it should be a workspace with 17 histograms and 3 bins.</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">Current</span> <span class="pre">preview</span></code> this should plot the same data as the preview window</p></li>
+<li><p>Choose some workspace indices (e.g. 0-2) in the <code class="docutils literal notranslate"><span class="pre">Output</span></code> section and click <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">Spectra</span></code> this should give a plot with the title <em>MARI27691_iqt</em></p></li>
+<li><p>Click the down arrow on the <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">Spectra</span></code> button and then select <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">Tiled</span></code>. This should give a tiled plot of the selected workspace indices.</p></li>
+</ol>
+</section>
+<section id="iqt-inelastic-test">
+<span id="id2"></span><h3><a class="toc-backref" href="#id8" role="doc-backlink">2. Indirect data</a><a class="headerlink" href="#iqt-inelastic-test" title="Link to this heading">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Go to <code class="docutils literal notranslate"><span class="pre">Interfaces</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Inelastic</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Processor</span></code></p></li>
+<li><p>Go to the <code class="docutils literal notranslate"><span class="pre">Iqt</span></code> tab</p></li>
+<li><p>Load the <code class="docutils literal notranslate"><span class="pre">irs26176_graphite002_red.nxs</span></code> file from the sample data</p></li>
+<li><p>Load the resolution file <code class="docutils literal notranslate"><span class="pre">irs26173_graphite002_res.nxs</span></code> from the sample data</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Run</span></code></p></li>
+<li><p>A new workspace with the suffix <code class="docutils literal notranslate"><span class="pre">_iqt</span></code> should appear in the main GUI, it should be a workspace with 51 histograms and 86 bins. <strong>NB</strong> keep this workspace for the next test</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">Current</span> <span class="pre">preview</span></code> this should plot the same data as the preview window</p></li>
+<li><p>Choose some workspace indices (e.g. 0-2) in the <code class="docutils literal notranslate"><span class="pre">Output</span></code> section and click <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">Spectra</span></code> this should give a plot with the title <em>irs26176_graphite002_iqt</em></p></li>
+<li><p>Click the down arrow on the <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">Spectra</span></code> button and then select <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">Tiled</span></code>. This should give a tiled plot of the selected workspace indices.</p></li>
+</ol>
+</section>
+</section>
+</section>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+      <ul class="nav navbar-nav" style=" float: right;">
+      
+      
+          
+            
+  <li>
+    <a href="../Indirect/DataReductionTests.html" title="Previous Chapter: Indirect Data Reduction Testing"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Indirect Data...</span>
+    </a>
+  </li>
+  <li>
+    <a href="QENSFittingTests.html" title="Next Chapter: Inelastic QENS Fitting Testing"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Inelastic QEN... &raquo;</span>
+    </a>
+  </li>
+          
+       
+          <li><a href="#">Back to top</a></li>
+       </ul>
+    <p>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

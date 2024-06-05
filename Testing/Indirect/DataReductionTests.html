@@ -14,8 +14,8 @@
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Inelastic Data Manipulation Testing" href="../Inelastic/DataManipulationTests.html" />
-    <link rel="prev" title="Elemental Analysis GUI Testing" href="../ElementalAnalysis/ElementalAnalysisTests.html" />
+    <link rel="next" title="Inelastic Data Processor Testing" href="../Inelastic/DataProcessorTests.html" />
+    <link rel="prev" title="Indirect Diffraction Testing" href="DiffractionTests.html" />
 
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -105,15 +105,18 @@
 <span id="id1"></span><h1>Indirect Data Reduction Testing<a class="headerlink" href="#indirect-data-reduction-testing" title="Link to this heading">¶</a></h1>
 <nav class="contents local" id="contents">
 <ul class="simple">
-<li><p><a class="reference internal" href="#data-reduction" id="id2">Data reduction</a></p></li>
+<li><p><a class="reference internal" href="#isis-calibration" id="id2">ISIS Calibration</a></p></li>
+<li><p><a class="reference internal" href="#isis-energy-transfer" id="id3">ISIS Energy Transfer</a></p></li>
+<li><p><a class="reference internal" href="#isis-diagnostics" id="id4">ISIS Diagnostics</a></p></li>
+<li><p><a class="reference internal" href="#transmission" id="id5">Transmission</a></p></li>
 </ul>
 </nav>
 <p><em>Prerequisites</em></p>
 <ul class="simple">
 <li><p>Download the <a class="reference external" href="http://download.mantidproject.org">ISIS Sample Data</a></p></li>
 </ul>
-<section id="data-reduction">
-<h2><a class="toc-backref" href="#id2" role="doc-backlink">Data reduction</a><a class="headerlink" href="#data-reduction" title="Link to this heading">¶</a></h2>
+<section id="isis-calibration">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">ISIS Calibration</a><a class="headerlink" href="#isis-calibration" title="Link to this heading">¶</a></h2>
 <p><em>Preparation</em></p>
 <ul class="simple">
 <li><p>Instrument <code class="docutils literal notranslate"><span class="pre">IRIS</span></code></p></li>
@@ -131,6 +134,7 @@
 <li><p>Check the <code class="docutils literal notranslate"><span class="pre">Scale</span> <span class="pre">by</span> <span class="pre">factor</span></code> checkbox and change the value of the scale to 0.5.</p></li>
 <li><p>Click <code class="docutils literal notranslate"><span class="pre">Run</span></code></p></li>
 <li><p>This should generate a workspace with <code class="docutils literal notranslate"><span class="pre">_calib</span></code> at the end</p></li>
+<li><p>Make sure to keep the <code class="docutils literal notranslate"><span class="pre">_calib</span></code> workspace, it is needed for the <a class="reference internal" href="#isis-diagnostic-test"><span class="std std-ref">ISIS Diagnostics</span></a> test</p></li>
 <li><p>Check the <code class="docutils literal notranslate"><span class="pre">Create</span> <span class="pre">RES</span></code> box</p></li>
 <li><p>Click <code class="docutils literal notranslate"><span class="pre">Run</span></code></p></li>
 <li><p>This should generate a workspace with <code class="docutils literal notranslate"><span class="pre">_res</span></code> at the end</p></li>
@@ -138,13 +142,16 @@
 <li><p>Then select the <code class="docutils literal notranslate"><span class="pre">_calib</span></code> workspace and use the down arrow to click <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">Bins</span></code>. This should produce a bin plot.</p></li>
 <li><p>Enter <code class="docutils literal notranslate"><span class="pre">Input</span> <span class="pre">Runs</span></code> 55878-55879 and check <code class="docutils literal notranslate"><span class="pre">Sum</span> <span class="pre">Files</span></code></p></li>
 <li><p>Click <code class="docutils literal notranslate"><span class="pre">Run</span></code>, this should produce a <code class="docutils literal notranslate"><span class="pre">_calib</span></code> workspace</p></li>
-<li><p>Make sure that you keep the <code class="docutils literal notranslate"><span class="pre">_calib</span></code> workspace, it is needed for the next test</p></li>
+<li><p>Make sure to also keep this <code class="docutils literal notranslate"><span class="pre">_calib</span></code> workspace, it is needed for the next test</p></li>
 <li><p>Enter <code class="docutils literal notranslate"><span class="pre">Input</span> <span class="pre">Runs</span></code> 59057-59059 and check <code class="docutils literal notranslate"><span class="pre">Sum</span> <span class="pre">Files</span></code></p></li>
 <li><p>Set <code class="docutils literal notranslate"><span class="pre">Reflection</span></code> to 004</p></li>
 <li><p>Click <code class="docutils literal notranslate"><span class="pre">Run</span></code></p></li>
 <li><p>This should produce a new <code class="docutils literal notranslate"><span class="pre">_calib</span></code> workspace, with <code class="docutils literal notranslate"><span class="pre">004</span></code> in the name.</p></li>
 <li><p>Before moving on, set <code class="docutils literal notranslate"><span class="pre">Reflection</span></code> to 002</p></li>
 </ol>
+</section>
+<section id="isis-energy-transfer">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">ISIS Energy Transfer</a><a class="headerlink" href="#isis-energy-transfer" title="Link to this heading">¶</a></h2>
 <p><strong>Time required 5-10 minutes</strong></p>
 <hr class="docutils" />
 <ol class="arabic simple">
@@ -166,7 +173,7 @@
 <li><p>In the main GUI right-click on the <code class="docutils literal notranslate"><span class="pre">iris26184-26185_multi_graphite002_red</span></code> workspace</p></li>
 <li><p>Choose <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">spectrum</span></code>, note the number of spectra, should be 6</p></li>
 <li><p>Choose <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">All</span></code>, this should result in a plot of all 6 spectra</p></li>
-<li><p>Open <code class="docutils literal notranslate"><span class="pre">Interfaces</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Inelastic</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Manipulation</span></code> and go to the <code class="docutils literal notranslate"><span class="pre">S(Q,</span> <span class="pre">W)</span></code> tab</p></li>
+<li><p>Open <code class="docutils literal notranslate"><span class="pre">Interfaces</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Inelastic</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Processor</span></code> and go to the <code class="docutils literal notranslate"><span class="pre">S(Q,</span> <span class="pre">W)</span></code> tab</p></li>
 <li><p>Change <code class="docutils literal notranslate"><span class="pre">File</span></code> to <code class="docutils literal notranslate"><span class="pre">Workspace</span></code> and load the <code class="docutils literal notranslate"><span class="pre">_red</span></code> workspace just created</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Q-Low</span></code> and <code class="docutils literal notranslate"><span class="pre">Q-High</span></code> should be automatically updated to the y axis range of the contour plot.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">E-Low</span></code> and <code class="docutils literal notranslate"><span class="pre">E-High</span></code> should be automatically updated to the x axis range of the contour plot.</p></li>
@@ -177,6 +184,49 @@
 <li><p>Click <code class="docutils literal notranslate"><span class="pre">Manage</span> <span class="pre">User</span> <span class="pre">Directories</span></code> and set the default save location</p></li>
 <li><p>Click <code class="docutils literal notranslate"><span class="pre">Save</span> <span class="pre">Result</span></code></p></li>
 <li><p>Check that the <code class="docutils literal notranslate"><span class="pre">.nxs</span></code> file was created in the correct location</p></li>
+</ol>
+</section>
+<section id="isis-diagnostics">
+<span id="isis-diagnostic-test"></span><h2><a class="toc-backref" href="#id4" role="doc-backlink">ISIS Diagnostics</a><a class="headerlink" href="#isis-diagnostics" title="Link to this heading">¶</a></h2>
+<p><strong>Time required 5-10 minutes</strong></p>
+<hr class="docutils" />
+<ol class="arabic simple">
+<li><p>Open <code class="docutils literal notranslate"><span class="pre">Interfaces</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Indirect</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">reduction</span></code></p></li>
+<li><p>With <code class="docutils literal notranslate"><span class="pre">Instrument</span></code> set to <code class="docutils literal notranslate"><span class="pre">IRIS</span></code>, navigate to the <code class="docutils literal notranslate"><span class="pre">ISIS</span> <span class="pre">Diagnostic</span></code> tab</p></li>
+<li><p>On <code class="docutils literal notranslate"><span class="pre">Input</span> <span class="pre">Runs</span></code>, type <code class="docutils literal notranslate"><span class="pre">26176</span></code> and press the Enter key</p></li>
+<li><p>The plot widget should render a spectrum with two black sliders indicating integration limits</p></li>
+<li><p>On the property browser, change the value of the  <code class="docutils literal notranslate"><span class="pre">Preview</span> <span class="pre">Spectrum</span></code> property, the plot should update with the appropriate spectrum
+whenever the number is changed, unless is outside the range of allowed spectra</p></li>
+<li><p>Move the integration sliders, and check that the values of <code class="docutils literal notranslate"><span class="pre">Start</span></code> and <code class="docutils literal notranslate"><span class="pre">End</span></code> under the <code class="docutils literal notranslate"><span class="pre">Peak</span></code> property on the property browser are accordingly updated</p></li>
+<li><p>Change the values of <code class="docutils literal notranslate"><span class="pre">Start</span></code> and <code class="docutils literal notranslate"><span class="pre">End</span></code> on the property browser and check that the slider position is updated on the plot</p></li>
+<li><p>Tick the <code class="docutils literal notranslate"><span class="pre">Use</span> <span class="pre">Calibration</span></code> checkbox and select the workspace previously generated, <code class="docutils literal notranslate"><span class="pre">irs26173_graphite002_calib</span></code>, on the data selector</p></li>
+<li><p>Change the <code class="docutils literal notranslate"><span class="pre">Spectra</span> <span class="pre">Min</span></code> property to 3</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Run</span></code></p></li>
+<li><p>A preview spectra should be rendered, plotting the integrated counts versus the spectrum number.</p></li>
+<li><p>A new workspace with suffix <code class="docutils literal notranslate"><span class="pre">_slice</span></code> should be generated on the ADS</p></li>
+<li><p>On Output, clicking the button <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">Spectra</span></code> should open a new plot window with the same data as the preview plot.</p></li>
+<li><p>Tick on the <code class="docutils literal notranslate"><span class="pre">Use</span> <span class="pre">Two</span> <span class="pre">Ranges</span></code> property. Two green sliders should appear on the plot</p></li>
+<li><p>Move the green sliders and check that the <code class="docutils literal notranslate"><span class="pre">Start</span></code> and <code class="docutils literal notranslate"><span class="pre">End</span></code> properties under the
+<code class="docutils literal notranslate"><span class="pre">Background</span></code> property are updated accordingly</p></li>
+<li><p>Selecting a non-overlapping background range, click on the <code class="docutils literal notranslate"><span class="pre">Run</span></code> button</p></li>
+<li><p>The preview plot and the workspace ending in <code class="docutils literal notranslate"><span class="pre">_slice</span></code> should update with the new integrated time slice</p></li>
+</ol>
+</section>
+<section id="transmission">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Transmission</a><a class="headerlink" href="#transmission" title="Link to this heading">¶</a></h2>
+<p><strong>Time required 3-5 minutes</strong></p>
+<hr class="docutils" />
+<ol class="arabic simple">
+<li><p>Open <code class="docutils literal notranslate"><span class="pre">Interfaces</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Indirect</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">reduction</span></code></p></li>
+<li><p>Make sure <code class="docutils literal notranslate"><span class="pre">Instrument</span></code> is set to <code class="docutils literal notranslate"><span class="pre">IRIS</span></code>, <code class="docutils literal notranslate"><span class="pre">Analyser</span></code> to <code class="docutils literal notranslate"><span class="pre">graphite</span></code> and <code class="docutils literal notranslate"><span class="pre">Reflection</span></code> to <code class="docutils literal notranslate"><span class="pre">002</span></code></p></li>
+<li><p>Navigate to the <code class="docutils literal notranslate"><span class="pre">Transmission</span></code> tab</p></li>
+<li><p>On <code class="docutils literal notranslate"><span class="pre">Sample</span></code>, type <code class="docutils literal notranslate"><span class="pre">26176</span></code> and press the Enter key</p></li>
+<li><p>On <code class="docutils literal notranslate"><span class="pre">Background</span></code>, type <code class="docutils literal notranslate"><span class="pre">26174</span></code> and press the Enter key</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Run</span></code></p></li>
+<li><p>The preview plot should be rendered, displaying three lines indicating the monitor detection for the can, the sample, and the transmission</p></li>
+<li><p>A workspace with suffix <cite>_transmission</cite>, and a workspace group with suffix <cite>_transmission_group</cite> should be generated on the ADS. The <cite>_transmission_group</cite> workspace
+should contain three workspaces with suffices <cite>_Sam</cite>, <cite>_Can</cite> and <cite>_Trans</cite></p></li>
+<li><p>Clicking the <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">Spectra</span></code> button, a plot window should prompt, displaying the same lines as in the preview plot</p></li>
 </ol>
 </section>
 </section>
@@ -194,11 +244,11 @@
           
             
   <li>
-    <a href="../ElementalAnalysis/ElementalAnalysisTests.html" title="Previous Chapter: Elemental Analysis GUI Testing"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Elemental Ana...</span>
+    <a href="DiffractionTests.html" title="Previous Chapter: Indirect Diffraction Testing"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Indirect Diff...</span>
     </a>
   </li>
   <li>
-    <a href="../Inelastic/DataManipulationTests.html" title="Next Chapter: Inelastic Data Manipulation Testing"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Inelastic Dat... &raquo;</span>
+    <a href="../Inelastic/DataProcessorTests.html" title="Next Chapter: Inelastic Data Processor Testing"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Inelastic Dat... &raquo;</span>
     </a>
   </li>
           
