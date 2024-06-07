@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Inelastic Data Processor Class Structure</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css?v=fadd4351" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=77160d70" />
+    <script src="_static/documentation_options.js?v=a8da1a53"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Instrument Viewer Widget" href="InstrumentViewer.html" />
+    <link rel="prev" title="IndirectDataAnalysis File Structure" href="IndirectDataAnalysisFileStructure.html" />
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-59110517-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+  </head><body>
+
+
+
+
+
+  <div id="navbar" class="navbar navbar-default ">
+    <div class="container">
+      <div class="navbar-header">
+        
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://www.mantidproject.org">
+           </a>
+        <span class="navbar-text navbar-version pull-left"><b>main</b></span>
+      </div>
+
+      
+        <div class="collapse navbar-collapse nav-collapse">
+      
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="index.html">Home</a></li>
+                <li><a href="https://download.mantidproject.org">Download</a></li>
+                <li><a href="https://docs.mantidproject.org">User Documentation</a></li>
+                <li><a href="http://www.mantidproject.org/contact">Contact Us</a></li>
+            
+            
+              
+              
+            
+            
+            
+            
+          </ul>
+              
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+            </div>
+    </div>
+    <p>
+<div class="related" role="navigation" aria-label="related navigation">
+  <h3>Navigation</h3>
+  <ul>
+    <li class="nav-item nav-item-0"><a href="index.html">Documentation</a> &#187;</li>
+    
+    
+    
+    
+    <li class="nav-item nav-item-this"><a href="">Inelastic Data Processor Class Structure</a></li>
+    
+    
+  </ul>
+</div> </p>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <section id="inelastic-data-processor-class-structure">
+<span id="idm-structure-ref"></span><h1>Inelastic Data Processor Class Structure<a class="headerlink" href="#inelastic-data-processor-class-structure" title="Link to this heading">¶</a></h1>
+<p>The figure below shows the structure of the Inelastic Data Processor window. The window consists of five tabs: Symmetrise, Moments, Sqw, Iqt and Elwin tabs.
+The three tabs share a similar structure where every tab has three components a view, a model, and a presenter.</p>
+<figure class="align-default">
+<img alt="_images/InelasticDataProcessorStructure.png" src="_images/InelasticDataProcessorStructure.png" />
+</figure>
+<section id="data-processor-tab-view">
+<h2>Data Processor Tab View<a class="headerlink" href="#data-processor-tab-view" title="Link to this heading">¶</a></h2>
+<p>The view will construct different UI elements. It initializes properties, setups editor factories,
+setups properties managers, and adds properties dynamically to the tree property browser. Then, it will set up different signals and slots for the properties.
+Also, it is responsible for data validation and visualization.</p>
+</section>
+<section id="data-processor-tab-model">
+<h2>Data Processor Tab Model<a class="headerlink" href="#data-processor-tab-model" title="Link to this heading">¶</a></h2>
+<p>The model is responsible for setting the parameters of different algorithms. It also initializes the algorithms with the suitable parameters
+and adds them to the batch algorithm runner.</p>
+</section>
+<section id="data-processor-tab-presenter">
+<h2>Data Processor Tab (Presenter)<a class="headerlink" href="#data-processor-tab-presenter" title="Link to this heading">¶</a></h2>
+<p>All tabs inherit <code class="docutils literal notranslate"><span class="pre">DataProcessor</span></code> class which contains shared functionalities used by all tabs.
+The presenter coordinates between the view and the model using signals and slots. It updates the model data and parameters whenever there are new changes emitted
+from the view. Also, it is responsible for running algorithms and notifying the state of the running operation.</p>
+</section>
+</section>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+      <ul class="nav navbar-nav" style=" float: right;">
+      
+      
+          
+            
+  <li>
+    <a href="IndirectDataAnalysisFileStructure.html" title="Previous Chapter: IndirectDataAnalysis File Structure"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; IndirectDataA...</span>
+    </a>
+  </li>
+  <li>
+    <a href="InstrumentViewer.html" title="Next Chapter: Instrument Viewer Widget"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Instrument Vi... &raquo;</span>
+    </a>
+  </li>
+          
+       
+          <li><a href="#">Back to top</a></li>
+       </ul>
+    <p>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
