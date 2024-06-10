@@ -138,12 +138,12 @@ will be needed as older runs may be deleted.</p>
 <p>The Engineering Diffraction interface allows scientists using the EnginX instrument to interactively
 process their data. There are 4 tabs in total. These are:</p>
 <ul class="simple">
-<li><p>Calibration - This is where a cerium oxide run is entered to calibrate the subsequent data.</p></li>
-<li><p>Focus - Where are the data across multiple spectra are normalised and summed into a single spectrum for later steps.</p></li>
-<li><p>Fitting - Where peaks can be fitted on focused data</p></li>
-<li><p>GSAS II - Run a basic refinement on the <a class="reference external" href="https://gsas-ii.readthedocs.io/en/latest/GSASIIscriptable.html">GSASIIscriptable API</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Calibration</span></code> - This is where a cerium oxide run is entered to calibrate the subsequent data.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Focus</span></code> - Where are the data across multiple spectra are normalised and summed into a single spectrum for later steps.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Fitting</span></code> - Where peaks can be fitted on focused data</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GSAS</span> <span class="pre">II</span></code> - Run a basic refinement on the <a class="reference external" href="https://gsas-ii.readthedocs.io/en/latest/GSASIIscriptable.html">GSASIIscriptable API</a></p></li>
 </ul>
-<p>Especially to aide GSASII testing, please test on an ENGINX IDAaaS instance.</p>
+<p>Especially to aide <code class="docutils literal notranslate"><span class="pre">GSASII</span></code> testing, please test on an ENGINX IDAaaS instance.</p>
 <p>The tests are designed to be run from a starting point where no settings relating to the Engineering Diffraction Gui
 have been saved in the Mantid Workbench ini file. This file is in <code class="docutils literal notranslate"><span class="pre">C:\Users\&lt;fed</span> <span class="pre">id&gt;\AppData\Roaming\mantidproject</span></code> on
 Windows and <code class="docutils literal notranslate"><span class="pre">~/.config/mantidproject/</span></code> on linux. To ensure there are no saved settings open up the file mantidworkbench.ini
@@ -159,32 +159,32 @@ and delete the settings with names starting with EngineeringDiffraction2 from th
 <li><p>Open the Engineering Diffraction gui: <code class="docutils literal notranslate"><span class="pre">Interfaces</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Diffraction</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Engineering</span> <span class="pre">Diffraction</span></code></p></li>
 <li><p>On opening the gui the <cite>Create New Calibration</cite> option should be selected.</p></li>
 <li><p>Open the settings dialog from the cog in the bottom left of the gui.</p></li>
-<li><p>Set the <cite>Save Location</cite> to a directory of your choice.</p></li>
-<li><p>Check that the <cite>Full Calibration</cite> setting has a default path to a .nxs file (currently ENGINX_full_instrument_calibration_193749.nxs)</p></li>
+<li><p>Set the <code class="docutils literal notranslate"><span class="pre">Save</span> <span class="pre">Location</span></code> to a directory of your choice.</p></li>
+<li><p>Check that the <code class="docutils literal notranslate"><span class="pre">Full</span> <span class="pre">Calibration</span></code> setting has a default path to a <cite>.nxs</cite> file (currently <code class="docutils literal notranslate"><span class="pre">ENGINX_full_instrument_calibration_193749.nxs</span></code>)</p></li>
 <li><p>Close the settings window</p></li>
-<li><p>For the <cite>Calibration Sample #</cite> enter 305738.</p></li>
-<li><p>Tick the <cite>Plot Calibrated Workspace</cite> option.</p></li>
-<li><p>Click <cite>Calibrate</cite>, after completing calibration it should produce the following plot.</p></li>
+<li><p>For the <code class="docutils literal notranslate"><span class="pre">Calibration</span> <span class="pre">Sample</span> <span class="pre">#</span></code> enter <code class="docutils literal notranslate"><span class="pre">305738</span></code>.</p></li>
+<li><p>Tick the <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">Calibrated</span> <span class="pre">Workspace</span></code> option.</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Calibrate</span></code>, after completing calibration it should produce the following plot.</p></li>
 </ol>
 <a class="reference internal image-reference" href="../../_images/EnggDiffExpectedLinear.png"><img alt="../../_images/EnggDiffExpectedLinear.png" src="../../_images/EnggDiffExpectedLinear.png" style="width: 900px;" />
 </a>
 <ol class="arabic simple" start="11">
-<li><p>Check that in your save location there is a Calibration folder containing three .prm files
+<li><p>Check that in your save location there is a Calibration folder containing three <cite>.prm</cite> files
 <cite>ENGINX_305738</cite> with the suffixes <cite>_all_banks</cite>, <cite>_bank_1</cite>, <cite>_bank_2</cite>.</p></li>
-<li><p>Close the Engineering Diffraction gui and reopen it. The <cite>Load Existing Calibration</cite> radio
-button should be checked on the Calibration tab and the path should be populated with the
+<li><p>Close the Engineering Diffraction gui and reopen it. The <code class="docutils literal notranslate"><span class="pre">Load</span> <span class="pre">Existing</span> <span class="pre">Calibration</span></code> radio
+button should be checked on the <code class="docutils literal notranslate"><span class="pre">Calibration</span></code> tab and the path should be populated with the
 <cite>_all_banks.prm</cite> file generated earlier in this test.</p></li>
-<li><p>In the <cite>Load Existing Calibration</cite> box browse to the <cite>_bank_2.prm</cite> file and click the <cite>Load</cite> button.</p></li>
+<li><p>In the <code class="docutils literal notranslate"><span class="pre">Load</span> <span class="pre">Existing</span> <span class="pre">Calibration</span></code> box browse to the <cite>_bank_2.prm</cite> file and click the <code class="docutils literal notranslate"><span class="pre">Load</span></code> button.</p></li>
 </ol>
 </section>
 <section id="focus">
 <h3><a class="toc-backref" href="#id5" role="doc-backlink">Focus</a><a class="headerlink" href="#focus" title="Link to this heading">¶</a></h3>
 <ol class="arabic simple">
-<li><p>Change to the Focus tab.</p></li>
-<li><p>For the <cite>Sample Run #</cite> use 305761 and for the <cite>Vanadium #</cite> enter 307521.</p></li>
-<li><p>Tick the <cite>Plot Focused Workspace</cite> option and click <cite>Focus</cite>. It should produce a plot of a single spectrum for bank 2.</p></li>
-<li><p>Go back to the Calibration tab and load in an existing calibration for both banks e.g. <cite>ENGINX_305738_all_banks.prm</cite></p></li>
-<li><p>Go back to the Focus tab and click <cite>Focus</cite>, after completing calibration it should produce a plot.</p></li>
+<li><p>Change to the <code class="docutils literal notranslate"><span class="pre">Focus</span></code> tab.</p></li>
+<li><p>For the <code class="docutils literal notranslate"><span class="pre">Sample</span> <span class="pre">Run</span> <span class="pre">#</span></code> use <code class="docutils literal notranslate"><span class="pre">305761</span></code> and for the <code class="docutils literal notranslate"><span class="pre">Vanadium</span> <span class="pre">#</span></code> enter <code class="docutils literal notranslate"><span class="pre">307521</span></code>.</p></li>
+<li><p>Tick the <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">Focused</span> <span class="pre">Workspace</span></code> option and click <code class="docutils literal notranslate"><span class="pre">Focus</span></code>. It should produce a plot of a single spectrum for bank 2.</p></li>
+<li><p>Go back to the <code class="docutils literal notranslate"><span class="pre">Calibration</span></code> tab and load in an existing calibration for both banks e.g. <cite>ENGINX_305738_all_banks.prm</cite></p></li>
+<li><p>Go back to the <code class="docutils literal notranslate"><span class="pre">Focus</span></code> tab and click <code class="docutils literal notranslate"><span class="pre">Focus</span></code>, after completing calibration it should produce a plot.</p></li>
 </ol>
 <a class="reference internal image-reference" href="../../_images/EnggDiffExampleFocusOutput.png"><img alt="../../_images/EnggDiffExampleFocusOutput.png" src="../../_images/EnggDiffExampleFocusOutput.png" style="width: 900px;" />
 </a>
@@ -214,23 +214,23 @@ button should be checked on the Calibration tab and the path should be populated
 <h2><a class="toc-backref" href="#id6" role="doc-backlink">Test 2</a><a class="headerlink" href="#test-2" title="Link to this heading">¶</a></h2>
 <p>This test covers the RB number.</p>
 <ol class="arabic simple">
-<li><p>Enter a string into the <cite>RB Number</cite> box.</p></li>
-<li><p>Follow the steps of Test 1, any output files (for non-texture ROI) should now be located in both
+<li><p>Enter a string into the <code class="docutils literal notranslate"><span class="pre">RB</span> <span class="pre">Number</span></code> box.</p></li>
+<li><p>Follow the steps of <cite>Test 1</cite>, any output files (for non-texture ROI) should now be located in both
 [Save location]/user/[RB number] and [Save location] (for texture ROI the files will be saved in the first location
 if an RB number is specified, otherwise they will be saved in the latter - this is to reduce the number of files being written).</p></li>
 </ol>
 </section>
 <section id="test-3">
 <h2><a class="toc-backref" href="#id7" role="doc-backlink">Test 3</a><a class="headerlink" href="#test-3" title="Link to this heading">¶</a></h2>
-<p>This test covers the Cropping functionality in the Calibration tab.</p>
+<p>This test covers the Cropping functionality in the <code class="docutils literal notranslate"><span class="pre">Calibration</span></code> tab.</p>
 <ol class="arabic simple">
-<li><p>Change the RB Number to <cite>North</cite>, this is purely to separate the cropped output files into their own space.</p></li>
-<li><p>Go to the Calibration tab, select <cite>Create New Calibration</cite> and tick the Crop Calibration option. In the drop down <cite>Region of Interest</cite> select <cite>1 (North)</cite>.</p></li>
-<li><p>Check the <cite>Plot Calibrated Workspace</cite> checkbox and click calibrate.</p></li>
+<li><p>Change the <code class="docutils literal notranslate"><span class="pre">RB</span> <span class="pre">Number</span></code> to <code class="docutils literal notranslate"><span class="pre">North</span></code>, this is purely to separate the cropped output files into their own space.</p></li>
+<li><p>Go to the <code class="docutils literal notranslate"><span class="pre">Calibration</span></code> tab, select <code class="docutils literal notranslate"><span class="pre">Create</span> <span class="pre">New</span> <span class="pre">Calibration</span></code> and tick the <code class="docutils literal notranslate"><span class="pre">Crop</span> <span class="pre">Calibration</span></code> option. In the drop down <code class="docutils literal notranslate"><span class="pre">Region</span> <span class="pre">of</span> <span class="pre">Interest</span></code> select <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">(North)</span></code>.</p></li>
+<li><p>Check the <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">Calibrated</span> <span class="pre">Workspace</span></code> checkbox and click <code class="docutils literal notranslate"><span class="pre">Calibrate</span></code>.</p></li>
 <li><p>The generated figure should show a plot of TOF vs d-spacing and plot showing residuals of the quadratic fit.</p></li>
-<li><p>Check that only one .prm and one .nxs output file was generated.</p></li>
-<li><p>Go to focus tab and click <cite>Focus</cite>.</p></li>
-<li><p>Change the RB number to <cite>Custom</cite>.</p></li>
+<li><p>Check that only one <cite>.prm</cite> and one <cite>.nxs</cite> output file was generated.</p></li>
+<li><p>Go to <code class="docutils literal notranslate"><span class="pre">Focus</span></code> tab and click <code class="docutils literal notranslate"><span class="pre">Focus</span></code>.</p></li>
+<li><p>Change the <code class="docutils literal notranslate"><span class="pre">RB</span> <span class="pre">number</span></code> to <cite>Custom</cite>.</p></li>
 <li><p>Set the <code class="docutils literal notranslate"><span class="pre">Region</span> <span class="pre">Of</span> <span class="pre">Interest</span></code> to <code class="docutils literal notranslate"><span class="pre">Crop</span> <span class="pre">to</span> <span class="pre">Spectra</span></code> and using <code class="docutils literal notranslate"><span class="pre">Custom</span> <span class="pre">Spectra</span></code> <code class="docutils literal notranslate"><span class="pre">1200-2400</span></code> (these spectrum numbers correspond to the South Bank).
 Please note that some custom spectra values may cause the algorithms to fail. Click <code class="docutils literal notranslate"><span class="pre">Calibrate</span></code> and a similar plot to before should appear but with only 2 subplots.</p></li>
 <li><p>Set the <code class="docutils literal notranslate"><span class="pre">Region</span> <span class="pre">of</span> <span class="pre">Interest</span></code> to <code class="docutils literal notranslate"><span class="pre">Texture</span> <span class="pre">(20</span> <span class="pre">spec)</span></code> and click <code class="docutils literal notranslate"><span class="pre">Calibrate</span></code> - there should be 20 spectra per run (5 tiled plot windows, 4 spectra per window).</p></li>
@@ -239,82 +239,91 @@ Please note that some custom spectra values may cause the algorithms to fail. Cl
 <section id="test-4">
 <h2><a class="toc-backref" href="#id8" role="doc-backlink">Test 4</a><a class="headerlink" href="#test-4" title="Link to this heading">¶</a></h2>
 <p>This test covers the loading and plotting focused data in the fitting tab.</p>
-<ol class="arabic simple" start="0">
-<li><p>Create a new calibration, untick <code class="docutils literal notranslate"><span class="pre">Crop</span> <span class="pre">calibration</span></code> enter calibration sample # <code class="docutils literal notranslate"><span class="pre">305738</span></code> and click Calibrate.
-On the <code class="docutils literal notranslate"><span class="pre">Focus</span></code> tab, set <code class="docutils literal notranslate"><span class="pre">Sample</span> <span class="pre">Run</span> <span class="pre">#</span></code> to <code class="docutils literal notranslate"><span class="pre">305793-305795</span></code> and <code class="docutils literal notranslate"><span class="pre">Vanadium</span> <span class="pre">#</span></code> to <code class="docutils literal notranslate"><span class="pre">307521</span></code> and click <code class="docutils literal notranslate"><span class="pre">Focus</span></code>. These sample runs have different stress and strain log values.</p></li>
-<li><p>In the fitting tab, load multiple of these newly focused TOF .nxs files in the <cite>Load Focused Data</cite> section. The path to the focused files should be auto populated</p></li>
-<li><p>Click the <cite>Load</cite> button. A row should be added to the UI table for each focused run.
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Sometimes it will be tricky to load ENGINX files from the archive and the red <code class="docutils literal notranslate"><span class="pre">*</span></code> next to the <code class="docutils literal notranslate"><span class="pre">Browse</span></code> button won’t disappear. Proceeding with the red <code class="docutils literal notranslate"><span class="pre">*</span></code> will raise an error saying <code class="docutils literal notranslate"><span class="pre">Check</span> <span class="pre">run</span> <span class="pre">numbers/path</span> <span class="pre">is</span> <span class="pre">valid.</span></code> or <code class="docutils literal notranslate"><span class="pre">Mantid</span> <span class="pre">is</span> <span class="pre">searching</span> <span class="pre">for</span> <span class="pre">data</span> <span class="pre">files.</span> <span class="pre">Please</span> <span class="pre">wait</span></code>. In such cases, please try re-entering the text and wait till the red <code class="docutils literal notranslate"><span class="pre">*</span></code> is cleared before proceeding. If the log level is set to Information, found path = 1 will be visible in the message log when the runs are found from the archive.</p>
+</div>
+<ol class="arabic simple">
+<li><p>Ensure you can access the ISIS data archive. In the <code class="docutils literal notranslate"><span class="pre">Calibration</span></code> tab, select <code class="docutils literal notranslate"><span class="pre">Create</span> <span class="pre">New</span> <span class="pre">Calibration</span></code> and enter <code class="docutils literal notranslate"><span class="pre">Calibration</span> <span class="pre">sample</span></code> # <code class="docutils literal notranslate"><span class="pre">305738</span></code>. Before proceeding, make sure the red <code class="docutils literal notranslate"><span class="pre">*</span></code> next to the <code class="docutils literal notranslate"><span class="pre">Browse</span></code> button is disappeared when clicked somewhere outside that text box.
+Untick <code class="docutils literal notranslate"><span class="pre">Crop</span> <span class="pre">Calibration</span></code> option and click on <code class="docutils literal notranslate"><span class="pre">Calibrate</span></code> button.</p></li>
+<li><p>On the <code class="docutils literal notranslate"><span class="pre">Focus</span></code> tab, set <code class="docutils literal notranslate"><span class="pre">Sample</span> <span class="pre">Run</span> <span class="pre">#</span></code> to <code class="docutils literal notranslate"><span class="pre">305793-305795</span></code> and <code class="docutils literal notranslate"><span class="pre">Vanadium</span> <span class="pre">#</span></code> to <code class="docutils literal notranslate"><span class="pre">307521</span></code>. These sample runs have different stress and strain log values. Make sure the red <code class="docutils literal notranslate"><span class="pre">*</span></code> s next to the two <code class="docutils literal notranslate"><span class="pre">Browse</span></code> buttons are cleared when clicked outside the text boxes or wait otherwise. Then click <code class="docutils literal notranslate"><span class="pre">Focus</span></code>.</p></li>
+<li><p>In the <code class="docutils literal notranslate"><span class="pre">Fitting</span></code> tab, load multiple of these newly focused TOF <cite>.nxs</cite> files in the <code class="docutils literal notranslate"><span class="pre">Load</span> <span class="pre">Focused</span> <span class="pre">Data</span></code> section. The path to the focused files should be auto populated.</p></li>
+<li><p>Click the <code class="docutils literal notranslate"><span class="pre">Load</span></code> button. A row should be added to the UI table for each focused run.
 There should be a grouped workspace with the suffix <cite>_logs_Fitting</cite> in the ADS with tables corresponding to each log value specified in the settings (to open the settings use the cog in the bottom left corner of the UI).
 In the same grouped workspace there should be an additional table called <cite>run_info_Fitting</cite> that provides some of the metadata for each run.
 Each row in these tables should correspond to the equivalent row in the UI table.</p></li>
 <li><p>The log values that are averaged can be selected in the settings (cog button in the bottom left corner of the UI). Change which sample log checkboxes are selected. Close settings and then close and re-open the Engineering Diffraction interface.
 Reopen settings to check these selected sample logs have been remembered. Note that any change to the selected logs won’t take effect until the interface is reopened.</p></li>
-<li><p>Clear the runs by clicking <code class="docutils literal notranslate"><span class="pre">Remove</span> <span class="pre">All</span></code> below the table. Repeat steps 1-2 above but this time try checking the <cite>Add To Plot</cite> checkbox, when loading the run(s) the data should now be plotted and the checkbox in the <cite>Plot</cite> column of the UI table should be checked.</p></li>
-<li><p>Clear the runs by clicking <code class="docutils literal notranslate"><span class="pre">Remove</span> <span class="pre">All</span></code> below the table. Repeat steps 1-2 again but load the d-spacing .nxs file(s) instead</p></li>
-<li><p>Plot some data and un-dock the plot in the UI by dragging or double-clicking the bar at the top of the plot labelled <cite>Fit Plot</cite>. The plot can now be re-sized.</p></li>
-<li><p>To dock it double click the <cite>Fit Plot</cite> bar (or drag to the bottom of the toolbar). You may want to un-dock it again for subsequent tests.</p></li>
+<li><p>Clear the runs by clicking <code class="docutils literal notranslate"><span class="pre">Remove</span> <span class="pre">All</span></code> below the table. Repeat steps 1-2 above but this time try checking the <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">To</span> <span class="pre">Plot</span></code> checkbox, when loading the run(s) the data should now be plotted and the checkbox in the <code class="docutils literal notranslate"><span class="pre">Plot</span></code> column of the UI table should be checked.</p></li>
+<li><p>Clear the runs by clicking <code class="docutils literal notranslate"><span class="pre">Remove</span> <span class="pre">All</span></code> below the table. Repeat steps 1-2 again but load the d-spacing .nxs file(s) instead.</p></li>
+<li><p>Plot some data and un-dock the plot in the UI by dragging or double-clicking the bar at the top of the plot labelled <code class="docutils literal notranslate"><span class="pre">Fit</span> <span class="pre">Plot</span></code>. The plot can now be re-sized.</p></li>
+<li><p>To dock it double click the <code class="docutils literal notranslate"><span class="pre">Fit</span> <span class="pre">Plot</span></code> bar (or drag to the bottom of the toolbar). You may want to un-dock it again for subsequent tests.</p></li>
 </ol>
 </section>
 <section id="test-5">
 <h2><a class="toc-backref" href="#id9" role="doc-backlink">Test 5</a><a class="headerlink" href="#test-5" title="Link to this heading">¶</a></h2>
+<p>This tests the <code class="docutils literal notranslate"><span class="pre">Browse</span> <span class="pre">Filters</span></code> functionality to filter the focused data in the <code class="docutils literal notranslate"><span class="pre">Load</span> <span class="pre">Focused</span> <span class="pre">Data</span></code> section at the top of <code class="docutils literal notranslate"><span class="pre">Fitting</span></code> tab.</p>
 <ol class="arabic simple">
-<li><p>On the Fitting tab, test the functionality of the Load Focused Data section at the top. The tests so far have enabled you to produce many different focussed data files,
-so check that the Unit and region filters help you to find dSpacing data for Texture regions and TOF data for North bank.</p></li>
+<li><p>The tests so far have enabled you to produce many different focussed data files. In the <code class="docutils literal notranslate"><span class="pre">Load</span> <span class="pre">Focused</span> <span class="pre">Data</span></code> section at the top of <code class="docutils literal notranslate"><span class="pre">Fitting</span></code> tab,
+when clicked on <code class="docutils literal notranslate"><span class="pre">Browse</span></code> button, check that the <code class="docutils literal notranslate"><span class="pre">Unit</span> <span class="pre">Filter</span></code> and <code class="docutils literal notranslate"><span class="pre">Region</span> <span class="pre">Filter</span></code> combo boxes help you to find <code class="docutils literal notranslate"><span class="pre">dSpacing</span></code> data for Texture regions and <code class="docutils literal notranslate"><span class="pre">TOF</span></code> data for North bank.</p></li>
 </ol>
 </section>
 <section id="test-6">
 <h2><a class="toc-backref" href="#id10" role="doc-backlink">Test 6</a><a class="headerlink" href="#test-6" title="Link to this heading">¶</a></h2>
-<p>This tests the removal of focused runs from the fitting tab.</p>
+<p>This tests the removal of focused runs from the <code class="docutils literal notranslate"><span class="pre">Fitting</span></code> tab.</p>
 <ol class="arabic simple">
-<li><p>Load multiple runs using the <cite>Browse</cite> button. This should take you to a folder called “Focus” containing .nxs files that have been previously generated from the Focus tab. Select multiple files and click on <cite>Open</cite></p></li>
-<li><p>Having loaded multiple runs, select a row in the UI table and then click the <cite>Remove Selected</cite> button below the table. The row should be removed, if the run was plotted it will disappear from the plot and there should be one less row in each of the table workspaces inside the “_logs” workspace group with each row corresponding to the run in the same row of the UI table. The workspaces called “ENGINX_…._TOF” and “ENGINX_…._TOG_bgsub” will be deleted from the ADS</p></li>
-<li><p>Try clicking the <cite>Remove All</cite> button, the UI table should be empty and the workspace group with name ending “_logs” should no longer be present.</p></li>
-<li><p>Try loading in a run again, the UI should still be able to access the workspace and remember the log values - check there are no calls to <code class="docutils literal notranslate"><span class="pre">AverageLogData</span></code> in the log (should be visible at notice level).</p></li>
+<li><p>Load multiple runs using the <code class="docutils literal notranslate"><span class="pre">Browse</span></code> button. This should take you to a folder called “Focus” containing <cite>.nxs</cite> files that have been previously generated from the <code class="docutils literal notranslate"><span class="pre">Focus</span></code> tab. Select multiple files and click on <code class="docutils literal notranslate"><span class="pre">Open</span></code></p></li>
+<li><p>Having loaded multiple runs, select a row in the UI table and then click the <code class="docutils literal notranslate"><span class="pre">Remove</span> <span class="pre">Selected</span></code> button below the table.
+The row should be removed, if the run was plotted it will disappear from the plot and there should be one less row in each of the table workspaces inside the “_logs” workspace group with each row corresponding to the run in the same row of the UI table.
+The workspaces called “ENGINX_…._TOF” and “ENGINX_…._TOG_bgsub” will be deleted from the ADS</p></li>
+<li><p>Try clicking the <code class="docutils literal notranslate"><span class="pre">Remove</span> <span class="pre">All</span></code> button, the UI table should be empty and the workspace group with name ending “_logs” should no longer be present.</p></li>
+<li><p>Try loading in a run again, the UI should still be able to access the workspace and remember the log values - check there are no calls to <code class="docutils literal notranslate"><span class="pre">AverageLogData</span></code> in the log (should be visible when log level is <code class="docutils literal notranslate"><span class="pre">Notice</span></code>).</p></li>
 <li><p>Try removing a workspace by deleting it in the ADS, the corresponding row in the log tables and the UI table should have been removed.</p></li>
-<li><p>Delete a <code class="docutils literal notranslate"><span class="pre">_bgsub</span></code> workspace in the ADS, the corresponding row will not be deleted, but the bgsub checkbox will be unchecked.</p></li>
+<li><p>Delete a <code class="docutils literal notranslate"><span class="pre">_bgsub</span></code> workspace in the ADS, the corresponding row will not be deleted, but the <code class="docutils literal notranslate"><span class="pre">Subtract</span> <span class="pre">BG</span></code> checkbox will be unchecked.</p></li>
 </ol>
 </section>
 <section id="test-7">
 <h2><a class="toc-backref" href="#id11" role="doc-backlink">Test 7</a><a class="headerlink" href="#test-7" title="Link to this heading">¶</a></h2>
 <p>This tests that the background subtraction works.</p>
 <ol class="arabic simple">
-<li><p>Load in a run - the <cite>Subtract BG</cite> box should be checked in the UI table by default. This should generate a workspace with suffix <cite>_bgsub</cite> and the data should look like the background is flat and roughly zero on the plot using the default parameters (other columns in the UI table).</p></li>
-<li><p>Select the row in the table and check the <cite>Inspect Background</cite> button should now be enabled regardless of whether the <cite>Subtract BG</cite> box is checked.</p></li>
-<li><p>Click  <cite>Inspect Background</cite> to open a new figure which shows the raw data, the background and the subtracted data. Changing the values of Niter, BG, XWindow and SG (input to <code class="docutils literal notranslate"><span class="pre">EnggEstimateFocussedBackground</span></code>, hover over a cell in the table to see a tool tip for explanation) should produce a change in the background on the external plot and in the UI plot.</p></li>
+<li><p>Load in a run - the <code class="docutils literal notranslate"><span class="pre">Subtract</span> <span class="pre">BG</span></code> box should be checked in the UI table by default. This should generate a workspace with suffix <cite>_bgsub</cite> and the data should look like the background is flat and roughly zero on the plot using the default parameters (other columns in the UI table).</p></li>
+<li><p>Select the row in the table and check the <code class="docutils literal notranslate"><span class="pre">Inspect</span> <span class="pre">Background</span></code> button should now be enabled regardless of whether the <code class="docutils literal notranslate"><span class="pre">Subtract</span> <span class="pre">BG</span></code> box is checked.</p></li>
+<li><p>Click  <code class="docutils literal notranslate"><span class="pre">Inspect</span> <span class="pre">Background</span></code> to open a new figure which shows the raw data, the background and the subtracted data. Changing the values of <code class="docutils literal notranslate"><span class="pre">Niter</span></code>, <code class="docutils literal notranslate"><span class="pre">BG</span></code>, <code class="docutils literal notranslate"><span class="pre">XWindow</span></code> and <code class="docutils literal notranslate"><span class="pre">SG</span></code> (input to <code class="docutils literal notranslate"><span class="pre">EnggEstimateFocussedBackground</span></code>, hover over a cell in the table to see a tool tip for explanation) should produce a change in the background on the external plot and in the UI plot.</p></li>
 </ol>
 </section>
 <section id="test-8">
 <h2><a class="toc-backref" href="#id12" role="doc-backlink">Test 8</a><a class="headerlink" href="#test-8" title="Link to this heading">¶</a></h2>
 <p>This tests the operation of the fit browser.</p>
 <ol class="arabic simple">
-<li><p>Check that when no data are plotted the <cite>Fit</cite> button on the toolbar does nothing.</p></li>
-<li><p>Check the Browse Filter combobox is set to <code class="docutils literal notranslate"><span class="pre">TOF</span></code> and click Browse. In the <code class="docutils literal notranslate"><span class="pre">Focus</span></code> folder of the save directory, there should be output focussed TOF files.
+<li><p>Check that when no data are plotted the <code class="docutils literal notranslate"><span class="pre">Fit</span></code> button on the toolbar does nothing.</p></li>
+<li><p>Check the <code class="docutils literal notranslate"><span class="pre">Unit</span> <span class="pre">Filter</span></code> combobox for <code class="docutils literal notranslate"><span class="pre">Browse</span> <span class="pre">Filters</span></code> is set to <code class="docutils literal notranslate"><span class="pre">TOF</span></code> and click Browse. In the <code class="docutils literal notranslate"><span class="pre">Focus</span></code> folder of the save directory, there should be output focussed TOF files.
 Select multiple focussed files and click Open. Back on the main interface, check the box <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">to</span> <span class="pre">Plot</span></code> and click <code class="docutils literal notranslate"><span class="pre">Load</span></code>.</p></li>
-<li><p>Click the <cite>Fit</cite> button in the plot toolbar. A simplified version of the standard mantid fit property browser should now be visible.</p></li>
-<li><p>In the fit property browser, all the plotted spectra should be available in the Settings &gt; Workspace combo box.
+<li><p>Click the <code class="docutils literal notranslate"><span class="pre">Fit</span></code> button in the plot toolbar. A simplified version of the standard mantid fit property browser should now be visible.</p></li>
+<li><p>In the fit property browser, all the plotted spectra should be available in the <code class="docutils literal notranslate"><span class="pre">Settings</span> <span class="pre">&gt;</span> <span class="pre">Workspace</span></code> combo box.
 In the central <code class="docutils literal notranslate"><span class="pre">Run</span> <span class="pre">Selection</span></code> table, remove one spectrum from the plot by unticking the <code class="docutils literal notranslate"><span class="pre">Plot</span></code> checkbox for one row.
-The Settings &gt; Workspace combo box should now update and not include the removed spectrum.</p></li>
-<li><p>Right-click on the plot image and select Add Peak and add a peak to the plot. Change the peak type and add another peak. Also add a Linear background.
-Make sure to add a BackToBackExponential peak if you have not already. For BackToBackExponential peaks, the A and B parameters should be fixed automatically for ENGIN-X data.</p></li>
+The <code class="docutils literal notranslate"><span class="pre">Settings</span> <span class="pre">&gt;</span> <span class="pre">Workspace</span></code> combo box should now update and not include the removed spectrum.</p></li>
+<li><p>Right-click on the plot image and select <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">Peak</span></code> and add a peak to the plot. Change the peak type by right clicking on the plot and selecting <code class="docutils literal notranslate"><span class="pre">Select</span> <span class="pre">peak</span> <span class="pre">type</span></code> and add another peak. Also add a Linear background by right clicking on the plot to select <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">background</span></code> and selecting <code class="docutils literal notranslate"><span class="pre">LinearBackground</span></code> as the function.
+Make sure to add a <code class="docutils literal notranslate"><span class="pre">BackToBackExponential</span></code> peak if you have not already. For <code class="docutils literal notranslate"><span class="pre">BackToBackExponential</span></code> peaks, the <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code> parameters should be fixed automatically for ENGIN-X data.</p></li>
 <li><p>Perform a fit by clicking <code class="docutils literal notranslate"><span class="pre">Fit</span> <span class="pre">&gt;</span> <span class="pre">Fit</span></code> in the fit browser. On completion of the fit, a group workspace with suffix <cite>_fits</cite> should have appeared in the Workspaces Toolbox(ADS).
-In this group of workspaces there should be a matrix workspace for each parameter fitted (named by convention FunctionName_ParameterName), to view this right-click on the workspace
-and <cite>Show Data</cite>. Any runs not fit will have a NaN value in the Y and E fields. In addition there is a workspace that has converted any peak centres from TOF to d-spacing (suffix <cite>_dSpacing</cite>).
-There should be an additional table called <cite>model</cite> that summarises the chisq value and the function string including the best-fit parameters.</p></li>
+In this group of workspaces there should be a matrix workspace for each parameter fitted (named by convention <code class="docutils literal notranslate"><span class="pre">FunctionName_ParameterName</span></code> e.g <cite>BackToBackExponential_I</cite>), to view this right-click on the workspace
+and <code class="docutils literal notranslate"><span class="pre">Show</span> <span class="pre">Data</span></code>. If there are more than 1 fitting function of the same type, the fitting values for each parameter would appear in the columns where each workspace is listed in the rows. Any runs not fit will have a <cite>NaN</cite> value in the <cite>Y</cite> and <cite>E</cite> fields. In addition there is a workspace that has converted any peak centres from TOF to d-spacing (suffix <cite>_dSpacing</cite>).
+There should be an additional table called <cite>model</cite> that summarises the <cite>chisq</cite> value and the function string including the best-fit parameters.</p></li>
 <li><p>In the Fit property browser, go to <code class="docutils literal notranslate"><span class="pre">Setup</span> <span class="pre">&gt;</span> <span class="pre">Custom</span> <span class="pre">Setup</span></code>. The function string, including the best-fit parameters, should also have been automatically saved
-as a custom setup. Select <code class="docutils literal notranslate"><span class="pre">Setup</span> <span class="pre">&gt;</span> <span class="pre">Clear</span> <span class="pre">Model</span></code>, then select this new custom setup model. Inspect the fit by clicking Fit &gt; Evaluate Function.</p></li>
+as a custom setup. Select <code class="docutils literal notranslate"><span class="pre">Setup</span> <span class="pre">&gt;</span> <span class="pre">Clear</span> <span class="pre">Model</span></code>, then select this new custom setup model. Inspect the fit by clicking <code class="docutils literal notranslate"><span class="pre">Fit</span> <span class="pre">&gt;</span> <span class="pre">Evaluate</span></code> Function.</p></li>
 </ol>
 </section>
 <section id="test-9">
 <h2><a class="toc-backref" href="#id13" role="doc-backlink">Test 9</a><a class="headerlink" href="#test-9" title="Link to this heading">¶</a></h2>
 <p>This tests the sequential fitting capability of the UI (where the result of a fit to one workspace is used as the initial guess for the next).
-This test uses data generated in Test 4.</p>
+This test uses data generated in <cite>Test 4</cite>.</p>
 <ol class="arabic simple" start="0">
-<li><p>In the main workbench window, right-click on the Message log and set the Log Level to <code class="docutils literal notranslate"><span class="pre">Notice</span></code>.</p></li>
+<li><p>In the main workbench window, right-click on the Message log and set the <code class="docutils literal notranslate"><span class="pre">Log</span> <span class="pre">Level</span></code> to <code class="docutils literal notranslate"><span class="pre">Notice</span></code>.</p></li>
 <li><p>Close and re-open the Engineering Diffraction interface.</p></li>
-<li><p>Enter the Engineering Diffraction settings menu by clicking the cog wheel in the bottom left. In the Fitting Settings section,
-you can select which sample logs to output to table workspaces, the Primary Log for Sequential fit ordering, and whether this should be in ascending or descending order.
-In the primary log combobox, select <code class="docutils literal notranslate"><span class="pre">ADC1_0</span></code> and tick <code class="docutils literal notranslate"><span class="pre">Ascending</span></code>.</p></li>
-<li><p>On the Fitting tab, Load in several focused runs e.g. 305793-305795 from Test 4.</p></li>
+<li><p>Enter the Engineering Diffraction settings menu by clicking the cog wheel in the bottom left. In the <code class="docutils literal notranslate"><span class="pre">Sample</span> <span class="pre">Logs</span> <span class="pre">-</span> <span class="pre">Fitting</span> <span class="pre">/</span> <span class="pre">GSAS</span> <span class="pre">II</span></code> section,
+you can select which sample logs to output to table workspaces by ticking in the list of boxes, and select the <cite>Primary Log</cite> from the combo box underneath the checkboxes for Sequential fit ordering,
+and whether this should be in <code class="docutils literal notranslate"><span class="pre">Ascending</span></code> or <code class="docutils literal notranslate"><span class="pre">Descending</span></code> order by ticking the corresponding box to the right.
+In the <cite>Primary Log</cite> combobox, select <code class="docutils literal notranslate"><span class="pre">ADC1_0</span></code> and tick <code class="docutils literal notranslate"><span class="pre">Ascending</span></code>.</p></li>
+<li><p>On the <code class="docutils literal notranslate"><span class="pre">Fitting</span></code> tab, Load in several focused runs e.g. <code class="docutils literal notranslate"><span class="pre">305793-305795</span></code> from <cite>Test 4</cite>.</p></li>
 <li><p>Plot just one run, click <code class="docutils literal notranslate"><span class="pre">Fit</span></code> to open the fit property browser and input a valid fit function including a peak and a background.</p></li>
 <li><p>Click the <code class="docutils literal notranslate"><span class="pre">Sequential</span> <span class="pre">Fit</span></code> button in the plot toolbar. A group of fit workspaces should appear in the Workspaces Toolbox (ADS),
 each with a row for each of the runs in the table. All the runs should have been fitted.</p></li>
@@ -322,17 +331,17 @@ each with a row for each of the runs in the table. All the runs should have been
 check that this corresponds to the order of the average value of the primary log - <code class="docutils literal notranslate"><span class="pre">ADC1_0</span></code>
 You can check the value of this sample log for each run in the output GroupWorkspace with the suffix <code class="docutils literal notranslate"><span class="pre">_logs_Fitting</span></code>. Note this order down.</p></li>
 <li><p>Try changing the primary log to blank and re-run the <code class="docutils literal notranslate"><span class="pre">Sequential</span> <span class="pre">Fit</span></code> This should make the Sequential fit use the order of the runs in the central <code class="docutils literal notranslate"><span class="pre">Run</span> <span class="pre">Selection</span></code> table.</p></li>
-<li><p>In the Engineering Diffraction settings, set the primary log back to <code class="docutils literal notranslate"><span class="pre">ADC1_0</span></code> and tick <code class="docutils literal notranslate"><span class="pre">Descending</span></code>.
-Re-run the <code class="docutils literal notranslate"><span class="pre">Sequential</span> <span class="pre">Fit</span></code> and check that the order of runs in the output workspaces has reversed compared to step 6.</p></li>
-<li><p>Close and re-open the Engineering Diffraction interface. Reopen the Engineering Diffraction settings menu, it should remember the primary log and the order.</p></li>
+<li><p>In the Engineering Diffraction settings, set the <cite>Primary Log</cite> back to <code class="docutils literal notranslate"><span class="pre">ADC1_0</span></code> and tick <code class="docutils literal notranslate"><span class="pre">Descending</span></code>.
+Re-run the <code class="docutils literal notranslate"><span class="pre">Sequential</span> <span class="pre">Fit</span></code> and check that the order of runs in the output workspaces has reversed compared to <cite>Step 6</cite>.</p></li>
+<li><p>Close and re-open the Engineering Diffraction interface. Reopen the Engineering Diffraction settings menu, it should remember the <cite>Primary Log</cite> and the order.</p></li>
 </ol>
 </section>
 <section id="test-10">
 <h2><a class="toc-backref" href="#id14" role="doc-backlink">Test 10</a><a class="headerlink" href="#test-10" title="Link to this heading">¶</a></h2>
 <p>This tests the serial fitting capability of the UI (where all loaded workspaces are fitted from the same starting parameters).
-This test uses data generated in Test 4.</p>
+This test uses data generated in <cite>Test 4</cite>.</p>
 <ol class="arabic simple">
-<li><p>Repeat steps 1-4 in the previous test (Test 9).</p></li>
+<li><p>Repeat steps 1-4 in the previous test (<cite>Test 9</cite>).</p></li>
 <li><p>Now click the <code class="docutils literal notranslate"><span class="pre">Serial</span> <span class="pre">Fit</span></code> button in the plot toolbar and the group of fit workspaces should appear in the ADS,
 each with a row for each of the runs in the table. All the runs should have been fitted.</p></li>
 <li><p>The order of the runs in the serial fit should be obtainable from the log at notice level - check that this
@@ -341,24 +350,24 @@ corresponds to the order of the runs in the table.</p></li>
 </section>
 <section id="test-11">
 <h2><a class="toc-backref" href="#id15" role="doc-backlink">Test 11</a><a class="headerlink" href="#test-11" title="Link to this heading">¶</a></h2>
-<p>Note this test will only work if GSASII is also installed.
-Please test this on IDAaaS: an ENGINX instance should have MantidWorkbenchNightly and GSASII installed in the expected location.</p>
+<p>Note this test will only work if <code class="docutils literal notranslate"><span class="pre">GSASII</span></code> is also installed.
+Please test this on IDAaaS: an ENGINX instance should have MantidWorkbenchNightly and <code class="docutils literal notranslate"><span class="pre">GSASII</span></code> installed in the expected location.</p>
 <ol class="arabic simple">
 <li><p>Close and re-open the Engineering Diffraction interface.</p></li>
-<li><p>Go to the Calibration tab, select <code class="docutils literal notranslate"><span class="pre">Create</span> <span class="pre">New</span> <span class="pre">Calibration</span></code> and un-tick the Crop Calibration option.</p></li>
-<li><p>For the <code class="docutils literal notranslate"><span class="pre">Calibration</span> <span class="pre">Sample</span> <span class="pre">#</span></code> enter 305738 and click the Calibrate button.</p></li>
-<li><p>On the Focus tab, enter <code class="docutils literal notranslate"><span class="pre">Sample</span> <span class="pre">Run</span> <span class="pre">#</span></code> 305761 and <code class="docutils literal notranslate"><span class="pre">Vanadium</span> <span class="pre">#</span></code> 307521 and click the Focus button.</p></li>
+<li><p>Go to the <code class="docutils literal notranslate"><span class="pre">Calibration</span></code> tab, select <code class="docutils literal notranslate"><span class="pre">Create</span> <span class="pre">New</span> <span class="pre">Calibration</span></code> and un-tick the <code class="docutils literal notranslate"><span class="pre">Crop</span> <span class="pre">Calibration</span></code> option.</p></li>
+<li><p>For the <code class="docutils literal notranslate"><span class="pre">Calibration</span> <span class="pre">Sample</span> <span class="pre">#</span></code> enter <code class="docutils literal notranslate"><span class="pre">305738</span></code> and click the <code class="docutils literal notranslate"><span class="pre">Calibrate</span></code> button.</p></li>
+<li><p>On the <code class="docutils literal notranslate"><span class="pre">Focus</span></code> tab, enter <code class="docutils literal notranslate"><span class="pre">Sample</span> <span class="pre">Run</span> <span class="pre">#</span></code> <code class="docutils literal notranslate"><span class="pre">305761</span></code> and <code class="docutils literal notranslate"><span class="pre">Vanadium</span> <span class="pre">#</span></code> <code class="docutils literal notranslate"><span class="pre">307521</span></code> and click the <code class="docutils literal notranslate"><span class="pre">Focus</span></code> button.</p></li>
 </ol>
 <a class="reference internal image-reference" href="../../_images/GSASII_tab.png"><img alt="../../_images/GSASII_tab.png" class="align-center" src="../../_images/GSASII_tab.png" style="width: 600px;" />
 </a>
 <ol class="arabic simple" start="5">
-<li><p>Change to the GSASII tab. The <code class="docutils literal notranslate"><span class="pre">Instrument</span> <span class="pre">Group</span></code> path should be pre-filled to a .prm file output by the calibration
-and the <code class="docutils literal notranslate"><span class="pre">Focused</span> <span class="pre">Data</span></code> path should be pre-filled to the .gss file output from the Focus tab.</p></li>
+<li><p>Change to the <code class="docutils literal notranslate"><span class="pre">GSASII</span></code> tab. The <code class="docutils literal notranslate"><span class="pre">Instrument</span> <span class="pre">Group</span></code> path should be pre-filled to a <cite>.prm</cite> file output by the calibration
+and the <code class="docutils literal notranslate"><span class="pre">Focused</span> <span class="pre">Data</span></code> path should be pre-filled to the <cite>.gss</cite> file output from the <code class="docutils literal notranslate"><span class="pre">Focus</span></code> tab.</p></li>
 <li><p>For the <code class="docutils literal notranslate"><span class="pre">Phase</span></code> filepath, browse to <code class="docutils literal notranslate"><span class="pre">MANTID_INSTALL_DIRECTORY/scripts/Engineering/ENGINX/phase_info/FE_GAMMA.cif</span></code>. For the <code class="docutils literal notranslate"><span class="pre">Project</span> <span class="pre">Name</span></code> at the top, enter a string of your choice.</p></li>
 <li><p>Now, click <code class="docutils literal notranslate"><span class="pre">Refine</span> <span class="pre">in</span> <span class="pre">GSAS</span> <span class="pre">II</span></code>. After a few seconds, the output fit should be plotted. In the top right of the plot widget, the refined spectrum can be changed using the combo-box.</p></li>
-<li><p>Change the fitting range by dragging the limits and by editing the Min/Max line edit boxes. Again, click <code class="docutils literal notranslate"><span class="pre">Refine</span> <span class="pre">in</span> <span class="pre">GSAS</span> <span class="pre">II</span></code> and this should only fit to the user defined range.</p></li>
+<li><p>Change the fitting range by dragging the limits, or by editing the <code class="docutils literal notranslate"><span class="pre">Min</span></code>, <code class="docutils literal notranslate"><span class="pre">Max</span></code> line edit boxes. Again, click <code class="docutils literal notranslate"><span class="pre">Refine</span> <span class="pre">in</span> <span class="pre">GSAS</span> <span class="pre">II</span></code> and this should only fit to the user defined range.</p></li>
 <li><p>Back in the file loading section, Browse for files for the inputs <code class="docutils literal notranslate"><span class="pre">Instrument</span> <span class="pre">Group</span></code> and <code class="docutils literal notranslate"><span class="pre">Focused</span> <span class="pre">Data</span></code>,
-and select files with <code class="docutils literal notranslate"><span class="pre">bank_1</span></code> in the name, which were produced by the Calibration and Focus in Test 3.</p></li>
+and select files with <code class="docutils literal notranslate"><span class="pre">bank_1</span></code> in the name, which were produced by the <code class="docutils literal notranslate"><span class="pre">Calibration</span></code> and <code class="docutils literal notranslate"><span class="pre">Focus</span></code> in <cite>Test 3</cite>.</p></li>
 <li><p>Now, click <code class="docutils literal notranslate"><span class="pre">Refine</span> <span class="pre">in</span> <span class="pre">GSAS</span> <span class="pre">II</span></code>. The previously set fitting range should be ignored as new input files were selected. There should now only be one spectrum available in the output spectrum combobox.</p></li>
 <li><p>Set the <code class="docutils literal notranslate"><span class="pre">Override</span> <span class="pre">Unit</span> <span class="pre">Cell</span> <span class="pre">Length</span></code> to <code class="docutils literal notranslate"><span class="pre">3.65</span></code> and click <code class="docutils literal notranslate"><span class="pre">Refine</span> <span class="pre">in</span> <span class="pre">GSAS</span> <span class="pre">II</span></code>, the fit should be better.</p></li>
 <li><p>Tick all the checkboxes: <code class="docutils literal notranslate"><span class="pre">Microstrain</span></code>, <code class="docutils literal notranslate"><span class="pre">Sigma-1</span></code> and <code class="docutils literal notranslate"><span class="pre">Gamma</span> <span class="pre">(Y)</span></code>. An asterisk should appear with an advice tooltip.</p></li>
