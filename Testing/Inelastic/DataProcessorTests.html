@@ -106,16 +106,19 @@
 <h1>Inelastic Data Processor Testing<a class="headerlink" href="#inelastic-data-processor-testing" title="Link to this heading">¶</a></h1>
 <nav class="contents local" id="contents">
 <ul class="simple">
-<li><p><a class="reference internal" href="#elwin-tab" id="id3">Elwin tab</a></p>
+<li><p><a class="reference internal" href="#symmetrise-tab" id="id3">Symmetrise tab</a></p></li>
+<li><p><a class="reference internal" href="#s-q-omega-tab" id="id4"><span class="math notranslate nohighlight">\(S(Q, \omega)\)</span> tab</a></p></li>
+<li><p><a class="reference internal" href="#moments-tab" id="id5">Moments tab</a></p></li>
+<li><p><a class="reference internal" href="#elwin-tab" id="id6">Elwin tab</a></p>
 <ul>
-<li><p><a class="reference internal" href="#direct-data" id="id4">1. Direct data</a></p></li>
-<li><p><a class="reference internal" href="#indirect-data" id="id5">2. Indirect data</a></p></li>
+<li><p><a class="reference internal" href="#direct-data" id="id7">1. Direct data</a></p></li>
+<li><p><a class="reference internal" href="#indirect-data" id="id8">2. Indirect data</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#i-q-t-tab" id="id6">I(Q, T) tab</a></p>
+<li><p><a class="reference internal" href="#i-q-t-tab" id="id9">I(Q, T) tab</a></p>
 <ul>
-<li><p><a class="reference internal" href="#id1" id="id7">1. Direct data</a></p></li>
-<li><p><a class="reference internal" href="#iqt-inelastic-test" id="id8">2. Indirect data</a></p></li>
+<li><p><a class="reference internal" href="#id1" id="id10">1. Direct data</a></p></li>
+<li><p><a class="reference internal" href="#iqt-inelastic-test" id="id11">2. Indirect data</a></p></li>
 </ul>
 </li>
 </ul>
@@ -125,12 +128,83 @@
 <li><p>Download the <a class="reference external" href="http://download.mantidproject.org">ISIS Sample Data</a></p></li>
 <li><p>Make sure that the data set is on your list of search directories</p></li>
 </ul>
+<section id="symmetrise-tab">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Symmetrise tab</a><a class="headerlink" href="#symmetrise-tab" title="Link to this heading">¶</a></h2>
+<p><strong>Time required 5-10 minutes</strong></p>
+<hr class="docutils" />
+<ol class="arabic simple">
+<li><p>Go to <code class="docutils literal notranslate"><span class="pre">Interfaces</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Inelastic</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Processor</span></code></p></li>
+<li><p>Go to the <code class="docutils literal notranslate"><span class="pre">Symmetrise</span></code> tab</p></li>
+<li><p>On the File Input, click on <code class="docutils literal notranslate"><span class="pre">Browse</span></code>, a dialog window should prompt.</p></li>
+<li><p>Find the file <code class="docutils literal notranslate"><span class="pre">irs26176_graphite002_red.nxs</span></code> from the ISIS Sample Data and Load it.</p></li>
+<li><p>The first spectrum should be rendered in the plot browser.</p></li>
+<li><p>On the plot, drag and move the rightmost vertical green slider to be approximately at 0.4 on the x-axis, the value of <code class="docutils literal notranslate"><span class="pre">Ehigh</span></code> should change accordingly.</p></li>
+<li><p>Move the other slider to be approximately at 0.2 on the x-axis, the value of <code class="docutils literal notranslate"><span class="pre">Elow</span></code> should change accordingly.</p></li>
+<li><p>Click on the <code class="docutils literal notranslate"><span class="pre">Preview</span></code> button. The symmetrised plot should be rendered on the preview graph.</p></li>
+<li><p>Click the <code class="docutils literal notranslate"><span class="pre">Run</span></code> button.</p></li>
+<li><p>A Workspace named <code class="docutils literal notranslate"><span class="pre">irs26176_graphite002_sym_pn_red</span></code> should be created on the ADS.</p></li>
+<li><p>On the Output widget, click on <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">Spectra</span></code> button. A new plot window should appear with the same plot as the preview.</p></li>
+<li><p>On the Symmetrise Property Browser: Change the value of <code class="docutils literal notranslate"><span class="pre">Elow</span></code> and <code class="docutils literal notranslate"><span class="pre">Ehigh</span></code> properties and see that the vertical green sliders.
+respond accordingly, but only when the input values are within range. It shouldn’t be possible to set <code class="docutils literal notranslate"><span class="pre">Elow</span></code> to the right of <code class="docutils literal notranslate"><span class="pre">Ehigh</span></code> and viceversa.
+At the same time, it shouldn’t be possible to enter negative numbers, or positive numbers larger than the maximum data range.</p></li>
+<li><p>Change the value of <code class="docutils literal notranslate"><span class="pre">Spectrum</span> <span class="pre">No</span></code> property to 5 and see that the spectra on the plot is updated.</p></li>
+<li><p>Change the <code class="docutils literal notranslate"><span class="pre">ReflectType</span></code> property from <code class="docutils literal notranslate"><span class="pre">Positive</span> <span class="pre">to</span> <span class="pre">Negative</span></code> to <code class="docutils literal notranslate"><span class="pre">Negative</span> <span class="pre">to</span> <span class="pre">Positive</span></code>, the sliders should move to the negative range of the spectra.</p></li>
+<li><p>Now <code class="docutils literal notranslate"><span class="pre">Ehigh</span></code> should be closer to 0 than <code class="docutils literal notranslate"><span class="pre">Elow</span></code>. Repeat checks of step 12, noting that only negative inputs can be entered now.</p></li>
+<li><p>Set <code class="docutils literal notranslate"><span class="pre">Ehigh</span></code> to -0.1 and <code class="docutils literal notranslate"><span class="pre">Elow</span></code> to -0.3 and click on the <code class="docutils literal notranslate"><span class="pre">Preview</span></code> button. The symmetrise plot should be rendered on the preview graph.
+The axis data range must go from -0.3 to 0.3.</p></li>
+<li><p>Click on the <code class="docutils literal notranslate"><span class="pre">Run</span></code> button.</p></li>
+<li><p>A Workspace named <code class="docutils literal notranslate"><span class="pre">irs26176_graphite002_sym_np_red</span></code> should be created on the ADS.</p></li>
+<li><p>On the ADS, select <code class="docutils literal notranslate"><span class="pre">irs26176_graphite002_sym_np_red</span></code> and right-click to select <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">-&gt;</span> <span class="pre">Spectrum</span></code>. On <code class="docutils literal notranslate"><span class="pre">Workspace</span> <span class="pre">Indices</span></code> select 5.
+Check that the spectrum is the same as the one in the <code class="docutils literal notranslate"><span class="pre">Preview</span></code> plot of the symmetrise interface.</p></li>
+</ol>
+</section>
+<section id="s-q-omega-tab">
+<span id="symmetrise-inelastic-test"></span><h2><a class="toc-backref" href="#id4" role="doc-backlink"><span class="math notranslate nohighlight">\(S(Q, \omega)\)</span> tab</a><a class="headerlink" href="#s-q-omega-tab" title="Link to this heading">¶</a></h2>
+<p><strong>Time required 5-10 minutes</strong></p>
+<hr class="docutils" />
+<ol class="arabic simple">
+<li><p>Go to <code class="docutils literal notranslate"><span class="pre">Interfaces</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Inelastic</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Processor</span></code></p></li>
+<li><p>Go to the <code class="docutils literal notranslate"><span class="pre">S(Q,w)</span></code> tab</p></li>
+<li><p>On the File Input, click on <code class="docutils literal notranslate"><span class="pre">Browse</span></code>, a dialog window should prompt.</p></li>
+<li><p>Find the file <code class="docutils literal notranslate"><span class="pre">irs26176_graphite002_red.nxs</span></code> from the ISIS Sample Data and Load it.</p></li>
+<li><p>The data will be plot as a contour plot in the interface.</p></li>
+<li><p>Set <cite>Q Low</cite>, <cite>Q Width</cite> and <cite>Q High</cite> to be 0.45, 0.05 and 1, respectively.</p></li>
+<li><p>Click <cite>Run</cite> button.</p></li>
+<li><p>There should be two new workspaces in the ADS with the prefixes <code class="docutils literal notranslate"><span class="pre">_sqw</span></code> and <code class="docutils literal notranslate"><span class="pre">_rqw</span></code>.</p></li>
+<li><p>On <cite>Output</cite> options of the interface. Select from the drop-down menu on the right of the <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">Spectra</span></code> button the option to <code class="docutils literal notranslate"><span class="pre">Open</span> <span class="pre">Slice</span> <span class="pre">Viewer</span></code> and click.</p></li>
+<li><p>A <code class="docutils literal notranslate"><span class="pre">Slice</span> <span class="pre">Viewer</span></code> window should prompt, check on the <code class="docutils literal notranslate"><span class="pre">Slice</span> <span class="pre">Viewer</span></code> that the spectra slices range in q-values from 0.45 to 1.</p></li>
+<li><p>Back on the interface, check <cite>Rebin in Energy</cite> and change <code class="docutils literal notranslate"><span class="pre">E</span> <span class="pre">Low</span></code> and <code class="docutils literal notranslate"><span class="pre">E</span> <span class="pre">High</span></code> to be -0.2 and 0.2.</p></li>
+<li><p>Click <cite>Run</cite>. A new rebinned workspace with suffix <cite>_r</cite> should appear on the ADS.</p></li>
+<li><p>On <cite>Output</cite> options of the interface. Select from the drop-down menu on the right of the <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">Spectra</span></code> button the option to <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">3D</span> <span class="pre">Surface</span></code> and click.</p></li>
+<li><p>The resulting 3D plot should range in the Energy Transfer axis from -0.2 to 0.2 <span class="math notranslate nohighlight">\(meV\)</span>.</p></li>
+<li><p>Don’t remove yet the workspace with suffix <code class="docutils literal notranslate"><span class="pre">_sqw</span></code> from the ADS as you will use it for the Moments interface test.</p></li>
+<li><p>Repeat instructions 4 to 10, but loading instead the <code class="docutils literal notranslate"><span class="pre">MAR27691_red.nxs</span></code> file from the ISIS Sample Data set.</p></li>
+</ol>
+</section>
+<section id="moments-tab">
+<span id="sqw-inelastic-test"></span><h2><a class="toc-backref" href="#id5" role="doc-backlink">Moments tab</a><a class="headerlink" href="#moments-tab" title="Link to this heading">¶</a></h2>
+<p><strong>Time required 2-3 minutes</strong></p>
+<hr class="docutils" />
+<ol class="arabic simple">
+<li><p>Go to <code class="docutils literal notranslate"><span class="pre">Interfaces</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Inelastic</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Processor</span></code></p></li>
+<li><p>Go to the <code class="docutils literal notranslate"><span class="pre">Moments</span></code> tab</p></li>
+<li><p>On the File Input, change the drop-down selector from <code class="docutils literal notranslate"><span class="pre">File</span></code> to <code class="docutils literal notranslate"><span class="pre">Workspace</span></code>.</p></li>
+<li><p>Select the previously generated workspace <code class="docutils literal notranslate"><span class="pre">irs26176_graphite002_sqw</span></code> from the selector.</p></li>
+<li><p>First spectrum should be rendered on the plot widget, with two vertical sliders placed on the integration limits,
+the limits on the sliders and on the property browser should match.</p></li>
+<li><p>Change the limits by moving the sliders to be at -0.2 and 0.2, respectively. On the property browser, <code class="docutils literal notranslate"><span class="pre">EMin</span></code> and <code class="docutils literal notranslate"><span class="pre">EMax</span></code> should be updated with the new limits.</p></li>
+<li><p>Click the <code class="docutils literal notranslate"><span class="pre">Run</span></code> button.</p></li>
+<li><p>The Preview plot should be updated with a representation of the first three moments with respect to Q. A workspace with the suffix <cite>_Moments</cite> should be generated on the ADS.</p></li>
+<li><p>On the Output edit, the name of the output workspace should be greyed out, write on the text edit right from the output name the spectras to plot, <cite>0-4</cite>, and click on the <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">Spectra</span></code> button.
+A plot window should be generated with all the calculated moments (up to order 4).</p></li>
+</ol>
+</section>
 <section id="elwin-tab">
-<h2><a class="toc-backref" href="#id3" role="doc-backlink">Elwin tab</a><a class="headerlink" href="#elwin-tab" title="Link to this heading">¶</a></h2>
+<span id="moments-inelastic-test"></span><h2><a class="toc-backref" href="#id6" role="doc-backlink">Elwin tab</a><a class="headerlink" href="#elwin-tab" title="Link to this heading">¶</a></h2>
 <p><strong>Time required 3 - 5 minutes for each</strong></p>
 <hr class="docutils" />
 <section id="direct-data">
-<h3><a class="toc-backref" href="#id4" role="doc-backlink">1. Direct data</a><a class="headerlink" href="#direct-data" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">1. Direct data</a><a class="headerlink" href="#direct-data" title="Link to this heading">¶</a></h3>
 <ol class="arabic simple">
 <li><p>Go to <code class="docutils literal notranslate"><span class="pre">Interfaces</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Inelastic</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Processor</span></code></p></li>
 <li><p>Go to the <code class="docutils literal notranslate"><span class="pre">Elwin</span></code> tab</p></li>
@@ -147,7 +221,7 @@
 </ol>
 </section>
 <section id="indirect-data">
-<span id="elwin-inelastic-test"></span><h3><a class="toc-backref" href="#id5" role="doc-backlink">2. Indirect data</a><a class="headerlink" href="#indirect-data" title="Link to this heading">¶</a></h3>
+<span id="elwin-inelastic-test"></span><h3><a class="toc-backref" href="#id8" role="doc-backlink">2. Indirect data</a><a class="headerlink" href="#indirect-data" title="Link to this heading">¶</a></h3>
 <ol class="arabic simple">
 <li><p>Go to <code class="docutils literal notranslate"><span class="pre">Interfaces</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Inelastic</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Processor</span></code></p></li>
 <li><p>Click on <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">Workspaces</span></code>, a dialog window should prompt</p></li>
@@ -166,11 +240,11 @@
 </section>
 </section>
 <section id="i-q-t-tab">
-<h2><a class="toc-backref" href="#id6" role="doc-backlink">I(Q, T) tab</a><a class="headerlink" href="#i-q-t-tab" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">I(Q, T) tab</a><a class="headerlink" href="#i-q-t-tab" title="Link to this heading">¶</a></h2>
 <p><strong>Time required 3 - 5 minutes for each</strong></p>
 <hr class="docutils" />
 <section id="id1">
-<h3><a class="toc-backref" href="#id7" role="doc-backlink">1. Direct data</a><a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">1. Direct data</a><a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
 <ol class="arabic simple">
 <li><p>Go to <code class="docutils literal notranslate"><span class="pre">Interfaces</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Inelastic</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Processor</span></code></p></li>
 <li><p>Go to the <code class="docutils literal notranslate"><span class="pre">Iqt</span></code> tab</p></li>
@@ -184,7 +258,7 @@
 </ol>
 </section>
 <section id="iqt-inelastic-test">
-<span id="id2"></span><h3><a class="toc-backref" href="#id8" role="doc-backlink">2. Indirect data</a><a class="headerlink" href="#iqt-inelastic-test" title="Link to this heading">¶</a></h3>
+<span id="id2"></span><h3><a class="toc-backref" href="#id11" role="doc-backlink">2. Indirect data</a><a class="headerlink" href="#iqt-inelastic-test" title="Link to this heading">¶</a></h3>
 <ol class="arabic simple">
 <li><p>Go to <code class="docutils literal notranslate"><span class="pre">Interfaces</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Inelastic</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Processor</span></code></p></li>
 <li><p>Go to the <code class="docutils literal notranslate"><span class="pre">Iqt</span></code> tab</p></li>
