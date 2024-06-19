@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Inelastic Corrections Testing</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css?v=fadd4351" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=77160d70" />
+    <script src="../../_static/documentation_options.js?v=a8da1a53"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Inelastic Data Processor Testing" href="DataProcessorTests.html" />
+    <link rel="prev" title="Indirect Data Reduction Testing" href="../Indirect/DataReductionTests.html" />
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-59110517-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+  </head><body>
+
+
+
+
+
+  <div id="navbar" class="navbar navbar-default ">
+    <div class="container">
+      <div class="navbar-header">
+        
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://www.mantidproject.org">
+           </a>
+        <span class="navbar-text navbar-version pull-left"><b>main</b></span>
+      </div>
+
+      
+        <div class="collapse navbar-collapse nav-collapse">
+      
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="https://download.mantidproject.org">Download</a></li>
+                <li><a href="https://docs.mantidproject.org">User Documentation</a></li>
+                <li><a href="http://www.mantidproject.org/contact">Contact Us</a></li>
+            
+            
+              
+              
+            
+            
+            
+            
+          </ul>
+              
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+            </div>
+    </div>
+    <p>
+<div class="related" role="navigation" aria-label="related navigation">
+  <h3>Navigation</h3>
+  <ul>
+    <li class="nav-item nav-item-0"><a href="../../index.html">Documentation</a> &#187;</li>
+    
+    <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Testing</a> &#187;</li>
+    
+    
+    
+    
+    <li class="nav-item nav-item-this"><a href="">Inelastic Corrections Testing</a></li>
+    
+    
+  </ul>
+</div> </p>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <section id="inelastic-corrections-testing">
+<h1>Inelastic Corrections Testing<a class="headerlink" href="#inelastic-corrections-testing" title="Link to this heading">¶</a></h1>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#container-subtraction-tab" id="id1">Container Subtraction tab</a></p></li>
+<li><p><a class="reference internal" href="#calculate-paalman-pings-tab" id="id2">Calculate Paalman Pings Tab</a></p></li>
+<li><p><a class="reference internal" href="#calculate-monte-carlo-absorption-tab" id="id3">Calculate Monte Carlo Absorption Tab</a></p></li>
+<li><p><a class="reference internal" href="#apply-absorption-corrections-tab" id="id4">Apply Absorption Corrections Tab</a></p></li>
+</ul>
+</nav>
+<p><em>Prerequisites</em></p>
+<ul class="simple">
+<li><p>Download the <a class="reference external" href="http://download.mantidproject.org">ISIS Sample Data</a></p></li>
+</ul>
+<section id="container-subtraction-tab">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Container Subtraction tab</a><a class="headerlink" href="#container-subtraction-tab" title="Link to this heading">¶</a></h2>
+<p><strong>Time required 1 - 3 minutes</strong></p>
+<hr class="docutils" />
+<ol class="arabic simple">
+<li><p>Go to <code class="docutils literal notranslate"><span class="pre">Interfaces</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Inelastic</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Corrections</span></code></p></li>
+<li><p>Go to the <code class="docutils literal notranslate"><span class="pre">Container</span> <span class="pre">Subtraction</span></code> tab</p></li>
+<li><p>With the Sample combo box set to <code class="docutils literal notranslate"><span class="pre">File</span></code> click browse and select the file <code class="docutils literal notranslate"><span class="pre">irs26176_graphite002_red</span></code> from the Sample Data folder</p></li>
+<li><p>With the Container combo box set to <code class="docutils literal notranslate"><span class="pre">File</span></code> click browse and select the file <code class="docutils literal notranslate"><span class="pre">irs26174_graphite002_red</span></code> from the Sample Data folder</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Run</span></code></p></li>
+<li><p>This should plot a blue subtracted line on the embedded plot. A workspace ending in <code class="docutils literal notranslate"><span class="pre">_red</span></code> should be produced</p></li>
+<li><p>Change the <code class="docutils literal notranslate"><span class="pre">Spectrum</span></code> value and the plot should be updated with the corresponding workspace index</p></li>
+<li><p>Check that when clicking <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">Current</span> <span class="pre">Preview</span></code>, it will open a pop-up window with the current preview plot</p></li>
+<li><p>In the <code class="docutils literal notranslate"><span class="pre">Output</span> <span class="pre">Options</span></code>, select <code class="docutils literal notranslate"><span class="pre">Open</span> <span class="pre">Slice</span> <span class="pre">Viewer</span></code> using the down arrow, it should open the Slice Viewer with the generated dataset</p></li>
+<li><p>In the <code class="docutils literal notranslate"><span class="pre">Output</span> <span class="pre">Options</span></code>, select <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">3D</span> <span class="pre">Surface</span></code> using the down arrow, it should open a surface plot for the generated dataset</p></li>
+<li><p>In the <code class="docutils literal notranslate"><span class="pre">Output</span> <span class="pre">Options</span></code>, select indices <code class="docutils literal notranslate"><span class="pre">50-51</span></code>. A red asterisk should appear, preventing you from using <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">Spectra</span></code></p></li>
+<li><p>In the <code class="docutils literal notranslate"><span class="pre">Output</span> <span class="pre">Options</span></code>, select indices <code class="docutils literal notranslate"><span class="pre">49-50</span></code>. It should be possible to click <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">Spectra</span></code> to plot a two spectra graph</p></li>
+</ol>
+</section>
+<section id="calculate-paalman-pings-tab">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Calculate Paalman Pings Tab</a><a class="headerlink" href="#calculate-paalman-pings-tab" title="Link to this heading">¶</a></h2>
+<p><strong>Time required 1 minute</strong></p>
+<hr class="docutils" />
+<ol class="arabic simple">
+<li><p>Go to <code class="docutils literal notranslate"><span class="pre">Interfaces</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Inelastic</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Corrections</span></code></p></li>
+<li><p>Go to the <code class="docutils literal notranslate"><span class="pre">Calculate</span> <span class="pre">Paalman</span> <span class="pre">Pings</span></code> tab</p></li>
+<li><p>Read the deprecation message. This tab should be removed for the release of version 6.12 assuming no user feedback.</p></li>
+</ol>
+</section>
+<section id="calculate-monte-carlo-absorption-tab">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Calculate Monte Carlo Absorption Tab</a><a class="headerlink" href="#calculate-monte-carlo-absorption-tab" title="Link to this heading">¶</a></h2>
+<p><strong>Time required 3 - 5 minutes</strong></p>
+<hr class="docutils" />
+<ol class="arabic simple">
+<li><p>Go to <code class="docutils literal notranslate"><span class="pre">Interfaces</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Inelastic</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Corrections</span></code></p></li>
+<li><p>Go to the <code class="docutils literal notranslate"><span class="pre">Calculate</span> <span class="pre">Monte</span> <span class="pre">Carlo</span> <span class="pre">Absorption</span></code> tab</p></li>
+<li><p>With the Sample combo box set to <code class="docutils literal notranslate"><span class="pre">File</span></code> click browse and select the file <code class="docutils literal notranslate"><span class="pre">irs26176_graphite002_red</span></code> from the Sample Data folder</p></li>
+<li><p>Choose the Sample Shape to be <code class="docutils literal notranslate"><span class="pre">Flat</span> <span class="pre">Plate</span></code></p></li>
+<li><p>Sample Height &amp; Width should be <code class="docutils literal notranslate"><span class="pre">1.0</span></code></p></li>
+<li><p>Sample and Container Thickness should be <code class="docutils literal notranslate"><span class="pre">0.1</span></code></p></li>
+<li><p>Sample mass density should be <code class="docutils literal notranslate"><span class="pre">1.0</span></code>. The Sample formula should be <code class="docutils literal notranslate"><span class="pre">H2-O</span></code></p></li>
+<li><p>Container mass density should be <code class="docutils literal notranslate"><span class="pre">6.0</span></code>. The Container formula should be <code class="docutils literal notranslate"><span class="pre">V</span></code></p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Run</span></code> and wait.</p></li>
+<li><p>A group workspace ending in <code class="docutils literal notranslate"><span class="pre">_Corrections</span></code> should be created. Keep this workspace for the Apply Absorption Corrections test.</p></li>
+<li><p>In the <code class="docutils literal notranslate"><span class="pre">Output</span> <span class="pre">Options</span></code>, the combo box should have four entries ending in <code class="docutils literal notranslate"><span class="pre">_ass</span></code>, <code class="docutils literal notranslate"><span class="pre">_assc</span></code>, <code class="docutils literal notranslate"><span class="pre">_acsc</span></code> and <code class="docutils literal notranslate"><span class="pre">_acc</span></code>.</p></li>
+<li><p>In the <code class="docutils literal notranslate"><span class="pre">Output</span> <span class="pre">Options</span></code>, try using the <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">Wavelength</span></code> and <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">Angle</span></code> options.</p></li>
+</ol>
+</section>
+<section id="apply-absorption-corrections-tab">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Apply Absorption Corrections Tab</a><a class="headerlink" href="#apply-absorption-corrections-tab" title="Link to this heading">¶</a></h2>
+<p><strong>Time required 1 - 3 minutes</strong></p>
+<hr class="docutils" />
+<ol class="arabic simple">
+<li><p>Go to <code class="docutils literal notranslate"><span class="pre">Interfaces</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Inelastic</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Corrections</span></code>.</p></li>
+<li><p>Go to the <code class="docutils literal notranslate"><span class="pre">Apply</span> <span class="pre">Absorption</span> <span class="pre">Corrections</span></code> tab.</p></li>
+<li><p>With the Sample combo box set to <code class="docutils literal notranslate"><span class="pre">File</span></code> click browse and select the file <code class="docutils literal notranslate"><span class="pre">irs26176_graphite002_red</span></code> from the Sample Data folder.</p></li>
+<li><p>With the Corrections combo box set to <code class="docutils literal notranslate"><span class="pre">Workspace</span></code>, and select the workspace ending in <code class="docutils literal notranslate"><span class="pre">_Corrections</span></code> from the previous test.</p></li>
+<li><p>Tick <code class="docutils literal notranslate"><span class="pre">Use</span> <span class="pre">Container</span></code> and select the file <code class="docutils literal notranslate"><span class="pre">irs26174_graphite002_red</span></code> from the Sample Data folder.</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Run</span></code> and wait.</p></li>
+<li><p>This should plot a blue subtracted line on the embedded plot. A workspace ending in <code class="docutils literal notranslate"><span class="pre">_red</span></code> should be produced</p></li>
+<li><p>In the <code class="docutils literal notranslate"><span class="pre">Output</span> <span class="pre">Options</span></code>, select <code class="docutils literal notranslate"><span class="pre">Open</span> <span class="pre">Slice</span> <span class="pre">Viewer</span></code> using the down arrow, it should open the Slice Viewer with the generated dataset</p></li>
+<li><p>In the <code class="docutils literal notranslate"><span class="pre">Output</span> <span class="pre">Options</span></code>, select <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">3D</span> <span class="pre">Surface</span></code> using the down arrow, it should open a surface plot for the generated dataset</p></li>
+<li><p>In the <code class="docutils literal notranslate"><span class="pre">Output</span> <span class="pre">Options</span></code>, select indices <code class="docutils literal notranslate"><span class="pre">50-51</span></code>. A red asterisk should appear, preventing you from using <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">Spectra</span></code></p></li>
+<li><p>In the <code class="docutils literal notranslate"><span class="pre">Output</span> <span class="pre">Options</span></code>, select indices <code class="docutils literal notranslate"><span class="pre">49-50</span></code>. It should be possible to click <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">Spectra</span></code> to plot a two spectra graph</p></li>
+</ol>
+</section>
+</section>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+      <ul class="nav navbar-nav" style=" float: right;">
+      
+      
+          
+            
+  <li>
+    <a href="../Indirect/DataReductionTests.html" title="Previous Chapter: Indirect Data Reduction Testing"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Indirect Data...</span>
+    </a>
+  </li>
+  <li>
+    <a href="DataProcessorTests.html" title="Next Chapter: Inelastic Data Processor Testing"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Inelastic Dat... &raquo;</span>
+    </a>
+  </li>
+          
+       
+          <li><a href="#">Back to top</a></li>
+       </ul>
+    <p>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
