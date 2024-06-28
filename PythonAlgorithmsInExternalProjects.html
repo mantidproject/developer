@@ -103,12 +103,12 @@
 <span id="pythonalgorithmsinexternalprojects"></span><h1>Python Algorithms in External Projects<a class="headerlink" href="#python-algorithms-in-external-projects" title="Link to this heading">¶</a></h1>
 <p>It can be useful to create mantid algorithms that are kept in an external project.
 This is especially the case for processing that is specific to a single instrument or novel technique.
-To use algorithms distributed this way, one needs to register them with the <a class="reference external" href="https://docs.mantidproject.org/nightly/api/python/mantid/api/AlgorithmFactoryImpl.html#mantid.api.AlgorithmFactoryImpl" title="(in MantidProject v6.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">mantid.api.AlgorithmFactory</span></code></a> and create wrappers so they can be called as python functions.
+To use algorithms distributed this way, one needs to register them with the <a class="reference external" href="https://docs.mantidproject.org/nightly/api/python/mantid/api/AlgorithmFactoryImpl.html#mantid.api.AlgorithmFactoryImpl" title="(in MantidProject v6.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">mantid.api.AlgorithmFactory</span></code></a> and create wrappers so they can be called as python functions.
 There are two techniques to accomplish this</p>
 <section id="modify-mantid-user-properties">
 <h2>Modify Mantid.user.properties<a class="headerlink" href="#modify-mantid-user-properties" title="Link to this heading">¶</a></h2>
-<p>Inside the user’s <a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/PropertiesFile.html#properties-file" title="(in MantidProject v6.9)"><span class="xref std std-ref">properties file</span></a>, one can set a
-<a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/PropertiesFile.html#directory-properties" title="(in MantidProject v6.9)"><span class="xref std std-ref">directory property</span></a> to add the location of the additional python algorithms to the <code class="docutils literal notranslate"><span class="pre">framework.plugins.directory</span></code> variable.
+<p>Inside the user’s <a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/PropertiesFile.html#properties-file" title="(in MantidProject v6.10)"><span class="xref std std-ref">properties file</span></a>, one can set a
+<a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/PropertiesFile.html#directory-properties" title="(in MantidProject v6.10)"><span class="xref std std-ref">directory property</span></a> to add the location of the additional python algorithms to the <code class="docutils literal notranslate"><span class="pre">framework.plugins.directory</span></code> variable.
 During initialization of the mantid framework, all files that are within this directory or a subdirectory will be parsed and algorithms will be added to the <code class="docutils literal notranslate"><span class="pre">AlgorithmFactory</span></code>.
 <em>This is the preferred method.</em></p>
 </section>

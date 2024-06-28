@@ -216,7 +216,7 @@ Detector pixel solid angles are calculated for the instrument geometry at the
 time of the SANS experiment. <span class="math notranslate nohighlight">\(Cor(R,\lambda)\)</span> optionally takes into account
 any corrections that cannot be described as only pixel dependent or only
 wavelength dependent. One such example is for the angle dependence of
-transmissions, <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/SANSWideAngleCorrection-v1.html#algm-sanswideanglecorrection" title="(in MantidProject v6.9)"><span class="xref std std-ref">SANSWideAngleCorrection</span></a>. <span class="math notranslate nohighlight">\(T(\lambda)\)</span>
+transmissions, <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/SANSWideAngleCorrection-v1.html#algm-sanswideanglecorrection" title="(in MantidProject v6.10)"><span class="xref std std-ref">SANSWideAngleCorrection</span></a>. <span class="math notranslate nohighlight">\(T(\lambda)\)</span>
 is the transmission, which measures the ratio of neutron counts after the sample,
 divided by the neutron counts before the sample. <span class="math notranslate nohighlight">\(T(\lambda)\)</span> is calculated
 from a “transmission run” and a “direct run”. There are at least three ways to
@@ -2240,13 +2240,13 @@ parser which will easily replace the current parser since only a single
 interface method (<em>parse_line</em> which takes a single line to parse)
 needs to be provided.</p>
 <p>For an overview of the user file commands, please see the
-<a class="reference external" href="https://docs.mantidproject.org/nightly/interfaces/isis_sans/User%20File%20Format.html#isis-sans-user-file-qres-ref" title="(in MantidProject v6.9)"><span class="xref std std-ref">user file documentation</span></a>.</p>
+<a class="reference external" href="https://docs.mantidproject.org/nightly/interfaces/isis_sans/User%20File%20Format.html#isis-sans-user-file-qres-ref" title="(in MantidProject v6.10)"><span class="xref std std-ref">user file documentation</span></a>.</p>
 </section>
 <section id="director-for-isiscommandinterface-cli">
 <h5><a class="toc-backref" href="#id29" role="doc-backlink">Director for <em>ISISCommandInterface</em> (CLI)</a><a class="headerlink" href="#director-for-isiscommandinterface-cli" title="Link to this heading">¶</a></h5>
 <p>The <em>ISISCommandInterface</em> is used by some of the power users among the instrument scientists. It is
 an efficient way to customize reductions which require small tweaks between different reductions.
-Please consult the <a class="reference external" href="https://docs.mantidproject.org/nightly/techniques/ScriptingSANSReductions.html#scriptingsansreductions" title="(in MantidProject v6.9)"><span class="xref std std-ref">scripting documentation</span></a>
+Please consult the <a class="reference external" href="https://docs.mantidproject.org/nightly/techniques/ScriptingSANSReductions.html#scriptingsansreductions" title="(in MantidProject v6.10)"><span class="xref std std-ref">scripting documentation</span></a>
 for the <em>ISISCommandInterface</em> for more information.</p>
 <p>The principal component which sets up the state behind the scene is <em>CommandInterfaceStateDirector</em>. It has to deal
 with the complication that we are only able to set up the reduction state after all information has been provided, hence
@@ -2290,15 +2290,15 @@ avoid large scripts sizes.</p>
 <ul class="simple">
 <li><p><em>Calculate SANS Transmission</em></p></li>
 <li><p><em>Create SANS Wavelength Pixel Adjustment</em></p></li>
-<li><p><a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/CropToComponent-v1.html#algm-croptocomponent" title="(in MantidProject v6.9)"><span class="xref std std-ref">CropToComponent</span></a></p></li>
-<li><p><a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Divide-v1.html#algm-divide" title="(in MantidProject v6.9)"><span class="xref std std-ref">Divide</span></a> (by Sample Volume)</p></li>
-<li><p><a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Multiply-v1.html#algm-multiply" title="(in MantidProject v6.9)"><span class="xref std std-ref">Multiply</span></a> (by Absolute Scale)</p></li>
-<li><p><a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/MoveInstrumentComponent-v1.html#algm-moveinstrumentcomponent" title="(in MantidProject v6.9)"><span class="xref std std-ref">MoveInstrumentComponent</span></a></p></li>
+<li><p><a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/CropToComponent-v1.html#algm-croptocomponent" title="(in MantidProject v6.10)"><span class="xref std std-ref">CropToComponent</span></a></p></li>
+<li><p><a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Divide-v1.html#algm-divide" title="(in MantidProject v6.10)"><span class="xref std std-ref">Divide</span></a> (by Sample Volume)</p></li>
+<li><p><a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Multiply-v1.html#algm-multiply" title="(in MantidProject v6.10)"><span class="xref std std-ref">Multiply</span></a> (by Absolute Scale)</p></li>
+<li><p><a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/MoveInstrumentComponent-v1.html#algm-moveinstrumentcomponent" title="(in MantidProject v6.10)"><span class="xref std std-ref">MoveInstrumentComponent</span></a></p></li>
 <li><p><em>Normalize To SANS Monitor</em></p></li>
-<li><p><a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Q1D-v2.html#algm-q1d" title="(in MantidProject v6.9)"><span class="xref std std-ref">Q1D</span></a> or <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Qxy-v1.html#algm-qxy" title="(in MantidProject v6.9)"><span class="xref std std-ref">Qxy</span></a></p></li>
-<li><p><a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/RotateInstrumentComponent-v1.html#algm-rotateinstrumentcomponent" title="(in MantidProject v6.9)"><span class="xref std std-ref">RotateInstrumentComponent</span></a></p></li>
-<li><p><a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/SANSConvertToWavelengthAndRebin-v1.html#algm-sansconverttowavelengthandrebin" title="(in MantidProject v6.9)"><span class="xref std std-ref">SANSConvertToWavelengthAndRebin</span></a></p></li>
-<li><p><a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/SANSLoad-v1.html#algm-sansload" title="(in MantidProject v6.9)"><span class="xref std std-ref">SANSLoad</span></a></p></li>
+<li><p><a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Q1D-v2.html#algm-q1d" title="(in MantidProject v6.10)"><span class="xref std std-ref">Q1D</span></a> or <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Qxy-v1.html#algm-qxy" title="(in MantidProject v6.10)"><span class="xref std std-ref">Qxy</span></a></p></li>
+<li><p><a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/RotateInstrumentComponent-v1.html#algm-rotateinstrumentcomponent" title="(in MantidProject v6.10)"><span class="xref std std-ref">RotateInstrumentComponent</span></a></p></li>
+<li><p><a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/SANSConvertToWavelengthAndRebin-v1.html#algm-sansconverttowavelengthandrebin" title="(in MantidProject v6.10)"><span class="xref std std-ref">SANSConvertToWavelengthAndRebin</span></a></p></li>
+<li><p><a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/SANSLoad-v1.html#algm-sansload" title="(in MantidProject v6.10)"><span class="xref std std-ref">SANSLoad</span></a></p></li>
 <li><p><em>SANSSave</em></p></li>
 <li><p><em>Slice SANS Event</em></p></li>
 <li><p><em>Workspace Masking</em></p></li>
@@ -2323,29 +2323,29 @@ an input.</p>
 <li><p>Get the corrected transmission workspace. The sub-steps are:</p>
 <ol class="loweralpha simple">
 <li><p>Load the transmission workspace</p></li>
-<li><p>Extract the transmission detector ids with <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/ExtractSpectra-v1.html#algm-extractspectra" title="(in MantidProject v6.9)"><span class="xref std std-ref">ExtractSpectra</span></a></p></li>
+<li><p>Extract the transmission detector ids with <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/ExtractSpectra-v1.html#algm-extractspectra" title="(in MantidProject v6.10)"><span class="xref std std-ref">ExtractSpectra</span></a></p></li>
 <li><p>Perform prompt peak correction</p></li>
-<li><p>Perform flat background correction to monitors (if applicable) using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/CalculateFlatBackground-v1.html#algm-calculateflatbackground" title="(in MantidProject v6.9)"><span class="xref std std-ref">CalculateFlatBackground</span></a></p></li>
-<li><p>Perform flat background correction to other detectors (if applicable) using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/CalculateFlatBackground-v1.html#algm-calculateflatbackground" title="(in MantidProject v6.9)"><span class="xref std std-ref">CalculateFlatBackground</span></a></p></li>
-<li><p>Convert to wavelength and rebin using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/SANSConvertToWavelengthAndRebin-v1.html#algm-sansconverttowavelengthandrebin" title="(in MantidProject v6.9)"><span class="xref std std-ref">SANSConvertToWavelengthAndRebin</span></a></p></li>
+<li><p>Perform flat background correction to monitors (if applicable) using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/CalculateFlatBackground-v1.html#algm-calculateflatbackground" title="(in MantidProject v6.10)"><span class="xref std std-ref">CalculateFlatBackground</span></a></p></li>
+<li><p>Perform flat background correction to other detectors (if applicable) using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/CalculateFlatBackground-v1.html#algm-calculateflatbackground" title="(in MantidProject v6.10)"><span class="xref std std-ref">CalculateFlatBackground</span></a></p></li>
+<li><p>Convert to wavelength and rebin using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/SANSConvertToWavelengthAndRebin-v1.html#algm-sansconverttowavelengthandrebin" title="(in MantidProject v6.10)"><span class="xref std std-ref">SANSConvertToWavelengthAndRebin</span></a></p></li>
 </ol>
 </li>
 <li><p>Get the corrected direct workspace. The sub-steps are:</p>
 <ol class="loweralpha simple">
 <li><p>Load the direct workspace</p></li>
-<li><p>Extract the transmission detector ids with <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/ExtractSpectra-v1.html#algm-extractspectra" title="(in MantidProject v6.9)"><span class="xref std std-ref">ExtractSpectra</span></a></p></li>
-<li><p>Perform prompt peak correction (if applicable) using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/RemoveBins-v1.html#algm-removebins" title="(in MantidProject v6.9)"><span class="xref std std-ref">RemoveBins</span></a></p></li>
-<li><p>Perform flat background correction to monitors (if applicable) using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/CalculateFlatBackground-v1.html#algm-calculateflatbackground" title="(in MantidProject v6.9)"><span class="xref std std-ref">CalculateFlatBackground</span></a></p></li>
-<li><p>Perform flat background correction to other detectors (if applicable) using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/CalculateFlatBackground-v1.html#algm-calculateflatbackground" title="(in MantidProject v6.9)"><span class="xref std std-ref">CalculateFlatBackground</span></a></p></li>
-<li><p>Convert to wavelength and rebin using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/SANSConvertToWavelengthAndRebin-v1.html#algm-sansconverttowavelengthandrebin" title="(in MantidProject v6.9)"><span class="xref std std-ref">SANSConvertToWavelengthAndRebin</span></a></p></li>
+<li><p>Extract the transmission detector ids with <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/ExtractSpectra-v1.html#algm-extractspectra" title="(in MantidProject v6.10)"><span class="xref std std-ref">ExtractSpectra</span></a></p></li>
+<li><p>Perform prompt peak correction (if applicable) using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/RemoveBins-v1.html#algm-removebins" title="(in MantidProject v6.10)"><span class="xref std std-ref">RemoveBins</span></a></p></li>
+<li><p>Perform flat background correction to monitors (if applicable) using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/CalculateFlatBackground-v1.html#algm-calculateflatbackground" title="(in MantidProject v6.10)"><span class="xref std std-ref">CalculateFlatBackground</span></a></p></li>
+<li><p>Perform flat background correction to other detectors (if applicable) using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/CalculateFlatBackground-v1.html#algm-calculateflatbackground" title="(in MantidProject v6.10)"><span class="xref std std-ref">CalculateFlatBackground</span></a></p></li>
+<li><p>Convert to wavelength and rebin using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/SANSConvertToWavelengthAndRebin-v1.html#algm-sansconverttowavelengthandrebin" title="(in MantidProject v6.10)"><span class="xref std std-ref">SANSConvertToWavelengthAndRebin</span></a></p></li>
 </ol>
 </li>
 <li><p>Perform fitting for the transmission calculation. The sub-steps are:</p>
 <ol class="loweralpha simple">
 <li><p>Use incident monitor, wavelength settings, transmission detector ids, fit
 settings as well as the corrected transmission (step 3) and direct (step4)
-workspaces to initialize <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/CalculateTransmission-v1.html#algm-calculatetransmission" title="(in MantidProject v6.9)"><span class="xref std std-ref">CalculateTransmission</span></a></p></li>
-<li><p>Execute <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/CalculateTransmission-v1.html#algm-calculatetransmission" title="(in MantidProject v6.9)"><span class="xref std std-ref">CalculateTransmission</span></a></p></li>
+workspaces to initialize <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/CalculateTransmission-v1.html#algm-calculatetransmission" title="(in MantidProject v6.10)"><span class="xref std std-ref">CalculateTransmission</span></a></p></li>
+<li><p>Execute <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/CalculateTransmission-v1.html#algm-calculatetransmission" title="(in MantidProject v6.10)"><span class="xref std std-ref">CalculateTransmission</span></a></p></li>
 <li><p>Get the fitted and unfitted output workspaces</p></li>
 </ol>
 </li>
@@ -2356,11 +2356,11 @@ workspaces to initialize <a class="reference external" href="https://docs.mantid
 <h3><a class="toc-backref" href="#id35" role="doc-backlink">Conversion to Q</a><a class="headerlink" href="#conversion-to-q" title="Link to this heading">¶</a></h3>
 <p>If a 1D reduction has been selected then the algorithm will perform the follow sub-steps:</p>
 <ol class="arabic simple">
-<li><p>Calculate the momentum transfer resolution workspace using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/TOFSANSResolutionByPixel-v1.html#algm-tofsansresolutionbypixel" title="(in MantidProject v6.9)"><span class="xref std std-ref">TOFSANSResolutionByPixel</span></a> (if applicable)</p></li>
+<li><p>Calculate the momentum transfer resolution workspace using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/TOFSANSResolutionByPixel-v1.html#algm-tofsansresolutionbypixel" title="(in MantidProject v6.10)"><span class="xref std std-ref">TOFSANSResolutionByPixel</span></a> (if applicable)</p></li>
 <li><p>Set data workspace, adjustment workspaces, momentum transfer resolution workspace
 (if applicable), radius and wavelength cut-offs, momentum transfer limits
-and the gravity correction on <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Q1D-v2.html#algm-q1d" title="(in MantidProject v6.9)"><span class="xref std std-ref">Q1D</span></a></p></li>
-<li><p>Execute <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Q1D-v2.html#algm-q1d" title="(in MantidProject v6.9)"><span class="xref std std-ref">Q1D</span></a></p></li>
+and the gravity correction on <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Q1D-v2.html#algm-q1d" title="(in MantidProject v6.10)"><span class="xref std std-ref">Q1D</span></a></p></li>
+<li><p>Execute <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Q1D-v2.html#algm-q1d" title="(in MantidProject v6.10)"><span class="xref std std-ref">Q1D</span></a></p></li>
 <li><p>Get reduced workspace, the sum-of-counts workspace and the sum-of-norm workspaces
 and set on the output of the algorithm</p></li>
 </ol>
@@ -2368,20 +2368,20 @@ and set on the output of the algorithm</p></li>
 <ol class="arabic simple">
 <li><p>Set data workspace, adjustment workspaces, momentum transfer resolution workspace
 (if applicable), radius and wavelength cut-offs, momentum transfer limits
-and the gravity correction on <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Qxy-v1.html#algm-qxy" title="(in MantidProject v6.9)"><span class="xref std std-ref">Qxy</span></a></p></li>
-<li><p>Execute <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Qxy-v1.html#algm-qxy" title="(in MantidProject v6.9)"><span class="xref std std-ref">Qxy</span></a></p></li>
+and the gravity correction on <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Qxy-v1.html#algm-qxy" title="(in MantidProject v6.10)"><span class="xref std std-ref">Qxy</span></a></p></li>
+<li><p>Execute <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Qxy-v1.html#algm-qxy" title="(in MantidProject v6.10)"><span class="xref std std-ref">Qxy</span></a></p></li>
 <li><p>Get reduced workspace, the sum-of-counts workspace and the sum-of-norm workspaces
 and set on the output of the algorithm</p></li>
 </ol>
 </section>
 <section id="sansconverttowavelengthandrebin">
 <h3><a class="toc-backref" href="#id36" role="doc-backlink"><em>SANSConvertToWavelengthAndRebin</em></a><a class="headerlink" href="#sansconverttowavelengthandrebin" title="Link to this heading">¶</a></h3>
-<p>The <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/SANSConvertToWavelengthAndRebin-v1.html#algm-sansconverttowavelengthandrebin" title="(in MantidProject v6.9)"><span class="xref std std-ref">SANSConvertToWavelengthAndRebin</span></a>
+<p>The <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/SANSConvertToWavelengthAndRebin-v1.html#algm-sansconverttowavelengthandrebin" title="(in MantidProject v6.10)"><span class="xref std std-ref">SANSConvertToWavelengthAndRebin</span></a>
 algorithm is one of the few which does not take a <em>SANSState</em> object as an input.</p>
 <p>The algorithm performs the following steps:</p>
 <ol class="arabic simple">
-<li><p>Unit conversion from time-of-flight units to wavelength units using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/ConvertUnits-v1.html#algm-convertunits" title="(in MantidProject v6.9)"><span class="xref std std-ref">ConvertUnits</span></a></p></li>
-<li><p>Performs a rebin operation using either <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Rebin-v1.html#algm-rebin" title="(in MantidProject v6.9)"><span class="xref std std-ref">Rebin</span></a> or <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/InterpolatingRebin-v1.html#algm-interpolatingrebin" title="(in MantidProject v6.9)"><span class="xref std std-ref">InterpolatingRebin</span></a></p></li>
+<li><p>Unit conversion from time-of-flight units to wavelength units using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/ConvertUnits-v1.html#algm-convertunits" title="(in MantidProject v6.10)"><span class="xref std std-ref">ConvertUnits</span></a></p></li>
+<li><p>Performs a rebin operation using either <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Rebin-v1.html#algm-rebin" title="(in MantidProject v6.10)"><span class="xref std std-ref">Rebin</span></a> or <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/InterpolatingRebin-v1.html#algm-interpolatingrebin" title="(in MantidProject v6.10)"><span class="xref std std-ref">InterpolatingRebin</span></a></p></li>
 </ol>
 </section>
 <section id="create-sans-wavelength-and-pixel-adjustment">
@@ -2396,16 +2396,16 @@ are required for converting to Q.</p>
 <ol class="loweralpha simple">
 <li><p>Get the calculate-transmission workspace from the input</p></li>
 <li><p>Get the normalization-to-monitor workspace from the input</p></li>
-<li><p>Load the wavelength-adjustment file using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/LoadRKH-v1.html#algm-loadrkh" title="(in MantidProject v6.9)"><span class="xref std std-ref">LoadRKH</span></a></p></li>
-<li><p>Provide all of the above workspaces with the same binning using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Rebin-v1.html#algm-rebin" title="(in MantidProject v6.9)"><span class="xref std std-ref">Rebin</span></a>
-and multiply them using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Multiply-v1.html#algm-multiply" title="(in MantidProject v6.9)"><span class="xref std std-ref">Multiply</span></a></p></li>
+<li><p>Load the wavelength-adjustment file using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/LoadRKH-v1.html#algm-loadrkh" title="(in MantidProject v6.10)"><span class="xref std std-ref">LoadRKH</span></a></p></li>
+<li><p>Provide all of the above workspaces with the same binning using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Rebin-v1.html#algm-rebin" title="(in MantidProject v6.10)"><span class="xref std std-ref">Rebin</span></a>
+and multiply them using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Multiply-v1.html#algm-multiply" title="(in MantidProject v6.10)"><span class="xref std std-ref">Multiply</span></a></p></li>
 </ol>
 </li>
 <li><p>Create the pixel-adjustment workspace. The sub-states are:</p>
 <ol class="loweralpha simple">
-<li><p>Load the pixel-adjustment file using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/LoadRKH-v1.html#algm-loadrkh" title="(in MantidProject v6.9)"><span class="xref std std-ref">LoadRKH</span></a></p></li>
+<li><p>Load the pixel-adjustment file using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/LoadRKH-v1.html#algm-loadrkh" title="(in MantidProject v6.10)"><span class="xref std std-ref">LoadRKH</span></a></p></li>
 <li><p>Crop the pixel-adjustment workspace to the desired detector
-using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/CropToComponent-v1.html#algm-croptocomponent" title="(in MantidProject v6.9)"><span class="xref std std-ref">CropToComponent</span></a></p></li>
+using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/CropToComponent-v1.html#algm-croptocomponent" title="(in MantidProject v6.10)"><span class="xref std std-ref">CropToComponent</span></a></p></li>
 </ol>
 </li>
 <li><p>Set the pixel-adjustment and wavelength-adjustment workspaces on the output of the algorithm</p></li>
@@ -2413,7 +2413,7 @@ using <a class="reference external" href="https://docs.mantidproject.org/nightly
 </section>
 <section id="sansload">
 <h3><a class="toc-backref" href="#id38" role="doc-backlink"><em>SANSLoad</em></a><a class="headerlink" href="#sansload" title="Link to this heading">¶</a></h3>
-<p>The <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/SANSLoad-v1.html#algm-sansload" title="(in MantidProject v6.9)"><span class="xref std std-ref">SANSLoad</span></a> algorithm is responsible for loading data and applying the calibration
+<p>The <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/SANSLoad-v1.html#algm-sansload" title="(in MantidProject v6.10)"><span class="xref std std-ref">SANSLoad</span></a> algorithm is responsible for loading data and applying the calibration
 where required. This algorithm loads SANS data sets. The loading can handle nexus
 and raw files which can be plain or multi-period data. In addition the algorithm
 has to be able to handle added files. The SANS data sets which can be loaded
@@ -2468,8 +2468,8 @@ a particular masking instruction. The algorithm sub-steps are:</p>
 <li><p>Select the correct masking strategy (currently only ISIS)</p></li>
 <li><p>Apply time bin masking. The sub-steps are:</p>
 <ol class="loweralpha simple">
-<li><p>Apply general time bin masks using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/MaskBins-v1.html#algm-maskbins" title="(in MantidProject v6.9)"><span class="xref std std-ref">MaskBins</span></a></p></li>
-<li><p>Apply detector specific time bin masks using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/MaskBins-v1.html#algm-maskbins" title="(in MantidProject v6.9)"><span class="xref std std-ref">MaskBins</span></a></p></li>
+<li><p>Apply general time bin masks using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/MaskBins-v1.html#algm-maskbins" title="(in MantidProject v6.10)"><span class="xref std std-ref">MaskBins</span></a></p></li>
+<li><p>Apply detector specific time bin masks using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/MaskBins-v1.html#algm-maskbins" title="(in MantidProject v6.10)"><span class="xref std std-ref">MaskBins</span></a></p></li>
 </ol>
 </li>
 <li><p>Apply cylinder masking. This generates a hollow cylinder which masks the
@@ -2477,13 +2477,13 @@ beam stop (defined by an inner radius) and anything outside of an area of
 interest (defined by an outer radius). The sub-steps are:</p>
 <ol class="loweralpha simple">
 <li><p>Set up the inner and the outer radius of the cylinder mask.</p></li>
-<li><p>Mask everything outside of the hollow cylinder using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/MaskDetectorsInShape-v1.html#algm-maskdetectorsinshape" title="(in MantidProject v6.9)"><span class="xref std std-ref">MaskDetectorsInShape</span></a></p></li>
+<li><p>Mask everything outside of the hollow cylinder using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/MaskDetectorsInShape-v1.html#algm-maskdetectorsinshape" title="(in MantidProject v6.10)"><span class="xref std std-ref">MaskDetectorsInShape</span></a></p></li>
 </ol>
 </li>
 <li><p>Apply a list of mask files. For each mask file the sub-steps are:</p>
 <ol class="loweralpha simple">
-<li><p>Load the mask file into a workspace using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/LoadMask-v1.html#algm-loadmask" title="(in MantidProject v6.9)"><span class="xref std std-ref">LoadMask</span></a></p></li>
-<li><p>Apply the mask workspace to the scatter workspace using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/MaskDetectors-v1.html#algm-maskdetectors" title="(in MantidProject v6.9)"><span class="xref std std-ref">MaskDetectors</span></a></p></li>
+<li><p>Load the mask file into a workspace using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/LoadMask-v1.html#algm-loadmask" title="(in MantidProject v6.10)"><span class="xref std std-ref">LoadMask</span></a></p></li>
+<li><p>Apply the mask workspace to the scatter workspace using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/MaskDetectors-v1.html#algm-maskdetectors" title="(in MantidProject v6.10)"><span class="xref std std-ref">MaskDetectors</span></a></p></li>
 </ol>
 </li>
 <li><p>Apply spectrum masks. The sub-steps are:</p>
@@ -2493,21 +2493,21 @@ single horizontal spectrum strips, single vertical spectrum strips,
 horizontal spectrum range (several strips next to each other),
 vertical spectrum range (several strips next to each other),
 block masks and block cross masks</p></li>
-<li><p>Mask the selected spectra using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/MaskDetectors-v1.html#algm-maskdetectors" title="(in MantidProject v6.9)"><span class="xref std std-ref">MaskDetectors</span></a></p></li>
+<li><p>Mask the selected spectra using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/MaskDetectors-v1.html#algm-maskdetectors" title="(in MantidProject v6.10)"><span class="xref std std-ref">MaskDetectors</span></a></p></li>
 </ol>
 </li>
 <li><p>Apply angle masking. This is used for pizza-slice masking and uses
-<a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/MaskDetectorsInShape-v1.html#algm-maskdetectorsinshape" title="(in MantidProject v6.9)"><span class="xref std std-ref">MaskDetectorsInShape</span></a></p></li>
+<a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/MaskDetectorsInShape-v1.html#algm-maskdetectorsinshape" title="(in MantidProject v6.10)"><span class="xref std std-ref">MaskDetectorsInShape</span></a></p></li>
 <li><p>Apply beam stop masking. The beam stop consists of a disc where the beam is located
 and a connection arm (rod) which holds the disc. The disc has at this point
 already been masked by a cylinder mask. This step masks the connection arm using
-<a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/MaskDetectorsInShape-v1.html#algm-maskdetectorsinshape" title="(in MantidProject v6.9)"><span class="xref std std-ref">MaskDetectorsInShape</span></a></p></li>
+<a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/MaskDetectorsInShape-v1.html#algm-maskdetectorsinshape" title="(in MantidProject v6.10)"><span class="xref std std-ref">MaskDetectorsInShape</span></a></p></li>
 </ol>
 </section>
 <section id="moveinstrumentcomponent-and-rotateinstrumentcomponent">
 <h3><a class="toc-backref" href="#id40" role="doc-backlink"><em>MoveInstrumentComponent</em> and <em>RotateInstrumentComponent</em></a><a class="headerlink" href="#moveinstrumentcomponent-and-rotateinstrumentcomponent" title="Link to this heading">¶</a></h3>
-<p>The <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/MoveInstrumentComponent-v1.html#algm-moveinstrumentcomponent" title="(in MantidProject v6.9)"><span class="xref std std-ref">MoveInstrumentComponent</span></a>
-algorithm and <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/RotateInstrumentComponent-v1.html#algm-rotateinstrumentcomponent" title="(in MantidProject v6.9)"><span class="xref std std-ref">RotateInstrumentComponent</span></a>
+<p>The <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/MoveInstrumentComponent-v1.html#algm-moveinstrumentcomponent" title="(in MantidProject v6.10)"><span class="xref std std-ref">MoveInstrumentComponent</span></a>
+algorithm and <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/RotateInstrumentComponent-v1.html#algm-rotateinstrumentcomponent" title="(in MantidProject v6.10)"><span class="xref std std-ref">RotateInstrumentComponent</span></a>
 are used in one of three ways, depending on how the state
 of the script. It can be used to move an individual component, reset positions,
 or specify the beam centre.
@@ -2517,23 +2517,23 @@ manual selection takes precedence.</p>
 <section id="normalize-to-sans-monitor">
 <h3><a class="toc-backref" href="#id41" role="doc-backlink"><em>Normalize To SANS Monitor</em></a><a class="headerlink" href="#normalize-to-sans-monitor" title="Link to this heading">¶</a></h3>
 <p>This step provides a monitor normalization workspace for subsequent
-wavelength correction in <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Q1D-v2.html#algm-q1d" title="(in MantidProject v6.9)"><span>Q1D v2</span></a> or <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Qxy-v1.html#algm-qxy" title="(in MantidProject v6.9)"><span>Qxy v1</span></a>.
+wavelength correction in <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Q1D-v2.html#algm-q1d" title="(in MantidProject v6.10)"><span>Q1D v2</span></a> or <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Qxy-v1.html#algm-qxy" title="(in MantidProject v6.10)"><span>Qxy v1</span></a>.
 The user can provide a <em>ScaleFactor</em> which is
 normally obtained during event slicing.</p>
 <p>The sub-steps of this step are:</p>
 <ol class="arabic simple">
 <li><p>Get the incident monitor spectrum number and the scale factor</p></li>
-<li><p>Extract the monitor spectrum using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/ExtractSingleSpectrum-v1.html#algm-extractsinglespectrum" title="(in MantidProject v6.9)"><span class="xref std std-ref">ExtractSingleSpectrum</span></a> into a monitor workspace</p></li>
-<li><p>Apply the scale factor to the monitor workspace using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Scale-v1.html#algm-scale" title="(in MantidProject v6.9)"><span class="xref std std-ref">Scale</span></a></p></li>
-<li><p>Perform a prompt peak correction (if applicable) using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/RemoveBins-v1.html#algm-removebins" title="(in MantidProject v6.9)"><span class="xref std std-ref">RemoveBins</span></a></p></li>
-<li><p>Perform a flat background correction (if applicable) using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/CalculateFlatBackground-v1.html#algm-calculateflatbackground" title="(in MantidProject v6.9)"><span class="xref std std-ref">CalculateFlatBackground</span></a></p></li>
+<li><p>Extract the monitor spectrum using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/ExtractSingleSpectrum-v1.html#algm-extractsinglespectrum" title="(in MantidProject v6.10)"><span class="xref std std-ref">ExtractSingleSpectrum</span></a> into a monitor workspace</p></li>
+<li><p>Apply the scale factor to the monitor workspace using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Scale-v1.html#algm-scale" title="(in MantidProject v6.10)"><span class="xref std std-ref">Scale</span></a></p></li>
+<li><p>Perform a prompt peak correction (if applicable) using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/RemoveBins-v1.html#algm-removebins" title="(in MantidProject v6.10)"><span class="xref std std-ref">RemoveBins</span></a></p></li>
+<li><p>Perform a flat background correction (if applicable) using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/CalculateFlatBackground-v1.html#algm-calculateflatbackground" title="(in MantidProject v6.10)"><span class="xref std std-ref">CalculateFlatBackground</span></a></p></li>
 <li><p>Convert to wavelength units and rebin using
-<a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/SANSConvertToWavelengthAndRebin-v1.html#algm-sansconverttowavelengthandrebin" title="(in MantidProject v6.9)"><span class="xref std std-ref">SANSConvertToWavelengthAndRebin</span></a></p></li>
+<a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/SANSConvertToWavelengthAndRebin-v1.html#algm-sansconverttowavelengthandrebin" title="(in MantidProject v6.10)"><span class="xref std std-ref">SANSConvertToWavelengthAndRebin</span></a></p></li>
 </ol>
 </section>
 <section id="sanssave">
 <h3><a class="toc-backref" href="#id42" role="doc-backlink"><em>SANSSave</em></a><a class="headerlink" href="#sanssave" title="Link to this heading">¶</a></h3>
-<p>The <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/SANSSave-v1.html#algm-sanssave" title="(in MantidProject v6.9)"><span class="xref std std-ref">SANSSave</span></a>  algorithm performs two steps:</p>
+<p>The <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/SANSSave-v1.html#algm-sanssave" title="(in MantidProject v6.10)"><span class="xref std std-ref">SANSSave</span></a>  algorithm performs two steps:</p>
 <ol class="arabic simple">
 <li><p>Create a cloned workspace where the zero-error values are inflated (if this is requested)</p></li>
 <li><p>Save the workspace into each specified file format.</p></li>
@@ -2555,7 +2555,7 @@ workspace to the proton charnge of the full workspace.</p>
 <ol class="arabic simple">
 <li><p>Get the start time and the end time of the time slice</p></li>
 <li><p>If the data set is from a <em>Can</em> measurement, then don’t perform a slice</p></li>
-<li><p>Slice the scatter workspace using the start and end time and <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/FilterByTime-v1.html#algm-filterbytime" title="(in MantidProject v6.9)"><span class="xref std std-ref">FilterByTime</span></a></p></li>
+<li><p>Slice the scatter workspace using the start and end time and <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/FilterByTime-v1.html#algm-filterbytime" title="(in MantidProject v6.10)"><span class="xref std std-ref">FilterByTime</span></a></p></li>
 <li><p>Get the partial charge for the sliced data and calculate the slice factor which is <em>(partial charge) / (total charge)</em></p></li>
 <li><p>Multiply the monitor workspace with the scale factor</p></li>
 <li><p>Set the sliced scatter data, the scaled monitor data and the slice factor on the output of this algorithm</p></li>
@@ -2616,7 +2616,7 @@ to perform the reduction.</p>
 a data set, i.e. it will run the reduction for the <em>Sample</em> and <em>Can</em> and perform
 the subtraction of these results if the reduction has been set up
 to do this. In particular this algorithm stitches the reduced workspaces of the
-different detectors using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/SANSStitch-v1.html#algm-sansstitch" title="(in MantidProject v6.9)"><span class="xref std std-ref">SANSStitch</span></a>,
+different detectors using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/SANSStitch-v1.html#algm-sansstitch" title="(in MantidProject v6.10)"><span class="xref std std-ref">SANSStitch</span></a>,
 again only if the reduction has been set up to do this.</p>
 </section>
 <section id="sansreductioncore">
@@ -2632,40 +2632,40 @@ inner core of the orchestration mechanism. The inputs to this algorithm are</p>
 <p>The sub-steps of this algorithm are:</p>
 <ol class="arabic simple">
 <li><p>Get the cropped input <em>ScatterWorkspace</em>. The cropping is defined by the selected detector type.
-The underlying algorithm is <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/CropToComponent-v1.html#algm-croptocomponent" title="(in MantidProject v6.9)"><span class="xref std std-ref">CropToComponent</span></a>.</p></li>
+The underlying algorithm is <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/CropToComponent-v1.html#algm-croptocomponent" title="(in MantidProject v6.10)"><span class="xref std std-ref">CropToComponent</span></a>.</p></li>
 <li><p>Create an event slice of the input workspace.
 Note that event slicing is only applied to event-mode workspaces and only when it has been
 specified by the user. During this step the scatter workspace is sliced and the associated
 monitor workspace is scaled. The scaling factor is the ratio of the charge of the sliced data set
 and the charge of the entire data set.</p></li>
 <li><p>If we are dealing with an even-mode workspace and the compatibility mode has been chosen then
-either a custom binning or the monitor binning is applied using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Rebin-v1.html#algm-rebin" title="(in MantidProject v6.9)"><span class="xref std std-ref">Rebin</span></a> or
-<a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/RebinToWorkspace-v1.html#algm-rebintoworkspace" title="(in MantidProject v6.9)"><span class="xref std std-ref">RebinToWorkspace</span></a>, respectively.</p></li>
+either a custom binning or the monitor binning is applied using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Rebin-v1.html#algm-rebin" title="(in MantidProject v6.10)"><span class="xref std std-ref">Rebin</span></a> or
+<a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/RebinToWorkspace-v1.html#algm-rebintoworkspace" title="(in MantidProject v6.10)"><span class="xref std std-ref">RebinToWorkspace</span></a>, respectively.</p></li>
 <li><p>Both the data and the monitor workspace perform an initial move operation.
 The first step sets the instrument positions back to the IDF,
 in case the algorithm had been loaded and moved already previously.
 The second time the move algorithm is operated in <em>InitialMove</em> mode to apply
 and offset.</p></li>
 <li><p>The data workspace is masked using various modes. Note that
-using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/MoveInstrumentComponent-v1.html#algm-moveinstrumentcomponent" title="(in MantidProject v6.9)"><span class="xref std std-ref">MoveInstrumentComponent</span></a>.
+using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/MoveInstrumentComponent-v1.html#algm-moveinstrumentcomponent" title="(in MantidProject v6.10)"><span class="xref std std-ref">MoveInstrumentComponent</span></a>.
 The algorithm is applied twice. The first time using the <em>SetToZero</em> mode
 to reset the components to known positions from the IDF. The second
 time the components are moved and rotated to the requested positions.
 Note that all steps up until now were performed in the time-of-flight domain.</p></li>
 <li><p>Convert the data from time-of-flight to wavelength.</p></li>
-<li><p>Scale the data set using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Multiply-v1.html#algm-multiply" title="(in MantidProject v6.9)"><span class="xref std std-ref">Multiply</span></a>. This will multiply the data set
-with the absolute scale and divide <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Divide-v1.html#algm-divide" title="(in MantidProject v6.9)"><span class="xref std std-ref">Divide</span></a> by the sample volume.</p></li>
+<li><p>Scale the data set using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Multiply-v1.html#algm-multiply" title="(in MantidProject v6.10)"><span class="xref std std-ref">Multiply</span></a>. This will multiply the data set
+with the absolute scale and divide <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Divide-v1.html#algm-divide" title="(in MantidProject v6.10)"><span class="xref std std-ref">Divide</span></a> by the sample volume.</p></li>
 <li><p>This step creates the adjustment workspaces by <em>Create SANS Adjustment Workspaces</em>.
 This uses the input <em>TransmissionWorkspace</em> and <em>DirectWorkspace</em> workspaces. Note that
 the instrument’s components are moved and rotated before they are used by the adjustment
 algorithm. The outputs are a wavelength-adjustment workspace, a pixel-adjustment workspace and a wavelength-and-pixel adjustment
 workspace. Note that their creation is optional.</p></li>
-<li><p>Convert the data workspace into histogram-mode using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/RebinToWorkspace-v1.html#algm-rebintoworkspace" title="(in MantidProject v6.9)"><span class="xref std std-ref">RebinToWorkspace</span></a>.
+<li><p>Convert the data workspace into histogram-mode using <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/RebinToWorkspace-v1.html#algm-rebintoworkspace" title="(in MantidProject v6.10)"><span class="xref std std-ref">RebinToWorkspace</span></a>.
 This is only relevant for event-mode workspaces where the compatibility mode has not been used. Up until
 now the event-mode workspace could be used as an event workspace, but the momentum transfer conversion (the next step)
 requires a histogram-mode workspace.</p></li>
-<li><p>The final step, the conversion to momentum transfer units, either uses <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Q1D-v2.html#algm-q1d" title="(in MantidProject v6.9)"><span class="xref std std-ref">Q1D</span></a>
-or <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Qxy-v1.html#algm-qxy" title="(in MantidProject v6.9)"><span class="xref std std-ref">Qxy</span></a> depending on the setting of the reduction dimensionality. This step
+<li><p>The final step, the conversion to momentum transfer units, either uses <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Q1D-v2.html#algm-q1d" title="(in MantidProject v6.10)"><span class="xref std std-ref">Q1D</span></a>
+or <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Qxy-v1.html#algm-qxy" title="(in MantidProject v6.10)"><span class="xref std std-ref">Qxy</span></a> depending on the setting of the reduction dimensionality. This step
 uses the data workspace as well as all of the adjustment workspaces which have been provided earlier
 on. The resulting <em>OutputWorkspace</em> and the <em>SumOfCounts</em> as well as <em>SumOfNormFactors</em> counts
 are provided as outputs.</p></li>
