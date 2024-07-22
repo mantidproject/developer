@@ -207,6 +207,52 @@
 </ul>
 </section>
 </section>
+<section id="fixing-a-merge-conflict-between-main-and-a-protected-branch">
+<span id="fixprotectedbranchmergeconflict"></span><h2>Fixing a merge conflict between <code class="docutils literal notranslate"><span class="pre">main</span></code> and a protected branch<a class="headerlink" href="#fixing-a-merge-conflict-between-main-and-a-protected-branch" title="Link to this heading">¶</a></h2>
+<p>There may occasionally be a merge conflict when the automated “Merge protected branches” workflow attempts to merge a protected branch into <code class="docutils literal notranslate"><span class="pre">main</span></code>. The following instructions detail how to fix the conflict, using the <code class="docutils literal notranslate"><span class="pre">release-next</span></code> branch as an example:</p>
+<section id="from-a-fork">
+<h3>From a fork<a class="headerlink" href="#from-a-fork" title="Link to this heading">¶</a></h3>
+<p>Assuming your fork has the following remote setup</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>remote<span class="w"> </span>-v
+mantid<span class="w">  </span>https://github.com/mantidproject/mantid.git<span class="w"> </span><span class="o">(</span>fetch<span class="o">)</span>
+mantid<span class="w">  </span>https://github.com/mantidproject/mantid.git<span class="w"> </span><span class="o">(</span>push<span class="o">)</span>
+origin<span class="w">  </span>https://github.com/&lt;username&gt;/mantid.git<span class="w"> </span><span class="o">(</span>fetch<span class="o">)</span>
+origin<span class="w">  </span>https://github.com/&lt;username&gt;/mantid.git<span class="w"> </span><span class="o">(</span>push<span class="o">)</span>
+</pre></div>
+</div>
+<p>then you can follow these instructions to fix the merge conflict:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>fetch<span class="w"> </span>--all
+git<span class="w"> </span>checkout<span class="w"> </span>release-next
+git<span class="w"> </span>pull<span class="w"> </span>mantid<span class="w"> </span>release-next
+git<span class="w"> </span>checkout<span class="w"> </span>main
+git<span class="w"> </span>pull<span class="w"> </span>mantid<span class="w"> </span>main
+git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span><span class="m">0</span>-fix-conflicts
+git<span class="w"> </span>merge<span class="w"> </span>release-next
+</pre></div>
+</div>
+<p>You should then fix the merge conflicts, git add and commit the changes. Then push the branch to the <code class="docutils literal notranslate"><span class="pre">mantid</span></code> remote repository and open a PR. The PR should be reviewed and then merged into <code class="docutils literal notranslate"><span class="pre">main</span></code>.</p>
+</section>
+<section id="from-a-non-fork">
+<h3>From a non-fork<a class="headerlink" href="#from-a-non-fork" title="Link to this heading">¶</a></h3>
+<p>Assuming you have the following remote setup</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>remote<span class="w"> </span>-v
+origin<span class="w">  </span>https://github.com/mantidproject/mantid.git<span class="w"> </span><span class="o">(</span>fetch<span class="o">)</span>
+origin<span class="w">  </span>https://github.com/mantidproject/mantid.git<span class="w"> </span><span class="o">(</span>push<span class="o">)</span>
+</pre></div>
+</div>
+<p>then you can follow these instructions to fix the merge conflict:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>fetch<span class="w"> </span>--all
+git<span class="w"> </span>checkout<span class="w"> </span>release-next
+git<span class="w"> </span>pull<span class="w"> </span>origin<span class="w"> </span>release-next
+git<span class="w"> </span>checkout<span class="w"> </span>main
+git<span class="w"> </span>pull<span class="w"> </span>origin<span class="w"> </span>main
+git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span><span class="m">0</span>-fix-conflicts
+git<span class="w"> </span>merge<span class="w"> </span>release-next
+</pre></div>
+</div>
+<p>You should then fix the merge conflicts, git add and commit the changes. Then push the branch to the <code class="docutils literal notranslate"><span class="pre">origin</span></code> remote repository and open a PR. The PR should be reviewed and then merged into <code class="docutils literal notranslate"><span class="pre">main</span></code>.</p>
+</section>
+</section>
 <section id="specific-quirks-of-mantid">
 <h2>Specific quirks of Mantid<a class="headerlink" href="#specific-quirks-of-mantid" title="Link to this heading">¶</a></h2>
 <p>There are often multiple and/or confusing ways to do things in Mantid and it is not always clear which is the right approach, particularly when there is a lot of legacy code following old outdated approaches. This section attempts to point out some of the common areas where there can be pitfalls. There is no direct advice here, but if you see changes that include these things and don’t look ideal then it might be worth digging deeper.</p>
