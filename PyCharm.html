@@ -172,6 +172,23 @@ We use <code class="docutils literal notranslate"><span class="pre">DebugWithRel
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
+<p>On Windows, you may see the following error when launching workbench in debug mode:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>incompatible<span class="w"> </span>copy<span class="w"> </span>of<span class="w"> </span>pydevd<span class="w"> </span>already<span class="w"> </span>imported:
+C:<span class="se">\P</span>rogram<span class="w"> </span>Files<span class="se">\J</span>etBrains<span class="se">\P</span>yCharm<span class="w"> </span>Community<span class="w"> </span>Edition<span class="w"> </span><span class="m">2023</span>.1.2<span class="se">\p</span>lugins<span class="se">\p</span>ython-ce<span class="se">\h</span>elpers<span class="se">\p</span>ydev<span class="se">\_</span>pydev_bundle<span class="se">\_</span>_init__.py
+C:<span class="se">\P</span>rogram<span class="w"> </span>Files<span class="se">\J</span>etBrains<span class="se">\P</span>yCharm<span class="w"> </span>Community<span class="w"> </span>Edition<span class="w"> </span><span class="m">2023</span>.1.2<span class="se">\p</span>lugins<span class="se">\p</span>ython-ce<span class="se">\h</span>elpers<span class="se">\p</span>ydev<span class="se">\_</span>pydev_bundle<span class="se">\_</span>pydev_calltip_util.py
+...
+</pre></div>
+</div>
+<p>To resolve the error, remove <strong>only</strong> the debugpy package from your Conda environment with</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>remove<span class="w"> </span>debugpy<span class="w"> </span>--force
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">--force</span></code> argument tells Conda to remove the single package only, ignoring the packages that depend on debugpy.
+Note that the Mamba implementation of <code class="docutils literal notranslate"><span class="pre">remove</span> <span class="pre">--force</span></code> did not skip dependency checking until version 1.5.2 (October 2023).
+If your version of Mamba is older than this, use the Conda command.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <p>macOS developers will see the warning from Qt in the terminal:</p>
 <p><code class="docutils literal notranslate"><span class="pre">An</span> <span class="pre">OpenGL</span> <span class="pre">surfcace</span> <span class="pre">format</span> <span class="pre">was</span> <span class="pre">requested</span> <span class="pre">that</span> <span class="pre">is</span> <span class="pre">either</span> <span class="pre">not</span> <span class="pre">version</span> <span class="pre">3.2</span> <span class="pre">or</span> <span class="pre">higher</span> <span class="pre">or</span> <span class="pre">a</span> <span class="pre">not</span> <span class="pre">Core</span> <span class="pre">Profile.</span></code>
 <code class="docutils literal notranslate"><span class="pre">Chromium</span> <span class="pre">on</span> <span class="pre">macOS</span> <span class="pre">will</span> <span class="pre">fall</span> <span class="pre">back</span> <span class="pre">to</span> <span class="pre">software</span> <span class="pre">rendering</span> <span class="pre">in</span> <span class="pre">this</span> <span class="pre">case.</span></code>
