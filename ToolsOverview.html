@@ -335,9 +335,11 @@ such as unused parameters or not using range-based for loops. Primarily this is 
 <section id="installing">
 <h3><a class="toc-backref" href="#id17" role="doc-backlink">Installing</a><a class="headerlink" href="#installing" title="Link to this heading">¶</a></h3>
 <p>Mantid does not come packaged with clang-tidy; each developer must download it themselves. Windows users can utilise clang-tidy support for Visual Studio.
-For other operating systems, Mantid provides clang-tidy functionality through cmake.</p>
+For other operating systems, Mantid provides clang-tidy functionality through cmake.
+The guide <a class="reference external" href="https://clang.llvm.org/docs/HowToSetupToolingForLLVM.html">How To Setup Clang Tooling For LLVM</a> gives valuable information for configuration.
+Two keys are to add <code class="docutils literal notranslate"><span class="pre">-DCMAKE_EXPORT_COMPILE_COMMANDS=on</span></code> and to symbolically link the <code class="docutils literal notranslate"><span class="pre">compile_commands.json</span></code> from the build tree into the source tree.</p>
 <ul class="simple">
-<li><p><strong>Ubuntu</strong>: Run <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">clang-tidy</span></code> in the command line.</p></li>
+<li><p><strong>Ubuntu</strong>: Run <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">clang</span> <span class="pre">clang-tidy</span></code> in the command line. The <code class="docutils literal notranslate"><span class="pre">clang</span></code> package is needed to get the system headers.</p></li>
 <li><p><strong>Windows</strong>: Download the <a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=caphyon.ClangPowerTools">Visual Studio extension</a>. Windows can operate clang-tidy from Visual Studio alone and so do not need to touch cmake.</p></li>
 </ul>
 <p>For non-Ubuntu systems, download the latest clang-tidy <a class="reference external" href="http://releases.llvm.org/download.html">pre-compiled binary</a>. Windows users should add to path when prompted.</p>
