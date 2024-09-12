@@ -156,16 +156,24 @@
 </section>
 <section id="setup-the-mantid-conda-environment">
 <h2>Setup the mantid conda environment<a class="headerlink" href="#setup-the-mantid-conda-environment" title="Link to this heading">¶</a></h2>
-<ul>
-<li><p>Open a terminal or powershell with conda enabled there are two ways to do this:</p>
-<blockquote>
-<div><ul class="simple">
+<p>Open a terminal or powershell with conda enabled. Here are two ways to do this:</p>
+<ul class="simple">
 <li><p>Open an Anaconda prompt (Mambaforge).</p></li>
 <li><p>Add the path of your Mambaforge installation to your system path, if you didn’t do it during installation (Follow the answers in the <a class="reference external" href="https://docs.anaconda.com/anaconda/user-guide/faq/#installing-anaconda">FAQ</a>). Then you can use conda from the Command Prompt and Powershell.</p></li>
 </ul>
-</div></blockquote>
+<p>Create a Conda environment and install the <code class="docutils literal notranslate"><span class="pre">mantid-developer</span></code> Conda metapackage by following the steps below:</p>
+<ul>
+<li><p>First create and activate a new conda environment. Here we have named it <code class="docutils literal notranslate"><span class="pre">mantid-developer</span></code> for consistency with the rest of the developer documentation but you are free to choose any name.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>mamba<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>mantid-developer
+mamba<span class="w"> </span>activate<span class="w"> </span>mantid-developer
+</pre></div>
+</div>
 </li>
-<li><p>Create the mantid conda environment by navigating to your mantid source code directory in your terminal and running <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">env</span> <span class="pre">create</span> <span class="pre">-f</span> <span class="pre">mantid-developer-win.yml</span></code></p></li>
+<li><p>Install the <code class="docutils literal notranslate"><span class="pre">mantid-developer</span></code> Conda metapackage from the <code class="docutils literal notranslate"><span class="pre">mantid</span></code> Conda channel. You will normally want the nightly version.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>mamba<span class="w"> </span>install<span class="w"> </span>-c<span class="w"> </span>mantid/label/nightly<span class="w"> </span>mantid-developer
+</pre></div>
+</div>
+</li>
 </ul>
 </section>
 <section id="configure-cmake-and-generate-build-files">
@@ -180,7 +188,7 @@
 </dl>
 </li>
 <li><p>Navigate to your mantid source directory.</p></li>
-<li><p>Run <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">mantid-developer</span></code> to activate your conda environment.</p></li>
+<li><p>If not already activated in the previous step, run <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">mantid-developer</span></code> to activate your conda environment.</p></li>
 <li><p>If you want your build directory inside your source directory, run either:</p>
 <blockquote>
 <div><ul class="simple">
@@ -226,7 +234,7 @@
 <li><p>Open Visual Studio with <code class="docutils literal notranslate"><span class="pre">visual-studio_ninja.bat</span></code>, which is found in the build folder</p></li>
 <li><p>Select “win-ninja” from the Configuration dropdown at the top of the screen</p></li>
 <li><p>Select “Switch between solutions and available views” in the Solution Explorer and click on “CMake Targets View”</p></li>
-<li><p>It is recommmended that the “When cache is out of date” option is set to “Never run configure step automatically” in Tools-&gt;Options-&gt;CMake</p></li>
+<li><p>It is recommended that the “When cache is out of date” option is set to “Never run configure step automatically” in Tools-&gt;Options-&gt;CMake</p></li>
 </ul>
 </dd>
 </dl>

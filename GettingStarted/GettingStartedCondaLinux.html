@@ -151,16 +151,26 @@
 </section>
 <section id="setup-the-mantid-conda-environment">
 <h2>Setup the mantid conda environment<a class="headerlink" href="#setup-the-mantid-conda-environment" title="Link to this heading">¶</a></h2>
-<p>Dependencies are managed by conda via Mambaforge. The dependencies are defined in the <code class="docutils literal notranslate"><span class="pre">mantid-developer-linux.yml</span></code> file, located in the root of the mantid source code directory. With your restarted terminal:</p>
-<ul class="simple">
-<li><p>Create the mantid conda environment by navigating to your mantid source code directory in your terminal and running <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">env</span> <span class="pre">create</span> <span class="pre">-f</span> <span class="pre">mantid-developer-linux.yml</span></code></p></li>
+<p>Create a Conda environment and install the <code class="docutils literal notranslate"><span class="pre">mantid-developer</span></code> Conda metapackage by following the steps below:</p>
+<ul>
+<li><p>First create and activate a new conda environment. Here we have named it <code class="docutils literal notranslate"><span class="pre">mantid-developer</span></code> for consistency with the rest of the developer documentation but you are free to choose any name.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>mamba<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>mantid-developer
+mamba<span class="w"> </span>activate<span class="w"> </span>mantid-developer
+</pre></div>
+</div>
+</li>
+<li><p>Install the <code class="docutils literal notranslate"><span class="pre">mantid-developer</span></code> Conda metapackage from the <code class="docutils literal notranslate"><span class="pre">mantid</span></code> Conda channel. You will normally want the nightly version.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>mamba<span class="w"> </span>install<span class="w"> </span>-c<span class="w"> </span>mantid/label/nightly<span class="w"> </span>mantid-developer
+</pre></div>
+</div>
+</li>
 </ul>
 </section>
 <section id="configure-cmake-and-generate-build-files">
 <h2>Configure CMake and generate build files<a class="headerlink" href="#configure-cmake-and-generate-build-files" title="Link to this heading">¶</a></h2>
 <ul>
 <li><p>Still using the terminal.</p></li>
-<li><p>Run <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">mantid-developer</span></code> to activate your conda environment.</p></li>
+<li><p>If not already activated in the previous step, run <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">mantid-developer</span></code> to activate your conda environment.</p></li>
 <li><p>Navigate back to your mantid source directory using <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">mantid</span></code> if you used the default name during cloning from git.</p></li>
 <li><p>Inside of your mantid source directory run <code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">--preset=linux</span></code></p>
 <blockquote>
