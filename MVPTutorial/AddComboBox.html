@@ -108,10 +108,12 @@ user can choose from. If a line edit was used instead then a typo
 would prevent the GUI from working correctly; a ComboBox prevents this
 possibility.</p>
 <p>The following code should be added to the view’s <code class="docutils literal notranslate"><span class="pre">__init__</span></code> function.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">combo</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QComboBox</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qtpy.QWidgets</span> <span class="kn">import</span> <span class="n">QComboBox</span>
+
+<span class="bp">self</span><span class="o">.</span><span class="n">_combo</span> <span class="o">=</span> <span class="n">QComboBox</span><span class="p">()</span>
 <span class="n">options</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;one&quot;</span><span class="p">,</span> <span class="s2">&quot;two&quot;</span><span class="p">,</span> <span class="s2">&quot;three&quot;</span><span class="p">]</span>
-<span class="bp">self</span><span class="o">.</span><span class="n">combo</span><span class="o">.</span><span class="n">addItems</span><span class="p">(</span><span class="n">options</span><span class="p">)</span>
-<span class="n">grid</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">combo</span><span class="p">)</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">_combo</span><span class="o">.</span><span class="n">addItems</span><span class="p">(</span><span class="n">options</span><span class="p">)</span>
+<span class="n">grid</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_combo</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>The first line creates a ComboBox widget. The second line defines the

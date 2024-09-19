@@ -106,14 +106,14 @@
 <p>The view should be so simple that it does not require
 testing. However, the presenter contains logic and should therefore be
 tested. When testing the presenter we do not want to create the actual
-GUI, instead we just want to ensure that the correct calls are made,
+GUI, instead we just want to ensure that the expected calls are made,
 this is done via mocking see <a class="reference external" href="https://docs.python.org/3/library/unittest.mock-examples.html">unittest docs</a> for
 a detailed discussion. Here we will have a brief discussion of the
 main points.</p>
 <p>First are the import statements</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">import</span> <span class="nn">presenter</span>
-<span class="kn">import</span> <span class="nn">view</span>
+<span class="kn">from</span> <span class="nn">presenter</span> <span class="kn">import</span> <span class="n">Presenter</span>
+<span class="kn">from</span> <span class="nn">view</span> <span class="kn">import</span> <span class="n">View</span>
 
 <span class="kn">import</span> <span class="nn">unittest</span>
 <span class="kn">from</span> <span class="nn">unittest</span> <span class="kn">import</span> <span class="n">mock</span>
@@ -122,14 +122,13 @@ main points.</p>
 <p>The test class is then initialised:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">PresenterTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">view</span> <span class="o">=</span> <span class="n">mock</span><span class="o">.</span><span class="n">create_autospec</span><span class="p">(</span><span class="n">view</span><span class="o">.</span><span class="n">View</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_view</span> <span class="o">=</span> <span class="n">mock</span><span class="o">.</span><span class="n">create_autospec</span><span class="p">(</span><span class="n">View</span><span class="p">)</span>
 
         <span class="c1"># mock view</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">doSomethingSignal</span> <span class="o">=</span> <span class="n">mock</span><span class="o">.</span><span class="n">Mock</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">btn_click</span> <span class="o">=</span> <span class="n">mock</span><span class="o">.</span><span class="n">Mock</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">getValue</span> <span class="o">=</span> <span class="n">mock</span><span class="o">.</span><span class="n">Mock</span><span class="p">(</span><span class="n">return_value</span><span class="o">=</span><span class="mf">3.14</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_view</span><span class="o">.</span><span class="n">_button_clicked</span> <span class="o">=</span> <span class="n">mock</span><span class="o">.</span><span class="n">Mock</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_view</span><span class="o">.</span><span class="n">get_value</span> <span class="o">=</span> <span class="n">mock</span><span class="o">.</span><span class="n">Mock</span><span class="p">(</span><span class="n">return_value</span><span class="o">=</span><span class="mf">3.14</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">presenter</span> <span class="o">=</span> <span class="n">presenter</span><span class="o">.</span><span class="n">Presenter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_presenter</span> <span class="o">=</span> <span class="n">Presenter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_view</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">create_autospec</span></code> mocks the class contained within the brackets. We
@@ -137,16 +136,16 @@ then need to explicitly mock the methods using <code class="docutils literal not
 addtion, when a return value is needed, this is provided in the call
 to <code class="docutils literal notranslate"><span class="pre">mock.Mock</span></code>.</p>
 <p>A test is shown below:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_doSomething</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">presenter</span><span class="o">.</span><span class="n">handleButton</span><span class="p">()</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">getValue</span><span class="o">.</span><span class="n">assert_called_once</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_handle_button_clicked</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_presenter</span><span class="o">.</span><span class="n">handle_button_clicked</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_view</span><span class="o">.</span><span class="n">get_value</span><span class="o">.</span><span class="n">assert_called_once</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>We call the <code class="docutils literal notranslate"><span class="pre">handleButton</span></code> function and then use <code class="docutils literal notranslate"><span class="pre">assert_called_once</span></code>
+<p>We call the <code class="docutils literal notranslate"><span class="pre">handle_button_clicked</span></code> function and then use <code class="docutils literal notranslate"><span class="pre">assert_called_once</span></code>
 to ensure that the method from the view is called the correct number of
 times. This is a robust method for checking how many times a function is
 called.</p>
-<p>We could also use <code class="docutils literal notranslate"><span class="pre">self.assertEqual(1,</span> <span class="pre">self.view.getValue.call_count)</span></code> or
+<p>We could also use <code class="docutils literal notranslate"><span class="pre">self.assertEqual(1,</span> <span class="pre">self._view.get_value.call_count)</span></code> or
 a python <code class="docutils literal notranslate"><span class="pre">assert</span></code> statement. However using more specific asserts from the
 <code class="docutils literal notranslate"><span class="pre">mock</span></code> and <code class="docutils literal notranslate"><span class="pre">unittest</span></code> libraries can make intent and error messages clearer.</p>
 <p>The last bit of code is to execute the tests:</p>

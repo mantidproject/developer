@@ -107,8 +107,10 @@
 most versatile way of allowing this is to use a line edit, which
 allows a user to enter arbitrary text. Adding the following code to
 the <code class="docutils literal notranslate"><span class="pre">__init__</span></code> function of the view will add a line edit:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QLineEdit</span><span class="p">()</span>
-<span class="n">grid</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qtpy.QWidgets</span> <span class="kn">import</span> <span class="n">QLineEdit</span>
+
+<span class="bp">self</span><span class="o">.</span><span class="n">_line_edit</span> <span class="o">=</span> <span class="n">QLineEdit</span><span class="p">()</span>
+<span class="n">grid</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_line_edit</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>It is possible to have a default value within the line edit. It is
