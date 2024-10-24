@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>What is EnumeratedStringProperty?</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css?v=fadd4351" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=77160d70" />
+    <script src="_static/documentation_options.js?v=a8da1a53"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Event Workspace Development" href="EventWorkspaceDev.html" />
+    <link rel="prev" title="EnumeratedString" href="EnumeratedString.html" />
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-59110517-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+  </head><body>
+
+
+
+
+
+  <div id="navbar" class="navbar navbar-default ">
+    <div class="container">
+      <div class="navbar-header">
+        
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://www.mantidproject.org">
+           </a>
+        <span class="navbar-text navbar-version pull-left"><b>main</b></span>
+      </div>
+
+      
+        <div class="collapse navbar-collapse nav-collapse">
+      
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="index.html">Home</a></li>
+                <li><a href="https://download.mantidproject.org">Download</a></li>
+                <li><a href="https://docs.mantidproject.org">User Documentation</a></li>
+                <li><a href="http://www.mantidproject.org/contact">Contact Us</a></li>
+            
+            
+              
+              
+            
+            
+            
+            
+          </ul>
+              
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+            </div>
+    </div>
+    <p>
+<div class="related" role="navigation" aria-label="related navigation">
+  <h3>Navigation</h3>
+  <ul>
+    <li class="nav-item nav-item-0"><a href="index.html">Documentation</a> &#187;</li>
+    
+    
+    
+    
+    <li class="nav-item nav-item-this"><a href="">What is EnumeratedStringProperty?</a></li>
+    
+    
+  </ul>
+</div> </p>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <section id="what-is-enumeratedstringproperty">
+<span id="enumeratedstringproperty"></span><h1>What is EnumeratedStringProperty?<a class="headerlink" href="#what-is-enumeratedstringproperty" title="Link to this heading">¶</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">EnumeratedStringProperty</span></code> allows the use of <code class="docutils literal notranslate"><span class="pre">EnumeratedString</span></code> objects within the Property structure framework.</p>
+</section>
+<section id="how-to-use-the-enumeratedstringproperty">
+<h1>How to use the EnumeratedStringProperty<a class="headerlink" href="#how-to-use-the-enumeratedstringproperty" title="Link to this heading">¶</a></h1>
+<p>Include the <code class="docutils literal notranslate"><span class="pre">EnumeratedStringProperty.h</span></code> header file. Set up the <code class="docutils literal notranslate"><span class="pre">EnumeratedStringProperty</span></code> as follows:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">namespace</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">binningModeNames</span><span class="p">{</span><span class="s">&quot;Default&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Linear&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Logarithmic&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ReverseLogarithmic&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Power&quot;</span><span class="p">};</span>
+<span class="w">    </span><span class="k">enum</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">BinningMode</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">DEFAULT</span><span class="p">,</span><span class="w"> </span><span class="n">LINEAR</span><span class="p">,</span><span class="w"> </span><span class="n">LOGARITHMIC</span><span class="p">,</span><span class="w"> </span><span class="n">REVERSELOG</span><span class="p">,</span><span class="w"> </span><span class="n">POWER</span><span class="p">,</span><span class="w"> </span><span class="n">enum_count</span><span class="w"> </span><span class="p">};</span>
+<span class="w">    </span><span class="k">typedef</span><span class="w"> </span><span class="n">Mantid</span><span class="o">::</span><span class="n">Kernel</span><span class="o">::</span><span class="n">EnumeratedString</span><span class="o">&lt;</span><span class="n">BinningMode</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">binningModeNames</span><span class="o">&gt;</span><span class="w"> </span><span class="n">BINMODE</span><span class="p">;</span>
+<span class="p">}</span><span class="w"> </span><span class="c1">// namespace</span>
+</pre></div>
+</div>
+<p>Declare property:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">declareProperty</span><span class="p">(</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">EnumeratedStringProperty</span><span class="o">&lt;</span><span class="n">BinningMode</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">binningModeNames</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="s">&quot;PropertyName&quot;</span><span class="p">),</span>
+<span class="w">    </span><span class="s">&quot;Description&quot;</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>Use declared property:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">BINMODE</span><span class="w"> </span><span class="n">binMode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">someName</span><span class="p">;</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">binMode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">BinningMode</span><span class="o">::</span><span class="n">LINEAR</span><span class="p">)</span>
+<span class="w">    </span><span class="n">do_something</span><span class="p">();</span>
+<span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">binMode</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s">&quot;Default&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">do_something_else</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Determining and using pre-set mode, if present, or using the default setting:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">BINMODE</span><span class="w"> </span><span class="n">binMode</span><span class="p">;</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">existsProperty</span><span class="p">(</span><span class="s">&quot;PropertyName&quot;</span><span class="p">))</span>
+<span class="w">    </span><span class="n">Mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getPropertyValue</span><span class="p">(</span><span class="s">&quot;PropertyName&quot;</span><span class="p">);</span>
+<span class="k">else</span>
+<span class="w">    </span><span class="n">Mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Default&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="example-use-of-enumeratedstring">
+<h1>Example Use of EnumeratedString<a class="headerlink" href="#example-use-of-enumeratedstring" title="Link to this heading">¶</a></h1>
+<p>Please see examples of usage in <code class="docutils literal notranslate"><span class="pre">Rebin.cpp</span></code>, <code class="docutils literal notranslate"><span class="pre">CalculateDIFC.cpp</span></code>, and <code class="docutils literal notranslate"><span class="pre">AddSampleLog.cpp</span></code>.</p>
+</section>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+      <ul class="nav navbar-nav" style=" float: right;">
+      
+      
+          
+            
+  <li>
+    <a href="EnumeratedString.html" title="Previous Chapter: EnumeratedString"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; EnumeratedString</span>
+    </a>
+  </li>
+  <li>
+    <a href="EventWorkspaceDev.html" title="Next Chapter: Event Workspace Development"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Event Workspa... &raquo;</span>
+    </a>
+  </li>
+          
+       
+          <li><a href="#">Back to top</a></li>
+       </ul>
+    <p>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
