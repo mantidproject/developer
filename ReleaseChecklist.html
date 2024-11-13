@@ -677,8 +677,6 @@ have been fixed. Then:</p>
 <li><p>Check the release notes and verify that the “Under Construction” paragraph on the main
 index page has been removed. Remove the paragraph if it still exists.</p></li>
 <li><p>Ensure that all changes, including release notes, have been merged into the <code class="docutils literal notranslate"><span class="pre">release-next</span></code> branch.</p></li>
-<li><p>On the <code class="docutils literal notranslate"><span class="pre">release-next</span></code> branch, check whether the <a class="reference external" href="https://github.com/mantidproject/mantid/blob/release-next/scripts/ExternalInterfaces/CMakeLists.txt">git SHA</a>
-for MSlice is up to date. If not, create a PR to update it and ask a gatekeeper to merge it.</p></li>
 <li><p>Make sure the <code class="docutils literal notranslate"><span class="pre">release-next</span></code> branch is fully merged into <code class="docutils literal notranslate"><span class="pre">main</span></code>. If required, manually run the <a class="reference external" href="https://github.com/mantidproject/mantid/actions/workflows/automerge.yml/">GitHub workflow</a> using the <code class="docutils literal notranslate"><span class="pre">release-next</span></code> branch to
 merge the changes.</p></li>
 <li><p>Run the <a class="reference external" href="https://builds.mantidproject.org/view/All/job/close-release-testing">close-release-testing</a> Jenkins job.
@@ -714,7 +712,9 @@ issues and Release Candidates in the <em>#general</em> slack channel.</p></li>
 <section id="create-final-release-candidates">
 <span id="technical-release-manager-release-candidates"></span><h3><a class="toc-backref" href="#id38" role="doc-backlink">Create Final Release Candidates</a><a class="headerlink" href="#create-final-release-candidates" title="Link to this heading">¶</a></h3>
 <p>Check with the Quality Assurance Manager that the Smoke testing has been completed, and any issues
-have been fixed. The release candidates must now be recreated with their final version numbers. To do this, build the
+have been fixed. Additionally, ensure that the version of the <code class="docutils literal notranslate"><span class="pre">mslice</span></code> package in <code class="docutils literal notranslate"><span class="pre">conda_build_config.yaml</span></code> is correct.
+If there have been any updates to MSlice since the last release, it must be released first. The release candidates must
+now be recreated with their final version numbers. To do this, build the
 <a class="reference external" href="https://builds.mantidproject.org/view/Nightly%20Pipelines/job/release-next_nightly_deployment/">release-next_nightly_deployment Jenkins pipeline</a>
 with the following parameters (most are already defaulted to the correct values):</p>
 <ul class="simple">
