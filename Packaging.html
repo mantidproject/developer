@@ -119,6 +119,7 @@
 <li><p><a class="reference internal" href="#example" id="id10">Example</a></p></li>
 </ul>
 </li>
+<li><p><a class="reference internal" href="#building-a-custom-mantid-developer-environment" id="id11">Building a custom <code class="docutils literal notranslate"><span class="pre">mantid-developer</span></code> environment</a></p></li>
 </ul>
 </nav>
 <p>This page gives an overview of the different packaging mechanisms used to deliver
@@ -265,6 +266,20 @@ by the CI pipeline to indicate it has been built outside of the standard process
 </ol>
 <p>Most often, you won’t need to upload the packages to Anaconda, this is most useful in cases where installing standalone packages is inconvenient. Standalone package builds created by the jenkins job can be found under the jenkins job build artifacts, this is near the top of the page. Say you built a package for Windows using the jenkins job, you should find a <code class="docutils literal notranslate"><span class="pre">mantidworkbench</span></code> exe file in the build artifacts.</p>
 </section>
+</section>
+<section id="building-a-custom-mantid-developer-environment">
+<span id="build-custom-mantid-developer"></span><h2><a class="toc-backref" href="#id11" role="doc-backlink">Building a custom <code class="docutils literal notranslate"><span class="pre">mantid-developer</span></code> environment</a><a class="headerlink" href="#building-a-custom-mantid-developer-environment" title="Link to this heading">¶</a></h2>
+<p>This is useful if you need to change a pinned version of one of Mantid’s dependencies and test the change locally.</p>
+<ol class="arabic simple">
+<li><p>Create a conda environment and install <code class="docutils literal notranslate"><span class="pre">boa</span></code> and <code class="docutils literal notranslate"><span class="pre">versioningit</span></code> into it. For this example, called <code class="docutils literal notranslate"><span class="pre">mantid_dev_builder</span></code>.</p></li>
+<li><p>Make your changes to the conda recipe files.</p></li>
+<li><p>Change directory to <code class="docutils literal notranslate"><span class="pre">mantid/conda/recipes</span></code></p></li>
+<li><p>With <code class="docutils literal notranslate"><span class="pre">mantid_dev_builder</span></code> active, run <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">mambabuild</span> <span class="pre">./mantid-developer/</span></code>. This will build a local version of <code class="docutils literal notranslate"><span class="pre">mantid-developer</span></code> with your changes and place it in <code class="docutils literal notranslate"><span class="pre">mantid_dev_builder</span></code>’s <code class="docutils literal notranslate"><span class="pre">conda-bld</span></code> folder. The output from <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">mambabuild</span></code> should tell you the location.</p></li>
+<li><p>Deactivate <code class="docutils literal notranslate"><span class="pre">mantid_dev_builder</span></code> and create a new environment to install the custom <code class="docutils literal notranslate"><span class="pre">mantid-developer</span></code> package into (e.g if you were testing a new version of numpy you might call it <code class="docutils literal notranslate"><span class="pre">mantid_dev_numpy_test</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mamba</span> <span class="pre">install</span> <span class="pre">-c</span> <span class="pre">&lt;path</span> <span class="pre">to</span> <span class="pre">mantid_dev_builder's</span> <span class="pre">conda-bld</span> <span class="pre">folder&gt;</span> <span class="pre">mantid-developer</span></code> to install the package.</p></li>
+<li><p>You will need to re-run cmake with this new environment.</p></li>
+</ol>
+<p>Note: If you have <code class="docutils literal notranslate"><span class="pre">boa</span></code> installed in your base environment it seems <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">mambabuild</span></code> will use it over your activated environment. In this case you will likely get an error that you don’t have <code class="docutils literal notranslate"><span class="pre">versioningit</span></code> installed. One way to fix this is to install <code class="docutils literal notranslate"><span class="pre">versioningit</span></code> into your base environment and just use that instead of making a new environment.</p>
 </section>
 </section>
 
