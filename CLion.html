@@ -105,9 +105,13 @@
 <ul class="simple">
 <li><p><a class="reference internal" href="#installing-clion" id="id1">Installing CLion</a></p></li>
 <li><p><a class="reference internal" href="#opening-clion" id="id2">Opening CLion</a></p></li>
-<li><p><a class="reference internal" href="#setup-for-a-clion-build" id="id3">Setup for a CLion Build</a></p></li>
-<li><p><a class="reference internal" href="#building-with-clion" id="id4">Building with CLion</a></p></li>
-<li><p><a class="reference internal" href="#debugging-with-clion" id="id5">Debugging with CLion</a></p></li>
+<li><p><a class="reference internal" href="#setup-for-a-clion-build" id="id3">Setup for a CLion Build</a></p>
+<ul>
+<li><p><a class="reference internal" href="#additional-build-configuration" id="id4">Additional Build Configuration</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#building-with-clion" id="id5">Building with CLion</a></p></li>
+<li><p><a class="reference internal" href="#debugging-with-clion" id="id6">Debugging with CLion</a></p></li>
 </ul>
 </nav>
 <section id="installing-clion">
@@ -188,9 +192,20 @@
 <li><p>Set the build directory to the <code class="docutils literal notranslate"><span class="pre">build</span></code> directory if it is not the default (you’ll need to use the full path if its outside the source directory)</p></li>
 <li><p>The configurations drop-down at the top should show all of the build targets. If not, the CMake project is probably not loaded. Go to <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">&gt;</span> <span class="pre">Reload</span> <span class="pre">CMake</span> <span class="pre">Project</span></code>. The configurations should be populated</p></li>
 </ol>
+<section id="additional-build-configuration">
+<h3><a class="toc-backref" href="#id4" role="doc-backlink">Additional Build Configuration</a><a class="headerlink" href="#additional-build-configuration" title="Link to this heading">¶</a></h3>
+<p>This (optional) additional configuration allows one to start Clion from the JetBrains Toolbox or
+from a terminal without having to activate the conda environment in the terminal.
+This is useful when you’re working on both Mantid and other projects in CLion simultaneously.</p>
+<ol class="arabic simple">
+<li><p>Navigate to <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">&gt;</span> <span class="pre">Settings</span> <span class="pre">&gt;</span> <span class="pre">Build,</span> <span class="pre">Execution,</span> <span class="pre">Deployment</span> <span class="pre">&gt;</span> <span class="pre">CMake</span></code></p></li>
+<li><p>Under <code class="docutils literal notranslate"><span class="pre">environment</span></code>, add new environment variable <code class="docutils literal notranslate"><span class="pre">CONDA_PREFIX</span></code> with value <code class="docutils literal notranslate"><span class="pre">/path/to/mambaforge/envs/mantid-developer</span></code>.</p></li>
+<li><p>Navigate to <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">&gt;</span> <span class="pre">Settings</span> <span class="pre">&gt;</span> <span class="pre">Build,</span> <span class="pre">Execution,</span> <span class="pre">Deployment</span> <span class="pre">&gt;</span> <span class="pre">Python</span> <span class="pre">Interpreter</span> <span class="pre">&gt;</span> <span class="pre">Add</span> <span class="pre">Interpreter</span> <span class="pre">&gt;</span> <span class="pre">Add</span> <span class="pre">Local</span> <span class="pre">Interpreter</span> <span class="pre">&gt;</span> <span class="pre">Conda</span> <span class="pre">Environment</span> <span class="pre">&gt;</span> <span class="pre">Use</span> <span class="pre">existing</span> <span class="pre">environment</span></code>, then select <code class="docutils literal notranslate"><span class="pre">mantid-developer</span></code>.</p></li>
+</ol>
+</section>
 </section>
 <section id="building-with-clion">
-<h2><a class="toc-backref" href="#id4" role="doc-backlink">Building with CLion</a><a class="headerlink" href="#building-with-clion" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Building with CLion</a><a class="headerlink" href="#building-with-clion" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>To build all targets, navigate to <code class="docutils literal notranslate"><span class="pre">Build</span> <span class="pre">&gt;</span> <span class="pre">Build</span> <span class="pre">All</span> <span class="pre">in</span> <span class="pre">'Debug'</span></code>. Check that the build command displayed in the Messages window is running the correct cmake executable from your conda installation.</p></li>
 <li><p>To build a specific target, select it in the configurations drop-down menu and click the hammer icon next to it.</p></li>
@@ -210,24 +225,34 @@
 </ol>
 </section>
 <section id="debugging-with-clion">
-<h2><a class="toc-backref" href="#id5" role="doc-backlink">Debugging with CLion</a><a class="headerlink" href="#debugging-with-clion" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Debugging with CLion</a><a class="headerlink" href="#debugging-with-clion" title="Link to this heading">¶</a></h2>
 <p>To debug workbench, you’ll need to edit the <code class="docutils literal notranslate"><span class="pre">workbench</span></code> CMake Application configuration.</p>
 <ol class="arabic">
-<li><p>Set the executable to be the <code class="docutils literal notranslate"><span class="pre">python.exe</span></code> in your conda installation</p>
+<li><p>Set the executable to be the <code class="docutils literal notranslate"><span class="pre">python</span></code> executable in your conda installation:</p>
 <table class="hlist"><tr><td><ul class="simple">
-<li><p>On Linux: <code class="docutils literal notranslate"><span class="pre">/path/to/mambaforge/envs/mantid-developer/bin/python.exe</span></code></p></li>
+<li><p>On Linux &amp; macOS: <code class="docutils literal notranslate"><span class="pre">/path/to/mambaforge/envs/mantid-developer/bin/python</span></code></p></li>
 <li><p>On Windows: <code class="docutils literal notranslate"><span class="pre">/path/to/mambaforge/envs/mantid-developer/python.exe</span></code></p></li>
 </ul>
 </td></tr></table>
 </li>
-<li><p>Set the program arguments</p>
+<li><p>Set the program arguments:</p>
 <table class="hlist"><tr><td><ul class="simple">
-<li><p>On Linux: <code class="docutils literal notranslate"><span class="pre">workbench</span> <span class="pre">--single-process</span></code></p></li>
-<li><p>On Windows: <code class="docutils literal notranslate"><span class="pre">workbench-script.pyw</span> <span class="pre">--single-process</span></code></p></li>
+<li><p>On Linux, macOS and Windows: <code class="docutils literal notranslate"><span class="pre">-m</span> <span class="pre">workbench</span> <span class="pre">--single-process</span></code></p></li>
 </ul>
 </td></tr></table>
 </li>
-<li><p>Set the working directory to be the full path to your <code class="docutils literal notranslate"><span class="pre">build/bin</span></code> directory</p></li>
+<li><p>Set the working directory:</p>
+<table class="hlist"><tr><td><ul class="simple">
+<li><p>All OS: <code class="docutils literal notranslate"><span class="pre">path/to/mambaforge/envs/md/bin/</span></code></p></li>
+</ul>
+</td></tr></table>
+</li>
+<li><p>Set any relevant environment variables:</p>
+<table class="hlist"><tr><td><ul class="simple">
+<li><p>On macOS: <code class="docutils literal notranslate"><span class="pre">PYTHONPATH=${PYTHONPATH}:/full/path/to/build/bin/</span></code></p></li>
+</ul>
+</td></tr></table>
+</li>
 </ol>
 <p>The <code class="docutils literal notranslate"><span class="pre">--single-process</span></code> flag is necessary for debugging. See the <a class="reference internal" href="Workbench/RunningWorkbench.html#runningworkbench"><span class="std std-ref">Running Workbench</span></a> documentation for more information.</p>
 <p>You should now be able to set breakpoints and start debugging by clicking the bug icon.</p>
