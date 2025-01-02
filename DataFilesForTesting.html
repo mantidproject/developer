@@ -235,8 +235,9 @@ the preferred location for storing testing data.</p>
 </section>
 <section id="adding-a-new-file-s">
 <span id="datafilesfortesting-addinganewfile"></span><h2><a class="toc-backref" href="#id8" role="doc-backlink">Adding A New File(s)</a><a class="headerlink" href="#adding-a-new-file-s" title="Link to this heading">¶</a></h2>
-<p>A helper git command is defined called <code class="docutils literal notranslate"><span class="pre">add-test-data</span></code>. It would be
-called like this:</p>
+<p>A helper git command is defined called <code class="docutils literal notranslate"><span class="pre">add-test-data</span></code>. Before first use, the command must be
+aliased using the procedure outlined <a class="reference internal" href="#datafilesfortesting-developersetup"><span class="std std-ref">below</span></a>. Once setup,
+it would be called like this:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add-test-data<span class="w"> </span>Testing/Data/UnitTest/INST12345.nxs
 </pre></div>
 </div>
@@ -258,17 +259,7 @@ called like this:</p>
 <li><p>You need to use a shell to add &amp; modify data files under Windows in
 this way. Not every shell works as described, though <a class="reference external" href="https://windows.github.com/">Github for
 Windows</a> shell would allow you to do
-everything described here step by step without deviations.
-Unfortunately, MINGW32 shell you have to select to do that is not the
-most convenient shell under Windows. In addition to that,
-<code class="docutils literal notranslate"><span class="pre">add-test-data</span></code> script is currently broken (at least was on
-20/11/2015) . This is why I would suggest to use small python script,
-provided below, which would calculate md5 hash, create the <code class="docutils literal notranslate"><span class="pre">.md5</span></code>
-file and rename your test or reference file according to the hash sum
-calculated. You then have to manually put <code class="docutils literal notranslate"><span class="pre">.md5</span></code> file to requested
-reference data location and add it to Git by usual means. The
-hash-sum named file should be, as in the case of Unix, placed to the
-<a class="reference external" href="https://testdata.mantidproject.org/ftp/external-data/upload">remote store</a></p></li>
+everything described here step by step without deviations.</p></li>
 <li><p>Note, that ILL test data should be placed under <code class="docutils literal notranslate"><span class="pre">ILL/${INSTRUMENT}</span></code>
 subdirectories (e.g. <code class="docutils literal notranslate"><span class="pre">ILL/IN16B</span></code>), and should not contain any
 instrument prefix in the file name.</p></li>
@@ -279,7 +270,7 @@ instrument prefix in the file name.</p></li>
 <p>The workflow is the same as <a class="reference internal" href="#datafilesfortesting-addinganewfile"><span class="std std-ref">adding new files</span></a> except that the developer must first put the new version of the file in the right place. For the example above, it would be <code class="docutils literal notranslate"><span class="pre">Testing/Data/UnitTest/INST12345.nxs</span></code>. Then the new <code class="docutils literal notranslate"><span class="pre">.md5</span></code> file and associated renamed file will be created. <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">diff</span></code> will show that change to the contents of <code class="docutils literal notranslate"><span class="pre">Testing/Data/UnitTest/INST12345.nxs.md5</span></code> and that there is an untracked file with the md5 sum for a name.</p>
 </section>
 <section id="developer-setup">
-<h2><a class="toc-backref" href="#id10" role="doc-backlink">Developer Setup</a><a class="headerlink" href="#developer-setup" title="Link to this heading">¶</a></h2>
+<span id="datafilesfortesting-developersetup"></span><h2><a class="toc-backref" href="#id10" role="doc-backlink">Developer Setup</a><a class="headerlink" href="#developer-setup" title="Link to this heading">¶</a></h2>
 <p>To add the <code class="docutils literal notranslate"><span class="pre">add-test-data</span></code> command alias to git run</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>config<span class="w"> </span>alias.add-test-data<span class="w"> </span><span class="s1">&#39;!bash -c &quot;tools/Development/git/git-add-test-data $*&quot;&#39;</span>
 </pre></div>
