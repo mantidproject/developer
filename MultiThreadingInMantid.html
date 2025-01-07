@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Multithreading in Mantid</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css?v=fadd4351" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=77160d70" />
     <script src="_static/documentation_options.js?v=a8da1a53"></script>
@@ -196,15 +196,15 @@ case by reversing the two lines).</p>
 <a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/qt/python/mantidqt/mantidqt/utils/async_qt_adaptor.py">async_qt_adaptor.py</a></p>
 <p>The methods you wish to run asynchronously must be inside a class that inherits from <code class="docutils literal notranslate"><span class="pre">IQtAsync</span></code>.
 You can then overwrite any of the relevant callbacks and annotate async methods with the <code class="docutils literal notranslate"><span class="pre">&#64;qt_async_task</span></code> decorator.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">DoesAsyncThings</span><span class="p">(</span><span class="n">IQtAsync</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">DoesAsyncThings</span><span class="p">(</span><span class="n">IQtAsync</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">finished_cb_slot</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">finished_cb_slot</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">task_finished</span><span class="p">()</span>
 
     <span class="nd">@qt_async_task</span>
-    <span class="k">def</span> <span class="nf">do_async</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">do_async</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">do_task</span><span class="p">()</span>
 </pre></div>
 </div>

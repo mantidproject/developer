@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Multiple Views</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=fadd4351" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <script src="../_static/documentation_options.js?v=a8da1a53"></script>
@@ -111,16 +111,16 @@ widgets that may be used in multiple GUIs.</p>
 <p>We will combine the View widget from the exercise and the PlotView widget from the
 previous section into a single view. To achieve this we will create a
 ‘main’ view:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qtpy.QtWidgets</span> <span class="kn">import</span> <span class="n">QVBoxLayout</span><span class="p">,</span> <span class="n">QWidget</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qtpy.QtWidgets</span><span class="w"> </span><span class="kn">import</span> <span class="n">QVBoxLayout</span><span class="p">,</span> <span class="n">QWidget</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Union</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">plot_view</span> <span class="kn">import</span> <span class="n">PlotView</span>
-<span class="kn">from</span> <span class="nn">view</span> <span class="kn">import</span> <span class="n">View</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">plot_view</span><span class="w"> </span><span class="kn">import</span> <span class="n">PlotView</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">view</span><span class="w"> </span><span class="kn">import</span> <span class="n">View</span>
 
-<span class="k">class</span> <span class="nc">MainView</span><span class="p">(</span><span class="n">QWidget</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">MainView</span><span class="p">(</span><span class="n">QWidget</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">QWidget</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">QWidget</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="s2">&quot;view tutorial&quot;</span><span class="p">)</span>
 
@@ -136,14 +136,14 @@ previous section into a single view. To achieve this we will create a
 <p>The important thing to note here is that when the PlotView and View
 are created the parent is set to be the MainView.</p>
 <p>The main only needs to import the main_view:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
 
-<span class="kn">from</span> <span class="nn">qtpy.QtWidgets</span> <span class="kn">import</span> <span class="n">QApplication</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qtpy.QtWidgets</span><span class="w"> </span><span class="kn">import</span> <span class="n">QApplication</span>
 
-<span class="kn">from</span> <span class="nn">main_view</span> <span class="kn">import</span> <span class="n">MainView</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">main_view</span><span class="w"> </span><span class="kn">import</span> <span class="n">MainView</span>
 
 
-<span class="k">def</span> <span class="nf">_get_qapplication_instance</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">QApplication</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_get_qapplication_instance</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">QApplication</span><span class="p">:</span>
     <span class="k">if</span> <span class="n">app</span> <span class="o">:=</span> <span class="n">QApplication</span><span class="o">.</span><span class="n">instance</span><span class="p">():</span>
         <span class="k">return</span> <span class="n">app</span>
     <span class="k">return</span> <span class="n">QApplication</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>

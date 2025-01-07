@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Renaming an Algorithm</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=fadd4351" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <script src="../_static/documentation_options.js?v=a8da1a53"></script>
@@ -200,12 +200,12 @@ become a deprecated alias of <cite>AlgNewName</cite>.</p>
 <p>Edit <cite>algNewName.py</cite>. We need to add and alias method and mark the algorithm with the alias deprecator</p>
 <p>Below are the relevant statements to deprecate the alias on Christmas day of the year 2025</p>
 <blockquote>
-<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mantid.utils.deprecator</span> <span class="kn">import</span> <span class="n">alias_deprecated</span>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mantid.utils.deprecator</span><span class="w"> </span><span class="kn">import</span> <span class="n">alias_deprecated</span>
 
 <span class="nd">@deprecated_alias</span><span class="p">(</span><span class="s1">&#39;2025-12-25&#39;</span><span class="p">)</span>
-<span class="k">class</span> <span class="nc">AlgNewName</span><span class="p">(</span><span class="n">PythonAlgorithm</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">AlgNewName</span><span class="p">(</span><span class="n">PythonAlgorithm</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="nf">alias</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">alias</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Alternative name to this algorithm&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="s1">&#39;algOldName&#39;</span>
 </pre></div>
@@ -224,7 +224,7 @@ the following error message is printed:</p>
 <p>If so desired, the user can raise a <code class="docutils literal notranslate"><span class="pre">RuntimeError</span></code> by setting property <code class="docutils literal notranslate"><span class="pre">algorithms.alias.deprecated</span></code> to
 <code class="docutils literal notranslate"><span class="pre">Raise</span></code> in the user properties file <cite>$HOME/.mantid/Mantid.user.properties</cite> or in a script:</p>
 <blockquote>
-<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mantid.kernel</span> <span class="kn">import</span> <span class="n">ConfigService</span>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mantid.kernel</span><span class="w"> </span><span class="kn">import</span> <span class="n">ConfigService</span>
 <span class="n">config</span> <span class="o">=</span> <span class="n">ConfigService</span><span class="o">.</span><span class="n">Instance</span><span class="p">()</span>
 <span class="n">config</span><span class="p">[</span><span class="s1">&#39;algorithms.alias.deprecated&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Raise&#39;</span>
 </pre></div>

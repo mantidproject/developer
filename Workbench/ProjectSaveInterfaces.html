@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Project Save</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=fadd4351" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <script src="../_static/documentation_options.js?v=a8da1a53"></script>
@@ -126,30 +126,30 @@
 <p>The way the Encoder and Decoder factory works are different, the EncoderFactory will grab the class name of the object passed to it and check if any of it’s known Encoders have a “tag” with that name in it. The DecoderFactory will check against a “tag” which is saved in the dictionary but is dynamically grabbed from the tags list of the Encoder that encoded the interface, at the time of saving and a developer will not need to save this tag.</p>
 <p>There is a slightly more advanced version of registering an Encoder with the EncoderFactory (This isn’t required by DecoderFactory due to the implementation). Alongside adding a tag equal to the class name of the Encoded variable, you can pass a function that will return True if the encoder can encode the passed object. A good example for these is the MatrixWorkspaceDisplay and TableWorkspaceDisplay as they have a containing object which is the same. This allows seperate encoders and decoders for technically the same object, with different refferences.</p>
 <p>The basic template for an io file:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">InterfaceAttributes</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">InterfaceAttributes</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="c1"># WARNING: If you delete a tag from here instead of adding a new one, it will make old project files obsolete so</span>
     <span class="c1"># just add an extra tag to the list e.g. [&quot;InstrumentWidget&quot;, &quot;IWidget&quot;]</span>
     <span class="c1"># This list must contain the name of the class that will be found at the top level of Widgets, this is usually the view</span>
     <span class="c1"># class</span>
     <span class="n">tags</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Interface&quot;</span><span class="p">]</span>
 
-<span class="k">class</span> <span class="nc">InterfaceEncoder</span><span class="p">(</span><span class="n">InterfaceAttributes</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">InterfaceEncoder</span><span class="p">(</span><span class="n">InterfaceAttributes</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">InterfaceEncoder</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">encode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">project_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">encode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">project_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">presenter</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">presenter</span>
         <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="n">presenter</span><span class="o">.</span><span class="n">getInfo</span><span class="p">(),</span> <span class="s2">&quot;state&quot;</span><span class="p">:</span> <span class="n">presenter</span><span class="o">.</span><span class="n">getState</span><span class="p">()}</span>
 
     <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">has_tag</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">tag</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">has_tag</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">tag</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">tag</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">tags</span>
 
-<span class="k">class</span> <span class="nc">InterfaceDecoder</span><span class="p">(</span><span class="n">InterfaceAttributes</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">InterfaceDecoder</span><span class="p">(</span><span class="n">InterfaceAttributes</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">InterfaceDecoder</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">decoder</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj_dict</span><span class="p">,</span> <span class="n">project_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">decoder</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj_dict</span><span class="p">,</span> <span class="n">project_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="c1"># Recreate the GUI in a base state</span>
         <span class="n">presenter</span> <span class="o">=</span> <span class="n">InterfacePresenter</span><span class="p">()</span>
 
@@ -161,14 +161,14 @@
         <span class="k">return</span> <span class="n">presenter</span><span class="o">.</span><span class="n">view</span>
 
     <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">has_tag</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">tag</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">has_tag</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">tag</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">tag</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">tags</span>
 </pre></div>
 </div>
 <p>Alongside the io file you will need to register the InterfaceEncoder and InterfaceDecoder with the relevant factories this should be done in the __init__.py file of the module containing the overall Interface. This can be done by getting the Encoder and Decoder factory objects and running register_encoder and register_decoder respectively on the factories and passing the class of the Encoder and Decoder. An example of this can be found in mantidqt/widgets/tableworkspacedisplay/__init__.py. Continuing with our previous example it would look like this:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mantidqt.project.encoderfactory</span> <span class="kn">import</span> <span class="n">EncoderFactory</span>
-<span class="kn">from</span> <span class="nn">mantidqt.project.decoderfactory</span> <span class="kn">import</span> <span class="n">DecoderFactory</span>
-<span class="kn">from</span> <span class="nn">mantidqt.widget.interface.io</span> <span class="kn">import</span> <span class="n">InterfaceEncoder</span><span class="p">,</span> <span class="n">InterfaceDecoder</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mantidqt.project.encoderfactory</span><span class="w"> </span><span class="kn">import</span> <span class="n">EncoderFactory</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mantidqt.project.decoderfactory</span><span class="w"> </span><span class="kn">import</span> <span class="n">DecoderFactory</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mantidqt.widget.interface.io</span><span class="w"> </span><span class="kn">import</span> <span class="n">InterfaceEncoder</span><span class="p">,</span> <span class="n">InterfaceDecoder</span>
 
 <span class="n">EncoderFactory</span><span class="o">.</span><span class="n">register_encoder</span><span class="p">(</span><span class="n">InterfaceEncoder</span><span class="p">)</span>
 <span class="n">DecoderFactory</span><span class="o">.</span><span class="n">register_decoder</span><span class="p">(</span><span class="n">InterfaceDecoder</span><span class="p">)</span>
