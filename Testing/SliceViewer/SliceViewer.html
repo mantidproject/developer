@@ -102,8 +102,9 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <section id="sliceviewer-testing">
-<span id="id1"></span><h1>SliceViewer Testing<a class="headerlink" href="#sliceviewer-testing" title="Link to this heading">¶</a></h1>
+  <p id="sliceviewer-testing"><span class="math notranslate nohighlight">\(\renewcommand\AA{\mathring{A}}\)</span></p>
+<section id="id1">
+<h1>SliceViewer Testing<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h1>
 <nav class="contents local" id="contents">
 <ul class="simple">
 <li><p><a class="reference internal" href="#introduction" id="id2">Introduction</a></p></li>
@@ -237,7 +238,7 @@
 <div><ol class="loweralpha simple">
 <li><p>Confirm it tracks with the cursor when Track Cursor is checked</p></li>
 <li><p>Uncheck the track cursor and confirm it updates when the cursor is clicked.</p></li>
-<li><p>Transpose the axes (as in step 6) and confirm the cursor position displayed is still correct (note if Track Cursor is checked you will need to click on the colorfill plot again).</p></li>
+<li><p>Transpose the axes (as in step 6) and click on the colorfill plot. Confirm the clicked cursor position is correctly displayed in the table. If Track Cursor is checked, the table should still track the cursor correctly.</p></li>
 </ol>
 </div></blockquote>
 </li>
@@ -377,7 +378,7 @@ In terms of sliceviewer functionality, the key difference is that MDHistoWorkspa
 <li><p>Double click a row</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>It should change the slicepoint along the integrated momentum axis and zoom into the peak - e.g. in (X,Y) = (H,K) then the slicepoint along L will be set to 1 and there will be a cross at (0,0).</p></li>
+<li><p>It should change the slicepoint along the integrated momentum axis and zoom into the peak - e.g. When double clicked on the row with HKL = (1,0,1) or HKL = (1,0,0) the slicepoint along L will be set to 1 or 0 respectively, and there will be a cross at (X,Y) = (H,K) = (1,0) in both cases.</p></li>
 <li><p>Note for <code class="docutils literal notranslate"><span class="pre">md_4D</span></code> a peak will not be plotted if a non-Q axis is viewed, if both axes are Q-dimensions then the cross should be plotted at all E (obviously a Bragg peak will only be on the elastic line but the peak object has no elastic/inelastic logic and the sliceviewer only knows that <cite>E</cite> is not a momentum axis, it could be temperature etc.).</p></li>
 </ul>
 </div></blockquote>
@@ -537,14 +538,14 @@ It should only be enabled for the <cite>ws_3D</cite> and <cite>ws_3D_QLab</cite>
 <li><p>To change the centre of the cut move the central white marker of the cut representation to (K,L) ~ (2,0),</p>
 <ul class="simple">
 <li><p>The entire cut representation should move</p></li>
-<li><p>The axes label of the 1D plot should be similar to <code class="docutils literal notranslate"><span class="pre">(0.0,</span> <span class="pre">2.0,0.0-1.0x)</span> <span class="pre">in</span> <span class="pre">3.14</span> <span class="pre">Ang^-1</span></code></p></li>
+<li><p>The axes label of the 1D plot should be similar to <span class="math notranslate nohighlight">\((0.0, 2.0,0.0-1.0x) \ in \ 3.14 \AA^{-1}\)</span></p></li>
 <li><p>There should be no peak on the 1D plot</p></li>
 </ul>
 </li>
 <li><p>Increase the thickness by dragging the left red marker of the cut representation to encompass the peak in the data - check the peak appears in the 1D plot at the right thickness.</p></li>
 <li><p>Play around with the direction of the cut by dragging the white markers at the end points of the white line - the vectors u1 and u3 should be orthogonal unit vectors.</p></li>
 <li><p>Reset the cut by transposing the axes so (X,Y) = (L,K)</p></li>
-<li><p>Double the slice thickness along H from 0.1 -&gt; 0.2 (the counts of the peak in the 1D plot should double from ~2000 -&gt; ~4000)</p></li>
+<li><p>Double the slice thickness along H from 0.1 -&gt; 0.2 (the counts of the peak in the 1D plot should double from ~1750 -&gt; ~3500)</p></li>
 <li><p>Change c* of u1 from 1 -&gt; -1</p>
 <ul class="simple">
 <li><p>The peak in the 1D plot should move from x= 1 -&gt; -1</p></li>
@@ -556,8 +557,15 @@ It should only be enabled for the <cite>ws_3D</cite> and <cite>ws_3D_QLab</cite>
 <li><p>Check that the table values are updated correctly (use the HKL in the cursor info table to help determine this)</p></li>
 </ul>
 </li>
-<li><p>Produce a non-axis aligned cut where the peak is not in the center of the x-range. Take the x-value at the peak maximum and plug it into the axis label - it should produce the HKL of the peak (0,0,1).</p></li>
+<li><p>Produce a non-axis aligned cut as shown below where the peak is not in the center of the x-range. Take the x-value at the peak maximum and plug it into the axis label - it should produce the HKL of the peak (0,0,1).</p>
+<ul class="simple">
+<li><p>In the example below, the x axis label is <span class="math notranslate nohighlight">\((0.0, -0.24 + 0.97x, 0.93 + 0.25x) \ in \ 7.07 \AA^{-1}\)</span>. So if we plug in the value of x at the peak centre we get <code class="docutils literal notranslate"><span class="pre">(0.0,</span> <span class="pre">-0.24</span> <span class="pre">+</span> <span class="pre">0.97*0.25,</span> <span class="pre">0.93</span> <span class="pre">+</span> <span class="pre">0.25*0.25)</span></code> = <code class="docutils literal notranslate"><span class="pre">(0.0,</span> <span class="pre">0.0025,</span> <span class="pre">0.9925)</span></code>, which is very close to actual peak HKL = <code class="docutils literal notranslate"><span class="pre">(0,0,1)</span></code></p></li>
+</ul>
+</li>
 </ol>
+<figure class="align-center">
+<img alt="../../_images/CutViewer_nonAxisAlignedCut.png" class="screenshot" src="../../_images/CutViewer_nonAxisAlignedCut.png" />
+</figure>
 </section>
 <section id="specific-tests">
 <h2><a class="toc-backref" href="#id9" role="doc-backlink">Specific Tests</a><a class="headerlink" href="#specific-tests" title="Link to this heading">¶</a></h2>
