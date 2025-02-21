@@ -141,6 +141,7 @@
 <li><p><a class="reference internal" href="#options" id="id20">Options</a></p></li>
 </ul>
 </li>
+<li><p><a class="reference internal" href="#cmake-chart-of-target-dependencies" id="id21">Cmake chart of target dependencies</a></p></li>
 </ul>
 </nav>
 <section id="creating-classes-class-maker-py">
@@ -385,6 +386,16 @@ To add optional arguments, add the following onto the end of <code class="docuti
 </pre></div>
 </div>
 </section>
+</section>
+<section id="cmake-chart-of-target-dependencies">
+<h2><a class="toc-backref" href="#id21" role="doc-backlink">Cmake chart of target dependencies</a><a class="headerlink" href="#cmake-chart-of-target-dependencies" title="Link to this heading">¶</a></h2>
+<p>Cmake has the ability to make graphviz dot files of the dependencies for targets in mantid.
+This is useful for understanding why compilation will wait for individual libraries to link before compiling more files.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cmake<span class="w"> </span>--graphviz<span class="o">=</span>dependencies.dot<span class="w"> </span>.
+dot<span class="w"> </span>-O<span class="w"> </span>-Tsvg<span class="w"> </span>dependencies.dot.WorkflowAlgorithms
+</pre></div>
+</div>
+<p><a class="reference external" href="https://cmake.org/cmake/help/latest/module/CMakeGraphVizOptions.html">Cmake reference</a> for configuring the tool options.</p>
 </section>
 </section>
 
