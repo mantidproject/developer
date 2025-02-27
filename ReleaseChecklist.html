@@ -680,9 +680,6 @@ index page has been removed. Remove the paragraph if it still exists.</p></li>
 <li><p>Ensure that all changes, including release notes, have been merged into the <code class="docutils literal notranslate"><span class="pre">release-next</span></code> branch.</p></li>
 <li><p>Make sure the <code class="docutils literal notranslate"><span class="pre">release-next</span></code> branch is fully merged into <code class="docutils literal notranslate"><span class="pre">main</span></code>. If required, manually run the <a class="reference external" href="https://github.com/mantidproject/mantid/actions/workflows/automerge.yml/">GitHub workflow</a> using the <code class="docutils literal notranslate"><span class="pre">release-next</span></code> branch to
 merge the changes.</p></li>
-<li><p>Run the <a class="reference external" href="https://builds.mantidproject.org/view/All/job/close-release-testing">close-release-testing</a> Jenkins job.
-This will set the value of the Jenkins global property <code class="docutils literal notranslate"><span class="pre">BRANCH_TO_PUBLISH</span></code> to <code class="docutils literal notranslate"><span class="pre">main</span></code>, which will re-enable package
-publishing for the <code class="docutils literal notranslate"><span class="pre">main</span></code> nightly pipeline.</p></li>
 </ul>
 <p><strong>Create the Release Candidates For Smoke Testing</strong></p>
 <p>We are now ready to create the release candidates for Smoke testing.</p>
@@ -752,6 +749,9 @@ to add the new release to IDAaaS. They can do this by creating a PR targeting th
 the new release version to the list of versions installed on IDAaaS <a class="reference external" href="https://github.com/ral-facilities/daaas-ansible-workspace/blob/main/roles/software/analysis/mantid/defaults/main.yml">here</a>.
 Make sure that there are only three <code class="docutils literal notranslate"><span class="pre">mantid_versions</span></code> in the list (delete the oldest one if applicable).
 The changes need to be verified on an IDAaaS test instance before the PR can be accepted.</p></li>
+<li><p>Run the <a class="reference external" href="https://builds.mantidproject.org/view/All/job/close-release-testing">close-release-testing</a> Jenkins job.
+This will set the value of the Jenkins global property <code class="docutils literal notranslate"><span class="pre">BRANCH_TO_PUBLISH</span></code> to <code class="docutils literal notranslate"><span class="pre">main</span></code>, which will re-enable package
+publishing for the <code class="docutils literal notranslate"><span class="pre">main</span></code> nightly pipeline.</p></li>
 </ul>
 <p><strong>Generate DOI</strong></p>
 <p>This requires that a tag has been created for this release. This tag is created when you draft and
