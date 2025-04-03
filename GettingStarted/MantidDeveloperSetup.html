@@ -97,16 +97,24 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <p>Create a Conda environment and install the <code class="docutils literal notranslate"><span class="pre">mantid-developer</span></code> Conda metapackage by following the steps below:</p>
+  <p>Create <code class="docutils literal notranslate"><span class="pre">mantid-developer</span></code> Conda environment by following the steps below:</p>
 <ul>
-<li><p>First create and activate a new conda environment. Here we have named it <code class="docutils literal notranslate"><span class="pre">mantid-developer</span></code> for consistency with the rest of the developer documentation but you are free to choose any name.</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>mamba<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>mantid-developer
-mamba<span class="w"> </span>activate<span class="w"> </span>mantid-developer
+<li><p>First create a new conda environment and install the <code class="docutils literal notranslate"><span class="pre">mantid-developer</span></code> Conda metapackage.
+You will normally want the nightly version, specified below by adding the label <code class="docutils literal notranslate"><span class="pre">mantid/label/nightly</span></code>.
+Here we have named the conda environment <code class="docutils literal notranslate"><span class="pre">mantid-developer</span></code> for consistency with the rest of the documentation
+but you are free to choose any name.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>mamba<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>mantid-developer<span class="w"> </span>mantid/label/nightly::mantid-developer
 </pre></div>
 </div>
 </li>
-<li><p>Install the <code class="docutils literal notranslate"><span class="pre">mantid-developer</span></code> Conda metapackage from the <code class="docutils literal notranslate"><span class="pre">mantid</span></code> Conda channel. You will normally want the nightly version.</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>mamba<span class="w"> </span>install<span class="w"> </span>-c<span class="w"> </span>mantid/label/nightly<span class="w"> </span>mantid-developer
+<li><p>Then activate the conda environment with</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>mamba<span class="w"> </span>activate<span class="w"> </span>mantid-developer
+</pre></div>
+</div>
+</li>
+<li><p>It is important that you regularly update your <code class="docutils literal notranslate"><span class="pre">mantid-developer</span></code> environment so that the dependencies are consistent with those used in production.
+With your <code class="docutils literal notranslate"><span class="pre">mantid-developer</span></code> environment activated, run the following command:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>mamba<span class="w"> </span>update<span class="w"> </span>-c<span class="w"> </span>mantid/label/nightly<span class="w"> </span>--all
 </pre></div>
 </div>
 </li>
