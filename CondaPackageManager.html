@@ -109,8 +109,8 @@
 <li><p><a class="reference internal" href="#pip-package-policy" id="id4">Pip package policy</a></p></li>
 </ul>
 </nav>
-<p>Mantid uses <a class="reference external" href="https://docs.conda.io/en/latest/">Conda</a> as its package management system. This document gives a
-developer overview on how we use the Conda package manager, including tips on how to debug dependency issues, and
+<p>Mantid uses <a class="reference external" href="https://docs.conda.io/en/latest/">conda</a> as its package management system. This document gives a
+developer overview on how we use the conda package manager, including tips on how to debug dependency issues, and
 our policy towards using <code class="docutils literal notranslate"><span class="pre">pip</span></code> packages (it is strongly discouraged).</p>
 <section id="creating-environments">
 <h2><a class="toc-backref" href="#id1" role="doc-backlink">Creating Environments</a><a class="headerlink" href="#creating-environments" title="Link to this heading">¶</a></h2>
@@ -138,11 +138,11 @@ our policy towards using <code class="docutils literal notranslate"><span class=
 <section id="finding-a-broken-dependency">
 <h2><a class="toc-backref" href="#id2" role="doc-backlink">Finding a broken dependency</a><a class="headerlink" href="#finding-a-broken-dependency" title="Link to this heading">¶</a></h2>
 <p>The nightly pipelines can sometimes fail for obscure reasons, seemingly unrelated to the changes made within
-Mantid. In this case, it is probable that a Conda dependency has updated, and the new update is “Broken”
+Mantid. In this case, it is probable that a conda dependency has updated, and the new update is “Broken”
 (if it is a minor or patch update) or no longer compatible with Mantid (if it is a major update).</p>
 <p>To find the dependency which has changed, you can run the <code class="docutils literal notranslate"><span class="pre">tools/Jenkins/dependency_spotter.py</span></code> script. This
 script takes two Jenkins build numbers, and optionally the OS label, the pipeline name, and the name of the file to
-compare. It will then output the changes in Conda package versions used in the two builds, if there are any. A
+compare. It will then output the changes in conda package versions used in the two builds, if there are any. A
 few examples on how to use it:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>dependency_spotter.py<span class="w"> </span>-f<span class="w"> </span><span class="m">593</span><span class="w"> </span>-s<span class="w"> </span><span class="m">598</span>
 python<span class="w"> </span>dependency_spotter.py<span class="w"> </span>-f<span class="w"> </span><span class="m">593</span><span class="w"> </span>-s<span class="w"> </span><span class="m">598</span><span class="w"> </span>-os<span class="w"> </span>win-64
@@ -156,7 +156,7 @@ python<span class="w"> </span>dependency_spotter.py<span class="w"> </span>-f<sp
 </section>
 <section id="fixing-a-broken-dependency">
 <h2><a class="toc-backref" href="#id3" role="doc-backlink">Fixing a broken dependency</a><a class="headerlink" href="#fixing-a-broken-dependency" title="Link to this heading">¶</a></h2>
-<p>After identifying the Conda dependency and version which is causing the unwanted behaviour, there are several
+<p>After identifying the conda dependency and version that is causing the unwanted behaviour, there are several
 options we can take to fix the issue. The following options are in order of preference:</p>
 <ol class="arabic simple">
 <li><p>Raise an issue in the dependencies <a class="reference external" href="https://conda-forge.org/docs/maintainer/adding_pkgs.html#feedstock-repository-structure">feedstock</a>
@@ -172,20 +172,20 @@ a new version arrives (which is hopefully a working version).</p></li>
 <h2><a class="toc-backref" href="#id4" role="doc-backlink">Pip package policy</a><a class="headerlink" href="#pip-package-policy" title="Link to this heading">¶</a></h2>
 <p>We have a strict policy with regards to using PyPi packages within Mantid. This policy can be summarised as
 follows:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>We strongly encourage PyPi dependencies be built into Conda packages and uploaded to conda-forge. PyPi packages
-will not be automatically installed into our Mantid Conda environments, and should instead be installed by
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>We strongly encourage PyPi dependencies be built into conda packages and uploaded to conda-forge. PyPi packages
+will not be automatically installed into our Mantid conda environments, and should instead be installed by
 users of the software, if required.
 </pre></div>
 </div>
-<p>We do not want to include pip packages as dependencies in our Conda recipes because there is no guarantee of
-compatibility between the two package managers. In the past, attempting to resolve compatibile package versions
+<p>We do not want to include pip packages as dependencies in our conda recipes because there is no guarantee of
+compatibility between the two package managers. In the past, attempting to resolve compatible package versions
 when two package managers are involved have caused broken Mantid installations. Furthermore, the original
-motivation for moving towards Conda was so that we had a unified package manager rather than using several
+motivation for moving towards conda was so that we had a unified package manager rather than using several
 different systems or mechanisms. Including pip packages in our dependencies would be a backwards step.</p>
 <p>The other solution we considered was installing our pip dependencies downstream within our DAaaS workspace
 configuration repository. We decided against this because it feels like bad practise to have a formalised
 way of installing dependencies of a software in a way which is completely detached. The prevailing message is
-this: please only use Conda packages. We provide <a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/PipInstall.html#pip-install-ref" title="(in MantidProject v6.12)"><span class="xref std std-ref">pip install instructions</span></a> for users if
+this: please only use conda packages. We provide <a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/PipInstall.html#pip-install-ref" title="(in MantidProject v6.12)"><span class="xref std std-ref">pip install instructions</span></a> for users if
 they would like to take the risk.</p>
 </section>
 </section>
