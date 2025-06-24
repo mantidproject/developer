@@ -100,32 +100,32 @@
     <div class="body col-md-12 content" role="main">
       
   <section id="packaging">
-<h1>Packaging<a class="headerlink" href="#packaging" title="Link to this heading">¶</a></h1>
+<span id="id1"></span><h1>Packaging<a class="headerlink" href="#packaging" title="Link to this heading">¶</a></h1>
 <nav class="contents local" id="contents">
 <ul class="simple">
-<li><p><a class="reference internal" href="#conda" id="id4">Conda</a></p>
+<li><p><a class="reference internal" href="#conda" id="id5">Conda</a></p>
 <ul>
-<li><p><a class="reference internal" href="#building-conda-packages" id="id5">Building Conda Packages</a></p></li>
+<li><p><a class="reference internal" href="#building-conda-packages" id="id6">Building Conda Packages</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#standalone" id="id6">Standalone</a></p>
+<li><p><a class="reference internal" href="#standalone" id="id7">Standalone</a></p>
 <ul>
-<li><p><a class="reference internal" href="#building-standalone-installers" id="id7">Building Standalone Installers</a></p></li>
+<li><p><a class="reference internal" href="#building-standalone-installers" id="id8">Building Standalone Installers</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#build-packages-from-branch-using-jenkins" id="id8">Build packages from branch using Jenkins</a></p>
+<li><p><a class="reference internal" href="#build-packages-from-branch-using-jenkins" id="id9">Build packages from branch using Jenkins</a></p>
 <ul>
-<li><p><a class="reference internal" href="#options" id="id9">Options</a></p></li>
-<li><p><a class="reference internal" href="#example" id="id10">Example</a></p></li>
+<li><p><a class="reference internal" href="#options" id="id10">Options</a></p></li>
+<li><p><a class="reference internal" href="#example" id="id11">Example</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#building-a-custom-mantid-developer-environment" id="id11">Building a custom <code class="docutils literal notranslate"><span class="pre">mantid-developer</span></code> environment</a></p></li>
+<li><p><a class="reference internal" href="#building-a-custom-mantid-developer-environment" id="id12">Building a custom <code class="docutils literal notranslate"><span class="pre">mantid-developer</span></code> environment</a></p></li>
 </ul>
 </nav>
 <p>This page gives an overview of the different packaging mechanisms used to deliver
 Mantid to users.</p>
 <section id="conda">
-<h2><a class="toc-backref" href="#id4" role="doc-backlink">Conda</a><a class="headerlink" href="#conda" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Conda</a><a class="headerlink" href="#conda" title="Link to this heading">¶</a></h2>
 <p>Mantid provides packages to be consumed by the <a class="reference external" href="https://conda.io">conda</a> package manager.
 Even though it is a single codebase the repository is split across four conda
 packages for users, and a metapackage used to create a development environment:</p>
@@ -150,7 +150,7 @@ operating systems as it only contains static HTML.</p>
 <p>All mantid conda packages are available to users through Mantid’s
 <a class="reference external" href="https://anaconda.org/mantid">conda organization</a>.</p>
 <section id="building-conda-packages">
-<span id="id1"></span><h3><a class="toc-backref" href="#id5" role="doc-backlink">Building Conda Packages</a><a class="headerlink" href="#building-conda-packages" title="Link to this heading">¶</a></h3>
+<span id="id2"></span><h3><a class="toc-backref" href="#id6" role="doc-backlink">Building Conda Packages</a><a class="headerlink" href="#building-conda-packages" title="Link to this heading">¶</a></h3>
 <p>Conda requires <a class="reference external" href="https://docs.conda.io/projects/conda-build/en/stable/concepts/recipe.html">recipes</a> as input for producing packages.
 The recipes are stored in the <a class="reference external" href="https://github.com/mantidproject/mantid/tree/main/conda">main codebase</a> so that
 they can evolve as the code develops. The packages are built as part of the
@@ -183,7 +183,7 @@ workbench
 </section>
 </section>
 <section id="standalone">
-<h2><a class="toc-backref" href="#id6" role="doc-backlink">Standalone</a><a class="headerlink" href="#standalone" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Standalone</a><a class="headerlink" href="#standalone" title="Link to this heading">¶</a></h2>
 <p>Mantid also provides a set of bundled packages that provide a complete install of
 <code class="docutils literal notranslate"><span class="pre">MantidWorkbench</span></code> and all of its dependencies without a user having to
 first setup conda and then install the relevant conda packages.
@@ -200,7 +200,7 @@ to the <cite>/Applications</cite> folder</p></li>
 can be extracted to any location.</p></li>
 </ul>
 <section id="building-standalone-installers">
-<h3><a class="toc-backref" href="#id7" role="doc-backlink">Building Standalone Installers</a><a class="headerlink" href="#building-standalone-installers" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">Building Standalone Installers</a><a class="headerlink" href="#building-standalone-installers" title="Link to this heading">¶</a></h3>
 <p>The installers are built as part of the <a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/buildconfig/Jenkins/Conda/nightly_build_and_deploy.jenkinsfile">CI pipeline</a> using a
 <a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/buildconfig/Jenkins/Conda/package-standalone">script</a> to encapsulate the build steps.</p>
 <p>To build an installer locally first build a set of conda packages using the
@@ -217,7 +217,7 @@ by the CI pipeline to indicate it has been built outside of the standard process
 </section>
 </section>
 <section id="build-packages-from-branch-using-jenkins">
-<span id="build-packages-from-branch"></span><h2><a class="toc-backref" href="#id8" role="doc-backlink">Build packages from branch using Jenkins</a><a class="headerlink" href="#build-packages-from-branch-using-jenkins" title="Link to this heading">¶</a></h2>
+<span id="build-packages-from-branch"></span><h2><a class="toc-backref" href="#id9" role="doc-backlink">Build packages from branch using Jenkins</a><a class="headerlink" href="#build-packages-from-branch-using-jenkins" title="Link to this heading">¶</a></h2>
 <p>Developers can build packages to test branches using the <code class="docutils literal notranslate"><span class="pre">build_packages_from_branch</span></code> <a class="reference external" href="https://builds.mantidproject.org/job/build_packages_from_branch/">Jenkins job</a>. This job provides the ability to,</p>
 <ul class="simple">
 <li><p>Run system tests on Windows, Mac, Linux, or all three.</p></li>
@@ -227,7 +227,7 @@ by the CI pipeline to indicate it has been built outside of the standard process
 </ul>
 <p>for a given branch of mantid. The branch can be from the main mantid repo or from a remote.</p>
 <section id="options">
-<h3><a class="toc-backref" href="#id9" role="doc-backlink">Options</a><a class="headerlink" href="#options" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">Options</a><a class="headerlink" href="#options" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">BUILD_DEVEL</span></code> [<code class="docutils literal notranslate"><span class="pre">none</span></code>, <code class="docutils literal notranslate"><span class="pre">all</span></code>, <code class="docutils literal notranslate"><span class="pre">linux-64</span></code>, <code class="docutils literal notranslate"><span class="pre">win-64</span></code>, <code class="docutils literal notranslate"><span class="pre">osx-64</span></code>]: Run the system tests for this OS.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">BUILD_PACKAGE</span></code> [<code class="docutils literal notranslate"><span class="pre">none</span></code>, <code class="docutils literal notranslate"><span class="pre">all</span></code>, <code class="docutils literal notranslate"><span class="pre">linux-64</span></code>, <code class="docutils literal notranslate"><span class="pre">win-64</span></code>, <code class="docutils literal notranslate"><span class="pre">osx-64</span></code>]: Build a package on this OS.</p></li>
@@ -244,7 +244,7 @@ by the CI pipeline to indicate it has been built outside of the standard process
 </ul>
 </section>
 <section id="example">
-<h3><a class="toc-backref" href="#id10" role="doc-backlink">Example</a><a class="headerlink" href="#example" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">Example</a><a class="headerlink" href="#example" title="Link to this heading">¶</a></h3>
 <p>Say I’ve implemented a new file searching method on a branch <code class="docutils literal notranslate"><span class="pre">1234_new_file_search</span></code> and I want to test this on IDAaaS, one of the easiest ways to do this would be to build the packages and upload them to Anaconda using the pipeline. These are the steps I’d take to do this.</p>
 <ol class="arabic simple">
 <li><p>Go to the <code class="docutils literal notranslate"><span class="pre">build_packages_from_branch</span></code> <a class="reference external" href="https://builds.mantidproject.org/job/build_packages_from_branch/">Jenkins job</a>.</p></li>
@@ -268,7 +268,7 @@ by the CI pipeline to indicate it has been built outside of the standard process
 </section>
 </section>
 <section id="building-a-custom-mantid-developer-environment">
-<span id="build-custom-mantid-developer"></span><h2><a class="toc-backref" href="#id11" role="doc-backlink">Building a custom <code class="docutils literal notranslate"><span class="pre">mantid-developer</span></code> environment</a><a class="headerlink" href="#building-a-custom-mantid-developer-environment" title="Link to this heading">¶</a></h2>
+<span id="build-custom-mantid-developer"></span><h2><a class="toc-backref" href="#id12" role="doc-backlink">Building a custom <code class="docutils literal notranslate"><span class="pre">mantid-developer</span></code> environment</a><a class="headerlink" href="#building-a-custom-mantid-developer-environment" title="Link to this heading">¶</a></h2>
 <p>This is useful if you need to change a pinned version of one of Mantid’s dependencies and test the change locally.</p>
 <ol class="arabic simple">
 <li><p>Create a conda environment and install <code class="docutils literal notranslate"><span class="pre">boa</span></code> and <code class="docutils literal notranslate"><span class="pre">versioningit</span></code> into it. For this example, called <code class="docutils literal notranslate"><span class="pre">mantid_dev_builder</span></code>.</p></li>
