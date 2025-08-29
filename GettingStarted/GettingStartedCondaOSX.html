@@ -111,15 +111,18 @@
 </section>
 <section id="clone-the-mantid-source-code">
 <h2>Clone the mantid source code<a class="headerlink" href="#clone-the-mantid-source-code" title="Link to this heading">¶</a></h2>
-<ul>
-<li><p>There are 2 common ways developers have been doing this.</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>Using git in the terminal and cloning the codebase by calling <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">git&#64;github.com:mantidproject/mantid.git</span></code> in the directory you want the code to clone to.
-This sets you up with accessing the remote repository via SSH so make sure to setup git properly using this <a class="reference external" href="https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup">startup guide</a> and ensure your ssh key is setup using this <a class="reference external" href="https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh">guide to Github with SSH</a>.</p></li>
-<li><p>Or by using <a class="reference external" href="https://www.gitkraken.com/">GitKraken</a>.</p></li>
+<ul class="simple">
+<li><p><strong>Important</strong>: If you have any existing non-conda mantid development environments, do not re-use the source and build directories for your conda environment.
+We recommend that you clone a new instance of the source and keep separate build directories to avoid any cmake configuration problems.</p></li>
+<li><dl class="simple">
+<dt>Obtain the mantid source code by either:</dt><dd><ul>
+<li><p>Using git in a terminal and cloning the codebase by calling <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">git&#64;github.com:mantidproject/mantid.git</span></code> in the directory you want the code to clone to.
+You will need to follow this <a class="reference external" href="https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh">Github guide</a> to configure SSH access.
+You may want to follow this <a class="reference external" href="https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup">Git setup guide</a> to configure your git environment.</p></li>
+<li><p>Or using <a class="reference external" href="https://www.gitkraken.com/">GitKraken</a>.</p></li>
 </ul>
-</div></blockquote>
+</dd>
+</dl>
 </li>
 </ul>
 </section>
@@ -160,16 +163,16 @@ With your <code class="docutils literal notranslate"><span class="pre">mantid-de
 </section>
 <section id="configure-cmake-and-generate-build-files">
 <h2>Configure CMake and generate build files<a class="headerlink" href="#configure-cmake-and-generate-build-files" title="Link to this heading">¶</a></h2>
-<ul>
+<ul class="simple">
 <li><p>Still using the terminal.</p></li>
 <li><p>If not already activated in the previous step, run <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">mantid-developer</span></code> to activate your conda environment.</p></li>
 <li><p>Navigate back to your mantid source directory using <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">mantid</span></code> if you used the default name during cloning from git.</p></li>
-<li><p>Inside of your mantid source directory run <code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">--preset=osx</span></code></p>
-<blockquote>
-<div><ul class="simple">
+<li><dl class="simple">
+<dt>Inside of your mantid source directory run <code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">--preset=osx</span></code></dt><dd><ul>
 <li><p>Alternatively if you don’t want to have your build folder in your mantid source then pass the <code class="docutils literal notranslate"><span class="pre">-B</span></code> argument, overriding the preset, to cmake: <code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">{PATH_TO_SOURCE}</span> <span class="pre">--preset=osx</span> <span class="pre">-B</span> <span class="pre">{BUILD_DIR}</span></code></p></li>
 </ul>
-</div></blockquote>
+</dd>
+</dl>
 </li>
 </ul>
 </section>

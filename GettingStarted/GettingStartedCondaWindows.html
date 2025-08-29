@@ -105,16 +105,15 @@
 <span id="gettingstartedcondawindows"></span><h1>Develop with conda on Windows<a class="headerlink" href="#develop-with-conda-on-windows" title="Link to this heading">¶</a></h1>
 <section id="install-visual-studio-2022-community-edition">
 <h2>Install <a class="reference external" href="https://visualstudio.microsoft.com/downloads/">Visual Studio 2022 Community Edition</a><a class="headerlink" href="#install-visual-studio-2022-community-edition" title="Link to this heading">¶</a></h2>
-<ul>
+<ul class="simple">
 <li><p>When asked about installation workloads choose <code class="docutils literal notranslate"><span class="pre">Desktop</span> <span class="pre">development</span> <span class="pre">with</span> <span class="pre">C++</span></code></p></li>
-<li><p>Under the “Installation details” section verify that the following are checked:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">Windows</span> <span class="pre">Universal</span> <span class="pre">CRT</span> <span class="pre">SDK</span></code></p></li>
-<li><p>The latest <code class="docutils literal notranslate"><span class="pre">Windows</span> <span class="pre">10</span> <span class="pre">SDK</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">MSVC</span> <span class="pre">v142</span> <span class="pre">-</span> <span class="pre">VS</span> <span class="pre">2019</span> <span class="pre">C++</span> <span class="pre">x64/x86</span> <span class="pre">build</span> <span class="pre">tools</span></code></p></li>
+<li><dl class="simple">
+<dt>Under the “Installation details” section verify that the following are checked (they should already be checked by default):</dt><dd><ul>
+<li><p>The latest <code class="docutils literal notranslate"><span class="pre">Windows</span> <span class="pre">11</span> <span class="pre">SDK</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MSVC</span> <span class="pre">v143</span> <span class="pre">-</span> <span class="pre">VS</span> <span class="pre">2022</span> <span class="pre">C++</span> <span class="pre">x64/x86</span> <span class="pre">build</span> <span class="pre">tools</span> <span class="pre">(latest)</span></code></p></li>
 </ul>
-</div></blockquote>
+</dd>
+</dl>
 </li>
 <li><p>If your machine has less than 32GB of memory Mantid may not build. If you have problems change the maximum number of parallel project builds to 1 in Visual Studio in Tools -&gt; Options -&gt; Projects and Solutions -&gt; Build And Run.</p></li>
 </ul>
@@ -135,15 +134,18 @@
 </section>
 <section id="clone-the-mantid-source-code">
 <h2>Clone the mantid source code<a class="headerlink" href="#clone-the-mantid-source-code" title="Link to this heading">¶</a></h2>
-<ul>
-<li><p><strong>Important</strong>: If you have any existing non-conda mantid development environments, do not re-use the source and build directories for your conda environment. We recommend that you clone a new instance of the source and keep separate build directories to avoid any cmake configuration problems.</p></li>
-<li><p>Clone the mantid source code by either:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>Using git bash and cloning the codebase by calling <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">git&#64;github.com:mantidproject/mantid.git</span></code> in the directory you want the code to clone to. This sets you up with accessing the remote repository via SSH so make sure to setup git properly using this <a class="reference external" href="https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup">startup guide</a> and ensure your ssh key is setup using this <a class="reference external" href="https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh">guide to Github with SSH</a>.</p></li>
+<ul class="simple">
+<li><p><strong>Important</strong>: If you have any existing non-conda mantid development environments, do not re-use the source and build directories for your conda environment.
+We recommend that you clone a new instance of the source and keep separate build directories to avoid any cmake configuration problems.</p></li>
+<li><dl class="simple">
+<dt>Obtain the mantid source code by either:</dt><dd><ul>
+<li><p>Using git in a terminal and cloning the codebase by calling <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">git&#64;github.com:mantidproject/mantid.git</span></code> in the directory you want the code to clone to.
+You will need to follow this <a class="reference external" href="https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh">Github guide</a> to configure SSH access.
+You may want to follow this <a class="reference external" href="https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup">Git setup guide</a> to configure your git environment.</p></li>
 <li><p>Or using <a class="reference external" href="https://www.gitkraken.com/">GitKraken</a>.</p></li>
 </ul>
-</div></blockquote>
+</dd>
+</dl>
 </li>
 </ul>
 </section>
@@ -187,9 +189,9 @@ With your <code class="docutils literal notranslate"><span class="pre">mantid-de
 </section>
 <section id="configure-cmake-and-generate-build-files">
 <h2>Configure CMake and generate build files<a class="headerlink" href="#configure-cmake-and-generate-build-files" title="Link to this heading">¶</a></h2>
-<ul>
+<ul class="simple">
 <li><dl class="simple">
-<dt>You can configure CMake using an MS Visual Studio or Ninja generator. Choose one of the following:</dt><dd><ul class="simple">
+<dt>You can configure CMake using an MS Visual Studio or Ninja generator. Choose one of the following:</dt><dd><ul>
 <li><p>For MS Visual Studio, use the terminal or powershell prompt from the last step.</p></li>
 <li><p>For Ninja, open the <code class="docutils literal notranslate"><span class="pre">x64</span> <span class="pre">Native</span> <span class="pre">Tools</span> <span class="pre">Command</span> <span class="pre">Prompt</span> <span class="pre">for</span> <span class="pre">VS</span> <span class="pre">2019</span></code> or <code class="docutils literal notranslate"><span class="pre">x64</span> <span class="pre">Native</span> <span class="pre">Tools</span> <span class="pre">Command</span> <span class="pre">Prompt</span> <span class="pre">for</span> <span class="pre">VS</span> <span class="pre">2022</span></code> from your search bar.</p></li>
 </ul>
@@ -198,17 +200,17 @@ With your <code class="docutils literal notranslate"><span class="pre">mantid-de
 </li>
 <li><p>Navigate to your mantid source directory.</p></li>
 <li><p>If not already activated in the previous step, run <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">mantid-developer</span></code> to activate your conda environment.</p></li>
-<li><p>If you want your build directory inside your source directory, run either:</p>
-<blockquote>
-<div><ul class="simple">
+<li><dl class="simple">
+<dt>If you want your build directory inside your source directory, run either:</dt><dd><ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">--preset=win-vs</span></code> for configuring with Visual Studio 2022, or</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">--preset=win-vs-2019</span></code> for configuring with Visual Studio 2019, or</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">--preset=win-ninja</span></code> for configuring with Ninja.</p></li>
 </ul>
-</div></blockquote>
+</dd>
+</dl>
 </li>
 <li><dl class="simple">
-<dt>Alternatively, if you want to specify a different build directory, run either:</dt><dd><ul class="simple">
+<dt>Alternatively, if you want to specify a different build directory, run either:</dt><dd><ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">--preset=win-vs</span> <span class="pre">-B</span> <span class="pre">{BUILD_DIR}</span></code>, or</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">--preset=win-vs-2019</span>&#160; <span class="pre">-B</span> <span class="pre">{BUILD_DIR}</span></code>, or</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">--preset=win-ninja</span> <span class="pre">-B</span> <span class="pre">{BUILD_DIR}</span></code></p></li>
@@ -224,6 +226,8 @@ With your <code class="docutils literal notranslate"><span class="pre">mantid-de
 <li><p>Open visual studio with <code class="docutils literal notranslate"><span class="pre">visual-studio.bat</span></code>, which is found in the build folder, and then click build.</p></li>
 <li><p>It’s not possible to compile in Debug on Windows with conda libraries, however Release, RelWithDebInfo, and DebugWithRelRuntime for Debugging will compile fine.</p></li>
 <li><p>Once in visual studio, the correct target to use as a startup project in visual studio is <code class="docutils literal notranslate"><span class="pre">workbench</span></code>, not <code class="docutils literal notranslate"><span class="pre">MantidWorkbench</span></code>. You can then press F5 to start workbench.</p></li>
+<li><p>If you want to use your computer while Mantid is compiling, you can enable the following option:
+<code class="docutils literal notranslate"><span class="pre">Tools</span> <span class="pre">&gt;</span> <span class="pre">Options</span> <span class="pre">&gt;</span> <span class="pre">Projects</span> <span class="pre">and</span> <span class="pre">Solutions</span> <span class="pre">&gt;</span> <span class="pre">Build</span> <span class="pre">And</span> <span class="pre">Run</span> <span class="pre">&gt;</span> <span class="pre">Run</span> <span class="pre">build</span> <span class="pre">at</span> <span class="pre">low</span> <span class="pre">process</span> <span class="pre">priority</span></code>.</p></li>
 </ul>
 </section>
 <section id="compile-and-build-using-ninja">
