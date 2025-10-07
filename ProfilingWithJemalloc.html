@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Profiling with jemalloc</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css?v=fadd4351" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=77160d70" />
+    <script src="_static/documentation_options.js?v=a8da1a53"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Profiling with Valgrind" href="ProfilingWithValgrind.html" />
+    <link rel="prev" title="Profiling with perf" href="ProfilingWithPerf.html" />
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-59110517-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+  </head><body>
+
+
+
+
+
+  <div id="navbar" class="navbar navbar-default ">
+    <div class="container">
+      <div class="navbar-header">
+        
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://www.mantidproject.org">
+           </a>
+        <span class="navbar-text navbar-version pull-left"><b>main</b></span>
+      </div>
+
+      
+        <div class="collapse navbar-collapse nav-collapse">
+      
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="index.html">Home</a></li>
+                <li><a href="https://download.mantidproject.org">Download</a></li>
+                <li><a href="https://docs.mantidproject.org">User Documentation</a></li>
+                <li><a href="http://www.mantidproject.org/contact">Contact Us</a></li>
+            
+            
+              
+              
+            
+            
+            
+            
+          </ul>
+              
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+            </div>
+    </div>
+    <p>
+<div class="related" role="navigation" aria-label="related navigation">
+  <h3>Navigation</h3>
+  <ul>
+    <li class="nav-item nav-item-0"><a href="index.html">Documentation</a> &#187;</li>
+    
+    
+    
+    
+    <li class="nav-item nav-item-this"><a href="">Profiling with <code class="docutils literal notranslate"><span class="pre">jemalloc</span></code></a></li>
+    
+    
+  </ul>
+</div> </p>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <section id="profiling-with-jemalloc">
+<h1>Profiling with <code class="docutils literal notranslate"><span class="pre">jemalloc</span></code><a class="headerlink" href="#profiling-with-jemalloc" title="Link to this heading">¶</a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">jemalloc</span></code> allocator is a drop-in replacement for <code class="docutils literal notranslate"><span class="pre">malloc</span></code>.  It is used primarily as shared library preloaded via the dynamic linker, although it can also be linked statically.  <code class="docutils literal notranslate"><span class="pre">jemalloc</span></code> offers substantial improvement over <code class="docutils literal notranslate"><span class="pre">malloc</span></code> in terms of its concurrency support, and in regards to its avoidance of memory fragmentation.  When Mantid is launched via <code class="docutils literal notranslate"><span class="pre">workbench</span></code>, or when a python interpreter is launched to call <code class="docutils literal notranslate"><span class="pre">mantid</span></code> algorithms from scripts (in the recommended manner), the <code class="docutils literal notranslate"><span class="pre">jemalloc</span></code> library will be preloaded automatically.</p>
+<p>When used as an allocator, <code class="docutils literal notranslate"><span class="pre">jemalloc</span></code> provides extensive allocation  control and profiling hooks.  These hooks may be accessed either using the environment variable <code class="docutils literal notranslate"><span class="pre">MALLOC_CONF</span></code> (and several other environment variables) or also programatically using the <em>nonstandard</em> <code class="docutils literal notranslate"><span class="pre">mallctl</span></code> entrypoint.  Note here that there are <em>very many</em> control hooks available!  In this note, only a few specific profiling techniques will be elaborated, primarily using specific examples.</p>
+<p>It should <em>always</em> be kept in mind that although Mantid does use <code class="docutils literal notranslate"><span class="pre">jemalloc</span></code>, its usage is only partially optimized, and there is always room for improvement.  This means that the first solution that should be considered during profiling is the possibility of further optimizing <code class="docutils literal notranslate"><span class="pre">jemalloc</span></code>’s control settings during Mantid’s <em>loading</em> process.</p>
+<p><strong>All of the following examples assume a standard developer environment on linux machine.</strong>  Most other OS should also work, and the setup commands will be similar, but this note won’t cover those details.</p>
+<section id="build-jemalloc-including-profiling">
+<h2>Build <code class="docutils literal notranslate"><span class="pre">jemalloc</span></code> including profiling<a class="headerlink" href="#build-jemalloc-including-profiling" title="Link to this heading">¶</a></h2>
+<p>The standard <code class="docutils literal notranslate"><span class="pre">jemalloc</span></code> library does not include the profiling hooks, and it will be necessary to download the source code, and build a special version of the library, in order to use them.</p>
+<p><code class="docutils literal notranslate"><span class="pre">jemalloc</span></code>’s github repository (now archived) is at: <a class="reference external" href="https://github.com/jemalloc/jemalloc">https://github.com/jemalloc/jemalloc</a>.  Be sure to download the source code corresponding to the release of <code class="docutils literal notranslate"><span class="pre">jemalloc</span></code> that Mantid is currently using (now 5.2.0).</p>
+<p><code class="docutils literal notranslate"><span class="pre">jemalloc</span></code> uses the <code class="docutils literal notranslate"><span class="pre">autoconf</span></code> system.  To build from the root of the <code class="docutils literal notranslate"><span class="pre">jemalloc</span></code> source tree:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">autogen</span><span class="o">.</span><span class="n">sh</span>
+<span class="o">./</span><span class="n">configure</span> <span class="o">--</span><span class="n">enable</span><span class="o">-</span><span class="n">prof</span> <span class="o">--</span><span class="n">enable</span><span class="o">-</span><span class="n">shared</span> <span class="o">--</span><span class="n">prefix</span><span class="o">=&lt;</span><span class="n">your</span> <span class="n">installation</span> <span class="n">prefix</span><span class="o">&gt;</span>
+<span class="n">make</span>
+<span class="n">make</span> <span class="n">install</span>
+</pre></div>
+</div>
+</section>
+<section id="use-jemalloc-to-profile-an-existing-mantid-build">
+<h2>Use <code class="docutils literal notranslate"><span class="pre">jemalloc</span></code> to profile an existing Mantid build<a class="headerlink" href="#use-jemalloc-to-profile-an-existing-mantid-build" title="Link to this heading">¶</a></h2>
+<p>Any existing build of Mantid can be successfully profiled simply by changing the <code class="docutils literal notranslate"><span class="pre">LD_PRELOAD</span></code> to include the new <code class="docutils literal notranslate"><span class="pre">jemalloc</span></code> build instead of the standard one.  This example will also show how to enable profiling using the <code class="docutils literal notranslate"><span class="pre">MALLOC_CONF</span></code> environment variable.  Here’s how to generate a series of memory-allocation profiles, with a new profile written every time memory allocation increases by 1GB:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span># Notes: enable and activate profiling, generate a profile every ~1GB of additional memory allocated.
+#   The profile-dump interval is expressed somewhat cryptically as $\log_2$\ of the memory quantity:
+#   here 1GB == 30 bits.
+export MALLOC_CONF=&quot;prof:true,prof_active:true,lg_prof_interval:30,prof_prefix:jeprof.out&quot;
+
+LOCAL_PRELOAD=&lt;your installation prefix&gt;/lib/libjemalloc.so.2
+
+# To get your `PYTHONPATH`, you can enter `import sys; &#39;;&#39;.join(sys.path)` in the `IPython` window in workbench,
+#   although for a working installation, you probably don&#39;t need to worry about it.
+#   First try removing the `PYTHONPATH` lines below and just assume that your Pixi environment has set the path correctly!
+LOCAL_PYTHONPATH=&lt;Mantid&#39;s PYTHONPATH&gt;
+
+LD_PRELOAD=${LOCAL_PRELOAD} \
+    PYTHONPATH=${LOCAL_PYTHONPATH} \
+    ${CONDA_PREFIX}/bin/python -m workbench
+</pre></div>
+</div>
+</section>
+<section id="optimize-the-mantid-build-for-profiling-using-jemalloc">
+<h2>Optimize the Mantid build for profiling using <code class="docutils literal notranslate"><span class="pre">jemalloc</span></code><a class="headerlink" href="#optimize-the-mantid-build-for-profiling-using-jemalloc" title="Link to this heading">¶</a></h2>
+<p>There are several flags that can be set to <em>optimize</em> a Mantid build for <code class="docutils literal notranslate"><span class="pre">jemalloc</span></code> profiling.  Mostly the objectives are to make sure that all of the line-number and stack-frame information is included in the build:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># From the Mantid repository root:</span>
+<span class="n">mkdir</span> <span class="n">build</span><span class="p">;</span> <span class="n">cd</span> <span class="n">build</span>
+<span class="n">cmake</span> <span class="o">..</span> <span class="o">-</span><span class="n">GNinja</span> <span class="o">-</span><span class="n">DCMAKE_BUILD_TYPE</span><span class="o">=</span><span class="n">RelWithDebInfo</span> <span class="o">-</span><span class="n">DCMAKE_C_FLAGS_RELWITHDEBINFO</span><span class="o">=</span><span class="s2">&quot;-O2 -g -DNDEBUG -fno-omit-frame-pointer&quot;</span> <span class="o">-</span><span class="n">DCMAKE_CXX_FLAGS_RELWITHDEBINFO</span><span class="o">=</span><span class="s2">&quot;-O2 -g -DNDEBUG -fno-omit-frame-pointer&quot;</span>
+<span class="n">cmake</span> <span class="o">--</span><span class="n">build</span> <span class="o">.</span> <span class="o">--</span><span class="n">target</span> <span class="n">AllTests</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="viewing-and-analyzing-memory-allocation-profiles">
+<h1>Viewing and analyzing memory-allocation profiles<a class="headerlink" href="#viewing-and-analyzing-memory-allocation-profiles" title="Link to this heading">¶</a></h1>
+<p><strong>The next examples assume that you have already generated a profile using MALLOC_CONF, or by modifying the code and running a script, as discussed above.</strong></p>
+<p>Any of the examples shown next to <em>display</em> profiles can also be used to display the <em>difference</em> between any two profiles.  See the <code class="docutils literal notranslate"><span class="pre">jemalloc</span></code> man page at <a class="reference external" href="https://jemalloc.net/jemalloc.3.html">https://jemalloc.net/jemalloc.3.html</a>, or its wiki at  <a class="reference external" href="https://github.com/jemalloc/jemalloc/wiki">https://github.com/jemalloc/jemalloc/wiki</a>.</p>
+<section id="memory-allocation-details-create-an-overview-graph">
+<h2>Memory-allocation details: create an overview graph<a class="headerlink" href="#memory-allocation-details-create-an-overview-graph" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">jeprof</span></code> can generate SVG, and several other formats of, graphs showing all of the allocation details:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>export JEPROF=&#39;&lt;your installation prefix&gt;/bin/jeprof&#39;
+
+# The basic form of the command:
+${JEPROF} --svg /path/to/program /path/to/dump.heap &gt; heap.svg
+
+# A Mantid-specific example, assuming that you&#39;ve been running a script in Python:
+${JEPROF} --svg ${CONDA_PREFIX}/bin/python /path/to/dump.heap &gt; heap.svg
+</pre></div>
+</div>
+<p>Now you can view the <code class="docutils literal notranslate"><span class="pre">svg</span></code> in your browser (<code class="docutils literal notranslate"><span class="pre">firefox</span></code> is useful for this, but <code class="docutils literal notranslate"><span class="pre">google-chrome</span></code> will also be OK):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">firefox</span> <span class="n">heap</span><span class="o">.</span><span class="n">svg</span> <span class="o">&amp;</span>
+</pre></div>
+</div>
+</section>
+<section id="memory-allocation-details-by-source-line-number">
+<h2>Memory-allocation details, by source-line number<a class="headerlink" href="#memory-allocation-details-by-source-line-number" title="Link to this heading">¶</a></h2>
+<p>We can get a by-line-number allocation profile of any function (, including even inline functions), from any suitable profile.  (It’s not necessary to generate a profile for each function you’re interested in!):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>export JEPROF=&lt;your installation prefix&gt;/bin/jeprof
+
+# Assume that the profile you want to examine has already generated, and is contained in the file &lt;your profile&gt;.dat
+${JEPROF} --lines --inuse_space --list=&quot;GridDetector::createLayer&quot; ${CONDA_PREFIX}/bin/python &lt;your profile&gt;.dat &gt; &lt;your profile&gt;.heap.txt
+</pre></div>
+</div>
+<p>The text output will look something like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ROUTINE</span> <span class="o">======================</span> <span class="n">Mantid</span><span class="p">::</span><span class="n">Geometry</span><span class="p">::</span><span class="n">GridDetector</span><span class="p">::</span><span class="n">createLayer</span> <span class="ow">in</span> <span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">R5_data1</span><span class="o">/</span><span class="n">data1</span><span class="o">/</span><span class="n">workspaces</span><span class="o">/</span><span class="n">ORNL</span><span class="o">-</span><span class="n">work</span><span class="o">/</span><span class="n">mantid</span><span class="o">/</span><span class="n">Framework</span><span class="o">/</span><span class="n">Geometry</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">Instrument</span><span class="o">/</span><span class="n">GridDetector</span><span class="o">.</span><span class="n">cpp</span>
+ <span class="mf">258.6</span>  <span class="mf">322.1</span> <span class="n">Total</span> <span class="n">MB</span> <span class="p">(</span><span class="n">flat</span> <span class="o">/</span> <span class="n">cumulative</span><span class="p">)</span>
+     <span class="o">.</span>      <span class="o">.</span>  <span class="mi">432</span><span class="p">:</span>     <span class="k">return</span> <span class="n">m_gridBase</span><span class="o">-&gt;</span><span class="n">getRelativePosAtXYZ</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span> <span class="o">*</span> <span class="n">V3D</span><span class="p">(</span><span class="n">scalex</span><span class="p">,</span> <span class="n">scaley</span><span class="p">,</span> <span class="n">scalez</span><span class="p">);</span>
+     <span class="o">.</span>      <span class="o">.</span>  <span class="mi">433</span><span class="p">:</span>   <span class="p">}</span> <span class="k">else</span>
+     <span class="o">.</span>      <span class="o">.</span>  <span class="mi">434</span><span class="p">:</span>     <span class="k">return</span> <span class="n">V3D</span><span class="p">(</span><span class="n">m_xstart</span> <span class="o">+</span> <span class="n">m_xstep</span> <span class="o">*</span> <span class="n">x</span><span class="p">,</span> <span class="n">m_ystart</span> <span class="o">+</span> <span class="n">m_ystep</span> <span class="o">*</span> <span class="n">y</span><span class="p">,</span> <span class="n">m_zstart</span> <span class="o">+</span> <span class="n">m_zstep</span> <span class="o">*</span> <span class="n">z</span><span class="p">);</span>
+     <span class="o">.</span>      <span class="o">.</span>  <span class="mi">435</span><span class="p">:</span> <span class="p">}</span>
+     <span class="o">.</span>      <span class="o">.</span>  <span class="mi">436</span><span class="p">:</span>
+<span class="o">---</span>
+     <span class="o">.</span>      <span class="o">.</span>  <span class="mi">437</span><span class="p">:</span> <span class="n">void</span> <span class="n">GridDetector</span><span class="p">::</span><span class="n">createLayer</span><span class="p">(</span><span class="n">const</span> <span class="n">std</span><span class="p">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">name</span><span class="p">,</span> <span class="n">CompAssembly</span> <span class="o">*</span><span class="n">parent</span><span class="p">,</span> <span class="nb">int</span> <span class="n">iz</span><span class="p">,</span> <span class="nb">int</span> <span class="o">&amp;</span><span class="n">minDetID</span><span class="p">,</span> <span class="nb">int</span> <span class="o">&amp;</span><span class="n">maxDetID</span><span class="p">)</span> <span class="p">{</span>
+     <span class="o">.</span>      <span class="o">.</span>  <span class="mi">438</span><span class="p">:</span>   <span class="o">//</span> <span class="n">Loop</span> <span class="ow">and</span> <span class="n">create</span> <span class="nb">all</span> <span class="n">detectors</span> <span class="ow">in</span> <span class="n">this</span> <span class="n">layer</span><span class="o">.</span>
+    <span class="o">~</span><span class="n">SNIP</span><span class="o">~</span>
+     <span class="o">.</span>      <span class="o">.</span>  <span class="mi">469</span><span class="p">:</span>       <span class="o">//</span> <span class="n">Create</span> <span class="n">the</span> <span class="n">detector</span> <span class="kn">from</span><span class="w"> </span><span class="nn">the</span> <span class="n">given</span> <span class="nb">id</span> <span class="o">&amp;</span> <span class="n">shape</span> <span class="ow">and</span> <span class="k">with</span> <span class="n">xColumn</span> <span class="k">as</span> <span class="n">the</span>
+     <span class="o">.</span>      <span class="o">.</span>  <span class="mi">470</span><span class="p">:</span>       <span class="o">//</span> <span class="n">parent</span><span class="o">.</span>
+ <span class="mf">258.6</span>  <span class="mf">314.1</span>  <span class="mi">471</span><span class="p">:</span>       <span class="n">auto</span> <span class="o">*</span><span class="n">detector</span> <span class="o">=</span> <span class="n">new</span> <span class="n">GridDetectorPixel</span><span class="p">(</span><span class="n">oss</span><span class="o">.</span><span class="n">str</span><span class="p">(),</span> <span class="nb">id</span><span class="p">,</span> <span class="n">m_shape</span><span class="p">,</span> <span class="n">xColumn</span><span class="p">,</span> <span class="n">this</span><span class="p">,</span> <span class="n">size_t</span><span class="p">(</span><span class="n">ix</span><span class="p">),</span> <span class="n">size_t</span><span class="p">(</span><span class="n">iy</span><span class="p">),</span> <span class="n">size_t</span><span class="p">(</span><span class="n">iz</span><span class="p">));</span>
+     <span class="o">.</span>      <span class="o">.</span>  <span class="mi">472</span><span class="p">:</span>
+    <span class="o">~</span><span class="n">SNIP</span><span class="o">~</span>
+</pre></div>
+</div>
+<p>This specific example shows the <em>huge</em> allocation associated with a grid detector expansion during an <code class="docutils literal notranslate"><span class="pre">EventWorkspace</span></code> <code class="docutils literal notranslate"><span class="pre">instrument</span></code> initialization.  (Note that each detector pixel [out of possibly millions] is initialized using its own <em>name</em>, as a string!)</p>
+</section>
+</section>
+<section id="more-advanced-techniques-in-depth-profiling-of-algorithm-steps">
+<h1>More advanced techniques: in-depth profiling of algorithm steps<a class="headerlink" href="#more-advanced-techniques-in-depth-profiling-of-algorithm-steps" title="Link to this heading">¶</a></h1>
+<p>The most direct way to profile the allocation details associated with step-wise execution of any algorithm is to use the <code class="docutils literal notranslate"><span class="pre">jemalloc</span></code> <code class="docutils literal notranslate"><span class="pre">mallctl</span></code> entry point.  We still need to use <code class="docutils literal notranslate"><span class="pre">MALLOC_CONF</span></code> to enable profiling:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">MALLOC_CONF</span><span class="o">=</span><span class="s2">&quot;prof:true&quot;</span>
+</pre></div>
+</div>
+<p>For this example, we modify a <code class="docutils literal notranslate"><span class="pre">C++</span></code>-source file and add the following section (near the top):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="o">=============================================================</span>
+<span class="c1">#include &lt;chrono&gt;</span>
+<span class="c1">#include &lt;cstring&gt;</span>
+<span class="c1">#include &lt;string&gt;</span>
+<span class="c1">#include &lt;thread&gt;</span>
+<span class="c1">#include &lt;jemalloc/jemalloc.h&gt;</span>
+<span class="n">namespace</span> <span class="p">{</span>
+  <span class="nb">bool</span> <span class="n">mem_stats</span><span class="p">(</span><span class="n">const</span> <span class="n">std</span><span class="p">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">path</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">const</span> <span class="n">char</span> <span class="o">*</span><span class="n">path_</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">c_str</span><span class="p">();</span>
+    <span class="nb">int</span> <span class="n">err</span> <span class="o">=</span> <span class="n">mallctl</span><span class="p">(</span><span class="s2">&quot;prof.dump&quot;</span><span class="p">,</span>
+                      <span class="n">nullptr</span><span class="p">,</span> <span class="n">nullptr</span><span class="p">,</span>
+                      <span class="n">const_cast</span><span class="o">&lt;</span><span class="n">char</span><span class="o">**&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="n">path_</span><span class="p">),</span>
+                      <span class="n">sizeof</span><span class="p">(</span><span class="n">const</span> <span class="n">char</span><span class="o">*</span><span class="p">));</span>
+    <span class="k">return</span> <span class="n">err</span> <span class="o">==</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">void</span> <span class="n">periodic_mem_stats</span><span class="p">(</span><span class="n">std</span><span class="p">::</span><span class="n">chrono</span><span class="p">::</span><span class="n">seconds</span> <span class="n">period</span><span class="p">,</span> <span class="n">const</span> <span class="n">std</span><span class="p">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">path</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(;;)</span> <span class="p">{</span>
+      <span class="n">mem_stats</span><span class="p">(</span><span class="n">path</span><span class="p">);</span>
+      <span class="n">std</span><span class="p">::</span><span class="n">this_thread</span><span class="p">::</span><span class="n">sleep_for</span><span class="p">(</span><span class="n">period</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="n">const</span> <span class="n">std</span><span class="p">::</span><span class="n">string</span> <span class="n">STATS_ROOT</span> <span class="o">=</span> <span class="s2">&quot;&lt;your profiles dump directory path&gt;&quot;</span><span class="p">;</span>
+<span class="o">//</span> <span class="o">=============================================================</span>
+</pre></div>
+</div>
+<p>Now, whenever we want to generate a new profile after the execution of a section of code, we simply call the function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mem_stats</span><span class="p">(</span><span class="n">STATS_ROOT</span> <span class="o">+</span> <span class="s2">&quot;/loadEvents-exit.dat&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>After building Mantid, setting <code class="docutils literal notranslate"><span class="pre">MALLOC_CONF</span></code> as above, and executing an appropriate Python script: this generates a profile and writes it to the on-disk location <code class="docutils literal notranslate"><span class="pre">&quot;${STATS_ROOT}/loadEvents-exit.dat&quot;</span></code>.</p>
+</section>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+      <ul class="nav navbar-nav" style=" float: right;">
+      
+      
+          
+            
+  <li>
+    <a href="ProfilingWithPerf.html" title="Previous Chapter: Profiling with perf"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Profiling with perf</span>
+    </a>
+  </li>
+  <li>
+    <a href="ProfilingWithValgrind.html" title="Next Chapter: Profiling with Valgrind"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Profiling wit... &raquo;</span>
+    </a>
+  </li>
+          
+       
+          <li><a href="#">Back to top</a></li>
+       </ul>
+    <p>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
