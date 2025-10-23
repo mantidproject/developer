@@ -120,6 +120,7 @@
 </ul>
 </li>
 <li><p><a class="reference internal" href="#building-a-custom-mantid-developer-environment" id="id12">Building a custom <code class="docutils literal notranslate"><span class="pre">mantid-developer</span></code> environment</a></p></li>
+<li><p><a class="reference internal" href="#exploring-package-contents" id="id13">Exploring package contents</a></p></li>
 </ul>
 </nav>
 <p>This page gives an overview of the different packaging mechanisms used to deliver
@@ -152,7 +153,7 @@ operating systems as it only contains static HTML.</p>
 <p>PyStoG is now an optional dependency, so the neutrons conda channel is required when using PyStoG.</p>
 <section id="building-conda-packages">
 <span id="id2"></span><h3><a class="toc-backref" href="#id6" role="doc-backlink">Building Conda Packages</a><a class="headerlink" href="#building-conda-packages" title="Link to this heading">¶</a></h3>
-<p>Conda requires <a class="reference external" href="https://docs.conda.io/projects/conda-build/en/stable/concepts/recipe.html">recipes</a> as input for producing packages.
+<p>Conda requires <a class="reference external" href="https://rattler.build/latest/reference/recipe_file/">recipes</a> as input for producing packages.
 The recipes are stored in the <a class="reference external" href="https://github.com/mantidproject/mantid/tree/main/conda">main codebase</a> so that
 they can evolve as the code develops. The packages are built as part of the
 <a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/buildconfig/Jenkins/Conda/nightly_build_and_deploy.jenkinsfile">CI pipeline</a> using a <a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/buildconfig/Jenkins/Conda/package-conda">script</a> to encapsulate
@@ -271,16 +272,57 @@ by the CI pipeline to indicate it has been built outside of the standard process
 <section id="building-a-custom-mantid-developer-environment">
 <span id="build-custom-mantid-developer"></span><h2><a class="toc-backref" href="#id12" role="doc-backlink">Building a custom <code class="docutils literal notranslate"><span class="pre">mantid-developer</span></code> environment</a><a class="headerlink" href="#building-a-custom-mantid-developer-environment" title="Link to this heading">¶</a></h2>
 <p>This is useful if you need to change a pinned version of one of Mantid’s dependencies and test the change locally.</p>
-<ol class="arabic simple">
-<li><p>Create a conda environment and install <code class="docutils literal notranslate"><span class="pre">boa</span></code> and <code class="docutils literal notranslate"><span class="pre">versioningit</span></code> into it. For this example, called <code class="docutils literal notranslate"><span class="pre">mantid_dev_builder</span></code>.</p></li>
+<ol class="arabic">
+<li><p>One can create a new environment specifically for building the package (with <code class="docutils literal notranslate"><span class="pre">conda-build</span></code>, <code class="docutils literal notranslate"><span class="pre">conda-index</span></code>, <code class="docutils literal notranslate"><span class="pre">rattler-build</span></code>, and <code class="docutils literal notranslate"><span class="pre">versioningit</span></code>), but the build itself happens in a separate sandbox which makes this unneccesary.</p></li>
 <li><p>Make your changes to the conda recipe files.</p></li>
 <li><p>Change directory to <code class="docutils literal notranslate"><span class="pre">mantid/conda/recipes</span></code></p></li>
-<li><p>With <code class="docutils literal notranslate"><span class="pre">mantid_dev_builder</span></code> active, run <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">mambabuild</span> <span class="pre">./mantid-developer/</span> <span class="pre">-c</span> <span class="pre">neutrons</span></code>. This will build a local version of <code class="docutils literal notranslate"><span class="pre">mantid-developer</span></code> with your changes and place it in <code class="docutils literal notranslate"><span class="pre">mantid_dev_builder</span></code>’s <code class="docutils literal notranslate"><span class="pre">conda-bld</span></code> folder. The output from <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">mambabuild</span></code> should tell you the location.</p></li>
-<li><p>Deactivate <code class="docutils literal notranslate"><span class="pre">mantid_dev_builder</span></code> and create a new environment to install the custom <code class="docutils literal notranslate"><span class="pre">mantid-developer</span></code> package into (e.g if you were testing a new version of numpy you might call it <code class="docutils literal notranslate"><span class="pre">mantid_dev_numpy_test</span></code>)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">mamba</span> <span class="pre">install</span> <span class="pre">-c</span> <span class="pre">&lt;path</span> <span class="pre">to</span> <span class="pre">mantid_dev_builder's</span> <span class="pre">conda-bld</span> <span class="pre">folder&gt;</span> <span class="pre">-c</span> <span class="pre">neutrons</span> <span class="pre">mantid-developer</span></code> to install the package.</p></li>
-<li><p>You will need to re-run cmake with this new environment.</p></li>
+<li><p>With <code class="docutils literal notranslate"><span class="pre">mantid_dev_builder</span></code> active, run</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">MANTID_VERSION</span><span class="o">=</span><span class="k">$(</span>versioningit<span class="w"> </span>../../<span class="k">)</span><span class="w"> </span>rattler-build<span class="w"> </span>build<span class="w"> </span>-r<span class="w"> </span>./mantid-developer<span class="w"> </span>-m<span class="w"> </span>./conda_build_config.yaml<span class="w"> </span>--output-dir<span class="o">=</span>/home/me/tmp/rattler
+</pre></div>
+</div>
+<p>This will build a local version of <code class="docutils literal notranslate"><span class="pre">mantid-developer</span></code> with your changes and place it in the directory <code class="docutils literal notranslate"><span class="pre">/home/me/tmp/rattler</span></code>. <strong>This must be outside of the buildtree</strong> because rattler will recursively copy everything.</p>
+</li>
+<li><p>Index the new packages</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>conda_index<span class="w"> </span>/home/me/tmp/rattler/
+</pre></div>
+</div>
+<p>This will allow conda to install the package by name rather than by file. At this time, creating an environment using the filename will skip installing the dependencies and not use any channels.</p>
+</li>
+<li><p>Create a new environment with the new developer package</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>mamba<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span><span class="nb">test</span><span class="w"> </span>-c<span class="w"> </span>/home/me/tmp/rattler/<span class="w"> </span>-c<span class="w"> </span>neutrons<span class="w"> </span>mantid-developer
+</pre></div>
+</div>
+</li>
+<li><p>You will need to re-run <code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">--fresh</span> <span class="pre">...</span></code> with this new environment.</p></li>
 </ol>
-<p>Note: If you have <code class="docutils literal notranslate"><span class="pre">boa</span></code> installed in your base environment it seems <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">mambabuild</span></code> will use it over your activated environment. In this case you will likely get an error that you don’t have <code class="docutils literal notranslate"><span class="pre">versioningit</span></code> installed. One way to fix this is to install <code class="docutils literal notranslate"><span class="pre">versioningit</span></code> into your base environment and just use that instead of making a new environment.</p>
+</section>
+<section id="exploring-package-contents">
+<h2><a class="toc-backref" href="#id13" role="doc-backlink">Exploring package contents</a><a class="headerlink" href="#exploring-package-contents" title="Link to this heading">¶</a></h2>
+<p>For this example, assume that the package is named <code class="docutils literal notranslate"><span class="pre">mantid</span></code> and the version number is <code class="docutils literal notranslate"><span class="pre">1.2.3</span></code> and that one is using linux.
+After creating the package there will be a file named <code class="docutils literal notranslate"><span class="pre">mantid-1.2.3-&lt;buildinfo&gt;.conda</span></code>.
+Since this is actually a zip file, it can be unpacked</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>tmp<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>tmp
+unzip<span class="w"> </span>../&lt;mantid-1.2.3-&lt;buildinfo&gt;.conda
+</pre></div>
+</div>
+<p>This will unpack 3 files</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>info-mantid-1.2.3-&lt;buildinfo&gt;.tar.zst
+metadata.json
+pkg-mantid-1.2.3-&lt;buildinfo&gt;.tar.zst
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">info-mantid-1.2.3-&lt;buildinfo&gt;.tar.zst</span></code> file contains all of the metadata and can be unpacked using</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>tar<span class="w"> </span>--zstd<span class="w"> </span>-xf<span class="w"> </span>info-mantid-1.2.3-&lt;buildinfo&gt;.tar.zst
+ls<span class="w"> </span>info
+recipe<span class="w">  </span>about.json<span class="w">  </span>git<span class="w">         </span>hash_input.json<span class="w">  </span>paths.json
+<span class="nb">test</span><span class="w">    </span>files<span class="w">       </span>has_prefix<span class="w">  </span>index.json<span class="w">       </span>run_exports.json
+</pre></div>
+</div>
+<p>Similarly, <code class="docutils literal notranslate"><span class="pre">pkg-mantid-1.2.3-&lt;buildinfo&gt;.tar.zst</span></code> contains all of the actual files to be installed.
+Generally a listing of the contents is what is desired</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>tar<span class="w"> </span>--zstd<span class="w"> </span>-tf<span class="w"> </span>pkg-mantid-1.2.3-&lt;buildinfo&gt;.tar.zst
+</pre></div>
+</div>
 </section>
 </section>
 
