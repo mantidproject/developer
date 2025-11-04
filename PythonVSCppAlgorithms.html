@@ -107,8 +107,12 @@
 <li><p><a class="reference internal" href="#algorithm-language-comparison" id="id2">Algorithm Language Comparison</a></p></li>
 <li><p><a class="reference internal" href="#multiple-possibilities-in-mantid" id="id3">Multiple Possibilities in Mantid</a></p></li>
 <li><p><a class="reference internal" href="#should-i-write-a-c-algorithm" id="id4">Should I Write a C++ Algorithm?</a></p></li>
-<li><p><a class="reference internal" href="#should-i-write-a-python-algorithm" id="id5">Should I Write a Python Algorithm?</a></p></li>
-<li><p><a class="reference internal" href="#note-for-mantid-developers" id="id6">Note for Mantid Developers</a></p></li>
+<li><p><a class="reference internal" href="#should-i-write-a-python-algorithm" id="id5">Should I Write a Python Algorithm?</a></p>
+<ul>
+<li><p><a class="reference internal" href="#hot-reloading" id="id6">Hot Reloading</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#note-for-mantid-developers" id="id7">Note for Mantid Developers</a></p></li>
 </ul>
 </nav>
 <section id="overview">
@@ -193,9 +197,24 @@ Compiler and linker outputs can be verbose, particularly in the presence of temp
 <p>It’s more natural to convert a python script into a python Algorithm than directly into a C++ algorithm. In many cases, the algorithm functionality is best assembled by procedural execution of existing algorithms. For this, the python API provides the best means of executing an algorithm in a single line, using well defined, named variables. An algorithm of this nature will take up only a few lines in Python and therefore be very easy to read and maintain.</p>
 <p>Python algorithms also benefit from automatic GUI creation when they are registered with Mantid, so they can be used equally well through the command line, or through a GUI.</p>
 <p>Python algorithms are great for editing and re-registering. Users can tweak existing Python algorithms or generate their own, without the complication of setting up a build environment. They can also more easily be re-issued to fix particular issues than C++ algorithms.</p>
+<section id="hot-reloading">
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">Hot Reloading</a><a class="headerlink" href="#hot-reloading" title="Link to this heading">¶</a></h3>
+<p>While not directly supported via the framework, it is possible to hot-reload a python algorithm through MantidWorkbench.</p>
+<p>This is especially beneficial when prototyping because it means you do not have to restart or rebuild Workbench between edits to your file.</p>
+<p>To accomplish this, perform the following steps:</p>
+<ol class="arabic simple">
+<li><p>Open MantidWorkbench</p></li>
+<li><p>Select File -&gt; Open Script</p></li>
+<li><p>Navigate to and select the source file of your python algorithm</p></li>
+<li><p>Run as you would a script in the workbench code editor</p></li>
+<li><p>Test your prototype code</p></li>
+<li><p>Edit your code and re-run Step 4 to update your algorithm</p></li>
+<li><p>Repeat steps 4-7 till satisfied.</p></li>
+</ol>
+</section>
 </section>
 <section id="note-for-mantid-developers">
-<h2><a class="toc-backref" href="#id6" role="doc-backlink">Note for Mantid Developers</a><a class="headerlink" href="#note-for-mantid-developers" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Note for Mantid Developers</a><a class="headerlink" href="#note-for-mantid-developers" title="Link to this heading">¶</a></h2>
 <p>Developers creating new algorithms in python must still generate unit tests for them. When an algorithm breaks, users do not care what language they are written in. The developer test suites allow you to create the same level of test coverage in python as you would in C++. Developers should also take care to ensure that the test exercises all of the code, as Python provides no compile-time type checking.</p>
 </section>
 </section>
