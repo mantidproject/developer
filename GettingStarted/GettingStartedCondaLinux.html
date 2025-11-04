@@ -179,6 +179,46 @@ With your <code class="docutils literal notranslate"><span class="pre">mantid-de
 </ul>
 <p>See <a class="reference internal" href="../Packaging.html#packaging"><span class="std std-ref">packaging</span></a> for more information on this topic.</p>
 </section>
+<section id="setup-the-mantid-pixi-environment">
+<h2>Setup the mantid pixi environment<a class="headerlink" href="#setup-the-mantid-pixi-environment" title="Link to this heading">¶</a></h2>
+<p>Pixi allows for reducible environments using conda packages.
+It manages environments for all supported platforms together to help keep them in line with each other.</p>
+<ol class="arabic">
+<li><p>Follow the <a class="reference external" href="https://pixi.sh/latest/installation/">pixi installation instructions</a> for your platform</p></li>
+<li><p>Install the dependencies that are listed in the lockfile with</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pixi<span class="w"> </span>install<span class="w"> </span>--frozen
+</pre></div>
+</div>
+</li>
+</ol>
+<ol class="arabic" start="2">
+<li><p>For in source builds, prefix all commands with <cite>pixi run</cite>. For example</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pixi<span class="w"> </span>run<span class="w"> </span>pre-commit<span class="w"> </span>install
+</pre></div>
+</div>
+</li>
+<li><p>For out-of source build, prefix all commands with</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pixi<span class="w"> </span>run<span class="w"> </span>--manifest-path<span class="w"> </span>path/to/source<span class="w"> </span>cmake<span class="w"> </span>--build<span class="w"> </span>.
+</pre></div>
+</div>
+</li>
+<li><p>Whenever <code class="docutils literal notranslate"><span class="pre">pixi.toml</span></code> changes, <code class="docutils literal notranslate"><span class="pre">pixi.lock</span></code> will update next time pixi is run.</p></li>
+</ol>
+<p>When there are issues, one can often fix them by removing the <code class="docutils literal notranslate"><span class="pre">pixi.lock</span></code> and recreating it with any pixi command.</p>
+<p>To not have to prefix all of the commands with <code class="docutils literal notranslate"><span class="pre">pixi</span> <span class="pre">run</span></code>, either use <code class="docutils literal notranslate"><span class="pre">pixi</span> <span class="pre">shell</span></code> (don’t forget to <code class="docutils literal notranslate"><span class="pre">exit</span></code> when leaving the directory) or use <a class="reference external" href="https://direnv.net/">direnv</a>.
+Once <cite>direnv</cite> is properly installed and in your path, create a file <code class="docutils literal notranslate"><span class="pre">.envrc</span></code> in your source tree with the contents</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>watch_file<span class="w"> </span>pixi.lock
+<span class="nb">eval</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>pixi<span class="w"> </span>shell-hook<span class="w"> </span>--change-ps1<span class="w"> </span><span class="nb">false</span><span class="k">)</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+<p>For out of source builds, the build directory should have a <code class="docutils literal notranslate"><span class="pre">.envrc</span></code> with the contents</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>watch_file<span class="w"> </span>/path/to/source/mantid/pixi.lock
+<span class="nb">eval</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>pixi<span class="w"> </span>shell-hook<span class="w"> </span>--manifest-path<span class="o">=</span>/path/to/source/mantid/<span class="w"> </span>--change-ps1<span class="w"> </span><span class="nb">false</span><span class="k">)</span><span class="s2">&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">PYTHONPATH</span><span class="o">=</span>/path/to/build/bin/:<span class="nv">$PYTHONPATH</span>
+</pre></div>
+</div>
+<p>The last line is necessary to get the build results into the python path.</p>
+</section>
 <section id="configure-cmake-and-generate-build-files">
 <h2>Configure CMake and generate build files<a class="headerlink" href="#configure-cmake-and-generate-build-files" title="Link to this heading">¶</a></h2>
 <ul class="simple">

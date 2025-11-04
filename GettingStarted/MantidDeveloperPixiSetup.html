@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>&lt;no title&gt;</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=fadd4351" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
+    <script src="../_static/documentation_options.js?v=a8da1a53"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-59110517-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+  </head><body>
+
+
+
+
+
+  <div id="navbar" class="navbar navbar-default ">
+    <div class="container">
+      <div class="navbar-header">
+        
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://www.mantidproject.org">
+           </a>
+        <span class="navbar-text navbar-version pull-left"><b>main</b></span>
+      </div>
+
+      
+        <div class="collapse navbar-collapse nav-collapse">
+      
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="https://download.mantidproject.org">Download</a></li>
+                <li><a href="https://docs.mantidproject.org">User Documentation</a></li>
+                <li><a href="http://www.mantidproject.org/contact">Contact Us</a></li>
+            
+            
+              
+              
+            
+            
+            
+            
+          </ul>
+              
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+            </div>
+    </div>
+    <p>
+<div class="related" role="navigation" aria-label="related navigation">
+  <h3>Navigation</h3>
+  <ul>
+    <li class="nav-item nav-item-0"><a href="../index.html">Documentation</a> &#187;</li>
+    
+    
+    
+    
+    <li class="nav-item nav-item-this"><a href="">&lt;no title&gt;</a></li>
+    
+    
+  </ul>
+</div> </p>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <p>Pixi allows for reducible environments using conda packages.
+It manages environments for all supported platforms together to help keep them in line with each other.</p>
+<ol class="arabic">
+<li><p>Follow the <a class="reference external" href="https://pixi.sh/latest/installation/">pixi installation instructions</a> for your platform</p></li>
+<li><p>Install the dependencies that are listed in the lockfile with</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pixi<span class="w"> </span>install<span class="w"> </span>--frozen
+</pre></div>
+</div>
+</li>
+</ol>
+<ol class="arabic" start="2">
+<li><p>For in source builds, prefix all commands with <cite>pixi run</cite>. For example</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pixi<span class="w"> </span>run<span class="w"> </span>pre-commit<span class="w"> </span>install
+</pre></div>
+</div>
+</li>
+<li><p>For out-of source build, prefix all commands with</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pixi<span class="w"> </span>run<span class="w"> </span>--manifest-path<span class="w"> </span>path/to/source<span class="w"> </span>cmake<span class="w"> </span>--build<span class="w"> </span>.
+</pre></div>
+</div>
+</li>
+<li><p>Whenever <code class="docutils literal notranslate"><span class="pre">pixi.toml</span></code> changes, <code class="docutils literal notranslate"><span class="pre">pixi.lock</span></code> will update next time pixi is run.</p></li>
+</ol>
+<p>When there are issues, one can often fix them by removing the <code class="docutils literal notranslate"><span class="pre">pixi.lock</span></code> and recreating it with any pixi command.</p>
+<p>To not have to prefix all of the commands with <code class="docutils literal notranslate"><span class="pre">pixi</span> <span class="pre">run</span></code>, either use <code class="docutils literal notranslate"><span class="pre">pixi</span> <span class="pre">shell</span></code> (don’t forget to <code class="docutils literal notranslate"><span class="pre">exit</span></code> when leaving the directory) or use <a class="reference external" href="https://direnv.net/">direnv</a>.
+Once <cite>direnv</cite> is properly installed and in your path, create a file <code class="docutils literal notranslate"><span class="pre">.envrc</span></code> in your source tree with the contents</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>watch_file<span class="w"> </span>pixi.lock
+<span class="nb">eval</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>pixi<span class="w"> </span>shell-hook<span class="w"> </span>--change-ps1<span class="w"> </span><span class="nb">false</span><span class="k">)</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+<p>For out of source builds, the build directory should have a <code class="docutils literal notranslate"><span class="pre">.envrc</span></code> with the contents</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>watch_file<span class="w"> </span>/path/to/source/mantid/pixi.lock
+<span class="nb">eval</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>pixi<span class="w"> </span>shell-hook<span class="w"> </span>--manifest-path<span class="o">=</span>/path/to/source/mantid/<span class="w"> </span>--change-ps1<span class="w"> </span><span class="nb">false</span><span class="k">)</span><span class="s2">&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">PYTHONPATH</span><span class="o">=</span>/path/to/build/bin/:<span class="nv">$PYTHONPATH</span>
+</pre></div>
+</div>
+<p>The last line is necessary to get the build results into the python path.</p>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+      <ul class="nav navbar-nav" style=" float: right;">
+      
+      
+          
+            
+          
+       
+          <li><a href="#">Back to top</a></li>
+       </ul>
+    <p>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
