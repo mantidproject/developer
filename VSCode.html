@@ -308,24 +308,22 @@ you will want to make your file look something a little like this:</p>
 <p><em>Workbench</em></p>
 <p>To debug C++ and start directly into the Workbench, add this to the configuration list in <code class="docutils literal notranslate"><span class="pre">launch.json</span></code>.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-<span class="w">  </span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;(gdb) Workbench C++ Only&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="s2">&quot;type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;cppdbg&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="s2">&quot;request&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;launch&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="s2">&quot;program&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;/usr/bin/python3&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// Path to your used Python interpreter, here and below</span>
-<span class="w">  </span><span class="s2">&quot;args&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;Path/To/Build/Directory/bin/workbench&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;--single-process&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;&amp;&amp;&quot;</span><span class="p">,</span><span class="s2">&quot;gdb&quot;</span><span class="p">,</span><span class="s2">&quot;/usr/bin/python3&quot;</span><span class="p">,</span><span class="s2">&quot;$!&quot;</span><span class="p">],</span><span class="w"> </span><span class="c1">// $! gets the process ID</span>
-<span class="w">  </span><span class="s2">&quot;stopAtEntry&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<span class="w">  </span><span class="s2">&quot;cwd&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Path/To/Build/Directory/bin&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// this should point to bin inside the build directory</span>
-<span class="w">  </span><span class="s2">&quot;environment&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[],</span>
-<span class="w">  </span><span class="s2">&quot;externalConsole&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">  </span><span class="s2">&quot;MIMode&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;gdb&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="s2">&quot;preLaunchTask&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Build Mantid&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="s2">&quot;setupCommands&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">      </span><span class="s2">&quot;description&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Enable pretty-printing for gdb&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="s2">&quot;text&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;-enable-pretty-printing&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="s2">&quot;ignoreFailures&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">]</span>
+<span class="w">    </span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;(gdb) Workbench C++ Only&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;cppdbg&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;request&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;launch&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;program&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;/Path/To/Mamba/Install/envs/mantid-developer/bin/python&quot;</span><span class="p">,</span><span class="w">   </span><span class="c1">// Full path (do not use &#39;~&#39;) to the python executable inside your build directory</span>
+<span class="w">    </span><span class="s2">&quot;preLaunchTask&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Build Mantid&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;args&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;-m&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;workbench&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;--single-process&quot;</span><span class="p">],</span>
+<span class="w">    </span><span class="s2">&quot;MIMode&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;gdb&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;cwd&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Path/To/Build/Directory/bin&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// this should point to bin inside the build directory</span>
+<span class="w">    </span><span class="s2">&quot;stopAtEntry&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;setupCommands&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">        </span><span class="s2">&quot;description&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Enable pretty-printing for gdb&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;text&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;-enable-pretty-printing&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;ignoreFailures&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
 <span class="p">}</span>
 </pre></div>
 </div>
