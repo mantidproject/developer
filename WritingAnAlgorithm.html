@@ -14,7 +14,7 @@
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Writing a Custom ConvertToMD Transformation" href="WritingCustomConvertToMDTransformation.html" />
+    <link rel="next" title="Dynamic dialog properties" href="DynamicProperties.html" />
     <link rel="prev" title="Plotting (Elemental Analysis)" href="Widgets/Plotting.html" />
 
 <script>
@@ -127,6 +127,7 @@
 <li><p><a class="reference internal" href="#child-algorithms" id="id12">Child Algorithms</a></p></li>
 <li><p><a class="reference internal" href="#enhancing-asynchronous-running" id="id13">Enhancing asynchronous running</a></p></li>
 <li><p><a class="reference internal" href="#exceptions" id="id14">Exceptions</a></p></li>
+<li><p><a class="reference internal" href="#properties-access-within-workbench-dialogs" id="id15">Properties access within workbench dialogs</a></p></li>
 </ul>
 </li>
 </ul>
@@ -455,6 +456,12 @@ However, some features are only enabled if code is added within the <code class=
 <p>It is fine to throw exceptions in your algorithms in the event of an unrecoverable failure.
 These will be caught in the base Algorithm class, which will report the failure of the algorithm.</p>
 </section>
+<section id="properties-access-within-workbench-dialogs">
+<h3><a class="toc-backref" href="#id15" role="doc-backlink">Properties access within workbench dialogs</a><a class="headerlink" href="#properties-access-within-workbench-dialogs" title="Link to this heading">¶</a></h3>
+<p>Once your algorithm is working from a script, and provided it is registered with <code class="docutils literal notranslate"><span class="pre">AlgorithmFactory</span></code>, it will also be possible to execute the algorithm from <code class="docutils literal notranslate"><span class="pre">mantidworkbench</span></code> using the built-in <code class="docutils literal notranslate"><span class="pre">GenericDialog</span></code> feature.  To this end there are several <em>optional</em> features available through the use of <code class="docutils literal notranslate"><span class="pre">IPropertySettings</span></code>-derived classes, to enhance the interaction between your algorithm’s properties and the GUI dialog.</p>
+<p><code class="docutils literal notranslate"><span class="pre">EnableWhenProperty</span></code>, <code class="docutils literal notranslate"><span class="pre">VisibleWhenProperty</span></code>, and <code class="docutils literal notranslate"><span class="pre">InvisibleProperty</span></code> can be used to hide or disable a property in the GUI dialog panel based on various conditions.</p>
+<p><code class="docutils literal notranslate"><span class="pre">SetValueWhenProperty</span></code>, and <code class="docutils literal notranslate"><span class="pre">SetDefaultWhenProperty</span></code> can be used to set the value of a property based on the value of another upstream property, or to emulate the effect of having a property’s <em>default</em> value depend on the value of another property.  See <a class="reference internal" href="DynamicProperties.html#dynamicproperties"><span class="std std-ref">Dynamic dialog properties</span></a> for example code showing how to use this feature.</p>
+</section>
 </section>
 </section>
 
@@ -475,7 +482,7 @@ These will be caught in the base Algorithm class, which will report the failure 
     </a>
   </li>
   <li>
-    <a href="WritingCustomConvertToMDTransformation.html" title="Next Chapter: Writing a Custom ConvertToMD Transformation"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Writing a Cus... &raquo;</span>
+    <a href="DynamicProperties.html" title="Next Chapter: Dynamic dialog properties"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Dynamic dialo... &raquo;</span>
     </a>
   </li>
           
