@@ -273,7 +273,7 @@ by the CI pipeline to indicate it has been built outside of the standard process
 <span id="build-custom-mantid-developer"></span><h2><a class="toc-backref" href="#id12" role="doc-backlink">Building a custom <code class="docutils literal notranslate"><span class="pre">mantid-developer</span></code> environment</a><a class="headerlink" href="#building-a-custom-mantid-developer-environment" title="Link to this heading">¶</a></h2>
 <p>This is useful if you need to change a pinned version of one of Mantid’s dependencies and test the change locally.</p>
 <ol class="arabic">
-<li><p>One can create a new environment specifically for building the package (with <code class="docutils literal notranslate"><span class="pre">conda-build</span></code>, <code class="docutils literal notranslate"><span class="pre">conda-index</span></code>, <code class="docutils literal notranslate"><span class="pre">rattler-build</span></code>, and <code class="docutils literal notranslate"><span class="pre">versioningit</span></code>), but the build itself happens in a separate sandbox which makes this unneccesary.</p></li>
+<li><p>One can create a new environment specifically for building the package (with <code class="docutils literal notranslate"><span class="pre">rattler-build</span></code>, and <code class="docutils literal notranslate"><span class="pre">versioningit</span></code>), but the build itself happens in a separate sandbox which makes this unneccesary.</p></li>
 <li><p>Make your changes to the conda recipe files.</p></li>
 <li><p>Change directory to <code class="docutils literal notranslate"><span class="pre">mantid/conda/recipes</span></code></p></li>
 <li><p>With <code class="docutils literal notranslate"><span class="pre">mantid_dev_builder</span></code> active, run</p>
@@ -283,7 +283,7 @@ by the CI pipeline to indicate it has been built outside of the standard process
 <p>This will build a local version of <code class="docutils literal notranslate"><span class="pre">mantid-developer</span></code> with your changes and place it in the directory <code class="docutils literal notranslate"><span class="pre">/home/me/tmp/rattler</span></code>. <strong>This must be outside of the buildtree</strong> because rattler will recursively copy everything.</p>
 </li>
 <li><p>Index the new packages</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>conda_index<span class="w"> </span>/home/me/tmp/rattler/
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>rattler-index<span class="w"> </span>fs<span class="w"> </span>/home/me/tmp/rattler/
 </pre></div>
 </div>
 <p>This will allow conda to install the package by name rather than by file. At this time, creating an environment using the filename will skip installing the dependencies and not use any channels.</p>
