@@ -15,7 +15,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Develop with conda on Linux" href="GettingStartedCondaLinux.html" />
-    <link rel="prev" title="Getting Started" href="GettingStarted.html" />
+    <link rel="prev" title="Environment Setup" href="GettingStarted.html" />
 
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -99,7 +99,7 @@
     
     <li class="nav-item nav-item-1">
       <a href="GettingStarted.html" accesskey="U">
-        Getting Started
+        Environment Setup
       </a>
        &#187;
     </li>
@@ -120,21 +120,20 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <section id="develop-with-conda-on-windows">
-<span id="gettingstartedcondawindows"></span><h1>Develop with conda on Windows<a class="headerlink" href="#develop-with-conda-on-windows" title="Link to this heading">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="develop-with-conda-on-windows">
+<h1>Develop with conda on Windows<a class="headerlink" href="#develop-with-conda-on-windows" title="Link to this heading">¶</a></h1>
 <section id="install-visual-studio-2022-community-edition">
 <h2>Install <a class="reference external" href="https://visualstudio.microsoft.com/downloads/">Visual Studio 2022 Community Edition</a><a class="headerlink" href="#install-visual-studio-2022-community-edition" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>When asked about installation workloads choose <code class="docutils literal notranslate"><span class="pre">Desktop</span> <span class="pre">development</span> <span class="pre">with</span> <span class="pre">C++</span></code></p></li>
-<li><dl class="simple">
-<dt>Under the “Installation details” section verify that the following are checked (they should already be checked by default):</dt><dd><ul>
+<li><p>Under the “Installation details” section verify that the following are checked (they should already be checked by default):</p>
+<ul>
 <li><p>The latest <code class="docutils literal notranslate"><span class="pre">Windows</span> <span class="pre">11</span> <span class="pre">SDK</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">MSVC</span> <span class="pre">v143</span> <span class="pre">-</span> <span class="pre">VS</span> <span class="pre">2022</span> <span class="pre">C++</span> <span class="pre">x64/x86</span> <span class="pre">build</span> <span class="pre">tools</span> <span class="pre">(latest)</span></code></p></li>
 </ul>
-</dd>
-</dl>
 </li>
-<li><p>If your machine has less than 32GB of memory Mantid may not build. If you have problems change the maximum number of parallel project builds to 1 in Visual Studio in Tools -&gt; Options -&gt; Projects and Solutions -&gt; Build And Run.</p></li>
+<li><p>If your machine has less than 32GB of memory Mantid may not build.
+If you have problems change the maximum number of parallel project builds to 1 in Visual Studio in Tools -&gt; Options -&gt; Projects and Solutions -&gt; Build And Run.</p></li>
 </ul>
 </section>
 <section id="install-git">
@@ -147,24 +146,30 @@
 <section id="turn-off-python-association-in-windows">
 <h2>Turn off Python association in Windows<a class="headerlink" href="#turn-off-python-association-in-windows" title="Link to this heading">¶</a></h2>
 <ul class="simple">
-<li><p>Because of the way Windows associates Python files with it’s Windows Store version of python we need to turn off this association. If you don’t turn this off you will have issues when running the pre-commit framework.</p></li>
+<li><p>Because of the way Windows associates Python files with it’s Windows Store version of python we need to turn off this association.
+If you don’t turn this off you will have issues when running the pre-commit framework.</p></li>
 <li><p>Navigate to your Settings -&gt; Manage App Execution Aliases, and turn off all Python Aliases.</p></li>
 </ul>
 </section>
 <section id="clone-the-mantid-source-code">
 <h2>Clone the mantid source code<a class="headerlink" href="#clone-the-mantid-source-code" title="Link to this heading">¶</a></h2>
 <ul class="simple">
-<li><p><strong>Important</strong>: If you have any existing non-conda mantid development environments, do not re-use the source and build directories for your conda environment.
-We recommend that you clone a new instance of the source and keep separate build directories to avoid any cmake configuration problems.</p></li>
-<li><dl class="simple">
-<dt>Obtain the mantid source code by either:</dt><dd><ul>
-<li><p>Using git in a terminal and cloning the codebase by calling <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">git&#64;github.com:mantidproject/mantid.git</span></code> in the directory you want the code to clone to.
-You will need to follow this <a class="reference external" href="https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh">Github guide</a> to configure SSH access.
-You may want to follow this <a class="reference external" href="https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup">Git setup guide</a> to configure your git environment.</p></li>
+<li><p><strong>Important</strong>: If you have any existing non-conda mantid development environments,
+do not re-use the source and build directories for your conda environment.
+We recommend that you clone a new instance of the source and keep separate build directories
+to avoid any cmake configuration problems.</p></li>
+<li><p>Obtain the mantid source code by either:</p>
+<ul>
+<li><p>Using git in a terminal and cloning the codebase by calling
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">git&#64;github.com:mantidproject/mantid.git</span></code> in the
+directory you want the code to clone to.
+You will need to follow this
+<a class="reference external" href="https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh">Github guide</a>
+to configure SSH access.
+You may want to follow this <a class="reference external" href="https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup">Git setup guide</a>
+to configure your git environment.</p></li>
 <li><p>Or using <a class="reference external" href="https://www.gitkraken.com/">GitKraken</a>.</p></li>
 </ul>
-</dd>
-</dl>
 </li>
 </ul>
 </section>
@@ -177,11 +182,6 @@ You may want to follow this <a class="reference external" href="https://git-scm.
 </section>
 <section id="setup-the-mantid-conda-environment">
 <h2>Setup the mantid conda environment<a class="headerlink" href="#setup-the-mantid-conda-environment" title="Link to this heading">¶</a></h2>
-<p>Open a terminal or powershell with conda enabled. Here are two ways to do this:</p>
-<ul class="simple">
-<li><p>Open an Anaconda prompt (Miniforge).</p></li>
-<li><p>Add the path of your Miniforge installation to your system path, if you didn’t do it during installation (Follow the answers in the <a class="reference external" href="https://docs.anaconda.com/anaconda/user-guide/faq/#installing-anaconda">FAQ</a>). Then you can use conda from the Command Prompt and Powershell.</p></li>
-</ul>
 <p>Create <code class="docutils literal notranslate"><span class="pre">mantid-developer</span></code> conda environment by following the steps below:</p>
 <ul>
 <li><p>First create a new conda environment and install the <code class="docutils literal notranslate"><span class="pre">mantid-developer</span></code> conda metapackage.
@@ -204,7 +204,7 @@ With your <code class="docutils literal notranslate"><span class="pre">mantid-de
 </div>
 </li>
 </ul>
-<p>See <a class="reference internal" href="../Packaging.html#packaging"><span class="std std-ref">packaging</span></a> for more information on this topic.</p>
+<p>See <a class="reference internal" href="../Packaging.html"><span class="doc std std-doc">packaging</span></a> for more information on this topic.</p>
 </section>
 <section id="setup-the-mantid-pixi-environment">
 <h2>Setup the mantid pixi environment<a class="headerlink" href="#setup-the-mantid-pixi-environment" title="Link to this heading">¶</a></h2>
@@ -217,9 +217,7 @@ It manages environments for all supported platforms together to help keep them i
 </pre></div>
 </div>
 </li>
-</ol>
-<ol class="arabic" start="2">
-<li><p>For in source builds, prefix all commands with <cite>pixi run</cite>. For example</p>
+<li><p>For in source builds, prefix all commands with <code class="docutils literal notranslate"><span class="pre">pixi</span> <span class="pre">run</span></code>. For example</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pixi<span class="w"> </span>run<span class="w"> </span>pre-commit<span class="w"> </span>install
 </pre></div>
 </div>
@@ -233,7 +231,7 @@ It manages environments for all supported platforms together to help keep them i
 </ol>
 <p>When there are issues, one can often fix them by removing the <code class="docutils literal notranslate"><span class="pre">pixi.lock</span></code> and recreating it with any pixi command.</p>
 <p>To not have to prefix all of the commands with <code class="docutils literal notranslate"><span class="pre">pixi</span> <span class="pre">run</span></code>, either use <code class="docutils literal notranslate"><span class="pre">pixi</span> <span class="pre">shell</span></code> (don’t forget to <code class="docutils literal notranslate"><span class="pre">exit</span></code> when leaving the directory) or use <a class="reference external" href="https://direnv.net/">direnv</a>.
-Once <cite>direnv</cite> is properly installed and in your path, create a file <code class="docutils literal notranslate"><span class="pre">.envrc</span></code> in your source tree with the contents</p>
+Once <code class="docutils literal notranslate"><span class="pre">direnv</span></code> is properly installed and in your path, create a file <code class="docutils literal notranslate"><span class="pre">.envrc</span></code> in your source tree with the contents</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>watch_file<span class="w"> </span>pixi.lock
 <span class="nb">eval</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>pixi<span class="w"> </span>shell-hook<span class="w"> </span>--frozen<span class="w"> </span>--change-ps1<span class="w"> </span><span class="nb">false</span><span class="k">)</span><span class="s2">&quot;</span>
 </pre></div>
@@ -249,33 +247,27 @@ Once <cite>direnv</cite> is properly installed and in your path, create a file <
 <section id="configure-cmake-and-generate-build-files">
 <h2>Configure CMake and generate build files<a class="headerlink" href="#configure-cmake-and-generate-build-files" title="Link to this heading">¶</a></h2>
 <ul class="simple">
-<li><dl class="simple">
-<dt>You can configure CMake using an MS Visual Studio or Ninja generator. Choose one of the following:</dt><dd><ul>
+<li><p>You can configure CMake using an MS Visual Studio or Ninja generator. Choose one of the following:</p>
+<ul>
 <li><p>For MS Visual Studio, use the terminal or powershell prompt from the last step.</p></li>
 <li><p>For Ninja, open the <code class="docutils literal notranslate"><span class="pre">x64</span> <span class="pre">Native</span> <span class="pre">Tools</span> <span class="pre">Command</span> <span class="pre">Prompt</span> <span class="pre">for</span> <span class="pre">VS</span> <span class="pre">2019</span></code> or <code class="docutils literal notranslate"><span class="pre">x64</span> <span class="pre">Native</span> <span class="pre">Tools</span> <span class="pre">Command</span> <span class="pre">Prompt</span> <span class="pre">for</span> <span class="pre">VS</span> <span class="pre">2022</span></code> from your search bar.</p></li>
 </ul>
-</dd>
-</dl>
 </li>
 <li><p>Navigate to your mantid source directory.</p></li>
 <li><p>If not already activated in the previous step, run <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">mantid-developer</span></code> to activate your conda environment.</p></li>
-<li><dl class="simple">
-<dt>If you want your build directory inside your source directory, run either:</dt><dd><ul>
+<li><p>If you want your build directory inside your source directory, run either:</p>
+<ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">--preset=win-vs</span></code> for configuring with Visual Studio 2022, or</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">--preset=win-vs-2019</span></code> for configuring with Visual Studio 2019, or</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">--preset=win-ninja</span></code> for configuring with Ninja.</p></li>
 </ul>
-</dd>
-</dl>
 </li>
-<li><dl class="simple">
-<dt>Alternatively, if you want to specify a different build directory, run either:</dt><dd><ul>
+<li><p>Alternatively, if you want to specify a different build directory, run either:</p>
+<ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">--preset=win-vs</span> <span class="pre">-B</span> <span class="pre">{BUILD_DIR}</span></code>, or</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">--preset=win-vs-2019</span>&#160; <span class="pre">-B</span> <span class="pre">{BUILD_DIR}</span></code>, or</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">--preset=win-ninja</span> <span class="pre">-B</span> <span class="pre">{BUILD_DIR}</span></code></p></li>
 </ul>
-</dd>
-</dl>
 </li>
 </ul>
 </section>
@@ -284,42 +276,39 @@ Once <cite>direnv</cite> is properly installed and in your path, create a file <
 <ul class="simple">
 <li><p>Open visual studio with <code class="docutils literal notranslate"><span class="pre">visual-studio.bat</span></code>, which is found in the build folder, and then click build.</p></li>
 <li><p>It’s not possible to compile in Debug on Windows with conda libraries, however Release, RelWithDebInfo, and DebugWithRelRuntime for Debugging will compile fine.</p></li>
-<li><p>Once in visual studio, the correct target to use as a startup project in visual studio is <code class="docutils literal notranslate"><span class="pre">workbench</span></code>, not <code class="docutils literal notranslate"><span class="pre">MantidWorkbench</span></code>. You can then press F5 to start workbench.</p></li>
-<li><p>If you want to use your computer while Mantid is compiling, you can enable the following option:
-<code class="docutils literal notranslate"><span class="pre">Tools</span> <span class="pre">&gt;</span> <span class="pre">Options</span> <span class="pre">&gt;</span> <span class="pre">Projects</span> <span class="pre">and</span> <span class="pre">Solutions</span> <span class="pre">&gt;</span> <span class="pre">Build</span> <span class="pre">And</span> <span class="pre">Run</span> <span class="pre">&gt;</span> <span class="pre">Run</span> <span class="pre">build</span> <span class="pre">at</span> <span class="pre">low</span> <span class="pre">process</span> <span class="pre">priority</span></code>.</p></li>
+<li><p>Once in visual studio, the correct target to use as a startup project in visual studio is <code class="docutils literal notranslate"><span class="pre">workbench</span></code>, not <code class="docutils literal notranslate"><span class="pre">MantidWorkbench</span></code>.
+You can then press F5 to start workbench.</p></li>
+<li><p>If you want to use your computer while Mantid is compiling, you can enable the following option: <code class="docutils literal notranslate"><span class="pre">Tools</span> <span class="pre">&gt;</span> <span class="pre">Options</span> <span class="pre">&gt;</span> <span class="pre">Projects</span> <span class="pre">and</span> <span class="pre">Solutions</span> <span class="pre">&gt;</span> <span class="pre">Build</span> <span class="pre">And</span> <span class="pre">Run</span> <span class="pre">&gt;</span> <span class="pre">Run</span> <span class="pre">build</span> <span class="pre">at</span> <span class="pre">low</span> <span class="pre">process</span> <span class="pre">priority</span></code>.</p></li>
 </ul>
 </section>
 <section id="compile-and-build-using-ninja">
 <h2>Compile and Build using Ninja<a class="headerlink" href="#compile-and-build-using-ninja" title="Link to this heading">¶</a></h2>
 <ul class="simple">
-<li><dl class="simple">
-<dt>From the command line:</dt><dd><ul>
+<li><p>From the command line:</p>
+<ul>
 <li><p>Navigate to the build directory using the <code class="docutils literal notranslate"><span class="pre">x64</span> <span class="pre">Native</span> <span class="pre">Tools</span> <span class="pre">Command</span> <span class="pre">Prompt</span> <span class="pre">for</span> <span class="pre">VS</span> <span class="pre">2019</span></code> or <code class="docutils literal notranslate"><span class="pre">x64</span> <span class="pre">Native</span> <span class="pre">Tools</span> <span class="pre">Command</span> <span class="pre">Prompt</span> <span class="pre">for</span> <span class="pre">VS</span> <span class="pre">2022</span></code> from the previous step.</p></li>
 <li><p>To build Mantid Workbench use: <code class="docutils literal notranslate"><span class="pre">ninja</span></code></p></li>
 <li><p>To build the unit tests use: <code class="docutils literal notranslate"><span class="pre">ninja</span> <span class="pre">AllTests</span></code></p></li>
 </ul>
-</dd>
-</dl>
 </li>
-<li><dl class="simple">
-<dt>In Visual Studio:</dt><dd><ul>
+<li><p>In Visual Studio:</p>
+<ul>
 <li><p>Open Visual Studio with <code class="docutils literal notranslate"><span class="pre">visual-studio_ninja.bat</span></code>, which is found in the build folder</p></li>
 <li><p>Select “win-ninja” from the Configuration dropdown at the top of the screen</p></li>
 <li><p>Select “Switch between solutions and available views” in the Solution Explorer and click on “CMake Targets View”</p></li>
 <li><p>It is recommended that the “When cache is out of date” option is set to “Never run configure step automatically” in Tools-&gt;Options-&gt;CMake</p></li>
 </ul>
-</dd>
-</dl>
 </li>
 </ul>
 </section>
 <section id="building-and-debugging-with-clion">
 <h2>Building and debugging with CLion<a class="headerlink" href="#building-and-debugging-with-clion" title="Link to this heading">¶</a></h2>
-<p>Please follow the Windows related instructions on <a class="reference internal" href="../CLion.html#clion-ref"><span class="std std-ref">this page</span></a>.</p>
+<p>Please follow the Windows related instructions on <a class="reference internal" href="../CLion.html"><span class="doc std std-doc">this page</span></a>.</p>
 </section>
 <section id="cmake-conda-variables">
 <h2>CMake conda variables<a class="headerlink" href="#cmake-conda-variables" title="Link to this heading">¶</a></h2>
-<p>The <cite>CONDA_BUILD</cite> parameter is used to customise our installation, which is required when we are using the conda-build tool to build and package Mantid. This option can be passed to CMake on the command line using -DCONDA_BUILD=True.</p>
+<p>The <span class="title-ref">CONDA_BUILD</span> parameter is used to customise our installation, which is required when we are using the conda-build tool to build and package Mantid.
+This option can be passed to CMake on the command line using -DCONDA_BUILD=True.</p>
 </section>
 </section>
 
@@ -336,7 +325,7 @@ Once <cite>direnv</cite> is properly installed and in your path, create a file <
           
             
   <li>
-    <a href="GettingStarted.html" title="Previous Chapter: Getting Started"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Getting Started</span>
+    <a href="GettingStarted.html" title="Previous Chapter: Environment Setup"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Environment Setup</span>
     </a>
   </li>
   <li>

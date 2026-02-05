@@ -113,7 +113,7 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <section id="pycharm">
+  <section class="tex2jax_ignore mathjax_ignore" id="pycharm">
 <span id="pycharm-ref"></span><h1>PyCharm<a class="headerlink" href="#pycharm" title="Link to this heading">¶</a></h1>
 <nav class="contents local" id="contents">
 <ul class="simple">
@@ -126,16 +126,18 @@
 </nav>
 <section id="selecting-pycharm-versions">
 <h2><a class="toc-backref" href="#id1" role="doc-backlink">Selecting PyCharm versions</a><a class="headerlink" href="#selecting-pycharm-versions" title="Link to this heading">¶</a></h2>
-<p>There are two versions of PyCharm that are in use in the team, Community and Professional. The main difference for our workflow is that professional offers support for remote debugging which can help with debugging Python code that is called from C++, such as algorithms called from Python interfaces.</p>
+<p>There are two versions of PyCharm that are in use in the team, Community and Professional.
+The main difference for our workflow is that professional offers support for remote debugging which can help with debugging Python code that is called from C++, such as algorithms called from Python interfaces.</p>
 <p>If you haven’t installed PyCharm yet do that now, PyCharm can be installed from <a class="reference external" href="https://jetbrains.com/pycharm/download/">here</a>.</p>
 </section>
 <section id="setup-python-development-environment-with-conda">
 <h2><a class="toc-backref" href="#id2" role="doc-backlink">Setup Python development environment with conda</a><a class="headerlink" href="#setup-python-development-environment-with-conda" title="Link to this heading">¶</a></h2>
-<p>The assumption has been made that you have setup and built Mantid already, if you have not, please do so before hand by following, <a class="reference external" href="GettingStarted/GettingStarted.html">this guide</a>.</p>
+<p>The assumption has been made that you have setup and built Mantid already.
+If you have not, please do so before hand by following <a class="reference internal" href="GettingStarted/GettingStarted.html"><span class="std std-doc">this guide</span></a>.</p>
 <p>At any point in these instructions where <code class="docutils literal notranslate"><span class="pre">DebugWithRelRuntime</span></code> is used (including in file paths),
 you can replace it with any other build type such as <code class="docutils literal notranslate"><span class="pre">Debug</span></code> or <code class="docutils literal notranslate"><span class="pre">Release</span></code>.
 We use <code class="docutils literal notranslate"><span class="pre">DebugWithRelRuntime</span></code> for conda specific builds to allow debugging due to <code class="docutils literal notranslate"><span class="pre">Debug</span></code> not being functional with the <code class="docutils literal notranslate"><span class="pre">Release</span> <span class="pre">ABIs</span></code>.</p>
-<ul>
+<ul class="simple">
 <li><p>Open PyCharm</p></li>
 <li><p>If no project has been selected already, open the Mantid source code as a project.</p></li>
 <li><p>Open the <code class="docutils literal notranslate"><span class="pre">File-&gt;Settings</span> <span class="pre">menu</span></code>.</p></li>
@@ -146,13 +148,13 @@ We use <code class="docutils literal notranslate"><span class="pre">DebugWithRel
 <li><p>Add the path to your conda executable, e.g. <code class="docutils literal notranslate"><span class="pre">C:\Users\&lt;username&gt;\AppData\Local\miniforge\Scripts\conda.exe</span></code> and click <code class="docutils literal notranslate"><span class="pre">Load</span> <span class="pre">Environments</span></code>.</p></li>
 <li><p>Click the <code class="docutils literal notranslate"><span class="pre">Use</span> <span class="pre">Existing</span> <span class="pre">environment</span></code> radio button and select the <code class="docutils literal notranslate"><span class="pre">mantid-developer</span></code> environment in the drop down list.</p></li>
 <li><p>Click OK to close the window.</p></li>
-<li><p>Ensure that next to <code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">Interpreter:</span></code> it says <code class="docutils literal notranslate"><span class="pre">mantid-developer</span></code>. You will also see a list of the python packages installed in your mantid-developer environment.</p></li>
+<li><p>Ensure that next to <code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">Interpreter:</span></code> it says <code class="docutils literal notranslate"><span class="pre">mantid-developer</span></code>.
+You will also see a list of the python packages installed in your mantid-developer environment.</p></li>
 <li><p>Then click Apply.</p></li>
 <li><p>Back on the left side, under <code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">Interpreter</span></code> there should be an option for <code class="docutils literal notranslate"><span class="pre">Project</span> <span class="pre">Structure</span></code>. Select that.</p></li>
 <li><p>If you do not build Mantid in the same directory as your source but somewhere else add this as another Content Root, by selecting <code class="docutils literal notranslate"><span class="pre">+</span> <span class="pre">Add</span> <span class="pre">Content</span> <span class="pre">Root</span></code> on the right hand side now.</p></li>
 <li><p>In the file tree, select each of the following and mark them as source directories by clicking the <code class="docutils literal notranslate"><span class="pre">Sources</span></code> button while they are selected:</p>
-<blockquote>
-<div><ul class="simple">
+<ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">{SOURCE}/scripts</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">{SOURCE}/Framework/PythonInterface</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">{SOURCE}/qt/applications/workbench</span></code></p></li>
@@ -160,7 +162,6 @@ We use <code class="docutils literal notranslate"><span class="pre">DebugWithRel
 <li><p><code class="docutils literal notranslate"><span class="pre">{SOURCE}/qt/python/mantidqt</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">{SOURCE}/qt/python/mantidqtinterfaces</span></code></p></li>
 </ul>
-</div></blockquote>
 </li>
 <li><p>In the file tree select your build directory and mark as excluded by clicking the <code class="docutils literal notranslate"><span class="pre">Excluded</span></code> button whilst it’s selected.</p></li>
 <li><p>If the <code class="docutils literal notranslate"><span class="pre">.pixi</span></code> directory exists, mark it as excluded.</p></li>
@@ -187,12 +188,14 @@ We use <code class="docutils literal notranslate"><span class="pre">DebugWithRel
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>On Windows, you may see the following error when launching workbench in debug mode:</p>
+<p>On Windows, you may see the following error when launching workbench in
+debug mode:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>incompatible<span class="w"> </span>copy<span class="w"> </span>of<span class="w"> </span>pydevd<span class="w"> </span>already<span class="w"> </span>imported:
 C:<span class="se">\P</span>rogram<span class="w"> </span>Files<span class="se">\J</span>etBrains<span class="se">\P</span>yCharm<span class="w"> </span>Community<span class="w"> </span>Edition<span class="w"> </span><span class="m">2023</span>.1.2<span class="se">\p</span>lugins<span class="se">\p</span>ython-ce<span class="se">\h</span>elpers<span class="se">\p</span>ydev<span class="se">\_</span>pydev_bundle<span class="se">\_</span>_init__.py
 C:<span class="se">\P</span>rogram<span class="w"> </span>Files<span class="se">\J</span>etBrains<span class="se">\P</span>yCharm<span class="w"> </span>Community<span class="w"> </span>Edition<span class="w"> </span><span class="m">2023</span>.1.2<span class="se">\p</span>lugins<span class="se">\p</span>ython-ce<span class="se">\h</span>elpers<span class="se">\p</span>ydev<span class="se">\_</span>pydev_bundle<span class="se">\_</span>pydev_calltip_util.py
 ...
 </pre></div>
+</div>
 </div>
 <p>To resolve the error, remove <strong>only</strong> the debugpy package from your conda environment with</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>remove<span class="w"> </span>debugpy<span class="w"> </span>--force
@@ -201,42 +204,31 @@ C:<span class="se">\P</span>rogram<span class="w"> </span>Files<span class="se">
 <p>The <code class="docutils literal notranslate"><span class="pre">--force</span></code> argument tells conda to remove the single package only, ignoring the packages that depend on debugpy.
 Note that the Mamba implementation of <code class="docutils literal notranslate"><span class="pre">remove</span> <span class="pre">--force</span></code> did not skip dependency checking until version 1.5.2 (October 2023).
 If your version of Mamba is older than this, use the conda command.</p>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>macOS developers will see the warning from Qt in the terminal:</p>
-<p><code class="docutils literal notranslate"><span class="pre">An</span> <span class="pre">OpenGL</span> <span class="pre">surfcace</span> <span class="pre">format</span> <span class="pre">was</span> <span class="pre">requested</span> <span class="pre">that</span> <span class="pre">is</span> <span class="pre">either</span> <span class="pre">not</span> <span class="pre">version</span> <span class="pre">3.2</span> <span class="pre">or</span> <span class="pre">higher</span> <span class="pre">or</span> <span class="pre">a</span> <span class="pre">not</span> <span class="pre">Core</span> <span class="pre">Profile.</span></code>
-<code class="docutils literal notranslate"><span class="pre">Chromium</span> <span class="pre">on</span> <span class="pre">macOS</span> <span class="pre">will</span> <span class="pre">fall</span> <span class="pre">back</span> <span class="pre">to</span> <span class="pre">software</span> <span class="pre">rendering</span> <span class="pre">in</span> <span class="pre">this</span> <span class="pre">case.</span></code>
-<code class="docutils literal notranslate"><span class="pre">Hardware</span> <span class="pre">acceleration</span> <span class="pre">and</span> <span class="pre">features</span> <span class="pre">such</span> <span class="pre">as</span> <span class="pre">WebGL</span> <span class="pre">will</span> <span class="pre">not</span> <span class="pre">be</span> <span class="pre">available.</span></code></p>
-<p>It can be safely ignored but is present as a reminder of some deprecated OpenGL
-functionality being used.
-It is only visible to developers and the spelling mistake is real.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+```{include} macos-opengl-version-warning.md
+</pre></div>
 </div>
 </section>
 <section id="debug-python-in-unit-tests">
 <h2><a class="toc-backref" href="#id4" role="doc-backlink">Debug Python in unit tests</a><a class="headerlink" href="#debug-python-in-unit-tests" title="Link to this heading">¶</a></h2>
 <p>This section assumes you have followed all previous instructions for debugging Python in workbench</p>
 <p>There are 2 main ways to debug Python unit tests using the Unittests Python module.</p>
-<ol class="arabic">
+<ol class="arabic simple">
 <li><p>Navigate to the test you want to run in PyCharm, on the left side of the file in the margin, just to the right of the line numbers there should be a green play button, click that and it will let you start a debug or normal run of the tests.</p></li>
-<li><dl>
-<dt>A little more involved, but is easier to expand and test many things at once.</dt><dd><ul>
+<li><p>A little more involved, but is easier to expand and test many things at once.</p>
+<ul class="simple">
 <li><p>Same as when creating the Workbench debug session. Open the configuration menu by navigating to <code class="docutils literal notranslate"><span class="pre">Run-&gt;Edit</span> <span class="pre">Configurations...</span></code></p></li>
 <li><p>Click the <code class="docutils literal notranslate"><span class="pre">+</span></code> icon top left</p></li>
 <li><p>Select Unittests</p></li>
 <li><p>Give an appropriate name for the section of code you will be testing</p></li>
 <li><p>You have 3 options, enter the module name, script path or custom.</p>
-<blockquote>
-<div><ul class="simple">
+<ul>
 <li><p>Module name for testing workbench project recovery tests looks like this <code class="docutils literal notranslate"><span class="pre">workbench.projectrecovery</span></code>, this runs all of the tests in the project recovery section. This is very useful for testing all of a specific section of the code base, without running it in a terminal.</p></li>
 <li><p>Script path is very similar instead of passing a module name, you just give a filepath such as <code class="docutils literal notranslate"><span class="pre">{SOURCE}/qt/applications/workbench/workbench/projectrecovery</span></code> this achieves exactly the same as the previous step.</p></li>
-<li><p>Custom is for passing custom arguments to the Unittests executable such as these: <a class="reference external" href="https://docs.python.org/3/library/unittest.html#command-line-interface">https://docs.python.org/3/library/unittest.html#command-line-interface</a></p></li>
+<li><p>Custom is for passing custom arguments to the Unittests executable such as <a class="reference external" href="https://docs.python.org/3/library/unittest.html#command-line-interface">these</a></p></li>
 </ul>
-</div></blockquote>
 </li>
 </ul>
-</dd>
-</dl>
 </li>
 </ol>
 </section>
@@ -258,12 +250,10 @@ It is only visible to developers and the spelling mistake is real.</p>
 <li><p>Ensure that the previously created <code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">Debug</span> <span class="pre">Server</span></code> is selected in the left hand side tree selection.</p></li>
 <li><p>Ensure that you set the port box to something that isn’t 0 and isn’t in use by your system at present such as <code class="docutils literal notranslate"><span class="pre">8080</span></code>.</p></li>
 <li><p>Copy the snippet of Python code that looks like this:</p>
-<blockquote>
-<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pydevd_pycharm</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pydevd_pycharm</span>
 <span class="n">pydevd_pycharm</span><span class="o">.</span><span class="n">settrace</span><span class="p">(</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">8080</span><span class="p">,</span> <span class="n">stdoutToServer</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">stderrToServer</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
-</div></blockquote>
 </li>
 <li><p>Paste this code where you want to start debugging from, this will act like a breakpoint during normal debugging.</p></li>
 <li><p>Click the drop down menu next to the play icon in the top right. Select the <code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">Debug</span> <span class="pre">Server</span></code> you configured, then click the debug next to the play icon.</p></li>
@@ -272,21 +262,29 @@ It is only visible to developers and the spelling mistake is real.</p>
 </ul>
 </section>
 </section>
-<section id="legacy-and-not-maintained-past-this-point-only-use-if-explicitly-not-using-conda">
+<section class="tex2jax_ignore mathjax_ignore" id="legacy-and-not-maintained-past-this-point-only-use-if-explicitly-not-using-conda">
 <h1>Legacy and not maintained past this point (Only use if explicitly not using conda)<a class="headerlink" href="#legacy-and-not-maintained-past-this-point-only-use-if-explicitly-not-using-conda" title="Link to this heading">¶</a></h1>
 <section id="setting-up-pycharm-on-windows">
 <h2>Setting up PyCharm on Windows<a class="headerlink" href="#setting-up-pycharm-on-windows" title="Link to this heading">¶</a></h2>
 <ol class="arabic">
 <li><p>Once PyCharm is open, set up the project. Go to <code class="docutils literal notranslate"><span class="pre">File-&gt;Open</span></code> and select the root directory in which both your source and build directories reside.</p>
-<p>Go to <code class="docutils literal notranslate"><span class="pre">File-&gt;Settings</span></code>, then under <code class="docutils literal notranslate"><span class="pre">Project</span></code> you will set two sub-menus <code class="docutils literal notranslate"><span class="pre">Project</span> <span class="pre">Interpreter</span></code> and <code class="docutils literal notranslate"><span class="pre">Project</span> <span class="pre">Structure</span></code>. The interpreter defines the Python executable that will be used to run your code, and the structure menu allows you to decide which folders within the project to include and index.</p>
+<p>Go to <code class="docutils literal notranslate"><span class="pre">File-&gt;Settings</span></code>, then under <code class="docutils literal notranslate"><span class="pre">Project</span></code> you will set two sub-menus <code class="docutils literal notranslate"><span class="pre">Project</span> <span class="pre">Interpreter</span></code> and <code class="docutils literal notranslate"><span class="pre">Project</span> <span class="pre">Structure</span></code>.
+The interpreter defines the Python executable that will be used to run your code, and the structure menu allows you to decide which folders within the project to include and index.</p>
 </li>
-<li><p>In the <code class="docutils literal notranslate"><span class="pre">Project</span> <span class="pre">Interpreter</span></code> sub menu, at the top select the options button and click <code class="docutils literal notranslate"><span class="pre">Add...</span></code>, a new window should appear titled “Add Python Interpreter”. In the menu on the left, if you are using conda select “Conda Environment”, if you haven’t set up conda follow the Getting Started guidance for it, select existing environment and if not present already put in the path to your Python interpreter, and your conda executable. Alternatively select “System Interpreter” (a version of Python with all the correct variables set already exists within Mantid, if you are not using Conda). Click on the <code class="docutils literal notranslate"><span class="pre">...</span></code> to open a file browser, and navigate to;</p>
+<li><p>In the <code class="docutils literal notranslate"><span class="pre">Project</span> <span class="pre">Interpreter</span></code> sub menu, at the top select the options button and click <code class="docutils literal notranslate"><span class="pre">Add...</span></code>, a new window should appear titled “Add Python Interpreter”.
+In the menu on the left, if you are using conda select “Conda Environment”, if you haven’t set up conda follow the Getting Started guidance for it, select existing environment and if not present already put in the path to your Python interpreter, and your conda executable.
+Alternatively select “System Interpreter” (a version of Python with all the correct variables set already exists within Mantid, if you are not using Conda).
+Click on the <code class="docutils literal notranslate"><span class="pre">...</span></code> to open a file browser, and navigate to;</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>&lt;Mantid<span class="w"> </span>Source<span class="w"> </span>Directory&gt;/external/src/ThirdParty/lib/Python3.8/Python.exe
 </pre></div>
 </div>
-<p>This is the interpreter, so select “Ok” and apply the changes. This should bring up a list of all the packages associated to the interpreter. There should be many packages, however you should not see PyQt (but instead QtPy).</p>
+<p>This is the interpreter, so select “Ok” and apply the changes.
+This should bring up a list of all the packages associated to the interpreter.
+There should be many packages, however you should not see PyQt (but instead QtPy).</p>
 </li>
-<li><p>In the <code class="docutils literal notranslate"><span class="pre">Project</span> <span class="pre">Structure</span></code> sub menu you should see your root directory with the source/build directories both visible (if not, add them). The folder structure should be present in the centre of the window allowing you to mark folders orange (excluded) or blue (source). Source directories will be searched for Python code.</p>
+<li><p>In the <code class="docutils literal notranslate"><span class="pre">Project</span> <span class="pre">Structure</span></code> sub menu you should see your root directory with the source/build directories both visible (if not, add them).
+The folder structure should be present in the centre of the window allowing you to mark folders orange (excluded) or blue (source).
+Source directories will be searched for Python code.</p>
 <p>Within the source directory add the following to your sources:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>&lt;Mantid<span class="w"> </span>Source<span class="w"> </span>Directory&gt;/scripts
 &lt;Mantid<span class="w"> </span>Source<span class="w"> </span>Directory&gt;/Framework/PythonInterface
@@ -296,16 +294,19 @@ It is only visible to developers and the spelling mistake is real.</p>
 &lt;Mantid<span class="w"> </span>Source<span class="w"> </span>Directory&gt;/external/src/ThirdParty/lib
 </pre></div>
 </div>
-<p>If you are writing scripts in any other directories, you can also mark them as sources. This helps PyCharm give better auto-complete and import suggestions during development.</p>
+<p>If you are writing scripts in any other directories, you can also mark them as sources.
+This helps PyCharm give better auto-complete and import suggestions during development.</p>
 <p>Additionally, in the Mantid build directory add the following as source folders:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>&lt;Mantid<span class="w"> </span>Build<span class="w"> </span>Directory&gt;/bin/Debug
 </pre></div>
 </div>
 <p>here we are setting up PyCharm for the Debug build, you would use <code class="docutils literal notranslate"><span class="pre">/bin/Release</span></code> instead if you are building mantid in release mode.</p>
 </li>
-<li><p>The environment needs to be set up before running the configuration. Follow the instructions below to use either the EnvFile plugin (recommended) or manual path setup.</p></li>
+<li><p>The environment needs to be set up before running the configuration.
+Follow the instructions below to use either the EnvFile plugin (recommended) or manual path setup.</p></li>
 </ol>
-<p>NOTE : In some cases, imports in the code will still be highlighted red when they come from folders within the <code class="docutils literal notranslate"><span class="pre">script/</span></code> folder, or from other folders entirely. To fix this simply add the relevant folder that contains the module you are importing in the same fashion as step 3 above.</p>
+<p>NOTE : In some cases, imports in the code will still be highlighted red when they come from folders within the <code class="docutils literal notranslate"><span class="pre">script/</span></code> folder, or from other folders entirely.
+To fix this simply add the relevant folder that contains the module you are importing in the same fashion as step 3 above.</p>
 </section>
 <section id="running-files-in-the-debugger-with-envfile-extension">
 <span id="pycharm-debugging-env-file"></span><h2>Running Files in the Debugger with EnvFile extension<a class="headerlink" href="#running-files-in-the-debugger-with-envfile-extension" title="Link to this heading">¶</a></h2>
@@ -313,29 +314,33 @@ It is only visible to developers and the spelling mistake is real.</p>
 <p>Running Python code from within PyCharm which depends on the Python API, or PyQt for example requires one extra step. Because the source root labelling from the previous section only affects PyCharm searching and not the run configuration, before running the file we must set up the run configuration correctly.</p>
 <ol class="arabic simple" start="4">
 <li><p>Install the EnvFile plugin by Borys Pierov. The plugin can be installed in multiple ways:</p>
-<ol class="loweralpha simple">
+<ol class="arabic simple">
 <li><p>Open Settings(CTRL + SHIFT + S), to go Plugins and search for <code class="docutils literal notranslate"><span class="pre">EnvFile</span></code>. Install and restart PyCharm.</p></li>
 <li><p>Go to the plugin’s <a class="reference external" href="https://plugins.jetbrains.com/plugin/7861-envfile">webpage</a>, download and install it.</p></li>
 </ol>
 </li>
-<li><p>To edit the configurations go to Run-&gt;Run… and select Edit Configurations. Notice that there is now a <code class="docutils literal notranslate"><span class="pre">EnvFile</span></code> tab under the configuration’s name.
-- Note that you have to do that for each configuration, or you can change the template configuration, and all configuration that use that template will have the EnvFile setup.</p></li>
+<li><p>To edit the configurations go to Run-&gt;Run… and select Edit Configurations. Notice that there is now a <code class="docutils literal notranslate"><span class="pre">EnvFile</span></code> tab under the configuration’s name.</p>
+<ul class="simple">
+<li><p>Note that you have to do that for each configuration, or you can change the template configuration, and all configuration that use that template will have the EnvFile setup.</p></li>
+</ul>
+</li>
 <li><p>Open the <code class="docutils literal notranslate"><span class="pre">EnvFile</span></code> tab, check <code class="docutils literal notranslate"><span class="pre">Enable</span> <span class="pre">EnvFile</span></code> and <code class="docutils literal notranslate"><span class="pre">Substitute</span> <span class="pre">Environmental</span> <span class="pre">Variables</span> <span class="pre">(...)</span></code> - this allows setting up the third-party paths dynamically.</p></li>
 <li><p>Click the <code class="docutils literal notranslate"><span class="pre">+</span></code> (plus) on the right side, select the <code class="docutils literal notranslate"><span class="pre">pycharm.env</span></code> file in the root of the <strong>build</strong> directory.</p></li>
 </ol>
-<p>For running the Workbench continue onto <a class="reference external" href="https://docs.mantidproject.org/nightly/workbench/index.html#workbench" title="(in MantidProject v6.14)"><span>Workbench</span></a>, and follow the instructions to set up the <em>Script Path</em> and <em>Working Directory</em>.</p>
+<p>For running the Workbench continue onto <a class="reference internal" href="Workbench/index.html#workbenchindex"><span class="std std-ref">Workbench</span></a>, and follow the instructions to set up the <em>Script Path</em> and <em>Working Directory</em>.</p>
 <p>Advantages of this approach:</p>
 <ul class="simple">
-<li><p>You can have multiple instances of PyCharm running with environment configuration for separate repositories. This is otherwise not possible, as all PyCharm instances seem to share a parent process and environment. (as is the case of 11/01/2019, it might change in the future)</p></li>
-<li><p>This makes possible switching projects for multiple repositories via the File &gt; Open Recent … menu, as when the new project is opened its environment won’t be poluted with environment variables from the last one.</p>
-<ul>
+<li><p>You can have multiple instances of PyCharm running with environment configuration for separate repositories.
+This is otherwise not possible, as all PyCharm instances seem to share a parent process and environment.
+(as is the case of 11/01/2019, it might change in the future)</p></li>
+<li><p>This makes possible switching projects for multiple repositories via the File &gt; Open Recent … menu, as when the new project is opened its environment won’t be poluted with environment variables from the last one.</p></li>
 <li><p>This can cause errors when the external dependencies aren’t quite the same between all the repositories, as some packages might be missing, or be different versions.</p></li>
-</ul>
-</li>
 </ul>
 <p>Disadvantages:</p>
 <ul class="simple">
-<li><p>Additional setup for each configuration necessary. Thankfully, if the template is edited to have the correct <code class="docutils literal notranslate"><span class="pre">EnvFile</span></code> setup, all copies of it will have it too. Copying an already existing configuration also copies the <code class="docutils literal notranslate"><span class="pre">EnvFile</span></code> setup.</p></li>
+<li><p>Additional setup for each configuration necessary.
+Thankfully, if the template is edited to have the correct <code class="docutils literal notranslate"><span class="pre">EnvFile</span></code> setup, all copies of it will have it too.
+Copying an already existing configuration also copies the <code class="docutils literal notranslate"><span class="pre">EnvFile</span></code> setup.</p></li>
 </ul>
 </section>
 <section id="running-files-in-the-debugger-without-envfile-extension">
@@ -344,12 +349,17 @@ It is only visible to developers and the spelling mistake is real.</p>
 <ul>
 <li><p>Open PyCharm using <code class="docutils literal notranslate"><span class="pre">pycharm.bat</span></code> which can be found in the build directory (this sets some additional environment variables compared with simply opening PyCharm directly).</p>
 <ul class="simple">
-<li><p>This is preferred if you only have 1 repository with which PyCharm is used. If you need to use PyCharm on multiple repositories, it is recommended that you use the EnvFile extension.</p></li>
+<li><p>This is preferred if you only have 1 repository with which PyCharm is used.
+If you need to use PyCharm on multiple repositories, it is recommended that you use the EnvFile extension.</p></li>
 </ul>
 </li>
-<li><p>To edit the configurations go to <code class="docutils literal notranslate"><span class="pre">Run-&gt;Run...</span></code> and select <code class="docutils literal notranslate"><span class="pre">Edit</span> <span class="pre">Configurations</span></code>. This should open up a sub window. Hit the green <code class="docutils literal notranslate"><span class="pre">+</span></code> in the top left to create a new configuration and name it. In order to tell PyCharm where to look for Python modules and libraries we need to add some folders to the <code class="docutils literal notranslate"><span class="pre">PATH</span></code> environment variable. Click on the <code class="docutils literal notranslate"><span class="pre">...</span></code> next to the <em>Environment Variables</em> box, and hit the <code class="docutils literal notranslate"><span class="pre">+</span></code> icon. In the Name column enter “PATH”, in the value column enter the following;</p>
-<blockquote>
-<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>&lt;Mantid<span class="w"> </span>Build<span class="w"> </span>Directory&gt;<span class="se">\b</span>in<span class="se">\D</span>ebug<span class="p">;</span>
+<li><p>To edit the configurations go to <code class="docutils literal notranslate"><span class="pre">Run-&gt;Run...</span></code> and select <code class="docutils literal notranslate"><span class="pre">Edit</span> <span class="pre">Configurations</span></code>.
+This should open up a sub window.
+Hit the green <code class="docutils literal notranslate"><span class="pre">+</span></code> in the top left to create a new configuration and name it.
+In order to tell PyCharm where to look for Python modules and libraries we need to add some folders to the <code class="docutils literal notranslate"><span class="pre">PATH</span></code> environment variable.
+Click on the <code class="docutils literal notranslate"><span class="pre">...</span></code> next to the <em>Environment Variables</em> box, and hit the <code class="docutils literal notranslate"><span class="pre">+</span></code> icon.
+In the Name column enter “PATH”, in the value column enter the following;</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>&lt;Mantid<span class="w"> </span>Build<span class="w"> </span>Directory&gt;<span class="se">\b</span>in<span class="se">\D</span>ebug<span class="p">;</span>
 &lt;Mantid<span class="w"> </span>Source<span class="w"> </span>Directory&gt;<span class="se">\e</span>xternal<span class="se">\s</span>rc<span class="se">\T</span>hirdParty<span class="se">\b</span>in<span class="p">;</span>
 &lt;Mantid<span class="w"> </span>Source<span class="w"> </span>Directory&gt;<span class="se">\e</span>xternal<span class="se">\s</span>rc<span class="se">\T</span>hirdParty<span class="se">\b</span>in<span class="se">\m</span>ingw<span class="p">;</span>
 &lt;Mantid<span class="w"> </span>Source<span class="w"> </span>Directory&gt;<span class="se">\e</span>xternal<span class="se">\s</span>rc<span class="se">\T</span>hirdParty<span class="se">\l</span>ib<span class="se">\P</span>ython3.8<span class="p">;</span>
@@ -359,7 +369,6 @@ It is only visible to developers and the spelling mistake is real.</p>
 %PATH%
 </pre></div>
 </div>
-</div></blockquote>
 </li>
 </ul>
 <p>The semi-colon delimited list of paths should end in <code class="docutils literal notranslate"><span class="pre">;%PATH%</span></code> so that we prepend to the existing list of paths rather than overwriting them.</p>
@@ -398,7 +407,7 @@ It is only visible to developers and the spelling mistake is real.</p>
 <li><p>Go to your Run/Debug Configurations.</p></li>
 <li><p>Open Templates &gt; Python tests &gt; Unittests configuration.</p></li>
 <li><p>Set the working directory to <code class="docutils literal notranslate"><span class="pre">&lt;Mantid</span> <span class="pre">Build</span> <span class="pre">Dir&gt;/bin/Debug</span></code>, for a Debug build, or <code class="docutils literal notranslate"><span class="pre">&lt;Mantid</span> <span class="pre">Build</span> <span class="pre">Dir&gt;/bin/Release</span></code> for a Release build.</p></li>
-<li><p>Add the EnvFile to the Unittests configuration, instructions in <a class="reference internal" href="#pycharm-debugging-env-file"><span class="std std-ref">Running Files in the Debugger with EnvFile extension</span></a>.</p></li>
+<li><p>Add the EnvFile to the Unittests configuration, instructions in <a class="reference internal" href="#pycharm-debugging-env-file"><span class="std std-ref">Pycharm Debugging Env File</span></a>.</p></li>
 <li><p>You should now be able to click the Run/Debug icons next to each unit test method or class to run/debug them.</p></li>
 </ol>
 </section>
@@ -406,7 +415,9 @@ It is only visible to developers and the spelling mistake is real.</p>
 <h2>Setting up PyCharm on Linux<a class="headerlink" href="#setting-up-pycharm-on-linux" title="Link to this heading">¶</a></h2>
 <ol class="arabic">
 <li><p>Use the native Python interpreter (<code class="docutils literal notranslate"><span class="pre">/usr/bin/Python3</span></code>) rather than from <code class="docutils literal notranslate"><span class="pre">&lt;Mantid</span> <span class="pre">Source</span> <span class="pre">Directory&gt;/external/src/ThirdParty/lib/Python3.8/Python.exe</span></code></p></li>
-<li><p>In the <code class="docutils literal notranslate"><span class="pre">Project</span> <span class="pre">Structure</span></code> sub menu you should see your root directory with the source/build directories both visible (if not, add them). The folder structure should be present in the centre of the window allowing you to mark folders orange (excluded) or blue (source). Source directories will be searched for Python code.</p>
+<li><p>In the <code class="docutils literal notranslate"><span class="pre">Project</span> <span class="pre">Structure</span></code> sub menu you should see your root directory with the source/build directories both visible (if not, add them).
+The folder structure should be present in the centre of the window allowing you to mark folders orange (excluded) or blue (source).
+Source directories will be searched for Python code.</p>
 <p>Within the source directory add the following to your sources:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>&lt;Mantid<span class="w"> </span>Source<span class="w"> </span>Directory&gt;/scripts
 &lt;Mantid<span class="w"> </span>Source<span class="w"> </span>Directory&gt;/Framework/PythonInterface
@@ -420,9 +431,11 @@ It is only visible to developers and the spelling mistake is real.</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>&lt;Mantid<span class="w"> </span>Build<span class="w"> </span>Directory&gt;/bin/
 </pre></div>
 </div>
-<p>It is recommended that you add the whole build folder to <code class="docutils literal notranslate"><span class="pre">excluded</span></code>. This will not interfere with the <code class="docutils literal notranslate"><span class="pre">bin</span></code> directory, inside the build, being used as a source folder. It will just limit the scope that PyCharm searches for files, classes, etc.</p>
+<p>It is recommended that you add the whole build folder to <code class="docutils literal notranslate"><span class="pre">excluded</span></code>.
+This will not interfere with the <code class="docutils literal notranslate"><span class="pre">bin</span></code> directory, inside the build, being used as a source folder.
+It will just limit the scope that PyCharm searches for files, classes, etc.</p>
 </li>
-<li><p>Go to Run-&gt;Run… and select Edit Configurations. Go to Templates &gt; Python. Make <code class="docutils literal notranslate"><span class="pre">&lt;Mantid</span> <span class="pre">Build</span> <span class="pre">Directory&gt;/bin;</span></code> the <code class="docutils literal notranslate"><span class="pre">Working</span> <span class="pre">Directory</span></code>. This will then be used for all Python configurations you make.</p></li>
+<li><p>Go to Run-&gt;Run… and select Edit Configurations. Go to Templates&gt; Python. Make <code class="docutils literal notranslate"><span class="pre">&lt;Mantid</span> <span class="pre">Build</span> <span class="pre">Directory&gt;/bin;</span></code> the <code class="docutils literal notranslate"><span class="pre">Working</span> <span class="pre">Directory</span></code>. This will then be used for all Python configurations you make.</p></li>
 </ol>
 </section>
 <section id="useful-plugins">
@@ -431,8 +444,8 @@ It is only visible to developers and the spelling mistake is real.</p>
 From here you can manage plugins, or add new ones by clicking <strong>Browse repositories</strong>.</p>
 <p>The following non-default plugins are things our team has found useful for Mantid development:</p>
 <ul class="simple">
-<li><p><strong>Markdown support</strong> - Side by side rendering of markdown documents such as``.md`` , <code class="docutils literal notranslate"><span class="pre">.rst</span></code> (requires <a class="reference external" href="https://graphviz.gitlab.io/download/">Graphviz</a> to show graphs in preview)</p></li>
-<li><p><strong>dotplugin</strong> -  Syntax highlighting for <code class="docutils literal notranslate"><span class="pre">DOT</span></code></p></li>
+<li><p><strong>Markdown support</strong> - Side by side rendering of markdown documents such as<code class="docutils literal notranslate"><span class="pre">.md</span></code> , <code class="docutils literal notranslate"><span class="pre">.rst</span></code> (requires <a class="reference external" href="https://graphviz.gitlab.io/download/">Graphviz</a> to show graphs in preview)</p></li>
+<li><p><strong>dotplugin</strong> - Syntax highlighting for <code class="docutils literal notranslate"><span class="pre">DOT</span></code></p></li>
 <li><p><strong>BashSupport</strong> - Syntax highlighting for <code class="docutils literal notranslate"><span class="pre">BASH</span></code> scripts</p></li>
 <li><p><strong>CMD Support</strong> - Syntax highlighting for <code class="docutils literal notranslate"><span class="pre">.BAT</span></code> ~scripts</p></li>
 </ul>

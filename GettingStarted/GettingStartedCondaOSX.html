@@ -99,7 +99,7 @@
     
     <li class="nav-item nav-item-1">
       <a href="GettingStarted.html" accesskey="U">
-        Getting Started
+        Environment Setup
       </a>
        &#187;
     </li>
@@ -120,8 +120,8 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <section id="develop-with-conda-on-macos">
-<span id="gettingstartedcondaosx"></span><h1>Develop with conda on MacOS<a class="headerlink" href="#develop-with-conda-on-macos" title="Link to this heading">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="develop-with-conda-on-macos">
+<h1>Develop with conda on MacOS<a class="headerlink" href="#develop-with-conda-on-macos" title="Link to this heading">¶</a></h1>
 <section id="install-git">
 <h2>Install <a class="reference external" href="https://git-scm.com/">Git</a><a class="headerlink" href="#install-git" title="Link to this heading">¶</a></h2>
 <ul class="simple">
@@ -131,17 +131,22 @@
 <section id="clone-the-mantid-source-code">
 <h2>Clone the mantid source code<a class="headerlink" href="#clone-the-mantid-source-code" title="Link to this heading">¶</a></h2>
 <ul class="simple">
-<li><p><strong>Important</strong>: If you have any existing non-conda mantid development environments, do not re-use the source and build directories for your conda environment.
-We recommend that you clone a new instance of the source and keep separate build directories to avoid any cmake configuration problems.</p></li>
-<li><dl class="simple">
-<dt>Obtain the mantid source code by either:</dt><dd><ul>
-<li><p>Using git in a terminal and cloning the codebase by calling <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">git&#64;github.com:mantidproject/mantid.git</span></code> in the directory you want the code to clone to.
-You will need to follow this <a class="reference external" href="https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh">Github guide</a> to configure SSH access.
-You may want to follow this <a class="reference external" href="https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup">Git setup guide</a> to configure your git environment.</p></li>
+<li><p><strong>Important</strong>: If you have any existing non-conda mantid development environments,
+do not re-use the source and build directories for your conda environment.
+We recommend that you clone a new instance of the source and keep separate build directories
+to avoid any cmake configuration problems.</p></li>
+<li><p>Obtain the mantid source code by either:</p>
+<ul>
+<li><p>Using git in a terminal and cloning the codebase by calling
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">git&#64;github.com:mantidproject/mantid.git</span></code> in the
+directory you want the code to clone to.
+You will need to follow this
+<a class="reference external" href="https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh">Github guide</a>
+to configure SSH access.
+You may want to follow this <a class="reference external" href="https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup">Git setup guide</a>
+to configure your git environment.</p></li>
 <li><p>Or using <a class="reference external" href="https://www.gitkraken.com/">GitKraken</a>.</p></li>
 </ul>
-</dd>
-</dl>
 </li>
 </ul>
 </section>
@@ -178,7 +183,7 @@ With your <code class="docutils literal notranslate"><span class="pre">mantid-de
 </div>
 </li>
 </ul>
-<p>See <a class="reference internal" href="../Packaging.html#packaging"><span class="std std-ref">packaging</span></a> for more information on this topic.</p>
+<p>See <a class="reference internal" href="../Packaging.html"><span class="doc std std-doc">packaging</span></a> for more information on this topic.</p>
 </section>
 <section id="setup-the-mantid-pixi-environment">
 <h2>Setup the mantid pixi environment<a class="headerlink" href="#setup-the-mantid-pixi-environment" title="Link to this heading">¶</a></h2>
@@ -191,9 +196,7 @@ It manages environments for all supported platforms together to help keep them i
 </pre></div>
 </div>
 </li>
-</ol>
-<ol class="arabic" start="2">
-<li><p>For in source builds, prefix all commands with <cite>pixi run</cite>. For example</p>
+<li><p>For in source builds, prefix all commands with <code class="docutils literal notranslate"><span class="pre">pixi</span> <span class="pre">run</span></code>. For example</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pixi<span class="w"> </span>run<span class="w"> </span>pre-commit<span class="w"> </span>install
 </pre></div>
 </div>
@@ -207,7 +210,7 @@ It manages environments for all supported platforms together to help keep them i
 </ol>
 <p>When there are issues, one can often fix them by removing the <code class="docutils literal notranslate"><span class="pre">pixi.lock</span></code> and recreating it with any pixi command.</p>
 <p>To not have to prefix all of the commands with <code class="docutils literal notranslate"><span class="pre">pixi</span> <span class="pre">run</span></code>, either use <code class="docutils literal notranslate"><span class="pre">pixi</span> <span class="pre">shell</span></code> (don’t forget to <code class="docutils literal notranslate"><span class="pre">exit</span></code> when leaving the directory) or use <a class="reference external" href="https://direnv.net/">direnv</a>.
-Once <cite>direnv</cite> is properly installed and in your path, create a file <code class="docutils literal notranslate"><span class="pre">.envrc</span></code> in your source tree with the contents</p>
+Once <code class="docutils literal notranslate"><span class="pre">direnv</span></code> is properly installed and in your path, create a file <code class="docutils literal notranslate"><span class="pre">.envrc</span></code> in your source tree with the contents</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>watch_file<span class="w"> </span>pixi.lock
 <span class="nb">eval</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>pixi<span class="w"> </span>shell-hook<span class="w"> </span>--frozen<span class="w"> </span>--change-ps1<span class="w"> </span><span class="nb">false</span><span class="k">)</span><span class="s2">&quot;</span>
 </pre></div>
@@ -226,12 +229,10 @@ Once <cite>direnv</cite> is properly installed and in your path, create a file <
 <li><p>Still using the terminal.</p></li>
 <li><p>If not already activated in the previous step, run <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">mantid-developer</span></code> to activate your conda environment.</p></li>
 <li><p>Navigate back to your mantid source directory using <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">mantid</span></code> if you used the default name during cloning from git.</p></li>
-<li><dl class="simple">
-<dt>Inside of your mantid source directory run <code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">--preset=osx</span></code></dt><dd><ul>
+<li><p>Inside of your mantid source directory run <code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">--preset=osx</span></code></p>
+<ul>
 <li><p>Alternatively if you don’t want to have your build folder in your mantid source then pass the <code class="docutils literal notranslate"><span class="pre">-B</span></code> argument, overriding the preset, to cmake: <code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">{PATH_TO_SOURCE}</span> <span class="pre">--preset=osx</span> <span class="pre">-B</span> <span class="pre">{BUILD_DIR}</span></code></p></li>
 </ul>
-</dd>
-</dl>
 </li>
 </ul>
 </section>
@@ -261,9 +262,9 @@ workbench
 <p><code class="docutils literal notranslate"><span class="pre">An</span> <span class="pre">OpenGL</span> <span class="pre">surfcace</span> <span class="pre">format</span> <span class="pre">was</span> <span class="pre">requested</span> <span class="pre">that</span> <span class="pre">is</span> <span class="pre">either</span> <span class="pre">not</span> <span class="pre">version</span> <span class="pre">3.2</span> <span class="pre">or</span> <span class="pre">higher</span> <span class="pre">or</span> <span class="pre">a</span> <span class="pre">not</span> <span class="pre">Core</span> <span class="pre">Profile.</span></code>
 <code class="docutils literal notranslate"><span class="pre">Chromium</span> <span class="pre">on</span> <span class="pre">macOS</span> <span class="pre">will</span> <span class="pre">fall</span> <span class="pre">back</span> <span class="pre">to</span> <span class="pre">software</span> <span class="pre">rendering</span> <span class="pre">in</span> <span class="pre">this</span> <span class="pre">case.</span></code>
 <code class="docutils literal notranslate"><span class="pre">Hardware</span> <span class="pre">acceleration</span> <span class="pre">and</span> <span class="pre">features</span> <span class="pre">such</span> <span class="pre">as</span> <span class="pre">WebGL</span> <span class="pre">will</span> <span class="pre">not</span> <span class="pre">be</span> <span class="pre">available.</span></code></p>
-<p>It can be safely ignored but is present as a reminder of some deprecated OpenGL
-functionality being used.
-It is only visible to developers and the spelling mistake is real.</p>
+<p>It can be safely ignored but is present as a reminder of some deprecated
+OpenGL functionality being used. It is only visible to developers and
+the spelling mistake is real.</p>
 </div>
 </section>
 </section>
