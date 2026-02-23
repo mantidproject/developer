@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Working With Real Instruments</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css?v=4468db6d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=9aca6aaf" />
+    <script src="../../_static/documentation_options.js?v=a8da1a53"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Reflectometry GUI Testing" href="../ReflectometryGUI/ReflectometryGUITests.html" />
+    <link rel="prev" title="Live Data Testing" href="LiveDataTests.html" />
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-59110517-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+  </head><body>
+
+
+
+
+
+<nav id="navbar" class="navbar navbar-default navbar-fixed-top">
+  <div id="navbar-main" class="container">
+    <ul class="nav navbar-nav">
+      
+      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <li>
+        <a class="navbar-brand" href="http://www.mantidproject.org">
+         </a>
+      </li>
+      <span class="navbar-text navbar-version pull-left"><b>main</b></span>
+    </ul>
+
+    
+    <div class="collapse navbar-collapse nav-collapse">
+    
+      <ul class="nav navbar-nav">
+        <li class="divider-vertical"></li>
+        
+          <li>
+            <a href="../../index.html">Home</a>
+          </li>
+          <li>
+            <a href="https://download.mantidproject.org">Download</a>
+          </li>
+          <li>
+            <a href="https://docs.mantidproject.org">User Documentation</a>
+          </li>
+          <li>
+            <a href="http://www.mantidproject.org/contact">Contact Us</a>
+          </li>
+        
+        
+          
+          
+        
+        
+        
+        
+      </ul>
+            
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          </div>
+  </div> <!-- /navbar-main -->
+<div id="navbar-breadcrumbs" class="related" role="navigation" aria-label="related navigation">
+  <h3>Navigation</h3>
+  <ul>
+    <li class="nav-item nav-item-0">
+      <a href="../../index.html">Documentation</a>
+         &#187;
+    </li>
+    
+    <li class="nav-item nav-item-1">
+      <a href="../index.html" >
+        Testing
+      </a>
+       &#187;
+    </li>
+    
+    <li class="nav-item nav-item-2">
+      <a href="LiveDataTests.html" accesskey="U">
+        Live Data Testing
+      </a>
+       &#187;
+    </li>
+    
+    
+    
+    
+    <li class="nav-item nav-item-this">
+      <a href="">Working With Real Instruments</a>
+    </li>
+    
+    
+  </ul>
+</div>
+</nav>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <section id="working-with-real-instruments">
+<span id="live-data-packet-playback"></span><h1>Working With Real Instruments<a class="headerlink" href="#working-with-real-instruments" title="Link to this heading">¶</a></h1>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#introduction" id="id3">Introduction</a></p></li>
+<li><p><a class="reference internal" href="#how-to-use-and-modify-facilities-xml" id="id4">How to use and modify <code class="docutils literal notranslate"><span class="pre">Facilities.xml</span></code></a></p></li>
+<li><p><a class="reference internal" href="#adara-server-and-listener-handshaking-protocol" id="id5">ADARA-server and listener handshaking protocol</a></p></li>
+<li><p><a class="reference internal" href="#recording-a-packet-stream" id="id6">Recording a packet stream</a></p></li>
+<li><p><a class="reference internal" href="#playing-a-packet-stream-back" id="id7">Playing a packet-stream back</a></p></li>
+<li><p><a class="reference internal" href="#packet-ordering-during-playback-mode" id="id8">Packet ordering during <code class="docutils literal notranslate"><span class="pre">playback</span></code> mode</a></p></li>
+<li><p><a class="reference internal" href="#using-summarize-mode" id="id9">Using <code class="docutils literal notranslate"><span class="pre">summarize</span></code> mode</a></p></li>
+<li><p><a class="reference internal" href="#setup-for-examples" id="id10">Setup for examples</a></p></li>
+<li><p><a class="reference internal" href="#example-playback-mode-session" id="id11">Example <code class="docutils literal notranslate"><span class="pre">playback</span></code> mode session</a></p></li>
+<li><p><a class="reference internal" href="#example-record-mode-session" id="id12">Example <code class="docutils literal notranslate"><span class="pre">record</span></code> mode session</a></p></li>
+</ul>
+</nav>
+<section id="introduction">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Introduction</a><a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h2>
+<p>For ORNL-facility instruments which use the ADARA system, it is possible to record and playback an ADARA-packet stream.
+This ADARA-packet replay utility was developed to allow manual debugging of the live-data listener and the
+live-reduction workflow.  The utility should also prove useful for debugging almost any live-data system in a
+deterministic manner, even when disconnected from the instrument network or when the beam is down.</p>
+<p>When recording a stream, ADARA packets are saved to files.  There can be many packets per file, or only one packet per
+file, depending on the <code class="docutils literal notranslate"><span class="pre">record.file_output</span></code> setting in <code class="docutils literal notranslate"><span class="pre">adara_player_conf.yml</span></code>. Usually it will be convenient to save the packet files for
+a complete run (or part of a run) to a single directory.  For debugging or diagnostic purposes, often these packet files
+can be obtained directly from the DAS group (, and in this case only the utility’s playback functionality would be
+used).  When packet-files are obtained directly, it will help if they retain their original modification times.  Moving
+such files with <code class="docutils literal notranslate"><span class="pre">mv</span></code> does this automatically, but <code class="docutils literal notranslate"><span class="pre">cp</span> <span class="pre">--preserve=timestamps</span></code> must be used if the files are copied.  Files like this,
+which have been saved to the ADARA cache by the ADARA system, contain <em>redundant</em> packet information, and usually will
+need to be analyzed in some detail in order to arrive at a useful playback sequence.</p>
+</section>
+<section id="how-to-use-and-modify-facilities-xml">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">How to use and modify <code class="docutils literal notranslate"><span class="pre">Facilities.xml</span></code></a><a class="headerlink" href="#how-to-use-and-modify-facilities-xml" title="Link to this heading">¶</a></h2>
+<p>Mantid reads the <code class="docutils literal notranslate"><span class="pre">Facilities.xml</span></code> file to determine how to access each instrument.  The instrument’s network address
+is either in internet-socket (INET) form, as &lt;IPV4: port&gt; or &lt;IPV6: port&gt;, or in Unix-domain socket (UDS) form, as
+any accessible file-path on the filesystem.  For example, in <code class="docutils literal notranslate"><span class="pre">adara_player_conf.yml</span></code>, note that the default socket
+address for the playback <code class="docutils literal notranslate"><span class="pre">server</span></code> resolves to <code class="docutils literal notranslate"><span class="pre">${XDG_RUNTIME_DIR}/sock-adara_player</span></code>
+(see the official <a class="reference external" href="https://specifications.freedesktop.org/basedir/latest/">XDG Base Directory Specification</a>).
+For testing, a loopback address such as <code class="docutils literal notranslate"><span class="pre">127.0.0.1:12345</span></code> may be used, but for security reasons, especially on multi-user systems, the UDS
+form should generally be preferred.</p>
+<p>When the ADARA-packet replay utility is used in <code class="docutils literal notranslate"><span class="pre">playback</span> <span class="pre">mode</span></code>, it replaces the real instrument.  In this mode it may
+be necessary to replace the instrument’s address in <code class="docutils literal notranslate"><span class="pre">Facilities.xml</span></code> with the <code class="docutils literal notranslate"><span class="pre">server</span></code> address that will be
+specified either in <code class="docutils literal notranslate"><span class="pre">adara_player_conf.yml</span></code> or on the commandline.  It is also possible to simply <em>override</em> the
+instrument’s address, using the <code class="docutils literal notranslate"><span class="pre">Address</span></code> argument of <code class="docutils literal notranslate"><span class="pre">StartLiveData</span></code>.  Then, when the <em>client application</em> performs
+its handshaking process to connect to the instrument and transfer data, it interacts with the ADARA-packet replay
+utility instead of the real instrument.</p>
+<p>When the ADARA-packet replay utility is used in <code class="docutils literal notranslate"><span class="pre">record</span></code> mode, the real instrument will <em>usually</em> still be used, and
+the utility functions as a <em>proxy</em>.  As for <code class="docutils literal notranslate"><span class="pre">playback</span></code> mode, the instrument’s address in <code class="docutils literal notranslate"><span class="pre">Facilities.xml</span></code> may be
+replaced with the <code class="docutils literal notranslate"><span class="pre">server</span></code> address, but in addition, for <code class="docutils literal notranslate"><span class="pre">record</span></code> mode it is necessary to provide the <em>original</em>
+instrument address as the <code class="docutils literal notranslate"><span class="pre">source</span></code> address, either in <code class="docutils literal notranslate"><span class="pre">adara_player_conf.yml</span></code> or on the commandline.  In this
+situation, when the <em>client application</em> connects to the instrument, it interacts with the ADARA-packet replay utility,
+which in this case connects to the real instrument as a <em>proxy</em> for the client application.</p>
+</section>
+<section id="adara-server-and-listener-handshaking-protocol">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">ADARA-server and listener handshaking protocol</a><a class="headerlink" href="#adara-server-and-listener-handshaking-protocol" title="Link to this heading">¶</a></h2>
+<p>Both the <code class="docutils literal notranslate"><span class="pre">SNSLiveEventDataListener</span></code>, and the ADARA-server itself, implement a handshaking protocol.  In its simplest
+form, this protocol involves expecting a single <code class="docutils literal notranslate"><span class="pre">CLIENT_HELLO_TYPE</span></code> packet from the client at the start of each
+session.  This hello-packet contains information about the required start-time for the requested data.</p>
+<p><strong>Note that this ``CLIENT_HELLO_TYPE`` handshaking is the *only* handshaking presently implemented by the ADARA-packet
+replay utility</strong>.  Further, the utility does not change its behavior based on the time information present in the
+hello-packet, nor does it filter out duplicate <code class="docutils literal notranslate"><span class="pre">DEVICE_DESC_TYPE</span></code> packets, if these are present.  Both of these
+behaviors would be useful extensions to the utility’s implementation.</p>
+</section>
+<section id="recording-a-packet-stream">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Recording a packet stream</a><a class="headerlink" href="#recording-a-packet-stream" title="Link to this heading">¶</a></h2>
+<figure class="align-default" id="id1">
+<a class="reference internal image-reference" href="../../_images/adara_player_record_mode.png"><img alt="ADARA-player: diagram of components used in record mode" src="../../_images/adara_player_record_mode.png" style="width: 60%;" />
+</a>
+<figcaption>
+<p><span class="caption-text">ADARA-player: components used in record mode</span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<ol class="arabic">
+<li><p>Set up <code class="docutils literal notranslate"><span class="pre">Facilities.xml</span></code>:</p>
+<ul class="simple">
+<li><p>First of all, choose a suitable <code class="docutils literal notranslate"><span class="pre">server</span></code> address or note the default (see <code class="docutils literal notranslate"><span class="pre">adara_player_conf.yml</span></code>).  Next,
+specify a <em>proxy</em> instrument in <code class="docutils literal notranslate"><span class="pre">Facilities.xml</span></code>.  In most cases, a useful approach will be to comment out the
+existing instrument, copy its details to an adjacent location, and then modify the address to match the <code class="docutils literal notranslate"><span class="pre">server</span></code>
+address.</p></li>
+</ul>
+</li>
+<li><p>Set up <code class="docutils literal notranslate"><span class="pre">adara_player_conf.yml</span></code>:</p>
+<ul class="simple">
+<li><p>make sure the <code class="docutils literal notranslate"><span class="pre">server.address</span></code> value matches that used in <code class="docutils literal notranslate"><span class="pre">Facilities.xml</span></code>;</p></li>
+<li><p>fill in the <code class="docutils literal notranslate"><span class="pre">source</span></code> address using the <em>original</em> instrument address;</p></li>
+</ul>
+</li>
+<li><p>Create a <em>base</em> directory for the saved packet data:</p>
+<ul class="simple">
+<li><p>Note that each time the client application connects to the
+proxy, a <em>session</em> subdirectory will be created under this base directory.</p></li>
+</ul>
+</li>
+<li><p>In its own console, start the proxy server:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">adara_player</span> <span class="o">--</span><span class="n">config</span> <span class="o">&lt;</span><span class="n">path</span> <span class="n">to</span> <span class="n">config</span> <span class="n">file</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">record</span> <span class="o">&lt;</span><span class="n">base</span> <span class="n">directory</span> <span class="n">path</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p>In another console, start your <em>client application</em> (e.g. <code class="docutils literal notranslate"><span class="pre">workbench</span></code> or your live-reduce Python script).</p></li>
+<li><p>When you’re done recording data, type CNTL-C in the proxy server’s console.</p></li>
+</ol>
+</section>
+<section id="playing-a-packet-stream-back">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Playing a packet-stream back</a><a class="headerlink" href="#playing-a-packet-stream-back" title="Link to this heading">¶</a></h2>
+<figure class="align-default" id="id2">
+<a class="reference internal image-reference" href="../../_images/adara_player_playback_mode.png"><img alt="ADARA-player: diagram of components used in playback mode" src="../../_images/adara_player_playback_mode.png" style="width: 60%;" />
+</a>
+<figcaption>
+<p><span class="caption-text">ADARA-player: components used in playback mode</span><a class="headerlink" href="#id2" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<ol class="arabic">
+<li><p>Set up <code class="docutils literal notranslate"><span class="pre">Facilities.xml</span></code>:</p>
+<ul class="simple">
+<li><p>First of all, choose a suitable <code class="docutils literal notranslate"><span class="pre">server</span></code> address or note the default (see <code class="docutils literal notranslate"><span class="pre">adara_player_conf.yml</span></code>).  Next,
+specify a <em>proxy</em> instrument in <code class="docutils literal notranslate"><span class="pre">Facilities.xml</span></code>.  In most cases, a useful approach will be to comment out the
+existing instrument, copy its details to an adjacent location, and then modify the address to match the <code class="docutils literal notranslate"><span class="pre">server</span></code>
+address.</p></li>
+</ul>
+</li>
+<li><p>Set up <code class="docutils literal notranslate"><span class="pre">adara_player_conf.yml</span></code>:</p>
+<ul class="simple">
+<li><p>make sure the <code class="docutils literal notranslate"><span class="pre">server.address</span></code> value matches that used in <code class="docutils literal notranslate"><span class="pre">Facilities.xml</span></code>;</p></li>
+<li><p>in <code class="docutils literal notranslate"><span class="pre">playback</span></code> mode, the <code class="docutils literal notranslate"><span class="pre">source</span></code> address will not be used, so it’s OK if it’s still the original instrument
+address;</p></li>
+<li><p>decide on the playback ordering scheme: <code class="docutils literal notranslate"><span class="pre">playback.packet_ordering</span></code>:</p>
+<ul>
+<li><p>if the data was recorded using the ADARA-packet replay utility, this should be <code class="docutils literal notranslate"><span class="pre">sequence_number</span></code>;</p></li>
+<li><p>OTHERWISE it should usually be <code class="docutils literal notranslate"><span class="pre">yaml</span></code>;</p></li>
+<li><p>Specifying any other value for the <code class="docutils literal notranslate"><span class="pre">playback.packet_ordering</span></code> should be treated as <em>experimental</em>.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Figure out the details of the your data source directories.  The playback data can be specified by any of:</p>
+<ul class="simple">
+<li><p>Specifying a <code class="docutils literal notranslate"><span class="pre">sessions.yml</span></code> file, which includes a <code class="docutils literal notranslate"><span class="pre">base_path</span></code>, and then a list of <code class="docutils literal notranslate"><span class="pre">sessions</span></code> and lists of
+files for each session. This <code class="docutils literal notranslate"><span class="pre">YAML</span></code> file would usually be played back in the order of its sessions and file
+lists;</p></li>
+<li><p>specifying the path to the base directory (which should contain <em>session</em> subdirectories, as noted previously);</p></li>
+<li><p>OR specifying a Unix glob pattern for the input packet files (note that <em>braces</em> may be used to form this pattern);</p></li>
+</ul>
+</li>
+<li><p>In its own console, start the server, in playback mode:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">adara_player</span> <span class="o">--</span><span class="n">config</span> <span class="o">&lt;</span><span class="n">path</span> <span class="n">to</span> <span class="n">config</span> <span class="n">file</span><span class="o">&gt;</span> <span class="p">[</span><span class="o">--</span><span class="n">files</span> <span class="o">&lt;</span><span class="n">sessions</span><span class="o">.</span><span class="n">yml</span><span class="o">&gt;</span> <span class="o">|</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">base</span> <span class="n">directory</span> <span class="n">path</span><span class="o">&gt;</span> <span class="o">|</span> <span class="o">&lt;</span><span class="n">Unix</span><span class="o">-</span><span class="nb">format</span> <span class="n">glob</span> <span class="n">spec</span><span class="o">&gt;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</li>
+<li><p>In another console, start your <em>client application</em> (e.g. <code class="docutils literal notranslate"><span class="pre">workbench</span></code> or your live-reduce Python script).  In
+playback mode, the client will be able to successfully connect as many times as there are <em>session</em> subdirectories.
+(For specific tests, you might want to create additional session subdirectories with duplicate content.  In this case,
+it’s OK just to create a link: <code class="docutils literal notranslate"><span class="pre">ln</span> <span class="pre">-s</span> <span class="pre">&lt;existing</span> <span class="pre">session</span> <span class="pre">directory&gt;</span> <span class="pre">&lt;new</span> <span class="pre">session</span> <span class="pre">link&gt;</span></code>, for each required session.
+For example <code class="docutils literal notranslate"><span class="pre">ln</span> <span class="pre">-s</span> <span class="pre">&lt;base</span> <span class="pre">directory&gt;/0001</span> <span class="pre">&lt;base</span> <span class="pre">directory&gt;/0022</span></code>, will allow session 22 to replay what was originally
+recorded as session 1.)</p></li>
+<li><p>When you’re done with the playback, type CNTL-C in the playback server’s console.</p></li>
+</ol>
+</section>
+<section id="packet-ordering-during-playback-mode">
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">Packet ordering during <code class="docutils literal notranslate"><span class="pre">playback</span></code> mode</a><a class="headerlink" href="#packet-ordering-during-playback-mode" title="Link to this heading">¶</a></h2>
+<p>If the stream being played back was saved using <code class="docutils literal notranslate"><span class="pre">record</span></code>, and <code class="docutils literal notranslate"><span class="pre">record.file_output</span></code> was set to <code class="docutils literal notranslate"><span class="pre">single_packet</span></code>
+(in <code class="docutils literal notranslate"><span class="pre">adara_player_conf.yml</span></code>), the playback order will be uniquely determined by the
+&lt;sequence number&gt; part of each packet’s filename.  During playback, each time the client application connects to the
+server, a <em>session</em> subdirectory will be referenced, and the packet files in that directory will be played back in
+sequence-number order.  Any time it’s necessary to <em>programmatically</em> create a stream for deterministic playback, e.g.
+using a Python script for some specific debugging scenario, this same directory and file naming scheme should be used.
+Alternatively, a YAML file containing a &lt;base directory&gt; and a &lt;sessions&gt; list of files lists can be used.  In any of
+these cases, it’s possible to playback these session files using another <code class="docutils literal notranslate"><span class="pre">playback.packet_ordering</span></code> setting besides
+<code class="docutils literal notranslate"><span class="pre">sequence_number</span></code> or <code class="docutils literal notranslate"><span class="pre">yaml</span></code>, but that’s not recommended.</p>
+<p>There are several ways to control the playback order of a packet stream.  Although an ADARA packet stream is somewhat
+robust to changes in the ordering of the packets in the stream, how well this works depends on the details of the
+specific packet types.  (For example, changing where a &lt;run status&gt; packet appears in the stream is probably a bad
+idea!)  The <code class="docutils literal notranslate"><span class="pre">player</span></code> utility offers several distinct ways to control packet playback order (as specified in
+<code class="docutils literal notranslate"><span class="pre">adara_player_conf.yml</span></code> using the <code class="docutils literal notranslate"><span class="pre">playback.packet_ordering</span></code> key):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">yaml</span></code>: the order of the packet files is specified in the <code class="docutils literal notranslate"><span class="pre">sessions.yml</span></code> file;  or, if no <code class="docutils literal notranslate"><span class="pre">sessions.yml</span></code> file
+has been specified, the operating system’s <em>directory-listing</em> order will be used;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sequence_number</span></code>: the packet file’s sequence number will be used (as generated by the <code class="docutils literal notranslate"><span class="pre">record</span></code> utility); this
+setting is recommended when the packet files were generated using <code class="docutils literal notranslate"><span class="pre">record</span></code> mode, OR when creating new packet files, or
+re-ordering packet files for special tests.  Using the YAML <code class="docutils literal notranslate"><span class="pre">sessions.yml</span></code> file is usually a better approach when not
+using <code class="docutils literal notranslate"><span class="pre">record</span></code> mode.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mtime</span></code>: the packet file’s modification time will be used;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">timestamp</span></code>: the ADARA-packet timestamp of the packet (or of the first packet in a file if it contains more than
+one); this should be used only in very special cases, or when there’s no other alternative.  The main issue with using
+this approach is that often the ADARA system starts playback by inserting configuration (or reference) packets that may
+have been created months ago.  In general, the timestamps of these packets will not be updated for the new stream.
+Since this type of configuration packet may be inserted at multiple locations in the stream, the packet-timestamp based
+playback order does not end up corresponding to the playback order of the original stream.  (To solve this issue: use
+<code class="docutils literal notranslate"><span class="pre">summarize</span></code> mode, and then fill in a <code class="docutils literal notranslate"><span class="pre">sessions.yml</span></code> file!)</p></li>
+</ul>
+</section>
+<section id="using-summarize-mode">
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">Using <code class="docutils literal notranslate"><span class="pre">summarize</span></code> mode</a><a class="headerlink" href="#using-summarize-mode" title="Link to this heading">¶</a></h2>
+<p>Given a set of files containing ADARA-packet data, often it can be difficult to figure out how to set up a useful
+<code class="docutils literal notranslate"><span class="pre">playback</span></code> session.  This is especially true if the files contain <em>multiple</em> ADARA-packets per file.  <code class="docutils literal notranslate"><span class="pre">summarize</span></code>
+mode was implemented in order to provide additional information in this scenario.  To obtain a summary of the packet
+data contained in the files, the commandline syntax is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">adara_player</span> <span class="o">--</span><span class="n">config</span> <span class="o">&lt;</span><span class="n">path</span> <span class="n">to</span> <span class="n">config</span> <span class="n">file</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">summarize</span> <span class="o">&lt;</span><span class="n">base</span> <span class="n">directory</span> <span class="n">path</span> <span class="ow">or</span> <span class="n">glob</span> <span class="n">spec</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>For example, suppose we have a set of ADARA-packet files, as saved by the ADARA instrument server, from the SNAP
+instrument run number 68851:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(mantid-developer) [ADARA-data]$ ls -al ${ADARA-data}/SNAP/${68851_DATA} | cut -d&#39; &#39; -f1-3,6-
+total 799824
+-rw-rw-r--  1 209715276 Nov 20 20:22 ds00000001-s00000001-run-68851.adara
+-rw-rw-r--  1 209715244 Nov 20 20:51 ds00000001-s00000002-run-68851.adara
+-rw-rw-r--  1  69131540 Nov 20 21:01 ds00000001-s00000003-run-68851.adara
+-rw-rw-r--  1  10367128 Nov 20 21:01 ds00000003-s00000001-run-68851.adara
+-rw-rw-r--  1 209715684 Nov 20 20:37 m00000001-f00000001-run-68851.adara
+-rw-rw-r--  1 110032168 Nov 20 21:01 m00000001-f00000002-run-68851.adara
+-rw-rw-r--  1       100 Nov 20 21:01 prologue-ds00000001-run-68851.adara
+-rw-rw-r--  1    143920 Nov 20 21:01 prologue-ds00000003-run-68851.adara
+-rw-rw-r--  1    158276 Nov 20 21:01 prologue-m00000001-run-68851.adara
+-rwxrwxr-x  1         0 Nov 20 19:53 proposal-IPTS-35450
+-rwxrwxr-x  1         0 Nov 20 21:01 translation_completed
+</pre></div>
+</div>
+<p>Using the names and modification times of these files, we see that the files likely to contain <em>event data</em> (e.g. the
+larger files) were saved with their modification times <em>before</em> those of the files containing the <em>run-status</em> and
+<em>device-descriptor</em> data (such as <code class="docutils literal notranslate"><span class="pre">ds00000001-s00000001-run-68851.adara</span></code>).  Although the server saves the complete data corresponding to any packet stream, we need to do
+some additional work to recover what the <em>order</em> of that packet stream was likely to be.  In this case, the fact that
+the server starts a new data file every 200 MB, and can <em>resend</em> the device-descriptor packets at that file transition
+allows us to infer that here we probably have 3 complete 200 MB <em>data</em> sections, a <em>partial</em> ~ 100 MB section, and
+possibly several other sections containing <em>run-status</em> and <em>device-descriptor</em> information.  Unfortunately, that’s
+still not enough information to reconstruct the stream’s playback order.</p>
+<p>Using <code class="docutils literal notranslate"><span class="pre">summarize</span></code> mode, pointed at this directory, the <em>console</em> log output shows us the location of the <em>session</em>
+log, which then contains the summary content:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(mantid-developer) [ADARA-data]adara_player --config ${adara_player_conf} --summarize &quot;${SOURCE}/0001/*.adara&quot;
+2026-01-26 05:24:06,189: INFO: Summarizing content of ADARA-packet files ...
+2026-01-26 05:24:06,189: INFO: Session 0001:
+2026-01-26 05:25:19,704: INFO: Summary available at: &#39;${ADARA_PLAYER_LOGS}/session.574768.log&#39;.
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(mantid-developer) [ADARA-data]$cat ${ADARA_PLAYER_LOGS}/session.574768.log
+2026-01-26 05:24:06,189: INFO: Summarizing content of ADARA-packet files ...
+2026-01-26 05:24:06,189: INFO: Session 0001:
+2026-01-26 05:24:06,190: INFO: Found 9 files ...
+2026-01-26 05:25:19,700: INFO: ---- prologue-m00000001-run-68851.adara (0.15 MB) ----
+2026-01-26 05:25:19,700: INFO:   packets: 434
+2026-01-26 05:25:19,700: INFO:     timestamps: 2025-10-13T13:14:16.606303719 .. 2025-11-21T02:01:14.440167100
+2026-01-26 05:25:19,700: INFO:   0x4004 RUN_INFO_TYPE: 1
+2026-01-26 05:25:19,700: INFO:   0x400a GEOMETRY_TYPE: 1
+2026-01-26 05:25:19,700: INFO:   0x400b BEAMLINE_INFO_TYPE: 1
+2026-01-26 05:25:19,700: INFO:   0x400d BEAM_MONITOR_CONFIG_TYPE: 1
+2026-01-26 05:25:19,700: INFO:   0x4102 PIXEL_MAPPING_ALT_TYPE: 1
+2026-01-26 05:25:19,700: INFO:   0x8000 DEVICE_DESC_TYPE: 39
+2026-01-26 05:25:19,700: INFO:   0x8001 VAR_VALUE_U32_TYPE: 43
+2026-01-26 05:25:19,700: INFO:   0x8002 VAR_VALUE_DOUBLE_TYPE: 291
+2026-01-26 05:25:19,700: INFO:   0x8003 VAR_VALUE_STRING_TYPE: 56
+2026-01-26 05:25:19,700: INFO: ------------------------------------------------------
+2026-01-26 05:25:19,700: INFO: ---- prologue-ds00000003-run-68851.adara (0.14 MB) ----
+2026-01-26 05:25:19,700: INFO:   packets: 427
+2026-01-26 05:25:19,700: INFO:     timestamps: 2025-10-13T13:14:16.606303719 .. 2025-11-21T02:01:14.440291536
+2026-01-26 05:25:19,700: INFO:   0x4007 STREAM_ANNOTATION_TYPE: 1
+2026-01-26 05:25:19,701: INFO:   0x8000 DEVICE_DESC_TYPE: 36
+2026-01-26 05:25:19,701: INFO:   0x8001 VAR_VALUE_U32_TYPE: 43
+2026-01-26 05:25:19,701: INFO:   0x8002 VAR_VALUE_DOUBLE_TYPE: 291
+2026-01-26 05:25:19,701: INFO:   0x8003 VAR_VALUE_STRING_TYPE: 56
+2026-01-26 05:25:19,701: INFO: -------------------------------------------------------
+2026-01-26 05:25:19,701: INFO: ---- ds00000003-s00000001-run-68851.adara (9.89 MB) ----
+2026-01-26 05:25:19,701: INFO:   packets: 284405
+2026-01-26 05:25:19,701: INFO:     timestamps: 2025-10-13T13:14:16.606303719 .. 2025-11-21T02:01:14.435576783
+2026-01-26 05:25:19,701: INFO:   0x4007 STREAM_ANNOTATION_TYPE: 1
+2026-01-26 05:25:19,701: INFO:   0x8000 DEVICE_DESC_TYPE: 36
+2026-01-26 05:25:19,701: INFO:   0x8001 VAR_VALUE_U32_TYPE: 43
+2026-01-26 05:25:19,701: INFO:   0x8002 VAR_VALUE_DOUBLE_TYPE: 284269
+2026-01-26 05:25:19,701: INFO:   0x8003 VAR_VALUE_STRING_TYPE: 56
+2026-01-26 05:25:19,701: INFO: --------------------------------------------------------
+2026-01-26 05:25:19,701: INFO: ---- prologue-ds00000001-run-68851.adara (0.00 MB) ----
+2026-01-26 05:25:19,701: INFO:   packets: 1
+2026-01-26 05:25:19,701: INFO:     timestamps: 2025-11-21T02:01:14.440245002 .. 2025-11-21T02:01:14.440245002
+2026-01-26 05:25:19,701: INFO:   0x4007 STREAM_ANNOTATION_TYPE: 1
+2026-01-26 05:25:19,701: INFO: -------------------------------------------------------
+2026-01-26 05:25:19,701: INFO: ---- ds00000001-s00000001-run-68851.adara (200.00 MB) ----
+2026-01-26 05:25:19,701: INFO:   packets: 2388572
+2026-01-26 05:25:19,701: INFO:     timestamps: 2025-11-21T00:53:03.112999667 .. 2025-11-21T01:22:18.141583667
+2026-01-26 05:25:19,701: INFO:     timestamps(events): 2025-11-21T00:53:03.112999667 .. 2025-11-21T01:22:18.108250667
+2026-01-26 05:25:19,701: INFO:   0x0000 RAW_EVENT_TYPE: 811457
+2026-01-26 05:25:19,701: INFO:   0x0001 RTDL_TYPE: 105300
+2026-01-26 05:25:19,701: INFO:   0x0003 MAPPED_EVENT_TYPE: 1471814
+2026-01-26 05:25:19,701: INFO:   0x4007 STREAM_ANNOTATION_TYPE: 1
+2026-01-26 05:25:19,701: INFO: ----------------------------------------------------------
+2026-01-26 05:25:19,701: INFO: ---- m00000001-f00000001-run-68851.adara (200.00 MB) ----
+2026-01-26 05:25:19,701: INFO:   packets: 1152529
+2026-01-26 05:25:19,701: INFO:     timestamps: 2025-10-13T13:14:16.606303719 .. 2025-11-21T01:37:46.863157722
+2026-01-26 05:25:19,701: INFO:     timestamps(events): 2025-11-21T00:53:03.112999667 .. 2025-11-21T01:37:45.806693667
+2026-01-26 05:25:19,701: INFO:   0x0001 RTDL_TYPE: 160960
+2026-01-26 05:25:19,701: INFO:   0x4000 BANKED_EVENT_TYPE: 160960
+2026-01-26 05:25:19,701: INFO:   0x4001 BEAM_MONITOR_EVENT_TYPE: 160960
+2026-01-26 05:25:19,701: INFO:   0x4003 RUN_STATUS_TYPE: 2
+2026-01-26 05:25:19,701: INFO:   0x4004 RUN_INFO_TYPE: 1
+2026-01-26 05:25:19,701: INFO:   0x4007 STREAM_ANNOTATION_TYPE: 2
+2026-01-26 05:25:19,701: INFO:   0x4008 SYNC_TYPE: 17
+2026-01-26 05:25:19,701: INFO:   0x400a GEOMETRY_TYPE: 1
+2026-01-26 05:25:19,701: INFO:   0x400b BEAMLINE_INFO_TYPE: 1
+2026-01-26 05:25:19,702: INFO:   0x400d BEAM_MONITOR_CONFIG_TYPE: 1
+2026-01-26 05:25:19,702: INFO:   0x4102 PIXEL_MAPPING_ALT_TYPE: 1
+2026-01-26 05:25:19,702: INFO:   0x8000 DEVICE_DESC_TYPE: 39
+2026-01-26 05:25:19,702: INFO:   0x8001 VAR_VALUE_U32_TYPE: 482918
+2026-01-26 05:25:19,702: INFO:   0x8002 VAR_VALUE_DOUBLE_TYPE: 186610
+2026-01-26 05:25:19,702: INFO:   0x8003 VAR_VALUE_STRING_TYPE: 56
+2026-01-26 05:25:19,702: INFO: ---------------------------------------------------------
+2026-01-26 05:25:19,702: INFO: ---- ds00000001-s00000003-run-68851.adara (65.93 MB) ----
+2026-01-26 05:25:19,702: INFO:   packets: 787850
+2026-01-26 05:25:19,702: INFO:     timestamps: 2025-11-21T01:51:35.153534667 .. 2025-11-21T02:01:14.446302667
+2026-01-26 05:25:19,702: INFO:     timestamps(events): 2025-11-21T01:51:35.153534667 .. 2025-11-21T02:01:14.429635667
+2026-01-26 05:25:19,702: INFO:   0x0000 RAW_EVENT_TYPE: 267784
+2026-01-26 05:25:19,702: INFO:   0x0001 RTDL_TYPE: 34754
+2026-01-26 05:25:19,702: INFO:   0x0003 MAPPED_EVENT_TYPE: 485311
+2026-01-26 05:25:19,702: INFO:   0x4007 STREAM_ANNOTATION_TYPE: 1
+2026-01-26 05:25:19,702: INFO: ---------------------------------------------------------
+2026-01-26 05:25:19,702: INFO: ---- ds00000001-s00000002-run-68851.adara (200.00 MB) ----
+2026-01-26 05:25:19,702: INFO:   packets: 2390236
+2026-01-26 05:25:19,702: INFO:     timestamps: 2025-11-21T01:22:18.091583667 .. 2025-11-21T01:51:35.203535667
+2026-01-26 05:25:19,702: INFO:     timestamps(events): 2025-11-21T01:22:18.091583667 .. 2025-11-21T01:51:35.170201667
+2026-01-26 05:25:19,702: INFO:   0x0000 RAW_EVENT_TYPE: 812452
+2026-01-26 05:25:19,702: INFO:   0x0001 RTDL_TYPE: 105422
+2026-01-26 05:25:19,702: INFO:   0x0003 MAPPED_EVENT_TYPE: 1472361
+2026-01-26 05:25:19,702: INFO:   0x4007 STREAM_ANNOTATION_TYPE: 1
+2026-01-26 05:25:19,702: INFO: ----------------------------------------------------------
+2026-01-26 05:25:19,702: INFO: ---- m00000001-f00000002-run-68851.adara (104.93 MB) ----
+2026-01-26 05:25:19,702: INFO:   packets: 605203
+2026-01-26 05:25:19,702: INFO:     timestamps: 2025-10-13T13:14:16.606303719 .. 2025-11-21T02:01:17.452662957
+2026-01-26 05:25:19,702: INFO:     timestamps(events): 2025-11-21T01:37:45.823360667 .. 2025-11-21T02:01:14.429635667
+2026-01-26 05:25:19,702: INFO:   0x0001 RTDL_TYPE: 84516
+2026-01-26 05:25:19,702: INFO:   0x4000 BANKED_EVENT_TYPE: 84516
+2026-01-26 05:25:19,702: INFO:   0x4001 BEAM_MONITOR_EVENT_TYPE: 84516
+2026-01-26 05:25:19,702: INFO:   0x4003 RUN_STATUS_TYPE: 2
+2026-01-26 05:25:19,702: INFO:   0x4004 RUN_INFO_TYPE: 1
+2026-01-26 05:25:19,702: INFO:   0x4007 STREAM_ANNOTATION_TYPE: 1
+2026-01-26 05:25:19,702: INFO:   0x4008 SYNC_TYPE: 9
+2026-01-26 05:25:19,702: INFO:   0x400a GEOMETRY_TYPE: 1
+2026-01-26 05:25:19,702: INFO:   0x400b BEAMLINE_INFO_TYPE: 1
+2026-01-26 05:25:19,702: INFO:   0x400d BEAM_MONITOR_CONFIG_TYPE: 1
+2026-01-26 05:25:19,702: INFO:   0x4102 PIXEL_MAPPING_ALT_TYPE: 1
+2026-01-26 05:25:19,702: INFO:   0x8000 DEVICE_DESC_TYPE: 39
+2026-01-26 05:25:19,702: INFO:   0x8001 VAR_VALUE_U32_TYPE: 253593
+2026-01-26 05:25:19,702: INFO:   0x8002 VAR_VALUE_DOUBLE_TYPE: 97950
+2026-01-26 05:25:19,703: INFO:   0x8003 VAR_VALUE_STRING_TYPE: 56
+2026-01-26 05:25:19,703: INFO: ---------------------------------------------------------
+2026-01-26 05:25:19,703: INFO: Suggested playback ordering:
+2026-01-26 05:25:19,703: INFO: ----------------------------
+2026-01-26 05:25:19,703: INFO:  ds00000003-s00000001-run-68851.adara (metadata: 2025-11-21T00:53:03.110000000)
+2026-01-26 05:25:19,703: INFO:  ds00000001-s00000001-run-68851.adara (events: 2025-11-21T00:53:03.110000000)
+2026-01-26 05:25:19,703: INFO:  m00000001-f00000001-run-68851.adara  (events: 2025-11-21T00:53:03.110000000)
+2026-01-26 05:25:19,703: INFO:  ds00000001-s00000002-run-68851.adara (events: 2025-11-21T01:22:18.088000000)
+2026-01-26 05:25:19,703: INFO:  m00000001-f00000002-run-68851.adara  (events: 2025-11-21T01:37:45.812000000)
+2026-01-26 05:25:19,703: INFO:  ds00000001-s00000003-run-68851.adara (events: 2025-11-21T01:51:35.140000000)
+2026-01-26 05:25:19,703: INFO:  prologue-ds00000001-run-68851.adara  (metadata: 2025-11-21T02:01:14.432000000)
+2026-01-26 05:25:19,703: INFO:  prologue-ds00000003-run-68851.adara  (metadata: 2025-11-21T02:01:14.432000000)
+2026-01-26 05:25:19,703: INFO:  prologue-m00000001-run-68851.adara   (metadata: 2025-11-21T02:01:14.432000000)
+2026-01-26 05:25:19,704: INFO: Summary available at: &#39;${ADARA_PLAYER_LOGS}/session.574768.log&#39;.
+</pre></div>
+</div>
+<p>The section <code class="docutils literal notranslate"><span class="pre">Suggested</span> <span class="pre">playback</span> <span class="pre">ordering</span></code> at the end of the summary is an analysis of the <em>probable</em> file ordering
+based on the packet timestamps.  The difficulty for this analysis stems primarily from the fact that several packet
+types, such as geometry packets, have timestamps that correspond to the start of a proposal, which may be <em>months</em> in
+the past.  For this reason, we use a combination of the event-timestamp ranges, followed by the control-packet
+timestamps (an <em>ad hoc</em> hierarchy of packet types) to sort these files.  Whenever possible, files containing only
+<em>metadata</em> packets precede files containing <em>event</em> packets.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Suggested</span> <span class="pre">playback</span> <span class="pre">ordering</span></code> can be used to create a <code class="docutils literal notranslate"><span class="pre">sessions.yml</span></code> file.  Each sublist under the <code class="docutils literal notranslate"><span class="pre">sessions</span></code>
+key corresponds to the playback order to use for a single session (i.e. a single client connection).  This YAML file can
+then be used with the <code class="docutils literal notranslate"><span class="pre">--files</span> <span class="pre">sessions.yml</span></code> commandline argument of the <code class="docutils literal notranslate"><span class="pre">adara_player</span></code> application.  WARNING:
+because of the way the ADARA-server saves its file data, often there will be duplicate <code class="docutils literal notranslate"><span class="pre">DEVICE_DESC_TYPE</span></code> packets in the group
+of files corresponding to a single run.  Originally the <code class="docutils literal notranslate"><span class="pre">SNSLiveEventDataListener</span></code> treated this case as an error, but
+in the current version, instead this will produce a <em>warning</em> in the logs, and the re-definition will be <em>skipped</em>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># example `sessions.yml`</span>
+<span class="n">base_path</span><span class="p">:</span> <span class="n">tests</span><span class="o">/</span><span class="n">scripts</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">test_input</span>
+<span class="n">sessions</span><span class="p">:</span>
+  <span class="o">-</span> <span class="c1"># session 1:</span>
+    <span class="o">-</span> <span class="n">ds00000003</span><span class="o">-</span><span class="n">s00000001</span><span class="o">-</span><span class="n">run</span><span class="o">-</span><span class="mf">68851.</span><span class="n">adara</span>  <span class="c1"># initial metadata &amp; run status</span>
+    <span class="o">-</span> <span class="n">ds00000001</span><span class="o">-</span><span class="n">s00000001</span><span class="o">-</span><span class="n">run</span><span class="o">-</span><span class="mf">68851.</span><span class="n">adara</span>  <span class="c1"># events</span>
+    <span class="o">-</span> <span class="n">m00000001</span><span class="o">-</span><span class="n">f00000001</span><span class="o">-</span><span class="n">run</span><span class="o">-</span><span class="mf">68851.</span><span class="n">adara</span>   <span class="c1"># events</span>
+    <span class="o">-</span> <span class="n">ds00000001</span><span class="o">-</span><span class="n">s00000002</span><span class="o">-</span><span class="n">run</span><span class="o">-</span><span class="mf">68851.</span><span class="n">adara</span>  <span class="c1"># events</span>
+    <span class="o">-</span> <span class="n">m00000001</span><span class="o">-</span><span class="n">f00000002</span><span class="o">-</span><span class="n">run</span><span class="o">-</span><span class="mf">68851.</span><span class="n">adara</span>   <span class="c1"># events</span>
+    <span class="o">-</span> <span class="n">ds00000001</span><span class="o">-</span><span class="n">s00000003</span><span class="o">-</span><span class="n">run</span><span class="o">-</span><span class="mf">68851.</span><span class="n">adara</span>  <span class="c1"># events</span>
+    <span class="o">-</span> <span class="n">prologue</span><span class="o">-</span><span class="n">ds00000001</span><span class="o">-</span><span class="n">run</span><span class="o">-</span><span class="mf">68851.</span><span class="n">adara</span>   <span class="c1"># trailing metadata: WARNING -- may be duplicate</span>
+    <span class="o">-</span> <span class="n">prologue</span><span class="o">-</span><span class="n">ds00000003</span><span class="o">-</span><span class="n">run</span><span class="o">-</span><span class="mf">68851.</span><span class="n">adara</span>   <span class="c1"># metadata: &quot; &quot;</span>
+    <span class="o">-</span> <span class="n">prologue</span><span class="o">-</span><span class="n">m00000001</span><span class="o">-</span><span class="n">run</span><span class="o">-</span><span class="mf">68851.</span><span class="n">adara</span>    <span class="c1"># metadata: &quot; &quot;</span>
+</pre></div>
+</div>
+<p><strong>Caveat RE ``Suggested playback ordering``</strong>:</p>
+<ul class="simple">
+<li><p>At the moment, I recommend simply <em>ignoring</em> any metadata-only files.  Including these files in the playback generates
+“duplicate device-descriptor for XX” and “XX is not a time-series property” errors (i.e. the latter because “XX” has not seen its
+device-descriptor yet);</p></li>
+<li><p>This should be OK because the event-bearing files do contain the <code class="docutils literal notranslate"><span class="pre">RUN_STATUS</span></code>, <code class="docutils literal notranslate"><span class="pre">RUN_INFO</span></code>, <code class="docutils literal notranslate"><span class="pre">GEOMETRY_TYPE</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">DEVICE_DESC_TYPE</span></code> sections.</p></li>
+</ul>
+<p>I’m not at all sure what is going on with this issue.  Possibly the ADARA-server is being somewhat <em>redundant</em> with
+respect to the packet-data that it saves?</p>
+</section>
+<section id="setup-for-examples">
+<h2><a class="toc-backref" href="#id10" role="doc-backlink">Setup for examples</a><a class="headerlink" href="#setup-for-examples" title="Link to this heading">¶</a></h2>
+<p>In the following we assume that:</p>
+<ul class="simple">
+<li><p>your mantid build directory: <code class="docutils literal notranslate"><span class="pre">${BUILD}</span></code>;</p></li>
+<li><p>the location of the scripts: <code class="docutils literal notranslate"><span class="pre">${LIVEDATA_TEST_SCRIPTS}</span></code>:
+<code class="docutils literal notranslate"><span class="pre">LIVEDATA_TEST_SCRIPTS=${BUILD}/../Framework/PythonInterface/test/python/mantid/LiveData/ADARA/utils/packet_playback/scripts</span></code>;</p></li>
+<li><p>the location of the <code class="docutils literal notranslate"><span class="pre">adara_player.py</span></code>: <code class="docutils literal notranslate"><span class="pre">${ADARA_PLAYER}</span></code>:
+<code class="docutils literal notranslate"><span class="pre">ADARA_PLAYER=Framework/PythonInterface/mantid/LiveData/ADARA/utils/packet_playback/adara_player.py</span></code>;</p></li>
+<li><p>the location of the input data for these examples: <code class="docutils literal notranslate"><span class="pre">${ADARA_PLAYER_INPUT_DATA}</span></code>;</p></li>
+<li><p>your logs output directory is: <code class="docutils literal notranslate"><span class="pre">${ADARA_PLAYER_LOGS}</span></code>;</p></li>
+<li><p>from <code class="docutils literal notranslate"><span class="pre">${BUILD}/bin/launch_mantidworkbench.sh</span></code>: <code class="docutils literal notranslate"><span class="pre">${LOCAL_PRELOAD}</span></code></p></li>
+<li><p>from <code class="docutils literal notranslate"><span class="pre">${BUILD}/bin/launch_mantidworkbench.sh</span></code>: <code class="docutils literal notranslate"><span class="pre">${LOCAL_PYTHONPATH}</span></code></p></li>
+</ul>
+<p><strong>Make sure that you redefine all of these for *every* console session.</strong></p>
+<p>1. Build mantid, or make sure you’re using a version that has an updated <cite>SNSLiveEventDataListener</cite>.  The main issues
+here are:</p>
+<ul class="simple">
+<li><p>the listener needs to be able to work successfully with Unix Domain Socket (UDS) addresses;</p></li>
+<li><p>duplicate <code class="docutils literal notranslate"><span class="pre">DEVICE_DESC_TYPE</span></code> packets now generate a warning, rather than raising an exception.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># from the repository root</span>
+<span class="n">mkdir</span> <span class="n">build</span><span class="p">;</span> <span class="n">cd</span> <span class="n">build</span>
+<span class="n">cmake</span> <span class="o">..</span> <span class="o">-</span><span class="n">GNinja</span>
+<span class="n">cmake</span> <span class="o">--</span><span class="n">build</span> <span class="o">.</span> <span class="o">--</span><span class="n">target</span> <span class="n">AllTests</span> <span class="n">workbench</span> <span class="n">StandardTestData</span> <span class="n">SystemTestData</span>
+</pre></div>
+</div>
+<p>2. Create the test directory structure:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>mkdir ${BUILD}/adara_player_tmp
+cd ${BUILD}/adara_player_tmp
+
+# a directory for the logs output
+mkdir ${BUILD}/adara_player_tmp/logs
+
+# extract the input data for these examples
+tar -xf ${BUILD}/ExternalData/Testing/Data/SystemTest/adara_player_input_data.tar
+</pre></div>
+</div>
+<p><strong>For use in the following, here’s a separate environment variables definition section</strong>.
+Note that these variable definitions could be stored in a file, and then the file could either be sourced or stored
+as an <code class="docutils literal notranslate"><span class="pre">.envrc</span></code> file to be used along with utility <code class="docutils literal notranslate"><span class="pre">direnv</span></code>.  Usually, this environment variable definition step
+would be completed <em>before</em> creating the subdirectories and extracting the data, so that variables are readily available
+when running these actions, and the directory locations will then automatically be <em>consistent</em> with the variable definitions.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>REPO_BASE=*** FILL THIS IN! ***
+BUILD=*** FILL THIS IN! ***
+
+# probable definitions, but check in your own ``${BUILD}/bin/launch_mantidworkbench.sh``
+LOCAL_PRELOAD=${HOME}/mambaforge/envs/mantid-developer/lib/libjemalloc.so.2
+LOCAL_PYTHONPATH=${BUILD}/bin
+
+LIVEDATA_TEST_SCRIPTS=${REPO_BASE}/Framework/PythonInterface/test/python/mantid/LiveData/ADARA/utils/packet_playback/scripts
+ADARA_PLAYER_UTILS=${REPO_BASE}/Framework/PythonInterface/mantid/LiveData/ADARA/utils/packet_playback
+ADARA_PLAYER=${ADARA_PLAYER_UTILS}/adara_player.py
+ADARA_PLAYER_LOGS=${BUILD}/adara_player_tmp/logs
+ADARA_PLAYER_INPUT_DATA=${BUILD}/adara_player_tmp/adara_player_input_data
+
+# define a directory for the output data
+ADARA_PLAYER_OUTPUT_DATA=${BUILD}/adara_player_tmp/output_data
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">3. <strong>IMPORTANT reminder</strong>: Set the <code class="docutils literal notranslate"><span class="pre">base_path</span></code> in <code class="docutils literal notranslate"><span class="pre">${LIVEDATA_TEST_SCRIPTS}/adara_player_sessions.yml</span></code> to the value of
+<code class="docutils literal notranslate"><span class="pre">${ADARA_PLAYER_INPUT_DATA}</span></code>.</div>
+</div>
+<div class="line-block">
+<div class="line">4. <strong>IMPORTANT reminder</strong>: Set the <code class="docutils literal notranslate"><span class="pre">logging.filename</span></code> in
+<code class="docutils literal notranslate"><span class="pre">${ADARA_PLAYER_UTILS}/adara_player_conf.yml</span></code> using the value from <code class="docutils literal notranslate"><span class="pre">${ADARA_PLAYER_LOGS}</span></code>.  Note that the
+<code class="docutils literal notranslate"><span class="pre">PID</span></code> key will be substituted automatically, if present in the name.</div>
+</div>
+</section>
+<section id="example-playback-mode-session">
+<h2><a class="toc-backref" href="#id11" role="doc-backlink">Example <code class="docutils literal notranslate"><span class="pre">playback</span></code> mode session</a><a class="headerlink" href="#example-playback-mode-session" title="Link to this heading">¶</a></h2>
+<p>1. In its <strong>own</strong> console: start <cite>adara_player</cite> in <cite>playback</cite> mode:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span># activate your `mantid-developer` environment
+mamba activate mantid-developer
+
+##
+## DEFINE all of your environment variables as in ``Setup for examples``!
+##
+
+# this isn&#39;t strictly necessary, but this environment key allows you to control the YAML config location:
+adara_player_conf=${ADARA_PLAYER_UTILS}/adara_player_conf.yml
+
+echo &quot;default SERVER_ADDRESS: ${XDG_RUNTIME_DIR}/sock-adara_player&quot; # change this in `adara_player_conf.yml`, if required
+
+# default mode is `playback`:
+LD_PRELOAD=${LOCAL_PRELOAD} PYTHONPATH=${LOCAL_PYTHONPATH}\
+  python ${ADARA_PLAYER} --config ${adara_player_conf} --files=${LIVEDATA_TEST_SCRIPTS}/adara_player_sessions.yml
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(mantid-developer) [packet_playback]&gt; LD_PRELOAD=${LOCAL_PRELOAD} PYTHONPATH=${LOCAL_PYTHONPATH}  python ${ADARA_PLAYER} --config ${adara_player_conf} --files=${LIVEDATA_TEST_SCRIPTS}/adara_player_sessions.yml
+2026-01-27 05:06:19,835: INFO: Waiting for client connection at /run/user/46619/sock-adara_player...
+2026-01-27 05:06:19,836: INFO: Type CNTL-C to exit.
+</pre></div>
+</div>
+<p>3. In <strong>another</strong> console, run the script that calls <cite>StartLiveData</cite>.  Note that in this script, we change the
+<code class="docutils literal notranslate"><span class="pre">Address</span></code> argument to be our default <code class="docutils literal notranslate"><span class="pre">SERVER_ADDRESS</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span># activate your `mantid-developer` environment
+mamba activate mantid-developer
+
+##
+## DEFINE all of your environment variables as in ``Setup for examples``!
+##
+
+cd ${LIVEDATA_TEST_SCRIPTS}
+LD_PRELOAD=${LOCAL_PRELOAD} PYTHONPATH=${LOCAL_PYTHONPATH}\
+  python adara_player_StartLiveData.py
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(mantid-developer) [scripts]&gt; LD_PRELOAD=${LOCAL_PRELOAD} PYTHONPATH=${LOCAL_PYTHONPATH}\
+  python adara_player_StartLiveData.py
+FrameworkManager-[Notice] Welcome to Mantid 6.14.0.1.dev87
+FrameworkManager-[Notice] Please cite: http://dx.doi.org/10.1016/j.nima.2014.07.029 and this release: http://dx.doi.org/10.5286/Software/Mantid
+StartLiveData-[Notice] StartLiveData started
+SNSLiveEventDataListener-[Notice] Run number is 68851
+LoadLiveData-[Warning] The SNSLiveEventDataListener is not ready to return data: The workspace has not yet been initialized.
+LoadLiveData-[Warning] Trying again in 10 seconds - cancel the algorithm to stop.
+LoadLiveData-[Notice] Performing chunk processing using RunPythonScript
+Loaded chunk: 248988 events
+  pulse-times: 2025-11-21T00:53:03.162999667 -- 2025-11-21T01:29:39.948780667
+  event-times: 2025-11-21T00:53:03.162999667 -- 2025-11-21T01:29:39.948780667
+LoadLiveData-[Notice] Performing the Replace operation.
+StartLiveData-[Notice] StartLiveData successful, Duration 21.84 seconds
+MonitorLiveData-[Notice] MonitorLiveData started
+MonitorLiveData-[Notice] Loading live data chunk 0 at 10:44:13
+Loaded chunk: 210904 events
+  pulse-times: 2025-11-21T01:29:39.948780667 -- 2025-11-21T02:01:14.346301667
+  event-times: 2025-11-21T01:29:39.982113667 -- 2025-11-21T02:01:14.346301667
+MonitorLiveData-[Notice] Run #68851 ended. Clearing existing workspace.
+MonitorLiveData-[Notice] Loading live data chunk 1 at 10:44:23
+MonitorLiveData-[Warning] MonitorLiveData: Execution cancelled by user.
+(mantid-developer) [scripts]$
+</pre></div>
+</div>
+</section>
+<section id="example-record-mode-session">
+<h2><a class="toc-backref" href="#id12" role="doc-backlink">Example <code class="docutils literal notranslate"><span class="pre">record</span></code> mode session</a><a class="headerlink" href="#example-record-mode-session" title="Link to this heading">¶</a></h2>
+<p>The beam is currently down, so what can we do?  It turns out quite a lot!  In this example we’ll use <code class="docutils literal notranslate"><span class="pre">adara_player</span></code> in
+<code class="docutils literal notranslate"><span class="pre">playback</span></code> mode to mock the ADARA instrument server.  Then in a separate process, we’ll use <code class="docutils literal notranslate"><span class="pre">adara_player</span></code> in
+<code class="docutils literal notranslate"><span class="pre">record</span></code> mode to record our <em>client application’s</em> session.  To keep things simple, we’ll duplicate some of the
+sections above, but with a few small changes.</p>
+<p>1. Complete the setup as in <code class="docutils literal notranslate"><span class="pre">Setup</span> <span class="pre">for</span> <span class="pre">examples</span></code>.</p>
+<p>2. a) In its <strong>own</strong> console: start <code class="docutils literal notranslate"><span class="pre">adara_player</span></code> in <code class="docutils literal notranslate"><span class="pre">playback</span></code> mode: <strong>(here we add a “-source” *suffix* to the server address)</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span># activate your `mantid-developer` environment
+mamba activate mantid-developer
+
+##
+## DEFINE all of your environment variables as in ``Setup for examples``!
+##
+
+# this isn&#39;t strictly necessary, but it allows you to control the YAML config location:
+adara_player_conf=${ADARA_PLAYER_UTILS}/adara_player_conf.yml
+
+# add the &quot;-source&quot; suffix for this server process,
+#   this lets the ``record`` proxy process use the *default* address
+SERVER_ADDRESS=${XDG_RUNTIME_DIR}/sock-adara_player-source
+
+# default mode is `playback`:
+LD_PRELOAD=${LOCAL_PRELOAD} PYTHONPATH=${LOCAL_PYTHONPATH}\
+  python ${ADARA_PLAYER} --config ${adara_player_conf} --server_address=${SERVER_ADDRESS} --files=${LIVEDATA_TEST_SCRIPTS}/adara_player_sessions.yml
+</pre></div>
+</div>
+<p>2. b) In <strong>another</strong> console: start <code class="docutils literal notranslate"><span class="pre">adara_player</span></code> in <code class="docutils literal notranslate"><span class="pre">record</span></code> mode: <strong>(here we use the *default* server
+address)</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span># activate your `mantid-developer` environment
+mamba activate mantid-developer
+
+##
+## DEFINE all of your environment variables as in ``Setup for examples``!
+##
+
+# this isn&#39;t strictly necessary, but it allows you to control the YAML config location:
+adara_player_conf=${ADARA_PLAYER_UTILS}/adara_player_conf.yml
+
+# set the source address to the server address used in ``2) a)``
+SOURCE_ADDRESS=${XDG_RUNTIME_DIR}/sock-adara_player-source
+
+# use ``record`` mode, but with the default server address:
+LD_PRELOAD=${LOCAL_PRELOAD} PYTHONPATH=${LOCAL_PYTHONPATH}\
+  python ${ADARA_PLAYER} --config ${adara_player_conf} --record --source_address=${SOURCE_ADDRESS} ${ADARA_PLAYER_OUTPUT_DATA}
+</pre></div>
+</div>
+<p>3. Finally, in <strong>yet another</strong> console, run the script that calls <cite>StartLiveData</cite>: <strong>(this is exactly the same as for the ``playback`` mode example)</strong>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span># activate your `mantid-developer` environment
+mamba activate mantid-developer
+
+##
+## DEFINE all of your environment variables as in ``Setup for examples``!
+##
+
+cd ${LIVEDATA_TEST_SCRIPTS}
+LD_PRELOAD=${LOCAL_PRELOAD} PYTHONPATH=${LOCAL_PYTHONPATH}\
+  python adara_player_StartLiveData.py
+</pre></div>
+</div>
+<p>After the client session completes, the contents of the <code class="docutils literal notranslate"><span class="pre">${ADARA_PLAYER_OUTPUT_DATA}</span></code> directory should be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(mantid-developer) [packet_playback]$ tree ${ADARA_PLAYER_OUTPUT_DATA}
+${ADARA_PLAYER_OUTPUT_DATA}
+└── 0001
+    ├── session.adara
+    └── session.log -&gt; ${ADARA_PLAYER_LOGS}/session.614216.log
+
+1 directory, 2 files
+</pre></div>
+</div>
+<p>Note that in <code class="docutils literal notranslate"><span class="pre">record</span></code> mode, the default is to output all of the packets to a single <code class="docutils literal notranslate"><span class="pre">session.adara</span></code> file, and even
+in the case of only one client connection (i.e. “session”) a complete session-directory tree will be created.  The
+corresponding command to play this back is just <code class="docutils literal notranslate"><span class="pre">adara_player</span> <span class="pre">${ADARA_PLAYER_OUTPUT_DATA}</span></code> – only specifying the root of the tree.</p>
+<p>4. Just as a reality check, we’ll <strong>verify</strong> the contents of the packet file from the recorded session:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span># activate your `mantid-developer` environment
+mamba activate mantid-developer
+
+##
+## DEFINE all of your environment variables as in ``Setup for examples``!
+##
+
+# this isn&#39;t strictly necessary, but it allows you to control the YAML config location:
+adara_player_conf=${ADARA_PLAYER_UTILS}/adara_player_conf.yml
+
+LD_PRELOAD=${LOCAL_PRELOAD} PYTHONPATH=${LOCAL_PYTHONPATH}\
+  python ${ADARA_PLAYER} --config ${adara_player_conf} --summarize ${ADARA_PLAYER_OUTPUT_DATA}
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">2026</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">27</span> <span class="mi">11</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">27</span><span class="p">,</span><span class="mi">528</span><span class="p">:</span> <span class="n">INFO</span><span class="p">:</span> <span class="n">Summarizing</span> <span class="n">content</span> <span class="n">of</span> <span class="n">ADARA</span><span class="o">-</span><span class="n">packet</span> <span class="n">files</span> <span class="o">...</span>
+<span class="mi">2026</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">27</span> <span class="mi">11</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">27</span><span class="p">,</span><span class="mi">528</span><span class="p">:</span> <span class="n">INFO</span><span class="p">:</span> <span class="n">Session</span> <span class="mi">0001</span><span class="p">:</span>
+<span class="mi">2026</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">27</span> <span class="mi">11</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">32</span><span class="p">,</span><span class="mi">323</span><span class="p">:</span> <span class="n">INFO</span><span class="p">:</span> <span class="n">Summary</span> <span class="n">available</span> <span class="n">at</span><span class="p">:</span>
+    <span class="s1">&#39;$</span><span class="si">{ADARA_PLAYER_LOGS}</span><span class="s1">/session.615527.log&#39;</span><span class="o">.</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(mantid-developer) [packet_playback]$ cat ${ADARA_PLAYER_LOGS}/session.615527.log
+2026-01-27 11:33:27,528: INFO: Summarizing content of ADARA-packet files ...
+2026-01-27 11:33:27,528: INFO: Session 0001:
+2026-01-27 11:33:27,529: INFO: Found 1 files ...
+2026-01-27 11:33:32,322: INFO: ---- session.adara (40.17 MB) ----
+2026-01-27 11:33:32,322: INFO:   packets: 509390
+2026-01-27 11:33:32,322: INFO:     timestamps: 2025-10-13T13:14:16.606303719 .. 2025-11-21T01:22:18.141583667
+2026-01-27 11:33:32,322: INFO:     timestamps(events): 2025-11-21T00:53:03.112999667 .. 2025-11-21T01:22:18.091583667
+2026-01-27 11:33:32,322: INFO:   0x0000 RAW_EVENT_TYPE: 40579
+2026-01-27 11:33:32,322: INFO:   0x0001 RTDL_TYPE: 160402
+2026-01-27 11:33:32,322: INFO:   0x0003 MAPPED_EVENT_TYPE: 73230
+2026-01-27 11:33:32,322: INFO:   0x4000 BANKED_EVENT_TYPE: 2728
+2026-01-27 11:33:32,322: INFO:   0x4001 BEAM_MONITOR_EVENT_TYPE: 2764
+2026-01-27 11:33:32,322: INFO:   0x4003 RUN_STATUS_TYPE: 1
+2026-01-27 11:33:32,322: INFO:   0x4004 RUN_INFO_TYPE: 1
+2026-01-27 11:33:32,322: INFO:   0x4007 STREAM_ANNOTATION_TYPE: 3
+2026-01-27 11:33:32,322: INFO:   0x4008 SYNC_TYPE: 6
+2026-01-27 11:33:32,322: INFO:   0x400a GEOMETRY_TYPE: 1
+2026-01-27 11:33:32,322: INFO:   0x400b BEAMLINE_INFO_TYPE: 1
+2026-01-27 11:33:32,322: INFO:   0x400d BEAM_MONITOR_CONFIG_TYPE: 1
+2026-01-27 11:33:32,322: INFO:   0x4102 PIXEL_MAPPING_ALT_TYPE: 1
+2026-01-27 11:33:32,322: INFO:   0x8000 DEVICE_DESC_TYPE: 39
+2026-01-27 11:33:32,322: INFO:   0x8001 VAR_VALUE_U32_TYPE: 165346
+2026-01-27 11:33:32,322: INFO:   0x8002 VAR_VALUE_DOUBLE_TYPE: 64231
+2026-01-27 11:33:32,322: INFO:   0x8003 VAR_VALUE_STRING_TYPE: 56
+2026-01-27 11:33:32,322: INFO: ----------------------------------
+2026-01-27 11:33:32,322: INFO: Suggested playback ordering:
+2026-01-27 11:33:32,322: INFO: ----------------------------
+2026-01-27 11:33:32,323: INFO:  session.adara (events: 2025-11-21T00:53:03.110000000)
+2026-01-27 11:33:32,323: INFO: Summary available at:
+    &#39;${ADARA_PLAYER_LOGS}/session.615527.log&#39;.
+</pre></div>
+</div>
+<p>As can be seen, all of the packets have been combined into a single file.  Note that if it’s ever required, in
+<code class="docutils literal notranslate"><span class="pre">adara_player_conf.yml</span></code>, <code class="docutils literal notranslate"><span class="pre">record.file_output</span></code> can also be set to <code class="docutils literal notranslate"><span class="pre">single_packet</span></code> mode – this might be useful for
+special situations.</p>
+</section>
+</section>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+      <ul class="nav navbar-nav" style=" float: right;">
+      
+      
+          
+            
+  <li>
+    <a href="LiveDataTests.html" title="Previous Chapter: Live Data Testing"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Live Data Testing</span>
+    </a>
+  </li>
+  <li>
+    <a href="../ReflectometryGUI/ReflectometryGUITests.html" title="Next Chapter: Reflectometry GUI Testing"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Reflectometry... &raquo;</span>
+    </a>
+  </li>
+          
+       
+          <li><a href="#">Back to top</a></li>
+       </ul>
+    <p>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
