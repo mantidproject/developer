@@ -1,127 +1,362 @@
+
 <!DOCTYPE html>
 
-<html lang="en" data-content_root="../">
+
+<html lang="en" data-content_root="../" >
+
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Documentation Guide for Devs</title>
+    <title>Documentation Guide for Devs &#8212; MantidProject main documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=4468db6d" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=9aca6aaf" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/style.css?v=468c6cff" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
     <script src="../_static/documentation_options.js?v=a8da1a53"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Standards/DocumentationGuideForDevs';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Algorithm Documentation" href="AlgorithmDocumentation.html" />
     <link rel="prev" title="Unit Test Coding Standards" href="UnitTestStandards.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    <link rel="icon" sizes="32x32" href="../_static/images/favicon.ico">
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
-  ga('create', 'UA-59110517-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
-
-
-  </head><body>
-
-
-
-
-
-<nav id="navbar" class="navbar navbar-default navbar-fixed-top">
-  <div id="navbar-main" class="container">
-    <ul class="nav navbar-nav">
-      
-      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <li>
-        <a class="navbar-brand" href="http://www.mantidproject.org">
-         </a>
-      </li>
-      <span class="navbar-text navbar-version pull-left"><b>main</b></span>
-    </ul>
-
+  
+  <dialog id="pst-search-dialog">
     
-    <div class="collapse navbar-collapse nav-collapse">
-    
-      <ul class="nav navbar-nav">
-        <li class="divider-vertical"></li>
-        
-          <li>
-            <a href="../index.html">Home</a>
-          </li>
-          <li>
-            <a href="https://download.mantidproject.org">Download</a>
-          </li>
-          <li>
-            <a href="https://docs.mantidproject.org">User Documentation</a>
-          </li>
-          <li>
-            <a href="http://www.mantidproject.org/contact">Contact Us</a>
-          </li>
-        
-        
-          
-          
-        
-        
-        
-        
-      </ul>
-            
-<form class="navbar-form navbar-right" action="../search.html" method="get">
- <div class="form-group">
-  <input type="text" name="q" class="form-control" placeholder="Search" />
- </div>
-  <input type="hidden" name="check_keywords" value="yes" />
-  <input type="hidden" name="area" value="default" />
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form>
-          </div>
-  </div> <!-- /navbar-main -->
-<div id="navbar-breadcrumbs" class="related" role="navigation" aria-label="related navigation">
-  <h3>Navigation</h3>
-  <ul>
-    <li class="nav-item nav-item-0">
-      <a href="../index.html">Documentation</a>
-         &#187;
-    </li>
-    
-    <li class="nav-item nav-item-1">
-      <a href="index.html" accesskey="U">
-        Standards
-      </a>
-       &#187;
-    </li>
-    
-    
-    
-    
-    <li class="nav-item nav-item-this">
-      <a href="">Documentation Guide for Devs</a>
-    </li>
-    
-    
-  </ul>
-</div>
-</nav>
+  </dialog>
 
-<div class="container">
-  <div class="row">
-    <div class="body col-md-12 content" role="main">
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  <img src="../_static/images/mantid_logo_light.png" class="logo__image only-light" alt="Logo image">
+  <img src="../_static/images/mantid_logo_dark.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
       
+        <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://download.mantidproject.org">Downloads</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org/nightly/tutorials/">Tutorials</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org">User Docs</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://developer.mantidproject.org">Develop</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org/release/">Release notes</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://forum.mantidproject.org/">Forums</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://www.mantidproject.org/contact">Contact Us</a>
+  </li>
+</ul></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+    <li class="nav-item">
+      <a class="nav-link" href="https://github.com/mantidproject/mantid" rel="noopener" target="_blank" title="GitHub">
+        <span><i class="fab fa-github-square"></i></span>
+        <label class="sr-only">GitHub</label>
+      </a>
+    </li>
+  </ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://download.mantidproject.org">Downloads</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org/nightly/tutorials/">Tutorials</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org">User Docs</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://developer.mantidproject.org">Develop</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org/release/">Release notes</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://forum.mantidproject.org/">Forums</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://www.mantidproject.org/contact">Contact Us</a>
+  </li>
+</ul></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+    <li class="nav-item">
+      <a class="nav-link" href="https://github.com/mantidproject/mantid" rel="noopener" target="_blank" title="GitHub">
+        <span><i class="fab fa-github-square"></i></span>
+        <label class="sr-only">GitHub</label>
+      </a>
+    </li>
+  </ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="MantidStandards.html">Mantid Standards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CPPModernization.html">C++ Code Modernization Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CPPStandards.html">C++ Coding Standards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GUIStandards.html">GUI Standards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PythonStandards.html">Python Coding Standards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DeprecateAlgorithm.html">Deprecating an Algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RenameAlgorithm.html">Renaming an Algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UnitTestStandards.html">Unit Test Coding Standards</a></li>
+</ul>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Documentation Guide for Devs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AlgorithmDocumentation.html">Algorithm Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AlgorithmUsageExamples.html">Algorithm Usage Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="InterfaceDocumentation.html">Interface Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ReleaseNotesGuide.html">Release Notes Guide</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Libraries.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AdditionalPythonCode.html">Additional Python code</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">Standards</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Documentation Guide for Devs</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
   <section id="documentation-guide-for-devs">
-<span id="documentationguidefordevs"></span><h1>Documentation Guide for Devs<a class="headerlink" href="#documentation-guide-for-devs" title="Link to this heading">¶</a></h1>
+<span id="documentationguidefordevs"></span><h1>Documentation Guide for Devs<a class="headerlink" href="#documentation-guide-for-devs" title="Link to this heading">#</a></h1>
 <nav class="contents local" id="contents">
 <ul class="simple">
 <li><p><a class="reference internal" href="#configuration" id="id1">Configuration</a></p></li>
@@ -159,7 +394,7 @@
 <p>The documentation is written in <a class="reference external" href="https://docutils.sourceforge.io/rst.html">reStructuredText</a> and <a class="reference external" href="https://myst-parser.readthedocs.io/en/latest/">Markedly Structured Text</a> which is processed using <a class="reference external" href="http://www.sphinx-doc.org/en/master/">Sphinx</a> along with
 <a class="reference external" href="https://pypi.python.org/pypi/sphinx-bootstrap-theme/">Sphinx bootstrap theme</a> and custom css.</p>
 <section id="configuration">
-<h2><a class="toc-backref" href="#id1" role="doc-backlink">Configuration</a><a class="headerlink" href="#configuration" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Configuration</a><a class="headerlink" href="#configuration" title="Link to this heading">#</a></h2>
 <p>The documentation is configured using CMake and assumes the instructions in the
 <a class="reference internal" href="../GettingStarted/GettingStarted.html#gettingstarted"><span class="std std-ref">Getting Started</span></a> section have been followed.</p>
 <p>The following settings, relating to the documentation, are available:</p>
@@ -177,9 +412,9 @@ the code/plots are included. WARNING: This can add ~15mins to the build time. De
 <p>The defaults are set to produce a reasonable build time for developers but set to build everything on clean package builds.</p>
 </section>
 <section id="restructuredtext">
-<h2><a class="toc-backref" href="#id2" role="doc-backlink">reStructuredText</a><a class="headerlink" href="#restructuredtext" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">reStructuredText</a><a class="headerlink" href="#restructuredtext" title="Link to this heading">#</a></h2>
 <section id="rest-editors-ide-plugins">
-<h3><a class="toc-backref" href="#id3" role="doc-backlink">reST editors/IDE plugins</a><a class="headerlink" href="#rest-editors-ide-plugins" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id3" role="doc-backlink">reST editors/IDE plugins</a><a class="headerlink" href="#rest-editors-ide-plugins" title="Link to this heading">#</a></h3>
 <p>Several free &amp; proprietary editors support syntax-highlighting reST.
 A list of the most notable ones can be found <a class="reference external" href="https://stackoverflow.com/questions/2746692/restructuredtext-tool-support">here</a>.</p>
 <p>Other tools:</p>
@@ -193,7 +428,7 @@ The syntax to use it is: <code class="docutils literal notranslate"><span class=
 </ul>
 </section>
 <section id="the-restructuredtext-file">
-<h3><a class="toc-backref" href="#id4" role="doc-backlink">The reStructuredText File</a><a class="headerlink" href="#the-restructuredtext-file" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id4" role="doc-backlink">The reStructuredText File</a><a class="headerlink" href="#the-restructuredtext-file" title="Link to this heading">#</a></h3>
 <p><a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a> is a markup format and is converted into themed html pages using Sphinx.
 A primer on reStructuredText can be found here along with a single-page cheat sheet.</p>
 <p>The source files are .rst files which are located in the <code class="docutils literal notranslate"><span class="pre">docs/source</span></code> directory in the repository.
@@ -201,7 +436,7 @@ There are various subdirectories based on the type of object being documented, i
 <p>The documentation pages is aimed at <em>users</em>, not developers, and all information should be targeted for the users.
 Information for developers should go into doxygen/code-comments in the code or into <code class="docutils literal notranslate"><span class="pre">dev-docs</span></code>.</p>
 <section id="directives">
-<h4><a class="toc-backref" href="#id5" role="doc-backlink">Directives</a><a class="headerlink" href="#directives" title="Link to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id5" role="doc-backlink">Directives</a><a class="headerlink" href="#directives" title="Link to this heading">#</a></h4>
 <p>Sphinx is built on the <code class="docutils literal notranslate"><span class="pre">docutils</span></code> package that allows for directives to be inserted in to reST comments. For example:</p>
 <div class="highlight-rest notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">warning</span><span class="p">::</span>
    This text will show up surrounded by a coloured box.
@@ -210,20 +445,20 @@ Information for developers should go into doxygen/code-comments in the code or i
 <p>tells sphinx to treat the given text differently and flag it so that a user will see it as a warning. The name of the directive is <code class="docutils literal notranslate"><span class="pre">warning</span></code> and the <code class="docutils literal notranslate"><span class="pre">..</span></code> is a reST comment syntax. The directive name must be followed by <code class="docutils literal notranslate"><span class="pre">::</span></code> so that Sphinx process knows it has a directive command and not just plain text. For a list of directives known to Sphinx, see <a class="reference external" href="http://www.sphinx-doc.org/en/master/rest.html#directives">here</a>.</p>
 </section>
 <section id="comments">
-<h4><a class="toc-backref" href="#id6" role="doc-backlink">Comments</a><a class="headerlink" href="#comments" title="Link to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id6" role="doc-backlink">Comments</a><a class="headerlink" href="#comments" title="Link to this heading">#</a></h4>
 <p>If you wish to place comments in the reST file that will not be rendered anywhere then start the line/block with <code class="docutils literal notranslate"><span class="pre">..</span></code>. See <a class="reference external" href="http://sphinx-doc.org/rest.html#comments">here</a> for more details.</p>
 </section>
 <section id="algorithms">
-<h4><a class="toc-backref" href="#id7" role="doc-backlink">Algorithms</a><a class="headerlink" href="#algorithms" title="Link to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id7" role="doc-backlink">Algorithms</a><a class="headerlink" href="#algorithms" title="Link to this heading">#</a></h4>
 <p>The algorithm documentation has a slightly more rigid structure and is described in more detail <a class="reference internal" href="AlgorithmDocumentation.html#algorithmdocumentation"><span class="std std-ref">here</span></a> and <a class="reference internal" href="AlgorithmUsageExamples.html#algorithmusageexamples"><span class="std std-ref">here</span></a>.</p>
 </section>
 <section id="interfaces">
-<h4><a class="toc-backref" href="#id8" role="doc-backlink">Interfaces</a><a class="headerlink" href="#interfaces" title="Link to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id8" role="doc-backlink">Interfaces</a><a class="headerlink" href="#interfaces" title="Link to this heading">#</a></h4>
 <p>For documenting custom interfaces, it is recommended that you consult <a class="reference internal" href="InterfaceDocumentation.html#interfacedocumentation"><span class="std std-ref">this</span></a>  page,
 which explains how to document them, and which directives may be used in more detail.</p>
 </section>
 <section id="how-to-define-titles-sections-etc">
-<h4><a class="toc-backref" href="#id9" role="doc-backlink">How to define titles, sections etc.</a><a class="headerlink" href="#how-to-define-titles-sections-etc" title="Link to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id9" role="doc-backlink">How to define titles, sections etc.</a><a class="headerlink" href="#how-to-define-titles-sections-etc" title="Link to this heading">#</a></h4>
 <p>The syntax for headers in restructuredText is the header followed by a line containing symbols such as hyphens. It is possible to use different punctuation to create headers but within the Mantid .rst files we standardize on the characters used as follows:</p>
 <dl class="simple">
 <dt>The title of the page</dt><dd><p>Should be the first header of your .rst file, and generally only occur once. (This is done for you in an algorithm with the <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">algorithm::</span></code> directive)</p>
@@ -261,7 +496,7 @@ which explains how to document them, and which directives may be used in more de
 </section>
 </section>
 <section id="common-warnings-and-fixes">
-<h3><a class="toc-backref" href="#id10" role="doc-backlink">Common Warnings and Fixes</a><a class="headerlink" href="#common-warnings-and-fixes" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">Common Warnings and Fixes</a><a class="headerlink" href="#common-warnings-and-fixes" title="Link to this heading">#</a></h3>
 <p>If you have weird messages about sphinx warnings that happen on “Console output”,
 those are coming either from summary functions in algorithms or from parameter descriptions.
 In these</p>
@@ -279,7 +514,7 @@ In these</p>
 <p>While building the final output, Sphinx will emit warning messages if it things the input restructured text is malformed.
 This section lists some more common warnings along with suggestions for fixes.</p>
 <section id="explicit-markup-ends-without-a-blank-line-unexpected-unindent">
-<h4><a class="toc-backref" href="#id11" role="doc-backlink">Explicit markup ends without a blank line; unexpected unindent.</a><a class="headerlink" href="#explicit-markup-ends-without-a-blank-line-unexpected-unindent" title="Link to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id11" role="doc-backlink">Explicit markup ends without a blank line; unexpected unindent.</a><a class="headerlink" href="#explicit-markup-ends-without-a-blank-line-unexpected-unindent" title="Link to this heading">#</a></h4>
 <p>This is caused by the lack of a blank line between an indented explicit markup block and more unindented text, e.g.</p>
 <div class="highlight-rest notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">testcode</span><span class="p">::</span> ExHist
 
@@ -292,7 +527,7 @@ This section lists some more common warnings along with suggestions for fixes.</
 <p>It can be fixed by having a blank line between the indented block and the unindented text.</p>
 </section>
 <section id="inline-interpreted-text-or-phrase-reference-start-string-without-end-string">
-<h4><a class="toc-backref" href="#id12" role="doc-backlink">Inline interpreted text or phrase reference start-string without end-string</a><a class="headerlink" href="#inline-interpreted-text-or-phrase-reference-start-string-without-end-string" title="Link to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id12" role="doc-backlink">Inline interpreted text or phrase reference start-string without end-string</a><a class="headerlink" href="#inline-interpreted-text-or-phrase-reference-start-string-without-end-string" title="Link to this heading">#</a></h4>
 <p>This is caused by using one of the <a class="reference external" href="http://www.sphinx-doc.org/en/master/rest.html#inline-markup">inline markup tags</a>, where the text being wrapped splits over multiple lines. In these cases the directive variant of the inline markup should be used. One example is the <code class="docutils literal notranslate"><span class="pre">:math:</span></code> tag being spread over multiple lines. The tag <code class="docutils literal notranslate"><span class="pre">:math:</span></code> must only be used for inline markup, i.e. when there is no newline in the math string. For multi-line maths markup you must use the <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">math::</span></code> directive instead.</p>
 <div class="highlight-rest notranslate"><div class="highlight"><pre><span></span>:math:`\rm U \rm B \left(
                              \begin{array}{c}
@@ -319,7 +554,7 @@ This section lists some more common warnings along with suggestions for fixes.</
 <p>where there is an explicit blank line after the final line of latex. See <a class="reference external" href="http://sphinx-doc.org/ext/math.html">here</a> for more information.</p>
 </section>
 <section id="image-file-not-readable">
-<h4><a class="toc-backref" href="#id13" role="doc-backlink">image file not readable</a><a class="headerlink" href="#image-file-not-readable" title="Link to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id13" role="doc-backlink">image file not readable</a><a class="headerlink" href="#image-file-not-readable" title="Link to this heading">#</a></h4>
 <p>This indicates the that image referenced by <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">image::</span></code> or <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">figure::</span></code> cannot be accessed.
 Either the image is not there or the reference is incorrect.</p>
 <p>Image links in Sphinx are either relative,
@@ -327,14 +562,14 @@ in which case it is relative to the current document or
 absolute in which case the path is assumed relative to the root of the source tree (the directory containing the conf.py)</p>
 </section>
 <section id="unknown-directive-type-foo">
-<h4><a class="toc-backref" href="#id14" role="doc-backlink">Unknown directive type “foo”</a><a class="headerlink" href="#unknown-directive-type-foo" title="Link to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id14" role="doc-backlink">Unknown directive type “foo”</a><a class="headerlink" href="#unknown-directive-type-foo" title="Link to this heading">#</a></h4>
 <p>Sphinx has encountered a line starting with <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">foo::</span></code>, where <code class="docutils literal notranslate"><span class="pre">foo</span></code> is expected to be a known directive.</p>
 <p>The fix is to correct the name of the directive.</p>
 </section>
 </section>
 </section>
 <section id="markedly-structured-text">
-<h2><a class="toc-backref" href="#id15" role="doc-backlink">Markedly Structured Text</a><a class="headerlink" href="#markedly-structured-text" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id15" role="doc-backlink">Markedly Structured Text</a><a class="headerlink" href="#markedly-structured-text" title="Link to this heading">#</a></h2>
 <p><a class="reference external" href="https://myst-parser.readthedocs.io/en/latest/">Markedly Structured Text</a>, frequently abbreviated to MyST, is also configured for the user and developer docs.
 We leave it to the MyST docs for the details of the format.</p>
 <div class="admonition warning">
@@ -343,7 +578,7 @@ We leave it to the MyST docs for the details of the format.</p>
 This is especially true of release notes.</p>
 </div>
 <section id="converting-from-rst-to-md">
-<h3><a class="toc-backref" href="#id16" role="doc-backlink">Converting from rst to md</a><a class="headerlink" href="#converting-from-rst-to-md" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id16" role="doc-backlink">Converting from rst to md</a><a class="headerlink" href="#converting-from-rst-to-md" title="Link to this heading">#</a></h3>
 <p>A pixi task exists for converting individual files run</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pixi<span class="w"> </span>run<span class="w"> </span>rst2md<span class="w"> </span>path/to/doc.rst
 </pre></div>
@@ -359,7 +594,7 @@ $<span class="w"> </span>git<span class="w"> </span>add<span class="w"> </span>p
 </section>
 </section>
 <section id="building-the-html-development-documentation">
-<h2><a class="toc-backref" href="#id17" role="doc-backlink">Building the HTML Development Documentation</a><a class="headerlink" href="#building-the-html-development-documentation" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id17" role="doc-backlink">Building the HTML Development Documentation</a><a class="headerlink" href="#building-the-html-development-documentation" title="Link to this heading">#</a></h2>
 <p>The developer documentation is written as <code class="docutils literal notranslate"><span class="pre">.md</span></code> and <code class="docutils literal notranslate"><span class="pre">.rst</span></code> files in the mantid source folder under <code class="docutils literal notranslate"><span class="pre">dev-docs/</span></code>,
 the html files can be built using the <cite>dev-docs-html</cite> target.
 This will build all the development documentation into the mantid build folder under <code class="docutils literal notranslate"><span class="pre">dev-docs/html/</span></code>.</p>
@@ -368,32 +603,144 @@ This will build all the development documentation into the mantid build folder u
 </section>
 
 
-    </div>
-      
-  </div>
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="UnitTestStandards.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Unit Test Coding Standards</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="AlgorithmDocumentation.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Algorithm Documentation</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
-<footer class="footer">
-  <div class="container">
-      <ul class="nav navbar-nav" style=" float: right;">
-      
-      
-          
+                </footer>
+              
+            </div>
             
-  <li>
-    <a href="UnitTestStandards.html" title="Previous Chapter: Unit Test Coding Standards"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Unit Test Cod...</span>
-    </a>
-  </li>
-  <li>
-    <a href="AlgorithmDocumentation.html" title="Next Chapter: Algorithm Documentation"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Algorithm Doc... &raquo;</span>
-    </a>
-  </li>
-          
-       
-          <li><a href="#">Back to top</a></li>
-       </ul>
-    <p>
-    </p>
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
   </div>
-</footer>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuration">Configuration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#restructuredtext">reStructuredText</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rest-editors-ide-plugins">reST editors/IDE plugins</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-restructuredtext-file">The reStructuredText File</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#directives">Directives</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#comments">Comments</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithms">Algorithms</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#interfaces">Interfaces</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-define-titles-sections-etc">How to define titles, sections etc.</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-warnings-and-fixes">Common Warnings and Fixes</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#explicit-markup-ends-without-a-blank-line-unexpected-unindent">Explicit markup ends without a blank line; unexpected unindent.</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#inline-interpreted-text-or-phrase-reference-start-string-without-end-string">Inline interpreted text or phrase reference start-string without end-string</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#image-file-not-readable">image file not readable</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#unknown-directive-type-foo">Unknown directive type “foo”</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#markedly-structured-text">Markedly Structured Text</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#converting-from-rst-to-md">Converting from rst to md</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-the-html-development-documentation">Building the HTML Development Documentation</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Standards/DocumentationGuideForDevs.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2007-2026, Mantid.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
   </body>
 </html>

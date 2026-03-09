@@ -1,120 +1,338 @@
+
 <!DOCTYPE html>
 
-<html lang="en" data-content_root="./">
+
+<html lang="en" data-content_root="./" >
+
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Writing An Algorithm</title>
+    <title>Writing An Algorithm &#8212; MantidProject main documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css?v=4468db6d" />
-    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=9aca6aaf" />
+    <link rel="stylesheet" type="text/css" href="_static/css/style.css?v=468c6cff" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
     <script src="_static/documentation_options.js?v=a8da1a53"></script>
     <script src="_static/doctools.js?v=fd6eb6e6"></script>
     <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'WritingAnAlgorithm';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Dynamic dialog properties" href="DynamicProperties.html" />
     <link rel="prev" title="Plotting (Elemental Analysis)" href="Widgets/Plotting.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    <link rel="icon" sizes="32x32" href="_static/images/favicon.ico">
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
-  ga('create', 'UA-59110517-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
-
-
-  </head><body>
-
-
-
-
-
-<nav id="navbar" class="navbar navbar-default navbar-fixed-top">
-  <div id="navbar-main" class="container">
-    <ul class="nav navbar-nav">
-      
-      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <li>
-        <a class="navbar-brand" href="http://www.mantidproject.org">
-         </a>
-      </li>
-      <span class="navbar-text navbar-version pull-left"><b>main</b></span>
-    </ul>
-
+  
+  <dialog id="pst-search-dialog">
     
-    <div class="collapse navbar-collapse nav-collapse">
-    
-      <ul class="nav navbar-nav">
-        <li class="divider-vertical"></li>
-        
-          <li>
-            <a href="index.html">Home</a>
-          </li>
-          <li>
-            <a href="https://download.mantidproject.org">Download</a>
-          </li>
-          <li>
-            <a href="https://docs.mantidproject.org">User Documentation</a>
-          </li>
-          <li>
-            <a href="http://www.mantidproject.org/contact">Contact Us</a>
-          </li>
-        
-        
-          
-          
-        
-        
-        
-        
-      </ul>
-            
-<form class="navbar-form navbar-right" action="search.html" method="get">
- <div class="form-group">
-  <input type="text" name="q" class="form-control" placeholder="Search" />
- </div>
-  <input type="hidden" name="check_keywords" value="yes" />
-  <input type="hidden" name="area" value="default" />
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form>
-          </div>
-  </div> <!-- /navbar-main -->
-<div id="navbar-breadcrumbs" class="related" role="navigation" aria-label="related navigation">
-  <h3>Navigation</h3>
-  <ul>
-    <li class="nav-item nav-item-0">
-      <a href="index.html">Documentation</a>
-         &#187;
-    </li>
-    
-    
-    
-    
-    <li class="nav-item nav-item-this">
-      <a href="">Writing An Algorithm</a>
-    </li>
-    
-    
-  </ul>
-</div>
-</nav>
+  </dialog>
 
-<div class="container">
-  <div class="row">
-    <div class="body col-md-12 content" role="main">
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  <img src="_static/images/mantid_logo_light.png" class="logo__image only-light" alt="Logo image">
+  <img src="_static/images/mantid_logo_dark.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
       
+        <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://download.mantidproject.org">Downloads</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org/nightly/tutorials/">Tutorials</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org">User Docs</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://developer.mantidproject.org">Develop</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org/release/">Release notes</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://forum.mantidproject.org/">Forums</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://www.mantidproject.org/contact">Contact Us</a>
+  </li>
+</ul></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+    <li class="nav-item">
+      <a class="nav-link" href="https://github.com/mantidproject/mantid" rel="noopener" target="_blank" title="GitHub">
+        <span><i class="fab fa-github-square"></i></span>
+        <label class="sr-only">GitHub</label>
+      </a>
+    </li>
+  </ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://download.mantidproject.org">Downloads</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org/nightly/tutorials/">Tutorials</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org">User Docs</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://developer.mantidproject.org">Develop</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org/release/">Release notes</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://forum.mantidproject.org/">Forums</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://www.mantidproject.org/contact">Contact Us</a>
+  </li>
+</ul></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+    <li class="nav-item">
+      <a class="nav-link" href="https://github.com/mantidproject/mantid" rel="noopener" target="_blank" title="GitHub">
+        <span><i class="fab fa-github-square"></i></span>
+        <label class="sr-only">GitHub</label>
+      </a>
+    </li>
+  </ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"></div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Writing An Algorithm</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
   <section id="writing-an-algorithm">
-<span id="writinganalgorithm"></span><h1>Writing An Algorithm<a class="headerlink" href="#writing-an-algorithm" title="Link to this heading">¶</a></h1>
+<span id="writinganalgorithm"></span><h1>Writing An Algorithm<a class="headerlink" href="#writing-an-algorithm" title="Link to this heading">#</a></h1>
 <nav class="contents local" id="contents">
 <ul class="simple">
 <li><p><a class="reference internal" href="#introduction" id="id1">Introduction</a></p></li>
@@ -147,7 +365,7 @@
 </ul>
 </nav>
 <section id="introduction">
-<h2><a class="toc-backref" href="#id1" role="doc-backlink">Introduction</a><a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Introduction</a><a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
 <p>Mantid’s <a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/Plugin.html#plugin" title="(in MantidProject v6.15)"><span class="xref std std-ref">plugin</span></a> architecture has been engineered so that it is easy for a developer, or intrepid user, to write an algorithm.
 This page is a primer for the user about to write their first algorithm and assumes no great knowledge of C++.
 It covers the basics, with links to more advanced options where appropriate.
@@ -159,7 +377,7 @@ See <a class="reference internal" href="PythonVSCppAlgorithms.html#pythonvscppal
 which provides the support and services required for running a specific algorithm and greatly simplifies the process of writing a new one.</p>
 </section>
 <section id="getting-started">
-<h2><a class="toc-backref" href="#id2" role="doc-backlink">Getting Started</a><a class="headerlink" href="#getting-started" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Getting Started</a><a class="headerlink" href="#getting-started" title="Link to this heading">#</a></h2>
 <p>Creating a new algorithm is simplified using <a class="reference internal" href="ToolsOverview.html#class-maker-py"><span class="std std-ref">class_maker.py</span></a></p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>python<span class="w"> </span>buildconfig/class_maker.py<span class="w"> </span>--alg<span class="w"> </span>Algorithms<span class="w"> </span>MyAlg
 </pre></div>
@@ -246,7 +464,7 @@ If you then start MantidWorkbench your algorithm will appear in the list of avai
 Of course, it won’t do anything of interest until you have written some algorithm code.</p>
 </section>
 <section id="coding-the-algorithm">
-<h2><a class="toc-backref" href="#id3" role="doc-backlink">Coding the Algorithm</a><a class="headerlink" href="#coding-the-algorithm" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Coding the Algorithm</a><a class="headerlink" href="#coding-the-algorithm" title="Link to this heading">#</a></h2>
 <p>You will see that the algorithm has a variety of methods that need to be filled in.
 The example linked here is used throughout the majority of this document.
 The first few do not normally change very often</p>
@@ -279,7 +497,7 @@ The first sentence of the summary (up to the first period, <code class="docutils
 <p>You will see that the algorithm skeletons set up in the last section contain two larger methods called <code class="docutils literal notranslate"><span class="pre">init</span></code> and <code class="docutils literal notranslate"><span class="pre">exec</span></code>.
 These are described in sections below.</p>
 <section id="logging">
-<h3><a class="toc-backref" href="#id4" role="doc-backlink">Logging</a><a class="headerlink" href="#logging" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id4" role="doc-backlink">Logging</a><a class="headerlink" href="#logging" title="Link to this heading">#</a></h3>
 <p>The algorithm base class defines an object, <code class="docutils literal notranslate"><span class="pre">g_log</span></code>.
 The <code class="docutils literal notranslate"><span class="pre">g_log</span></code> object enables access to the <a class="reference internal" href="Logging.html#logging"><span class="std std-ref">logging</span></a> facilities of Mantid,
 and is an invaluable tool in understanding the running of your algorithms.
@@ -289,7 +507,7 @@ However, logging <code class="docutils literal notranslate"><span class="pre">st
 </section>
 </section>
 <section id="initialization">
-<h2><a class="toc-backref" href="#id5" role="doc-backlink">Initialization</a><a class="headerlink" href="#initialization" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Initialization</a><a class="headerlink" href="#initialization" title="Link to this heading">#</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">init()</span></code> method written in your algorithm is called as part of the larger algorithm lifecycle.
 It is a private method that cannot be called directly, but one can call an algorithm’s inherited <code class="docutils literal notranslate"><span class="pre">initialize()</span></code> method for the desired effect.
 For details, look at the source of the <a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/Framework/API/src/Algorithm.cpp#L281">API::Algorithm::initialize()</a> .</p>
@@ -332,7 +550,7 @@ The whole string appears in the user docs and python help.</p></li>
 <p>An optional <a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/Properties.html#properties-validators" title="(in MantidProject v6.15)"><span class="xref std std-ref">validator</span></a> or <a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/Properties.html#properties-directions" title="(in MantidProject v6.15)"><span class="xref std std-ref">directional argument</span></a> (input, output or both) can also be appended.
 The syntax for other property types (<code class="docutils literal notranslate"><span class="pre">WorkspaceProperty</span></code> and <code class="docutils literal notranslate"><span class="pre">ArrayProperty</span></code>) is more complex - see the <a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/Properties.html#properties" title="(in MantidProject v6.15)"><span class="xref std std-ref">properties</span></a> page.</p>
 <section id="validation-of-inputs">
-<h3><a class="toc-backref" href="#id6" role="doc-backlink">Validation of inputs</a><a class="headerlink" href="#validation-of-inputs" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">Validation of inputs</a><a class="headerlink" href="#validation-of-inputs" title="Link to this heading">#</a></h3>
 <p>While not part of the initialization, the optional <code class="docutils literal notranslate"><span class="pre">validateInputs()</span></code> method allows for cross-checking parameters.
 This particular example shows how one would ban a particular value, but normally a validator would be placed on the property itself for this behavior
 For more advanced validation, override the <code class="docutils literal notranslate"><span class="pre">Algorithm::validateInputs()</span></code> method.
@@ -368,7 +586,7 @@ check that casting it to its intended type succeeded before attempting to use it
 </section>
 </section>
 <section id="execution">
-<h2><a class="toc-backref" href="#id7" role="doc-backlink">Execution</a><a class="headerlink" href="#execution" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Execution</a><a class="headerlink" href="#execution" title="Link to this heading">#</a></h2>
 <p>Like initialization, the <code class="docutils literal notranslate"><span class="pre">exec()</span></code> method you write is not directly, but can be indirectly called via the <code class="docutils literal notranslate"><span class="pre">execute()</span></code> method of the algorith
 There are other methods that will do the same thing in different modes.
 All of them eventually call the <a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/Framework/API/src/Algorithm.cpp#L509">API::Algorithm::executeInternal()</a> which does the following</p>
@@ -381,7 +599,7 @@ All of them eventually call the <a class="reference external" href="https://gith
 </ul>
 <p>Additionally, the algorithm framework also handles things like sync/async calling, exception handling, and interaction with <a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/AnalysisDataService.html#analysis-data-service" title="(in MantidProject v6.15)"><span class="xref std std-ref">AnalysisDataService</span></a>.</p>
 <section id="fetching-properties">
-<h3><a class="toc-backref" href="#id8" role="doc-backlink">Fetching properties</a><a class="headerlink" href="#fetching-properties" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">Fetching properties</a><a class="headerlink" href="#fetching-properties" title="Link to this heading">#</a></h3>
 <p>Before the data can be processed,
 the first task is likely to be to fetch the values of the input properties.
 This uses the <code class="docutils literal notranslate"><span class="pre">getProperty()</span></code> method as follows</p>
@@ -405,7 +623,7 @@ This example also uses the <code class="docutils literal notranslate"><span clas
 However, the algorithm has a convenience method <code class="docutils literal notranslate"><span class="pre">isDefault(const</span> <span class="pre">std::string</span> <span class="pre">&amp;)</span></code> as well.</p>
 </section>
 <section id="creating-the-output-workspace">
-<h3><a class="toc-backref" href="#id9" role="doc-backlink">Creating the output workspace</a><a class="headerlink" href="#creating-the-output-workspace" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">Creating the output workspace</a><a class="headerlink" href="#creating-the-output-workspace" title="Link to this heading">#</a></h3>
 <p>Usually, the result of an algorithm will be stored in another new workspace and the algorithm
 will need to create that new workspace through a call to the <code class="docutils literal notranslate"><span class="pre">WorkspaceFactory</span></code>.
 For the (common) example where the output workspace should be of the same type and size as the input one, the code would read as follows:</p>
@@ -429,7 +647,7 @@ This is achieved through a call to the <code class="docutils literal notranslate
 <p>where <code class="docutils literal notranslate"><span class="pre">outputWorkspace</span></code> is a shared pointer to the created output workspace.</p>
 </section>
 <section id="using-workspaces">
-<h3><a class="toc-backref" href="#id10" role="doc-backlink">Using workspaces</a><a class="headerlink" href="#using-workspaces" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">Using workspaces</a><a class="headerlink" href="#using-workspaces" title="Link to this heading">#</a></h3>
 <p>The bulk of most algorithms will involve the manipulation of the data contained in workspaces and information on how to interact with these is given <a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/WorkingWithWorspaces.html#workingwithworkspaces" title="(in MantidProject v6.15)"><span class="xref std std-ref">here</span></a>.
 The more advanced user may also want to refer to the full
 <a class="reference external" href="http://doxygen.mantidproject.org/nightly/d3/de9/classMantid_1_1API_1_1Workspace.html">workspace documentation</a>.</p>
@@ -437,12 +655,12 @@ The more advanced user may also want to refer to the full
 </section>
 </section>
 <section id="further-features">
-<h2><a class="toc-backref" href="#id11" role="doc-backlink">Further Features</a><a class="headerlink" href="#further-features" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id11" role="doc-backlink">Further Features</a><a class="headerlink" href="#further-features" title="Link to this heading">#</a></h2>
 <p>The advanced user is referred to the <a class="reference external" href="http://doxygen.mantidproject.org/nightly/d3/de9/classMantid_1_1API_1_1Workspace.html">full documentation page</a>
 for the <code class="docutils literal notranslate"><span class="pre">Algorithm</span></code> base class to explore the full range of methods available for use within an algorithm.
 A few aspects are highlighted below.</p>
 <section id="child-algorithms">
-<h3><a class="toc-backref" href="#id12" role="doc-backlink">Child Algorithms</a><a class="headerlink" href="#child-algorithms" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">Child Algorithms</a><a class="headerlink" href="#child-algorithms" title="Link to this heading">#</a></h3>
 <p>Algorithms may wish to make use of the functionality of other algorithms as part of their execution.
 For example, if a units change is required the <code class="docutils literal notranslate"><span class="pre">ConvertUnits</span></code> algorithm could be used. Mantid therefore has the concept of a child algorithm and this is accessed through a call to the
 <code class="docutils literal notranslate"><span class="pre">createChildAlgorithm</span></code> method as follows:</p>
@@ -458,7 +676,7 @@ For example, if a units change is required the <code class="docutils literal not
 <p>Because <code class="docutils literal notranslate"><span class="pre">Property</span></code> is generic to input <strong>and</strong> output, the workspace pointers cannot be <code class="docutils literal notranslate"><span class="pre">const</span></code> when shared with a child algorithm.</p>
 </section>
 <section id="enhancing-asynchronous-running">
-<h3><a class="toc-backref" href="#id13" role="doc-backlink">Enhancing asynchronous running</a><a class="headerlink" href="#enhancing-asynchronous-running" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">Enhancing asynchronous running</a><a class="headerlink" href="#enhancing-asynchronous-running" title="Link to this heading">#</a></h3>
 <p>Any algorithm can be run asynchronously without modification.
 However, some features are only enabled if code is added within the <code class="docutils literal notranslate"><span class="pre">exec()</span></code> method.
 <code class="docutils literal notranslate"><span class="pre">Algorithm::interruption_point()</span></code> should be called at appropriate intervals so that the algorithm’s execution can be interrupted.
@@ -466,12 +684,12 @@ However, some features are only enabled if code is added within the <code class=
 <code class="docutils literal notranslate"><span class="pre">p</span></code> must be between 0 (start) and 1 (finish).</p>
 </section>
 <section id="exceptions">
-<h3><a class="toc-backref" href="#id14" role="doc-backlink">Exceptions</a><a class="headerlink" href="#exceptions" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">Exceptions</a><a class="headerlink" href="#exceptions" title="Link to this heading">#</a></h3>
 <p>It is fine to throw exceptions in your algorithms in the event of an unrecoverable failure.
 These will be caught in the base Algorithm class, which will report the failure of the algorithm.</p>
 </section>
 <section id="properties-access-within-workbench-dialogs">
-<h3><a class="toc-backref" href="#id15" role="doc-backlink">Properties access within workbench dialogs</a><a class="headerlink" href="#properties-access-within-workbench-dialogs" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id15" role="doc-backlink">Properties access within workbench dialogs</a><a class="headerlink" href="#properties-access-within-workbench-dialogs" title="Link to this heading">#</a></h3>
 <p>Once your algorithm is working from a script, and provided it is registered with <code class="docutils literal notranslate"><span class="pre">AlgorithmFactory</span></code>, it will also be possible to execute the algorithm from <code class="docutils literal notranslate"><span class="pre">mantidworkbench</span></code> using the built-in <code class="docutils literal notranslate"><span class="pre">GenericDialog</span></code> feature.  To this end there are several <em>optional</em> features available through the use of <code class="docutils literal notranslate"><span class="pre">IPropertySettings</span></code>-derived classes, to enhance the interaction between your algorithm’s properties and the GUI dialog.</p>
 <p><code class="docutils literal notranslate"><span class="pre">EnableWhenProperty</span></code>, <code class="docutils literal notranslate"><span class="pre">VisibleWhenProperty</span></code>, and <code class="docutils literal notranslate"><span class="pre">InvisibleProperty</span></code> can be used to hide or disable a property in the GUI dialog panel based on various conditions.</p>
 <p><code class="docutils literal notranslate"><span class="pre">SetValueWhenProperty</span></code>, and <code class="docutils literal notranslate"><span class="pre">SetDefaultWhenProperty</span></code> can be used to set the value of a property based on the value of another upstream property, or to emulate the effect of having a property’s <em>default</em> value depend on the value of another property.  See <a class="reference internal" href="DynamicProperties.html#dynamicproperties"><span class="std std-ref">Dynamic dialog properties</span></a> for example code showing how to use this feature.</p>
@@ -482,32 +700,142 @@ These will be caught in the base Algorithm class, which will report the failure 
 </section>
 
 
-    </div>
-      
-  </div>
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Widgets/Plotting.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Plotting <em>(Elemental Analysis)</em></p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="DynamicProperties.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Dynamic dialog properties</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
-<footer class="footer">
-  <div class="container">
-      <ul class="nav navbar-nav" style=" float: right;">
-      
-      
-          
+                </footer>
+              
+            </div>
             
-  <li>
-    <a href="Widgets/Plotting.html" title="Previous Chapter: Plotting (Elemental Analysis)"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Plotting (Ele...</span>
-    </a>
-  </li>
-  <li>
-    <a href="DynamicProperties.html" title="Next Chapter: Dynamic dialog properties"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Dynamic dialo... &raquo;</span>
-    </a>
-  </li>
-          
-       
-          <li><a href="#">Back to top</a></li>
-       </ul>
-    <p>
-    </p>
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
   </div>
-</footer>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">Getting Started</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coding-the-algorithm">Coding the Algorithm</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#logging">Logging</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initialization">Initialization</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validation-of-inputs">Validation of inputs</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#execution">Execution</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fetching-properties">Fetching properties</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-the-output-workspace">Creating the output workspace</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-workspaces">Using workspaces</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-features">Further Features</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#child-algorithms">Child Algorithms</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enhancing-asynchronous-running">Enhancing asynchronous running</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exceptions">Exceptions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#properties-access-within-workbench-dialogs">Properties access within workbench dialogs</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/WritingAnAlgorithm.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2007-2026, Mantid.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
   </body>
 </html>

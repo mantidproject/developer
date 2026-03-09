@@ -1,126 +1,344 @@
+
 <!DOCTYPE html>
 
-<html lang="en" data-content_root="./">
+
+<html lang="en" data-content_root="./" >
+
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>CMake Guidelines</title>
+    <title>CMake Guidelines &#8212; MantidProject main documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css?v=4468db6d" />
-    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=9aca6aaf" />
+    <link rel="stylesheet" type="text/css" href="_static/css/style.css?v=468c6cff" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
     <script src="_static/documentation_options.js?v=a8da1a53"></script>
     <script src="_static/doctools.js?v=fd6eb6e6"></script>
     <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'CMakeBestPractices';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Standards" href="Standards/index.html" />
     <link rel="prev" title="Using Local Mantid Build in Other Projects with Pixi" href="LocalMantidBuildWithPixi.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    <link rel="icon" sizes="32x32" href="_static/images/favicon.ico">
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
-  ga('create', 'UA-59110517-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
-
-
-  </head><body>
-
-
-
-
-
-<nav id="navbar" class="navbar navbar-default navbar-fixed-top">
-  <div id="navbar-main" class="container">
-    <ul class="nav navbar-nav">
-      
-      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <li>
-        <a class="navbar-brand" href="http://www.mantidproject.org">
-         </a>
-      </li>
-      <span class="navbar-text navbar-version pull-left"><b>main</b></span>
-    </ul>
-
+  
+  <dialog id="pst-search-dialog">
     
-    <div class="collapse navbar-collapse nav-collapse">
-    
-      <ul class="nav navbar-nav">
-        <li class="divider-vertical"></li>
-        
-          <li>
-            <a href="index.html">Home</a>
-          </li>
-          <li>
-            <a href="https://download.mantidproject.org">Download</a>
-          </li>
-          <li>
-            <a href="https://docs.mantidproject.org">User Documentation</a>
-          </li>
-          <li>
-            <a href="http://www.mantidproject.org/contact">Contact Us</a>
-          </li>
-        
-        
-          
-          
-        
-        
-        
-        
-      </ul>
-            
-<form class="navbar-form navbar-right" action="search.html" method="get">
- <div class="form-group">
-  <input type="text" name="q" class="form-control" placeholder="Search" />
- </div>
-  <input type="hidden" name="check_keywords" value="yes" />
-  <input type="hidden" name="area" value="default" />
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form>
-          </div>
-  </div> <!-- /navbar-main -->
-<div id="navbar-breadcrumbs" class="related" role="navigation" aria-label="related navigation">
-  <h3>Navigation</h3>
-  <ul>
-    <li class="nav-item nav-item-0">
-      <a href="index.html">Documentation</a>
-         &#187;
-    </li>
-    
-    
-    
-    
-    <li class="nav-item nav-item-this">
-      <a href="">CMake Guidelines</a>
-    </li>
-    
-    
-  </ul>
-</div>
-</nav>
+  </dialog>
 
-<div class="container">
-  <div class="row">
-    <div class="body col-md-12 content" role="main">
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  <img src="_static/images/mantid_logo_light.png" class="logo__image only-light" alt="Logo image">
+  <img src="_static/images/mantid_logo_dark.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
       
+        <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://download.mantidproject.org">Downloads</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org/nightly/tutorials/">Tutorials</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org">User Docs</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://developer.mantidproject.org">Develop</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org/release/">Release notes</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://forum.mantidproject.org/">Forums</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://www.mantidproject.org/contact">Contact Us</a>
+  </li>
+</ul></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+    <li class="nav-item">
+      <a class="nav-link" href="https://github.com/mantidproject/mantid" rel="noopener" target="_blank" title="GitHub">
+        <span><i class="fab fa-github-square"></i></span>
+        <label class="sr-only">GitHub</label>
+      </a>
+    </li>
+  </ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://download.mantidproject.org">Downloads</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org/nightly/tutorials/">Tutorials</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org">User Docs</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://developer.mantidproject.org">Develop</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org/release/">Release notes</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://forum.mantidproject.org/">Forums</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://www.mantidproject.org/contact">Contact Us</a>
+  </li>
+</ul></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+    <li class="nav-item">
+      <a class="nav-link" href="https://github.com/mantidproject/mantid" rel="noopener" target="_blank" title="GitHub">
+        <span><i class="fab fa-github-square"></i></span>
+        <label class="sr-only">GitHub</label>
+      </a>
+    </li>
+  </ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"></div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">CMake Guidelines</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
   <section id="cmake-guidelines">
-<span id="cmakebestpractices"></span><h1>CMake Guidelines<a class="headerlink" href="#cmake-guidelines" title="Link to this heading">¶</a></h1>
+<span id="cmakebestpractices"></span><h1>CMake Guidelines<a class="headerlink" href="#cmake-guidelines" title="Link to this heading">#</a></h1>
 <p>This document outlines a few CMake guidelines which should be considered when modifying Mantid’s CMake code.
 A brief introduction to modern CMake can be found at <a class="reference external" href="https://hsf-training.github.io/hsf-training-cmake-webpage/">https://hsf-training.github.io/hsf-training-cmake-webpage/</a>.
 The official CMake tutorial series are also very good <a class="reference external" href="https://cmake.org/cmake/help/latest/guide/tutorial/index.html">https://cmake.org/cmake/help/latest/guide/tutorial/index.html</a></p>
 </section>
 <section id="creating-a-new-cmake-library">
-<h1>Creating a new CMake Library<a class="headerlink" href="#creating-a-new-cmake-library" title="Link to this heading">¶</a></h1>
+<h1>Creating a new CMake Library<a class="headerlink" href="#creating-a-new-cmake-library" title="Link to this heading">#</a></h1>
 <p>If you are adding a new CMake library, for example to the framework, there are a couple of steps you need to take.
 Firstly, lets consider a new framework target <cite>Fitting</cite>, which is a shared library which can be created with:</p>
 <div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">add_library</span><span class="p">(</span><span class="s">Fitting</span><span class="w"> </span><span class="s">fitting.cpp</span><span class="w"> </span><span class="s">fitting_1.cpp</span><span class="w"> </span><span class="s">fitting.h</span><span class="w"> </span><span class="s">fitting_1.h</span><span class="p">)</span>
@@ -159,7 +377,7 @@ to tell users of your Fitting library where it can find its headers:</p>
 </div></blockquote>
 </section>
 <section id="finding-a-new-cmake-dependency">
-<h1>Finding a new CMake dependency<a class="headerlink" href="#finding-a-new-cmake-dependency" title="Link to this heading">¶</a></h1>
+<h1>Finding a new CMake dependency<a class="headerlink" href="#finding-a-new-cmake-dependency" title="Link to this heading">#</a></h1>
 <p>If you are adding a new CMake dependency you’ll need to find it using the find_package(…) CMake functions. This looks for the library using two mechanisms:</p>
 <ol class="arabic simple">
 <li><p>Uses Find(…).cmake either from the CMake inbuilt modules, or using our own ones in the buildconfig/CMake folder.</p></li>
@@ -187,7 +405,7 @@ to tell users of your Fitting library where it can find its headers:</p>
 <p>NOTE: The <code class="docutils literal notranslate"><span class="pre">UNKNOWN</span></code> specifier in add_library is useful on Windows as it means we aren’t required to point it to the .lib export libraries. The find_library CMake function will not find these. Usage of Unknown is common place in CMake finders because of this.</p>
 </section>
 <section id="introducing-a-new-cmake-configurable-variable">
-<h1>Introducing a new CMake configurable variable<a class="headerlink" href="#introducing-a-new-cmake-configurable-variable" title="Link to this heading">¶</a></h1>
+<h1>Introducing a new CMake configurable variable<a class="headerlink" href="#introducing-a-new-cmake-configurable-variable" title="Link to this heading">#</a></h1>
 <p>If you are introducing a new configuration variable for CMake, e.g to conditionally add a new feature, PLEASE cache the variable. If you don’t cache it, you won’t be able to set it on the command line. Example:</p>
 <p>If you add a new feature and control it with a flag</p>
 <div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="p">(</span><span class="s">MY_NEW_FEATURE</span><span class="w"> </span><span class="s">OFF</span><span class="p">)</span>
@@ -202,7 +420,7 @@ to tell users of your Fitting library where it can find its headers:</p>
 </div>
 </section>
 <section id="cmake-framework-exports">
-<h1>CMake framework exports<a class="headerlink" href="#cmake-framework-exports" title="Link to this heading">¶</a></h1>
+<h1>CMake framework exports<a class="headerlink" href="#cmake-framework-exports" title="Link to this heading">#</a></h1>
 <p>With the move to conda, we have created a CMake export target for the Framework libraries. If you add a new Framework library, or dependency there are a couple of things you need to consider.</p>
 <ol class="arabic">
 <li><p>When you add a new Framework library, alias it using the namespace Mantid:: - This means when we link to Mantid::NewTarget it can either link to our inbuilt library, or one on our system. This ensures we can have a standalone mantidqt build.</p>
@@ -236,32 +454,125 @@ and will not be linked against at build time.</p>
 </section>
 
 
-    </div>
-      
-  </div>
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="LocalMantidBuildWithPixi.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Using Local Mantid Build in Other Projects with Pixi</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Standards/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Standards</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
-<footer class="footer">
-  <div class="container">
-      <ul class="nav navbar-nav" style=" float: right;">
-      
-      
-          
+                </footer>
+              
+            </div>
             
-  <li>
-    <a href="LocalMantidBuildWithPixi.html" title="Previous Chapter: Using Local Mantid Build in Other Projects with Pixi"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Using Local M...</span>
-    </a>
-  </li>
-  <li>
-    <a href="Standards/index.html" title="Next Chapter: Standards"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Standards &raquo;</span>
-    </a>
-  </li>
-          
-       
-          <li><a href="#">Back to top</a></li>
-       </ul>
-    <p>
-    </p>
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
   </div>
-</footer>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">CMake Guidelines</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-new-cmake-library">Creating a new CMake Library</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#finding-a-new-cmake-dependency">Finding a new CMake dependency</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#introducing-a-new-cmake-configurable-variable">Introducing a new CMake configurable variable</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#cmake-framework-exports">CMake framework exports</a></li>
+</ul>
+
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/CMakeBestPractices.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2007-2026, Mantid.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
   </body>
 </html>

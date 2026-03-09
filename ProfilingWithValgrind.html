@@ -1,147 +1,365 @@
+
 <!DOCTYPE html>
 
-<html lang="en" data-content_root="./">
+
+<html lang="en" data-content_root="./" >
+
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Profiling with Valgrind</title>
+    <title>Profiling with Valgrind &#8212; MantidProject main documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css?v=4468db6d" />
-    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=9aca6aaf" />
+    <link rel="stylesheet" type="text/css" href="_static/css/style.css?v=468c6cff" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
     <script src="_static/documentation_options.js?v=a8da1a53"></script>
     <script src="_static/doctools.js?v=fd6eb6e6"></script>
     <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ProfilingWithValgrind';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Flowchart Creation" href="FlowchartCreation.html" />
     <link rel="prev" title="Profiling with jemalloc" href="ProfilingWithJemalloc.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    <link rel="icon" sizes="32x32" href="_static/images/favicon.ico">
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
-  ga('create', 'UA-59110517-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
-
-
-  </head><body>
-
-
-
-
-
-<nav id="navbar" class="navbar navbar-default navbar-fixed-top">
-  <div id="navbar-main" class="container">
-    <ul class="nav navbar-nav">
-      
-      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <li>
-        <a class="navbar-brand" href="http://www.mantidproject.org">
-         </a>
-      </li>
-      <span class="navbar-text navbar-version pull-left"><b>main</b></span>
-    </ul>
-
+  
+  <dialog id="pst-search-dialog">
     
-    <div class="collapse navbar-collapse nav-collapse">
-    
-      <ul class="nav navbar-nav">
-        <li class="divider-vertical"></li>
-        
-          <li>
-            <a href="index.html">Home</a>
-          </li>
-          <li>
-            <a href="https://download.mantidproject.org">Download</a>
-          </li>
-          <li>
-            <a href="https://docs.mantidproject.org">User Documentation</a>
-          </li>
-          <li>
-            <a href="http://www.mantidproject.org/contact">Contact Us</a>
-          </li>
-        
-        
-          
-          
-        
-        
-        
-        
-      </ul>
-            
-<form class="navbar-form navbar-right" action="search.html" method="get">
- <div class="form-group">
-  <input type="text" name="q" class="form-control" placeholder="Search" />
- </div>
-  <input type="hidden" name="check_keywords" value="yes" />
-  <input type="hidden" name="area" value="default" />
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form>
-          </div>
-  </div> <!-- /navbar-main -->
-<div id="navbar-breadcrumbs" class="related" role="navigation" aria-label="related navigation">
-  <h3>Navigation</h3>
-  <ul>
-    <li class="nav-item nav-item-0">
-      <a href="index.html">Documentation</a>
-         &#187;
-    </li>
-    
-    
-    
-    
-    <li class="nav-item nav-item-this">
-      <a href="">Profiling with Valgrind</a>
-    </li>
-    
-    
-  </ul>
-</div>
-</nav>
+  </dialog>
 
-<div class="container">
-  <div class="row">
-    <div class="body col-md-12 content" role="main">
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  <img src="_static/images/mantid_logo_light.png" class="logo__image only-light" alt="Logo image">
+  <img src="_static/images/mantid_logo_dark.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
       
+        <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://download.mantidproject.org">Downloads</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org/nightly/tutorials/">Tutorials</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org">User Docs</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://developer.mantidproject.org">Develop</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org/release/">Release notes</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://forum.mantidproject.org/">Forums</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://www.mantidproject.org/contact">Contact Us</a>
+  </li>
+</ul></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+    <li class="nav-item">
+      <a class="nav-link" href="https://github.com/mantidproject/mantid" rel="noopener" target="_blank" title="GitHub">
+        <span><i class="fab fa-github-square"></i></span>
+        <label class="sr-only">GitHub</label>
+      </a>
+    </li>
+  </ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://download.mantidproject.org">Downloads</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org/nightly/tutorials/">Tutorials</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org">User Docs</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://developer.mantidproject.org">Develop</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org/release/">Release notes</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://forum.mantidproject.org/">Forums</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://www.mantidproject.org/contact">Contact Us</a>
+  </li>
+</ul></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+    <li class="nav-item">
+      <a class="nav-link" href="https://github.com/mantidproject/mantid" rel="noopener" target="_blank" title="GitHub">
+        <span><i class="fab fa-github-square"></i></span>
+        <label class="sr-only">GitHub</label>
+      </a>
+    </li>
+  </ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"></div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Profiling with Valgrind</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
   <section id="profiling-with-valgrind">
-<span id="profilingwithvalgrind"></span><h1>Profiling with Valgrind<a class="headerlink" href="#profiling-with-valgrind" title="Link to this heading">¶</a></h1>
+<span id="profilingwithvalgrind"></span><h1>Profiling with Valgrind<a class="headerlink" href="#profiling-with-valgrind" title="Link to this heading">#</a></h1>
 <section id="summary">
-<h2>Summary<a class="headerlink" href="#summary" title="Link to this heading">¶</a></h2>
+<h2>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
 <p>Describes how to use the
 <a class="reference external" href="http://valgrind.org/docs/manual/cl-manual.html">callgrind</a> plugin to
 the <a class="reference external" href="http://valgrind.org/">valgrind</a> tool set to profile your code.</p>
 <p><em>Note: Valgrind is a Linux only tool</em></p>
 </section>
 <section id="installation">
-<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading">¶</a></h2>
+<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading">#</a></h2>
 <p>You will need to install both <em>valgrind</em> &amp; the visualizer tool
 <em>kcachegrind</em> - both of which should be available in your distribution’s
 repositories.</p>
 <section id="ubuntu">
-<h3>Ubuntu<a class="headerlink" href="#ubuntu" title="Link to this heading">¶</a></h3>
+<h3>Ubuntu<a class="headerlink" href="#ubuntu" title="Link to this heading">#</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">valgrind</span> <span class="n">kcachegrind</span>
 </pre></div>
 </div>
 </section>
 <section id="red-hat-fedora">
-<h3>Red Hat/Fedora<a class="headerlink" href="#red-hat-fedora" title="Link to this heading">¶</a></h3>
+<h3>Red Hat/Fedora<a class="headerlink" href="#red-hat-fedora" title="Link to this heading">#</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">yum</span> <span class="n">install</span> <span class="n">valgrind</span> <span class="n">kcachegrind</span>
 </pre></div>
 </div>
 </section>
 </section>
 <section id="preparation">
-<h2>Preparation<a class="headerlink" href="#preparation" title="Link to this heading">¶</a></h2>
+<h2>Preparation<a class="headerlink" href="#preparation" title="Link to this heading">#</a></h2>
 <p>To be most effective valgrind requires that debugging information be
 present in the binaries that are being instrumented, although a full
 debug build is not required. On gcc this means compiling with the <em>-g</em>
@@ -150,7 +368,7 @@ the <em>CMAKE_BUILD_TYPE</em> set to <em>RelWithDebInfo</em>. This provides a go
 balance between performance and availability of debugging information.</p>
 </section>
 <section id="running-the-profiler">
-<h2>Running the Profiler<a class="headerlink" href="#running-the-profiler" title="Link to this heading">¶</a></h2>
+<h2>Running the Profiler<a class="headerlink" href="#running-the-profiler" title="Link to this heading">#</a></h2>
 <p>The profiler can instrument the code in a number of different ways. Some
 of these will be described here. For more detail information see the
 <a class="reference external" href="http://valgrind.org/docs/manual/cl-manual.html">callgrind manual</a>.</p>
@@ -163,7 +381,7 @@ be found more easily in the future.</p>
 when not profiling - this is just a consequence of how valgrind
 instruments the code.</p>
 <section id="profile-a-whole-program-run">
-<h3>Profile a Whole Program Run<a class="headerlink" href="#profile-a-whole-program-run" title="Link to this heading">¶</a></h3>
+<h3>Profile a Whole Program Run<a class="headerlink" href="#profile-a-whole-program-run" title="Link to this heading">#</a></h3>
 <p>This is the simplest mode of operation. Simply pass the program
 executable, along with any arguments to the valgrind executable:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">valgrind</span> <span class="o">--</span><span class="n">tool</span><span class="o">=</span><span class="n">callgrind</span> <span class="o">--</span><span class="n">dump</span><span class="o">-</span><span class="n">instr</span><span class="o">=</span><span class="n">yes</span> <span class="o">--</span><span class="n">simulate</span><span class="o">-</span><span class="n">cache</span><span class="o">=</span><span class="n">yes</span> <span class="o">--</span><span class="n">collect</span><span class="o">-</span><span class="n">jumps</span><span class="o">=</span><span class="n">yes</span> <span class="o">&lt;</span><span class="n">executable</span><span class="o">&gt;</span> <span class="p">[</span><span class="n">args</span><span class="o">...</span><span class="p">]</span>
@@ -171,7 +389,7 @@ executable, along with any arguments to the valgrind executable:</p>
 </div>
 </section>
 <section id="profile-selected-portions-of-the-code">
-<h3>Profile Selected Portions of the Code<a class="headerlink" href="#profile-selected-portions-of-the-code" title="Link to this heading">¶</a></h3>
+<h3>Profile Selected Portions of the Code<a class="headerlink" href="#profile-selected-portions-of-the-code" title="Link to this heading">#</a></h3>
 <p>For larger pieces of code it can be quite likely that you wish to
 profile only a selected portion of it. This is possible if you have a
 access to recompile the source code of the binaries to be instrumented
@@ -222,7 +440,7 @@ more details.</p>
 </section>
 </section>
 <section id="visualisation">
-<h2>Visualisation<a class="headerlink" href="#visualisation" title="Link to this heading">¶</a></h2>
+<h2>Visualisation<a class="headerlink" href="#visualisation" title="Link to this heading">#</a></h2>
 <p>Callgrind produces a large amount of data about the program’s execution.
 It is most easily understood using the <em>kcachegrind</em> GUI tool. This
 reads the information produced by callgrind and creates a list of
@@ -233,7 +451,7 @@ show the lines of code that relate to the functions being inspected.</p>
 <img alt="Example of KCachegrind display a profile of MantidPlot starting up and closing down" src="_images/KCachegrind_MantidPlot.png" />
 <figcaption>
 <p><span class="caption-text">Example of KCachegrind display a profile of MantidPlot starting up
-and closing down</span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
+and closing down</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>By default KCachegrind shows the number of instructions fetched within
@@ -243,7 +461,7 @@ generally the most widely used and roughly correlate to the amount of
 time spent performing the displayed functions.</p>
 <p>Some of the key features display are:</p>
 <section id="flat-profile-view">
-<h3>Flat Profile View<a class="headerlink" href="#flat-profile-view" title="Link to this heading">¶</a></h3>
+<h3>Flat Profile View<a class="headerlink" href="#flat-profile-view" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Incl. - Sum of itself + all child calls as a percentage of the whole.
 Programs with little static allocation should have main() at 100%.
@@ -254,7 +472,7 @@ those selected by the to-right drop-down</p></li>
 </ul>
 </section>
 <section id="function-call-detail">
-<h3>Function Call Detail<a class="headerlink" href="#function-call-detail" title="Link to this heading">¶</a></h3>
+<h3>Function Call Detail<a class="headerlink" href="#function-call-detail" title="Link to this heading">#</a></h3>
 <p>Click on function in flat view to get more detail on the right.</p>
 <p>Displays details about the selected function call plus details about all
 child calls it made. The <em>call graph</em> tab at the bottom gives a nice
@@ -264,32 +482,136 @@ graphical overview of the relative function cost.</p>
 </section>
 
 
-    </div>
-      
-  </div>
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="ProfilingWithJemalloc.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Profiling with <code class="docutils literal notranslate"><span class="pre">jemalloc</span></code></p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="FlowchartCreation.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Flowchart Creation</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
-<footer class="footer">
-  <div class="container">
-      <ul class="nav navbar-nav" style=" float: right;">
-      
-      
-          
+                </footer>
+              
+            </div>
             
-  <li>
-    <a href="ProfilingWithJemalloc.html" title="Previous Chapter: Profiling with jemalloc"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Profiling wit...</span>
-    </a>
-  </li>
-  <li>
-    <a href="FlowchartCreation.html" title="Next Chapter: Flowchart Creation"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Flowchart Creation &raquo;</span>
-    </a>
-  </li>
-          
-       
-          <li><a href="#">Back to top</a></li>
-       </ul>
-    <p>
-    </p>
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
   </div>
-</footer>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ubuntu">Ubuntu</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#red-hat-fedora">Red Hat/Fedora</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparation">Preparation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-the-profiler">Running the Profiler</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#profile-a-whole-program-run">Profile a Whole Program Run</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#profile-selected-portions-of-the-code">Profile Selected Portions of the Code</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisation">Visualisation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#flat-profile-view">Flat Profile View</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#function-call-detail">Function Call Detail</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/ProfilingWithValgrind.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2007-2026, Mantid.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
   </body>
 </html>
