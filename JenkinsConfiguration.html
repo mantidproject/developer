@@ -363,7 +363,7 @@
 <ul>
 <li><p><a class="reference internal" href="#print-the-value-of-an-environment-variable-on-all-nodes" id="id12">Print the Value of an Environment Variable on All Nodes</a></p></li>
 <li><p><a class="reference internal" href="#remove-directories-across-multiple-nodes" id="id13">Remove directories across multiple nodes</a></p></li>
-<li><p><a class="reference internal" href="#remove-directories-from-single-node" id="id14">Remove directories from single node</a></p></li>
+<li><p><a class="reference internal" href="#remove-pull-request-build-directories-from-specific-nodes" id="id14">Remove pull request build directories from specific nodes</a></p></li>
 <li><p><a class="reference internal" href="#update-branches-for-jobs" id="id15">Update Branches For Jobs</a></p></li>
 <li><p><a class="reference internal" href="#list-all-scm-urls" id="id16">List All SCM Urls</a></p></li>
 <li><p><a class="reference internal" href="#update-urls-on-all-jobs" id="id17">Update Urls on All Jobs</a></p></li>
@@ -552,26 +552,37 @@ It is advised to ensure nothing is running and pause the build queue.</p>
 </pre></div>
 </div>
 </section>
-<section id="remove-directories-from-single-node">
-<h3><a class="toc-backref" href="#id14" role="doc-backlink">Remove directories from single node</a><a class="headerlink" href="#remove-directories-from-single-node" title="Link to this heading">#</a></h3>
-<p>It is advised to take the target node offline.</p>
+<section id="remove-pull-request-build-directories-from-specific-nodes">
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">Remove pull request build directories from specific nodes</a><a class="headerlink" href="#remove-pull-request-build-directories-from-specific-nodes" title="Link to this heading">#</a></h3>
+<p>Take the target nodes offline and edit the list of agentNames.</p>
 <div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">hudson.model.*</span>
 
-<span class="c1">// Example: &quot;isis-ndw1597&quot;</span>
-<span class="n">String</span><span class="w"> </span><span class="n">agentName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&lt;</span><span class="n">agent</span><span class="s">/node name&gt;</span>
+<span class="c1">// Example: [&quot;isis-win-1&quot;, &quot;isis-win-2&quot;, &quot;isis-win-3&quot;, &quot;isis-linux-1&quot;, &quot;isis-linux-5&quot;, &quot;isis-linux-9&quot;, &quot;isis-ndw2996mac&quot;]</span>
+<span class="n">agentNames</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="s2">&quot;agent-name-1&quot;</span><span class="o">,</span><span class="w"> </span><span class="s2">&quot;agent-name-2&quot;</span><span class="o">,</span><span class="w"> </span><span class="o">...]</span>
 
-<span class="s">/</span><span class="o">/</span><span class="w"> </span><span class="nl">Example:</span><span class="w"> </span><span class="s2">&quot;pull_requests-conda-windows&quot;</span><span class="w"> </span><span class="o">,</span><span class="w"> </span><span class="s2">&quot;build_branch&quot;</span>
-<span class="n">jobs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[&lt;</span><span class="n">job</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="o">,</span><span class="w"> </span><span class="o">&lt;</span><span class="n">job</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="n">string</span><span class="o">&gt;,</span><span class="w"> </span><span class="o">...]</span>
+<span class="n">JOB_PREFIX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;pull_requests-&quot;</span>
+<span class="n">suffixes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="s2">&quot;conda-linux&quot;</span><span class="o">,</span><span class="w"> </span><span class="s2">&quot;conda-osx&quot;</span><span class="o">,</span><span class="w"> </span><span class="s2">&quot;conda-windows&quot;</span><span class="o">,</span><span class="w"> </span><span class="s2">&quot;doc-tests&quot;</span><span class="o">];</span>
+
+<span class="n">DRY_RUN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="c1">// set to false to actually delete</span>
 
 <span class="n">nodes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Jenkins</span><span class="o">.</span><span class="na">instance</span><span class="o">.</span><span class="na">slaves</span>
 <span class="k">for</span><span class="w"> </span><span class="o">(</span><span class="n">node</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">nodes</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
-<span class="w">  </span><span class="k">if</span><span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">toString</span><span class="o">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;hudson.slaves.DumbSlave[$agentName]&quot;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="o">(</span><span class="n">job</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">jobs</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
-<span class="w">      </span><span class="n">FilePath</span><span class="w"> </span><span class="n">fp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">node</span><span class="o">.</span><span class="na">createPath</span><span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">getRootPath</span><span class="o">().</span><span class="na">toString</span><span class="o">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">File</span><span class="o">.</span><span class="na">separator</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot;workspace&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">File</span><span class="o">.</span><span class="na">separator</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">job</span><span class="o">)</span>
-<span class="w">      </span><span class="k">if</span><span class="o">(</span><span class="n">fp</span><span class="o">!=</span><span class="kc">null</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">fp</span><span class="o">.</span><span class="na">exists</span><span class="o">())</span><span class="w"> </span><span class="o">{</span>
-<span class="w">        </span><span class="n">println</span><span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">toString</span><span class="o">())</span>
-<span class="w">        </span><span class="n">println</span><span class="o">(</span><span class="n">fp</span><span class="o">.</span><span class="na">toString</span><span class="o">())</span>
-<span class="w">        </span><span class="n">fp</span><span class="o">.</span><span class="na">deleteRecursive</span><span class="o">()</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="o">(</span><span class="n">agentName</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">agentNames</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">name</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">agentName</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">      </span><span class="k">for</span><span class="w"> </span><span class="o">(</span><span class="n">suffix</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">suffixes</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">        </span><span class="n">FilePath</span><span class="w"> </span><span class="n">fp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">node</span><span class="o">.</span><span class="na">createPath</span><span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">getRootPath</span><span class="o">().</span><span class="na">toString</span><span class="o">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">File</span><span class="o">.</span><span class="na">separator</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot;workspace&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">File</span><span class="o">.</span><span class="na">separator</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">JOB_PREFIX</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">suffix</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">File</span><span class="o">.</span><span class="na">separator</span><span class="w"> </span><span class="o">+</span><span class="w">  </span><span class="s2">&quot;build&quot;</span><span class="o">);</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="o">(</span><span class="n">fp</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">fp</span><span class="o">.</span><span class="na">exists</span><span class="o">())</span><span class="w"> </span><span class="o">{</span>
+<span class="w">          </span><span class="n">println</span><span class="o">(</span><span class="s2">&quot;Node: ${node.name}&quot;</span><span class="o">)</span>
+<span class="w">          </span><span class="n">println</span><span class="o">(</span><span class="s2">&quot;Path: ${fp}&quot;</span><span class="o">)</span>
+
+<span class="w">          </span><span class="k">if</span><span class="w"> </span><span class="o">(</span><span class="n">DRY_RUN</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">            </span><span class="n">println</span><span class="o">(</span><span class="s2">&quot;DRY RUN: Would delete ${fp}\n&quot;</span><span class="o">)</span>
+<span class="w">          </span><span class="o">}</span>
+<span class="w">          </span><span class="k">else</span><span class="w"> </span><span class="o">{</span>
+<span class="w">            </span><span class="n">println</span><span class="o">(</span><span class="s2">&quot;Deleting ${fp}\n&quot;</span><span class="o">)</span>
+<span class="w">            </span><span class="n">fp</span><span class="o">.</span><span class="na">deleteRecursive</span><span class="o">()</span>
+<span class="w">          </span><span class="o">}</span>
+<span class="w">        </span><span class="o">}</span>
 <span class="w">      </span><span class="o">}</span>
 <span class="w">    </span><span class="o">}</span>
 <span class="w">  </span><span class="o">}</span>
@@ -806,7 +817,7 @@ It is advised to ensure nothing is running and pause the build queue.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#misc-groovy-scripts">Misc Groovy Scripts</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#print-the-value-of-an-environment-variable-on-all-nodes">Print the Value of an Environment Variable on All Nodes</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#remove-directories-across-multiple-nodes">Remove directories across multiple nodes</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#remove-directories-from-single-node">Remove directories from single node</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#remove-pull-request-build-directories-from-specific-nodes">Remove pull request build directories from specific nodes</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#update-branches-for-jobs">Update Branches For Jobs</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#list-all-scm-urls">List All SCM Urls</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#update-urls-on-all-jobs">Update Urls on All Jobs</a></li>
