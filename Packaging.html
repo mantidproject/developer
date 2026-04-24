@@ -397,7 +397,9 @@ operating systems as it only contains static HTML.</p>
 The recipes are stored in the <a class="reference external" href="https://github.com/mantidproject/mantid/tree/main/conda">main codebase</a> so that
 they can evolve as the code develops. The packages are built as part of the
 <a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/buildconfig/Jenkins/Conda/nightly_build_and_deploy.jenkinsfile">CI pipeline</a> using a <a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/buildconfig/Jenkins/Conda/package-conda">script</a> to encapsulate
-the steps.</p>
+the steps. That script installs pixi if needed, activates the environment backed
+by the <code class="docutils literal notranslate"><span class="pre">rattler-builder</span></code> feature from <code class="docutils literal notranslate"><span class="pre">pixi.toml</span></code>, and runs <code class="docutils literal notranslate"><span class="pre">rattler-build</span></code>
+from there.</p>
 <p>To build the packages locally it is recommended that you use a separate
 clone of the repository as the build copies the repository content to a temporary
 working directory and any additional build directories can interfere with the
@@ -513,11 +515,12 @@ by the CI pipeline to indicate it has been built outside of the standard process
 <span id="build-custom-mantid-developer"></span><h2><a class="toc-backref" href="#id19" role="doc-backlink">Building a custom <code class="docutils literal notranslate"><span class="pre">mantid-developer</span></code> environment</a><a class="headerlink" href="#building-a-custom-mantid-developer-environment" title="Link to this heading">#</a></h2>
 <p>This is useful if you need to change a pinned version of one of Mantid’s dependencies and test the change locally.</p>
 <ol class="arabic">
-<li><p>One can create a new environment specifically for building the package (with <code class="docutils literal notranslate"><span class="pre">rattler-build</span></code>, and <code class="docutils literal notranslate"><span class="pre">versioningit</span></code>), but the build itself happens in a separate sandbox which makes this unneccesary.</p></li>
+<li><p>The required tooling lives in the pixi environment backed by the <code class="docutils literal notranslate"><span class="pre">rattler-builder</span></code> feature.</p></li>
 <li><p>Make your changes to the conda recipe files.</p></li>
 <li><p>Change directory to <code class="docutils literal notranslate"><span class="pre">mantid/conda/recipes</span></code></p></li>
-<li><p>With <code class="docutils literal notranslate"><span class="pre">mantid_dev_builder</span></code> active, run</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">MANTID_VERSION</span><span class="o">=</span><span class="k">$(</span>versioningit<span class="w"> </span>../../<span class="k">)</span><span class="w"> </span>rattler-build<span class="w"> </span>build<span class="w"> </span>-r<span class="w"> </span>./mantid-developer<span class="w"> </span>-m<span class="w"> </span>./conda_build_config.yaml<span class="w"> </span>--output-dir<span class="o">=</span>/home/me/tmp/rattler
+<li><p>Activate the environment and run</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pixi<span class="w"> </span>shell<span class="w"> </span>-e<span class="w"> </span>rattler-builder<span class="w"> </span>--frozen
+<span class="nv">MANTID_VERSION</span><span class="o">=</span><span class="k">$(</span>versioningit<span class="w"> </span>../../<span class="k">)</span><span class="w"> </span>rattler-build<span class="w"> </span>build<span class="w"> </span>-r<span class="w"> </span>./mantid-developer<span class="w"> </span>-m<span class="w"> </span>./conda_build_config.yaml<span class="w"> </span>--output-dir<span class="o">=</span>/home/me/tmp/rattler
 </pre></div>
 </div>
 <p>This will build a local version of <code class="docutils literal notranslate"><span class="pre">mantid-developer</span></code> with your changes and place it in the directory <code class="docutils literal notranslate"><span class="pre">/home/me/tmp/rattler</span></code>. <strong>This must be outside of the buildtree</strong> because rattler will recursively copy everything.</p>
