@@ -341,43 +341,21 @@
                   
   <section id="profiling-overview">
 <span id="profilingoverview"></span><h1>Profiling Overview<a class="headerlink" href="#profiling-overview" title="Link to this heading">#</a></h1>
-<nav class="contents local" id="contents">
-<ul class="simple">
-<li><p><a class="reference internal" href="#profiling-in-python" id="id1">Profiling in Python</a></p>
-<ul>
-<li><p><a class="reference internal" href="#profiling-with-cprofile" id="id2">Profiling with cProfile</a></p></li>
-<li><p><a class="reference internal" href="#profiling-with-yappi" id="id3">Profiling with Yappi</a></p></li>
-</ul>
-</li>
-<li><p><a class="reference internal" href="#profiling-in-c" id="id4">Profiling in C++</a></p>
-<ul>
-<li><p><a class="reference internal" href="#mantid-s-algorithm-profiler" id="id5">Mantid’s Algorithm Profiler</a></p></li>
-<li><p><a class="reference internal" href="#other-profiling-tools" id="id6">Other Profiling Tools</a></p>
-<ul>
-<li><p><a class="reference internal" href="#linux" id="id7">Linux</a></p></li>
-<li><p><a class="reference internal" href="#windows" id="id8">Windows</a></p></li>
-</ul>
-</li>
-<li><p><a class="reference internal" href="#timing-in-c" id="id9">Timing in C++</a></p></li>
-</ul>
-</li>
-</ul>
-</nav>
 <p>Profiling can mean a few different things, so here are the current ways!
 Many of these work only on certain platforms and this document will note the limitations.
 Tools that are noted as being supported in linux are likely to work in osx as well.
 Most of these approaches are specific to a single language.</p>
 <section id="profiling-in-python">
-<h2><a class="toc-backref" href="#id1" role="doc-backlink">Profiling in Python</a><a class="headerlink" href="#profiling-in-python" title="Link to this heading">#</a></h2>
+<h2>Profiling in Python<a class="headerlink" href="#profiling-in-python" title="Link to this heading">#</a></h2>
 <section id="profiling-with-cprofile">
-<h3><a class="toc-backref" href="#id2" role="doc-backlink">Profiling with cProfile</a><a class="headerlink" href="#profiling-with-cprofile" title="Link to this heading">#</a></h3>
+<h3>Profiling with cProfile<a class="headerlink" href="#profiling-with-cprofile" title="Link to this heading">#</a></h3>
 <p>Mantid supports profiling of its underlying code using the <a class="reference external" href="https://docs.python.org/3/library/profile.html">cProfile</a> module from python.</p>
 <p>Launch Mantid Workbench from the command line using the script in the installation folder, adding the <code class="docutils literal notranslate"><span class="pre">--profile</span></code> modifier with a path to the output file.</p>
 <p>E.g: <code class="docutils literal notranslate"><span class="pre">path/to/install/bin/workbench</span> <span class="pre">--profile</span> <span class="pre">path/to/outputFile.prof</span></code></p>
 <p>This profile can then either be sent to the developers upon request or be analysed using the python module <a class="reference external" href="https://pypi.org/project/snakeviz/">snakeviz</a>.</p>
 </section>
 <section id="profiling-with-yappi">
-<h3><a class="toc-backref" href="#id3" role="doc-backlink">Profiling with Yappi</a><a class="headerlink" href="#profiling-with-yappi" title="Link to this heading">#</a></h3>
+<h3>Profiling with Yappi<a class="headerlink" href="#profiling-with-yappi" title="Link to this heading">#</a></h3>
 <p>cProfile can only profile the current thread, this makes it useful for diagnosing PyQt performance issues (such as random hangs when a user does something), but poor for diagnosing workflow algorithm issues.</p>
 <p><a class="reference external" href="https://pypi.org/project/yappi/">Yappi (Yet Another Python Profiler)</a> is multithreading aware. cProfile which will show everything up to the exec, or run call. Yappi will profile the thread and show any slow points within the separate thread.</p>
 <p><em>Note: This will not work with QThreads and may crash or be unable to profile inside. It is recommended you migrate workers by inheriting from IQtAsync, see ``async_qt_adaptor.py`` for details.
@@ -393,15 +371,15 @@ python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </s
 </section>
 </section>
 <section id="profiling-in-c">
-<h2><a class="toc-backref" href="#id4" role="doc-backlink">Profiling in C++</a><a class="headerlink" href="#profiling-in-c" title="Link to this heading">#</a></h2>
+<h2>Profiling in C++<a class="headerlink" href="#profiling-in-c" title="Link to this heading">#</a></h2>
 <section id="mantid-s-algorithm-profiler">
-<h3><a class="toc-backref" href="#id5" role="doc-backlink">Mantid’s Algorithm Profiler</a><a class="headerlink" href="#mantid-s-algorithm-profiler" title="Link to this heading">#</a></h3>
+<h3>Mantid’s Algorithm Profiler<a class="headerlink" href="#mantid-s-algorithm-profiler" title="Link to this heading">#</a></h3>
 <p>On Linux, the build can be configured to generate algorithm profiling information. See <a class="reference internal" href="AlgorithmProfiler.html"><span class="doc">AlgorithmProfiler</span></a> for details.</p>
 </section>
 <section id="other-profiling-tools">
-<h3><a class="toc-backref" href="#id6" role="doc-backlink">Other Profiling Tools</a><a class="headerlink" href="#other-profiling-tools" title="Link to this heading">#</a></h3>
+<h3>Other Profiling Tools<a class="headerlink" href="#other-profiling-tools" title="Link to this heading">#</a></h3>
 <section id="linux">
-<span id="linux-1"></span><h4><a class="toc-backref" href="#id7" role="doc-backlink">Linux</a><a class="headerlink" href="#linux" title="Link to this heading">#</a></h4>
+<span id="linux-1"></span><h4>Linux<a class="headerlink" href="#linux" title="Link to this heading">#</a></h4>
 <p><a class="reference internal" href="ProfilingWithPerf.html"><span class="doc">Profiling with perf</span></a> for details on perf and intel’s vtune</p>
 <p><a class="reference internal" href="ProfilingWithValgrind.html"><span class="doc">Profiling with Valgrind</span></a> for details on using this tool</p>
 <p><a class="reference external" href="http://kcachegrind.sourceforge.net/cgi-bin/show.cgi/KcacheGrindIndex">Callgrind/KCachegrind</a></p>
@@ -419,7 +397,7 @@ running callgrind</p></li>
 <a class="reference external" href="http://www.pixelbeat.org/programming/profiling/">http://www.pixelbeat.org/programming/profiling/</a></p>
 </section>
 <section id="windows">
-<span id="windows-1"></span><h4><a class="toc-backref" href="#id8" role="doc-backlink">Windows</a><a class="headerlink" href="#windows" title="Link to this heading">#</a></h4>
+<span id="windows-1"></span><h4>Windows<a class="headerlink" href="#windows" title="Link to this heading">#</a></h4>
 <p><a class="reference external" href="http://www.codersnotes.com/sleepy/">Very Sleepy</a>:</p>
 <ul class="simple">
 <li><p>Start/stop recording of program using a button</p></li>
@@ -428,7 +406,7 @@ running callgrind</p></li>
 </section>
 </section>
 <section id="timing-in-c">
-<h3><a class="toc-backref" href="#id9" role="doc-backlink">Timing in C++</a><a class="headerlink" href="#timing-in-c" title="Link to this heading">#</a></h3>
+<h3>Timing in C++<a class="headerlink" href="#timing-in-c" title="Link to this heading">#</a></h3>
 <p>Please refer to <a class="reference internal" href="Timers.html"><span class="doc">Mantid Timers</span></a> for an introduction to measuring execution time of the Mantid C++ code.</p>
 </section>
 </section>

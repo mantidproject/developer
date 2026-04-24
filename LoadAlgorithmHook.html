@@ -341,33 +341,8 @@
                   
   <section id="load-algorithm-hook">
 <h1>Load Algorithm Hook<a class="headerlink" href="#load-algorithm-hook" title="Link to this heading">#</a></h1>
-<nav class="contents local" id="contents">
-<ul class="simple">
-<li><p><a class="reference internal" href="#the-load-algorithm" id="id1">The Load Algorithm</a></p></li>
-<li><p><a class="reference internal" href="#descriptors" id="id2">Descriptors</a></p>
-<ul>
-<li><p><a class="reference internal" href="#nexus" id="id3">Nexus</a></p>
-<ul>
-<li><p><a class="reference internal" href="#nexusdescriptorlazy" id="id4">NexusDescriptorLazy</a></p></li>
-<li><p><a class="reference internal" href="#nexusdescriptor" id="id5">NexusDescriptor</a></p></li>
-</ul>
-</li>
-<li><p><a class="reference internal" href="#legacynexus" id="id6">LegacyNexus</a></p>
-<ul>
-<li><p><a class="reference internal" href="#legacynexusdescriptor" id="id7">LegacyNexusDescriptor</a></p></li>
-</ul>
-</li>
-<li><p><a class="reference internal" href="#non-hdf" id="id8">Non-HDF</a></p>
-<ul>
-<li><p><a class="reference internal" href="#filedescriptor" id="id9">FileDescriptor</a></p></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</nav>
 <section id="the-load-algorithm">
-<h2><a class="toc-backref" href="#id1" role="doc-backlink">The Load Algorithm</a><a class="headerlink" href="#the-load-algorithm" title="Link to this heading">#</a></h2>
+<h2>The Load Algorithm<a class="headerlink" href="#the-load-algorithm" title="Link to this heading">#</a></h2>
 <p>This page describes how to register a new file loading algorithm
 so that it can be used by the general-purpose <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Load-v1.html#algm-load" title="(in MantidProject v6.15)"><span class="xref std std-ref">Load</span></a> algorithm.
 The <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Load-v1.html#algm-load" title="(in MantidProject v6.15)"><span class="xref std std-ref">Load</span></a> algorithm is a special algorithm
@@ -393,7 +368,7 @@ If the file is HDF5, then only the Legacy Nexus loaders are checked.
 If the file is neither HDF5 nor HDF4, then the non-HDF group of loaders is checked.</p>
 </section>
 <section id="descriptors">
-<h2><a class="toc-backref" href="#id2" role="doc-backlink">Descriptors</a><a class="headerlink" href="#descriptors" title="Link to this heading">#</a></h2>
+<h2>Descriptors<a class="headerlink" href="#descriptors" title="Link to this heading">#</a></h2>
 <p>To avoid opening and closing the file within each <code class="docutils literal notranslate"><span class="pre">confidence</span></code> method,
 a <code class="docutils literal notranslate"><span class="pre">Descriptor</span></code> object is provided.
 The actual <code class="docutils literal notranslate"><span class="pre">Descriptor</span></code> class depends on whether the file is
@@ -401,7 +376,7 @@ an HDF5 file,
 an HDF4 file,
 or neither.</p>
 <section id="nexus">
-<h3><a class="toc-backref" href="#id3" role="doc-backlink">Nexus</a><a class="headerlink" href="#nexus" title="Link to this heading">#</a></h3>
+<h3>Nexus<a class="headerlink" href="#nexus" title="Link to this heading">#</a></h3>
 <p>To register an algorithm as a Nexus loader,
 use the <code class="docutils literal notranslate"><span class="pre">IFileLoader&lt;NexusDescriptorLazy&gt;</span></code> interface
 as a base class for your algorithm.
@@ -415,7 +390,7 @@ It should use the provided descriptor to check
 whether the loader is able to load the wrapped file,
 and return a confidence level as an integer.</p>
 <section id="nexusdescriptorlazy">
-<h4><a class="toc-backref" href="#id4" role="doc-backlink">NexusDescriptorLazy</a><a class="headerlink" href="#nexusdescriptorlazy" title="Link to this heading">#</a></h4>
+<h4>NexusDescriptorLazy<a class="headerlink" href="#nexusdescriptorlazy" title="Link to this heading">#</a></h4>
 <p>The lazy Nexus descriptor performs a shallow preload of the file,
 and then only lazily checks for entries (without opening them) as loaders query them.
 It owns a handle to an HDF5 file.
@@ -433,14 +408,14 @@ passing the absolute dataset address within the file (e.g. <cite>/entry/instrume
 <p>All new algorithms for loading HDF5 data should use the lazy descriptor.</p>
 </section>
 <section id="nexusdescriptor">
-<h4><a class="toc-backref" href="#id5" role="doc-backlink">NexusDescriptor</a><a class="headerlink" href="#nexusdescriptor" title="Link to this heading">#</a></h4>
+<h4>NexusDescriptor<a class="headerlink" href="#nexusdescriptor" title="Link to this heading">#</a></h4>
 <p>This Nexus descriptor should not be used for confidence checks in <cite>Load</cite>,
 as it performs an eager load of the entire filetree.
 Use the lazy descriptor instead.</p>
 </section>
 </section>
 <section id="legacynexus">
-<h3><a class="toc-backref" href="#id6" role="doc-backlink">LegacyNexus</a><a class="headerlink" href="#legacynexus" title="Link to this heading">#</a></h3>
+<h3>LegacyNexus<a class="headerlink" href="#legacynexus" title="Link to this heading">#</a></h3>
 <p>These loaders preserve the state of <code class="docutils literal notranslate"><span class="pre">Mantid::Nexus</span></code> prior to the Nexus refactor.
 They still rely on <code class="docutils literal notranslate"><span class="pre">napi</span></code> for loading HDF files,
 and do not include many of the improvements in efficiency and memory use from the refactor.
@@ -450,13 +425,13 @@ These are the only loaders in Mantid capable of loading HDF4 files.</p>
 <p>LegacyNexus is deprecated.
 No new loaders should be written to work in LegacyNexus.</p>
 <section id="legacynexusdescriptor">
-<h4><a class="toc-backref" href="#id7" role="doc-backlink">LegacyNexusDescriptor</a><a class="headerlink" href="#legacynexusdescriptor" title="Link to this heading">#</a></h4>
+<h4>LegacyNexusDescriptor<a class="headerlink" href="#legacynexusdescriptor" title="Link to this heading">#</a></h4>
 <p>This uses old <code class="docutils literal notranslate"><span class="pre">napi</span></code> behavior to load the entire filetree and store in a dictionary cache.
 Parts of the tree may be queried using available methods.</p>
 </section>
 </section>
 <section id="non-hdf">
-<h3><a class="toc-backref" href="#id8" role="doc-backlink">Non-HDF</a><a class="headerlink" href="#non-hdf" title="Link to this heading">#</a></h3>
+<h3>Non-HDF<a class="headerlink" href="#non-hdf" title="Link to this heading">#</a></h3>
 <p>To register an algorithm as a Non-HDF loader use the <code class="docutils literal notranslate"><span class="pre">IFileLoader</span></code> interface
 as a base class for your algorithm.
 In your cpp file include the <code class="docutils literal notranslate"><span class="pre">MantidAPI/RegisterFileLoader.h</span></code> header
@@ -469,7 +444,7 @@ It should use the provided descriptor to check
 whether the loader is able to load the wrapped file,
 and return a confidence level as an integer.</p>
 <section id="filedescriptor">
-<h4><a class="toc-backref" href="#id9" role="doc-backlink">FileDescriptor</a><a class="headerlink" href="#filedescriptor" title="Link to this heading">#</a></h4>
+<h4>FileDescriptor<a class="headerlink" href="#filedescriptor" title="Link to this heading">#</a></h4>
 <p>This provides methods to query some characteristics of the current file
 and also access the open stream to avoid repeated opening/closing of the file.</p>
 <div class="admonition warning">

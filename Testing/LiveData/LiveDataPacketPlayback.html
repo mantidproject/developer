@@ -383,22 +383,8 @@
                   
   <section id="working-with-real-instruments">
 <span id="live-data-packet-playback"></span><h1>Working With Real Instruments<a class="headerlink" href="#working-with-real-instruments" title="Link to this heading">#</a></h1>
-<nav class="contents local" id="contents">
-<ul class="simple">
-<li><p><a class="reference internal" href="#introduction" id="id3">Introduction</a></p></li>
-<li><p><a class="reference internal" href="#how-to-use-and-modify-facilities-xml" id="id4">How to use and modify <code class="docutils literal notranslate"><span class="pre">Facilities.xml</span></code></a></p></li>
-<li><p><a class="reference internal" href="#adara-server-and-listener-handshaking-protocol" id="id5">ADARA-server and listener handshaking protocol</a></p></li>
-<li><p><a class="reference internal" href="#recording-a-packet-stream" id="id6">Recording a packet stream</a></p></li>
-<li><p><a class="reference internal" href="#playing-a-packet-stream-back" id="id7">Playing a packet-stream back</a></p></li>
-<li><p><a class="reference internal" href="#packet-ordering-during-playback-mode" id="id8">Packet ordering during <code class="docutils literal notranslate"><span class="pre">playback</span></code> mode</a></p></li>
-<li><p><a class="reference internal" href="#using-summarize-mode" id="id9">Using <code class="docutils literal notranslate"><span class="pre">summarize</span></code> mode</a></p></li>
-<li><p><a class="reference internal" href="#setup-for-examples" id="id10">Setup for examples</a></p></li>
-<li><p><a class="reference internal" href="#example-playback-mode-session" id="id11">Example <code class="docutils literal notranslate"><span class="pre">playback</span></code> mode session</a></p></li>
-<li><p><a class="reference internal" href="#example-record-mode-session" id="id12">Example <code class="docutils literal notranslate"><span class="pre">record</span></code> mode session</a></p></li>
-</ul>
-</nav>
 <section id="introduction">
-<h2><a class="toc-backref" href="#id3" role="doc-backlink">Introduction</a><a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
 <p>For ORNL-facility instruments which use the ADARA system, it is possible to record and playback an ADARA-packet stream.
 This ADARA-packet replay utility was developed to allow manual debugging of the live-data listener and the
 live-reduction workflow.  The utility should also prove useful for debugging almost any live-data system in a
@@ -413,7 +399,7 @@ which have been saved to the ADARA cache by the ADARA system, contain <em>redund
 need to be analyzed in some detail in order to arrive at a useful playback sequence.</p>
 </section>
 <section id="how-to-use-and-modify-facilities-xml">
-<h2><a class="toc-backref" href="#id4" role="doc-backlink">How to use and modify <code class="docutils literal notranslate"><span class="pre">Facilities.xml</span></code></a><a class="headerlink" href="#how-to-use-and-modify-facilities-xml" title="Link to this heading">#</a></h2>
+<h2>How to use and modify <code class="docutils literal notranslate"><span class="pre">Facilities.xml</span></code><a class="headerlink" href="#how-to-use-and-modify-facilities-xml" title="Link to this heading">#</a></h2>
 <p>Mantid reads the <code class="docutils literal notranslate"><span class="pre">Facilities.xml</span></code> file to determine how to access each instrument.  The instrument’s network address
 is either in internet-socket (INET) form, as &lt;IPV4: port&gt; or &lt;IPV6: port&gt;, or in Unix-domain socket (UDS) form, as
 any accessible file-path on the filesystem.  For example, in <code class="docutils literal notranslate"><span class="pre">adara_player_conf.yml</span></code>, note that the default socket
@@ -435,7 +421,7 @@ situation, when the <em>client application</em> connects to the instrument, it i
 which in this case connects to the real instrument as a <em>proxy</em> for the client application.</p>
 </section>
 <section id="adara-server-and-listener-handshaking-protocol">
-<h2><a class="toc-backref" href="#id5" role="doc-backlink">ADARA-server and listener handshaking protocol</a><a class="headerlink" href="#adara-server-and-listener-handshaking-protocol" title="Link to this heading">#</a></h2>
+<h2>ADARA-server and listener handshaking protocol<a class="headerlink" href="#adara-server-and-listener-handshaking-protocol" title="Link to this heading">#</a></h2>
 <p>Both the <code class="docutils literal notranslate"><span class="pre">SNSLiveEventDataListener</span></code>, and the ADARA-server itself, implement a handshaking protocol.  In its simplest
 form, this protocol involves expecting a single <code class="docutils literal notranslate"><span class="pre">CLIENT_HELLO_TYPE</span></code> packet from the client at the start of each
 session.  This hello-packet contains information about the required start-time for the requested data.</p>
@@ -445,7 +431,7 @@ hello-packet, nor does it filter out duplicate <code class="docutils literal not
 behaviors would be useful extensions to the utility’s implementation.</p>
 </section>
 <section id="recording-a-packet-stream">
-<h2><a class="toc-backref" href="#id6" role="doc-backlink">Recording a packet stream</a><a class="headerlink" href="#recording-a-packet-stream" title="Link to this heading">#</a></h2>
+<h2>Recording a packet stream<a class="headerlink" href="#recording-a-packet-stream" title="Link to this heading">#</a></h2>
 <figure class="align-default" id="id1">
 <a class="reference internal image-reference" href="../../_images/adara_player_record_mode.png"><img alt="ADARA-player: diagram of components used in record mode" src="../../_images/adara_player_record_mode.png" style="width: 60%;" />
 </a>
@@ -484,7 +470,7 @@ proxy, a <em>session</em> subdirectory will be created under this base directory
 </ol>
 </section>
 <section id="playing-a-packet-stream-back">
-<h2><a class="toc-backref" href="#id7" role="doc-backlink">Playing a packet-stream back</a><a class="headerlink" href="#playing-a-packet-stream-back" title="Link to this heading">#</a></h2>
+<h2>Playing a packet-stream back<a class="headerlink" href="#playing-a-packet-stream-back" title="Link to this heading">#</a></h2>
 <figure class="align-default" id="id2">
 <a class="reference internal image-reference" href="../../_images/adara_player_playback_mode.png"><img alt="ADARA-player: diagram of components used in playback mode" src="../../_images/adara_player_playback_mode.png" style="width: 60%;" />
 </a>
@@ -539,7 +525,7 @@ recorded as session 1.)</p></li>
 </ol>
 </section>
 <section id="packet-ordering-during-playback-mode">
-<h2><a class="toc-backref" href="#id8" role="doc-backlink">Packet ordering during <code class="docutils literal notranslate"><span class="pre">playback</span></code> mode</a><a class="headerlink" href="#packet-ordering-during-playback-mode" title="Link to this heading">#</a></h2>
+<h2>Packet ordering during <code class="docutils literal notranslate"><span class="pre">playback</span></code> mode<a class="headerlink" href="#packet-ordering-during-playback-mode" title="Link to this heading">#</a></h2>
 <p>If the stream being played back was saved using <code class="docutils literal notranslate"><span class="pre">record</span></code>, and <code class="docutils literal notranslate"><span class="pre">record.file_output</span></code> was set to <code class="docutils literal notranslate"><span class="pre">single_packet</span></code>
 (in <code class="docutils literal notranslate"><span class="pre">adara_player_conf.yml</span></code>), the playback order will be uniquely determined by the
 &lt;sequence number&gt; part of each packet’s filename.  During playback, each time the client application connects to the
@@ -572,7 +558,7 @@ playback order does not end up corresponding to the playback order of the origin
 </ul>
 </section>
 <section id="using-summarize-mode">
-<h2><a class="toc-backref" href="#id9" role="doc-backlink">Using <code class="docutils literal notranslate"><span class="pre">summarize</span></code> mode</a><a class="headerlink" href="#using-summarize-mode" title="Link to this heading">#</a></h2>
+<h2>Using <code class="docutils literal notranslate"><span class="pre">summarize</span></code> mode<a class="headerlink" href="#using-summarize-mode" title="Link to this heading">#</a></h2>
 <p>Given a set of files containing ADARA-packet data, often it can be difficult to figure out how to set up a useful
 <code class="docutils literal notranslate"><span class="pre">playback</span></code> session.  This is especially true if the files contain <em>multiple</em> ADARA-packets per file.  <code class="docutils literal notranslate"><span class="pre">summarize</span></code>
 mode was implemented in order to provide additional information in this scenario.  To obtain a summary of the packet
@@ -773,7 +759,7 @@ device-descriptor yet);</p></li>
 respect to the packet-data that it saves?</p>
 </section>
 <section id="setup-for-examples">
-<h2><a class="toc-backref" href="#id10" role="doc-backlink">Setup for examples</a><a class="headerlink" href="#setup-for-examples" title="Link to this heading">#</a></h2>
+<h2>Setup for examples<a class="headerlink" href="#setup-for-examples" title="Link to this heading">#</a></h2>
 <p>In the following we assume that:</p>
 <ul class="simple">
 <li><p>your mantid build directory: <code class="docutils literal notranslate"><span class="pre">${BUILD}</span></code>;</p></li>
@@ -843,7 +829,7 @@ ADARA_PLAYER_OUTPUT_DATA=${BUILD}/adara_player_tmp/output_data
 </div>
 </section>
 <section id="example-playback-mode-session">
-<h2><a class="toc-backref" href="#id11" role="doc-backlink">Example <code class="docutils literal notranslate"><span class="pre">playback</span></code> mode session</a><a class="headerlink" href="#example-playback-mode-session" title="Link to this heading">#</a></h2>
+<h2>Example <code class="docutils literal notranslate"><span class="pre">playback</span></code> mode session<a class="headerlink" href="#example-playback-mode-session" title="Link to this heading">#</a></h2>
 <p>1. In its <strong>own</strong> console: start <cite>adara_player</cite> in <cite>playback</cite> mode:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span># activate your `mantid-developer` environment
 mamba activate mantid-developer
@@ -908,7 +894,7 @@ MonitorLiveData-[Warning] MonitorLiveData: Execution cancelled by user.
 </div>
 </section>
 <section id="example-record-mode-session">
-<h2><a class="toc-backref" href="#id12" role="doc-backlink">Example <code class="docutils literal notranslate"><span class="pre">record</span></code> mode session</a><a class="headerlink" href="#example-record-mode-session" title="Link to this heading">#</a></h2>
+<h2>Example <code class="docutils literal notranslate"><span class="pre">record</span></code> mode session<a class="headerlink" href="#example-record-mode-session" title="Link to this heading">#</a></h2>
 <p>The beam is currently down, so what can we do?  It turns out quite a lot!  In this example we’ll use <code class="docutils literal notranslate"><span class="pre">adara_player</span></code> in
 <code class="docutils literal notranslate"><span class="pre">playback</span></code> mode to mock the ADARA instrument server.  Then in a separate process, we’ll use <code class="docutils literal notranslate"><span class="pre">adara_player</span></code> in
 <code class="docutils literal notranslate"><span class="pre">record</span></code> mode to record our <em>client application’s</em> session.  To keep things simple, we’ll duplicate some of the

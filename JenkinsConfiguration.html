@@ -341,59 +341,23 @@
                   
   <section id="jenkins-configuration">
 <span id="jenkinsconfiguration"></span><h1>Jenkins Configuration<a class="headerlink" href="#jenkins-configuration" title="Link to this heading">#</a></h1>
-<nav class="contents local" id="contents">
-<ul class="simple">
-<li><p><a class="reference internal" href="#summary" id="id2">Summary</a></p></li>
-<li><p><a class="reference internal" href="#introduction" id="id3">Introduction</a></p></li>
-<li><p><a class="reference internal" href="#setting-up-a-new-agent" id="id4">Setting up a New Agent</a></p>
-<ul>
-<li><p><a class="reference internal" href="#windows" id="id5">Windows</a></p>
-<ul>
-<li><p><a class="reference internal" href="#agent-connection" id="id6">Agent Connection</a></p></li>
-<li><p><a class="reference internal" href="#connecting-through-a-proxy-server" id="id7">Connecting Through a Proxy Server</a></p></li>
-</ul>
-</li>
-<li><p><a class="reference internal" href="#linux" id="id8">Linux</a></p></li>
-<li><p><a class="reference internal" href="#mac-os" id="id9">Mac OS</a></p>
-<ul>
-<li><p><a class="reference internal" href="#id1" id="id10">Agent Connection</a></p></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><a class="reference internal" href="#misc-groovy-scripts" id="id11">Misc Groovy Scripts</a></p>
-<ul>
-<li><p><a class="reference internal" href="#print-the-value-of-an-environment-variable-on-all-nodes" id="id12">Print the Value of an Environment Variable on All Nodes</a></p></li>
-<li><p><a class="reference internal" href="#remove-directories-across-multiple-nodes" id="id13">Remove directories across multiple nodes</a></p></li>
-<li><p><a class="reference internal" href="#remove-pull-request-build-directories-from-specific-nodes" id="id14">Remove pull request build directories from specific nodes</a></p></li>
-<li><p><a class="reference internal" href="#update-branches-for-jobs" id="id15">Update Branches For Jobs</a></p></li>
-<li><p><a class="reference internal" href="#list-all-scm-urls" id="id16">List All SCM Urls</a></p></li>
-<li><p><a class="reference internal" href="#update-urls-on-all-jobs" id="id17">Update Urls on All Jobs</a></p></li>
-<li><p><a class="reference internal" href="#print-all-loggers" id="id18">Print All Loggers</a></p></li>
-<li><p><a class="reference internal" href="#run-a-process-on-a-single-node" id="id19">Run a Process On a Single Node</a></p></li>
-<li><p><a class="reference internal" href="#run-a-process-across-all-nodes" id="id20">Run a Process Across All Nodes</a></p></li>
-<li><p><a class="reference internal" href="#update-default-values-for-job-parameters" id="id21">Update default values for job parameters</a></p></li>
-</ul>
-</li>
-</ul>
-</nav>
 <section id="summary">
-<h2><a class="toc-backref" href="#id2" role="doc-backlink">Summary</a><a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
+<h2>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
 <p>Mantid uses the <a class="reference external" href="https://jenkins.io/">Jenkins</a> automation server to support
 its continuous integration needs.
 This document describes the general setup of the system.</p>
 </section>
 <section id="introduction">
-<h2><a class="toc-backref" href="#id3" role="doc-backlink">Introduction</a><a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
 <p>Jenkins works on a ‘controller -&gt; agent’ principle.
 The controller is responsible for orchestrating jobs and managing the agents where the work is actually performed.
 The controller node is located at <a class="reference external" href="https://builds.mantidproject.org">https://builds.mantidproject.org</a> and
 each facility is responsible for providing hardware to act as agents for the various required configurations.</p>
 </section>
 <section id="setting-up-a-new-agent">
-<h2><a class="toc-backref" href="#id4" role="doc-backlink">Setting up a New Agent</a><a class="headerlink" href="#setting-up-a-new-agent" title="Link to this heading">#</a></h2>
+<h2>Setting up a New Agent<a class="headerlink" href="#setting-up-a-new-agent" title="Link to this heading">#</a></h2>
 <section id="windows">
-<h3><a class="toc-backref" href="#id5" role="doc-backlink">Windows</a><a class="headerlink" href="#windows" title="Link to this heading">#</a></h3>
+<h3>Windows<a class="headerlink" href="#windows" title="Link to this heading">#</a></h3>
 <p>First install the prerequisites tools that cannot be provided through conda:</p>
 <ol class="arabic simple">
 <li><p>Install the <a class="reference external" href="https://visualstudio.microsoft.com/downloads/">Command line Visual C++ 2019 build tools</a>.
@@ -417,7 +381,7 @@ Install as administrator and add to that <code class="docutils literal notransla
 <li><p>Reboot the machine</p></li>
 </ol>
 <section id="agent-connection">
-<h4><a class="toc-backref" href="#id6" role="doc-backlink">Agent Connection</a><a class="headerlink" href="#agent-connection" title="Link to this heading">#</a></h4>
+<h4>Agent Connection<a class="headerlink" href="#agent-connection" title="Link to this heading">#</a></h4>
 <p>To connect the agent to Jenkins you will need to login to the controller at
 <a class="reference external" href="https://builds.mantidproject.org">https://builds.mantidproject.org</a>. Once logged in:</p>
 <ol class="arabic simple">
@@ -443,7 +407,7 @@ previous step. Run the agent file: <cite>.jenkins-agent.jnlp</cite>.</p></li>
 </ol>
 </section>
 <section id="connecting-through-a-proxy-server">
-<h4><a class="toc-backref" href="#id7" role="doc-backlink">Connecting Through a Proxy Server</a><a class="headerlink" href="#connecting-through-a-proxy-server" title="Link to this heading">#</a></h4>
+<h4>Connecting Through a Proxy Server<a class="headerlink" href="#connecting-through-a-proxy-server" title="Link to this heading">#</a></h4>
 <p>It is a little more tricky to add Windows agents connected through a proxy.
 To do this you must modify the Java arguments that are used to start the <code class="docutils literal notranslate"><span class="pre">jenkins-slave</span></code> process.
 Once the “Install as a Windows Service” has completed you should:</p>
@@ -456,7 +420,7 @@ Once the “Install as a Windows Service” has completed you should:</p>
 </section>
 </section>
 <section id="linux">
-<h3><a class="toc-backref" href="#id8" role="doc-backlink">Linux</a><a class="headerlink" href="#linux" title="Link to this heading">#</a></h3>
+<h3>Linux<a class="headerlink" href="#linux" title="Link to this heading">#</a></h3>
 <p>Linux-based nodes should use the Docker-based setup described
 <a class="reference external" href="https://github.com/mantidproject/dockerfiles/tree/main/jenkins-node">here</a>.
 The base OS does not need to be RancherOS and can be anything as long as Docker
@@ -464,7 +428,7 @@ will run.</p>
 <p>The agent will connect automatically when the Docker container starts running.</p>
 </section>
 <section id="mac-os">
-<h3><a class="toc-backref" href="#id9" role="doc-backlink">Mac OS</a><a class="headerlink" href="#mac-os" title="Link to this heading">#</a></h3>
+<h3>Mac OS<a class="headerlink" href="#mac-os" title="Link to this heading">#</a></h3>
 <p>Enable <a class="reference external" href="https://apple.stackexchange.com/a/73919">SSH (“Remote Login”) and VNC (“Remote Management”)</a>.
 If you have connection issues from a non-OS X client then try adjusting your color
 depth settings (True Color 32bpp works on Remmina).</p>
@@ -490,7 +454,7 @@ Download the <code class="docutils literal notranslate"><span class="pre">.pkg</
 <p>Restart the machine and ensure you leave the jenkins-agent user logged in as
 per the instructions above.</p>
 <section id="id1">
-<h4><a class="toc-backref" href="#id10" role="doc-backlink">Agent Connection</a><a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
+<h4>Agent Connection<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
 <p>The Jenkins JNLP connections are maintained by a crontab entry.
 The script is in the <a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/buildconfig/Jenkins/jenkins-slave.sh">mantid repository</a>.
 The comments at the top describe a how to customize the script for a new agent.</p>
@@ -498,12 +462,12 @@ The comments at the top describe a how to customize the script for a new agent.<
 </section>
 </section>
 <section id="misc-groovy-scripts">
-<h2><a class="toc-backref" href="#id11" role="doc-backlink">Misc Groovy Scripts</a><a class="headerlink" href="#misc-groovy-scripts" title="Link to this heading">#</a></h2>
+<h2>Misc Groovy Scripts<a class="headerlink" href="#misc-groovy-scripts" title="Link to this heading">#</a></h2>
 <p>The following is a collection of groovy scripts that can be run either at <a class="reference external" href="https://builds.mantidproject.org/script">https://builds.mantidproject.org/script</a> (for master node) or on a given node, e.g <a class="reference external" href="https://builds.mantidproject.org/computer/isis-mantidlx3/script">isis-mantidx3</a>.
 You must have admin privileges to run them.</p>
 <p><a class="github reference external" href="https://github.com/jenkinsci/jenkins-scripts/tree/main/scriptler">jenkinsci/jenkins-scripts</a> was helpful for coming up with some of these.</p>
 <section id="print-the-value-of-an-environment-variable-on-all-nodes">
-<h3><a class="toc-backref" href="#id12" role="doc-backlink">Print the Value of an Environment Variable on All Nodes</a><a class="headerlink" href="#print-the-value-of-an-environment-variable-on-all-nodes" title="Link to this heading">#</a></h3>
+<h3>Print the Value of an Environment Variable on All Nodes<a class="headerlink" href="#print-the-value-of-an-environment-variable-on-all-nodes" title="Link to this heading">#</a></h3>
 <div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">jenkins.model.*</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">hudson.model.*</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">hudson.slaves.*</span>
@@ -531,7 +495,7 @@ You must have admin privileges to run them.</p>
 </div>
 </section>
 <section id="remove-directories-across-multiple-nodes">
-<h3><a class="toc-backref" href="#id13" role="doc-backlink">Remove directories across multiple nodes</a><a class="headerlink" href="#remove-directories-across-multiple-nodes" title="Link to this heading">#</a></h3>
+<h3>Remove directories across multiple nodes<a class="headerlink" href="#remove-directories-across-multiple-nodes" title="Link to this heading">#</a></h3>
 <p>The example here will remove the build directories from pull request build and test jobs.
 Useful, for example, when a dependency change requires a clean build.
 It is advised to ensure nothing is running and pause the build queue.</p>
@@ -555,7 +519,7 @@ It is advised to ensure nothing is running and pause the build queue.</p>
 </div>
 </section>
 <section id="remove-pull-request-build-directories-from-specific-nodes">
-<h3><a class="toc-backref" href="#id14" role="doc-backlink">Remove pull request build directories from specific nodes</a><a class="headerlink" href="#remove-pull-request-build-directories-from-specific-nodes" title="Link to this heading">#</a></h3>
+<h3>Remove pull request build directories from specific nodes<a class="headerlink" href="#remove-pull-request-build-directories-from-specific-nodes" title="Link to this heading">#</a></h3>
 <p>Take the target nodes offline and edit the list of agentNames.</p>
 <div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">hudson.model.*</span>
 
@@ -593,7 +557,7 @@ It is advised to ensure nothing is running and pause the build queue.</p>
 </div>
 </section>
 <section id="update-branches-for-jobs">
-<h3><a class="toc-backref" href="#id15" role="doc-backlink">Update Branches For Jobs</a><a class="headerlink" href="#update-branches-for-jobs" title="Link to this heading">#</a></h3>
+<h3>Update Branches For Jobs<a class="headerlink" href="#update-branches-for-jobs" title="Link to this heading">#</a></h3>
 <div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">hudson.plugins.git.GitSCM</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">hudson.plugins.git.BranchSpec</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">static</span><span class="w"> </span><span class="n">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">common</span><span class="o">.</span><span class="na">collect</span><span class="o">.</span><span class="na">Lists</span><span class="o">.</span><span class="na">newArrayList</span><span class="o">;</span>
@@ -624,7 +588,7 @@ It is advised to ensure nothing is running and pause the build queue.</p>
 </div>
 </section>
 <section id="list-all-scm-urls">
-<h3><a class="toc-backref" href="#id16" role="doc-backlink">List All SCM Urls</a><a class="headerlink" href="#list-all-scm-urls" title="Link to this heading">#</a></h3>
+<h3>List All SCM Urls<a class="headerlink" href="#list-all-scm-urls" title="Link to this heading">#</a></h3>
 <div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">jenkins.model.*</span><span class="o">;</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">hudson.model.*</span><span class="o">;</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">hudson.tasks.*</span><span class="o">;</span>
@@ -650,7 +614,7 @@ It is advised to ensure nothing is running and pause the build queue.</p>
 </div>
 </section>
 <section id="update-urls-on-all-jobs">
-<h3><a class="toc-backref" href="#id17" role="doc-backlink">Update Urls on All Jobs</a><a class="headerlink" href="#update-urls-on-all-jobs" title="Link to this heading">#</a></h3>
+<h3>Update Urls on All Jobs<a class="headerlink" href="#update-urls-on-all-jobs" title="Link to this heading">#</a></h3>
 <div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">jenkins.model.*</span><span class="o">;</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">hudson.model.*</span><span class="o">;</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">hudson.tasks.*</span><span class="o">;</span>
@@ -685,7 +649,7 @@ It is advised to ensure nothing is running and pause the build queue.</p>
 </div>
 </section>
 <section id="print-all-loggers">
-<h3><a class="toc-backref" href="#id18" role="doc-backlink">Print All Loggers</a><a class="headerlink" href="#print-all-loggers" title="Link to this heading">#</a></h3>
+<h3>Print All Loggers<a class="headerlink" href="#print-all-loggers" title="Link to this heading">#</a></h3>
 <div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.logging.*</span><span class="o">;</span>
 
 <span class="n">LogManager</span><span class="o">.</span><span class="na">getLogManager</span><span class="o">().</span><span class="na">getLoggerNames</span><span class="o">().</span><span class="na">each</span><span class="o">()</span><span class="w"> </span><span class="o">{</span>
@@ -695,7 +659,7 @@ It is advised to ensure nothing is running and pause the build queue.</p>
 </div>
 </section>
 <section id="run-a-process-on-a-single-node">
-<h3><a class="toc-backref" href="#id19" role="doc-backlink">Run a Process On a Single Node</a><a class="headerlink" href="#run-a-process-on-a-single-node" title="Link to this heading">#</a></h3>
+<h3>Run a Process On a Single Node<a class="headerlink" href="#run-a-process-on-a-single-node" title="Link to this heading">#</a></h3>
 <div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="n">Process</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;cmd /c dir&quot;</span><span class="o">.</span><span class="na">execute</span><span class="o">()</span>
 <span class="n">println</span><span class="w"> </span><span class="s2">&quot;${p.text}&quot;</span>
 
@@ -706,7 +670,7 @@ It is advised to ensure nothing is running and pause the build queue.</p>
 </div>
 </section>
 <section id="run-a-process-across-all-nodes">
-<h3><a class="toc-backref" href="#id20" role="doc-backlink">Run a Process Across All Nodes</a><a class="headerlink" href="#run-a-process-across-all-nodes" title="Link to this heading">#</a></h3>
+<h3>Run a Process Across All Nodes<a class="headerlink" href="#run-a-process-across-all-nodes" title="Link to this heading">#</a></h3>
 <div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">hudson.util.RemotingDiagnostics</span><span class="o">;</span>
 
 <span class="k">for</span><span class="w"> </span><span class="o">(</span><span class="n">slave</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">hudson</span><span class="o">.</span><span class="na">model</span><span class="o">.</span><span class="na">Hudson</span><span class="o">.</span><span class="na">instance</span><span class="o">.</span><span class="na">slaves</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
@@ -720,7 +684,7 @@ It is advised to ensure nothing is running and pause the build queue.</p>
 </div>
 </section>
 <section id="update-default-values-for-job-parameters">
-<h3><a class="toc-backref" href="#id21" role="doc-backlink">Update default values for job parameters</a><a class="headerlink" href="#update-default-values-for-job-parameters" title="Link to this heading">#</a></h3>
+<h3>Update default values for job parameters<a class="headerlink" href="#update-default-values-for-job-parameters" title="Link to this heading">#</a></h3>
 <div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">hudson.model.*</span>
 
 <span class="kt">def</span><span class="w"> </span><span class="n">SUFFIX_VARIABLE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;PACKAGE_SUFFIX&quot;</span>

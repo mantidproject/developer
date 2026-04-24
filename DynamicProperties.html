@@ -341,20 +341,12 @@
                   
   <section id="dynamic-dialog-properties">
 <span id="dynamicproperties"></span><h1>Dynamic dialog properties<a class="headerlink" href="#dynamic-dialog-properties" title="Link to this heading">#</a></h1>
-<nav class="contents local" id="contents">
-<ul class="simple">
-<li><p><a class="reference internal" href="#overview" id="id1">Overview</a></p></li>
-<li><p><a class="reference internal" href="#unconditionally-setting-a-property-s-value" id="id2">Unconditionally setting a property’s value</a></p></li>
-<li><p><a class="reference internal" href="#emulating-a-dynamic-default-value" id="id3">Emulating a dynamic-default value</a></p></li>
-<li><p><a class="reference internal" href="#fine-points-validation-and-exceptions" id="id4">Fine points: validation and exceptions</a></p></li>
-</ul>
-</nav>
 <section id="overview">
-<h2><a class="toc-backref" href="#id1" role="doc-backlink">Overview</a><a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
 <p>From either C++ or Python, the <code class="docutils literal notranslate"><span class="pre">IPropertySettings</span></code>-derived classes <code class="docutils literal notranslate"><span class="pre">SetValueWhenProperty</span></code> and <code class="docutils literal notranslate"><span class="pre">SetDefaultWhenProperty</span></code> can be used to allow a GUI dialog to set the value of a property based on the value of another upstream property.  For example, when used with the generic <em>algorithm dialog</em> in workbench (implemented via the <code class="docutils literal notranslate"><span class="pre">GenericDialog</span></code> class in C++) this allows pre-populating a propery’s value based on the value of another property.</p>
 </section>
 <section id="unconditionally-setting-a-property-s-value">
-<h2><a class="toc-backref" href="#id2" role="doc-backlink">Unconditionally setting a property’s value</a><a class="headerlink" href="#unconditionally-setting-a-property-s-value" title="Link to this heading">#</a></h2>
+<h2>Unconditionally setting a property’s value<a class="headerlink" href="#unconditionally-setting-a-property-s-value" title="Link to this heading">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">SetValueWhenProperty</span></code> allows <em>unconditionally</em> setting a property’s value when the value of an upstream property changes.
 This <code class="docutils literal notranslate"><span class="pre">IPropertySettings</span></code> variant should be used sparingly, as these dynamic values will <em>overwrite</em> any value that may have already been entered by the user – this is not usually acceptable behavior for a user-interface, except in very special cases.</p>
 <p><code class="docutils literal notranslate"><span class="pre">SetValueWhenProperty</span></code> requires a callback of the form: <code class="docutils literal notranslate"><span class="pre">Callable[[str,</span> <span class="pre">str],</span> <span class="pre">str]</span></code> (from Python), or <code class="docutils literal notranslate"><span class="pre">std::function&lt;std::string(std::string,</span> <span class="pre">std::string)&gt;</span></code> (from C++).  The meaning of the signature is as follows:  <code class="docutils literal notranslate"><span class="pre">&lt;new</span> <span class="pre">value&gt;</span> <span class="pre">=</span> <span class="pre">callback(&lt;current</span> <span class="pre">value&gt;,</span> <span class="pre">&lt;watched</span> <span class="pre">value&gt;)</span></code>.  Here the <code class="docutils literal notranslate"><span class="pre">&lt;current</span> <span class="pre">value&gt;</span></code> is the string value of the property which will be modified, and the <code class="docutils literal notranslate"><span class="pre">&lt;watched</span> <span class="pre">value&gt;</span></code> is the value of the <em>upstream</em> property.  In case no modification is desired, the <em>existing</em> string value of the current property should simply be returned.</p>
@@ -422,7 +414,7 @@ This <code class="docutils literal notranslate"><span class="pre">IPropertySetti
 </div>
 </section>
 <section id="emulating-a-dynamic-default-value">
-<h2><a class="toc-backref" href="#id3" role="doc-backlink">Emulating a dynamic-default value</a><a class="headerlink" href="#emulating-a-dynamic-default-value" title="Link to this heading">#</a></h2>
+<h2>Emulating a dynamic-default value<a class="headerlink" href="#emulating-a-dynamic-default-value" title="Link to this heading">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">SetDefaultWhenProperty</span></code> allows <em>conditionally</em> setting a property’s value when the value of an upstream property changes.
 This <code class="docutils literal notranslate"><span class="pre">IPropertySettings</span></code> variant is designed to only allow the modification of a value that has not already been entered by the user.
 It is designed to provide the effect of a dynamic <em>default</em> value for the property, which depends on the value of an upstream property.</p>
@@ -491,7 +483,7 @@ It is designed to provide the effect of a dynamic <em>default</em> value for the
 </div>
 </section>
 <section id="fine-points-validation-and-exceptions">
-<h2><a class="toc-backref" href="#id4" role="doc-backlink">Fine points: validation and exceptions</a><a class="headerlink" href="#fine-points-validation-and-exceptions" title="Link to this heading">#</a></h2>
+<h2>Fine points: validation and exceptions<a class="headerlink" href="#fine-points-validation-and-exceptions" title="Link to this heading">#</a></h2>
 <p>When a property’s value is set inside of any <code class="docutils literal notranslate"><span class="pre">IPropertySettings</span></code>-derived class it does make use of the propery’s <em>validator</em>, assuming that it has one.  However, responding to any validation error in this case will result in an exception throw, which will be wrapped in a logged <em>warning</em> message, and the dependent property’s value will not be modified.  It will be noted that this behavior is distinct from what happens when a validation error is encountered when the dialog triggers algorithm execution in the normal sequence of GUI actions.</p>
 <p><code class="docutils literal notranslate"><span class="pre">SetValueWhenProperty</span></code> and <code class="docutils literal notranslate"><span class="pre">SetDefaultWhenProperty</span></code> each require the specification of a <em>callback</em> function, which will be used to calculate the dependent property’s new value.  Any problem with the specification of this callback (e.g. argument compatibility differing from what is expected, or return-value type differing from what is expected), or any exception raised during the execution of this callback will also be trapped and presented as a logged <em>warning</em> message.</p>
 </section>

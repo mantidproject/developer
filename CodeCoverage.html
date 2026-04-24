@@ -341,49 +341,24 @@
                   
   <section id="generating-code-coverage">
 <h1>Generating code coverage<a class="headerlink" href="#generating-code-coverage" title="Link to this heading">#</a></h1>
-<nav class="contents local" id="contents">
-<ul class="simple">
-<li><p><a class="reference internal" href="#c" id="id1">C++</a></p>
-<ul>
-<li><p><a class="reference internal" href="#background" id="id2">Background</a></p></li>
-<li><p><a class="reference internal" href="#coverage-on-conda" id="id3">Coverage on conda</a></p></li>
-<li><p><a class="reference internal" href="#c-specific-notes" id="id4">C++ specific notes</a></p></li>
-<li><p><a class="reference internal" href="#setup" id="id5">Setup</a></p></li>
-<li><p><a class="reference internal" href="#producing-a-coverage-report-automatically" id="id6">Producing a coverage report automatically</a></p></li>
-<li><p><a class="reference internal" href="#producing-a-coverage-report-manually" id="id7">Producing a coverage report manually</a></p></li>
-<li><p><a class="reference internal" href="#filtering-specific-module-s" id="id8">Filtering specific module(s)</a></p>
-<ul>
-<li><p><a class="reference internal" href="#examples" id="id9">Examples:</a></p></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><a class="reference internal" href="#python" id="id10">Python</a></p>
-<ul>
-<li><p><a class="reference internal" href="#ide" id="id11">IDE</a></p></li>
-<li><p><a class="reference internal" href="#cli" id="id12">CLI</a></p></li>
-</ul>
-</li>
-</ul>
-</nav>
 <section id="c">
-<h2><a class="toc-backref" href="#id1" role="doc-backlink">C++</a><a class="headerlink" href="#c" title="Link to this heading">#</a></h2>
+<h2>C++<a class="headerlink" href="#c" title="Link to this heading">#</a></h2>
 <section id="background">
-<h3><a class="toc-backref" href="#id2" role="doc-backlink">Background</a><a class="headerlink" href="#background" title="Link to this heading">#</a></h3>
+<h3>Background<a class="headerlink" href="#background" title="Link to this heading">#</a></h3>
 <p>GCC and LLVM have tooling built in to allow a developer to view the code coverage from their tests.</p>
 <p>This will work for native C++ code and any code executed via Python, as the instrumentation is compiled into the binary output. Gcovr will also filter out any non-project code automatically.</p>
 </section>
 <section id="coverage-on-conda">
-<h3><a class="toc-backref" href="#id3" role="doc-backlink">Coverage on conda</a><a class="headerlink" href="#coverage-on-conda" title="Link to this heading">#</a></h3>
+<h3>Coverage on conda<a class="headerlink" href="#coverage-on-conda" title="Link to this heading">#</a></h3>
 <p>Since the move to conda, <cite>GCC</cite> is installed through the conda package <cite>gxx_linux-64</cite>. This conda package does NOT include <cite>gcov</cite>, required to assess code coverage. <cite>gcov</cite> is not currently available on conda, so you will need to ensure that <cite>gcov</cite> can be instead found on your system, and that this version of <cite>gcov</cite> is the same version as the <cite>GCC</cite> compiler we install using conda. If this is not the case, errors will be raised during the generation of coverage data.</p>
 <p>As <cite>gcov</cite> is packaged with <cite>GCC</cite>, you will need to install <cite>GCC</cite> on your system. You can typically do this using the <cite>apt</cite> package manager. If an appropriate version of <cite>GCC</cite> is not available for your OS you will unfortunately have to build it from source: <a class="reference external" href="https://gcc.gnu.org/wiki/InstallingGCC">https://gcc.gnu.org/wiki/InstallingGCC</a></p>
 </section>
 <section id="c-specific-notes">
-<h3><a class="toc-backref" href="#id4" role="doc-backlink">C++ specific notes</a><a class="headerlink" href="#c-specific-notes" title="Link to this heading">#</a></h3>
+<h3>C++ specific notes<a class="headerlink" href="#c-specific-notes" title="Link to this heading">#</a></h3>
 <p>The coverage target(s) do not run the tests automatically. Users must either run the test(s) or file(s) they are interested in manually for data to be produced by the tooling.</p>
 </section>
 <section id="setup">
-<h3><a class="toc-backref" href="#id5" role="doc-backlink">Setup</a><a class="headerlink" href="#setup" title="Link to this heading">#</a></h3>
+<h3>Setup<a class="headerlink" href="#setup" title="Link to this heading">#</a></h3>
 <ul>
 <li><p>Enable coverage in CMake through the GUI or using</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cmake<span class="w"> </span>/path/to/src<span class="w"> </span>-DCOVERAGE<span class="o">=</span>ON
@@ -400,7 +375,7 @@ ninja<span class="w"> </span><span class="c1"># or make</span>
 </ul>
 </section>
 <section id="producing-a-coverage-report-automatically">
-<h3><a class="toc-backref" href="#id6" role="doc-backlink">Producing a coverage report automatically</a><a class="headerlink" href="#producing-a-coverage-report-automatically" title="Link to this heading">#</a></h3>
+<h3>Producing a coverage report automatically<a class="headerlink" href="#producing-a-coverage-report-automatically" title="Link to this heading">#</a></h3>
 <p>The following targets are available to make/ninja:</p>
 <ul class="simple">
 <li><p><cite>coverage</cite> : Builds all available coverage reports</p></li>
@@ -412,7 +387,7 @@ ninja<span class="w"> </span><span class="c1"># or make</span>
 <p>Note: If errors are thrown on certain directories during automatic report production, you may have more luck specifying individual directories manually.</p>
 </section>
 <section id="producing-a-coverage-report-manually">
-<h3><a class="toc-backref" href="#id7" role="doc-backlink">Producing a coverage report manually</a><a class="headerlink" href="#producing-a-coverage-report-manually" title="Link to this heading">#</a></h3>
+<h3>Producing a coverage report manually<a class="headerlink" href="#producing-a-coverage-report-manually" title="Link to this heading">#</a></h3>
 <ul>
 <li><p>Create a folder for the html files, for example <cite>html</cite></p></li>
 <li><p>From your build folder generate a HTML report for the coverage as follows:</p>
@@ -431,10 +406,10 @@ ninja<span class="w"> </span><span class="c1"># or make</span>
 </ul>
 </section>
 <section id="filtering-specific-module-s">
-<h3><a class="toc-backref" href="#id8" role="doc-backlink">Filtering specific module(s)</a><a class="headerlink" href="#filtering-specific-module-s" title="Link to this heading">#</a></h3>
+<h3>Filtering specific module(s)<a class="headerlink" href="#filtering-specific-module-s" title="Link to this heading">#</a></h3>
 <p>The <cite>-f</cite> flag can be appended once or multiple times to show output from a single folder or subset of folders. This works similarly to the regex filter used in unit testing.</p>
 <section id="examples">
-<h4><a class="toc-backref" href="#id9" role="doc-backlink">Examples:</a><a class="headerlink" href="#examples" title="Link to this heading">#</a></h4>
+<h4>Examples:<a class="headerlink" href="#examples" title="Link to this heading">#</a></h4>
 <p>To only include, say, the scientific interfaces, it would be the relative path of the source files:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>gcovr<span class="w"> </span>-f<span class="w"> </span>qt/scientific_interfaces<span class="w"> </span>-j<span class="w"> </span>&lt;n_threads&gt;<span class="w"> </span>--exclude-throw-branches<span class="w"> </span>--html<span class="w"> </span>--html-details<span class="w"> </span>-o<span class="w"> </span>html/&lt;output&gt;.html<span class="w"> </span>.
 </pre></div>
@@ -451,16 +426,16 @@ ninja<span class="w"> </span><span class="c1"># or make</span>
 </section>
 </section>
 <section id="python">
-<h2><a class="toc-backref" href="#id10" role="doc-backlink">Python</a><a class="headerlink" href="#python" title="Link to this heading">#</a></h2>
+<h2>Python<a class="headerlink" href="#python" title="Link to this heading">#</a></h2>
 <p>Unit tests can also be run to generate coverage too, this requires us to run the test using the Coverage module.</p>
 <section id="ide">
-<h3><a class="toc-backref" href="#id11" role="doc-backlink">IDE</a><a class="headerlink" href="#ide" title="Link to this heading">#</a></h3>
+<h3>IDE<a class="headerlink" href="#ide" title="Link to this heading">#</a></h3>
 <p>(Recommended)</p>
 <p>Your IDE may already have an option to run the test with coverage enabled if it can already run the test directly.</p>
 <p>To setup unit tests for Pycharm see the <a class="reference internal" href="PyCharm.html#pycharm-ref"><span class="std std-ref">PyCharm</span></a> page.</p>
 </section>
 <section id="cli">
-<h3><a class="toc-backref" href="#id12" role="doc-backlink">CLI</a><a class="headerlink" href="#cli" title="Link to this heading">#</a></h3>
+<h3>CLI<a class="headerlink" href="#cli" title="Link to this heading">#</a></h3>
 <p>(Advanced)</p>
 <ul>
 <li><p>Install Coverage:</p>

@@ -342,29 +342,12 @@
   <section id="mantid-timers">
 <h1>Mantid Timers<a class="headerlink" href="#mantid-timers" title="Link to this heading">#</a></h1>
 <p>This page provides an introduction to measuring execution time of the Mantid C++ code.</p>
-<nav class="contents local" id="context">
-<p class="topic-title">Context</p>
-<ul class="simple">
-<li><p><a class="reference internal" href="#wall-clock-timers" id="id1">Wall-clock timers</a></p>
-<ul>
-<li><p><a class="reference internal" href="#class-timer" id="id2">Class Timer</a></p></li>
-<li><p><a class="reference internal" href="#class-codeblocktimer" id="id3">Class CodeBlockTimer</a></p></li>
-<li><p><a class="reference internal" href="#class-codeblockmultipletimer" id="id4">Class CodeBlockMultipleTimer</a></p></li>
-</ul>
-</li>
-<li><p><a class="reference internal" href="#cpu-timers" id="id5">CPU timers</a></p>
-<ul>
-<li><p><a class="reference internal" href="#class-cputimer" id="id6">Class CPUTimer</a></p></li>
-</ul>
-</li>
-</ul>
-</nav>
 <section id="wall-clock-timers">
-<h2><a class="toc-backref" href="#id1" role="doc-backlink">Wall-clock timers</a><a class="headerlink" href="#wall-clock-timers" title="Link to this heading">#</a></h2>
+<h2>Wall-clock timers<a class="headerlink" href="#wall-clock-timers" title="Link to this heading">#</a></h2>
 <p>Wall-clock time is the <cite>total</cite> time elapsed during execution of code instructions. Mantid wall-clock timer classes
 are based on the <a class="reference external" href="https://en.cppreference.com/w/cpp/chrono/high_resolution_clock">std::chrono::high_resolution_clock</a> class.</p>
 <section id="class-timer">
-<span id="timer"></span><h3><a class="toc-backref" href="#id2" role="doc-backlink">Class Timer</a><a class="headerlink" href="#class-timer" title="Link to this heading">#</a></h3>
+<span id="timer"></span><h3>Class Timer<a class="headerlink" href="#class-timer" title="Link to this heading">#</a></h3>
 <p><a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/Framework/Kernel/inc/MantidKernel/Timer.h">MantidKernel/Timer</a>
 works like a stop-watch. You need to instantiate it before the code being profiled begins and then output its elapsed time right
 after the code ends. You can also reset the timer between time measurements, if necessary. An example is given below.</p>
@@ -385,7 +368,7 @@ after the code ends. You can also reset the timer between time measurements, if 
 </div>
 </section>
 <section id="class-codeblocktimer">
-<span id="codeblocktimer"></span><h3><a class="toc-backref" href="#id3" role="doc-backlink">Class CodeBlockTimer</a><a class="headerlink" href="#class-codeblocktimer" title="Link to this heading">#</a></h3>
+<span id="codeblocktimer"></span><h3>Class CodeBlockTimer<a class="headerlink" href="#class-codeblocktimer" title="Link to this heading">#</a></h3>
 <p><a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/Framework/Kernel/inc/MantidKernel/Timer.h">MantidKernel/CodeBlockTimer</a> is
 designed for timing a block of C++ code inside curly braces, i.e. inside a scope. You just need to instantiate
 a timer object on the stack at the start of the scope and provide an output stream. When the timer goes out of scope,
@@ -409,7 +392,7 @@ braces and time each code block separately. Note, when a code block is executed 
 time for each execution. If you don’t want to have multiple lines of output and are interested in the total elapsed time, use <a class="reference internal" href="#codeblockmultipletimer"><span class="std std-ref">CodeBlockMultipleTimer</span></a>.</p>
 </section>
 <section id="class-codeblockmultipletimer">
-<span id="codeblockmultipletimer"></span><h3><a class="toc-backref" href="#id4" role="doc-backlink">Class CodeBlockMultipleTimer</a><a class="headerlink" href="#class-codeblockmultipletimer" title="Link to this heading">#</a></h3>
+<span id="codeblockmultipletimer"></span><h3>Class CodeBlockMultipleTimer<a class="headerlink" href="#class-codeblockmultipletimer" title="Link to this heading">#</a></h3>
 <p><a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/Framework/Kernel/inc/MantidKernel/Timer.h">MantidKernel/CodeBlockMultipleTimer</a> is designed
 for timing a block of code that is called multiple times. Similar to <a class="reference internal" href="#codeblocktimer"><span class="std std-ref">CodeBlockTimer</span></a>, it needs to be instantiated on the stack at the
 start of the scope. The constructor takes in a <a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/Framework/Kernel/inc/MantidKernel/Timer.h">MantidKernel/CodeBlockMultipleTimer::TimeAccumulator</a>
@@ -453,11 +436,11 @@ The time accumulator can later be accessed to report the total elapsed time. In 
 </section>
 </section>
 <section id="cpu-timers">
-<h2><a class="toc-backref" href="#id5" role="doc-backlink">CPU timers</a><a class="headerlink" href="#cpu-timers" title="Link to this heading">#</a></h2>
+<h2>CPU timers<a class="headerlink" href="#cpu-timers" title="Link to this heading">#</a></h2>
 <p>CPU time is the time spent by the CPU while processing code instructions. Unlike wall-clock time, CPU time does not include
 time spent waiting for disk, network or other resources, e.g. I/O operations.</p>
 <section id="class-cputimer">
-<h3><a class="toc-backref" href="#id6" role="doc-backlink">Class CPUTimer</a><a class="headerlink" href="#class-cputimer" title="Link to this heading">#</a></h3>
+<h3>Class CPUTimer<a class="headerlink" href="#class-cputimer" title="Link to this heading">#</a></h3>
 <p><a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/Framework/Kernel/inc/MantidKernel/CPUTimer.h">MantidKernel/CPUTimer</a>
 measures both CPU time and wall-clock time. The CPU time measurement utilizes
 <a class="reference external" href="https://en.cppreference.com/w/cpp/chrono/c/clock">std::clock()</a> function. The wall-clock time measurement uses <a class="reference internal" href="#timer"><span class="std std-ref">Timer</span></a> class.
