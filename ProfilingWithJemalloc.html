@@ -27,17 +27,17 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=7f76b32a3354e82990f2" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=7f76b32a3354e82990f2" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="_static/css/style.css?v=468c6cff" />
   
   <!-- So that users can add custom icons -->
-  <script defer src="_static/scripts/fontawesome.js?digest=7f76b32a3354e82990f2"></script>
+  <script defer src="_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=7f76b32a3354e82990f2" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=7f76b32a3354e82990f2" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
 
     <script src="_static/documentation_options.js?v=a8da1a53"></script>
     <script src="_static/doctools.js?v=fd6eb6e6"></script>
@@ -62,7 +62,9 @@
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
-
+  
+  
+  
   
   <dialog id="pst-search-dialog">
     
@@ -346,7 +348,7 @@
 <section id="build-jemalloc-including-profiling">
 <h2>Build <code class="docutils literal notranslate"><span class="pre">jemalloc</span></code> including profiling<a class="headerlink" href="#build-jemalloc-including-profiling" title="Link to this heading">#</a></h2>
 <p>The standard <code class="docutils literal notranslate"><span class="pre">jemalloc</span></code> library does not include the profiling hooks, and it will be necessary to download the source code, and build a special version of the library, in order to use them.</p>
-<p><code class="docutils literal notranslate"><span class="pre">jemalloc</span></code>’s github repository (now archived) is at: <a class="reference external" href="https://github.com/jemalloc/jemalloc">https://github.com/jemalloc/jemalloc</a>.  Be sure to download the source code corresponding to the release of <code class="docutils literal notranslate"><span class="pre">jemalloc</span></code> that Mantid is currently using (now 5.2.0).</p>
+<p><code class="docutils literal notranslate"><span class="pre">jemalloc</span></code>’s github repository (now archived) is at: <a class="github reference external" href="https://github.com/jemalloc/jemalloc">jemalloc/jemalloc</a>.  Be sure to download the source code corresponding to the release of <code class="docutils literal notranslate"><span class="pre">jemalloc</span></code> that Mantid is currently using (now 5.2.0).</p>
 <p><code class="docutils literal notranslate"><span class="pre">jemalloc</span></code> uses the <code class="docutils literal notranslate"><span class="pre">autoconf</span></code> system.  To build from the root of the <code class="docutils literal notranslate"><span class="pre">jemalloc</span></code> source tree:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">autogen</span><span class="o">.</span><span class="n">sh</span>
 <span class="o">./</span><span class="n">configure</span> <span class="o">--</span><span class="n">enable</span><span class="o">-</span><span class="n">prof</span> <span class="o">--</span><span class="n">enable</span><span class="o">-</span><span class="n">shared</span> <span class="o">--</span><span class="n">prefix</span><span class="o">=&lt;</span><span class="n">your</span> <span class="n">installation</span> <span class="n">prefix</span><span class="o">&gt;</span>
@@ -390,7 +392,7 @@ LD_PRELOAD=${LOCAL_PRELOAD} \
 <section id="viewing-and-analyzing-memory-allocation-profiles">
 <h1>Viewing and analyzing memory-allocation profiles<a class="headerlink" href="#viewing-and-analyzing-memory-allocation-profiles" title="Link to this heading">#</a></h1>
 <p><strong>The next examples assume that you have already generated a profile using MALLOC_CONF, or by modifying the code and running a script, as discussed above.</strong></p>
-<p>Any of the examples shown next to <em>display</em> profiles can also be used to display the <em>difference</em> between any two profiles.  See the <code class="docutils literal notranslate"><span class="pre">jemalloc</span></code> man page at <a class="reference external" href="https://jemalloc.net/jemalloc.3.html">https://jemalloc.net/jemalloc.3.html</a>, or its wiki at  <a class="reference external" href="https://github.com/jemalloc/jemalloc/wiki">https://github.com/jemalloc/jemalloc/wiki</a>.</p>
+<p>Any of the examples shown next to <em>display</em> profiles can also be used to display the <em>difference</em> between any two profiles.  See the <code class="docutils literal notranslate"><span class="pre">jemalloc</span></code> man page at <a class="reference external" href="https://jemalloc.net/jemalloc.3.html">https://jemalloc.net/jemalloc.3.html</a>, or its wiki at  <a class="github reference external" href="https://github.com/jemalloc/jemalloc/wiki">jemalloc/jemalloc</a>.</p>
 <section id="memory-allocation-details-create-an-overview-graph">
 <h2>Memory-allocation details: create an overview graph<a class="headerlink" href="#memory-allocation-details-create-an-overview-graph" title="Link to this heading">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">jeprof</span></code> can generate SVG, and several other formats of, graphs showing all of the allocation details:</p>
@@ -565,8 +567,8 @@ ${JEPROF} --lines --inuse_space --list=&quot;GridDetector::createLayer&quot; ${C
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="_static/scripts/bootstrap.js?digest=7f76b32a3354e82990f2"></script>
-<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=7f76b32a3354e82990f2"></script>
+  <script defer src="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -600,7 +602,7 @@ ${JEPROF} --lines --inuse_space --list=&quot;GridDetector::createLayer&quot; ${C
         <div class="footer-item">
 <p class="theme-version">
   <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.17.0.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.17.1.
 </p></div>
       
     </div>
