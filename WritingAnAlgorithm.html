@@ -652,6 +652,35 @@ For example, if a units change is required the <code class="docutils literal not
 </div>
 <p>Because <code class="docutils literal notranslate"><span class="pre">Property</span></code> is generic to input <strong>and</strong> output, the workspace pointers cannot be <code class="docutils literal notranslate"><span class="pre">const</span></code> when shared with a child algorithm.</p>
 </section>
+<section id="workspacegroup-history-from-processgroups">
+<h3>WorkspaceGroup history from processGroups<a class="headerlink" href="#workspacegroup-history-from-processgroups" title="Link to this heading">#</a></h3>
+<p>When an algorithm is executed with a <code class="docutils literal notranslate"><span class="pre">WorkspaceGroup</span></code> input, the base <code class="docutils literal notranslate"><span class="pre">Algorithm::processGroups()</span></code> implementation normally executes the algorithm again on each group member.
+Those per-member executions record the output workspace history, so the history from the initial group call is not added to the outputs.</p>
+<p>Algorithms that override <code class="docutils literal notranslate"><span class="pre">processGroups()</span></code> may need different behaviour.
+For example, a group reduction may run a linked workflow across all group members and call child algorithms internally.
+In this case the override can opt in to recording the parent algorithm history by calling <code class="docutils literal notranslate"><span class="pre">enableHistoryRecordingForProcessGroups(true)</span></code>:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">MyAlgorithm::processGroups</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">m_usingBaseProcessGroups</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">  </span><span class="n">enableHistoryRecordingForProcessGroups</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>
+
+<span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">child</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">createChildAlgorithm</span><span class="p">(</span><span class="s">&quot;ChildAlgorithm&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="n">child</span><span class="o">-&gt;</span><span class="n">setProperty</span><span class="p">(</span><span class="s">&quot;InputWorkspace&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">input</span><span class="p">);</span>
+<span class="w">  </span><span class="n">child</span><span class="o">-&gt;</span><span class="n">setProperty</span><span class="p">(</span><span class="s">&quot;OutputWorkspace&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">output</span><span class="p">);</span>
+<span class="w">  </span><span class="n">child</span><span class="o">-&gt;</span><span class="n">execute</span><span class="p">();</span>
+
+<span class="w">  </span><span class="n">setProperty</span><span class="p">(</span><span class="s">&quot;OutputWorkspace&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">output</span><span class="p">);</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This is opt-in only.
+Existing <code class="docutils literal notranslate"><span class="pre">processGroups()</span></code> behaviour is unchanged unless the override calls <code class="docutils literal notranslate"><span class="pre">enableHistoryRecordingForProcessGroups(true)</span></code>.
+Python algorithms can use the same opt-in by calling <code class="docutils literal notranslate"><span class="pre">self.enableHistoryRecordingForProcessGroups(True)</span></code>.
+When the flag is enabled, the parent algorithm is recorded on the output workspaces and any child algorithms run during <code class="docutils literal notranslate"><span class="pre">processGroups()</span></code> remain nested under it in the workspace history.</p>
+<p>Keep algorithms that should appear beneath the parent history as child algorithms.
+If a child algorithm must still place its output in the <code class="docutils literal notranslate"><span class="pre">AnalysisDataService</span></code>, prefer <code class="docutils literal notranslate"><span class="pre">setAlwaysStoreInADS(true)</span></code> over making it a non-child algorithm with <code class="docutils literal notranslate"><span class="pre">setChild(false)</span></code>.
+Running it as non-child creates a separate top-level history entry instead of nesting it under the parent algorithm.</p>
+</section>
 <section id="enhancing-asynchronous-running">
 <h3>Enhancing asynchronous running<a class="headerlink" href="#enhancing-asynchronous-running" title="Link to this heading">#</a></h3>
 <p>Any algorithm can be run asynchronously without modification.
@@ -741,6 +770,7 @@ These will be caught in the base Algorithm class, which will report the failure 
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-features">Further Features</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#child-algorithms">Child Algorithms</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#workspacegroup-history-from-processgroups">WorkspaceGroup history from processGroups</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enhancing-asynchronous-running">Enhancing asynchronous running</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exceptions">Exceptions</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#properties-access-within-workbench-dialogs">Properties access within workbench dialogs</a></li>
