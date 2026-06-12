@@ -831,6 +831,7 @@ git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </
 <li><p>Click <code class="docutils literal notranslate"><span class="pre">Build</span> <span class="pre">Now</span></code> on <a class="reference external" href="https://builds.mantidproject.org/view/All/job/open-release-testing/">open-release-testing</a>. This will
 set the value of the Jenkins global property <code class="docutils literal notranslate"><span class="pre">BRANCH_TO_PUBLISH</span></code> to <code class="docutils literal notranslate"><span class="pre">release-next</span></code>,
 which will re-enable package publishing for the <code class="docutils literal notranslate"><span class="pre">release-next</span></code> nightly pipeline.</p></li>
+<li><p>Set the value of the <a class="reference external" href="https://github.com/mantidproject/mantid/settings/variables/actions">github actions variable</a> <code class="docutils literal notranslate"><span class="pre">BRANCH_TO_PUBLISH</span></code> to <code class="docutils literal notranslate"><span class="pre">release-next</span></code>. This will set the target branch used by <a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/.github/workflows/update-pixi-lockfile.yml">github workflow</a> for updating pixi lock file. And the same variable is also used to <a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/.github/workflows/add-milestone.yml">determine the milestone</a> for pull requests without an assigned milestone.</p></li>
 <li><p>Check the state of all open pull requests for this milestone and decide which
 should be kept for the release, liaise with the Release Manager on this. Move any
 pull requests not targeted for this release out of the milestone, and then change
@@ -955,6 +956,7 @@ The changes need to be verified on an IDAaaS test instance before the PR can be 
 <li><p>Run the <a class="reference external" href="https://builds.mantidproject.org/view/All/job/close-release-testing">close-release-testing</a> Jenkins job.
 This will set the value of the Jenkins global property <code class="docutils literal notranslate"><span class="pre">BRANCH_TO_PUBLISH</span></code> to <code class="docutils literal notranslate"><span class="pre">main</span></code>, which will re-enable package
 publishing for the <code class="docutils literal notranslate"><span class="pre">main</span></code> nightly pipeline.</p></li>
+<li><p>Set the value of the <a class="reference external" href="https://github.com/mantidproject/mantid/settings/variables/actions">github actions variable</a> <code class="docutils literal notranslate"><span class="pre">BRANCH_TO_PUBLISH</span></code> back to <code class="docutils literal notranslate"><span class="pre">main</span></code>.</p></li>
 </ul>
 <p><strong>Generate DOI</strong></p>
 <p>This requires that a tag has been created for this release. This tag is created when you draft and
