@@ -355,61 +355,48 @@
 </section>
 <section id="motivation">
 <h2>Motivation<a class="headerlink" href="#motivation" title="Link to this heading">#</a></h2>
-<p>Some unit tests use a small amount of data that is created by the test
-harness and others load data from a file. Take the example of
-<code class="docutils literal notranslate"><span class="pre">ApplyCalibrationTest</span></code>. In its first test, testSimple, it creates a
-workspace with 10 detectors using
-<code class="docutils literal notranslate"><span class="pre">WorkspaceCreationHelper::create2DWorkspaceWithFullInstrument()</span></code>. In
-the second test, testComplex, it reads a file
-<code class="docutils literal notranslate"><span class="pre">unit_testing/MAPS_Definition_Reduced.xml</span></code>, which contains
-the definition of a MAPS instrument with the number of detectors reduced
-much to ensure it is read quickly but preserving the other properties of
-this instrument. However, new tests should avoid even loading of this
-nature unless there is a strong justification for doing so.</p>
+<p>Some unit tests use a small amount of data that is created by the test harness and others load data
+from a file. Take the example of <code class="docutils literal notranslate"><span class="pre">ApplyCalibrationTest</span></code>. In its first test, testSimple, it creates
+a workspace with 10 detectors using <code class="docutils literal notranslate"><span class="pre">WorkspaceCreationHelper::create2DWorkspaceWithFullInstrument()</span></code>.
+In the second test, testComplex, it reads a file <code class="docutils literal notranslate"><span class="pre">unit_testing/MAPS_Definition_Reduced.xml</span></code>, which contains
+the definition of a MAPS instrument with the number of detectors reduced much to ensure it is read
+quickly but preserving the other properties of this instrument. However, new tests should avoid even
+loading of this nature unless there is a strong justification for doing so.</p>
 <p><strong>Main issues:</strong></p>
 <ul class="simple">
-<li><p>need to store data, mainly for testing, alongside the code</p></li>
-<li><p>some data needs to be versioned</p></li>
-<li><p>merging system tests back with main code requires handling large data
+<li><p>Need to store data, mainly for testing, alongside the code</p></li>
+<li><p>Some data needs to be versioned</p></li>
+<li><p>Merging system tests back with main code requires handling large data
 files</p></li>
-<li><p>git is bad at handling binary files</p></li>
+<li><p>Git is bad at handling binary files</p></li>
 </ul>
-<p><strong>Possible solutions:</strong></p>
-<ul class="simple">
-<li><p>CMake’s <a class="reference external" href="http://www.kitware.com/source/home/post/107">ExternalData</a></p></li>
-<li><p>don’t have any reference to data in git and force developers to
-manage the data stored on a file server</p></li>
-<li><p>extensions to git, e.g.
-<a class="reference external" href="https://github.com/jedbrown/git-fat">git-fat</a>,
-<a class="reference external" href="https://git-annex.branchable.com/">git-annex</a> to deal with large
-files</p></li>
-</ul>
-<p>We have chosen to use CMake as it is already in use as a build system
-and it doesn’t involve introducing extra work with git.</p>
+<p><strong>Implementation</strong></p>
+<p>To avoid issues with storing large files in Git version control, Mantid uses CMake’s <a class="reference external" href="https://www.kitware.com/cmake-externaldata-using-large-files-with-distributed-version-control/">ExternalData</a> module.
+Since CMake is already used as the build system, this does not introduce any additional Git-related workflow. ExternalData allows test data to be stored on a separate server while keeping only a reference to each file in the Git repository. Developers can add files to the data store, and CMake downloads them automatically when they are required for tests.</p>
 </section>
 <section id="cmake-s-external-data">
 <h2>CMake’s External Data<a class="headerlink" href="#cmake-s-external-data" title="Link to this heading">#</a></h2>
 <figure class="align-center" id="id1">
-<img alt="Image originated at http://www.kitware.com/source/home/post/107" src="_images/ExternalDataSchematic.png" />
+<img alt="Image originated at https://www.kitware.com/source/files/28_86189184.jpg" src="_images/ExternalDataSchematic.png" />
 <figcaption>
-<p><span class="caption-text">Image originated at <a class="reference external" href="http://www.kitware.com/source/home/post/107">http://www.kitware.com/source/home/post/107</a></span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+<p><span class="caption-text">Image originated at <a class="reference external" href="https://www.kitware.com/source/files/28_86189184.jpg">https://www.kitware.com/source/files/28_86189184.jpg</a></span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p><strong>Terminology:</strong></p>
 <ul class="simple">
-<li><p>content - the real data</p></li>
-<li><p>content link - text file containing a hash (MD5) of the real content.
+<li><p>Content - the real data</p></li>
+<li><p>Content link - text file containing a hash (MD5) of the real content.
 The filename is the filename of the real data plus the <code class="docutils literal notranslate"><span class="pre">.md5</span></code>
 extension</p></li>
-<li><p>object - a file that stores the real data and whose name is the <code class="docutils literal notranslate"><span class="pre">MD5</span></code>
+<li><p>Object - a file that stores the real data and whose name is the <code class="docutils literal notranslate"><span class="pre">MD5</span></code>
 hash of the content</p></li>
 </ul>
 <p><strong>Overview:</strong></p>
 <ul class="simple">
-<li><p>git does not store any content, it only stores content links</p></li>
-<li><p>content is stored on a remote server that can be accessed via a
+<li><p>Git does not store any content, it only stores content links</p></li>
+<li><p>Content is stored on a remote server that can be accessed via a
 <code class="docutils literal notranslate"><span class="pre">http</span></code> link</p></li>
-<li><p>running cmake sets up build rules so that the content is downloaded
+<li><p>Running cmake sets up build rules so that the content is downloaded
 when dependent projects are built</p></li>
 </ul>
 </section>
@@ -430,14 +417,14 @@ CMake variable and defaults to <code class="docutils literal notranslate"><span 
 </section>
 <section id="using-existing-data">
 <h2>Using Existing Data<a class="headerlink" href="#using-existing-data" title="Link to this heading">#</a></h2>
-<p>For unit testings, there are two places files may be found:</p>
+<p>For unit testing, there are two places where files may be found:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/mantidproject/mantid/tree/main/Testing/Data">…/Testing/Data/</a>
 for <a class="reference internal" href="RunningTheUnitTests.html#runningtheunittests"><span class="std std-ref">unit test</span></a>, <a class="reference internal" href="Standards/DocumentationGuideForDevs.html#documentationguidefordevs"><span class="std std-ref">doc test</span></a>, and <a class="reference internal" href="SystemTests.html#systemtests"><span class="std std-ref">system test</span></a> data</p></li>
 <li><p><a class="reference external" href="https://github.com/mantidproject/mantid/tree/main/instrument/unit_testing">…/instrument/unit_testing</a>
 for test <a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/InstrumentDefinitionFile.html#instrumentdefinitionfile" title="(in MantidProject v6.15)"><span class="xref std std-ref">IDF</span></a> files</p></li>
 </ul>
-<p>For system testings, there is one more location developers use to dump reference
+<p>For system testing, there is one more location developers use to dump reference
 data files:</p>
 <ul class="simple">
 <li><p><cite>…/Testing/SystemTests/tests/framework/reference</cite></p></li>
@@ -449,17 +436,14 @@ corresponding tests:</p>
 <li><p><cite>…/Testing/Data/SystemTest</cite></p></li>
 <li><p><cite>…/Testing/Data/UnitTest</cite></p></li>
 </ul>
-<p>However, it is known that some developers like to reuse the same data files for
-different type of tests, therefore sometime the DocTest and SystemTest is using
-data from UnitTest, which means you should fetch all testing data before trying
-to run any test locally.
-Furthermore, this location is mostly considered as a centralized location for all
-testing data.
-But some groups prefer to treat this location for storing <strong>input</strong> testing data
-only, therefore the testing system will look for the reference folder mentioned
-above if it cannot find the reference data here.
-Overall, it is important to talk to the senior developers in your team to learn
-the preferred location for storing testing data.</p>
+<p>However, it is known that some developers like to reuse the same data files for different types of tests.
+Therefore, sometimes the DocTest and SystemTest are using data from UnitTest, which means you should fetch
+all testing data before trying to run any test locally. Furthermore, this location is mostly considered a
+centralized location for all testing data. But some groups prefer to treat this location as storing <strong>input</strong>
+testing data only; therefore the testing system will look for the reference folder mentioned above if it cannot
+find the reference data here. There are many examples where the same data file has to be duplicated across multiple locations as required by the tests.
+Overall, it is important to talk to the senior developers in your team to learn the
+preferred location for storing testing data.</p>
 </section>
 <section id="adding-a-new-file-s">
 <span id="datafilesfortesting-addinganewfile"></span><h2>Adding A New File(s)<a class="headerlink" href="#adding-a-new-file-s" title="Link to this heading">#</a></h2>
@@ -471,14 +455,14 @@ it would be called like this:</p>
 </div>
 <p>This does the following:</p>
 <ul class="simple">
-<li><p>computes the MD5 hash of the data, e.g.
+<li><p>Computes the MD5 hash of the data, e.g.
 <code class="docutils literal notranslate"><span class="pre">d6948514d78db7fe251efb6cce4a9b83</span></code></p></li>
-<li><p>stores the MD5 hash in a file called
+<li><p>Stores the MD5 hash in a file called
 <code class="docutils literal notranslate"><span class="pre">Testing/Data/UnitTest/INST12345.nxs.md5</span></code></p></li>
-<li><p>renames the original data file to be its md5 sum
+<li><p>Renames the original data file to its MD5 sum
 <code class="docutils literal notranslate"><span class="pre">Testing/Data/UnitTest/d6948514d78db7fe251efb6cce4a9b83</span></code></p></li>
-<li><p>runs <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">Testing/Data/UnitTest/INST12345.nxs.md5</span></code></p></li>
-<li><p>tells the user to upload the file(s),
+<li><p>Runs <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">Testing/Data/UnitTest/INST12345.nxs.md5</span></code></p></li>
+<li><p>Tells the user to upload the file(s),
 <code class="docutils literal notranslate"><span class="pre">d6948514d78db7fe251efb6cce4a9b83</span></code>, to the <a class="reference external" href="https://testdata.mantidproject.org/ftp/external-data/upload">remote store</a></p></li>
 </ul>
 <p><strong>Notes:</strong></p>
@@ -495,7 +479,11 @@ instrument prefix in the file name.</p></li>
 </section>
 <section id="updating-file-s">
 <h2>Updating File(s)<a class="headerlink" href="#updating-file-s" title="Link to this heading">#</a></h2>
-<p>The workflow is the same as <a class="reference internal" href="#datafilesfortesting-addinganewfile"><span class="std std-ref">adding new files</span></a> except that the developer must first put the new version of the file in the right place. For the example above, it would be <code class="docutils literal notranslate"><span class="pre">Testing/Data/UnitTest/INST12345.nxs</span></code>. Then the new <code class="docutils literal notranslate"><span class="pre">.md5</span></code> file and associated renamed file will be created. <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">diff</span></code> will show that change to the contents of <code class="docutils literal notranslate"><span class="pre">Testing/Data/UnitTest/INST12345.nxs.md5</span></code> and that there is an untracked file with the md5 sum for a name.</p>
+<p>The workflow is the same as <a class="reference internal" href="#datafilesfortesting-addinganewfile"><span class="std std-ref">adding new files</span></a> except that
+the developer must first put the new version of the file in the right place. For the example above,
+it would be <code class="docutils literal notranslate"><span class="pre">Testing/Data/UnitTest/INST12345.nxs</span></code>. Then the new <code class="docutils literal notranslate"><span class="pre">.md5</span></code> file and associated renamed
+file will be created. <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">diff</span></code> will show that change to the contents of <code class="docutils literal notranslate"><span class="pre">Testing/Data/UnitTest/INST12345.nxs.md5</span></code>
+and that there is an untracked file with the md5 sum for a name.</p>
 </section>
 <section id="developer-setup">
 <span id="datafilesfortesting-developersetup"></span><h2>Developer Setup<a class="headerlink" href="#developer-setup" title="Link to this heading">#</a></h2>
@@ -531,10 +519,10 @@ cmake<span class="w"> </span>-DMANTID_DATA_STORE<span class="o">=</span>D:/Data/
 </section>
 <section id="setting-with-dropbox">
 <h3>Setting With Dropbox:<a class="headerlink" href="#setting-with-dropbox" title="Link to this heading">#</a></h3>
-<p>This is for people in the ORNL dropbox share and has the effect of
+<p>This is for people in the ORNL Dropbox share and has the effect of
 reducing external network traffic. There is a <a class="reference external" href="http://gist.github.com/peterfpeterson/638490530e37c3d8dba5">gist</a> for
-getting dropbox running on linux. Instead of defining the
-<code class="docutils literal notranslate"><span class="pre">MANTID_DATA_STORE</span></code> in cmake, it is simplest to create a symbolic
+getting Dropbox running on Linux. Instead of defining the
+<code class="docutils literal notranslate"><span class="pre">MANTID_DATA_STORE</span></code> in CMake, it is simplest to create a symbolic
 link</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>ln<span class="w"> </span>-s<span class="w"> </span>~/Dropbox<span class="se">\ \(</span>ORNL<span class="se">\)</span>/MantidExternalData<span class="w"> </span>~
 </pre></div>
@@ -543,18 +531,29 @@ link</p>
 </section>
 <section id="proxy-settings">
 <h3>Proxy Settings<a class="headerlink" href="#proxy-settings" title="Link to this heading">#</a></h3>
-<p>If you are sitting behind a proxy server then the shell or Visual studio
+<p>If you are sitting behind a proxy server, then the shell or Visual Studio
 needs to know about the proxy server. You must set the <code class="docutils literal notranslate"><span class="pre">http_proxy</span></code>
 environment variable to <code class="docutils literal notranslate"><span class="pre">http://HOSTNAME:PORT</span></code>.</p>
-<p>On Windows you go to <code class="docutils literal notranslate"><span class="pre">Control</span> <span class="pre">Panel-&gt;System</span></code> and
+<p>On Windows, go to <code class="docutils literal notranslate"><span class="pre">Control</span> <span class="pre">Panel-&gt;System</span></code> and
 <code class="docutils literal notranslate"><span class="pre">Security-&gt;System-&gt;Advanced</span> <span class="pre">System</span> <span class="pre">settings-&gt;Environment</span> <span class="pre">Variables</span></code> and
 click <code class="docutils literal notranslate"><span class="pre">New...</span></code> to add a variable.</p>
 <p>On Linux/Mac you will need to set the variable in the shell profile or
 on Linux you can set it system wide in <code class="docutils literal notranslate"><span class="pre">/etc/environment</span></code>.</p>
 </section>
+<section id="cmake-targets-for-downloading-test-data">
+<h3>CMake targets for downloading test data<a class="headerlink" href="#cmake-targets-for-downloading-test-data" title="Link to this heading">#</a></h3>
+<p>Currently there are four CMake targets defined at <a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/buildconfig/CMake/SetupDataTargets.cmake">SetupDataTargets.cmake</a> (shown below) that download the test data when built. The corresponding data will appear in the path defined by the <code class="docutils literal notranslate"><span class="pre">ExternalData_BINARY_ROOT</span></code> CMake variable, which defaults to <code class="docutils literal notranslate"><span class="pre">build/ExternalData</span></code>.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">UnitTestData</span></code> - data required for the unit tests</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DocTestData</span></code> - data required for the documentation tests</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">StandardTestData</span></code> - includes both data required by the unit tests and documentation tests</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SystemTestData</span></code> - data required for the system tests.</p></li>
+</ul>
+</section>
 <section id="troubleshooting">
 <h3>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading">#</a></h3>
-<p>If you find that your tests cannot find the data they require check the
+<blockquote>
+<div><p>If you find that your tests cannot find the data they require check the
 following gotchas:</p>
 <ul class="simple">
 <li><p>Check that you have re-run CMake in the build directory</p></li>
@@ -562,10 +561,19 @@ following gotchas:</p>
 the Mantid file repository</p></li>
 <li><p>Check that you have removed any user defined data search directories
 in <code class="docutils literal notranslate"><span class="pre">~/.mantid</span></code></p></li>
-<li><p>Check that you have rebuilt the test executable you’re trying to run</p></li>
-<li><p>Check that you have rebuilt the SystemTestData target</p></li>
+<li><p>Check that you have rebuilt the test executable you’re trying to run.</p></li>
+<li><p>Check that you have rebuilt the corresponding CMake target for the test you are trying to run.</p></li>
 </ul>
+</div></blockquote>
 </section>
+</section>
+<section id="alternative-implementations">
+<h2>Alternative Implementations<a class="headerlink" href="#alternative-implementations" title="Link to this heading">#</a></h2>
+<p>Before selecting CMake’s ExternalData as the solution for handling large files used in testing, the following Git extensions were also considered:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/jedbrown/git-fat">git-fat</a></p></li>
+<li><p><a class="reference external" href="https://git-annex.branchable.com/">git-annex</a></p></li>
+</ul>
 </section>
 </section>
 
@@ -628,9 +636,11 @@ in <code class="docutils literal notranslate"><span class="pre">~/.mantid</span>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-cmake-command">Example cmake command:</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-with-dropbox">Setting With Dropbox:</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proxy-settings">Proxy Settings</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cmake-targets-for-downloading-test-data">CMake targets for downloading test data</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting">Troubleshooting</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alternative-implementations">Alternative Implementations</a></li>
 </ul>
   </nav></div>
 
