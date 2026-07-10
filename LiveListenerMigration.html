@@ -1,0 +1,1293 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Live-Listener API Migration Guide (v3 refactoring) &#8212; MantidProject main documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/css/style.css?v=562d7d41" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="_static/documentation_options.js?v=a8da1a53"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'LiveListenerMigration';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Logging" href="Logging.html" />
+    <link rel="prev" title="Load Algorithm Hook" href="LoadAlgorithmHook.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    <link rel="icon" sizes="32x32" href="_static/images/favicon.ico">
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  <img src="_static/images/mantid_logo_light.png" class="logo__image only-light" alt="Logo image">
+  <img src="_static/images/mantid_logo_dark.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://download.mantidproject.org">Downloads</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org/nightly/tutorials/">Tutorials</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org">User Docs</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://developer.mantidproject.org">Develop</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org/release/">Release notes</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://www.mantidproject.org/contact">Contact Us</a>
+  </li>
+</ul></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+        <div class="navbar-item"><ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+    <li class="nav-item">
+      <a class="nav-link" href="https://github.com/mantidproject/mantid" rel="noopener" target="_blank" title="GitHub">
+        <span><i class="fab fa-github-square"></i></span>
+        <label class="sr-only">GitHub</label>
+      </a>
+    </li>
+  </ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://download.mantidproject.org">Downloads</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org/nightly/tutorials/">Tutorials</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org">User Docs</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://developer.mantidproject.org">Develop</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org/release/">Release notes</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://www.mantidproject.org/contact">Contact Us</a>
+  </li>
+</ul></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+          <div class="navbar-item"><ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+    <li class="nav-item">
+      <a class="nav-link" href="https://github.com/mantidproject/mantid" rel="noopener" target="_blank" title="GitHub">
+        <span><i class="fab fa-github-square"></i></span>
+        <label class="sr-only">GitHub</label>
+      </a>
+    </li>
+  </ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item pst-sidebar-collapse"><button id="pst-collapse-sidebar-button" aria-expanded="true" aria-controls="pst-primary-sidebar">
+  <svg class="pst-icon" role="img" aria-hidden="true" focusable="false" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    <path fill="currentColor" d="M3 15.5C2.36232 15.5 1.74874 15.2564 1.28478 14.8189C0.820828 14.3815 0.541576 13.7832 0.504167 13.1467L0.5 13L0.5 3C0.499965 2.36232 0.743605 1.74874 1.18107 1.28478C1.61854 0.820828 2.21676 0.541576 2.85333 0.504167L3 0.5L13 0.5C13.6377 0.499965 14.2513 0.743605 14.7152 1.18107C15.1792 1.61854 15.4584 2.21676 15.4958 2.85333L15.5 3L15.5 13C15.5 13.6377 15.2564 14.2513 14.8189 14.7152C14.3815 15.1792 13.7832 15.4584 13.1467 15.4958L13 15.5L3 15.5ZM3 13.8333L10.5 13.8333L10.5 2.16667L3 2.16667C2.79589 2.16669 2.59889 2.24163 2.44636 2.37726C2.29383 2.5129 2.19638 2.69979 2.1725 2.9025L2.16667 3L2.16667 13C2.16669 13.2041 2.24163 13.4011 2.37726 13.5536C2.5129 13.7062 2.69979 13.8036 2.9025 13.8275L3 13.8333ZM6.65583 10.325L6.5775 10.2558L4.91083 8.58917C4.76735 8.44567 4.68116 8.25476 4.66843 8.05223C4.65569 7.84971 4.71729 7.6495 4.84167 7.48917L4.91083 7.41083L6.5775 5.74417C6.72747 5.59471 6.9287 5.50794 7.14032 5.50148C7.35194 5.49502 7.55809 5.56935 7.7169 5.70937C7.8757 5.8494 7.97525 6.04463 7.99533 6.25539C8.01541 6.46616 7.95451 6.67667 7.825 6.84417L7.75583 6.9225L6.67917 8L7.75583 9.0775C7.89931 9.22099 7.98551 9.41191 7.99824 9.61443C8.01097 9.81695 7.94938 10.0172 7.825 10.1775L7.75583 10.2558C7.61234 10.3993 7.42142 10.4855 7.2189 10.4982C7.01638 10.511 6.81617 10.4494 6.65583 10.325Z"/>
+  </svg>
+  <span class="pst-collapse-sidebar-label">Collapse Sidebar</span>
+  <span class="pst-expand-sidebar-label">Expand Sidebar</span>
+</button></div>
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"></div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Live-Listener API Migration Guide (v3 refactoring)</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="live-listener-api-migration-guide-v3-refactoring">
+<span id="livelistenermigration"></span><h1>Live-Listener API Migration Guide (v3 refactoring)<a class="headerlink" href="#live-listener-api-migration-guide-v3-refactoring" title="Link to this heading">#</a></h1>
+<p>Mantid’s live-listener interface was refactored to separate state-read
+from state-transition, eliminate hidden side effects in <code class="docutils literal notranslate"><span class="pre">runStatus()</span></code>,
+and allow <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/LoadLiveData-v1.html#algm-loadlivedata" title="(in MantidProject v6.16)"><span class="xref std std-ref">LoadLiveData</span></a> to run successfully as
+a stand-alone algorithm without requiring
+<a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/MonitorLiveData-v1.html#algm-monitorlivedata" title="(in MantidProject v6.16)"><span class="xref std std-ref">MonitorLiveData</span></a>.</p>
+<p>This document covers the generic interface changes that apply to every
+<code class="docutils literal notranslate"><span class="pre">ILiveListener</span></code> subclass.  For details specific to
+<code class="docutils literal notranslate"><span class="pre">SNSLiveEventDataListener</span></code> (ADARA packet handling, the deferred
+<code class="docutils literal notranslate"><span class="pre">RunStatusPkt</span></code> flow, the state-machine diagrams, and the pre-existing
+<code class="docutils literal notranslate"><span class="pre">m_ignorePackets</span></code> defect) see <a class="reference internal" href="SNSLiveEventDataListenerRefactoring.html#snsliveeventdatalistenerrefactoring"><span class="std std-ref">SNSLiveEventDataListener refactoring</span></a>.</p>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#motivation" id="id1">Motivation</a></p></li>
+<li><p><a class="reference internal" href="#new-api-use-these" id="id2">New API (use these)</a></p></li>
+<li><p><a class="reference internal" href="#deprecated-api-migrate-away-from" id="id3">Deprecated API (migrate away from)</a></p>
+<ul>
+<li><p><a class="reference internal" href="#runstatus" id="id4"><code class="docutils literal notranslate"><span class="pre">runStatus()</span></code></a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#extractdata-as-a-template-method" id="id5"><code class="docutils literal notranslate"><span class="pre">extractData()</span></code> as a template method</a></p></li>
+<li><p><a class="reference internal" href="#state-transition-hooks" id="id6">State-transition hooks</a></p></li>
+<li><p><a class="reference internal" href="#migration-recipe-for-listener-authors" id="id7">Migration recipe for listener authors</a></p>
+<ul>
+<li><p><a class="reference internal" href="#step-1-remove-your-runstatus-override" id="id8">Step 1 — Remove your <code class="docutils literal notranslate"><span class="pre">runStatus()</span></code> override</a></p></li>
+<li><p><a class="reference internal" href="#step-2-add-a-listenerstate-const-override" id="id9">Step 2 — Add a <code class="docutils literal notranslate"><span class="pre">listenerState()</span> <span class="pre">const</span> <span class="pre">override</span></code></a></p></li>
+<li><p><a class="reference internal" href="#step-3-override-runstate-const-recommended" id="id10">Step 3 — Override <code class="docutils literal notranslate"><span class="pre">runState()</span> <span class="pre">const</span></code> (recommended)</a></p></li>
+<li><p><a class="reference internal" href="#step-4-optionally-override-ispaused-and-lasttransition" id="id11">Step 4 — Optionally override <code class="docutils literal notranslate"><span class="pre">isPaused()</span></code> and <code class="docutils literal notranslate"><span class="pre">lastTransition()</span></code></a></p></li>
+<li><p><a class="reference internal" href="#step-5-override-doextractdata-not-extractdata" id="id12">Step 5 — Override <code class="docutils literal notranslate"><span class="pre">doExtractData()</span></code>, not <code class="docutils literal notranslate"><span class="pre">extractData()</span></code></a></p></li>
+<li><p><a class="reference internal" href="#step-6-move-any-fsm-tick-code-out-of-runstatus" id="id13">Step 6 — Move any FSM-tick code out of <code class="docutils literal notranslate"><span class="pre">runStatus()</span></code></a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#worked-examples" id="id14">Worked examples</a></p>
+<ul>
+<li><p><a class="reference internal" href="#pattern-a-constant-run-state" id="id15">Pattern A — constant run state</a></p></li>
+<li><p><a class="reference internal" href="#pattern-b-edge-detected-run-state" id="id16">Pattern B — edge-detected run state</a></p></li>
+<li><p><a class="reference internal" href="#pattern-c-fsm-tick-anti-pattern-fix" id="id17">Pattern C — FSM-tick anti-pattern fix</a></p></li>
+<li><p><a class="reference internal" href="#pattern-d-test-mocks" id="id18">Pattern D — test mocks</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#behaviour-preservation-guarantees" id="id19">Behaviour preservation guarantees</a></p>
+<ul>
+<li><p><a class="reference internal" href="#critical-detail-c1" id="id20">Critical detail (C1)</a></p></li>
+<li><p><a class="reference internal" href="#two-subtleties-to-flag-in-code-review" id="id21">Two subtleties to flag in code review</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#pitfalls-and-faq" id="id22">Pitfalls and FAQ</a></p>
+<ul>
+<li><p><a class="reference internal" href="#why-is-extractdata-final" id="id23">Why is <code class="docutils literal notranslate"><span class="pre">extractData()</span></code> <code class="docutils literal notranslate"><span class="pre">final</span></code>?</a></p></li>
+<li><p><a class="reference internal" href="#what-if-my-listener-never-had-a-runstatus-override" id="id24">What if my listener never had a <code class="docutils literal notranslate"><span class="pre">runStatus()</span></code> override?</a></p></li>
+<li><p><a class="reference internal" href="#why-are-onbeginrun-onendrun-protected-rather-than-public" id="id25">Why are <code class="docutils literal notranslate"><span class="pre">onBeginRun</span></code> / <code class="docutils literal notranslate"><span class="pre">onEndRun</span></code> protected rather than public?</a></p></li>
+<li><p><a class="reference internal" href="#how-do-i-drive-onrunpause-in-a-unit-test" id="id26">How do I drive <code class="docutils literal notranslate"><span class="pre">onRunPause</span></code> in a unit test?</a></p></li>
+<li><p><a class="reference internal" href="#when-should-i-override-onafterextract-rather-than-onbeforeextract" id="id27">When should I override <code class="docutils literal notranslate"><span class="pre">onAfterExtract()</span></code> rather than <code class="docutils literal notranslate"><span class="pre">onBeforeExtract()</span></code>?</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#further-reading" id="id28">Further reading</a></p></li>
+</ul>
+</nav>
+<section id="motivation">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Motivation</a><a class="headerlink" href="#motivation" title="Link to this heading">#</a></h2>
+<p>The pre-refactor interface had three coupled defects:</p>
+<ol class="arabic simple">
+<li><p><strong>Conflated state.</strong>  <code class="docutils literal notranslate"><span class="pre">runStatus()</span></code> returned a value that was part
+DAS state (<code class="docutils literal notranslate"><span class="pre">NoRun</span> <span class="pre">/</span> <span class="pre">BeginRun</span> <span class="pre">/</span> <span class="pre">Running</span> <span class="pre">/</span> <span class="pre">EndRun</span></code>) and part
+listener-internal FSM — it mutated to <code class="docutils literal notranslate"><span class="pre">Running</span></code> or <code class="docutils literal notranslate"><span class="pre">NoRun</span></code> as a
+side effect of being called.  Callers could not ask either question
+without paying the cost of the other.</p></li>
+<li><p><strong>Hidden side effects on a “getter”.</strong>  Calling <code class="docutils literal notranslate"><span class="pre">runStatus()</span></code>
+cleared the geometry cache, the name map, marked the workspace
+uninitialised, ran <code class="docutils literal notranslate"><span class="pre">initWorkspacePart1()</span></code>, consumed any deferred
+<code class="docutils literal notranslate"><span class="pre">RunStatusPkt</span></code>, and dropped the back-pressure flag
+<code class="docutils literal notranslate"><span class="pre">m_pauseNetRead</span></code>.  None of this was visible at the call site.</p></li>
+<li><p><strong>External-control deadlock.</strong>  Stand-alone <code class="docutils literal notranslate"><span class="pre">LoadLiveData</span></code> does not
+call <code class="docutils literal notranslate"><span class="pre">runStatus()</span></code>.  After a <code class="docutils literal notranslate"><span class="pre">BeginRun</span></code> / <code class="docutils literal notranslate"><span class="pre">EndRun</span></code> packet set
+<code class="docutils literal notranslate"><span class="pre">m_pauseNetRead</span> <span class="pre">=</span> <span class="pre">true</span></code>, the background reader stopped, the
+workspace could not be re-initialised, and the next
+<code class="docutils literal notranslate"><span class="pre">extractData()</span></code> either hit the 10-second <code class="docutils literal notranslate"><span class="pre">NotYet</span></code> timeout or
+spun indefinitely on a stale workspace.</p></li>
+</ol>
+<p>A fourth issue was an undocumented ordering contract: the legacy
+<code class="docutils literal notranslate"><span class="pre">MonitorLiveData</span></code> polling loop relied on calling <code class="docutils literal notranslate"><span class="pre">extractData()</span></code>
+first and <code class="docutils literal notranslate"><span class="pre">runStatus()</span></code> second within the same iteration; nothing in
+the type system enforced this.</p>
+<p>The v3 refactor has three objectives, in priority order:</p>
+<ol class="arabic simple">
+<li><p>Expose the listener state and the ADARA run state without conflating
+them.</p></li>
+<li><p>Separate state-read from state-transition; make every state mutation
+explicit and named.</p></li>
+<li><p>Move as much of the state machine as possible into <code class="docutils literal notranslate"><span class="pre">extractData()</span></code>,
+the only method every consumer of <code class="docutils literal notranslate"><span class="pre">ILiveListener</span></code> must call.</p></li>
+</ol>
+<p>The result is four pure-getter queries on <code class="docutils literal notranslate"><span class="pre">ILiveListener</span></code>, a
+template-method <code class="docutils literal notranslate"><span class="pre">extractData()</span></code> on <code class="docutils literal notranslate"><span class="pre">LiveListener</span></code> that dispatches to
+named protected hooks, and a deprecated-but-functional <code class="docutils literal notranslate"><span class="pre">runStatus()</span></code>
+shim for backward compatibility.</p>
+</section>
+<section id="new-api-use-these">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">New API (use these)</a><a class="headerlink" href="#new-api-use-these" title="Link to this heading">#</a></h2>
+<p>All four methods are <strong>pure getters</strong> — calling them never mutates
+internal state.  They are declared on <code class="docutils literal notranslate"><span class="pre">ILiveListener</span></code>.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 70.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Method</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">runState()</span> <span class="pre">const</span></code></p></td>
+<td><p>Current DAS run state: <code class="docutils literal notranslate"><span class="pre">NoRun</span></code>, <code class="docutils literal notranslate"><span class="pre">BeginRun</span></code>, <code class="docutils literal notranslate"><span class="pre">Running</span></code>, or
+<code class="docutils literal notranslate"><span class="pre">EndRun</span></code>.  Updated by the background thread; readable from the
+foreground at any time.  Default implementation returns
+<code class="docutils literal notranslate"><span class="pre">NoRun</span></code> for listeners with no concept of run boundaries.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">isPaused()</span> <span class="pre">const</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">true</span></code> when the DAS has signalled a run pause (ADARA
+annotation packet).  Orthogonal to <code class="docutils literal notranslate"><span class="pre">runState()</span></code> — the run
+state remains <code class="docutils literal notranslate"><span class="pre">Running</span></code> while paused.  Default returns
+<code class="docutils literal notranslate"><span class="pre">false</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">listenerState()</span> <span class="pre">const</span></code></p></td>
+<td><p>Connection / health: <code class="docutils literal notranslate"><span class="pre">Disconnected</span></code>, <code class="docutils literal notranslate"><span class="pre">ReadWait</span></code>,
+<code class="docutils literal notranslate"><span class="pre">Connected</span></code>, or <code class="docutils literal notranslate"><span class="pre">Error</span></code>.  <strong>Pure virtual</strong> — every concrete
+listener must override it.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">lastTransition()</span> <span class="pre">const</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">std::optional&lt;RunStatus&gt;</span></code> — the edge (<code class="docutils literal notranslate"><span class="pre">BeginRun</span></code> or
+<code class="docutils literal notranslate"><span class="pre">EndRun</span></code>) committed by the most recent <code class="docutils literal notranslate"><span class="pre">extractData()</span></code> call,
+or <code class="docutils literal notranslate"><span class="pre">std::nullopt</span></code> if none.  Cleared automatically on the
+<em>next</em> successful <code class="docutils literal notranslate"><span class="pre">extractData()</span></code> cycle that commits a <em>new</em>
+edge, so that <code class="docutils literal notranslate"><span class="pre">MonitorLiveData</span></code> does not re-process the same
+edge.  Default returns <code class="docutils literal notranslate"><span class="pre">std::nullopt</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The base-class declarations are:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">namespace</span><span class="w"> </span><span class="nn">Mantid</span><span class="o">::</span><span class="nn">API</span><span class="w"> </span><span class="p">{</span>
+
+<span class="k">enum</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">ListenerState</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Disconnected</span><span class="p">,</span><span class="w">   </span><span class="c1">///&lt; Not connected</span>
+<span class="w">    </span><span class="n">Connected</span><span class="p">,</span><span class="w">      </span><span class="c1">///&lt; Connected and reading</span>
+<span class="w">    </span><span class="n">ReadWait</span><span class="p">,</span><span class="w">       </span><span class="c1">///&lt; Connected but paused at a run boundary</span>
+<span class="w">    </span><span class="n">Error</span><span class="w">           </span><span class="c1">///&lt; Background thread reported an exception</span>
+<span class="p">};</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">MANTID_API_DLL</span><span class="w"> </span><span class="n">ILiveListener</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Kernel</span><span class="o">::</span><span class="n">PropertyManager</span><span class="w"> </span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="k">enum</span><span class="w"> </span><span class="nc">RunStatus</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">NoRun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">BeginRun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">Running</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">EndRun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="p">};</span>
+
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="n">RunStatus</span><span class="w"> </span><span class="nf">runState</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w">                  </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">NoRun</span><span class="p">;</span><span class="w">       </span><span class="p">}</span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w">      </span><span class="nf">isPaused</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w">                  </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w">       </span><span class="p">}</span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="n">ListenerState</span><span class="w"> </span><span class="nf">listenerState</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="n">RunStatus</span><span class="o">&gt;</span><span class="w"> </span><span class="n">lastTransition</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">nullopt</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Workspace</span><span class="o">&gt;</span><span class="w"> </span><span class="n">extractData</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">    </span><span class="p">[[</span><span class="n">deprecated</span><span class="p">(</span><span class="s">&quot;Use runState() / lastTransition() and call extractData() &quot;</span>
+<span class="w">                 </span><span class="s">&quot;to commit pending transitions.&quot;</span><span class="p">)]]</span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="n">RunStatus</span><span class="w"> </span><span class="n">runStatus</span><span class="p">();</span>
+<span class="w">    </span><span class="c1">// ... other existing methods unchanged ...</span>
+<span class="p">};</span>
+
+<span class="p">}</span><span class="w"> </span><span class="c1">// namespace Mantid::API</span>
+</pre></div>
+</div>
+<p>Two questions are orthogonal and answered by independent getters:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">runState()</span></code> answers “what is the DAS doing?”</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">isPaused()</span></code> answers “is the current run paused?”</p></li>
+</ul>
+<p>A caller inspecting <code class="docutils literal notranslate"><span class="pre">runState()</span></code> sees <code class="docutils literal notranslate"><span class="pre">Running</span></code> whether the run is
+paused or not; a caller inspecting <code class="docutils literal notranslate"><span class="pre">isPaused()</span></code> sees the pause flag
+regardless of run phase.  Neither query reads or mutates the other’s
+backing field.</p>
+</section>
+<section id="deprecated-api-migrate-away-from">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Deprecated API (migrate away from)</a><a class="headerlink" href="#deprecated-api-migrate-away-from" title="Link to this heading">#</a></h2>
+<section id="runstatus">
+<h3><a class="toc-backref" href="#id4" role="doc-backlink"><code class="docutils literal notranslate"><span class="pre">runStatus()</span></code></a><a class="headerlink" href="#runstatus" title="Link to this heading">#</a></h3>
+<p>The old <code class="docutils literal notranslate"><span class="pre">runStatus()</span></code> method carried large hidden side effects:</p>
+<ul class="simple">
+<li><p>Cleared geometry and name-map caches.</p></li>
+<li><p>Re-initialised the workspace.</p></li>
+<li><p>Consumed the deferred <code class="docutils literal notranslate"><span class="pre">RunStatusPkt</span></code> (SNS only).</p></li>
+<li><p>Cleared the <code class="docutils literal notranslate"><span class="pre">m_pauseNetRead</span></code> gate (causing deadlock in stand-alone
+<code class="docutils literal notranslate"><span class="pre">LoadLiveData</span></code>).</p></li>
+</ul>
+<p>It is replaced by the combination of <code class="docutils literal notranslate"><span class="pre">lastTransition()</span></code> and
+<code class="docutils literal notranslate"><span class="pre">runState()</span></code>.  <code class="docutils literal notranslate"><span class="pre">runStatus()</span></code> is no longer pure virtual; the
+default base-class implementation in <code class="docutils literal notranslate"><span class="pre">ILiveListener.cpp</span></code> is:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">RunStatus</span><span class="w"> </span><span class="nf">ILiveListener::runStatus</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">edge</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lastTransition</span><span class="p">())</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="o">*</span><span class="n">edge</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">runState</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This shim preserves backward-compatible behaviour for
+<code class="docutils literal notranslate"><span class="pre">MonitorLiveData</span></code> without requiring callers to change immediately.
+The method is marked <code class="docutils literal notranslate"><span class="pre">[[deprecated]]</span></code> and <strong>will be removed in a
+future release</strong>.  Note that the default cannot throw on its own: both
+<code class="docutils literal notranslate"><span class="pre">lastTransition()</span></code> and <code class="docutils literal notranslate"><span class="pre">runState()</span></code> have safe defaults
+(<code class="docutils literal notranslate"><span class="pre">nullopt</span></code> / <code class="docutils literal notranslate"><span class="pre">NoRun</span></code>).  A listener that wishes to forbid the
+deprecated API outright is free to override <code class="docutils literal notranslate"><span class="pre">runStatus()</span></code> as
+<code class="docutils literal notranslate"><span class="pre">[[noreturn]]</span> <span class="pre">throw</span> <span class="pre">std::logic_error(...)</span></code>; nothing in the design
+relies on the default never throwing.</p>
+<section id="how-the-shim-preserves-monitorlivedata-semantics">
+<h4>How the shim preserves <code class="docutils literal notranslate"><span class="pre">MonitorLiveData</span></code> semantics<a class="headerlink" href="#how-the-shim-preserves-monitorlivedata-semantics" title="Link to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">MonitorLiveData</span></code> calls <code class="docutils literal notranslate"><span class="pre">extractData()</span></code> first (via
+<code class="docutils literal notranslate"><span class="pre">loadAlg-&gt;executeAsChildAlg()</span></code>) and <code class="docutils literal notranslate"><span class="pre">runStatus()</span></code> second within the
+same loop iteration.  By the time <code class="docutils literal notranslate"><span class="pre">runStatus()</span></code> is called,
+<code class="docutils literal notranslate"><span class="pre">extractData()</span></code> has already committed any pending transition and
+<code class="docutils literal notranslate"><span class="pre">lastTransition()</span></code> is populated.  The shim returns the edge once
+across the boundary, then falls through to <code class="docutils literal notranslate"><span class="pre">runState()</span></code> on
+subsequent calls (<code class="docutils literal notranslate"><span class="pre">Running</span></code> or <code class="docutils literal notranslate"><span class="pre">NoRun</span></code>) — matching the historical
+return-once-then-settle behaviour exactly.</p>
+</section>
+</section>
+</section>
+<section id="extractdata-as-a-template-method">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink"><code class="docutils literal notranslate"><span class="pre">extractData()</span></code> as a template method</a><a class="headerlink" href="#extractdata-as-a-template-method" title="Link to this heading">#</a></h2>
+<p>The base class <code class="docutils literal notranslate"><span class="pre">API::LiveListener</span></code> (from which every in-tree concrete
+listener derives) <strong>finalises</strong> <code class="docutils literal notranslate"><span class="pre">extractData()</span></code> and dispatches to three
+protected hooks:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// In Framework/API/inc/MantidAPI/LiveListener.h</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">MANTID_API_DLL</span><span class="w"> </span><span class="n">LiveListener</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">ILiveListener</span><span class="w"> </span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Workspace</span><span class="o">&gt;</span><span class="w"> </span><span class="n">extractData</span><span class="p">()</span><span class="w"> </span><span class="k">final</span><span class="p">;</span><span class="w">   </span><span class="c1">// template method</span>
+
+<span class="k">protected</span><span class="o">:</span>
+<span class="w">    </span><span class="c1">/// Foreground-thread hook called at the very start of extractData(),</span>
+<span class="w">    </span><span class="c1">/// before any workspace construction.  Default no-op.</span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">onBeforeExtract</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="w">    </span><span class="c1">/// The actual workspace construction step.  Pure virtual.</span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Workspace</span><span class="o">&gt;</span><span class="w"> </span><span class="n">doExtractData</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">/// Success-only hook called after doExtractData() returns normally,</span>
+<span class="w">    </span><span class="c1">/// before the workspace is returned to the caller.  Default no-op.</span>
+<span class="w">    </span><span class="c1">/// Not called if doExtractData() throws.</span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">onAfterExtract</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>The template-method body is:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Workspace</span><span class="o">&gt;</span><span class="w"> </span><span class="n">LiveListener</span><span class="o">::</span><span class="n">extractData</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">onBeforeExtract</span><span class="p">();</span><span class="w">          </span><span class="c1">// Phase 1: pre-extract bookkeeping</span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">ws</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">doExtractData</span><span class="p">();</span><span class="w">  </span><span class="c1">// Phase 2: build the workspace</span>
+<span class="w">    </span><span class="n">onAfterExtract</span><span class="p">();</span><span class="w">           </span><span class="c1">// Phase 3: success-only post-extract work</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ws</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This three-phase split has the following consequences for listener authors:</p>
+<ol class="arabic simple">
+<li><p><strong>Override ``doExtractData()``, not ``extractData()``.</strong>
+<code class="docutils literal notranslate"><span class="pre">extractData()</span></code> is <code class="docutils literal notranslate"><span class="pre">final</span></code>; the compiler will reject any
+override.  Move your existing <code class="docutils literal notranslate"><span class="pre">extractData()</span></code> body into
+<code class="docutils literal notranslate"><span class="pre">doExtractData()</span></code> unchanged.</p></li>
+<li><p><strong>Use ``onBeforeExtract()`` for pre-extract work; use
+``onAfterExtract()`` for success-only post-extract work.</strong>
+<code class="docutils literal notranslate"><span class="pre">onBeforeExtract()</span></code> runs unconditionally at the start of every
+<code class="docutils literal notranslate"><span class="pre">extractData()</span></code> call — this is where the SNS listener commits
+queued <code class="docutils literal notranslate"><span class="pre">BeginRun</span></code> transitions (see
+<a class="reference internal" href="SNSLiveEventDataListenerRefactoring.html#snsliveeventdatalistenerrefactoring"><span class="std std-ref">SNSLiveEventDataListener refactoring</span></a>).
+<code class="docutils literal notranslate"><span class="pre">onAfterExtract()</span></code> runs only when <code class="docutils literal notranslate"><span class="pre">doExtractData()</span></code> returned
+normally — this is where the SNS listener dispatches <code class="docutils literal notranslate"><span class="pre">EndRun</span></code>
+and clears the delivered transition edge.</p></li>
+<li><p><strong>Exception safety across the three-phase split.</strong>  If
+<code class="docutils literal notranslate"><span class="pre">doExtractData()</span></code> throws (e.g. <code class="docutils literal notranslate"><span class="pre">Exception::NotYet</span></code>),
+<code class="docutils literal notranslate"><span class="pre">onAfterExtract()</span></code> is <strong>not</strong> called.  The side effects of
+<code class="docutils literal notranslate"><span class="pre">onBeforeExtract()</span></code> — including any <code class="docutils literal notranslate"><span class="pre">m_lastTransition</span></code>
+assignment — are preserved across the retry.  Edge-clearing must
+not run on a retry path; the SNS listener achieves this with a
+<code class="docutils literal notranslate"><span class="pre">m_previousExtractCompleted</span></code> flag that gates the deferred clear
+in the next <code class="docutils literal notranslate"><span class="pre">onBeforeExtract()</span></code> — the flag is only set at the
+end of <code class="docutils literal notranslate"><span class="pre">onAfterExtract()</span></code>, so a <code class="docutils literal notranslate"><span class="pre">NotYet</span></code> from any phase leaves
+it <code class="docutils literal notranslate"><span class="pre">false</span></code> and the edge survives intact.  See the
+<a class="reference internal" href="#migration-c1-invariant"><span class="std std-ref">C1 invariant</span></a> for details.</p></li>
+</ol>
+</section>
+<section id="state-transition-hooks">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">State-transition hooks</a><a class="headerlink" href="#state-transition-hooks" title="Link to this heading">#</a></h2>
+<p>Listeners that need to react to run boundaries should override the
+<em>hook</em> methods rather than the getters:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 22.0%" />
+<col style="width: 18.0%" />
+<col style="width: 60.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Hook</p></th>
+<th class="head"><p>Thread</p></th>
+<th class="head"><p>When called</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">onBeginRun()</span></code></p></td>
+<td><p>foreground</p></td>
+<td><p>Called from <code class="docutils literal notranslate"><span class="pre">onBeforeExtract()</span></code> when a <code class="docutils literal notranslate"><span class="pre">BeginRun</span></code>
+transition is pending.  The new run details are available at
+this point.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">onEndRun()</span></code></p></td>
+<td><p>foreground</p></td>
+<td><p>Called from <code class="docutils literal notranslate"><span class="pre">onAfterExtract()</span></code> when an <code class="docutils literal notranslate"><span class="pre">EndRun</span></code>
+transition is pending.  Deferred to after <code class="docutils literal notranslate"><span class="pre">doExtractData()</span></code>
+so the finishing run’s accumulated events are harvested before
+the workspace buffer is reset.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">onRunPause(bool</span> <span class="pre">paused)</span></code></p></td>
+<td><p>background</p></td>
+<td><p>Called directly from the background reader when a DAS
+pause/resume annotation is received.  <code class="docutils literal notranslate"><span class="pre">paused</span> <span class="pre">=</span> <span class="pre">true</span></code> for
+PAUSE, <code class="docutils literal notranslate"><span class="pre">false</span></code> for RESUME.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">onBeforeExtract()</span></code></p></td>
+<td><p>foreground</p></td>
+<td><p>Called at the very start of <code class="docutils literal notranslate"><span class="pre">extractData()</span></code>, before
+<code class="docutils literal notranslate"><span class="pre">doExtractData()</span></code>.  Override here for any per-extraction
+bookkeeping that does not fit the run-boundary hook model.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">onAfterExtract()</span></code></p></td>
+<td><p>foreground</p></td>
+<td><p>Called at the end of <code class="docutils literal notranslate"><span class="pre">extractData()</span></code>, but <strong>only</strong> when
+<code class="docutils literal notranslate"><span class="pre">doExtractData()</span></code> returned normally (i.e., did not throw).
+Override here for success-only bookkeeping — state that
+must not take effect when extraction is interrupted by
+<code class="docutils literal notranslate"><span class="pre">Exception::NotYet</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The asymmetric dispatch is intentional:</p>
+<ul class="simple">
+<li><p><strong>Run-state transitions are deferred</strong> to the next <code class="docutils literal notranslate"><span class="pre">extractData()</span></code>
+call because they have workspace-level side effects (cache clears,
+re-init) that must run on the foreground thread.</p></li>
+<li><p><strong>Pause/resume is applied immediately</strong> because it has no
+workspace-level side effect — it only gates event appending in
+<code class="docutils literal notranslate"><span class="pre">rxPacket(BankedEventPkt)</span></code>.  Deferring pause/resume to
+<code class="docutils literal notranslate"><span class="pre">extractData()</span></code> would retroactively mis-categorise events that
+arrived between the PAUSE annotation and the next extraction.</p></li>
+<li><p><strong>BeginRun and EndRun are committed at different phases.</strong>
+<code class="docutils literal notranslate"><span class="pre">BeginRun</span></code> is dispatched from <code class="docutils literal notranslate"><span class="pre">onBeforeExtract()</span></code> so the new
+run’s workspace initialisation is in place before
+<code class="docutils literal notranslate"><span class="pre">doExtractData()</span></code> snapshots it.  <code class="docutils literal notranslate"><span class="pre">EndRun</span></code> is dispatched from
+<code class="docutils literal notranslate"><span class="pre">onAfterExtract()</span></code> so <code class="docutils literal notranslate"><span class="pre">doExtractData()</span></code> can first harvest the
+finishing run’s accumulated events before <code class="docutils literal notranslate"><span class="pre">onEndRun()</span></code> resets the
+buffer.</p></li>
+</ul>
+<p>All hooks have no-op default implementations in <code class="docutils literal notranslate"><span class="pre">LiveListener</span></code> and
+may be selectively overridden.</p>
+</section>
+<section id="migration-recipe-for-listener-authors">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Migration recipe for listener authors</a><a class="headerlink" href="#migration-recipe-for-listener-authors" title="Link to this heading">#</a></h2>
+<p>If you maintain a concrete <code class="docutils literal notranslate"><span class="pre">ILiveListener</span></code> subclass, migrate as
+follows.</p>
+<section id="step-1-remove-your-runstatus-override">
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">Step 1 — Remove your <code class="docutils literal notranslate"><span class="pre">runStatus()</span></code> override</a><a class="headerlink" href="#step-1-remove-your-runstatus-override" title="Link to this heading">#</a></h3>
+<p>The base-class shim is correct for almost every listener.  Drop the
+override entirely; the deprecation warning at the call sites will
+prompt eventual migration to <code class="docutils literal notranslate"><span class="pre">lastTransition()</span></code> / <code class="docutils literal notranslate"><span class="pre">runState()</span></code>.</p>
+</section>
+<section id="step-2-add-a-listenerstate-const-override">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">Step 2 — Add a <code class="docutils literal notranslate"><span class="pre">listenerState()</span> <span class="pre">const</span> <span class="pre">override</span></code></a><a class="headerlink" href="#step-2-add-a-listenerstate-const-override" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">listenerState()</span></code> is <strong>pure virtual</strong>.  The minimal override maps
+your existing connection flag to the enum:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">API</span><span class="o">::</span><span class="n">ListenerState</span><span class="w"> </span><span class="nf">listenerState</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">m_isConnected</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">API</span><span class="o">::</span><span class="n">ListenerState</span><span class="o">::</span><span class="n">Connected</span>
+<span class="w">                         </span><span class="o">:</span><span class="w"> </span><span class="n">API</span><span class="o">::</span><span class="n">ListenerState</span><span class="o">::</span><span class="n">Disconnected</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>A listener that has back-pressure semantics (e.g. SNS’s
+<code class="docutils literal notranslate"><span class="pre">m_pauseNetRead</span></code>) or that can report an error from the background
+thread should expand the override to return <code class="docutils literal notranslate"><span class="pre">ReadWait</span></code> / <code class="docutils literal notranslate"><span class="pre">Error</span></code>
+as appropriate.</p>
+</section>
+<section id="step-3-override-runstate-const-recommended">
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">Step 3 — Override <code class="docutils literal notranslate"><span class="pre">runState()</span> <span class="pre">const</span></code> (recommended)</a><a class="headerlink" href="#step-3-override-runstate-const-recommended" title="Link to this heading">#</a></h3>
+<p>The base default of <code class="docutils literal notranslate"><span class="pre">NoRun</span></code> is rarely what you want.  Provide an
+explicit override even if it is a one-liner returning <code class="docutils literal notranslate"><span class="pre">Running</span></code>:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">RunStatus</span><span class="w"> </span><span class="nf">runState</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">API</span><span class="o">::</span><span class="n">ILiveListener</span><span class="o">::</span><span class="n">Running</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="step-4-optionally-override-ispaused-and-lasttransition">
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">Step 4 — Optionally override <code class="docutils literal notranslate"><span class="pre">isPaused()</span></code> and <code class="docutils literal notranslate"><span class="pre">lastTransition()</span></code></a><a class="headerlink" href="#step-4-optionally-override-ispaused-and-lasttransition" title="Link to this heading">#</a></h3>
+<p>The base defaults (<code class="docutils literal notranslate"><span class="pre">false</span></code> / <code class="docutils literal notranslate"><span class="pre">nullopt</span></code>) are correct for listeners
+without pause semantics or run-boundary edge detection.</p>
+</section>
+<section id="step-5-override-doextractdata-not-extractdata">
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">Step 5 — Override <code class="docutils literal notranslate"><span class="pre">doExtractData()</span></code>, not <code class="docutils literal notranslate"><span class="pre">extractData()</span></code></a><a class="headerlink" href="#step-5-override-doextractdata-not-extractdata" title="Link to this heading">#</a></h3>
+<p>If your previous override was</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Workspace</span><span class="o">&gt;</span><span class="w"> </span><span class="n">MyListener</span><span class="o">::</span><span class="n">extractData</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>mechanically rename it to <code class="docutils literal notranslate"><span class="pre">doExtractData()</span></code>.  <code class="docutils literal notranslate"><span class="pre">extractData()</span></code> is
+<code class="docutils literal notranslate"><span class="pre">final</span></code> on <code class="docutils literal notranslate"><span class="pre">API::LiveListener</span></code> and the compiler will reject the
+old override.</p>
+</section>
+<section id="step-6-move-any-fsm-tick-code-out-of-runstatus">
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">Step 6 — Move any FSM-tick code out of <code class="docutils literal notranslate"><span class="pre">runStatus()</span></code></a><a class="headerlink" href="#step-6-move-any-fsm-tick-code-out-of-runstatus" title="Link to this heading">#</a></h3>
+<p>If your old <code class="docutils literal notranslate"><span class="pre">runStatus()</span></code> contained mutating logic (incrementing
+counters, advancing timers, performing I/O), move it to a private
+helper and call that helper from <code class="docutils literal notranslate"><span class="pre">onBeforeExtract()</span></code>.  If the
+bookkeeping is success-only — state that must not take effect when
+<code class="docutils literal notranslate"><span class="pre">doExtractData()</span></code> throws <code class="docutils literal notranslate"><span class="pre">Exception::NotYet</span></code> — use
+<code class="docutils literal notranslate"><span class="pre">onAfterExtract()</span></code> instead.  See the worked example for
+<code class="docutils literal notranslate"><span class="pre">FakeEventDataListener</span></code> below.</p>
+</section>
+</section>
+<section id="worked-examples">
+<h2><a class="toc-backref" href="#id14" role="doc-backlink">Worked examples</a><a class="headerlink" href="#worked-examples" title="Link to this heading">#</a></h2>
+<p>The following worked examples cover every concrete
+<code class="docutils literal notranslate"><span class="pre">ILiveListener</span></code> subclass in the tree.  <code class="docutils literal notranslate"><span class="pre">SNSLiveEventDataListener</span></code>
+is treated separately in <a class="reference internal" href="SNSLiveEventDataListenerRefactoring.html#snsliveeventdatalistenerrefactoring"><span class="std std-ref">SNSLiveEventDataListener refactoring</span></a>.</p>
+<section id="pattern-a-constant-run-state">
+<h3><a class="toc-backref" href="#id15" role="doc-backlink">Pattern A — constant run state</a><a class="headerlink" href="#pattern-a-constant-run-state" title="Link to this heading">#</a></h3>
+<p>Used by <code class="docutils literal notranslate"><span class="pre">FileEventDataListener</span></code>, <code class="docutils literal notranslate"><span class="pre">ISISLiveEventDataListener</span></code>,
+<code class="docutils literal notranslate"><span class="pre">ISISHistoDataListener</span></code>, <code class="docutils literal notranslate"><span class="pre">TestGroupDataListener</span></code>,
+<code class="docutils literal notranslate"><span class="pre">TestDataListener</span></code>, and the unit-test <code class="docutils literal notranslate"><span class="pre">MockLiveListener</span></code>.  These
+listeners have no notion of run boundaries; their old <code class="docutils literal notranslate"><span class="pre">runStatus()</span></code>
+returned a constant.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Header</span>
+<span class="n">RunStatus</span><span class="w">       </span><span class="nf">runState</span><span class="p">()</span><span class="w">      </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">Running</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="n">ListenerState</span><span class="w">   </span><span class="nf">listenerState</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">m_isConnected</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">ListenerState</span><span class="o">::</span><span class="n">Connected</span>
+<span class="w">                         </span><span class="o">:</span><span class="w"> </span><span class="n">ListenerState</span><span class="o">::</span><span class="n">Disconnected</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Drop the existing runStatus() override; the base-class default is</span>
+<span class="c1">// equivalent and reports the new edge-detection contract correctly</span>
+<span class="c1">// (always nullopt for these listeners).</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">FileEventDataListener</span></code> additionally maps its chunk index to the
+connection state:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">ListenerState</span><span class="w"> </span><span class="nf">listenerState</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">m_chunkNumber</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">ListenerState</span><span class="o">::</span><span class="n">Connected</span>
+<span class="w">                             </span><span class="o">:</span><span class="w"> </span><span class="n">ListenerState</span><span class="o">::</span><span class="n">Disconnected</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="pattern-b-edge-detected-run-state">
+<h3><a class="toc-backref" href="#id16" role="doc-backlink">Pattern B — edge-detected run state</a><a class="headerlink" href="#pattern-b-edge-detected-run-state" title="Link to this heading">#</a></h3>
+<p>Used by <code class="docutils literal notranslate"><span class="pre">KafkaEventListener</span></code> and <code class="docutils literal notranslate"><span class="pre">KafkaHistoListener</span></code>.  These
+listeners query an underlying decoder to determine whether an
+end-of-run boundary has been observed, but they do not maintain a
+<code class="docutils literal notranslate"><span class="pre">BeginRun</span></code> / <code class="docutils literal notranslate"><span class="pre">EndRun</span></code> edge-detection contract — only “are we
+inside a run right now?”.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">RunStatus</span><span class="w"> </span><span class="nf">runState</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">m_decoder</span><span class="o">-&gt;</span><span class="n">hasReachedEndOfRun</span><span class="p">()</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">EndRun</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Running</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">ListenerState</span><span class="w"> </span><span class="nf">listenerState</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">m_decoder</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">m_decoder</span><span class="o">-&gt;</span><span class="n">isCapturing</span><span class="p">()</span>
+<span class="w">             </span><span class="o">?</span><span class="w"> </span><span class="n">ListenerState</span><span class="o">::</span><span class="n">Connected</span>
+<span class="w">             </span><span class="o">:</span><span class="w"> </span><span class="n">ListenerState</span><span class="o">::</span><span class="n">Disconnected</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">lastTransition()</span></code> is not overridden (returns <code class="docutils literal notranslate"><span class="pre">nullopt</span></code>); Kafka
+does not have the <code class="docutils literal notranslate"><span class="pre">BeginRun</span></code> / <code class="docutils literal notranslate"><span class="pre">EndRun</span></code> edge-detection contract
+that ADARA does, so the deprecated <code class="docutils literal notranslate"><span class="pre">runStatus()</span></code> shim falls through
+to <code class="docutils literal notranslate"><span class="pre">runState()</span></code> and returns the same value the legacy override
+would have.</p>
+</section>
+<section id="pattern-c-fsm-tick-anti-pattern-fix">
+<h3><a class="toc-backref" href="#id17" role="doc-backlink">Pattern C — FSM-tick anti-pattern fix</a><a class="headerlink" href="#pattern-c-fsm-tick-anti-pattern-fix" title="Link to this heading">#</a></h3>
+<p>Two listeners besides <code class="docutils literal notranslate"><span class="pre">SNSLiveEventDataListener</span></code> had real side
+effects inside <code class="docutils literal notranslate"><span class="pre">runStatus()</span></code> — exactly the anti-pattern this
+refactor exists to eliminate.</p>
+<p><strong>``FakeEventDataListener``</strong> (pre-refactor):</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">ILiveListener</span><span class="o">::</span><span class="n">RunStatus</span><span class="w"> </span><span class="nf">FakeEventDataListener::runStatus</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_endRunEvery</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span>
+<span class="w">        </span><span class="n">DateAndTime</span><span class="o">::</span><span class="n">getCurrentTime</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">m_nextEndRunTime</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">m_nextEndRunTime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DateAndTime</span><span class="o">::</span><span class="n">getCurrentTime</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">m_endRunEvery</span><span class="p">;</span>
+<span class="w">        </span><span class="n">m_runNumber</span><span class="o">++</span><span class="p">;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">EndRun</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Running</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This getter incremented <code class="docutils literal notranslate"><span class="pre">m_runNumber</span></code> and advanced
+<code class="docutils literal notranslate"><span class="pre">m_nextEndRunTime</span></code> as a side effect of being polled.</p>
+<p><strong>Post-refactor.</strong>  All end-of-run side effects move to
+<code class="docutils literal notranslate"><span class="pre">onAfterExtract()</span></code>; <code class="docutils literal notranslate"><span class="pre">runState()</span></code> becomes a pure getter.
+<code class="docutils literal notranslate"><span class="pre">onBeforeExtract()</span></code> is not overridden (the base no-op suffices):</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Header</span>
+<span class="n">RunStatus</span><span class="w"> </span><span class="nf">runState</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="w">               </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">m_runState</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="n">ListenerState</span><span class="w"> </span><span class="nf">listenerState</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="w">      </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">m_isConnected</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">ListenerState</span><span class="o">::</span><span class="n">Connected</span>
+<span class="w">                         </span><span class="o">:</span><span class="w"> </span><span class="n">ListenerState</span><span class="o">::</span><span class="n">Disconnected</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="n">RunStatus</span><span class="o">&gt;</span><span class="w"> </span><span class="n">lastTransition</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">m_lastTransition</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+
+<span class="k">protected</span><span class="o">:</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">onAfterExtract</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+
+<span class="k">private</span><span class="o">:</span>
+<span class="n">RunStatus</span><span class="w"> </span><span class="n">m_runState</span><span class="p">{</span><span class="n">Running</span><span class="p">};</span>
+<span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="n">RunStatus</span><span class="o">&gt;</span><span class="w"> </span><span class="n">m_lastTransition</span><span class="p">;</span>
+
+<span class="c1">// Implementation</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">FakeEventDataListener::onAfterExtract</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// This listener only ever commits an EndRun edge (never BeginRun), so</span>
+<span class="w">    </span><span class="c1">// the simple pattern — unconditional reset then conditional re-set in</span>
+<span class="w">    </span><span class="c1">// the same onAfterExtract() — is correct here.  Listeners that also</span>
+<span class="w">    </span><span class="c1">// commit a BeginRun edge in onBeforeExtract() must use the gated-clear</span>
+<span class="w">    </span><span class="c1">// pattern (m_previousExtractCompleted) described in the C1 invariant</span>
+<span class="w">    </span><span class="c1">// section below, so that the BeginRun edge survives through the return</span>
+<span class="w">    </span><span class="c1">// of the same extractData() call and is observable by the caller.</span>
+<span class="w">    </span><span class="n">m_lastTransition</span><span class="p">.</span><span class="n">reset</span><span class="p">();</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_endRunEvery</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span>
+<span class="w">        </span><span class="n">DateAndTime</span><span class="o">::</span><span class="n">getCurrentTime</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">m_nextEndRunTime</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">m_nextEndRunTime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DateAndTime</span><span class="o">::</span><span class="n">getCurrentTime</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">m_endRunEvery</span><span class="p">;</span>
+<span class="w">        </span><span class="n">m_runNumber</span><span class="o">++</span><span class="p">;</span>
+<span class="w">        </span><span class="n">m_runState</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="n">EndRun</span><span class="p">;</span>
+<span class="w">        </span><span class="n">m_lastTransition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EndRun</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">m_runState</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Running</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The externally observable cadence of <code class="docutils literal notranslate"><span class="pre">EndRun</span></code> and the
+<code class="docutils literal notranslate"><span class="pre">m_runNumber</span></code> increment is preserved; only the trigger moves from
+<code class="docutils literal notranslate"><span class="pre">runStatus()</span></code> polling to <code class="docutils literal notranslate"><span class="pre">extractData()</span></code> invocation.  Placing all
+side effects in <code class="docutils literal notranslate"><span class="pre">onAfterExtract()</span></code> rather than <code class="docutils literal notranslate"><span class="pre">onBeforeExtract()</span></code>
+is required by the <a class="reference internal" href="#migration-c1-invariant"><span class="std std-ref">C1 invariant</span></a>:
+<code class="docutils literal notranslate"><span class="pre">onAfterExtract()</span></code> runs only when <code class="docutils literal notranslate"><span class="pre">doExtractData()</span></code> returns
+normally, so a <code class="docutils literal notranslate"><span class="pre">NotYet</span></code> thrown from <code class="docutils literal notranslate"><span class="pre">doExtractData()</span></code> cannot erase
+or advance state that the retry will need.  Note that this pattern is
+sufficient when the listener only commits edges in <code class="docutils literal notranslate"><span class="pre">onAfterExtract()</span></code>
+(as <code class="docutils literal notranslate"><span class="pre">FakeEventDataListener</span></code> does); see the C1 section for the
+additional <code class="docutils literal notranslate"><span class="pre">m_previousExtractCompleted</span></code> flag needed when edges are
+also committed in <code class="docutils literal notranslate"><span class="pre">onBeforeExtract()</span></code>.</p>
+<p><strong>``SINQHMListener``</strong> (pre-refactor): <code class="docutils literal notranslate"><span class="pre">runStatus()</span></code> performed an
+HTTP request, parsed the response, wrote the <code class="docutils literal notranslate"><span class="pre">hmhost</span></code> member, set
+<code class="docutils literal notranslate"><span class="pre">dimDirty</span></code> when transitioning <code class="docutils literal notranslate"><span class="pre">NoRun</span> <span class="pre">→</span> <span class="pre">Running</span></code>, and was <em>also</em>
+invoked from inside <code class="docutils literal notranslate"><span class="pre">extractData()</span></code> specifically to perform these
+side effects.</p>
+<p><strong>Post-refactor.</strong>  Extract the HTTP poll into a private
+<code class="docutils literal notranslate"><span class="pre">pollStatus()</span></code> helper; have <code class="docutils literal notranslate"><span class="pre">onBeforeExtract()</span></code> call it.
+<code class="docutils literal notranslate"><span class="pre">runState()</span></code> returns the cached state:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Header</span>
+<span class="n">RunStatus</span><span class="w"> </span><span class="nf">runState</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="w">         </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">m_cachedRunState</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="n">ListenerState</span><span class="w"> </span><span class="nf">listenerState</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">connected</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">ListenerState</span><span class="o">::</span><span class="n">Connected</span>
+<span class="w">                     </span><span class="o">:</span><span class="w"> </span><span class="n">ListenerState</span><span class="o">::</span><span class="n">Disconnected</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">protected</span><span class="o">:</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">onBeforeExtract</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">pollStatus</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
+
+<span class="k">private</span><span class="o">:</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">pollStatus</span><span class="p">();</span><span class="w">              </span><span class="c1">// contains the HTTP request and field updates</span>
+<span class="n">RunStatus</span><span class="w"> </span><span class="n">m_cachedRunState</span><span class="p">{</span><span class="n">NoRun</span><span class="p">};</span>
+
+<span class="c1">// pollStatus() body is the old runStatus() body, but writes</span>
+<span class="c1">// m_cachedRunState instead of returning, and continues to write</span>
+<span class="c1">// hmhost and dimDirty as before.</span>
+</pre></div>
+</div>
+<p>Because <code class="docutils literal notranslate"><span class="pre">extractData()</span></code> already triggered <code class="docutils literal notranslate"><span class="pre">pollStatus()</span></code> implicitly
+in the old code (it called the side-effecting <code class="docutils literal notranslate"><span class="pre">runStatus()</span></code>), callers
+that only invoke <code class="docutils literal notranslate"><span class="pre">extractData()</span></code> see no behavioural change.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Unlike the <code class="docutils literal notranslate"><span class="pre">FakeEventDataListener</span></code> example above,
+<code class="docutils literal notranslate"><span class="pre">SINQHMListener</span></code> writes its cached run-state and the <code class="docutils literal notranslate"><span class="pre">dimDirty</span></code>
+flag inside <code class="docutils literal notranslate"><span class="pre">onBeforeExtract()</span></code> (via <code class="docutils literal notranslate"><span class="pre">pollStatus()</span></code>) rather than
+<code class="docutils literal notranslate"><span class="pre">onAfterExtract()</span></code>.  This is correct <strong>only</strong> because (a)
+<code class="docutils literal notranslate"><span class="pre">doExtractData()</span></code> does not throw <code class="docutils literal notranslate"><span class="pre">Exception::NotYet</span></code> and (b) the
+listener does not override <code class="docutils literal notranslate"><span class="pre">lastTransition()</span></code>.
+<code class="docutils literal notranslate"><span class="pre">doExtractData()</span></code> <em>reads</em> <code class="docutils literal notranslate"><span class="pre">dimDirty</span></code> and <code class="docutils literal notranslate"><span class="pre">hmhost</span></code> to build the
+workspace, so the poll must precede the build — that is the
+load-bearing reason the call lives in <code class="docutils literal notranslate"><span class="pre">onBeforeExtract()</span></code>.  If a
+future change to this listener adds a <code class="docutils literal notranslate"><span class="pre">NotYet</span></code> path <em>or</em> a
+<code class="docutils literal notranslate"><span class="pre">lastTransition()</span></code> override, the <code class="docutils literal notranslate"><span class="pre">NoRun</span> <span class="pre">→</span> <span class="pre">Running</span></code> side effects
+(<code class="docutils literal notranslate"><span class="pre">dimDirty</span></code> set, <code class="docutils literal notranslate"><span class="pre">oldStatus</span></code> advance) must move to
+<code class="docutils literal notranslate"><span class="pre">onAfterExtract()</span></code> to satisfy the
+<a class="reference internal" href="#migration-c1-invariant"><span class="std std-ref">C1 invariant</span></a>.</p>
+</div>
+</section>
+<section id="pattern-d-test-mocks">
+<h3><a class="toc-backref" href="#id18" role="doc-backlink">Pattern D — test mocks</a><a class="headerlink" href="#pattern-d-test-mocks" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">MockLiveListener</span></code> and similar fixtures need only the two-line
+addition:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">MockLiveListener</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">ILiveListener</span><span class="w"> </span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">RunStatus</span><span class="w"> </span><span class="n">runState</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">Running</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="n">ListenerState</span><span class="w"> </span><span class="n">listenerState</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ListenerState</span><span class="o">::</span><span class="n">Connected</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="c1">// ... other mocked methods ...</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Any algorithm-level mocks (in <code class="docutils literal notranslate"><span class="pre">LoadLiveDataTest</span></code>,
+<code class="docutils literal notranslate"><span class="pre">MonitorLiveDataTest</span></code>, <code class="docutils literal notranslate"><span class="pre">StartLiveDataTest</span></code>) that derive from
+<code class="docutils literal notranslate"><span class="pre">ILiveListener</span></code> directly need the same two-line addition.</p>
+</section>
+</section>
+<section id="behaviour-preservation-guarantees">
+<h2><a class="toc-backref" href="#id19" role="doc-backlink">Behaviour preservation guarantees</a><a class="headerlink" href="#behaviour-preservation-guarantees" title="Link to this heading">#</a></h2>
+<p>The refactor preserves every observable algorithm-level behaviour
+except one: stand-alone <code class="docutils literal notranslate"><span class="pre">LoadLiveData</span></code> previously deadlocked after a
+run boundary and now succeeds.  That is the bug the refactor exists to
+fix.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 55.0%" />
+<col style="width: 22.0%" />
+<col style="width: 23.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Behaviour</p></th>
+<th class="head"><p>Pre-refactor</p></th>
+<th class="head"><p>Post-refactor</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">runStatus()</span></code> returns <code class="docutils literal notranslate"><span class="pre">BeginRun</span></code> / <code class="docutils literal notranslate"><span class="pre">EndRun</span></code> exactly once
+at each boundary</p></td>
+<td><p>yes, via mutation</p></td>
+<td><p>yes, via <code class="docutils literal notranslate"><span class="pre">lastTransition()</span></code> populated by <code class="docutils literal notranslate"><span class="pre">extractData()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Workspace re-initialised at run boundaries</p></td>
+<td><p>inside <code class="docutils literal notranslate"><span class="pre">runStatus()</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">onBeginRun()</span></code> called from <code class="docutils literal notranslate"><span class="pre">onBeforeExtract()</span></code>;
+<code class="docutils literal notranslate"><span class="pre">onEndRun()</span></code> called from <code class="docutils literal notranslate"><span class="pre">onAfterExtract()</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MonitorLiveData</span></code> workspace renaming triggers on
+<code class="docutils literal notranslate"><span class="pre">BeginRun</span></code> / <code class="docutils literal notranslate"><span class="pre">EndRun</span></code></p></td>
+<td><p>yes</p></td>
+<td><p>yes (via the legacy <code class="docutils literal notranslate"><span class="pre">runStatus()</span></code> shim)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Listener can be queried for its state without mutating it</p></td>
+<td><p><strong>no</strong></p></td>
+<td><p>yes (<code class="docutils literal notranslate"><span class="pre">runState()</span></code>, <code class="docutils literal notranslate"><span class="pre">isPaused()</span></code>, <code class="docutils literal notranslate"><span class="pre">listenerState()</span></code>,
+<code class="docutils literal notranslate"><span class="pre">lastTransition()</span></code> all <code class="docutils literal notranslate"><span class="pre">const</span></code>)</p></td>
+</tr>
+<tr class="row-even"><td><p>Stand-alone <code class="docutils literal notranslate"><span class="pre">LoadLiveData</span></code> produces a workspace</p></td>
+<td><p><strong>no</strong> (deadlocks)</p></td>
+<td><p>yes</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="critical-detail-c1">
+<span id="migration-c1-invariant"></span><h3><a class="toc-backref" href="#id20" role="doc-backlink">Critical detail (C1)</a><a class="headerlink" href="#critical-detail-c1" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">m_lastTransition</span></code> must survive <code class="docutils literal notranslate"><span class="pre">Exception::NotYet</span></code> retries so
+that <code class="docutils literal notranslate"><span class="pre">LoadLiveData</span></code>’s retry loop (<code class="docutils literal notranslate"><span class="pre">LoadLiveData.cpp:476–490</span></code>) does
+not lose a committed edge.  This is the <strong>C1 invariant</strong>.</p>
+<p>For listeners that only commit edges in <code class="docutils literal notranslate"><span class="pre">onAfterExtract()</span></code> (e.g.
+<code class="docutils literal notranslate"><span class="pre">FakeEventDataListener</span></code>), the simple pattern — unconditional reset at
+the top of <code class="docutils literal notranslate"><span class="pre">onAfterExtract()</span></code>, then conditional re-set — is
+sufficient: because <code class="docutils literal notranslate"><span class="pre">onAfterExtract()</span></code> is only called on the success
+path, a <code class="docutils literal notranslate"><span class="pre">NotYet</span></code> from <code class="docutils literal notranslate"><span class="pre">doExtractData()</span></code> bypasses the clear
+entirely.</p>
+<p>For listeners that also commit a <code class="docutils literal notranslate"><span class="pre">BeginRun</span></code> edge in
+<code class="docutils literal notranslate"><span class="pre">onBeforeExtract()</span></code> (e.g. <code class="docutils literal notranslate"><span class="pre">SNSLiveEventDataListener</span></code>), an
+additional guard is required: a <code class="docutils literal notranslate"><span class="pre">m_previousExtractCompleted</span></code> flag
+that is set to <code class="docutils literal notranslate"><span class="pre">true</span></code> only at the end of <code class="docutils literal notranslate"><span class="pre">onAfterExtract()</span></code> and is
+consumed (cleared) at the start of the next <code class="docutils literal notranslate"><span class="pre">onBeforeExtract()</span></code> after
+both <code class="docutils literal notranslate"><span class="pre">NotYet</span></code> gates pass.  This ensures that:</p>
+<ul class="simple">
+<li><p><strong>The edge is observable after the extract that committed it.</strong>  Both
+<code class="docutils literal notranslate"><span class="pre">BeginRun</span></code> and <code class="docutils literal notranslate"><span class="pre">EndRun</span></code> are visible via <code class="docutils literal notranslate"><span class="pre">lastTransition()</span></code>
+between the <code class="docutils literal notranslate"><span class="pre">extractData()</span></code> that committed them and the next
+successful <code class="docutils literal notranslate"><span class="pre">extractData()</span></code>.  Callers such as <code class="docutils literal notranslate"><span class="pre">MonitorLiveData</span></code>
+read <code class="docutils literal notranslate"><span class="pre">lastTransition()</span></code> <em>after</em> <code class="docutils literal notranslate"><span class="pre">extractData()</span></code> returns and rely
+on the edge being present (e.g. to drive the <code class="docutils literal notranslate"><span class="pre">_post</span></code>
+workspace-rename branch for <code class="docutils literal notranslate"><span class="pre">BeginRun</span></code>).</p></li>
+<li><p><strong>The edge survives retries.</strong>  A <code class="docutils literal notranslate"><span class="pre">NotYet</span></code> thrown from Phase 1
+(before either gate) or Phase 2/3 leaves
+<code class="docutils literal notranslate"><span class="pre">m_previousExtractCompleted</span> <span class="pre">==</span> <span class="pre">false</span></code>, so the retry’s
+<code class="docutils literal notranslate"><span class="pre">onBeforeExtract()</span></code> skips the clear.</p></li>
+</ul>
+</section>
+<section id="two-subtleties-to-flag-in-code-review">
+<h3><a class="toc-backref" href="#id21" role="doc-backlink">Two subtleties to flag in code review</a><a class="headerlink" href="#two-subtleties-to-flag-in-code-review" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>``m_lastTransition`` lifetime.</strong>  <code class="docutils literal notranslate"><span class="pre">m_lastTransition</span></code> must not be
+cleared on a <code class="docutils literal notranslate"><span class="pre">NotYet</span></code> retry path, and it must be observable to
+callers (e.g. <code class="docutils literal notranslate"><span class="pre">MonitorLiveData</span></code>) after the <code class="docutils literal notranslate"><span class="pre">extractData()</span></code> that
+committed it returns.  The SNS listener satisfies both with
+<code class="docutils literal notranslate"><span class="pre">m_previousExtractCompleted</span></code>: the clear is deferred to the start
+of the <em>next</em> <code class="docutils literal notranslate"><span class="pre">onBeforeExtract()</span></code> after both <code class="docutils literal notranslate"><span class="pre">NotYet</span></code> gates
+pass, and it only fires when the flag is <code class="docutils literal notranslate"><span class="pre">true</span></code> (meaning the
+previous <code class="docutils literal notranslate"><span class="pre">extractData()</span></code> ran <code class="docutils literal notranslate"><span class="pre">onAfterExtract()</span></code> to completion).
+<code class="docutils literal notranslate"><span class="pre">BeginRun</span></code> and <code class="docutils literal notranslate"><span class="pre">EndRun</span></code> are therefore symmetric: both are
+visible via <code class="docutils literal notranslate"><span class="pre">lastTransition()</span></code> from the moment <code class="docutils literal notranslate"><span class="pre">extractData()</span></code>
+returns until the following successful <code class="docutils literal notranslate"><span class="pre">extractData()</span></code>.  A caller
+that never calls <code class="docutils literal notranslate"><span class="pre">extractData()</span></code> never sees an edge.</p></li>
+<li><p><strong>Pause/resume packets are processed in the background thread.</strong>
+<code class="docutils literal notranslate"><span class="pre">onRunPause()</span></code> is called directly from the background reader,
+not deferred to <code class="docutils literal notranslate"><span class="pre">extractData()</span></code>.  This is intentional: applying
+<code class="docutils literal notranslate"><span class="pre">m_isDasPaused</span></code> immediately at the annotation packet boundary
+gives accurate event filtering — events arriving between the
+<code class="docutils literal notranslate"><span class="pre">PAUSE</span></code> annotation and the next <code class="docutils literal notranslate"><span class="pre">extractData()</span></code> call are
+correctly discarded.  Deferring to <code class="docutils literal notranslate"><span class="pre">extractData()</span></code> would
+retroactively mis-categorise those events.</p></li>
+</ol>
+</section>
+</section>
+<section id="pitfalls-and-faq">
+<h2><a class="toc-backref" href="#id22" role="doc-backlink">Pitfalls and FAQ</a><a class="headerlink" href="#pitfalls-and-faq" title="Link to this heading">#</a></h2>
+<section id="why-is-extractdata-final">
+<h3><a class="toc-backref" href="#id23" role="doc-backlink">Why is <code class="docutils literal notranslate"><span class="pre">extractData()</span></code> <code class="docutils literal notranslate"><span class="pre">final</span></code>?</a><a class="headerlink" href="#why-is-extractdata-final" title="Link to this heading">#</a></h3>
+<p>So that <code class="docutils literal notranslate"><span class="pre">onBeforeExtract()</span></code> is <em>guaranteed</em> to run before any
+workspace construction, on every code path, for every listener.  This
+guarantee is what makes stand-alone <code class="docutils literal notranslate"><span class="pre">LoadLiveData</span></code> work: it does
+not need to know that some listeners require an explicit “commit”
+step.</p>
+</section>
+<section id="what-if-my-listener-never-had-a-runstatus-override">
+<h3><a class="toc-backref" href="#id24" role="doc-backlink">What if my listener never had a <code class="docutils literal notranslate"><span class="pre">runStatus()</span></code> override?</a><a class="headerlink" href="#what-if-my-listener-never-had-a-runstatus-override" title="Link to this heading">#</a></h3>
+<p>Then only Step 2 from the migration recipe is required: add a
+<code class="docutils literal notranslate"><span class="pre">listenerState()</span> <span class="pre">const</span> <span class="pre">override</span></code>.  The rest of the new API will fall
+through to the safe defaults.</p>
+</section>
+<section id="why-are-onbeginrun-onendrun-protected-rather-than-public">
+<h3><a class="toc-backref" href="#id25" role="doc-backlink">Why are <code class="docutils literal notranslate"><span class="pre">onBeginRun</span></code> / <code class="docutils literal notranslate"><span class="pre">onEndRun</span></code> protected rather than public?</a><a class="headerlink" href="#why-are-onbeginrun-onendrun-protected-rather-than-public" title="Link to this heading">#</a></h3>
+<p>Exposing them publicly would re-violate objective (3) above by letting
+external code drive the FSM.  Keeping them protected makes them
+explicit and individually testable (subclass the listener in a unit
+test, override the hook, observe invocations) without giving callers a
+foothold to commit transitions out of band.</p>
+</section>
+<section id="how-do-i-drive-onrunpause-in-a-unit-test">
+<h3><a class="toc-backref" href="#id26" role="doc-backlink">How do I drive <code class="docutils literal notranslate"><span class="pre">onRunPause</span></code> in a unit test?</a><a class="headerlink" href="#how-do-i-drive-onrunpause-in-a-unit-test" title="Link to this heading">#</a></h3>
+<p>Either feed an <code class="docutils literal notranslate"><span class="pre">AnnotationPkt(PAUSE)</span></code> directly into <code class="docutils literal notranslate"><span class="pre">rxPacket()</span></code>
+(SNS), or — for listeners with a simpler pause model — subclass the
+listener and call <code class="docutils literal notranslate"><span class="pre">onRunPause(true/false)</span></code> from a test fixture
+method.  The hook is <code class="docutils literal notranslate"><span class="pre">protected</span> <span class="pre">virtual</span></code> precisely so test fixtures
+can reach it.</p>
+</section>
+<section id="when-should-i-override-onafterextract-rather-than-onbeforeextract">
+<h3><a class="toc-backref" href="#id27" role="doc-backlink">When should I override <code class="docutils literal notranslate"><span class="pre">onAfterExtract()</span></code> rather than <code class="docutils literal notranslate"><span class="pre">onBeforeExtract()</span></code>?</a><a class="headerlink" href="#when-should-i-override-onafterextract-rather-than-onbeforeextract" title="Link to this heading">#</a></h3>
+<p>Use <code class="docutils literal notranslate"><span class="pre">onAfterExtract()</span></code> for bookkeeping that is meaningful only when
+<code class="docutils literal notranslate"><span class="pre">doExtractData()</span></code> returned a workspace successfully — work that must
+<em>not</em> take effect when extraction is interrupted by
+<code class="docutils literal notranslate"><span class="pre">Exception::NotYet</span></code>.  Both <code class="docutils literal notranslate"><span class="pre">SNSLiveEventDataListener</span></code> and
+<code class="docutils literal notranslate"><span class="pre">FakeEventDataListener</span></code> override this hook.</p>
+<p>If your listener only commits edges in <code class="docutils literal notranslate"><span class="pre">onAfterExtract()</span></code> (as
+<code class="docutils literal notranslate"><span class="pre">FakeEventDataListener</span></code> does), the simple reset-then-re-set pattern
+in that hook is sufficient.</p>
+<p>If your listener commits a <code class="docutils literal notranslate"><span class="pre">BeginRun</span></code> edge in <code class="docutils literal notranslate"><span class="pre">onBeforeExtract()</span></code>,
+it must also use the <code class="docutils literal notranslate"><span class="pre">m_previousExtractCompleted</span></code> guard (set at the
+end of <code class="docutils literal notranslate"><span class="pre">onAfterExtract()</span></code>, consumed at the start of the next
+<code class="docutils literal notranslate"><span class="pre">onBeforeExtract()</span></code> after the <code class="docutils literal notranslate"><span class="pre">NotYet</span></code> gates pass) so that the edge
+survives retries and is observable to callers after <code class="docutils literal notranslate"><span class="pre">extractData()</span></code>
+returns.  See the <a class="reference internal" href="#migration-c1-invariant"><span class="std std-ref">C1 invariant</span></a> and the
+<code class="docutils literal notranslate"><span class="pre">SNSLiveEventDataListener</span></code> implementation for the full pattern.</p>
+</section>
+</section>
+<section id="further-reading">
+<h2><a class="toc-backref" href="#id28" role="doc-backlink">Further reading</a><a class="headerlink" href="#further-reading" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="SNSLiveEventDataListenerRefactoring.html#snsliveeventdatalistenerrefactoring"><span class="std std-ref">SNSLiveEventDataListener refactoring</span></a> — the SNS-specific
+design (ADARA packet flow, state-machine diagrams, deferred
+<code class="docutils literal notranslate"><span class="pre">RunStatusPkt</span></code> handling, the pre-existing <code class="docutils literal notranslate"><span class="pre">m_ignorePackets</span></code>
+defect).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Framework/API/inc/MantidAPI/ILiveListener.h</span></code> — authoritative
+interface declaration.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Framework/API/inc/MantidAPI/LiveListener.h</span></code> — <code class="docutils literal notranslate"><span class="pre">extractData()</span></code>
+template method and default hook implementations.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Framework/API/src/ILiveListener.cpp</span></code> — default <code class="docutils literal notranslate"><span class="pre">runStatus()</span></code>
+shim.</p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="LoadAlgorithmHook.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Load Algorithm Hook</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Logging.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Logging</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motivation">Motivation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#new-api-use-these">New API (use these)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deprecated-api-migrate-away-from">Deprecated API (migrate away from)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#runstatus"><code class="docutils literal notranslate"><span class="pre">runStatus()</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#how-the-shim-preserves-monitorlivedata-semantics">How the shim preserves <code class="docutils literal notranslate"><span class="pre">MonitorLiveData</span></code> semantics</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extractdata-as-a-template-method"><code class="docutils literal notranslate"><span class="pre">extractData()</span></code> as a template method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#state-transition-hooks">State-transition hooks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#migration-recipe-for-listener-authors">Migration recipe for listener authors</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-remove-your-runstatus-override">Step 1 — Remove your <code class="docutils literal notranslate"><span class="pre">runStatus()</span></code> override</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-add-a-listenerstate-const-override">Step 2 — Add a <code class="docutils literal notranslate"><span class="pre">listenerState()</span> <span class="pre">const</span> <span class="pre">override</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-override-runstate-const-recommended">Step 3 — Override <code class="docutils literal notranslate"><span class="pre">runState()</span> <span class="pre">const</span></code> (recommended)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-optionally-override-ispaused-and-lasttransition">Step 4 — Optionally override <code class="docutils literal notranslate"><span class="pre">isPaused()</span></code> and <code class="docutils literal notranslate"><span class="pre">lastTransition()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-override-doextractdata-not-extractdata">Step 5 — Override <code class="docutils literal notranslate"><span class="pre">doExtractData()</span></code>, not <code class="docutils literal notranslate"><span class="pre">extractData()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-move-any-fsm-tick-code-out-of-runstatus">Step 6 — Move any FSM-tick code out of <code class="docutils literal notranslate"><span class="pre">runStatus()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#worked-examples">Worked examples</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pattern-a-constant-run-state">Pattern A — constant run state</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pattern-b-edge-detected-run-state">Pattern B — edge-detected run state</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pattern-c-fsm-tick-anti-pattern-fix">Pattern C — FSM-tick anti-pattern fix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pattern-d-test-mocks">Pattern D — test mocks</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#behaviour-preservation-guarantees">Behaviour preservation guarantees</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#critical-detail-c1">Critical detail (C1)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#two-subtleties-to-flag-in-code-review">Two subtleties to flag in code review</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pitfalls-and-faq">Pitfalls and FAQ</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-is-extractdata-final">Why is <code class="docutils literal notranslate"><span class="pre">extractData()</span></code> <code class="docutils literal notranslate"><span class="pre">final</span></code>?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-if-my-listener-never-had-a-runstatus-override">What if my listener never had a <code class="docutils literal notranslate"><span class="pre">runStatus()</span></code> override?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-are-onbeginrun-onendrun-protected-rather-than-public">Why are <code class="docutils literal notranslate"><span class="pre">onBeginRun</span></code> / <code class="docutils literal notranslate"><span class="pre">onEndRun</span></code> protected rather than public?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-do-i-drive-onrunpause-in-a-unit-test">How do I drive <code class="docutils literal notranslate"><span class="pre">onRunPause</span></code> in a unit test?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-should-i-override-onafterextract-rather-than-onbeforeextract">When should I override <code class="docutils literal notranslate"><span class="pre">onAfterExtract()</span></code> rather than <code class="docutils literal notranslate"><span class="pre">onBeforeExtract()</span></code>?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-reading">Further reading</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="_sources/LiveListenerMigration.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2007-2026, Mantid.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.20.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

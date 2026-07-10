@@ -1,0 +1,1613 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>SNSLiveEventDataListener refactoring &#8212; MantidProject main documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/css/style.css?v=562d7d41" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="_static/documentation_options.js?v=a8da1a53"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'SNSLiveEventDataListenerRefactoring';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Task Based Algorithms" href="TaskBasedAlgorithms.html" />
+    <link rel="prev" title="Script Repository" href="ScriptRepository.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    <link rel="icon" sizes="32x32" href="_static/images/favicon.ico">
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  <img src="_static/images/mantid_logo_light.png" class="logo__image only-light" alt="Logo image">
+  <img src="_static/images/mantid_logo_dark.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://download.mantidproject.org">Downloads</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org/nightly/tutorials/">Tutorials</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org">User Docs</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://developer.mantidproject.org">Develop</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org/release/">Release notes</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://www.mantidproject.org/contact">Contact Us</a>
+  </li>
+</ul></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+        <div class="navbar-item"><ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+    <li class="nav-item">
+      <a class="nav-link" href="https://github.com/mantidproject/mantid" rel="noopener" target="_blank" title="GitHub">
+        <span><i class="fab fa-github-square"></i></span>
+        <label class="sr-only">GitHub</label>
+      </a>
+    </li>
+  </ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://download.mantidproject.org">Downloads</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org/nightly/tutorials/">Tutorials</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org">User Docs</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://developer.mantidproject.org">Develop</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org/release/">Release notes</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://www.mantidproject.org/contact">Contact Us</a>
+  </li>
+</ul></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+          <div class="navbar-item"><ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+    <li class="nav-item">
+      <a class="nav-link" href="https://github.com/mantidproject/mantid" rel="noopener" target="_blank" title="GitHub">
+        <span><i class="fab fa-github-square"></i></span>
+        <label class="sr-only">GitHub</label>
+      </a>
+    </li>
+  </ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item pst-sidebar-collapse"><button id="pst-collapse-sidebar-button" aria-expanded="true" aria-controls="pst-primary-sidebar">
+  <svg class="pst-icon" role="img" aria-hidden="true" focusable="false" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    <path fill="currentColor" d="M3 15.5C2.36232 15.5 1.74874 15.2564 1.28478 14.8189C0.820828 14.3815 0.541576 13.7832 0.504167 13.1467L0.5 13L0.5 3C0.499965 2.36232 0.743605 1.74874 1.18107 1.28478C1.61854 0.820828 2.21676 0.541576 2.85333 0.504167L3 0.5L13 0.5C13.6377 0.499965 14.2513 0.743605 14.7152 1.18107C15.1792 1.61854 15.4584 2.21676 15.4958 2.85333L15.5 3L15.5 13C15.5 13.6377 15.2564 14.2513 14.8189 14.7152C14.3815 15.1792 13.7832 15.4584 13.1467 15.4958L13 15.5L3 15.5ZM3 13.8333L10.5 13.8333L10.5 2.16667L3 2.16667C2.79589 2.16669 2.59889 2.24163 2.44636 2.37726C2.29383 2.5129 2.19638 2.69979 2.1725 2.9025L2.16667 3L2.16667 13C2.16669 13.2041 2.24163 13.4011 2.37726 13.5536C2.5129 13.7062 2.69979 13.8036 2.9025 13.8275L3 13.8333ZM6.65583 10.325L6.5775 10.2558L4.91083 8.58917C4.76735 8.44567 4.68116 8.25476 4.66843 8.05223C4.65569 7.84971 4.71729 7.6495 4.84167 7.48917L4.91083 7.41083L6.5775 5.74417C6.72747 5.59471 6.9287 5.50794 7.14032 5.50148C7.35194 5.49502 7.55809 5.56935 7.7169 5.70937C7.8757 5.8494 7.97525 6.04463 7.99533 6.25539C8.01541 6.46616 7.95451 6.67667 7.825 6.84417L7.75583 6.9225L6.67917 8L7.75583 9.0775C7.89931 9.22099 7.98551 9.41191 7.99824 9.61443C8.01097 9.81695 7.94938 10.0172 7.825 10.1775L7.75583 10.2558C7.61234 10.3993 7.42142 10.4855 7.2189 10.4982C7.01638 10.511 6.81617 10.4494 6.65583 10.325Z"/>
+  </svg>
+  <span class="pst-collapse-sidebar-label">Collapse Sidebar</span>
+  <span class="pst-expand-sidebar-label">Expand Sidebar</span>
+</button></div>
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"></div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"><code class="docutils literal notranslate"><span class="pre">SNSLiveEventDataListener</span></code> refactoring</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="snsliveeventdatalistener-refactoring">
+<span id="snsliveeventdatalistenerrefactoring"></span><h1><code class="docutils literal notranslate"><span class="pre">SNSLiveEventDataListener</span></code> refactoring<a class="headerlink" href="#snsliveeventdatalistener-refactoring" title="Link to this heading">#</a></h1>
+<p>This document covers the listener-specific aspects of the June 2026 live-listener
+refactor (the ADARA packet flow, the deferred <code class="docutils literal notranslate"><span class="pre">RunStatusPkt</span></code> handling,
+the <code class="docutils literal notranslate"><span class="pre">m_pauseNetRead</span></code> back-pressure mechanism, and the state-machine
+diagrams) for <code class="docutils literal notranslate"><span class="pre">SNSLiveEventDataListener</span></code>.</p>
+<p>For the generic interface — the four pure-getter queries, the
+<code class="docutils literal notranslate"><span class="pre">extractData()</span></code> template method, the migration recipe, and worked
+examples for non-SNS listeners — see <a class="reference internal" href="LiveListenerMigration.html#livelistenermigration"><span class="std std-ref">Live-Listener API Migration Guide (v3 refactoring)</span></a>.</p>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#scope" id="id1">Scope</a></p></li>
+<li><p><a class="reference internal" href="#adara-protocol-context" id="id2">ADARA protocol context</a></p>
+<ul>
+<li><p><a class="reference internal" href="#two-orthogonal-state-axes" id="id3">Two orthogonal state axes</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#pre-refactor-problem" id="id4">Pre-refactor problem</a></p></li>
+<li><p><a class="reference internal" href="#new-state-model" id="id5">New state model</a></p>
+<ul>
+<li><p><a class="reference internal" href="#single-slot-invariant" id="id6">Single-slot invariant</a></p></li>
+<li><p><a class="reference internal" href="#header-summary" id="id7">Header summary</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#state-machine-diagrams" id="id8">State-machine diagrams</a></p>
+<ul>
+<li><p><a class="reference internal" href="#pre-refactor-transitions-committed-inside-runstatus" id="id9">Pre-refactor: transitions committed inside <code class="docutils literal notranslate"><span class="pre">runStatus()</span></code></a></p></li>
+<li><p><a class="reference internal" href="#post-refactor-transitions-committed-inside-extractdata" id="id10">Post-refactor: transitions committed inside <code class="docutils literal notranslate"><span class="pre">extractData()</span></code></a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#implementation" id="id11">Implementation</a></p>
+<ul>
+<li><p><a class="reference internal" href="#pure-getters" id="id12">Pure getters</a></p></li>
+<li><p><a class="reference internal" href="#background-reader-and-packet-handlers" id="id13">Background reader and packet handlers</a></p></li>
+<li><p><a class="reference internal" href="#foreground-snapshot-gate-m-bgthreadcaughtup" id="id14">Foreground snapshot gate (<code class="docutils literal notranslate"><span class="pre">m_bgThreadCaughtUp</span></code>)</a></p></li>
+<li><p><a class="reference internal" href="#extractdata-the-only-commit-point" id="id15"><code class="docutils literal notranslate"><span class="pre">extractData()</span></code> — the only commit point</a></p></li>
+<li><p><a class="reference internal" href="#critical-detail-c1" id="id16">Critical detail (C1)</a></p></li>
+<li><p><a class="reference internal" href="#transition-hooks" id="id17">Transition hooks</a></p></li>
+<li><p><a class="reference internal" href="#background-reader-loop" id="id18">Background reader loop</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#behaviour-preservation-sns-specific" id="id19">Behaviour preservation (SNS-specific)</a></p></li>
+<li><p><a class="reference internal" href="#appendix-pre-existing-defect-m-ignorepackets-is-never-set-true" id="id20">Appendix — pre-existing defect: <code class="docutils literal notranslate"><span class="pre">m_ignorePackets</span></code> is never set <code class="docutils literal notranslate"><span class="pre">true</span></code></a></p>
+<ul>
+<li><p><a class="reference internal" href="#summary" id="id21">Summary</a></p></li>
+<li><p><a class="reference internal" href="#evidence" id="id22">Evidence</a></p></li>
+<li><p><a class="reference internal" href="#provenance" id="id23">Provenance</a></p></li>
+<li><p><a class="reference internal" href="#impact" id="id24">Impact</a></p></li>
+<li><p><a class="reference internal" href="#recommended-fix-separate-pr" id="id25">Recommended fix (separate PR)</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#testing" id="id26">Testing</a></p>
+<ul>
+<li><p><a class="reference internal" href="#unit-tests-snsliveeventdatalistenernonetworktest-h" id="id27">Unit tests — <code class="docutils literal notranslate"><span class="pre">SNSLiveEventDataListenerNoNetworkTest.h</span></code></a></p></li>
+<li><p><a class="reference internal" href="#integration-tests-snsliveeventdatalistenertest-h" id="id28">Integration tests — <code class="docutils literal notranslate"><span class="pre">SNSLiveEventDataListenerTest.h</span></code></a></p></li>
+<li><p><a class="reference internal" href="#integration-tests-snsliveeventdatalisteneralgorithmintegrationtest-h" id="id29">Integration tests — <code class="docutils literal notranslate"><span class="pre">SNSLiveEventDataListenerAlgorithmIntegrationTest.h</span></code></a></p></li>
+<li><p><a class="reference internal" href="#legacy-tests-snsliveeventdatalistenerlegacytest-h" id="id30">Legacy tests — <code class="docutils literal notranslate"><span class="pre">SNSLiveEventDataListenerLegacyTest.h</span></code></a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#further-reading" id="id31">Further reading</a></p></li>
+</ul>
+</nav>
+<section id="scope">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Scope</a><a class="headerlink" href="#scope" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">SNSLiveEventDataListener</span></code> is the most complex concrete
+<code class="docutils literal notranslate"><span class="pre">ILiveListener</span></code> subclass in the tree.  It is the <em>only</em> listener
+that:</p>
+<ul class="simple">
+<li><p>maintains a real <code class="docutils literal notranslate"><span class="pre">BeginRun</span></code> / <code class="docutils literal notranslate"><span class="pre">EndRun</span></code> edge-detection contract
+with its consumers;</p></li>
+<li><p>defers run-status side effects (cache clears, workspace re-init,
+deferred-packet consumption) across thread boundaries;</p></li>
+<li><p>uses an explicit back-pressure flag (<code class="docutils literal notranslate"><span class="pre">m_pauseNetRead</span></code>) between
+the background reader and the foreground extractor;</p></li>
+<li><p>has a documented pause/resume orthogonal axis driven by ADARA
+annotation packets.</p></li>
+</ul>
+<p>Everything in this document applies to <code class="docutils literal notranslate"><span class="pre">SNSLiveEventDataListener</span></code>
+specifically.  Other listeners are simpler and are covered in
+<a class="reference internal" href="LiveListenerMigration.html#livelistenermigration"><span class="std std-ref">Live-Listener API Migration Guide (v3 refactoring)</span></a>.</p>
+</section>
+<section id="adara-protocol-context">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">ADARA protocol context</a><a class="headerlink" href="#adara-protocol-context" title="Link to this heading">#</a></h2>
+<p>The SNS live-event stream is the ADARA protocol.  Five packet types
+are relevant to the state machine:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ADARA::RunStatusPkt</span></code> — carries <code class="docutils literal notranslate"><span class="pre">NEW_RUN</span></code> (run is starting) and
+<code class="docutils literal notranslate"><span class="pre">END_RUN</span></code> (run is ending) markers.  Drives the <code class="docutils literal notranslate"><span class="pre">runState()</span></code> axis.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ADARA::AnnotationPkt</span></code> — carries <code class="docutils literal notranslate"><span class="pre">PAUSE</span></code> and <code class="docutils literal notranslate"><span class="pre">RESUME</span></code> markers.
+Drives the <code class="docutils literal notranslate"><span class="pre">isPaused()</span></code> axis.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ADARA::BeamlineInfoPkt</span></code> and <code class="docutils literal notranslate"><span class="pre">ADARA::GeometryPkt</span></code>— carry instrument-geometry
+information.  Allow completion of workspace initialization.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ADARA::BankedEventPkt</span></code> — carries the actual neutron-event
+records.  Gated on <code class="docutils literal notranslate"><span class="pre">m_isDasPaused</span></code> so paused events are discarded.</p></li>
+</ul>
+<section id="two-orthogonal-state-axes">
+<h3><a class="toc-backref" href="#id3" role="doc-backlink">Two orthogonal state axes</a><a class="headerlink" href="#two-orthogonal-state-axes" title="Link to this heading">#</a></h3>
+<p>The ADARA protocol exposes two independent state axes that the
+legacy <code class="docutils literal notranslate"><span class="pre">runStatus()</span></code> conflated:</p>
+<ul class="simple">
+<li><p><strong>Run state</strong> — whether the DAS is in a run
+(<code class="docutils literal notranslate"><span class="pre">NoRun</span> <span class="pre">/</span> <span class="pre">BeginRun</span> <span class="pre">/</span> <span class="pre">Running</span> <span class="pre">/</span> <span class="pre">EndRun</span></code>).  Driven by
+<code class="docutils literal notranslate"><span class="pre">RunStatusPkt</span></code>.  Transitions require workspace-level coordination
+(cache clears, re-init), so they are queued and committed in
+<code class="docutils literal notranslate"><span class="pre">extractData()</span></code>.</p></li>
+<li><p><strong>Pause state</strong> — whether the current run is paused.  Driven by
+<code class="docutils literal notranslate"><span class="pre">AnnotationPkt</span></code> <code class="docutils literal notranslate"><span class="pre">PAUSE</span></code> / <code class="docutils literal notranslate"><span class="pre">RESUME</span></code> markers.  Orthogonal to
+run state: a run can be in <code class="docutils literal notranslate"><span class="pre">Running</span></code> status while paused, and the
+ADARA protocol does not change the <code class="docutils literal notranslate"><span class="pre">RunStatus</span></code> field on a pause.
+Pause state has <strong>no workspace-level side effects</strong> beyond gating
+event appending, so it is applied immediately in the background
+thread, not queued.</p></li>
+</ul>
+<p>A summary of where each axis is read and written:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 35.0%" />
+<col style="width: 30.0%" />
+<col style="width: 35.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Question</p></th>
+<th class="head"><p>Answer</p></th>
+<th class="head"><p>Type</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>What is the DAS run state right now?</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">RunStatus</span></code></p></td>
+<td><p>pure read (<code class="docutils literal notranslate"><span class="pre">runState()</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Is the current run paused?</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bool</span></code></p></td>
+<td><p>pure read (<code class="docutils literal notranslate"><span class="pre">isPaused()</span></code>)</p></td>
+</tr>
+<tr class="row-even"><td><p>Is the listener connected / back-pressure / errored?</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ListenerState</span></code></p></td>
+<td><p>pure read (<code class="docutils literal notranslate"><span class="pre">listenerState()</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p>What run-state transition (if any) did the most recent
+<code class="docutils literal notranslate"><span class="pre">extractData()</span></code> consume?</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">optional&lt;RunStatus&gt;</span></code></p></td>
+<td><p>pure read (<code class="docutils literal notranslate"><span class="pre">lastTransition()</span></code>)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="pre-refactor-problem">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Pre-refactor problem</a><a class="headerlink" href="#pre-refactor-problem" title="Link to this heading">#</a></h2>
+<p>The legacy <code class="docutils literal notranslate"><span class="pre">SNSLiveEventDataListener::runStatus()</span></code> (roughly lines
+1495–1534 in the pre-refactor <code class="docutils literal notranslate"><span class="pre">SNSLiveEventDataListener.cpp</span></code>)
+performed <em>all</em> of the following inside what callers treated as a
+getter:</p>
+<ul class="simple">
+<li><p>Returned the cached <code class="docutils literal notranslate"><span class="pre">m_status</span></code> value.</p></li>
+<li><p>On <code class="docutils literal notranslate"><span class="pre">BeginRun</span></code>: consumed <code class="docutils literal notranslate"><span class="pre">m_deferredRunDetailsPkt</span></code> via
+<code class="docutils literal notranslate"><span class="pre">setRunDetails(*m_deferredRunDetailsPkt)</span></code>, reset the deferred
+packet, advanced <code class="docutils literal notranslate"><span class="pre">m_status</span></code> to <code class="docutils literal notranslate"><span class="pre">Running</span></code>.</p></li>
+<li><p>On <code class="docutils literal notranslate"><span class="pre">EndRun</span></code>: cleared <code class="docutils literal notranslate"><span class="pre">m_instrumentXML</span></code>, <code class="docutils literal notranslate"><span class="pre">m_instrumentName</span></code>,
+<code class="docutils literal notranslate"><span class="pre">m_dataStartTime</span></code>, advanced <code class="docutils literal notranslate"><span class="pre">m_status</span></code> to <code class="docutils literal notranslate"><span class="pre">NoRun</span></code>.</p></li>
+<li><p>Unconditionally: cleared the <code class="docutils literal notranslate"><span class="pre">m_pauseNetRead</span></code> back-pressure flag,
+releasing the background reader.</p></li>
+<li><p>Implicitly: marked the workspace as needing re-initialisation and
+ran <code class="docutils literal notranslate"><span class="pre">initWorkspacePart1()</span></code> to populate it.</p></li>
+</ul>
+<p>This produced four distinct problems:</p>
+<ol class="arabic simple">
+<li><p><strong>Conflated state.</strong>  A single <code class="docutils literal notranslate"><span class="pre">RunStatus</span></code> return value reported
+both the DAS run state and the listener’s internal FSM position.</p></li>
+<li><p><strong>Hidden side effects.</strong>  Every call to <code class="docutils literal notranslate"><span class="pre">runStatus()</span></code> mutated
+caches and consumed packets.  Reading the state without changing
+it was impossible.</p></li>
+<li><p><strong>The “little white lie” path (resolved by</strong> <code class="docutils literal notranslate"><span class="pre">JoiningRun</span></code> <strong>).</strong>
+When <code class="docutils literal notranslate"><span class="pre">NEW_RUN</span></code> arrived before the workspace was initialised,
+<code class="docutils literal notranslate"><span class="pre">rxPacket(RunStatusPkt)</span></code> skipped the <code class="docutils literal notranslate"><span class="pre">BeginRun</span></code> transition and
+pretended the state was already <code class="docutils literal notranslate"><span class="pre">Running</span></code>, preserving the
+workspace-init invariant but at the cost of an off-diagram code path
+that was the only <code class="docutils literal notranslate"><span class="pre">NoRun</span> <span class="pre">→</span> <span class="pre">Running</span></code> transition committed outside
+<code class="docutils literal notranslate"><span class="pre">onBeginRun()</span></code>.  This is now eliminated: the listener instead
+advances to the new <code class="docutils literal notranslate"><span class="pre">JoiningRun</span></code> state and queues a normal
+<code class="docutils literal notranslate"><span class="pre">BeginRun</span></code> edge once <code class="docutils literal notranslate"><span class="pre">initWorkspacePart2()</span></code> completes (see
+<a class="reference internal" href="#joining-run-state"><span class="std std-ref">Single-slot invariant</span></a> below).</p></li>
+<li><p><strong>Stand-alone ``LoadLiveData`` deadlock.</strong>  <code class="docutils literal notranslate"><span class="pre">LoadLiveData</span></code> does
+not call <code class="docutils literal notranslate"><span class="pre">runStatus()</span></code>.  After <code class="docutils literal notranslate"><span class="pre">rxPacket(RunStatusPkt)</span></code> set
+<code class="docutils literal notranslate"><span class="pre">m_pauseNetRead</span> <span class="pre">=</span> <span class="pre">true</span></code>, nothing ever cleared it.  The
+background reader stopped, the workspace could not be
+re-initialised, and <code class="docutils literal notranslate"><span class="pre">extractData()</span></code> either timed out
+(<code class="docutils literal notranslate"><span class="pre">NotYet</span></code>) or spun on a stale workspace.</p></li>
+</ol>
+<p>A fifth, more subtle issue: <code class="docutils literal notranslate"><span class="pre">MonitorLiveData</span></code> worked correctly <em>only
+because</em> it happened to call <code class="docutils literal notranslate"><span class="pre">extractData()</span></code> first and
+<code class="docutils literal notranslate"><span class="pre">runStatus()</span></code> second within each polling iteration.  Nothing in
+the type system enforced that ordering; it was an undocumented
+contract.</p>
+</section>
+<section id="new-state-model">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">New state model</a><a class="headerlink" href="#new-state-model" title="Link to this heading">#</a></h2>
+<p>The conflated <code class="docutils literal notranslate"><span class="pre">m_status</span></code> member is split into three:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">m_adaraRunStatus</span></code> — what the DAS run state is right now (read by
+<code class="docutils literal notranslate"><span class="pre">runState()</span></code>).  Written by <code class="docutils literal notranslate"><span class="pre">rxPacket(RunStatusPkt)</span></code> and by the
+<code class="docutils literal notranslate"><span class="pre">onBeginRun()</span></code> / <code class="docutils literal notranslate"><span class="pre">onEndRun()</span></code> hooks.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">m_pendingTransition</span></code> — exactly one run-state edge waiting to be
+consumed by <code class="docutils literal notranslate"><span class="pre">extractData()</span></code> (queued by
+<code class="docutils literal notranslate"><span class="pre">rxPacket(RunStatusPkt)</span></code>, dequeued by <code class="docutils literal notranslate"><span class="pre">onBeforeExtract()</span></code> for
+<code class="docutils literal notranslate"><span class="pre">BeginRun</span></code> and by <code class="docutils literal notranslate"><span class="pre">onAfterExtract()</span></code> for <code class="docutils literal notranslate"><span class="pre">EndRun</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">m_lastTransition</span></code> — the run-state edge committed by the most
+recent successful <code class="docutils literal notranslate"><span class="pre">extractData()</span></code> (read by <code class="docutils literal notranslate"><span class="pre">lastTransition()</span></code>).
+Both <code class="docutils literal notranslate"><span class="pre">BeginRun</span></code> and <code class="docutils literal notranslate"><span class="pre">EndRun</span></code> are observable to the caller between
+the <code class="docutils literal notranslate"><span class="pre">extractData()</span></code> that committed them and the next successful
+<code class="docutils literal notranslate"><span class="pre">extractData()</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">m_previousExtractCompleted</span></code> — set <code class="docutils literal notranslate"><span class="pre">true</span></code> at the end of
+<code class="docutils literal notranslate"><span class="pre">onAfterExtract()</span></code>, consumed (cleared) at the start of the next
+<code class="docutils literal notranslate"><span class="pre">onBeforeExtract()</span></code> after both <code class="docutils literal notranslate"><span class="pre">NotYet</span></code> gates pass.  Gates the
+deferred clear of <code class="docutils literal notranslate"><span class="pre">m_lastTransition</span></code> so the edge survives
+<code class="docutils literal notranslate"><span class="pre">Exception::NotYet</span></code> retries (the C1 invariant).</p></li>
+</ul>
+<p>The pause flag is renamed for clarity: <code class="docutils literal notranslate"><span class="pre">m_runPaused</span></code> →
+<code class="docutils literal notranslate"><span class="pre">m_isDasPaused</span></code>, read by <code class="docutils literal notranslate"><span class="pre">isPaused()</span></code>.</p>
+<p>The back-pressure flag <code class="docutils literal notranslate"><span class="pre">m_pauseNetRead</span></code> keeps both its name and its
+meaning, to keep the diff focused and the explanatory comments in
+<code class="docutils literal notranslate"><span class="pre">rxPacket(RunStatusPkt)</span></code> intelligible.</p>
+<section id="single-slot-invariant">
+<span id="joining-run-state"></span><h3><a class="toc-backref" href="#id6" role="doc-backlink">Single-slot invariant</a><a class="headerlink" href="#single-slot-invariant" title="Link to this heading">#</a></h3>
+<p>At most one un-consumed transition can exist at a time.  The background
+thread enforces this by setting <code class="docutils literal notranslate"><span class="pre">m_pauseNetRead</span> <span class="pre">=</span> <span class="pre">true</span></code> whenever it
+queues a transition; the background reader then blocks until
+<code class="docutils literal notranslate"><span class="pre">extractData()</span></code> releases <code class="docutils literal notranslate"><span class="pre">m_pauseNetRead</span></code> via the hook.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">JoiningRun</span></code> case (<code class="docutils literal notranslate"><span class="pre">NEW_RUN</span></code> with workspace not yet initialised)
+is the one path that queues <em>no</em> back-pressure: the background thread
+must keep reading packets to complete workspace initialisation.  It
+queues a <code class="docutils literal notranslate"><span class="pre">BeginRun</span></code> edge only once <code class="docutils literal notranslate"><span class="pre">initWorkspacePart2()</span></code> succeeds,
+at which point <code class="docutils literal notranslate"><span class="pre">m_pendingTransition</span></code> is not yet occupied and no
+back-pressure is needed (there are no prior run’s events to protect).</p>
+<p>The invariant is checked explicitly in <code class="docutils literal notranslate"><span class="pre">rxPacket(RunStatusPkt)</span></code>;
+violation is treated as an implementation error and raises:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_pendingTransition</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">throw</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">runtime_error</span><span class="p">(</span>
+<span class="w">        </span><span class="s">&quot;SNSLiveEventDataListener: pending run-state transition was not &quot;</span>
+<span class="w">        </span><span class="s">&quot;consumed before a new transition arrived — back-pressure invariant &quot;</span>
+<span class="w">        </span><span class="s">&quot;violation.&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="n">m_pendingTransition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BeginRun</span><span class="p">;</span><span class="w">   </span><span class="c1">// or EndRun</span>
+<span class="n">m_pauseNetRead</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>This is a <code class="docutils literal notranslate"><span class="pre">runtime_error</span></code> rather than a debug-only assertion so the
+condition is never silently masked in release builds.</p>
+</section>
+<section id="header-summary">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">Header summary</a><a class="headerlink" href="#header-summary" title="Link to this heading">#</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">SNSLiveEventDataListener</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">API</span><span class="o">::</span><span class="n">LiveListener</span><span class="p">,</span>
+<span class="w">                                 </span><span class="k">public</span><span class="w"> </span><span class="n">Poco</span><span class="o">::</span><span class="n">Runnable</span><span class="p">,</span>
+<span class="w">                                 </span><span class="k">public</span><span class="w"> </span><span class="n">ADARA</span><span class="o">::</span><span class="n">Parser</span><span class="w"> </span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="c1">// pure queries</span>
+<span class="w">    </span><span class="n">RunStatus</span><span class="w"> </span><span class="n">runState</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">isPaused</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+<span class="w">    </span><span class="n">ListenerState</span><span class="w"> </span><span class="nf">listenerState</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="n">RunStatus</span><span class="o">&gt;</span><span class="w"> </span><span class="n">lastTransition</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="nf">runNumber</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">m_runNumber</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">isConnected</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+
+<span class="k">protected</span><span class="o">:</span>
+<span class="w">    </span><span class="c1">/// Phase 1 of extraction: commit any queued ``BeginRun`` transition.</span>
+<span class="w">    </span><span class="c1">/// Called by LiveListener::extractData() before doExtractData().</span>
+<span class="w">    </span><span class="c1">/// Runs on the foreground thread.</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">onBeforeExtract</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">/// Phase 2/3 of extraction: wait for workspace initialisation,</span>
+<span class="w">    </span><span class="c1">/// build the new EventWorkspace, swap, and return it.</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">API</span><span class="o">::</span><span class="n">Workspace</span><span class="o">&gt;</span><span class="w"> </span><span class="n">doExtractData</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">/// Phase 4 of extraction: commit any queued ``EndRun`` transition.</span>
+<span class="w">    </span><span class="c1">/// Deferred to after doExtractData() so the finishing run&#39;s</span>
+<span class="w">    </span><span class="c1">/// accumulated events are harvested before the workspace buffer</span>
+<span class="w">    </span><span class="c1">/// is reset by onEndRun().</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">onAfterExtract</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">/// Explicit, named state-transition hooks.</span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">onBeginRun</span><span class="p">();</span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">onEndRun</span><span class="p">();</span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">onRunPause</span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="n">paused</span><span class="p">);</span>
+
+<span class="k">private</span><span class="o">:</span>
+<span class="w">    </span><span class="c1">// ADARA / DAS state (written by background thread)</span>
+<span class="w">    </span><span class="n">RunStatus</span><span class="w"> </span><span class="n">m_adaraRunStatus</span><span class="p">{</span><span class="n">NoRun</span><span class="p">};</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">ADARA</span><span class="o">::</span><span class="n">RunStatusPkt</span><span class="o">&gt;</span><span class="w"> </span><span class="n">m_deferredRunDetailsPkt</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Pending run-state transition (background -&gt; foreground).</span>
+<span class="w">    </span><span class="c1">// INVARIANT: at most one un-consumed transition at a time.</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="n">RunStatus</span><span class="o">&gt;</span><span class="w"> </span><span class="n">m_pendingTransition</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Result of the most recent commit (read by lastTransition()).</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="n">RunStatus</span><span class="o">&gt;</span><span class="w"> </span><span class="n">m_lastTransition</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Listener health</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">runtime_error</span><span class="o">&gt;</span><span class="w"> </span><span class="n">m_backgroundException</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Existing members (unchanged)</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">m_runNumber</span><span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+<span class="w">    </span><span class="n">DataObjects</span><span class="o">::</span><span class="n">EventWorkspace_sptr</span><span class="w"> </span><span class="n">m_eventBuffer</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">m_workspaceInitialized</span><span class="p">{</span><span class="nb">false</span><span class="p">};</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">m_instrumentName</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">m_instrumentXML</span><span class="p">;</span>
+<span class="w">    </span><span class="cm">/* ... etc. ... */</span>
+<span class="w">    </span><span class="k">mutable</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">mutex</span><span class="w"> </span><span class="n">m_mutex</span><span class="p">;</span><span class="w">        </span><span class="c1">///&lt; guards all of the above</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">m_pauseNetRead</span><span class="p">{</span><span class="nb">false</span><span class="p">};</span><span class="w">        </span><span class="c1">///&lt; back-pressure flag</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">m_isDasPaused</span><span class="p">{</span><span class="nb">false</span><span class="p">};</span><span class="w">         </span><span class="c1">///&lt; set by onRunPause(); read by isPaused()</span>
+<span class="w">    </span><span class="n">NameMapType</span><span class="w"> </span><span class="n">m_nameMap</span><span class="p">;</span>
+<span class="w">    </span><span class="cm">/* ... etc. ... */</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="state-machine-diagrams">
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">State-machine diagrams</a><a class="headerlink" href="#state-machine-diagrams" title="Link to this heading">#</a></h2>
+<p>Two diagrams below show the <code class="docutils literal notranslate"><span class="pre">runState</span></code> evolution for the SNS
+listener.  Apart from the addition of a new <code class="docutils literal notranslate"><span class="pre">JoiningRun</span></code> state,
+the shape of the state machine is unchanged between
+pre- and post-refactor; what changes is <strong>where the transitions are
+committed</strong> — and that change is what makes the listener safe to use
+from stand-alone <code class="docutils literal notranslate"><span class="pre">LoadLiveData</span></code>.</p>
+<p>In both diagrams:</p>
+<ul class="simple">
+<li><p>Nodes are the four <code class="docutils literal notranslate"><span class="pre">runState</span></code> values (<code class="docutils literal notranslate"><span class="pre">NoRun</span></code>, <code class="docutils literal notranslate"><span class="pre">BeginRun</span></code>,
+<code class="docutils literal notranslate"><span class="pre">Running</span></code>, <code class="docutils literal notranslate"><span class="pre">EndRun</span></code>).</p></li>
+<li><p>Edges are labelled with the ADARA packet (or call) that triggers
+the transition.</p></li>
+<li><p>A dashed box (cluster) encloses the transitions that are
+<strong>committed at a particular point in the code</strong> — i.e. where the
+visible state mutation and the workspace-level side effects
+actually occur.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">isPaused()</span></code> axis is shown as a separate small subgraph; it
+is orthogonal to <code class="docutils literal notranslate"><span class="pre">runState</span></code> and applied immediately in the
+background thread.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">listenerState()</span></code> axis is shown as a separate small subgraph.</p></li>
+</ul>
+<section id="pre-refactor-transitions-committed-inside-runstatus">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">Pre-refactor: transitions committed inside <code class="docutils literal notranslate"><span class="pre">runStatus()</span></code></a><a class="headerlink" href="#pre-refactor-transitions-committed-inside-runstatus" title="Link to this heading">#</a></h3>
+<img alt="SNSLiveEventDataListener state machine, pre-refactor. BeginRun→Running and EndRun→NoRun edges are enclosed in a dashed cluster labelled &quot;committed inside runStatus()&quot;, indicating that the cache clears, workspace re-init, deferred RunStatusPkt consumption, and m_pauseNetRead release all happen as side effects of the runStatus() getter." class="align-center" src="_images/SNSLiveEventDataListener-state-machine-before.png" />
+<p>In the pre-refactor design the commit boundary is <strong>the
+``runStatus()`` getter itself</strong>.  External callers that never invoke
+<code class="docutils literal notranslate"><span class="pre">runStatus()</span></code> — notably stand-alone <code class="docutils literal notranslate"><span class="pre">LoadLiveData</span></code> — never trigger
+the transition, <code class="docutils literal notranslate"><span class="pre">m_pauseNetRead</span></code> is never released, and the
+listener deadlocks.</p>
+<p>The diagram source is committed alongside the rendered image at
+<code class="docutils literal notranslate"><span class="pre">dev-docs/source/images/SNSLiveEventDataListener-state-machine-before.dot</span></code>;
+regenerate the PNG with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dot</span> <span class="o">-</span><span class="n">Tpng</span> <span class="o">-</span><span class="n">o</span> <span class="n">SNSLiveEventDataListener</span><span class="o">-</span><span class="n">state</span><span class="o">-</span><span class="n">machine</span><span class="o">-</span><span class="n">before</span><span class="o">.</span><span class="n">png</span> \
+          <span class="n">SNSLiveEventDataListener</span><span class="o">-</span><span class="n">state</span><span class="o">-</span><span class="n">machine</span><span class="o">-</span><span class="n">before</span><span class="o">.</span><span class="n">dot</span>
+</pre></div>
+</div>
+</section>
+<section id="post-refactor-transitions-committed-inside-extractdata">
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">Post-refactor: transitions committed inside <code class="docutils literal notranslate"><span class="pre">extractData()</span></code></a><a class="headerlink" href="#post-refactor-transitions-committed-inside-extractdata" title="Link to this heading">#</a></h3>
+<img alt="SNSLiveEventDataListener state machine, post-refactor. BeginRun→Running and EndRun→NoRun edges are enclosed in a dashed cluster labelled &quot;committed inside extractData() (onBeforeExtract → doExtractData → onAfterExtract)&quot;, indicating that the cache clears, workspace re-init, deferred-packet consumption, and m_pauseNetRead release all happen as part of the template-method extractData() call — with BeginRun dispatched in onBeforeExtract() and EndRun deferred to onAfterExtract() so the finishing run's events are harvested first." class="align-center" src="_images/SNSLiveEventDataListener-state-machine-after.png" />
+<p>In the post-refactor design the commit boundary is <strong>the
+``extractData()`` template method</strong> — specifically the
+<code class="docutils literal notranslate"><span class="pre">onBeforeExtract()</span></code> and <code class="docutils literal notranslate"><span class="pre">onAfterExtract()</span></code> hooks that bracket
+<code class="docutils literal notranslate"><span class="pre">doExtractData()</span></code>.  <code class="docutils literal notranslate"><span class="pre">BeginRun</span></code> is dispatched in
+<code class="docutils literal notranslate"><span class="pre">onBeforeExtract()</span></code> so the new run’s workspace is initialised
+before <code class="docutils literal notranslate"><span class="pre">doExtractData()</span></code> snapshots it; <code class="docutils literal notranslate"><span class="pre">EndRun</span></code> is dispatched in
+<code class="docutils literal notranslate"><span class="pre">onAfterExtract()</span></code> so the finishing run’s accumulated events are
+harvested before <code class="docutils literal notranslate"><span class="pre">onEndRun()</span></code> resets the buffer.
+Because every consumer of <code class="docutils literal notranslate"><span class="pre">ILiveListener</span></code> calls <code class="docutils literal notranslate"><span class="pre">extractData()</span></code>,
+every consumer drives the FSM forward, and stand-alone
+<code class="docutils literal notranslate"><span class="pre">LoadLiveData</span></code> works without changes.</p>
+<p>The diagram source is committed alongside the rendered image at
+<code class="docutils literal notranslate"><span class="pre">dev-docs/source/images/SNSLiveEventDataListener-state-machine-after.dot</span></code>;
+regenerate the PNG with the analogous <code class="docutils literal notranslate"><span class="pre">dot</span></code> command.</p>
+</section>
+</section>
+<section id="implementation">
+<h2><a class="toc-backref" href="#id11" role="doc-backlink">Implementation</a><a class="headerlink" href="#implementation" title="Link to this heading">#</a></h2>
+<section id="pure-getters">
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">Pure getters</a><a class="headerlink" href="#pure-getters" title="Link to this heading">#</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">ILiveListener</span><span class="o">::</span><span class="n">RunStatus</span>
+<span class="nf">SNSLiveEventDataListener::runState</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_backgroundException</span><span class="p">)</span><span class="w"> </span><span class="k">throw</span><span class="w"> </span><span class="o">*</span><span class="n">m_backgroundException</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">lock_guard</span><span class="w"> </span><span class="n">lock</span><span class="p">(</span><span class="n">m_mutex</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">m_adaraRunStatus</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">ListenerState</span>
+<span class="nf">SNSLiveEventDataListener::listenerState</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">lock_guard</span><span class="w"> </span><span class="n">lock</span><span class="p">(</span><span class="n">m_mutex</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_backgroundException</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">ListenerState</span><span class="o">::</span><span class="n">Error</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">m_isConnected</span><span class="p">)</span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ListenerState</span><span class="o">::</span><span class="n">Disconnected</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_pauseNetRead</span><span class="p">)</span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ListenerState</span><span class="o">::</span><span class="n">ReadWait</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ListenerState</span><span class="o">::</span><span class="n">Connected</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="n">ILiveListener</span><span class="o">::</span><span class="n">RunStatus</span><span class="o">&gt;</span>
+<span class="n">SNSLiveEventDataListener</span><span class="o">::</span><span class="n">lastTransition</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_backgroundException</span><span class="p">)</span><span class="w"> </span><span class="k">throw</span><span class="w"> </span><span class="o">*</span><span class="n">m_backgroundException</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">lock_guard</span><span class="w"> </span><span class="nf">lock</span><span class="p">(</span><span class="n">m_mutex</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">m_lastTransition</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">bool</span><span class="w"> </span><span class="n">SNSLiveEventDataListener</span><span class="o">::</span><span class="n">isPaused</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">lock_guard</span><span class="w"> </span><span class="nf">lock</span><span class="p">(</span><span class="n">m_mutex</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">m_isDasPaused</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>All four getters are <code class="docutils literal notranslate"><span class="pre">const</span></code> and have no side effects.  None mutate
+<code class="docutils literal notranslate"><span class="pre">m_adaraRunStatus</span></code>, <code class="docutils literal notranslate"><span class="pre">m_isDasPaused</span></code>, <code class="docutils literal notranslate"><span class="pre">m_pendingTransition</span></code>,
+<code class="docutils literal notranslate"><span class="pre">m_pauseNetRead</span></code>, or any cache.</p>
+</section>
+<section id="background-reader-and-packet-handlers">
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">Background reader and packet handlers</a><a class="headerlink" href="#background-reader-and-packet-handlers" title="Link to this heading">#</a></h3>
+<p>In <code class="docutils literal notranslate"><span class="pre">rxPacket(const</span> <span class="pre">ADARA::RunStatusPkt</span> <span class="pre">&amp;pkt)</span></code> the changes versus the
+legacy implementation are:</p>
+<ul class="simple">
+<li><p>Replace assignments to the conflated <code class="docutils literal notranslate"><span class="pre">m_status</span></code> with assignments
+to <code class="docutils literal notranslate"><span class="pre">m_adaraRunStatus</span></code>.</p></li>
+<li><p>On <code class="docutils literal notranslate"><span class="pre">NEW_RUN</span></code> with <code class="docutils literal notranslate"><span class="pre">m_workspaceInitialized</span> <span class="pre">==</span> <span class="pre">true</span></code>: enforce the
+single-slot invariant, queue <code class="docutils literal notranslate"><span class="pre">m_pendingTransition</span> <span class="pre">=</span> <span class="pre">BeginRun</span></code>,
+set <code class="docutils literal notranslate"><span class="pre">m_pauseNetRead</span> <span class="pre">=</span> <span class="pre">true</span></code>.</p></li>
+<li><p>On <code class="docutils literal notranslate"><span class="pre">NEW_RUN</span></code> with <code class="docutils literal notranslate"><span class="pre">m_workspaceInitialized</span> <span class="pre">==</span> <span class="pre">false</span></code> (joining path):
+set <code class="docutils literal notranslate"><span class="pre">m_adaraRunStatus</span> <span class="pre">=</span> <span class="pre">JoiningRun</span></code>, call <code class="docutils literal notranslate"><span class="pre">setRunDetails(pkt)</span></code>
+immediately so <code class="docutils literal notranslate"><span class="pre">run_number</span></code> / <code class="docutils literal notranslate"><span class="pre">run_start</span></code> are available during the
+bootstrap window, queue <strong>no</strong> transition, set <strong>no</strong> back-pressure.
+The background thread must keep reading to complete workspace init.
+Once <code class="docutils literal notranslate"><span class="pre">initWorkspacePart2()</span></code> sets <code class="docutils literal notranslate"><span class="pre">m_workspaceInitialized</span> <span class="pre">=</span> <span class="pre">true</span></code>
+and sees <code class="docutils literal notranslate"><span class="pre">m_adaraRunStatus</span> <span class="pre">==</span> <span class="pre">JoiningRun</span></code>, it queues
+<code class="docutils literal notranslate"><span class="pre">m_pendingTransition</span> <span class="pre">=</span> <span class="pre">BeginRun</span></code>; the foreground then commits to
+<code class="docutils literal notranslate"><span class="pre">Running</span></code> via the normal <code class="docutils literal notranslate"><span class="pre">onBeginRun()</span></code> hook (joining-completion
+path: no cache reset, no <code class="docutils literal notranslate"><span class="pre">m_deferredRunDetailsPkt</span></code> needed).</p></li>
+<li><p>On <code class="docutils literal notranslate"><span class="pre">END_RUN</span></code>: enforce the single-slot invariant, queue
+<code class="docutils literal notranslate"><span class="pre">m_pendingTransition</span> <span class="pre">=</span> <span class="pre">EndRun</span></code>, set <code class="docutils literal notranslate"><span class="pre">m_pauseNetRead</span> <span class="pre">=</span> <span class="pre">true</span></code>,
+copy <code class="docutils literal notranslate"><span class="pre">setRunDetails(pkt)</span></code> if <code class="docutils literal notranslate"><span class="pre">!haveRunNumber</span></code> (unchanged).
+<code class="docutils literal notranslate"><span class="pre">m_adaraRunStatus</span></code> is <strong>not</strong> mutated here — it is advanced to
+<code class="docutils literal notranslate"><span class="pre">NoRun</span></code> later from <code class="docutils literal notranslate"><span class="pre">onEndRun()</span></code> (dispatched from
+<code class="docutils literal notranslate"><span class="pre">onAfterExtract()</span></code> after <code class="docutils literal notranslate"><span class="pre">doExtractData()</span></code> has harvested the
+finishing run’s events).  Until that commit, <code class="docutils literal notranslate"><span class="pre">runState()</span></code> continues
+to report <code class="docutils literal notranslate"><span class="pre">Running</span></code> (or <code class="docutils literal notranslate"><span class="pre">JoiningRun</span></code>); the <code class="docutils literal notranslate"><span class="pre">EndRun</span></code> edge is
+delivered to consumers via <code class="docutils literal notranslate"><span class="pre">lastTransition()</span></code> and the legacy
+<code class="docutils literal notranslate"><span class="pre">runStatus()</span></code> shim, satisfying the “exactly once” delivery contract.</p></li>
+</ul>
+<p>In <code class="docutils literal notranslate"><span class="pre">rxPacket(const</span> <span class="pre">ADARA::AnnotationPkt</span> <span class="pre">&amp;pkt)</span></code>, <code class="docutils literal notranslate"><span class="pre">PAUSE</span></code> and
+<code class="docutils literal notranslate"><span class="pre">RESUME</span></code> markers call <code class="docutils literal notranslate"><span class="pre">onRunPause(true/false)</span></code> directly from the
+background thread.  This is intentional: pause state has no
+workspace-level side effects (it only gates event appending in
+<code class="docutils literal notranslate"><span class="pre">rxPacket(BankedEventPkt)</span></code>), so applying it immediately at the
+packet boundary gives the most accurate event filtering relative to
+the DAS timeline.  The pause/resume path does <strong>not</strong> use
+<code class="docutils literal notranslate"><span class="pre">m_pendingTransition</span></code> and does <strong>not</strong> set <code class="docutils literal notranslate"><span class="pre">m_pauseNetRead</span></code>.</p>
+</section>
+<section id="foreground-snapshot-gate-m-bgthreadcaughtup">
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">Foreground snapshot gate (<code class="docutils literal notranslate"><span class="pre">m_bgThreadCaughtUp</span></code>)</a><a class="headerlink" href="#foreground-snapshot-gate-m-bgthreadcaughtup" title="Link to this heading">#</a></h3>
+<p>A new <code class="docutils literal notranslate"><span class="pre">std::atomic&lt;bool&gt;</span> <span class="pre">m_bgThreadCaughtUp{false}</span></code> field
+synchronises the background parser and the foreground extractor:</p>
+<ul class="simple">
+<li><p><strong>Background writes:</strong> stored <code class="docutils literal notranslate"><span class="pre">false</span></code> at the start of every
+<code class="docutils literal notranslate"><span class="pre">bufferParse()</span></code> iteration; stored <code class="docutils literal notranslate"><span class="pre">true</span></code> at the end.
+<code class="docutils literal notranslate"><span class="pre">receiveBytes()</span></code> does <strong>not</strong> touch the flag — a background thread
+blocked in receive presents as “caught-up” because its in-memory
+state is stable.</p></li>
+<li><p><strong>Foreground use in</strong> <code class="docutils literal notranslate"><span class="pre">onBeforeExtract()</span></code>: if
+<code class="docutils literal notranslate"><span class="pre">m_thread.isRunning()</span> <span class="pre">&amp;&amp;</span> <span class="pre">!m_bgThreadCaughtUp</span></code>, the call throws
+<code class="docutils literal notranslate"><span class="pre">Exception::NotYet</span></code> immediately, without touching any shared state.
+This closes the inter-<code class="docutils literal notranslate"><span class="pre">rxPacket()</span></code> race window — without it, the
+foreground could snapshot <code class="docutils literal notranslate"><span class="pre">m_pendingTransition</span></code> between two
+<code class="docutils literal notranslate"><span class="pre">rxPacket()</span></code> calls in the same <code class="docutils literal notranslate"><span class="pre">bufferParse()</span></code> iteration.</p></li>
+<li><p><strong>Background use in the pause loop:</strong> the inner pause loop
+short-circuits on <code class="docutils literal notranslate"><span class="pre">m_bgThreadCaughtUp</span> <span class="pre">==</span> <span class="pre">false</span></code> so the foreground
+cannot wake the background thread (by clearing <code class="docutils literal notranslate"><span class="pre">m_pauseNetRead</span></code>)
+while a parse is still in flight.</p></li>
+<li><p><strong>Run-boundary reset:</strong> <code class="docutils literal notranslate"><span class="pre">onEndRun()</span></code> stores <code class="docutils literal notranslate"><span class="pre">false</span></code> immediately
+before setting <code class="docutils literal notranslate"><span class="pre">m_adaraRunStatus</span> <span class="pre">=</span> <span class="pre">NoRun</span></code>.  This re-arms the
+first-extract synchronisation for every subsequent run, exactly
+mirroring the construction-time initial value: the first
+<code class="docutils literal notranslate"><span class="pre">extractData()</span></code> of each run is gated on that run’s first
+<code class="docutils literal notranslate"><span class="pre">bufferParse()</span></code>, not just the very first run.</p></li>
+<li><p><strong>Test-fixture note:</strong> <code class="docutils literal notranslate"><span class="pre">NoNetworkTest</span></code> fixtures run with no
+background thread, so <code class="docutils literal notranslate"><span class="pre">m_thread.isRunning()</span></code> short-circuits the
+guard for them; no fake flag manipulation is required in tests.</p></li>
+</ul>
+</section>
+<section id="extractdata-the-only-commit-point">
+<h3><a class="toc-backref" href="#id15" role="doc-backlink"><code class="docutils literal notranslate"><span class="pre">extractData()</span></code> — the only commit point</a><a class="headerlink" href="#extractdata-the-only-commit-point" title="Link to this heading">#</a></h3>
+<p>The body below is presented as a single <code class="docutils literal notranslate"><span class="pre">extractData()</span></code> for clarity.
+In the actual implementation it is split across the three-phase
+<code class="docutils literal notranslate"><span class="pre">LiveListener::extractData()</span></code> template method
+(<code class="docutils literal notranslate"><span class="pre">onBeforeExtract()</span></code> → <code class="docutils literal notranslate"><span class="pre">doExtractData()</span></code> → <code class="docutils literal notranslate"><span class="pre">onAfterExtract()</span></code>),
+with the <code class="docutils literal notranslate"><span class="pre">m_backgroundException</span></code> rethrow remaining the
+responsibility of the individual SNS getters (<code class="docutils literal notranslate"><span class="pre">runState()</span></code>,
+<code class="docutils literal notranslate"><span class="pre">lastTransition()</span></code> — see the pure-getters section above).
+<code class="docutils literal notranslate"><span class="pre">onBeforeExtract()</span></code> handles Phase 1 (commit a pending <code class="docutils literal notranslate"><span class="pre">BeginRun</span></code>
+edge); <code class="docutils literal notranslate"><span class="pre">doExtractData()</span></code> handles Phase 2/3 (workspace-init wait +
+<code class="docutils literal notranslate"><span class="pre">EventWorkspace</span></code> build + swap); <code class="docutils literal notranslate"><span class="pre">onAfterExtract()</span></code> handles Phase 4
+(commit a pending <code class="docutils literal notranslate"><span class="pre">EndRun</span></code> edge, deferred until after
+<code class="docutils literal notranslate"><span class="pre">doExtractData()</span></code> so the finishing run’s events are harvested first).
+The exception-safety guarantees described below survive the split
+unchanged.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Workspace</span><span class="o">&gt;</span>
+<span class="n">SNSLiveEventDataListener</span><span class="o">::</span><span class="n">extractData</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">     </span><span class="c1">// conceptually</span>
+<span class="w">    </span><span class="c1">// m_backgroundException is re-thrown in the individual SNS getters</span>
+<span class="w">    </span><span class="c1">// (runState(), lastTransition()), not in this template method body.</span>
+<span class="w">    </span><span class="c1">// Shown here for orientation; the base LiveListener::extractData() body</span>
+<span class="w">    </span><span class="c1">// is simply: onBeforeExtract() → doExtractData() → onAfterExtract().</span>
+
+<span class="w">    </span><span class="c1">// ---- Phase 1 (onBeforeExtract): commit a pending BeginRun --------</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Fast-path: throw NotYet immediately if the background thread is</span>
+<span class="w">        </span><span class="c1">// mid-parse (before taking any lock).</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_thread</span><span class="p">.</span><span class="n">isRunning</span><span class="p">()</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">m_bgThreadCaughtUp</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">memory_order_acquire</span><span class="p">))</span>
+<span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="n">Exception</span><span class="o">::</span><span class="n">NotYet</span><span class="p">(</span><span class="s">&quot;Background thread parse is in flight.&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="n">RunStatus</span><span class="o">&gt;</span><span class="w"> </span><span class="n">pending</span><span class="p">;</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">std</span><span class="o">::</span><span class="n">lock_guard</span><span class="w"> </span><span class="nf">lock</span><span class="p">(</span><span class="n">m_mutex</span><span class="p">);</span>
+<span class="w">            </span><span class="c1">// Re-check under the lock to close the TOCTOU window.</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_thread</span><span class="p">.</span><span class="n">isRunning</span><span class="p">()</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">m_bgThreadCaughtUp</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">memory_order_acquire</span><span class="p">))</span>
+<span class="w">                </span><span class="k">throw</span><span class="w"> </span><span class="n">Exception</span><span class="o">::</span><span class="n">NotYet</span><span class="p">(</span><span class="s">&quot;Background thread parse is in flight.&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="c1">// Both NotYet gates passed: the prior extract&#39;s edge has been</span>
+<span class="w">            </span><span class="c1">// delivered.  Clear it now so the next tick sees nullopt.</span>
+<span class="w">            </span><span class="c1">// m_previousExtractCompleted is false during a NotYet retry, so</span>
+<span class="w">            </span><span class="c1">// the edge survives retries (C1 invariant).</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_previousExtractCompleted</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">m_lastTransition</span><span class="p">.</span><span class="n">reset</span><span class="p">();</span>
+<span class="w">                </span><span class="n">m_previousExtractCompleted</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="n">pending</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m_pendingTransition</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pending</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">*</span><span class="n">pending</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">BeginRun</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="n">std</span><span class="o">::</span><span class="n">lock_guard</span><span class="w"> </span><span class="nf">lock</span><span class="p">(</span><span class="n">m_mutex</span><span class="p">);</span>
+<span class="w">                </span><span class="n">m_pendingTransition</span><span class="p">.</span><span class="n">reset</span><span class="p">();</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="n">onBeginRun</span><span class="p">();</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="n">std</span><span class="o">::</span><span class="n">lock_guard</span><span class="w"> </span><span class="nf">lock</span><span class="p">(</span><span class="n">m_mutex</span><span class="p">);</span>
+<span class="w">                </span><span class="n">m_lastTransition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BeginRun</span><span class="p">;</span><span class="w">     </span><span class="c1">// memoise for lastTransition()</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="n">m_pauseNetRead</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// ---- Phase 2: wait for workspace initialisation (unchanged) -----</span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">maxBlockTime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">10.0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">DateAndTime</span><span class="w"> </span><span class="n">endTime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DateAndTime</span><span class="o">::</span><span class="n">getCurrentTime</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">maxBlockTime</span><span class="p">;</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">m_workspaceInitialized</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">DateAndTime</span><span class="o">::</span><span class="n">getCurrentTime</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">endTime</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Poco</span><span class="o">::</span><span class="n">Thread</span><span class="o">::</span><span class="n">sleep</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">m_workspaceInitialized</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="n">Exception</span><span class="o">::</span><span class="n">NotYet</span><span class="p">(</span><span class="s">&quot;The workspace has not yet been initialized.&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_ignorePackets</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="n">Exception</span><span class="o">::</span><span class="n">NotYet</span><span class="p">(</span><span class="s">&quot;Waiting for a run to start.&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// ---- Phase 3: build the new EventWorkspace and swap (unchanged) -</span>
+<span class="w">    </span><span class="n">EventWorkspace_sptr</span><span class="w"> </span><span class="n">temp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">dynamic_pointer_cast</span><span class="o">&lt;</span><span class="n">EventWorkspace</span><span class="o">&gt;</span><span class="p">(</span>
+<span class="w">        </span><span class="n">API</span><span class="o">::</span><span class="n">WorkspaceFactory</span><span class="o">::</span><span class="n">Instance</span><span class="p">().</span><span class="n">create</span><span class="p">(</span>
+<span class="w">            </span><span class="s">&quot;EventWorkspace&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">m_eventBuffer</span><span class="o">-&gt;</span><span class="n">getNumberHistograms</span><span class="p">(),</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">));</span>
+<span class="w">    </span><span class="n">API</span><span class="o">::</span><span class="n">WorkspaceFactory</span><span class="o">::</span><span class="n">Instance</span><span class="p">().</span><span class="n">initializeFromParent</span><span class="p">(</span><span class="o">*</span><span class="n">m_eventBuffer</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">temp</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">);</span>
+<span class="w">    </span><span class="n">temp</span><span class="o">-&gt;</span><span class="n">mutableRun</span><span class="p">().</span><span class="n">clearOutdatedTimeSeriesLogValues</span><span class="p">();</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">monitorLog</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">m_monitorLogs</span><span class="p">)</span>
+<span class="w">        </span><span class="n">temp</span><span class="o">-&gt;</span><span class="n">mutableRun</span><span class="p">().</span><span class="n">removeProperty</span><span class="p">(</span><span class="n">monitorLog</span><span class="p">);</span>
+<span class="w">    </span><span class="n">m_monitorLogs</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">monitorBuffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m_eventBuffer</span><span class="o">-&gt;</span><span class="n">monitorWorkspace</span><span class="p">();</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">monitorBuffer</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">newMonitorBuffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WorkspaceFactory</span><span class="o">::</span><span class="n">Instance</span><span class="p">().</span><span class="n">create</span><span class="p">(</span>
+<span class="w">            </span><span class="s">&quot;EventWorkspace&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">monitorBuffer</span><span class="o">-&gt;</span><span class="n">getNumberHistograms</span><span class="p">(),</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="n">WorkspaceFactory</span><span class="o">::</span><span class="n">Instance</span><span class="p">().</span><span class="n">initializeFromParent</span><span class="p">(</span>
+<span class="w">            </span><span class="o">*</span><span class="n">monitorBuffer</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">newMonitorBuffer</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">);</span>
+<span class="w">        </span><span class="n">temp</span><span class="o">-&gt;</span><span class="n">setMonitorWorkspace</span><span class="p">(</span><span class="n">newMonitorBuffer</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">lock_guard</span><span class="w"> </span><span class="nf">lock</span><span class="p">(</span><span class="n">m_mutex</span><span class="p">);</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">swap</span><span class="p">(</span><span class="n">m_eventBuffer</span><span class="p">,</span><span class="w"> </span><span class="n">temp</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// ---- Phase 4 (onAfterExtract): commit a pending EndRun ----------</span>
+<span class="w">    </span><span class="c1">// Deferred so the snapshot above contains the finishing run&#39;s</span>
+<span class="w">    </span><span class="c1">// accumulated events before onEndRun() resets the buffer.</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="n">RunStatus</span><span class="o">&gt;</span><span class="w"> </span><span class="n">pending</span><span class="p">;</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">std</span><span class="o">::</span><span class="n">lock_guard</span><span class="w"> </span><span class="nf">lock</span><span class="p">(</span><span class="n">m_mutex</span><span class="p">);</span>
+<span class="w">            </span><span class="n">pending</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m_pendingTransition</span><span class="p">;</span>
+<span class="w">            </span><span class="c1">// m_lastTransition is NOT cleared here; it is cleared at the</span>
+<span class="w">            </span><span class="c1">// start of the next onBeforeExtract() after both NotYet gates</span>
+<span class="w">            </span><span class="c1">// pass, guarded by m_previousExtractCompleted.</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pending</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">*</span><span class="n">pending</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">EndRun</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="n">std</span><span class="o">::</span><span class="n">lock_guard</span><span class="w"> </span><span class="nf">lock</span><span class="p">(</span><span class="n">m_mutex</span><span class="p">);</span>
+<span class="w">                </span><span class="n">m_pendingTransition</span><span class="p">.</span><span class="n">reset</span><span class="p">();</span>
+<span class="w">                </span><span class="n">m_lastTransition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EndRun</span><span class="p">;</span><span class="w">   </span><span class="c1">// memoise for lastTransition()</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="n">onEndRun</span><span class="p">();</span>
+<span class="w">            </span><span class="n">m_pauseNetRead</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">lock_guard</span><span class="w"> </span><span class="nf">lock</span><span class="p">(</span><span class="n">m_mutex</span><span class="p">);</span>
+<span class="w">        </span><span class="n">m_previousExtractCompleted</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w">   </span><span class="c1">// allow next onBeforeExtract to clear</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">temp</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="critical-detail-c1">
+<span id="sns-c1-invariant"></span><h3><a class="toc-backref" href="#id16" role="doc-backlink">Critical detail (C1)</a><a class="headerlink" href="#critical-detail-c1" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">m_lastTransition</span></code> is cleared at the <strong>start of the next
+onBeforeExtract()</strong>, after both <code class="docutils literal notranslate"><span class="pre">NotYet</span></code> gates pass, guarded by
+<code class="docutils literal notranslate"><span class="pre">m_previousExtractCompleted</span></code>.  The flag is set to <code class="docutils literal notranslate"><span class="pre">true</span></code> only at
+the end of <code class="docutils literal notranslate"><span class="pre">onAfterExtract()</span></code> — which runs only when
+<code class="docutils literal notranslate"><span class="pre">doExtractData()</span></code> returns normally.  A <code class="docutils literal notranslate"><span class="pre">NotYet</span></code> thrown from Phase
+1 (before either gate returns) or Phase 2/3 therefore leaves
+<code class="docutils literal notranslate"><span class="pre">m_previousExtractCompleted</span> <span class="pre">==</span> <span class="pre">false</span></code>, so the retry’s
+<code class="docutils literal notranslate"><span class="pre">onBeforeExtract()</span></code> preserves the edge intact.  This is the <strong>C1
+invariant</strong>.</p>
+<p>Important properties:</p>
+<ul class="simple">
+<li><p><strong>Each phase runs once per call.</strong>  The pending transition is dequeued
+atomically in whichever phase claims it (Phase 1 for <code class="docutils literal notranslate"><span class="pre">BeginRun</span></code>,
+Phase 4 for <code class="docutils literal notranslate"><span class="pre">EndRun</span></code>); no <code class="docutils literal notranslate"><span class="pre">m_transitionHandled</span></code> flag is needed.</p></li>
+<li><p><strong>``BeginRun`` and ``EndRun`` are symmetric.</strong>  Both are observable to
+the caller via <code class="docutils literal notranslate"><span class="pre">lastTransition()</span></code> between the <code class="docutils literal notranslate"><span class="pre">extractData()</span></code> that
+committed them and the next successful <code class="docutils literal notranslate"><span class="pre">extractData()</span></code>.  This matters
+for <code class="docutils literal notranslate"><span class="pre">MonitorLiveData</span></code>, which reads <code class="docutils literal notranslate"><span class="pre">lastTransition()</span></code> <em>after</em>
+<code class="docutils literal notranslate"><span class="pre">extractData()</span></code> returns and uses a <code class="docutils literal notranslate"><span class="pre">BeginRun</span></code> edge to drive the
+<code class="docutils literal notranslate"><span class="pre">_post</span></code> workspace-rename path.</p></li>
+<li><p><strong>The transition phases hold the mutex only while reading the
+queue</strong>, not while running the transition hook.  Hooks may safely
+take the mutex themselves.</p></li>
+<li><p><strong>Exception-safe.</strong>  <code class="docutils literal notranslate"><span class="pre">m_previousExtractCompleted</span></code> flips to <code class="docutils literal notranslate"><span class="pre">true</span></code>
+only at the end of <code class="docutils literal notranslate"><span class="pre">onAfterExtract()</span></code>, which runs only after
+<code class="docutils literal notranslate"><span class="pre">doExtractData()</span></code> returns normally.  Any <code class="docutils literal notranslate"><span class="pre">Exception::NotYet</span></code>
+thrown from Phase 1 (before either gate) or Phase 2/3 structurally
+leaves the flag <code class="docutils literal notranslate"><span class="pre">false</span></code>, so the deferred clear is skipped on the
+retry — the <a class="reference internal" href="#sns-c1-invariant"><span class="std std-ref">C1 invariant</span></a> is a consequence
+of the template-method contract and the flag’s placement, not an
+extra branch.  A pending <code class="docutils literal notranslate"><span class="pre">EndRun</span></code> is not consumed until Phase 4
+completes, so a Phase 2/3 failure leaves it queued for the next
+<code class="docutils literal notranslate"><span class="pre">extractData()</span></code>.</p></li>
+</ul>
+</section>
+<section id="transition-hooks">
+<h3><a class="toc-backref" href="#id17" role="doc-backlink">Transition hooks</a><a class="headerlink" href="#transition-hooks" title="Link to this heading">#</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">SNSLiveEventDataListener::onBeginRun</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">lock_guard</span><span class="w"> </span><span class="n">lock</span><span class="p">(</span><span class="n">m_mutex</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">m_workspaceInitialized</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Cache clears: exactly the set the legacy runStatus() clears.</span>
+<span class="w">    </span><span class="n">m_instrumentXML</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+<span class="w">    </span><span class="n">m_instrumentName</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+<span class="w">    </span><span class="c1">// Note: m_dataStartTime NOT cleared on BeginRun — matches legacy.</span>
+<span class="w">    </span><span class="n">m_nameMap</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+
+<span class="w">    </span><span class="n">initWorkspacePart1</span><span class="p">();</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">m_deferredRunDetailsPkt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Invariant: rxPacket(NEW_RUN) must have stashed the RunStatusPkt</span>
+<span class="w">        </span><span class="c1">// before queueing BeginRun. Reaching here means a producer queued</span>
+<span class="w">        </span><span class="c1">// a BeginRun transition without populating m_deferredRunDetailsPkt,</span>
+<span class="w">        </span><span class="c1">// which is an implementation error in the listener itself.</span>
+<span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">runtime_error</span><span class="p">(</span>
+<span class="w">            </span><span class="s">&quot;SNSLiveEventDataListener::onBeginRun(): &quot;</span>
+<span class="w">            </span><span class="s">&quot;m_deferredRunDetailsPkt is null — invariant violation.&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">setRunDetails</span><span class="p">(</span><span class="o">*</span><span class="n">m_deferredRunDetailsPkt</span><span class="p">);</span>
+<span class="w">    </span><span class="n">m_deferredRunDetailsPkt</span><span class="p">.</span><span class="n">reset</span><span class="p">();</span>
+
+<span class="w">    </span><span class="n">m_adaraRunStatus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Running</span><span class="p">;</span><span class="w">   </span><span class="c1">// we&#39;ve crossed the edge</span>
+<span class="w">    </span><span class="c1">// m_pauseNetRead released by the caller (onBeforeExtract) after</span>
+<span class="w">    </span><span class="c1">// this hook returns — not here.</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">SNSLiveEventDataListener::onEndRun</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">lock_guard</span><span class="w"> </span><span class="n">lock</span><span class="p">(</span><span class="n">m_mutex</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">m_workspaceInitialized</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">m_instrumentXML</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+<span class="w">    </span><span class="n">m_instrumentName</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+<span class="w">    </span><span class="n">m_dataStartTime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Types</span><span class="o">::</span><span class="n">Core</span><span class="o">::</span><span class="n">DateAndTime</span><span class="p">();</span><span class="w">   </span><span class="c1">// cleared only on EndRun</span>
+<span class="w">    </span><span class="n">m_nameMap</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+
+<span class="w">    </span><span class="n">initWorkspacePart1</span><span class="p">();</span>
+
+<span class="w">    </span><span class="n">m_adaraRunStatus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NoRun</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// m_pauseNetRead released by the caller (onAfterExtract) after</span>
+<span class="w">    </span><span class="c1">// this hook returns — not here.</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">SNSLiveEventDataListener::onRunPause</span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="n">paused</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Called from rxPacket(AnnotationPkt) which already holds m_mutex;</span>
+<span class="w">    </span><span class="c1">// the hook does not re-lock.</span>
+<span class="w">    </span><span class="c1">//</span>
+<span class="w">    </span><span class="c1">// NOT dispatched through the pending-transition queue.</span>
+<span class="w">    </span><span class="c1">// Pause state is orthogonal to run state: m_adaraRunStatus remains</span>
+<span class="w">    </span><span class="c1">// Running while the run is paused. m_isDasPaused is read by</span>
+<span class="w">    </span><span class="c1">// isPaused() and by rxPacket(BankedEventPkt) to gate event</span>
+<span class="w">    </span><span class="c1">// appending.  Applying this immediately gives accurate event counts:</span>
+<span class="w">    </span><span class="c1">// events received after the PAUSE annotation but before the next</span>
+<span class="w">    </span><span class="c1">// extractData() call are correctly discarded.</span>
+<span class="w">    </span><span class="n">m_isDasPaused</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">paused</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>The cache-clear side effects inside <code class="docutils literal notranslate"><span class="pre">onBeginRun()</span></code> / <code class="docutils literal notranslate"><span class="pre">onEndRun()</span></code>
+(<code class="docutils literal notranslate"><span class="pre">m_instrumentXML</span></code>, <code class="docutils literal notranslate"><span class="pre">m_instrumentName</span></code>, <code class="docutils literal notranslate"><span class="pre">m_nameMap</span></code>,
+<code class="docutils literal notranslate"><span class="pre">initWorkspacePart1()</span></code>, etc.) are identical to what the legacy
+<code class="docutils literal notranslate"><span class="pre">runStatus()</span></code> did.  The <code class="docutils literal notranslate"><span class="pre">m_pauseNetRead</span></code> release has moved out
+of these hooks into their callers (<code class="docutils literal notranslate"><span class="pre">onBeforeExtract()</span></code> /
+<code class="docutils literal notranslate"><span class="pre">onAfterExtract()</span></code>), so the back-pressure flag is owned by the
+same scope that decided to dispatch the hook.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">onBeginRun()</span></code> and <code class="docutils literal notranslate"><span class="pre">onEndRun()</span></code> are <code class="docutils literal notranslate"><span class="pre">protected</span> <span class="pre">virtual</span></code> and
+dispatched only from <code class="docutils literal notranslate"><span class="pre">onBeforeExtract()</span></code> and <code class="docutils literal notranslate"><span class="pre">onAfterExtract()</span></code>
+respectively.  Tests can subclass the listener and override the
+hooks to assert they fired with the expected preconditions.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">onRunPause()</span></code> is <code class="docutils literal notranslate"><span class="pre">protected</span> <span class="pre">virtual</span></code> and called only from
+<code class="docutils literal notranslate"><span class="pre">rxPacket(AnnotationPkt)</span></code> in the background thread, which already
+holds <code class="docutils literal notranslate"><span class="pre">m_mutex</span></code>.  The hook therefore does not take the mutex
+itself.  Its dispatch point differs from <code class="docutils literal notranslate"><span class="pre">onBeginRun()</span></code> /
+<code class="docutils literal notranslate"><span class="pre">onEndRun()</span></code> by design.</p></li>
+<li><p>The existing <code class="docutils literal notranslate"><span class="pre">m_runPaused</span></code> check in <code class="docutils literal notranslate"><span class="pre">rxPacket(BankedEventPkt)</span></code>
+is updated to reference <code class="docutils literal notranslate"><span class="pre">m_isDasPaused</span></code>; no other change to that
+function.</p></li>
+</ul>
+</section>
+<section id="background-reader-loop">
+<h3><a class="toc-backref" href="#id18" role="doc-backlink">Background reader loop</a><a class="headerlink" href="#background-reader-loop" title="Link to this heading">#</a></h3>
+<p>The loop has two notable changes from the pre-refactor version.</p>
+<p>First, the pause condition is short-circuited on
+<code class="docutils literal notranslate"><span class="pre">m_bgThreadCaughtUp</span></code>.  When the flag is <code class="docutils literal notranslate"><span class="pre">false</span></code> (i.e. a
+<code class="docutils literal notranslate"><span class="pre">bufferParse()</span></code> iteration is in flight), the background thread never
+honours <code class="docutils literal notranslate"><span class="pre">m_pauseNetRead</span></code> — this prevents the foreground from
+releasing back-pressure while <code class="docutils literal notranslate"><span class="pre">rxPacket()</span></code> callbacks may still be
+mutating shared state.</p>
+<p>Second, the <code class="docutils literal notranslate"><span class="pre">m_bgThreadCaughtUp</span></code> flag is stored <code class="docutils literal notranslate"><span class="pre">false</span></code>
+immediately before <code class="docutils literal notranslate"><span class="pre">bufferParse()</span></code> and <code class="docutils literal notranslate"><span class="pre">true</span></code> immediately
+after, framing the only window during which <code class="docutils literal notranslate"><span class="pre">onBeforeExtract()</span></code>
+must throw <code class="docutils literal notranslate"><span class="pre">NotYet</span></code>.  <code class="docutils literal notranslate"><span class="pre">receiveBytes()</span></code> does <strong>not</strong> touch the
+flag; a background thread blocked in receive presents as caught-up.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">SNSLiveEventDataListener::run</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// ... unchanged setup (hello packet, etc.) ...</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">m_stopThread</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Only honour m_pauseNetRead when no parse is in flight.</span>
+<span class="w">        </span><span class="c1">// Short-circuit on m_bgThreadCaughtUp == false prevents a race</span>
+<span class="w">        </span><span class="c1">// where the foreground clears m_pauseNetRead while we are still</span>
+<span class="w">        </span><span class="c1">// inside bufferParse() mutating shared state.</span>
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">m_bgThreadCaughtUp</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">memory_order_acquire</span><span class="p">)</span>
+<span class="w">               </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">m_pauseNetRead</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">m_stopThread</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">Poco</span><span class="o">::</span><span class="n">Thread</span><span class="o">::</span><span class="n">sleep</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_stopThread</span><span class="p">)</span><span class="w"> </span><span class="k">break</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// receiveBytes() does NOT touch m_bgThreadCaughtUp.</span>
+<span class="w">        </span><span class="c1">// A thread blocked here presents as caught-up.</span>
+<span class="w">        </span><span class="n">receiveBytes</span><span class="p">();</span><span class="w">   </span><span class="c1">// fills the ADARA parse buffer</span>
+
+<span class="w">        </span><span class="c1">// Close the foreground snapshot window for bufferParse() only.</span>
+<span class="w">        </span><span class="n">m_bgThreadCaughtUp</span><span class="p">.</span><span class="n">store</span><span class="p">(</span><span class="nb">false</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">memory_order_release</span><span class="p">);</span>
+<span class="w">        </span><span class="n">bufferParse</span><span class="p">();</span><span class="w">    </span><span class="c1">// drives rxPacket() callbacks</span>
+<span class="w">        </span><span class="n">m_bgThreadCaughtUp</span><span class="p">.</span><span class="n">store</span><span class="p">(</span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">memory_order_release</span><span class="p">);</span>
+<span class="w">        </span><span class="c1">// Snapshot window re-opened; m_pendingTransition is now stable.</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="c1">// ... unchanged exception capture into m_backgroundException ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">m_pauseNetRead</span></code> back-pressure is released by
+<code class="docutils literal notranslate"><span class="pre">onBeforeExtract()</span></code> (for <code class="docutils literal notranslate"><span class="pre">BeginRun</span></code>) and <code class="docutils literal notranslate"><span class="pre">onAfterExtract()</span></code>
+(for <code class="docutils literal notranslate"><span class="pre">EndRun</span></code>) inside <code class="docutils literal notranslate"><span class="pre">extractData()</span></code>, so stand-alone
+<code class="docutils literal notranslate"><span class="pre">LoadLiveData</span></code> no longer deadlocks.</p>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">onEndRun()</span></code> also participates in the flag’s lifecycle: it
+stores <code class="docutils literal notranslate"><span class="pre">false</span></code> to re-arm the per-run first-extract gate (see the
+“Foreground snapshot gate” section above).  The background loop itself
+only writes the flag around <code class="docutils literal notranslate"><span class="pre">bufferParse()</span></code>; <code class="docutils literal notranslate"><span class="pre">onEndRun()</span></code> is the
+only other writer.</p>
+</section>
+</section>
+<section id="behaviour-preservation-sns-specific">
+<h2><a class="toc-backref" href="#id19" role="doc-backlink">Behaviour preservation (SNS-specific)</a><a class="headerlink" href="#behaviour-preservation-sns-specific" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 50.0%" />
+<col style="width: 22.0%" />
+<col style="width: 28.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Behaviour</p></th>
+<th class="head"><p>Pre-refactor</p></th>
+<th class="head"><p>Post-refactor</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">runStatus()</span></code> returns <code class="docutils literal notranslate"><span class="pre">BeginRun</span></code> exactly once at the start
+of a run</p></td>
+<td><p>yes, via mutation</p></td>
+<td><p>yes, via <code class="docutils literal notranslate"><span class="pre">lastTransition()</span></code> populated by <code class="docutils literal notranslate"><span class="pre">extractData()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">runStatus()</span></code> returns <code class="docutils literal notranslate"><span class="pre">EndRun</span></code> exactly once at the end of
+a run</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+</tr>
+<tr class="row-even"><td><p>Workspace re-initialised at run boundaries</p></td>
+<td><p>inside <code class="docutils literal notranslate"><span class="pre">runStatus()</span></code></p></td>
+<td><p>inside <code class="docutils literal notranslate"><span class="pre">onBeginRun()</span></code> / <code class="docutils literal notranslate"><span class="pre">onEndRun()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">m_dataStartTime</span></code> cleared on <code class="docutils literal notranslate"><span class="pre">EndRun</span></code> only, not on
+<code class="docutils literal notranslate"><span class="pre">BeginRun</span></code></p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">m_instrumentXML</span></code>, <code class="docutils literal notranslate"><span class="pre">m_instrumentName</span></code>, <code class="docutils literal notranslate"><span class="pre">m_nameMap</span></code>
+cleared at both boundaries</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">m_deferredRunDetailsPkt</span></code> consumed at <code class="docutils literal notranslate"><span class="pre">BeginRun</span></code></p></td>
+<td><p>yes</p></td>
+<td><p>yes, inside <code class="docutils literal notranslate"><span class="pre">onBeginRun()</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">m_pauseNetRead</span></code> released after the boundary is consumed</p></td>
+<td><p>inside <code class="docutils literal notranslate"><span class="pre">runStatus()</span></code></p></td>
+<td><p>inside <code class="docutils literal notranslate"><span class="pre">onBeforeExtract()</span></code> / <code class="docutils literal notranslate"><span class="pre">onAfterExtract()</span></code>, immediately
+after the inner hook (<code class="docutils literal notranslate"><span class="pre">onBeginRun()</span></code> / <code class="docutils literal notranslate"><span class="pre">onEndRun()</span></code>) returns</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">JoiningRun</span></code> mid-stream bootstrap when <code class="docutils literal notranslate"><span class="pre">NEW_RUN</span></code> arrives
+before <code class="docutils literal notranslate"><span class="pre">m_workspaceInitialized</span></code></p></td>
+<td><p>yes (as “little white lie” direct <code class="docutils literal notranslate"><span class="pre">Running</span></code> assignment)</p></td>
+<td><p>yes — replaced by honest <code class="docutils literal notranslate"><span class="pre">JoiningRun</span></code> state; <code class="docutils literal notranslate"><span class="pre">BeginRun</span></code>
+edge queued from <code class="docutils literal notranslate"><span class="pre">initWorkspacePart2()</span></code> completion</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">m_isDasPaused</span></code> flips on <code class="docutils literal notranslate"><span class="pre">AnnotationPkt</span></code> PAUSE / RESUME</p></td>
+<td><p>yes, inline</p></td>
+<td><p>yes, routed through <code class="docutils literal notranslate"><span class="pre">onRunPause()</span></code> in background thread</p></td>
+</tr>
+<tr class="row-odd"><td><p>Paused events discarded at the correct packet boundary</p></td>
+<td><p>yes</p></td>
+<td><p>yes — <code class="docutils literal notranslate"><span class="pre">m_isDasPaused</span></code> flipped immediately in background
+thread, not deferred</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">isPaused()</span></code> query available without calling <code class="docutils literal notranslate"><span class="pre">runStatus()</span></code></p></td>
+<td><p><strong>no</strong></p></td>
+<td><p>yes (<code class="docutils literal notranslate"><span class="pre">isPaused()</span></code> is a <code class="docutils literal notranslate"><span class="pre">const</span></code> pure getter)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MonitorLiveData</span></code> workspace renaming triggers on
+<code class="docutils literal notranslate"><span class="pre">BeginRun</span></code> / <code class="docutils literal notranslate"><span class="pre">EndRun</span></code></p></td>
+<td><p>yes</p></td>
+<td><p>yes (legacy <code class="docutils literal notranslate"><span class="pre">runStatus()</span></code> shim returns the edge)</p></td>
+</tr>
+<tr class="row-even"><td><p>Stand-alone <code class="docutils literal notranslate"><span class="pre">LoadLiveData</span></code> produces a workspace</p></td>
+<td><p><strong>no</strong> (deadlocks)</p></td>
+<td><p>yes (commit happens inside <code class="docutils literal notranslate"><span class="pre">extractData()</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Listener can be queried for its state without mutating it</p></td>
+<td><p><strong>no</strong></p></td>
+<td><p>yes (all queries <code class="docutils literal notranslate"><span class="pre">const</span></code>)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>There is one behaviour that is intentionally not preserved, and it is
+the bug the refactor exists to fix: stand-alone <code class="docutils literal notranslate"><span class="pre">LoadLiveData</span></code>
+previously deadlocked after a run boundary; it now succeeds.</p>
+</section>
+<section id="appendix-pre-existing-defect-m-ignorepackets-is-never-set-true">
+<h2><a class="toc-backref" href="#id20" role="doc-backlink">Appendix — pre-existing defect: <code class="docutils literal notranslate"><span class="pre">m_ignorePackets</span></code> is never set <code class="docutils literal notranslate"><span class="pre">true</span></code></a><a class="headerlink" href="#appendix-pre-existing-defect-m-ignorepackets-is-never-set-true" title="Link to this heading">#</a></h2>
+<p>This is a <strong>pre-existing defect</strong> in the upstream
+<code class="docutils literal notranslate"><span class="pre">SNSLiveEventDataListener</span></code>, discovered while writing the new
+integration-test suite.  It is <strong>not</strong> introduced by the v3 refactor;
+it predates the refactor by many years.  It is documented here so that
+maintainers do not waste time hunting it during code review of the
+refactor PR.</p>
+<section id="summary">
+<h3><a class="toc-backref" href="#id21" role="doc-backlink">Summary</a><a class="headerlink" href="#summary" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">SNSLiveEventDataListener::m_ignorePackets</span></code> is declared with an
+in-class initialiser of <code class="docutils literal notranslate"><span class="pre">false</span></code> and is <strong>never assigned ``true``
+anywhere in the codebase</strong>.  As a consequence:</p>
+<ul class="simple">
+<li><p>The “filter packets until run start” path
+(<code class="docutils literal notranslate"><span class="pre">m_filterUntilRunStart</span></code>) is unreachable.</p></li>
+<li><p>The “filter packets until absolute start time” path is unreachable.</p></li>
+<li><p>The variable-value packet cache (<code class="docutils literal notranslate"><span class="pre">m_variableMap</span></code>) is populated by
+the <code class="docutils literal notranslate"><span class="pre">rxPacket(VariableU32Pkt&amp;)</span></code> / <code class="docutils literal notranslate"><span class="pre">VariableDoublePkt</span></code> /
+<code class="docutils literal notranslate"><span class="pre">VariableStringPkt</span></code> overloads but is <strong>never replayed</strong>, because
+<code class="docutils literal notranslate"><span class="pre">replayVariableCache()</span></code> is only called from inside the
+<code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">(!m_ignorePackets)</span> <span class="pre">{</span> <span class="pre">...</span> <span class="pre">}</span></code> block of <code class="docutils literal notranslate"><span class="pre">ignorePacket()</span></code>, which
+is itself reached only when <code class="docutils literal notranslate"><span class="pre">m_ignorePackets</span></code> is <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">extractData()</span></code> guard
+<code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">(m_ignorePackets)</span> <span class="pre">throw</span> <span class="pre">Exception::NotYet(&quot;Waiting</span> <span class="pre">for</span> <span class="pre">a</span> <span class="pre">run</span> <span class="pre">to</span> <span class="pre">start.&quot;);</span></code>
+can never throw.</p></li>
+</ul>
+<p>In short: a chunk of <code class="docutils literal notranslate"><span class="pre">SNSLiveEventDataListener</span></code> that exists
+specifically to support <code class="docutils literal notranslate"><span class="pre">StartLiveData</span></code>’s “from start of run” and
+“from absolute time” modes is dead code as currently written.</p>
+</section>
+<section id="evidence">
+<h3><a class="toc-backref" href="#id22" role="doc-backlink">Evidence</a><a class="headerlink" href="#evidence" title="Link to this heading">#</a></h3>
+<p>The only writes to <code class="docutils literal notranslate"><span class="pre">m_ignorePackets</span></code> are <em>clears</em> inside
+<code class="docutils literal notranslate"><span class="pre">ignorePacket()</span></code> — there is no <code class="docutils literal notranslate"><span class="pre">m_ignorePackets</span> <span class="pre">=</span> <span class="pre">true;</span></code> anywhere
+in the tree.  <code class="docutils literal notranslate"><span class="pre">start()</span></code> parses the requested <code class="docutils literal notranslate"><span class="pre">startTime</span></code> to decide
+which filter mode to use, but only sets <code class="docutils literal notranslate"><span class="pre">m_filterUntilRunStart</span></code>,
+never <code class="docutils literal notranslate"><span class="pre">m_ignorePackets</span></code>:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">SNSLiveEventDataListener::start</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Types</span><span class="o">::</span><span class="n">Core</span><span class="o">::</span><span class="n">DateAndTime</span><span class="w"> </span><span class="n">startTime</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">m_startTime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">startTime</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_startTime</span><span class="p">.</span><span class="n">totalNanoseconds</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1000000000</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// &quot;from start of previous run&quot; sentinel</span>
+<span class="w">        </span><span class="n">m_filterUntilRunStart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">        </span><span class="c1">// m_ignorePackets = true;   // &lt;-- MISSING</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="c1">// else if (m_startTime != DateAndTime()) {</span>
+<span class="w">    </span><span class="c1">//     m_ignorePackets = true;   // &lt;-- MISSING (time-based filter)</span>
+<span class="w">    </span><span class="c1">// }</span>
+<span class="w">    </span><span class="n">m_thread</span><span class="p">.</span><span class="n">start</span><span class="p">(</span><span class="o">*</span><span class="k">this</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">else</span></code> branch in <code class="docutils literal notranslate"><span class="pre">ignorePacket()</span></code> whose comment reads
+<em>“Filter based solely on time”</em> is, today, unreachable without the
+missing assignment in <code class="docutils literal notranslate"><span class="pre">start()</span></code>.</p>
+</section>
+<section id="provenance">
+<h3><a class="toc-backref" href="#id23" role="doc-backlink">Provenance</a><a class="headerlink" href="#provenance" title="Link to this heading">#</a></h3>
+<p>This was checked against multiple points in the upstream history.  The
+defect is present in:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">mantidproject/mantid</span></code> &#64; current <code class="docutils literal notranslate"><span class="pre">main</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mantidproject/mantid</span></code> &#64; <code class="docutils literal notranslate"><span class="pre">a86c1e02</span></code> (~2018).</p></li>
+</ul>
+<p>The defect is therefore pre-existing in upstream and predates any of
+the work on the current refactor.</p>
+</section>
+<section id="impact">
+<h3><a class="toc-backref" href="#id24" role="doc-backlink">Impact</a><a class="headerlink" href="#impact" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">StartLiveData</span></code> “Now” mode (no <code class="docutils literal notranslate"><span class="pre">StartTime</span></code>, no historical
+replay) is unaffected — that path was never supposed to set
+<code class="docutils literal notranslate"><span class="pre">m_ignorePackets</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">StartLiveData</span></code> “from start of run” mode: historical packets sent
+by SMS that precede the most recent <code class="docutils literal notranslate"><span class="pre">NEW_RUN</span></code> are <strong>not</strong> filtered
+out.  The user sees whatever SMS happens to send.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">StartLiveData</span></code> with a non-default <code class="docutils literal notranslate"><span class="pre">StartTime</span></code>: packets older
+than <code class="docutils literal notranslate"><span class="pre">m_startTime</span></code> are <strong>not</strong> filtered out.</p></li>
+<li><p>Variable-value packets that arrive during what <em>should</em> be the
+filtered prefix are not deferred-and-replayed; they are processed
+immediately, in arrival order, with no end-of-filter coalescing.</p></li>
+</ul>
+<p>Why it has gone unnoticed: the only existing unit-test suite
+(<code class="docutils literal notranslate"><span class="pre">SNSLiveEventDataListenerNoNetworkTest.h</span></code>) does not exercise the
+filter paths, and the disabled legacy integration suite was
+network-dependent and unregistered.  The behavioural difference is
+subtle: extra historical events at the front of the stream rather than
+a hard failure.</p>
+</section>
+<section id="recommended-fix-separate-pr">
+<h3><a class="toc-backref" href="#id25" role="doc-backlink">Recommended fix (separate PR)</a><a class="headerlink" href="#recommended-fix-separate-pr" title="Link to this heading">#</a></h3>
+<p>In <code class="docutils literal notranslate"><span class="pre">SNSLiveEventDataListener::start()</span></code>:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">SNSLiveEventDataListener::start</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Types</span><span class="o">::</span><span class="n">Core</span><span class="o">::</span><span class="n">DateAndTime</span><span class="w"> </span><span class="n">startTime</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">m_startTime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">startTime</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_startTime</span><span class="p">.</span><span class="n">totalNanoseconds</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1000000000</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// &quot;From start of previous run&quot; sentinel: replay everything,</span>
+<span class="w">        </span><span class="c1">// then filter out all packets older than the next NEW_RUN.</span>
+<span class="w">        </span><span class="n">m_filterUntilRunStart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">        </span><span class="n">m_ignorePackets</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_startTime</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">Types</span><span class="o">::</span><span class="n">Core</span><span class="o">::</span><span class="n">DateAndTime</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Absolute-time filter: drop everything older than m_startTime.</span>
+<span class="w">        </span><span class="n">m_ignorePackets</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="c1">// else: &quot;Now&quot; mode — no historical filtering, m_ignorePackets</span>
+<span class="w">    </span><span class="c1">// stays false (the default).</span>
+
+<span class="w">    </span><span class="n">m_thread</span><span class="p">.</span><span class="n">start</span><span class="p">(</span><span class="o">*</span><span class="k">this</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The fix must be accompanied by:</p>
+<ul class="simple">
+<li><p>A targeted no-network unit test for <code class="docutils literal notranslate"><span class="pre">start()</span></code> itself, asserting
+that the correct combination of <code class="docutils literal notranslate"><span class="pre">m_ignorePackets</span></code> /
+<code class="docutils literal notranslate"><span class="pre">m_filterUntilRunStart</span></code> is produced for each of the three
+<code class="docutils literal notranslate"><span class="pre">startTime</span></code> inputs (sentinel, absolute past time,
+default-constructed “now”).</p></li>
+<li><p>Re-enabling any integration tests that were <code class="docutils literal notranslate"><span class="pre">TS_SKIP</span></code>-guarded
+pending this fix.</p></li>
+<li><p>A conversation with the SNS team confirming the intended semantics
+— in particular, when the sentinel <code class="docutils literal notranslate"><span class="pre">1e9</span> <span class="pre">ns</span></code> value is used, is the
+intent really to ignore <em>all</em> packets until a <code class="docutils literal notranslate"><span class="pre">NEW_RUN</span></code>, or is the
+intent to ignore everything older than the <em>previous</em> run’s
+<code class="docutils literal notranslate"><span class="pre">NEW_RUN</span></code>?  The dead code implies the former; the comment in
+<code class="docutils literal notranslate"><span class="pre">start()</span></code> implies the latter.</p></li>
+</ul>
+<p>New integration-tests that depend on the filter paths working should
+guard those tests with <code class="docutils literal notranslate"><span class="pre">TS_WARN(&quot;XFAIL:...&quot;)</span></code>, citing this defect.</p>
+</section>
+</section>
+<section id="testing">
+<h2><a class="toc-backref" href="#id26" role="doc-backlink">Testing</a><a class="headerlink" href="#testing" title="Link to this heading">#</a></h2>
+<section id="unit-tests-snsliveeventdatalistenernonetworktest-h">
+<h3><a class="toc-backref" href="#id27" role="doc-backlink">Unit tests — <code class="docutils literal notranslate"><span class="pre">SNSLiveEventDataListenerNoNetworkTest.h</span></code></a><a class="headerlink" href="#unit-tests-snsliveeventdatalistenernonetworktest-h" title="Link to this heading">#</a></h3>
+<p>These tests exercise the state machine and hooks with no background
+thread and no network connection.  All live in
+<code class="docutils literal notranslate"><span class="pre">Framework/LiveData/test/SNSLiveEventDataListenerNoNetworkTest.h</span></code>.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">test_field_rename_does_not_break_pause_handling</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_onBeginRun_throws_when_deferred_run_details_missing</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_onRunPause_is_callable_and_toggles</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_runState_pure_getter_does_not_mutate</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_listenerState_initially_disconnected</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_lastTransition_initially_null</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_isPaused_initially_false</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_isPaused_orthogonal_to_runState</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_onBeforeExtract_dispatches_BeginRun_to_hook</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_onAfterExtract_dispatches_EndRun_to_hook</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_no_transition_no_hook</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_lastTransition_survives_NotYet_retry</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_lastTransition_cleared_after_successful_extract</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_lastTransition_reports_EndRun_then_null_after_success</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_legacy_runStatus_returns_edge_then_state</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_background_exception_propagates_from_all_getters</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_rxRunStatusPkt_newRun_throws_when_slot_occupied</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_rxRunStatusPkt_endRun_throws_when_slot_occupied</span></code></p></li>
+</ul>
+</section>
+<section id="integration-tests-snsliveeventdatalistenertest-h">
+<h3><a class="toc-backref" href="#id28" role="doc-backlink">Integration tests — <code class="docutils literal notranslate"><span class="pre">SNSLiveEventDataListenerTest.h</span></code></a><a class="headerlink" href="#integration-tests-snsliveeventdatalistenertest-h" title="Link to this heading">#</a></h3>
+<p>These tests spin up an in-process mock SMS server (Unix-domain
+socket) and drive the full packet-parse path including the background
+reader thread.  All live in
+<code class="docutils literal notranslate"><span class="pre">Framework/LiveData/test/SNSLiveEventDataListenerTest.h</span></code>.
+Key tests include (the file is the authoritative list):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">test_connect_succeeds_over_uds</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_singleRun_extractsEventsAndRunNumber</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_fullRun_beginExtractEndExtract</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_runNumber_proposalId_title_propagate</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_lastTransition_preservedAcrossNotYet</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_notYet_whenGeometryDelayed</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_consecutiveNewRun_surfacesRuntimeError</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_newRunEndRun_backPressureProducesReadWaitThenCleanEndRun</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_pauseResume_orthogonalToRunState</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_pausedEvents_droppedByDefault</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_pausedEvents_keptWhenConfigured</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_filterUntilRunStart_dropsPreRunPackets</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_variableCache_replayedAfterStartCondition</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_bgThreadCaughtUp_throwsNotYet_whenBgThreadStillReceiving</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_bgThreadCaughtUp_proceeds_afterCaughtUp</span></code></p></li>
+<li><p>(plus additional coverage of monitors, bad pixels, disconnect, etc.)</p></li>
+</ul>
+</section>
+<section id="integration-tests-snsliveeventdatalisteneralgorithmintegrationtest-h">
+<h3><a class="toc-backref" href="#id29" role="doc-backlink">Integration tests — <code class="docutils literal notranslate"><span class="pre">SNSLiveEventDataListenerAlgorithmIntegrationTest.h</span></code></a><a class="headerlink" href="#integration-tests-snsliveeventdatalisteneralgorithmintegrationtest-h" title="Link to this heading">#</a></h3>
+<p>These tests exercise the full <code class="docutils literal notranslate"><span class="pre">LoadLiveData</span></code> / <code class="docutils literal notranslate"><span class="pre">MonitorLiveData</span></code>
+algorithm stack on top of the listener.  Both live in
+<code class="docutils literal notranslate"><span class="pre">Framework/LiveData/test/SNSLiveEventDataListenerAlgorithmIntegrationTest.h</span></code>.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">test_LoadLiveData_standalone_no_deadlock</span></code> — drives a <code class="docutils literal notranslate"><span class="pre">BeginRun</span></code>
+boundary through the complete <code class="docutils literal notranslate"><span class="pre">LoadLiveData</span></code> algorithm; asserts the
+algorithm completes without deadlocking and produces a workspace.
+This is the <strong>regression test</strong> for the bug that motivated v3.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_MonitorLiveData_workspace_renaming_unchanged</span></code> — drives a
+<code class="docutils literal notranslate"><span class="pre">NoRun</span> <span class="pre">→</span> <span class="pre">BeginRun</span> <span class="pre">→</span> <span class="pre">Running</span> <span class="pre">→</span> <span class="pre">EndRun</span> <span class="pre">→</span> <span class="pre">NoRun</span></code> sequence; asserts
+the output workspace is renamed with the correct suffix at each
+boundary using the <em>unmodified</em> <code class="docutils literal notranslate"><span class="pre">MonitorLiveData</span></code>, proving
+backward compatibility.</p></li>
+</ul>
+</section>
+<section id="legacy-tests-snsliveeventdatalistenerlegacytest-h">
+<h3><a class="toc-backref" href="#id30" role="doc-backlink">Legacy tests — <code class="docutils literal notranslate"><span class="pre">SNSLiveEventDataListenerLegacyTest.h</span></code></a><a class="headerlink" href="#legacy-tests-snsliveeventdatalistenerlegacytest-h" title="Link to this heading">#</a></h3>
+<p>The only pre-existing tests for the <code class="docutils literal notranslate"><span class="pre">SNSLiveEventDataListener</span></code> were in
+the original network-dependent test suite (<code class="docutils literal notranslate"><span class="pre">testProperties</span></code>,
+<code class="docutils literal notranslate"><span class="pre">testStart</span></code>, <code class="docutils literal notranslate"><span class="pre">testExtractData</span></code>, <code class="docutils literal notranslate"><span class="pre">testThreadSafety</span></code>) that
+required a live SEQUOIA instrument connection.  Previously these tests
+were not registered in <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code>, and therefore did not run in CI.
+After this refactor, this file is retained as a historical reference only;
+the integration and unit test files above supersede it.</p>
+</section>
+</section>
+<section id="further-reading">
+<h2><a class="toc-backref" href="#id31" role="doc-backlink">Further reading</a><a class="headerlink" href="#further-reading" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="LiveListenerMigration.html#livelistenermigration"><span class="std std-ref">Live-Listener API Migration Guide (v3 refactoring)</span></a> — the generic migration guide and
+per-listener worked examples.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Framework/LiveData/inc/MantidLiveData/SNSLiveEventDataListener.h</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Framework/LiveData/src/SNSLiveEventDataListener.cpp</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Framework/API/inc/MantidAPI/LiveListener.h</span></code> — <code class="docutils literal notranslate"><span class="pre">extractData()</span></code>
+template method.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Framework/API/inc/MantidAPI/ILiveListener.h</span></code> — base-class
+interface.</p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="ScriptRepository.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Script Repository</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="TaskBasedAlgorithms.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Task Based Algorithms</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scope">Scope</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adara-protocol-context">ADARA protocol context</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#two-orthogonal-state-axes">Two orthogonal state axes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-refactor-problem">Pre-refactor problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#new-state-model">New state model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#single-slot-invariant">Single-slot invariant</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#header-summary">Header summary</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#state-machine-diagrams">State-machine diagrams</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-refactor-transitions-committed-inside-runstatus">Pre-refactor: transitions committed inside <code class="docutils literal notranslate"><span class="pre">runStatus()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#post-refactor-transitions-committed-inside-extractdata">Post-refactor: transitions committed inside <code class="docutils literal notranslate"><span class="pre">extractData()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation">Implementation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pure-getters">Pure getters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#background-reader-and-packet-handlers">Background reader and packet handlers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#foreground-snapshot-gate-m-bgthreadcaughtup">Foreground snapshot gate (<code class="docutils literal notranslate"><span class="pre">m_bgThreadCaughtUp</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extractdata-the-only-commit-point"><code class="docutils literal notranslate"><span class="pre">extractData()</span></code> — the only commit point</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#critical-detail-c1">Critical detail (C1)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transition-hooks">Transition hooks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#background-reader-loop">Background reader loop</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#behaviour-preservation-sns-specific">Behaviour preservation (SNS-specific)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#appendix-pre-existing-defect-m-ignorepackets-is-never-set-true">Appendix — pre-existing defect: <code class="docutils literal notranslate"><span class="pre">m_ignorePackets</span></code> is never set <code class="docutils literal notranslate"><span class="pre">true</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evidence">Evidence</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#provenance">Provenance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#impact">Impact</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recommended-fix-separate-pr">Recommended fix (separate PR)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing">Testing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unit-tests-snsliveeventdatalistenernonetworktest-h">Unit tests — <code class="docutils literal notranslate"><span class="pre">SNSLiveEventDataListenerNoNetworkTest.h</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#integration-tests-snsliveeventdatalistenertest-h">Integration tests — <code class="docutils literal notranslate"><span class="pre">SNSLiveEventDataListenerTest.h</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#integration-tests-snsliveeventdatalisteneralgorithmintegrationtest-h">Integration tests — <code class="docutils literal notranslate"><span class="pre">SNSLiveEventDataListenerAlgorithmIntegrationTest.h</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#legacy-tests-snsliveeventdatalistenerlegacytest-h">Legacy tests — <code class="docutils literal notranslate"><span class="pre">SNSLiveEventDataListenerLegacyTest.h</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-reading">Further reading</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="_sources/SNSLiveEventDataListenerRefactoring.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2007-2026, Mantid.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.20.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
