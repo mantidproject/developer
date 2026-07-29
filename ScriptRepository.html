@@ -361,14 +361,14 @@ or use of an additional system.</p>
 <ul class="simple">
 <li><p>ability to list available content without having to download the whole repository</p></li>
 <li><p>ability to download just the content selected by the user</p></li>
-<li><p>ability to publish content, along with identifying information:</p>
-<ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">Author</span> <span class="pre">Name</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Author</span> <span class="pre">Email</span></code></p></li>
 </ul>
-</li>
-<li><p>ability to delete content authored by the user</p></li>
-</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Mantid originally also allowed users to publish content to, and delete their own
+content from, the repository. That capability has been removed from Mantid: the
+script repository is now read-only from the client side. Content is contributed
+by interacting with the <a class="reference external" href="https://github.com/mantidproject/scriptrepository">GitHub repository</a> directly.</p>
+</div>
 </section>
 <section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
@@ -380,9 +380,9 @@ or use of an additional system.</p>
 <li><p><strong>Frontend</strong> - the GUI accessed by users through Workbench and described in <a class="reference external" href="https://docs.mantidproject.org/nightly/workbench/scriptrepository.html#workbenchscriptrepository" title="(in MantidProject v6.16)"><span class="xref std std-ref">script repository</span></a>.</p></li>
 <li><p><strong>Backend</strong> - the server component that acts as an intermediary to the Git repository</p></li>
 <li><p><strong>GitHub repository</strong> - final storage location of the uploaded content.
-This is currently a <a class="reference external" href="https://github.com/mantidproject/scriptrepository">GitHub repository</a>.
-It can be used with standard git commands and the front/backend will respond as
-expected.</p></li>
+This is currently a <a class="reference external" href="https://github.com/mantidproject/scriptrepository">GitHub repository</a> that is now read-only
+from the client side. Content is contributed by interacting with the repository
+directly, by submitting a pull request.</p></li>
 </ol>
 </section>
 <section id="frontend">
@@ -401,16 +401,17 @@ when necessary. The source code is available <a class="reference external" href=
 <ul class="simple">
 <li><p>download an index of the repository without fetching the content itself (see below)</p></li>
 <li><p>fetch requested content from the repository</p></li>
-<li><p>upload/delete requested content from the repository</p></li>
+<li><p>upload/delete requested content from the repository. Mantid no longer calls these
+endpoints, though the backend still implements them.</p></li>
 </ul>
-<p>The backend requires a clone of the repository in order to push/pull content.
+<p>The backend requires a clone of the repository in order to pull content.
 The cloned repository connected to the backend must be configured with an
 appropriate SSH key to allow it to publish to GitHub. For the production
 setup please see the <a class="reference external" href="https://github.com/mantidproject/ansible-linode">Ansible configuration</a>
 (access is limited to those with server access.)</p>
 </section>
-<section id="id2">
-<h2>GitHub Repository<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<section id="id3">
+<h2>GitHub Repository<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
 <p>This is the ultimate store of the script content that is uploaded.
 It is a standard Git repository hosted on <a class="reference external" href="https://github.com/mantidproject/scriptrepository">GitHub</a> and as
 such any Git client can interact with the repository as normal. All changes will
@@ -472,7 +473,7 @@ a push to the default branch occurs.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#frontend">Frontend</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#backend">Backend</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">GitHub Repository</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">GitHub Repository</a></li>
 </ul>
   </nav></div>
 
