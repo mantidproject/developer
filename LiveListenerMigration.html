@@ -364,7 +364,7 @@ a stand-alone algorithm without requiring
 <ul class="simple">
 <li><p><a class="reference internal" href="#motivation" id="id1">Motivation</a></p></li>
 <li><p><a class="reference internal" href="#new-api-use-these" id="id2">New API (use these)</a></p></li>
-<li><p><a class="reference internal" href="#deprecated-api-migrate-away-from" id="id3">Deprecated API (migrate away from)</a></p>
+<li><p><a class="reference internal" href="#removed-api" id="id3">Removed API</a></p>
 <ul>
 <li><p><a class="reference internal" href="#runstatus" id="id4"><code class="docutils literal notranslate"><span class="pre">runStatus()</span></code></a></p></li>
 </ul>
@@ -441,10 +441,11 @@ explicit and named.</p></li>
 <li><p>Move as much of the state machine as possible into <code class="docutils literal notranslate"><span class="pre">extractData()</span></code>,
 the only method every consumer of <code class="docutils literal notranslate"><span class="pre">ILiveListener</span></code> must call.</p></li>
 </ol>
-<p>The result is four pure-getter queries on <code class="docutils literal notranslate"><span class="pre">ILiveListener</span></code>, a
+<p>The result is four pure-getter queries on <code class="docutils literal notranslate"><span class="pre">ILiveListener</span></code> and a
 template-method <code class="docutils literal notranslate"><span class="pre">extractData()</span></code> on <code class="docutils literal notranslate"><span class="pre">LiveListener</span></code> that dispatches to
-named protected hooks, and a deprecated-but-functional <code class="docutils literal notranslate"><span class="pre">runStatus()</span></code>
-shim for backward compatibility.</p>
+named protected hooks.  The old <code class="docutils literal notranslate"><span class="pre">runStatus()</span></code> getter was kept for a
+transitional period as a <code class="docutils literal notranslate"><span class="pre">[[deprecated]]</span></code> shim and has since been
+removed; see <a class="reference internal" href="#removed-api">Removed API</a> below.</p>
 </section>
 <section id="new-api-use-these">
 <h2><a class="toc-backref" href="#id2" role="doc-backlink">New API (use these)</a><a class="headerlink" href="#new-api-use-these" title="Link to this heading">#</a></h2>
@@ -501,7 +502,7 @@ edge.  Default returns <code class="docutils literal notranslate"><span class="p
 
 <span class="k">class</span><span class="w"> </span><span class="nc">MANTID_API_DLL</span><span class="w"> </span><span class="n">ILiveListener</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Kernel</span><span class="o">::</span><span class="n">PropertyManager</span><span class="w"> </span><span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-<span class="w">    </span><span class="k">enum</span><span class="w"> </span><span class="nc">RunStatus</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">NoRun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">BeginRun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">Running</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">EndRun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="p">};</span>
+<span class="w">    </span><span class="k">enum</span><span class="w"> </span><span class="nc">RunStatus</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">NoRun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">JoiningRun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">BeginRun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">Running</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">EndRun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="p">};</span>
 
 <span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="n">RunStatus</span><span class="w"> </span><span class="nf">runState</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w">                  </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">NoRun</span><span class="p">;</span><span class="w">       </span><span class="p">}</span>
 <span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w">      </span><span class="nf">isPaused</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w">                  </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w">       </span><span class="p">}</span>
@@ -509,10 +510,6 @@ edge.  Default returns <code class="docutils literal notranslate"><span class="p
 <span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="n">RunStatus</span><span class="o">&gt;</span><span class="w"> </span><span class="n">lastTransition</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">nullopt</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
 
 <span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Workspace</span><span class="o">&gt;</span><span class="w"> </span><span class="n">extractData</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-
-<span class="w">    </span><span class="p">[[</span><span class="n">deprecated</span><span class="p">(</span><span class="s">&quot;Use runState() / lastTransition() and call extractData() &quot;</span>
-<span class="w">                 </span><span class="s">&quot;to commit pending transitions.&quot;</span><span class="p">)]]</span>
-<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="n">RunStatus</span><span class="w"> </span><span class="n">runStatus</span><span class="p">();</span>
 <span class="w">    </span><span class="c1">// ... other existing methods unchanged ...</span>
 <span class="p">};</span>
 
@@ -529,8 +526,8 @@ paused or not; a caller inspecting <code class="docutils literal notranslate"><s
 regardless of run phase.  Neither query reads or mutates the other’s
 backing field.</p>
 </section>
-<section id="deprecated-api-migrate-away-from">
-<h2><a class="toc-backref" href="#id3" role="doc-backlink">Deprecated API (migrate away from)</a><a class="headerlink" href="#deprecated-api-migrate-away-from" title="Link to this heading">#</a></h2>
+<section id="removed-api">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Removed API</a><a class="headerlink" href="#removed-api" title="Link to this heading">#</a></h2>
 <section id="runstatus">
 <h3><a class="toc-backref" href="#id4" role="doc-backlink"><code class="docutils literal notranslate"><span class="pre">runStatus()</span></code></a><a class="headerlink" href="#runstatus" title="Link to this heading">#</a></h3>
 <p>The old <code class="docutils literal notranslate"><span class="pre">runStatus()</span></code> method carried large hidden side effects:</p>
@@ -541,34 +538,35 @@ backing field.</p>
 <li><p>Cleared the <code class="docutils literal notranslate"><span class="pre">m_pauseNetRead</span></code> gate (causing deadlock in stand-alone
 <code class="docutils literal notranslate"><span class="pre">LoadLiveData</span></code>).</p></li>
 </ul>
-<p>It is replaced by the combination of <code class="docutils literal notranslate"><span class="pre">lastTransition()</span></code> and
-<code class="docutils literal notranslate"><span class="pre">runState()</span></code>.  <code class="docutils literal notranslate"><span class="pre">runStatus()</span></code> is no longer pure virtual; the
-default base-class implementation in <code class="docutils literal notranslate"><span class="pre">ILiveListener.cpp</span></code> is:</p>
+<p>It has been <strong>removed</strong> in favour of the combination of
+<code class="docutils literal notranslate"><span class="pre">lastTransition()</span></code> and <code class="docutils literal notranslate"><span class="pre">runState()</span></code>.  For a transitional period it
+was kept as a <code class="docutils literal notranslate"><span class="pre">[[deprecated]]</span></code> base-class shim equivalent to:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">RunStatus</span><span class="w"> </span><span class="nf">ILiveListener::runStatus</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">edge</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lastTransition</span><span class="p">())</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="o">*</span><span class="n">edge</span><span class="p">;</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">runState</span><span class="p">();</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>This shim preserves backward-compatible behaviour for
-<code class="docutils literal notranslate"><span class="pre">MonitorLiveData</span></code> without requiring callers to change immediately.
-The method is marked <code class="docutils literal notranslate"><span class="pre">[[deprecated]]</span></code> and <strong>will be removed in a
-future release</strong>.  Note that the default cannot throw on its own: both
-<code class="docutils literal notranslate"><span class="pre">lastTransition()</span></code> and <code class="docutils literal notranslate"><span class="pre">runState()</span></code> have safe defaults
-(<code class="docutils literal notranslate"><span class="pre">nullopt</span></code> / <code class="docutils literal notranslate"><span class="pre">NoRun</span></code>).  A listener that wishes to forbid the
-deprecated API outright is free to override <code class="docutils literal notranslate"><span class="pre">runStatus()</span></code> as
-<code class="docutils literal notranslate"><span class="pre">[[noreturn]]</span> <span class="pre">throw</span> <span class="pre">std::logic_error(...)</span></code>; nothing in the design
-relies on the default never throwing.</p>
-<section id="how-the-shim-preserves-monitorlivedata-semantics">
-<h4>How the shim preserves <code class="docutils literal notranslate"><span class="pre">MonitorLiveData</span></code> semantics<a class="headerlink" href="#how-the-shim-preserves-monitorlivedata-semantics" title="Link to this heading">#</a></h4>
+<p>Any remaining call site should be updated to call the two replacement
+getters directly:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">listener</span><span class="o">-&gt;</span><span class="n">lastTransition</span><span class="p">().</span><span class="n">value_or</span><span class="p">(</span><span class="n">listener</span><span class="o">-&gt;</span><span class="n">runState</span><span class="p">());</span>
+</pre></div>
+</div>
+<p>Call <code class="docutils literal notranslate"><span class="pre">extractData()</span></code> first to commit any pending transition, then
+read <code class="docutils literal notranslate"><span class="pre">lastTransition()</span></code> / <code class="docutils literal notranslate"><span class="pre">runState()</span></code> — this reproduces the
+historical <code class="docutils literal notranslate"><span class="pre">runStatus()</span></code> contract exactly (see below).</p>
+<section id="how-the-former-shim-preserved-monitorlivedata-semantics">
+<h4>How the former shim preserved <code class="docutils literal notranslate"><span class="pre">MonitorLiveData</span></code> semantics<a class="headerlink" href="#how-the-former-shim-preserved-monitorlivedata-semantics" title="Link to this heading">#</a></h4>
 <p><code class="docutils literal notranslate"><span class="pre">MonitorLiveData</span></code> calls <code class="docutils literal notranslate"><span class="pre">extractData()</span></code> first (via
-<code class="docutils literal notranslate"><span class="pre">loadAlg-&gt;executeAsChildAlg()</span></code>) and <code class="docutils literal notranslate"><span class="pre">runStatus()</span></code> second within the
-same loop iteration.  By the time <code class="docutils literal notranslate"><span class="pre">runStatus()</span></code> is called,
-<code class="docutils literal notranslate"><span class="pre">extractData()</span></code> has already committed any pending transition and
-<code class="docutils literal notranslate"><span class="pre">lastTransition()</span></code> is populated.  The shim returns the edge once
-across the boundary, then falls through to <code class="docutils literal notranslate"><span class="pre">runState()</span></code> on
-subsequent calls (<code class="docutils literal notranslate"><span class="pre">Running</span></code> or <code class="docutils literal notranslate"><span class="pre">NoRun</span></code>) — matching the historical
-return-once-then-settle behaviour exactly.</p>
+<code class="docutils literal notranslate"><span class="pre">loadAlg-&gt;executeAsChildAlg()</span></code>) and then reads the run status second
+within the same loop iteration.  By that point, <code class="docutils literal notranslate"><span class="pre">extractData()</span></code> has
+already committed any pending transition and <code class="docutils literal notranslate"><span class="pre">lastTransition()</span></code> is
+populated.  Reading <code class="docutils literal notranslate"><span class="pre">lastTransition().value_or(runState())</span></code> returns
+the edge once across the boundary, then falls through to
+<code class="docutils literal notranslate"><span class="pre">runState()</span></code> on subsequent calls (<code class="docutils literal notranslate"><span class="pre">Running</span></code> or <code class="docutils literal notranslate"><span class="pre">NoRun</span></code>) —
+matching the historical return-once-then-settle behaviour of the old
+<code class="docutils literal notranslate"><span class="pre">runStatus()</span></code> exactly.  See
+<code class="docutils literal notranslate"><span class="pre">Framework/LiveData/src/MonitorLiveData.cpp</span></code> for the call site.</p>
 </section>
 </section>
 </section>
@@ -714,9 +712,9 @@ may be selectively overridden.</p>
 follows.</p>
 <section id="step-1-remove-your-runstatus-override">
 <h3><a class="toc-backref" href="#id8" role="doc-backlink">Step 1 — Remove your <code class="docutils literal notranslate"><span class="pre">runStatus()</span></code> override</a><a class="headerlink" href="#step-1-remove-your-runstatus-override" title="Link to this heading">#</a></h3>
-<p>The base-class shim is correct for almost every listener.  Drop the
-override entirely; the deprecation warning at the call sites will
-prompt eventual migration to <code class="docutils literal notranslate"><span class="pre">lastTransition()</span></code> / <code class="docutils literal notranslate"><span class="pre">runState()</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">runStatus()</span></code> has been removed from <code class="docutils literal notranslate"><span class="pre">ILiveListener</span></code>.  Drop the
+override entirely; call sites should read <code class="docutils literal notranslate"><span class="pre">lastTransition()</span></code> /
+<code class="docutils literal notranslate"><span class="pre">runState()</span></code> directly instead.</p>
 </section>
 <section id="step-2-add-a-listenerstate-const-override">
 <h3><a class="toc-backref" href="#id9" role="doc-backlink">Step 2 — Add a <code class="docutils literal notranslate"><span class="pre">listenerState()</span> <span class="pre">const</span> <span class="pre">override</span></code></a><a class="headerlink" href="#step-2-add-a-listenerstate-const-override" title="Link to this heading">#</a></h3>
@@ -819,9 +817,9 @@ inside a run right now?”.</p>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">lastTransition()</span></code> is not overridden (returns <code class="docutils literal notranslate"><span class="pre">nullopt</span></code>); Kafka
 does not have the <code class="docutils literal notranslate"><span class="pre">BeginRun</span></code> / <code class="docutils literal notranslate"><span class="pre">EndRun</span></code> edge-detection contract
-that ADARA does, so the deprecated <code class="docutils literal notranslate"><span class="pre">runStatus()</span></code> shim falls through
-to <code class="docutils literal notranslate"><span class="pre">runState()</span></code> and returns the same value the legacy override
-would have.</p>
+that ADARA does, so <code class="docutils literal notranslate"><span class="pre">lastTransition().value_or(runState())</span></code> falls
+through to <code class="docutils literal notranslate"><span class="pre">runState()</span></code> and returns the same value the legacy
+<code class="docutils literal notranslate"><span class="pre">runStatus()</span></code> override would have.</p>
 </section>
 <section id="pattern-c-fsm-tick-anti-pattern-fix">
 <h3><a class="toc-backref" href="#id17" role="doc-backlink">Pattern C — FSM-tick anti-pattern fix</a><a class="headerlink" href="#pattern-c-fsm-tick-anti-pattern-fix" title="Link to this heading">#</a></h3>
@@ -994,7 +992,7 @@ at each boundary</p></td>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MonitorLiveData</span></code> workspace renaming triggers on
 <code class="docutils literal notranslate"><span class="pre">BeginRun</span></code> / <code class="docutils literal notranslate"><span class="pre">EndRun</span></code></p></td>
 <td><p>yes</p></td>
-<td><p>yes (via the legacy <code class="docutils literal notranslate"><span class="pre">runStatus()</span></code> shim)</p></td>
+<td><p>yes (via <code class="docutils literal notranslate"><span class="pre">lastTransition().value_or(runState())</span></code>)</p></td>
 </tr>
 <tr class="row-odd"><td><p>Listener can be queried for its state without mutating it</p></td>
 <td><p><strong>no</strong></p></td>
@@ -1127,8 +1125,6 @@ defect).</p></li>
 interface declaration.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Framework/API/inc/MantidAPI/LiveListener.h</span></code> — <code class="docutils literal notranslate"><span class="pre">extractData()</span></code>
 template method and default hook implementations.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Framework/API/src/ILiveListener.cpp</span></code> — default <code class="docutils literal notranslate"><span class="pre">runStatus()</span></code>
-shim.</p></li>
 </ul>
 </section>
 </section>
@@ -1182,9 +1178,9 @@ shim.</p></li>
     <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motivation">Motivation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#new-api-use-these">New API (use these)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deprecated-api-migrate-away-from">Deprecated API (migrate away from)</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#removed-api">Removed API</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#runstatus"><code class="docutils literal notranslate"><span class="pre">runStatus()</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#how-the-shim-preserves-monitorlivedata-semantics">How the shim preserves <code class="docutils literal notranslate"><span class="pre">MonitorLiveData</span></code> semantics</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#how-the-former-shim-preserved-monitorlivedata-semantics">How the former shim preserved <code class="docutils literal notranslate"><span class="pre">MonitorLiveData</span></code> semantics</a></li>
 </ul>
 </li>
 </ul>

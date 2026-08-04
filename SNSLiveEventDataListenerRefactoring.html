@@ -790,8 +790,8 @@ copy <code class="docutils literal notranslate"><span class="pre">setRunDetails(
 <code class="docutils literal notranslate"><span class="pre">onAfterExtract()</span></code> after <code class="docutils literal notranslate"><span class="pre">doExtractData()</span></code> has harvested the
 finishing run’s events).  Until that commit, <code class="docutils literal notranslate"><span class="pre">runState()</span></code> continues
 to report <code class="docutils literal notranslate"><span class="pre">Running</span></code> (or <code class="docutils literal notranslate"><span class="pre">JoiningRun</span></code>); the <code class="docutils literal notranslate"><span class="pre">EndRun</span></code> edge is
-delivered to consumers via <code class="docutils literal notranslate"><span class="pre">lastTransition()</span></code> and the legacy
-<code class="docutils literal notranslate"><span class="pre">runStatus()</span></code> shim, satisfying the “exactly once” delivery contract.</p></li>
+delivered to consumers via <code class="docutils literal notranslate"><span class="pre">lastTransition()</span></code>, satisfying the
+“exactly once” delivery contract.</p></li>
 </ul>
 <p>In <code class="docutils literal notranslate"><span class="pre">rxPacket(const</span> <span class="pre">ADARA::AnnotationPkt</span> <span class="pre">&amp;pkt)</span></code>, <code class="docutils literal notranslate"><span class="pre">PAUSE</span></code> and
 <code class="docutils literal notranslate"><span class="pre">RESUME</span></code> markers call <code class="docutils literal notranslate"><span class="pre">onRunPause(true/false)</span></code> directly from the
@@ -1206,7 +1206,7 @@ thread, not deferred</p></td>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MonitorLiveData</span></code> workspace renaming triggers on
 <code class="docutils literal notranslate"><span class="pre">BeginRun</span></code> / <code class="docutils literal notranslate"><span class="pre">EndRun</span></code></p></td>
 <td><p>yes</p></td>
-<td><p>yes (legacy <code class="docutils literal notranslate"><span class="pre">runStatus()</span></code> shim returns the edge)</p></td>
+<td><p>yes (<code class="docutils literal notranslate"><span class="pre">lastTransition()</span></code> returns the edge)</p></td>
 </tr>
 <tr class="row-even"><td><p>Stand-alone <code class="docutils literal notranslate"><span class="pre">LoadLiveData</span></code> produces a workspace</p></td>
 <td><p><strong>no</strong> (deadlocks)</p></td>
@@ -1376,7 +1376,6 @@ thread and no network connection.  All live in
 <li><p><code class="docutils literal notranslate"><span class="pre">test_lastTransition_survives_NotYet_retry</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">test_lastTransition_cleared_after_successful_extract</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">test_lastTransition_reports_EndRun_then_null_after_success</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">test_legacy_runStatus_returns_edge_then_state</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">test_background_exception_propagates_from_all_getters</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">test_rxRunStatusPkt_newRun_throws_when_slot_occupied</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">test_rxRunStatusPkt_endRun_throws_when_slot_occupied</span></code></p></li>
