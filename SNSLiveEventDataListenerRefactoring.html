@@ -389,25 +389,36 @@ examples for non-SNS listeners — see <a class="reference internal" href="LiveL
 <li><p><a class="reference internal" href="#background-reader-loop" id="id18">Background reader loop</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#behaviour-preservation-sns-specific" id="id19">Behaviour preservation (SNS-specific)</a></p></li>
-<li><p><a class="reference internal" href="#appendix-pre-existing-defect-m-ignorepackets-is-never-set-true" id="id20">Appendix — pre-existing defect: <code class="docutils literal notranslate"><span class="pre">m_ignorePackets</span></code> is never set <code class="docutils literal notranslate"><span class="pre">true</span></code></a></p>
+<li><p><a class="reference internal" href="#poll-driven-reader-loop-and-disconnect-detection" id="id19">Poll-driven reader loop and disconnect detection</a></p>
 <ul>
-<li><p><a class="reference internal" href="#summary" id="id21">Summary</a></p></li>
-<li><p><a class="reference internal" href="#evidence" id="id22">Evidence</a></p></li>
-<li><p><a class="reference internal" href="#provenance" id="id23">Provenance</a></p></li>
-<li><p><a class="reference internal" href="#impact" id="id24">Impact</a></p></li>
-<li><p><a class="reference internal" href="#recommended-fix-separate-pr" id="id25">Recommended fix (separate PR)</a></p></li>
+<li><p><a class="reference internal" href="#pre-existing-problems" id="id20">Pre-existing problems</a></p></li>
+<li><p><a class="reference internal" href="#the-poll-loop" id="id21">The poll loop</a></p></li>
+<li><p><a class="reference internal" href="#disconnect-is-not-an-error-and-where-the-error-gets-ascribed" id="id22">Disconnect is not an error — and where the error gets ascribed</a></p></li>
+<li><p><a class="reference internal" href="#surfacing-the-disconnect-to-consumers" id="id23">Surfacing the disconnect to consumers</a></p></li>
+<li><p><a class="reference internal" href="#back-pressure-defers-disconnect-detection-known-limitation" id="id24">Back-pressure defers disconnect detection (known limitation)</a></p></li>
+<li><p><a class="reference internal" href="#shutdown-path" id="id25">Shutdown path</a></p></li>
+<li><p><a class="reference internal" href="#non-goals" id="id26">Non-goals</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#testing" id="id26">Testing</a></p>
+<li><p><a class="reference internal" href="#behaviour-preservation-sns-specific" id="id27">Behaviour preservation (SNS-specific)</a></p></li>
+<li><p><a class="reference internal" href="#appendix-pre-existing-defect-m-ignorepackets-is-never-set-true" id="id28">Appendix — pre-existing defect: <code class="docutils literal notranslate"><span class="pre">m_ignorePackets</span></code> is never set <code class="docutils literal notranslate"><span class="pre">true</span></code></a></p>
 <ul>
-<li><p><a class="reference internal" href="#unit-tests-snsliveeventdatalistenernonetworktest-h" id="id27">Unit tests — <code class="docutils literal notranslate"><span class="pre">SNSLiveEventDataListenerNoNetworkTest.h</span></code></a></p></li>
-<li><p><a class="reference internal" href="#integration-tests-snsliveeventdatalistenertest-h" id="id28">Integration tests — <code class="docutils literal notranslate"><span class="pre">SNSLiveEventDataListenerTest.h</span></code></a></p></li>
-<li><p><a class="reference internal" href="#integration-tests-snsliveeventdatalisteneralgorithmintegrationtest-h" id="id29">Integration tests — <code class="docutils literal notranslate"><span class="pre">SNSLiveEventDataListenerAlgorithmIntegrationTest.h</span></code></a></p></li>
-<li><p><a class="reference internal" href="#legacy-tests-snsliveeventdatalistenerlegacytest-h" id="id30">Legacy tests — <code class="docutils literal notranslate"><span class="pre">SNSLiveEventDataListenerLegacyTest.h</span></code></a></p></li>
+<li><p><a class="reference internal" href="#summary" id="id29">Summary</a></p></li>
+<li><p><a class="reference internal" href="#evidence" id="id30">Evidence</a></p></li>
+<li><p><a class="reference internal" href="#provenance" id="id31">Provenance</a></p></li>
+<li><p><a class="reference internal" href="#impact" id="id32">Impact</a></p></li>
+<li><p><a class="reference internal" href="#recommended-fix-separate-pr" id="id33">Recommended fix (separate PR)</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#further-reading" id="id31">Further reading</a></p></li>
+<li><p><a class="reference internal" href="#testing" id="id34">Testing</a></p>
+<ul>
+<li><p><a class="reference internal" href="#unit-tests-snsliveeventdatalistenernonetworktest-h" id="id35">Unit tests — <code class="docutils literal notranslate"><span class="pre">SNSLiveEventDataListenerNoNetworkTest.h</span></code></a></p></li>
+<li><p><a class="reference internal" href="#integration-tests-snsliveeventdatalistenertest-h" id="id36">Integration tests — <code class="docutils literal notranslate"><span class="pre">SNSLiveEventDataListenerTest.h</span></code></a></p></li>
+<li><p><a class="reference internal" href="#integration-tests-snsliveeventdatalisteneralgorithmintegrationtest-h" id="id37">Integration tests — <code class="docutils literal notranslate"><span class="pre">SNSLiveEventDataListenerAlgorithmIntegrationTest.h</span></code></a></p></li>
+<li><p><a class="reference internal" href="#legacy-tests-snsliveeventdatalistenerlegacytest-h" id="id38">Legacy tests — <code class="docutils literal notranslate"><span class="pre">SNSLiveEventDataListenerLegacyTest.h</span></code></a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#further-reading" id="id39">Further reading</a></p></li>
 </ul>
 </nav>
 <section id="scope">
@@ -611,7 +622,7 @@ condition is never silently masked in release builds.</p>
 <span class="w">    </span><span class="n">ListenerState</span><span class="w"> </span><span class="nf">listenerState</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
 <span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="n">RunStatus</span><span class="o">&gt;</span><span class="w"> </span><span class="n">lastTransition</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
 
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="nf">runNumber</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">m_runNumber</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="nf">runNumber</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">m_runNumber</span><span class="p">.</span><span class="n">load</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
 <span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">isConnected</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
 
 <span class="k">protected</span><span class="o">:</span>
@@ -629,6 +640,10 @@ condition is never silently masked in release builds.</p>
 <span class="w">    </span><span class="c1">/// accumulated events are harvested before the workspace buffer</span>
 <span class="w">    </span><span class="c1">/// is reset by onEndRun().</span>
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">onAfterExtract</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">/// Sends all bytes in buf over m_socket, retrying short writes.</span>
+<span class="w">    </span><span class="c1">/// Virtual so test subclasses can inject short-write/failure scenarios.</span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">sendHelloPacket</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">buf</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">size</span><span class="p">);</span>
 
 <span class="w">    </span><span class="c1">/// Explicit, named state-transition hooks.</span>
 <span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">onBeginRun</span><span class="p">();</span>
@@ -651,20 +666,48 @@ condition is never silently masked in release builds.</p>
 <span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">runtime_error</span><span class="o">&gt;</span><span class="w"> </span><span class="n">m_backgroundException</span><span class="p">;</span>
 
 <span class="w">    </span><span class="c1">// Existing members (unchanged)</span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">m_runNumber</span><span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">atomic</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">m_runNumber</span><span class="p">{</span><span class="mi">0</span><span class="p">};</span>
 <span class="w">    </span><span class="n">DataObjects</span><span class="o">::</span><span class="n">EventWorkspace_sptr</span><span class="w"> </span><span class="n">m_eventBuffer</span><span class="p">;</span>
 <span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">m_workspaceInitialized</span><span class="p">{</span><span class="nb">false</span><span class="p">};</span>
 <span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">m_instrumentName</span><span class="p">;</span>
 <span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">m_instrumentXML</span><span class="p">;</span>
 <span class="w">    </span><span class="cm">/* ... etc. ... */</span>
-<span class="w">    </span><span class="k">mutable</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">mutex</span><span class="w"> </span><span class="n">m_mutex</span><span class="p">;</span><span class="w">        </span><span class="c1">///&lt; guards all of the above</span>
-<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">m_pauseNetRead</span><span class="p">{</span><span class="nb">false</span><span class="p">};</span><span class="w">        </span><span class="c1">///&lt; back-pressure flag</span>
-<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">m_isDasPaused</span><span class="p">{</span><span class="nb">false</span><span class="p">};</span><span class="w">         </span><span class="c1">///&lt; set by onRunPause(); read by isPaused()</span>
+<span class="w">    </span><span class="k">mutable</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">mutex</span><span class="w"> </span><span class="n">m_mutex</span><span class="p">;</span><span class="w">             </span><span class="c1">///&lt; guards all of the above</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">atomic</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="w"> </span><span class="n">m_isConnected</span><span class="p">{</span><span class="nb">false</span><span class="p">};</span><span class="w"> </span><span class="c1">///&lt; connection health</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">atomic</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="w"> </span><span class="n">m_pauseNetRead</span><span class="p">{</span><span class="nb">false</span><span class="p">};</span><span class="w">      </span><span class="c1">///&lt; back-pressure flag</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">atomic</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="w"> </span><span class="n">m_bgThreadCaughtUp</span><span class="p">{</span><span class="nb">false</span><span class="p">};</span><span class="w">  </span><span class="c1">///&lt; foreground snapshot gate</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">atomic</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="w"> </span><span class="n">m_stopThread</span><span class="p">{</span><span class="nb">false</span><span class="p">};</span><span class="w">        </span><span class="c1">///&lt; destructor shutdown signal</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">atomic</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="w"> </span><span class="n">m_isDasPaused</span><span class="p">{</span><span class="nb">false</span><span class="p">};</span><span class="w">       </span><span class="c1">///&lt; set by onRunPause(); read by isPaused()</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">atomic</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="w"> </span><span class="n">m_ignorePackets</span><span class="p">{</span><span class="nb">false</span><span class="p">};</span><span class="w">     </span><span class="c1">///&lt; see ignorePacket() / the m_ignorePackets appendix</span>
 <span class="w">    </span><span class="n">NameMapType</span><span class="w"> </span><span class="n">m_nameMap</span><span class="p">;</span>
 <span class="w">    </span><span class="cm">/* ... etc. ... */</span>
 <span class="p">};</span>
 </pre></div>
 </div>
+<p>Convention: any POD-typed member that a background thread and the
+foreground both touch is made <code class="docutils literal notranslate"><span class="pre">std::atomic</span></code> even when it is already
+covered by <code class="docutils literal notranslate"><span class="pre">m_mutex</span></code> — belt-and-suspenders rather than relying on the
+lock alone.  Concretely, per the header’s own grouping
+(<code class="docutils literal notranslate"><span class="pre">SNSLiveEventDataListener.h:242-270</span></code>):</p>
+<ul class="simple">
+<li><p><strong>Atomic, lock-free (no mutex needed):</strong> <code class="docutils literal notranslate"><span class="pre">m_isConnected</span></code>,
+<code class="docutils literal notranslate"><span class="pre">m_pauseNetRead</span></code>, <code class="docutils literal notranslate"><span class="pre">m_bgThreadCaughtUp</span></code>, <code class="docutils literal notranslate"><span class="pre">m_stopThread</span></code>,
+<code class="docutils literal notranslate"><span class="pre">m_isDasPaused</span></code>, <code class="docutils literal notranslate"><span class="pre">m_runNumber</span></code>.</p></li>
+<li><p><strong>Atomic AND mutex-guarded:</strong> <code class="docutils literal notranslate"><span class="pre">m_ignorePackets</span></code> — guarded by the
+single <code class="docutils literal notranslate"><span class="pre">doExtractData()</span></code> critical section on the foreground side and
+by the parse lock on the background side (<code class="docutils literal notranslate"><span class="pre">ignorePacket()</span></code>).</p></li>
+<li><p><strong>Mutex-guarded only:</strong> <code class="docutils literal notranslate"><span class="pre">m_backgroundException</span></code>, <code class="docutils literal notranslate"><span class="pre">m_eventBuffer</span></code>,
+<code class="docutils literal notranslate"><span class="pre">m_adaraRunStatus</span></code>, <code class="docutils literal notranslate"><span class="pre">m_pendingTransition</span></code>, <code class="docutils literal notranslate"><span class="pre">m_lastTransition</span></code>,
+<code class="docutils literal notranslate"><span class="pre">m_instrumentXML</span></code>, <code class="docutils literal notranslate"><span class="pre">m_instrumentName</span></code>, <code class="docutils literal notranslate"><span class="pre">m_nameMap</span></code>,
+<code class="docutils literal notranslate"><span class="pre">m_requiredLogs</span></code>, <code class="docutils literal notranslate"><span class="pre">m_deferredRunDetailsPkt</span></code>,
+<code class="docutils literal notranslate"><span class="pre">m_workspaceInitialized</span></code>, <code class="docutils literal notranslate"><span class="pre">m_previousExtractCompleted</span></code>,
+<code class="docutils literal notranslate"><span class="pre">m_dataStartTime</span></code>, <code class="docutils literal notranslate"><span class="pre">m_monitorLogs</span></code>, <code class="docutils literal notranslate"><span class="pre">m_wsName</span></code>.</p></li>
+</ul>
+<p>All <code class="docutils literal notranslate"><span class="pre">rxPacket()</span></code> overrides now run under <code class="docutils literal notranslate"><span class="pre">m_mutex</span></code>, acquired once by
+<code class="docutils literal notranslate"><span class="pre">run()</span></code> around the whole <code class="docutils literal notranslate"><span class="pre">bufferParse()</span></code> iteration (see “Background
+reader loop” below) — do <strong>not</strong> acquire <code class="docutils literal notranslate"><span class="pre">m_mutex</span></code> inside any
+<code class="docutils literal notranslate"><span class="pre">rxPacket()</span></code> body or any function called exclusively from one;
+<code class="docutils literal notranslate"><span class="pre">std::mutex</span></code> is non-recursive and a second acquisition would deadlock.</p>
 </section>
 </section>
 <section id="state-machine-diagrams">
@@ -688,7 +731,13 @@ actually occur.</p></li>
 <li><p>The <code class="docutils literal notranslate"><span class="pre">isPaused()</span></code> axis is shown as a separate small subgraph; it
 is orthogonal to <code class="docutils literal notranslate"><span class="pre">runState</span></code> and applied immediately in the
 background thread.</p></li>
-<li><p>The <code class="docutils literal notranslate"><span class="pre">listenerState()</span></code> axis is shown as a separate small subgraph.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">listenerState()</span></code> axis is shown as a separate small subgraph. In
+the post-refactor diagram it additionally carries the
+<code class="docutils literal notranslate"><span class="pre">Connected</span></code> → <code class="docutils literal notranslate"><span class="pre">Disconnected</span></code> edge for a clean peer close, the
+getter’s <code class="docutils literal notranslate"><span class="pre">Error</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Disconnected</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">ReadWait</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Connected</span></code>
+precedence, and a dotted edge marking that the <code class="docutils literal notranslate"><span class="pre">Error</span></code> outcome is a
+<em>foreground</em> escalation, not something the background thread itself
+ascribes — see <a class="reference internal" href="#sns-disconnect-not-error"><span class="std std-ref">Disconnect is not an error — and where the error gets ascribed</span></a>.</p></li>
 </ul>
 <section id="pre-refactor-transitions-committed-inside-runstatus">
 <h3><a class="toc-backref" href="#id9" role="doc-backlink">Pre-refactor: transitions committed inside <code class="docutils literal notranslate"><span class="pre">runStatus()</span></code></a><a class="headerlink" href="#pre-refactor-transitions-committed-inside-runstatus" title="Link to this heading">#</a></h3>
@@ -708,7 +757,7 @@ regenerate the PNG with:</p>
 </section>
 <section id="post-refactor-transitions-committed-inside-extractdata">
 <h3><a class="toc-backref" href="#id10" role="doc-backlink">Post-refactor: transitions committed inside <code class="docutils literal notranslate"><span class="pre">extractData()</span></code></a><a class="headerlink" href="#post-refactor-transitions-committed-inside-extractdata" title="Link to this heading">#</a></h3>
-<img alt="SNSLiveEventDataListener state machine, post-refactor. BeginRun→Running and EndRun→NoRun edges are enclosed in a dashed cluster labelled &quot;committed inside extractData() (onBeforeExtract → doExtractData → onAfterExtract)&quot;, indicating that the cache clears, workspace re-init, deferred-packet consumption, and m_pauseNetRead release all happen as part of the template-method extractData() call — with BeginRun dispatched in onBeforeExtract() and EndRun deferred to onAfterExtract() so the finishing run's events are harvested first." class="align-center" src="_images/SNSLiveEventDataListener-state-machine-after.png" />
+<img alt="SNSLiveEventDataListener state machine, post-refactor. BeginRun→Running and EndRun→NoRun edges are enclosed in a dashed cluster labelled &quot;committed inside extractData() (onBeforeExtract → doExtractData → onAfterExtract)&quot;, indicating that the cache clears, workspace re-init, deferred-packet consumption, and m_pauseNetRead release all happen as part of the template-method extractData() call — with BeginRun dispatched in onBeforeExtract() and EndRun deferred to onAfterExtract() so the finishing run's events are harvested first. The listenerState axis additionally shows a Connected→Disconnected edge for a clean peer close (the background thread stays neutral: no fatal(), no m_backgroundException) and a dotted Disconnected→Error edge marking that the Error outcome is ascribed by the foreground (doExtractData(), which has no recovery action available), not by the background thread." class="align-center" src="_images/SNSLiveEventDataListener-state-machine-after.png" />
 <p>In the post-refactor design the commit boundary is <strong>the
 ``extractData()`` template method</strong> — specifically the
 <code class="docutils literal notranslate"><span class="pre">onBeforeExtract()</span></code> and <code class="docutils literal notranslate"><span class="pre">onAfterExtract()</span></code> hooks that bracket
@@ -1086,42 +1135,125 @@ function.</p></li>
 </section>
 <section id="background-reader-loop">
 <h3><a class="toc-backref" href="#id18" role="doc-backlink">Background reader loop</a><a class="headerlink" href="#background-reader-loop" title="Link to this heading">#</a></h3>
-<p>The loop has two notable changes from the pre-refactor version.</p>
-<p>First, the pause condition is short-circuited on
-<code class="docutils literal notranslate"><span class="pre">m_bgThreadCaughtUp</span></code>.  When the flag is <code class="docutils literal notranslate"><span class="pre">false</span></code> (i.e. a
-<code class="docutils literal notranslate"><span class="pre">bufferParse()</span></code> iteration is in flight), the background thread never
-honours <code class="docutils literal notranslate"><span class="pre">m_pauseNetRead</span></code> — this prevents the foreground from
-releasing back-pressure while <code class="docutils literal notranslate"><span class="pre">rxPacket()</span></code> callbacks may still be
-mutating shared state.</p>
-<p>Second, the <code class="docutils literal notranslate"><span class="pre">m_bgThreadCaughtUp</span></code> flag is stored <code class="docutils literal notranslate"><span class="pre">false</span></code>
-immediately before <code class="docutils literal notranslate"><span class="pre">bufferParse()</span></code> and <code class="docutils literal notranslate"><span class="pre">true</span></code> immediately
-after, framing the only window during which <code class="docutils literal notranslate"><span class="pre">onBeforeExtract()</span></code>
-must throw <code class="docutils literal notranslate"><span class="pre">NotYet</span></code>.  <code class="docutils literal notranslate"><span class="pre">receiveBytes()</span></code> does <strong>not</strong> touch the
-flag; a background thread blocked in receive presents as caught-up.</p>
+<p>The loop below is current as of the poll-loop refactor described in
+<a class="reference internal" href="#sns-poll-loop-disconnect"><span class="std std-ref">Poll-driven reader loop and disconnect detection</span></a> further down this document; that
+section covers <em>why</em> it looks like this, this one just walks the
+shape of the code.</p>
+<p>The pause condition is short-circuited on <code class="docutils literal notranslate"><span class="pre">m_bgThreadCaughtUp</span></code>.
+When the flag is <code class="docutils literal notranslate"><span class="pre">false</span></code> (i.e. a <code class="docutils literal notranslate"><span class="pre">bufferParse()</span></code> iteration is in
+flight), the background thread never honours <code class="docutils literal notranslate"><span class="pre">m_pauseNetRead</span></code> — this
+prevents the foreground from releasing back-pressure while
+<code class="docutils literal notranslate"><span class="pre">rxPacket()</span></code> callbacks may still be mutating shared state.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">m_bgThreadCaughtUp</span></code> flag is stored <code class="docutils literal notranslate"><span class="pre">false</span></code> immediately before
+<code class="docutils literal notranslate"><span class="pre">bufferParse()</span></code> and <code class="docutils literal notranslate"><span class="pre">true</span></code> immediately after, framing the only
+window during which <code class="docutils literal notranslate"><span class="pre">onBeforeExtract()</span></code> must throw <code class="docutils literal notranslate"><span class="pre">NotYet</span></code>.
+<code class="docutils literal notranslate"><span class="pre">receiveBytes()</span></code> does <strong>not</strong> touch the flag; a background thread
+blocked in receive (or parked in the pause gate, or blocked in
+<code class="docutils literal notranslate"><span class="pre">poll()</span></code>) presents as caught-up.</p>
+<p>Reading is now driven by a <code class="docutils literal notranslate"><span class="pre">Poco::Net::PollSet</span></code> with a 100 ms
+timeout instead of a blocking <code class="docutils literal notranslate"><span class="pre">receiveBytes()</span></code> with a 30 s socket
+timeout.  A bg-thread-local <code class="docutils literal notranslate"><span class="pre">needParse</span></code> flag (plain <code class="docutils literal notranslate"><span class="pre">bool</span></code> — only
+this thread touches it) records when <code class="docutils literal notranslate"><span class="pre">bufferParse()</span></code> has real work to
+do: fresh bytes were just appended, the parse buffer is full and must
+be drained to make room for more, or a prior parse was interrupted
+mid-buffer by a run-transition callback and bytes remain stranded in
+the parser’s internal buffer where <code class="docutils literal notranslate"><span class="pre">poll()</span></code> cannot observe them (the
+last case reuses the <code class="docutils literal notranslate"><span class="pre">needParse</span> <span class="pre">=</span> <span class="pre">true</span></code> set when <code class="docutils literal notranslate"><span class="pre">bufferParse()</span></code>
+returns a negative count).  When <code class="docutils literal notranslate"><span class="pre">needParse</span></code> is already set, the loop
+skips <code class="docutils literal notranslate"><span class="pre">poll()</span></code> entirely and goes straight to parsing.</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">SNSLiveEventDataListener::run</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">// ... unchanged setup (hello packet, etc.) ...</span>
-<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">m_stopThread</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">setFatalState</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="k">this</span><span class="p">](</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">runtime_error</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ex</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">lock_guard</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">mutex</span><span class="o">&gt;</span><span class="w"> </span><span class="n">lock</span><span class="p">(</span><span class="n">m_mutex</span><span class="p">);</span>
+<span class="w">        </span><span class="n">m_isConnected</span><span class="p">.</span><span class="n">store</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">m_backgroundException</span><span class="p">)</span>
+<span class="w">            </span><span class="n">m_backgroundException</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">ex</span><span class="p">);</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">fatal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="o">&amp;</span><span class="n">setFatalState</span><span class="p">](</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">msg</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">g_log</span><span class="p">.</span><span class="n">fatal</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">msg</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+<span class="w">        </span><span class="n">setFatalState</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">runtime_error</span><span class="o">&gt;</span><span class="p">(</span><span class="n">msg</span><span class="p">));</span>
+<span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">runtime_error</span><span class="p">(</span><span class="n">msg</span><span class="p">);</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="w">    </span><span class="c1">// ... unchanged setup (hello packet via sendHelloPacket(), etc.) ...</span>
+
+<span class="w">    </span><span class="n">Poco</span><span class="o">::</span><span class="n">Net</span><span class="o">::</span><span class="n">PollSet</span><span class="w"> </span><span class="n">pollSet</span><span class="p">;</span>
+<span class="w">    </span><span class="n">pollSet</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">m_socket</span><span class="p">,</span><span class="w"> </span><span class="n">Poco</span><span class="o">::</span><span class="n">Net</span><span class="o">::</span><span class="n">PollSet</span><span class="o">::</span><span class="n">POLL_READ</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">needParse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">m_stopThread</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">memory_order_acquire</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="c1">// Only honour m_pauseNetRead when no parse is in flight.</span>
-<span class="w">        </span><span class="c1">// Short-circuit on m_bgThreadCaughtUp == false prevents a race</span>
-<span class="w">        </span><span class="c1">// where the foreground clears m_pauseNetRead while we are still</span>
-<span class="w">        </span><span class="c1">// inside bufferParse() mutating shared state.</span>
-<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">m_bgThreadCaughtUp</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">memory_order_acquire</span><span class="p">)</span>
-<span class="w">               </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">m_pauseNetRead</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">m_stopThread</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">m_bgThreadCaughtUp</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">memory_order_acquire</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span>
+<span class="w">               </span><span class="n">m_pauseNetRead</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">memory_order_acquire</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span>
+<span class="w">               </span><span class="o">!</span><span class="n">m_stopThread</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">memory_order_acquire</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="n">Poco</span><span class="o">::</span><span class="n">Thread</span><span class="o">::</span><span class="n">sleep</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
 <span class="w">        </span><span class="p">}</span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_stopThread</span><span class="p">)</span><span class="w"> </span><span class="k">break</span><span class="p">;</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_stopThread</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">memory_order_acquire</span><span class="p">))</span><span class="w"> </span><span class="k">break</span><span class="p">;</span>
 
-<span class="w">        </span><span class="c1">// receiveBytes() does NOT touch m_bgThreadCaughtUp.</span>
-<span class="w">        </span><span class="c1">// A thread blocked here presents as caught-up.</span>
-<span class="w">        </span><span class="n">receiveBytes</span><span class="p">();</span><span class="w">   </span><span class="c1">// fills the ADARA parse buffer</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">needParse</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">auto</span><span class="w"> </span><span class="n">ready</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pollSet</span><span class="p">.</span><span class="n">poll</span><span class="p">(</span><span class="n">Poco</span><span class="o">::</span><span class="n">Timespan</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">100000</span><span class="p">));</span><span class="w"> </span><span class="c1">// 100 ms</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">ready</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">auto</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ready</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">m_socket</span><span class="p">);</span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">it</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">ready</span><span class="p">.</span><span class="n">end</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">it</span><span class="o">-&gt;</span><span class="n">second</span><span class="p">;</span>
+<span class="w">                    </span><span class="kt">bool</span><span class="w"> </span><span class="n">successfulRead</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">mode</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">Poco</span><span class="o">::</span><span class="n">Net</span><span class="o">::</span><span class="n">PollSet</span><span class="o">::</span><span class="n">POLL_READ</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">bufFillLen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bufferFillLength</span><span class="p">();</span>
+<span class="w">                        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bufFillLen</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                            </span><span class="kt">int</span><span class="w"> </span><span class="n">bytesRead</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="w">                            </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                                </span><span class="n">bytesRead</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m_socket</span><span class="p">.</span><span class="n">receiveBytes</span><span class="p">(</span><span class="n">bufferFillAddress</span><span class="p">(),</span><span class="w"> </span><span class="n">bufFillLen</span><span class="p">);</span>
+<span class="w">                            </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Poco</span><span class="o">::</span><span class="n">TimeoutException</span><span class="w"> </span><span class="o">&amp;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                                </span><span class="n">bytesRead</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span><span class="w"> </span><span class="c1">// spurious wakeup; try again next iteration</span>
+<span class="w">                            </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Poco</span><span class="o">::</span><span class="n">Net</span><span class="o">::</span><span class="n">NetException</span><span class="w"> </span><span class="o">&amp;</span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                                </span><span class="n">fatal</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">(</span><span class="s">&quot;network read failed: &quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">name</span><span class="p">());</span>
+<span class="w">                            </span><span class="p">}</span>
+<span class="w">                            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bytesRead</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                                </span><span class="c1">// Clean peer close.  NOT an error: no fatal(), no</span>
+<span class="w">                                </span><span class="c1">// m_backgroundException.  See &quot;disconnect is not</span>
+<span class="w">                                </span><span class="c1">// an error&quot; below for why this is deliberate.</span>
+<span class="w">                                </span><span class="n">m_isConnected</span><span class="p">.</span><span class="n">store</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
+<span class="w">                                </span><span class="n">m_bgThreadCaughtUp</span><span class="p">.</span><span class="n">store</span><span class="p">(</span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">memory_order_release</span><span class="p">);</span>
+<span class="w">                                </span><span class="k">return</span><span class="p">;</span>
+<span class="w">                            </span><span class="p">}</span>
+<span class="w">                            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bytesRead</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                                </span><span class="n">bufferBytesAppended</span><span class="p">(</span><span class="n">bytesRead</span><span class="p">);</span>
+<span class="w">                                </span><span class="n">needParse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">                                </span><span class="n">successfulRead</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">                            </span><span class="p">}</span>
+<span class="w">                        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                            </span><span class="c1">// Parse buffer full; drain before reading more.</span>
+<span class="w">                            </span><span class="n">needParse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">                            </span><span class="n">successfulRead</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">                        </span><span class="p">}</span>
+<span class="w">                    </span><span class="p">}</span>
+<span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">mode</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">Poco</span><span class="o">::</span><span class="n">Net</span><span class="o">::</span><span class="n">PollSet</span><span class="o">::</span><span class="n">POLL_ERROR</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">successfulRead</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="n">fatal</span><span class="p">(</span><span class="s">&quot;socket poll reported error.&quot;</span><span class="p">);</span>
+<span class="w">                    </span><span class="p">}</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="c1">// Poll timeout: needParse stays false, loop right back to poll().</span>
+<span class="w">        </span><span class="p">}</span>
 
-<span class="w">        </span><span class="c1">// Close the foreground snapshot window for bufferParse() only.</span>
-<span class="w">        </span><span class="n">m_bgThreadCaughtUp</span><span class="p">.</span><span class="n">store</span><span class="p">(</span><span class="nb">false</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">memory_order_release</span><span class="p">);</span>
-<span class="w">        </span><span class="n">bufferParse</span><span class="p">();</span><span class="w">    </span><span class="c1">// drives rxPacket() callbacks</span>
-<span class="w">        </span><span class="n">m_bgThreadCaughtUp</span><span class="p">.</span><span class="n">store</span><span class="p">(</span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">memory_order_release</span><span class="p">);</span>
-<span class="w">        </span><span class="c1">// Snapshot window re-opened; m_pendingTransition is now stable.</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">needParse</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">needParse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">            </span><span class="n">m_bgThreadCaughtUp</span><span class="p">.</span><span class="n">store</span><span class="p">(</span><span class="nb">false</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">memory_order_release</span><span class="p">);</span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">packetsParsed</span><span class="p">;</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="c1">// Hold m_mutex for the whole parse iteration: every rxPacket()</span>
+<span class="w">                </span><span class="c1">// override now runs under the lock (see below).</span>
+<span class="w">                </span><span class="n">std</span><span class="o">::</span><span class="n">lock_guard</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">mutex</span><span class="o">&gt;</span><span class="w"> </span><span class="n">lock</span><span class="p">(</span><span class="n">m_mutex</span><span class="p">);</span>
+<span class="w">                </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">bufferParseLog</span><span class="p">;</span>
+<span class="w">                </span><span class="n">packetsParsed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bufferParse</span><span class="p">(</span><span class="n">bufferParseLog</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="n">m_bgThreadCaughtUp</span><span class="p">.</span><span class="n">store</span><span class="p">(</span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">memory_order_release</span><span class="p">);</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">packetsParsed</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="c1">// Interrupted mid-buffer by a run-transition callback; bytes</span>
+<span class="w">                </span><span class="c1">// remain stranded where poll() cannot see them.</span>
+<span class="w">                </span><span class="n">needParse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="c1">// ... unchanged exception capture into m_backgroundException ...</span>
+<span class="w">    </span><span class="c1">// ... unchanged exception capture into m_backgroundException via the</span>
+<span class="w">    </span><span class="c1">// catch cascade, each arm calling setFatalState() ...</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -1134,10 +1266,213 @@ stores <code class="docutils literal notranslate"><span class="pre">false</span>
 “Foreground snapshot gate” section above).  The background loop itself
 only writes the flag around <code class="docutils literal notranslate"><span class="pre">bufferParse()</span></code>; <code class="docutils literal notranslate"><span class="pre">onEndRun()</span></code> is the
 only other writer.</p>
+<p>Holding <code class="docutils literal notranslate"><span class="pre">m_mutex</span></code> for the entire parse iteration (rather than letting
+each <code class="docutils literal notranslate"><span class="pre">rxPacket()</span></code> override take it individually, as the pre-refactor
+code did) makes “the caller holds <code class="docutils literal notranslate"><span class="pre">m_mutex</span></code>” an invariant for every
+<code class="docutils literal notranslate"><span class="pre">rxPacket()</span></code> body and its callees (<code class="docutils literal notranslate"><span class="pre">initWorkspacePart2()</span></code>,
+<code class="docutils literal notranslate"><span class="pre">appendEvent()</span></code>, etc.), fixing Coverity CIDs 1663860 and 1663859
+(accesses to <code class="docutils literal notranslate"><span class="pre">m_adaraRunStatus</span></code> / <code class="docutils literal notranslate"><span class="pre">m_pendingTransition</span></code> without the
+lock in <code class="docutils literal notranslate"><span class="pre">initWorkspacePart2()</span></code>’s tail).  The corollary: <code class="docutils literal notranslate"><span class="pre">m_mutex</span></code>
+is non-recursive, so no <code class="docutils literal notranslate"><span class="pre">rxPacket()</span></code> body or anything called
+exclusively from one may acquire <code class="docutils literal notranslate"><span class="pre">m_mutex</span></code> itself — <code class="docutils literal notranslate"><span class="pre">setFatalState()</span></code>
+/ <code class="docutils literal notranslate"><span class="pre">fatal()</span></code> are safe because they are only reachable from <code class="docutils literal notranslate"><span class="pre">run()</span></code>’s
+top-level catch arms and pre-parse code, never from inside
+<code class="docutils literal notranslate"><span class="pre">bufferParse()</span></code>.</p>
+</section>
+</section>
+<section id="poll-driven-reader-loop-and-disconnect-detection">
+<span id="sns-poll-loop-disconnect"></span><h2><a class="toc-backref" href="#id19" role="doc-backlink">Poll-driven reader loop and disconnect detection</a><a class="headerlink" href="#poll-driven-reader-loop-and-disconnect-detection" title="Link to this heading">#</a></h2>
+<p>This section covers the follow-on refactor layered on top of everything
+above: the socket read loop became event-driven, and an orderly server
+disconnect — previously invisible — is now detected and reported.</p>
+<section id="pre-existing-problems">
+<h3><a class="toc-backref" href="#id20" role="doc-backlink">Pre-existing problems</a><a class="headerlink" href="#pre-existing-problems" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Orderly server disconnect was completely undetected.</strong>  When the SMS
+server called <code class="docutils literal notranslate"><span class="pre">close()</span></code>, <code class="docutils literal notranslate"><span class="pre">receiveBytes()</span></code> returned <code class="docutils literal notranslate"><span class="pre">0</span></code>.  That
+return value was never checked; the background thread spun
+indefinitely, <code class="docutils literal notranslate"><span class="pre">m_isConnected</span></code> stayed <code class="docutils literal notranslate"><span class="pre">true</span></code>, and <code class="docutils literal notranslate"><span class="pre">listenerState()</span></code>
+kept reporting <code class="docutils literal notranslate"><span class="pre">Connected</span></code> — the listener gave no indication that the
+server was gone.</p></li>
+<li><p><strong>The read loop was timeout-driven, not event-driven.</strong> <code class="docutils literal notranslate"><span class="pre">run()</span></code>
+blocked inside <code class="docutils literal notranslate"><span class="pre">receiveBytes()</span></code> and relied on a 30 s socket receive
+timeout as its only way to regain control.  This made shutdown slow (up
+to ~60 s) and error detection sluggish, and it called <code class="docutils literal notranslate"><span class="pre">bufferParse()</span></code>
+unconditionally on every iteration even when there was nothing new to
+parse.</p></li>
+<li><p><strong>Termination paths were inconsistent.</strong>  Thrown network exceptions
+became fatal background-thread failures; a partial hello-send exited
+the thread with no error state set at all; and orderly disconnect
+wasn’t detected in the first place.</p></li>
+</ul>
+</section>
+<section id="the-poll-loop">
+<h3><a class="toc-backref" href="#id21" role="doc-backlink">The poll loop</a><a class="headerlink" href="#the-poll-loop" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">Poco::Net::PollSet</span></code> now waits for socket readiness with a ~100 ms
+timeout, replacing the old 30 s blocking receive.  <code class="docutils literal notranslate"><span class="pre">receiveBytes()</span></code> is
+only called when the socket is readable <em>and</em> the parser buffer has free
+space (<code class="docutils literal notranslate"><span class="pre">bufferFillLength()</span> <span class="pre">!=</span> <span class="pre">0</span></code>); when the buffer is full, the loop
+sets its <code class="docutils literal notranslate"><span class="pre">needParse</span></code> flag instead so the parser drains it before more
+bytes are read.  <code class="docutils literal notranslate"><span class="pre">RECV_TIMEOUT</span></code> itself is reduced from 30 s to 1 s and
+demoted to a pure backstop — actual readiness is driven by <code class="docutils literal notranslate"><span class="pre">poll()</span></code>,
+not by the socket’s own receive timeout.</p>
+<p><code class="docutils literal notranslate"><span class="pre">bufferParse()</span></code> runs exactly when there is work: fresh bytes were just
+appended, the parse buffer is full and must be drained to make room, or a
+prior parse was interrupted mid-buffer by a run-transition callback
+(<code class="docutils literal notranslate"><span class="pre">rxPacket(RunStatusPkt)</span></code> returning to request a pause) and bytes
+remain stranded in the parser’s internal buffer, a place <code class="docutils literal notranslate"><span class="pre">poll()</span></code>
+cannot see.</p>
+<p>When a poll event fires, <code class="docutils literal notranslate"><span class="pre">POLL_READ</span></code> is drained before <code class="docutils literal notranslate"><span class="pre">POLL_ERROR</span></code>
+is honoured.  On Linux, a peer close with pending bytes can deliver
+<code class="docutils literal notranslate"><span class="pre">EPOLLIN|EPOLLHUP</span></code> together; draining the bytes first means the
+final <code class="docutils literal notranslate"><span class="pre">END_RUN</span></code> packet isn’t discarded.  On macOS kqueue, <code class="docutils literal notranslate"><span class="pre">EV_ERROR</span></code>
+(a kevent changelist failure) can co-occur with <code class="docutils literal notranslate"><span class="pre">EVFILT_READ</span></code> (valid
+pending data) right after a back-pressure pause; the loop’s
+<code class="docutils literal notranslate"><span class="pre">successfulRead</span></code> flag suppresses the <code class="docutils literal notranslate"><span class="pre">POLL_ERROR</span></code> fatal in that case
+so a transient kqueue artefact doesn’t kill a perfectly healthy
+connection.</p>
+</section>
+<section id="disconnect-is-not-an-error-and-where-the-error-gets-ascribed">
+<span id="sns-disconnect-not-error"></span><h3><a class="toc-backref" href="#id22" role="doc-backlink">Disconnect is not an error — and where the error gets ascribed</a><a class="headerlink" href="#disconnect-is-not-an-error-and-where-the-error-gets-ascribed" title="Link to this heading">#</a></h3>
+<p>An orderly server close is not intrinsically an error — it’s something a
+correctly-implemented SMS server does routinely.  The refactor keeps that
+distinction visible by splitting the handling across two layers.</p>
+<p><strong>The background thread stays neutral.</strong>  A clean peer close
+(<code class="docutils literal notranslate"><span class="pre">receiveBytes()</span> <span class="pre">==</span> <span class="pre">0</span></code>) does <strong>not</strong> go through <code class="docutils literal notranslate"><span class="pre">fatal()</span></code>.  It stores
+<code class="docutils literal notranslate"><span class="pre">m_isConnected</span> <span class="pre">=</span> <span class="pre">false</span></code>, stores <code class="docutils literal notranslate"><span class="pre">m_bgThreadCaughtUp</span> <span class="pre">=</span> <span class="pre">true</span></code> (so
+<code class="docutils literal notranslate"><span class="pre">onBeforeExtract()</span></code> isn’t wedged behind its <code class="docutils literal notranslate"><span class="pre">NotYet</span></code> gate), and
+returns.  No <code class="docutils literal notranslate"><span class="pre">m_backgroundException</span></code> is written, so
+<code class="docutils literal notranslate"><span class="pre">listenerState()</span></code> reports <code class="docutils literal notranslate"><span class="pre">Disconnected</span></code>, not <code class="docutils literal notranslate"><span class="pre">Error</span></code>.  This is a
+deliberate reservation: a future implementation could respond to a
+disconnect by reconnecting and rescanning the ADARA stream, and nothing
+about the background thread’s handling forecloses that — the condition
+was never declared fatal in the first place.</p>
+<p><strong>The foreground ascribes the error.</strong>  The current implementation has
+no recovery action available, so the escalation happens one layer up:
+<code class="docutils literal notranslate"><span class="pre">doExtractData()</span></code> throws once there is nothing left to deliver (see
+below), and that is what a consumer actually observes as failure.  The
+net effect today is <code class="docutils literal notranslate"><span class="pre">Connected</span></code> → <code class="docutils literal notranslate"><span class="pre">Error</span></code>, but the <code class="docutils literal notranslate"><span class="pre">Error</span></code> is a
+<em>foreground</em> ascription made at the <code class="docutils literal notranslate"><span class="pre">extractData()</span></code> boundary —
+<code class="docutils literal notranslate"><span class="pre">listenerState()</span></code> itself never returns <code class="docutils literal notranslate"><span class="pre">Error</span></code> by way of a clean
+disconnect; it stays at <code class="docutils literal notranslate"><span class="pre">Disconnected</span></code>.</p>
+<p>This is different from every <em>abnormal</em> termination.  <code class="docutils literal notranslate"><span class="pre">POLL_ERROR</span></code>, an
+unexpected <code class="docutils literal notranslate"><span class="pre">Poco::Net::NetException</span></code>, an exhausted hello-send retry,
+and any <code class="docutils literal notranslate"><span class="pre">rxPacket()</span></code> throw all route through the same <code class="docutils literal notranslate"><span class="pre">fatal()</span></code>
+helper, which genuinely does report <code class="docutils literal notranslate"><span class="pre">Error</span></code>:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span><span class="w"> </span><span class="n">setFatalState</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="k">this</span><span class="p">](</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">runtime_error</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ex</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">lock_guard</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">mutex</span><span class="o">&gt;</span><span class="w"> </span><span class="n">lock</span><span class="p">(</span><span class="n">m_mutex</span><span class="p">);</span>
+<span class="w">    </span><span class="n">m_isConnected</span><span class="p">.</span><span class="n">store</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">m_backgroundException</span><span class="p">)</span><span class="w">          </span><span class="c1">// first-writer-wins</span>
+<span class="w">        </span><span class="n">m_backgroundException</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">ex</span><span class="p">);</span>
+<span class="p">};</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">fatal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="o">&amp;</span><span class="n">setFatalState</span><span class="p">](</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">msg</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">g_log</span><span class="p">.</span><span class="n">fatal</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">msg</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">setFatalState</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">runtime_error</span><span class="o">&gt;</span><span class="p">(</span><span class="n">msg</span><span class="p">));</span>
+<span class="w">    </span><span class="k">throw</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">runtime_error</span><span class="p">(</span><span class="n">msg</span><span class="p">);</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">listenerState()</span></code> reads these two flags with a fixed precedence —
+<code class="docutils literal notranslate"><span class="pre">Error</span></code> beats <code class="docutils literal notranslate"><span class="pre">Disconnected</span></code> beats <code class="docutils literal notranslate"><span class="pre">ReadWait</span></code> beats <code class="docutils literal notranslate"><span class="pre">Connected</span></code>:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">API</span><span class="o">::</span><span class="n">ListenerState</span><span class="w"> </span><span class="nf">SNSLiveEventDataListener::listenerState</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">lock_guard</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">mutex</span><span class="o">&gt;</span><span class="w"> </span><span class="n">scopedLock</span><span class="p">(</span><span class="n">m_mutex</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_backgroundException</span><span class="p">)</span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">API</span><span class="o">::</span><span class="n">ListenerState</span><span class="o">::</span><span class="n">Error</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">m_isConnected</span><span class="p">.</span><span class="n">load</span><span class="p">())</span><span class="w">         </span><span class="k">return</span><span class="w"> </span><span class="n">API</span><span class="o">::</span><span class="n">ListenerState</span><span class="o">::</span><span class="n">Disconnected</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_pauseNetRead</span><span class="p">.</span><span class="n">load</span><span class="p">())</span><span class="w">         </span><span class="k">return</span><span class="w"> </span><span class="n">API</span><span class="o">::</span><span class="n">ListenerState</span><span class="o">::</span><span class="n">ReadWait</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">API</span><span class="o">::</span><span class="n">ListenerState</span><span class="o">::</span><span class="n">Connected</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">m_backgroundException</span></code> is first-writer-wins so the precise message
+from <code class="docutils literal notranslate"><span class="pre">fatal()</span></code> (or from <code class="docutils literal notranslate"><span class="pre">rxPacket()</span></code>) is never clobbered by a more
+generic message from an outer catch arm.  This precedence and the
+first-writer-wins guard are pinned by
+<code class="docutils literal notranslate"><span class="pre">test_listenerState_Error_preempts_Disconnected</span></code>,
+<code class="docutils literal notranslate"><span class="pre">test_listenerState_Error_preempts_ReadWait</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">test_backgroundException_is_first_writer_wins</span></code> in
+<code class="docutils literal notranslate"><span class="pre">SNSLiveEventDataListenerNoNetworkTest.h</span></code>.</p>
+</section>
+<section id="surfacing-the-disconnect-to-consumers">
+<h3><a class="toc-backref" href="#id23" role="doc-backlink">Surfacing the disconnect to consumers</a><a class="headerlink" href="#surfacing-the-disconnect-to-consumers" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">doExtractData()</span></code> performs two disconnect checks, both guarding against
+a consumer spinning forever on a dead stream:</p>
+<ul class="simple">
+<li><p><strong>Check 1 (pre-init).</strong>  If the workspace was never initialised and
+<code class="docutils literal notranslate"><span class="pre">m_isConnected</span></code> is already <code class="docutils literal notranslate"><span class="pre">false</span></code>, the wait loop breaks
+immediately instead of waiting out the full 10 s <code class="docutils literal notranslate"><span class="pre">startupTimeout</span></code>,
+and throws with the message <code class="docutils literal notranslate"><span class="pre">&quot;stream</span> <span class="pre">ended</span> <span class="pre">before</span> <span class="pre">workspace</span>
+<span class="pre">initialization&quot;</span></code>.</p></li>
+<li><p><strong>Check 2 (post-init).</strong>  Once the workspace exists, <code class="docutils literal notranslate"><span class="pre">doExtractData()</span></code>
+only throws <code class="docutils literal notranslate"><span class="pre">&quot;stream</span> <span class="pre">ended</span> <span class="pre">after</span> <span class="pre">server</span> <span class="pre">disconnect&quot;</span></code> when there is
+genuinely nothing left to deliver: no detector events, no <em>monitor</em>
+events (monitor events live in a separate <code class="docutils literal notranslate"><span class="pre">EventWorkspace</span></code> reachable
+via <code class="docutils literal notranslate"><span class="pre">m_eventBuffer-&gt;monitorWorkspace()</span></code>, so checking detector events
+alone would silently discard a final monitor-only batch), and no
+pending run-state transition.  A final <code class="docutils literal notranslate"><span class="pre">EndRun</span></code> edge or a final
+monitor-only batch is still delivered to the caller before the
+stream-ended error is raised on the <em>next</em> call.</p></li>
+</ul>
+</section>
+<section id="back-pressure-defers-disconnect-detection-known-limitation">
+<h3><a class="toc-backref" href="#id24" role="doc-backlink">Back-pressure defers disconnect detection (known limitation)</a><a class="headerlink" href="#back-pressure-defers-disconnect-detection-known-limitation" title="Link to this heading">#</a></h3>
+<p>While <code class="docutils literal notranslate"><span class="pre">m_pauseNetRead</span></code> is set (<code class="docutils literal notranslate"><span class="pre">ReadWait</span></code>), the background thread is
+parked in the pause-gate loop <em>above</em> the poll block and never calls
+<code class="docutils literal notranslate"><span class="pre">poll()</span></code> — so it never observes a peer’s FIN while paused.  The flag is
+cleared only by <code class="docutils literal notranslate"><span class="pre">onBeforeExtract()</span></code> and <code class="docutils literal notranslate"><span class="pre">onAfterExtract()</span></code>, both
+foreground.  Consequently a peer close that arrives during <code class="docutils literal notranslate"><span class="pre">ReadWait</span></code>
+is invisible until the next <code class="docutils literal notranslate"><span class="pre">extractData()</span></code> call releases the flag;
+the state path actually taken is the two-hop <code class="docutils literal notranslate"><span class="pre">ReadWait</span></code> → <code class="docutils literal notranslate"><span class="pre">Connected</span></code>
+(on release) → <code class="docutils literal notranslate"><span class="pre">Disconnected</span></code> (on the next poll iteration), never a
+direct <code class="docutils literal notranslate"><span class="pre">ReadWait</span></code> → <code class="docutils literal notranslate"><span class="pre">Disconnected</span></code>.</p>
+<p>The consequence worth stating plainly: if a consumer stops calling
+<code class="docutils literal notranslate"><span class="pre">extractData()</span></code> while a transition is pending, a server that has
+already gone away is never detected — the background thread just sleeps
+in 100 ms increments forever.  In practice this is bounded only by
+<code class="docutils literal notranslate"><span class="pre">MonitorLiveData</span></code>’s own polling loop continuing to call
+<code class="docutils literal notranslate"><span class="pre">extractData()</span></code>; nothing in the listener itself bounds it.</p>
+<p>This is <strong>future work</strong>, out of scope for this PR: the pause-gate sleep
+could be bounded and paired with a zero-timeout <code class="docutils literal notranslate"><span class="pre">poll()</span></code> for EOF while
+parked, so a disconnect during back-pressure is noticed promptly instead
+of only on the next release.  It’s also why
+<code class="docutils literal notranslate"><span class="pre">test_serverDisconnect_during_ReadWait_setsDisconnected</span></code> exercises the
+<em>joining</em> path (which sets no back-pressure at all) rather than a true
+<code class="docutils literal notranslate"><span class="pre">ReadWait</span></code> scenario — there is currently no code path that reaches
+<code class="docutils literal notranslate"><span class="pre">Disconnected</span></code> directly from <code class="docutils literal notranslate"><span class="pre">ReadWait</span></code>.</p>
+</section>
+<section id="shutdown-path">
+<h3><a class="toc-backref" href="#id25" role="doc-backlink">Shutdown path</a><a class="headerlink" href="#shutdown-path" title="Link to this heading">#</a></h3>
+<p>The destructor sets <code class="docutils literal notranslate"><span class="pre">m_stopThread</span></code> and then calls
+<code class="docutils literal notranslate"><span class="pre">m_socket.shutdown()</span></code> to unblock the background thread immediately
+rather than waiting out its bounded internal timeouts.  <code class="docutils literal notranslate"><span class="pre">shutdown()</span></code> is
+safe to call concurrently with an in-flight <code class="docutils literal notranslate"><span class="pre">receiveBytes()</span></code> /
+<code class="docutils literal notranslate"><span class="pre">poll()</span></code> on the same socket — it only issues <code class="docutils literal notranslate"><span class="pre">shutdown(fd,</span>
+<span class="pre">SHUT_RDWR)</span></code> on the shared descriptor and doesn’t touch Poco’s
+reference-counted <code class="docutils literal notranslate"><span class="pre">SocketImpl</span></code>, unlike <code class="docutils literal notranslate"><span class="pre">close()</span></code>, which would race on
+that refcount.  A shut-down socket becomes read-ready with EOF, so
+<code class="docutils literal notranslate"><span class="pre">poll()</span></code> wakes and <code class="docutils literal notranslate"><span class="pre">receiveBytes()</span></code> returns <code class="docutils literal notranslate"><span class="pre">0</span></code> — the destructor
+reuses the same clean-peer-close path described above.  The destructor
+then waits on a bounded <code class="docutils literal notranslate"><span class="pre">tryJoin()</span></code>, retrying a handful of times before
+a logged <code class="docutils literal notranslate"><span class="pre">std::abort()</span></code> as a fail-loud backstop against a wedged
+thread.  Net effect: shutdown latency drops from up to ~60 s to
+sub-second.</p>
+</section>
+<section id="non-goals">
+<h3><a class="toc-backref" href="#id26" role="doc-backlink">Non-goals</a><a class="headerlink" href="#non-goals" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>No reconnect or retry logic.  Briefly considered, but deemed too
+difficult to implement at present due to the associated requirement to
+rescan the ADARA stream — see
+<a class="reference internal" href="#sns-disconnect-not-error"><span class="std std-ref">Disconnect is not an error — and where the error gets ascribed</span></a> above for why the door is nonetheless
+left open for this in the background thread’s handling.</p></li>
+<li><p>No <code class="docutils literal notranslate"><span class="pre">SocketReactor</span></code> conversion.</p></li>
+<li><p>No redesign of run-transition handling.</p></li>
+<li><p>No changes to packet parsing behavior or to the back-pressure
+invariant.</p></li>
+</ul>
 </section>
 </section>
 <section id="behaviour-preservation-sns-specific">
-<h2><a class="toc-backref" href="#id19" role="doc-backlink">Behaviour preservation (SNS-specific)</a><a class="headerlink" href="#behaviour-preservation-sns-specific" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id27" role="doc-backlink">Behaviour preservation (SNS-specific)</a><a class="headerlink" href="#behaviour-preservation-sns-specific" title="Link to this heading">#</a></h2>
 <div class="pst-scrollable-table-container"><table class="table">
 <colgroup>
 <col style="width: 50.0%" />
@@ -1216,6 +1551,13 @@ thread, not deferred</p></td>
 <td><p><strong>no</strong></p></td>
 <td><p>yes (all queries <code class="docutils literal notranslate"><span class="pre">const</span></code>)</p></td>
 </tr>
+<tr class="row-even"><td><p>Orderly server disconnect detected</p></td>
+<td><p><strong>no</strong> (background thread spun forever, <code class="docutils literal notranslate"><span class="pre">listenerState()</span></code> kept
+reporting <code class="docutils literal notranslate"><span class="pre">Connected</span></code>)</p></td>
+<td><p>yes — background thread reports <code class="docutils literal notranslate"><span class="pre">Disconnected</span></code>; <code class="docutils literal notranslate"><span class="pre">extractData()</span></code>
+raises once the buffered data is drained (see
+<a class="reference internal" href="#sns-poll-loop-disconnect"><span class="std std-ref">Poll-driven reader loop and disconnect detection</span></a>)</p></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -1224,7 +1566,7 @@ the bug the refactor exists to fix: stand-alone <code class="docutils literal no
 previously deadlocked after a run boundary; it now succeeds.</p>
 </section>
 <section id="appendix-pre-existing-defect-m-ignorepackets-is-never-set-true">
-<h2><a class="toc-backref" href="#id20" role="doc-backlink">Appendix — pre-existing defect: <code class="docutils literal notranslate"><span class="pre">m_ignorePackets</span></code> is never set <code class="docutils literal notranslate"><span class="pre">true</span></code></a><a class="headerlink" href="#appendix-pre-existing-defect-m-ignorepackets-is-never-set-true" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id28" role="doc-backlink">Appendix — pre-existing defect: <code class="docutils literal notranslate"><span class="pre">m_ignorePackets</span></code> is never set <code class="docutils literal notranslate"><span class="pre">true</span></code></a><a class="headerlink" href="#appendix-pre-existing-defect-m-ignorepackets-is-never-set-true" title="Link to this heading">#</a></h2>
 <p>This is a <strong>pre-existing defect</strong> in the upstream
 <code class="docutils literal notranslate"><span class="pre">SNSLiveEventDataListener</span></code>, discovered while writing the new
 integration-test suite.  It is <strong>not</strong> introduced by the v3 refactor;
@@ -1232,7 +1574,7 @@ it predates the refactor by many years.  It is documented here so that
 maintainers do not waste time hunting it during code review of the
 refactor PR.</p>
 <section id="summary">
-<h3><a class="toc-backref" href="#id21" role="doc-backlink">Summary</a><a class="headerlink" href="#summary" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id29" role="doc-backlink">Summary</a><a class="headerlink" href="#summary" title="Link to this heading">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">SNSLiveEventDataListener::m_ignorePackets</span></code> is declared with an
 in-class initialiser of <code class="docutils literal notranslate"><span class="pre">false</span></code> and is <strong>never assigned ``true``
 anywhere in the codebase</strong>.  As a consequence:</p>
@@ -1255,7 +1597,7 @@ specifically to support <code class="docutils literal notranslate"><span class="
 “from absolute time” modes is dead code as currently written.</p>
 </section>
 <section id="evidence">
-<h3><a class="toc-backref" href="#id22" role="doc-backlink">Evidence</a><a class="headerlink" href="#evidence" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id30" role="doc-backlink">Evidence</a><a class="headerlink" href="#evidence" title="Link to this heading">#</a></h3>
 <p>The only writes to <code class="docutils literal notranslate"><span class="pre">m_ignorePackets</span></code> are <em>clears</em> inside
 <code class="docutils literal notranslate"><span class="pre">ignorePacket()</span></code> — there is no <code class="docutils literal notranslate"><span class="pre">m_ignorePackets</span> <span class="pre">=</span> <span class="pre">true;</span></code> anywhere
 in the tree.  <code class="docutils literal notranslate"><span class="pre">start()</span></code> parses the requested <code class="docutils literal notranslate"><span class="pre">startTime</span></code> to decide
@@ -1280,7 +1622,7 @@ never <code class="docutils literal notranslate"><span class="pre">m_ignorePacke
 missing assignment in <code class="docutils literal notranslate"><span class="pre">start()</span></code>.</p>
 </section>
 <section id="provenance">
-<h3><a class="toc-backref" href="#id23" role="doc-backlink">Provenance</a><a class="headerlink" href="#provenance" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id31" role="doc-backlink">Provenance</a><a class="headerlink" href="#provenance" title="Link to this heading">#</a></h3>
 <p>This was checked against multiple points in the upstream history.  The
 defect is present in:</p>
 <ul class="simple">
@@ -1291,7 +1633,7 @@ defect is present in:</p>
 the work on the current refactor.</p>
 </section>
 <section id="impact">
-<h3><a class="toc-backref" href="#id24" role="doc-backlink">Impact</a><a class="headerlink" href="#impact" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id32" role="doc-backlink">Impact</a><a class="headerlink" href="#impact" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">StartLiveData</span></code> “Now” mode (no <code class="docutils literal notranslate"><span class="pre">StartTime</span></code>, no historical
 replay) is unaffected — that path was never supposed to set
@@ -1313,7 +1655,7 @@ subtle: extra historical events at the front of the stream rather than
 a hard failure.</p>
 </section>
 <section id="recommended-fix-separate-pr">
-<h3><a class="toc-backref" href="#id25" role="doc-backlink">Recommended fix (separate PR)</a><a class="headerlink" href="#recommended-fix-separate-pr" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id33" role="doc-backlink">Recommended fix (separate PR)</a><a class="headerlink" href="#recommended-fix-separate-pr" title="Link to this heading">#</a></h3>
 <p>In <code class="docutils literal notranslate"><span class="pre">SNSLiveEventDataListener::start()</span></code>:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">SNSLiveEventDataListener::start</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Types</span><span class="o">::</span><span class="n">Core</span><span class="o">::</span><span class="n">DateAndTime</span><span class="w"> </span><span class="n">startTime</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">m_startTime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">startTime</span><span class="p">;</span>
@@ -1355,9 +1697,9 @@ guard those tests with <code class="docutils literal notranslate"><span class="p
 </section>
 </section>
 <section id="testing">
-<h2><a class="toc-backref" href="#id26" role="doc-backlink">Testing</a><a class="headerlink" href="#testing" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id34" role="doc-backlink">Testing</a><a class="headerlink" href="#testing" title="Link to this heading">#</a></h2>
 <section id="unit-tests-snsliveeventdatalistenernonetworktest-h">
-<h3><a class="toc-backref" href="#id27" role="doc-backlink">Unit tests — <code class="docutils literal notranslate"><span class="pre">SNSLiveEventDataListenerNoNetworkTest.h</span></code></a><a class="headerlink" href="#unit-tests-snsliveeventdatalistenernonetworktest-h" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id35" role="doc-backlink">Unit tests — <code class="docutils literal notranslate"><span class="pre">SNSLiveEventDataListenerNoNetworkTest.h</span></code></a><a class="headerlink" href="#unit-tests-snsliveeventdatalistenernonetworktest-h" title="Link to this heading">#</a></h3>
 <p>These tests exercise the state machine and hooks with no background
 thread and no network connection.  All live in
 <code class="docutils literal notranslate"><span class="pre">Framework/LiveData/test/SNSLiveEventDataListenerNoNetworkTest.h</span></code>.</p>
@@ -1378,11 +1720,25 @@ thread and no network connection.  All live in
 <li><p><code class="docutils literal notranslate"><span class="pre">test_lastTransition_reports_EndRun_then_null_after_success</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">test_background_exception_propagates_from_all_getters</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">test_rxRunStatusPkt_newRun_throws_when_slot_occupied</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_rxRunStatusPkt_newRun_joiningCase_throwsOnConsecutive</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_rxRunStatusPkt_newRun_joiningCase_setsJoiningRun_without_pause</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">test_rxRunStatusPkt_endRun_throws_when_slot_occupied</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_rxRunStatusPkt_endRun_joiningRunCollapse_setsEndRun</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_onBeginRun_joiningPath_preserves_instrument_data</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_lastTransition_BeginRun_observable_after_successful_extract</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_requiredLogs_cleared_on_run_boundaries</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_listenerState_Error_preempts_Disconnected</span></code> — pins that
+<code class="docutils literal notranslate"><span class="pre">m_backgroundException</span></code> set together with <code class="docutils literal notranslate"><span class="pre">!m_isConnected</span></code> reports
+<code class="docutils literal notranslate"><span class="pre">Error</span></code>, not <code class="docutils literal notranslate"><span class="pre">Disconnected</span></code> (see <a class="reference internal" href="#sns-disconnect-not-error"><span class="std std-ref">Disconnect is not an error — and where the error gets ascribed</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_listenerState_Error_preempts_ReadWait</span></code> — same precedence check
+against <code class="docutils literal notranslate"><span class="pre">m_pauseNetRead</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_backgroundException_is_first_writer_wins</span></code> — a second
+<code class="docutils literal notranslate"><span class="pre">setFatalState()</span></code> write must not clobber the first, more precise,
+message</p></li>
 </ul>
 </section>
 <section id="integration-tests-snsliveeventdatalistenertest-h">
-<h3><a class="toc-backref" href="#id28" role="doc-backlink">Integration tests — <code class="docutils literal notranslate"><span class="pre">SNSLiveEventDataListenerTest.h</span></code></a><a class="headerlink" href="#integration-tests-snsliveeventdatalistenertest-h" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id36" role="doc-backlink">Integration tests — <code class="docutils literal notranslate"><span class="pre">SNSLiveEventDataListenerTest.h</span></code></a><a class="headerlink" href="#integration-tests-snsliveeventdatalistenertest-h" title="Link to this heading">#</a></h3>
 <p>These tests spin up an in-process mock SMS server (Unix-domain
 socket) and drive the full packet-parse path including the background
 reader thread.  All live in
@@ -1404,11 +1760,39 @@ Key tests include (the file is the authoritative list):</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">test_variableCache_replayedAfterStartCondition</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">test_bgThreadCaughtUp_throwsNotYet_whenBgThreadStillReceiving</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">test_bgThreadCaughtUp_proceeds_afterCaughtUp</span></code></p></li>
-<li><p>(plus additional coverage of monitors, bad pixels, disconnect, etc.)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_bgThreadCaughtUp_resetsAtEndRun_andGatesNextRunFirstExtract</span></code></p></li>
+</ul>
+<p>Disconnect / poll-loop coverage added for the refactor described in
+<a class="reference internal" href="#sns-poll-loop-disconnect"><span class="std std-ref">Poll-driven reader loop and disconnect detection</span></a> — <code class="docutils literal notranslate"><span class="pre">MockSMSServer</span></code> gained
+<code class="docutils literal notranslate"><span class="pre">Testing::PktDisconnect{}</span></code> plus short-write and partial-read script
+entries to drive these:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">test_serverDisconnect_setsDisconnectedState</span></code> — replaces the
+previously-XFAIL’d <code class="docutils literal notranslate"><span class="pre">test_serverDisconnect_setsErrorState</span></code>; a clean
+peer close now reaches <code class="docutils literal notranslate"><span class="pre">Disconnected</span></code>, not <code class="docutils literal notranslate"><span class="pre">Error</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_serverDisconnect_before_initialization_throws_quickly</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_serverDisconnect_preinit_extractData_throws_streamEnded</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_serverDisconnect_postinit_extractData_throws_streamEnded</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_serverDisconnect_monitorOnlyFinalBatch_isDelivered</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_serverDisconnect_midRun_eventBufferDelivered_thenStreamEnded</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_serverDisconnect_endRunDelivered_thenStreamEnded</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_serverDisconnect_during_ReadWait_setsDisconnected</span></code> — see
+the back-pressure caveat under <a class="reference internal" href="#sns-poll-loop-disconnect"><span class="std std-ref">Poll-driven reader loop and disconnect detection</span></a>: this
+exercises the joining path (no back-pressure set), not a true
+<code class="docutils literal notranslate"><span class="pre">ReadWait</span></code> → <code class="docutils literal notranslate"><span class="pre">Disconnected</span></code> transition, because no such direct
+transition exists</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_partialHelloSend_setsError</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_partialHelloSend_retriesAndSucceeds</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_rxPacketThrow_setsErrorState_and_extractRethrows</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_pollLoop_continues_to_parse_when_buffer_full</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_pollRead_andError_together_drainsFirst</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_partialRead_streamReassembled</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_shutdownLatency_after_normal_connect</span></code></p></li>
+<li><p>(plus additional coverage of monitors, bad pixels, etc.)</p></li>
 </ul>
 </section>
 <section id="integration-tests-snsliveeventdatalisteneralgorithmintegrationtest-h">
-<h3><a class="toc-backref" href="#id29" role="doc-backlink">Integration tests — <code class="docutils literal notranslate"><span class="pre">SNSLiveEventDataListenerAlgorithmIntegrationTest.h</span></code></a><a class="headerlink" href="#integration-tests-snsliveeventdatalisteneralgorithmintegrationtest-h" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id37" role="doc-backlink">Integration tests — <code class="docutils literal notranslate"><span class="pre">SNSLiveEventDataListenerAlgorithmIntegrationTest.h</span></code></a><a class="headerlink" href="#integration-tests-snsliveeventdatalisteneralgorithmintegrationtest-h" title="Link to this heading">#</a></h3>
 <p>These tests exercise the full <code class="docutils literal notranslate"><span class="pre">LoadLiveData</span></code> / <code class="docutils literal notranslate"><span class="pre">MonitorLiveData</span></code>
 algorithm stack on top of the listener.  Both live in
 <code class="docutils literal notranslate"><span class="pre">Framework/LiveData/test/SNSLiveEventDataListenerAlgorithmIntegrationTest.h</span></code>.</p>
@@ -1425,7 +1809,7 @@ backward compatibility.</p></li>
 </ul>
 </section>
 <section id="legacy-tests-snsliveeventdatalistenerlegacytest-h">
-<h3><a class="toc-backref" href="#id30" role="doc-backlink">Legacy tests — <code class="docutils literal notranslate"><span class="pre">SNSLiveEventDataListenerLegacyTest.h</span></code></a><a class="headerlink" href="#legacy-tests-snsliveeventdatalistenerlegacytest-h" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id38" role="doc-backlink">Legacy tests — <code class="docutils literal notranslate"><span class="pre">SNSLiveEventDataListenerLegacyTest.h</span></code></a><a class="headerlink" href="#legacy-tests-snsliveeventdatalistenerlegacytest-h" title="Link to this heading">#</a></h3>
 <p>The only pre-existing tests for the <code class="docutils literal notranslate"><span class="pre">SNSLiveEventDataListener</span></code> were in
 the original network-dependent test suite (<code class="docutils literal notranslate"><span class="pre">testProperties</span></code>,
 <code class="docutils literal notranslate"><span class="pre">testStart</span></code>, <code class="docutils literal notranslate"><span class="pre">testExtractData</span></code>, <code class="docutils literal notranslate"><span class="pre">testThreadSafety</span></code>) that
@@ -1436,7 +1820,7 @@ the integration and unit test files above supersede it.</p>
 </section>
 </section>
 <section id="further-reading">
-<h2><a class="toc-backref" href="#id31" role="doc-backlink">Further reading</a><a class="headerlink" href="#further-reading" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id39" role="doc-backlink">Further reading</a><a class="headerlink" href="#further-reading" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="LiveListenerMigration.html#livelistenermigration"><span class="std std-ref">Live-Listener API Migration Guide (v3 refactoring)</span></a> — the generic migration guide and
 per-listener worked examples.</p></li>
@@ -1521,6 +1905,16 @@ interface.</p></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#critical-detail-c1">Critical detail (C1)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transition-hooks">Transition hooks</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#background-reader-loop">Background reader loop</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#poll-driven-reader-loop-and-disconnect-detection">Poll-driven reader loop and disconnect detection</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-existing-problems">Pre-existing problems</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-poll-loop">The poll loop</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#disconnect-is-not-an-error-and-where-the-error-gets-ascribed">Disconnect is not an error — and where the error gets ascribed</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#surfacing-the-disconnect-to-consumers">Surfacing the disconnect to consumers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#back-pressure-defers-disconnect-detection-known-limitation">Back-pressure defers disconnect detection (known limitation)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shutdown-path">Shutdown path</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#non-goals">Non-goals</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#behaviour-preservation-sns-specific">Behaviour preservation (SNS-specific)</a></li>
