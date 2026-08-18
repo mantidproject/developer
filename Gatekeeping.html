@@ -371,14 +371,18 @@
 </section>
 <section id="performing-a-merge-on-github">
 <h2>Performing a merge on Github<a class="headerlink" href="#performing-a-merge-on-github" title="Link to this heading">#</a></h2>
-<p><em>The</em> <code class="docutils literal notranslate"><span class="pre">Merge</span> <span class="pre">pull</span> <span class="pre">request</span></code> <em>button</em></p>
 <ul class="simple">
-<li><p>Generally we perform the default merge which is to create a merge commit, so you can just click <code class="docutils literal notranslate"><span class="pre">Merge</span> <span class="pre">pull</span> <span class="pre">request</span></code>.</p></li>
-<li><p>This button should be green if all checks have passed and there is an approved review. The button will be red if this is not the case but you have the power to override it and merge anyway - it is not recommended to do this but very occasionally may be needed if e.g. it is urgent and being held up by an unreliable test you are certain is unrelated. If you do need to do this, make sure you add a clear comment describing why.</p></li>
-<li><p>Occasionally you might want to use <code class="docutils literal notranslate"><span class="pre">Squash</span> <span class="pre">and</span> <span class="pre">merge</span></code> from the drop-down menu, but typically this is only done if the developer specifically asked for it (although feel free to ask the developer if you can squash if you think that’s more appropriate).</p></li>
-<li><p>When you click the button you will get the chance to edit the commit message before committing. Typically we leave the commit title as per the default text so it is clear it is a merge, and paste the PR title into the body of the commit message. (Any other useful information can also be added here.)</p></li>
-<li><p>Click <code class="docutils literal notranslate"><span class="pre">Confirm</span> <span class="pre">merge</span></code> to merge the commit to the destination branch.</p></li>
-<li><p>If a PR is approved but still finishing its CI checks then the button will read <code class="docutils literal notranslate"><span class="pre">Enable</span> <span class="pre">auto</span> <span class="pre">merge</span></code>. Feel free to use this if you are happy for the PR to be automatically merged once it passes all the CI checks.</p></li>
+<li><p>Gatekeepers should use <code class="docutils literal notranslate"><span class="pre">Squash</span> <span class="pre">and</span> <span class="pre">merge</span></code> for all pull requests. This option:</p>
+<ul>
+<li><p>Helps maintain a tidy Git history by combining all of the commits in a PR into a single commit on the destination branch.</p></li>
+<li><p>Ensures that every commit on the destination branch is a complete, CI-tested change that compile. This keeps the Git history self-consistent and makes it easier to use <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">bisect</span></code> to track down regressions.</p></li>
+<li><p>Makes it easier to identify which PR introduced a failure in a nightly build.</p></li>
+</ul>
+</li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">Squash</span> <span class="pre">and</span> <span class="pre">merge</span></code> button will be green if all checks have passed and there is an approved review. The button will be red if this is not the case but you have the power to override it and merge anyway. It is not recommended to do this but very occasionally may be needed if, for example, it is urgent and being held up by an unreliable test you are certain is unrelated. If you do need to do this, make sure you add a clear comment describing why.</p></li>
+<li><p>When you click the button you will get the chance to edit the commit message before committing. Feel free to edit the commit message if the PR title can be improved upon. If required, add any useful information to the <code class="docutils literal notranslate"><span class="pre">Extended</span> <span class="pre">description</span></code> box.</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Confirm</span> <span class="pre">merge</span> <span class="pre">(squash)</span></code> to merge the commit to the destination branch.</p></li>
+<li><p>If a PR is approved but still finishing its CI checks then the button will read <code class="docutils literal notranslate"><span class="pre">Enable</span> <span class="pre">auto-merge</span> <span class="pre">(squash)</span></code>. Use this if you are happy for the PR to be automatically merged once it passes all the CI checks.</p></li>
 </ul>
 </section>
 <section id="don-t-panic">
@@ -428,7 +432,7 @@
 <h3>Code quality<a class="headerlink" href="#code-quality" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Have a brief scan of some of the changes to check that they adhere to standards.</p></li>
-<li><p>Consider any design decisions that have been made and if these are appropriate and not breaking any obvious design patters, e.g. it is common to see MVP being broken where logic is added to the view and is not testable; the lack of tests can be an indicator here. Is there any pollution of e.g. Qt in a non-Qt class; again this may make testing more difficult/complicated.</p></li>
+<li><p>Consider any design decisions that have been made and if these are appropriate and not breaking any obvious design patterns, e.g. it is common to see MVP being broken where logic is added to the view and is not testable; the lack of tests can be an indicator here. Is there any pollution of e.g. Qt in a non-Qt class; again this may make testing more difficult/complicated.</p></li>
 <li><p>Have a brief check that any tests look to be of good quality; unit tests should be clear and test things in isolation. Check for appropriate use of mocks.</p></li>
 <li><p>Keep an eye out for any other code smells - unclear tests, files/classes too long, long comments etc.</p></li>
 </ul>
@@ -458,49 +462,26 @@
 </section>
 <section id="fixing-a-merge-conflict-between-main-and-a-protected-branch">
 <span id="fixprotectedbranchmergeconflict"></span><h2>Fixing a merge conflict between <code class="docutils literal notranslate"><span class="pre">main</span></code> and a protected branch<a class="headerlink" href="#fixing-a-merge-conflict-between-main-and-a-protected-branch" title="Link to this heading">#</a></h2>
-<p>There may occasionally be a merge conflict when the automated “Merge protected branches” workflow attempts to merge a protected branch into <code class="docutils literal notranslate"><span class="pre">main</span></code>. The following instructions detail how to fix the conflict, using the <code class="docutils literal notranslate"><span class="pre">release-next</span></code> branch as an example:</p>
-<section id="from-a-fork">
-<h3>From a fork<a class="headerlink" href="#from-a-fork" title="Link to this heading">#</a></h3>
-<p>Assuming your fork has the following remote setup</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>remote<span class="w"> </span>-v
-mantid<span class="w">  </span>https://github.com/mantidproject/mantid.git<span class="w"> </span><span class="o">(</span>fetch<span class="o">)</span>
-mantid<span class="w">  </span>https://github.com/mantidproject/mantid.git<span class="w"> </span><span class="o">(</span>push<span class="o">)</span>
-origin<span class="w">  </span>https://github.com/&lt;username&gt;/mantid.git<span class="w"> </span><span class="o">(</span>fetch<span class="o">)</span>
-origin<span class="w">  </span>https://github.com/&lt;username&gt;/mantid.git<span class="w"> </span><span class="o">(</span>push<span class="o">)</span>
-</pre></div>
-</div>
-<p>then you can follow these instructions to fix the merge conflict:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>fetch<span class="w"> </span>--all
-git<span class="w"> </span>checkout<span class="w"> </span>release-next
-git<span class="w"> </span>pull<span class="w"> </span>mantid<span class="w"> </span>release-next
-git<span class="w"> </span>checkout<span class="w"> </span>main
-git<span class="w"> </span>pull<span class="w"> </span>mantid<span class="w"> </span>main
-git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span><span class="m">0</span>-fix-conflicts
-git<span class="w"> </span>merge<span class="w"> </span>release-next
-</pre></div>
-</div>
-<p>You should then fix the merge conflicts, git add and commit the changes. Then push the branch to the <code class="docutils literal notranslate"><span class="pre">mantid</span></code> remote repository and open a PR. The PR should be reviewed and then merged into <code class="docutils literal notranslate"><span class="pre">main</span></code>.</p>
-</section>
-<section id="from-a-non-fork">
-<h3>From a non-fork<a class="headerlink" href="#from-a-non-fork" title="Link to this heading">#</a></h3>
-<p>Assuming you have the following remote setup</p>
+<p>There may occasionally be a merge conflict when the automated “Merge protected branches” workflow attempts to merge a protected branch into <code class="docutils literal notranslate"><span class="pre">main</span></code>. Since all PRs are now squash merged, these conflicts must be resolved by performing the merge directly on <code class="docutils literal notranslate"><span class="pre">main</span></code> so that the merge commit is preserved. The instructions below detail how to fix the conflict, using the <code class="docutils literal notranslate"><span class="pre">release-next</span></code> branch as an example.</p>
+<p>Assuming you have the following remote setup:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>remote<span class="w"> </span>-v
 origin<span class="w">  </span>https://github.com/mantidproject/mantid.git<span class="w"> </span><span class="o">(</span>fetch<span class="o">)</span>
 origin<span class="w">  </span>https://github.com/mantidproject/mantid.git<span class="w"> </span><span class="o">(</span>push<span class="o">)</span>
 </pre></div>
 </div>
-<p>then you can follow these instructions to fix the merge conflict:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>fetch<span class="w"> </span>--all
-git<span class="w"> </span>checkout<span class="w"> </span>release-next
-git<span class="w"> </span>pull<span class="w"> </span>origin<span class="w"> </span>release-next
+<p>you can follow these instructions to fix the merge conflict:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>fetch<span class="w"> </span>origin
 git<span class="w"> </span>checkout<span class="w"> </span>main
 git<span class="w"> </span>pull<span class="w"> </span>origin<span class="w"> </span>main
-git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span><span class="m">0</span>-fix-conflicts
-git<span class="w"> </span>merge<span class="w"> </span>release-next
+git<span class="w"> </span>merge<span class="w"> </span>origin/release-next
 </pre></div>
 </div>
-<p>You should then fix the merge conflicts, git add and commit the changes. Then push the branch to the <code class="docutils literal notranslate"><span class="pre">origin</span></code> remote repository and open a PR. The PR should be reviewed and then merged into <code class="docutils literal notranslate"><span class="pre">main</span></code>.</p>
-</section>
+<p>resolve any conflicts, then:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>&lt;resolved-files&gt;
+git<span class="w"> </span>commit
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>main
+</pre></div>
+</div>
 </section>
 <section id="specific-quirks-of-mantid">
 <h2>Specific quirks of Mantid<a class="headerlink" href="#specific-quirks-of-mantid" title="Link to this heading">#</a></h2>
@@ -528,7 +509,7 @@ git<span class="w"> </span>merge<span class="w"> </span>release-next
 <section id="idfs-and-ipfs">
 <h3>IDFs and IPFs<a class="headerlink" href="#idfs-and-ipfs" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>These changes take effect as soon as they are merged to <code class="docutils literal notranslate"><span class="pre">main</span></code> - ensure the developer and their user(s) are aware of this. They may want to decouple these changes from code changes, and ensure backwards compatibility. Release notes may or may not be helpful (the changes are not tied to a release so in that case could be confusing, but some people prefer to add them because at least then the changes do get higlighted to users; it depends somewhat on the change and the audience).</p></li>
+<li><p>These changes take effect as soon as they are merged to <code class="docutils literal notranslate"><span class="pre">main</span></code> - ensure the developer and their user(s) are aware of this. They may want to decouple these changes from code changes, and ensure backwards compatibility. Release notes may or may not be helpful (the changes are not tied to a release so in that case could be confusing, but some people prefer to add them because at least then the changes do get highlighted to users; it depends somewhat on the change and the audience).</p></li>
 </ul>
 </section>
 <section id="unit-tests">
@@ -609,11 +590,7 @@ git<span class="w"> </span>merge<span class="w"> </span>release-next
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#version-control">Version control</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fixing-a-merge-conflict-between-main-and-a-protected-branch">Fixing a merge conflict between <code class="docutils literal notranslate"><span class="pre">main</span></code> and a protected branch</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#from-a-fork">From a fork</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#from-a-non-fork">From a non-fork</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fixing-a-merge-conflict-between-main-and-a-protected-branch">Fixing a merge conflict between <code class="docutils literal notranslate"><span class="pre">main</span></code> and a protected branch</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#specific-quirks-of-mantid">Specific quirks of Mantid</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithms">Algorithms</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#workspaces">Workspaces</a></li>
