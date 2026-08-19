@@ -376,11 +376,11 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
 <p>The final step of configuration allows for getting more information from perf traces.
 Any debug symbols that are found will aid in understanding the output.</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
-<span class="c1"># Taken from Milian Wolf&#39;s talk &quot;Linux perf for Qt developers&quot;</span>
+<span class="c1"># Taken from Milian Wolf's talk "Linux perf for Qt developers"</span>
 sudo<span class="w"> </span>mount<span class="w"> </span>-o<span class="w"> </span>remount,mode<span class="o">=</span><span class="m">755</span><span class="w"> </span>/sys/kernel/debug
 sudo<span class="w"> </span>mount<span class="w"> </span>-o<span class="w"> </span>remount,mode<span class="o">=</span><span class="m">755</span><span class="w"> </span>/sys/kernel/debug/tracing
-<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;0&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/proc/sys/kernel/kptr_restrict
-<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;-1&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/proc/sys/kernel/perf_event_paranoid
+<span class="nb">echo</span><span class="w"> </span><span class="s2">"0"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/proc/sys/kernel/kptr_restrict
+<span class="nb">echo</span><span class="w"> </span><span class="s2">"-1"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/proc/sys/kernel/perf_event_paranoid
 sudo<span class="w"> </span>chown<span class="w"> </span><span class="sb">`</span>whoami<span class="sb">`</span><span class="w"> </span>/sys/kernel/debug/tracing/uprobe_events
 sudo<span class="w"> </span>chmod<span class="w"> </span>a+rw<span class="w"> </span>/sys/kernel/debug/tracing/uprobe_events
 </pre></div>

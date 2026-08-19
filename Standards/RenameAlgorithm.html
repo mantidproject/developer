@@ -388,11 +388,11 @@ breaking changes for the general users.</p>
 <ul class="simple">
 <li><p>Rename the header and set the original name as alias</p></li>
 </ul>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;MantidAPI/DeprecatedAlias.h&quot;</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">"MantidAPI/DeprecatedAlias.h"</span>
 <span class="p">...</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">DLLExport</span><span class="w"> </span><span class="n">NewAlgName</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">API</span><span class="o">::</span><span class="n">Algorithm</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">API</span><span class="o">::</span><span class="n">DeprecatedAlias</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="p">...</span>
-<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">alias</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;OriginalAlgName&quot;</span><span class="p">;</span><span class="w"> </span><span class="p">};</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">alias</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="s">"OriginalAlgName"</span><span class="p">;</span><span class="w"> </span><span class="p">};</span>
 <span class="w">    </span><span class="p">...</span>
 <span class="p">}</span>
 </pre></div>
@@ -404,7 +404,7 @@ breaking changes for the general users.</p>
 <span class="cm">/** Constructor</span>
 <span class="cm">*/</span>
 <span class="n">NewAlgName</span><span class="o">::</span><span class="n">NewAlgName</span><span class="p">(){</span>
-<span class="w">    </span><span class="n">setDeprecationDate</span><span class="p">(</span><span class="s">&quot;2021-09-14&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// date string formatted like the example here</span>
+<span class="w">    </span><span class="n">setDeprecationDate</span><span class="p">(</span><span class="s">"2021-09-14"</span><span class="p">);</span><span class="w"> </span><span class="c1">// date string formatted like the example here</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -443,7 +443,7 @@ become a deprecated alias of <cite>AlgNewName</cite>.</p>
 </ul>
 <p>Replace all occurrences of <cite>AlgOldName</cite> with <cite>AlgNewName</cite> in all files. In Linux or Mac:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>grep<span class="w"> </span>-rl<span class="w"> </span>AlgOldName<span class="w"> </span>.<span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="w"> </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/AlgOldName/AlgNewName/g&#39;</span>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>grep<span class="w"> </span>-rl<span class="w"> </span>AlgOldName<span class="w"> </span>.<span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="w"> </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">'s/AlgOldName/AlgNewName/g'</span>
 </pre></div>
 </div>
 </div></blockquote>
@@ -463,12 +463,12 @@ become a deprecated alias of <cite>AlgNewName</cite>.</p>
 <blockquote>
 <div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mantid.utils.deprecator</span><span class="w"> </span><span class="kn">import</span> <span class="n">alias_deprecated</span>
 
-<span class="nd">@deprecated_alias</span><span class="p">(</span><span class="s1">&#39;2025-12-25&#39;</span><span class="p">)</span>
+<span class="nd">@deprecated_alias</span><span class="p">(</span><span class="s1">'2025-12-25'</span><span class="p">)</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">AlgNewName</span><span class="p">(</span><span class="n">PythonAlgorithm</span><span class="p">):</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">alias</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Alternative name to this algorithm&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="s1">&#39;algOldName&#39;</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">"""Alternative name to this algorithm"""</span>
+        <span class="k">return</span> <span class="s1">'algOldName'</span>
 </pre></div>
 </div>
 </div></blockquote>
@@ -487,17 +487,17 @@ the following error message is printed:</p>
 <blockquote>
 <div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mantid.kernel</span><span class="w"> </span><span class="kn">import</span> <span class="n">ConfigService</span>
 <span class="n">config</span> <span class="o">=</span> <span class="n">ConfigService</span><span class="o">.</span><span class="n">Instance</span><span class="p">()</span>
-<span class="n">config</span><span class="p">[</span><span class="s1">&#39;algorithms.alias.deprecated&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Raise&#39;</span>
+<span class="n">config</span><span class="p">[</span><span class="s1">'algorithms.alias.deprecated'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'Raise'</span>
 </pre></div>
 </div>
 </div></blockquote>
 <p>Coming to our previous example, a <code class="docutils literal notranslate"><span class="pre">RuntimeError</span></code> is printed:</p>
 <blockquote>
 <div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>RuntimeError:<span class="w"> </span>Use<span class="w"> </span>of<span class="w"> </span>algorithm<span class="w"> </span><span class="nb">alias</span><span class="w"> </span>algOldName<span class="w"> </span>not<span class="w"> </span>allowed.<span class="w"> </span>Use<span class="w"> </span>algNewName<span class="w"> </span>instead
-File<span class="w"> </span><span class="s2">&quot;/home/username/my_script.py&quot;</span>,<span class="w"> </span>line<span class="w"> </span><span class="m">9</span>,<span class="w"> </span><span class="k">in</span><span class="w"> </span>&lt;module&gt;
+File<span class="w"> </span><span class="s2">"/home/username/my_script.py"</span>,<span class="w"> </span>line<span class="w"> </span><span class="m">9</span>,<span class="w"> </span><span class="k">in</span><span class="w"> </span>&lt;module&gt;
 <span class="w">    </span>def<span class="w"> </span>alias<span class="o">(</span>self<span class="o">)</span>:
-File<span class="w"> </span><span class="s2">&quot;/path/to/mantid/Framework/PythonInterface/mantid/simpleapi.py&quot;</span>,<span class="w"> </span>line<span class="w"> </span><span class="m">1032</span>,<span class="w"> </span><span class="k">in</span><span class="w"> </span>__call__
-<span class="w">    </span>raise<span class="w"> </span>RuntimeError<span class="o">(</span>f<span class="s1">&#39;Use of algorithm alias {self._alias.name} not allowed. Use {name} instead&#39;</span><span class="o">)</span>
+File<span class="w"> </span><span class="s2">"/path/to/mantid/Framework/PythonInterface/mantid/simpleapi.py"</span>,<span class="w"> </span>line<span class="w"> </span><span class="m">1032</span>,<span class="w"> </span><span class="k">in</span><span class="w"> </span>__call__
+<span class="w">    </span>raise<span class="w"> </span>RuntimeError<span class="o">(</span>f<span class="s1">'Use of algorithm alias {self._alias.name} not allowed. Use {name} instead'</span><span class="o">)</span>
 </pre></div>
 </div>
 </div></blockquote>

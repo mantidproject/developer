@@ -366,25 +366,25 @@
 <h2>Configuration<a class="headerlink" href="#configuration" title="Link to this heading">#</a></h2>
 <p>Add a new pixi environment to your project’s <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> file:</p>
 <div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="k">[tool.pixi.environments]</span>
-<span class="n">local-mantid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">features</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;local-mantid&quot;</span><span class="p">],</span><span class="w"> </span><span class="n">solve-group</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;default&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="n">local-mantid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">features</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"local-mantid"</span><span class="p">],</span><span class="w"> </span><span class="n">solve-group</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">"default"</span><span class="w"> </span><span class="p">}</span>
 
 <span class="k">[tool.pixi.feature.local-mantid.dependencies]</span>
-<span class="c1"># Include your project&#39;s dependencies but exclude mantid packages</span>
-<span class="n">python</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&gt;=3.10&quot;</span>
-<span class="n">numpy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;*&quot;</span>
+<span class="c1"># Include your project's dependencies but exclude mantid packages</span>
+<span class="n">python</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"&gt;=3.10"</span>
+<span class="n">numpy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"*"</span>
 <span class="c1"># ... other dependencies (do NOT include mantid, mantidworkbench, mantidqt)</span>
 
 <span class="k">[tool.pixi.feature.local-mantid.activation.env]</span>
-<span class="n">MANTID_BUILD_DIR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/absolute/path/to/your/mantid/build&quot;</span>
-<span class="n">MANTID_SOURCE_DIR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/absolute/path/to/your/mantid/source&quot;</span>
-<span class="n">PYTHONPATH</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;${MANTID_BUILD_DIR}/bin:${MANTID_SOURCE_DIR}/Framework/PythonInterface:${MANTID_SOURCE_DIR}/qt/python/mantidqt&quot;</span>
-<span class="n">LD_LIBRARY_PATH</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;${MANTID_BUILD_DIR}/bin&quot;</span><span class="w">        </span><span class="c1"># Linux</span>
-<span class="n">DYLD_LIBRARY_PATH</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;${MANTID_BUILD_DIR}/bin&quot;</span><span class="w">      </span><span class="c1"># macOS</span>
-<span class="n">MANTIDPATH</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;${MANTID_BUILD_DIR}/bin&quot;</span>
+<span class="n">MANTID_BUILD_DIR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"/absolute/path/to/your/mantid/build"</span>
+<span class="n">MANTID_SOURCE_DIR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"/absolute/path/to/your/mantid/source"</span>
+<span class="n">PYTHONPATH</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"${MANTID_BUILD_DIR}/bin:${MANTID_SOURCE_DIR}/Framework/PythonInterface:${MANTID_SOURCE_DIR}/qt/python/mantidqt"</span>
+<span class="n">LD_LIBRARY_PATH</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"${MANTID_BUILD_DIR}/bin"</span><span class="w">        </span><span class="c1"># Linux</span>
+<span class="n">DYLD_LIBRARY_PATH</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"${MANTID_BUILD_DIR}/bin"</span><span class="w">      </span><span class="c1"># macOS</span>
+<span class="n">MANTIDPATH</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"${MANTID_BUILD_DIR}/bin"</span>
 
 <span class="k">[tool.pixi.feature.local-mantid.tasks]</span>
 <span class="c1"># Launch local Mantid Workbench with your application</span>
-<span class="n">launch-local-workbench</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">cmd</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;cd $MANTID_BUILD_DIR/bin &amp;&amp; ./launch_mantidworkbench.sh&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">description</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;Launch local Mantid Workbench with your application available&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="n">launch-local-workbench</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">cmd</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">"cd $MANTID_BUILD_DIR/bin &amp;&amp; ./launch_mantidworkbench.sh"</span><span class="p">,</span><span class="w"> </span><span class="n">description</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">"Launch local Mantid Workbench with your application available"</span><span class="w"> </span><span class="p">}</span>
 </pre></div>
 </div>
 <p>Replace the paths with your actual Mantid build and source directories.</p>
@@ -415,12 +415,12 @@
 <p><strong>Library loading errors</strong>: Check that <code class="docutils literal notranslate"><span class="pre">LD_LIBRARY_PATH</span></code> (Linux) or <code class="docutils literal notranslate"><span class="pre">DYLD_LIBRARY_PATH</span></code> (macOS) includes <code class="docutils literal notranslate"><span class="pre">${MANTID_BUILD_DIR}/bin</span></code>.</p>
 <p><strong>Path issues</strong>: Ensure all paths are absolute. Use <code class="docutils literal notranslate"><span class="pre">realpath</span></code> to resolve symbolic links if needed.</p>
 <p>You can verify the environment setup with:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pixi<span class="w"> </span>run<span class="w"> </span>--environment<span class="w"> </span>local-mantid<span class="w"> </span>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pixi<span class="w"> </span>run<span class="w"> </span>--environment<span class="w"> </span>local-mantid<span class="w"> </span>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">"</span>
 <span class="s2">import os, mantid</span>
-<span class="s2">print(&#39;Mantid version:&#39;, mantid.__version__)</span>
-<span class="s2">print(&#39;Mantid path:&#39;, mantid.__file__)</span>
-<span class="s2">print(&#39;Build dir:&#39;, os.environ.get(&#39;MANTID_BUILD_DIR&#39;))</span>
-<span class="s2">&quot;</span>
+<span class="s2">print('Mantid version:', mantid.__version__)</span>
+<span class="s2">print('Mantid path:', mantid.__file__)</span>
+<span class="s2">print('Build dir:', os.environ.get('MANTID_BUILD_DIR'))</span>
+<span class="s2">"</span>
 </pre></div>
 </div>
 </section>

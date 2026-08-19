@@ -389,13 +389,13 @@ to use another algorithm. The signal is implemented via “deprecation”.</p>
 </ul>
 <p>Here are the relevant lines for deprecating algorithm <code class="docutils literal notranslate"><span class="pre">MyOldAlg</span></code> on Christmas day in 2020 and informing that
 <code class="docutils literal notranslate"><span class="pre">MyNewAlg</span></code> should be used</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;MantidAPI/DeprecatedAlgorithm.h&quot;</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">"MantidAPI/DeprecatedAlgorithm.h"</span>
 
 <span class="k">class</span><span class="w"> </span><span class="nc">MANTID_ALGORITHMS_DLL</span><span class="w"> </span><span class="n">MyOldAlg</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">API</span><span class="o">::</span><span class="n">Algorithm</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">API</span><span class="o">::</span><span class="n">DeprecatedAlgorithm</span><span class="w"> </span><span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
 <span class="n">MyOldAlg</span><span class="o">::</span><span class="n">MyOldAlg</span><span class="p">()</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">m_someMember</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">useAlgorithm</span><span class="p">(</span><span class="s">&quot;MyNewAlg&quot;</span><span class="p">);</span>
-<span class="w">  </span><span class="n">deprecatedDate</span><span class="p">(</span><span class="s">&quot;2020-12-25&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="n">useAlgorithm</span><span class="p">(</span><span class="s">"MyNewAlg"</span><span class="p">);</span>
+<span class="w">  </span><span class="n">deprecatedDate</span><span class="p">(</span><span class="s">"2020-12-25"</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -407,7 +407,7 @@ to use another algorithm. The signal is implemented via “deprecation”.</p>
 Christmas day in 2020, and inform that <code class="docutils literal notranslate"><span class="pre">MyNewAlg</span></code> should be used in place of <code class="docutils literal notranslate"><span class="pre">MyOldAlg</span></code>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mantid.utils.deprecator</span><span class="w"> </span><span class="kn">import</span> <span class="n">deprecated_algorithm</span>
 
-<span class="nd">@deprecated_algorithm</span><span class="p">(</span><span class="s1">&#39;MyNewAlg&#39;</span><span class="p">,</span> <span class="s1">&#39;2020-12-25&#39;</span><span class="p">)</span>
+<span class="nd">@deprecated_algorithm</span><span class="p">(</span><span class="s1">'MyNewAlg'</span><span class="p">,</span> <span class="s1">'2020-12-25'</span><span class="p">)</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">MyOldAlg</span><span class="p">(</span><span class="n">PythonAlgorithm</span><span class="p">):</span>
     <span class="k">pass</span> <span class="c1"># continued with class definition</span>
 </pre></div>
@@ -420,19 +420,19 @@ passed, e.g <code class="docutils literal notranslate"><span class="pre">&#64;de
 <p>Upon using a deprecated algorithm, a message will be printed in the logs at the <cite>error</cite>
 level. For instance, when using algorithm <cite>MyOldAlg</cite> (deprecated on Christmas day in 2020) in place of
 the new algorithm <cite>MyNewAlg</cite>, the following error message is printed:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Algorithm<span class="w"> </span><span class="s2">&quot;MyOldAlg&quot;</span><span class="w"> </span>is<span class="w"> </span>deprecated<span class="w"> </span>since<span class="w"> </span><span class="m">2020</span>-12-25.<span class="w"> </span>Use<span class="w"> </span><span class="s2">&quot;MyNewAlg&quot;</span><span class="w"> </span>instead
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Algorithm<span class="w"> </span><span class="s2">"MyOldAlg"</span><span class="w"> </span>is<span class="w"> </span>deprecated<span class="w"> </span>since<span class="w"> </span><span class="m">2020</span>-12-25.<span class="w"> </span>Use<span class="w"> </span><span class="s2">"MyNewAlg"</span><span class="w"> </span>instead
 </pre></div>
 </div>
 <p>If so desired, the user can raise a <code class="docutils literal notranslate"><span class="pre">RuntimeError</span></code> by setting property <code class="docutils literal notranslate"><span class="pre">algorithms.deprecated</span></code> to
 <code class="docutils literal notranslate"><span class="pre">Raise</span></code> in the user properties file <cite>$HOME/.mantid/Mantid.user.properties</cite>, or in a script using <cite>ConfigService</cite>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mantid.kernel</span><span class="w"> </span><span class="kn">import</span> <span class="n">ConfigService</span>
 <span class="n">config</span> <span class="o">=</span> <span class="n">ConfigService</span><span class="o">.</span><span class="n">Instance</span><span class="p">()</span>
-<span class="n">config</span><span class="p">[</span><span class="s1">&#39;algorithms.deprecated&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Raise&#39;</span>
+<span class="n">config</span><span class="p">[</span><span class="s1">'algorithms.deprecated'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'Raise'</span>
 </pre></div>
 </div>
 <p>Coming to our previous example, an error message is printed</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Error<span class="w"> </span><span class="k">in</span><span class="w"> </span>execution<span class="w"> </span>of<span class="w"> </span>algorithm<span class="w"> </span>MyOldAlg
-Configuration<span class="w"> </span><span class="s2">&quot;algorithms.deprecated&quot;</span><span class="w"> </span><span class="nb">set</span><span class="w"> </span>to<span class="w"> </span>raise<span class="w"> </span>upon<span class="w"> </span>use<span class="w"> </span>of<span class="w"> </span>any<span class="w"> </span>deprecated<span class="w"> </span>algorithm
+Configuration<span class="w"> </span><span class="s2">"algorithms.deprecated"</span><span class="w"> </span><span class="nb">set</span><span class="w"> </span>to<span class="w"> </span>raise<span class="w"> </span>upon<span class="w"> </span>use<span class="w"> </span>of<span class="w"> </span>any<span class="w"> </span>deprecated<span class="w"> </span>algorithm
 </pre></div>
 </div>
 <p>To prevent the previous error and instead print a log error message, <cite>algorithms.deprecated</cite> can be

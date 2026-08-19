@@ -383,10 +383,10 @@
 <p>The basic template for an io file:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">InterfaceAttributes</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="c1"># WARNING: If you delete a tag from here instead of adding a new one, it will make old project files obsolete so</span>
-    <span class="c1"># just add an extra tag to the list e.g. [&quot;InstrumentWidget&quot;, &quot;IWidget&quot;]</span>
+    <span class="c1"># just add an extra tag to the list e.g. ["InstrumentWidget", "IWidget"]</span>
     <span class="c1"># This list must contain the name of the class that will be found at the top level of Widgets, this is usually the view</span>
     <span class="c1"># class</span>
-    <span class="n">tags</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Interface&quot;</span><span class="p">]</span>
+    <span class="n">tags</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Interface"</span><span class="p">]</span>
 
 <span class="k">class</span><span class="w"> </span><span class="nc">InterfaceEncoder</span><span class="p">(</span><span class="n">InterfaceAttributes</span><span class="p">):</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -394,7 +394,7 @@
 
     <span class="k">def</span><span class="w"> </span><span class="nf">encode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">project_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">presenter</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">presenter</span>
-        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="n">presenter</span><span class="o">.</span><span class="n">getInfo</span><span class="p">(),</span> <span class="s2">&quot;state&quot;</span><span class="p">:</span> <span class="n">presenter</span><span class="o">.</span><span class="n">getState</span><span class="p">()}</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">"info"</span><span class="p">:</span> <span class="n">presenter</span><span class="o">.</span><span class="n">getInfo</span><span class="p">(),</span> <span class="s2">"state"</span><span class="p">:</span> <span class="n">presenter</span><span class="o">.</span><span class="n">getState</span><span class="p">()}</span>
 
     <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">has_tag</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">tag</span><span class="p">):</span>
@@ -409,8 +409,8 @@
         <span class="n">presenter</span> <span class="o">=</span> <span class="n">InterfacePresenter</span><span class="p">()</span>
 
         <span class="c1"># Restore the state from the dictionary</span>
-        <span class="n">presenter</span><span class="o">.</span><span class="n">restoreInfo</span><span class="p">(</span><span class="n">obj_dict</span><span class="p">[</span><span class="s2">&quot;info&quot;</span><span class="p">])</span>
-        <span class="n">presenter</span><span class="o">.</span><span class="n">restoreState</span><span class="p">(</span><span class="n">obj_dict</span><span class="p">[</span><span class="s2">&quot;state&quot;</span><span class="p">])</span>
+        <span class="n">presenter</span><span class="o">.</span><span class="n">restoreInfo</span><span class="p">(</span><span class="n">obj_dict</span><span class="p">[</span><span class="s2">"info"</span><span class="p">])</span>
+        <span class="n">presenter</span><span class="o">.</span><span class="n">restoreState</span><span class="p">(</span><span class="n">obj_dict</span><span class="p">[</span><span class="s2">"state"</span><span class="p">])</span>
 
         <span class="c1"># Return the view of the GUI or whatever object can have .show() called on it</span>
         <span class="k">return</span> <span class="n">presenter</span><span class="o">.</span><span class="n">view</span>
@@ -457,22 +457,22 @@
 <span class="w">  </span><span class="n">QMap</span><span class="o">&lt;</span><span class="n">QString</span><span class="p">,</span><span class="w"> </span><span class="n">QVariant</span><span class="o">&gt;</span><span class="w"> </span><span class="n">map</span><span class="p">;</span>
 <span class="w">  </span><span class="c1">// It is encouraged to not add extra methods to the Interface class for getting information unless already present</span>
 <span class="w">  </span><span class="c1">// Instead add the encoder as a friend class and access the member variables directly</span>
-<span class="w">  </span><span class="n">map</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">QString</span><span class="p">(</span><span class="s">&quot;info&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">QVariant</span><span class="p">(</span><span class="n">encodeInfo</span><span class="p">(</span><span class="n">interface</span><span class="p">.</span><span class="n">m_interfaceInfo</span><span class="p">));</span>
-<span class="w">  </span><span class="n">map</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">QString</span><span class="p">(</span><span class="s">&quot;state&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">QVariant</span><span class="p">(</span><span class="n">encodeState</span><span class="p">(</span><span class="n">interface</span><span class="p">.</span><span class="n">getStateObject</span><span class="p">()));</span>
+<span class="w">  </span><span class="n">map</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">QString</span><span class="p">(</span><span class="s">"info"</span><span class="p">),</span><span class="w"> </span><span class="n">QVariant</span><span class="p">(</span><span class="n">encodeInfo</span><span class="p">(</span><span class="n">interface</span><span class="p">.</span><span class="n">m_interfaceInfo</span><span class="p">));</span>
+<span class="w">  </span><span class="n">map</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">QString</span><span class="p">(</span><span class="s">"state"</span><span class="p">),</span><span class="w"> </span><span class="n">QVariant</span><span class="p">(</span><span class="n">encodeState</span><span class="p">(</span><span class="n">interface</span><span class="p">.</span><span class="n">getStateObject</span><span class="p">()));</span>
 <span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">map</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="n">QMap</span><span class="o">&lt;</span><span class="n">QString</span><span class="p">,</span><span class="w"> </span><span class="n">QVariant</span><span class="o">&gt;</span><span class="w"> </span><span class="n">InterfaceEncoder</span><span class="o">::</span><span class="n">encodeInfo</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">InterfaceInfo</span><span class="w"> </span><span class="o">&amp;</span><span class="n">info</span><span class="p">){</span>
 <span class="w">  </span><span class="n">QMap</span><span class="o">&lt;</span><span class="n">QString</span><span class="p">,</span><span class="w"> </span><span class="n">QVariant</span><span class="o">&gt;</span><span class="w"> </span><span class="n">map</span><span class="p">;</span>
-<span class="w">  </span><span class="n">map</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">QString</span><span class="p">(</span><span class="s">&quot;info1&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">QVariant</span><span class="p">(</span><span class="n">info</span><span class="p">.</span><span class="n">m_info1</span><span class="p">));</span>
-<span class="w">  </span><span class="n">map</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">QString</span><span class="p">(</span><span class="s">&quot;info2&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">QVariant</span><span class="p">(</span><span class="n">info</span><span class="p">.</span><span class="n">m_info2</span><span class="p">));</span>
+<span class="w">  </span><span class="n">map</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">QString</span><span class="p">(</span><span class="s">"info1"</span><span class="p">),</span><span class="w"> </span><span class="n">QVariant</span><span class="p">(</span><span class="n">info</span><span class="p">.</span><span class="n">m_info1</span><span class="p">));</span>
+<span class="w">  </span><span class="n">map</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">QString</span><span class="p">(</span><span class="s">"info2"</span><span class="p">),</span><span class="w"> </span><span class="n">QVariant</span><span class="p">(</span><span class="n">info</span><span class="p">.</span><span class="n">m_info2</span><span class="p">));</span>
 <span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">map</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="n">QMap</span><span class="o">&lt;</span><span class="n">QString</span><span class="p">,</span><span class="w"> </span><span class="n">QVariant</span><span class="o">&gt;</span><span class="w"> </span><span class="n">InterfaceEncoder</span><span class="o">::</span><span class="n">encodeState</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">InterfaceState</span><span class="w"> </span><span class="o">&amp;</span><span class="n">state</span><span class="p">){</span>
 <span class="w">  </span><span class="n">QMap</span><span class="o">&lt;</span><span class="n">QString</span><span class="p">,</span><span class="w"> </span><span class="n">QVariant</span><span class="o">&gt;</span><span class="w"> </span><span class="n">map</span><span class="p">;</span>
-<span class="w">  </span><span class="n">map</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">QString</span><span class="p">(</span><span class="s">&quot;state1&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">QVariant</span><span class="p">(</span><span class="n">state</span><span class="p">.</span><span class="n">m_state1</span><span class="p">));</span>
-<span class="w">  </span><span class="n">map</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">QString</span><span class="p">(</span><span class="s">&quot;state2&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">QVariant</span><span class="p">(</span><span class="n">state</span><span class="p">.</span><span class="n">m_state2</span><span class="p">));</span>
+<span class="w">  </span><span class="n">map</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">QString</span><span class="p">(</span><span class="s">"state1"</span><span class="p">),</span><span class="w"> </span><span class="n">QVariant</span><span class="p">(</span><span class="n">state</span><span class="p">.</span><span class="n">m_state1</span><span class="p">));</span>
+<span class="w">  </span><span class="n">map</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">QString</span><span class="p">(</span><span class="s">"state2"</span><span class="p">),</span><span class="w"> </span><span class="n">QVariant</span><span class="p">(</span><span class="n">state</span><span class="p">.</span><span class="n">m_state2</span><span class="p">));</span>
 <span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">map</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
@@ -481,7 +481,7 @@
 <p>SIP File:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>class InterfaceEncoder {
 %TypeHeaderCode
-#include &quot;MantidQtWidgets/Interface/InterfaceEncoder.h&quot;
+#include "MantidQtWidgets/Interface/InterfaceEncoder.h"
 %End
 public:
   InterfaceEncoder();
@@ -489,7 +489,7 @@ public:
 };
 class InterfaceDecoder : QObject{
 %TypeHeaderCode
-#include &quot;MantidQtWidgets/Interface/InterfaceDecoder.h&quot;
+#include "MantidQtWidgets/Interface/InterfaceDecoder.h"
 %End
 public:
   InterfaceDecoder();

@@ -577,7 +577,7 @@ data contained in the files, the commandline syntax is:</p>
 </div>
 <p>For example, suppose we have a set of ADARA-packet files, as saved by the ADARA instrument server, from the SNAP
 instrument run number 68851:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(mantid-developer) [ADARA-data]$ ls -al ${ADARA-data}/SNAP/${68851_DATA} | cut -d&#39; &#39; -f1-3,6-
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(mantid-developer) [ADARA-data]$ ls -al ${ADARA-data}/SNAP/${68851_DATA} | cut -d' ' -f1-3,6-
 total 799824
 -rw-rw-r--  1 209715276 Nov 20 20:22 ds00000001-s00000001-run-68851.adara
 -rw-rw-r--  1 209715244 Nov 20 20:51 ds00000001-s00000002-run-68851.adara
@@ -602,10 +602,10 @@ possibly several other sections containing <em>run-status</em> and <em>device-de
 still not enough information to reconstruct the stream’s playback order.</p>
 <p>Using <code class="docutils literal notranslate"><span class="pre">summarize</span></code> mode, pointed at this directory, the <em>console</em> log output shows us the location of the <em>session</em>
 log, which then contains the summary content:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(mantid-developer) [ADARA-data]adara_player --config ${adara_player_conf} --summarize &quot;${SOURCE}/0001/*.adara&quot;
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(mantid-developer) [ADARA-data]adara_player --config ${adara_player_conf} --summarize "${SOURCE}/0001/*.adara"
 2026-01-26 05:24:06,189: INFO: Summarizing content of ADARA-packet files ...
 2026-01-26 05:24:06,189: INFO: Session 0001:
-2026-01-26 05:25:19,704: INFO: Summary available at: &#39;${ADARA_PLAYER_LOGS}/session.574768.log&#39;.
+2026-01-26 05:25:19,704: INFO: Summary available at: '${ADARA_PLAYER_LOGS}/session.574768.log'.
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(mantid-developer) [ADARA-data]$cat ${ADARA_PLAYER_LOGS}/session.574768.log
@@ -726,7 +726,7 @@ log, which then contains the summary content:</p>
 2026-01-26 05:25:19,703: INFO:  prologue-ds00000001-run-68851.adara  (metadata: 2025-11-21T02:01:14.432000000)
 2026-01-26 05:25:19,703: INFO:  prologue-ds00000003-run-68851.adara  (metadata: 2025-11-21T02:01:14.432000000)
 2026-01-26 05:25:19,703: INFO:  prologue-m00000001-run-68851.adara   (metadata: 2025-11-21T02:01:14.432000000)
-2026-01-26 05:25:19,704: INFO: Summary available at: &#39;${ADARA_PLAYER_LOGS}/session.574768.log&#39;.
+2026-01-26 05:25:19,704: INFO: Summary available at: '${ADARA_PLAYER_LOGS}/session.574768.log'.
 </pre></div>
 </div>
 <p>The section <code class="docutils literal notranslate"><span class="pre">Suggested</span> <span class="pre">playback</span> <span class="pre">ordering</span></code> at the end of the summary is an analysis of the <em>probable</em> file ordering
@@ -752,8 +752,8 @@ in the current version, instead this will produce a <em>warning</em> in the logs
     <span class="o">-</span> <span class="n">m00000001</span><span class="o">-</span><span class="n">f00000002</span><span class="o">-</span><span class="n">run</span><span class="o">-</span><span class="mf">68851.</span><span class="n">adara</span>   <span class="c1"># events</span>
     <span class="o">-</span> <span class="n">ds00000001</span><span class="o">-</span><span class="n">s00000003</span><span class="o">-</span><span class="n">run</span><span class="o">-</span><span class="mf">68851.</span><span class="n">adara</span>  <span class="c1"># events</span>
     <span class="o">-</span> <span class="n">prologue</span><span class="o">-</span><span class="n">ds00000001</span><span class="o">-</span><span class="n">run</span><span class="o">-</span><span class="mf">68851.</span><span class="n">adara</span>   <span class="c1"># trailing metadata: WARNING -- may be duplicate</span>
-    <span class="o">-</span> <span class="n">prologue</span><span class="o">-</span><span class="n">ds00000003</span><span class="o">-</span><span class="n">run</span><span class="o">-</span><span class="mf">68851.</span><span class="n">adara</span>   <span class="c1"># metadata: &quot; &quot;</span>
-    <span class="o">-</span> <span class="n">prologue</span><span class="o">-</span><span class="n">m00000001</span><span class="o">-</span><span class="n">run</span><span class="o">-</span><span class="mf">68851.</span><span class="n">adara</span>    <span class="c1"># metadata: &quot; &quot;</span>
+    <span class="o">-</span> <span class="n">prologue</span><span class="o">-</span><span class="n">ds00000003</span><span class="o">-</span><span class="n">run</span><span class="o">-</span><span class="mf">68851.</span><span class="n">adara</span>   <span class="c1"># metadata: " "</span>
+    <span class="o">-</span> <span class="n">prologue</span><span class="o">-</span><span class="n">m00000001</span><span class="o">-</span><span class="n">run</span><span class="o">-</span><span class="mf">68851.</span><span class="n">adara</span>    <span class="c1"># metadata: " "</span>
 </pre></div>
 </div>
 <p><strong>Caveat RE ``Suggested playback ordering``</strong>:</p>
@@ -847,10 +847,10 @@ mamba activate mantid-developer
 ## DEFINE all of your environment variables as in ``Setup for examples``!
 ##
 
-# this isn&#39;t strictly necessary, but this environment key allows you to control the YAML config location:
+# this isn't strictly necessary, but this environment key allows you to control the YAML config location:
 adara_player_conf=${ADARA_PLAYER_UTILS}/adara_player_conf.yml
 
-echo &quot;default SERVER_ADDRESS: ${XDG_RUNTIME_DIR}/sock-adara_player&quot; # change this in `adara_player_conf.yml`, if required
+echo "default SERVER_ADDRESS: ${XDG_RUNTIME_DIR}/sock-adara_player" # change this in `adara_player_conf.yml`, if required
 
 # default mode is `playback`:
 LD_PRELOAD=${LOCAL_PRELOAD} PYTHONPATH=${LOCAL_PYTHONPATH}\
@@ -917,10 +917,10 @@ mamba activate mantid-developer
 ## DEFINE all of your environment variables as in ``Setup for examples``!
 ##
 
-# this isn&#39;t strictly necessary, but it allows you to control the YAML config location:
+# this isn't strictly necessary, but it allows you to control the YAML config location:
 adara_player_conf=${ADARA_PLAYER_UTILS}/adara_player_conf.yml
 
-# add the &quot;-source&quot; suffix for this server process,
+# add the "-source" suffix for this server process,
 #   this lets the ``record`` proxy process use the *default* address
 SERVER_ADDRESS=${XDG_RUNTIME_DIR}/sock-adara_player-source
 
@@ -938,7 +938,7 @@ mamba activate mantid-developer
 ## DEFINE all of your environment variables as in ``Setup for examples``!
 ##
 
-# this isn&#39;t strictly necessary, but it allows you to control the YAML config location:
+# this isn't strictly necessary, but it allows you to control the YAML config location:
 adara_player_conf=${ADARA_PLAYER_UTILS}/adara_player_conf.yml
 
 # set the source address to the server address used in ``2) a)``
@@ -983,7 +983,7 @@ mamba activate mantid-developer
 ## DEFINE all of your environment variables as in ``Setup for examples``!
 ##
 
-# this isn&#39;t strictly necessary, but it allows you to control the YAML config location:
+# this isn't strictly necessary, but it allows you to control the YAML config location:
 adara_player_conf=${ADARA_PLAYER_UTILS}/adara_player_conf.yml
 
 LD_PRELOAD=${LOCAL_PRELOAD} PYTHONPATH=${LOCAL_PYTHONPATH}\
@@ -993,7 +993,7 @@ LD_PRELOAD=${LOCAL_PRELOAD} PYTHONPATH=${LOCAL_PYTHONPATH}\
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">2026</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">27</span> <span class="mi">11</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">27</span><span class="p">,</span><span class="mi">528</span><span class="p">:</span> <span class="n">INFO</span><span class="p">:</span> <span class="n">Summarizing</span> <span class="n">content</span> <span class="n">of</span> <span class="n">ADARA</span><span class="o">-</span><span class="n">packet</span> <span class="n">files</span> <span class="o">...</span>
 <span class="mi">2026</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">27</span> <span class="mi">11</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">27</span><span class="p">,</span><span class="mi">528</span><span class="p">:</span> <span class="n">INFO</span><span class="p">:</span> <span class="n">Session</span> <span class="mi">0001</span><span class="p">:</span>
 <span class="mi">2026</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">27</span> <span class="mi">11</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">32</span><span class="p">,</span><span class="mi">323</span><span class="p">:</span> <span class="n">INFO</span><span class="p">:</span> <span class="n">Summary</span> <span class="n">available</span> <span class="n">at</span><span class="p">:</span>
-    <span class="s1">&#39;$</span><span class="si">{ADARA_PLAYER_LOGS}</span><span class="s1">/session.615527.log&#39;</span><span class="o">.</span>
+    <span class="s1">'$</span><span class="si">{ADARA_PLAYER_LOGS}</span><span class="s1">/session.615527.log'</span><span class="o">.</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(mantid-developer) [packet_playback]$ cat ${ADARA_PLAYER_LOGS}/session.615527.log
@@ -1026,7 +1026,7 @@ LD_PRELOAD=${LOCAL_PRELOAD} PYTHONPATH=${LOCAL_PYTHONPATH}\
 2026-01-27 11:33:32,322: INFO: ----------------------------
 2026-01-27 11:33:32,323: INFO:  session.adara (events: 2025-11-21T00:53:03.110000000)
 2026-01-27 11:33:32,323: INFO: Summary available at:
-    &#39;${ADARA_PLAYER_LOGS}/session.615527.log&#39;.
+    '${ADARA_PLAYER_LOGS}/session.615527.log'.
 </pre></div>
 </div>
 <p>As can be seen, all of the packets have been combined into a single file.  Note that if it’s ever required, in

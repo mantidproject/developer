@@ -392,18 +392,18 @@ be used.</p>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">QWidget</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="s2">&quot;view tutorial&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="s2">"view tutorial"</span><span class="p">)</span>
 
         <span class="c1"># A presenter will be subscribed to the view later</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_presenter</span> <span class="o">=</span> <span class="kc">None</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_button</span> <span class="o">=</span> <span class="n">QPushButton</span><span class="p">(</span><span class="s2">&quot;Hi&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_button</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="s2">&quot;background-color:lightgrey&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_button</span> <span class="o">=</span> <span class="n">QPushButton</span><span class="p">(</span><span class="s2">"Hi"</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_button</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="s2">"background-color:lightgrey"</span><span class="p">)</span>
         <span class="c1"># connect button to signal</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_button</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_button_clicked</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_label</span> <span class="o">=</span> <span class="n">QLabel</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_label</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s2">&quot;Button&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_label</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s2">"Button"</span><span class="p">)</span>
 
         <span class="c1"># add widgets to layout</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_sub_layout</span> <span class="o">=</span> <span class="n">QHBoxLayout</span><span class="p">()</span>
@@ -425,7 +425,7 @@ be used.</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">_presenter</span> <span class="o">=</span> <span class="n">presenter</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_button_clicked</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;hello from view&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"hello from view"</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_presenter</span><span class="o">.</span><span class="n">handle_button_clicked</span><span class="p">()</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">get_value</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
@@ -437,7 +437,7 @@ edit. Since <code class="docutils literal notranslate"><span class="pre">text()<
 float.</p>
 <p>The presenter has the following code added to the <code class="docutils literal notranslate"><span class="pre">handle_button_clicked</span></code> method:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_view</span><span class="o">.</span><span class="n">get_value</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Value is </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Value is </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>which gets the value from the view and then prints it to the screen.</p>

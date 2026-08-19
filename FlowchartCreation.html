@@ -360,39 +360,39 @@
 <p>An algorithm that takes one input workspace and scales it by a given parameter/property if it was given, may look like this:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>digraph DiagramName {
 //Comments are inserted in the same way as C++
-label = &quot;MultiplyByParam Workflow Diagram&quot;
+label = "MultiplyByParam Workflow Diagram"
 $global_style
 
 subgraph params {
   //These keywords beginning with $ are replaced with commands to style all the nodes in the subgraph correctly
   $param_style
-  inputWorkspace  [label=&quot;InputWorkspace&quot;]
-  outputWorkspace [label=&quot;OutputWorkspace&quot;]
-  coefficient     [label=&quot;Coefficient&quot;]
+  inputWorkspace  [label="InputWorkspace"]
+  outputWorkspace [label="OutputWorkspace"]
+  coefficient     [label="Coefficient"]
 }
 
 subgraph decisions {
   $decision_style
-  checkCoefficient [label=&quot;Was Coefficient\ngiven?&quot;]
+  checkCoefficient [label="Was Coefficient\ngiven?"]
 }
 
 subgraph algorithms {
   $algorithm_style
-  scale [label=&quot;Scale&quot;]
+  scale [label="Scale"]
 }
 
 //Define the connections, labelling some of them
 inputWorkspace   -&gt; checkCoefficient
-coefficient      -&gt; scale           [label=&quot;Factor&quot;]
-checkCoefficient -&gt; scale           [label=&quot;Yes&quot;]
-checkCoefficient -&gt; outputWorkspace [label=&quot;No&quot;]
+coefficient      -&gt; scale           [label="Factor"]
+checkCoefficient -&gt; scale           [label="Yes"]
+checkCoefficient -&gt; outputWorkspace [label="No"]
 scale            -&gt; outputWorkspace
 }
 </pre></div>
 </div>
 <p>While creating the diagrams it’s inconvenient to recompile the documentation with each change, so you may want to render the graph manually. This can be achieved on linux or cygwin by running the following command. <em>You may need to comment out the “$foo_style” lines when manually rendering as they are not valid graphviz syntax</em> (you can do this on the fly using sed to avoid having to edit the file).</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dot</span> <span class="o">-</span><span class="n">Tpng</span> <span class="o">-</span><span class="n">o</span> <span class="n">output_image</span><span class="o">.</span><span class="n">png</span> <span class="n">input_file</span><span class="o">.</span><span class="n">dot</span>                       <span class="c1"># render a graph manually</span>
-<span class="n">sed</span> <span class="s1">&#39;s/\$/\/\/$/g&#39;</span> <span class="n">input_file</span><span class="o">.</span><span class="n">dot</span> <span class="o">|</span> <span class="n">dot</span> <span class="o">-</span><span class="n">Tpng</span> <span class="o">-</span><span class="n">o</span> <span class="n">output_image</span><span class="o">.</span><span class="n">png</span>  <span class="c1"># excludes $foo_style lines</span>
+<span class="n">sed</span> <span class="s1">'s/\$/\/\/$/g'</span> <span class="n">input_file</span><span class="o">.</span><span class="n">dot</span> <span class="o">|</span> <span class="n">dot</span> <span class="o">-</span><span class="n">Tpng</span> <span class="o">-</span><span class="n">o</span> <span class="n">output_image</span><span class="o">.</span><span class="n">png</span>  <span class="c1"># excludes $foo_style lines</span>
 </pre></div>
 </div>
 <p>You can also render them in a web browser using this <a class="reference external" href="http://www.webgraphviz.com/">online graph renderer</a>.</p>

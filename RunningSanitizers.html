@@ -440,8 +440,8 @@ want to know what’s happening</p>
 <p>CMake substitutes in various flags for the address sanitizer builds to
 setup suppressions etc… this is the equivalent of doing the following
 in a local shell:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">ASAN_OPTIONS</span><span class="o">=</span><span class="s2">&quot;verify_asan_link_order=0:detect_stack_use_after_return=true:halt_on_error=false:suppressions=*path_to_mantid*/tools/Sanitizer/Address.supp&quot;</span>
-<span class="nb">export</span><span class="w"> </span><span class="nv">LSAN_OPTIONS</span><span class="o">=</span><span class="s2">&quot;suppressions=*path_to_mantid*/tools/Sanitizer/Leak.supp&quot;</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">ASAN_OPTIONS</span><span class="o">=</span><span class="s2">"verify_asan_link_order=0:detect_stack_use_after_return=true:halt_on_error=false:suppressions=*path_to_mantid*/tools/Sanitizer/Address.supp"</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">LSAN_OPTIONS</span><span class="o">=</span><span class="s2">"suppressions=*path_to_mantid*/tools/Sanitizer/Leak.supp"</span>
 </pre></div>
 </div>
 <p>All code executed which is executed in that shell will now be sanitized
@@ -464,17 +464,17 @@ path.</p></li>
 <p>If you need / want to profile C++ components which are triggered from Python
 the following steps should setup your environment:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the path to your linked ASAN</span>
-ldd<span class="w"> </span>bin/KernelTest<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;libasan&quot;</span>
+ldd<span class="w"> </span>bin/KernelTest<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">"libasan"</span>
 <span class="nb">export</span><span class="w"> </span><span class="nv">LD_PRELOAD</span><span class="o">=</span>/usr/lib/path_to/libasan.so.x
 
 <span class="c1"># leak detection should only show the largest 25 leaks</span>
-<span class="nb">export</span><span class="w"> </span><span class="nv">LSAN_OPTIONS</span><span class="o">=</span><span class="s2">&quot;max_leaks=25&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">LSAN_OPTIONS</span><span class="o">=</span><span class="s2">"max_leaks=25"</span>
 
 <span class="c1"># You may want to re-run the ASAN_OPTIONS export dropping</span>
 <span class="c1"># the verify to make sure that the C++ component is being instrumented:</span>
 <span class="c1"># log_path is the prefix for the file the results are written to</span>
 
-<span class="nb">export</span><span class="w"> </span><span class="nv">ASAN_OPTIONS</span><span class="o">=</span><span class="s2">&quot;detect_stack_use_after_return=true:halt_on_error=false:log_path=asan:suppressions=*path_to_mantid*/tools/Sanitizer/Address.supp&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">ASAN_OPTIONS</span><span class="o">=</span><span class="s2">"detect_stack_use_after_return=true:halt_on_error=false:log_path=asan:suppressions=*path_to_mantid*/tools/Sanitizer/Address.supp"</span>
 </pre></div>
 </div>
 </section>

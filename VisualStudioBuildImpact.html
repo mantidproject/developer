@@ -368,11 +368,11 @@ linker tasks, an they inherit the priority of the MSBuild process.</p>
 script.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Const</span> <span class="n">BELOW_NORMAL</span> <span class="o">=</span> <span class="mi">16384</span>
 
-<span class="n">strComputer</span> <span class="o">=</span> <span class="s2">&quot;.&quot;</span>
-<span class="n">Set</span> <span class="n">objWMIService</span> <span class="o">=</span> <span class="n">GetObject</span><span class="p">(</span><span class="s2">&quot;winmgmts:</span><span class="se">\\</span><span class="s2">&quot;</span> <span class="o">&amp;</span> <span class="n">strComputer</span> <span class="o">&amp;</span> <span class="s2">&quot;</span><span class="se">\r</span><span class="s2">oot\cimv2&quot;</span><span class="p">)</span>
+<span class="n">strComputer</span> <span class="o">=</span> <span class="s2">"."</span>
+<span class="n">Set</span> <span class="n">objWMIService</span> <span class="o">=</span> <span class="n">GetObject</span><span class="p">(</span><span class="s2">"winmgmts:</span><span class="se">\\</span><span class="s2">"</span> <span class="o">&amp;</span> <span class="n">strComputer</span> <span class="o">&amp;</span> <span class="s2">"</span><span class="se">\r</span><span class="s2">oot\cimv2"</span><span class="p">)</span>
 
 <span class="n">Set</span> <span class="n">colProcesses</span> <span class="o">=</span> <span class="n">objWMIService</span><span class="o">.</span><span class="n">ExecQuery</span> <span class="n">_</span>
-    <span class="p">(</span><span class="s2">&quot;Select * from Win32_Process Where Name = &#39;MSBuild.exe&#39;&quot;</span><span class="p">)</span>
+    <span class="p">(</span><span class="s2">"Select * from Win32_Process Where Name = 'MSBuild.exe'"</span><span class="p">)</span>
 <span class="n">For</span> <span class="n">Each</span> <span class="n">objProcess</span> <span class="ow">in</span> <span class="n">colProcesses</span>
     <span class="n">objProcess</span><span class="o">.</span><span class="n">SetPriority</span><span class="p">(</span><span class="n">BELOW_NORMAL</span><span class="p">)</span>
 <span class="n">Next</span>
@@ -387,11 +387,11 @@ a dog!</p>
 that keeps a watch on your system every 5 seconds.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Const</span> <span class="n">BELOW_NORMAL</span> <span class="o">=</span> <span class="mi">16384</span>
 
-<span class="n">strComputer</span> <span class="o">=</span> <span class="s2">&quot;.&quot;</span>
-<span class="n">Set</span> <span class="n">objWMIService</span> <span class="o">=</span> <span class="n">GetObject</span><span class="p">(</span><span class="s2">&quot;winmgmts:</span><span class="se">\\</span><span class="s2">&quot;</span> <span class="o">&amp;</span> <span class="n">strComputer</span> <span class="o">&amp;</span> <span class="s2">&quot;</span><span class="se">\r</span><span class="s2">oot\cimv2&quot;</span><span class="p">)</span>
+<span class="n">strComputer</span> <span class="o">=</span> <span class="s2">"."</span>
+<span class="n">Set</span> <span class="n">objWMIService</span> <span class="o">=</span> <span class="n">GetObject</span><span class="p">(</span><span class="s2">"winmgmts:</span><span class="se">\\</span><span class="s2">"</span> <span class="o">&amp;</span> <span class="n">strComputer</span> <span class="o">&amp;</span> <span class="s2">"</span><span class="se">\r</span><span class="s2">oot\cimv2"</span><span class="p">)</span>
 <span class="n">Do</span> <span class="n">While</span> <span class="n">true</span>
   <span class="n">Set</span> <span class="n">colProcesses</span> <span class="o">=</span> <span class="n">objWMIService</span><span class="o">.</span><span class="n">ExecQuery</span> <span class="n">_</span>
-      <span class="p">(</span><span class="s2">&quot;Select * from Win32_Process Where Name = &#39;MSBuild.exe&#39;&quot;</span><span class="p">)</span>
+      <span class="p">(</span><span class="s2">"Select * from Win32_Process Where Name = 'MSBuild.exe'"</span><span class="p">)</span>
   <span class="n">For</span> <span class="n">Each</span> <span class="n">objProcess</span> <span class="ow">in</span> <span class="n">colProcesses</span>
       <span class="n">objProcess</span><span class="o">.</span><span class="n">SetPriority</span><span class="p">(</span><span class="n">BELOW_NORMAL</span><span class="p">)</span>
   <span class="n">Next</span>

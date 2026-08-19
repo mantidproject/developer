@@ -372,14 +372,14 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span># Notes: enable and activate profiling, generate a profile every ~1GB of additional memory allocated.
 #   The profile-dump interval is expressed somewhat cryptically as $\log_2$\ of the memory quantity:
 #   here 1GB == 30 bits.
-export MALLOC_CONF=&quot;prof:true,prof_active:true,lg_prof_interval:30,prof_prefix:jeprof.out&quot;
+export MALLOC_CONF="prof:true,prof_active:true,lg_prof_interval:30,prof_prefix:jeprof.out"
 
 LOCAL_PRELOAD=&lt;your installation prefix&gt;/lib/libjemalloc.so.2
 
-# To get your `PYTHONPATH`, you can enter `import sys; &#39;;&#39;.join(sys.path)` in the `IPython` window in workbench,
-#   although for a working installation, you probably don&#39;t need to worry about it.
+# To get your `PYTHONPATH`, you can enter `import sys; ';'.join(sys.path)` in the `IPython` window in workbench,
+#   although for a working installation, you probably don't need to worry about it.
 #   First try removing the `PYTHONPATH` lines below and just assume that your Pixi environment has set the path correctly!
-LOCAL_PYTHONPATH=&lt;Mantid&#39;s PYTHONPATH&gt;
+LOCAL_PYTHONPATH=&lt;Mantid's PYTHONPATH&gt;
 
 LD_PRELOAD=${LOCAL_PRELOAD} \
     PYTHONPATH=${LOCAL_PYTHONPATH} \
@@ -392,7 +392,7 @@ LD_PRELOAD=${LOCAL_PRELOAD} \
 <p>There are several flags that can be set to <em>optimize</em> a Mantid build for <code class="docutils literal notranslate"><span class="pre">jemalloc</span></code> profiling.  Mostly the objectives are to make sure that all of the line-number and stack-frame information is included in the build:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># From the Mantid repository root:</span>
 <span class="n">mkdir</span> <span class="n">build</span><span class="p">;</span> <span class="n">cd</span> <span class="n">build</span>
-<span class="n">cmake</span> <span class="o">..</span> <span class="o">-</span><span class="n">GNinja</span> <span class="o">-</span><span class="n">DCMAKE_BUILD_TYPE</span><span class="o">=</span><span class="n">RelWithDebInfo</span> <span class="o">-</span><span class="n">DCMAKE_C_FLAGS_RELWITHDEBINFO</span><span class="o">=</span><span class="s2">&quot;-O2 -g -DNDEBUG -fno-omit-frame-pointer&quot;</span> <span class="o">-</span><span class="n">DCMAKE_CXX_FLAGS_RELWITHDEBINFO</span><span class="o">=</span><span class="s2">&quot;-O2 -g -DNDEBUG -fno-omit-frame-pointer&quot;</span>
+<span class="n">cmake</span> <span class="o">..</span> <span class="o">-</span><span class="n">GNinja</span> <span class="o">-</span><span class="n">DCMAKE_BUILD_TYPE</span><span class="o">=</span><span class="n">RelWithDebInfo</span> <span class="o">-</span><span class="n">DCMAKE_C_FLAGS_RELWITHDEBINFO</span><span class="o">=</span><span class="s2">"-O2 -g -DNDEBUG -fno-omit-frame-pointer"</span> <span class="o">-</span><span class="n">DCMAKE_CXX_FLAGS_RELWITHDEBINFO</span><span class="o">=</span><span class="s2">"-O2 -g -DNDEBUG -fno-omit-frame-pointer"</span>
 <span class="n">cmake</span> <span class="o">--</span><span class="n">build</span> <span class="o">.</span> <span class="o">--</span><span class="n">target</span> <span class="n">AllTests</span>
 </pre></div>
 </div>
@@ -405,12 +405,12 @@ LD_PRELOAD=${LOCAL_PRELOAD} \
 <section id="memory-allocation-details-create-an-overview-graph">
 <h2>Memory-allocation details: create an overview graph<a class="headerlink" href="#memory-allocation-details-create-an-overview-graph" title="Link to this heading">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">jeprof</span></code> can generate SVG, and several other formats of, graphs showing all of the allocation details:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>export JEPROF=&#39;&lt;your installation prefix&gt;/bin/jeprof&#39;
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>export JEPROF='&lt;your installation prefix&gt;/bin/jeprof'
 
 # The basic form of the command:
 ${JEPROF} --svg /path/to/program /path/to/dump.heap &gt; heap.svg
 
-# A Mantid-specific example, assuming that you&#39;ve been running a script in Python:
+# A Mantid-specific example, assuming that you've been running a script in Python:
 ${JEPROF} --svg ${CONDA_PREFIX}/bin/python /path/to/dump.heap &gt; heap.svg
 </pre></div>
 </div>
@@ -425,7 +425,7 @@ ${JEPROF} --svg ${CONDA_PREFIX}/bin/python /path/to/dump.heap &gt; heap.svg
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>export JEPROF=&lt;your installation prefix&gt;/bin/jeprof
 
 # Assume that the profile you want to examine has already generated, and is contained in the file &lt;your profile&gt;.dat
-${JEPROF} --lines --inuse_space --list=&quot;GridDetector::createLayer&quot; ${CONDA_PREFIX}/bin/python &lt;your profile&gt;.dat &gt; &lt;your profile&gt;.heap.txt
+${JEPROF} --lines --inuse_space --list="GridDetector::createLayer" ${CONDA_PREFIX}/bin/python &lt;your profile&gt;.dat &gt; &lt;your profile&gt;.heap.txt
 </pre></div>
 </div>
 <p>The text output will look something like this:</p>
@@ -453,7 +453,7 @@ ${JEPROF} --lines --inuse_space --list=&quot;GridDetector::createLayer&quot; ${C
 <section id="more-advanced-techniques-in-depth-profiling-of-algorithm-steps">
 <h1>More advanced techniques: in-depth profiling of algorithm steps<a class="headerlink" href="#more-advanced-techniques-in-depth-profiling-of-algorithm-steps" title="Link to this heading">#</a></h1>
 <p>The most direct way to profile the allocation details associated with step-wise execution of any algorithm is to use the <code class="docutils literal notranslate"><span class="pre">jemalloc</span></code> <code class="docutils literal notranslate"><span class="pre">mallctl</span></code> entry point.  We still need to use <code class="docutils literal notranslate"><span class="pre">MALLOC_CONF</span></code> to enable profiling:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">MALLOC_CONF</span><span class="o">=</span><span class="s2">&quot;prof:true&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">MALLOC_CONF</span><span class="o">=</span><span class="s2">"prof:true"</span>
 </pre></div>
 </div>
 <p>For this example, we modify a <code class="docutils literal notranslate"><span class="pre">C++</span></code>-source file and add the following section (near the top):</p>
@@ -466,7 +466,7 @@ ${JEPROF} --lines --inuse_space --list=&quot;GridDetector::createLayer&quot; ${C
 <span class="n">namespace</span> <span class="p">{</span>
   <span class="nb">bool</span> <span class="n">mem_stats</span><span class="p">(</span><span class="n">const</span> <span class="n">std</span><span class="p">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">path</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">const</span> <span class="n">char</span> <span class="o">*</span><span class="n">path_</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">c_str</span><span class="p">();</span>
-    <span class="nb">int</span> <span class="n">err</span> <span class="o">=</span> <span class="n">mallctl</span><span class="p">(</span><span class="s2">&quot;prof.dump&quot;</span><span class="p">,</span>
+    <span class="nb">int</span> <span class="n">err</span> <span class="o">=</span> <span class="n">mallctl</span><span class="p">(</span><span class="s2">"prof.dump"</span><span class="p">,</span>
                       <span class="n">nullptr</span><span class="p">,</span> <span class="n">nullptr</span><span class="p">,</span>
                       <span class="n">const_cast</span><span class="o">&lt;</span><span class="n">char</span><span class="o">**&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="n">path_</span><span class="p">),</span>
                       <span class="n">sizeof</span><span class="p">(</span><span class="n">const</span> <span class="n">char</span><span class="o">*</span><span class="p">));</span>
@@ -480,12 +480,12 @@ ${JEPROF} --lines --inuse_space --list=&quot;GridDetector::createLayer&quot; ${C
     <span class="p">}</span>
   <span class="p">}</span>
 <span class="p">}</span>
-<span class="n">const</span> <span class="n">std</span><span class="p">::</span><span class="n">string</span> <span class="n">STATS_ROOT</span> <span class="o">=</span> <span class="s2">&quot;&lt;your profiles dump directory path&gt;&quot;</span><span class="p">;</span>
+<span class="n">const</span> <span class="n">std</span><span class="p">::</span><span class="n">string</span> <span class="n">STATS_ROOT</span> <span class="o">=</span> <span class="s2">"&lt;your profiles dump directory path&gt;"</span><span class="p">;</span>
 <span class="o">//</span> <span class="o">=============================================================</span>
 </pre></div>
 </div>
 <p>Now, whenever we want to generate a new profile after the execution of a section of code, we simply call the function:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mem_stats</span><span class="p">(</span><span class="n">STATS_ROOT</span> <span class="o">+</span> <span class="s2">&quot;/loadEvents-exit.dat&quot;</span><span class="p">);</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mem_stats</span><span class="p">(</span><span class="n">STATS_ROOT</span> <span class="o">+</span> <span class="s2">"/loadEvents-exit.dat"</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>After building Mantid, setting <code class="docutils literal notranslate"><span class="pre">MALLOC_CONF</span></code> as above, and executing an appropriate Python script: this generates a profile and writes it to the on-disk location <code class="docutils literal notranslate"><span class="pre">&quot;${STATS_ROOT}/loadEvents-exit.dat&quot;</span></code>.</p>

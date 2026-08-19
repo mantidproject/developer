@@ -599,9 +599,9 @@ back-pressure is needed (there are no prior run’s events to protect).</p>
 violation is treated as an implementation error and raises:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_pendingTransition</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">throw</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">runtime_error</span><span class="p">(</span>
-<span class="w">        </span><span class="s">&quot;SNSLiveEventDataListener: pending run-state transition was not &quot;</span>
-<span class="w">        </span><span class="s">&quot;consumed before a new transition arrived — back-pressure invariant &quot;</span>
-<span class="w">        </span><span class="s">&quot;violation.&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="s">"SNSLiveEventDataListener: pending run-state transition was not "</span>
+<span class="w">        </span><span class="s">"consumed before a new transition arrived — back-pressure invariant "</span>
+<span class="w">        </span><span class="s">"violation."</span><span class="p">);</span>
 <span class="p">}</span>
 <span class="n">m_pendingTransition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BeginRun</span><span class="p">;</span><span class="w">   </span><span class="c1">// or EndRun</span>
 <span class="n">m_pauseNetRead</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
@@ -636,7 +636,7 @@ condition is never silently masked in release builds.</p>
 <span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">API</span><span class="o">::</span><span class="n">Workspace</span><span class="o">&gt;</span><span class="w"> </span><span class="n">doExtractData</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
 
 <span class="w">    </span><span class="c1">/// Phase 4 of extraction: commit any queued ``EndRun`` transition.</span>
-<span class="w">    </span><span class="c1">/// Deferred to after doExtractData() so the finishing run&#39;s</span>
+<span class="w">    </span><span class="c1">/// Deferred to after doExtractData() so the finishing run's</span>
 <span class="w">    </span><span class="c1">/// accumulated events are harvested before the workspace buffer</span>
 <span class="w">    </span><span class="c1">/// is reset by onEndRun().</span>
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">onAfterExtract</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
@@ -910,15 +910,15 @@ unchanged.</p>
 <span class="w">        </span><span class="c1">// Fast-path: throw NotYet immediately if the background thread is</span>
 <span class="w">        </span><span class="c1">// mid-parse (before taking any lock).</span>
 <span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_thread</span><span class="p">.</span><span class="n">isRunning</span><span class="p">()</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">m_bgThreadCaughtUp</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">memory_order_acquire</span><span class="p">))</span>
-<span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="n">Exception</span><span class="o">::</span><span class="n">NotYet</span><span class="p">(</span><span class="s">&quot;Background thread parse is in flight.&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="n">Exception</span><span class="o">::</span><span class="n">NotYet</span><span class="p">(</span><span class="s">"Background thread parse is in flight."</span><span class="p">);</span>
 
 <span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="n">RunStatus</span><span class="o">&gt;</span><span class="w"> </span><span class="n">pending</span><span class="p">;</span>
 <span class="w">        </span><span class="p">{</span>
 <span class="w">            </span><span class="n">std</span><span class="o">::</span><span class="n">lock_guard</span><span class="w"> </span><span class="nf">lock</span><span class="p">(</span><span class="n">m_mutex</span><span class="p">);</span>
 <span class="w">            </span><span class="c1">// Re-check under the lock to close the TOCTOU window.</span>
 <span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_thread</span><span class="p">.</span><span class="n">isRunning</span><span class="p">()</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">m_bgThreadCaughtUp</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">memory_order_acquire</span><span class="p">))</span>
-<span class="w">                </span><span class="k">throw</span><span class="w"> </span><span class="n">Exception</span><span class="o">::</span><span class="n">NotYet</span><span class="p">(</span><span class="s">&quot;Background thread parse is in flight.&quot;</span><span class="p">);</span>
-<span class="w">            </span><span class="c1">// Both NotYet gates passed: the prior extract&#39;s edge has been</span>
+<span class="w">                </span><span class="k">throw</span><span class="w"> </span><span class="n">Exception</span><span class="o">::</span><span class="n">NotYet</span><span class="p">(</span><span class="s">"Background thread parse is in flight."</span><span class="p">);</span>
+<span class="w">            </span><span class="c1">// Both NotYet gates passed: the prior extract's edge has been</span>
 <span class="w">            </span><span class="c1">// delivered.  Clear it now so the next tick sees nullopt.</span>
 <span class="w">            </span><span class="c1">// m_previousExtractCompleted is false during a NotYet retry, so</span>
 <span class="w">            </span><span class="c1">// the edge survives retries (C1 invariant).</span>
@@ -949,16 +949,16 @@ unchanged.</p>
 <span class="w">        </span><span class="n">Poco</span><span class="o">::</span><span class="n">Thread</span><span class="o">::</span><span class="n">sleep</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">m_workspaceInitialized</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="n">Exception</span><span class="o">::</span><span class="n">NotYet</span><span class="p">(</span><span class="s">&quot;The workspace has not yet been initialized.&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="n">Exception</span><span class="o">::</span><span class="n">NotYet</span><span class="p">(</span><span class="s">"The workspace has not yet been initialized."</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_ignorePackets</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="n">Exception</span><span class="o">::</span><span class="n">NotYet</span><span class="p">(</span><span class="s">&quot;Waiting for a run to start.&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="n">Exception</span><span class="o">::</span><span class="n">NotYet</span><span class="p">(</span><span class="s">"Waiting for a run to start."</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="c1">// ---- Phase 3: build the new EventWorkspace and swap (unchanged) -</span>
 <span class="w">    </span><span class="n">EventWorkspace_sptr</span><span class="w"> </span><span class="n">temp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">dynamic_pointer_cast</span><span class="o">&lt;</span><span class="n">EventWorkspace</span><span class="o">&gt;</span><span class="p">(</span>
 <span class="w">        </span><span class="n">API</span><span class="o">::</span><span class="n">WorkspaceFactory</span><span class="o">::</span><span class="n">Instance</span><span class="p">().</span><span class="n">create</span><span class="p">(</span>
-<span class="w">            </span><span class="s">&quot;EventWorkspace&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">m_eventBuffer</span><span class="o">-&gt;</span><span class="n">getNumberHistograms</span><span class="p">(),</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">));</span>
+<span class="w">            </span><span class="s">"EventWorkspace"</span><span class="p">,</span><span class="w"> </span><span class="n">m_eventBuffer</span><span class="o">-&gt;</span><span class="n">getNumberHistograms</span><span class="p">(),</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">));</span>
 <span class="w">    </span><span class="n">API</span><span class="o">::</span><span class="n">WorkspaceFactory</span><span class="o">::</span><span class="n">Instance</span><span class="p">().</span><span class="n">initializeFromParent</span><span class="p">(</span><span class="o">*</span><span class="n">m_eventBuffer</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">temp</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">);</span>
 <span class="w">    </span><span class="n">temp</span><span class="o">-&gt;</span><span class="n">mutableRun</span><span class="p">().</span><span class="n">clearOutdatedTimeSeriesLogValues</span><span class="p">();</span>
 <span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">monitorLog</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">m_monitorLogs</span><span class="p">)</span>
@@ -968,7 +968,7 @@ unchanged.</p>
 <span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">monitorBuffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m_eventBuffer</span><span class="o">-&gt;</span><span class="n">monitorWorkspace</span><span class="p">();</span>
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">monitorBuffer</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">newMonitorBuffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WorkspaceFactory</span><span class="o">::</span><span class="n">Instance</span><span class="p">().</span><span class="n">create</span><span class="p">(</span>
-<span class="w">            </span><span class="s">&quot;EventWorkspace&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">monitorBuffer</span><span class="o">-&gt;</span><span class="n">getNumberHistograms</span><span class="p">(),</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">            </span><span class="s">"EventWorkspace"</span><span class="p">,</span><span class="w"> </span><span class="n">monitorBuffer</span><span class="o">-&gt;</span><span class="n">getNumberHistograms</span><span class="p">(),</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
 <span class="w">        </span><span class="n">WorkspaceFactory</span><span class="o">::</span><span class="n">Instance</span><span class="p">().</span><span class="n">initializeFromParent</span><span class="p">(</span>
 <span class="w">            </span><span class="o">*</span><span class="n">monitorBuffer</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">newMonitorBuffer</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">);</span>
 <span class="w">        </span><span class="n">temp</span><span class="o">-&gt;</span><span class="n">setMonitorWorkspace</span><span class="p">(</span><span class="n">newMonitorBuffer</span><span class="p">);</span>
@@ -979,7 +979,7 @@ unchanged.</p>
 <span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="c1">// ---- Phase 4 (onAfterExtract): commit a pending EndRun ----------</span>
-<span class="w">    </span><span class="c1">// Deferred so the snapshot above contains the finishing run&#39;s</span>
+<span class="w">    </span><span class="c1">// Deferred so the snapshot above contains the finishing run's</span>
 <span class="w">    </span><span class="c1">// accumulated events before onEndRun() resets the buffer.</span>
 <span class="w">    </span><span class="p">{</span>
 <span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="n">RunStatus</span><span class="o">&gt;</span><span class="w"> </span><span class="n">pending</span><span class="p">;</span>
@@ -1067,13 +1067,13 @@ completes, so a Phase 2/3 failure leaves it queued for the next
 <span class="w">        </span><span class="c1">// a BeginRun transition without populating m_deferredRunDetailsPkt,</span>
 <span class="w">        </span><span class="c1">// which is an implementation error in the listener itself.</span>
 <span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">runtime_error</span><span class="p">(</span>
-<span class="w">            </span><span class="s">&quot;SNSLiveEventDataListener::onBeginRun(): &quot;</span>
-<span class="w">            </span><span class="s">&quot;m_deferredRunDetailsPkt is null — invariant violation.&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="s">"SNSLiveEventDataListener::onBeginRun(): "</span>
+<span class="w">            </span><span class="s">"m_deferredRunDetailsPkt is null — invariant violation."</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">    </span><span class="n">setRunDetails</span><span class="p">(</span><span class="o">*</span><span class="n">m_deferredRunDetailsPkt</span><span class="p">);</span>
 <span class="w">    </span><span class="n">m_deferredRunDetailsPkt</span><span class="p">.</span><span class="n">reset</span><span class="p">();</span>
 
-<span class="w">    </span><span class="n">m_adaraRunStatus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Running</span><span class="p">;</span><span class="w">   </span><span class="c1">// we&#39;ve crossed the edge</span>
+<span class="w">    </span><span class="n">m_adaraRunStatus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Running</span><span class="p">;</span><span class="w">   </span><span class="c1">// we've crossed the edge</span>
 <span class="w">    </span><span class="c1">// m_pauseNetRead released by the caller (onBeforeExtract) after</span>
 <span class="w">    </span><span class="c1">// this hook returns — not here.</span>
 <span class="p">}</span>
@@ -1169,7 +1169,7 @@ skips <code class="docutils literal notranslate"><span class="pre">poll()</span>
 <span class="w">            </span><span class="n">m_backgroundException</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">ex</span><span class="p">);</span>
 <span class="w">    </span><span class="p">};</span>
 <span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">fatal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="o">&amp;</span><span class="n">setFatalState</span><span class="p">](</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">msg</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">g_log</span><span class="p">.</span><span class="n">fatal</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">msg</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+<span class="w">        </span><span class="n">g_log</span><span class="p">.</span><span class="n">fatal</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">msg</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">'\n'</span><span class="p">;</span>
 <span class="w">        </span><span class="n">setFatalState</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">runtime_error</span><span class="o">&gt;</span><span class="p">(</span><span class="n">msg</span><span class="p">));</span>
 <span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">runtime_error</span><span class="p">(</span><span class="n">msg</span><span class="p">);</span>
 <span class="w">    </span><span class="p">};</span>
@@ -1204,12 +1204,12 @@ skips <code class="docutils literal notranslate"><span class="pre">poll()</span>
 <span class="w">                            </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Poco</span><span class="o">::</span><span class="n">TimeoutException</span><span class="w"> </span><span class="o">&amp;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                                </span><span class="n">bytesRead</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span><span class="w"> </span><span class="c1">// spurious wakeup; try again next iteration</span>
 <span class="w">                            </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Poco</span><span class="o">::</span><span class="n">Net</span><span class="o">::</span><span class="n">NetException</span><span class="w"> </span><span class="o">&amp;</span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                                </span><span class="n">fatal</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">(</span><span class="s">&quot;network read failed: &quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">name</span><span class="p">());</span>
+<span class="w">                                </span><span class="n">fatal</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">(</span><span class="s">"network read failed: "</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">name</span><span class="p">());</span>
 <span class="w">                            </span><span class="p">}</span>
 <span class="w">                            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bytesRead</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                                </span><span class="c1">// Clean peer close.  NOT an error: no fatal(), no</span>
-<span class="w">                                </span><span class="c1">// m_backgroundException.  See &quot;disconnect is not</span>
-<span class="w">                                </span><span class="c1">// an error&quot; below for why this is deliberate.</span>
+<span class="w">                                </span><span class="c1">// m_backgroundException.  See "disconnect is not</span>
+<span class="w">                                </span><span class="c1">// an error" below for why this is deliberate.</span>
 <span class="w">                                </span><span class="n">m_isConnected</span><span class="p">.</span><span class="n">store</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
 <span class="w">                                </span><span class="n">m_bgThreadCaughtUp</span><span class="p">.</span><span class="n">store</span><span class="p">(</span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">memory_order_release</span><span class="p">);</span>
 <span class="w">                                </span><span class="k">return</span><span class="p">;</span>
@@ -1226,7 +1226,7 @@ skips <code class="docutils literal notranslate"><span class="pre">poll()</span>
 <span class="w">                        </span><span class="p">}</span>
 <span class="w">                    </span><span class="p">}</span>
 <span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">mode</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">Poco</span><span class="o">::</span><span class="n">Net</span><span class="o">::</span><span class="n">PollSet</span><span class="o">::</span><span class="n">POLL_ERROR</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">successfulRead</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                        </span><span class="n">fatal</span><span class="p">(</span><span class="s">&quot;socket poll reported error.&quot;</span><span class="p">);</span>
+<span class="w">                        </span><span class="n">fatal</span><span class="p">(</span><span class="s">"socket poll reported error."</span><span class="p">);</span>
 <span class="w">                    </span><span class="p">}</span>
 <span class="w">                </span><span class="p">}</span>
 <span class="w">            </span><span class="p">}</span>
@@ -1366,7 +1366,7 @@ helper, which genuinely does report <code class="docutils literal notranslate"><
 <span class="w">        </span><span class="n">m_backgroundException</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">ex</span><span class="p">);</span>
 <span class="p">};</span>
 <span class="k">auto</span><span class="w"> </span><span class="n">fatal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="o">&amp;</span><span class="n">setFatalState</span><span class="p">](</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">msg</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">g_log</span><span class="p">.</span><span class="n">fatal</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">msg</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">g_log</span><span class="p">.</span><span class="n">fatal</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">msg</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">'\n'</span><span class="p">;</span>
 <span class="w">    </span><span class="n">setFatalState</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">runtime_error</span><span class="o">&gt;</span><span class="p">(</span><span class="n">msg</span><span class="p">));</span>
 <span class="w">    </span><span class="k">throw</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">runtime_error</span><span class="p">(</span><span class="n">msg</span><span class="p">);</span>
 <span class="p">};</span>
@@ -1606,7 +1606,7 @@ never <code class="docutils literal notranslate"><span class="pre">m_ignorePacke
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">SNSLiveEventDataListener::start</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Types</span><span class="o">::</span><span class="n">Core</span><span class="o">::</span><span class="n">DateAndTime</span><span class="w"> </span><span class="n">startTime</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">m_startTime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">startTime</span><span class="p">;</span>
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_startTime</span><span class="p">.</span><span class="n">totalNanoseconds</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1000000000</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="c1">// &quot;from start of previous run&quot; sentinel</span>
+<span class="w">        </span><span class="c1">// "from start of previous run" sentinel</span>
 <span class="w">        </span><span class="n">m_filterUntilRunStart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
 <span class="w">        </span><span class="c1">// m_ignorePackets = true;   // &lt;-- MISSING</span>
 <span class="w">    </span><span class="p">}</span>
@@ -1661,7 +1661,7 @@ a hard failure.</p>
 <span class="w">    </span><span class="n">m_startTime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">startTime</span><span class="p">;</span>
 
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_startTime</span><span class="p">.</span><span class="n">totalNanoseconds</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1000000000</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="c1">// &quot;From start of previous run&quot; sentinel: replay everything,</span>
+<span class="w">        </span><span class="c1">// "From start of previous run" sentinel: replay everything,</span>
 <span class="w">        </span><span class="c1">// then filter out all packets older than the next NEW_RUN.</span>
 <span class="w">        </span><span class="n">m_filterUntilRunStart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
 <span class="w">        </span><span class="n">m_ignorePackets</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
@@ -1669,7 +1669,7 @@ a hard failure.</p>
 <span class="w">        </span><span class="c1">// Absolute-time filter: drop everything older than m_startTime.</span>
 <span class="w">        </span><span class="n">m_ignorePackets</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="c1">// else: &quot;Now&quot; mode — no historical filtering, m_ignorePackets</span>
+<span class="w">    </span><span class="c1">// else: "Now" mode — no historical filtering, m_ignorePackets</span>
 <span class="w">    </span><span class="c1">// stays false (the default).</span>
 
 <span class="w">    </span><span class="n">m_thread</span><span class="p">.</span><span class="n">start</span><span class="p">(</span><span class="o">*</span><span class="k">this</span><span class="p">);</span>

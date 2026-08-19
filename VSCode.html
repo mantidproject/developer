@@ -469,19 +469,19 @@ attempt to make a useful task for you. However it may be better to use this exam
 The commands can be switched out with the command and various args for the generator
 used to generate your CMake with.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-<span class="w">    </span><span class="s2">&quot;version&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2.0.0&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;tasks&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">"version"</span><span class="o">:</span><span class="w"> </span><span class="s2">"2.0.0"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"tasks"</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">        </span><span class="p">{</span>
-<span class="w">            </span><span class="s2">&quot;label&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Build Mantid&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="s2">&quot;type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;shell&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="s2">&quot;command&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;cmake&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="s2">&quot;args&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">                </span><span class="s2">&quot;--build&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="s2">&quot;Build/Directory/Here&quot;</span>
+<span class="w">            </span><span class="s2">"label"</span><span class="o">:</span><span class="w"> </span><span class="s2">"Build Mantid"</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">"type"</span><span class="o">:</span><span class="w"> </span><span class="s2">"shell"</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">"command"</span><span class="o">:</span><span class="w"> </span><span class="s2">"cmake"</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">"args"</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="s2">"--build"</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">"Build/Directory/Here"</span>
 <span class="w">            </span><span class="p">],</span>
-<span class="w">            </span><span class="s2">&quot;group&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="s2">&quot;kind&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;build&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="s2">&quot;isDefault&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">            </span><span class="s2">"group"</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="s2">"kind"</span><span class="o">:</span><span class="w"> </span><span class="s2">"build"</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">"isDefault"</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span>
 <span class="w">            </span><span class="p">}</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">]</span>
@@ -524,20 +524,20 @@ Inside the launch.json you will want to make your file look something a little l
 <p><em>Workbench</em></p>
 <p>To debug C++ and start directly into the Workbench, add this to the configuration list in <code class="docutils literal notranslate"><span class="pre">launch.json</span></code>.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-<span class="w">    </span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;(gdb) Workbench C++ Only&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;cppdbg&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;request&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;launch&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;program&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;/Path/To/Mamba/Install/envs/mantid-developer/bin/python&quot;</span><span class="p">,</span><span class="w">   </span><span class="c1">// Full path (do not use &#39;~&#39;) to the python executable inside your build directory</span>
-<span class="w">    </span><span class="s2">&quot;preLaunchTask&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Build Mantid&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;args&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;-m&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;workbench&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;--single-process&quot;</span><span class="p">],</span>
-<span class="w">    </span><span class="s2">&quot;MIMode&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;gdb&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;cwd&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Path/To/Build/Directory/bin&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// this should point to bin inside the build directory</span>
-<span class="w">    </span><span class="s2">&quot;stopAtEntry&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;setupCommands&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">"name"</span><span class="o">:</span><span class="w"> </span><span class="s2">"(gdb) Workbench C++ Only"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"type"</span><span class="o">:</span><span class="w"> </span><span class="s2">"cppdbg"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"request"</span><span class="o">:</span><span class="w"> </span><span class="s2">"launch"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"program"</span><span class="o">:</span><span class="w"> </span><span class="s2">"/Path/To/Mamba/Install/envs/mantid-developer/bin/python"</span><span class="p">,</span><span class="w">   </span><span class="c1">// Full path (do not use '~') to the python executable inside your build directory</span>
+<span class="w">    </span><span class="s2">"preLaunchTask"</span><span class="o">:</span><span class="w"> </span><span class="s2">"Build Mantid"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"args"</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"-m"</span><span class="p">,</span><span class="w"> </span><span class="s2">"workbench"</span><span class="p">,</span><span class="w"> </span><span class="s2">"--single-process"</span><span class="p">],</span>
+<span class="w">    </span><span class="s2">"MIMode"</span><span class="o">:</span><span class="w"> </span><span class="s2">"gdb"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"cwd"</span><span class="o">:</span><span class="w"> </span><span class="s2">"Path/To/Build/Directory/bin"</span><span class="p">,</span><span class="w"> </span><span class="c1">// this should point to bin inside the build directory</span>
+<span class="w">    </span><span class="s2">"stopAtEntry"</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"setupCommands"</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">        </span><span class="p">{</span>
-<span class="w">        </span><span class="s2">&quot;description&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Enable pretty-printing for gdb&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;text&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;-enable-pretty-printing&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;ignoreFailures&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">        </span><span class="s2">"description"</span><span class="o">:</span><span class="w"> </span><span class="s2">"Enable pretty-printing for gdb"</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">"text"</span><span class="o">:</span><span class="w"> </span><span class="s2">"-enable-pretty-printing"</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">"ignoreFailures"</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">]</span>
 <span class="p">}</span>
@@ -545,9 +545,9 @@ Inside the launch.json you will want to make your file look something a little l
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">--single-process</span></code> flag is necessary for debugging. See the <code class="docutils literal notranslate"><span class="pre">RunningWorkbench</span></code> documentation for more information.</p>
 <p>If this fails, try adding the following environment variables:</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;environment&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">  </span><span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="s2">&quot;LD_PRELOAD&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;value&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;/usr/lib/x86_64-linux-gnu/libjemalloc.so.1&quot;</span><span class="p">},</span>
-<span class="w">  </span><span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="s2">&quot;PYTHONPATH&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;value&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Path/To/Build/Directory/bin:${env:PYTHONPATH}&quot;</span><span class="p">}</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="s2">"environment"</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span><span class="s2">"name"</span><span class="o">:</span><span class="s2">"LD_PRELOAD"</span><span class="p">,</span><span class="w"> </span><span class="s2">"value"</span><span class="o">:</span><span class="w"> </span><span class="s2">"/usr/lib/x86_64-linux-gnu/libjemalloc.so.1"</span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="s2">"name"</span><span class="o">:</span><span class="s2">"PYTHONPATH"</span><span class="p">,</span><span class="w"> </span><span class="s2">"value"</span><span class="o">:</span><span class="w"> </span><span class="s2">"Path/To/Build/Directory/bin:${env:PYTHONPATH}"</span><span class="p">}</span>
 <span class="p">],</span>
 </pre></div>
 </div>
@@ -567,19 +567,19 @@ the spelling mistake is real.</p>
 follow on with the <a class="reference external" href="https://code.visualstudio.com/docs/cpp/config-msvc">guide</a>.
 The launch.json should end up looking a little like this:</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-<span class="w">   </span><span class="s2">&quot;version&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;0.2.0&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;configurations&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">   </span><span class="s2">"version"</span><span class="o">:</span><span class="w"> </span><span class="s2">"0.2.0"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"configurations"</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">        </span><span class="p">{</span>
-<span class="w">            </span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;(msvc) Launch&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="s2">&quot;type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;cppvsdbg&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="s2">&quot;request&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;launch&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="s2">&quot;program&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Path/To/Build/Directory/bin/Debug/MantidWorkbench.exe&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="s2">&quot;args&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[],</span>
-<span class="w">            </span><span class="s2">&quot;stopAtEntry&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">            </span><span class="s2">&quot;cwd&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;${workspaceFolder}&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="s2">&quot;environment&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[],</span>
-<span class="w">            </span><span class="s2">&quot;externalConsole&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<span class="w">            </span><span class="s2">&quot;preLaunchTask&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Build Mantid&quot;</span><span class="w"> </span><span class="c1">// This causes the task labelled to be called before</span>
+<span class="w">            </span><span class="s2">"name"</span><span class="o">:</span><span class="w"> </span><span class="s2">"(msvc) Launch"</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">"type"</span><span class="o">:</span><span class="w"> </span><span class="s2">"cppvsdbg"</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">"request"</span><span class="o">:</span><span class="w"> </span><span class="s2">"launch"</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">"program"</span><span class="o">:</span><span class="w"> </span><span class="s2">"Path/To/Build/Directory/bin/Debug/MantidWorkbench.exe"</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">"args"</span><span class="o">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="w">            </span><span class="s2">"stopAtEntry"</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">"cwd"</span><span class="o">:</span><span class="w"> </span><span class="s2">"${workspaceFolder}"</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">"environment"</span><span class="o">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="w">            </span><span class="s2">"externalConsole"</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">"preLaunchTask"</span><span class="o">:</span><span class="w"> </span><span class="s2">"Build Mantid"</span><span class="w"> </span><span class="c1">// This causes the task labelled to be called before</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">]</span>
 <span class="p">}</span>
@@ -599,20 +599,20 @@ from the Debug terminal window.</p>
 <p>In your launch.json we will need a new launch task for this, this new task should look
 like this:</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-<span class="w">    </span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;(gdb) Launch Workbench&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;cppdbg&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;request&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;launch&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;program&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;/usr/bin/python3&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;args&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">        </span><span class="s2">&quot;/path/to/build/dir/bin/MantidWorkbench&quot;</span>
+<span class="w">    </span><span class="s2">"name"</span><span class="o">:</span><span class="w"> </span><span class="s2">"(gdb) Launch Workbench"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"type"</span><span class="o">:</span><span class="w"> </span><span class="s2">"cppdbg"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"request"</span><span class="o">:</span><span class="w"> </span><span class="s2">"launch"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"program"</span><span class="o">:</span><span class="w"> </span><span class="s2">"/usr/bin/python3"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"args"</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">"/path/to/build/dir/bin/MantidWorkbench"</span>
 <span class="w">    </span><span class="p">],</span>
-<span class="w">    </span><span class="s2">&quot;MIMode&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;gdb&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;cwd&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;${fileDirname}&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;setupCommands&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">"MIMode"</span><span class="o">:</span><span class="w"> </span><span class="s2">"gdb"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"cwd"</span><span class="o">:</span><span class="w"> </span><span class="s2">"${fileDirname}"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"setupCommands"</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">        </span><span class="p">{</span>
-<span class="w">            </span><span class="s2">&quot;description&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Enable pretty-printing for gdb&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="s2">&quot;text&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;-enable-pretty-printing&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="s2">&quot;ignoreFailures&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">            </span><span class="s2">"description"</span><span class="o">:</span><span class="w"> </span><span class="s2">"Enable pretty-printing for gdb"</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">"text"</span><span class="o">:</span><span class="w"> </span><span class="s2">"-enable-pretty-printing"</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">"ignoreFailures"</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">]</span>
 <span class="p">}</span>
@@ -629,17 +629,17 @@ like this:</p>
 <p>First thing to do is make sure that the test you are testing is built. You can do this
 by building via one of the test targets. An example Task for AlgorithmsTest:</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-<span class="w">    </span><span class="s2">&quot;label&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Build Mantid AlgorithmsTest&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;shell&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;command&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ninja&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;args&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">        </span><span class="s2">&quot;-C&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;Build/Directory&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;AlgorithmsTest&quot;</span>
+<span class="w">    </span><span class="s2">"label"</span><span class="o">:</span><span class="w"> </span><span class="s2">"Build Mantid AlgorithmsTest"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"type"</span><span class="o">:</span><span class="w"> </span><span class="s2">"shell"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"command"</span><span class="o">:</span><span class="w"> </span><span class="s2">"ninja"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"args"</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">"-C"</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">"Build/Directory"</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">"AlgorithmsTest"</span>
 <span class="w">    </span><span class="p">],</span>
-<span class="w">    </span><span class="s2">&quot;group&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="s2">&quot;kind&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;build&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;isDefault&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">    </span><span class="s2">"group"</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="s2">"kind"</span><span class="o">:</span><span class="w"> </span><span class="s2">"build"</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">"isDefault"</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -648,24 +648,24 @@ by building via one of the test targets. An example Task for AlgorithmsTest:</p>
 select the executable for your tests i.e. “bin/AlgorithmsTest” in your build directory.
 Then pass as an argument the specific test you want to be debugging. As an example:</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-<span class="w">    </span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;(gdb) Launch Ctest&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;cppdbg&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;request&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;launch&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;program&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Build/Directory/bin/AlgorithmsTest&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;args&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">        </span><span class="s2">&quot;RemoveSpectraTest&quot;</span><span class="w"> </span><span class="c1">// This is the name of the test you want to Debug</span>
+<span class="w">    </span><span class="s2">"name"</span><span class="o">:</span><span class="w"> </span><span class="s2">"(gdb) Launch Ctest"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"type"</span><span class="o">:</span><span class="w"> </span><span class="s2">"cppdbg"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"request"</span><span class="o">:</span><span class="w"> </span><span class="s2">"launch"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"program"</span><span class="o">:</span><span class="w"> </span><span class="s2">"Build/Directory/bin/AlgorithmsTest"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"args"</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">"RemoveSpectraTest"</span><span class="w"> </span><span class="c1">// This is the name of the test you want to Debug</span>
 <span class="w">    </span><span class="p">],</span>
-<span class="w">    </span><span class="s2">&quot;stopAtEntry&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;cwd&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Build/Directory&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;environment&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[],</span>
-<span class="w">    </span><span class="s2">&quot;externalConsole&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;MIMode&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;gdb&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;preLaunchTask&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Build Mantid AlgorithmTests&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// Once again this builds the task before doing debugging</span>
-<span class="w">    </span><span class="s2">&quot;setupCommands&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">"stopAtEntry"</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"cwd"</span><span class="o">:</span><span class="w"> </span><span class="s2">"Build/Directory"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"environment"</span><span class="o">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="w">    </span><span class="s2">"externalConsole"</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"MIMode"</span><span class="o">:</span><span class="w"> </span><span class="s2">"gdb"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"preLaunchTask"</span><span class="o">:</span><span class="w"> </span><span class="s2">"Build Mantid AlgorithmTests"</span><span class="p">,</span><span class="w"> </span><span class="c1">// Once again this builds the task before doing debugging</span>
+<span class="w">    </span><span class="s2">"setupCommands"</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">        </span><span class="p">{</span>
-<span class="w">            </span><span class="s2">&quot;description&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Enable pretty-printing for gdb&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="s2">&quot;text&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;-enable-pretty-printing&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="s2">&quot;ignoreFailures&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">            </span><span class="s2">"description"</span><span class="o">:</span><span class="w"> </span><span class="s2">"Enable pretty-printing for gdb"</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">"text"</span><span class="o">:</span><span class="w"> </span><span class="s2">"-enable-pretty-printing"</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">"ignoreFailures"</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">]</span>
 <span class="p">}</span>
@@ -699,11 +699,11 @@ PyQt listeners, as the debugger must be attached to the main thread.</p>
 <li><p>Add the following target</p></li>
 </ul>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-<span class="w">    </span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Python Attach&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;python&quot;</span>
-<span class="w">    </span><span class="s2">&quot;request&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;attach&quot;</span>
-<span class="w">    </span><span class="s2">&quot;port&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mf">5678</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;host&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;localhost&quot;</span>
+<span class="w">    </span><span class="s2">"name"</span><span class="o">:</span><span class="w"> </span><span class="s2">"Python Attach"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"type"</span><span class="o">:</span><span class="w"> </span><span class="s2">"python"</span>
+<span class="w">    </span><span class="s2">"request"</span><span class="o">:</span><span class="w"> </span><span class="s2">"attach"</span>
+<span class="w">    </span><span class="s2">"port"</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mf">5678</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"host"</span><span class="o">:</span><span class="w"> </span><span class="s2">"localhost"</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -714,7 +714,7 @@ PyQt listeners, as the debugger must be attached to the main thread.</p>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">debugpy</span>
 
-<span class="n">debugpy</span><span class="o">.</span><span class="n">listen</span><span class="p">((</span><span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span> <span class="mi">5678</span><span class="p">))</span>
+<span class="n">debugpy</span><span class="o">.</span><span class="n">listen</span><span class="p">((</span><span class="s2">"127.0.0.1"</span><span class="p">,</span> <span class="mi">5678</span><span class="p">))</span>
 <span class="n">debugpy</span><span class="o">.</span><span class="n">wait_for_client</span><span class="p">()</span>
 <span class="n">debugpy</span><span class="o">.</span><span class="n">breakpoint</span><span class="p">()</span>
 </pre></div>

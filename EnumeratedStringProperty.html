@@ -356,7 +356,7 @@
 <h1>How to use the EnumeratedStringProperty<a class="headerlink" href="#how-to-use-the-enumeratedstringproperty" title="Link to this heading">#</a></h1>
 <p>Include the <code class="docutils literal notranslate"><span class="pre">EnumeratedStringProperty.h</span></code> header file. Set up the <code class="docutils literal notranslate"><span class="pre">EnumeratedStringProperty</span></code> as follows:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">namespace</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">binningModeNames</span><span class="p">{</span><span class="s">&quot;Default&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Linear&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Logarithmic&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ReverseLogarithmic&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Power&quot;</span><span class="p">};</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">binningModeNames</span><span class="p">{</span><span class="s">"Default"</span><span class="p">,</span><span class="w"> </span><span class="s">"Linear"</span><span class="p">,</span><span class="w"> </span><span class="s">"Logarithmic"</span><span class="p">,</span><span class="w"> </span><span class="s">"ReverseLogarithmic"</span><span class="p">,</span><span class="w"> </span><span class="s">"Power"</span><span class="p">};</span>
 <span class="w">    </span><span class="k">enum</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">BinningMode</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">DEFAULT</span><span class="p">,</span><span class="w"> </span><span class="n">LINEAR</span><span class="p">,</span><span class="w"> </span><span class="n">LOGARITHMIC</span><span class="p">,</span><span class="w"> </span><span class="n">REVERSELOG</span><span class="p">,</span><span class="w"> </span><span class="n">POWER</span><span class="p">,</span><span class="w"> </span><span class="n">enum_count</span><span class="w"> </span><span class="p">};</span>
 <span class="w">    </span><span class="k">typedef</span><span class="w"> </span><span class="n">Mantid</span><span class="o">::</span><span class="n">Kernel</span><span class="o">::</span><span class="n">EnumeratedString</span><span class="o">&lt;</span><span class="n">BinningMode</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">binningModeNames</span><span class="o">&gt;</span><span class="w"> </span><span class="n">BINMODE</span><span class="p">;</span>
 <span class="p">}</span><span class="w"> </span><span class="c1">// namespace</span>
@@ -364,8 +364,8 @@
 </div>
 <p>Declare property:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">declareProperty</span><span class="p">(</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">EnumeratedStringProperty</span><span class="o">&lt;</span><span class="n">BinningMode</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">binningModeNames</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="s">&quot;PropertyName&quot;</span><span class="p">),</span>
-<span class="w">    </span><span class="s">&quot;Description&quot;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">EnumeratedStringProperty</span><span class="o">&lt;</span><span class="n">BinningMode</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">binningModeNames</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="s">"PropertyName"</span><span class="p">),</span>
+<span class="w">    </span><span class="s">"Description"</span>
 <span class="p">);</span>
 </pre></div>
 </div>
@@ -373,16 +373,16 @@
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">BINMODE</span><span class="w"> </span><span class="n">binMode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">someName</span><span class="p">;</span>
 <span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">binMode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">BinningMode</span><span class="o">::</span><span class="n">LINEAR</span><span class="p">)</span>
 <span class="w">    </span><span class="n">do_something</span><span class="p">();</span>
-<span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">binMode</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s">&quot;Default&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">binMode</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s">"Default"</span><span class="p">)</span>
 <span class="w">    </span><span class="n">do_something_else</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Determining and using pre-set mode, if present, or using the default setting:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">BINMODE</span><span class="w"> </span><span class="n">binMode</span><span class="p">;</span>
-<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">existsProperty</span><span class="p">(</span><span class="s">&quot;PropertyName&quot;</span><span class="p">))</span>
-<span class="w">    </span><span class="n">Mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getPropertyValue</span><span class="p">(</span><span class="s">&quot;PropertyName&quot;</span><span class="p">);</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">existsProperty</span><span class="p">(</span><span class="s">"PropertyName"</span><span class="p">))</span>
+<span class="w">    </span><span class="n">Mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getPropertyValue</span><span class="p">(</span><span class="s">"PropertyName"</span><span class="p">);</span>
 <span class="k">else</span>
-<span class="w">    </span><span class="n">Mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Default&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Default"</span><span class="p">;</span>
 </pre></div>
 </div>
 </section>

@@ -403,8 +403,8 @@
    # rebin from min to max with size bin = 2
    ws = Rebin(ws, 2)
 
-   print &quot;The rebinned X values are: &quot; + str(ws.x(0))
-   print &quot;The rebinned Y values are: &quot; + str(ws.y(0))
+   print "The rebinned X values are: " + str(ws.x(0))
+   print "The rebinned Y values are: " + str(ws.y(0))
 
 
 Output:
@@ -455,8 +455,8 @@ Output:
 <span class="p">..</span> <span class="ow">testcode</span><span class="p">::</span> ExFitPeak
 
    # create a workspace with a gaussian peak sitting on top of a linear (here flat) background
-   ws = CreateSampleWorkspace(Function=&quot;User Defined&quot;, UserDefinedFunction=&quot;name=LinearBackground, \
-      A0=0.3;name=Gaussian, PeakCentre=5, Height=10, Sigma=0.7&quot;, NumBanks=1, BankPixelWidth=1, XMin=0, XMax=10, BinWidth=0.1)
+   ws = CreateSampleWorkspace(Function="User Defined", UserDefinedFunction="name=LinearBackground, \
+      A0=0.3;name=Gaussian, PeakCentre=5, Height=10, Sigma=0.7", NumBanks=1, BankPixelWidth=1, XMin=0, XMax=10, BinWidth=0.1)
 
    # Setup the data to fit:
    workspaceIndex = 0  # the spectrum with which WorkspaceIndex to fit
@@ -464,26 +464,26 @@ Output:
    endX = 9      #
 
    # Setup the model, here a Gaussian, to fit to data
-   tryCentre = &#39;4&#39;   # A start guess on peak centre
-   sigma = &#39;1&#39;          # A start guess on peak width
-   height = &#39;8&#39;         # A start guess on peak height
-   myFunc = &#39;name=Gaussian, Height=&#39;+height+&#39;, PeakCentre=&#39;+tryCentre+&#39;, Sigma=&#39;+sigma
-   # here purposely haven&#39;t included a linear background which mean fit will not be spot on
+   tryCentre = '4'   # A start guess on peak centre
+   sigma = '1'          # A start guess on peak width
+   height = '8'         # A start guess on peak height
+   myFunc = 'name=Gaussian, Height='+height+', PeakCentre='+tryCentre+', Sigma='+sigma
+   # here purposely haven't included a linear background which mean fit will not be spot on
    # to include a linear background uncomment the line below
-   #myFunc = &#39;name=LinearBackground, A0=0.3;name=Gaussian, Height=&#39;+height+&#39;, PeakCentre=&#39;+tryCentre+&#39;, Sigma=&#39;+sigma
+   #myFunc = 'name=LinearBackground, A0=0.3;name=Gaussian, Height='+height+', PeakCentre='+tryCentre+', Sigma='+sigma
 
    # Do the fitting
-   fitStatus, chiSq, covarianceTable, paramTable, fitWorkspace = Fit(InputWorkspace=&#39;ws&#39;, \
-      WorkspaceIndex=0, StartX = startX, EndX=endX, Output=&#39;fit&#39;, Function=myFunc)
+   fitStatus, chiSq, covarianceTable, paramTable, fitWorkspace = Fit(InputWorkspace='ws', \
+      WorkspaceIndex=0, StartX = startX, EndX=endX, Output='fit', Function=myFunc)
 
-   print &quot;The fit was: &quot; + fitStatus
-   print(&quot;chi-squared of fit is: %.2f&quot; % chiSq)
-   print(&quot;Fitted Height value is: %.2f&quot; % paramTable.column(1)[0])
-   print(&quot;Fitted centre value is: %.2f&quot; % paramTable.column(1)[1])
-   print(&quot;Fitted sigma value is: %.2f&quot; % paramTable.column(1)[2])
+   print "The fit was: " + fitStatus
+   print("chi-squared of fit is: %.2f" % chiSq)
+   print("Fitted Height value is: %.2f" % paramTable.column(1)[0])
+   print("Fitted centre value is: %.2f" % paramTable.column(1)[1])
+   print("Fitted sigma value is: %.2f" % paramTable.column(1)[2])
    # fitWorkspace contains the data, the calculated and the difference patterns
-   print &quot;Number of spectra in fitWorkspace is: &quot; +  str(fitWorkspace.getNumberHistograms())
-   print(&quot;The 20th y-value of the calculated pattern: %.4f&quot; % fitWorkspace.y(1)[19])
+   print "Number of spectra in fitWorkspace is: " +  str(fitWorkspace.getNumberHistograms())
+   print("The 20th y-value of the calculated pattern: %.4f" % fitWorkspace.y(1)[19])
 
 <span class="p">..</span> <span class="ow">testcleanup</span><span class="p">::</span> ExFitPeak
 
@@ -511,14 +511,14 @@ Output:
 <span class="p">..</span> <span class="ow">testcode</span><span class="p">::</span> ExEventRebin
 
    # create some event workspace
-   ws = CreateSampleWorkspace(WorkspaceType=&quot;Event&quot;)
+   ws = CreateSampleWorkspace(WorkspaceType="Event")
 
-   print &quot;What type is the workspace before 1st rebin: &quot; + str(type(ws))
+   print "What type is the workspace before 1st rebin: " + str(type(ws))
    # rebin from min to max with size bin = 2 preserving event workspace (default behaviour)
    ws = Rebin(ws, 2)
-   print &quot;What type is the workspace after 1st rebin: &quot; + str(type(ws))
+   print "What type is the workspace after 1st rebin: " + str(type(ws))
    ws = Rebin(ws, 2, PreserveEvents=False)
-   print &quot;What type is the workspace after 2nd rebin: &quot; + str(type(ws))
+   print "What type is the workspace after 2nd rebin: " + str(type(ws))
    # note you can also check the type of a workspace using: print isinstance(ws, IEventWorkspace)
 
 <span class="p">..</span> <span class="ow">testcleanup</span><span class="p">::</span> ExEventRebin
@@ -529,9 +529,9 @@ Output:
 
 <span class="p">..</span> <span class="ow">testoutput</span><span class="p">::</span> ExEventRebin
 
-   What type is the workspace before 1st rebin: &lt;class &#39;mantid.api._api.IEventWorkspace&#39;&gt;
-   What type is the workspace after 1st rebin: &lt;class &#39;mantid.api._api.IEventWorkspace&#39;&gt;
-   What type is the workspace after 2nd rebin: &lt;class &#39;mantid.api._api.MatrixWorkspace&#39;&gt;
+   What type is the workspace before 1st rebin: &lt;class 'mantid.api._api.IEventWorkspace'&gt;
+   What type is the workspace after 1st rebin: &lt;class 'mantid.api._api.IEventWorkspace'&gt;
+   What type is the workspace after 2nd rebin: &lt;class 'mantid.api._api.MatrixWorkspace'&gt;
 </pre></div>
 </div>
 </section>
@@ -554,9 +554,9 @@ Output:
 <span class="p">..</span> <span class="ow">testcode</span><span class="p">::</span> ExLoadISISnexusHist
 
    # Load ISIS LOQ histogram dataset
-   ws = Load(&#39;LOQ49886.nxs&#39;)
+   ws = Load('LOQ49886.nxs')
 
-   print &quot;The 1st x-value of the first spectrum is: &quot; + str(ws.x(0)[0])
+   print "The 1st x-value of the first spectrum is: " + str(ws.x(0)[0])
 
 <span class="p">..</span> <span class="ow">testcleanup</span><span class="p">::</span> ExLoadISISnexusHist
 

@@ -409,9 +409,9 @@ to tell users of your Fitting library where it can find its headers:</p>
 <div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">add_library</span><span class="p">(</span><span class="s">MyLibrary::mylibrary</span><span class="w"> </span><span class="s">UNKNOWN</span><span class="w"> </span><span class="s">IMPORTED</span><span class="p">)</span>
 <span class="nb">set_target_properties</span><span class="p">(</span>
 <span class="w">  </span><span class="s">MyLibrary::mylibrary</span>
-<span class="w">  </span><span class="s">PROPERTIES</span><span class="w"> </span><span class="s">IMPORTED_LOCATION</span><span class="w"> </span><span class="s2">&quot;${MY_LIBRARY NAMES}&quot;</span>
-<span class="w">             </span><span class="s">INTERFACE_INCLUDE_DIRECTORIES</span><span class="w"> </span><span class="s2">&quot;${MY_LIBRARY_INCLUDE_DIR}&quot;</span>
-<span class="w">             </span><span class="s">IMPORTED_LINK_INTERFACE_LANGUAGES</span><span class="w"> </span><span class="s2">&quot;CXX&quot;</span>
+<span class="w">  </span><span class="s">PROPERTIES</span><span class="w"> </span><span class="s">IMPORTED_LOCATION</span><span class="w"> </span><span class="s2">"${MY_LIBRARY NAMES}"</span>
+<span class="w">             </span><span class="s">INTERFACE_INCLUDE_DIRECTORIES</span><span class="w"> </span><span class="s2">"${MY_LIBRARY_INCLUDE_DIR}"</span>
+<span class="w">             </span><span class="s">IMPORTED_LINK_INTERFACE_LANGUAGES</span><span class="w"> </span><span class="s2">"CXX"</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -429,7 +429,7 @@ to tell users of your Fitting library where it can find its headers:</p>
 </pre></div>
 </div>
 <p>The only way you can change it to ON is to edit it within CMake. If you cache the variable you can set it on the command line</p>
-<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="p">(</span><span class="s">MY_NEW_FEATURE</span><span class="w"> </span><span class="s">OFF</span><span class="w"> </span><span class="s">CACHE</span><span class="w"> </span><span class="s">BOOL</span><span class="w"> </span><span class="s2">&quot;Use my new feature&quot;</span><span class="p">)</span>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="p">(</span><span class="s">MY_NEW_FEATURE</span><span class="w"> </span><span class="s">OFF</span><span class="w"> </span><span class="s">CACHE</span><span class="w"> </span><span class="s">BOOL</span><span class="w"> </span><span class="s2">"Use my new feature"</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cmake<span class="w"> </span>..<span class="w"> </span>-DMY_NEW_FEATURE<span class="o">=</span>ON
@@ -452,12 +452,12 @@ to tell users of your Fitting library where it can find its headers:</p>
 <blockquote>
 <div><p>A Framework library can either be installed as a regular or plugin library.</p>
 <p>Regular library (ensures target is exported):</p>
-<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="p">(</span><span class="s">TARGET_EXPORT_NAME</span><span class="w"> </span><span class="s2">&quot;MantidNewTargetTargets&quot;</span><span class="p">)</span>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="p">(</span><span class="s">TARGET_EXPORT_NAME</span><span class="w"> </span><span class="s2">"MantidNewTargetTargets"</span><span class="p">)</span>
 <span class="nb">mtd_install_framework_lib</span><span class="p">(</span><span class="s">TARGETS</span><span class="w"> </span><span class="s">NewTarget</span><span class="w"> </span><span class="s">EXPORT_NAME</span><span class="w"> </span><span class="o">${</span><span class="nv">TARGET_EXPORT_NAME</span><span class="o">}</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Plugin library:</p>
-<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="p">(</span><span class="s">TARGET_EXPORT_NAME</span><span class="w"> </span><span class="s2">&quot;MantidNewTargetTargets&quot;</span><span class="p">)</span>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="p">(</span><span class="s">TARGET_EXPORT_NAME</span><span class="w"> </span><span class="s2">"MantidNewTargetTargets"</span><span class="p">)</span>
 <span class="nb">mtd_install_framework_lib</span><span class="p">(</span><span class="s">TARGETS</span><span class="w"> </span><span class="s">NewTarget</span><span class="w"> </span><span class="s">PLUGIN_LIB</span><span class="p">)</span>
 </pre></div>
 </div>
