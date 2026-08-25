@@ -592,14 +592,70 @@ To add optional arguments, add the following onto the end of <code class="docuti
 </section>
 </section>
 <section id="cmake-chart-of-target-dependencies">
-<h2>Cmake chart of target dependencies<a class="headerlink" href="#cmake-chart-of-target-dependencies" title="Link to this heading">#</a></h2>
-<p>Cmake has the ability to make graphviz dot files of the dependencies for targets in mantid.
-This is useful for understanding why compilation will wait for individual libraries to link before compiling more files.</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cmake<span class="w"> </span>--graphviz<span class="o">=</span>dependencies.dot<span class="w"> </span>.
-dot<span class="w"> </span>-O<span class="w"> </span>-Tsvg<span class="w"> </span>dependencies.dot.WorkflowAlgorithms
+<h2>CMake chart of target dependencies<a class="headerlink" href="#cmake-chart-of-target-dependencies" title="Link to this heading">#</a></h2>
+<p>CMake can generate Graphviz DOT files
+showing the link dependencies between executable and library targets.
+These target-level graphs are useful
+for understanding direct and transitive dependencies
+without the source files
+and individual object files shown in a file-level build graph.</p>
+<p>Use the following options
+to include only Mantid-owned executable and library targets.
+Download <a class="reference download internal" download="" href="_downloads/2e96bbcdcae23b155e05af2650996904/CMakeGraphVizOptions.cmake"><code class="xref download docutils literal notranslate"><span class="pre">CMakeGraphVizOptions.cmake</span></code></a>
+and place it in the root of the CMake build directory.
+CMake searches the build directory for this file
+when generating the graphs.</p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="c"># Include Mantid executable and library targets.</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">GRAPHVIZ_EXECUTABLES</span><span class="w"> </span><span class="s">TRUE</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">GRAPHVIZ_STATIC_LIBS</span><span class="w"> </span><span class="s">TRUE</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">GRAPHVIZ_SHARED_LIBS</span><span class="w"> </span><span class="s">TRUE</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">GRAPHVIZ_MODULE_LIBS</span><span class="w"> </span><span class="s">TRUE</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">GRAPHVIZ_INTERFACE_LIBS</span><span class="w"> </span><span class="s">TRUE</span><span class="p">)</span>
+
+<span class="c"># Exclude CMake OBJECT-library targets. Individual object files are not represented as nodes in CMake's Graphviz output.</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">GRAPHVIZ_OBJECT_LIBS</span><span class="w"> </span><span class="s">FALSE</span><span class="p">)</span>
+
+<span class="c"># Show only targets owned by the Mantid project, omitting linked third-party and otherwise unknown external libraries.</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">GRAPHVIZ_EXTERNAL_LIBS</span><span class="w"> </span><span class="s">FALSE</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">GRAPHVIZ_UNKNOWN_LIBS</span><span class="w"> </span><span class="s">FALSE</span><span class="p">)</span>
+
+<span class="c"># Limit output to executable and library target dependencies.</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">GRAPHVIZ_CUSTOM_TARGETS</span><span class="w"> </span><span class="s">FALSE</span><span class="p">)</span>
+
+<span class="c"># Generate per-target dependency graphs, but not reverse-dependency graphs.</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">GRAPHVIZ_GENERATE_PER_TARGET</span><span class="w"> </span><span class="s">TRUE</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">GRAPHVIZ_GENERATE_DEPENDERS</span><span class="w"> </span><span class="s">FALSE</span><span class="p">)</span>
 </pre></div>
 </div>
-<p><a class="reference external" href="https://cmake.org/cmake/help/latest/module/CMakeGraphVizOptions.html">Cmake reference</a> for configuring the tool options.</p>
+<p>From the root of the build directory,
+generate the overall graph and a graph for each target
+in a dedicated subdirectory:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>graphviz
+cmake<span class="w"> </span>--graphviz<span class="o">=</span><span class="s2">"</span><span class="nv">$PWD</span><span class="s2">/graphviz/mantid-targets.dot"</span><span class="w"> </span>.
+</pre></div>
+</div>
+<p>The overall graph is written to <code class="docutils literal notranslate"><span class="pre">graphviz/mantid-targets.dot</span></code>.
+Each target graph appends the target name to that filename;
+for example,
+the dependencies needed to link <code class="docutils literal notranslate"><span class="pre">APITest</span></code>
+are written to <code class="docutils literal notranslate"><span class="pre">graphviz/mantid-targets.dot.APITest</span></code>.
+Render that graph as SVG
+and automatically name the output after the input file with:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>dot<span class="w"> </span>-Tsvg<span class="w"> </span>-O<span class="w"> </span>graphviz/mantid-targets.dot.APITest
+</pre></div>
+</div>
+<p>This writes <code class="docutils literal notranslate"><span class="pre">graphviz/mantid-targets.dot.APITest.svg</span></code>.
+The <code class="docutils literal notranslate"><span class="pre">-O</span></code> option also accepts multiple input files
+and automatically names each output:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>dot<span class="w"> </span>-Tsvg<span class="w"> </span>-O<span class="w"> </span>graphviz/mantid-targets.dot.APITest<span class="w"> </span>graphviz/mantid-targets.dot.API
+</pre></div>
+</div>
+<p>See the CMake documentation for
+<a class="reference external" href="https://cmake.org/cmake/help/latest/manual/cmake.1.html#cmdoption-cmake-graphviz">generating Graphviz dependency graphs</a>
+and configuring the available
+<a class="reference external" href="https://cmake.org/cmake/help/latest/module/CMakeGraphVizOptions.html">Graphviz options</a>.
+See the <a class="reference external" href="https://graphviz.org/documentation/">dot documentation</a>
+for more options on converting the diagrams to something more easily viewed.</p>
 </section>
 </section>
 
@@ -677,7 +733,7 @@ dot<span class="w"> </span>-O<span class="w"> </span>-Tsvg<span class="w"> </spa
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#options">Options</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cmake-chart-of-target-dependencies">Cmake chart of target dependencies</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cmake-chart-of-target-dependencies">CMake chart of target dependencies</a></li>
 </ul>
   </nav></div>
 
