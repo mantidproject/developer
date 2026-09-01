@@ -1,0 +1,1101 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>ISIS Reflectometry Plotting Tab Internals &#8212; MantidProject main documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/css/style.css?v=562d7d41" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
+
+    <script src="_static/documentation_options.js?v=a8da1a53"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ISISReflectometryPlottingTab';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Workbench Index" href="Workbench/index.html" />
+    <link rel="prev" title="ISIS Reflectometry Interface" href="ISISReflectometryInterface.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    <link rel="icon" sizes="32x32" href="_static/images/favicon.ico">
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  <img src="_static/images/mantid_logo_light.png" class="logo__image only-light" alt="Logo image">
+  <img src="_static/images/mantid_logo_dark.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://download.mantidproject.org">Downloads</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org/nightly/tutorials/">Tutorials</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org">User Docs</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://developer.mantidproject.org">Develop</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org/release/">Release notes</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://www.mantidproject.org/contact">Contact Us</a>
+  </li>
+</ul></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+        <div class="navbar-item"><ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+    <li class="nav-item">
+      <a class="nav-link" href="https://github.com/mantidproject/mantid" rel="noopener" target="_blank" title="GitHub">
+        <span><i class="fab fa-github-square"></i></span>
+        <label class="sr-only">GitHub</label>
+      </a>
+    </li>
+  </ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://download.mantidproject.org">Downloads</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org/nightly/tutorials/">Tutorials</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org">User Docs</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://developer.mantidproject.org">Develop</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org/release/">Release notes</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://www.mantidproject.org/contact">Contact Us</a>
+  </li>
+</ul></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+          <div class="navbar-item"><ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+    <li class="nav-item">
+      <a class="nav-link" href="https://github.com/mantidproject/mantid" rel="noopener" target="_blank" title="GitHub">
+        <span><i class="fab fa-github-square"></i></span>
+        <label class="sr-only">GitHub</label>
+      </a>
+    </li>
+  </ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item pst-sidebar-collapse"><button id="pst-collapse-sidebar-button" aria-expanded="true" aria-controls="pst-primary-sidebar">
+  <svg class="pst-icon" role="img" aria-hidden="true" focusable="false" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    <path fill="currentColor" d="M3 15.5C2.36232 15.5 1.74874 15.2564 1.28478 14.8189C0.820828 14.3815 0.541576 13.7832 0.504167 13.1467L0.5 13L0.5 3C0.499965 2.36232 0.743605 1.74874 1.18107 1.28478C1.61854 0.820828 2.21676 0.541576 2.85333 0.504167L3 0.5L13 0.5C13.6377 0.499965 14.2513 0.743605 14.7152 1.18107C15.1792 1.61854 15.4584 2.21676 15.4958 2.85333L15.5 3L15.5 13C15.5 13.6377 15.2564 14.2513 14.8189 14.7152C14.3815 15.1792 13.7832 15.4584 13.1467 15.4958L13 15.5L3 15.5ZM3 13.8333L10.5 13.8333L10.5 2.16667L3 2.16667C2.79589 2.16669 2.59889 2.24163 2.44636 2.37726C2.29383 2.5129 2.19638 2.69979 2.1725 2.9025L2.16667 3L2.16667 13C2.16669 13.2041 2.24163 13.4011 2.37726 13.5536C2.5129 13.7062 2.69979 13.8036 2.9025 13.8275L3 13.8333ZM6.65583 10.325L6.5775 10.2558L4.91083 8.58917C4.76735 8.44567 4.68116 8.25476 4.66843 8.05223C4.65569 7.84971 4.71729 7.6495 4.84167 7.48917L4.91083 7.41083L6.5775 5.74417C6.72747 5.59471 6.9287 5.50794 7.14032 5.50148C7.35194 5.49502 7.55809 5.56935 7.7169 5.70937C7.8757 5.8494 7.97525 6.04463 7.99533 6.25539C8.01541 6.46616 7.95451 6.67667 7.825 6.84417L7.75583 6.9225L6.67917 8L7.75583 9.0775C7.89931 9.22099 7.98551 9.41191 7.99824 9.61443C8.01097 9.81695 7.94938 10.0172 7.825 10.1775L7.75583 10.2558C7.61234 10.3993 7.42142 10.4855 7.2189 10.4982C7.01638 10.511 6.81617 10.4494 6.65583 10.325Z"/>
+  </svg>
+  <span class="pst-collapse-sidebar-label">Collapse Sidebar</span>
+  <span class="pst-expand-sidebar-label">Expand Sidebar</span>
+</button></div>
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"></div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">ISIS Reflectometry Plotting Tab Internals</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="isis-reflectometry-plotting-tab-internals">
+<span id="isisreflectometryplottingtab"></span><h1>ISIS Reflectometry Plotting Tab Internals<a class="headerlink" href="#isis-reflectometry-plotting-tab-internals" title="Link to this heading">#</a></h1>
+<p>This document describes the implementation of the Plotting tab in the
+<a class="reference internal" href="ISISReflectometryInterface.html#isisreflectometryinterface"><span class="std std-ref">ISIS Reflectometry Interface</span></a>. It is intended
+for developers changing the plotting workspace tree, plot output types, plot
+controls, or the connection to Mantid’s matplotlib plotting functions.</p>
+<p>The implementation follows Model-View-Presenter (MVP):</p>
+<ul class="simple">
+<li><p>the model owns plotting data and creates plot-ready workspaces;</p></li>
+<li><p>the view owns Qt widgets and translates between Qt and view-facing data;</p></li>
+<li><p>the presenter coordinates the model, view, batch interface, and plotting
+services.</p></li>
+</ul>
+<p>The source is under
+<code class="code docutils literal notranslate"><span class="pre">qt/scientific_interfaces/ISISReflectometry/GUI/Plotting</span></code>. Shared plot
+request and rendering code is under the adjacent <code class="code docutils literal notranslate"><span class="pre">GUI/Common</span></code> directory.</p>
+<section id="architecture">
+<h2>Architecture<a class="headerlink" href="#architecture" title="Link to this heading">#</a></h2>
+<p>The principal dependencies are:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>BatchPresenter
+    |
+    v
+PlottingPresenter
+    |
+    +-- owns --&gt; PlottingWorkspaceTree
+    |
+    +-- owns --&gt; PlottingViewStateProvider --&gt; PlotOutputTypeProperties
+    |
+    +-- uses --&gt; IPlottingModel (PlottingModel)
+    |
+    +-- uses --&gt; IPlotOptionsProvider (PlotOptionsProvider)
+    |
+    +-- uses --&gt; IPlotter (Plotter)
+    |
+    +-- uses --&gt; IActiveFigureMonitor (QtActiveFigureMonitor)
+    |
+    `-- updates --&gt; IPlottingView (QtPlottingView)
+                                   |
+                                   v
+                      QtPlottingWorkspaceTreeViewAdapter
+                                   |
+                                   v
+                      QtPlottingWorkspaceTreeView
+</pre></div>
+</div>
+<p>Names in parentheses are the production implementations of the preceding
+interfaces. <code class="code docutils literal notranslate"><span class="pre">PlottingViewStateProvider</span></code> and
+<code class="code docutils literal notranslate"><span class="pre">PlottingWorkspaceTree</span></code> are concrete, presenter-owned collaborators and
+therefore do not have interfaces.</p>
+<p><code class="code docutils literal notranslate"><span class="pre">PlottingWorkspaceTree</span></code> is presenter-owned domain state rather than a Qt
+tree model. The presenter converts this state into
+<code class="code docutils literal notranslate"><span class="pre">PlottingWorkspaceTreeItemState</span></code> objects through
+<code class="code docutils literal notranslate"><span class="pre">PlottingViewStateProvider</span></code> before passing it to the view. The provider
+uses <code class="code docutils literal notranslate"><span class="pre">PlotOutputTypeProperties</span></code> to determine display and selection state.
+This keeps output-type selection policy out of the model and Qt-specific tree
+handling out of the presenter.</p>
+<p>The two providers perform different transformations:</p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">PlottingViewStateProvider</span></code> converts model and presenter state into
+toolkit-independent state that <code class="code docutils literal notranslate"><span class="pre">IPlottingView</span></code> can display.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">PlotOptionsProvider</span></code> converts the user’s scientific output and layout
+selection into rendering options that <code class="code docutils literal notranslate"><span class="pre">IPlotter</span></code> can execute.</p></li>
+</ul>
+</section>
+<section id="key-terminology">
+<h2>Key Terminology<a class="headerlink" href="#key-terminology" title="Link to this heading">#</a></h2>
+<dl class="simple">
+<dt>Plot output type</dt><dd><p>The scientific result requested by the user: a reflectivity curve, detector
+map, spin asymmetry, or alignment plot. It is represented by
+<code class="code docutils literal notranslate"><span class="pre">PlotOutputType</span></code>.</p>
+</dd>
+<dt>Reduced workspace output type</dt><dd><p>The reduction-stage data represented by a plotting workspace tree item, such
+as <code class="code docutils literal notranslate"><span class="pre">IvsQ</span></code>, <code class="code docutils literal notranslate"><span class="pre">IvsLambda</span></code>, or <code class="code docutils literal notranslate"><span class="pre">IvsQBinned</span></code>. It is represented
+by <code class="code docutils literal notranslate"><span class="pre">ReducedWorkspaceOutputType</span></code> and is distinct from the requested
+plot output type.</p>
+</dd>
+<dt>Plotting workspace tree</dt><dd><p>The presenter-owned hierarchy of successful reduction groups, runs, ADS
+workspace groups, and workspaces that can supply data for plotting. A
+reduction group comes from the Runs table; an ADS workspace group is a
+Mantid <code class="code docutils literal notranslate"><span class="pre">WorkspaceGroup</span></code> containing workspaces.</p>
+</dd>
+<dt>Postprocessed reduction-group output</dt><dd><p>A stitched or otherwise group-level reduced workspace produced from multiple
+runs. It appears directly beneath a reduction group and can be excluded from
+output types for which it is not meaningful.</p>
+</dd>
+<dt>Plot output selection</dt><dd><p>The user’s chosen <code class="code docutils literal notranslate"><span class="pre">PlotOutputType</span></code> together with any output-specific
+detector-map or alignment axes. It is represented by
+<code class="code docutils literal notranslate"><span class="pre">PlotOutputSelection</span></code>.</p>
+</dd>
+<dt>View state</dt><dd><p>Toolkit-independent labels, visibility, enabled state, muted state, and
+selection modes calculated by <code class="code docutils literal notranslate"><span class="pre">PlottingViewStateProvider</span></code> for the Qt
+view to apply.</p>
+</dd>
+<dt>Plot options</dt><dd><p>The rendering configuration calculated by <code class="code docutils literal notranslate"><span class="pre">PlotOptionsProvider</span></code>,
+including layout, style, axis metadata, error bars, markers, and title. It is
+represented by <code class="code docutils literal notranslate"><span class="pre">PlotOptions</span></code>.</p>
+</dd>
+</dl>
+</section>
+<section id="model-files">
+<h2>Model Files<a class="headerlink" href="#model-files" title="Link to this heading">#</a></h2>
+<p>The model directory contains data derived from completed reductions and the
+operations that prepare selected data for plotting.</p>
+<section id="model-plottingworkspace-h">
+<h3><code class="code docutils literal notranslate"><span class="pre">model/PlottingWorkspace.h</span></code><a class="headerlink" href="#model-plottingworkspace-h" title="Link to this heading">#</a></h3>
+<p>Defines the domain types shared by the plotting model and presenter:</p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">PlottingWorkspaceTreeItemType</span></code> identifies reduction groups, runs, ADS
+workspace groups, and individual workspaces in the hierarchy.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">ReducedWorkspaceOutputType</span></code> identifies the reduced output represented
+by a workspace item, such as <code class="code docutils literal notranslate"><span class="pre">IvsQ</span></code>, <code class="code docutils literal notranslate"><span class="pre">IvsLambda</span></code>, or
+<code class="code docutils literal notranslate"><span class="pre">IvsQBinned</span></code>.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">PlottingWorkspaceTreeItem</span></code> is one node in the model-side hierarchy. It
+contains domain data only and has no selection or display state.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">PlottingWorkspace</span></code> contains the metadata needed to turn one reduced
+workspace into a requested plot output. This includes its ADS name, run
+numbers, containing workspace group, and period number.</p></li>
+</ul>
+</section>
+<section id="model-iplottingmodel-h-and-model-plottingmodel-h-cpp">
+<h3><code class="code docutils literal notranslate"><span class="pre">model/IPlottingModel.h</span></code> and <code class="code docutils literal notranslate"><span class="pre">model/PlottingModel.h/.cpp</span></code><a class="headerlink" href="#model-iplottingmodel-h-and-model-plottingmodel-h-cpp" title="Link to this heading">#</a></h3>
+<p>Defines:</p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">IPlottingModel</span></code>, the presenter-facing interface for obtaining
+plot-ready ADS workspace names; and</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">PlottingModel</span></code>, the implementation that either selects existing
+reduced workspaces or generates derived plotting workspaces.</p></li>
+</ul>
+<p><code class="code docutils literal notranslate"><span class="pre">PlottingModel::workspacesForPlotting</span></code> dispatches according to the
+selected <code class="code docutils literal notranslate"><span class="pre">PlotOutputType</span></code>:</p>
+<ul class="simple">
+<li><p>reflectivity curves use the selected reduced workspace names directly;</p></li>
+<li><p>spin asymmetry creates a cached workspace from the up and down members of a
+polarization workspace group;</p></li>
+<li><p>alignment creates a detector profile and optional fitted-peak workspaces from
+the corresponding raw time-of-flight workspace;</p></li>
+<li><p>detector maps extract detector spectra, optionally convert the x axis to
+wavelength, and create the selected numeric y axis.</p></li>
+</ul>
+<p>Generated workspaces have private ISIS Reflectometry prefixes and are reused if
+they already exist in the ADS. The model uses run and period metadata from
+<code class="code docutils literal notranslate"><span class="pre">PlottingWorkspace</span></code> to find the matching raw workspace in <code class="code docutils literal notranslate"><span class="pre">TOF</span></code> or
+<code class="code docutils literal notranslate"><span class="pre">__TOF</span></code>.</p>
+</section>
+<section id="model-plottingworkspacetree-h-cpp">
+<h3><code class="code docutils literal notranslate"><span class="pre">model/PlottingWorkspaceTree.h/.cpp</span></code><a class="headerlink" href="#model-plottingworkspacetree-h-cpp" title="Link to this heading">#</a></h3>
+<p><code class="code docutils literal notranslate"><span class="pre">PlottingWorkspaceTree</span></code> owns the plotting workspace hierarchy and a
+name-to-<code class="code docutils literal notranslate"><span class="pre">PlottingWorkspace</span></code> lookup. <code class="code docutils literal notranslate"><span class="pre">rebuild</span></code> derives both
+collections from a <code class="code docutils literal notranslate"><span class="pre">RunsTable</span></code>:</p>
+<ul class="simple">
+<li><p>only successful reduction groups and rows are considered;</p></li>
+<li><p>an output is added only when its named workspace still exists in the ADS;</p></li>
+<li><p>ADS workspace groups are expanded into child workspace items;</p></li>
+<li><p>run-number and period metadata is read from matrix workspaces;</p></li>
+<li><p>empty runs and groups are omitted.</p></li>
+</ul>
+<p><code class="code docutils literal notranslate"><span class="pre">items</span></code> exposes the hierarchy to the presenter.
+<code class="code docutils literal notranslate"><span class="pre">plottingWorkspacesForNames</span></code> resolves leaf names selected in the view back
+to their model metadata. It preserves the order supplied by the view and ignores
+names that are not in the current tree.</p>
+</section>
+</section>
+<section id="presenter-files">
+<h2>Presenter Files<a class="headerlink" href="#presenter-files" title="Link to this heading">#</a></h2>
+<p>The presenter directory contains orchestration and all policy that determines
+what the user may select or plot.</p>
+<section id="presenter-iplottingpresenter-h">
+<h3><code class="code docutils literal notranslate"><span class="pre">presenter/IPlottingPresenter.h</span></code><a class="headerlink" href="#presenter-iplottingpresenter-h" title="Link to this heading">#</a></h3>
+<p>Defines <code class="code docutils literal notranslate"><span class="pre">IPlottingPresenter</span></code>, the interface used by
+<code class="code docutils literal notranslate"><span class="pre">BatchPresenter</span></code>. It receives the parent batch presenter, processing
+state changes, instrument changes, and updated <code class="code docutils literal notranslate"><span class="pre">RunsTable</span></code> data. This
+allows the Batch component to coordinate the tab without depending on
+<code class="code docutils literal notranslate"><span class="pre">PlottingPresenter</span></code> directly.</p>
+</section>
+<section id="presenter-plottingpresenter-h-cpp">
+<h3><code class="code docutils literal notranslate"><span class="pre">presenter/PlottingPresenter.h/.cpp</span></code><a class="headerlink" href="#presenter-plottingpresenter-h-cpp" title="Link to this heading">#</a></h3>
+<p>Defines <code class="code docutils literal notranslate"><span class="pre">PlottingPresenter</span></code>, which coordinates the complete tab workflow.
+Its responsibilities are to:</p>
+<ul class="simple">
+<li><p>subscribe to view notifications and active-figure changes;</p></li>
+<li><p>enable or disable plot output selection while reduction or autoreduction
+runs;</p></li>
+<li><p>rebuild the model-side plotting workspace tree when the runs table changes;</p></li>
+<li><p>ask <code class="code docutils literal notranslate"><span class="pre">PlottingViewStateProvider</span></code> for output-specific tree and control
+state;</p></li>
+<li><p>resolve the user’s selected workspace names;</p></li>
+<li><p>request plot-ready workspaces from <code class="code docutils literal notranslate"><span class="pre">IPlottingModel</span></code>;</p></li>
+<li><p>request rendering options from <code class="code docutils literal notranslate"><span class="pre">IPlotOptionsProvider</span></code>;</p></li>
+<li><p>warn before creating five or more plot items; and</p></li>
+<li><p>submit one or more <code class="code docutils literal notranslate"><span class="pre">PlotRequest</span></code> objects to <code class="code docutils literal notranslate"><span class="pre">IPlotter</span></code>.</p></li>
+</ul>
+<p>An individual layout is submitted as one request per workspace. Overplot and
+tiled layouts are submitted as one request containing all selected workspaces.</p>
+</section>
+<section id="presenter-plottingpresenterfactory-h">
+<h3><code class="code docutils literal notranslate"><span class="pre">presenter/PlottingPresenterFactory.h</span></code><a class="headerlink" href="#presenter-plottingpresenterfactory-h" title="Link to this heading">#</a></h3>
+<p>Defines <code class="code docutils literal notranslate"><span class="pre">PlottingPresenterFactory</span></code>, which owns the production
+<code class="code docutils literal notranslate"><span class="pre">Plotter</span></code>, <code class="code docutils literal notranslate"><span class="pre">PlotOptionsProvider</span></code>, and <code class="code docutils literal notranslate"><span class="pre">PlottingModel</span></code>, and
+injects them into a new <code class="code docutils literal notranslate"><span class="pre">PlottingPresenter</span></code>.
+<code class="code docutils literal notranslate"><span class="pre">BatchPresenterFactory</span></code> uses this factory when constructing a Batch tab.</p>
+</section>
+<section id="presenter-plotoutputtypeproperties-h-cpp">
+<h3><code class="code docutils literal notranslate"><span class="pre">presenter/PlotOutputTypeProperties.h/.cpp</span></code><a class="headerlink" href="#presenter-plotoutputtypeproperties-h-cpp" title="Link to this heading">#</a></h3>
+<p>Defines:</p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">PlotOutputTypeCapabilities</span></code>, the flags describing support for
+overplotting, adding to an existing figure, postprocessed reduction-group
+outputs, and multi-plot selection based on ADS workspace groups;</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">PlotOutputTypeProperties</span></code>, the display name, accepted plotting
+workspace tree item types, accepted reduced workspace output types, and
+capabilities for one <code class="code docutils literal notranslate"><span class="pre">PlotOutputType</span></code>; and</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">plotOutputTypeProperties</span></code>, the lookup that returns the configured
+properties for an output type.</p></li>
+</ul>
+<p>The presenter and <code class="code docutils literal notranslate"><span class="pre">PlottingViewStateProvider</span></code> query these properties
+instead of containing output-type conditionals. This is the main extension
+point for tree selection and action behavior when adding another plot output
+type.</p>
+</section>
+<section id="presenter-plottingviewstateprovider-h-cpp">
+<h3><code class="code docutils literal notranslate"><span class="pre">presenter/PlottingViewStateProvider.h/.cpp</span></code><a class="headerlink" href="#presenter-plottingviewstateprovider-h-cpp" title="Link to this heading">#</a></h3>
+<p>Defines <code class="code docutils literal notranslate"><span class="pre">PlottingViewStateProvider</span></code>, the stateless provider for all state
+passed from the presenter to the view. For the plotting workspace tree, it
+converts model-side <code class="code docutils literal notranslate"><span class="pre">PlottingWorkspaceTreeItem</span></code> objects into view-facing
+<code class="code docutils literal notranslate"><span class="pre">PlottingWorkspaceTreeItemState</span></code> objects for the selected output type. It
+evaluates whether each node:</p>
+<ul class="simple">
+<li><p>is included by the output type;</p></li>
+<li><p>is a postprocessed reduction-group output that must be excluded;</p></li>
+<li><p>can be selected directly;</p></li>
+<li><p>can contribute when an ancestor is selected; and</p></li>
+<li><p>should be visually muted.</p></li>
+</ul>
+<p>Keeping this policy in the presenter layer means that
+<code class="code docutils literal notranslate"><span class="pre">PlottingWorkspaceTree</span></code> knows nothing about GUI selection behavior.</p>
+<p>The same provider creates state for the other parts of the Plotting tab:</p>
+<ul class="simple">
+<li><p>plot output selector labels;</p></li>
+<li><p>visibility of detector-map and alignment controls; and</p></li>
+<li><p>enabled states for the Individual, Overplot, and Tiled actions, plus enabled
+and checked states for the vertical-tiling and add-to-existing options.</p></li>
+</ul>
+<p>Action state depends on processing state, selected workspace and ADS
+workspace-group counts, output-type capabilities, and compatibility with the
+active Reflectometry figure. When adding to an existing figure, one selected
+item is enough for a tiled or overplot request because the figure already
+contains a plot.</p>
+</section>
+<section id="presenter-qtactivefiguremonitor-h-cpp">
+<h3><code class="code docutils literal notranslate"><span class="pre">presenter/QtActiveFigureMonitor.h/.cpp</span></code><a class="headerlink" href="#presenter-qtactivefiguremonitor-h-cpp" title="Link to this heading">#</a></h3>
+<p>Defines:</p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">IActiveFigureMonitor</span></code>, the interface for notifications that the active
+matplotlib figure may have changed; and</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">QtActiveFigureMonitor</span></code>, which bridges active-order changes from
+Workbench’s global figure manager observer facility to Qt.</p></li>
+</ul>
+<p>The presenter uses these notifications to refresh add-to-existing and overplot
+action state immediately when plots are opened, focused, or closed outside the
+tab.</p>
+</section>
+</section>
+<section id="view-files">
+<h2>View Files<a class="headerlink" href="#view-files" title="Link to this heading">#</a></h2>
+<p>The view directory contains Qt widgets and simple data transferred from the
+presenter to the view.</p>
+<section id="view-iplottingview-h">
+<h3><code class="code docutils literal notranslate"><span class="pre">view/IPlottingView.h</span></code><a class="headerlink" href="#view-iplottingview-h" title="Link to this heading">#</a></h3>
+<p>Defines:</p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">PlottingViewSubscriber</span></code>, the user-action notifications implemented by
+the presenter; and</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">IPlottingView</span></code>, the state setters and user-input getters used by the
+presenter.</p></li>
+</ul>
+<p>The interface uses standard C++ and plotting domain types. Qt is limited to the
+plot parent <code class="code docutils literal notranslate"><span class="pre">QWidget</span></code> required by the plotting service.</p>
+</section>
+<section id="view-plottingviewstate-h">
+<h3><code class="code docutils literal notranslate"><span class="pre">view/PlottingViewState.h</span></code><a class="headerlink" href="#view-plottingviewstate-h" title="Link to this heading">#</a></h3>
+<p>Defines the toolkit-independent types produced by
+<code class="code docutils literal notranslate"><span class="pre">PlottingViewStateProvider</span></code>:</p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">PlotOutputTypeViewItem</span></code> pairs an output type with the label displayed
+in the selector;</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">PlotOutputControlsState</span></code> controls visibility of output-specific
+controls;</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">PlotActionState</span></code> controls enabled and checked states for plotting
+actions;</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">PlottingWorkspaceTreeSelectionMode</span></code> specifies whether a plotting
+workspace tree row can be selected directly, through a parent, both, or
+neither; and</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">PlottingWorkspaceTreeItemState</span></code> is one evaluated node containing its
+label, domain metadata, children, muted state, and selection mode.</p></li>
+</ul>
+<p>These types let the presenter update related controls without exposing Qt
+types. The Qt view applies the decisions but does not recalculate them.</p>
+</section>
+<section id="view-qtplottingview-h-cpp">
+<h3><code class="code docutils literal notranslate"><span class="pre">view/QtPlottingView.h/.cpp</span></code><a class="headerlink" href="#view-qtplottingview-h-cpp" title="Link to this heading">#</a></h3>
+<p>Defines <code class="code docutils literal notranslate"><span class="pre">QtPlottingView</span></code>, the <code class="code docutils literal notranslate"><span class="pre">QWidget</span></code> implementation of
+<code class="code docutils literal notranslate"><span class="pre">IPlottingView</span></code> used as the Plotting tab. It:</p>
+<ul class="simple">
+<li><p>initialises controls defined in <code class="code docutils literal notranslate"><span class="pre">PlottingWidget.ui</span></code>;</p></li>
+<li><p>connects Qt signals to <code class="code docutils literal notranslate"><span class="pre">PlottingViewSubscriber</span></code> notifications;</p></li>
+<li><p>applies presenter-provided control state;</p></li>
+<li><p>reads the current plot output, axes, layout options, and plotting workspace
+tree selection;</p></li>
+<li><p>owns <code class="code docutils literal notranslate"><span class="pre">QtPlottingWorkspaceTreeViewAdapter</span></code>; and</p></li>
+<li><p>displays the confirmation dialog for large plot requests.</p></li>
+</ul>
+<p>The view reports user actions but does not decide which actions or tree entries
+are valid.</p>
+</section>
+<section id="view-qtplottingworkspacetreeviewadapter-h-cpp">
+<h3><code class="code docutils literal notranslate"><span class="pre">view/QtPlottingWorkspaceTreeViewAdapter.h/.cpp</span></code><a class="headerlink" href="#view-qtplottingworkspacetreeviewadapter-h-cpp" title="Link to this heading">#</a></h3>
+<p>Defines <code class="code docutils literal notranslate"><span class="pre">QtPlottingWorkspaceTreeViewAdapter</span></code>, which adapts
+<code class="code docutils literal notranslate"><span class="pre">PlottingWorkspaceTreeItemState</span></code> objects to a
+<code class="code docutils literal notranslate"><span class="pre">QStandardItemModel</span></code> displayed by <code class="code docutils literal notranslate"><span class="pre">QtPlottingWorkspaceTreeView</span></code>. It
+owns the Qt-specific details of:</p>
+<ul class="simple">
+<li><p>columns and custom data roles;</p></li>
+<li><p>output and item type display names;</p></li>
+<li><p>palette-aware muted rendering;</p></li>
+<li><p>row and subtree selection propagation;</p></li>
+<li><p>direct-selection and parent-selection modes; and</p></li>
+<li><p>extracting selected leaf workspace names and selected ADS workspace-group
+counts.</p></li>
+</ul>
+<p>The adapter applies selection behavior already specified by the presenter. It
+does not determine whether a particular output type permits a workspace.</p>
+</section>
+<section id="view-qtplottingworkspacetreeview-h-cpp">
+<h3><code class="code docutils literal notranslate"><span class="pre">view/QtPlottingWorkspaceTreeView.h/.cpp</span></code><a class="headerlink" href="#view-qtplottingworkspacetreeview-h-cpp" title="Link to this heading">#</a></h3>
+<p>Defines <code class="code docutils literal notranslate"><span class="pre">QtPlottingWorkspaceTreeView</span></code>, the specialised
+<code class="code docutils literal notranslate"><span class="pre">QTreeView</span></code> used by the tab. Its painting logic extends selected-row
+backgrounds across muted cells and obtains disabled colors from the active Qt
+palette, allowing the tree to work in light and dark themes.</p>
+</section>
+<section id="view-plottingwidget-ui">
+<h3><code class="code docutils literal notranslate"><span class="pre">view/PlottingWidget.ui</span></code><a class="headerlink" href="#view-plottingwidget-ui" title="Link to this heading">#</a></h3>
+<p>Qt Designer definition for the Plotting tab. It declares the plotting workspace
+tree, plot output selector, detector-map and alignment axis controls, plotting
+buttons, vertical-tiling checkbox, and add-to-existing checkbox. Control policy
+is not encoded in the UI file; the presenter supplies it through
+<code class="code docutils literal notranslate"><span class="pre">PlotActionState</span></code> and <code class="code docutils literal notranslate"><span class="pre">PlotOutputControlsState</span></code>.</p>
+</section>
+</section>
+<section id="shared-plotting-files">
+<h2>Shared Plotting Files<a class="headerlink" href="#shared-plotting-files" title="Link to this heading">#</a></h2>
+<p>The following files under <code class="code docutils literal notranslate"><span class="pre">GUI/Common</span></code> are used by the Plotting tab and
+keep plot request construction separate from Python-backed rendering.</p>
+<section id="common-plotoptions-h-cpp">
+<h3><code class="code docutils literal notranslate"><span class="pre">Common/PlotOptions.h/.cpp</span></code><a class="headerlink" href="#common-plotoptions-h-cpp" title="Link to this heading">#</a></h3>
+<p>Defines the data passed from user selection to rendering:</p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">PlotOutputType</span></code>, <code class="code docutils literal notranslate"><span class="pre">PlotStyle</span></code>, <code class="code docutils literal notranslate"><span class="pre">PlotLayout</span></code>, and
+<code class="code docutils literal notranslate"><span class="pre">AxisScale</span></code> describe the requested scientific output and its general
+presentation;</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">DetectorMapXAxis</span></code>, <code class="code docutils literal notranslate"><span class="pre">DetectorMapYAxis</span></code>, and
+<code class="code docutils literal notranslate"><span class="pre">AlignmentXAxis</span></code> describe output-specific scientific axis choices;</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">PlotOutputSelection</span></code> contains the user’s output type and
+output-specific axis choices;</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">PlotAxis</span></code> contains the label, unit, and scale for one rendered axis;</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">PlotOptions</span></code> is the complete rendering configuration derived from the
+output selection and layout; and</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">PlotRequest</span></code> combines workspace names, options, figure targeting, and
+window-parent information for <code class="code docutils literal notranslate"><span class="pre">IPlotter</span></code>.</p></li>
+</ul>
+<p>The implementation provides output-specific option factory functions for
+reflectivity, detector-map, spin-asymmetry, and alignment plots. They define
+labels, scales, styles, error bars, markers, and window titles.</p>
+</section>
+<section id="common-iplotoptionsprovider-h-and-plotoptionsprovider-h-cpp">
+<h3><code class="code docutils literal notranslate"><span class="pre">Common/IPlotOptionsProvider.h</span></code> and <code class="code docutils literal notranslate"><span class="pre">PlotOptionsProvider.h/.cpp</span></code><a class="headerlink" href="#common-iplotoptionsprovider-h-and-plotoptionsprovider-h-cpp" title="Link to this heading">#</a></h3>
+<p>Defines:</p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">IPlotOptionsProvider</span></code>, the presenter-facing contract for discovering
+available plot output types and deriving rendering options; and</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">PlotOptionsProvider</span></code>, the production implementation that converts a
+<code class="code docutils literal notranslate"><span class="pre">PlotOutputSelection</span></code> plus <code class="code docutils literal notranslate"><span class="pre">PlotLayout</span></code> into
+<code class="code docutils literal notranslate"><span class="pre">PlotOptions</span></code>.</p></li>
+</ul>
+<p>Instrument-specific outputs are currently available for POLREF, OFFSPEC, and
+CRISP; other instruments expose reflectivity curves only.</p>
+</section>
+<section id="common-iplotter-h-and-common-plotter-h-cpp">
+<h3><code class="code docutils literal notranslate"><span class="pre">Common/IPlotter.h</span></code> and <code class="code docutils literal notranslate"><span class="pre">Common/Plotter.h/.cpp</span></code><a class="headerlink" href="#common-iplotter-h-and-common-plotter-h-cpp" title="Link to this heading">#</a></h3>
+<p>These files existed before the tab and were extended to support its requests.
+They define:</p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">IPlotter</span></code>, the presenter-facing contract for inspecting the active
+figure and plotting a <code class="code docutils literal notranslate"><span class="pre">PlotRequest</span></code>; and</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">Plotter</span></code>, the production implementation that bridges C++ requests to
+Mantid’s Python/matplotlib plotting functions.</p></li>
+</ul>
+<p><code class="code docutils literal notranslate"><span class="pre">IPlotter</span></code> can report whether the active figure belongs to the
+Reflectometry tab and whether its active axes can be overplotted.</p>
+<p><code class="code docutils literal notranslate"><span class="pre">Plotter</span></code> has three main stages:</p>
+<ol class="arabic simple">
+<li><p>Evaluate the request by expanding workspace groups, deriving matplotlib axis
+properties, finding an eligible active figure, and choosing a plotting route.</p></li>
+<li><p>Dispatch to colorfill, existing-figure tiled, custom tiled, or standard
+Mantid plotting.</p></li>
+<li><p>Apply post-plot processing to the appropriate axes: labels, optional
+horizontal markers, the Reflectometry figure marker, and transient window
+parenting.</p></li>
+</ol>
+<p>The distinction between all axes and newly-created axes prevents labels and
+markers for a tiled addition from modifying plots that were already in the
+figure.</p>
+</section>
+</section>
+<section id="integration-and-build-files">
+<h2>Integration and Build Files<a class="headerlink" href="#integration-and-build-files" title="Link to this heading">#</a></h2>
+<section id="plotting-cmakelists-txt">
+<h3><code class="code docutils literal notranslate"><span class="pre">Plotting/CMakeLists.txt</span></code><a class="headerlink" href="#plotting-cmakelists-txt" title="Link to this heading">#</a></h3>
+<p>Lists plotting sources, headers, the Qt MOC input, and
+<code class="code docutils literal notranslate"><span class="pre">PlottingWidget.ui</span></code>, then exports those lists to the enclosing
+ISISReflectometry CMake configuration.</p>
+</section>
+<section id="batch-batchpresenter-h-cpp-and-batchpresenterfactory-h">
+<h3><code class="code docutils literal notranslate"><span class="pre">Batch/BatchPresenter.h/.cpp</span></code> and <code class="code docutils literal notranslate"><span class="pre">BatchPresenterFactory.h</span></code><a class="headerlink" href="#batch-batchpresenter-h-cpp-and-batchpresenterfactory-h" title="Link to this heading">#</a></h3>
+<p>These existing Batch files integrate the new component. The factory constructs
+the plotting presenter from the plotting view. <code class="code docutils literal notranslate"><span class="pre">BatchPresenter</span></code> owns it,
+supplies the parent presenter, forwards instrument and processing state, and
+calls <code class="code docutils literal notranslate"><span class="pre">updatePlottingWorkspaces</span></code> whenever reduction state or relevant ADS
+state changes.</p>
+</section>
+<section id="batch-ibatchview-h-and-batch-qtbatchview-h-cpp">
+<h3><code class="code docutils literal notranslate"><span class="pre">Batch/IBatchView.h</span></code> and <code class="code docutils literal notranslate"><span class="pre">Batch/QtBatchView.h/.cpp</span></code><a class="headerlink" href="#batch-ibatchview-h-and-batch-qtbatchview-h-cpp" title="Link to this heading">#</a></h3>
+<p>These existing view files expose and construct the <code class="code docutils literal notranslate"><span class="pre">QtPlottingView</span></code> as one
+of the Batch tab’s child tabs.</p>
+</section>
+</section>
+<section id="test-files">
+<h2>Test Files<a class="headerlink" href="#test-files" title="Link to this heading">#</a></h2>
+<p>The focused test files are:</p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">test/Plotting/PlottingWorkspaceTreeTest.h</span></code>, covering hierarchy and
+metadata construction from runs-table and ADS state;</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">test/Plotting/PlottingModelTest.h</span></code>, covering workspace selection and
+generation for each output type;</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">test/Plotting/PlottingViewStateProviderTest.h</span></code>, covering plot action
+enablement and output-specific plotting workspace tree item state;</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">test/Plotting/PlottingPresenterTest.h</span></code>, covering Batch and view
+notifications, display-state updates, request construction, and plotting
+orchestration;</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">test/Plotting/QtPlottingViewTest.h</span></code>, covering Qt control and plotting
+workspace tree behavior;</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">test/Common/PlotOptionsProviderTest.h</span></code>, covering instrument output
+availability and output-to-options conversion; and</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">test/Common/PlotterTest.h</span></code>, covering plot route selection and
+post-plotting behavior through the Python plotting boundary.</p></li>
+</ul>
+<p><code class="code docutils literal notranslate"><span class="pre">TestHelpers/PlottingTestHelpers.h</span></code> provides readable equality matchers
+and formatted diagnostics for plotting workspace tree expectations. The test
+files are registered in <code class="code docutils literal notranslate"><span class="pre">test/CMakeLists.txt</span></code>.</p>
+</section>
+<section id="end-to-end-operation">
+<h2>End-to-End Operation<a class="headerlink" href="#end-to-end-operation" title="Link to this heading">#</a></h2>
+<section id="construction">
+<h3>Construction<a class="headerlink" href="#construction" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">QtBatchView</span></code> constructs the Plotting tab view.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">BatchPresenterFactory</span></code> asks <code class="code docutils literal notranslate"><span class="pre">PlottingPresenterFactory</span></code> to create
+the presenter for that view.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">PlottingPresenterFactory</span></code> injects its <code class="code docutils literal notranslate"><span class="pre">PlottingModel</span></code>,
+<code class="code docutils literal notranslate"><span class="pre">PlotOptionsProvider</span></code>, and <code class="code docutils literal notranslate"><span class="pre">Plotter</span></code> into the presenter. The
+presenter directly owns its <code class="code docutils literal notranslate"><span class="pre">PlottingWorkspaceTree</span></code> and
+<code class="code docutils literal notranslate"><span class="pre">PlottingViewStateProvider</span></code>.</p></li>
+<li><p>The plotting presenter subscribes to the view and to active-figure changes
+through <code class="code docutils literal notranslate"><span class="pre">QtActiveFigureMonitor</span></code>.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">BatchPresenter</span></code> takes ownership of the plotting presenter and passes
+itself as the parent coordinator.</p></li>
+</ol>
+</section>
+<section id="performing-a-reduction">
+<h3>Performing a reduction<a class="headerlink" href="#performing-a-reduction" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>The user requests processing from the Runs tab. The Runs presenter forwards
+the request to <code class="code docutils literal notranslate"><span class="pre">BatchPresenter</span></code>, which coordinates the job manager and
+algorithm runner.</p></li>
+<li><p>When a row or group algorithm completes,
+<code class="code docutils literal notranslate"><span class="pre">BatchPresenter::notifyAlgorithmComplete</span></code> updates reduction state in
+the job manager and refreshes the Runs view.</p></li>
+<li><p>The Batch presenter calls <code class="code docutils literal notranslate"><span class="pre">updatePlottingWorkspaces</span></code>. The same refresh
+is made after an algorithm error, batch load, row or group edits, settings
+changes, workspace deletion or rename, and ADS clearing.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">updatePlottingWorkspaces</span></code> passes the current model
+<code class="code docutils literal notranslate"><span class="pre">RunsTable</span></code> to <code class="code docutils literal notranslate"><span class="pre">PlottingPresenter::notifyRunsTableChanged</span></code>.</p></li>
+</ol>
+</section>
+<section id="updating-the-plotting-workspace-tree">
+<h3>Updating the plotting workspace tree<a class="headerlink" href="#updating-the-plotting-workspace-tree" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">PlottingPresenter</span></code> asks <code class="code docutils literal notranslate"><span class="pre">PlottingWorkspaceTree</span></code> to rebuild from
+the runs table.</p></li>
+<li><p>The tree walks reduction groups and rows that completed successfully and
+checks each recorded output against the ADS.</p></li>
+<li><p>Existing ADS workspace groups are expanded. Each selectable leaf is recorded
+as a <code class="code docutils literal notranslate"><span class="pre">PlottingWorkspace</span></code> with run, containing-group, and period
+metadata.</p></li>
+<li><p>The presenter reads the currently selected <code class="code docutils literal notranslate"><span class="pre">PlotOutputType</span></code> and asks
+<code class="code docutils literal notranslate"><span class="pre">PlottingViewStateProvider::plottingWorkspaceTreeItemStates</span></code> to
+evaluate the hierarchy using <code class="code docutils literal notranslate"><span class="pre">PlotOutputTypeProperties</span></code>.</p></li>
+<li><p>The resulting item states are passed to
+<code class="code docutils literal notranslate"><span class="pre">IPlottingView::setPlottingWorkspaceTreeItemStates</span></code>.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">QtPlottingWorkspaceTreeViewAdapter</span></code> rebuilds its
+<code class="code docutils literal notranslate"><span class="pre">QStandardItemModel</span></code>, applies muted state and selection modes, and
+expands the tree.</p></li>
+</ol>
+</section>
+<section id="user-interaction">
+<h3>User interaction<a class="headerlink" href="#user-interaction" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>When the instrument changes, the presenter asks
+<code class="code docutils literal notranslate"><span class="pre">IPlotOptionsProvider::availableTypes</span></code> for supported plot output types.
+It then asks <code class="code docutils literal notranslate"><span class="pre">PlottingViewStateProvider::outputTypeViewItems</span></code> to pair
+those domain values with labels for the plot output selector.</p></li>
+<li><p>Changing output type clears the current tree selection. The presenter then
+asks <code class="code docutils literal notranslate"><span class="pre">PlottingViewStateProvider</span></code> to rebuild the plotting workspace tree
+item states, output-control visibility, and plotting action state.</p></li>
+<li><p>Clicking a selectable tree row is handled by
+<code class="code docutils literal notranslate"><span class="pre">QtPlottingWorkspaceTreeViewAdapter</span></code>. Parent selection is propagated
+only to descendants whose presenter-supplied selection mode permits it.</p></li>
+<li><p>A selection change notifies <code class="code docutils literal notranslate"><span class="pre">PlottingPresenter</span></code>. The presenter obtains
+selected leaf names and ADS workspace-group counts from the view and asks
+<code class="code docutils literal notranslate"><span class="pre">PlottingViewStateProvider::plotActionState</span></code> for a new
+<code class="code docutils literal notranslate"><span class="pre">PlotActionState</span></code>.</p></li>
+<li><p>The active-figure monitor causes the same action-state calculation when the
+current matplotlib figure changes. Add-to-existing is enabled only for a
+compatible Reflectometry figure and output type. Overplotting additionally
+requires Mantid to report that the active axes are compatible.</p></li>
+</ol>
+</section>
+<section id="creating-the-plot">
+<h3>Creating the plot<a class="headerlink" href="#creating-the-plot" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Clicking Individual, Overplot, or Tiled sends the corresponding
+<code class="code docutils literal notranslate"><span class="pre">PlotLayout</span></code> notification to <code class="code docutils literal notranslate"><span class="pre">PlottingPresenter</span></code>.</p></li>
+<li><p>The presenter resolves selected leaf names through
+<code class="code docutils literal notranslate"><span class="pre">PlottingWorkspaceTree::plottingWorkspacesForNames</span></code> and reads the
+current plot output and axis selections from the view.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">PlottingModel::workspacesForPlotting</span></code> returns existing reduced
+workspace names or creates the derived workspaces required for the selected
+output.</p></li>
+<li><p>The presenter passes the view’s <code class="code docutils literal notranslate"><span class="pre">PlotOutputSelection</span></code> and requested
+layout to <code class="code docutils literal notranslate"><span class="pre">IPlotOptionsProvider::optionsFor</span></code>. The production
+<code class="code docutils literal notranslate"><span class="pre">PlotOptionsProvider</span></code> returns the axis, style, marker, error-bar, and
+title configuration as <code class="code docutils literal notranslate"><span class="pre">PlotOptions</span></code>.</p></li>
+<li><p>For a request of five or more plot items, the view asks the user to confirm.</p></li>
+<li><p>The presenter creates <code class="code docutils literal notranslate"><span class="pre">PlotRequest</span></code> objects and calls
+<code class="code docutils literal notranslate"><span class="pre">IPlotter::plot</span></code>. Individual plots are sent separately; overplot and
+tiled outputs are sent together.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">Plotter</span></code> evaluates and dispatches the request. Colorfill requests use
+Mantid’s <code class="code docutils literal notranslate"><span class="pre">pcolormesh</span></code>; vertical or workspace-group tiling uses custom
+tiled axes; tiled additions create axes on the active Reflectometry figure;
+other line requests use the standard Mantid plotting function.</p></li>
+<li><p>Post-plot processing labels the correct axes, adds any configured marker,
+marks the figure as owned by this interface, and assigns the Reflectometry
+window as its transient parent.</p></li>
+<li><p>The presenter refreshes active-figure compatibility so the controls reflect
+the newly created or updated plot, then asks
+<code class="code docutils literal notranslate"><span class="pre">PlottingViewStateProvider</span></code> for refreshed action state.</p></li>
+</ol>
+</section>
+</section>
+<section id="adding-a-plot-output-type">
+<h2>Adding a Plot Output Type<a class="headerlink" href="#adding-a-plot-output-type" title="Link to this heading">#</a></h2>
+<p>When extending the tab with another output type, update each responsibility at
+its existing boundary:</p>
+<ol class="arabic simple">
+<li><p>Add the scientific selection type and any required controls to
+<code class="code docutils literal notranslate"><span class="pre">PlotOptions.h</span></code> and the view.</p></li>
+<li><p>Add selection and action capabilities to
+<code class="code docutils literal notranslate"><span class="pre">PlotOutputTypeProperties.cpp</span></code>.</p></li>
+<li><p>Add plot-ready workspace creation or selection to <code class="code docutils literal notranslate"><span class="pre">PlottingModel.cpp</span></code>.</p></li>
+<li><p>Add rendering options and instrument availability to
+<code class="code docutils literal notranslate"><span class="pre">PlotOptions.cpp</span></code> and <code class="code docutils literal notranslate"><span class="pre">PlotOptionsProvider.cpp</span></code>.</p></li>
+<li><p>Add focused model, presenter/state-provider, options-provider, view, and
+plotter tests for behavior introduced at each boundary.</p></li>
+</ol>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="ISISReflectometryInterface.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">ISIS Reflectometry Interface</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Workbench/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Workbench Index</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#architecture">Architecture</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-terminology">Key Terminology</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-files">Model Files</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-plottingworkspace-h"><code class="code docutils literal notranslate"><span class="pre">model/PlottingWorkspace.h</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-iplottingmodel-h-and-model-plottingmodel-h-cpp"><code class="code docutils literal notranslate"><span class="pre">model/IPlottingModel.h</span></code> and <code class="code docutils literal notranslate"><span class="pre">model/PlottingModel.h/.cpp</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-plottingworkspacetree-h-cpp"><code class="code docutils literal notranslate"><span class="pre">model/PlottingWorkspaceTree.h/.cpp</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#presenter-files">Presenter Files</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#presenter-iplottingpresenter-h"><code class="code docutils literal notranslate"><span class="pre">presenter/IPlottingPresenter.h</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#presenter-plottingpresenter-h-cpp"><code class="code docutils literal notranslate"><span class="pre">presenter/PlottingPresenter.h/.cpp</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#presenter-plottingpresenterfactory-h"><code class="code docutils literal notranslate"><span class="pre">presenter/PlottingPresenterFactory.h</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#presenter-plotoutputtypeproperties-h-cpp"><code class="code docutils literal notranslate"><span class="pre">presenter/PlotOutputTypeProperties.h/.cpp</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#presenter-plottingviewstateprovider-h-cpp"><code class="code docutils literal notranslate"><span class="pre">presenter/PlottingViewStateProvider.h/.cpp</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#presenter-qtactivefiguremonitor-h-cpp"><code class="code docutils literal notranslate"><span class="pre">presenter/QtActiveFigureMonitor.h/.cpp</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#view-files">View Files</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#view-iplottingview-h"><code class="code docutils literal notranslate"><span class="pre">view/IPlottingView.h</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#view-plottingviewstate-h"><code class="code docutils literal notranslate"><span class="pre">view/PlottingViewState.h</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#view-qtplottingview-h-cpp"><code class="code docutils literal notranslate"><span class="pre">view/QtPlottingView.h/.cpp</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#view-qtplottingworkspacetreeviewadapter-h-cpp"><code class="code docutils literal notranslate"><span class="pre">view/QtPlottingWorkspaceTreeViewAdapter.h/.cpp</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#view-qtplottingworkspacetreeview-h-cpp"><code class="code docutils literal notranslate"><span class="pre">view/QtPlottingWorkspaceTreeView.h/.cpp</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#view-plottingwidget-ui"><code class="code docutils literal notranslate"><span class="pre">view/PlottingWidget.ui</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shared-plotting-files">Shared Plotting Files</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-plotoptions-h-cpp"><code class="code docutils literal notranslate"><span class="pre">Common/PlotOptions.h/.cpp</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-iplotoptionsprovider-h-and-plotoptionsprovider-h-cpp"><code class="code docutils literal notranslate"><span class="pre">Common/IPlotOptionsProvider.h</span></code> and <code class="code docutils literal notranslate"><span class="pre">PlotOptionsProvider.h/.cpp</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-iplotter-h-and-common-plotter-h-cpp"><code class="code docutils literal notranslate"><span class="pre">Common/IPlotter.h</span></code> and <code class="code docutils literal notranslate"><span class="pre">Common/Plotter.h/.cpp</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integration-and-build-files">Integration and Build Files</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-cmakelists-txt"><code class="code docutils literal notranslate"><span class="pre">Plotting/CMakeLists.txt</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#batch-batchpresenter-h-cpp-and-batchpresenterfactory-h"><code class="code docutils literal notranslate"><span class="pre">Batch/BatchPresenter.h/.cpp</span></code> and <code class="code docutils literal notranslate"><span class="pre">BatchPresenterFactory.h</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#batch-ibatchview-h-and-batch-qtbatchview-h-cpp"><code class="code docutils literal notranslate"><span class="pre">Batch/IBatchView.h</span></code> and <code class="code docutils literal notranslate"><span class="pre">Batch/QtBatchView.h/.cpp</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#test-files">Test Files</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#end-to-end-operation">End-to-End Operation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#construction">Construction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performing-a-reduction">Performing a reduction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#updating-the-plotting-workspace-tree">Updating the plotting workspace tree</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#user-interaction">User interaction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-the-plot">Creating the plot</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-a-plot-output-type">Adding a Plot Output Type</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="_sources/ISISReflectometryPlottingTab.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2007-2026, Mantid.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.21.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
