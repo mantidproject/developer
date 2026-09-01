@@ -1,0 +1,758 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Automated UI Tests &#8212; MantidProject main documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/css/style.css?v=562d7d41" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
+
+    <script src="_static/documentation_options.js?v=a8da1a53"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'AutomatedUITests';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Data Files for Testing" href="DataFilesForTesting.html" />
+    <link rel="prev" title="System Tests" href="SystemTests.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    <link rel="icon" sizes="32x32" href="_static/images/favicon.ico">
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  <img src="_static/images/mantid_logo_light.png" class="logo__image only-light" alt="Logo image">
+  <img src="_static/images/mantid_logo_dark.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://download.mantidproject.org">Downloads</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org/nightly/tutorials/">Tutorials</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org">User Docs</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://developer.mantidproject.org">Develop</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org/release/">Release notes</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://www.mantidproject.org/contact">Contact Us</a>
+  </li>
+</ul></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+        <div class="navbar-item"><ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+    <li class="nav-item">
+      <a class="nav-link" href="https://github.com/mantidproject/mantid" rel="noopener" target="_blank" title="GitHub">
+        <span><i class="fab fa-github-square"></i></span>
+        <label class="sr-only">GitHub</label>
+      </a>
+    </li>
+  </ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://download.mantidproject.org">Downloads</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org/nightly/tutorials/">Tutorials</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org">User Docs</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://developer.mantidproject.org">Develop</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org/release/">Release notes</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://www.mantidproject.org/contact">Contact Us</a>
+  </li>
+</ul></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+          <div class="navbar-item"><ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+    <li class="nav-item">
+      <a class="nav-link" href="https://github.com/mantidproject/mantid" rel="noopener" target="_blank" title="GitHub">
+        <span><i class="fab fa-github-square"></i></span>
+        <label class="sr-only">GitHub</label>
+      </a>
+    </li>
+  </ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item pst-sidebar-collapse"><button id="pst-collapse-sidebar-button" aria-expanded="true" aria-controls="pst-primary-sidebar">
+  <svg class="pst-icon" role="img" aria-hidden="true" focusable="false" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    <path fill="currentColor" d="M3 15.5C2.36232 15.5 1.74874 15.2564 1.28478 14.8189C0.820828 14.3815 0.541576 13.7832 0.504167 13.1467L0.5 13L0.5 3C0.499965 2.36232 0.743605 1.74874 1.18107 1.28478C1.61854 0.820828 2.21676 0.541576 2.85333 0.504167L3 0.5L13 0.5C13.6377 0.499965 14.2513 0.743605 14.7152 1.18107C15.1792 1.61854 15.4584 2.21676 15.4958 2.85333L15.5 3L15.5 13C15.5 13.6377 15.2564 14.2513 14.8189 14.7152C14.3815 15.1792 13.7832 15.4584 13.1467 15.4958L13 15.5L3 15.5ZM3 13.8333L10.5 13.8333L10.5 2.16667L3 2.16667C2.79589 2.16669 2.59889 2.24163 2.44636 2.37726C2.29383 2.5129 2.19638 2.69979 2.1725 2.9025L2.16667 3L2.16667 13C2.16669 13.2041 2.24163 13.4011 2.37726 13.5536C2.5129 13.7062 2.69979 13.8036 2.9025 13.8275L3 13.8333ZM6.65583 10.325L6.5775 10.2558L4.91083 8.58917C4.76735 8.44567 4.68116 8.25476 4.66843 8.05223C4.65569 7.84971 4.71729 7.6495 4.84167 7.48917L4.91083 7.41083L6.5775 5.74417C6.72747 5.59471 6.9287 5.50794 7.14032 5.50148C7.35194 5.49502 7.55809 5.56935 7.7169 5.70937C7.8757 5.8494 7.97525 6.04463 7.99533 6.25539C8.01541 6.46616 7.95451 6.67667 7.825 6.84417L7.75583 6.9225L6.67917 8L7.75583 9.0775C7.89931 9.22099 7.98551 9.41191 7.99824 9.61443C8.01097 9.81695 7.94938 10.0172 7.825 10.1775L7.75583 10.2558C7.61234 10.3993 7.42142 10.4855 7.2189 10.4982C7.01638 10.511 6.81617 10.4494 6.65583 10.325Z"/>
+  </svg>
+  <span class="pst-collapse-sidebar-label">Collapse Sidebar</span>
+  <span class="pst-expand-sidebar-label">Expand Sidebar</span>
+</button></div>
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"></div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Automated UI Tests</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="automated-ui-tests">
+<span id="automateduitests"></span><h1>Automated UI Tests<a class="headerlink" href="#automated-ui-tests" title="Link to this heading">#</a></h1>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#overview" id="id1">Overview</a></p></li>
+<li><p><a class="reference internal" href="#how-they-relate-to-the-other-test-suites" id="id2">How they relate to the other test suites</a></p></li>
+<li><p><a class="reference internal" href="#running-them" id="id3">Running them</a></p></li>
+<li><p><a class="reference internal" href="#writing-a-test" id="id4">Writing a test</a></p></li>
+<li><p><a class="reference internal" href="#the-helpers" id="id5">The helpers</a></p></li>
+<li><p><a class="reference internal" href="#adding-a-new-interface" id="id6">Adding a new interface</a></p></li>
+</ul>
+</nav>
+<section id="overview">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Overview</a><a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<p>Automated UI tests drive a real Qt interface. They build the genuine view, presenter and model,
+click real widgets with <code class="docutils literal notranslate"><span class="pre">QTest</span></code>, run real algorithms and inspect the workspaces and files that
+come out. The only things mocked are the ones that would otherwise block waiting for a user: modal
+error popups, confirmation prompts and generated algorithm dialogs.</p>
+<p>They exist to replace the manual test guides in <a class="reference internal" href="Testing/index.html#testing"><span class="std std-ref">Testing</span></a>. A guide section that a developer
+used to work through by hand before a release becomes one test method, with one <code class="docutils literal notranslate"><span class="pre">subTest</span></code> per
+observation the guide asked for.</p>
+<p>The code lives in <code class="docutils literal notranslate"><span class="pre">Testing/AutomatedUITests</span></code>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Testing/AutomatedUITests/
+  automated_ui_test_base.py    the harness - settings isolation, waiting, dialog patching
+  qt_interaction_helpers.py    free functions for driving widgets (click, combo, table, wait)
+  Example/ExampleUITest.py     a worked example, which is also the smoke test for the harness
+  &lt;Interface&gt;/                 one directory per interface
+</pre></div>
+</div>
+</section>
+<section id="how-they-relate-to-the-other-test-suites">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">How they relate to the other test suites</a><a class="headerlink" href="#how-they-relate-to-the-other-test-suites" title="Link to this heading">#</a></h2>
+<p>Automated UI tests are neither unit tests nor system tests, and they are deliberately kept out of
+both pipelines. They are slow, they drive a GUI, and a flaky one must not be able to block a pull
+request or a nightly package.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Suite</p></th>
+<th class="head"><p>CTest label</p></th>
+<th class="head"><p>When it runs</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Unit tests</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">UnitTest</span></code></p></td>
+<td><p>every pull request, every nightly</p></td>
+</tr>
+<tr class="row-odd"><td><p>System tests</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SystemTest</span></code></p></td>
+<td><p>every pull request (Linux), every nightly, via
+<code class="docutils literal notranslate"><span class="pre">runSystemTests.py</span></code> rather than CTest</p></td>
+</tr>
+<tr class="row-even"><td><p>Automated UI tests</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">AutomatedUITest</span></code></p></td>
+<td><p>weekly, report-only</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Three things keep them off the critical path, and a change to any one of them would put them back
+on it:</p>
+<ul class="simple">
+<li><p>the <code class="docutils literal notranslate"><span class="pre">AutomatedUITest</span></code> CTest label. CI selects unit tests with <code class="docutils literal notranslate"><span class="pre">ctest</span> <span class="pre">-L</span> <span class="pre">UnitTest</span></code>, so a test
+with any other label is invisible to it;</p></li>
+<li><p>the location. <code class="docutils literal notranslate"><span class="pre">runSystemTests.py</span></code> collects by walking <code class="docutils literal notranslate"><span class="pre">Testing/SystemTests/tests/framework</span></code>
+and <code class="docutils literal notranslate"><span class="pre">Testing/SystemTests/tests/qt</span></code>, so a suite under either of those would be run by the
+nightly whatever label it carried. <code class="docutils literal notranslate"><span class="pre">Testing/AutomatedUITests</span></code> is outside both;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.github/workflows/weekly_ui_tests.yml</span></code>, which has no <code class="docutils literal notranslate"><span class="pre">pull_request</span></code> trigger, marks its test
+step <code class="docutils literal notranslate"><span class="pre">continue-on-error</span></code> and publishes the results as a check run rather than gating on them.
+It must not be added to the repository’s required status checks.</p></li>
+</ul>
+<p>macOS is not currently covered: there is no self-hosted macOS GitHub Actions runner. The workflow’s
+matrix has a placeholder for one.</p>
+</section>
+<section id="running-them">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Running them</a><a class="headerlink" href="#running-them" title="Link to this heading">#</a></h2>
+<p>The suite is only added to the build when <code class="docutils literal notranslate"><span class="pre">ENABLE_WORKBENCH</span></code> is on, which is the default;
+configure with it enabled or CTest will not know about these tests at all. From the build
+directory:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># the data the suites load, once - CTest builds nothing itself, so this has to be asked for</span>
+cmake<span class="w"> </span>--build<span class="w"> </span>.<span class="w"> </span>--target<span class="w"> </span>AutomatedUITestData
+
+<span class="c1"># everything</span>
+ctest<span class="w"> </span>-L<span class="w"> </span>AutomatedUITest<span class="w"> </span>--output-on-failure
+
+<span class="c1"># one interface</span>
+ctest<span class="w"> </span>-R<span class="w"> </span>AutomatedUITest.EngineeringDiffraction<span class="w"> </span>--output-on-failure
+
+<span class="c1"># one module</span>
+ctest<span class="w"> </span>-R<span class="w"> </span>AutomatedUITest.Example.ExampleUITest<span class="w"> </span>--output-on-failure
+</pre></div>
+</div>
+<p>Most suites need data from the ExternalData store, which is what the <code class="docutils literal notranslate"><span class="pre">AutomatedUITestData</span></code> target
+above downloads (it is nothing more than <code class="docutils literal notranslate"><span class="pre">StandardTestData</span></code> and <code class="docutils literal notranslate"><span class="pre">SystemTestData</span></code> together);
+without it the tests that need a file report a skip rather than a failure. Tests run offscreen (the
+harness <em>defaults</em> <code class="docutils literal notranslate"><span class="pre">QT_QPA_PLATFORM</span></code> to <code class="docutils literal notranslate"><span class="pre">offscreen</span></code> and <code class="docutils literal notranslate"><span class="pre">MPLBACKEND</span></code> to <code class="docutils literal notranslate"><span class="pre">Agg</span></code> on import, leaving
+either alone if it is already set), so nothing appears on screen and no display is needed. Set
+<code class="docutils literal notranslate"><span class="pre">QT_QPA_PLATFORM</span></code> yourself if you want to watch a test run.</p>
+<p>The data directories are named by <code class="docutils literal notranslate"><span class="pre">PYUNITTEST_DATA_DIRS</span></code> in
+<code class="docutils literal notranslate"><span class="pre">Testing/AutomatedUITests/CMakeLists.txt</span></code>, passed to each test as <code class="docutils literal notranslate"><span class="pre">MANTID_TEST_DATA_DIRS</span></code> and
+added to Mantid’s search path in <code class="docutils literal notranslate"><span class="pre">setUp</span></code> - the built properties file lists only
+<code class="docutils literal notranslate"><span class="pre">Testing/Data/UnitTest</span></code> and <code class="docutils literal notranslate"><span class="pre">Testing/Data/DocTest</span></code>, and a manual test guide typically uses the
+SystemTest set. The search path is restored in <code class="docutils literal notranslate"><span class="pre">tearDown</span></code>.</p>
+<p>A module is an ordinary <code class="docutils literal notranslate"><span class="pre">unittest</span></code> file, so it can also be run directly for debugging - which is
+usually easier, because you get a normal traceback. It still needs the environment CTest would have
+given it: the build’s <code class="docutils literal notranslate"><span class="pre">bin</span></code> and the harness directory on <code class="docutils literal notranslate"><span class="pre">PYTHONPATH</span></code>, the configured <code class="docutils literal notranslate"><span class="pre">QT_API</span></code>,
+and <code class="docutils literal notranslate"><span class="pre">MANTID_TEST_DATA_DIRS</span></code> if the test calls <code class="docutils literal notranslate"><span class="pre">require_files</span></code>. From the source directory, with
+<code class="docutils literal notranslate"><span class="pre">$BUILD</span></code> the build directory:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">PYTHONPATH</span><span class="o">=</span><span class="nv">$BUILD</span>/bin:<span class="nv">$PWD</span>/Testing/AutomatedUITests:<span class="nv">$PYTHONPATH</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">QT_API</span><span class="o">=</span>pyqt6
+<span class="nb">export</span><span class="w"> </span><span class="nv">MANTID_TEST_DATA_DIRS</span><span class="o">=</span><span class="nv">$BUILD</span>/ExternalData/Testing/Data/SystemTest:<span class="nv">$BUILD</span>/ExternalData/Testing/Data/DocTest:<span class="nv">$BUILD</span>/ExternalData/Testing/Data/UnitTest
+
+python<span class="w"> </span>Testing/AutomatedUITests/Example/ExampleUITest.py<span class="w"> </span>ExampleUITest.test_tables
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">ctest</span> <span class="pre">-R</span> <span class="pre">AutomatedUITest.Example.ExampleUITest</span> <span class="pre">-V</span> <span class="pre">-N</span></code> prints the exact command and environment
+that CTest uses, which is the reference if any of the above has moved.</p>
+</section>
+<section id="writing-a-test">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Writing a test</a><a class="headerlink" href="#writing-a-test" title="Link to this heading">#</a></h2>
+<p>Start from <code class="docutils literal notranslate"><span class="pre">Testing/AutomatedUITests/Example/ExampleUITest.py</span></code>. It drives a widget defined in its
+own module, so it depends on no interface and no data - if it fails, the harness is broken rather
+than the code under test.</p>
+<p>The shape is:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">automated_ui_test_base</span><span class="w"> </span><span class="kn">import</span> <span class="n">AutomatedUITestBase</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qt_interaction_helpers</span><span class="w"> </span><span class="kn">import</span> <span class="n">click</span><span class="p">,</span> <span class="n">process_events</span><span class="p">,</span> <span class="n">select_combo</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">MyInterfaceTest</span><span class="p">(</span><span class="n">AutomatedUITestBase</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">MyInterfaceTest</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">setUp</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">require_files</span><span class="p">(</span><span class="s2">"SOMEDATA00001.nxs"</span><span class="p">)</span>   <span class="c1"># skip cleanly if the data is not there</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">patch_error_messages</span><span class="p">((</span><span class="s2">"some.module.that.pops.a.dialog"</span><span class="p">,))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gui</span> <span class="o">=</span> <span class="n">MyInterface</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gui</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+        <span class="n">process_events</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">tearDown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gui</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="n">process_events</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">MyInterfaceTest</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">tearDown</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_the_guide_section_this_replaces</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">select_combo</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gui</span><span class="o">.</span><span class="n">combo_instrument</span><span class="p">,</span> <span class="s2">"ENGINX"</span><span class="p">)</span>
+        <span class="n">click</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gui</span><span class="o">.</span><span class="n">button_run</span><span class="p">)</span>
+
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">subTest</span><span class="p">(</span><span class="s2">"Guide step 4 / the output workspace is created"</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">ADS</span><span class="o">.</span><span class="n">doesExist</span><span class="p">(</span><span class="s2">"output"</span><span class="p">))</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">subTest</span><span class="p">(</span><span class="s2">"Guide step 5 / it is in d-spacing"</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">ADS</span><span class="o">.</span><span class="n">retrieve</span><span class="p">(</span><span class="s2">"output"</span><span class="p">)</span><span class="o">.</span><span class="n">getAxis</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">getUnit</span><span class="p">()</span><span class="o">.</span><span class="n">unitID</span><span class="p">(),</span> <span class="s2">"dSpacing"</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Points worth knowing before you write one:</p>
+<p><strong>One ``test_`` method per scenario, not per observation.</strong> Building an interface is expensive, and
+a scenario in a manual test guide is a sequence - calibrate, then focus, then look at what was
+written. Split by guide section, not by assertion.</p>
+<p><strong>Use</strong> <a class="reference external" href="https://docs.python.org/3/library/unittest.html#unittest.TestCase.subTest" title="(in Python v3.14)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">unittest.TestCase.subTest()</span></code></a> <strong>for observations.</strong> A failed observation inside
+<code class="docutils literal notranslate"><span class="pre">with</span> <span class="pre">self.subTest(label)</span></code> is reported against its label and the ones after it still run. A test
+that stopped at the first failure would need as many weekly runs as there are regressions. Use a
+plain <code class="docutils literal notranslate"><span class="pre">self.assertX</span></code> for preconditions - “the run number resolved”, “the worker finished” - where
+carrying on would only produce a cascade of meaningless failures.</p>
+<p><strong>What goes inside a</strong> <code class="docutils literal notranslate"><span class="pre">subTest</span></code> <strong>block is a decision, not a formatting choice.</strong> Most of the
+helpers assert for themselves: <code class="docutils literal notranslate"><span class="pre">select_radio</span></code> raises if the button did not become checked,
+<code class="docutils literal notranslate"><span class="pre">set_group_box</span></code>, <code class="docutils literal notranslate"><span class="pre">set_line_edit</span></code> and <code class="docutils literal notranslate"><span class="pre">set_spin_box</span></code> likewise. Inside a block that raise is
+recorded as a failed observation and the next block still runs; outside one it propagates and ends
+the test there and then. So put a call <strong>inside</strong> when the selection or setting is itself the thing
+under test, and <strong>outside</strong> when it is only getting the interface into the state a later check
+needs - a broken fixture makes the remaining observations meaningless, whereas a failed observation
+should let the others still fire. Note that the block is also the blast radius: a failure skips the
+rest of <em>that</em> block too, so only put setup inside a block whose remaining lines you are content to
+lose.</p>
+<p><strong>Never sleep or join.</strong> Anything that finishes on a background thread reports back through a
+queued - sometimes <em>blocking</em> queued - Qt connection, which cannot be delivered unless the calling
+thread is running its event loop. Use <code class="docutils literal notranslate"><span class="pre">wait_until</span></code> from <code class="docutils literal notranslate"><span class="pre">qt_interaction_helpers</span></code> or
+<code class="docutils literal notranslate"><span class="pre">self.wait_for_async_task(worker)</span></code> from the base class; a bare <code class="docutils literal notranslate"><span class="pre">worker.join()</span></code> deadlocks both
+threads. Both default to a short timeout, so a wait on something genuinely slow has to pass a
+longer <code class="docutils literal notranslate"><span class="pre">timeout</span></code> explicitly rather than every wait in the suite inheriting one long enough to
+hide a hang.</p>
+<p><strong>Neutralise anything modal before the first click.</strong> An unattended test that pops a modal message
+box hangs until the suite times out. <code class="docutils literal notranslate"><span class="pre">patch_error_messages</span></code>, <code class="docutils literal notranslate"><span class="pre">patch_confirmation_box</span></code> and
+<code class="docutils literal notranslate"><span class="pre">algorithm_dialog_runs</span></code> on the base class cover three common cases that come up.</p>
+<p><strong>Go through the interface, not around it.</strong> Where possible use <code class="docutils literal notranslate"><span class="pre">add_data_search_dir</span></code> and let the
+interface’s own file finder resolve a run, rather than reaching past the view to inject a workspace -
+what is being tested is the path a user takes.</p>
+<p><strong>Do not create a ``QApplication`` at module scope.</strong> The base class creates one lazily in <code class="docutils literal notranslate"><span class="pre">setUp</span></code>
+via <code class="docutils literal notranslate"><span class="pre">ensure_qapp()</span></code>. Settings are isolated per test into a temporary ini file, so a test can never
+read or write the real one.</p>
+<p><strong>The base class must stay uncollected.</strong> <code class="docutils literal notranslate"><span class="pre">unittest</span></code>’s loader picks up every <code class="docutils literal notranslate"><span class="pre">TestCase</span></code> subclass
+visible in a module, imported ones included, and falls back to a <code class="docutils literal notranslate"><span class="pre">runTest</span></code> method when a class has
+no <code class="docutils literal notranslate"><span class="pre">test_*</span></code> methods. <code class="docutils literal notranslate"><span class="pre">AutomatedUITestBase</span></code> therefore defines neither. Keep it that way, and give
+any per-interface base class you add the same treatment.</p>
+</section>
+<section id="the-helpers">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">The helpers</a><a class="headerlink" href="#the-helpers" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">qt_interaction_helpers</span></code> holds free functions for driving widgets. They have no dependency on the
+harness, so an ordinary unit test can use them too. Each one exists because the obvious Qt call does
+something other than what a test wants - usually failing silently rather than loudly.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 70.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Widget</p></th>
+<th class="head"><p>Helpers</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Anything</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">click</span></code>, <code class="docutils literal notranslate"><span class="pre">process_events</span></code>, <code class="docutils literal notranslate"><span class="pre">wait_until</span></code>, <code class="docutils literal notranslate"><span class="pre">top_level_widget_names</span></code> - <code class="docutils literal notranslate"><span class="pre">click</span></code>
+aims at the dependable hot-spot for the widget’s kind, which for a check box or a radio
+button is the <em>indicator</em> rather than the label</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">QCheckBox</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">set_checkbox</span></code> - reach a known state without knowing the current one</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">QRadioButton</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">select_radio</span></code>, <code class="docutils literal notranslate"><span class="pre">radio_buttons</span></code> - by label, from a widget or a <code class="docutils literal notranslate"><span class="pre">QButtonGroup</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">QGroupBox</span></code> (checkable)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">set_group_box</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">QComboBox</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">combo_items</span></code>, <code class="docutils literal notranslate"><span class="pre">select_combo</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">QLineEdit</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">set_line_edit</span></code> - replays keystrokes, so <code class="docutils literal notranslate"><span class="pre">editingFinished</span></code> fires and any validator applies</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">QSpinBox</span></code> / <code class="docutils literal notranslate"><span class="pre">QDoubleSpinBox</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">set_spin_box</span></code> - checks the value was not clamped away</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">QTabWidget</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">select_tab</span></code> - by title, because indices move</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">QListWidget</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">list_items</span></code>, <code class="docutils literal notranslate"><span class="pre">select_list_item</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">QTableWidget</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">table_column</span></code>, <code class="docutils literal notranslate"><span class="pre">cell_widget</span></code>, <code class="docutils literal notranslate"><span class="pre">table_checkbox</span></code>, <code class="docutils literal notranslate"><span class="pre">cell_button</span></code>, <code class="docutils literal notranslate"><span class="pre">cell_combo</span></code>,
+<code class="docutils literal notranslate"><span class="pre">cell_line_edit</span></code>, <code class="docutils literal notranslate"><span class="pre">cell_spin_box</span></code>, <code class="docutils literal notranslate"><span class="pre">item_check_state</span></code>, <code class="docutils literal notranslate"><span class="pre">set_item_checked</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">QTableView</span></code> / <code class="docutils literal notranslate"><span class="pre">QTreeView</span></code> / <code class="docutils literal notranslate"><span class="pre">QListView</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">model_row_count</span></code>, <code class="docutils literal notranslate"><span class="pre">model_column_count</span></code>, <code class="docutils literal notranslate"><span class="pre">model_index</span></code>, <code class="docutils literal notranslate"><span class="pre">model_cell</span></code>,
+<code class="docutils literal notranslate"><span class="pre">model_column</span></code>, <code class="docutils literal notranslate"><span class="pre">index_check_state</span></code>, <code class="docutils literal notranslate"><span class="pre">click_index</span></code>, <code class="docutils literal notranslate"><span class="pre">double_click_index</span></code>,
+<code class="docutils literal notranslate"><span class="pre">edit_index</span></code>, <code class="docutils literal notranslate"><span class="pre">select_index</span></code>, <code class="docutils literal notranslate"><span class="pre">click_row_header</span></code>, <code class="docutils literal notranslate"><span class="pre">click_column_header</span></code>,
+<code class="docutils literal notranslate"><span class="pre">tree_rows</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">FileFinderWidget</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">set_finder_text</span></code>, <code class="docutils literal notranslate"><span class="pre">wait_for_file_finder</span></code> - both wait out the background search</p></td>
+</tr>
+<tr class="row-even"><td><p>matplotlib</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">figure_numbers</span></code>, <code class="docutils literal notranslate"><span class="pre">close_all_figures</span></code> (pyplot-managed figures only)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Two things are worth knowing before reaching for one of them.</p>
+<p><strong>The two table families are not interchangeable.</strong> <code class="docutils literal notranslate"><span class="pre">table_*</span></code> works on a <code class="docutils literal notranslate"><span class="pre">QTableWidget</span></code>, which
+owns its cells through <code class="docutils literal notranslate"><span class="pre">item()</span></code> and <code class="docutils literal notranslate"><span class="pre">cellWidget()</span></code>. Anything backed by a <code class="docutils literal notranslate"><span class="pre">QAbstractItemModel</span></code>
+- <code class="docutils literal notranslate"><span class="pre">QTableView</span></code>, <code class="docutils literal notranslate"><span class="pre">QTreeView</span></code>, <code class="docutils literal notranslate"><span class="pre">QListView</span></code> - has neither method, and needs the <code class="docutils literal notranslate"><span class="pre">model_*</span></code> and
+<code class="docutils literal notranslate"><span class="pre">*_index</span></code> helpers instead. Several Mantid interfaces are model-backed, so check which kind of view
+you have before writing the assertion.</p>
+<p><strong>A click on an item view has to go to its viewport.</strong> The view is only a frame; the cells are drawn
+by delegates inside <code class="docutils literal notranslate"><span class="pre">view.viewport()</span></code>, so <code class="docutils literal notranslate"><span class="pre">click(view)</span></code> does nothing at all. <code class="docutils literal notranslate"><span class="pre">click_index</span></code>
+handles this - and scrolls the index into sight first, because <code class="docutils literal notranslate"><span class="pre">visualRect</span></code> is an empty rectangle
+for a row that is not currently drawn, which would send the click to the top-left corner and select
+the wrong thing.</p>
+<p>A few widgets are best not driven with <code class="docutils literal notranslate"><span class="pre">QTest</span></code> at all. <code class="docutils literal notranslate"><span class="pre">FunctionBrowser</span></code> and
+<code class="docutils literal notranslate"><span class="pre">FitPropertyBrowser</span></code> are Qt property browsers whose cells are nested editors; use their Python API
+(<code class="docutils literal notranslate"><span class="pre">setFunction</span></code>, <code class="docutils literal notranslate"><span class="pre">getParameter</span></code>, <code class="docutils literal notranslate"><span class="pre">loadFunction</span></code>) instead.</p>
+</section>
+<section id="adding-a-new-interface">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Adding a new interface</a><a class="headerlink" href="#adding-a-new-interface" title="Link to this heading">#</a></h2>
+<p>Create <code class="docutils literal notranslate"><span class="pre">Testing/AutomatedUITests/&lt;Interface&gt;/</span></code> with a <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code>:</p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="p">(</span><span class="s">TEST_NAMES</span><span class="w"> </span><span class="s">MyInterfaceTest.py</span><span class="p">)</span>
+
+<span class="nb">pyunittest_add_test_ui</span><span class="p">(</span><span class="o">${</span><span class="nv">CMAKE_CURRENT_SOURCE_DIR</span><span class="o">}</span><span class="w"> </span><span class="s">AutomatedUITest.MyInterface</span><span class="w"> </span><span class="o">${</span><span class="nv">TEST_NAMES</span><span class="o">}</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>and add <code class="docutils literal notranslate"><span class="pre">add_subdirectory(&lt;Interface&gt;)</span></code> to <code class="docutils literal notranslate"><span class="pre">Testing/AutomatedUITests/CMakeLists.txt</span></code>. The parent
+directory puts the shared harness on <code class="docutils literal notranslate"><span class="pre">PYTHONPATH</span></code>, sets the Qt API and raises the test timeout, so
+nothing further is needed. Anything shared between the modules of one interface goes in a
+non-test module in that directory, next to them.</p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="SystemTests.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">System Tests</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="DataFilesForTesting.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Data Files for Testing</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-they-relate-to-the-other-test-suites">How they relate to the other test suites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-them">Running them</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-a-test">Writing a test</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-helpers">The helpers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-a-new-interface">Adding a new interface</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="_sources/AutomatedUITests.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2007-2026, Mantid.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.21.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

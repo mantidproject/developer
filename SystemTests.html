@@ -46,7 +46,7 @@
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Data Files for Testing" href="DataFilesForTesting.html" />
+    <link rel="next" title="Automated UI Tests" href="AutomatedUITests.html" />
     <link rel="prev" title="Writing Performance Tests" href="WritingPerformanceTests.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en">
@@ -381,8 +381,14 @@ well. If any of those files are missing the test will be marked as skipped.</p>
 <p>The tests should be added to the <code class="docutils literal notranslate"><span class="pre">Testing/SystemTests/tests/framework</span></code>,
 with the template result going in the <code class="docutils literal notranslate"><span class="pre">reference</span></code> sub-folder. It will
 then be included in the suite of tests from the following night.</p>
-<p>Alternatively, any tests relating to testing qt interfaces should be added to
-the <code class="docutils literal notranslate"><span class="pre">Testing/SystemTests/tests/qt</span></code> directory.</p>
+<p>Alternatively, a system test that needs Qt to be present - one that exercises an
+interface’s presenter or model, or a workflow whose code imports <code class="docutils literal notranslate"><span class="pre">mantidqt</span></code> -
+should be added to the <code class="docutils literal notranslate"><span class="pre">Testing/SystemTests/tests/qt</span></code> directory.</p>
+<p>A test that drives an interface by <em>clicking its widgets</em> - replacing a manual test
+guide rather than checking a workflow’s numbers - is not a system test at all and
+belongs in <code class="docutils literal notranslate"><span class="pre">Testing/AutomatedUITests</span></code>. Those run weekly and report-only, so they can
+be slower and more numerous than a system test is allowed to be; see
+<a class="reference internal" href="AutomatedUITests.html#automateduitests"><span class="std std-ref">Automated UI Tests</span></a>.</p>
 <section id="specifying-validation">
 <h3>Specifying Validation<a class="headerlink" href="#specifying-validation" title="Link to this heading">#</a></h3>
 <p>You may need to inform the System Test Suite about the format of that
@@ -699,11 +705,11 @@ files.</p>
       </div>
     </a>
     <a class="right-next"
-       href="DataFilesForTesting.html"
+       href="AutomatedUITests.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Data Files for Testing</p>
+        <p class="prev-next-title">Automated UI Tests</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
