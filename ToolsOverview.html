@@ -420,24 +420,6 @@ class from one subproject. CMakeList.txt is adjusted. For details, run:</p>
 </ul>
 <p><code class="docutils literal notranslate"><span class="pre">valgrind</span> <span class="pre">--tool=memcheck</span> <span class="pre">--leak-check=full</span> <span class="pre">--show-reachable=yes</span> <span class="pre">--num-callers=20</span> <span class="pre">--track-fds=yes</span> <span class="pre">--track-origins=yes</span> <span class="pre">--freelist-vol=500000000</span> <span class="pre">``\</span> <span class="pre">\</span> <span class="pre">``</span> <span class="pre">[args...]</span></code></p>
 </section>
-<section id="windows">
-<h3>Windows<a class="headerlink" href="#windows" title="Link to this heading">#</a></h3>
-<p><a class="reference external" href="https://vld.codeplex.com/releases">Visual Leak Detector</a></p>
-<ol class="arabic simple">
-<li><p>Setup the additional paths as defined in the readme file</p></li>
-<li><p>Adjust the configuration file, “C:Program FilesVisual Leak
-Detectorvld.ini” to output to both File and debugger by changing the
-<code class="docutils literal notranslate"><span class="pre">ReportTo</span></code> to</p></li>
-</ol>
-<p><code class="docutils literal notranslate"><span class="pre">ReportTo</span> <span class="pre">=</span> <span class="pre">both</span></code></p>
-<ol class="arabic simple">
-<li><p>Add #include &lt;vld.h&gt; to the system.h file in Kernel</p></li>
-<li><p>Compile everything in debug</p></li>
-<li><p>Running unit tests should now create a file memory_leak_report.txt in
-the test directory.</p></li>
-<li><p>IMPORTANT remove the #include &lt;vld.ini&gt; before checking in.</p></li>
-</ol>
-</section>
 </section>
 <section id="thread-checking">
 <h2>Thread checking<a class="headerlink" href="#thread-checking" title="Link to this heading">#</a></h2>
@@ -712,7 +694,6 @@ for more options on converting the diagrams to something more easily viewed.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#profiling">Profiling</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#leak-checking-etc">Leak checking etc</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linux">Linux</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#windows">Windows</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#thread-checking">Thread checking</a><ul class="nav section-nav flex-column">
