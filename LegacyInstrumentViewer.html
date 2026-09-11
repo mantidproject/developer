@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Architecture &#8212; MantidProject main documentation</title>
+    <title>Legacy Instrument Viewer Widget &#8212; MantidProject main documentation</title>
   
   
   
@@ -42,12 +42,12 @@
     <script src="_static/documentation_options.js?v=a8da1a53"></script>
     <script src="_static/doctools.js?v=fd6eb6e6"></script>
     <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'Architecture';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'LegacyInstrumentViewer';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Building on OS X" href="BuildingOnOSX.html" />
-    <link rel="prev" title="Packaging" href="Packaging.html" />
+    <link rel="next" title="ISIS SANS Reduction Back-end" href="ISISSANSReductionBackend.html" />
+    <link rel="prev" title="Instrument View" href="InstrumentViewer.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en">
     <link rel="icon" sizes="32x32" href="_static/images/favicon.ico">
@@ -331,7 +331,7 @@
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Architecture</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Legacy Instrument Viewer Widget</span></li>
   </ul>
 </nav>
 </div>
@@ -348,175 +348,51 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="architecture">
-<h1>Architecture<a class="headerlink" href="#architecture" title="Link to this heading">#</a></h1>
-<section id="summary">
-<h2>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
-<p>Mantid is used for reduction, analysis &amp; visualization of neutron and muon data.
-This document describes the architecture of the mantid software in terms
-of the <a class="reference external" href="https://www.infoq.com/articles/C4-architecture-model/">C4 model</a>.</p>
-</section>
-<section id="context">
-<h2>Context<a class="headerlink" href="#context" title="Link to this heading">#</a></h2>
-<p>People and other systems interact with the Mantid software package
-as described by the following context diagram.</p>
-<figure class="align-center" id="id2">
-<img alt="Context diagram of mantid software system" src="_images/architecture-context.png" />
-<figcaption>
-<p><span class="caption-text">Context diagram for mantid software</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
-<p>Experimental users at neutron/muon facilities use the software
-to reduce/analyze their captured data. Mantid uses existing
-experimental data access systems to retrieve users’ data
-for processing either</p>
-<ul class="simple">
-<li><p>interactively via Python scripts or a GUI</p></li>
-<li><p>automatically via programmatic access from other systems such as
-automated reduction systems.</p></li>
-</ul>
-</section>
-<section id="container">
-<h2>Container<a class="headerlink" href="#container" title="Link to this heading">#</a></h2>
-<p><em>Please note that container here does not mean container in the
-deployment (Docker, Singularity) sense of the word, rather the generic
-definition of enclosing something.</em></p>
-<p>The mantid software system is defined as four containers:
-two libraries (<code class="docutils literal notranslate"><span class="pre">framework</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">mantidqt</span></code>),
-one general-purpose, cross-platform, graphical desktop application and
-many customized graphical interfaces for specific scientific techniques.
-This is illustrated, along with connections between the containers,
-in the following diagram.</p>
-<figure class="align-center" id="id3">
-<a class="reference internal image-reference" href="_images/architecture-container.png"><img alt="Container diagram of mantid software system" height="721" src="_images/architecture-container.png" width="919" />
+  <section id="legacy-instrument-viewer-widget">
+<span id="legacyinstrumentviewer"></span><h1>Legacy Instrument Viewer Widget<a class="headerlink" href="#legacy-instrument-viewer-widget" title="Link to this heading">#</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This page describes the legacy OpenGL-based Instrument Viewer in <code class="docutils literal notranslate"><span class="pre">qt/widgets/instrumentview</span></code>.
+For the current Python Instrument View, see <a class="reference internal" href="InstrumentViewer.html#instrumentviewer"><span class="std std-ref">Instrument View</span></a>.</p>
+</div>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<p>Mantid visualisation system allows users to view the geometry of an instrument and also select and query individual detectors.
+An instrument is always shown in the context of a workspace containing data recorded with this instrument.
+The detectors are coloured according to the data in the corresponding spectra of the workspace.
+The user can select individual detectors by clicking on them and request to see the data recorded by this detector as a table or a graph.
+The instrument view also allows users to see close-ups of any component.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="_images/InstrumentWidget.jpg"><img alt="_images/InstrumentWidget.jpg" src="_images/InstrumentWidget.jpg" width="635" />
 </a>
-<figcaption>
-<p><span class="caption-text">Container diagram for mantid software</span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
-</figcaption>
 </figure>
-<p>The <code class="docutils literal notranslate"><span class="pre">workbench</span></code> application is written in Python/Qt that provides access
-to the business logic for reducing/analyzing data within the <code class="docutils literal notranslate"><span class="pre">framework</span></code>.
-Along with this it provides access to a range of visualization features
-defined within the <code class="docutils literal notranslate"><span class="pre">mantidqt</span></code> library - A Python/Qt library of custom
-widgets that are composed to form the <code class="docutils literal notranslate"><span class="pre">workbench</span></code> application.
-This library is accessible outside of the workbench application to allow
-custom applications to be built from the widgets.</p>
-<p>Please note the directional aspect of the connection/dependency arrows.
-The connections are strictly one way and those earlier in the dependency chain
-cannot contain dependencies on those later, e.g.</p>
-<ul class="simple">
-<li><p>framework <em>does not</em> depend on <code class="docutils literal notranslate"><span class="pre">mantidqt</span></code> or <code class="docutils literal notranslate"><span class="pre">workbench</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">mantidqt</span></code> <em>does not</em> depend on <code class="docutils literal notranslate"><span class="pre">workbench</span></code> but does depend on <code class="docutils literal notranslate"><span class="pre">framework</span></code></p></li>
-</ul>
 </section>
-<section id="components">
-<h2>Components<a class="headerlink" href="#components" title="Link to this heading">#</a></h2>
-<p>The following subsections describe each of the containers within the system
-in more detail.</p>
-<section id="framework">
-<h3>Framework<a class="headerlink" href="#framework" title="Link to this heading">#</a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">Framework</span></code> refers to the data structures, algorithms
-and supporting modules that live within the <code class="docutils literal notranslate"><span class="pre">Framework</span></code> directory
-of the source tree - commonly referred to as “framework code”.
-This part of the system is written in C++ and provides the business logic
-for reducing and analysing data independent of a graphical environment.
-The modules that compose the framework are shown within the following
-component diagram.</p>
-<figure class="align-center" id="id4">
-<a class="reference internal image-reference" href="_images/architecture-framework.png"><img alt="Component diagram of framework container" height="672" src="_images/architecture-framework.png" width="1114" />
+<section id="implementation">
+<h2>Implementation<a class="headerlink" href="#implementation" title="Link to this heading">#</a></h2>
+<p>Mantid uses <code class="code docutils literal notranslate"><span class="pre">OpenGL</span></code> to plot the geometry. <code class="code docutils literal notranslate"><span class="pre">Instrument3DWidget</span></code> represents the view window and controls the viewport and the scene.
+The base class for a visual element is <code class="code docutils literal notranslate"><span class="pre">GLObject</span></code>. <code class="code docutils literal notranslate"><span class="pre">Actors</span></code> and <code class="code docutils literal notranslate"><span class="pre">MantidObject</span></code> inherit from it. <code class="code docutils literal notranslate"><span class="pre">Actors</span></code> represent the instrument components.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="_images/InstrumentViewClassDiagram.jpg"><img alt="_images/InstrumentViewClassDiagram.jpg" src="_images/InstrumentViewClassDiagram.jpg" width="752" />
 </a>
-<figcaption>
-<p><span class="caption-text">Container diagram for mantid framework</span><a class="headerlink" href="#id4" title="Link to this image">#</a></p>
-</figcaption>
 </figure>
-<p>The framework is separated into a base set of libraries that provide that
-core functionality e.g.
-workspace objects, instrument objects, algorithm interfaces,
-along with a set of plugin libraries that are loaded at runtime to register
-new capabilities such as algorithms for data treatment.</p>
-<p>A Python package to the C++ libraries, called <code class="docutils literal notranslate"><span class="pre">mantid</span></code>, is defined in
-<code class="docutils literal notranslate"><span class="pre">Framework/PythonInterface</span></code> and
-gives access to the C++-framework code from Python.
-The Python package is the primary mode of access to the C++ libraries
-for external entities.
-Assuming Python paths have been setup correctly, the <code class="docutils literal notranslate"><span class="pre">mantid</span></code> package
-is to be treated like any other package and can be used in vanilla
-Python or any interactive Python environment,
-including <a class="reference external" href="https://jupyter.org/">Jupyter notebooks</a>.</p>
-<p>While the C++ API could be used directly by external parties this is
-not a supported method of interaction and API stability of the C++
-layer is not guaranteed.</p>
 </section>
-<section id="mantidqt">
-<h3>mantidqt<a class="headerlink" href="#mantidqt" title="Link to this heading">#</a></h3>
-<figure class="align-center" id="id5">
-<a class="reference internal image-reference" href="_images/architecture-mantidqt.png"><img alt="Component diagram of mantidqt container" height="553" src="_images/architecture-mantidqt.png" width="893" />
+<section id="detector-picking">
+<h2>Detector Picking<a class="headerlink" href="#detector-picking" title="Link to this heading">#</a></h2>
+<p>Detector picking is a process of selecting a detector in the instrument view by clicking on it.
+When the user clicks the mouse inside the viewport in the picking mode, Mantid creates a hidden image of the instrument in which detectors are given colours encoding the detector’s index in the instrument tree.
+On the mouse click a colour is read in and decoded back into the index.</p>
+</section>
+<section id="geometry-handlers-and-renderers">
+<h2>Geometry Handlers and Renderers<a class="headerlink" href="#geometry-handlers-and-renderers" title="Link to this heading">#</a></h2>
+<p>Each object has a geometry handler attached to it.
+The handler is responsible for creating the mesh and rendering the object.
+Handlers have different methods of creating meshes.
+For example, <code class="code docutils literal notranslate"><span class="pre">GluGeometryHandler</span></code> can create simple shapes such as spheres and cylinders, <code class="code docutils literal notranslate"><span class="pre">OCGeometryHandler</span></code> creates more complex geometries combining simple shapes together.
+<code class="code docutils literal notranslate"><span class="pre">CacheGeometryHandler</span></code> reads previously saved geometries from a file.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="_images/GeometryHandlers.jpg"><img alt="_images/GeometryHandlers.jpg" src="_images/GeometryHandlers.jpg" width="793" />
 </a>
-<figcaption>
-<p><span class="caption-text">Container diagram for mantidqt Python package</span><a class="headerlink" href="#id5" title="Link to this image">#</a></p>
-</figcaption>
 </figure>
-<p><code class="docutils literal notranslate"><span class="pre">mantidqt</span></code> is a Python package defined to house a collection of Qt widgets
-that sit on top of <code class="docutils literal notranslate"><span class="pre">mantid</span></code> functionality.
-They provide a reusable set of widgets that can be used across multiple
-interfaces to give a consistent user experience when presenting given
-<code class="docutils literal notranslate"><span class="pre">mantid</span></code> functionality to users. One example of such a widget is the
-<code class="docutils literal notranslate"><span class="pre">mantidqt.widgets.filefinder</span></code>, which sits on top of the framework
-<code class="docutils literal notranslate"><span class="pre">FileFinder</span></code>, and presents GUI elements to pass through and run the
-the framework logic.
-Providing a reusable widget gives a consistent user experience across
-multiple interfaces/applications when displaying <code class="docutils literal notranslate"><span class="pre">mantid</span></code> features to users.</p>
-<p>The package contains basic widgets, such as the aforementioned <code class="docutils literal notranslate"><span class="pre">filefinder</span></code>,
-but also more advanced widgets such as
-<a class="reference external" href="https://docs.mantidproject.org/nightly/workbench/sliceviewer.html#sliceviewer" title="(in MantidProject v6.16)"><span class="xref std std-ref">slice viewer</span></a> and
-the OpenGL-based <a class="reference internal" href="LegacyInstrumentViewer.html#legacyinstrumentviewer"><span class="std std-ref">legacy instrument viewer</span></a>,
-which combine many features of the framework together to provide advanced
-visualization to users.</p>
-<p>The package contains a mixture of C++ and Python code.
-It is defined in the <code class="docutils literal notranslate"><span class="pre">qt/python/mantidqt</span></code> directory of the source tree.
-Widgets written in C++ use the <a class="reference external" href="https://www.riverbankcomputing.com/static/Docs/sip/">sip</a> system to export the
-C++ classes to a Python module.
-The raw exported modules are all prefixed with an underscore,
-e.g. <code class="docutils literal notranslate"><span class="pre">_common</span></code>,
-and classes are pulled into a pure-python module to decouple
-the C++ implementations from users.
-This allows for flexibility with the layout of the C++ classes/libraries
-without impacting users in the future.
-Clients of <code class="docutils literal notranslate"><span class="pre">mantidqt</span></code> should never import an underscored module directly.</p>
-</section>
-<section id="workbench">
-<h3>workbench<a class="headerlink" href="#workbench" title="Link to this heading">#</a></h3>
-<figure class="align-center" id="id6">
-<a class="reference internal image-reference" href="_images/architecture-workbench.png"><img alt="Component diagram of workbench container" height="460" src="_images/architecture-workbench.png" width="638" />
-</a>
-<figcaption>
-<p><span class="caption-text">Container diagram for workbench application</span><a class="headerlink" href="#id6" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
-<p><code class="docutils literal notranslate"><span class="pre">workbench</span></code> is an application written in pure Python in the <code class="docutils literal notranslate"><span class="pre">qt/applications/workbench</span></code>
-directory of the source.
-It is not intended to be a library imported by others and as such offers
-no guarantees of API stability.
-It makes heavy use of the <code class="docutils literal notranslate"><span class="pre">mantidqt</span></code> widgets collection and puts them
-together to build the application shipped to users as <code class="docutils literal notranslate"><span class="pre">MantidWorkbench</span></code>.
-It is intended to be the main graphical interface provided by the project and
-allows access to the customized interfaces as described in
-<a class="reference internal" href="#container">container</a>.</p>
-<p>The application provides some widgets that are only applicable to itself,
-such as the about screen, settings screen and project recovery mechanism that
-is specific to workbench.</p>
-<p>Plotting within <code class="docutils literal notranslate"><span class="pre">workbench</span></code> uses <a class="reference external" href="https://matplotlib.org/">matplotlib</a>.
-The application bundle provides some custom features to step in on the backend,
-in <code class="docutils literal notranslate"><span class="pre">workbench.plotting</span></code>, so that figures displayed within workbench offer
-a richer experience than a standard matplotlib figure,
-e.g. interactive fitting to data within a figure.
-The aim of these customizations is to be transparent to a user in terms of the
-matplotlib api.
-A plotting script should function, without modification,
-outside of workbench with the standard matplotlib backends,
-including <a class="reference external" href="https://jupyter.org/">Jupyter notebooks</a>,
-only differing in how the final figure window is presented.</p>
-</section>
 </section>
 </section>
 
@@ -531,20 +407,20 @@ only differing in how the final figure window is presented.</p>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="Packaging.html"
+       href="InstrumentViewer.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Packaging</p>
+        <p class="prev-next-title">Instrument View</p>
       </div>
     </a>
     <a class="right-next"
-       href="BuildingOnOSX.html"
+       href="ISISSANSReductionBackend.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Building on OS X</p>
+        <p class="prev-next-title">ISIS SANS Reduction Back-end</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -567,22 +443,17 @@ only differing in how the final figure window is presented.</p>
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#context">Context</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#container">Container</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#components">Components</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#framework">Framework</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantidqt">mantidqt</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#workbench">workbench</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation">Implementation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#detector-picking">Detector Picking</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#geometry-handlers-and-renderers">Geometry Handlers and Renderers</a></li>
 </ul>
   </nav></div>
 
   <div class="sidebar-secondary-item">
 
   <div class="tocsection sourcelink">
-    <a href="_sources/Architecture.rst.txt">
+    <a href="_sources/LegacyInstrumentViewer.rst.txt">
       <i class="fa-solid fa-file-lines"></i> Show Source
     </a>
   </div>

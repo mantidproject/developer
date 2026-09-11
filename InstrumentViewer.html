@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Instrument Viewer Widget &#8212; MantidProject main documentation</title>
+    <title>Instrument View &#8212; MantidProject main documentation</title>
   
   
   
@@ -46,7 +46,7 @@
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="ISIS SANS Reduction Back-end" href="ISISSANSReductionBackend.html" />
+    <link rel="next" title="Legacy Instrument Viewer Widget" href="LegacyInstrumentViewer.html" />
     <link rel="prev" title="Inelastic Data Processor Class Structure" href="InelasticDataProcessorFileStructure.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en">
@@ -331,7 +331,7 @@
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Instrument Viewer Widget</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Instrument View</span></li>
   </ul>
 </nav>
 </div>
@@ -348,46 +348,537 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="instrument-viewer-widget">
-<span id="instrumentviewer"></span><h1>Instrument Viewer Widget<a class="headerlink" href="#instrument-viewer-widget" title="Link to this heading">#</a></h1>
+  <section id="instrument-view">
+<span id="instrumentviewer"></span><h1>Instrument View<a class="headerlink" href="#instrument-view" title="Link to this heading">#</a></h1>
+<nav class="contents local" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#overview" id="id1">Overview</a></p></li>
+<li><p><a class="reference internal" href="#where-the-code-lives" id="id2">Where the code lives</a></p></li>
+<li><p><a class="reference internal" href="#architecture" id="id3">Architecture</a></p>
+<ul>
+<li><p><a class="reference internal" href="#connecting-the-view-to-the-presenter" id="id4">Connecting the view to the presenter</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#threading" id="id5">Threading</a></p></li>
+<li><p><a class="reference internal" href="#rendering" id="id6">Rendering</a></p></li>
+<li><p><a class="reference internal" href="#projections" id="id7">Projections</a></p></li>
+<li><p><a class="reference internal" href="#picking-and-mouse-interaction" id="id8">Picking and mouse interaction</a></p></li>
+<li><p><a class="reference internal" href="#shape-overlays" id="id9">Shape overlays</a></p></li>
+<li><p><a class="reference internal" href="#the-model" id="id10">The model</a></p></li>
+<li><p><a class="reference internal" href="#component-tree" id="id11">Component tree</a></p></li>
+<li><p><a class="reference internal" href="#reacting-to-the-ads" id="id12">Reacting to the ADS</a></p></li>
+<li><p><a class="reference internal" href="#extending-the-instrument-view" id="id13">Extending the Instrument View</a></p>
+<ul>
+<li><p><a class="reference internal" href="#interfaces-that-embed-the-instrument-view" id="id14">Interfaces that embed the Instrument View</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#testing" id="id15">Testing</a></p></li>
+<li><p><a class="reference internal" href="#differences-from-the-legacy-widget" id="id16">Differences from the legacy widget</a></p></li>
+</ul>
+</nav>
 <section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
-<p>Mantid visualisation system allows users to view the geometry of an instrument and also select and query individual detectors.
-An instrument is always shown in the context of a workspace containing data recorded with this instrument.
-The detectors are coloured according to the data in the corresponding spectra of the workspace.
-The user can select individual detectors by clicking on them and request to see the data recorded by this detector as a table or a graph.
-The instrument view also allows users to see close-ups of any component.</p>
-<figure class="align-center">
-<a class="reference internal image-reference" href="_images/InstrumentWidget.jpg"><img alt="_images/InstrumentWidget.jpg" src="_images/InstrumentWidget.jpg" width="635" />
-</a>
-</figure>
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Overview</a><a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<p>The Instrument View draws the geometry of an instrument, coloured by the data recorded in the
+corresponding workspace, and lets the user select detectors, plot their spectra, overlay peaks and
+build masks, regions of interest and detector groupings.</p>
+<p>It is a pure-Python package built on <a class="reference external" href="https://docs.pyvista.org">PyVista</a> and VTK, and is
+completely separate from the OpenGL widget described in <a class="reference internal" href="LegacyInstrumentViewer.html#legacyinstrumentviewer"><span class="std std-ref">Legacy Instrument Viewer Widget</span></a>. The two ship
+side by side: since v7.0.0 <code class="docutils literal notranslate"><span class="pre">Show</span> <span class="pre">Instrument</span></code> opens this one, and <code class="docutils literal notranslate"><span class="pre">Show</span> <span class="pre">Instrument</span> <span class="pre">(Legacy)</span></code>
+opens the legacy widget.</p>
+<p>The user documentation is at <a class="reference external" href="https://docs.mantidproject.org/nightly/workbench/instrumentviewer.html#instrumentviewer" title="(in MantidProject v6.16)"><span>Instrument Viewer Widget</span></a>.</p>
 </section>
-<section id="implementation">
-<h2>Implementation<a class="headerlink" href="#implementation" title="Link to this heading">#</a></h2>
-<p>Mantid uses <code class="code docutils literal notranslate"><span class="pre">OpenGL</span></code> to plot the geometry. <code class="code docutils literal notranslate"><span class="pre">Instrument3DWidget</span></code> represents the view window and controls the viewport and the scene.
-The base class for a visual element is <code class="code docutils literal notranslate"><span class="pre">GLObject</span></code>. <code class="code docutils literal notranslate"><span class="pre">Actors</span></code> and <code class="code docutils literal notranslate"><span class="pre">MantidObject</span></code> inherit from it. <code class="code docutils literal notranslate"><span class="pre">Actors</span></code> represent the instrument components.</p>
-<figure class="align-center">
-<a class="reference internal image-reference" href="_images/InstrumentViewClassDiagram.jpg"><img alt="_images/InstrumentViewClassDiagram.jpg" src="_images/InstrumentViewClassDiagram.jpg" width="752" />
-</a>
-</figure>
+<section id="where-the-code-lives">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Where the code lives</a><a class="headerlink" href="#where-the-code-lives" title="Link to this heading">#</a></h2>
+<p>The package is <code class="docutils literal notranslate"><span class="pre">qt/python/instrumentview</span></code>, and is registered from <code class="docutils literal notranslate"><span class="pre">qt/python/CMakeLists.txt</span></code>
+with:</p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">add_python_package</span><span class="p">(</span><span class="s">instrumentview</span><span class="p">)</span>
+<span class="nb">add_dependencies</span><span class="p">(</span><span class="s">instrumentview</span><span class="w"> </span><span class="s">mantidqt</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Workbench depends on it, through <code class="docutils literal notranslate"><span class="pre">install_requires</span></code> in
+<code class="docutils literal notranslate"><span class="pre">qt/applications/workbench/setup.py</span></code> and <code class="docutils literal notranslate"><span class="pre">add_dependencies(workbench</span> <span class="pre">...</span> <span class="pre">instrumentview)</span></code>.
+There is no separate conda recipe; the package is installed as part of the <code class="docutils literal notranslate"><span class="pre">mantidworkbench</span></code>
+build, and its runtime dependencies <code class="docutils literal notranslate"><span class="pre">pyvista</span></code>, <code class="docutils literal notranslate"><span class="pre">pyvistaqt</span></code> and <code class="docutils literal notranslate"><span class="pre">superqt</span></code> are pinned in
+<code class="docutils literal notranslate"><span class="pre">conda/recipes/conda_build_config.yaml</span></code>.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 40.0%" />
+<col style="width: 60.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Module</p></th>
+<th class="head"><p>Responsibility</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">FullInstrumentViewWindow.py</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">FullInstrumentViewWindow</span></code> (the <code class="docutils literal notranslate"><span class="pre">QMainWindow</span></code> shell) and
+<code class="docutils literal notranslate"><span class="pre">FullInstrumentViewView</span></code> (all of the widgets)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">FullInstrumentViewPresenter.py</span></code></p></td>
+<td><p>Event handling, renderer and interactor selection</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">FullInstrumentViewModel.py</span></code></p></td>
+<td><p>All workspace-side logic; no Qt</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">renderers/</span></code></p></td>
+<td><p>Building the detector meshes and the picking callbacks</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Projections/</span></code></p></td>
+<td><p>2D projections of the detector positions</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">InteractorStyles.py</span></code></p></td>
+<td><p>VTK mouse interaction styles</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ShapeWidgets.py</span></code>, <code class="docutils literal notranslate"><span class="pre">ShapeOverlayManager.py</span></code></p></td>
+<td><p>The ROI and mask selection shapes, and the chart overlay they are drawn on</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ComponentTreeModel.py</span></code>, <code class="docutils literal notranslate"><span class="pre">ComponentTreeView.py</span></code>, <code class="docutils literal notranslate"><span class="pre">ComponentTreePresenter.py</span></code></p></td>
+<td><p>The instrument component tree</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Peaks/</span></code></p></td>
+<td><p>Reading and grouping peaks from a <code class="docutils literal notranslate"><span class="pre">PeaksWorkspace</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">InstrumentViewADSObserver.py</span></code></p></td>
+<td><p>Reacting to workspaces being added, renamed or deleted</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">NotebookView.py</span></code>, <code class="docutils literal notranslate"><span class="pre">NotebookPresenter.py</span></code>, <code class="docutils literal notranslate"><span class="pre">NotebookUtils.py</span></code></p></td>
+<td><p>A cut-down view for Jupyter notebooks</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">InstrumentView.py</span></code>, <code class="docutils literal notranslate"><span class="pre">__main__.py</span></code></p></td>
+<td><p>Standalone and command line entry points</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">alfview/</span></code>, <code class="docutils literal notranslate"><span class="pre">isisreflectometry/</span></code></p></td>
+<td><p>Specialisations embedded in other interfaces</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 </section>
-<section id="detector-picking">
-<h2>Detector Picking<a class="headerlink" href="#detector-picking" title="Link to this heading">#</a></h2>
-<p>Detector picking is a process of selecting a detector in the instrument view by clicking on it.
-When the user clicks the mouse inside the viewport in the picking mode, Mantid creates a hidden image of the instrument in which detectors are given colours encoding the detector’s index in the instrument tree.
-On the mouse click a colour is read in and decoded back into the index.</p>
+<section id="architecture">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Architecture</a><a class="headerlink" href="#architecture" title="Link to this heading">#</a></h2>
+<p>The interface is Model/View/Presenter, as described in <a class="reference internal" href="MVPDesign.html#mvpdesign"><span class="std std-ref">MVP Design</span></a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>FullInstrumentViewWindow (QMainWindow)
+  └── FullInstrumentViewView ──────────── FullInstrumentViewPresenter ──── FullInstrumentViewModel
+         │  widgets, plotter, line plot      on_* handlers, threading         workspace, detectors,
+         │                                                                    masks, peaks
+         ├── ShapeOverlayManager                     │
+         │      └── SelectionShape                   ├── InstrumentRenderer
+         ├── ComponentTreeView                       │      ├── PointCloudRenderer
+         │      └── ComponentTreePresenter           │      ├── ShapeRenderer
+         │             └── ComponentTreeModel        │      └── SideBySideShapeRenderer
+         └── BackgroundPlotter (pyvistaqt)           ├── InteractorStyles
+                                                     ├── Projection
+                                                     └── InstrumentViewADSObserver
+</pre></div>
+</div>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">FullInstrumentViewWindow.py</span></code> contains two classes. <code class="docutils literal notranslate"><span class="pre">FullInstrumentViewWindow</span></code> is a
+thin <code class="docutils literal notranslate"><span class="pre">QMainWindow</span></code> that sizes and centres itself and holds <code class="docutils literal notranslate"><span class="pre">FullInstrumentViewView</span></code> as its
+central widget; all of the interesting view code is in the latter.</p>
+<p>The three parts are assembled by the caller rather than by a factory, identically in
+<code class="docutils literal notranslate"><span class="pre">InstrumentView.py</span></code> and in Workbench
+(<code class="docutils literal notranslate"><span class="pre">qt/applications/workbench/workbench/plugins/workspacewidget.py</span></code>):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">FullInstrumentViewModel</span><span class="p">(</span><span class="n">ws</span><span class="p">)</span>
+<span class="n">window</span> <span class="o">=</span> <span class="n">FullInstrumentViewWindow</span><span class="p">()</span>
+<span class="n">FullInstrumentViewPresenter</span><span class="p">(</span><span class="n">window</span><span class="o">.</span><span class="n">get_instrument_view_widget</span><span class="p">(),</span> <span class="n">model</span><span class="p">)</span>
+</pre></div>
+</div>
+<section id="connecting-the-view-to-the-presenter">
+<h3><a class="toc-backref" href="#id4" role="doc-backlink">Connecting the view to the presenter</a><a class="headerlink" href="#connecting-the-view-to-the-presenter" title="Link to this heading">#</a></h3>
+<p>There are no custom Qt signals. Wiring happens in two steps from
+<code class="docutils literal notranslate"><span class="pre">FullInstrumentViewPresenter.setup()</span></code>:</p>
+<ol class="arabic">
+<li><p><code class="docutils literal notranslate"><span class="pre">view.subscribe_presenter(self)</span></code> stores the presenter on the view, which then <em>pulls</em> the
+contents of its combo boxes from it (<code class="docutils literal notranslate"><span class="pre">available_unit_options()</span></code>,
+<code class="docutils literal notranslate"><span class="pre">count_scale_combo_options()</span></code>, <code class="docutils literal notranslate"><span class="pre">peaks_workspaces_in_ads()</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">view.setup_connections_to_presenter()</span></code> connects the stock Qt widget signals directly to
+presenter methods:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">_projection_combo_box</span><span class="o">.</span><span class="n">currentIndexChanged</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_presenter</span><span class="o">.</span><span class="n">on_projection_option_changed</span><span class="p">)</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">_mask_list</span><span class="o">.</span><span class="n">itemChanged</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">partial</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_presenter</span><span class="o">.</span><span class="n">on_list_item_selected</span><span class="p">,</span> <span class="n">CurrentTab</span><span class="o">.</span><span class="n">Masking</span><span class="p">))</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p>The presenter never touches a widget directly; it calls named methods on the view such as
+<code class="docutils literal notranslate"><span class="pre">set_contour_range_limits</span></code> or <code class="docutils literal notranslate"><span class="pre">show_plot_for_detectors</span></code>. The model imports no Qt at all.</p>
 </section>
-<section id="geometry-handlers-and-renderers">
-<h2>Geometry Handlers and Renderers<a class="headerlink" href="#geometry-handlers-and-renderers" title="Link to this heading">#</a></h2>
-<p>Each object has a geometry handler attached to it.
-The handler is responsible for creating the mesh and rendering the object.
-Handlers have different methods of creating meshes.
-For example, <code class="code docutils literal notranslate"><span class="pre">GluGeometryHandler</span></code> can create simple shapes such as spheres and cylinders, <code class="code docutils literal notranslate"><span class="pre">OCGeometryHandler</span></code> creates more complex geometries combining simple shapes together.
-<code class="code docutils literal notranslate"><span class="pre">CacheGeometryHandler</span></code> reads previously saved geometries from a file.</p>
-<figure class="align-center">
-<a class="reference internal image-reference" href="_images/GeometryHandlers.jpg"><img alt="_images/GeometryHandlers.jpg" src="_images/GeometryHandlers.jpg" width="793" />
-</a>
-</figure>
+</section>
+<section id="threading">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Threading</a><a class="headerlink" href="#threading" title="Link to this heading">#</a></h2>
+<p>This is the part most likely to catch out a new developer. There is no <code class="docutils literal notranslate"><span class="pre">QThread</span></code> and no progress
+bar. Responsiveness comes from three mechanisms working together.</p>
+<p><strong>A worker thread in the presenter.</strong> The presenter owns a daemon thread and a <code class="docutils literal notranslate"><span class="pre">Queue</span></code>. Almost
+every <code class="docutils literal notranslate"><span class="pre">on_*</span></code> handler does nothing but enqueue its <code class="docutils literal notranslate"><span class="pre">_on_*</span></code> counterpart, so the Qt thread returns
+immediately:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">_callback_queue</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">()</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">_callback_thread</span> <span class="o">=</span> <span class="n">Thread</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_callback_worker</span><span class="p">,</span> <span class="n">daemon</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">_callback_thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">handle_close()</span></code> pushes a sentinel object to stop the worker.</p>
+<p><strong>Automatic marshalling back onto the Qt thread.</strong> <code class="docutils literal notranslate"><span class="pre">FullInstrumentViewView</span></code> is decorated with
+<code class="docutils literal notranslate"><span class="pre">&#64;run_on_qapp_thread()</span></code> from <code class="docutils literal notranslate"><span class="pre">mantidqt.utils.qt.qappthreadcall</span></code>, which replaces every <em>public</em>
+method with a blocking <code class="docutils literal notranslate"><span class="pre">QAppThreadCall</span></code>. The worker thread can therefore call view methods
+directly. Note that private, underscore-prefixed methods are <strong>not</strong> wrapped, so a public method
+that delegates to a private one is safe, but calling a private method from the worker thread is
+not.</p>
+<p><strong>VTK work must happen on the Qt thread first.</strong> Anything that touches the VTK render window has to
+run before the work is queued. <code class="docutils literal notranslate"><span class="pre">on_shape_changed</span></code> is the pattern to copy:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">on_shape_changed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">centres</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_model</span><span class="o">.</span><span class="n">transformed_detector_positions</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_view</span><span class="o">.</span><span class="n">project_and_cache_detector_points</span><span class="p">(</span><span class="n">centres</span><span class="p">)</span>   <span class="c1"># VTK, so Qt thread</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_shape_update_generation</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_callback_queue</span><span class="o">.</span><span class="n">put</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">_on_shape_changed</span><span class="p">,</span> <span class="p">(</span><span class="n">centres</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shape_update_generation</span><span class="p">)))</span>
+</pre></div>
+</div>
+<p>The generation counter lets the worker discard superseded updates, which matters when a shape is
+dragged or the wheel is scrolled and events arrive faster than they can be processed.</p>
+<p>The queue also means the state a handler read can have moved on by the time the work runs, so a
+handler that acts on the current selection has to snapshot it rather than read it again later.
+<code class="docutils literal notranslate"><span class="pre">on_create_item_from_selection_clicked</span></code> is the pattern to copy:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">on_create_item_from_selection_clicked</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">selection</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_model</span><span class="o">.</span><span class="n">picked_detector_mask</span>
+    <span class="n">pickable</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_model</span><span class="o">.</span><span class="n">is_pickable</span>
+    <span class="n">point_picks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_model</span><span class="o">.</span><span class="n">point_picked_detectors</span>
+    <span class="n">tab</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_view</span><span class="o">.</span><span class="n">get_current_selected_tab</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_callback_queue</span><span class="o">.</span><span class="n">put</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">_on_create_item_from_selection_clicked</span><span class="p">,</span> <span class="p">(</span><span class="n">selection</span><span class="p">,</span> <span class="n">pickable</span><span class="p">,</span> <span class="n">point_picks</span><span class="p">,</span> <span class="n">tab</span><span class="p">)))</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">is_pickable</span></code> mask is carried along because <code class="docutils literal notranslate"><span class="pre">selection</span></code> is positioned by it, so the worker
+can compare and refuse to commit if masking or a component tree selection has swapped detectors in
+or out of the pickable set meanwhile. The count would be unchanged, but every entry after the swap
+would describe a different detector.</p>
+<p>Related helpers are the <code class="docutils literal notranslate"><span class="pre">SuppressRendering</span></code> context manager, used to batch plotter updates, and
+the <code class="docutils literal notranslate"><span class="pre">_skip_if_closing</span></code> decorator, which guards view methods against calls arriving after
+<code class="docutils literal notranslate"><span class="pre">closeEvent</span></code>.</p>
+</section>
+<section id="rendering">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Rendering</a><a class="headerlink" href="#rendering" title="Link to this heading">#</a></h2>
+<p>The plotter is a <code class="docutils literal notranslate"><span class="pre">pyvistaqt.BackgroundPlotter</span></code> whose <code class="docutils literal notranslate"><span class="pre">app_window</span></code> is placed in a splitter
+alongside a matplotlib canvas for the line plot:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">main_plotter</span> <span class="o">=</span> <span class="n">BackgroundPlotter</span><span class="p">(</span><span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">menu_bar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">toolbar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">off_screen</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_off_screen</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">renderers/base_renderer.py</span></code> defines the <code class="docutils literal notranslate"><span class="pre">InstrumentRenderer</span></code> abstract base class. A renderer
+builds two meshes and supplies the picking callback:</p>
+<ul class="simple">
+<li><p>the <strong>detector mesh</strong>, built from the pickable detectors and coloured by counts. It is added with
+<code class="docutils literal notranslate"><span class="pre">pickable=True</span></code> and is the only mesh clicks are picked against;</p></li>
+<li><p>the <strong>masked mesh</strong>, drawn in a flat dark grey with <code class="docutils literal notranslate"><span class="pre">pickable=False</span></code>.</p></li>
+</ul>
+<p>Monitors and the sample are not the renderer’s concern: the presenter adds them as separate
+point meshes through <code class="docutils literal notranslate"><span class="pre">FullInstrumentViewView.add_rgba_mesh</span></code>.</p>
+<p>The selection is not a mesh of its own either. Each renderer draws it with a magenta marker on a
+<strong>persistent highlight actor</strong>, created once per plotter rebuild by <code class="docutils literal notranslate"><span class="pre">create_picked_highlight_actor</span></code>
+and afterwards only given new data and shown or hidden by <code class="docutils literal notranslate"><span class="pre">update_picked_highlight</span></code>. The marker is sized in screen pixels rather than
+by tinting the detectors, so it stays visible when a large instrument is zoomed out until each
+detector covers a pixel or less.</p>
+<p>The three implementations correspond to the render modes offered in the GUI:</p>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">PointCloudRenderer</span></code></dt><dd><p>One point per detector in a single <code class="docutils literal notranslate"><span class="pre">pv.PolyData</span></code>, drawn as screen-space spheres. Picking uses
+a <code class="docutils literal notranslate"><span class="pre">vtkPointPicker</span></code>. The selection is a larger sphere sprite centred on each picked detector,
+with its middle discarded in a fragment shader so the counts colour still shows through the
+ring.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ShapeRenderer</span></code></dt><dd><p>Draws real detector geometry. Detectors are grouped by unique shape using
+<code class="docutils literal notranslate"><span class="pre">componentInfo.shapeToComponentIndices()</span></code>, so the geometry is only built once per distinct
+shape. For each shape it either extracts an optimised four-vertex quad from the <code class="docutils literal notranslate"><span class="pre">ShapeInfo</span></code>,
+or falls back to the full triangulated mesh from <code class="docutils literal notranslate"><span class="pre">CSGObject.getMesh()</span></code>. The instances are
+then scaled, rotated and translated with vectorised NumPy using <code class="docutils literal notranslate"><span class="pre">detectorInfo.allRotations()</span></code>,
+<code class="docutils literal notranslate"><span class="pre">allScaleFactors()</span></code> and <code class="docutils literal notranslate"><span class="pre">allPositions()</span></code>, and merged into a <strong>single</strong> <code class="docutils literal notranslate"><span class="pre">pv.PolyData</span></code> so
+that VTK issues one draw call for the whole instrument. A <code class="docutils literal notranslate"><span class="pre">_cell_to_detector</span></code> array maps VTK
+cell IDs back to detector indices, for picking, for writing the scalars and for picking out the
+cells of the selected detectors.</p>
+<p>The selection is outlined with the <em>silhouette</em> of the picked cells, from a
+<code class="docutils literal notranslate"><span class="pre">vtkPolyDataSilhouette</span></code> left in the pipeline because the silhouette changes as the camera
+moves. Edges would be wrong for anything but a flat quad: a raw cuboid would draw as a
+wireframe box and a raw cylinder as two cap rings. The outline is also lifted towards the
+camera by the depth of the picked shapes, or it would be buried in the detectors packed around
+it. Past <code class="docutils literal notranslate"><span class="pre">_MAX_OUTLINE_CELLS</span></code> picked cells, recomputing the silhouette on every camera move
+gets too slow, so a second actor takes over with one marker point per picked detector.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">SideBySideShapeRenderer</span></code></dt><dd><p>Subclasses <code class="docutils literal notranslate"><span class="pre">ShapeRenderer</span></code>. It uses nearest-neighbour distances per bank
+(<code class="docutils literal notranslate"><span class="pre">scipy.spatial.cKDTree</span></code>) to scale the shapes so that unrolled panels do not overlap, and
+applies bank rotations only to tube banks.</p>
+</dd>
+</dl>
+<p>Switching render mode does not rebuild everything: the presenter keeps the renderer instances alive
+and only reloads them when the workspace itself changes.</p>
+</section>
+<section id="projections">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Projections</a><a class="headerlink" href="#projections" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Projections/Projection.py</span></code> is a base class with a self-registering subclass registry, so a new
+projection needs no changes to any factory or combo box:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Projection</span><span class="p">:</span>
+    <span class="n">_registry</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">__init_subclass__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">projection_types</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">projection_type</span><span class="p">,</span> <span class="n">defaults</span> <span class="ow">in</span> <span class="n">projection_types</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">Projection</span><span class="o">.</span><span class="n">_registry</span><span class="p">[</span><span class="n">projection_type</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">defaults</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="nb">type</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">cls</span> <span class="ow">is</span> <span class="n">Projection</span><span class="p">:</span>
+            <span class="n">subclass</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">Projection</span><span class="o">.</span><span class="n">_registry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">type</span><span class="p">)</span>
+            <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="n">subclass</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">ProjectionType</span></code> enum is used to derive the GUI’s list of projections. If <code class="docutils literal notranslate"><span class="pre">u</span></code> and <code class="docutils literal notranslate"><span class="pre">v</span></code> are
+the horizontal and vertical axes of the 2D projection, respectively, then the projections are
+created as follows.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">SphericalProjection</span></code> uses <code class="docutils literal notranslate"><span class="pre">u</span> <span class="pre">=</span> <span class="pre">-atan2(y,</span> <span class="pre">x)</span></code> and <code class="docutils literal notranslate"><span class="pre">v</span> <span class="pre">=</span> <span class="pre">-acos(v/r)</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CylindricalProjection</span></code> is equal-area: <code class="docutils literal notranslate"><span class="pre">u</span> <span class="pre">=</span> <span class="pre">-atan2(y,</span> <span class="pre">x)</span></code> and <code class="docutils literal notranslate"><span class="pre">v</span> <span class="pre">=</span> <span class="pre">z/|r|</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SideBySide</span></code> finds the flat banks – grid banks through <code class="docutils literal notranslate"><span class="pre">instrument.findGridDetectors()</span></code> and
+tube banks through the shared C++ <code class="docutils literal notranslate"><span class="pre">PanelsSurfaceCalculator</span></code> – unrolls each into its own panel,
+and tiles the panels. Bank positions from the <code class="docutils literal notranslate"><span class="pre">side-by-side-view-location</span></code> tag in the IDF are
+honoured where present.</p></li>
+</ul>
+<p>The base class also corrects the seam: it finds the largest gap in the <code class="docutils literal notranslate"><span class="pre">u</span></code> coordinate and shifts
+the range by multiples of <code class="docutils literal notranslate"><span class="pre">u_period</span></code> so that a bank is not split across the wrap-around point.
+<code class="docutils literal notranslate"><span class="pre">project_points()</span></code> is the public entry point, and is what <code class="docutils literal notranslate"><span class="pre">ShapeRenderer</span></code> uses to project the
+vertices of the detector shapes rather than just their centres.</p>
+<p>Projections are cached on the model per <code class="docutils literal notranslate"><span class="pre">(projection</span> <span class="pre">type,</span> <span class="pre">flip</span> <span class="pre">beam)</span></code> pair. Fitting the
+projection to the window is <em>not</em> part of the projection: the presenter computes a scale matrix in
+<code class="docutils literal notranslate"><span class="pre">_transform_mesh_to_fill_window()</span></code> and assigns it to <code class="docutils literal notranslate"><span class="pre">model.transform</span></code>.</p>
+</section>
+<section id="picking-and-mouse-interaction">
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">Picking and mouse interaction</a><a class="headerlink" href="#picking-and-mouse-interaction" title="Link to this heading">#</a></h2>
+<p>Each renderer supplies <code class="docutils literal notranslate"><span class="pre">get_callback_tied_to_detector_index(plotter,</span> <span class="pre">callback,</span> <span class="pre">hover)</span></code>, which
+wraps a <code class="docutils literal notranslate"><span class="pre">vtkPointPicker</span></code> or <code class="docutils literal notranslate"><span class="pre">vtkCellPicker</span></code> and translates a hit into an index into the
+<em>pickable</em> detectors. Only the detector mesh has <code class="docutils literal notranslate"><span class="pre">pickable=True</span></code>, so masked detectors, monitors,
+the sample and the selection marker cannot be picked.</p>
+<p><code class="docutils literal notranslate"><span class="pre">InteractorStyles.py</span></code> holds five VTK styles, and
+<code class="docutils literal notranslate"><span class="pre">FullInstrumentViewPresenter._update_interactor_style()</span></code> chooses between them, in this order:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 45.0%" />
+<col style="width: 55.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Condition</p></th>
+<th class="head"><p>Style</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Not a 2D projection</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">TRACKBALL</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>A shape overlay is active</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SCROLL_ZOOM_NO_PICKING</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Hover pick is checked</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SCROLL_ZOOM_WITH_HOVER</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Rectangle zoom is toggled on</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">RUBBERBAND_ZOOM</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Otherwise</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SCROLL_ZOOM_WITH_PICKING</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">CursorZoomInteractorStyle</span></code> implements zooming about the cursor in parallel projection: it caches
+the world position under the cursor during mouse-move events and, on a wheel event, adjusts the
+camera’s <code class="docutils literal notranslate"><span class="pre">parallel_scale</span></code> and shifts the focal point so that point stays put. It caches a default
+camera state, resets to it on right-click, and snaps back to it when zoomed out past it. After each
+change it fires <code class="docutils literal notranslate"><span class="pre">camera_changed_callback</span></code> so that a screen-space shape overlay can re-evaluate
+which detectors it covers.</p>
+<p><code class="docutils literal notranslate"><span class="pre">RubberBandZoomInteractorStyle</span></code> replaces VTK’s default left-button observers so that holding
+<kbd class="kbd docutils literal notranslate">Shift</kbd>, <kbd class="kbd docutils literal notranslate">Ctrl</kbd> or <kbd class="kbd docutils literal notranslate">Alt</kbd> picks a detector instead of starting a rubber band.</p>
+</section>
+<section id="shape-overlays">
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">Shape overlays</a><a class="headerlink" href="#shape-overlays" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">ShapeWidgets.py</span></code> defines a <code class="docutils literal notranslate"><span class="pre">SelectionShape</span></code> base class and the circle, rectangle, ellipse,
+annulus and hollow rectangle implementations. Shapes work in normalised <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1]</span></code> viewport
+coordinates and provide <code class="docutils literal notranslate"><span class="pre">outline_xy</span></code>, <code class="docutils literal notranslate"><span class="pre">fill_coords</span></code>, <code class="docutils literal notranslate"><span class="pre">hit_test</span></code>, <code class="docutils literal notranslate"><span class="pre">apply_resize_delta</span></code> and
+<code class="docutils literal notranslate"><span class="pre">indices_in_shape</span></code>. <code class="docutils literal notranslate"><span class="pre">hit_test</span></code> returns <code class="docutils literal notranslate"><span class="pre">&quot;inside&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;edge&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;inner_edge&quot;</span></code> or
+<code class="docutils literal notranslate"><span class="pre">&quot;handle&quot;</span></code>, which is what decides between moving, resizing and rotating, and which cursor is
+shown.</p>
+<p><code class="docutils literal notranslate"><span class="pre">ShapeOverlayManager</span></code> draws the shape on a transparent <code class="docutils literal notranslate"><span class="pre">pv.Chart2D</span></code> laid over the render, adds
+the VTK mouse observers, projects the 3D detector positions into chart coordinates, and returns the
+boolean mask of the detectors the shape covers.</p>
+</section>
+<section id="the-model">
+<h2><a class="toc-backref" href="#id10" role="doc-backlink">The model</a><a class="headerlink" href="#the-model" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">FullInstrumentViewModel</span></code> keeps full-length arrays for every detector and a set of boolean masks
+over them. Nearly every public property is a slice of one of those arrays:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">_is_valid</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_is_monitor</span> <span class="o">!=</span> <span class="s2">"yes"</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_workspace_indices</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">is_pickable</span> <span class="o">=</span> <span class="o">~</span><span class="bp">self</span><span class="o">.</span><span class="n">_is_masked</span> <span class="o">&amp;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_valid</span> <span class="o">&amp;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_selected_in_tree</span>
+</pre></div>
+</div>
+<p>Understanding which mask a property is sliced by is usually enough to understand the property. Note
+in particular that indices coming back from a picking callback are indices into the <em>pickable</em>
+detectors, not into all detectors.</p>
+<p>There are two masks describing the selection, and they differ in both length and content. <code class="docutils literal notranslate"><span class="pre">picked_detector_mask</span></code> has one entry per <em>pickable</em> detector,
+matching the meshes and the picking callbacks, and covers everything highlighted – both the
+detectors clicked in the projection and those of any ticked <code class="docutils literal notranslate"><span class="pre">Grouping</span></code> entry, which
+<code class="docutils literal notranslate"><span class="pre">apply_detector_items</span></code> unions together into <code class="docutils literal notranslate"><span class="pre">_detector_is_picked</span></code>.
+<code class="docutils literal notranslate"><span class="pre">point_picked_detectors</span></code> has one entry per detector, so it indexes the full-length arrays, and
+holds only the detectors clicked in the projection. It returns a copy, because the model picks into
+its own array in place and a caller holding it as a snapshot would otherwise see it change
+underneath them.</p>
+<p>Bulk detector data is read with the <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/CreateDetectorTable-v1.html#algm-createdetectortable" title="(in MantidProject v6.16)"><span class="xref std std-ref">CreateDetectorTable</span></a> algorithm
+rather than a Python loop over detectors, which is much faster for large instruments:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">detector_info_table</span> <span class="o">=</span> <span class="n">CreateDetectorTable</span><span class="p">(</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_workspace</span><span class="p">,</span> <span class="n">IncludeDetectorPosition</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">OneRowPerDetectorID</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">StoreInADS</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">EnableLogging</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Integrated counts come from the C++ method
+<code class="docutils literal notranslate"><span class="pre">MatrixWorkspace.getIntegratedCountsForWorkspaceIndices</span></code>, again to avoid a per-spectrum loop. The
+line plot is produced with <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/ExtractSpectra-v1.html#algm-extractspectra" title="(in MantidProject v6.16)"><span class="xref std std-ref">ExtractSpectra</span></a>, then
+<a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/ConvertUnits-v1.html#algm-convertunits" title="(in MantidProject v6.16)"><span class="xref std std-ref">ConvertUnits</span></a> if the plot units differ, then, when summing more than one
+spectrum, <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/Rebin-v1.html#algm-rebin" title="(in MantidProject v6.16)"><span class="xref std std-ref">Rebin</span></a> onto a common grid followed by
+<a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/SumSpectra-v1.html#algm-sumspectra" title="(in MantidProject v6.16)"><span class="xref std std-ref">SumSpectra</span></a>. The rebin is necessary because ragged workspaces cannot be
+summed directly.</p>
+</section>
+<section id="component-tree">
+<h2><a class="toc-backref" href="#id11" role="doc-backlink">Component tree</a><a class="headerlink" href="#component-tree" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">ComponentTreeModel</span></code> wraps <code class="docutils literal notranslate"><span class="pre">workspace.componentInfo()</span></code>. <code class="docutils literal notranslate"><span class="pre">ComponentTreePresenter</span></code> builds a
+<code class="docutils literal notranslate"><span class="pre">QStandardItemModel</span></code> lazily: a node that has children is given a single child with the text
+<code class="docutils literal notranslate"><span class="pre">##placeholder##</span></code>, which is replaced with the real children the first time the node is expanded.
+Without this, building the tree for a large instrument took several seconds.</p>
+<p>Selection is propagated as the union of <code class="docutils literal notranslate"><span class="pre">componentsInSubtree()</span></code> for each selected node. The model
+converts those component indices to detector IDs and sets <code class="docutils literal notranslate"><span class="pre">_is_selected_in_tree</span></code>, so unselected
+detectors move into the masked mesh and become unpickable.</p>
+</section>
+<section id="reacting-to-the-ads">
+<h2><a class="toc-backref" href="#id12" role="doc-backlink">Reacting to the ADS</a><a class="headerlink" href="#reacting-to-the-ads" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">InstrumentViewADSObserver</span></code> subclasses <code class="docutils literal notranslate"><span class="pre">AnalysisDataServiceObserver</span></code> and wraps each of its five
+callbacks in a <code class="docutils literal notranslate"><span class="pre">QAppThreadCall</span></code>. The presenter then queues the real work onto its worker thread:</p>
+<ul class="simple">
+<li><p><strong>delete</strong> closes the window if it was the displayed workspace, otherwise refreshes the lists.</p></li>
+<li><p><strong>rename</strong> re-points the model at the renamed workspace and rebuilds the component tree.</p></li>
+<li><p><strong>replace</strong> re-renders, or refreshes the peaks, mask or grouping list depending on the type.</p></li>
+<li><p><strong>add</strong> adds new peaks, mask or grouping workspaces to the relevant list.</p></li>
+<li><p><strong>clear</strong> closes the window.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">handle_close()</span></code> deletes the observer explicitly rather than leaving it to the garbage collector,
+which would otherwise keep stale references to workspaces alive.</p>
+</section>
+<section id="extending-the-instrument-view">
+<h2><a class="toc-backref" href="#id13" role="doc-backlink">Extending the Instrument View</a><a class="headerlink" href="#extending-the-instrument-view" title="Link to this heading">#</a></h2>
+<dl class="simple">
+<dt>New render mode</dt><dd><p>Implement <code class="docutils literal notranslate"><span class="pre">InstrumentRenderer</span></code>, add the mode string to
+<code class="docutils literal notranslate"><span class="pre">FullInstrumentViewView._RENDER_MODE_OPTIONS</span></code> and a branch to
+<code class="docutils literal notranslate"><span class="pre">FullInstrumentViewPresenter._get_renderer_for_mode</span></code>. Also override
+<code class="docutils literal notranslate"><span class="pre">_add_picked_highlight_actor</span></code> and <code class="docutils literal notranslate"><span class="pre">_build_picked_highlight_mesh</span></code>: they are not abstract, but
+the base versions draw nothing, and the marker is the only thing that shows the selection.</p>
+</dd>
+<dt>New projection</dt><dd><p>Add a member to <code class="docutils literal notranslate"><span class="pre">ProjectionType</span></code> and subclass <code class="docutils literal notranslate"><span class="pre">Projection</span></code> with
+<code class="docutils literal notranslate"><span class="pre">projection_types={ProjectionType.MY_TYPE:</span> <span class="pre">{...}}</span></code>. The combo box is populated from the enum,
+so nothing else needs changing.</p>
+</dd>
+<dt>New selection shape</dt><dd><p>Subclass <code class="docutils literal notranslate"><span class="pre">SelectionShape</span></code> and add it to <code class="docutils literal notranslate"><span class="pre">FullInstrumentViewView._shape_options</span></code>.</p>
+</dd>
+<dt>Reusing the view</dt><dd><p>Subclass <code class="docutils literal notranslate"><span class="pre">FullInstrumentViewView</span></code> and override <code class="docutils literal notranslate"><span class="pre">_set_layouts</span></code> to build a different layout
+from the same widgets, overriding any <code class="docutils literal notranslate"><span class="pre">set_*</span></code> methods that do not apply. This is what
+<code class="docutils literal notranslate"><span class="pre">alfview</span></code> does.</p>
+</dd>
+<dt>Reusing only the model</dt><dd><p>Compose <code class="docutils literal notranslate"><span class="pre">FullInstrumentViewModel</span></code> with a renderer and interactor styles directly, without
+<code class="docutils literal notranslate"><span class="pre">FullInstrumentViewPresenter</span></code>. This is what <code class="docutils literal notranslate"><span class="pre">isisreflectometry</span></code> does.</p>
+</dd>
+</dl>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The values of <code class="docutils literal notranslate"><span class="pre">Globals.CurrentTab</span></code> are the literal tab label strings, and
+<code class="docutils literal notranslate"><span class="pre">get_current_selected_tab()</span></code> converts the label back with <code class="docutils literal notranslate"><span class="pre">CurrentTab(tab_name)</span></code>. Renaming a
+tab in the GUI without changing the enum will break grouping and masking silently.</p>
+</div>
+<section id="interfaces-that-embed-the-instrument-view">
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">Interfaces that embed the Instrument View</a><a class="headerlink" href="#interfaces-that-embed-the-instrument-view" title="Link to this heading">#</a></h3>
+<p>Both current consumers are C++ interfaces that import the Python presenter, and both use it
+unless the QSettings flag <code class="docutils literal notranslate"><span class="pre">InstrumentView/use_legacy_instrument_view</span></code> is set, exposed in Workbench
+under <code class="docutils literal notranslate"><span class="pre">Settings</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">General</span></code>. Mind the sense of that flag: it names the widget it selects, so
+its default of <code class="docutils literal notranslate"><span class="pre">false</span></code> gets this one.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">alfview/</span></code></dt><dd><p><code class="docutils literal notranslate"><span class="pre">ALFInstrumentViewPresenter</span></code> and <code class="docutils literal notranslate"><span class="pre">ALFInstrumentViewView</span></code> subclass the full presenter and
+view. The view replaces the whole layout with a rebin box, a hover-pick button and a rectangle
+tool, and the presenter forces bank/tube selection, the <code class="docutils literal notranslate"><span class="pre">Cylindrical</span> <span class="pre">Y</span></code> projection and the
+approximated-shapes render mode. It calls back into C++ by finding a child <code class="docutils literal notranslate"><span class="pre">QObject</span></code> named
+<code class="docutils literal notranslate"><span class="pre">ALFPythonCallbackRelay</span></code> and invoking its <code class="docutils literal notranslate"><span class="pre">notify</span></code> method. Loaded by
+<code class="docutils literal notranslate"><span class="pre">qt/scientific_interfaces/Direct/ALFPythonInstrumentView.cpp</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">isisreflectometry/</span></code></dt><dd><p><code class="docutils literal notranslate"><span class="pre">ReflectometryInstrumentViewView</span></code> is <em>not</em> a subclass; it is a minimal widget holding only a
+plotter, composed with <code class="docutils literal notranslate"><span class="pre">FullInstrumentViewModel</span></code> and <code class="docutils literal notranslate"><span class="pre">ShapeRenderer</span></code>. Its plotter is created
+lazily in <code class="docutils literal notranslate"><span class="pre">initialise()</span></code> to avoid OpenGL context errors before the widget is embedded, and
+resize-driven updates are debounced with a timer. It relays selection changes through a child
+<code class="docutils literal notranslate"><span class="pre">QObject</span></code> named <code class="docutils literal notranslate"><span class="pre">ShapeChangedRelay</span></code>. Loaded by
+<code class="docutils literal notranslate"><span class="pre">qt/scientific_interfaces/ISISReflectometry/GUI/Preview/PreviewPythonInstrumentView.cpp</span></code>.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="testing">
+<h2><a class="toc-backref" href="#id15" role="doc-backlink">Testing</a><a class="headerlink" href="#testing" title="Link to this heading">#</a></h2>
+<p>Tests live inside the package, in <code class="docutils literal notranslate"><span class="pre">test</span></code> subdirectories next to the code they cover. They are
+plain <code class="docutils literal notranslate"><span class="pre">unittest</span></code> test cases:</p>
+<ul class="simple">
+<li><p>Model tests use real workspaces from <code class="docutils literal notranslate"><span class="pre">CreateSampleWorkspace(StoreInADS=False)</span></code>.</p></li>
+<li><p>Presenter tests use a <code class="docutils literal notranslate"><span class="pre">MagicMock</span></code> view. Where a mock stands in for the model, spec it against
+the real class so that a call to a method the model does not have fails the test.</p></li>
+<li><p>View tests use <code class="docutils literal notranslate"><span class="pre">&#64;start_qapplication</span></code> from <code class="docutils literal notranslate"><span class="pre">mantidqt.utils.qt.testing</span></code>, patch
+<code class="docutils literal notranslate"><span class="pre">BackgroundPlotter</span></code> and the matplotlib canvas, and patch <code class="docutils literal notranslate"><span class="pre">force_method_calls_to_qapp_thread</span></code>
+so that the <code class="docutils literal notranslate"><span class="pre">&#64;run_on_qapp_thread</span></code> decorator does not interfere.</p></li>
+</ul>
+<p>Run them with:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>ctest<span class="w"> </span>-R<span class="w"> </span>python.instrumentview
+</pre></div>
+</div>
+</section>
+<section id="differences-from-the-legacy-widget">
+<h2><a class="toc-backref" href="#id16" role="doc-backlink">Differences from the legacy widget</a><a class="headerlink" href="#differences-from-the-legacy-widget" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 40.0%" />
+<col style="width: 40.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Concern</p></th>
+<th class="head"><p>Legacy (C++)</p></th>
+<th class="head"><p>Current (Python)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Graphics</p></td>
+<td><p>OpenGL, <code class="docutils literal notranslate"><span class="pre">GLDisplay</span></code> and <code class="docutils literal notranslate"><span class="pre">GLObject</span></code></p></td>
+<td><p>VTK through PyVista</p></td>
+</tr>
+<tr class="row-odd"><td><p>Picking</p></td>
+<td><p>Colour-encoded off-screen render</p></td>
+<td><p>VTK pickers plus a cell-to-detector map</p></td>
+</tr>
+<tr class="row-even"><td><p>Geometry</p></td>
+<td><p>A geometry handler per object</p></td>
+<td><p>Detectors grouped by unique shape into one merged mesh</p></td>
+</tr>
+<tr class="row-odd"><td><p>Projections</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">UnwrappedSurface</span></code> and its subclasses</p></td>
+<td><p>The <code class="docutils literal notranslate"><span class="pre">Projections</span></code> package</p></td>
+</tr>
+<tr class="row-even"><td><p>Shapes</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Shape2D</span></code> and <code class="docutils literal notranslate"><span class="pre">Shape2DCollection</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SelectionShape</span></code> on a <code class="docutils literal notranslate"><span class="pre">pv.Chart2D</span></code> overlay</p></td>
+</tr>
+<tr class="row-odd"><td><p>Line plot</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MiniPlotMpl</span></code></p></td>
+<td><p>Embedded matplotlib canvas with the Mantid toolbar</p></td>
+</tr>
+<tr class="row-even"><td><p>Project save</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">InstrumentWidgetEncoder</span></code></p></td>
+<td><p>Not implemented</p></td>
+</tr>
+<tr class="row-odd"><td><p>Settings persistence</p></td>
+<td><p>None</p></td>
+<td><p>A few <code class="docutils literal notranslate"><span class="pre">ConfigService</span></code> keys</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 </section>
 </section>
 
@@ -411,11 +902,11 @@ For example, <code class="code docutils literal notranslate"><span class="pre">G
       </div>
     </a>
     <a class="right-next"
-       href="ISISSANSReductionBackend.html"
+       href="LegacyInstrumentViewer.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">ISIS SANS Reduction Back-end</p>
+        <p class="prev-next-title">Legacy Instrument Viewer Widget</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -439,9 +930,25 @@ For example, <code class="code docutils literal notranslate"><span class="pre">G
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation">Implementation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#detector-picking">Detector Picking</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#geometry-handlers-and-renderers">Geometry Handlers and Renderers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#where-the-code-lives">Where the code lives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#architecture">Architecture</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#connecting-the-view-to-the-presenter">Connecting the view to the presenter</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#threading">Threading</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rendering">Rendering</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#projections">Projections</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#picking-and-mouse-interaction">Picking and mouse interaction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shape-overlays">Shape overlays</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-model">The model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#component-tree">Component tree</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reacting-to-the-ads">Reacting to the ADS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extending-the-instrument-view">Extending the Instrument View</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interfaces-that-embed-the-instrument-view">Interfaces that embed the Instrument View</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing">Testing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#differences-from-the-legacy-widget">Differences from the legacy widget</a></li>
 </ul>
   </nav></div>
 
