@@ -397,6 +397,121 @@
 <li><p>The nexus files for all the runs used below are available from <code class="docutils literal notranslate"><span class="pre">&lt;mantidBuildDir&gt;/ExternalData/Testing/Data/DocTest</span></code> path</p></li>
 <li><p>Data loading time from the archive can be reduced by adding the above path at <code class="docutils literal notranslate"><span class="pre">File</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Manage</span> <span class="pre">User</span> <span class="pre">Directories</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Search</span> <span class="pre">Directories</span></code> before starting the tests.</p></li>
 </ul>
+<section id="automated-coverage">
+<h3>Automated coverage<a class="headerlink" href="#automated-coverage" title="Link to this heading">#</a></h3>
+<p>Most of this guide is now covered by automated UI tests. They live in
+<code class="docutils literal notranslate"><span class="pre">Testing/AutomatedUITests/EngineeringDiffraction/</span></code> and are described in <a class="reference internal" href="../../AutomatedUITests.html#automateduitests"><span class="std std-ref">Automated UI Tests</span></a>;
+run them with <code class="docutils literal notranslate"><span class="pre">ctest</span> <span class="pre">-R</span> <span class="pre">AutomatedUITest.EngineeringDiffraction</span></code>.</p>
+<p>The table below is the whole picture: for each test, which classes cover it and which of its steps
+still have to be performed by hand. Steps not listed in the last column are automated.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 45.0%" />
+<col style="width: 35.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Test</p></th>
+<th class="head"><p>Automated by</p></th>
+<th class="head"><p>Still to be checked by hand</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="#test-1-calibration-and-focussing">Test 1 - Calibration and focussing</a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">EngDiffGuiRunProcessingTest.py</span></code>: <code class="docutils literal notranslate"><span class="pre">EngDiffGuiCalibrateAndFocusTest</span></code> (Calibration 3, 8-9,
+11-12 and Focus 2, 5-7), <code class="docutils literal notranslate"><span class="pre">EngDiffGuiPlotOutputTest</span></code> (Calibration 10-11 and Focus 3, both
+checkboxes on and off), <code class="docutils literal notranslate"><span class="pre">EngDiffGuiLoadExistingCalibrationTest</span></code> (Calibration 13-14 and
+Focus 4-5), <code class="docutils literal notranslate"><span class="pre">EngDiffGuiSaveLocationAndRbNumberTest</span></code> (Calibration 5, including changing the
+save location mid-session)</p></td>
+<td><p>Calibration 1-2: archive access, and opening the interface from the menu. Comparing both
+figures against the screenshots.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#test-2-rb-number">Test 2 - RB Number</a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">EngDiffGuiSaveLocationAndRbNumberTest</span></code> for the calibration and focus output;
+<code class="docutils literal notranslate"><span class="pre">EngDiffGuiTextureRoiTest</span></code> for the rule that texture output goes <em>only</em> to the RB
+directory; <code class="docutils literal notranslate"><span class="pre">EngDiffGuiTexturePoleFigureTest</span></code> and <code class="docutils literal notranslate"><span class="pre">EngDiffGuiGsas2MultipleTest</span></code> for the
+same layout on the other tabs</p></td>
+<td><p>Nothing.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#test-3-cropping">Test 3 - Cropping</a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">EngDiffGuiCroppingTest.py</span></code>: <code class="docutils literal notranslate"><span class="pre">EngDiffGuiRoiOptionsTest</span></code> (step 2’s region of interest
+widget - the options each instrument offers, the extra input each one reveals, and the
+rejection of an invalid spectrum range), <code class="docutils literal notranslate"><span class="pre">EngDiffGuiCroppedCalibrationTest</span></code> (2-3, 5-6, 8),
+<code class="docutils literal notranslate"><span class="pre">EngDiffGuiTextureRoiTest</span></code> (1, 7, 9, including the output file layout for a texture
+grouping). The plot shapes at 4, 8 and 9 are asserted from the region of interest.</p></td>
+<td><p>Comparing the figures against the screenshots.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#test-4-absorption-correction">Test 4 - Absorption Correction</a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">EngDiffGuiCorrectionTest.py</span></code>: <code class="docutils literal notranslate"><span class="pre">EngDiffGuiCorrectionTableTest</span></code> (1-9, 11-16 - the table,
+the reference workspace, and the STL shape, CSG shape, material and orientation dialogs, each
+of which really runs its algorithm), <code class="docutils literal notranslate"><span class="pre">EngDiffGuiCorrectionApplyTest</span></code> (19-20, 22-23, and
+part of 24, plus the divergence correction, the attenuation table and the Monte Carlo
+parameters, which this guide does not ask for)</p></td>
+<td><p>Step 21, viewing the shape again after a custom gauge volume is chosen. Steps 17-18’s texture
+directions, whose settings are covered by <a class="reference internal" href="#test-12-pole-figures">Test 12 - Pole Figures</a> but not their effect on a
+correction. The rest of step 24. The screenshot comparisons.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#test-5-focused-data">Test 5 - Focused data</a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">EngDiffGuiFittingDataTest</span></code> (3-4, 6-9), reaching the tab by really calibrating and focusing
+first as steps 1-2 do; <code class="docutils literal notranslate"><span class="pre">EngDiffGuiFittingSettingsTest</span></code> (5)</p></td>
+<td><p>Nothing.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#test-6-browse-filters">Test 6 - Browse Filters</a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">EngDiffGuiFittingDataTest._check_prefill_and_filters</span></code></p></td>
+<td><p>Nothing.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#test-7-run-removal">Test 7 - Run removal</a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">EngDiffGuiFittingDataTest</span></code>: <code class="docutils literal notranslate"><span class="pre">_check_removal</span></code> (2-3), <code class="docutils literal notranslate"><span class="pre">_check_reload_reuses_log_values</span></code>
+(4), <code class="docutils literal notranslate"><span class="pre">_check_ads_deletion</span></code> (5-6)</p></td>
+<td><p>Step 2’s check on the log table rows after a removal. The row-for-row correspondence is
+asserted when the runs are loaded (<a class="reference internal" href="#test-5-focused-data">Test 5 - Focused data</a> step 4) but not again afterwards.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#test-8-background-subtraction">Test 8 - Background subtraction</a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">EngDiffGuiFittingDataTest._check_background_subtraction</span></code> and <code class="docutils literal notranslate"><span class="pre">_check_plot_background_button</span></code></p></td>
+<td><p>Nothing.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#test-9-fit-browser">Test 9 - Fit browser</a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">EngDiffGuiSequentialFitTest</span></code> (1, 3-4, 6, and part of 5)</p></td>
+<td><p>Step 2. The half of step 5 that needs the right-click menu actually clicked through. Step 7
+entirely: the fit browser’s <code class="docutils literal notranslate"><span class="pre">Custom</span> <span class="pre">Setup</span></code>, <code class="docutils literal notranslate"><span class="pre">Clear</span> <span class="pre">Model</span></code> and <code class="docutils literal notranslate"><span class="pre">Evaluate</span> <span class="pre">Function</span></code> have
+no Python API.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#test-10-sequential-fitting">Test 10 - Sequential fitting</a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">EngDiffGuiSequentialFitTest</span></code> (5-8); <code class="docutils literal notranslate"><span class="pre">EngDiffGuiFittingSettingsTest</span></code> (2, 9)</p></td>
+<td><p>Step 0, setting the workbench log level, which the automated tests do not need.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#test-11-serial-fitting">Test 11 - Serial fitting</a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">EngDiffGuiSequentialFitTest._check_serial_fit</span></code> (2-3)</p></td>
+<td><p>Nothing.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#test-12-pole-figures">Test 12 - Pole Figures</a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">EngDiffGuiTextureTest.py</span></code>, using the same shipped validation files this test does:
+<code class="docutils literal notranslate"><span class="pre">EngDiffGuiTextureLoadingTest</span></code> (1-5, 8-10), <code class="docutils literal notranslate"><span class="pre">EngDiffGuiTexturePoleFigureTest</span></code> (6, 7,
+11-14, and part of 15)</p></td>
+<td><p>The rest of step 15. The three screenshot comparisons.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#test-13-gsasii">Test 13 - GSASII</a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">EngDiffGuiGsas2SingleTest</span></code> (6-8, 11-12); <code class="docutils literal notranslate"><span class="pre">EngDiffGuiGsas2PrefillTest</span></code> (2-5), which
+calibrates and focuses for real to check the tab’s paths are filled in from them. <strong>GSAS-II
+itself is never run</strong>: the subprocess is mocked and canned outputs copied in, so the command
+line and JSON sent to it are covered, and so is everything built from its output, but a
+change in GSAS-II would not be caught. Step 11 therefore only checks that the overridden cell
+length reaches GSAS-II, not that the fit is better for it.</p></td>
+<td><p>Step 1. Step 9’s browse.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#test-14-gsasii-multiple-files">Test 14 - GSASII multiple files</a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">EngDiffGuiGsas2MultipleTest</span></code> (8, plus the RB number save location, which the steps below do
+not ask for); <code class="docutils literal notranslate"><span class="pre">EngDiffGuiGsas2SingleTest</span></code> for all three of step 9’s error cases. GSAS-II is
+mocked here too.</p></td>
+<td><p>Steps 1-4, for the same reason as <a class="reference internal" href="#test-13-gsasii">Test 13 - GSASII</a>. Steps 5-7’s browsing.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">EngDiffGuiImatTest.py</span></code> corresponds to no numbered test above: it repeats <a class="reference internal" href="#test-1-calibration-and-focussing">Test 1 - Calibration and
+focussing</a> on IMAT against fabricated run data, and checks the IMAT-specific region of interest
+options, peak function and TOF binning.</p>
+</section>
 </section>
 <section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
@@ -685,7 +800,7 @@ corresponds to the order of the runs in the table.</p></li>
 <li><p>Select all the files within that folder and click <code class="docutils literal notranslate"><span class="pre">Load</span> <span class="pre">Workspace</span> <span class="pre">Files</span></code></p></li>
 <li><p>You should see seven rows populate the table</p></li>
 <li><p>Click <code class="docutils literal notranslate"><span class="pre">Select</span> <span class="pre">All</span> <span class="pre">Files</span></code></p></li>
-<li><p>In settings, ensure the texture directions are set to  <code class="docutils literal notranslate"><span class="pre">D1</span>&#160; <span class="pre">1</span>&#160; <span class="pre">0</span>&#160; <span class="pre">0</span></code>, <code class="docutils literal notranslate"><span class="pre">D2</span>&#160; <span class="pre">0</span>&#160; <span class="pre">1</span>&#160; <span class="pre">0</span></code>, and <code class="docutils literal notranslate"><span class="pre">D3</span>&#160; <span class="pre">0</span>&#160; <span class="pre">0</span>&#160; <span class="pre">1</span></code>, and the <code class="docutils literal notranslate"><span class="pre">Scatter</span> <span class="pre">Plot</span> <span class="pre">Experimental</span> <span class="pre">Pole</span> <span class="pre">Figure</span></code> is checked, then click <code class="docutils literal notranslate"><span class="pre">OK</span></code></p></li>
+<li><p>In settings, ensure the texture directions are set to  <code class="docutils literal notranslate"><span class="pre">D1</span>&#160; <span class="pre">1</span>&#160; <span class="pre">0</span>&#160; <span class="pre">0</span></code>, <code class="docutils literal notranslate"><span class="pre">D2</span>&#160; <span class="pre">0</span>&#160; <span class="pre">1</span>&#160; <span class="pre">0</span></code>, and <code class="docutils literal notranslate"><span class="pre">D3</span>&#160; <span class="pre">0</span>&#160; <span class="pre">0</span>&#160; <span class="pre">1</span></code>, and the <code class="docutils literal notranslate"><span class="pre">Scatter</span> <span class="pre">Plot</span> <span class="pre">Experimental</span> <span class="pre">Pole</span> <span class="pre">Figure</span></code> is checked, then click <code class="docutils literal notranslate"><span class="pre">OK</span></code>. Note that the interface labels these three directions <code class="docutils literal notranslate"><span class="pre">RD</span></code>, <code class="docutils literal notranslate"><span class="pre">ND</span></code> and <code class="docutils literal notranslate"><span class="pre">TD</span></code> rather than <code class="docutils literal notranslate"><span class="pre">D1</span></code>, <code class="docutils literal notranslate"><span class="pre">D2</span></code> and <code class="docutils literal notranslate"><span class="pre">D3</span></code>.</p></li>
 <li><p>Click <code class="docutils literal notranslate"><span class="pre">Calculate</span> <span class="pre">Pole</span> <span class="pre">Figure</span></code>, you should get a plot like the one below (the colours may be different, they should correspond to the order of the files in the table, for this example the files are in ascending run number order)</p></li>
 </ol>
 <a class="reference internal image-reference" href="../../_images/EnggDiffPF1.png"><img alt="../../_images/EnggDiffPF1.png" src="../../_images/EnggDiffPF1.png" style="width: 600px;" />
@@ -760,7 +875,7 @@ Change to the <code class="docutils literal notranslate"><span class="pre">GSAS<
 <li><p>For the <code class="docutils literal notranslate"><span class="pre">Focused</span> <span class="pre">Data</span></code> filepath, browse and select multiple <cite>.gss</cite> files that each contain multiple banks. Ensure all selected files have the same number of banks (e.g., select the all_banks files: E`NGINX_305738_305793_all_banks_dSpacing.gss`, <cite>ENGINX_305738_305794_all_banks_dSpacing.gss</cite>, <cite>ENGINX_305738_305795_all_banks_dSpacing.gss</cite>).</p></li>
 <li><p>For the <code class="docutils literal notranslate"><span class="pre">Phase</span></code> filepath, select <code class="docutils literal notranslate"><span class="pre">FE_GAMMA</span></code> from the list. For the <code class="docutils literal notranslate"><span class="pre">Project</span> <span class="pre">Name</span></code> at the top, enter a string of your choice.</p></li>
 <li><p>Click Refine in <code class="docutils literal notranslate"><span class="pre">GSAS</span> <span class="pre">II</span></code>. After a few seconds, the output fit should be plotted. In the top right of the plot widget, verify that the refined spectrum combobox shows entries for the banks of the last refined data file.</p></li>
-<li><p>Test Error Cases: Try selecting multiple instrument <cite>.prm</cite> files (should show error message about requiring exactly one instrument file). Try selecting <cite>.gss</cite> files with different numbers of banks (should show error about inconsistent bank counts). Try selecting single-bank <cite>.gss</cite> files (should show error about requiring multiple banks per file).</p></li>
+<li><p>Test Error Cases: Try selecting multiple instrument <cite>.prm</cite> files (should show error message about requiring exactly one instrument file). Try selecting <cite>.gss</cite> files with different numbers of banks (should show error about inconsistent bank counts; note that only the offending file is dropped here - the files whose bank counts do match are still refined, rather than the whole request being rejected as it is for the other two cases). Try selecting single-bank <cite>.gss</cite> files (should show error about requiring multiple banks per file).</p></li>
 </ol>
 </section>
 </section>
@@ -812,7 +927,10 @@ Change to the <code class="docutils literal notranslate"><span class="pre">GSAS<
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preamble">Preamble</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preamble">Preamble</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#automated-coverage">Automated coverage</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#test-1-calibration-and-focussing">Test 1 - Calibration and focussing</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calibration">Calibration</a></li>

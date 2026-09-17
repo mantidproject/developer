@@ -442,9 +442,11 @@ ctest<span class="w"> </span>-R<span class="w"> </span>AutomatedUITest.Example.E
 </div>
 <p>Most suites need data from the ExternalData store, which is what the <code class="docutils literal notranslate"><span class="pre">AutomatedUITestData</span></code> target
 above downloads (it is nothing more than <code class="docutils literal notranslate"><span class="pre">StandardTestData</span></code> and <code class="docutils literal notranslate"><span class="pre">SystemTestData</span></code> together);
-without it the tests that need a file report a skip rather than a failure. Tests run offscreen (the
-harness <em>defaults</em> <code class="docutils literal notranslate"><span class="pre">QT_QPA_PLATFORM</span></code> to <code class="docutils literal notranslate"><span class="pre">offscreen</span></code> and <code class="docutils literal notranslate"><span class="pre">MPLBACKEND</span></code> to <code class="docutils literal notranslate"><span class="pre">Agg</span></code> on import, leaving
-either alone if it is already set), so nothing appears on screen and no display is needed. Set
+without it the tests that need a file report a skip rather than a failure, unless
+<code class="docutils literal notranslate"><span class="pre">AUTOMATED_UI_TEST_REQUIRE_PREREQUISITES</span></code> is set - see <a class="reference internal" href="#skipping-and-failing">Skipping and failing</a> below. Tests run
+offscreen (the harness <em>defaults</em> <code class="docutils literal notranslate"><span class="pre">QT_QPA_PLATFORM</span></code> to <code class="docutils literal notranslate"><span class="pre">offscreen</span></code> and <code class="docutils literal notranslate"><span class="pre">MPLBACKEND</span></code> to <code class="docutils literal notranslate"><span class="pre">Agg</span></code>
+on import, leaving either alone if it is already set), so nothing appears on screen and no display is
+needed. Set
 <code class="docutils literal notranslate"><span class="pre">QT_QPA_PLATFORM</span></code> yourself if you want to watch a test run.</p>
 <p>The data directories are named by <code class="docutils literal notranslate"><span class="pre">PYUNITTEST_DATA_DIRS</span></code> in
 <code class="docutils literal notranslate"><span class="pre">Testing/AutomatedUITests/CMakeLists.txt</span></code>, passed to each test as <code class="docutils literal notranslate"><span class="pre">MANTID_TEST_DATA_DIRS</span></code> and
@@ -478,7 +480,7 @@ than the code under test.</p>
 <span class="k">class</span><span class="w"> </span><span class="nc">MyInterfaceTest</span><span class="p">(</span><span class="n">AutomatedUITestBase</span><span class="p">):</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">MyInterfaceTest</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">setUp</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">require_files</span><span class="p">(</span><span class="s2">"SOMEDATA00001.nxs"</span><span class="p">)</span>   <span class="c1"># skip cleanly if the data is not there</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">require_files</span><span class="p">(</span><span class="s2">"SOMEDATA00001.nxs"</span><span class="p">)</span>   <span class="c1"># skip if the data is not there; fail in CI</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">patch_error_messages</span><span class="p">((</span><span class="s2">"some.module.that.pops.a.dialog"</span><span class="p">,))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">gui</span> <span class="o">=</span> <span class="n">MyInterface</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">gui</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -489,20 +491,25 @@ than the code under test.</p>
         <span class="n">process_events</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">MyInterfaceTest</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">tearDown</span><span class="p">()</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">test_the_guide_section_this_replaces</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_running_on_enginx</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">select_combo</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gui</span><span class="o">.</span><span class="n">combo_instrument</span><span class="p">,</span> <span class="s2">"ENGINX"</span><span class="p">)</span>
         <span class="n">click</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gui</span><span class="o">.</span><span class="n">button_run</span><span class="p">)</span>
 
-        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">subTest</span><span class="p">(</span><span class="s2">"Guide step 4 / the output workspace is created"</span><span class="p">):</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">subTest</span><span class="p">(</span><span class="s2">"My Interface / the output workspace is created"</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">ADS</span><span class="o">.</span><span class="n">doesExist</span><span class="p">(</span><span class="s2">"output"</span><span class="p">))</span>
-        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">subTest</span><span class="p">(</span><span class="s2">"Guide step 5 / it is in d-spacing"</span><span class="p">):</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">subTest</span><span class="p">(</span><span class="s2">"My Interface / the output is in d-spacing"</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">ADS</span><span class="o">.</span><span class="n">retrieve</span><span class="p">(</span><span class="s2">"output"</span><span class="p">)</span><span class="o">.</span><span class="n">getAxis</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">getUnit</span><span class="p">()</span><span class="o">.</span><span class="n">unitID</span><span class="p">(),</span> <span class="s2">"dSpacing"</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Points worth knowing before you write one:</p>
 <p><strong>One ``test_`` method per scenario, not per observation.</strong> Building an interface is expensive, and
-a scenario in a manual test guide is a sequence - calibrate, then focus, then look at what was
-written. Split by guide section, not by assertion.</p>
+a scenario is a sequence a user would work through - calibrate, then focus, then look at what was
+written. Split by scenario, not by assertion.</p>
+<p><strong>Name the method and its ``subTest`` labels for the functionality, not for the guide.</strong> A label
+reads back on its own from a failure, so <code class="docutils literal notranslate"><span class="pre">&quot;Fitting</span> <span class="pre">/</span> <span class="pre">the</span> <span class="pre">peak</span> <span class="pre">centre</span> <span class="pre">is</span> <span class="pre">also</span> <span class="pre">reported</span> <span class="pre">in</span>
+<span class="pre">d-spacing&quot;</span></code> says what broke where <code class="docutils literal notranslate"><span class="pre">&quot;Test</span> <span class="pre">10</span> <span class="pre">/</span> <span class="pre">step</span> <span class="pre">6&quot;</span></code> sends the reader off to another document.
+Record which guide sections a suite covers once, in the guide itself - see
+<a class="reference internal" href="Testing/EngineeringDiffraction/EngineeringDiffractionTestGuide.html#engineering-diffraction-testguide-ref"><span class="std std-ref">Engineering Diffraction Testing</span></a> for one written that way.</p>
 <p><strong>Use</strong> <a class="reference external" href="https://docs.python.org/3/library/unittest.html#unittest.TestCase.subTest" title="(in Python v3.14)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">unittest.TestCase.subTest()</span></code></a> <strong>for observations.</strong> A failed observation inside
 <code class="docutils literal notranslate"><span class="pre">with</span> <span class="pre">self.subTest(label)</span></code> is reported against its label and the ones after it still run. A test
 that stopped at the first failure would need as many weekly runs as there are regressions. Use a
@@ -525,9 +532,31 @@ thread is running its event loop. Use <code class="docutils literal notranslate"
 threads. Both default to a short timeout, so a wait on something genuinely slow has to pass a
 longer <code class="docutils literal notranslate"><span class="pre">timeout</span></code> explicitly rather than every wait in the suite inheriting one long enough to
 hide a hang.</p>
+<p><strong>A worker must never outlive its test.</strong> <code class="docutils literal notranslate"><span class="pre">AsyncTask</span></code> is a <em>non-daemon</em> thread that reports back
+through a blocking queued connection, so one still running when the run ends is joined by the
+interpreter at exit while nothing is left to pump the event loop it is parked on. That join never
+returns: the process hangs with every test already reported, and CTest kills it at the directory
+<code class="docutils literal notranslate"><span class="pre">TIMEOUT</span></code> having printed nothing useful. <code class="docutils literal notranslate"><span class="pre">wait_for_async_task</span></code> therefore aborts and drains the
+worker before it raises, and <code class="docutils literal notranslate"><span class="pre">tearDown</span></code> sweeps the live threads for any worker no test ever
+waited on - a scenario abandoned part way through by a failed assertion leaves one behind that
+nothing holds a handle to. A subclass that overrides <code class="docutils literal notranslate"><span class="pre">tearDown</span></code> must reach
+<code class="docutils literal notranslate"><span class="pre">_drain_async_tasks()</span></code> before it tears its interface down.</p>
+<p><strong>A hang dumps its stacks before CTest kills it.</strong> <code class="docutils literal notranslate"><span class="pre">HANG_DUMP_AFTER_SECONDS</span></code> in
+<code class="docutils literal notranslate"><span class="pre">automated_ui_test_base</span></code> arms a repeating <code class="docutils literal notranslate"><span class="pre">faulthandler</span></code> dump of every thread, comfortably
+inside the CTest <code class="docutils literal notranslate"><span class="pre">TIMEOUT</span></code>. It never fails a run by itself; it is there because a wedged GUI test
+is otherwise entirely silent in a CI log. Two identical dumps mean the process is stuck; dumps that
+move on mean it is only slow. Set <code class="docutils literal notranslate"><span class="pre">AUTOMATED_UI_TEST_HANG_DUMP_SECONDS</span></code> to override it, or to 0
+to switch it off.</p>
 <p><strong>Neutralise anything modal before the first click.</strong> An unattended test that pops a modal message
 box hangs until the suite times out. <code class="docutils literal notranslate"><span class="pre">patch_error_messages</span></code>, <code class="docutils literal notranslate"><span class="pre">patch_confirmation_box</span></code> and
 <code class="docutils literal notranslate"><span class="pre">algorithm_dialog_runs</span></code> on the base class cover three common cases that come up.</p>
+<p id="skipping-and-failing"><strong>A missing prerequisite skips locally and fails in CI.</strong> <code class="docutils literal notranslate"><span class="pre">require_files</span></code> and the no-Qt check in
+<code class="docutils literal notranslate"><span class="pre">setUp</span></code> both go through <code class="docutils literal notranslate"><span class="pre">_skip_or_fail</span></code>, which reads
+<code class="docutils literal notranslate"><span class="pre">AUTOMATED_UI_TEST_REQUIRE_PREREQUISITES</span></code>. Unset, they skip: on a developer’s machine not having
+built <code class="docutils literal notranslate"><span class="pre">AutomatedUITestData</span></code> is an ordinary state. <code class="docutils literal notranslate"><span class="pre">.github/workflows/weekly_ui_tests.yml</span></code> sets it
+on its test step, where a skip would instead mean the run reported green having tested nothing. Set
+it yourself to reproduce a CI result, but not in CMake, which would reach developer runs too. Any new
+reason to skip should go through <code class="docutils literal notranslate"><span class="pre">_skip_or_fail</span></code> rather than calling <code class="docutils literal notranslate"><span class="pre">skipTest</span></code> directly.</p>
 <p><strong>Go through the interface, not around it.</strong> Where possible use <code class="docutils literal notranslate"><span class="pre">add_data_search_dir</span></code> and let the
 interface’s own file finder resolve a run, rather than reaching past the view to inject a workspace -
 what is being tested is the path a user takes.</p>
