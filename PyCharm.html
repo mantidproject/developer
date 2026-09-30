@@ -355,8 +355,8 @@
 The main difference for our workflow is that professional offers support for remote debugging which can help with debugging Python code that is called from C++, such as algorithms called from Python interfaces.</p>
 <p>If you haven’t installed PyCharm yet do that now, PyCharm can be installed from <a class="reference external" href="https://jetbrains.com/pycharm/download/">here</a>.</p>
 </section>
-<section id="setup-python-development-environment-with-conda">
-<h2>Setup Python development environment with conda<a class="headerlink" href="#setup-python-development-environment-with-conda" title="Link to this heading">#</a></h2>
+<section id="setup-python-development-environment">
+<h2>Setup Python development environment<a class="headerlink" href="#setup-python-development-environment" title="Link to this heading">#</a></h2>
 <p>The assumption has been made that you have setup and built Mantid already.
 If you have not, please do so before hand by following <a class="reference internal" href="GettingStarted/GettingStarted.html"><span class="std std-doc">this guide</span></a>.</p>
 <p>At any point in these instructions where <code class="docutils literal notranslate"><span class="pre">DebugWithRelRuntime</span></code> is used (including in file paths),
@@ -370,12 +370,33 @@ On Linux and macOS, use <code class="docutils literal notranslate"><span class="
 <li><p>In the left hand side select the option that is <code class="docutils literal notranslate"><span class="pre">Project:</span> <span class="pre">{SOURCE_CODE_FOLDER_NAME}</span></code> for example <code class="docutils literal notranslate"><span class="pre">Project:</span> <span class="pre">mantid</span></code>.</p></li>
 <li><p>Select the <code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">Interpreter</span></code> option.</p></li>
 <li><p>Click <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">Interpreter</span></code> on the top right, then <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">Local</span> <span class="pre">Interpreter...</span></code>.</p></li>
+<li><p>Select the interpreter from your development environment by following the section below for your environment.</p></li>
+</ul>
+<section id="pixi-interpreter">
+<h3>Pixi interpreter<a class="headerlink" href="#pixi-interpreter" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Choose <code class="docutils literal notranslate"><span class="pre">Select</span> <span class="pre">existing</span></code>, set the type to <code class="docutils literal notranslate"><span class="pre">Python</span></code>, and set the path to the <code class="docutils literal notranslate"><span class="pre">python</span></code> executable in your pixi environment:</p>
+<ul>
+<li><p>On Linux or MacOS: <code class="docutils literal notranslate"><span class="pre">{SOURCE}/.pixi/envs/default/bin/python</span></code></p></li>
+<li><p>On Windows: <code class="docutils literal notranslate"><span class="pre">{SOURCE}\.pixi\envs\default\python.exe</span></code></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="conda-interpreter">
+<h3>Conda interpreter<a class="headerlink" href="#conda-interpreter" title="Link to this heading">#</a></h3>
+<ul class="simple">
 <li><p>From the left side of the window select <code class="docutils literal notranslate"><span class="pre">Conda</span> <span class="pre">Environment</span></code>.</p></li>
 <li><p>Add the path to your conda executable, e.g. <code class="docutils literal notranslate"><span class="pre">C:\Users\&lt;username&gt;\AppData\Local\miniforge\Scripts\conda.exe</span></code> and click <code class="docutils literal notranslate"><span class="pre">Load</span> <span class="pre">Environments</span></code>.</p></li>
 <li><p>Click the <code class="docutils literal notranslate"><span class="pre">Use</span> <span class="pre">Existing</span> <span class="pre">environment</span></code> radio button and select the <code class="docutils literal notranslate"><span class="pre">mantid-developer</span></code> environment in the drop down list.</p></li>
+</ul>
+</section>
+<section id="project-structure">
+<h3>Project structure<a class="headerlink" href="#project-structure" title="Link to this heading">#</a></h3>
+<ul class="simple">
 <li><p>Click OK to close the window.</p></li>
-<li><p>Ensure that next to <code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">Interpreter:</span></code> it says <code class="docutils literal notranslate"><span class="pre">mantid-developer</span></code>.
-You will also see a list of the python packages installed in your mantid-developer environment.</p></li>
+<li><p>Ensure that <code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">Interpreter:</span></code> shows the interpreter you just selected.
+You will also see a list of the python packages installed in your development environment.</p></li>
 <li><p>Then click Apply.</p></li>
 <li><p>Back on the left side, under <code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">Interpreter</span></code> there should be an option for <code class="docutils literal notranslate"><span class="pre">Project</span> <span class="pre">Structure</span></code>. Select that.</p></li>
 <li><p>If you do not build Mantid in the same directory as your source but somewhere else add this as another Content Root, by selecting <code class="docutils literal notranslate"><span class="pre">+</span> <span class="pre">Add</span> <span class="pre">Content</span> <span class="pre">Root</span></code> on the right hand side now.</p></li>
@@ -396,6 +417,7 @@ You will also see a list of the python packages installed in your mantid-develop
 <li><p>Click Apply, and then OK to close the window.</p></li>
 </ul>
 </section>
+</section>
 <section id="debug-python-in-workbench">
 <span id="debug-workbench-in-pycharm-ref"></span><h2>Debug Python in Workbench<a class="headerlink" href="#debug-python-in-workbench" title="Link to this heading">#</a></h2>
 <p>Now that your Python development environment has been setup we can setup the debugging using Workbench.</p>
@@ -407,7 +429,7 @@ You will also see a list of the python packages installed in your mantid-develop
 <li><p>Click the down arrow next to <code class="docutils literal notranslate"><span class="pre">Script</span> <span class="pre">path:</span></code> and change the selection to <code class="docutils literal notranslate"><span class="pre">Module</span> <span class="pre">name</span></code>. Set the <code class="docutils literal notranslate"><span class="pre">Module</span> <span class="pre">name</span></code> to <code class="docutils literal notranslate"><span class="pre">workbench</span></code>.</p></li>
 <li><p>In the <code class="docutils literal notranslate"><span class="pre">Parameters</span></code> box add <code class="docutils literal notranslate"><span class="pre">--single-process</span></code> so that the multiprocess startup is disabled and breakpoints can be attached to the primary process. See the <a class="reference internal" href="Workbench/RunningWorkbench.html#runningworkbench"><span class="std std-ref">Running Workbench</span></a> documentation for more information.</p></li>
 <li><p>In the <code class="docutils literal notranslate"><span class="pre">Working</span> <span class="pre">directory:</span></code> box, on Linux/MacOS enter the <code class="docutils literal notranslate"><span class="pre">{BUILD}/bin</span></code> directory, on Windows enter <code class="docutils literal notranslate"><span class="pre">{BUILD}/bin/DebugWithRelRuntime</span></code> directory.</p></li>
-<li><p>Ensure the <code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">Interpreter:</span></code> box is set to use your <code class="docutils literal notranslate"><span class="pre">(mantid-developer)</span></code> conda environment.</p></li>
+<li><p>Ensure the <code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">Interpreter:</span></code> box is set to use the interpreter you selected when setting up your Python development environment.</p></li>
 <li><p>Click OK to save and exit the window.</p></li>
 <li><p>You can now click the green play button in the top right of the window to create a Workbench instance from pycharm.</p></li>
 <li><p>Alternatively you can click the green bug next to the green play button to start a debug session.</p></li>
@@ -423,7 +445,7 @@ C:<span class="se">\P</span>rogram<span class="w"> </span>Files<span class="se">
 </pre></div>
 </div>
 </div>
-<p>To resolve the error, remove <strong>only</strong> the debugpy package from your conda environment with</p>
+<p>If you are using conda, you can resolve the error by removing <strong>only</strong> the debugpy package from your conda environment with</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>remove<span class="w"> </span>debugpy<span class="w"> </span>--force
 </pre></div>
 </div>
@@ -738,7 +760,12 @@ From here you can manage plugins, or add new ones by clicking <strong>Browse rep
     <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">PyCharm</a><ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#selecting-pycharm-versions">Selecting PyCharm versions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-python-development-environment-with-conda">Setup Python development environment with conda</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-python-development-environment">Setup Python development environment</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pixi-interpreter">Pixi interpreter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conda-interpreter">Conda interpreter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#project-structure">Project structure</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#debug-python-in-workbench">Debug Python in Workbench</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#debug-python-in-unit-tests">Debug Python in unit tests</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#debug-python-in-system-tests-remote-debugging">Debug Python in system tests/remote debugging</a></li>

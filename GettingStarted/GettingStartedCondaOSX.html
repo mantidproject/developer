@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Develop with conda on MacOS &#8212; MantidProject main documentation</title>
+    <title>Develop on MacOS &#8212; MantidProject main documentation</title>
   
   
   
@@ -46,7 +46,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Develop without conda" href="GettingStartedNoneConda.html" />
-    <link rel="prev" title="Develop with conda on Linux" href="GettingStartedCondaLinux.html" />
+    <link rel="prev" title="Develop on Linux" href="GettingStartedCondaLinux.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en">
     <link rel="icon" sizes="32x32" href="../_static/images/favicon.ico">
@@ -292,9 +292,9 @@
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="GettingStartedCondaWindows.html">Develop with conda on Windows</a></li>
-<li class="toctree-l1"><a class="reference internal" href="GettingStartedCondaLinux.html">Develop with conda on Linux</a></li>
-<li class="toctree-l1 current active"><a aria-current="page" class="current reference internal" href="#">Develop with conda on MacOS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GettingStartedCondaWindows.html">Develop on Windows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GettingStartedCondaLinux.html">Develop on Linux</a></li>
+<li class="toctree-l1 current active"><a aria-current="page" class="current reference internal" href="#">Develop on MacOS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="GettingStartedNoneConda.html">Develop without conda</a></li>
 </ul>
 </div>
@@ -339,7 +339,7 @@
     
     <li class="breadcrumb-item"><a href="GettingStarted.html" class="nav-link">Environment Setup</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Develop with conda on MacOS</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Develop on MacOS</span></li>
   </ul>
 </nav>
 </div>
@@ -356,8 +356,8 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="develop-with-conda-on-macos">
-<h1>Develop with conda on MacOS<a class="headerlink" href="#develop-with-conda-on-macos" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="develop-on-macos">
+<h1>Develop on MacOS<a class="headerlink" href="#develop-on-macos" title="Link to this heading">#</a></h1>
 <section id="install-git">
 <h2>Install <a class="reference external" href="https://git-scm.com/">Git</a><a class="headerlink" href="#install-git" title="Link to this heading">#</a></h2>
 <ul class="simple">
@@ -386,44 +386,9 @@ to configure your git environment.</p></li>
 </li>
 </ul>
 </section>
-<section id="install-miniforge">
-<h2>Install <a class="reference external" href="https://github.com/conda-forge/miniforge/releases">Miniforge</a><a class="headerlink" href="#install-miniforge" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Choose the latest version of <code class="docutils literal notranslate"><span class="pre">Miniforge3-MacOSX-x86_64.sh</span></code> for intel based Macs or for the new arm versions use <code class="docutils literal notranslate"><span class="pre">Miniforge3-MacOSX-arm64.sh</span></code></p></li>
-<li><p>Run your downloaded script from the terminal using <code class="docutils literal notranslate"><span class="pre">bash</span> <span class="pre">Miniforge3-MacOSX-x86_64.sh</span></code> or <code class="docutils literal notranslate"><span class="pre">bash</span> <span class="pre">Miniforge3-MacOSX-arm64.sh</span></code> depending on your downloaded variant.</p></li>
-<li><p>If it asks whether or not you want to initialise conda with conda init, choose to do so.</p></li>
-<li><p>Restart your terminal.</p></li>
-</ul>
-</section>
-<section id="setup-the-mantid-conda-environment">
-<h2>Setup the mantid conda environment<a class="headerlink" href="#setup-the-mantid-conda-environment" title="Link to this heading">#</a></h2>
-<p>Create <code class="docutils literal notranslate"><span class="pre">mantid-developer</span></code> conda environment by following the steps below:</p>
-<ul>
-<li><p>First create a new conda environment and install the <code class="docutils literal notranslate"><span class="pre">mantid-developer</span></code> conda metapackage.
-You will normally want the nightly version, specified below by adding the label <code class="docutils literal notranslate"><span class="pre">mantid/label/nightly</span></code>.
-Here we have named the conda environment <code class="docutils literal notranslate"><span class="pre">mantid-developer</span></code> for consistency with the rest of the documentation
-but you are free to choose any name. The <code class="docutils literal notranslate"><span class="pre">neutrons</span></code> channel is also required for PyStoG.</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>mamba<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>mantid-developer<span class="w"> </span>mantid/label/nightly::mantid-developer<span class="w"> </span>-c<span class="w"> </span>neutrons<span class="w"> </span>-c<span class="w"> </span>mantid
-</pre></div>
-</div>
-</li>
-<li><p>Then activate the conda environment with</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>mamba<span class="w"> </span>activate<span class="w"> </span>mantid-developer
-</pre></div>
-</div>
-</li>
-<li><p>It is important that you regularly update your <code class="docutils literal notranslate"><span class="pre">mantid-developer</span></code> environment so that the dependencies are consistent with those used in production.
-With your <code class="docutils literal notranslate"><span class="pre">mantid-developer</span></code> environment activated, run the following command:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>mamba<span class="w"> </span>update<span class="w"> </span>-c<span class="w"> </span>mantid/label/nightly<span class="w"> </span>-c<span class="w"> </span>neutrons<span class="w"> </span>-c<span class="w"> </span>mantid<span class="w"> </span>--all
-</pre></div>
-</div>
-</li>
-</ul>
-<p>See <a class="reference internal" href="../Packaging.html"><span class="doc std std-doc">packaging</span></a> for more information on this topic.</p>
-</section>
-<section id="setup-the-mantid-pixi-environment">
-<h2>Setup the mantid pixi environment<a class="headerlink" href="#setup-the-mantid-pixi-environment" title="Link to this heading">#</a></h2>
-<p>Pixi allows for reducible environments using conda packages.
+<section id="setup-the-mantid-pixi-environment-recommended">
+<h2>Setup the mantid pixi environment (recommended)<a class="headerlink" href="#setup-the-mantid-pixi-environment-recommended" title="Link to this heading">#</a></h2>
+<p>Pixi allows for reproducible environments using conda packages.
 It manages environments for all supported platforms together to help keep them in line with each other.</p>
 <ol class="arabic">
 <li><p>Follow the <a class="reference external" href="https://pixi.sh/latest/installation/">pixi installation instructions</a> for your platform</p></li>
@@ -459,11 +424,59 @@ Once <code class="docutils literal notranslate"><span class="pre">direnv</span><
 </div>
 <p>The last line is necessary to get the build results into the python path.</p>
 </section>
+<section id="alternative-setup-a-mantid-conda-environment">
+<h2>Alternative: setup a mantid conda environment<a class="headerlink" href="#alternative-setup-a-mantid-conda-environment" title="Link to this heading">#</a></h2>
+<section id="install-miniforge">
+<h3>Install <a class="reference external" href="https://github.com/conda-forge/miniforge/releases">Miniforge</a><a class="headerlink" href="#install-miniforge" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Choose the latest version of <code class="docutils literal notranslate"><span class="pre">Miniforge3-MacOSX-x86_64.sh</span></code> for intel based Macs or for the new arm versions use <code class="docutils literal notranslate"><span class="pre">Miniforge3-MacOSX-arm64.sh</span></code></p></li>
+<li><p>Run your downloaded script from the terminal using <code class="docutils literal notranslate"><span class="pre">bash</span> <span class="pre">Miniforge3-MacOSX-x86_64.sh</span></code> or <code class="docutils literal notranslate"><span class="pre">bash</span> <span class="pre">Miniforge3-MacOSX-arm64.sh</span></code> depending on your downloaded variant.</p></li>
+<li><p>If it asks whether or not you want to initialise conda with conda init, choose to do so.</p></li>
+<li><p>Restart your terminal.</p></li>
+</ul>
+</section>
+<section id="create-the-conda-environment">
+<h3>Create the conda environment<a class="headerlink" href="#create-the-conda-environment" title="Link to this heading">#</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">mantid-developer</span></code> conda metapackage is deprecated and will be removed in a future release.
+We recommend setting up your development environment with pixi instead.</p>
+</div>
+<p>Create <code class="docutils literal notranslate"><span class="pre">mantid-developer</span></code> conda environment by following the steps below:</p>
+<ul>
+<li><p>First create a new conda environment and install the <code class="docutils literal notranslate"><span class="pre">mantid-developer</span></code> conda metapackage.
+You will normally want the nightly version, specified below by adding the label <code class="docutils literal notranslate"><span class="pre">mantid/label/nightly</span></code>.
+Here we have named the conda environment <code class="docutils literal notranslate"><span class="pre">mantid-developer</span></code> for consistency with the rest of the documentation
+but you are free to choose any name. The <code class="docutils literal notranslate"><span class="pre">neutrons</span></code> channel is also required for PyStoG.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>mamba<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>mantid-developer<span class="w"> </span>mantid/label/nightly::mantid-developer<span class="w"> </span>-c<span class="w"> </span>neutrons<span class="w"> </span>-c<span class="w"> </span>mantid
+</pre></div>
+</div>
+</li>
+<li><p>Then activate the conda environment with</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>mamba<span class="w"> </span>activate<span class="w"> </span>mantid-developer
+</pre></div>
+</div>
+</li>
+<li><p>It is important that you regularly update your <code class="docutils literal notranslate"><span class="pre">mantid-developer</span></code> environment so that the dependencies are consistent with those used in production.
+With your <code class="docutils literal notranslate"><span class="pre">mantid-developer</span></code> environment activated, run the following command:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>mamba<span class="w"> </span>update<span class="w"> </span>-c<span class="w"> </span>mantid/label/nightly<span class="w"> </span>-c<span class="w"> </span>neutrons<span class="w"> </span>-c<span class="w"> </span>mantid<span class="w"> </span>--all
+</pre></div>
+</div>
+</li>
+</ul>
+<p>See <a class="reference internal" href="../Packaging.html"><span class="doc std std-doc">packaging</span></a> for more information on this topic.</p>
+</section>
+</section>
 <section id="configure-cmake-and-generate-build-files">
 <h2>Configure CMake and generate build files<a class="headerlink" href="#configure-cmake-and-generate-build-files" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Still using the terminal.</p></li>
-<li><p>If not already activated in the previous step, run <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">mantid-developer</span></code> to activate your conda environment.</p></li>
+<li><p>If not already activated in the previous step, activate your environment:</p>
+<ul>
+<li><p>For pixi, run <code class="docutils literal notranslate"><span class="pre">pixi</span> <span class="pre">shell</span></code> from your mantid source directory, or prefix the commands below with <code class="docutils literal notranslate"><span class="pre">pixi</span> <span class="pre">run</span></code> if your build folder is a subdirectory of the source directory.</p></li>
+<li><p>For conda, run <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">mantid-developer</span></code>.</p></li>
+</ul>
+</li>
 <li><p>Navigate back to your mantid source directory using <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">mantid</span></code> if you used the default name during cloning from git.</p></li>
 <li><p>Inside of your mantid source directory run <code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">--preset=osx</span></code></p>
 <ul>
@@ -487,7 +500,7 @@ This option can be passed to CMake on the command line using <code class="docuti
 </section>
 <section id="running-workbench">
 <h2>Running Workbench<a class="headerlink" href="#running-workbench" title="Link to this heading">#</a></h2>
-<p>To run workbench from the commandline, ensure you conda environment is activated, and bin (in the build directory) is added to the python paths.</p>
+<p>To run workbench from the commandline, ensure your pixi (or conda) environment is activated, and bin (in the build directory) is added to the python paths.</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">PYTHONPATH</span><span class="o">=</span><span class="s2">"</span><span class="si">${</span><span class="nv">PYTHONPATH</span><span class="si">}</span><span class="s2">:replace-with-full-file-path-to-bin"</span>
 workbench
 </pre></div>
@@ -521,7 +534,7 @@ the spelling mistake is real.</p>
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Develop with conda on Linux</p>
+        <p class="prev-next-title">Develop on Linux</p>
       </div>
     </a>
     <a class="right-next"
@@ -554,9 +567,12 @@ the spelling mistake is real.</p>
     <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-git">Install Git</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clone-the-mantid-source-code">Clone the mantid source code</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-miniforge">Install Miniforge</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-the-mantid-conda-environment">Setup the mantid conda environment</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-the-mantid-pixi-environment">Setup the mantid pixi environment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-the-mantid-pixi-environment-recommended">Setup the mantid pixi environment (recommended)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alternative-setup-a-mantid-conda-environment">Alternative: setup a mantid conda environment</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-miniforge">Install Miniforge</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-the-conda-environment">Create the conda environment</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configure-cmake-and-generate-build-files">Configure CMake and generate build files</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-build">How to build</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cmake-conda-variables">CMake conda variables</a></li>

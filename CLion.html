@@ -357,6 +357,26 @@ generator from a Windows or Linux operating system.</p>
 <p>If you haven’t installed CLion yet do that now, CLion can be installed
 from <a class="reference external" href="https://jetbrains.com/clion/download/">here</a>.</p>
 </section>
+<section id="development-environment">
+<h2>Development environment<a class="headerlink" href="#development-environment" title="Link to this heading">#</a></h2>
+<p>CLion needs to use the tools from the development environment you set up by following the <a class="reference internal" href="GettingStarted/GettingStarted.html"><span class="doc std std-doc">Getting Started</span></a> guide.
+Follow the section below for your environment.
+In the rest of this page, <code class="docutils literal notranslate"><span class="pre">{ENV}</span></code> refers to the root directory of that environment.</p>
+<section id="pixi">
+<h3>Pixi<a class="headerlink" href="#pixi" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">{ENV}</span></code> is <code class="docutils literal notranslate"><span class="pre">/path/to/source/mantid/.pixi/envs/default</span></code>.</p></li>
+<li><p>To activate the environment in a terminal, navigate to your mantid source directory and run <code class="docutils literal notranslate"><span class="pre">pixi</span> <span class="pre">shell</span></code>.</p></li>
+</ul>
+</section>
+<section id="conda">
+<h3>Conda<a class="headerlink" href="#conda" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">{ENV}</span></code> is the location of your conda environment, e.g. <code class="docutils literal notranslate"><span class="pre">/path/to/miniforge/envs/mantid-developer</span></code>.</p></li>
+<li><p>To activate the environment in a terminal, run <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">mantid-developer</span></code>.</p></li>
+</ul>
+</section>
+</section>
 <section id="opening-clion">
 <h2>Opening CLion<a class="headerlink" href="#opening-clion" title="Link to this heading">#</a></h2>
 <p>The first time you build from CLion, you will most likely need to launch
@@ -366,14 +386,14 @@ the relevant tools.</p>
 <li><p>On Linux,</p>
 <ol class="arabic simple">
 <li><p>Open any terminal</p></li>
-<li><p>Run <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">mantid-developer</span></code></p></li>
+<li><p>Activate your development environment</p></li>
 <li><p>Then launch CLion from this terminal with <code class="docutils literal notranslate"><span class="pre">&lt;CLION_INSTALL&gt;/bin/clion.sh</span></code></p></li>
 </ol>
 </li>
 <li><p>On Windows,</p>
 <ol class="arabic simple">
 <li><p>Using your search bar, open the <code class="docutils literal notranslate"><span class="pre">x64</span> <span class="pre">Native</span> <span class="pre">Tools</span> <span class="pre">Command</span> <span class="pre">Prompt</span> <span class="pre">for</span> <span class="pre">VS</span> <span class="pre">2019</span></code> command prompt</p></li>
-<li><p>Run <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">mantid-developer</span></code></p></li>
+<li><p>Activate your development environment</p></li>
 <li><p>Then launch CLion with <code class="docutils literal notranslate"><span class="pre">&lt;CLION_INSTALL&gt;/bin/clion.bat</span></code></p></li>
 </ol>
 </li>
@@ -387,20 +407,19 @@ the relevant tools.</p>
 <ol class="arabic">
 <li><p>Navigate to <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">&gt;</span> <span class="pre">Settings</span> <span class="pre">&gt;</span> <span class="pre">Build,</span> <span class="pre">Execution,</span> <span class="pre">Deployment</span> <span class="pre">&gt;</span> <span class="pre">Toolchains</span></code></p></li>
 <li><p>Create a new <code class="docutils literal notranslate"><span class="pre">System</span></code> toolchain using the <code class="docutils literal notranslate"><span class="pre">+</span></code> icon and call it <code class="docutils literal notranslate"><span class="pre">Default</span></code></p></li>
-<li><p>Edit the CMake field to point to your conda installed <code class="docutils literal notranslate"><span class="pre">cmake</span></code></p>
+<li><p>Edit the CMake field to point to the <code class="docutils literal notranslate"><span class="pre">cmake</span></code> installed in your development environment</p>
 <div class="{.hlist docutils">
 <ul class="simple">
-<li><p>On Linux: <code class="docutils literal notranslate"><span class="pre">/path/to/miniforge/envs/mantid-developer/bin/cmake</span></code></p></li>
-<li><p>On Windows:
-<code class="docutils literal notranslate"><span class="pre">/path/to/miniforge/envs/mantid-developer/Library/bin/cmake.exe</span></code></p></li>
+<li><p>On Linux: <code class="docutils literal notranslate"><span class="pre">{ENV}/bin/cmake</span></code></p></li>
+<li><p>On Windows: <code class="docutils literal notranslate"><span class="pre">{ENV}/Library/bin/cmake.exe</span></code></p></li>
 </ul>
 </div>
 </li>
-<li><p>Edit the Build Tool field to point to your conda installed <code class="docutils literal notranslate"><span class="pre">ninja</span></code></p>
+<li><p>Edit the Build Tool field to point to the <code class="docutils literal notranslate"><span class="pre">ninja</span></code> installed in your development environment</p>
 <div class="{.hlist docutils">
 <ul class="simple">
-<li><p>On Linux: <code class="docutils literal notranslate"><span class="pre">/path/to/miniforge/envs/mantid-developer/bin/ninja</span></code></p></li>
-<li><p>On Windows: <code class="docutils literal notranslate"><span class="pre">/path/to/miniforge/envs/mantid-developer/Library/bin/ninja.exe</span></code></p></li>
+<li><p>On Linux: <code class="docutils literal notranslate"><span class="pre">{ENV}/bin/ninja</span></code></p></li>
+<li><p>On Windows: <code class="docutils literal notranslate"><span class="pre">{ENV}/Library/bin/ninja.exe</span></code></p></li>
 </ul>
 </div>
 </li>
@@ -442,45 +461,69 @@ the relevant tools.</p>
 <section id="additional-build-configuration">
 <h3>Additional Build Configuration<a class="headerlink" href="#additional-build-configuration" title="Link to this heading">#</a></h3>
 <p>This (optional) additional configuration allows one to start Clion from the JetBrains Toolbox or
-from a terminal without having to activate the conda environment in the terminal.
+from a terminal without having to activate the development environment in the terminal.
 This is useful when you’re working on both Mantid and other projects in CLion simultaneously.</p>
 <ol class="arabic simple">
 <li><p>Navigate to <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">&gt;</span> <span class="pre">Settings</span> <span class="pre">&gt;</span> <span class="pre">Build,</span> <span class="pre">Execution,</span> <span class="pre">Deployment</span> <span class="pre">&gt;</span> <span class="pre">CMake</span></code></p></li>
-<li><p>Under <code class="docutils literal notranslate"><span class="pre">environment</span></code>, add new environment variable <code class="docutils literal notranslate"><span class="pre">CONDA_PREFIX</span></code> with value <code class="docutils literal notranslate"><span class="pre">/path/to/miniforge/envs/mantid-developer</span></code>.</p></li>
-<li><p>Navigate to <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">&gt;</span> <span class="pre">Settings</span> <span class="pre">&gt;</span> <span class="pre">Build,</span> <span class="pre">Execution,</span> <span class="pre">Deployment</span> <span class="pre">&gt;</span> <span class="pre">Python</span> <span class="pre">Interpreter</span> <span class="pre">&gt;</span> <span class="pre">Add</span> <span class="pre">Interpreter</span> <span class="pre">&gt;</span> <span class="pre">Add</span> <span class="pre">Local</span> <span class="pre">Interpreter</span> <span class="pre">&gt;</span> <span class="pre">Conda</span> <span class="pre">Environment</span> <span class="pre">&gt;</span> <span class="pre">Use</span> <span class="pre">existing</span> <span class="pre">environment</span></code>, then select <code class="docutils literal notranslate"><span class="pre">mantid-developer</span></code>.</p></li>
+<li><p>Under <code class="docutils literal notranslate"><span class="pre">environment</span></code>, add new environment variable <code class="docutils literal notranslate"><span class="pre">CONDA_PREFIX</span></code> with value <code class="docutils literal notranslate"><span class="pre">{ENV}</span></code>.</p></li>
+<li><p>Set up the Python interpreter by following the section below for your environment.</p></li>
 </ol>
+<section id="pixi-python-interpreter">
+<h4>Pixi Python interpreter<a class="headerlink" href="#pixi-python-interpreter" title="Link to this heading">#</a></h4>
+<p>Navigate to <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">&gt;</span> <span class="pre">Settings</span> <span class="pre">&gt;</span> <span class="pre">Build,</span> <span class="pre">Execution,</span> <span class="pre">Deployment</span> <span class="pre">&gt;</span> <span class="pre">Python</span> <span class="pre">Interpreter</span> <span class="pre">&gt;</span> <span class="pre">Add</span> <span class="pre">Interpreter</span> <span class="pre">&gt;</span> <span class="pre">Add</span> <span class="pre">Local</span> <span class="pre">Interpreter</span> <span class="pre">&gt;</span> <span class="pre">Select</span> <span class="pre">existing</span></code>,
+then select the <code class="docutils literal notranslate"><span class="pre">python</span></code> executable in your pixi environment: <code class="docutils literal notranslate"><span class="pre">{ENV}/bin/python</span></code> on Linux, or <code class="docutils literal notranslate"><span class="pre">{ENV}/python.exe</span></code> on Windows.</p>
+</section>
+<section id="conda-python-interpreter">
+<h4>Conda Python interpreter<a class="headerlink" href="#conda-python-interpreter" title="Link to this heading">#</a></h4>
+<p>Navigate to <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">&gt;</span> <span class="pre">Settings</span> <span class="pre">&gt;</span> <span class="pre">Build,</span> <span class="pre">Execution,</span> <span class="pre">Deployment</span> <span class="pre">&gt;</span> <span class="pre">Python</span> <span class="pre">Interpreter</span> <span class="pre">&gt;</span> <span class="pre">Add</span> <span class="pre">Interpreter</span> <span class="pre">&gt;</span> <span class="pre">Add</span> <span class="pre">Local</span> <span class="pre">Interpreter</span> <span class="pre">&gt;</span> <span class="pre">Conda</span> <span class="pre">Environment</span> <span class="pre">&gt;</span> <span class="pre">Use</span> <span class="pre">existing</span> <span class="pre">environment</span></code>,
+then select <code class="docutils literal notranslate"><span class="pre">mantid-developer</span></code>.</p>
+</section>
 </section>
 </section>
 <section id="building-with-clion">
 <h2>Building with CLion<a class="headerlink" href="#building-with-clion" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>To build all targets, navigate to <code class="docutils literal notranslate"><span class="pre">Build</span> <span class="pre">&gt;</span> <span class="pre">Build</span> <span class="pre">All</span> <span class="pre">in</span> <span class="pre">'Debug'</span></code>. Check that the build command displayed in the Messages window is running the correct cmake executable from your conda installation.</p></li>
+<li><p>To build all targets, navigate to <code class="docutils literal notranslate"><span class="pre">Build</span> <span class="pre">&gt;</span> <span class="pre">Build</span> <span class="pre">All</span> <span class="pre">in</span> <span class="pre">'Debug'</span></code>. Check that the build command displayed in the Messages window is running the correct cmake executable from your development environment.</p></li>
 <li><p>To build a specific target, select it in the configurations drop-down menu and click the hammer icon next to it.</p></li>
 </ul>
-<p>If this fails, you may need to open CLion from a terminal with your conda environment activated.</p>
-<p>It is also useful to have your terminals in CLion to run with this environment:</p>
-<ol class="arabic">
-<li><p>In your <code class="docutils literal notranslate"><span class="pre">home</span></code> directory create a file named <code class="docutils literal notranslate"><span class="pre">.clionrc</span></code> and open in your favourite text editor, adding these lines:</p>
+<p>If this fails, you may need to open CLion from a terminal with your development environment activated.</p>
+<section id="activating-the-environment-in-clion-terminals">
+<h3>Activating the environment in CLion terminals<a class="headerlink" href="#activating-the-environment-in-clion-terminals" title="Link to this heading">#</a></h3>
+<p>It is also useful to have your terminals in CLion to run with your development environment.
+In your <code class="docutils literal notranslate"><span class="pre">home</span></code> directory create a file named <code class="docutils literal notranslate"><span class="pre">.clionrc</span></code> and open it in your favourite text editor, adding the lines for your environment from the sections below.</p>
+<section id="pixi-clionrc">
+<h4>Pixi <code class="docutils literal notranslate"><span class="pre">.clionrc</span></code><a class="headerlink" href="#pixi-clionrc" title="Link to this heading">#</a></h4>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>~/.bashrc
+<span class="nb">eval</span><span class="w"> </span><span class="s2">"</span><span class="k">$(</span>pixi<span class="w"> </span>shell-hook<span class="w"> </span>--manifest-path<span class="w"> </span>/path/to/source/mantid<span class="w"> </span>--frozen<span class="k">)</span><span class="s2">"</span>
+</pre></div>
+</div>
+</section>
+<section id="conda-clionrc">
+<h4>Conda <code class="docutils literal notranslate"><span class="pre">.clionrc</span></code><a class="headerlink" href="#conda-clionrc" title="Link to this heading">#</a></h4>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>~/.bashrc
 <span class="nb">source</span><span class="w"> </span>~/miniforge/bin/activate<span class="w"> </span>mantid-developer
 </pre></div>
 </div>
-</li>
+</section>
+<section id="using-clionrc-in-clion-terminals">
+<h4>Using <code class="docutils literal notranslate"><span class="pre">.clionrc</span></code> in CLion terminals<a class="headerlink" href="#using-clionrc-in-clion-terminals" title="Link to this heading">#</a></h4>
+<ol class="arabic simple">
 <li><p>Start CLion using the above steps</p></li>
 <li><p>Navigate to <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">&gt;</span> <span class="pre">Settings</span> <span class="pre">&gt;</span> <span class="pre">Tools</span> <span class="pre">&gt;</span> <span class="pre">Terminal</span></code></p></li>
 <li><p>To the end of the <code class="docutils literal notranslate"><span class="pre">Shell</span> <span class="pre">path</span></code> option, add <code class="docutils literal notranslate"><span class="pre">--rcfile</span> <span class="pre">~/.clionrc</span></code></p></li>
 </ol>
 </section>
+</section>
+</section>
 <section id="debugging-with-clion">
 <h2>Debugging with CLion<a class="headerlink" href="#debugging-with-clion" title="Link to this heading">#</a></h2>
 <p>To debug workbench, you’ll need to edit the <code class="docutils literal notranslate"><span class="pre">workbench</span></code> CMake Application configuration.</p>
 <ol class="arabic">
-<li><p>Set the executable to be the <code class="docutils literal notranslate"><span class="pre">python</span></code> executable in your conda installation:</p>
+<li><p>Set the executable to be the <code class="docutils literal notranslate"><span class="pre">python</span></code> executable in your development environment:</p>
 <div class="{.hlist docutils">
 <ul class="simple">
-<li><p>On Linux &amp; macOS:
-<code class="docutils literal notranslate"><span class="pre">/path/to/miniforge/envs/mantid-developer/bin/python</span></code></p></li>
-<li><p>On Windows: <code class="docutils literal notranslate"><span class="pre">/path/to/miniforge/envs/mantid-developer/python.exe</span></code></p></li>
+<li><p>On Linux &amp; macOS: <code class="docutils literal notranslate"><span class="pre">{ENV}/bin/python</span></code></p></li>
+<li><p>On Windows: <code class="docutils literal notranslate"><span class="pre">{ENV}/python.exe</span></code></p></li>
 </ul>
 </div>
 </li>
@@ -494,7 +537,7 @@ This is useful when you’re working on both Mantid and other projects in CLion 
 <li><p>Set the working directory:</p>
 <div class="{.hlist docutils">
 <ul class="simple">
-<li><p>All OS: <code class="docutils literal notranslate"><span class="pre">path/to/miniforge/envs/md/bin/</span></code></p></li>
+<li><p>All OS: <code class="docutils literal notranslate"><span class="pre">{ENV}/bin/</span></code></p></li>
 </ul>
 </div>
 </li>
@@ -569,12 +612,29 @@ the spelling mistake is real.</p>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-clion">Installing CLion</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#opening-clion">Opening CLion</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-for-a-clion-build">Setup for a CLion Build</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-build-configuration">Additional Build Configuration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#development-environment">Development environment</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pixi">Pixi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conda">Conda</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-with-clion">Building with CLion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#opening-clion">Opening CLion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-for-a-clion-build">Setup for a CLion Build</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-build-configuration">Additional Build Configuration</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pixi-python-interpreter">Pixi Python interpreter</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#conda-python-interpreter">Conda Python interpreter</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-with-clion">Building with CLion</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#activating-the-environment-in-clion-terminals">Activating the environment in CLion terminals</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pixi-clionrc">Pixi <code class="docutils literal notranslate"><span class="pre">.clionrc</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#conda-clionrc">Conda <code class="docutils literal notranslate"><span class="pre">.clionrc</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#using-clionrc-in-clion-terminals">Using <code class="docutils literal notranslate"><span class="pre">.clionrc</span></code> in CLion terminals</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#debugging-with-clion">Debugging with CLion</a></li>
 </ul>
   </nav></div>

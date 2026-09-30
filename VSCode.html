@@ -360,6 +360,7 @@ for C++ development on any platform that VSCode supports</p>
 <li><p>An installed copy of VSCode - <a class="reference external" href="https://code.visualstudio.com/">download</a>.</p></li>
 <li><p>A clone of the main Mantid repo</p></li>
 <li><p>Follow the <a class="reference internal" href="GettingStarted/GettingStarted.html"><span class="doc std std-doc">Getting Started</span></a> guide to get a:</p></li>
+<li><p>Pixi development environment (or a conda environment)</p></li>
 <li><p>Built copy of Mantid (In “Debug” mode for any debugging option not “Release”)</p></li>
 <li><p>GDB for Linux/OSX debugging (GDB can be switched out for LLDB at any stage on OSX) or MSVC (Visual Studio) for Windows</p></li>
 </ul>
@@ -371,8 +372,23 @@ for C++ development on any platform that VSCode supports</p>
 <li><p>Click File-&gt;Open Folder</p></li>
 <li><p>Navigate to your Mantid source directory and select it</p></li>
 <li><p>Install the required extensions (see below)</p></li>
+<li><p>Select the Python interpreter from your development environment (see below)</p></li>
 <li><p>For code editing you are good to go!</p></li>
 </ul>
+<section id="selecting-the-python-interpreter">
+<h3>Selecting the Python interpreter<a class="headerlink" href="#selecting-the-python-interpreter" title="Link to this heading">#</a></h3>
+<p>Open the command palette (Ctrl+Shift+P or ⌘+Shift+P), run “Python: Select Interpreter”, and then follow the section below for your environment.</p>
+<section id="pixi">
+<h4>Pixi<a class="headerlink" href="#pixi" title="Link to this heading">#</a></h4>
+<p>Choose the interpreter in the <code class="docutils literal notranslate"><span class="pre">.pixi/envs/default</span></code> directory inside your Mantid source directory.
+Its full path is <code class="docutils literal notranslate"><span class="pre">/Path/To/Source/mantid/.pixi/envs/default/bin/python</span></code>.</p>
+</section>
+<section id="conda">
+<h4>Conda<a class="headerlink" href="#conda" title="Link to this heading">#</a></h4>
+<p>Choose your <code class="docutils literal notranslate"><span class="pre">mantid-developer</span></code> conda environment.
+Its full path is <code class="docutils literal notranslate"><span class="pre">/Path/To/Miniforge/envs/mantid-developer/bin/python</span></code>.</p>
+</section>
+</section>
 </section>
 <section id="extensions">
 <h2>Extensions<a class="headerlink" href="#extensions" title="Link to this heading">#</a></h2>
@@ -526,7 +542,7 @@ Inside the launch.json you will want to make your file look something a little l
 <span class="w">    </span><span class="s2">"name"</span><span class="o">:</span><span class="w"> </span><span class="s2">"(gdb) Workbench C++ Only"</span><span class="p">,</span>
 <span class="w">    </span><span class="s2">"type"</span><span class="o">:</span><span class="w"> </span><span class="s2">"cppdbg"</span><span class="p">,</span>
 <span class="w">    </span><span class="s2">"request"</span><span class="o">:</span><span class="w"> </span><span class="s2">"launch"</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">"program"</span><span class="o">:</span><span class="w"> </span><span class="s2">"/Path/To/Mamba/Install/envs/mantid-developer/bin/python"</span><span class="p">,</span><span class="w">   </span><span class="c1">// Full path (do not use '~') to the python executable inside your build directory</span>
+<span class="w">    </span><span class="s2">"program"</span><span class="o">:</span><span class="w"> </span><span class="s2">"/Path/To/Python/Environment/bin/python"</span><span class="p">,</span><span class="w">   </span><span class="c1">// Full path (do not use '~') to the python executable in your development environment, see "Selecting the Python interpreter"</span>
 <span class="w">    </span><span class="s2">"preLaunchTask"</span><span class="o">:</span><span class="w"> </span><span class="s2">"Build Mantid"</span><span class="p">,</span>
 <span class="w">    </span><span class="s2">"args"</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"-m"</span><span class="p">,</span><span class="w"> </span><span class="s2">"workbench"</span><span class="p">,</span><span class="w"> </span><span class="s2">"--single-process"</span><span class="p">],</span>
 <span class="w">    </span><span class="s2">"MIMode"</span><span class="o">:</span><span class="w"> </span><span class="s2">"gdb"</span><span class="p">,</span>
@@ -842,7 +858,14 @@ warnings disabled and will only emit errors.</p>
     <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">Prerequisites</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-get-started">How to get Started</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-get-started">How to get Started</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#selecting-the-python-interpreter">Selecting the Python interpreter</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pixi">Pixi</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#conda">Conda</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extensions">Extensions</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#required">Required</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recommended">Recommended</a></li>
