@@ -392,22 +392,17 @@ reverse itself.</p></li>
 <li><p>Your interface must be safe to instantiate twice. In practice that means workspace names must be
 unique per instance, and closing the window must clean up after itself.</p></li>
 </ul>
-<p>A sandbox is any object with a <code class="docutils literal notranslate"><span class="pre">window</span></code> attribute and a <code class="docutils literal notranslate"><span class="pre">teardown()</span></code> method. It is also passed
-to every step as the <em>context</em>, so put on it whatever the steps need to reach:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">TutorialSandbox</span><span class="p">:</span>
+<p>A sandbox is any object with a <code class="docutils literal notranslate"><span class="pre">window</span></code> attribute and a <code class="docutils literal notranslate"><span class="pre">teardown()</span></code> method; subclassing
+<code class="docutils literal notranslate"><span class="pre">mantidqt.widgets.tutorial.sandbox_base.InterfaceSandbox</span></code> provides both. It is also passed to every
+step as the <em>context</em>, so put on it whatever the steps need to reach:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">TutorialSandbox</span><span class="p">(</span><span class="n">InterfaceSandbox</span><span class="p">):</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">DemoData</span><span class="p">()</span>                       <span class="c1"># generated demo files</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">MyModel</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">view</span> <span class="o">=</span> <span class="n">MyView</span><span class="p">(</span><span class="n">parent</span><span class="o">=</span><span class="n">parent</span><span class="p">,</span> <span class="n">register_usage</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">presenter</span> <span class="o">=</span> <span class="n">MyPresenter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="p">,</span> <span class="n">offer_tutorial</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">MyModel</span><span class="p">()</span>
+        <span class="n">view</span> <span class="o">=</span> <span class="n">MyView</span><span class="p">(</span><span class="n">parent</span><span class="o">=</span><span class="n">parent</span><span class="p">,</span> <span class="n">register_usage</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">view</span><span class="p">,</span> <span class="n">MyPresenter</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">view</span><span class="p">,</span> <span class="n">offer_tutorial</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
 
-    <span class="nd">@property</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">window</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">view</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">teardown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>                            <span class="c1"># cleans up via closeEvent</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">deleteLater</span><span class="p">()</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_cleanup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>                              <span class="c1"># after the view is closed</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -564,28 +559,46 @@ problems for tests. They are deliberately <em>not</em> shared: the test helpers 
 </section>
 <section id="launching-it">
 <h2><a class="toc-backref" href="#id7" role="doc-backlink">Launching it</a><a class="headerlink" href="#launching-it" title="Link to this heading">#</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mantidqt.widgets.tutorial.launcher</span><span class="w"> </span><span class="kn">import</span> <span class="n">run_tutorial</span><span class="p">,</span> <span class="n">should_show_on_startup</span>
+<p>The presenter inherits <code class="docutils literal notranslate"><span class="pre">TutorialPresenter</span></code> and the view <code class="docutils literal notranslate"><span class="pre">TutorialViewMixin</span></code>, which between them
+provide the tutorial button, opening (or raising) the tour, offering it on a first open, and closing
+it with the interface:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mantidqt.widgets.tutorial.presenter</span><span class="w"> </span><span class="kn">import</span> <span class="n">TutorialPresenter</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mantidqt.widgets.tutorial.view</span><span class="w"> </span><span class="kn">import</span> <span class="n">TutorialViewMixin</span>
 
-<span class="k">def</span><span class="w"> </span><span class="nf">open_tutorial</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mark_as_seen</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">_tutorial_session</span> <span class="o">=</span> <span class="n">run_tutorial</span><span class="p">(</span>
-        <span class="n">sandbox_factory</span><span class="o">=</span><span class="n">make_sandbox_factory</span><span class="p">(</span><span class="n">parent</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="p">),</span>
-        <span class="n">chapters</span><span class="o">=</span><span class="n">CHAPTERS</span><span class="p">,</span>
-        <span class="n">parent</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="p">,</span>
-        <span class="n">settings_key</span><span class="o">=</span><span class="s2">"MyInterface"</span><span class="p">,</span>
-        <span class="n">mark_as_seen</span><span class="o">=</span><span class="n">mark_as_seen</span><span class="p">,</span>
-    <span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">MyView</span><span class="p">(</span><span class="n">TutorialViewMixin</span><span class="p">,</span> <span class="n">QMainWindow</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="o">...</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_tutorial_button</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">toolbar</span><span class="p">)</span>       <span class="c1"># a QToolBar or a QLayout</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">MyPresenter</span><span class="p">(</span><span class="n">TutorialPresenter</span><span class="p">):</span>
+    <span class="n">TUTORIAL_SETTINGS_KEY</span> <span class="o">=</span> <span class="s2">"MyInterface"</span>
+    <span class="n">TUTORIAL_TITLE</span> <span class="o">=</span> <span class="s2">"My Interface — Tutorial"</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">view</span><span class="p">,</span> <span class="n">offer_tutorial</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="o">...</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setup_tutorial</span><span class="p">(</span><span class="n">view</span><span class="p">,</span> <span class="n">offer_tutorial</span><span class="p">)</span>    <span class="c1"># last, once the view is populated</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">on_close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">close_tutorial</span><span class="p">()</span>
+        <span class="o">...</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">tutorial_chapters</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">CHAPTERS</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">make_tutorial_sandbox_factory</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">myinterface.tutorial.sandbox</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_sandbox_factory</span>  <span class="c1"># avoids an import cycle</span>
+        <span class="k">return</span> <span class="n">make_sandbox_factory</span><span class="p">(</span><span class="n">parent</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Keep the returned session alive for as long as the tour runs — it owns the sandbox window.</p>
+<p><code class="docutils literal notranslate"><span class="pre">TutorialPresenter</span></code> has no <code class="docutils literal notranslate"><span class="pre">__init__</span></code> of its own, so it combines with other bases such as
+<code class="docutils literal notranslate"><span class="pre">AlgorithmObserver</span></code>. Under the hood it calls <code class="docutils literal notranslate"><span class="pre">run_tutorial</span></code> from
+<code class="docutils literal notranslate"><span class="pre">mantidqt.widgets.tutorial.launcher</span></code>, and keeps the returned session alive for as long as the
+tour runs — it owns the sandbox window.</p>
 <p><code class="docutils literal notranslate"><span class="pre">should_show_on_startup(key)</span></code> / <code class="docutils literal notranslate"><span class="pre">mark_seen(key)</span></code> store a flag under
 <code class="docutils literal notranslate"><span class="pre">CustomInterfaces/&lt;key&gt;/tutorial_seen</span></code>. The flag is set when the tutorial is <em>offered</em>, not when
 it is completed: someone who closes it immediately has made their decision, and the toolbar button
-keeps it available. Offer it from the event loop rather than from the presenter’s constructor, or
-the window it should appear over has not been laid out yet:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">should_show_on_startup</span><span class="p">(</span><span class="s2">"MyInterface"</span><span class="p">):</span>
-    <span class="n">QTimer</span><span class="o">.</span><span class="n">singleShot</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">open_tutorial</span><span class="p">(</span><span class="n">mark_as_seen</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
-</pre></div>
-</div>
+keeps it available. <code class="docutils literal notranslate"><span class="pre">TutorialPresenter</span></code> offers it from the event loop rather than from the
+presenter’s constructor, or the window it should appear over would not have been laid out yet.</p>
 </section>
 <section id="testing-a-tour">
 <h2><a class="toc-backref" href="#id8" role="doc-backlink">Testing a tour</a><a class="headerlink" href="#testing-a-tour" title="Link to this heading">#</a></h2>
