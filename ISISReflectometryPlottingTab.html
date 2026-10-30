@@ -371,6 +371,8 @@ request and rendering code is under the adjacent <code class="code docutils lite
     v
 PlottingPresenter
     |
+    +-- owns --&gt; PlottingWorkspaceTreePresenter --&gt; IPlottingWorkspaceTreeView
+    |
     +-- owns --&gt; PlottingWorkspaceTree
     |
     +-- owns --&gt; PlottingViewStateProvider --&gt; PlotOutputTypeProperties
@@ -385,11 +387,7 @@ PlottingPresenter
     |
     `-- updates --&gt; IPlottingView (QtPlottingView)
                                    |
-                                   v
-                      QtPlottingWorkspaceTreeViewAdapter
-                                   |
-                                   v
-                      QtPlottingWorkspaceTreeView
+                                   `-- owns --&gt; QtPlottingWorkspaceTreeView
 </pre></div>
 </div>
 <p>Names in parentheses are the production implementations of the preceding
@@ -400,9 +398,12 @@ therefore do not have interfaces.</p>
 tree model. The presenter converts this state into
 <code class="code docutils literal notranslate"><span class="pre">PlottingWorkspaceTreeItemState</span></code> objects through
 <code class="code docutils literal notranslate"><span class="pre">PlottingViewStateProvider</span></code> before passing it to the view. The provider
-uses <code class="code docutils literal notranslate"><span class="pre">PlotOutputTypeProperties</span></code> to determine display and selection state.
-This keeps output-type selection policy out of the model and Qt-specific tree
-handling out of the presenter.</p>
+uses <code class="code docutils literal notranslate"><span class="pre">PlotOutputTypeProperties</span></code> to determine selection eligibility and
+muted state.
+The tree presenter applies filtering and selection rules through
+<code class="code docutils literal notranslate"><span class="pre">IPlottingWorkspaceTreeView</span></code>; <code class="code docutils literal notranslate"><span class="pre">QtPlottingWorkspaceTreeView</span></code> implements
+that interface. It receives prepared labels and visual state, keeping tree
+policy and Qt rendering separate.</p>
 <p>The two providers perform different transformations:</p>
 <ul class="simple">
 <li><p><code class="code docutils literal notranslate"><span class="pre">PlottingViewStateProvider</span></code> converts model and presenter state into
@@ -541,6 +542,22 @@ state;</p></li>
 <p>An individual layout is submitted as one request per workspace. Overplot and
 tiled layouts are submitted as one request containing all selected workspaces.</p>
 </section>
+<section id="presenter-plottingworkspacetreepresenter-h-cpp">
+<h3><code class="code docutils literal notranslate"><span class="pre">presenter/PlottingWorkspaceTreePresenter.h/.cpp</span></code><a class="headerlink" href="#presenter-plottingworkspacetreepresenter-h-cpp" title="Link to this heading">#</a></h3>
+<p><code class="code docutils literal notranslate"><span class="pre">PlottingPresenter</span></code> owns <code class="code docutils literal notranslate"><span class="pre">PlottingWorkspaceTreePresenter</span></code>, which
+owns the evaluated tree and filter state.
+It:</p>
+<ul class="simple">
+<li><p>prepares column labels as <code class="code docutils literal notranslate"><span class="pre">std::string</span></code> values;</p></li>
+<li><p>applies regular-expression and reduced-output filters, retaining the last
+valid expression while incomplete syntax is edited;</p></li>
+<li><p>propagates selection to visible, eligible descendants; and</p></li>
+<li><p>resolves selected workspace names and ADS workspace-group counts, including
+complete groups required for spin asymmetry.</p></li>
+</ul>
+<p>Filtering preserves hidden selections. The presenter uses row paths and
+<code class="code docutils literal notranslate"><span class="pre">IPlottingWorkspaceTreeView</span></code>, with no Qt types.</p>
+</section>
 <section id="presenter-plottingpresenterfactory-h">
 <h3><code class="code docutils literal notranslate"><span class="pre">presenter/PlottingPresenterFactory.h</span></code><a class="headerlink" href="#presenter-plottingpresenterfactory-h" title="Link to this heading">#</a></h3>
 <p>Defines <code class="code docutils literal notranslate"><span class="pre">PlottingPresenterFactory</span></code>, which owns the production
@@ -568,8 +585,8 @@ type.</p>
 </section>
 <section id="presenter-plottingviewstateprovider-h-cpp">
 <h3><code class="code docutils literal notranslate"><span class="pre">presenter/PlottingViewStateProvider.h/.cpp</span></code><a class="headerlink" href="#presenter-plottingviewstateprovider-h-cpp" title="Link to this heading">#</a></h3>
-<p>Defines <code class="code docutils literal notranslate"><span class="pre">PlottingViewStateProvider</span></code>, the stateless provider for all state
-passed from the presenter to the view. For the plotting workspace tree, it
+<p>Defines <code class="code docutils literal notranslate"><span class="pre">PlottingViewStateProvider</span></code>, the stateless provider for tab control
+state and output-specific tree eligibility. For the plotting workspace tree, it
 converts model-side <code class="code docutils literal notranslate"><span class="pre">PlottingWorkspaceTreeItem</span></code> objects into view-facing
 <code class="code docutils literal notranslate"><span class="pre">PlottingWorkspaceTreeItemState</span></code> objects for the selected output type. It
 evaluates whether each node:</p>
@@ -637,13 +654,21 @@ controls;</p></li>
 <li><p><code class="code docutils literal notranslate"><span class="pre">PlotActionState</span></code> controls enabled and checked states for plotting
 actions;</p></li>
 <li><p><code class="code docutils literal notranslate"><span class="pre">PlottingWorkspaceTreeSelectionMode</span></code> specifies whether a plotting
-workspace tree row can be selected directly, through a parent, both, or
-neither; and</p></li>
+workspace tree row can be selected directly and through a parent, through a
+parent only, or neither; and</p></li>
 <li><p><code class="code docutils literal notranslate"><span class="pre">PlottingWorkspaceTreeItemState</span></code> is one evaluated node containing its
 label, domain metadata, children, muted state, and selection mode.</p></li>
 </ul>
 <p>These types let the presenter update related controls without exposing Qt
 types. The Qt view applies the decisions but does not recalculate them.</p>
+</section>
+<section id="view-iplottingworkspacetreeview-h">
+<h3><code class="code docutils literal notranslate"><span class="pre">view/IPlottingWorkspaceTreeView.h</span></code><a class="headerlink" href="#view-iplottingworkspacetreeview-h" title="Link to this heading">#</a></h3>
+<p>Defines the toolkit-independent tree contract and its click/selection
+notifications. Nodes are identified by row paths.
+<code class="code docutils literal notranslate"><span class="pre">PlottingWorkspaceTreeViewItem</span></code> contains prepared column labels, children,
+and muted state. The view renders these values and applies visibility and
+selection commands.</p>
 </section>
 <section id="view-qtplottingview-h-cpp">
 <h3><code class="code docutils literal notranslate"><span class="pre">view/QtPlottingView.h/.cpp</span></code><a class="headerlink" href="#view-qtplottingview-h-cpp" title="Link to this heading">#</a></h3>
@@ -653,46 +678,30 @@ types. The Qt view applies the decisions but does not recalculate them.</p>
 <li><p>initialises controls defined in <code class="code docutils literal notranslate"><span class="pre">PlottingWidget.ui</span></code>;</p></li>
 <li><p>connects Qt signals to <code class="code docutils literal notranslate"><span class="pre">PlottingViewSubscriber</span></code> notifications;</p></li>
 <li><p>applies presenter-provided control state;</p></li>
-<li><p>reads the current plot output, axes, layout options, and plotting workspace
-tree selection;</p></li>
-<li><p>owns <code class="code docutils literal notranslate"><span class="pre">QtPlottingWorkspaceTreeViewAdapter</span></code>; and</p></li>
+<li><p>exposes the child tree view and reads filter, output, axes, and layout inputs;</p></li>
+<li><p>owns <code class="code docutils literal notranslate"><span class="pre">QtPlottingWorkspaceTreeView</span></code>; and</p></li>
 <li><p>displays the confirmation dialog for large plot requests.</p></li>
 </ul>
 <p>The view reports user actions but does not decide which actions or tree entries
 are valid.</p>
 </section>
-<section id="view-qtplottingworkspacetreeviewadapter-h-cpp">
-<h3><code class="code docutils literal notranslate"><span class="pre">view/QtPlottingWorkspaceTreeViewAdapter.h/.cpp</span></code><a class="headerlink" href="#view-qtplottingworkspacetreeviewadapter-h-cpp" title="Link to this heading">#</a></h3>
-<p>Defines <code class="code docutils literal notranslate"><span class="pre">QtPlottingWorkspaceTreeViewAdapter</span></code>, which adapts
-<code class="code docutils literal notranslate"><span class="pre">PlottingWorkspaceTreeItemState</span></code> objects to a
-<code class="code docutils literal notranslate"><span class="pre">QStandardItemModel</span></code> displayed by <code class="code docutils literal notranslate"><span class="pre">QtPlottingWorkspaceTreeView</span></code>. It
-owns the Qt-specific details of:</p>
-<ul class="simple">
-<li><p>columns and custom data roles;</p></li>
-<li><p>output and item type display names;</p></li>
-<li><p>palette-aware muted rendering;</p></li>
-<li><p>row and subtree selection propagation;</p></li>
-<li><p>direct-selection and parent-selection modes; and</p></li>
-<li><p>extracting selected leaf workspace names and selected ADS workspace-group
-counts.</p></li>
-</ul>
-<p>The adapter applies selection behavior already specified by the presenter. It
-does not determine whether a particular output type permits a workspace.</p>
-</section>
 <section id="view-qtplottingworkspacetreeview-h-cpp">
 <h3><code class="code docutils literal notranslate"><span class="pre">view/QtPlottingWorkspaceTreeView.h/.cpp</span></code><a class="headerlink" href="#view-qtplottingworkspacetreeview-h-cpp" title="Link to this heading">#</a></h3>
-<p>Defines <code class="code docutils literal notranslate"><span class="pre">QtPlottingWorkspaceTreeView</span></code>, the specialised
-<code class="code docutils literal notranslate"><span class="pre">QTreeView</span></code> used by the tab. Its painting logic extends selected-row
-backgrounds across muted cells and obtains disabled colors from the active Qt
-palette, allowing the tree to work in light and dark themes.</p>
+<p><code class="code docutils literal notranslate"><span class="pre">QtPlottingWorkspaceTreeView</span></code> implements <code class="code docutils literal notranslate"><span class="pre">IPlottingWorkspaceTreeView</span></code>
+and owns the <code class="code docutils literal notranslate"><span class="pre">QStandardItemModel</span></code>. It converts prepared strings to
+<code class="code docutils literal notranslate"><span class="pre">QString</span></code>, creates rows, and reuses palette-aware muted-row styling.</p>
+<p>It translates Qt indexes and input events into row paths and presenter
+notifications using <code class="code docutils literal notranslate"><span class="pre">viewportEvent</span></code>. After handling a selection change,
+it emits <code class="code docutils literal notranslate"><span class="pre">workspaceSelectionChanged</span></code>, which <code class="code docutils literal notranslate"><span class="pre">QtPlottingView</span></code>
+forwards to the tab presenter without accessing the selection model.</p>
 </section>
 <section id="view-plottingwidget-ui">
 <h3><code class="code docutils literal notranslate"><span class="pre">view/PlottingWidget.ui</span></code><a class="headerlink" href="#view-plottingwidget-ui" title="Link to this heading">#</a></h3>
 <p>Qt Designer definition for the Plotting tab. It declares the plotting workspace
-tree, plot output selector, detector-map and alignment axis controls, plotting
-buttons, vertical-tiling checkbox, shared axis checkboxes and add-to-existing checkbox.
-Control policy is not encoded in the UI file; the presenter supplies it through
-<code class="code docutils literal notranslate"><span class="pre">PlotActionState</span></code> and <code class="code docutils literal notranslate"><span class="pre">PlotOutputControlsState</span></code>.</p>
+tree; the <code class="code docutils literal notranslate"><span class="pre">IvsQBinned</span></code>, <code class="code docutils literal notranslate"><span class="pre">IvsLambda</span></code>, and <code class="code docutils literal notranslate"><span class="pre">IvsQ</span></code> filters; the
+Item-column regular-expression filter; the plot output selector; detector-map
+and alignment axis controls; plotting buttons; vertical-tiling checkbox;
+shared axis checkboxes; and add-to-existing checkbox.</p>
 </section>
 </section>
 <section id="shared-plotting-files">
@@ -795,8 +804,10 @@ enablement and output-specific plotting workspace tree item state;</p></li>
 <li><p><code class="code docutils literal notranslate"><span class="pre">test/Plotting/PlottingPresenterTest.h</span></code>, covering Batch and view
 notifications, display-state updates, request construction, and plotting
 orchestration;</p></li>
-<li><p><code class="code docutils literal notranslate"><span class="pre">test/Plotting/QtPlottingViewTest.h</span></code>, covering Qt control and plotting
-workspace tree behavior;</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">test/Plotting/PlottingWorkspaceTreePresenterTest.h</span></code>, covering prepared
+labels, filtering, and tree selection rules;</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">test/Plotting/QtPlottingViewTest.h</span></code>, covering Qt controls, tree rendering,
+input translation, and selection notifications;</p></li>
 <li><p><code class="code docutils literal notranslate"><span class="pre">test/Common/PlotOptionsProviderTest.h</span></code>, covering instrument output
 availability and output-to-options conversion; and</p></li>
 <li><p><code class="code docutils literal notranslate"><span class="pre">test/Common/PlotterTest.h</span></code>, covering plot route selection and
@@ -804,20 +815,24 @@ post-plotting behavior through the Python plotting boundary.</p></li>
 </ul>
 <p><code class="code docutils literal notranslate"><span class="pre">TestHelpers/PlottingTestHelpers.h</span></code> provides readable equality matchers
 and formatted diagnostics for plotting workspace tree expectations. The test
-files are registered in <code class="code docutils literal notranslate"><span class="pre">test/CMakeLists.txt</span></code>.</p>
+files are registered in <code class="code docutils literal notranslate"><span class="pre">test/CMakeLists.txt</span></code>.
+<code class="code docutils literal notranslate"><span class="pre">test/Plotting/PlottingWorkspaceTreeTestHelpers.h</span></code> shares tree fixtures
+between presenter and Qt integration tests.</p>
 </section>
 <section id="end-to-end-operation">
 <h2>End-to-End Operation<a class="headerlink" href="#end-to-end-operation" title="Link to this heading">#</a></h2>
 <section id="construction">
 <h3>Construction<a class="headerlink" href="#construction" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
-<li><p><code class="code docutils literal notranslate"><span class="pre">QtBatchView</span></code> constructs the Plotting tab view.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">QtBatchView</span></code> constructs <code class="code docutils literal notranslate"><span class="pre">QtPlottingView</span></code>, which owns the tree
+widget.</p></li>
 <li><p><code class="code docutils literal notranslate"><span class="pre">BatchPresenterFactory</span></code> asks <code class="code docutils literal notranslate"><span class="pre">PlottingPresenterFactory</span></code> to create
 the presenter for that view.</p></li>
 <li><p><code class="code docutils literal notranslate"><span class="pre">PlottingPresenterFactory</span></code> injects its <code class="code docutils literal notranslate"><span class="pre">PlottingModel</span></code>,
 <code class="code docutils literal notranslate"><span class="pre">PlotOptionsProvider</span></code>, and <code class="code docutils literal notranslate"><span class="pre">Plotter</span></code> into the presenter. The
-presenter directly owns its <code class="code docutils literal notranslate"><span class="pre">PlottingWorkspaceTree</span></code> and
-<code class="code docutils literal notranslate"><span class="pre">PlottingViewStateProvider</span></code>.</p></li>
+presenter directly owns its <code class="code docutils literal notranslate"><span class="pre">PlottingWorkspaceTree</span></code>,
+<code class="code docutils literal notranslate"><span class="pre">PlottingViewStateProvider</span></code>, and <code class="code docutils literal notranslate"><span class="pre">PlottingWorkspaceTreePresenter</span></code>.
+The tree presenter uses the child view exposed by <code class="code docutils literal notranslate"><span class="pre">IPlottingView</span></code>.</p></li>
 <li><p>The plotting presenter subscribes to the view and to active-figure changes
 through <code class="code docutils literal notranslate"><span class="pre">QtActiveFigureMonitor</span></code>.</p></li>
 <li><p><code class="code docutils literal notranslate"><span class="pre">BatchPresenter</span></code> takes ownership of the plotting presenter and passes
@@ -853,11 +868,11 @@ metadata.</p></li>
 <li><p>The presenter reads the currently selected <code class="code docutils literal notranslate"><span class="pre">PlotOutputType</span></code> and asks
 <code class="code docutils literal notranslate"><span class="pre">PlottingViewStateProvider::plottingWorkspaceTreeItemStates</span></code> to
 evaluate the hierarchy using <code class="code docutils literal notranslate"><span class="pre">PlotOutputTypeProperties</span></code>.</p></li>
-<li><p>The resulting item states are passed to
-<code class="code docutils literal notranslate"><span class="pre">IPlottingView::setPlottingWorkspaceTreeItemStates</span></code>.</p></li>
-<li><p><code class="code docutils literal notranslate"><span class="pre">QtPlottingWorkspaceTreeViewAdapter</span></code> rebuilds its
-<code class="code docutils literal notranslate"><span class="pre">QStandardItemModel</span></code>, applies muted state and selection modes, and
-expands the tree.</p></li>
+<li><p>The presenter passes the resulting item states to its
+<code class="code docutils literal notranslate"><span class="pre">PlottingWorkspaceTreePresenter</span></code>, which prepares display labels and
+passes them to the tree widget.</p></li>
+<li><p>The widget rebuilds its <code class="code docutils literal notranslate"><span class="pre">QStandardItemModel</span></code>. The tree presenter then
+applies filters through <code class="code docutils literal notranslate"><span class="pre">IPlottingWorkspaceTreeView</span></code> and expands the tree.</p></li>
 </ol>
 </section>
 <section id="user-interaction">
@@ -870,12 +885,17 @@ those domain values with labels for the plot output selector.</p></li>
 <li><p>Changing output type clears the current tree selection. The presenter then
 asks <code class="code docutils literal notranslate"><span class="pre">PlottingViewStateProvider</span></code> to rebuild the plotting workspace tree
 item states, output-control visibility, and plotting action state.</p></li>
-<li><p>Clicking a selectable tree row is handled by
-<code class="code docutils literal notranslate"><span class="pre">QtPlottingWorkspaceTreeViewAdapter</span></code>. Parent selection is propagated
-only to descendants whose presenter-supplied selection mode permits it.</p></li>
-<li><p>A selection change notifies <code class="code docutils literal notranslate"><span class="pre">PlottingPresenter</span></code>. The presenter obtains
-selected leaf names and ADS workspace-group counts from the view and asks
-<code class="code docutils literal notranslate"><span class="pre">PlottingViewStateProvider::plotActionState</span></code> for a new
+<li><p>The tree widget forwards row clicks to <code class="code docutils literal notranslate"><span class="pre">PlottingWorkspaceTreePresenter</span></code>.
+Parent selection propagates only to visible, eligible descendants. Workspace
+groups requiring complete selection resolve all required members when read.</p></li>
+<li><p>Changing a workspace output-type checkbox or the Item-column regular
+expression notifies <code class="code docutils literal notranslate"><span class="pre">PlottingPresenter</span></code>, which passes the filter inputs
+to its tree presenter. This reapplies visibility and expands the tree.
+Hidden rows retain their selection state.</p></li>
+<li><p>The widget’s <code class="code docutils literal notranslate"><span class="pre">workspaceSelectionChanged</span></code> signal reaches
+<code class="code docutils literal notranslate"><span class="pre">PlottingPresenter</span></code> through <code class="code docutils literal notranslate"><span class="pre">QtPlottingView</span></code>. The presenter obtains
+selected leaf names and ADS workspace-group counts from its tree presenter
+and asks <code class="code docutils literal notranslate"><span class="pre">PlottingViewStateProvider::plotActionState</span></code> for a new
 <code class="code docutils literal notranslate"><span class="pre">PlotActionState</span></code>.</p></li>
 <li><p>The active-figure monitor causes the same action-state calculation when the
 current matplotlib figure changes. Add-to-existing is enabled only for a
@@ -991,6 +1011,7 @@ plotter tests for behavior introduced at each boundary.</p></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#presenter-files">Presenter Files</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#presenter-iplottingpresenter-h"><code class="code docutils literal notranslate"><span class="pre">presenter/IPlottingPresenter.h</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#presenter-plottingpresenter-h-cpp"><code class="code docutils literal notranslate"><span class="pre">presenter/PlottingPresenter.h/.cpp</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#presenter-plottingworkspacetreepresenter-h-cpp"><code class="code docutils literal notranslate"><span class="pre">presenter/PlottingWorkspaceTreePresenter.h/.cpp</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#presenter-plottingpresenterfactory-h"><code class="code docutils literal notranslate"><span class="pre">presenter/PlottingPresenterFactory.h</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#presenter-plotoutputtypeproperties-h-cpp"><code class="code docutils literal notranslate"><span class="pre">presenter/PlotOutputTypeProperties.h/.cpp</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#presenter-plottingviewstateprovider-h-cpp"><code class="code docutils literal notranslate"><span class="pre">presenter/PlottingViewStateProvider.h/.cpp</span></code></a></li>
@@ -1000,8 +1021,8 @@ plotter tests for behavior introduced at each boundary.</p></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#view-files">View Files</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#view-iplottingview-h"><code class="code docutils literal notranslate"><span class="pre">view/IPlottingView.h</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#view-plottingviewstate-h"><code class="code docutils literal notranslate"><span class="pre">view/PlottingViewState.h</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#view-iplottingworkspacetreeview-h"><code class="code docutils literal notranslate"><span class="pre">view/IPlottingWorkspaceTreeView.h</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#view-qtplottingview-h-cpp"><code class="code docutils literal notranslate"><span class="pre">view/QtPlottingView.h/.cpp</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#view-qtplottingworkspacetreeviewadapter-h-cpp"><code class="code docutils literal notranslate"><span class="pre">view/QtPlottingWorkspaceTreeViewAdapter.h/.cpp</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#view-qtplottingworkspacetreeview-h-cpp"><code class="code docutils literal notranslate"><span class="pre">view/QtPlottingWorkspaceTreeView.h/.cpp</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#view-plottingwidget-ui"><code class="code docutils literal notranslate"><span class="pre">view/PlottingWidget.ui</span></code></a></li>
 </ul>
