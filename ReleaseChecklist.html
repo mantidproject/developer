@@ -881,7 +881,7 @@ have been fixed. Then:</p>
 index page has been removed. Remove the paragraph if it still exists.</p></li>
 <li><p>Ensure that all changes, including release notes, have been merged into the <code class="docutils literal notranslate"><span class="pre">release-next</span></code> branch.</p></li>
 <li><p>Make sure the <code class="docutils literal notranslate"><span class="pre">release-next</span></code> branch is fully merged into <code class="docutils literal notranslate"><span class="pre">main</span></code>. If required, manually run the <a class="reference external" href="https://github.com/mantidproject/mantid/actions/workflows/automerge.yml/">GitHub workflow</a> using the <code class="docutils literal notranslate"><span class="pre">release-next</span></code> branch to
-merge the changes.</p></li>
+merge the changes. If needed see the document on <a class="reference internal" href="Gatekeeping.html#fixprotectedbranchmergeconflict"><span class="std std-ref">Fixing a merge conflict between main and a protected branch</span></a>.</p></li>
 </ul>
 <p><strong>Create the Release Candidates For Smoke Testing</strong></p>
 <p>We are now ready to create the release candidates for Smoke testing.</p>
@@ -944,8 +944,8 @@ release.</p></li>
 <li><p>Publish the GitHub release. This will publish the tag required to generate the DOI.</p></li>
 <li><p>Remove the smoke testing release from the GitHub releases page (the one tagged with <code class="docutils literal notranslate"><span class="pre">vX.Y.ZrcN</span></code>).</p></li>
 <li><p>Change the labels for the release candidates on our <a class="reference external" href="https://anaconda.org/mantid/mantid/files">Anaconda site</a>
-from <code class="docutils literal notranslate"><span class="pre">draft-vX.Y.Z</span></code> to <code class="docutils literal notranslate"><span class="pre">main</span></code>. You may need to ask a member of the ISIS core or DevOps team to do this.</p></li>
-<li><p>Remove the smoke testing release candidates from our Anaconda channel (those with the <code class="docutils literal notranslate"><span class="pre">vX.Y.ZrcN</span></code> label).</p></li>
+from <code class="docutils literal notranslate"><span class="pre">draft-vX.Y.Z</span></code> to <code class="docutils literal notranslate"><span class="pre">main</span></code>. You may need to ask a member of the ISIS core or DevOps team to do this. This needs to be done for the packages <code class="docutils literal notranslate"><span class="pre">mantid</span></code>, <code class="docutils literal notranslate"><span class="pre">mantidqt</span></code>, <code class="docutils literal notranslate"><span class="pre">mantidworkbench</span></code> and <code class="docutils literal notranslate"><span class="pre">mantiddocs</span></code>.</p></li>
+<li><p>For the same conda packages remove the smoke testing release candidates from our Anaconda channel (those with the <code class="docutils literal notranslate"><span class="pre">vX.Y.ZrcN</span></code> label).</p></li>
 <li><p>Update the <a class="reference external" href="https://download.mantidproject.org">download page</a> by running the <a class="reference external" href="https://github.com/mantidproject/www/actions/workflows/update-latest-release.yml">Update latest release links</a> workflow in the
 <a class="reference external" href="https://github.com/mantidproject/www">mantidproject/www repository</a>.</p></li>
 <li><p>Ask someone with access to the <a class="reference external" href="https://github.com/ral-facilities/daaas-ansible-workspace">daaas-ansible-workspace repository</a> (a member of the ISIS core team or IDAaaS support)
@@ -985,11 +985,21 @@ Documentation is deployed to GitHub via an action on the <a class="reference ext
 This action runs on a push to the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch of the repository.</p>
 <p>To do this:</p>
 <ul class="simple">
-<li><p>On a clone of the mantid repository, check out the commit tagged as the relevant release number: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">tags/&lt;vX.Y.Z&gt;</span> <span class="pre">-b</span> <span class="pre">&lt;new</span> <span class="pre">branch</span> <span class="pre">name&gt;</span></code>.</p></li>
-<li><p>On this branch, build the <code class="docutils literal notranslate"><span class="pre">docs-html</span></code> target (this target is produced by <code class="docutils literal notranslate"><span class="pre">CMake</span></code>).</p></li>
+<li><p>Fetch the docs from the mantiddocs package, make sure that it is the up to date version</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mamba<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>mantiddocs<span class="w"> </span>-c<span class="w"> </span>mantid<span class="w"> </span>mantiddocs
+mamba<span class="w"> </span>activate<span class="w"> </span>mantiddocs
+</pre></div>
+</div>
+<ul class="simple">
 <li><p>Clone the repository: <a class="github reference external" href="https://github.com/mantidproject/docs-versioned">mantidproject/docs-versioned</a>.</p></li>
 <li><p>Remaining on the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch, create a directory for the relevant release in the form <code class="docutils literal notranslate"><span class="pre">vX.Y.Z</span></code>.</p></li>
-<li><p>Copy the built documentation into this new directory. The built documentation will be in your mantid build directory at <code class="docutils literal notranslate"><span class="pre">&lt;build</span> <span class="pre">directory&gt;/docs/html</span></code>.</p></li>
+<li><p>Copy the documentation from the <code class="docutils literal notranslate"><span class="pre">mantiddocs</span></code> environment to the versioned directory, e.g.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp<span class="w"> </span>-a<span class="w"> </span><span class="si">${</span><span class="nv">CONDA_PREFIX</span><span class="si">}</span>/share/doc/html/*<span class="w"> </span>v7.0.0/
+</pre></div>
+</div>
+<ul class="simple">
 <li><p>Stage the newly created directory and commit it to your branch.</p></li>
 <li><p>After double-checking that these instructions have been followed correctly, push your branch to the main repository to deploy.</p></li>
 </ul>
