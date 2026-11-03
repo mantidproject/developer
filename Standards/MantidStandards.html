@@ -584,6 +584,20 @@ algorithms have other standards to adhere to.</p>
 <h2>Fit Functions<a class="headerlink" href="#fit-functions" title="Link to this heading">#</a></h2>
 <p>Standards to following when implementing a fitting function (both C++
 &amp; Python).</p>
+<section id="implementation">
+<h3>Implementation<a class="headerlink" href="#implementation" title="Link to this heading">#</a></h3>
+<p>Fit functions that are generally useful should be added to Mantid,
+with documentation and unit tests, rather than kept as user plugins.
+Users who only need a function for their own analysis can write one in
+Python, see <a class="reference external" href="https://docs.mantidproject.org/nightly/tutorials/extending_mantid_with_python/python_fit_functions/index.html#emwp-py-fit-funcs" title="(in MantidProject v7.0)"><span>Python Fit Functions</span></a>.</p>
+<p>Peak functions should implement <code class="docutils literal notranslate"><span class="pre">centre()</span></code>, <code class="docutils literal notranslate"><span class="pre">height()</span></code> and
+<code class="docutils literal notranslate"><span class="pre">fwhm()</span></code> from <code class="docutils literal notranslate"><span class="pre">IPeakFunction</span></code>, calculated from the function’s
+parameters.
+<code class="docutils literal notranslate"><span class="pre">IPeakFunction</span></code> also requires <code class="docutils literal notranslate"><span class="pre">setFwhm()</span></code> while <code class="docutils literal notranslate"><span class="pre">IFunctionWithLocation</span></code> requires <code class="docutils literal notranslate"><span class="pre">setCentre()</span></code> and <code class="docutils literal notranslate"><span class="pre">setHeight()</span></code>.
+The fitting GUI uses these so that users can adjust the
+peak with the mouse. For example, for a Lorentzian the centre is simply
+the <code class="docutils literal notranslate"><span class="pre">PeakCentre</span></code> parameter.</p>
+</section>
 <section id="id1">
 <h3>Naming<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
 <p>Function names start with a capital letter and have a capital letter
@@ -606,6 +620,21 @@ words should have lower case first letters. Numbers are not allowed.</p>
 </ul>
 <p>Notable exceptions to these rules are lattice constants (i.e. a, b, c,
 alpha, beta, gamma).</p>
+<p>Fit function parameters are part of the public interface, so changing
+the parameters of an existing function must be done with care:</p>
+<ul class="simple">
+<li><p>Renaming a parameter, or changing what it represents, breaks any
+Python or C++ code that refers to it.</p></li>
+<li><p>Adding a parameter is not safe either. A new parameter is fitted by
+default, which changes the fitted values of the other parameters and
+may be the wrong thing to vary for some uses of the function. Scripts
+also often read the fitted parameters by their row in the output
+parameters table, and a new parameter changes those rows.</p></li>
+</ul>
+<p>Only change the parameters of a function that was added in the current
+release cycle. For older functions, treat the change like renaming or
+deprecating an algorithm (see <a class="reference internal" href="RenameAlgorithm.html#renamealgorithm"><span class="std std-ref">Renaming an Algorithm</span></a> and
+<a class="reference internal" href="DeprecateAlgorithm.html#deprecatealgorithm"><span class="std std-ref">Deprecating an Algorithm</span></a>) and mention it in the release notes.</p>
 </section>
 </section>
 <section id="workspace-names">
@@ -671,6 +700,7 @@ numeric and the underscore characters.</p>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fit-functions">Fit Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation">Implementation</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Naming</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Categories</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parameters">Parameters</a></li>

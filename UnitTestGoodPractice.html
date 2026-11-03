@@ -521,15 +521,117 @@ helper, to ensure that resources are cleaned-up in an exception safe manner.</p>
 in your unit environment and check how your code operates within this
 environment. Mocking allows you to avoid creating Fake objects of any
 kind, and results in fast executing code with a very high test coverage.
-See <a class="reference external" href="MVPTutorial/Mocking">Mocking</a> in Mantid to find out what it is and how it
+See <a class="reference internal" href="MVPTutorial/Mocking.html"><span class="doc">Mocking</span></a> in Mantid to find out what it is and how it
 works in Python. Once you are familiar with the general concept, C++ has mocking too - see
-<cite>Dependency Injection and Basic Mocking &lt;https://vladris.com/blog/2016/07/06/dependency-injection-in-c.html&gt;</cite>.</p>
+<a class="reference external" href="https://vladris.com/blog/2016/07/06/dependency-injection-in-c.html">Dependency Injection and Basic Mocking</a>
+and the C++ examples below.</p>
 <figure class="align-default" id="id1">
 <img alt="Object under test using Mocking to isolate the testing.|400px" src="_images/Mocking.png" />
 <figcaption>
 <p><span class="caption-text">Object under test using Mocking to isolate the testing.|400px</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
+<p>Mocking isolates the code being tested from its dependencies. Mantid has
+many complex types, which pushes code towards being tightly coupled;
+mocking the dependencies keeps tests focused and highlights missing
+abstractions in a design. Used with test-driven development, mocks let
+you write and test code against an interface before any concrete
+implementation exists.</p>
+<section id="fakes-and-mocks-in-c">
+<h3>Fakes and mocks in C++<a class="headerlink" href="#fakes-and-mocks-in-c" title="Link to this heading">#</a></h3>
+<p>Suppose this function needs testing:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Detector</span><span class="w"> </span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">Detector</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span><span class="p">;</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">position</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="nf">height</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="nf">width</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kt">double</span><span class="w"> </span><span class="nf">detectorDistance</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Detector</span><span class="w"> </span><span class="o">&amp;</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Detector</span><span class="w"> </span><span class="o">&amp;</span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">posA</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">position</span><span class="p">();</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">posB</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">position</span><span class="p">();</span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">sumSq</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">posA</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span>
+<span class="w">    </span><span class="n">sumSq</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="p">(</span><span class="n">posA</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">posB</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">posA</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">posB</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">(</span><span class="n">sumSq</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Detector</span></code> is abstract, so a test needs a concrete type. A hand-written
+fake has to implement every method and, to put two detectors at
+different positions, also needs constructors, setters and member
+variables. A GoogleMock mock needs none of that:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">MockDetector</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Detector</span><span class="w"> </span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">  </span><span class="n">MOCK_METHOD</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">position</span><span class="p">,</span><span class="w"> </span><span class="p">(),</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="p">,</span><span class="w"> </span><span class="k">override</span><span class="p">));</span>
+<span class="w">  </span><span class="n">MOCK_METHOD</span><span class="p">(</span><span class="kt">double</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="p">,</span><span class="w"> </span><span class="p">(),</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="p">,</span><span class="w"> </span><span class="k">override</span><span class="p">));</span>
+<span class="w">  </span><span class="n">MOCK_METHOD</span><span class="p">(</span><span class="kt">double</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="p">(),</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="p">,</span><span class="w"> </span><span class="k">override</span><span class="p">));</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Each test then sets the behaviour it needs:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">test_detectorDistance</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">testing</span><span class="p">;</span>
+<span class="w">  </span><span class="n">MockDetector</span><span class="w"> </span><span class="n">a</span><span class="p">;</span>
+<span class="w">  </span><span class="n">MockDetector</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+<span class="w">  </span><span class="n">EXPECT_CALL</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">position</span><span class="p">()).</span><span class="n">WillRepeatedly</span><span class="p">(</span><span class="n">Return</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)));</span>
+<span class="w">  </span><span class="n">EXPECT_CALL</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">position</span><span class="p">()).</span><span class="n">WillRepeatedly</span><span class="p">(</span><span class="n">Return</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)));</span>
+
+<span class="w">  </span><span class="n">TS_ASSERT_DELTA</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">12.0</span><span class="p">),</span><span class="w"> </span><span class="n">detectorDistance</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">),</span><span class="w"> </span><span class="mf">1e-12</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="checking-how-dependencies-are-used">
+<h3>Checking how dependencies are used<a class="headerlink" href="#checking-how-dependencies-are-used" title="Link to this heading">#</a></h3>
+<p>As well as checking the result (state), a mock can check that the code
+uses its dependencies as expected (behaviour):</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">test_detectorDistance_reads_each_position_once</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">testing</span><span class="p">;</span>
+<span class="w">  </span><span class="n">MockDetector</span><span class="w"> </span><span class="n">a</span><span class="p">;</span>
+<span class="w">  </span><span class="n">MockDetector</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+<span class="w">  </span><span class="n">EXPECT_CALL</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">position</span><span class="p">()).</span><span class="n">Times</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="n">WillOnce</span><span class="p">(</span><span class="n">Return</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)));</span>
+<span class="w">  </span><span class="n">EXPECT_CALL</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">position</span><span class="p">()).</span><span class="n">Times</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="n">WillOnce</span><span class="p">(</span><span class="n">Return</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)));</span>
+
+<span class="w">  </span><span class="n">TS_ASSERT_DELTA</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">12.0</span><span class="p">),</span><span class="w"> </span><span class="n">detectorDistance</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">),</span><span class="w"> </span><span class="mf">1e-12</span><span class="p">);</span>
+
+<span class="w">  </span><span class="n">TSM_ASSERT</span><span class="p">(</span><span class="s">"First detector not used as expected"</span><span class="p">,</span><span class="w"> </span><span class="n">Mock</span><span class="o">::</span><span class="n">VerifyAndClearExpectations</span><span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">));</span>
+<span class="w">  </span><span class="n">TSM_ASSERT</span><span class="p">(</span><span class="s">"Second detector not used as expected"</span><span class="p">,</span><span class="w"> </span><span class="n">Mock</span><span class="o">::</span><span class="n">VerifyAndClearExpectations</span><span class="p">(</span><span class="o">&amp;</span><span class="n">b</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>If the expectations are not met, the test fails with a message such as:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Actual function call count doesn't match EXPECT_CALL(a, position())...
+         Expected: to be called once
+           Actual: never called - unsatisfied and active
+</pre></div>
+</div>
+<p>Note that none of this needed a concrete <code class="docutils literal notranslate"><span class="pre">Detector</span></code> implementation.</p>
+</section>
+<section id="adding-mocks-to-a-c-unit-test">
+<h3>Adding mocks to a C++ unit test<a class="headerlink" href="#adding-mocks-to-a-c-unit-test" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Include <code class="docutils literal notranslate"><span class="pre">&lt;gmock/gmock.h&gt;</span></code> in the test header.</p></li>
+<li><p>Declare the mock class using <code class="docutils literal notranslate"><span class="pre">MOCK_METHOD</span></code> for each virtual method
+that will be called. Older tests use the <code class="docutils literal notranslate"><span class="pre">MOCK_METHODn</span></code> and
+<code class="docutils literal notranslate"><span class="pre">MOCK_CONST_METHODn</span></code> macros, which still work, but new code should
+use <code class="docutils literal notranslate"><span class="pre">MOCK_METHOD</span></code>.</p></li>
+<li><p>Create the mock in the test method and set expectations on the
+methods the code under test should call.</p></li>
+<li><p>Build and run the test.</p></li>
+</ol>
+<p>Examples in Mantid:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/Framework/Kernel/test/NDRandomNumberGeneratorTest.h">NDRandomNumberGeneratorTest.h</a> - a mocked random number generator</p></li>
+<li><p><a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/Framework/MDAlgorithms/test/BinaryOperationMDTest.h">BinaryOperationMDTest.h</a> - stubbing out binary MD operations</p></li>
+<li><p><a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/qt/scientific_interfaces/Muon/test/ALCBaselineModellingPresenterTest.h">ALCBaselineModellingPresenterTest.h</a> - testing an MVP presenter with a mocked view and model</p></li>
+</ul>
+<p>The <a class="reference external" href="https://google.github.io/googletest/gmock_for_dummies.html">gMock for Dummies</a>,
+<a class="reference external" href="https://google.github.io/googletest/gmock_cook_book.html">gMock Cookbook</a> and
+<a class="reference external" href="https://google.github.io/googletest/gmock_cheat_sheet.html">gMock Cheat Sheet</a>
+cover GoogleMock in more depth.</p>
+</section>
 </section>
 </section>
 
@@ -597,7 +699,12 @@ works in Python. Once you are familiar with the general concept, C++ has mocking
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-files-in-unit-tests">Using files in Unit tests</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mocking">Mocking</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mocking">Mocking</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fakes-and-mocks-in-c">Fakes and mocks in C++</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-how-dependencies-are-used">Checking how dependencies are used</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-mocks-to-a-c-unit-test">Adding mocks to a C++ unit test</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

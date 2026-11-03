@@ -609,6 +609,33 @@ further level namespaces may be used to section code to further
 improve readability and maintenance.</p>
 </section>
 </section>
+<section id="library-dependencies">
+<h2>Library Dependencies<a class="headerlink" href="#library-dependencies" title="Link to this heading">#</a></h2>
+<p>The framework is split into libraries (<code class="docutils literal notranslate"><span class="pre">Kernel</span></code>, <code class="docutils literal notranslate"><span class="pre">API</span></code>,
+<code class="docutils literal notranslate"><span class="pre">Geometry</span></code>, <code class="docutils literal notranslate"><span class="pre">DataObjects</span></code>, …) that form a hierarchy, with
+<code class="docutils literal notranslate"><span class="pre">Kernel</span></code> at the bottom.</p>
+<ol class="arabic simple">
+<li><p>Code should be placed in the lowest library in the hierarchy that it
+can go in. Code with no dependencies on other Mantid libraries
+belongs in <code class="docutils literal notranslate"><span class="pre">Kernel</span></code>.</p></li>
+<li><p>Code may use classes from any library below it in the hierarchy, so
+there is no need to write pass-through classes for objects in a lower
+library. Code must not depend on a library above it.</p></li>
+<li><p>Pluggable items, such as algorithms, workspaces and fit functions,
+should not reference other pluggable items directly. Create them
+through the framework (e.g. <code class="docutils literal notranslate"><span class="pre">Algorithm::createChildAlgorithm</span></code>,
+<code class="docutils literal notranslate"><span class="pre">WorkspaceFactory</span></code>, <code class="docutils literal notranslate"><span class="pre">FunctionFactory</span></code>) and, where possible, use
+them only through their abstract interface.</p></li>
+</ol>
+<p>A new library should only be created when the TWG agrees, and is
+appropriate when the code:</p>
+<ul class="simple">
+<li><p>is a conceptually complete piece of functionality that is separate
+from the existing libraries,</p></li>
+<li><p>introduces a new third-party dependency that is not used elsewhere, or</p></li>
+<li><p>comes from splitting a library that has become too large and diverse.</p></li>
+</ul>
+</section>
 <section id="functions-and-variables">
 <h2>Functions and Variables<a class="headerlink" href="#functions-and-variables" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
@@ -632,6 +659,30 @@ to primitive types, or according to established conventions
 <li><p>‘Magic numbers’ must not be used in the code. Constants and
 enumerations must be used instead.</p></li>
 </ol>
+</section>
+<section id="integer-and-id-types">
+<span id="cppintegertypes"></span><h2>Integer and ID Types<a class="headerlink" href="#integer-and-id-types" title="Link to this heading">#</a></h2>
+<p>Several integer types are used throughout Mantid:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">int</span></code> - used for many general purpose values.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">int64_t</span></code> and the other fixed width integer types - from
+<code class="docutils literal notranslate"><span class="pre">&lt;cstdint&gt;</span></code>. Use these when the size of the type matters.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">std::size_t</span></code> - used for sizes and indices of containers, e.g. the
+value returned by <code class="docutils literal notranslate"><span class="pre">std::vector::size()</span></code> or
+<code class="docutils literal notranslate"><span class="pre">MatrixWorkspace::getNumberHistograms()</span></code>. Always write the <code class="docutils literal notranslate"><span class="pre">std::</span></code>
+namespace.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">specnum_t</span></code> - a spectrum number, defined in
+<code class="docutils literal notranslate"><span class="pre">MantidGeometry/IDTypes.h</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">detid_t</span></code> - a detector ID, defined in <code class="docutils literal notranslate"><span class="pre">MantidGeometry/IDTypes.h</span></code>.</p></li>
+</ul>
+<p>Loops parallelised with OpenMP (e.g. using <code class="docutils literal notranslate"><span class="pre">PARALLEL_FOR_IF</span></code>) must use a
+signed loop variable, because the MSVC compiler only supports OpenMP 2.0
+which does not allow unsigned loop variables. This is why such loops
+often cast an unsigned size to a signed type, see <a class="reference internal" href="#cppcompilerwarnings"><span class="std std-ref">Compiler Warnings</span></a>.
+The restriction comes from building with MSVC’s default <code class="docutils literal notranslate"><span class="pre">/openmp</span></code> flag;
+it can be dropped if the Windows build switches to <code class="docutils literal notranslate"><span class="pre">/openmp:llvm</span></code> (e.g. by
+setting CMake’s <code class="docutils literal notranslate"><span class="pre">OpenMP_RUNTIME_MSVC</span></code> to <code class="docutils literal notranslate"><span class="pre">llvm</span></code>), which supports
+unsigned loop variables.</p>
 </section>
 <section id="expressions-and-statements">
 <h2>Expressions and Statements<a class="headerlink" href="#expressions-and-statements" title="Link to this heading">#</a></h2>
@@ -753,12 +804,76 @@ resolve the problem, for example:</p>
 </li>
 </ol>
 </section>
+<section id="compiler-warnings">
+<span id="cppcompilerwarnings"></span><h2>Compiler Warnings<a class="headerlink" href="#compiler-warnings" title="Link to this heading">#</a></h2>
+<p>Code should compile without warnings on all supported compilers. Below
+are fixes for some common warnings.</p>
+<p><strong>Comparison between signed and unsigned integers</strong></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">numberOfSpectra</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">inputWS</span><span class="o">-&gt;</span><span class="n">getNumberHistograms</span><span class="p">();</span>
+<span class="n">PARALLEL_FOR_IF</span><span class="p">(</span><span class="n">Kernel</span><span class="o">::</span><span class="n">threadSafe</span><span class="p">(</span><span class="o">*</span><span class="n">inputWS</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">outputWS</span><span class="p">))</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int64_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">numberOfSpectra</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</pre></div>
+</div>
+<p>The loop variable is signed but the end value is unsigned. The loop
+variable must stay signed for OpenMP (see <a class="reference internal" href="#cppintegertypes"><span class="std std-ref">Integer and ID Types</span></a>), so cast
+the end value to the type of the loop variable instead:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">numberOfSpectra</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int64_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">inputWS</span><span class="o">-&gt;</span><span class="n">getNumberHistograms</span><span class="p">());</span>
+<span class="n">PARALLEL_FOR_IF</span><span class="p">(</span><span class="n">Kernel</span><span class="o">::</span><span class="n">threadSafe</span><span class="p">(</span><span class="o">*</span><span class="n">inputWS</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">outputWS</span><span class="p">))</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int64_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">numberOfSpectra</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</pre></div>
+</div>
+<p><strong>Conversion from an integer type to</strong> <code class="docutils literal notranslate"><span class="pre">double</span></code> <strong>may alter its value</strong></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">numberOfSpectra</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">inputWS</span><span class="o">-&gt;</span><span class="n">getNumberHistograms</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>This is common when a count is needed in a floating point calculation.
+Make the conversion explicit:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">numberOfSpectra</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">inputWS</span><span class="o">-&gt;</span><span class="n">getNumberHistograms</span><span class="p">());</span>
+</pre></div>
+</div>
+<p><strong>Variable set but not used</strong></p>
+<p>Either the code changed so the variable is no longer needed, in which
+case remove it, or a different variable was used by mistake, in which
+case correct the code.</p>
+<p><strong>Variable may be used uninitialized</strong></p>
+<p>Built-in types, including pointers, are not initialized by default, so
+their value is whatever happens to be in memory. Initialize the variable
+when it is declared:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">value</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="n">value</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><strong>Forcing value to bool ‘true’ or ‘false’ (MSVC)</strong></p>
+<p>Casting an integer to <code class="docutils literal notranslate"><span class="pre">bool</span></code> is not allowed (see
+<a class="reference internal" href="#expressions-and-statements">Expressions and Statements</a>). Use a <code class="docutils literal notranslate"><span class="pre">bool</span></code> from the start if
+possible, otherwise use an explicit comparison:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">hasBeenIntegrated</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">integratedValue</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
 <section id="cppcheck">
 <h2>Cppcheck<a class="headerlink" href="#cppcheck" title="Link to this heading">#</a></h2>
 <p>Cppcheck analyses all C++ code in the project to locate undefined behavior
 and poor coding practices. Updates to Cppcheck result in such a large number of
 these potential problems being found that it is impractical to solve them all
 in the Pull Request where the update takes place.</p>
+<section id="fixing-common-problems">
+<h3>Fixing Common Problems<a class="headerlink" href="#fixing-common-problems" title="Link to this heading">#</a></h3>
+<p>Most problems reported by Cppcheck should be fixed by changing the code.
+For example, <code class="docutils literal notranslate"><span class="pre">uninitvar</span></code> (uninitialized variable) is reported for:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="n">fitSuccess</span><span class="p">;</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isExecute</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">parseFitResult</span><span class="p">(</span><span class="n">fitAlg</span><span class="p">,</span><span class="w"> </span><span class="n">chi2</span><span class="p">,</span><span class="w"> </span><span class="n">fitSuccess</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="k">return</span><span class="w"> </span><span class="n">fitSuccess</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>If <code class="docutils literal notranslate"><span class="pre">isExecute</span></code> is false, <code class="docutils literal notranslate"><span class="pre">fitSuccess</span></code> is returned without ever being
+set. Initialize it when it is declared:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="n">fitSuccess</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
 <section id="suppressions-file">
 <h3>Suppressions File<a class="headerlink" href="#suppressions-file" title="Link to this heading">#</a></h3>
 <p>When Cppcheck is updated, a suppressions file will be created using the
@@ -879,11 +994,15 @@ techniques below.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid-namespaces">Mantid Namespaces</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#library-dependencies">Library Dependencies</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions-and-variables">Functions and Variables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integer-and-id-types">Integer and ID Types</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expressions-and-statements">Expressions and Statements</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comments">Comments</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#error-handling">Error Handling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compiler-warnings">Compiler Warnings</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cppcheck">Cppcheck</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fixing-common-problems">Fixing Common Problems</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#suppressions-file">Suppressions File</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#suppressing-false-positives">Suppressing False Positives</a></li>
 </ul>
