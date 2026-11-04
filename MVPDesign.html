@@ -582,15 +582,25 @@ drop</p></li>
 discussed with a senior developer.</p>
 </section>
 <section id="reusable-widgets">
-<h3>Reusable Widgets<a class="headerlink" href="#reusable-widgets" title="Link to this heading">#</a></h3>
+<span id="reusablewidgets"></span><h3>Reusable Widgets<a class="headerlink" href="#reusable-widgets" title="Link to this heading">#</a></h3>
 <p>Many interfaces will require similar functionality. For example, the
 ability to enter a filename string to search for a file along with a
 ‘Browse’ button to select a file from the filesystem. This type of
 behaviour should be captured in a new composite widget that can be
 reused by other components.</p>
-<p>The new widget should be placed in the MantidWidgets plugin and a
-wrapper created in the DesignerPlugins plugin so that the new widget
-type can be used from within the Qt Designer.</p>
+<p>The new widget should be placed in <code class="docutils literal notranslate"><span class="pre">qt/widgets/common</span></code>. A widget that
+takes input from the user should derive from <code class="docutils literal notranslate"><span class="pre">MantidWidget</span></code> and
+implement <code class="docutils literal notranslate"><span class="pre">getUserInput()</span></code> and <code class="docutils literal notranslate"><span class="pre">setUserInput()</span></code>, so that its value can
+be read and set through a common interface, as <code class="docutils literal notranslate"><span class="pre">DataSelector</span></code> and
+<code class="docutils literal notranslate"><span class="pre">FileFinderWidget</span></code> do.</p>
+<p>To use the widget in a form, add a placeholder widget of its base class in
+Qt Designer and promote it to the new class (right-click, <em>Promote to…</em>,
+giving the class name and header). Options that should be set per form can
+be declared as Qt properties with <code class="docutils literal notranslate"><span class="pre">Q_PROPERTY</span></code>, e.g.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Q_PROPERTY</span><span class="p">(</span><span class="n">QStringList</span><span class="w"> </span><span class="n">WorkspaceTypes</span><span class="w"> </span><span class="n">READ</span><span class="w"> </span><span class="n">getWorkspaceTypes</span><span class="w"> </span><span class="n">WRITE</span><span class="w"> </span><span class="n">setWorkspaceTypes</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>and then set as dynamic properties in Qt Designer.</p>
 <p>The current set of reusable items are:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>

@@ -45,7 +45,7 @@
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Building on OS X" href="BuildingOnOSX.html" />
+    <link rel="next" title="Instrument Geometry" href="InstrumentGeometry.html" />
     <link rel="prev" title="Packaging" href="Packaging.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en">
@@ -359,10 +359,10 @@ of the <a class="reference external" href="https://www.infoq.com/articles/C4-arc
 <h2>Context<a class="headerlink" href="#context" title="Link to this heading">#</a></h2>
 <p>People and other systems interact with the Mantid software package
 as described by the following context diagram.</p>
-<figure class="align-center" id="id2">
+<figure class="align-center" id="id3">
 <img alt="Context diagram of mantid software system" src="_images/architecture-context.png" />
 <figcaption>
-<p><span class="caption-text">Context diagram for mantid software</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
+<p><span class="caption-text">Context diagram for mantid software</span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Experimental users at neutron/muon facilities use the software
@@ -386,11 +386,11 @@ one general-purpose, cross-platform, graphical desktop application and
 many customized graphical interfaces for specific scientific techniques.
 This is illustrated, along with connections between the containers,
 in the following diagram.</p>
-<figure class="align-center" id="id3">
+<figure class="align-center" id="id4">
 <a class="reference internal image-reference" href="_images/architecture-container.png"><img alt="Container diagram of mantid software system" height="721" src="_images/architecture-container.png" width="919" />
 </a>
 <figcaption>
-<p><span class="caption-text">Container diagram for mantid software</span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
+<p><span class="caption-text">Container diagram for mantid software</span><a class="headerlink" href="#id4" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>The <code class="docutils literal notranslate"><span class="pre">workbench</span></code> application is written in Python/Qt that provides access
@@ -421,11 +421,11 @@ This part of the system is written in C++ and provides the business logic
 for reducing and analysing data independent of a graphical environment.
 The modules that compose the framework are shown within the following
 component diagram.</p>
-<figure class="align-center" id="id4">
+<figure class="align-center" id="id5">
 <a class="reference internal image-reference" href="_images/architecture-framework.png"><img alt="Component diagram of framework container" height="672" src="_images/architecture-framework.png" width="1114" />
 </a>
 <figcaption>
-<p><span class="caption-text">Container diagram for mantid framework</span><a class="headerlink" href="#id4" title="Link to this image">#</a></p>
+<p><span class="caption-text">Container diagram for mantid framework</span><a class="headerlink" href="#id5" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>The framework is separated into a base set of libraries that provide that
@@ -433,6 +433,13 @@ core functionality e.g.
 workspace objects, instrument objects, algorithm interfaces,
 along with a set of plugin libraries that are loaded at runtime to register
 new capabilities such as algorithms for data treatment.</p>
+<p>Each library is a subdirectory of <code class="docutils literal notranslate"><span class="pre">Framework</span></code>, e.g. <code class="docutils literal notranslate"><span class="pre">Kernel</span></code>, <code class="docutils literal notranslate"><span class="pre">API</span></code>,
+<code class="docutils literal notranslate"><span class="pre">Geometry</span></code>, <code class="docutils literal notranslate"><span class="pre">DataObjects</span></code> and <code class="docutils literal notranslate"><span class="pre">HistogramData</span></code> for the core libraries and
+<code class="docutils literal notranslate"><span class="pre">Algorithms</span></code>, <code class="docutils literal notranslate"><span class="pre">DataHandling</span></code>, <code class="docutils literal notranslate"><span class="pre">CurveFitting</span></code> and <code class="docutils literal notranslate"><span class="pre">MDAlgorithms</span></code> for
+plugins. Within each library, header files are in <code class="docutils literal notranslate"><span class="pre">inc</span></code>, source files in
+<code class="docutils literal notranslate"><span class="pre">src</span></code> and unit tests in <code class="docutils literal notranslate"><span class="pre">test</span></code>. Code shared between the tests of several
+libraries is in <code class="docutils literal notranslate"><span class="pre">Framework/TestHelpers</span></code>. The rules for which libraries may
+depend on which are in <a class="reference internal" href="Standards/CPPStandards.html#cppcodingstandards"><span class="std std-ref">C++ Coding Standards</span></a>.</p>
 <p>A Python package to the C++ libraries, called <code class="docutils literal notranslate"><span class="pre">mantid</span></code>, is defined in
 <code class="docutils literal notranslate"><span class="pre">Framework/PythonInterface</span></code> and
 gives access to the C++-framework code from Python.
@@ -448,11 +455,11 @@ layer is not guaranteed.</p>
 </section>
 <section id="mantidqt">
 <h3>mantidqt<a class="headerlink" href="#mantidqt" title="Link to this heading">#</a></h3>
-<figure class="align-center" id="id5">
+<figure class="align-center" id="id6">
 <a class="reference internal image-reference" href="_images/architecture-mantidqt.png"><img alt="Component diagram of mantidqt container" height="553" src="_images/architecture-mantidqt.png" width="893" />
 </a>
 <figcaption>
-<p><span class="caption-text">Container diagram for mantidqt Python package</span><a class="headerlink" href="#id5" title="Link to this image">#</a></p>
+<p><span class="caption-text">Container diagram for mantidqt Python package</span><a class="headerlink" href="#id6" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p><code class="docutils literal notranslate"><span class="pre">mantidqt</span></code> is a Python package defined to house a collection of Qt widgets
@@ -485,11 +492,11 @@ Clients of <code class="docutils literal notranslate"><span class="pre">mantidqt
 </section>
 <section id="workbench">
 <h3>workbench<a class="headerlink" href="#workbench" title="Link to this heading">#</a></h3>
-<figure class="align-center" id="id6">
+<figure class="align-center" id="id7">
 <a class="reference internal image-reference" href="_images/architecture-workbench.png"><img alt="Component diagram of workbench container" height="460" src="_images/architecture-workbench.png" width="638" />
 </a>
 <figcaption>
-<p><span class="caption-text">Container diagram for workbench application</span><a class="headerlink" href="#id6" title="Link to this image">#</a></p>
+<p><span class="caption-text">Container diagram for workbench application</span><a class="headerlink" href="#id7" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p><code class="docutils literal notranslate"><span class="pre">workbench</span></code> is an application written in pure Python in the <code class="docutils literal notranslate"><span class="pre">qt/applications/workbench</span></code>
@@ -517,6 +524,53 @@ including <a class="reference external" href="https://jupyter.org/">Jupyter note
 only differing in how the final figure window is presented.</p>
 </section>
 </section>
+<section id="design-patterns">
+<h2>Design Patterns<a class="headerlink" href="#design-patterns" title="Link to this heading">#</a></h2>
+<p>A design pattern is a general, reusable solution to a commonly occurring
+problem. The <a class="reference external" href="https://sourcemaking.com/design_patterns">SourceMaking catalogue</a> describes the
+classic patterns with examples in several languages, and the book
+<em>Design Patterns: Elements of Reusable Object-Oriented Software</em> (Gamma, Helm,
+Johnson &amp; Vlissides) is the standard reference. The following patterns are
+used throughout Mantid.</p>
+<dl>
+<dt>Singleton</dt><dd><p>Ensures only one instance of a class exists and provides a global point of
+access to it. For example, the <code class="docutils literal notranslate"><span class="pre">AnalysisDataService</span></code> cannot be constructed
+directly, it is accessed through the static <code class="docutils literal notranslate"><span class="pre">Instance()</span></code> method:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">ads</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Mantid</span><span class="o">::</span><span class="n">API</span><span class="o">::</span><span class="n">AnalysisDataService</span><span class="o">::</span><span class="n">Instance</span><span class="p">();</span>
+</pre></div>
+</div>
+</dd>
+<dt>Factory</dt><dd><p>Creates objects without exposing how they are constructed, and returns them
+through a common interface. For example, algorithms are created by name, and
+optionally version, and used through <code class="docutils literal notranslate"><span class="pre">IAlgorithm</span></code>:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span><span class="w"> </span><span class="n">rebin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Mantid</span><span class="o">::</span><span class="n">API</span><span class="o">::</span><span class="n">AlgorithmManager</span><span class="o">::</span><span class="n">Instance</span><span class="p">().</span><span class="n">create</span><span class="p">(</span><span class="s">"Rebin"</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd>
+<dt>Observer</dt><dd><p>Defines a one-to-many dependency so that when one object changes state, its
+dependents are notified. For example, <code class="docutils literal notranslate"><span class="pre">AnalysisDataServiceObserver</span></code> and the
+<code class="docutils literal notranslate"><span class="pre">WorkspaceObserver</span></code> used by the GUI are notified when workspaces are added,
+replaced or deleted.</p>
+</dd>
+<dt>Template Method</dt><dd><p>Defines the skeleton of an operation and lets subclasses fill in some of the
+steps. For example, <code class="docutils literal notranslate"><span class="pre">Algorithm::initialize()</span></code> and <code class="docutils literal notranslate"><span class="pre">Algorithm::execute()</span></code>
+do the common work and call the <code class="docutils literal notranslate"><span class="pre">init()</span></code> and <code class="docutils literal notranslate"><span class="pre">exec()</span></code> methods that each
+algorithm implements.</p>
+</dd>
+<dt>Strategy</dt><dd><p>Defines a family of interchangeable implementations behind one interface, so
+the implementation can vary independently of the code that uses it. For
+example, the ISIS Reflectometry interface searches for runs through the
+<code class="docutils literal notranslate"><span class="pre">ISearcher</span></code> interface.</p>
+</dd>
+<dt>Composite</dt><dd><p>Composes objects into trees so that single objects and groups of objects can
+be treated the same way. For example, a <code class="docutils literal notranslate"><span class="pre">CompositeFunction</span></code> is a fit
+function made of other fit functions.</p>
+</dd>
+<dt>Model-View-Presenter</dt><dd><p>Separates the logic of a graphical interface from the widgets that display
+it, so that the logic can be unit tested. See <a class="reference internal" href="MVPDesign.html#mvpdesign"><span class="std std-ref">MVP Design</span></a>.</p>
+</dd>
+</dl>
+</section>
 </section>
 
 
@@ -539,11 +593,11 @@ only differing in how the final figure window is presented.</p>
       </div>
     </a>
     <a class="right-next"
-       href="BuildingOnOSX.html"
+       href="InstrumentGeometry.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Building on OS X</p>
+        <p class="prev-next-title">Instrument Geometry</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -575,6 +629,7 @@ only differing in how the final figure window is presented.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#workbench">workbench</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#design-patterns">Design Patterns</a></li>
 </ul>
   </nav></div>
 

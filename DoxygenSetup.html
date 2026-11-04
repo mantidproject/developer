@@ -484,6 +484,39 @@ run from.</p></li>
 </table>
 </div>
 </section>
+<section id="fixing-common-warnings">
+<h2>Fixing Common Warnings<a class="headerlink" href="#fixing-common-warnings" title="Link to this heading">#</a></h2>
+<p><strong>Found unknown command</strong></p>
+<p>Doxygen reads a backslash in a comment as the start of a command, so text
+such as <code class="docutils literal notranslate"><span class="pre">\lambda</span></code> gives <code class="docutils literal notranslate"><span class="pre">Found</span> <span class="pre">unknown</span> <span class="pre">command</span> <span class="pre">'\lambda'</span></code>. Write <code class="docutils literal notranslate"><span class="pre">\\</span></code> if
+you need a literal backslash:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Neutron velocity: v = h / (m_n \\lambda)</span>
+</pre></div>
+</div>
+<p><strong>Argument of command &#64;param is not found in the argument list</strong></p>
+<p>Doxygen matches <code class="docutils literal notranslate"><span class="pre">&#64;param</span></code> names against the parameter names in the
+declaration. If the header leaves a parameter unnamed, or names it differently
+from the source file, Doxygen cannot match it. Use the same name in both (see
+also <a class="reference internal" href="Standards/CPPStandards.html#cppcodingstandards"><span class="std std-ref">C++ Coding Standards</span></a>, which requires parameters in declarations to be
+named):</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// .h</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">setInstrument</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Geometry</span><span class="o">::</span><span class="n">Instrument_const_sptr</span><span class="w"> </span><span class="o">&amp;</span><span class="n">instr</span><span class="p">);</span>
+<span class="c1">// .cpp</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">ExperimentInfo::setInstrument</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Instrument_const_sptr</span><span class="w"> </span><span class="o">&amp;</span><span class="n">instr</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>The following parameters are not documented</strong></p>
+<p>A function’s documentation lists some parameters but not all of them. Add the
+missing <code class="docutils literal notranslate"><span class="pre">&#64;param</span></code>:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * Add a number to a calculated value.</span>
+<span class="cm"> * @param i :: An index of a value 0 &lt;= i &lt; size()</span>
+<span class="cm"> * @param value :: The value to add at the given index</span>
+<span class="cm"> */</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">addToCalculated</span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">value</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
 </section>
 
 
@@ -536,6 +569,7 @@ run from.</p></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unix-console-doxygen-setup">Unix Console Doxygen Setup</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visual-studio-doxygen-setup">Visual Studio Doxygen Setup</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eclipse-doxygen-setup">Eclipse Doxygen Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fixing-common-warnings">Fixing Common Warnings</a></li>
 </ul>
   </nav></div>
 

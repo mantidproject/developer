@@ -428,6 +428,45 @@ reference obtained to the input data in the previous line. The solution
 is to make sure the non-const calls come before the const ones (in this
 case by reversing the two lines).</p>
 </section>
+<section id="thread-pool">
+<h3>Thread pool<a class="headerlink" href="#thread-pool" title="Link to this heading">#</a></h3>
+<p>OpenMP suits loops where every iteration does a similar amount of work. For
+work made of irregular tasks, <code class="docutils literal notranslate"><span class="pre">Kernel::ThreadPool</span></code> reuses a fixed set of
+threads (by default one per core) and feeds them tasks from a scheduler, which
+avoids the cost of creating a thread per task. Tasks derive from
+<code class="docutils literal notranslate"><span class="pre">Kernel::Task</span></code>, and <code class="docutils literal notranslate"><span class="pre">Kernel::FunctionTask</span></code> wraps any callable. The optional
+cost tells the scheduler roughly how expensive each task is.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">"MantidKernel/FunctionTask.h"</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">"MantidKernel/ThreadPool.h"</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">"MantidKernel/ThreadScheduler.h"</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">mutex</span><span class="w"> </span><span class="n">mutex</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">total</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="n">Kernel</span><span class="o">::</span><span class="n">ThreadPool</span><span class="w"> </span><span class="nf">pool</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Kernel</span><span class="o">::</span><span class="n">ThreadSchedulerFIFO</span><span class="p">());</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">cost</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<span class="w">  </span><span class="n">pool</span><span class="p">.</span><span class="n">schedule</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Kernel</span><span class="o">::</span><span class="n">FunctionTask</span><span class="o">&gt;</span><span class="p">(</span>
+<span class="w">      </span><span class="p">[</span><span class="o">&amp;</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">lock_guard</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">mutex</span><span class="o">&gt;</span><span class="w"> </span><span class="n">lock</span><span class="p">(</span><span class="n">mutex</span><span class="p">);</span>
+<span class="w">        </span><span class="n">total</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="n">cost</span><span class="p">));</span>
+<span class="p">}</span>
+<span class="n">pool</span><span class="p">.</span><span class="n">joinAll</span><span class="p">();</span><span class="w"> </span><span class="c1">// runs the tasks and waits for them to finish</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">DefaultEventLoader</span></code> (loading event NeXus banks) and the MD box splitting are
+examples of the thread pool in use.</p>
+</section>
+<section id="threading-building-blocks">
+<h3>Threading Building Blocks<a class="headerlink" href="#threading-building-blocks" title="Link to this heading">#</a></h3>
+<p>Some newer framework code uses <a class="reference external" href="https://github.com/uxlfoundation/oneTBB">oneTBB</a>
+directly, mainly <code class="docutils literal notranslate"><span class="pre">tbb::parallel_for</span></code> with <code class="docutils literal notranslate"><span class="pre">tbb::blocked_range</span></code>, plus
+<code class="docutils literal notranslate"><span class="pre">tbb::parallel_reduce</span></code> and <code class="docutils literal notranslate"><span class="pre">tbb::parallel_sort</span></code>, e.g. in <code class="docutils literal notranslate"><span class="pre">EventWorkspace</span></code>
+and the event compression and loading code. TBB balances work between threads
+automatically, which helps when iterations take very different amounts of time.</p>
+</section>
 </section>
 <section id="python">
 <h2>Python<a class="headerlink" href="#python" title="Link to this heading">#</a></h2>
@@ -511,6 +550,8 @@ For heavy lifting that would require multithreading you should use C++ instead.<
     <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#c">C++</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ensuring-thread-safety">Ensuring thread-safety</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#thread-pool">Thread pool</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#threading-building-blocks">Threading Building Blocks</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python">Python</a></li>

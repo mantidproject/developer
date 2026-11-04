@@ -380,6 +380,37 @@ The example below is modified from the <a class="reference external" href="https
 <p>This creates the function wrapper in the <code class="docutils literal notranslate"><span class="pre">mantid.simpleapi</span></code> namespace when the file containing these lines is parsed.
 Unlike the method of instructing mantid to parse the files, this requires actively importing the file containing the extra instructions before the algorithm is available.</p>
 </section>
+<section id="integrating-other-software-with-mantid">
+<h2>Integrating other software with Mantid<a class="headerlink" href="#integrating-other-software-with-mantid" title="Link to this heading">#</a></h2>
+<p>Registering external Python algorithms, as described above, is one of several
+ways to use another library or application together with Mantid.
+If you are unsure which suits your project, ask on
+<a class="reference external" href="https://github.com/mantidproject/mantid/discussions">GitHub Discussions</a>.</p>
+<section id="using-a-library-or-command-line-program">
+<h3>Using a library or command line program<a class="headerlink" href="#using-a-library-or-command-line-program" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>If the library can be imported as a Python module, use it directly from
+Python scripts or Python algorithms, see <a class="reference external" href="https://docs.mantidproject.org/nightly/tutorials/python_in_mantid/index.html#pim-intro" title="(in MantidProject v7.0)"><span>Python In Mantid</span></a> and
+<a class="reference external" href="https://docs.mantidproject.org/nightly/tutorials/extending_mantid_with_python/index.html#emwp-intro" title="(in MantidProject v7.0)"><span>Extending Mantid With Python</span></a>.</p></li>
+<li><p>A command line program can be run from Python with the
+<a class="reference external" href="https://docs.python.org/3/library/subprocess.html#module-subprocess" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">subprocess</span></code></a> module.</p></li>
+<li><p>Mantid can also be extended in C++, see <a class="reference internal" href="WritingAnAlgorithm.html#writinganalgorithm"><span class="std std-ref">Writing An Algorithm</span></a>.</p></li>
+<li><p>If the library would be of general benefit and should be shipped with
+Mantid, discuss it with the team first.</p></li>
+</ul>
+</section>
+<section id="exchanging-data-with-another-application">
+<h3>Exchanging data with another application<a class="headerlink" href="#exchanging-data-with-another-application" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Add a load algorithm that reads the application’s output files, as
+<a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/LoadMcStas-v1.html#algm-loadmcstas" title="(in MantidProject v7.0)"><span class="xref std std-ref">LoadMcStas</span></a> does for McStas.</p></li>
+<li><p>Add a save algorithm that writes files the application can read, as
+<a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/SaveGSS-v1.html#algm-savegss" title="(in MantidProject v7.0)"><span class="xref std std-ref">SaveGSS</span></a> does for GSAS.</p></li>
+<li><p>Add a graphical interface that runs the application, following the
+<a class="reference internal" href="Standards/GUIStandards.html#guistandards"><span class="std std-ref">GUI Standards</span></a>.</p></li>
+</ul>
+</section>
+</section>
 </section>
 
 
@@ -431,6 +462,11 @@ Unlike the method of instructing mantid to parse the files, this requires active
     <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modify-mantid-user-properties">Modify Mantid.user.properties</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-function-wrapper-at-runtime">Create function wrapper at runtime</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integrating-other-software-with-mantid">Integrating other software with Mantid</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-a-library-or-command-line-program">Using a library or command line program</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exchanging-data-with-another-application">Exchanging data with another application</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
