@@ -464,7 +464,9 @@ by a workspace item, such as <code class="code docutils literal notranslate"><sp
 contains domain data only and has no selection or display state.</p></li>
 <li><p><code class="code docutils literal notranslate"><span class="pre">PlottingWorkspace</span></code> contains the metadata needed to turn one reduced
 workspace into a requested plot output. This includes its ADS name, run
-numbers, containing workspace group, and period number.</p></li>
+numbers, period number, and <code class="code docutils literal notranslate"><span class="pre">PlottingWorkspaceContext</span></code>. The context
+records the item and its ancestors by selection scope, with root-to-item row
+paths and ADS names where applicable, plus the reduction output origin.</p></li>
 </ul>
 </section>
 <section id="model-iplottingmodel-h-and-model-plottingmodel-h-cpp">
@@ -539,8 +541,22 @@ state;</p></li>
 <li><p>warn before creating five or more plot items; and</p></li>
 <li><p>submit one or more <code class="code docutils literal notranslate"><span class="pre">PlotRequest</span></code> objects to <code class="code docutils literal notranslate"><span class="pre">IPlotter</span></code>.</p></li>
 </ul>
-<p>An individual layout is submitted as one request per workspace. Overplot and
-tiled layouts are submitted as one request containing all selected workspaces.</p>
+<p>A plot output type owns an ordered vector of <code class="code docutils literal notranslate"><span class="pre">PlotRequestDefinition</span></code>
+entries. Each definition specifies an output type and can override the request
+settings supplied by the view. These overrides apply to plot requests, rather
+than changing the view controls.</p>
+<p>For outputs with multiple <code class="code docutils literal notranslate"><span class="pre">PlotRequestDefinition</span></code> entries, the
+<code class="code docutils literal notranslate"><span class="pre">PlotActionState</span></code> enables only Plot when there is a selection and
+processing is idle. The other plot controls remain visible but disabled.</p>
+<p>Selection scope determines eligible tree levels. Separately,
+<code class="code docutils literal notranslate"><span class="pre">splitPlotRequestByPlotSelectionScope</span></code> determines whether selected
+workspaces are grouped by their recorded scope paths. Without splitting, the
+selection forms one batch. With splitting, the complete request sequence is
+prepared for each batch in first-selected order. The combined reflectivity and
+spin asymmetry output splits by ADS workspace group.</p>
+<p>Within each batch and request definition, an individual layout is submitted as
+one request per plot-ready workspace. Overplot and tiled layouts are submitted
+as one request containing all plot-ready workspaces for that definition.</p>
 </section>
 <section id="presenter-plottingworkspacetreepresenter-h-cpp">
 <h3><code class="code docutils literal notranslate"><span class="pre">presenter/PlottingWorkspaceTreePresenter.h/.cpp</span></code><a class="headerlink" href="#presenter-plottingworkspacetreepresenter-h-cpp" title="Link to this heading">#</a></h3>
@@ -571,10 +587,11 @@ injects them into a new <code class="code docutils literal notranslate"><span cl
 <ul class="simple">
 <li><p><code class="code docutils literal notranslate"><span class="pre">PlotOutputTypeCapabilities</span></code>, the flags describing support for
 overplotting, adding to an existing figure, postprocessed reduction-group
-outputs, and multi-plot selection based on ADS workspace groups;</p></li>
-<li><p><code class="code docutils literal notranslate"><span class="pre">PlotOutputTypeProperties</span></code>, the display name, accepted plotting
-workspace tree item types, accepted reduced workspace output types, and
-capabilities for one <code class="code docutils literal notranslate"><span class="pre">PlotOutputType</span></code>; and</p></li>
+outputs, multi-plot selection based on ADS workspace groups, and splitting
+request sequences by selection scope;</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">PlotOutputTypeProperties</span></code>, the display name, selection scope, accepted
+reduced workspace output types, capabilities, and ordered request definitions
+for one <code class="code docutils literal notranslate"><span class="pre">PlotOutputType</span></code>; and</p></li>
 <li><p><code class="code docutils literal notranslate"><span class="pre">plotOutputTypeProperties</span></code>, the lookup that returns the configured
 properties for an output type.</p></li>
 </ul>
@@ -862,9 +879,9 @@ changes, workspace deletion or rename, and ADS clearing.</p></li>
 the runs table.</p></li>
 <li><p>The tree walks reduction groups and rows that completed successfully and
 checks each recorded output against the ADS.</p></li>
-<li><p>Existing ADS workspace groups are expanded. Each selectable leaf is recorded
-as a <code class="code docutils literal notranslate"><span class="pre">PlottingWorkspace</span></code> with run, containing-group, and period
-metadata.</p></li>
+<li><p>Existing ADS workspace groups are expanded. Each leaf is recorded as a
+<code class="code docutils literal notranslate"><span class="pre">PlottingWorkspace</span></code> with run and period metadata and a context containing
+scope paths, associated ADS names, and output origin.</p></li>
 <li><p>The presenter reads the currently selected <code class="code docutils literal notranslate"><span class="pre">PlotOutputType</span></code> and asks
 <code class="code docutils literal notranslate"><span class="pre">PlottingViewStateProvider::plottingWorkspaceTreeItemStates</span></code> to
 evaluate the hierarchy using <code class="code docutils literal notranslate"><span class="pre">PlotOutputTypeProperties</span></code>.</p></li>
@@ -911,17 +928,24 @@ requires Mantid to report that the active axes are compatible.</p></li>
 <li><p>The presenter resolves selected leaf names through
 <code class="code docutils literal notranslate"><span class="pre">PlottingWorkspaceTree::plottingWorkspacesForNames</span></code> and reads the
 current plot output and axis selections from the view.</p></li>
-<li><p><code class="code docutils literal notranslate"><span class="pre">PlottingModel::workspacesForPlotting</span></code> returns existing reduced
-workspace names or creates the derived workspaces required for the selected
-output.</p></li>
-<li><p>The presenter passes the view’s <code class="code docutils literal notranslate"><span class="pre">PlotOutputSelection</span></code> and requested
-layout to <code class="code docutils literal notranslate"><span class="pre">IPlotOptionsProvider::optionsFor</span></code>. The production
+<li><p>The presenter forms workspace batches using the output type’s selection
+scope and splitting flag. For each batch, it processes the output type’s
+request definitions in order.</p></li>
+<li><p>For each definition, <code class="code docutils literal notranslate"><span class="pre">PlottingModel::workspacesForPlotting</span></code> returns
+existing reduced workspace names or creates the required derived workspaces.
+The presenter uses the definition’s output type and any settings override,
+falling back to the view’s settings when no override is present.</p></li>
+<li><p>The presenter passes the resulting <code class="code docutils literal notranslate"><span class="pre">PlotOutputSelection</span></code> and layout
+to <code class="code docutils literal notranslate"><span class="pre">IPlotOptionsProvider::optionsFor</span></code>. The production
 <code class="code docutils literal notranslate"><span class="pre">PlotOptionsProvider</span></code> returns the axis, style, marker, error-bar, and
 title configuration as <code class="code docutils literal notranslate"><span class="pre">PlotOptions</span></code>.</p></li>
-<li><p>For a request of five or more plot items, the view asks the user to confirm.</p></li>
-<li><p>The presenter creates <code class="code docutils literal notranslate"><span class="pre">PlotRequest</span></code> objects and calls
-<code class="code docutils literal notranslate"><span class="pre">IPlotter::plot</span></code>. Individual plots are sent separately; overplot and
-tiled outputs are sent together.</p></li>
+<li><p>The presenter prepares all <code class="code docutils literal notranslate"><span class="pre">PlotRequest</span></code> objects before rendering. If
+any definition in any batch returns no workspaces, plotting stops. If the
+total across all batches and definitions is five or more plot items, the
+view asks the user to confirm before any request is rendered.</p></li>
+<li><p>The presenter calls <code class="code docutils literal notranslate"><span class="pre">IPlotter::plot</span></code> for each prepared request in order.
+Individual plots are sent separately; overplot and tiled outputs are sent
+together within each batch and definition.</p></li>
 <li><p><code class="code docutils literal notranslate"><span class="pre">Plotter</span></code> evaluates and dispatches the request. Colorfill requests use
 Mantid’s <code class="code docutils literal notranslate"><span class="pre">pcolormesh</span></code>; vertical or workspace-group tiling uses custom
 tiled axes; tiled additions create axes on the active Reflectometry figure;
@@ -942,11 +966,14 @@ its existing boundary:</p>
 <ol class="arabic simple">
 <li><p>Add the scientific selection type and any required controls to
 <code class="code docutils literal notranslate"><span class="pre">PlotOptions.h</span></code> and the view.</p></li>
-<li><p>Add selection and action capabilities to
-<code class="code docutils literal notranslate"><span class="pre">PlotOutputTypeProperties.cpp</span></code>.</p></li>
-<li><p>Add plot-ready workspace creation or selection to <code class="code docutils literal notranslate"><span class="pre">PlottingModel.cpp</span></code>.</p></li>
-<li><p>Add rendering options and instrument availability to
-<code class="code docutils literal notranslate"><span class="pre">PlotOptions.cpp</span></code> and <code class="code docutils literal notranslate"><span class="pre">PlotOptionsProvider.cpp</span></code>.</p></li>
+<li><p>Configure selection scope, action capabilities, request definitions, and
+whether to split requests by scope in <code class="code docutils literal notranslate"><span class="pre">PlotOutputTypeProperties.cpp</span></code>.</p></li>
+<li><p>If the output needs new workspace preparation, add it to
+<code class="code docutils literal notranslate"><span class="pre">PlottingModel.cpp</span></code>. Outputs composed from existing request definitions
+reuse the existing preparation.</p></li>
+<li><p>Update instrument availability in <code class="code docutils literal notranslate"><span class="pre">PlotOptionsProvider.cpp</span></code>. Add
+rendering options to <code class="code docutils literal notranslate"><span class="pre">PlotOptions.cpp</span></code> and
+<code class="code docutils literal notranslate"><span class="pre">PlotOptionsProvider.cpp</span></code> only where existing options cannot be reused.</p></li>
 <li><p>Add focused model, presenter/state-provider, options-provider, view, and
 plotter tests for behavior introduced at each boundary.</p></li>
 </ol>
