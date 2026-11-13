@@ -470,16 +470,28 @@ For example, in <code class="code docutils literal notranslate"><span class="pre
 The simplest way to configure the logger is:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">mantid.utils.logging</span><span class="w"> </span><span class="kn">import</span> <span class="n">log_to_python</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">mantid.kernel</span><span class="w"> </span><span class="kn">import</span> <span class="n">logger</span>
+
 <span class="c1"># Configure Mantid to send messages to Python</span>
 <span class="n">log_to_python</span><span class="p">()</span>
 
 <span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">'Mantid'</span><span class="p">)</span>
-<span class="n">logger</span><span class="o">.</span><span class="n">information</span><span class="p">(</span><span class="s1">'This message is send to `log` defined above.'</span><span class="p">)</span>
+<span class="n">log</span><span class="o">.</span><span class="n">information</span><span class="p">(</span><span class="s1">'This message is send to `log` defined above.'</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>See the <a class="reference external" href="https://docs.mantidproject.org/nightly/api/python/mantid/utils/logging.html">log_to_python API documentation</a>
+for the available arguments and more examples.</p>
 <p>Note that <code class="code docutils literal notranslate"><span class="pre">log_to_python</span></code> overwrites the existing setup.
-If you need more control, you can use <code class="code docutils literal notranslate"><span class="pre">'PythonLoggingChannel'</span></code> as a channel class in the config as described above.</p>
+If you need more control, set the channel class yourself and keep the rest of your logging configuration,
+either in <code class="code docutils literal notranslate"><span class="pre">Mantid.user.properties</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>logging.channels.consoleChannel.class = PythonLoggingChannel
+</pre></div>
+</div>
+<p>or from Python:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mantid.kernel</span><span class="w"> </span><span class="kn">import</span> <span class="n">ConfigService</span>
+<span class="n">ConfigService</span><span class="p">[</span><span class="s2">"logging.channels.consoleChannel.class"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"PythonLoggingChannel"</span>
+</pre></div>
+</div>
+<p>The available channel classes are listed in the <a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/PropertiesFile.html#properties-file" title="(in MantidProject v7.0)"><span class="xref std std-ref">properties file</span></a> documentation.</p>
 <p>Messages sent through <code class="code docutils literal notranslate"><span class="pre">PythonLoggingChannel</span></code> are queued so that C++ threads do not block waiting for the Python
 interpreter. Delivery to Python therefore happens shortly after the C++ logging call returns. The queue holds up to
 <code class="code docutils literal notranslate"><span class="pre">logging.python.queueSize</span></code> messages (default 10,000, <code class="code docutils literal notranslate"><span class="pre">0</span></code> for unlimited); if it fills, further messages are
