@@ -410,28 +410,55 @@ configured build environment, with the build’s <code class="docutils literal n
 To generate a small subset while developing the generator, pass algorithm names
 instead of <code class="docutils literal notranslate"><span class="pre">--all</span></code>. The committed file should be generated with <code class="docutils literal notranslate"><span class="pre">--all</span></code>.</p>
 <p>Algorithms in the <code class="docutils literal notranslate"><span class="pre">MPI</span></code> category (<code class="docutils literal notranslate"><span class="pre">BroadcastWorkspace</span></code>, <code class="docutils literal notranslate"><span class="pre">GatherWorkspaces</span></code>)
-are left out of the stub. They are only registered when Mantid is built with
-<code class="docutils literal notranslate"><span class="pre">MPI_BUILD</span></code> on Linux, and including them would make the committed stub depend
-on where it was generated.</p>
+are left out of <code class="docutils literal notranslate"><span class="pre">simpleapi.pyi</span></code>, because the <code class="docutils literal notranslate"><span class="pre">MPIAlgorithms</span></code> plugin is only
+built on Linux and including them would make the committed stub depend on
+where it was generated. Instead, <code class="docutils literal notranslate"><span class="pre">simpleapi.pyi</span></code> star-imports
+<code class="docutils literal notranslate"><span class="pre">mantid._simpleapi_mpi</span></code>, a stub that <code class="docutils literal notranslate"><span class="pre">--mpi-only</span></code> writes to
+<code class="docutils literal notranslate"><span class="pre">Framework/PythonInterface/mantid/_simpleapi_mpi.pyi</span></code>. <code class="docutils literal notranslate"><span class="pre">ninja</span> <span class="pre">simpleapi_stubs</span></code>
+generates it wherever the plugin is built. It is ignored by git and shipped
+only in the <code class="docutils literal notranslate"><span class="pre">mantidmpi</span></code> conda package. Where it is missing, type checkers
+resolve the MPI algorithms through the stub’s <code class="docutils literal notranslate"><span class="pre">__getattr__</span></code> fallback as <code class="docutils literal notranslate"><span class="pre">Any</span></code>.</p>
 <p>Do not format the stub by hand. The generator runs Ruff on the generated file.
 When formatting or output needs correction, update the generator or its
 explicit wrapper-specific declarations, regenerate the file, and review the
 resulting diff.</p>
 </section>
-<section id="validate-and-review">
-<h2>Validate and review<a class="headerlink" href="#validate-and-review" title="Link to this heading">#</a></h2>
-<p>Check that the committed stub matches the current build’s registered
-algorithms:</p>
+<section id="packages-and-the-committed-stub">
+<h2>Packages and the committed stub<a class="headerlink" href="#packages-and-the-committed-stub" title="Link to this heading">#</a></h2>
+<p>The conda package build regenerates both stubs from the build it is packaging,
+by running the <code class="docutils literal notranslate"><span class="pre">simpleapi_stubs</span></code> target before install with
+<code class="docutils literal notranslate"><span class="pre">-DSIMPLEAPI_STUBS_ARGS=--no-format</span></code>. Packaged stubs therefore always match
+their algorithms. <code class="docutils literal notranslate"><span class="pre">--no-format</span></code> skips Ruff formatting, which needs <code class="docutils literal notranslate"><span class="pre">prek</span></code> or
+<code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> and a git checkout. Formatting matters only for the reviewed diff
+of the committed file.</p>
+<p>Generating the stub imports every Python algorithm plugin, so the staging
+<code class="docutils literal notranslate"><span class="pre">host</span></code> requirements in <code class="docutils literal notranslate"><span class="pre">conda/recipes/mantid/recipe.yaml</span></code> must include the
+Python packages that plugins import when they load. Required packages are also
+in the <code class="docutils literal notranslate"><span class="pre">mantid</span></code> run requirements. Optional packages that decide whether an
+algorithm is registered, such as <code class="docutils literal notranslate"><span class="pre">pystog</span></code>, are only in <code class="docutils literal notranslate"><span class="pre">host</span></code> and
+<code class="docutils literal notranslate"><span class="pre">run_constraints</span></code>. <code class="docutils literal notranslate"><span class="pre">pystog</span></code> comes from the <code class="docutils literal notranslate"><span class="pre">neutrons</span></code> channel, which
+<code class="docutils literal notranslate"><span class="pre">buildconfig/Jenkins/Conda/package-conda</span></code> passes to the <code class="docutils literal notranslate"><span class="pre">mantid</span></code> build. If a
+plugin fails to load, the generator stops with a list of the failed files
+rather than writing a stub without their algorithms. An optional import that
+only skips registering an algorithm cannot be detected; that algorithm is then
+missing from the packaged stub until its package is added to <code class="docutils literal notranslate"><span class="pre">host</span></code>.</p>
+<p>The committed stub is not checked for freshness in CI, so pull requests that
+change algorithm properties do not need to regenerate it, and feature branches
+do not conflict over it. It may lag behind the algorithms on <code class="docutils literal notranslate"><span class="pre">main</span></code> until
+someone regenerates it. To check whether it is stale, run:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>tools/python_typing/generate_simpleapi_stubs.py<span class="w"> </span>--all<span class="w"> </span>--check
 </pre></div>
 </div>
+</section>
+<section id="validate-and-review">
+<h2>Validate and review<a class="headerlink" href="#validate-and-review" title="Link to this heading">#</a></h2>
 <p>The Python typing tests are registered with CTest under the <code class="docutils literal notranslate"><span class="pre">UnitTest</span></code> label.
 From the configured build directory, run the focused tests with:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>ctest<span class="w"> </span>-R<span class="w"> </span><span class="s1">'tools\.python_typing\.'</span><span class="w"> </span>--output-on-failure
 </pre></div>
 </div>
-<p>The tests cover generator behavior, stub freshness, and an analyzer smoke check
-for the <code class="docutils literal notranslate"><span class="pre">ConvertUnits</span></code> signature that requires Pyright to reject an invalid
+<p>The tests cover generator behavior and an analyzer smoke check for the
+<code class="docutils literal notranslate"><span class="pre">ConvertUnits</span></code> signature that requires Pyright to reject an invalid
 <code class="docutils literal notranslate"><span class="pre">Target</span></code> value. The PR workflow runs these tests as part of its <code class="docutils literal notranslate"><span class="pre">UnitTest</span></code>
 selection.</p>
 <p>For an interactive fixture named <code class="docutils literal notranslate"><span class="pre">check_mantid_types.py</span></code> in the configured
@@ -441,9 +468,9 @@ build directory, run:</p>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">check</span></code> is not a Pyright subcommand. The command above uses the project’s
 <code class="docutils literal notranslate"><span class="pre">pyrightconfig.json</span></code> automatically when run from its directory.</p>
-<p>Keep stub freshness and analyzer checks in CTest/CI. They need the Mantid
-bindings and registered algorithms from the build; pre-commit remains
-responsible for formatting and ordinary static checks.</p>
+<p>Keep analyzer checks in CTest/CI. They need the Mantid bindings and
+registered algorithms from the build; pre-commit remains responsible for
+formatting and ordinary static checks.</p>
 <p>When algorithm property metadata or simpleapi wrapper behavior changes, review
 the generated declarations and update generator overrides and tests as needed.
 The separate binding-stub workstream will document its own declaration source
@@ -502,6 +529,7 @@ and maintenance workflow for compiled <code class="docutils literal notranslate"
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#requirements">Requirements</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configure-pyright-import-paths">Configure Pyright import paths</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-the-declarations">Generate the declarations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#packages-and-the-committed-stub">Packages and the committed stub</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#validate-and-review">Validate and review</a></li>
 </ul>
   </nav></div>
