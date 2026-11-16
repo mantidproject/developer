@@ -481,6 +481,20 @@ git<span class="w"> </span>commit
 git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>main
 </pre></div>
 </div>
+<p>A special case for conflicts with <code class="docutils literal notranslate"><span class="pre">pixi.lock</span></code> files.
+Since it is marked as a binary in the <code class="docutils literal notranslate"><span class="pre">.gitattributes</span></code>, this can get more subtle.
+During a rebase, “ours” is the new base plus already replayed commits, while “theirs” is the commit being replayed.
+During a merge, “ours” is the checked-out branch and “theirs” is the branch being merged.
+Choose a starting lockfile based on the versions you intend to retain, checking both histories for intentional dependency updates.
+<code class="docutils literal notranslate"><span class="pre">pixi</span> <span class="pre">install</span></code> cannot reconstruct discarded lockfile-only updates from an unchanged manifest.
+Resolve any <code class="docutils literal notranslate"><span class="pre">pixi.toml</span></code> conflicts first. For example, to start from “ours”:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>--ours<span class="w"> </span>pixi.lock
+pixi<span class="w"> </span>install
+</pre></div>
+</div>
+<p>Before staging <code class="docutils literal notranslate"><span class="pre">pixi.lock</span></code> with <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">pixi.lock</span></code>, preserve or explicitly reapply any intended updates missing from the selected side.</p>
+<p>The key to this approach is that checking out a version then installing will attempt to keep the lockfile, but can add/subtract things.
+The method of deleting the old lockfile then creating it solves the environment from scratch which is generally the wrong thing to do.</p>
 </section>
 <section id="specific-quirks-of-mantid">
 <h2>Specific quirks of Mantid<a class="headerlink" href="#specific-quirks-of-mantid" title="Link to this heading">#</a></h2>
